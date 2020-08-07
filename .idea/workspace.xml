@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:blixary" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="071ab9d9-af23-4a89-bb42-4b079733fef9" name="Default Changelist" comment="" />
+    <list default="true" id="071ab9d9-af23-4a89-bb42-4b079733fef9" name="Default Changelist" comment="Added webpack encore and bootstrap framework;" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,16 +59,44 @@
       <option name="presentableId" value="Default" />
       <updated>1596798369273</updated>
       <workItem from="1596798371903" duration="23000" />
+      <workItem from="1596798545760" duration="298000" />
     </task>
+    <task id="LOCAL-00001" summary="Added webpack encore and bootstrap framework;">
+      <created>1596798602009</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1596798602009</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added webpack encore and bootstrap framework;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added webpack encore and bootstrap framework;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1361" y="473" key="FileChooserDialogImpl" timestamp="1596798392830">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1361" y="473" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1596798392830" />
+    <state x="1173" y="432" key="Vcs.Push.Dialog.v2" timestamp="1596798610862">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1173" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1596798610862" />
   </component>
 </project>
