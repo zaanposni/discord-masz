@@ -15,6 +15,7 @@ namespace masz.Models
         public int Severity { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime OccuredAt { get; set; }
+        public DateTime LastEditedAt { get; set; }
         public string Punishment { get; set; }
         public string Labels { get; set; }
         public string Others { get; set; }

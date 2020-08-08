@@ -9,18 +9,18 @@ namespace masz.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly ILogger<AuthenticationController> _logger;
+        private readonly ILogger<AuthenticationController> logger;
 
         public AuthenticationController(ILogger<AuthenticationController> logger)
         {
-            _logger = logger;
+            this.logger = logger;
         }
 
         [HttpGet("/login")]
         public async Task<IActionResult> Login([FromQuery] string ReturnUrl)
         {
             if (ReturnUrl == null || ReturnUrl.Length == 0) {
-                    ReturnUrl = $"/index";
+                    ReturnUrl = $"/";
             }
 
             var properties = new AuthenticationProperties()
