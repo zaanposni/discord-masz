@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using masz.data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Discord.OAuth2;
+using Microsoft.AspNetCore.Authentication;
 
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("test")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -17,11 +20,13 @@ namespace masz.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<WeatherForecastController> logger;
+        private readonly IAuthRepository repo;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IAuthRepository repo)
         {
-            _logger = logger;
+            this.logger = logger;
+            this.repo = repo;
         }
 
         [HttpGet]
@@ -42,6 +47,16 @@ namespace masz.Controllers
                 Test = dummylist
             })
             .ToArray();
+        }
+
+        [HttpGet("secret")]
+        [Authorize]
+        public async Task<IActionResult> GetSecret()
+        {
+            if (! await repo.DiscordUserIsAuthorized(HttpContext)) {
+                return Unauthorized("Unauthorized");
+            }
+            return Ok("Ok");
         }
     }
 }

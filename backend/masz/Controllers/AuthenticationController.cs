@@ -17,19 +17,23 @@ namespace masz.Controllers
         }
 
         [HttpGet("/login")]
-        public async Task<IActionResult> Login()
+        public async Task<IActionResult> Login([FromQuery] string ReturnUrl)
         {
+            if (ReturnUrl == null || ReturnUrl.Length == 0) {
+                    ReturnUrl = $"/index";
+            }
+
             var properties = new AuthenticationProperties()
             {
+                
                 // actual redirect endpoint for your app
-                RedirectUri = $"/weatherforecast",
+                RedirectUri = ReturnUrl,
                 Items =
                 {
                     { "LoginProvider", "Discord" },
                 },
                 AllowRefresh = true,
             };
-
             return this.Challenge(properties, "Discord");
         }
     }
