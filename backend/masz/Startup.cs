@@ -44,8 +44,8 @@ namespace masz
 
             .AddCookie(options =>
             {
-                options.LoginPath = "/login";
-                options.LogoutPath = "/signout";
+                options.LoginPath = "/api/v1/login";
+                options.LogoutPath = "/api/v1/logout";
                 options.ExpireTimeSpan = new TimeSpan(24, 0, 0);
                 options.Cookie.Name = "access_token";
             })

@@ -152,6 +152,7 @@ namespace masz.Controllers
                 }                
             }
 
+            oldModCase.Valid = true;
             oldModCase.LastEditedAt = DateTime.Now;
             oldModCase.LastEditedByModId = await repo.GetDiscordUserId(HttpContext);
 

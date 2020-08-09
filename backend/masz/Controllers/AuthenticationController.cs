@@ -16,7 +16,7 @@ namespace masz.Controllers
             this.logger = logger;
         }
 
-        [HttpGet("/login")]
+        [HttpGet("/api/v1/login")]
         public async Task<IActionResult> Login([FromQuery] string ReturnUrl)
         {
             if (ReturnUrl == null || ReturnUrl.Length == 0) {
@@ -36,5 +36,13 @@ namespace masz.Controllers
             };
             return this.Challenge(properties, "Discord");
         }
+
+        [HttpPost("/api/v1/logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return Redirect("/");
+        }
+
     }
 }
