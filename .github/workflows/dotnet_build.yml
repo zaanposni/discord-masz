@@ -1,8 +1,8 @@
-name: DotnetBuild
+name: Backend/masz
 on: [pull_request]
 
 jobs:
-  Build:
+  DotnetBuild:
     runs-on: ubuntu-18.04
 
     steps:
