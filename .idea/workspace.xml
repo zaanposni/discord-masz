@@ -24,14 +24,34 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="071ab9d9-af23-4a89-bb42-4b079733fef9" name="Default Changelist" comment="Added webpack encore and bootstrap framework;" />
+    <list default="true" id="071ab9d9-af23-4a89-bb42-4b079733fef9" name="Default Changelist" comment="Added missing composer and yarn files;">
+      <change afterPath="$PROJECT_DIR$/webinterface/templates/sidebar.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webinterface/templates/users/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/assets/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/assets/css/bootstrap.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/config/routes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/webpack.config.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,7 +66,25 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/webinterface/assets/js" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="Symfony2.SettingsForm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Samuel Kräuter\PhpstormProjects\discord-masz\webinterface\assets\css" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Samuel Kräuter\PhpstormProjects\discord-masz\webinterface\assets\js" />
+      <recent name="C:\Users\Samuel Kräuter\PhpstormProjects\discord-masz\webinterface\assets\css" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -59,7 +97,11 @@
       <option name="presentableId" value="Default" />
       <updated>1596798369273</updated>
       <workItem from="1596798371903" duration="23000" />
-      <workItem from="1596798545760" duration="298000" />
+      <workItem from="1596798545760" duration="490000" />
+      <workItem from="1596926690908" duration="1045000" />
+      <workItem from="1596928208117" duration="45000" />
+      <workItem from="1596928271046" duration="3860000" />
+      <workItem from="1596932162130" duration="4081000" />
     </task>
     <task id="LOCAL-00001" summary="Added webpack encore and bootstrap framework;">
       <created>1596798602009</created>
@@ -68,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596798602009</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added missing composer and yarn files;">
+      <created>1596798994258</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1596798994258</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -84,19 +133,37 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added webpack encore and bootstrap framework;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added webpack encore and bootstrap framework;" />
+    <MESSAGE value="Added missing composer and yarn files;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added missing composer and yarn files;" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1378" y="374" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1596929409441">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1378" y="374" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1596929409441" />
     <state x="1361" y="473" key="FileChooserDialogImpl" timestamp="1596798392830">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1361" y="473" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1596798392830" />
-    <state x="1173" y="432" key="Vcs.Push.Dialog.v2" timestamp="1596798610862">
+    <state x="1161" y="453" key="IDE.errors.dialog" timestamp="1596929581138">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1173" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1596798610862" />
+    <state x="1161" y="453" key="IDE.errors.dialog/0.0.2560.1400@0.0.2560.1400" timestamp="1596929581138" />
+    <state x="1250" y="425" key="NewPhpClassDialog" timestamp="1596928535166">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1250" y="425" key="NewPhpClassDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1596928535166" />
+    <state x="1082" y="363" key="SettingsEditor" timestamp="1596929607975">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1082" y="363" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1596929607975" />
+    <state x="1173" y="432" key="Vcs.Push.Dialog.v2" timestamp="1596798998336">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1173" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1596798998336" />
   </component>
 </project>
