@@ -19,12 +19,12 @@ namespace masz.Controllers
             logger.LogInformation("/ | Returning Index.");
             return new ContentResult() 
             {
-                Content = "<a href=\"/login\" target=\"blank\">Login with Discord.</a>",
+                Content = "<a href=\"/api/v1/login\" target=\"blank\">Login with Discord.</a>",
                 ContentType = "text/html",
             };
         }
 
-        [HttpGet("/status")]
+        [HttpGet("/api/v1/status")]
         public async Task<IActionResult> Status() {
             logger.LogInformation("/status | Returning Status.");
             return Ok("OK");
