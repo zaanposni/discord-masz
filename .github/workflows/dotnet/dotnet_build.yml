@@ -1,0 +1,20 @@
+name: DotnetBuild
+on: [pull_request]
+
+jobs:
+  Build:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.101
+
+      - name: Dotnet Publish
+        run: |
+          cd backend
+          dotnet clean
+          dotnet build -c Release -o deploy
