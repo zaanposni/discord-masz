@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using masz.data;
 using masz.Dtos.ModCase;
@@ -197,13 +198,17 @@ namespace masz.Controllers
         }
 
         [HttpGet("all")]
-        public async Task<IActionResult> GetAllModCases([FromRoute] string guildid) 
+        public async Task<IActionResult> GetAllModCases([FromRoute] string guildid, [FromQuery] string limit = "100") 
         {
             var validation = await ValidateRequestForGuild(HttpContext, guildid);
             if (validation != null)
                 return validation;
             
-            List<ModCase> modCases = await dbContext.ModCases.ToListAsync();
+            int iLimit = 0;
+
+            if (!Int32.TryParse(limit, out iLimit))
+                iLimit = 100;
+            List<ModCase> modCases = await dbContext.ModCases.Where(x => x.GuildId == guildid).Take(iLimit).ToListAsync();
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Returning ModCases.");
             return Ok(modCases);
