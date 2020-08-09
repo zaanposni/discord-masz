@@ -1,11 +1,11 @@
-name: DotnetBuild
+name: Backend/masz
 on:
     push:
       branches:
         - master
 
 jobs:
-  Build:
+  DotnetBuild:
     runs-on: ubuntu-18.04
 
     steps:
