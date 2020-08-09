@@ -15,6 +15,5 @@ namespace masz.Dtos.ModCase
         public string Labels { get; set; }
         public string Others { get; set; }
         public bool Valid { get; set; }
-
     }
 }

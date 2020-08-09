@@ -12,6 +12,8 @@ def random_pass(pass_length=200):
     random.seed = (os.urandom(1024))
     return ''.join(random.choice(chars) for i in range(pass_length))
 
+
+# TODO: also get discord bot token and secrets
 CNC_STRING = "Server={};Port={};Database={};Uid={};Pwd={};".format(start_args[0], start_args[1], start_args[2], start_args[3], start_args[4])
 
 PATH = os.path.join("masz", "appsettings.json")
