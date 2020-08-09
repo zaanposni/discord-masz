@@ -10,9 +10,12 @@ namespace masz.data
 
         public DbSet<ModCase> ModCases { get; set; }        
         public DbSet<ModCaseComments> ModCaseComments { get; set; }
+        public DbSet<ModGuild> ModGuilds { get; set; }
 
         public void Configure(EntityTypeBuilder<ModCase> builder) {
             builder.Property(u => u.CreatedAt).IsRequired(true).HasDefaultValueSql("now()");
+            builder.Property(u => u.Severity).HasDefaultValue(0);
+            builder.Property(u => u.Valid).HasDefaultValue(true);
         }
 
         public void Configure(EntityTypeBuilder<ModCaseComments> builder)

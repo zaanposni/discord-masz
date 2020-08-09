@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using masz.data;
+using masz.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -58,6 +59,8 @@ namespace masz
                 options.Prompt = Discord.OAuth2.DiscordOptions.PromptTypes.None;
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             });
+
+            services.Configure<InternalConfig>(Configuration.GetSection("InternalConfig"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
         }
