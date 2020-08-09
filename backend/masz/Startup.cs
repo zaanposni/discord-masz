@@ -46,13 +46,14 @@ namespace masz
             {
                 options.LoginPath = "/login";
                 options.LogoutPath = "/signout";
-                options.ExpireTimeSpan = new TimeSpan(0, 1, 0);
+                options.ExpireTimeSpan = new TimeSpan(24, 0, 0);
+                options.Cookie.Name = "access_token";
             })
             
             .AddDiscord(options =>
             {
-                options.ClientId = "741271678868389897";
-                options.ClientSecret = "";
+                options.ClientId = Configuration.GetSection("InternalConfig").GetValue<string>("DiscordClientId");
+                options.ClientSecret = Configuration.GetSection("InternalConfig").GetValue<string>("DiscordClientSecret");
                 options.Scope.Add("guilds");
                 options.Scope.Add("identify");
                 options.SaveTokens = true;

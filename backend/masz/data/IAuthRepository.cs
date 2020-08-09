@@ -29,16 +29,15 @@ namespace masz.data
         /// <param name="context">current http context to check</param>
         /// <param name="guildId">guild that the user should be member of</param>
         /// <returns>True if the a request against discord API could be authenticated and the user is member of the specified guild.</returns>
-        Task<bool> DiscordUserIsAuthorizedServer(HttpContext context, int guildId);
+        Task<bool> DiscordUserIsOnServer(HttpContext context, string guildId);
 
         /// <summary>
-        /// This method checks if a HttpContext holds a valid Discord user token and if the discord user is member of a specified guild and has a specified role.
+        /// This method checks if a HttpContext holds a valid Discord user token and if the discord user is member of a specified guild and has a mod role or higher as they are specified in the database.
         /// https://discord.com/developers/docs/resources/guild#get-guild-member
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="guildId"></param>
-        /// <param name="roleId"></param>
-        /// <returns></returns>
-        Task<bool> DiscordUserHasRoleOnGuild(HttpContext context, int guildId, int roleId);
+        /// <param name="context">current http context to check</param>
+        /// <param name="guildId">guild that the user requestes for</param>
+        /// <returns>True if the request against discord API could be authenticated and the user has at least on specified role or higher.</returns>
+        Task<bool> DiscordUserHasModRoleOrHigherOnGuild(HttpContext context, string guildId);
     }
 }

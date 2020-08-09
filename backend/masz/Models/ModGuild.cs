@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace masz.Models
 {
-    public class ModGuild
+    public class GuildConfig
     {
         public int Id { get; set; }
-        public int GuildId { get; set; }
-        public int ModRoleId { get; set; }
-        public int AdminRoleId { get; set; }
-        public int ModNotificationWebhook { get; set; }
+        public string GuildId { get; set; }
+        public string ModRoleId { get; set; }
+        public string AdminRoleId { get; set; }
+        public string ModNotificationWebhook { get; set; }
     }
 }
