@@ -36,6 +36,7 @@ namespace masz
             services.AddControllers();
 
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IDiscordRepository, DiscordRepository>();
 
              services.AddAuthentication(options =>
             {

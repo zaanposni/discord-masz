@@ -23,27 +23,28 @@ namespace masz.data
         private readonly IOptions<InternalConfig> config;
         private readonly DataContext dbContext;
 
-        public AuthRepository(ILogger<AuthRepository> logger, IOptions<InternalConfig> config, DataContext context) {
+        private readonly IDiscordRepository discordRepo;
+
+        public AuthRepository(ILogger<AuthRepository> logger, IOptions<InternalConfig> config, DataContext context, IDiscordRepository discordRepo) {
             this.logger = logger;
             this.config = config;
-            this.dbContext = context;            
-            this.client = new RestClient("https://discordapp.com/api");
+            this.dbContext = context;
+            this.discordRepo = discordRepo;
+        }
+
+        public async Task<string> GetDiscordUserToken(HttpContext context)
+        {
+            return await context.GetTokenAsync("access_token");
         }
 
         public async Task<string> GetDiscordUserId(HttpContext context)
         {
             var token = await context.GetTokenAsync("access_token");
 
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/users/@me";
-            request.AddHeader("Authorization", "Bearer " + token);
+            var user = await discordRepo.ValidateDiscordUserToken(token);
 
-            var response = client.Execute<User>(request);
-            if (response.IsSuccessful)
-            {
-                var json = JsonConvert.DeserializeObject<User>(response.Content);
-                return json.id;
-            }
+            if (user != null)
+                return user.Id;
             return null;
         }
 
@@ -51,29 +52,14 @@ namespace masz.data
         {
             var token = await context.GetTokenAsync("access_token");
 
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/users/@me";
-            request.AddHeader("Authorization", "Bearer " + token);
-
-            var response = client.Execute(request);
-            return HttpStatusCode.OK.Equals(response.StatusCode);
+            return await discordRepo.ValidateDiscordUserToken(token) != null;
         }
 
         public async Task<bool> DiscordUserIsOnServer(HttpContext context, string guildId)
         {
             string token = await context.GetTokenAsync("access_token");
 
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/users/@me/guilds";
-            request.AddHeader("Authorization", "Bearer " + token);
-
-            var response = client.Execute<List<UserGuilds>>(request);
-            if (response.IsSuccessful)
-            {
-                var json = JsonConvert.DeserializeObject<List<UserGuilds>>(response.Content);
-                return json.Any(x => x.id == guildId);
-            }
-            return false;
+            return await discordRepo.DiscordUserIsMemberOfGuild(guildId, token);
         }
 
         public async Task<bool> DiscordUserHasModRoleOrHigherOnGuild(HttpContext context, string guildId)
@@ -93,16 +79,16 @@ namespace masz.data
                 return false;      
             }      
 
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/guilds/" + guildId + "/members/" + userId;
-            request.AddHeader("Authorization", "Bot " + config.Value.DiscordBotToken);
+            // check mod role
+            bool isMod = await discordRepo.DiscordUserHasRoleOnGuild(guildId, modGuild.ModRoleId, userId);
+            if (isMod)
+                return true;
+            
+            // check admin role
+            bool isAdmin = await discordRepo.DiscordUserHasRoleOnGuild(guildId, modGuild.AdminRoleId, userId);
+            if (isAdmin)
+                return true;
 
-            var response = client.Execute<GuildMember>(request);
-            if (response.IsSuccessful)
-            {
-                var json = JsonConvert.DeserializeObject<GuildMember>(response.Content);
-                return json.roles.Contains(modGuild.ModRoleId) || json.roles.Contains(modGuild.AdminRoleId);
-            }
             return false;
         }
     }

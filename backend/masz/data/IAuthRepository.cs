@@ -7,6 +7,13 @@ namespace masz.data
     public interface IAuthRepository
     {
         /// <summary>
+        /// This method returns the discord personal access token that can be obtained with the token received during the oauth process
+        /// </summary>
+        /// <param name="context">current http context to check</param>
+        /// <returns>discord personal access token for authenticated user</returns>
+        Task<string> GetDiscordUserToken(HttpContext context);
+
+        /// <summary>
         /// This method returns the discord user id of the current authenticated user in the http context
         /// https://discord.com/developers/docs/resources/user#get-current-user
         /// </summary>

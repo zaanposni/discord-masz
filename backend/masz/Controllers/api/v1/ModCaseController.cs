@@ -19,14 +19,16 @@ namespace masz.Controllers
     public class ModCaseController : ControllerBase
     {
         private readonly ILogger<ModCaseController> logger;
-        private readonly IAuthRepository repo;
+        private readonly IAuthRepository authRepo;
         private readonly DataContext dbContext;
+        private readonly IDiscordRepository discordRepo;
 
-        public ModCaseController(ILogger<ModCaseController> logger, IAuthRepository repo, DataContext context)
+        public ModCaseController(ILogger<ModCaseController> logger, IAuthRepository authRepo, DataContext context, IDiscordRepository discordRepo)
         {
             this.logger = logger;
-            this.repo = repo;
+            this.authRepo = authRepo;
             this.dbContext = context;
+            this.discordRepo = discordRepo;
         }
 
         private bool ValidatePathParameter(string variable) 
@@ -68,7 +70,7 @@ namespace masz.Controllers
                 return BadRequest("Guild is not registered.");
             }            
 
-            if (! await repo.DiscordUserHasModRoleOrHigherOnGuild(HttpContext, guildId))
+            if (! await authRepo.DiscordUserHasModRoleOrHigherOnGuild(HttpContext, guildId))
             {
                 logger.LogInformation(context.Request.Method + " " + context.Request.Path + " | 401 Unauthorized.");
                 return Unauthorized();
@@ -155,7 +157,7 @@ namespace masz.Controllers
 
             oldModCase.Valid = true;
             oldModCase.LastEditedAt = DateTime.Now;
-            oldModCase.LastEditedByModId = await repo.GetDiscordUserId(HttpContext);
+            oldModCase.LastEditedByModId = await authRepo.GetDiscordUserId(HttpContext);
 
             dbContext.Update(oldModCase);
             await dbContext.SaveChangesAsync();
@@ -184,7 +186,7 @@ namespace masz.Controllers
             else
                 newModCase.OccuredAt = DateTime.Now;
             newModCase.LastEditedAt = DateTime.Now;
-            newModCase.LastEditedByModId = await repo.GetDiscordUserId(HttpContext);
+            newModCase.LastEditedByModId = await authRepo.GetDiscordUserId(HttpContext);
             newModCase.Punishment = modCase.Punishment;
             newModCase.Labels = modCase.Labels;
             newModCase.Others = modCase.Others;
@@ -208,7 +210,8 @@ namespace masz.Controllers
 
             if (!Int32.TryParse(limit, out iLimit))
                 iLimit = 100;
-            List<ModCase> modCases = await dbContext.ModCases.Where(x => x.GuildId == guildid).Take(iLimit).ToListAsync();
+
+            List<ModCase> modCases = await dbContext.ModCases.Where(x => x.GuildId == guildid).Take(iLimit).ToListAsync();            
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Returning ModCases.");
             return Ok(modCases);
