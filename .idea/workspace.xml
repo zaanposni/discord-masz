@@ -24,18 +24,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="071ab9d9-af23-4a89-bb42-4b079733fef9" name="Default Changelist" comment="Added missing composer and yarn files;">
-      <change afterPath="$PROJECT_DIR$/webinterface/templates/sidebar.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/templates/users/show.html.twig" afterDir="false" />
+    <list default="true" id="071ab9d9-af23-4a89-bb42-4b079733fef9" name="Default Changelist" comment="Added missing files;">
+      <change beforePath="$PROJECT_DIR$/.idea/symfony2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/assets/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/assets/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/templates/users/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/templates/users/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +94,10 @@
       <workItem from="1596928208117" duration="45000" />
       <workItem from="1596928271046" duration="3860000" />
       <workItem from="1596932162130" duration="4081000" />
+      <workItem from="1596937870704" duration="153000" />
+      <workItem from="1596938128711" duration="32000" />
+      <workItem from="1596981898396" duration="3220000" />
+      <workItem from="1597109466389" duration="746000" />
     </task>
     <task id="LOCAL-00001" summary="Added webpack encore and bootstrap framework;">
       <created>1596798602009</created>
@@ -117,7 +113,21 @@
       <option name="project" value="LOCAL" />
       <updated>1596798994258</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added template engine twig; Added basic html structure and main routes;">
+      <created>1596938016192</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1596938016194</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added missing files;">
+      <created>1596938153250</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1596938153250</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,7 +148,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added webpack encore and bootstrap framework;" />
     <MESSAGE value="Added missing composer and yarn files;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added missing composer and yarn files;" />
+    <MESSAGE value="Added template engine twig; Added basic html structure and main routes;" />
+    <MESSAGE value="Added missing files;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added missing files;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1378" y="374" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1596929409441">
@@ -157,13 +169,13 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1250" y="425" key="NewPhpClassDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1596928535166" />
-    <state x="1082" y="363" key="SettingsEditor" timestamp="1596929607975">
+    <state x="1082" y="363" key="SettingsEditor" timestamp="1597109768635">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1082" y="363" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1596929607975" />
-    <state x="1173" y="432" key="Vcs.Push.Dialog.v2" timestamp="1596798998336">
+    <state x="1082" y="363" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1597109768635" />
+    <state x="1173" y="432" key="Vcs.Push.Dialog.v2" timestamp="1596938154569">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1173" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1596798998336" />
+    <state x="1173" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1596938154569" />
   </component>
 </project>
