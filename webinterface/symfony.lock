@@ -120,6 +120,12 @@
             "./src/Kernel.php"
         ]
     },
+    "symfony/http-client": {
+        "version": "v5.1.3"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.1.3"
+    },
     "symfony/http-foundation": {
         "version": "v5.1.3"
     },

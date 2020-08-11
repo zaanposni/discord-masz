@@ -24,9 +24,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="071ab9d9-af23-4a89-bb42-4b079733fef9" name="Default Changelist" comment="Added missing files;">
-      <change beforePath="$PROJECT_DIR$/.idea/symfony2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
+    <list default="true" id="071ab9d9-af23-4a89-bb42-4b079733fef9" name="Default Changelist" comment="Updated base;">
+      <change afterPath="$PROJECT_DIR$/webinterface/src/Controller/ModCaseController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webinterface/src/Controller/UserController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webinterface/templates/modcase/all.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webinterface/templates/modcase/createcase.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webinterface/templates/modcase/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/src/Controller/UsersController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/templates/sidebar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/templates/sidebar.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webinterface/templates/users/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/templates/users/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +55,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1flh1EIWMs0kC5CoYQkoUq16JXF" />
@@ -67,7 +81,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="Symfony2.SettingsForm" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -97,7 +111,7 @@
       <workItem from="1596937870704" duration="153000" />
       <workItem from="1596938128711" duration="32000" />
       <workItem from="1596981898396" duration="3220000" />
-      <workItem from="1597109466389" duration="746000" />
+      <workItem from="1597109466389" duration="5430000" />
     </task>
     <task id="LOCAL-00001" summary="Added webpack encore and bootstrap framework;">
       <created>1596798602009</created>
@@ -127,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596938153250</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Updated base;">
+      <created>1597110280116</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1597110280116</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,13 +171,18 @@
     <MESSAGE value="Added missing composer and yarn files;" />
     <MESSAGE value="Added template engine twig; Added basic html structure and main routes;" />
     <MESSAGE value="Added missing files;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added missing files;" />
+    <MESSAGE value="Updated base;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated base;" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1378" y="374" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1596929409441">
+    <state x="1378" y="205" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1597114890588">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1378" y="374" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1596929409441" />
+    <state x="1378" y="205" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1597114890588" />
+    <state x="1088" y="436" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597113938331">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1088" y="436" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1597113938331" />
     <state x="1361" y="473" key="FileChooserDialogImpl" timestamp="1596798392830">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -165,17 +191,25 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1161" y="453" key="IDE.errors.dialog/0.0.2560.1400@0.0.2560.1400" timestamp="1596929581138" />
-    <state x="1250" y="425" key="NewPhpClassDialog" timestamp="1596928535166">
+    <state x="1250" y="425" key="NewPhpClassDialog" timestamp="1597113442876">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1250" y="425" key="NewPhpClassDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1596928535166" />
-    <state x="1082" y="363" key="SettingsEditor" timestamp="1597109768635">
+    <state x="1250" y="425" key="NewPhpClassDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1597113442876" />
+    <state x="1082" y="363" key="SettingsEditor" timestamp="1597113786423">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1082" y="363" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1597109768635" />
-    <state x="1173" y="432" key="Vcs.Push.Dialog.v2" timestamp="1596938154569">
+    <state x="1082" y="363" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1597113786423" />
+    <state x="1173" y="432" key="Vcs.Push.Dialog.v2" timestamp="1597110282185">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1173" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1596938154569" />
+    <state x="1173" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1597110282185" />
+    <state x="1165" y="591" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597110380992">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1165" y="591" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1597110380992" />
+    <state x="1123" y="312" key="git4idea.branch.GitSmartOperationDialog" timestamp="1597110267486">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1123" y="312" key="git4idea.branch.GitSmartOperationDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1597110267486" />
   </component>
 </project>
