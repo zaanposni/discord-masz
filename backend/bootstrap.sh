@@ -7,7 +7,7 @@ docker image rm discord-masz || echo "Failed to stop old container"
 docker ps -a
 
 docker build -t discord-masz --build-arg MYSQL_HOST=127.0.0.1 \
-                             --build-arg MYSQL_PORT=3306 \
+                             --build-arg MYSQL_PORT=33061 \
                              --build-arg MYSQL_DATABASE=masz \
                              --build-arg MYSQL_USER=mysqldummy \
                              --build-arg MYSQL_PASS=mysqldummy \

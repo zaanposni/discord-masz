@@ -17,6 +17,14 @@ namespace masz.data
         Task<User> ValidateDiscordUserToken(string token);
 
         /// <summary>
+        /// Returns information of user by his id
+        /// https://discord.com/developers/docs/resources/user#get-user
+        /// </summary>
+        /// <param name="userId">discord user id to fetch</param>
+        /// <returns>User object if found.</returns>
+        Task<User> FetchDiscordUserInfo(string userId);
+
+        /// <summary>
         /// This method returns a list of IDs for all guilds an user defined by his personal access token is member of.
         /// https://discord.com/developers/docs/resources/user#get-current-user-guilds
         /// </summary>
