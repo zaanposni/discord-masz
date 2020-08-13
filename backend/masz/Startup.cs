@@ -75,6 +75,11 @@ namespace masz
                 app.UseDeveloperExceptionPage();
             }
 
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                scope.ServiceProvider.GetService<DataContext>().Database.Migrate();
+            }
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

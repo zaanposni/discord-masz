@@ -79,5 +79,19 @@ namespace masz.data
             }
             return null;
         }
+
+        public async Task<User> FetchDiscordUserInfo(string userId)
+        {
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/users/" + userId;
+            request.AddHeader("Authorization", "Bot " + botToken);
+
+            var response = await restClient.ExecuteAsync<User>(request);
+            if (response.IsSuccessful)
+            {
+                return new User(response.Content);
+            }
+            return null;
+        }
     }
 }

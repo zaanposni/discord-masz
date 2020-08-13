@@ -28,7 +28,7 @@ namespace masz.Controllers.api.v1
             this.discordRepo = discordRepo;
         }
 
-        [HttpGet("@me")]
+        [HttpGet("users/@me")]
         public async Task<IActionResult> GetUser()
         {
             List<string> registeredGuilds = dbContext.GuildConfigs.AsQueryable().Select(x => x.GuildId).ToList();
@@ -46,6 +46,17 @@ namespace masz.Controllers.api.v1
             // fetch list of guilds the user is banned on
 
             return Ok(new APIUser(registeredGuilds, discordUser));
+        }
+
+        [HttpGet("users/{userid}")]
+        public async Task<IActionResult> GetSpecificUser([FromRoute] string userid)
+        {
+            var user = await discordRepo.FetchDiscordUserInfo(userid);
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            return NotFound();
         }
     }
 }
