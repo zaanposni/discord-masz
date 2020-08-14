@@ -13,14 +13,14 @@ namespace masz.Controllers.api.v1
     [ApiController]
     [Authorize]
     [Route("api/v1")]
-    public class UserController : ControllerBase
+    public class DiscordAPIController : ControllerBase
     {
-        private readonly ILogger<UserController> logger;
+        private readonly ILogger<DiscordAPIController> logger;
         private readonly IAuthRepository authRepo;
         private readonly DataContext dbContext;
         private readonly IDiscordRepository discordRepo;
 
-        public UserController(ILogger<UserController> logger, IAuthRepository authRepo, DataContext context, IDiscordRepository discordRepo)
+        public DiscordAPIController(ILogger<DiscordAPIController> logger, IAuthRepository authRepo, DataContext context, IDiscordRepository discordRepo)
         {
             this.logger = logger;
             this.authRepo = authRepo;
@@ -55,6 +55,17 @@ namespace masz.Controllers.api.v1
             if (user != null)
             {
                 return Ok(user);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("guilds/{guildid}")]
+        public async Task<IActionResult> GetSpecificGuild([FromRoute] string guildid)
+        {
+            var guild = await discordRepo.FetchDiscordGuildInfo(guildid);
+            if (guild != null)
+            {
+                return Ok(guild);
             }
             return NotFound();
         }

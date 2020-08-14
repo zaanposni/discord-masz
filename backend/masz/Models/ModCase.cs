@@ -12,7 +12,8 @@ namespace masz.Models
         public string Description { get; set; }        
         public string GuildId { get; set; }
         public string UserId { get; set; }
-        public string CurrentUsername { get; set; }        
+        public string CurrentUsername { get; set; }     
+        public string CurrentNickname { get; set; }
         public string ModId { get; set; }
         public int Severity { get; set; }
         public DateTime CreatedAt { get; set; }

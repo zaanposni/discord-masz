@@ -23,6 +23,23 @@ namespace masz.data
         /// <param name="userId">discord user id to fetch</param>
         /// <returns>User object if found.</returns>
         Task<User> FetchDiscordUserInfo(string userId);
+        
+        /// <summary>
+        /// Returns information of a discord guild member bis his id and the guilds
+        /// https://discord.com/developers/docs/resources/guild#get-guild-member
+        /// </summary>
+        /// <param name="guildId">discord guild id to fetch</param>
+        /// <param name="userId">discord user id to fetch</param>
+        /// <returns>User object if found.</returns>
+        Task<GuildMember> FetchDiscordMemberInfo(string guildId, string userId);
+
+        /// <summary>
+        /// Returns information of user by his id
+        /// https://discord.com/developers/docs/resources/guild#get-guild
+        /// </summary>
+        /// <param name="guildId">discord guild id to fetch</param>
+        /// <returns>User object if found.</returns>
+        Task<Guild> FetchDiscordGuildInfo(string guildId);
 
         /// <summary>
         /// This method returns a list of IDs for all guilds an user defined by his personal access token is member of.
