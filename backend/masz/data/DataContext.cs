@@ -26,5 +26,18 @@ namespace masz.data
             // FK - configuraiton
             builder.HasOne(u => u.ModCase).WithMany().HasForeignKey(u => u.ModCaseId).IsRequired(true);
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ModCase>()
+                .HasKey(o => new { o.GuildId, o.Id });
+            
+            modelBuilder.Entity<ModCaseComments>()
+                .HasKey(o => new { o.Id });
+            modelBuilder.Entity<ModCaseComments>()
+                .HasOne(p => p.ModCase)
+                .WithMany(b => b.ModCaseComments)
+                .HasForeignKey(o => new { o.ModCaseGuildId, o.ModCaseId });
+        }
     }
 }

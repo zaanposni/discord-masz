@@ -96,7 +96,7 @@ namespace masz.Controllers
             if (validation != null)
                 return validation;
 
-            ModCase modCase = await dbContext.ModCases.FirstOrDefaultAsync(x => x.Id.ToString() == modcaseid);
+            ModCase modCase = await dbContext.ModCases.FirstOrDefaultAsync(x => x.GuildId == guildid && x.Id.ToString() == modcaseid);
             if (modCase == null) 
             {
                 logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 404 ModCase not found.");
@@ -114,7 +114,7 @@ namespace masz.Controllers
             if (validation != null)
                 return validation;
             
-            ModCase modCase = await dbContext.ModCases.FirstOrDefaultAsync(x => x.Id.ToString() == modcaseid);
+            ModCase modCase = await dbContext.ModCases.FirstOrDefaultAsync(x => x.GuildId == guildid && x.Id.ToString() == modcaseid);
             if (modCase == null) 
             {
                 logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 404 ModCase not found.");
@@ -136,7 +136,7 @@ namespace masz.Controllers
             if (validation != null)
                 return validation;
             
-            ModCase oldModCase = await dbContext.ModCases.FirstOrDefaultAsync(x => x.Id.ToString() == modcaseid);
+            ModCase oldModCase = await dbContext.ModCases.FirstOrDefaultAsync(x => x.GuildId == guildid && x.Id.ToString() == modcaseid);
             if (oldModCase == null) 
             {
                 logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 404 ModCase not found.");
@@ -152,7 +152,7 @@ namespace masz.Controllers
                         if (property.GetValue(modCase) != null)
                             oldProperty.SetValue(oldModCase, property.GetValue(modCase));
                     }
-                }                
+                }
             }
 
             oldModCase.Valid = true;
