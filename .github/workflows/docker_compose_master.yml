@@ -21,7 +21,7 @@ jobs:
                              --build-arg DISCORD_CLIENT_SECRET=dummyvalue \
                              --build-arg SITEADMINS=dummyvalue
         docker-compose up -d
-  PingTest:
+        SmokeTest:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
