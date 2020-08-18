@@ -25,4 +25,4 @@ WORKDIR /app/bin
 COPY --from=build-env /app/bin/ .
 
 ENTRYPOINT ["dotnet", "masz.dll"]
-EXPOSE 5565
+EXPOSE 80

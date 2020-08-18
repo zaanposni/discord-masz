@@ -29,10 +29,20 @@ services:
             condition: service_healthy
     build: backend
     restart: unless-stopped
-    ports:
-      - "5565:5565"
     networks:
       - appnetwork
+
+  nginx:    
+    container_name: nginx
+    depends_on:
+        - db
+        - backend
+    build: nginx
+    restart: unless-stopped
+    ports:
+      - "5565:80"
+    networks:
+    - appnetwork
 
 networks:
   appnetwork:
