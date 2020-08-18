@@ -12,9 +12,12 @@ jobs:
     - name: Building docker
       run: |
         cd backend
-        docker build -t discord-masz --build-arg MYSQL_HOST=127.0.0.1 \
+        docker build -t discord-masz --build-arg MYSQL_HOST=db \
                                      --build-arg MYSQL_PORT=3306 \
                                      --build-arg MYSQL_DATABASE=masz \
                                      --build-arg MYSQL_USER=mysqldummy \
                                      --build-arg MYSQL_PASS=mysqldummy \
-                                     .
+                                     --build-arg DISCORD_BOT_TOKEN=dummyvalue \
+                                     --build-arg DISCORD_CLIENT_ID=dummyvalue \
+                                     --build-arg DISCORD_CLIENT_SECRET=dummyvalue \
+                                     --build-arg SITEADMINS=dummyvalue

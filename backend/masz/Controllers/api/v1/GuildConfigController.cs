@@ -138,13 +138,23 @@ namespace masz.Controllers
         public async Task<IActionResult> CreateGuildConfig([FromRoute] string guildid, [FromBody] GuildConfigForCreateDto guildConfigForCreateDto) 
         {
             if (!ValidatePathParameter(guildid))
+            {
+                logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 400 Input invalid.");
                 return BadRequest();
+            }
             
             // check if request is made by a site admin
             if (!config.Value.SiteAdminDiscordUserIds.Contains(await repo.GetDiscordUserId(HttpContext))) 
             {
                 logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 401 User unauthorized.");
                 return Unauthorized();
+            }
+
+            GuildConfig alreadyExists = await dbContext.GuildConfigs.FirstOrDefaultAsync(x => x.GuildId == guildid);
+            if (alreadyExists != null)
+            {
+                logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 400 Guild is already registered.");
+                return BadRequest("Guild is already registered.");
             }
 
             GuildConfig guildConfig = new GuildConfig();

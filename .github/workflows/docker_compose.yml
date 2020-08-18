@@ -1,0 +1,26 @@
+name: DockerCompose
+on: [pull_request]
+
+jobs:
+  BuildTest:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the stack
+      run: |
+        docker-compose build --build-arg MYSQL_HOST=db \
+                             --build-arg MYSQL_PORT=3306 \
+                             --build-arg MYSQL_DATABASE=masz \
+                             --build-arg MYSQL_USER=mysqldummy \
+                             --build-arg MYSQL_PASS=mysqldummy \
+                             --build-arg DISCORD_BOT_TOKEN=dummyvalue \
+                             --build-arg DISCORD_CLIENT_ID=dummyvalue \
+                             --build-arg DISCORD_CLIENT_SECRET=dummyvalue \
+                             --build-arg SITEADMINS=dummyvalue
+        docker-compose up -d
+    - name: Test
+      run: |
+        cd tests
+        python3 -m pip install -r requirements.txt
+        pytest -v --junitxml=results/test-results.xml .
+

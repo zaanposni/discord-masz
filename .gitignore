@@ -1018,3 +1018,5 @@ dmypy.json
 # Ionide (cross platform F# VS Code tools) working folder
 
 # End of https://www.toptal.com/developers/gitignore/api/aspnetcore,csharp,visualstudio,visualstudiocode,pycharm,phpstorm,phpstorm+all,python
+
+tests/results/*
