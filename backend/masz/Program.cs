@@ -21,7 +21,7 @@ namespace masz
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("http://127.0.0.1:5565/");
+                    webBuilder.UseUrls("http://0.0.0.0:5565/");
                 });
     }
 }

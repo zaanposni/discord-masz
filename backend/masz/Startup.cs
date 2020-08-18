@@ -48,7 +48,7 @@ namespace masz
                 options.LoginPath = "/api/v1/login";
                 options.LogoutPath = "/api/v1/logout";
                 options.ExpireTimeSpan = new TimeSpan(24, 0, 0);
-                options.Cookie.Name = "access_token";
+                options.Cookie.Name = "masz_access_token";
             })
             
             .AddDiscord(options =>

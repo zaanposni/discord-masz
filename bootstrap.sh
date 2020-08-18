@@ -7,8 +7,8 @@ docker-compose stop
 
 docker ps -a
 
-docker-compose build --build-arg MYSQL_HOST=127.0.0.1 \
-                     --build-arg MYSQL_PORT=33061 \
+docker-compose build --build-arg MYSQL_HOST=db \
+                     --build-arg MYSQL_PORT=3306 \
                      --build-arg MYSQL_DATABASE=masz \
                      --build-arg MYSQL_USER=mysqldummy \
                      --build-arg MYSQL_PASS=mysqldummy
