@@ -93,5 +93,33 @@ namespace masz.data
             }
             return null;
         }
+
+        public async Task<GuildMember> FetchDiscordMemberInfo(string guildId, string userId)
+        {
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/guilds/" + guildId + "/members/" + userId;
+            request.AddHeader("Authorization", "Bot " + botToken);
+
+            var response = await restClient.ExecuteAsync<GuildMember>(request);
+            if (response.IsSuccessful)
+            {
+                return new GuildMember(response.Content);
+            }
+            return null;
+        }
+
+        public async Task<Guild> FetchDiscordGuildInfo(string guildId)
+        {
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/guilds/" + guildId;
+            request.AddHeader("Authorization", "Bot " + botToken);
+
+            var response = await restClient.ExecuteAsync<Guild>(request);
+            if (response.IsSuccessful)
+            {
+                return new Guild(response.Content);
+            }
+            return null;
+        }
     }
 }

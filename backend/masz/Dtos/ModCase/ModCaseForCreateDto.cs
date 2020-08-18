@@ -12,10 +12,9 @@ namespace masz.Dtos.ModCase
         [Required]
         public string UserId { get; set; }
         [Required]
-        public string CurrentUsername { get; set; }
-        [Required]
         public int Severity { get; set; }
-        public DateTime OccuredAt { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? OccuredAt { get; set; }
         public string Punishment { get; set; }
         public string Labels { get; set; }
         public string Others { get; set; }

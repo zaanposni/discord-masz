@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using masz.data;
 
 namespace masz.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200814153304_AddedCurrentNickname")]
+    partial class AddedCurrentNickname
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,10 +44,8 @@ namespace masz.Migrations
 
             modelBuilder.Entity("masz.Models.ModCase", b =>
                 {
-                    b.Property<string>("GuildId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -58,6 +58,9 @@ namespace masz.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Description")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("GuildId")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Labels")
@@ -93,7 +96,7 @@ namespace masz.Migrations
                     b.Property<bool>("Valid")
                         .HasColumnType("tinyint(1)");
 
-                    b.HasKey("GuildId", "Id");
+                    b.HasKey("Id");
 
                     b.ToTable("ModCases");
                 });
@@ -113,9 +116,6 @@ namespace masz.Migrations
                     b.Property<DateTime>("LastEditedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("ModCaseGuildId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
                     b.Property<int>("ModCaseId")
                         .HasColumnType("int");
 
@@ -124,7 +124,7 @@ namespace masz.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ModCaseGuildId", "ModCaseId");
+                    b.HasIndex("ModCaseId");
 
                     b.ToTable("ModCaseComments");
                 });
@@ -132,8 +132,10 @@ namespace masz.Migrations
             modelBuilder.Entity("masz.Models.ModCaseComments", b =>
                 {
                     b.HasOne("masz.Models.ModCase", "ModCase")
-                        .WithMany("ModCaseComments")
-                        .HasForeignKey("ModCaseGuildId", "ModCaseId");
+                        .WithMany()
+                        .HasForeignKey("ModCaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -1,32 +1,49 @@
 version: '2.2'
 services:
   db:
-    network_mode: "bridge"
+    container_name: db
     image: mysql:5.7
     volumes:
         - /var/lib/mysql
-    restart: always
+    restart: unless-stopped
     environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: masz
-        MYSQL_USER: mysqldummy
-        MYSQL_PASSWORD: mysqldummy
-        MYSQL_PORT: 3306
-    ports:
-      - "33061:3306"
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=masz
+      - MYSQL_USER=mysqldummy
+      - MYSQL_PASSWORD=mysqldummy
+      - MYSQL_PORT=3306
+      - MYSQL_ROOT_HOST=%
+    expose:
+      - "3306"
     healthcheck:
             test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
             timeout: 20s
             retries: 10
+    networks:
+      - appnetwork
 
-  backend:
-    network_mode: "host"
+  backend:    
+    container_name: backend
     depends_on:
         db:
             condition: service_healthy
     build: backend
-    restart: on-failure
-    ports:
-      - "5565:5565"
+    restart: unless-stopped
+    networks:
+      - appnetwork
 
-   
+  nginx:    
+    container_name: nginx
+    depends_on:
+        - db
+        - backend
+    build: nginx
+    restart: unless-stopped
+    ports:
+      - "5565:80"
+    networks:
+    - appnetwork
+
+networks:
+  appnetwork:
+    driver: bridge

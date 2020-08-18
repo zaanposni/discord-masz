@@ -96,7 +96,7 @@ namespace masz.Controllers
             if (validation != null)
                 return validation;
 
-            ModCase modCase = await dbContext.ModCases.FirstOrDefaultAsync(x => x.Id.ToString() == modcaseid);
+            ModCase modCase = await dbContext.ModCases.FirstOrDefaultAsync(x => x.GuildId == guildid && x.Id.ToString() == modcaseid);
             if (modCase == null) 
             {
                 logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 404 ModCase not found.");
@@ -114,7 +114,7 @@ namespace masz.Controllers
             if (validation != null)
                 return validation;
             
-            ModCase modCase = await dbContext.ModCases.FirstOrDefaultAsync(x => x.Id.ToString() == modcaseid);
+            ModCase modCase = await dbContext.ModCases.FirstOrDefaultAsync(x => x.GuildId == guildid && x.Id.ToString() == modcaseid);
             if (modCase == null) 
             {
                 logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 404 ModCase not found.");
@@ -136,7 +136,7 @@ namespace masz.Controllers
             if (validation != null)
                 return validation;
             
-            ModCase oldModCase = await dbContext.ModCases.FirstOrDefaultAsync(x => x.Id.ToString() == modcaseid);
+            ModCase oldModCase = await dbContext.ModCases.FirstOrDefaultAsync(x => x.GuildId == guildid && x.Id.ToString() == modcaseid);
             if (oldModCase == null) 
             {
                 logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 404 ModCase not found.");
@@ -152,7 +152,7 @@ namespace masz.Controllers
                         if (property.GetValue(modCase) != null)
                             oldProperty.SetValue(oldModCase, property.GetValue(modCase));
                     }
-                }                
+                }
             }
 
             oldModCase.Valid = true;
@@ -163,7 +163,7 @@ namespace masz.Controllers
             await dbContext.SaveChangesAsync();
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Resource updated.");
-            return Ok();
+            return Ok(oldModCase.Id);
         }
 
         [HttpPost]
@@ -173,20 +173,34 @@ namespace masz.Controllers
             if (validation != null)
                 return validation;
 
+            var currentModUserId = await authRepo.GetDiscordUserId(HttpContext);
+            if (currentModUserId == null)
+            {
+                return BadRequest("Could not fetch own user info.");
+            }
+
+            var currentReportedUser = await discordRepo.FetchDiscordMemberInfo(guildid, modCase.UserId);
+            if (currentReportedUser == null)
+            {
+                return BadRequest("Member not found.");
+            }
+
             ModCase newModCase = new ModCase();
             newModCase.Title = modCase.Title;
             newModCase.Description = modCase.Description;
             newModCase.GuildId = guildid;
+            newModCase.ModId = currentModUserId;
             newModCase.UserId = modCase.UserId;
-            newModCase.CurrentUsername = modCase.CurrentUsername;
+            newModCase.CurrentUsername = currentReportedUser.User.Username;
+            newModCase.CurrentNickname = currentReportedUser.Nick;
             newModCase.Severity = modCase.Severity;
             newModCase.CreatedAt = DateTime.Now;
-            if (modCase.OccuredAt != null)
-                newModCase.OccuredAt = modCase.OccuredAt;
+            if (modCase.OccuredAt.HasValue)
+                newModCase.OccuredAt = modCase.OccuredAt.Value;
             else
                 newModCase.OccuredAt = DateTime.Now;
             newModCase.LastEditedAt = DateTime.Now;
-            newModCase.LastEditedByModId = await authRepo.GetDiscordUserId(HttpContext);
+            newModCase.LastEditedByModId = currentModUserId;
             newModCase.Punishment = modCase.Punishment;
             newModCase.Labels = modCase.Labels;
             newModCase.Others = modCase.Others;
@@ -196,7 +210,7 @@ namespace masz.Controllers
             await dbContext.SaveChangesAsync();
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 201 Resource created.");
-            return StatusCode(201);
+            return StatusCode(201, new { id = newModCase.Id });
         }
 
         [HttpGet("all")]

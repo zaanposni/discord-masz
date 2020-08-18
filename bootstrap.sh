@@ -7,11 +7,15 @@ docker-compose stop
 
 docker ps -a
 
-docker-compose build --build-arg MYSQL_HOST=127.0.0.1 \
-                     --build-arg MYSQL_PORT=33061 \
+docker-compose build --build-arg MYSQL_HOST=db \
+                     --build-arg MYSQL_PORT=3306 \
                      --build-arg MYSQL_DATABASE=masz \
                      --build-arg MYSQL_USER=mysqldummy \
-                     --build-arg MYSQL_PASS=mysqldummy
+                     --build-arg MYSQL_PASS=mysqldummy \
+                     --build-arg DISCORD_BOT_TOKEN=<insert your value here> \
+                     --build-arg DISCORD_CLIENT_ID=<insert your value here> \
+                     --build-arg DISCORD_CLIENT_SECRET=<insert your value here> \
+                     --build-arg SITEADMINS=<insert your value here>
 
 docker-compose up -d
 
