@@ -12,7 +12,7 @@ namespace masz.Controllers.api.v1
 {
     [ApiController]
     [Authorize]
-    [Route("api/v1")]
+    [Route("api/v1/discord")]
     public class DiscordAPIController : ControllerBase
     {
         private readonly ILogger<DiscordAPIController> logger;

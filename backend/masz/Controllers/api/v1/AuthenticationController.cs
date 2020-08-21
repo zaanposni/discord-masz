@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace masz.Controllers
 {
     [ApiController]
+    [Route("api/v1")]
     public class AuthenticationController : ControllerBase
     {
         private readonly ILogger<AuthenticationController> logger;
@@ -17,7 +18,7 @@ namespace masz.Controllers
             this.logger = logger;
         }
 
-        [HttpGet("/api/v1/login")]
+        [HttpGet("login")]
         public async Task<IActionResult> Login([FromQuery] string ReturnUrl)
         {
             if (ReturnUrl == null || ReturnUrl.Length == 0) {
@@ -38,7 +39,7 @@ namespace masz.Controllers
             return this.Challenge(properties, "Discord");
         }
 
-        [HttpPost("/api/v1/logout")]
+        [HttpPost("logout")]
         [Authorize]
         public async Task<IActionResult> Logout()
         {
