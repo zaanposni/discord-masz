@@ -31,93 +31,41 @@ namespace masz.Controllers
             this.discordRepo = discordRepo;
         }
 
-        private bool ValidatePathParameter(string variable) 
-        {
-            if (variable == null)
-                return false;
-            if (variable.Trim().Length == 0)
-                return false;
-            return true;
-        }
-
-        private async Task<bool> ValidateGuildId(string guildId) 
-        {
-            if (!ValidatePathParameter(guildId))
-                return false;
-            
-            GuildConfig modGuild = await dbContext.GuildConfigs.FirstOrDefaultAsync(x => x.GuildId == guildId);
-            return modGuild != null;
-        }
-
-        /// <summary>
-        /// This method checks the incoming request for bad input and authorization
-        /// </summary>
-        /// <param name="context">current http context to check</param>
-        /// <param name="guildId">guildId the user wants to access</param>
-        /// <param name="modCaseId">the modcase the user wants to access</param>
-        /// <returns>Returning IActionResult if validation failed, null if Validation was successful</returns>
-        private async Task<IActionResult> ValidateRequestForGuild(HttpContext context, string guildId, string modCaseId)
-        {
-            logger.LogInformation(context.Request.Method + " " + context.Request.Path + " | Incoming request");
-            if (!ValidatePathParameter(guildId) || !ValidatePathParameter(modCaseId))
-            {
-                logger.LogInformation(context.Request.Method + " " + context.Request.Path + " | 400 Bad Request.");
-                return BadRequest();
-            }
-            if (! await ValidateGuildId(guildId))
-            {
-                logger.LogInformation(context.Request.Method + " " + context.Request.Path + " | 400 Guild is not registered.");
-                return BadRequest("Guild is not registered.");
-            }            
-
-            if (! await authRepo.DiscordUserHasModRoleOrHigherOnGuild(HttpContext, guildId))
-            {
-                logger.LogInformation(context.Request.Method + " " + context.Request.Path + " | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// This method checks the incoming request for bad input and authorization
-        /// </summary>
-        /// <param name="context">current http context to check</param>
-        /// <param name="guildId">guildId the user wants to access</param>
-        /// <returns>Returning IActionResult if validation failed, null if Validation was successful</returns>
-        private async Task<IActionResult> ValidateRequestForGuild(HttpContext context, string guildId)
-        {
-            return await ValidateRequestForGuild(context, guildId, "dummy");
-        }
-
         [HttpGet("{modcaseid}")]
         public async Task<IActionResult> GetSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid) 
         {
-            var validation = await ValidateRequestForGuild(HttpContext, guildid, modcaseid);
-            if (validation != null)
-                return validation;
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            if (! await authRepo.DiscordUserHasModRoleOrHigherOnGuild(HttpContext, guildid))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
 
             ModCase modCase = await dbContext.ModCases.FirstOrDefaultAsync(x => x.GuildId == guildid && x.Id.ToString() == modcaseid);
             if (modCase == null) 
             {
-                logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 404 ModCase not found.");
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
                 return NotFound();
             }
 
-            logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Returning ModCase.");
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCase.");
             return Ok(modCase);
         }
 
         [HttpDelete("{modcaseid}")]
         public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid) 
         {
-            var validation = await ValidateRequestForGuild(HttpContext, guildid, modcaseid);
-            if (validation != null)
-                return validation;
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            if (! await authRepo.DiscordUserHasModRoleOrHigherOnGuild(HttpContext, guildid))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
             
             ModCase modCase = await dbContext.ModCases.FirstOrDefaultAsync(x => x.GuildId == guildid && x.Id.ToString() == modcaseid);
             if (modCase == null) 
             {
-                logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 404 ModCase not found.");
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
                 return NotFound();
             }
 
@@ -132,14 +80,17 @@ namespace masz.Controllers
         [HttpPatch("{modcaseid}")]
         public async Task<IActionResult> PatchSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromBody] ModCaseForPatchDto modCase) 
         {
-            var validation = await ValidateRequestForGuild(HttpContext, guildid, modcaseid);
-            if (validation != null)
-                return validation;
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            if (! await authRepo.DiscordUserHasModRoleOrHigherOnGuild(HttpContext, guildid))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
             
             ModCase oldModCase = await dbContext.ModCases.FirstOrDefaultAsync(x => x.GuildId == guildid && x.Id.ToString() == modcaseid);
             if (oldModCase == null) 
             {
-                logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 404 ModCase not found.");
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
                 return NotFound();
             }
 
@@ -162,37 +113,41 @@ namespace masz.Controllers
             dbContext.Update(oldModCase);
             await dbContext.SaveChangesAsync();
 
-            logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Resource updated.");
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource updated.");
             return Ok(oldModCase.Id);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateNewModCase([FromRoute] string guildid, [FromBody] ModCaseForCreateDto modCase) 
+        public async Task<IActionResult> CreateItem([FromRoute] string guildid, [FromBody] ModCaseForCreateDto modCase) 
         {
-            var validation = await ValidateRequestForGuild(HttpContext, guildid);
-            if (validation != null)
-                return validation;
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            if (! await authRepo.DiscordUserHasModRoleOrHigherOnGuild(HttpContext, guildid))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
 
             var currentModUserId = await authRepo.GetDiscordUserId(HttpContext);
             if (currentModUserId == null)
             {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Failed to fetch mod user info.");
                 return BadRequest("Could not fetch own user info.");
             }
 
+            ModCase newModCase = new ModCase();
+
             var currentReportedUser = await discordRepo.FetchDiscordMemberInfo(guildid, modCase.UserId);
-            if (currentReportedUser == null)
+            if (currentReportedUser != null)
             {
-                return BadRequest("Member not found.");
+                newModCase.CurrentUsername = currentReportedUser.User.Username;
+                newModCase.CurrentNickname = currentReportedUser.Nick;
             }
 
-            ModCase newModCase = new ModCase();
             newModCase.Title = modCase.Title;
             newModCase.Description = modCase.Description;
             newModCase.GuildId = guildid;
             newModCase.ModId = currentModUserId;
             newModCase.UserId = modCase.UserId;
-            newModCase.CurrentUsername = currentReportedUser.User.Username;
-            newModCase.CurrentNickname = currentReportedUser.Nick;
             newModCase.Severity = modCase.Severity;
             newModCase.CreatedAt = DateTime.Now;
             if (modCase.OccuredAt.HasValue)
@@ -214,11 +169,14 @@ namespace masz.Controllers
         }
 
         [HttpGet("all")]
-        public async Task<IActionResult> GetAllModCases([FromRoute] string guildid, [FromQuery] string limit = "100") 
+        public async Task<IActionResult> GetAllItems([FromRoute] string guildid, [FromQuery] string limit = "100") 
         {
-            var validation = await ValidateRequestForGuild(HttpContext, guildid);
-            if (validation != null)
-                return validation;
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            if (! await authRepo.DiscordUserHasModRoleOrHigherOnGuild(HttpContext, guildid))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
             
             int iLimit = 0;
 
@@ -227,7 +185,7 @@ namespace masz.Controllers
 
             List<ModCase> modCases = await dbContext.ModCases.Where(x => x.GuildId == guildid).Take(iLimit).ToListAsync();            
 
-            logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Returning ModCases.");
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCases.");
             return Ok(modCases);
         }
     }
