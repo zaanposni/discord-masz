@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace masz.Dtos.DiscordAPIResponses
@@ -11,6 +12,11 @@ namespace masz.Dtos.DiscordAPIResponses
             Id = temp.Id;
             Name = temp.Name;
             Icon = temp.Icon;
+            Roles = new List<Role>();
+            foreach (var role in temp.Roles)
+            {
+                Roles.Add(new Role(JsonConvert.SerializeObject(role)));
+            }
         }
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -18,5 +24,7 @@ namespace masz.Dtos.DiscordAPIResponses
         public string Name { get; set; }
         [JsonProperty("icon")]
         public string Icon { get; set; }
+        [JsonProperty("roles")]
+        public List<Role> Roles { get; set; }
     }
 }

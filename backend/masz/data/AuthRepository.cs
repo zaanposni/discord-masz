@@ -73,9 +73,8 @@ namespace masz.data
 
             // Get ModRole from database
             GuildConfig modGuild = await dbContext.GuildConfigs.FirstOrDefaultAsync(x => x.GuildId == guildId);
-
             if (modGuild == null)
-             {
+            {
                 return false;      
             }      
 
