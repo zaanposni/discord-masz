@@ -31,6 +31,8 @@ services:
     restart: unless-stopped
     networks:
       - appnetwork
+    volumes:
+      - /filehost
 
   nginx:    
     container_name: nginx

@@ -1,0 +1,103 @@
+using System;
+using System.IO;
+using System.Threading.Tasks;
+using masz.data;
+using masz.Dtos.ModCase;
+using masz.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+
+namespace masz.Controllers
+{
+    [ApiController]
+    [Route("api/v1/files/{guildid}/{modcaseid}/")]
+    [Authorize]
+    public class FileController : ControllerBase
+    {
+        private readonly ILogger<FileController> logger;
+        private readonly IAuthRepository authRepo;
+        private readonly DataContext dbContext;
+        private readonly IDiscordRepository discordRepo;
+        private readonly IOptions<InternalConfig> config;
+
+        public FileController(ILogger<FileController> logger, IAuthRepository authRepo, DataContext context, IDiscordRepository discordRepo, IOptions<InternalConfig> config)
+        {
+            this.logger = logger;
+            this.authRepo = authRepo;
+            this.dbContext = context;
+            this.discordRepo = discordRepo;
+            this.config = config;
+        }
+
+        [HttpGet("{filename}")]
+        public async Task<IActionResult> GetSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromRoute] string filename) 
+        {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            if (! await authRepo.DiscordUserHasModRoleOrHigherOnGuild(HttpContext, guildid))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+
+            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid, modcaseid);
+            var filePath = Path.Combine(uploadDir, filename);
+            if (!System.IO.File.Exists(filePath))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Not Found.");
+                return NotFound();
+            }
+
+            byte[] filedata = System.IO.File.ReadAllBytes(filePath);
+            string contentType;
+            new FileExtensionContentTypeProvider().TryGetContentType(filePath, out contentType);
+            contentType = contentType ?? "application/octet-stream";
+            var cd = new System.Net.Mime.ContentDisposition
+            {
+                FileName = filename,
+                Inline = true,
+            };
+            HttpContext.Response.Headers.Add("Content-Disposition", cd.ToString());
+            HttpContext.Response.Headers.Add("Content-Type", contentType);
+
+            return File(filedata, contentType);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromForm] UploadedFile uploadedFile)
+        {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            if (! await authRepo.DiscordUserHasModRoleOrHigherOnGuild(HttpContext, guildid))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+
+            if (uploadedFile.File == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 No file provided.");
+                return BadRequest();
+            }
+
+            var uniqueFileName = GetUniqueFileName(uploadedFile.File.FileName);
+            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid, modcaseid);
+            System.IO.Directory.CreateDirectory(uploadDir);
+            var filePath = Path.Combine(uploadDir, uniqueFileName);
+            await uploadedFile.File.CopyToAsync(new FileStream(filePath, FileMode.Create));
+
+            return StatusCode(201, new { path = $"/{guildid}/{modcaseid}/{uniqueFileName}" });
+        }
+
+        private string GetUniqueFileName(string fileName)
+        {
+            // TODO: change to hasing algorithm
+            fileName = Path.GetFileName(fileName);
+            return  Path.GetFileNameWithoutExtension(fileName)
+                    + "_" 
+                    + Guid.NewGuid().ToString().Substring(0, 4) 
+                    + Path.GetExtension(fileName);
+        }
+    }
+}
