@@ -68,6 +68,7 @@ namespace masz.Controllers
         }
 
         [HttpPost]
+        [RequestSizeLimit(10485760)]
         public async Task<IActionResult> PostItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromForm] UploadedFile uploadedFile)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
