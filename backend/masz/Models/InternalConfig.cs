@@ -11,7 +11,7 @@ namespace masz.Models
         public string Version { get; set; }
         public string DiscordClientId { get; set; }
         public string DiscordClientSecret { get; set; }
-
+        public string AbsolutePathToFileUpload { get; set; }
         public List<string> SiteAdminDiscordUserIds { get; set; }
     }
 }
