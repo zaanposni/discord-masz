@@ -1,10 +1,12 @@
 using System;
 using System.IO;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using masz.data;
 using masz.Dtos.ModCase;
 using masz.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Logging;
@@ -66,6 +68,7 @@ namespace masz.Controllers
         }
 
         [HttpPost]
+        [RequestSizeLimit(10485760)]
         public async Task<IActionResult> PostItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromForm] UploadedFile uploadedFile)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
@@ -81,7 +84,7 @@ namespace masz.Controllers
                 return BadRequest();
             }
 
-            var uniqueFileName = GetUniqueFileName(uploadedFile.File.FileName);
+            var uniqueFileName = GetUniqueFileName(uploadedFile.File);
             var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid, modcaseid);
             System.IO.Directory.CreateDirectory(uploadDir);
             var filePath = Path.Combine(uploadDir, uniqueFileName);
@@ -90,14 +93,27 @@ namespace masz.Controllers
             return StatusCode(201, new { path = $"/{guildid}/{modcaseid}/{uniqueFileName}" });
         }
 
-        private string GetUniqueFileName(string fileName)
+        private string GetUniqueFileName(IFormFile file)
         {
             // TODO: change to hasing algorithm
-            fileName = Path.GetFileName(fileName);
-            return  Path.GetFileNameWithoutExtension(fileName)
-                    + "_" 
-                    + Guid.NewGuid().ToString().Substring(0, 4) 
+            string fileName = Path.GetFileName(file.FileName);
+            return  GetSHA1Hash(file)
+                    + "_"
+                    + Guid.NewGuid().ToString().Substring(0, 8)
+                    + "_"
+                    + Path.GetFileNameWithoutExtension(fileName)
                     + Path.GetExtension(fileName);
+        }
+
+        private string GetSHA1Hash(IFormFile file)
+        {
+            // get stream from file then convert it to a MemoryStream
+            MemoryStream stream = new MemoryStream();
+            file.OpenReadStream().CopyTo(stream);
+            // compute md5 hash of the file's byte array.
+            byte[] bytes = SHA1.Create().ComputeHash(stream.ToArray());
+            stream.Close();
+            return BitConverter.ToString(bytes).Replace("-",string.Empty).ToLower();
         }
     }
 }
