@@ -14,7 +14,7 @@ using Microsoft.Extensions.Logging;
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("api/v1/{guildid}/modcase")]
+    [Route("api/v1/modcases/{guildid}/")]
     [Authorize]
     public class ModCaseController : ControllerBase
     {

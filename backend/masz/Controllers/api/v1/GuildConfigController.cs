@@ -13,7 +13,7 @@ using Microsoft.Extensions.Options;
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("api/v1/{guildid}/config")]
+    [Route("api/v1/configs/{guildid}")]
     [Authorize]
     public class GuildConfigController : ControllerBase
     {
