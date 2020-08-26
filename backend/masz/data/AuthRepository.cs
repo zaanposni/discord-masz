@@ -90,5 +90,10 @@ namespace masz.data
 
             return false;
         }
+
+        public Task<bool> DiscordUserIsAuthorizedToViewModCase(HttpContext context, ModCase modCase)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using masz.Models;
 
 namespace masz.data
 {
@@ -46,5 +47,14 @@ namespace masz.data
         /// <param name="guildId">guild that the user requestes for</param>
         /// <returns>True if the request against discord API could be authenticated and the user has at least on specified role or higher.</returns>
         Task<bool> DiscordUserHasModRoleOrHigherOnGuild(HttpContext context, string guildId);
+
+        /// <summary>
+        /// This method checks if a HttpContext holds a valid Discord user token and if the discord user is authorized to view a defined mocase. Only mods / admins and the user the case is about are allowed to view it.
+        /// https://discord.com/developers/docs/resources/guild#get-guild-member
+        /// </summary>
+        /// <param name="context">current http context to check</param>
+        /// <param name="modCase">the case to validate authorization for</param>
+        /// <returns>True if the request against discord API could be authenticated and the user is authorized ot view this case.</returns>
+        Task<bool> DiscordUserIsAuthorizedToViewModCase(HttpContext context, ModCase modCase);
     }
 }
