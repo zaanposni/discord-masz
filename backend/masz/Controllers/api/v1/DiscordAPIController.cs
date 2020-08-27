@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using masz.data;
 using masz.Dtos.DiscordAPIResponses;
 using masz.Dtos.UserAPIResponses;
+using masz.Models;
+using masz.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,42 +18,45 @@ namespace masz.Controllers.api.v1
     public class DiscordAPIController : ControllerBase
     {
         private readonly ILogger<DiscordAPIController> logger;
-        private readonly IAuthRepository authRepo;
-        private readonly DataContext dbContext;
-        private readonly IDiscordRepository discordRepo;
+        private readonly IDiscordInterface discord;
+        private readonly IDatabase database;
+        private readonly IIdentityManager identityManager;
 
-        public DiscordAPIController(ILogger<DiscordAPIController> logger, IAuthRepository authRepo, DataContext context, IDiscordRepository discordRepo)
+        public DiscordAPIController(ILogger<DiscordAPIController> logger, IIdentityManager identityManager, IDiscordInterface discord, IDatabase database)
         {
             this.logger = logger;
-            this.authRepo = authRepo;
-            this.dbContext = context;
-            this.discordRepo = discordRepo;
+            this.discord = discord;
+            this.identityManager = identityManager;
+            this.database = database;
         }
 
         [HttpGet("users/@me")]
         public async Task<IActionResult> GetUser()
         {
-            List<string> registeredGuilds = dbContext.GuildConfigs.AsQueryable().Select(x => x.GuildId).ToList();
+            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
 
-            foreach (string guildId in registeredGuilds)
+            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+
+            List<GuildConfig> registeredGuilds = await database.SelectAllGuildConfigs();
+            List<string> intersectionGuilds = new List<string>();
+
+            foreach (GuildConfig guild in registeredGuilds)
             {
-                if (! await authRepo.DiscordUserHasModRoleOrHigherOnGuild(HttpContext, guildId))
+                if (await currentIdentity.IsOnGuild(guild.GuildId))
                 {
-                    registeredGuilds.Remove(guildId);
+                    intersectionGuilds.Add(guild.GuildId);
                 }
             }
 
-            User discordUser = await discordRepo.ValidateDiscordUserToken(await authRepo.GetDiscordUserToken(HttpContext));
+            // TODO: fetch list of guilds the user is banned on
 
-            // fetch list of guilds the user is banned on
-
-            return Ok(new APIUser(registeredGuilds, discordUser));
+            return Ok(new APIUser(intersectionGuilds, currentUser));
         }
 
         [HttpGet("users/{userid}")]
         public async Task<IActionResult> GetSpecificUser([FromRoute] string userid)
         {
-            var user = await discordRepo.FetchDiscordUserInfo(userid);
+            var user = await discord.FetchUserInfo(userid);
             if (user != null)
             {
                 return Ok(user);
@@ -62,7 +67,7 @@ namespace masz.Controllers.api.v1
         [HttpGet("guilds/{guildid}")]
         public async Task<IActionResult> GetSpecificGuild([FromRoute] string guildid)
         {
-            var guild = await discordRepo.FetchDiscordGuildInfo(guildid);
+            var guild = await discord.FetchGuildInfo(guildid);
             if (guild != null)
             {
                 return Ok(guild);

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using masz.data;
 using masz.Models;
+using masz.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -35,10 +36,11 @@ namespace masz
             services.AddDbContext<DataContext>(x => x.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
 
-            services.AddScoped<IAuthRepository, AuthRepository>();
-            services.AddScoped<IDiscordRepository, DiscordRepository>();
+            services.AddScoped<IDatabase, Database>();
+            services.AddSingleton<IDiscordInterface, DiscordInterface>();
+            services.AddSingleton<IIdentityManager, IdentityManager>();
 
-             services.AddAuthentication(options =>
+            services.AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             })

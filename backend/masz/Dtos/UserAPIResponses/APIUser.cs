@@ -5,13 +5,13 @@ namespace masz.Dtos.UserAPIResponses
 {
     public class APIUser
     {
-        public APIUser(List<string> moderationGuilds, User discordUser)
+        public APIUser(List<string> guilds, User discordUser)
         {
-            ModerationGuilds = moderationGuilds;
+            Guilds = guilds;
             DiscordUser = discordUser;
         }
 
-        public List<string> ModerationGuilds { get; set; }
+        public List<string> Guilds { get; set; }
         public User DiscordUser { get; set; }
     }
 }
