@@ -37,7 +37,7 @@ namespace masz
             services.AddControllers();
 
             services.AddScoped<IDatabase, Database>();
-            services.AddSingleton<IDiscordInterface, DiscordInterface>();
+            services.AddScoped<IDiscordInterface, DiscordInterface>();
             services.AddSingleton<IIdentityManager, IdentityManager>();
 
             services.AddAuthentication(options =>

@@ -36,7 +36,7 @@ namespace masz.Controllers
         }
 
         [HttpGet("{filename}")]
-        public async Task<IActionResult> GetSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromRoute] string filename) 
+        public async Task<IActionResult> GetSpecificItem([FromRoute] string guildid, [FromRoute] string filename) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -53,7 +53,7 @@ namespace masz.Controllers
             }
             // ========================================================
 
-            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid, modcaseid);
+            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid);
             var filePath = Path.Combine(uploadDir, filename);
             if (!System.IO.File.Exists(filePath))
             {
@@ -78,7 +78,7 @@ namespace masz.Controllers
 
         [HttpPost]
         [RequestSizeLimit(10485760)]
-        public async Task<IActionResult> PostItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromForm] UploadedFile uploadedFile)
+        public async Task<IActionResult> PostItem([FromRoute] string guildid, [FromForm] UploadedFile uploadedFile)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -102,12 +102,12 @@ namespace masz.Controllers
             }
 
             var uniqueFileName = GetUniqueFileName(uploadedFile.File);
-            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid, modcaseid);
+            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid);
             System.IO.Directory.CreateDirectory(uploadDir);
             var filePath = Path.Combine(uploadDir, uniqueFileName);
             await uploadedFile.File.CopyToAsync(new FileStream(filePath, FileMode.Create));
 
-            return StatusCode(201, new { path = $"/{guildid}/{modcaseid}/{uniqueFileName}" });
+            return StatusCode(201, new { path = $"/{guildid}/{uniqueFileName}" });
         }
 
         private string GetUniqueFileName(IFormFile file)

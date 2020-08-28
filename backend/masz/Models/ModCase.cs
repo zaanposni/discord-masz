@@ -8,10 +8,9 @@ namespace masz.Models
 {
     public class ModCase
     {
-        [Key, Column(Order = 0)]
-        public string GuildId { get; set; }
-        [Key, Column(Order = 1)]
+        [Key]
         public int Id { get; set; }
+        public string GuildId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string UserId { get; set; }

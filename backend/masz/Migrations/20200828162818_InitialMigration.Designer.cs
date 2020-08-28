@@ -9,8 +9,8 @@ using masz.data;
 namespace masz.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200809071526_AddedLastedEditedByField")]
-    partial class AddedLastedEditedByField
+    [Migration("20200828162818_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,6 +18,29 @@ namespace masz.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("masz.Models.GuildConfig", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("AdminRoleId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("GuildId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("ModNotificationWebhook")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("ModRoleId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GuildConfigs");
+                });
 
             modelBuilder.Entity("masz.Models.ModCase", b =>
                 {
@@ -27,6 +50,9 @@ namespace masz.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CurrentNickname")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("CurrentUsername")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -90,6 +116,9 @@ namespace masz.Migrations
                     b.Property<DateTime>("LastEditedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("ModCaseGuildId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<int>("ModCaseId")
                         .HasColumnType("int");
 
@@ -103,33 +132,10 @@ namespace masz.Migrations
                     b.ToTable("ModCaseComments");
                 });
 
-            modelBuilder.Entity("masz.Models.ModGuild", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("AdminRoleId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("GuildId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("ModNotificationWebhook")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("ModRoleId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ModGuilds");
-                });
-
             modelBuilder.Entity("masz.Models.ModCaseComments", b =>
                 {
                     b.HasOne("masz.Models.ModCase", "ModCase")
-                        .WithMany()
+                        .WithMany("ModCaseComments")
                         .HasForeignKey("ModCaseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
