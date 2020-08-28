@@ -18,7 +18,7 @@ using Microsoft.Extensions.Options;
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("api/v1/files/{guildid}/{modcaseid}/")]
+    [Route("api/v1/files/{guildid}")]
     [Authorize]
     public class FileController : ControllerBase
     {
