@@ -1,10 +1,12 @@
+﻿using masz.Dtos.DiscordAPIResponses;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using masz.Dtos.DiscordAPIResponses;
 
-namespace masz.data
+namespace masz.Services
 {
-    public interface IDiscordRepository
+    public interface IDiscordInterface
     {
         string discordBaseUrl { get; }
 
@@ -14,7 +16,15 @@ namespace masz.data
         /// </summary>
         /// <param name="token">discord personal access token to use to authenticate against the discord api</param>
         /// <returns>True if the request could be authenticated and thus the token is valid.</returns>
-        Task<User> ValidateDiscordUserToken(string token);
+        Task<bool> ValidateUserToken(string token);
+
+        /// <summary>
+        /// Returns information of user by his id
+        /// https://discord.com/developers/docs/resources/user#get-user
+        /// </summary>
+        /// <param name="token">discord personal access token to use to authenticate against the discord api</param>
+        /// <returns>User object if found.</returns>
+        Task<User> FetchCurrentUserInfo(string token);
 
         /// <summary>
         /// Returns information of user by his id
@@ -22,8 +32,8 @@ namespace masz.data
         /// </summary>
         /// <param name="userId">discord user id to fetch</param>
         /// <returns>User object if found.</returns>
-        Task<User> FetchDiscordUserInfo(string userId);
-        
+        Task<User> FetchUserInfo(string userId);
+
         /// <summary>
         /// Returns information of a discord guild member bis his id and the guilds
         /// https://discord.com/developers/docs/resources/guild#get-guild-member
@@ -31,7 +41,7 @@ namespace masz.data
         /// <param name="guildId">discord guild id to fetch</param>
         /// <param name="userId">discord user id to fetch</param>
         /// <returns>User object if found.</returns>
-        Task<GuildMember> FetchDiscordMemberInfo(string guildId, string userId);
+        Task<GuildMember> FetchMemberInfo(string guildId, string userId);
 
         /// <summary>
         /// Returns information of user by his id
@@ -39,7 +49,7 @@ namespace masz.data
         /// </summary>
         /// <param name="guildId">discord guild id to fetch</param>
         /// <returns>User object if found.</returns>
-        Task<Guild> FetchDiscordGuildInfo(string guildId);
+        Task<Guild> FetchGuildInfo(string guildId);
 
         /// <summary>
         /// This method returns a list of IDs for all guilds an user defined by his personal access token is member of.
@@ -47,26 +57,7 @@ namespace masz.data
         /// </summary>
         /// <param name="token">discord personal access token to use to authenticate against the discord api</param>
         /// <returns>List of guildId snowflakes that the user is member of.</returns>
-        Task<List<string>> GetGuildsByDiscordUser(string token);
-        
-        /// <summary>
-        /// This method checks if an user defined by his personal access token is member of a defined guild
-        /// https://discord.com/developers/docs/resources/user#get-current-user-guilds
-        /// </summary>
-        /// <param name="guildId">the discord guild to check for</param>
-        /// <param name="token">discord personal access token to use to authenticate against the discord api</param>
-        /// <returns>True if the a request against discord API could be authenticated and the user is member of the specified guild.</returns>
-        Task<bool> DiscordUserIsMemberOfGuild(string guildId, string token);
-
-        /// <summary>
-        /// This method checks if the defined user has the defined role on a defined guild
-        /// https://discord.com/developers/docs/resources/guild#get-guild-member
-        /// </summary>
-        /// <param name="guildId">the guild to perform checks on</param>
-        /// <param name="roleId">the role to check membership for</param>
-        /// <param name="userId">the user to check membership for</param>
-        /// <returns>True if the user is member of the defined role.</returns>
-        Task<bool> DiscordUserHasRoleOnGuild(string guildId, string roleId, string userId);
+        Task<List<Guild>> FetchGuildsOfCurrentUser(string token);
 
         /// <summary>
         /// This method fetches a discord guild channel message

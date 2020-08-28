@@ -30,14 +30,14 @@ namespace masz.data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ModCase>()
-                .HasKey(o => new { o.GuildId, o.Id });
+                .HasKey(o => new { o.Id });
             
             modelBuilder.Entity<ModCaseComments>()
                 .HasKey(o => new { o.Id });
             modelBuilder.Entity<ModCaseComments>()
                 .HasOne(p => p.ModCase)
                 .WithMany(b => b.ModCaseComments)
-                .HasForeignKey(o => new { o.ModCaseGuildId, o.ModCaseId });
+                .HasForeignKey(o => new { o.ModCaseId });
         }
     }
 }

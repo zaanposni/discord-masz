@@ -42,10 +42,8 @@ namespace masz.Migrations
 
             modelBuilder.Entity("masz.Models.ModCase", b =>
                 {
-                    b.Property<string>("GuildId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -58,6 +56,9 @@ namespace masz.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Description")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("GuildId")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Labels")
@@ -93,7 +94,7 @@ namespace masz.Migrations
                     b.Property<bool>("Valid")
                         .HasColumnType("tinyint(1)");
 
-                    b.HasKey("GuildId", "Id");
+                    b.HasKey("Id");
 
                     b.ToTable("ModCases");
                 });
@@ -114,7 +115,7 @@ namespace masz.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModCaseGuildId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("ModCaseId")
                         .HasColumnType("int");
@@ -124,7 +125,7 @@ namespace masz.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ModCaseGuildId", "ModCaseId");
+                    b.HasIndex("ModCaseId");
 
                     b.ToTable("ModCaseComments");
                 });
@@ -133,7 +134,9 @@ namespace masz.Migrations
                 {
                     b.HasOne("masz.Models.ModCase", "ModCase")
                         .WithMany("ModCaseComments")
-                        .HasForeignKey("ModCaseGuildId", "ModCaseId");
+                        .HasForeignKey("ModCaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
