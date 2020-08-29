@@ -57,6 +57,11 @@ namespace masz.Services
             return await context.ModCases.FirstOrDefaultAsync(x => x.GuildId == guildId && x.Id.ToString() == modCaseId);
         }
 
+        public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId)
+        {
+            return await context.ModCases.Where(x => x.GuildId == guildId && x.UserId == userId).ToListAsync();
+        }
+
         public async Task<List<ModCase>> SelectAllModCasesForGuild(string guildId)
         {
             return await context.ModCases.Where(x => x.GuildId == guildId).ToListAsync();
