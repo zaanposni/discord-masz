@@ -228,5 +228,24 @@ namespace masz.Controllers
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCases.");
             return Ok(modCases);
         }
+
+
+        [HttpGet("@me")]
+        public async Task<IActionResult> GetSpecificItem([FromRoute] string guildid) 
+        {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
+            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+            if (currentUser == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+
+            List<ModCase> modCases = await database.SelectAllModcasesForSpecificUserOnGuild(guildid, currentUser.Id);       
+
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCases.");
+            return Ok(modCases);
+        }
     }
 }

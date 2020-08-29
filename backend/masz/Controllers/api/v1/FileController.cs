@@ -18,7 +18,7 @@ using Microsoft.Extensions.Options;
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("api/v1/files/{guildid}")]
+    [Route("api/v1/files/{guildid}/{modcaseid}")]
     [Authorize]
     public class FileController : ControllerBase
     {
@@ -36,7 +36,7 @@ namespace masz.Controllers
         }
 
         [HttpGet("{filename}")]
-        public async Task<IActionResult> GetSpecificItem([FromRoute] string guildid, [FromRoute] string filename) 
+        public async Task<IActionResult> GetSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromRoute] string filename) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -53,7 +53,7 @@ namespace masz.Controllers
             }
             // ========================================================
 
-            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid);
+            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid, modcaseid);
             var filePath = Path.Combine(uploadDir, filename);
             if (!System.IO.File.Exists(filePath))
             {
@@ -76,9 +76,38 @@ namespace masz.Controllers
             return File(filedata, contentType);
         }
 
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllItems([FromRoute] string guildid, [FromRoute] string modcaseid) 
+        {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
+            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+            if (currentUser == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            // ========================================================
+            
+            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid, modcaseid);
+            if (!System.IO.Directory.Exists(uploadDir))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Not Found.");
+                return NotFound();
+            }
+            FileInfo[] files = new DirectoryInfo(uploadDir).GetFiles();
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning file list.");
+            return Ok(new { names = files.Select(x => x.Name).ToList() } );
+        }
+
         [HttpPost]
         [RequestSizeLimit(10485760)]
-        public async Task<IActionResult> PostItem([FromRoute] string guildid, [FromForm] UploadedFile uploadedFile)
+        public async Task<IActionResult> PostItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromForm] UploadedFile uploadedFile)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -101,13 +130,19 @@ namespace masz.Controllers
                 return BadRequest();
             }
 
+            if (await database.SelectSpecificModCase(guildid, modcaseid) == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Modcase not found.");
+                return BadRequest("Modcase not found.");
+            }
+
             var uniqueFileName = GetUniqueFileName(uploadedFile.File);
-            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid);
+            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid, modcaseid);
             System.IO.Directory.CreateDirectory(uploadDir);
             var filePath = Path.Combine(uploadDir, uniqueFileName);
             await uploadedFile.File.CopyToAsync(new FileStream(filePath, FileMode.Create));
 
-            return StatusCode(201, new { path = $"/{guildid}/{uniqueFileName}" });
+            return StatusCode(201, new { path = $"/{guildid}/{modcaseid}/{uniqueFileName}" });
         }
 
         private string GetUniqueFileName(IFormFile file)
