@@ -9,10 +9,12 @@ using masz.Models;
 using masz.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace masz.Controllers
 {
@@ -99,7 +101,7 @@ namespace masz.Controllers
         }
 
         [HttpPatch("{modcaseid}")]
-        public async Task<IActionResult> PatchSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromBody] ModCaseForPatchDto modCase) 
+        public async Task<IActionResult> PatchSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromBody] JsonPatchDocument<ModCase> newValue) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -116,34 +118,40 @@ namespace masz.Controllers
             }
             // ========================================================
 
-            ModCase oldModCase = await database.SelectSpecificModCase(guildid, modcaseid);
-            if (oldModCase == null) 
+            ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
+            if (modCase == null) 
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
                 return NotFound();
             }
 
-            foreach (var oldProperty in oldModCase.GetType().GetProperties())
+            // unchangeable values
+            int id = modCase.Id;
+            string guildId = modCase.GuildId;
+            DateTime createdAt = modCase.CreatedAt;
+
+            var serialized = JsonConvert.SerializeObject(newValue);
+            var deserialized = JsonConvert.DeserializeObject<JsonPatchDocument>(serialized);
+            deserialized.ApplyTo(modCase);
+
+            // apply automated and unchangeable values
+            var currentReportedUser = await discord.FetchMemberInfo(guildid, modCase.UserId);
+            if (currentReportedUser != null)
             {
-                foreach (var property in modCase.GetType().GetProperties())
-                {
-                    if (property.Name == oldProperty.Name && property.PropertyType == oldProperty.PropertyType)
-                    {
-                        if (property.GetValue(modCase) != null)
-                            oldProperty.SetValue(oldModCase, property.GetValue(modCase));
-                    }
-                }
+                modCase.CurrentUsername = currentReportedUser.User.Username;
+                modCase.CurrentNickname = currentReportedUser.Nick;
             }
+            modCase.Id = id;
+            modCase.GuildId = guildId;
+            modCase.CreatedAt = createdAt;
+            modCase.LastEditedAt = DateTime.Now;
+            modCase.LastEditedByModId = currentUser.Id;
 
-            oldModCase.Valid = true;
-            oldModCase.LastEditedAt = DateTime.Now;
-            oldModCase.LastEditedByModId = currentUser.Id;
-
-            database.UpdateModCase(oldModCase);
+            database.UpdateModCase(modCase);
             await database.SaveChangesAsync();
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource updated.");
-            return Ok(oldModCase.Id);
+            return Ok(modCase.Id);
         }
 
         [HttpPost]
