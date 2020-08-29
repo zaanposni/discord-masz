@@ -34,7 +34,8 @@ namespace masz
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(x => x.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson();
 
             services.AddScoped<IDatabase, Database>();
             services.AddScoped<IDiscordInterface, DiscordInterface>();
