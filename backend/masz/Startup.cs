@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AspNetCoreRateLimit;
 using masz.data;
 using masz.Models;
 using masz.Services;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -67,7 +69,28 @@ namespace masz
 
             services.Configure<InternalConfig>(Configuration.GetSection("InternalConfig"));
 
+            // needed to store rate limit counters and ip rules
+            services.AddMemoryCache();
+
+            //load general configuration from appsettings.json
+            services.Configure<IpRateLimitOptions>(Configuration.GetSection("IpRateLimiting"));
+
+            //load ip rules from appsettings.json
+            services.Configure<IpRateLimitPolicies>(Configuration.GetSection("IpRateLimitPolicies"));
+
+            // inject counter and rules stores
+            services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+            services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+
+            // https://github.com/aspnet/Hosting/issues/793
+            // the IHttpContextAccessor service is not registered by default.
+            // the clientId/clientIp resolvers use it.
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            // configuration (resolvers, counter key builders)
+            services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,6 +100,8 @@ namespace masz
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseIpRateLimiting();           
 
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
