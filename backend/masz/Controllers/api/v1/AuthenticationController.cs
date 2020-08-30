@@ -28,12 +28,11 @@ namespace masz.Controllers
 
             var properties = new AuthenticationProperties()
             {
-                
-                // actual redirect endpoint for your app
                 RedirectUri = ReturnUrl,
                 Items =
                 {
                     { "LoginProvider", "Discord" },
+                    { "scheme", "Discord" }
                 },
                 AllowRefresh = true,
             };

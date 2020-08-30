@@ -61,7 +61,7 @@ namespace masz
                 options.Scope.Add("guilds");
                 options.Scope.Add("identify");
                 options.SaveTokens = true;
-                options.Prompt = Discord.OAuth2.DiscordOptions.PromptTypes.None;
+                options.Prompt = "None";
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             });
 
