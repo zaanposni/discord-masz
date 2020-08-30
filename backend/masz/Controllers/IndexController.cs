@@ -28,10 +28,6 @@ namespace masz.Controllers
         [HttpGet("/api/v1/status")]
         public async Task<IActionResult> Status() {
             logger.LogInformation("/status | Returning Status.");
-            string headers = String.Empty;
-            foreach (var key in HttpContext.Request.Headers.Keys)
-                headers += key + "=" + HttpContext.Request.Headers[key] + Environment.NewLine;
-            logger.LogInformation(headers);
             return Ok("OK");
         }
     }
