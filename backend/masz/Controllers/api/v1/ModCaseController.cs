@@ -231,6 +231,12 @@ namespace masz.Controllers
             }
             // ========================================================
 
+            if (await database.SelectSpecificGuildConfig(guildid) == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
+                return BadRequest("Guild not registered.");
+            }
+
             List<ModCase> modCases = await database.SelectAllModCasesForGuild(guildid);       
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCases.");
@@ -248,6 +254,12 @@ namespace masz.Controllers
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
+            }
+
+            if (await database.SelectSpecificGuildConfig(guildid) == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
+                return BadRequest("Guild not registered.");
             }
 
             List<ModCase> modCases = await database.SelectAllModcasesForSpecificUserOnGuild(guildid, currentUser.Id);       
