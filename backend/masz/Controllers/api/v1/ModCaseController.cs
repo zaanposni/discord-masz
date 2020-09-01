@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using masz.data;
@@ -92,11 +93,16 @@ namespace masz.Controllers
                 return NotFound();
             }
 
-            modCase.Valid = false;
+            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload, guildid, modcaseid);
+            if (System.IO.Directory.Exists(uploadDir))
+            {
+                Directory.Delete(uploadDir, true);
+            }
 
             database.DeleteSpecificModCase(modCase);
             await database.SaveChangesAsync();
 
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Deleted ModCase.");
             return Ok();
         }
 
