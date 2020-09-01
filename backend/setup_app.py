@@ -26,8 +26,10 @@ data["AppSettings"]["Token"] = random_pass(200)
 data["InternalConfig"]["DiscordBotToken"] = start_args[5]
 data["InternalConfig"]["DiscordClientId"] = start_args[6]
 data["InternalConfig"]["DiscordClientSecret"] = start_args[7]
-data["InternalConfig"]["SiteAdminDiscordUserIds"] = start_args[8].split(",")
-
+try:
+    data["InternalConfig"]["SiteAdminDiscordUserIds"] = start_args[8].split(",")
+except:
+    data["InternalConfig"]["SiteAdminDiscordUserIds"] = []
 
 with open(PATH, "w") as fh:
     json.dump(data, fh)

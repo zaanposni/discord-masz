@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AspNet.Security.OAuth.Discord;
 using AspNetCoreRateLimit;
 using masz.data;
 using masz.Models;
@@ -63,7 +64,7 @@ namespace masz
                 options.Scope.Add("guilds");
                 options.Scope.Add("identify");
                 options.SaveTokens = true;
-                options.Prompt = "None";
+                options.Prompt = "none";
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             });
 
