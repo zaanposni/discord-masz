@@ -16,7 +16,7 @@ namespace masz.Controllers
         }
 
         [HttpGet("/")]
-        public async Task<IActionResult> Index() {
+        public IActionResult Index() {
             logger.LogInformation("/ | Returning Index.");
             return new ContentResult() 
             {
@@ -26,7 +26,10 @@ namespace masz.Controllers
         }
 
         [HttpGet("/api/v1/status")]
-        public async Task<IActionResult> Status() {
+        [HttpGet("/api/v1/health")]
+        [HttpGet("/api/v1/healthcheck")]
+        [HttpGet("/api/v1/ping")]
+        public IActionResult Status() {
             logger.LogInformation("/status | Returning Status.");
             return Ok("OK");
         }
