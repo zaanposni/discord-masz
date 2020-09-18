@@ -36,6 +36,10 @@ namespace masz.Controllers
         public IActionResult Status() {
             logger.LogInformation("/status | Returning Status.");
 
+            foreach (var header in HttpContext.Request.Headers) {
+                Console.WriteLine($"header {header}: {Request.Headers[header.ToString()]};");
+            }
+
             var accept = String.Empty;
             if (HttpContext.Request.Headers.ContainsKey("Accept")) {
                 if (HttpContext.Request.Headers["Accept"].ToString().Contains("application/json"))
