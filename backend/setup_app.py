@@ -26,8 +26,9 @@ data["AppSettings"]["Token"] = random_pass(200)
 data["InternalConfig"]["DiscordBotToken"] = start_args[5]
 data["InternalConfig"]["DiscordClientId"] = start_args[6]
 data["InternalConfig"]["DiscordClientSecret"] = start_args[7]
+data["InternalConfig"]["ServiceHostName"] = start_args[8]
 try:
-    data["InternalConfig"]["SiteAdminDiscordUserIds"] = start_args[8].split(",")
+    data["InternalConfig"]["SiteAdminDiscordUserIds"] = start_args[9].split(",")
 except:
     data["InternalConfig"]["SiteAdminDiscordUserIds"] = []
 
