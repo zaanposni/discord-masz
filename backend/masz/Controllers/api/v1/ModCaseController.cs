@@ -136,6 +136,7 @@ namespace masz.Controllers
             string guildId = modCase.GuildId;
             DateTime createdAt = modCase.CreatedAt;
 
+            // json patch
             var serialized = JsonConvert.SerializeObject(newValue);
             var deserialized = JsonConvert.DeserializeObject<JsonPatchDocument>(serialized);
             deserialized.ApplyTo(modCase);

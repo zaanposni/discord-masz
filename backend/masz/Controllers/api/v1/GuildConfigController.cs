@@ -6,10 +6,12 @@ using masz.Models;
 using masz.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace masz.Controllers
 {
@@ -148,7 +150,7 @@ namespace masz.Controllers
         }
 
         [HttpPatch]
-        public async Task<IActionResult> UpdateSpecificItem([FromRoute] string guildid, [FromBody] GuildConfigForPatchDto guildConfigForPatchDto) 
+        public async Task<IActionResult> UpdateSpecificItem([FromRoute] string guildid, [FromBody] JsonPatchDocument<GuildConfig> newValue) 
         {
             // check if request is made by a site admin
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
@@ -166,26 +168,27 @@ namespace masz.Controllers
             }
             // ========================================================
 
-            GuildConfig oldGuildConfig = await database.SelectSpecificGuildConfig(guildid);
-            if (oldGuildConfig == null) 
+            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
+            if (guildConfig == null) 
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
                 return NotFound();
             }
 
-            foreach (var oldProperty in oldGuildConfig.GetType().GetProperties())
-            {
-                foreach (var property in guildConfigForPatchDto.GetType().GetProperties())
-                {
-                    if (property.Name == oldProperty.Name && property.PropertyType == oldProperty.PropertyType)
-                    {
-                        if (property.GetValue(guildConfigForPatchDto) != null)
-                            oldProperty.SetValue(oldGuildConfig, property.GetValue(guildConfigForPatchDto));
-                    }
-                }                
-            }
+            // unchangeable values
+            int id = guildConfig.Id;
+            string guildId = guildConfig.GuildId;
 
-            database.UpdateGuildConfig(oldGuildConfig);
+            // json patch
+            var serialized = JsonConvert.SerializeObject(newValue);
+            var deserialized = JsonConvert.DeserializeObject<JsonPatchDocument>(serialized);
+            deserialized.ApplyTo(guildConfig);
+
+            // apply automated and unchangeable values
+            guildConfig.Id = id;
+            guildConfig.GuildId = guildId;
+
+            database.UpdateGuildConfig(guildConfig);
             await database.SaveChangesAsync();
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource updated.");
