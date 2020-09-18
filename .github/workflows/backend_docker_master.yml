@@ -11,6 +11,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Building docker
       run: |
+        sudo chmod +x bootstrap_init.sh
         ./bootstrap_init.sh
         cd backend
         docker build -t discord-masz .

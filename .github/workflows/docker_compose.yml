@@ -8,6 +8,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the stack
       run: |
+        sudo chmod +x bootstrap_init.sh
         ./bootstrap_init.sh
         docker-compose build
         docker-compose up -d
@@ -17,6 +18,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the stack
       run: |
+        sudo chmod +x bootstrap_init.sh
         ./bootstrap_init.sh
         docker-compose build
         docker-compose up -d
