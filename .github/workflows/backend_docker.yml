@@ -8,5 +8,6 @@ jobs:
     - uses: actions/checkout@v1
     - name: Building docker
       run: |
+        ./bootstrap_init.sh
         cd backend
         docker build -t discord-masz .
