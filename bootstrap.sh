@@ -1,22 +1,36 @@
 # This script will deploy the whole masz application as long as docker and docker-compose are installed
 # After running this script you may want to setup a reverse proxy to redirect http request to 5565
 
+if [ ! -f ./config.json ]; then
+    >&2 echo "Config file not found."
+    >&2 echo "Please create a config.json based on ./default-config.json and try again."
+    exit 1
+fi
+
 docker ps -a
 
+echo "Killing old containers"
 docker-compose stop
+echo "Killed old containers"
 
 docker ps -a
 
-docker-compose build --build-arg MYSQL_HOST=db \
-                     --build-arg MYSQL_PORT=3306 \
-                     --build-arg MYSQL_DATABASE=masz \
-                     --build-arg MYSQL_USER=mysqldummy \
-                     --build-arg MYSQL_PASS=mysqldummy \
-                     --build-arg DISCORD_BOT_TOKEN=<insert your value here> \
-                     --build-arg DISCORD_CLIENT_ID=<insert your value here> \
-                     --build-arg DISCORD_CLIENT_SECRET=<insert your value here> \
-                     --build-arg SITEADMINS=<insert your value here>
+bash bootstrap_init.sh
 
+echo "Build docker-compose"
+docker-compose build
+echo "Build finished"
+
+echo "removing config.json from subdirectories"
+rm -f ./backend/config.json
+
+echo "removing nginx.conf"
+rm -f ./nginx/nginx.conf
+
+echo "Starting up..."
 docker-compose up -d
+echo "Started in background"
 
 docker ps -a
+
+echo "Done."

@@ -1020,3 +1020,5 @@ dmypy.json
 # End of https://www.toptal.com/developers/gitignore/api/aspnetcore,csharp,visualstudio,visualstudiocode,pycharm,phpstorm,phpstorm+all,python
 
 tests/results/*
+
+config.json
