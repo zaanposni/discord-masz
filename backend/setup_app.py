@@ -1,20 +1,18 @@
-import sys
 import json
 import os
 import random
 import string
-
-start_args = sys.argv[1:]
-print(start_args)
 
 def random_pass(pass_length=200):
     chars = string.ascii_letters + string.digits + '!@#$%^&*()'
     random.seed = (os.urandom(1024))
     return ''.join(random.choice(chars) for i in range(pass_length))
 
+with open("./config.json", "r") as fh:
+    config = json.load(fh)
 
-# TODO: also get discord bot token and secrets
-CNC_STRING = "Server={};Port={};Database={};Uid={};Pwd={};".format(start_args[0], start_args[1], start_args[2], start_args[3], start_args[4])
+db = config["database"]
+CNC_STRING = f"Server={db['host']};Port={db['port']};Database={db['database']};Uid={db['user']};Pwd={db['pass']};"
 
 PATH = os.path.join("masz", "appsettings.json")
 
@@ -23,12 +21,12 @@ with open(PATH, "r") as fh:
 
 data["ConnectionStrings"]["DefaultConnection"] = CNC_STRING
 data["AppSettings"]["Token"] = random_pass(200)
-data["InternalConfig"]["DiscordBotToken"] = start_args[5]
-data["InternalConfig"]["DiscordClientId"] = start_args[6]
-data["InternalConfig"]["DiscordClientSecret"] = start_args[7]
-data["InternalConfig"]["ServiceHostName"] = start_args[8]
+data["InternalConfig"]["DiscordBotToken"] = config["discord"]["bot_token"]
+data["InternalConfig"]["DiscordClientId"] = config["discord"]["oauth_client_id"]
+data["InternalConfig"]["DiscordClientSecret"] = config["discord"]["oauth_client_secret"]
+data["InternalConfig"]["ServiceHostName"] = config["meta"]["service_name"]
 try:
-    data["InternalConfig"]["SiteAdminDiscordUserIds"] = start_args[9].split(",")
+    data["InternalConfig"]["SiteAdminDiscordUserIds"] = list(config["discord"]["site_admins"])
 except:
     data["InternalConfig"]["SiteAdminDiscordUserIds"] = []
 

@@ -20,10 +20,10 @@ namespace masz.Controllers
         }
 
         [HttpGet("login")]
-        public async Task<IActionResult> Login([FromQuery] string ReturnUrl)
+        public IActionResult Login([FromQuery] string ReturnUrl)
         {
             if (ReturnUrl == null || ReturnUrl.Length == 0) {
-                    ReturnUrl = $"/";
+                ReturnUrl = $"/";
             }
 
             var properties = new AuthenticationProperties()

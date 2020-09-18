@@ -1,0 +1,19 @@
+{
+    "mysql_database": {
+        "host": "db",
+        "port": "3306",
+        "database": "masz",
+        "user": "mysqldummy",
+        "pass": "mysqldummy"
+    },
+    "discord": {
+        "bot_token": "dummyvalue",
+        "oauth_client_id": "dummyvalue",
+        "oauth_client_secret": "dummyvalue",
+        "site_admins": ["dummyvalue"]
+    },
+    "meta": {
+        "service_name": "masz",
+        "nginx_mode": "local"
+    }
+}
