@@ -11,7 +11,7 @@ def random_pass(pass_length=200):
 with open("./config.json", "r") as fh:
     config = json.load(fh)
 
-db = config["database"]
+db = config["mysql_database"]
 CNC_STRING = f"Server={db['host']};Port={db['port']};Database={db['database']};Uid={db['user']};Pwd={db['pass']};"
 
 PATH = os.path.join("masz", "appsettings.json")
