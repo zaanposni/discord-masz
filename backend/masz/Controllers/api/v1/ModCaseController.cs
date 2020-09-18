@@ -150,7 +150,7 @@ namespace masz.Controllers
             modCase.Id = id;
             modCase.GuildId = guildId;
             modCase.CreatedAt = createdAt;
-            modCase.LastEditedAt = DateTime.Now;
+            modCase.LastEditedAt = DateTime.UtcNow;
             modCase.LastEditedByModId = currentUser.Id;
 
             database.UpdateModCase(modCase);
@@ -200,12 +200,12 @@ namespace masz.Controllers
             newModCase.ModId = currentModUserId;
             newModCase.UserId = modCase.UserId;
             newModCase.Severity = modCase.Severity;
-            newModCase.CreatedAt = DateTime.Now;
+            newModCase.CreatedAt = DateTime.UtcNow;
             if (modCase.OccuredAt.HasValue)
                 newModCase.OccuredAt = modCase.OccuredAt.Value;
             else
-                newModCase.OccuredAt = DateTime.Now;
-            newModCase.LastEditedAt = DateTime.Now;
+                newModCase.OccuredAt = DateTime.UtcNow;
+            newModCase.LastEditedAt = DateTime.UtcNow;
             newModCase.LastEditedByModId = currentModUserId;
             newModCase.Punishment = modCase.Punishment;
             newModCase.Labels = modCase.Labels;

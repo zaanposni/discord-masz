@@ -20,5 +20,6 @@ jobs:
                                      --build-arg DISCORD_BOT_TOKEN=dummyvalue \
                                      --build-arg DISCORD_CLIENT_ID=dummyvalue \
                                      --build-arg DISCORD_CLIENT_SECRET=dummyvalue \
+                                     --build-arg SERVICE_HOSTNAME=dummyvalue \
                                      --build-arg SITEADMINS=dummyvalue \
                                      .
