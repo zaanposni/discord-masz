@@ -40,7 +40,6 @@ services:
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html/app/public
     volumes:
-      - ./webinterface:/var/www/html
       - ./webinterface/config/vhost.conf:/etc/apache2/sites-available/000-default.conf
       - /var/www/html/app/var/cache
       - /var/www/html/app/var/log
