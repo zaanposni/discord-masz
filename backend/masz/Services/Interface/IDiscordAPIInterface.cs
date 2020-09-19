@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace masz.Services
 {
-    public interface IDiscordInterface
+    public interface IDiscordAPIInterface
     {
-        string discordBaseUrl { get; }
-
         /// <summary>
         /// Checks if the discord personal access token is valid.
         /// https://discord.com/developers/docs/resources/user#get-current-user

@@ -28,14 +28,16 @@ namespace masz.Controllers
         private readonly IDatabase database;
         private readonly IOptions<InternalConfig> config;
         private readonly IIdentityManager identityManager;
-        private readonly IDiscordInterface discord;
+        private readonly IModCaseAnnouncer modCaseAnnouncer;
+        private readonly IDiscordAPIInterface discord;
 
-        public ModCaseController(ILogger<ModCaseController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordInterface discordInterface)
+        public ModCaseController(ILogger<ModCaseController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IModCaseAnnouncer modCaseAnnouncer)
         {
             this.logger = logger;
             this.database = database;
             this.config = config;
             this.identityManager = identityManager;
+            this.modCaseAnnouncer = modCaseAnnouncer;
             this.discord = discordInterface;
         }
 
@@ -213,6 +215,13 @@ namespace masz.Controllers
             
             await database.SaveModCase(newModCase);
             await database.SaveChangesAsync();
+
+            try {
+                await modCaseAnnouncer.AnnounceModCase(newModCase, "created");
+            }
+            catch(Exception e){
+                logger.LogError(e, "Failed to announce modcase.");
+            }
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 201 Resource created.");
             return StatusCode(201, new { id = newModCase.Id });

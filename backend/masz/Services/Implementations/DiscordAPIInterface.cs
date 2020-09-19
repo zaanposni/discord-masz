@@ -11,17 +11,17 @@ using System.Threading.Tasks;
 
 namespace masz.Services
 {
-    public class DiscordInterface : IDiscordInterface
-    {        public string discordBaseUrl => "https://discord.com/api";
-
-        private readonly ILogger<DiscordInterface> logger;
+    public class DiscordAPIInterface : IDiscordAPIInterface
+    {        
+        private string discordBaseUrl => "https://discord.com/api";
+        private readonly ILogger<DiscordAPIInterface> logger;
         private readonly IOptions<InternalConfig> config;
         private readonly string botToken;
 
         private RestClient restClient;
 
-        public DiscordInterface() {  }
-        public DiscordInterface(ILogger<DiscordInterface> logger, IOptions<InternalConfig> config)
+        public DiscordAPIInterface() {  }
+        public DiscordAPIInterface(ILogger<DiscordAPIInterface> logger, IOptions<InternalConfig> config)
         {
             this.logger = logger;
             this.config = config;

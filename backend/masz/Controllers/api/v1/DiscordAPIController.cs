@@ -18,11 +18,11 @@ namespace masz.Controllers.api.v1
     public class DiscordAPIController : ControllerBase
     {
         private readonly ILogger<DiscordAPIController> logger;
-        private readonly IDiscordInterface discord;
+        private readonly IDiscordAPIInterface discord;
         private readonly IDatabase database;
         private readonly IIdentityManager identityManager;
 
-        public DiscordAPIController(ILogger<DiscordAPIController> logger, IIdentityManager identityManager, IDiscordInterface discord, IDatabase database)
+        public DiscordAPIController(ILogger<DiscordAPIController> logger, IIdentityManager identityManager, IDiscordAPIInterface discord, IDatabase database)
         {
             this.logger = logger;
             this.discord = discord;

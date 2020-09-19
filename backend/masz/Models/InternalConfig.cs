@@ -13,6 +13,7 @@ namespace masz.Models
         public string DiscordClientSecret { get; set; }
         public string AbsolutePathToFileUpload { get; set; }
         public string ServiceHostName { get; set; }
+        public string ServiceBaseUrl { get; set; }
         public List<string> SiteAdminDiscordUserIds { get; set; }
     }
 }

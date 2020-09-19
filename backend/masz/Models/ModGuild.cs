@@ -12,7 +12,7 @@ namespace masz.Models
         public string ModRoleId { get; set; }
         public string AdminRoleId { get; set; }
         public bool ModNotificationDM { get; set; }
-        public string ModNotificationChannelId { get; set; }
-        public string ModNotificationWebhook { get; set; }
+        public string ModPublicNotificationWebhook { get; set; }
+        public string ModInternalNotificationWebhook { get; set; }
     }
 }

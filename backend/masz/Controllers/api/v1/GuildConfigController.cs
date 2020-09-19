@@ -24,9 +24,9 @@ namespace masz.Controllers
         private readonly IDatabase database;
         private readonly IOptions<InternalConfig> config;
         private readonly IIdentityManager identityManager;
-        private readonly IDiscordInterface discord;
+        private readonly IDiscordAPIInterface discord;
 
-        public GuildConfigController(ILogger<GuildConfigController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordInterface discordInterface)
+        public GuildConfigController(ILogger<GuildConfigController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface)
         {
             this.logger = logger;
             this.database = database;
@@ -140,7 +140,9 @@ namespace masz.Controllers
             guildConfig.GuildId = guildid;
             guildConfig.ModRoleId = guildConfigForCreateDto.ModRoleId;
             guildConfig.AdminRoleId = guildConfigForCreateDto.AdminRoleId;
-            guildConfig.ModNotificationWebhook = guildConfigForCreateDto.ModNotificationWebhook;
+            guildConfig.ModNotificationDM = guildConfigForCreateDto.ModNotificationDM;
+            guildConfig.ModPublicNotificationWebhook = guildConfigForCreateDto.ModPublicNotificationWebhook;
+            guildConfig.ModInternalNotificationWebhook = guildConfigForCreateDto.ModInternalNotificationWebhook;
 
             await database.SaveGuildConfig(guildConfig);
             await database.SaveChangesAsync();

@@ -41,7 +41,8 @@ namespace masz
                 .AddNewtonsoftJson();
 
             services.AddScoped<IDatabase, Database>();
-            services.AddScoped<IDiscordInterface, DiscordInterface>();
+            services.AddScoped<IDiscordAPIInterface, DiscordAPIInterface>();
+            services.AddScoped<IModCaseAnnouncer, ModCaseAnnouncer>();
             services.AddSingleton<IIdentityManager, IdentityManager>();
 
             services.AddAuthentication(options =>

@@ -19,11 +19,11 @@ namespace masz.Services
         private readonly ILogger<IdentityManager> logger;
         private readonly IDatabase context;
         private readonly IOptions<InternalConfig> config;
-        private readonly IDiscordInterface discord;
+        private readonly IDiscordAPIInterface discord;
 
         public IdentityManager() { }
 
-        public IdentityManager(ILogger<IdentityManager> logger, IOptions<InternalConfig> config, IDiscordInterface discord, IDatabase context)
+        public IdentityManager(ILogger<IdentityManager> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IDatabase context)
         {
             this.logger = logger;
             this.config = config;

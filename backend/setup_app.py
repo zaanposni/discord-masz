@@ -25,6 +25,7 @@ data["InternalConfig"]["DiscordBotToken"] = config["discord"]["bot_token"]
 data["InternalConfig"]["DiscordClientId"] = config["discord"]["oauth_client_id"]
 data["InternalConfig"]["DiscordClientSecret"] = config["discord"]["oauth_client_secret"]
 data["InternalConfig"]["ServiceHostName"] = config["meta"]["service_name"]
+data["InternalConfig"]["ServiceBaseUrl"] = config["meta"]["service_base_url"]
 try:
     data["InternalConfig"]["SiteAdminDiscordUserIds"] = list(config["discord"]["site_admins"])
 except:

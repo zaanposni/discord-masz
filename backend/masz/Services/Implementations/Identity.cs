@@ -9,7 +9,7 @@ namespace masz.Services
 {
     public class Identity
     {
-        private readonly IDiscordInterface discord;
+        private readonly IDiscordAPIInterface discord;
         private readonly IDatabase database;
 
         public DateTime ValidUntil { get; set;  }
@@ -20,7 +20,7 @@ namespace masz.Services
         private Dictionary<string, GuildMember> GuildMemberships = new Dictionary<string, GuildMember>();
 
 
-        public Identity (string token, IDiscordInterface discord, IDatabase database)
+        public Identity (string token, IDiscordAPIInterface discord, IDatabase database)
         {
             this.discord = discord;
             this.database = database;

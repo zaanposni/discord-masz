@@ -29,12 +29,12 @@ namespace masz.Services
 
         public async Task<GuildConfig> SelectSpecificGuildConfig(string guildId)
         {
-            return await context.GuildConfigs.FirstOrDefaultAsync(x => x.GuildId == guildId);
+            return await context.GuildConfigs.AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId);
         }
 
         public async Task<List<GuildConfig>> SelectAllGuildConfigs()
         {
-            return await context.GuildConfigs.ToListAsync();
+            return await context.GuildConfigs.AsQueryable().ToListAsync();
         }
 
         public void DeleteSpecificGuildConfig(GuildConfig guildConfig)
@@ -54,17 +54,17 @@ namespace masz.Services
 
         public async Task<ModCase> SelectSpecificModCase(string guildId, string modCaseId)
         {
-            return await context.ModCases.FirstOrDefaultAsync(x => x.GuildId == guildId && x.Id.ToString() == modCaseId);
+            return await context.ModCases.AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.Id.ToString() == modCaseId);
         }
 
         public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId)
         {
-            return await context.ModCases.Where(x => x.GuildId == guildId && x.UserId == userId).ToListAsync();
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).ToListAsync();
         }
 
         public async Task<List<ModCase>> SelectAllModCasesForGuild(string guildId)
         {
-            return await context.ModCases.Where(x => x.GuildId == guildId).ToListAsync();
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
         }
 
         public void DeleteSpecificModCase(ModCase modCase)
