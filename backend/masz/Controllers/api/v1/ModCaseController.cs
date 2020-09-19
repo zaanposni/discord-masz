@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using masz.data;
 using masz.Dtos.DiscordAPIResponses;
@@ -133,6 +134,7 @@ namespace masz.Controllers
                 return NotFound();
             }
 
+            string oldUserId = modCase.UserId;
             // unchangeable values
             int id = modCase.Id;
             string guildId = modCase.GuildId;
@@ -146,6 +148,7 @@ namespace masz.Controllers
             deserialized.ApplyTo(modCase);
 
             // apply automated and unchangeable values
+            modCase.Title = modCase.Title.Substring(0, Math.Min(modCase.Title.Length, 100)); // max length 100
             modCase.Id = id;
             modCase.GuildId = guildId;
             modCase.Username = username;
@@ -153,6 +156,22 @@ namespace masz.Controllers
             modCase.CreatedAt = createdAt;
             modCase.LastEditedAt = DateTime.UtcNow;
             modCase.LastEditedByModId = currentUser.Id;
+
+            if (oldUserId != modCase.UserId)  // if user id got updated, update nickname and username
+            {
+                var regex = @"^[0-9]{18}$";
+                var match = Regex.Match(modCase.UserId, regex);
+                if (!match.Success) {
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 UserId is invalid.");
+                    return BadRequest("UserId is invalid.");
+                }
+                var currentReportedUser = await discord.FetchMemberInfo(guildid, modCase.UserId);
+                if (currentReportedUser != null)
+                {
+                    modCase.Username = currentReportedUser.User.Username;
+                    modCase.Nickname = currentReportedUser.Nick;
+                }
+            }
 
             database.UpdateModCase(modCase);
             await database.SaveChangesAsync();
@@ -187,7 +206,7 @@ namespace masz.Controllers
             }
 
             ModCase newModCase = new ModCase();
-
+            
             var currentReportedUser = await discord.FetchMemberInfo(guildid, modCase.UserId);
             if (currentReportedUser != null)
             {
