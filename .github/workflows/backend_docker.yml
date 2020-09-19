@@ -1,0 +1,14 @@
+name: Backend/masz
+on: [pull_request]
+
+jobs:
+  DockerBuild:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Building docker
+      run: |
+        sudo chmod +x bootstrap_init.sh
+        ./bootstrap_init.sh
+        cd backend
+        docker build -t discord-masz .
