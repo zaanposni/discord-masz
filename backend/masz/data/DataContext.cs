@@ -1,3 +1,4 @@
+using System;
 using masz.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -31,6 +32,12 @@ namespace masz.data
         {
             modelBuilder.Entity<ModCase>()
                 .HasKey(o => new { o.Id });
+
+            modelBuilder.Entity<ModCase>()
+            .Property(e => e.Labels)
+            .HasConversion(
+                v => string.Join(',', v),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
             
             modelBuilder.Entity<ModCaseComments>()
                 .HasKey(o => new { o.Id });
