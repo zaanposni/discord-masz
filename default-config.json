@@ -14,6 +14,7 @@
     },
     "meta": {
         "service_name": "masz",
+        "service_base_url": "http://localhost:5565",
         "nginx_mode": "local"
     }
 }

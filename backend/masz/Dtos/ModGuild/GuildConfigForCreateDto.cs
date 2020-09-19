@@ -8,6 +8,8 @@ namespace masz.Dtos.GuildConfig
         public string ModRoleId { get; set; }
         [Required]
         public string AdminRoleId { get; set; }
-        public string ModNotificationWebhook { get; set; }
+        public bool ModNotificationDM { get; set; }
+        public string ModPublicNotificationWebhook { get; set; }
+        public string ModInternalNotificationWebhook { get; set; }
     }
 }
