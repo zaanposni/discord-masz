@@ -43,7 +43,7 @@ namespace masz.Services
 
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
-                logger.LogInformation($"Sending public webhook to {guildConfig.ModInternalNotificationWebhook}.");
+                logger.LogInformation($"Sending internal webhook to {guildConfig.ModInternalNotificationWebhook}.");
                 EmbedBuilder embed = ModCaseEmbedCreator.CreatePublicAnnouncementEmbed(modCase, action, member, config.Value.ServiceBaseUrl);
 
                 var mod = await discord.FetchMemberInfo(modCase.GuildId, modCase.ModId);
@@ -53,7 +53,7 @@ namespace masz.Services
                 embed.Author = author;
 
                 DiscordMessenger.SendEmbedWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build(), $"<@{modCase.UserId}>");
-                logger.LogInformation("Sent public webhook.");
+                logger.LogInformation("Sent internal webhook.");
             }
         }
     }
