@@ -1,9 +1,5 @@
 version: '2.2'
 
-volumes:
-  cache:
-  log:
-
 services:
   db:
     container_name: db
@@ -46,8 +42,8 @@ services:
     volumes:
       - ./webinterface:/var/www/html
       - ./webinterface/config/vhost.conf:/etc/apache2/sites-available/000-default.conf
-      - cache:/var/www/html/app/var/cache
-      - log:/var/www/html/app/var/log
+      - /var/www/html/app/var/cache
+      - /var/www/html/app/var/log
     networks:
       - appnetwork
   
