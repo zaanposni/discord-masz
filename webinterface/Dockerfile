@@ -16,8 +16,10 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 
 COPY . /var/www/html
 WORKDIR /var/www/html/app
+RUN /usr/local/bin/composer require symfony/webpack-encore-bundle
+RUN /usr/local/bin/composer require symfony/debug-bundle
 RUN /usr/local/bin/composer install --no-dev --optimize-autoloader
-RUN /usr/local/bin/composer require encore
+
 RUN chmod -Rv 777 var/cache/ var/log/
 
 EXPOSE 80

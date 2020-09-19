@@ -24,22 +24,27 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="071ab9d9-af23-4a89-bb42-4b079733fef9" name="Default Changelist" comment="Created new funny controllers, basic http requests and twig templates">
-      <change afterPath="$PROJECT_DIR$/webinterface/src/Controller/IndexController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/src/Controller/TestController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/src/Controller/UsersController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/templates/navbar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="071ab9d9-af23-4a89-bb42-4b079733fef9" name="Default Changelist" comment="Changed stuff;">
+      <change beforePath="$PROJECT_DIR$/.idea/discord-masz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord-masz.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/src/Controller/ModCaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/src/Controller/ModCaseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/src/Controller/UserController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/templates/modcase/all.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/templates/modcase/createcase.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/templates/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/templates/modcase/show.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/templates/sidebar.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/templates/users/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/templates/users/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/default-config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx/nginx-local.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/assets/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/assets/css/bootstrap.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/assets/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/assets/css/bootstrap.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/assets/css/mdb.css" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/assets/css/mdb.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/templates/navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/templates/navbar.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/templates/users/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/templates/users/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,10 +65,32 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="blixary/feature-01" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/symfony/twig-bridge" />
+      <path value="$PROJECT_DIR$/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
+    </include_path>
   </component>
   <component name="ProjectId" id="1flh1EIWMs0kC5CoYQkoUq16JXF" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -75,7 +102,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/webinterface/assets/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/backend" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -88,9 +115,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Samuel Kräuter\PhpstormProjects\discord-masz\webinterface\assets\js" />
       <recent name="C:\Users\Samuel Kräuter\PhpstormProjects\discord-masz\webinterface\assets\css" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Samuel Kräuter\PhpstormProjects\discord-masz\backend" />
       <recent name="C:\Users\Samuel Kräuter\PhpstormProjects\discord-masz\webinterface\assets\js" />
       <recent name="C:\Users\Samuel Kräuter\PhpstormProjects\discord-masz\webinterface\assets\css" />
     </key>
@@ -129,7 +158,8 @@
       <workItem from="1597644324497" duration="2278000" />
       <workItem from="1597704095773" duration="14000" />
       <workItem from="1600517093655" duration="1453000" />
-      <workItem from="1600520526087" duration="291000" />
+      <workItem from="1600520526087" duration="10028000" />
+      <workItem from="1600530701058" duration="1968000" />
     </task>
     <task id="LOCAL-00001" summary="Added webpack encore and bootstrap framework;">
       <created>1596798602009</created>
@@ -173,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597115050776</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Changed stuff;">
+      <created>1600520885189</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1600520885189</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +235,8 @@
     <MESSAGE value="Added missing files;" />
     <MESSAGE value="Updated base;" />
     <MESSAGE value="Created new funny controllers, basic http requests and twig templates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created new funny controllers, basic http requests and twig templates" />
+    <MESSAGE value="Changed stuff;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed stuff;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1378" y="205" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1597114890588">
@@ -225,17 +263,17 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1082" y="363" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1597285685518" />
-    <state x="1173" y="432" key="Vcs.Push.Dialog.v2" timestamp="1597115052792">
+    <state x="1173" y="432" key="Vcs.Push.Dialog.v2" timestamp="1600520887140">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1173" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1597115052792" />
-    <state x="1165" y="591" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600517097535">
+    <state x="1173" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600520887140" />
+    <state x="1165" y="591" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600530716112">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1165" y="591" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600517097535" />
-    <state x="1123" y="312" key="git4idea.branch.GitSmartOperationDialog" timestamp="1597110267486">
+    <state x="1165" y="591" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600530716112" />
+    <state x="1123" y="312" key="git4idea.branch.GitSmartOperationDialog" timestamp="1600530711024">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1123" y="312" key="git4idea.branch.GitSmartOperationDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1597110267486" />
+    <state x="1123" y="312" key="git4idea.branch.GitSmartOperationDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1600530711024" />
   </component>
 </project>
