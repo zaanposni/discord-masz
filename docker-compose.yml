@@ -1,4 +1,9 @@
 version: '2.2'
+
+volumes:
+  cache:
+  log:
+
 services:
   db:
     container_name: db
@@ -34,11 +39,24 @@ services:
     volumes:
       - /filehost
 
+  webinterface:
+    build: webinterface
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/app/public
+    volumes:
+      - ./webinterface:/var/www/html
+      - ./webinterface/config/vhost.conf:/etc/apache2/sites-available/000-default.conf
+      - cache:/var/www/html/app/var/cache
+      - log:/var/www/html/app/var/log
+    networks:
+      - appnetwork
+  
   nginx:    
     container_name: nginx
     depends_on:
         - db
         - backend
+        - webinterface
     build: nginx
     restart: unless-stopped
     ports:
