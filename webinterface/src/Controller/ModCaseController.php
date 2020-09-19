@@ -3,11 +3,11 @@
 
 namespace App\Controller;
 
-
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ModCaseController
+class ModCaseController extends AbstractController
 {
 
     /**
@@ -16,17 +16,17 @@ class ModCaseController
     public function listAll() {
 
         // create api request
-        $client = HttpClient::create();
-        $url = ''; // change api url here
-        $response = $client->request(
-            'GET',
-            $url
-        );
-        $statusCode = $response->getStatusCode();
-        $content = $response->getContent();
-        $content = $response->toArray();
+//        $client = HttpClient::create();
+//        $url = ''; // change api url here
+//        $response = $client->request(
+//            'GET',
+//            $url
+//        );
+//        $statusCode = $response->getStatusCode();
+//        $content = $response->getContent();
+//        $content = $response->toArray();
 
-        return $this->render('base.html.twig');
+        return $this->render('users/show.html.twig');
     }
 
     /**
@@ -35,14 +35,14 @@ class ModCaseController
     public function createCase() {
 
         // create api request
-        $client = HttpClient::create();
-        $url = ''; // change api url here
-        $casedata = [];
-        $response = $client->request('POST', $url, [
-            'json' => $casedata,
-        ]);
-
-        $decodedPayload = $response->toArray();
+//        $client = HttpClient::create();
+//        $url = ''; // change api url here
+//        $casedata = [];
+//        $response = $client->request('POST', $url, [
+//            'json' => $casedata,
+//        ]);
+//
+//        $decodedPayload = $response->toArray();
 
 
         return $this->render('base.html.twig');
@@ -54,15 +54,15 @@ class ModCaseController
     public function showCase($id) {
 
         // create api request
-        $client = HttpClient::create();
-        $url = ''.$id; // change api url here
-        $response = $client->request(
-            'GET',
-            $url
-        );
-        $statusCode = $response->getStatusCode();
-        $content = $response->getContent();
-        $content = $response->toArray();
+//        $client = HttpClient::create();
+//        $url = ''.$id; // change api url here
+//        $response = $client->request(
+//            'GET',
+//            $url
+//        );
+//        $statusCode = $response->getStatusCode();
+//        $content = $response->getContent();
+//        $content = $response->toArray();
 
         return $this->render('base.html.twig');
     }

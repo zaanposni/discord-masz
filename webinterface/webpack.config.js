@@ -23,8 +23,12 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('bootstrap-js', './assets/js/bootstrap.min.js')
-    .addEntry('bootstrap-css', './assets/css/bootstrap.min.css')
+    .addEntry('bootstrap-js', './assets/js/bootstrap.js')
+    .addEntry('jquery-js', './assets/js/jquery.js')
+    .addEntry('mdb-js', './assets/js/mdb.js')
+    .addEntry('popper-js', './assets/js/popper.js')
+    .addEntry('bootstrap-css', './assets/css/bootstrap.css')
+    .addEntry('mdb-css', './assets/css/mdb.css')
     .addEntry('style-css', './assets/css/style.css')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
