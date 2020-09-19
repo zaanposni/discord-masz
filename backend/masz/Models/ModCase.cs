@@ -15,8 +15,8 @@ namespace masz.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string UserId { get; set; }
-        public string CurrentUsername { get; set; }
-        public string CurrentNickname { get; set; }
+        public string Username { get; set; }
+        public string Nickname { get; set; }
         public string ModId { get; set; }
         public int Severity { get; set; }
         public DateTime CreatedAt { get; set; }
@@ -24,7 +24,7 @@ namespace masz.Models
         public DateTime LastEditedAt { get; set; }
         public string LastEditedByModId { get; set; }
         public string Punishment { get; set; }
-        public string Labels { get; set; }
+        public string[] Labels { get; set; }
         public string Others { get; set; }
         public bool Valid { get; set; }
         public virtual List<ModCaseComments> ModCaseComments { get; set; }

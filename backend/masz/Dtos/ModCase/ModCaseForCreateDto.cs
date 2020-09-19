@@ -16,7 +16,7 @@ namespace masz.Dtos.ModCase
         [DataType(DataType.Date)]
         public DateTime? OccuredAt { get; set; }
         public string Punishment { get; set; }
-        public string Labels { get; set; }
+        public string[] Labels { get; set; }
         public string Others { get; set; }
     }
 }

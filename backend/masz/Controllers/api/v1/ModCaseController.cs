@@ -134,6 +134,8 @@ namespace masz.Controllers
             // unchangeable values
             int id = modCase.Id;
             string guildId = modCase.GuildId;
+            string username = modCase.Username;
+            string nickname = modCase.Nickname;
             DateTime createdAt = modCase.CreatedAt;
 
             // json patch
@@ -142,14 +144,10 @@ namespace masz.Controllers
             deserialized.ApplyTo(modCase);
 
             // apply automated and unchangeable values
-            var currentReportedUser = await discord.FetchMemberInfo(guildid, modCase.UserId);
-            if (currentReportedUser != null)
-            {
-                modCase.CurrentUsername = currentReportedUser.User.Username;
-                modCase.CurrentNickname = currentReportedUser.Nick;
-            }
             modCase.Id = id;
             modCase.GuildId = guildId;
+            modCase.Username = username;
+            modCase.Nickname = nickname;
             modCase.CreatedAt = createdAt;
             modCase.LastEditedAt = DateTime.UtcNow;
             modCase.LastEditedByModId = currentUser.Id;
@@ -191,8 +189,8 @@ namespace masz.Controllers
             var currentReportedUser = await discord.FetchMemberInfo(guildid, modCase.UserId);
             if (currentReportedUser != null)
             {
-                newModCase.CurrentUsername = currentReportedUser.User.Username;
-                newModCase.CurrentNickname = currentReportedUser.Nick;
+                newModCase.Username = currentReportedUser.User.Username;
+                newModCase.Nickname = currentReportedUser.Nick;
             }
 
             newModCase.Title = modCase.Title;
