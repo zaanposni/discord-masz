@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:blixary" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="071ab9d9-af23-4a89-bb42-4b079733fef9" name="Default Changelist" comment="Created new funny controllers, basic http requests and twig templates">
+      <change afterPath="$PROJECT_DIR$/webinterface/src/Controller/IndexController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webinterface/src/Controller/TestController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webinterface/src/Controller/UsersController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webinterface/templates/navbar.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/src/Controller/ModCaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/src/Controller/ModCaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/src/Controller/UserController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/templates/modcase/all.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/templates/modcase/createcase.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/templates/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/templates/modcase/show.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/templates/sidebar.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/templates/users/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/templates/users/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/webpack.config.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1flh1EIWMs0kC5CoYQkoUq16JXF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/webinterface/assets/js" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Samuel Kräuter\PhpstormProjects\discord-masz\webinterface\assets\css" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Samuel Kräuter\PhpstormProjects\discord-masz\webinterface\assets\js" />
+      <recent name="C:\Users\Samuel Kräuter\PhpstormProjects\discord-masz\webinterface\assets\css" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="071ab9d9-af23-4a89-bb42-4b079733fef9" name="Default Changelist" comment="" />
+      <created>1596798369273</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596798369273</updated>
+      <workItem from="1596798371903" duration="23000" />
+      <workItem from="1596798545760" duration="490000" />
+      <workItem from="1596926690908" duration="1045000" />
+      <workItem from="1596928208117" duration="45000" />
+      <workItem from="1596928271046" duration="3860000" />
+      <workItem from="1596932162130" duration="4081000" />
+      <workItem from="1596937870704" duration="153000" />
+      <workItem from="1596938128711" duration="32000" />
+      <workItem from="1596981898396" duration="3220000" />
+      <workItem from="1597109466389" duration="5641000" />
+      <workItem from="1597203086486" duration="385000" />
+      <workItem from="1597278002932" duration="432000" />
+      <workItem from="1597278442494" duration="430000" />
+      <workItem from="1597279904629" duration="172000" />
+      <workItem from="1597285648894" duration="44000" />
+      <workItem from="1597333808087" duration="7000" />
+      <workItem from="1597338087714" duration="385000" />
+      <workItem from="1597368089706" duration="413000" />
+      <workItem from="1597471220458" duration="1318000" />
+      <workItem from="1597554776926" duration="2432000" />
+      <workItem from="1597641340135" duration="970000" />
+      <workItem from="1597644324497" duration="2278000" />
+      <workItem from="1597704095773" duration="14000" />
+      <workItem from="1600517093655" duration="1453000" />
+      <workItem from="1600520526087" duration="291000" />
+    </task>
+    <task id="LOCAL-00001" summary="Added webpack encore and bootstrap framework;">
+      <created>1596798602009</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1596798602009</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added missing composer and yarn files;">
+      <created>1596798994258</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1596798994258</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added template engine twig; Added basic html structure and main routes;">
+      <created>1596938016192</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1596938016194</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added missing files;">
+      <created>1596938153250</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1596938153250</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Updated base;">
+      <created>1597110280116</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1597110280116</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Created new funny controllers, basic http requests and twig templates">
+      <created>1597115050776</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1597115050776</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added webpack encore and bootstrap framework;" />
+    <MESSAGE value="Added missing composer and yarn files;" />
+    <MESSAGE value="Added template engine twig; Added basic html structure and main routes;" />
+    <MESSAGE value="Added missing files;" />
+    <MESSAGE value="Updated base;" />
+    <MESSAGE value="Created new funny controllers, basic http requests and twig templates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created new funny controllers, basic http requests and twig templates" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1378" y="205" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1597114890588">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1378" y="205" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1597114890588" />
+    <state x="1088" y="436" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597113938331">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1088" y="436" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1597113938331" />
+    <state x="1361" y="473" key="FileChooserDialogImpl" timestamp="1596798392830">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1361" y="473" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1596798392830" />
+    <state x="1161" y="453" key="IDE.errors.dialog" timestamp="1596929581138">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1161" y="453" key="IDE.errors.dialog/0.0.2560.1400@0.0.2560.1400" timestamp="1596929581138" />
+    <state x="1250" y="425" key="NewPhpClassDialog" timestamp="1597555967262">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1250" y="425" key="NewPhpClassDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1597555967262" />
+    <state x="1082" y="363" key="SettingsEditor" timestamp="1597285685518">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1082" y="363" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1597285685518" />
+    <state x="1173" y="432" key="Vcs.Push.Dialog.v2" timestamp="1597115052792">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1173" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1597115052792" />
+    <state x="1165" y="591" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600517097535">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1165" y="591" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600517097535" />
+    <state x="1123" y="312" key="git4idea.branch.GitSmartOperationDialog" timestamp="1597110267486">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1123" y="312" key="git4idea.branch.GitSmartOperationDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1597110267486" />
+  </component>
+</project>
