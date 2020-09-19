@@ -11,7 +11,7 @@ class ModCaseController extends AbstractController
 {
 
     /**
-     * @Route("/modcase/")
+     * @Route("/modcases/")
      */
     public function listAll() {
 
@@ -26,7 +26,7 @@ class ModCaseController extends AbstractController
 //        $content = $response->getContent();
 //        $content = $response->toArray();
 
-        return $this->render('users/show.html.twig');
+        return $this->render('modcases/show.html.twig');
     }
 
     /**

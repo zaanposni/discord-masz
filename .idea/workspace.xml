@@ -24,78 +24,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="071ab9d9-af23-4a89-bb42-4b079733fef9" name="Default Changelist" comment="Changed stuff;">
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/datatables-select.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/datatables-select.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/datatables-select2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/datatables-select2.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/datatables.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/datatables.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/datatables2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/datatables2.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/directives.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/directives.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/flag.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/flag.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/jquery.zmd.hierarchical-display.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/jquery.zmd.hierarchical-display.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/rating.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/addons/rating.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/datatables.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/mdb.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/mdb.lite.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/mdb.lite.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/mdb.lite.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/mdb.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/mdb.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/modules/animations-extended.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/modules/animations-extended.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/datatables-select.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/datatables-select.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/datatables-select2.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/datatables-select2.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/datatables.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/datatables.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/datatables2.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/datatables2.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/directives.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/directives.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/flag.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/flag.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/imagesloaded.pkgd.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/imagesloaded.pkgd.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/jquery.zmd.hierarchical-display.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/jquery.zmd.hierarchical-display.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/masonry.pkgd.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/masonry.pkgd.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/rating.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/addons/rating.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/datatables.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/mdb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/mdb.lite.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/mdb.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/mdb.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/modules/animations-extended.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/modules/animations-extended.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/modules/forms-free.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/modules/forms-free.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/modules/scrolling-navbar.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/modules/scrolling-navbar.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/modules/treeview.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/modules/treeview.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/modules/wow.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/modules/wow.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/popper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webinterface/app/public/js/popper.min.js" afterDir="false" />
+    <list default="true" id="071ab9d9-af23-4a89-bb42-4b079733fef9" name="Default Changelist" comment="Removed webpack encore;">
+      <change afterPath="$PROJECT_DIR$/webinterface/app/templates/modcases/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webinterface/app/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/src/Controller/ModCaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/src/Controller/ModCaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webinterface/app/src/Controller/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/webinterface/app/src/Controller/UsersController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +144,7 @@
       <workItem from="1597704095773" duration="14000" />
       <workItem from="1600517093655" duration="1453000" />
       <workItem from="1600520526087" duration="10028000" />
-      <workItem from="1600530701058" duration="2889000" />
+      <workItem from="1600530701058" duration="6210000" />
     </task>
     <task id="LOCAL-00001" summary="Added webpack encore and bootstrap framework;">
       <created>1596798602009</created>
@@ -269,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600532844540</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Removed webpack encore;">
+      <created>1600533793348</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1600533793348</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,7 +235,8 @@
     <MESSAGE value="Updated base;" />
     <MESSAGE value="Created new funny controllers, basic http requests and twig templates" />
     <MESSAGE value="Changed stuff;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed stuff;" />
+    <MESSAGE value="Removed webpack encore;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed webpack encore;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1378" y="205" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1597114890588">
@@ -322,14 +263,14 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1082" y="363" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1597285685518" />
-    <state x="1173" y="432" key="Vcs.Push.Dialog.v2" timestamp="1600532850161">
+    <state x="1173" y="432" key="Vcs.Push.Dialog.v2" timestamp="1600533798642">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1173" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600532850161" />
-    <state x="1165" y="591" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600530716112">
+    <state x="1173" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600533798642" />
+    <state x="1165" y="591" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600535294283">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1165" y="591" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600530716112" />
+    <state x="1165" y="591" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600535294283" />
     <state x="1123" y="312" key="git4idea.branch.GitSmartOperationDialog" timestamp="1600530711024">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
