@@ -6,10 +6,12 @@ namespace masz.Dtos.ModCase
     public class ModCaseForCreateDto
     {
         [Required]
+        [MaxLength(100)]
         public string Title { get; set; }
         [Required]
         public string Description { get; set; }
         [Required]
+        [RegularExpression(@"^[0-9]{18}$")]
         public string UserId { get; set; }
         [Required]
         public int Severity { get; set; }
