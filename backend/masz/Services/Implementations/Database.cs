@@ -67,6 +67,11 @@ namespace masz.Services
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
         }
 
+        public async Task<List<ModCase>> SelectAllModCases()
+        {
+            return await context.ModCases.AsQueryable().ToListAsync();
+        }
+
         public void DeleteSpecificModCase(ModCase modCase)
         {
             context.ModCases.Remove(modCase);
