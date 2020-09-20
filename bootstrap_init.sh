@@ -11,7 +11,9 @@ echo "Using specified nginx config"
 if [[ $(jq '.meta.nginx_mode' $file) = *prod* ]]; then
     echo "prod"
     cp ./nginx/nginx-prod.conf ./nginx/nginx.conf
+    cp ./webinterface/app/.env.prod ./webinterface/app/.env
 else
     echo "local"
     cp ./nginx/nginx-local.conf ./nginx/nginx.conf
+    cp ./webinterface/app/.env.dev ./webinterface/app/.env
 fi

@@ -1,29 +1,31 @@
-FROM php:7.4-apache
+FROM php:7.4-fpm
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends vim curl debconf subversion git apt-transport-https apt-utils \
+    build-essential locales acl mailutils wget zip unzip \
+    gnupg gnupg1 gnupg2
 
-# Set timezone
-ENV TZ=Europe/Berlin
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+WORKDIR /home/wwwroot
+COPY ./app/ ./sf4
+RUN docker-php-ext-install pdo pdo_mysql
+COPY php.ini /etc/php/7.4/php.ini
+COPY php-fpm-pool.conf /etc/php/7.4/pool.d/www.conf
 
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-    && php composer-setup.php --filename=composer \
-    && php -r "unlink('composer-setup.php');" \
-    && mv composer /usr/local/bin/composer \
-    && chmod +x /usr/local/bin/composer \
-    && apt-get update && apt-get install -y git libzip-dev unzip nodejs npm \
-    && docker-php-ext-install zip \
-    && a2enmod rewrite headers
+RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
+   mv composer.phar /usr/local/bin/composer
 
-COPY . /var/www/html
+RUN rm -rf /var/lib/apt/lists/*
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
+    echo "fr_FR.UTF-8 UTF-8" >> /etc/locale.gen && \
+    locale-gen
 
-WORKDIR /var/www/html/app
+WORKDIR /home/wwwroot/sf4
+RUN composer install --no-dev --optimize-autoloader
+WORKDIR /home/wwwroot
 
-RUN mkdir -p var/cache
-RUN mkdir -p var/log
-RUN /usr/local/bin/composer require symfony/webpack-encore-bundle
-RUN /usr/local/bin/composer require symfony/debug-bundle
-RUN /usr/local/bin/composer install --no-dev --optimize-autoloader
+RUN mkdir -p /home/wwwroot/sf4/var/cache
+RUN mkdir -p /home/wwwroot/sf4/var/log
+RUN chmod -Rv 777 /home/wwwroot/sf4/var/cache/ /home/wwwroot/sf4/var/log/
 
-RUN chmod -Rv 777 var/cache/ var/log/
-
-EXPOSE 80
+EXPOSE 9000
+CMD ["php-fpm"]

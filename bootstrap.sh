@@ -26,9 +26,10 @@ rm -f ./backend/config.json
 
 echo "removing nginx.conf"
 rm -f ./nginx/nginx.conf
+rm -f ./webinterface/app/.env
 
 echo "Starting up..."
-docker-compose up -d
+docker-compose up
 echo "Started in background"
 
 docker ps -a

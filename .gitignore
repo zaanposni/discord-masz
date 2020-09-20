@@ -1023,3 +1023,7 @@ dmypy.json
 tests/results/*
 
 config.json
+
+###> docker ###
+.docker/data/*
+###< docker ###
