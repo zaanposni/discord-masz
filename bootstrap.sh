@@ -29,7 +29,7 @@ rm -f ./nginx/nginx.conf
 rm -f ./webinterface/app/.env
 
 echo "Starting up..."
-docker-compose up
+docker-compose up -d
 echo "Started in background"
 
 docker ps -a
