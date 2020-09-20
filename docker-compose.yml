@@ -1,8 +1,7 @@
 version: '2.2'
 
 volumes:
-  cache:
-  log:
+  php_share:
 
 services:
   db:
@@ -27,7 +26,7 @@ services:
     networks:
       - appnetwork
 
-  backend:    
+  backend:
     container_name: backend
     depends_on:
         db:
@@ -39,24 +38,36 @@ services:
     volumes:
       - /filehost
 
-  webinterface:
-    build: webinterface
-    environment:
-      - APACHE_DOCUMENT_ROOT=/var/www/html/app/public
+  sf4_apache:
+    build: apache
+    container_name: sf4_apache
+    ports:
+      - 5566:80
     volumes:
-      - ./webinterface:/var/www/html
-      - ./webinterface/config/vhost.conf:/etc/apache2/sites-available/000-default.conf
-      - cache:/var/www/html/app/var/cache
-      - log:/var/www/html/app/var/log
+      - ./apache/config/vhosts:/etc/apache2/sites-enabled
+      - php_share:/home/wwwroot/sf4
+    restart: unless-stopped
+    depends_on:
+      - php
     networks:
       - appnetwork
-  
-  nginx:    
+
+  php:
+    build: webinterface
+    container_name: sf4_php
+    restart: unless-stopped
+    volumes:
+      - php_share:/home/wwwroot/sf4
+    networks:
+      - appnetwork
+
+  nginx:
     container_name: nginx
+    restart: unless-stopped
     depends_on:
         - db
         - backend
-        - webinterface
+        - sf4_apache
     build: nginx
     restart: unless-stopped
     ports:
