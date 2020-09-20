@@ -26,7 +26,7 @@ services:
     networks:
       - appnetwork
 
-  backend:    
+  backend:
     container_name: backend
     depends_on:
         db:
@@ -46,6 +46,7 @@ services:
     volumes:
       - ./apache/config/vhosts:/etc/apache2/sites-enabled
       - php_share:/home/wwwroot/sf4
+    restart: unless-stopped
     depends_on:
       - php
     networks:
@@ -54,13 +55,15 @@ services:
   php:
     build: webinterface
     container_name: sf4_php
+    restart: unless-stopped
     volumes:
       - php_share:/home/wwwroot/sf4
     networks:
       - appnetwork
 
-  nginx:    
+  nginx:
     container_name: nginx
+    restart: unless-stopped
     depends_on:
         - db
         - backend
