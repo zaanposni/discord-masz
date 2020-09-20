@@ -14,10 +14,11 @@
         "symfony/twig-bundle": "5.1.*",
         "symfony/yaml": "5.1.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "symfony/debug-bundle": "5.1.*",
+        "symfony/asset": "5.1.*"
     },
     "require-dev": {
-        "symfony/debug-bundle": "5.1.*"
     },
     "config": {
         "optimize-autoloader": true,
