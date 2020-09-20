@@ -174,6 +174,7 @@ namespace masz.Controllers
 
             // apply automated and unchangeable values
             modCase.Title = modCase.Title.Substring(0, Math.Min(modCase.Title.Length, 100)); // max length 100
+            modCase.Punishment = modCase.Punishment.Substring(0, Math.Min(modCase.Punishment.Length, 100)); // max length 100
             modCase.Id = id;
             modCase.GuildId = guildId;
             modCase.Username = username;
