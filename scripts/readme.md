@@ -34,8 +34,8 @@ To migrate your warnings from dynobots database to masz follow this guide:
 python3 -m pip install -r requirements.txt
 python3 migrate_dyno_warnings.py --input-file input.json
 ```
-- Copy the output generated in output.sql
+- Copy the output generated in `output.sql`
 - Access the bash shell of your running db container: `docker exec -it masz_db bash`
 - Connect to the mysql shell using `mysql`
-- Execute `USE masz` and then paste the content of output.sql
+- Execute `USE masz` and then paste the content of `output.sql` and press enter
 - You should be ready to see your migrated data in the frontend
