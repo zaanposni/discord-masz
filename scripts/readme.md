@@ -17,13 +17,13 @@ To migrate your warnings from dynobots database to masz follow this guide:
         {
             "_id": "dummy",
             "guild": "dummy",
-            "users": { ... },
-            "mod": { ... },
+            "users": { },
+            "mod": { },
             "reason": "dummy",
             "createdAt": "dummy",
             "__v": 0
         }
-    ]
+    ],
     "pageCount": 1
 }
 ```
