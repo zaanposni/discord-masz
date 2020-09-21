@@ -4,7 +4,7 @@
 
 To migrate your warnings from dynobots database to masz follow this guide:
 
-- Visit the warnings dashboard in your browser at https://dyno.gg/manage/<your guildid>/warnings
+- Visit the warnings dashboard in your browser at dyno.gg/manage/guildid/warnings
 - Use F12 or similiar to catch the request your browser sends to (POST /warnings), you might have to hit F5, find something like this:
 
 ![Image of Yaktocat](./example01.png)
