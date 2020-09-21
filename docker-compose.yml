@@ -5,7 +5,7 @@ volumes:
 
 services:
   db:
-    container_name: db
+    container_name: masz_db
     image: mysql:5.7
     volumes:
         - /var/lib/mysql
@@ -27,7 +27,7 @@ services:
       - appnetwork
 
   backend:
-    container_name: backend
+    container_name: masz_backend
     depends_on:
         db:
             condition: service_healthy
@@ -40,7 +40,7 @@ services:
 
   sf4_apache:
     build: apache
-    container_name: sf4_apache
+    container_name: masz_sf4_apache
     ports:
       - 5566:80
     volumes:
@@ -54,7 +54,7 @@ services:
 
   php:
     build: webinterface
-    container_name: sf4_php
+    container_name: masz_sf4_php
     restart: unless-stopped
     volumes:
       - php_share:/home/wwwroot/sf4
@@ -62,7 +62,7 @@ services:
       - appnetwork
 
   nginx:
-    container_name: nginx
+    container_name: masz_nginx
     restart: unless-stopped
     depends_on:
         - db
