@@ -56,7 +56,7 @@ namespace masz.Helpers
             
             if (! string.IsNullOrEmpty(serviceBaseUrl))
             {
-                embed.Url = $"{serviceBaseUrl}/{modCase.GuildId}/modcase/{modCase.Id}";
+                embed.Url = $"{serviceBaseUrl}/{modCase.GuildId}/modcases/{modCase.Id}";
             }
 
             if (!string.IsNullOrEmpty(modCase.Punishment))
@@ -75,10 +75,7 @@ namespace masz.Helpers
                     }
                 }
                 embed.AddField(SCROLL_EMOTE + " - Labels", sb.ToString(), true);
-            }
-
-            embed.AddField(EXCLAMATION_EMOTE + " - Severity", modCase.Severity.ToString(), true);
-            
+            }            
 
             return embed;
         }
