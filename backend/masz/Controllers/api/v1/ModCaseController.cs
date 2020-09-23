@@ -207,7 +207,7 @@ namespace masz.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateItem([FromRoute] string guildid, [FromBody] ModCaseForCreateDto modCase) 
+        public async Task<IActionResult> CreateItem([FromRoute] string guildid, [FromBody] ModCaseForCreateDto modCase, [FromQuery] bool sendNotification = true) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -267,11 +267,14 @@ namespace masz.Controllers
             await database.SaveModCase(newModCase);
             await database.SaveChangesAsync();
 
-            try {
-                await modCaseAnnouncer.AnnounceModCase(newModCase, "created");
-            }
-            catch(Exception e){
-                logger.LogError(e, "Failed to announce modcase.");
+            if (sendNotification) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
+                try {
+                    await modCaseAnnouncer.AnnounceModCase(newModCase, "created");
+                }
+                catch(Exception e){
+                    logger.LogError(e, "Failed to announce modcase.");
+                }
             }
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 201 Resource created.");
