@@ -75,7 +75,7 @@ namespace masz.Helpers
                     }
                 }
                 embed.AddField(SCROLL_EMOTE + " - Labels", sb.ToString(), true);
-            }            
+            }
 
             return embed;
         }
