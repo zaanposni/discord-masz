@@ -1027,3 +1027,4 @@ config.json
 ###> docker ###
 .docker/data/*
 ###< docker ###
+.env

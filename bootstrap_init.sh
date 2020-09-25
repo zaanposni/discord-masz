@@ -7,6 +7,22 @@ else
     file=config.json
 fi
 
+mysql_port=$(jq '.mysql_database.port')
+mysql_database=$(jq '.mysql_database.database')
+mysql_user=$(jq '.mysql_database.user')
+mysql_pass=$(jq '.mysql_database.pass')
+mysql_root_pass=$(jq '.mysql_database.root_pass')
+
+echo "\n " \
+"MYSQL_PORT=$mysql_port" \
+"MYSQL_DATABASE=$mysql_database" \
+"MYSQL_USER=$mysql_user" \
+"MYSQL_PASSWORD=$mysql_pass" \
+"MYSQL_ROOT_PASSWORD=$mysql_root_pass" \
+"" > .env
+
+cat .env
+
 echo "Using specified nginx config"
 if [[ $(jq '.meta.nginx_mode' $file) = *prod* ]]; then
     echo "prod"
