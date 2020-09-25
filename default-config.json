@@ -4,7 +4,8 @@
         "port": "3306",
         "database": "masz",
         "user": "mysqldummy",
-        "pass": "mysqldummy"
+        "pass": "mysqldummy",
+        "root_pass": "root"
     },
     "discord": {
         "bot_token": "dummyvalue",
