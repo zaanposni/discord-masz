@@ -7,7 +7,7 @@ else
     file=config.json
 fi
 
-jq --help > /dev/null || echo "jq is not installed, please install it."; exit 1
+jq --help > /dev/null || { echo "jq is not installed, please install it."; exit 1; }
 
 mysql_port=$(jq  --raw-output '.mysql_database.port' $file)
 mysql_database=$(jq --raw-output '.mysql_database.database' $file)
