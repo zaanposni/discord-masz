@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace masz.Dtos.ModCase
@@ -19,7 +20,7 @@ namespace masz.Dtos.ModCase
         public DateTime? OccuredAt { get; set; }
         [MaxLength(100)]
         public string Punishment { get; set; }
-        public string[] Labels { get; set; }
+        public string[] Labels { get; set; } = new string[0];
         public string Others { get; set; }
     }
 }

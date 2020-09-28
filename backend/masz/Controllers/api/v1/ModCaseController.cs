@@ -133,7 +133,7 @@ namespace masz.Controllers
             } 
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Deleted ModCase.");
-            return Ok();
+            return Ok(new { id = modCase.Id });
         }
 
         [HttpPatch("{modcaseid}")]
@@ -219,7 +219,7 @@ namespace masz.Controllers
             }  
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource updated.");
-            return Ok(modCase.Id);
+            return Ok(new { id = modCase.Id });
         }
 
         [HttpPost]

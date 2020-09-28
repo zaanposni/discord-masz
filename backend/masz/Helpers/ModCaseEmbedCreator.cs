@@ -45,7 +45,7 @@ namespace masz.Helpers
                     embed.Title = $"**UPDATED** - #{modCase.Id} {modCase.Title}";
                     break;
                 case ModCaseAction.Deleted:
-                    embed.Color = Color.Orange;
+                    embed.Color = Color.Red;
                     embed.Description = $"A **Modcase** has been deleted for <@{modCase.UserId}>.\n" + 
                                         "This notification has been generated automatically.\n" + 
                                         $"Follow [this link]({serviceBaseUrl}/{modCase.GuildId}/modcase/{modCase.Id}) to see more details.\n" +
