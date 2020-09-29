@@ -30,7 +30,7 @@ Since I use Docker you can use an operating system of your choice, but I recomme
 ### Requirements 
 
 - [docker](https://docs.docker.com/engine/install/ubuntu/) & [docker-compose](https://docs.docker.com/compose/)
-- [jq](https://stedolan.github.io/jq/download/)
+- [jq](https://stedolan.github.io/jq/download/) - a bash tool for json
 
 ### Setup
 
