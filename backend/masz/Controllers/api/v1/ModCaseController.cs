@@ -85,7 +85,7 @@ namespace masz.Controllers
         }
 
         [HttpDelete("{modcaseid}")]
-        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid) 
+        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromQuery] bool sendNotification = true) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -124,12 +124,20 @@ namespace masz.Controllers
             database.DeleteSpecificModCase(modCase);
             await database.SaveChangesAsync();
 
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
+            try {
+                await modCaseAnnouncer.AnnounceModCase(modCase, ModCaseAction.Deleted, sendNotification);
+            }
+            catch(Exception e){
+                logger.LogError(e, "Failed to announce modcase.");
+            } 
+
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Deleted ModCase.");
-            return Ok();
+            return Ok(new { id = modCase.Id });
         }
 
         [HttpPatch("{modcaseid}")]
-        public async Task<IActionResult> PatchSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromBody] JsonPatchDocument<ModCase> newValue)
+        public async Task<IActionResult> PatchSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromBody] JsonPatchDocument<ModCase> newValue, [FromQuery] bool sendNotification = true)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -202,8 +210,16 @@ namespace masz.Controllers
             database.UpdateModCase(modCase);
             await database.SaveChangesAsync();
 
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
+            try {
+                await modCaseAnnouncer.AnnounceModCase(modCase, ModCaseAction.Edited, sendNotification);
+            }
+            catch(Exception e){
+                logger.LogError(e, "Failed to announce modcase.");
+            }  
+
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource updated.");
-            return Ok(modCase.Id);
+            return Ok(new { id = modCase.Id });
         }
 
         [HttpPost]
@@ -267,15 +283,13 @@ namespace masz.Controllers
             await database.SaveModCase(newModCase);
             await database.SaveChangesAsync();
 
-            if (sendNotification) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
-                try {
-                    await modCaseAnnouncer.AnnounceModCase(newModCase, "created");
-                }
-                catch(Exception e){
-                    logger.LogError(e, "Failed to announce modcase.");
-                }
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
+            try {
+                await modCaseAnnouncer.AnnounceModCase(newModCase, ModCaseAction.Created, sendNotification);
             }
+            catch(Exception e){
+                logger.LogError(e, "Failed to announce modcase.");
+            }        
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 201 Resource created.");
             return StatusCode(201, new { id = newModCase.Id });

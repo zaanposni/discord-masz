@@ -11,11 +11,11 @@ services:
         - /var/lib/mysql
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=masz
-      - MYSQL_USER=mysqldummy
-      - MYSQL_PASSWORD=mysqldummy
-      - MYSQL_PORT=3306
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_PORT=${MYSQL_PORT}
       - MYSQL_ROOT_HOST=%
     expose:
       - "3306"
