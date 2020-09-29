@@ -11,8 +11,8 @@
 <img src="https://img.shields.io/badge/using-mysql-orange">
 </p>
 
-MASZ is a management and overview tool for **Discord Moderators** and **Admins**. <br/>
-Keep track of all moderation events on your server, search reliably for entries and be one step ahead of trolls and rule breakers. <br/>
+MASZ is a management and moderation overview tool for **Discord Moderators** and **Admins**. <br/>
+Keep track of all **moderation events** on your server, **search reliably** for entries and be one step ahead of trolls and rule breakers. <br/>
 The core of this tool are the **modcases**, a case represents a rule violation, an important note or similar. <br/>
 The server members and your moderators can be **notified** individually about the creation. <br/>
 The user for whom the case was created can also see it on the website, take a stand and your server is moderated **transparently**.
@@ -41,6 +41,6 @@ Since I use Docker you can use an operating system of your choice, but I recomme
 
 ## Contribute
 
-Contributions are welcome.
+Contributions are welcome. <br/>
 If you are new to open source, checkout [this tutorial](https://github.com/firstcontributions/first-contributions).
 
