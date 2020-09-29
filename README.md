@@ -1,14 +1,15 @@
 # Discord-MASZ
 
-<dir>
+<p align="center">
 <img src="https://img.shields.io/badge/contributions-welcome-lightgreen">
 <img src="https://img.shields.io/github/contributors/zaanposni/discord-masz">
+<a href="https://github.com/zaanposni/discord-masz/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zaanposni/discord-masz.svg"/></a>
 <img src="https://img.shields.io/badge/using-asp.net-blueviolet">
-<img src="https://img.shields.io/badge/using-symofny-black">
+<img src="https://img.shields.io/badge/using-symfony-black">
 <img src="https://img.shields.io/badge/using-docker-blue">
 <img src="https://img.shields.io/badge/using-nginx-green">
 <img src="https://img.shields.io/badge/using-mysql-orange">
-</dir>
+</p>
 
 MASZ is a management and overview tool for **Discord Moderators** and **Admins**. <br/>
 Keep track of all moderation events on your server, search reliably for entries and be one step ahead of trolls and rule breakers. <br/>
