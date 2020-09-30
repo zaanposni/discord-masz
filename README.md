@@ -1,4 +1,4 @@
-# Discord-MASZ
+<h1 align="center">Discord-MASZ</h1>
 
 <p align="center">
 <img src="https://img.shields.io/badge/contributions-welcome-lightgreen">
