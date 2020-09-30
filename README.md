@@ -31,6 +31,7 @@ Since I use Docker you can use an operating system of your choice, but I recomme
 
 - [docker](https://docs.docker.com/engine/install/ubuntu/) & [docker-compose](https://docs.docker.com/compose/)
 - [jq](https://stedolan.github.io/jq/download/) - a bash tool for json
+- a Discord OAuth application (this is used as authentication and discord integration)
 
 ### Setup
 
