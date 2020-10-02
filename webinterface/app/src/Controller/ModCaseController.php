@@ -11,7 +11,7 @@ class ModCaseController extends AbstractController
 {
 
     /**
-     * @Route("/modcases/")
+     * @Route("/modcase/")
      */
     public function listAll() {
 
@@ -26,27 +26,10 @@ class ModCaseController extends AbstractController
 //        $content = $response->getContent();
 //        $content = $response->toArray();
 
-        return $this->render('modcases/show.html.twig');
+        return $this->render('modcase/show.html.twig');
     }
 
-    /**
-     * @Route("/modcase/createcase")
-     */
-    public function createCase() {
 
-        // create api request
-//        $client = HttpClient::create();
-//        $url = ''; // change api url here
-//        $casedata = [];
-//        $response = $client->request('POST', $url, [
-//            'json' => $casedata,
-//        ]);
-//
-//        $decodedPayload = $response->toArray();
-
-
-        return $this->render('base.html.twig');
-    }
 
     /**
      * @Route("/modcase/{id}")
