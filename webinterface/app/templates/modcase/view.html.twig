@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% include 'navbar.html.twig' %}
+
+    <style>
+        .hiddencolumn {
+            display: none;
+        }
+    </style>
+
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-start">
+            <h3><strong>ModCase {{ id }}</strong></h3>
+
+        </div><br>
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 sm-col-12">
+                <h4><strong>User-Information</strong></h4>
+
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th><strong>Type</strong></th>
+                        <td><span class="badge badge-danger">BanCase</span></td>
+                    </tr>
+                    <tr>
+                        <th><strong>UserID</strong></th>
+                        <td>272655001329991681</td>
+
+                    </tr>
+                    <tr>
+                        <th><strong>Username</strong></th>
+                        <td>zaanposni#9295</td>
+                    </tr>
+                    <tr>
+                        <th><strong>Nickname</strong></th>
+                        <td>zaanposni</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 sm-col-12">
+                <h4><strong>Case-Information</strong></h4>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th><strong>Title</strong></th>
+                        <td>Disrespectful Behavior</td>
+                    </tr>
+                    <tr>
+                        <th><strong>Severity</strong></th>
+                        <td>Hard</td>
+
+                    </tr>
+                    <tr>
+                        <th><strong>Date & time</strong></th>
+                        <td>01.10.2020 18:45</td>
+                    </tr>
+                    <tr>
+                        <th><strong>Duration</strong></th>
+                        <td>30 days</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+        </div>
+                <h4><strong>Full Case-Description</strong></h4>
+                <p>Lorem ipsum dolor...</p>
+        </div>
+
+    </div>
+
+
+{% endblock body %}
+
+{% block scriptblock %}
+
+    <script>
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable();
+        });
+    </script>
+{% endblock %}
