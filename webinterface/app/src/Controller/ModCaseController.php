@@ -47,7 +47,9 @@ class ModCaseController extends AbstractController
 //        $content = $response->getContent();
 //        $content = $response->toArray();
 
-        return $this->render('base.html.twig');
+        return $this->render('modcase/view.html.twig', [
+            'id' => $id,
+        ]);
     }
 
 }
