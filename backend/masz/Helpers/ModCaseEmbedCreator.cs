@@ -14,7 +14,7 @@ namespace masz.Helpers
         private static string discordBaseUrl = "https://discord.com/api";
         private static string discordCdnBaseUrl = "https://cdn.discordapp.com";
 
-        public static EmbedBuilder CreatePublicAnnouncementEmbed(ModCase modCase, string action, GuildMember member = null, String serviceBaseUrl = null)
+        public static EmbedBuilder CreatePublicAnnouncementEmbed(ModCase modCase, ModCaseAction action, GuildMember member = null, String serviceBaseUrl = null)
         {
             var embed = new EmbedBuilder();
             
@@ -36,27 +36,35 @@ namespace masz.Helpers
             embed.Footer = footer;
 
             switch(action){
-                case "edited":
+                case ModCaseAction.Edited:
                     embed.Color = Color.Orange;
                     embed.Description = $"A **Modcase** has been updated for <@{modCase.UserId}>.\n" + 
                                          "This notification has been generated automatically.\n" + 
                                         $"Follow [this link]({serviceBaseUrl}/{modCase.GuildId}/modcase/{modCase.Id}) to see more details.\n" +
                                          "[Contribute](https://github.com/zaanposni/discord-masz/) to this moderation tool.";
-                    embed.Title = $"**UPDATED** - {modCase.Title}";
+                    embed.Title = $"**UPDATED** - #{modCase.Id} {modCase.Title}";
                     break;
-                default:  // on create
+                case ModCaseAction.Deleted:
+                    embed.Color = Color.Red;
+                    embed.Description = $"A **Modcase** has been deleted for <@{modCase.UserId}>.\n" + 
+                                        "This notification has been generated automatically.\n" + 
+                                        $"Follow [this link]({serviceBaseUrl}/{modCase.GuildId}/modcase/{modCase.Id}) to see more details.\n" +
+                                        "[Contribute](https://github.com/zaanposni/discord-masz/) to this moderation tool.";
+                    embed.Title = $"**DELETED** - #{modCase.Id} {modCase.Title}";
+                    break;
+                case ModCaseAction.Created:
                     embed.Color = Color.Green;
-                    embed.Description = $"A new **Modcase** has been registered for <@{modCase.UserId}>.\n" + 
+                    embed.Description = $"A new **Modcase** has been created for <@{modCase.UserId}>.\n" + 
                                          "This notification has been generated automatically.\n" + 
                                         $"Follow [this link]({serviceBaseUrl}/{modCase.GuildId}/modcase/{modCase.Id}) to see more details.\n" +
                                          "[Contribute](https://github.com/zaanposni/discord-masz/) to this moderation tool.";
-                    embed.Title = $"**CREATED** - {modCase.Title}";
+                    embed.Title = $"**CREATED** - #{modCase.Id} {modCase.Title}";
                     break;
             }
             
             if (! string.IsNullOrEmpty(serviceBaseUrl))
             {
-                embed.Url = $"{serviceBaseUrl}/{modCase.GuildId}/modcase/{modCase.Id}";
+                embed.Url = $"{serviceBaseUrl}/{modCase.GuildId}/modcases/{modCase.Id}";
             }
 
             if (!string.IsNullOrEmpty(modCase.Punishment))
@@ -76,9 +84,6 @@ namespace masz.Helpers
                 }
                 embed.AddField(SCROLL_EMOTE + " - Labels", sb.ToString(), true);
             }
-
-            embed.AddField(EXCLAMATION_EMOTE + " - Severity", modCase.Severity.ToString(), true);
-            
 
             return embed;
         }

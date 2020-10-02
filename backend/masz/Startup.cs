@@ -56,6 +56,12 @@ namespace masz
                 options.LogoutPath = "/api/v1/logout";
                 options.ExpireTimeSpan = new TimeSpan(7, 0, 0, 0);
                 options.Cookie.Name = "masz_access_token";
+                options.Events.OnRedirectToLogin = context =>
+                {
+                    context.Response.Headers["Location"] = context.RedirectUri;
+                    context.Response.StatusCode = 401;
+                    return Task.CompletedTask;
+                };
             })
             
             .AddDiscord(options =>

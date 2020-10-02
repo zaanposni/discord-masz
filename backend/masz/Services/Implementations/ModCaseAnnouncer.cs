@@ -25,21 +25,21 @@ namespace masz.Services
             this.discord = discord;
             this.dbContext = context;
         }
-        public async Task AnnounceModCase(ModCase modCase, string action)
+        public async Task AnnounceModCase(ModCase modCase, ModCaseAction action, bool announcePublic)
         {
             logger.LogInformation($"Announcing modcase {modCase.Id} in guild {modCase.GuildId}.");
 
             GuildMember member = await discord.FetchMemberInfo(modCase.GuildId, modCase.UserId);
 
             GuildConfig guildConfig = await dbContext.SelectSpecificGuildConfig(modCase.GuildId);
-            
-            if (! string.IsNullOrEmpty(guildConfig.ModPublicNotificationWebhook))
+
+            if (! string.IsNullOrEmpty(guildConfig.ModPublicNotificationWebhook) && announcePublic)
             {
                 logger.LogInformation($"Sending public webhook to {guildConfig.ModPublicNotificationWebhook}.");
                 EmbedBuilder embed = ModCaseEmbedCreator.CreatePublicAnnouncementEmbed(modCase, action, member, config.Value.ServiceBaseUrl);
                 DiscordMessenger.SendEmbedWebhook(guildConfig.ModPublicNotificationWebhook, embed.Build(), $"<@{modCase.UserId}>");
                 logger.LogInformation("Sent public webhook.");
-            }
+            }            
 
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {

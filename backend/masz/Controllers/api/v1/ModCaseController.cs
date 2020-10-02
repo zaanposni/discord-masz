@@ -53,14 +53,27 @@ namespace masz.Controllers
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
+            ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
             if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
             {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
+                if (modCase == null) {
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                    return Unauthorized();                    
+                } else {
+                    if (modCase.UserId != currentUser.Id) {
+                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                        return Unauthorized();
+                    }
+                }
             }
             // ========================================================
 
-            ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
+            if (await database.SelectSpecificGuildConfig(guildid) == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
+                return BadRequest("Guild not registered.");
+            }
+
             if (modCase == null) 
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
@@ -72,7 +85,7 @@ namespace masz.Controllers
         }
 
         [HttpDelete("{modcaseid}")]
-        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid) 
+        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromQuery] bool sendNotification = true) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -88,6 +101,12 @@ namespace masz.Controllers
                 return Unauthorized();
             }
             // ========================================================
+
+            if (await database.SelectSpecificGuildConfig(guildid) == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
+                return BadRequest("Guild not registered.");
+            }
 
             ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
             if (modCase == null) 
@@ -105,12 +124,20 @@ namespace masz.Controllers
             database.DeleteSpecificModCase(modCase);
             await database.SaveChangesAsync();
 
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
+            try {
+                await modCaseAnnouncer.AnnounceModCase(modCase, ModCaseAction.Deleted, sendNotification);
+            }
+            catch(Exception e){
+                logger.LogError(e, "Failed to announce modcase.");
+            } 
+
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Deleted ModCase.");
-            return Ok();
+            return Ok(new { id = modCase.Id });
         }
 
         [HttpPatch("{modcaseid}")]
-        public async Task<IActionResult> PatchSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromBody] JsonPatchDocument<ModCase> newValue) 
+        public async Task<IActionResult> PatchSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromBody] JsonPatchDocument<ModCase> newValue, [FromQuery] bool sendNotification = true)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -126,6 +153,12 @@ namespace masz.Controllers
                 return Unauthorized();
             }
             // ========================================================
+
+            if (await database.SelectSpecificGuildConfig(guildid) == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
+                return BadRequest("Guild not registered.");
+            }
 
             ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
             if (modCase == null) 
@@ -149,6 +182,7 @@ namespace masz.Controllers
 
             // apply automated and unchangeable values
             modCase.Title = modCase.Title.Substring(0, Math.Min(modCase.Title.Length, 100)); // max length 100
+            modCase.Punishment = modCase.Punishment.Substring(0, Math.Min(modCase.Punishment.Length, 100)); // max length 100
             modCase.Id = id;
             modCase.GuildId = guildId;
             modCase.Username = username;
@@ -176,12 +210,20 @@ namespace masz.Controllers
             database.UpdateModCase(modCase);
             await database.SaveChangesAsync();
 
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
+            try {
+                await modCaseAnnouncer.AnnounceModCase(modCase, ModCaseAction.Edited, sendNotification);
+            }
+            catch(Exception e){
+                logger.LogError(e, "Failed to announce modcase.");
+            }  
+
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource updated.");
-            return Ok(modCase.Id);
+            return Ok(new { id = modCase.Id });
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateItem([FromRoute] string guildid, [FromBody] ModCaseForCreateDto modCase) 
+        public async Task<IActionResult> CreateItem([FromRoute] string guildid, [FromBody] ModCaseForCreateDto modCase, [FromQuery] bool sendNotification = true) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -197,6 +239,12 @@ namespace masz.Controllers
                 return Unauthorized();
             }
             // ========================================================
+
+            if (await database.SelectSpecificGuildConfig(guildid) == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
+                return BadRequest("Guild not registered.");
+            }
 
             var currentModUserId = currentUser.Id;
             if (currentModUserId == null)
@@ -235,12 +283,13 @@ namespace masz.Controllers
             await database.SaveModCase(newModCase);
             await database.SaveChangesAsync();
 
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
             try {
-                await modCaseAnnouncer.AnnounceModCase(newModCase, "created");
+                await modCaseAnnouncer.AnnounceModCase(newModCase, ModCaseAction.Created, sendNotification);
             }
             catch(Exception e){
                 logger.LogError(e, "Failed to announce modcase.");
-            }
+            }        
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 201 Resource created.");
             return StatusCode(201, new { id = newModCase.Id });
@@ -257,10 +306,10 @@ namespace masz.Controllers
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
+            String userOnly = String.Empty;
             if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
             {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
+                userOnly = currentUser.Id;
             }
             // ========================================================
 
@@ -270,7 +319,13 @@ namespace masz.Controllers
                 return BadRequest("Guild not registered.");
             }
 
-            List<ModCase> modCases = await database.SelectAllModCasesForGuild(guildid);       
+            List<ModCase> modCases = new List<ModCase>();
+            if (String.IsNullOrEmpty(userOnly)) {
+                modCases = await database.SelectAllModCasesForGuild(guildid);       
+            }
+            else {
+                modCases = await database.SelectAllModcasesForSpecificUserOnGuild(guildid, currentUser.Id);  
+            }
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCases.");
             return Ok(modCases);

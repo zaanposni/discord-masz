@@ -2,12 +2,19 @@ using System;
 using masz.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 
 namespace masz.data
 {
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
+
+        //static LoggerFactory object
+        public static readonly ILoggerFactory loggerFactory = LoggerFactory.Create(builder => {
+            builder.AddConsole();
+        });
 
         public DbSet<ModCase> ModCases { get; set; }        
         public DbSet<ModCaseComments> ModCaseComments { get; set; }
@@ -26,6 +33,12 @@ namespace masz.data
 
             // FK - configuraiton
             builder.HasOne(u => u.ModCase).WithMany().HasForeignKey(u => u.ModCaseId).IsRequired(true);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLoggerFactory(loggerFactory)
+                .EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
