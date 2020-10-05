@@ -4,10 +4,7 @@
 namespace App\Controller;
 
 
-use App\Form\CreateBanFormType;
-use App\Form\CreateMuteFormType;
-use App\Form\CreateNoteFormType;
-use App\Form\CreateWarnFormType;
+use App\Form\CreateCaseFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -15,67 +12,18 @@ class ModCaseCreationController extends AbstractController
 {
 
     /**
-     * @Route("/modcase/{userid}/new/ban", name="create_ban")
+     * @Route("/modcases/{guildid}/new", requirements={"guildid"="[0-9]{18}"})
      */
-    public function createBanCase($userid) {
-
-        // url e.g. "/modcase/209557077343993856/new/ban"
+    public function createCase($guildid) {
+        // url e.g. "/modcase/209557077343993856/new"
         // probably validate userid and redirect to other page if not valid
 
-        $form = $this->createForm(CreateBanFormType::class);
+        $form = $this->createForm(CreateCaseFormType::class);
 
-        return $this->render('modcase/new/ban.html.twig', [
-        'userid' => $userid,
-        'createBanForm' => $form->createView(),
+        return $this->render('modcase/new/case.html.twig', [
+            'guildid' => $guildid,
+            'now' => date("d.m.Y H:i"),
+            'createCaseForm' => $form->createView(),
         ]);
     }
-
-    /**
-     * @Route("/modcase/{userid}/new/mute", name="create_mute")
-     */
-    public function createMuteCase($userid) {
-
-        // url e.g. "/modcase/209557077343993856/new/mute"
-        // probably validate userid and redirect to other page if not valid
-
-        $form = $this->createForm(CreateMuteFormType::class);
-
-        return $this->render('modcase/new/mute.html.twig', [
-            'userid' => $userid,
-            'createMuteForm' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/modcase/{userid}/new/warn", name="create_warn")
-     */
-    public function createWarnCase($userid) {
-
-        // url e.g. "/modcase/209557077343993856/new/mute"
-        // probably validate userid and redirect to other page if not valid
-
-        $form = $this->createForm(CreateWarnFormType::class);
-
-        return $this->render('modcase/new/warn.html.twig', [
-            'userid' => $userid,
-            'createWarnForm' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/modcase/{userid}/new/note", name="create_note")
-     */
-    public function createNoteCase($userid) {
-
-        // url e.g. "/modcase/209557077343993856/new/note"
-        // probably validate userid and redirect to other page if not valid
-
-        $form = $this->createForm(CreateNoteFormType::class);
-
-        return $this->render('modcase/new/note.html.twig', [
-            'userid' => $userid,
-            'createNoteForm' => $form->createView(),
-        ]);
-    }
-
 }

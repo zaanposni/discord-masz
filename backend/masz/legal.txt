@@ -1,0 +1,2 @@
+default legal notes for the website
+changed this at /backend/masz/legal.txt

@@ -2,13 +2,15 @@ version: '2.2'
 
 volumes:
   php_share:
+  mysql:
+  filehost:
 
 services:
   db:
     container_name: masz_db
     image: mysql:5.7
     volumes:
-        - /var/lib/mysql
+        - mysql:/var/lib/mysql
     restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
@@ -36,7 +38,7 @@ services:
     networks:
       - appnetwork
     volumes:
-      - /filehost
+      - filehost:/filehost
 
   sf4_apache:
     build: apache

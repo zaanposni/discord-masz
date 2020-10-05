@@ -30,7 +30,7 @@ if not os.path.isfile(PATH_TO_FILE):
     exit(1)
 
 
-with open(PATH_TO_FILE, "r") as fh:
+with open(PATH_TO_FILE, "r", encoding="utf-8") as fh:
     dyno_data = json.load(fh)
 
 try:
@@ -42,7 +42,7 @@ except KeyError:
 SQL_STRING = ""
 NEW_ENTRY = 'INSERT INTO ModCases (CreatedAt, Description, GuildId, Labels, LastEditedAt, LastEditedByModId, ModId, ' \
                                    'Nickname, OccuredAt, Punishment, Severity, Title, UserId, Username, Valid)' \
-                                   ' VALUES("{}", "{}", "{}", "dyno-import", "{}", "{}", "{}", "{}", "{}", "None", 0, "- Imported from Dyno -", "{}", "{}", 1);'
+                                   ' VALUES("{}", "{}", "{}", "dyno-import", "{}", "{}", "{}", "{}", "{}", "None", 0, "Imported from Dyno", "{}", "{}", 1);'
 for case in dyno_logs:
     #date = datetime.strptime(case["createdAt"], "%a, %b %-d, %Y %-I:%M %p").isoformat()
     date = dateparser.parse(case["createdAt"]).isoformat()
@@ -52,7 +52,7 @@ for case in dyno_logs:
 
     print(string)
 
-with open(os.path.join(".", OUTPUT_FILE), "w") as fh:
+with open(os.path.join(".", OUTPUT_FILE), "w", encoding="utf-8") as fh:
     fh.write(SQL_STRING)
 
 print("Done.")

@@ -12,7 +12,14 @@ namespace masz.Helpers
 
         public static async void SendEmbedWebhook(string webhookUrl, Embed embed, string text = "")
         {
-            var DCW = new DiscordWebhookClient(webhookUrl: webhookUrl);
+            DiscordWebhookClient DCW;
+            try {
+                DCW = new DiscordWebhookClient(webhookUrl: webhookUrl);
+            } 
+            catch(Discord.Net.HttpException ex) {
+                System.Console.WriteLine($"Failed to initialize webhook.\n{ex.ToString()}");
+                return;
+            }
 
             Embed[] embedArray = new Embed[] { embed };
 

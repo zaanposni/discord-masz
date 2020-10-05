@@ -29,6 +29,13 @@ namespace masz.Controllers
             };
         }
 
+        [HttpGet("/api/v1/legal")]
+        public async Task<IActionResult> GetLegalNotes() {
+            logger.LogInformation("/api/v1/legal | Returning legal notes.");
+            string filedata = await System.IO.File.ReadAllTextAsync("./legal.txt");
+            return Ok(filedata);
+        }
+
         [HttpGet("/api/v1/status")]
         [HttpGet("/api/v1/health")]
         [HttpGet("/api/v1/healthcheck")]

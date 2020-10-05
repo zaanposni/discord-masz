@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
 
-class CreateWarnFormType extends AbstractType
+class CreateCaseFormType extends AbstractType
 {
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -24,20 +24,14 @@ class CreateWarnFormType extends AbstractType
                 'attr' => [
                     'class' => "form-control",
                 ],
-                'label' => 'Discord UserID',
+                'label' => 'Discord UserId'
+            ])
+            ->add('guildid', TextType::class, [
+                'attr' => [
+                    'class' => "form-control",
+                ],
+                'label' => 'Discord GuildId',
                 'disabled' => true,
-            ])
-            ->add('username', TextType::class, [
-                'attr' => [
-                    'class' => "form-control",
-                ],
-                'label' => 'Username',
-            ])
-            ->add('nickname', TextType::class, [
-                'attr' => [
-                    'class' => "form-control",
-                ],
-                'label' => 'Nickname',
             ])
             ->add('title', TextType::class, [
                 'attr' => [
@@ -69,10 +63,22 @@ class CreateWarnFormType extends AbstractType
                 ],
                 'label' => 'Date & time',
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'CREATE WARNCASE',
+            ->add('punishment', TextType::class, [
                 'attr' => [
-                    'class' => 'btn btn-warning btn-lg btn-block'
+                    'class' => "form-control",
+                ],
+                'label' => 'Punishment',
+            ])
+            ->add('sendNotification', TextType::class, [
+                'attr' => [
+                    'class' => "form-control",
+                ],
+                'label' => 'sendNotification',
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'CREATE CASE',
+                'attr' => [
+                    'class' => 'btn btn-danger btn-lg btn-block'
                 ]
             ])
         ;

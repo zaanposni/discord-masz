@@ -53,7 +53,7 @@ namespace masz.Controllers
             }
             // ========================================================
 
-            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid, modcaseid);
+            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload, guildid, modcaseid);
             var filePath = Path.Combine(uploadDir, filename);
             if (!System.IO.File.Exists(filePath))
             {
