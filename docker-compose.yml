@@ -43,8 +43,6 @@ services:
   sf4_apache:
     build: apache
     container_name: masz_sf4_apache
-    ports:
-      - 5566:80
     volumes:
       - ./apache/config/vhosts:/etc/apache2/sites-enabled
       - php_share:/home/wwwroot/sf4

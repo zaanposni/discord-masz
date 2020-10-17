@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Helpers\Helpers;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\HttpClient;
@@ -20,6 +21,16 @@ class ModCaseController extends AbstractController
         }
 
         try {
+            $userInfo = Helpers::GetCurrentUser($_COOKIE);
+            $logged_in_user = $userInfo;
+            if (is_null($userInfo)) {
+                return $this->render('index.html.twig', [
+                    'error' => [
+                        'messages' => ['Failed to fetch user info or login invalid.']
+                    ]
+                ]);
+            }
+
             $statusCode = 'None';
             $client = HttpClient::create();
             $url = 'http://127.0.0.1:5565/api/v1/modcases/' . $guildid . '/all'; // change api url here
@@ -53,11 +64,13 @@ class ModCaseController extends AbstractController
             return $this->render('modcase/show.html.twig', [
                 'modcases' => $modCases,
                 'guild' => $guild,
-                'guildid' => $guild['id']
+                'guildid' => $guild['id'],
+                'logged_in_user' => $logged_in_user
             ]);
         } catch (Exception $e) {
             return $this->render('modcase/show.html.twig', [
                 'modcases' => [],
+                'logged_in_user' => $logged_in_user,
                 'error' => [
                     'messages' => ['Failed to load modcases. Statuscode from API: '.$statusCode]
                 ]
@@ -76,6 +89,16 @@ class ModCaseController extends AbstractController
         }
 
         try {
+            $userInfo = Helpers::GetCurrentUser($_COOKIE);
+            $logged_in_user = $userInfo;
+            if (is_null($userInfo)) {
+                return $this->render('index.html.twig', [
+                    'error' => [
+                        'messages' => ['Failed to fetch user info or login invalid.']
+                    ]
+                ]);
+            }
+
             // create api request
             $statusCode = 'None';
             $errorMessages = [];
@@ -180,6 +203,7 @@ class ModCaseController extends AbstractController
                     'moderator' => $moderator,
                     'lastModerator' => $lastModerator,
                     'user' => $user,
+                    'logged_in_user' => $logged_in_user,
                     'error' => [
                         'messages' => $errorMessages
                     ]
@@ -192,6 +216,7 @@ class ModCaseController extends AbstractController
                 'guildid' => $guildid,
                 'moderator' => $moderator,
                 'lastModerator' => $lastModerator,
+                'logged_in_user' => $logged_in_user,
                 'user' => $user
             ]);
         } catch(Exception $e) {

@@ -22,20 +22,27 @@
 
 
             </ul>
+            {% if logged_in_user|default %}
             <ul class="navbar-nav ml-auto nav-flex-icons">
-
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user"></i>
+                        <img
+                                src="https://cdn.discordapp.com/avatars/{{ logged_in_user.discordUser.id }}/{{ logged_in_user.discordUser.avatar }}.png"
+                                class="rounded-circle z-depth-0 mr-1"
+                                alt="avatar image"
+                                height="30"
+                        />
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
                          aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item waves-effect waves-light" href="#">Profile</a>
-                        <a class="dropdown-item waves-effect waves-light" href="/api/v1/logout">Log out</a>
+                        <span class="dropdown-item waves-effect waves-light">
+                            Logged in as <span class="text-danger">{{ logged_in_user.discordUser.username }}#{{ logged_in_user.discordUser.discriminator }}</span>
+                        </span>
                     </div>
                 </li>
             </ul>
+            {% endif %}
         </div>
     </div>
 </nav>

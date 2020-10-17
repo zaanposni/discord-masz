@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Helpers\Helpers;
 use Exception;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,48 +21,18 @@ class IndexController extends AbstractController
         if (!isset($_COOKIE["masz_access_token"])) {
             return $this->render('index.html.twig');
         }
-         // not logged in
-        try {
-            $client = HttpClient::create();
-            $url = 'http://127.0.0.1:5565/api/v1/discord/users/@me'; // change api url here
-            $response = $client->request(
-                'GET',
-                $url,
-                [
-                    'headers' => [
-                        'Cookie' => 'masz_access_token=' . $_COOKIE["masz_access_token"],
-                    ],
-                ]
-            );
-            $statusCode = $response->getStatusCode();
 
-            if ($statusCode != 200) {
-                return $this->render('index.html.twig', [
-                    'error' => [
-                        'messages' => ['Failed to login. Statuscode from API: '.$statusCode]
-                    ]
-                ]);
-            }
-        }
-        catch (Exception $e) {
+        $userInfo = Helpers::GetCurrentUser($_COOKIE);
+        $logged_in_user = $userInfo;
+        if (is_null($userInfo)) {
             return $this->render('index.html.twig', [
                 'error' => [
-                    'messages' => ['Failed to login.']
+                    'messages' => ['Failed to fetch user info or login invalid.']
                 ]
             ]);
         }
 
-        try {
-            $userInfoContent = $response->getContent();
-            $userInfo = json_decode($userInfoContent, true);  // TODO: handle error
-        } catch(Exception $e) {
-            return $this->render('index.html.twig', [
-                'error' => [
-                    'messages' => ['Failed to fetch user info.']
-                ]
-            ]);
-        }
-
+        $client = HttpClient::create();
         try {
             $guilds = array();
             foreach ($userInfo['guilds'] as &$guildid) {
@@ -97,11 +68,13 @@ class IndexController extends AbstractController
                 ];
             }
             return $this->render('guilds/show.html.twig', [
-                'guilds' => $guilds
+                'guilds' => $guilds,
+                'logged_in_user' => $logged_in_user
             ]);
         } catch (Exception $e) {
             return $this->render('guilds/show.html.twig', [
                 'guilds' => [],
+                'logged_in_user' => $logged_in_user,
                 'error' => [
                     'messages' => ['Failed to fetch guild info.']
                 ]
