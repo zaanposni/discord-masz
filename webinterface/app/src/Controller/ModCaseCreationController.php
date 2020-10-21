@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Config\Config;
 use App\Form\CreateCaseFormType;
 use App\Helpers\Helpers;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,7 +40,7 @@ class ModCaseCreationController extends AbstractController
             $data = $form->getData();
 
             $client = HttpClient::create();
-            $url = 'http://127.0.0.1:5565/api/v1/modcases/' . $guildid; // change api url here
+            $url = Config::GetBaseUrl().'/api/v1/modcases/' . $guildid; // change api url here
             $response = $client->request(
                 'POST',
                 $url,
@@ -54,25 +55,31 @@ class ModCaseCreationController extends AbstractController
                 ]
             );
             $statusCode = $response->getStatusCode();
-            var_dump($statusCode);
 
             if ($statusCode === 201) {
-                $modCasesContent = $response->getContent();
-                $created = json_decode($modCasesContent, true);
+                $responseContent = $response->getContent();
+                $created = json_decode($responseContent, true);
                 $id = $created['id'];
                 return $this->redirect('/modcases/'.$guildid.'/'.$id);
             }
 
+            $errorMessages = [];
+            $errorMessages[] = 'Failed to create ModCase. Response from API: '.$statusCode;
+            $errorMessages[] = $response->getContent(false);
             return $this->render('modcase/new/case.html.twig', [
                 'guildid' => $guildid,
                 'now' => 'test',
-                'createCaseForm' => $form->createView(), // TODO: error handling
+                'logged_in_user' => $logged_in_user,
+                'createCaseForm' => $form->createView(), // TODO: error handling,
+                'error' => [
+                    'messages' => $errorMessages
+                ]
             ]);
         }
 
         return $this->render('modcase/new/case.html.twig', [
             'guildid' => $guildid,
-            'now' => date("d.m.Y H:i"),
+            'now' => date("Y-m-d\\TH:i:s.u"),
             'logged_in_user' => $logged_in_user,
             'createCaseForm' => $form->createView(),
         ]);

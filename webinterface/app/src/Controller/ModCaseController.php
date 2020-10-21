@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Config\Config;
 use App\Helpers\Helpers;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,7 +35,7 @@ class ModCaseController extends AbstractController
 
             $statusCode = 'None';
             $client = HttpClient::create();
-            $url = 'http://127.0.0.1:5565/api/v1/modcases/' . $guildid . '/all'; // change api url here
+            $url = Config::GetBaseUrl().'/api/v1/modcases/' . $guildid . '/all'; // change api url here
             $response = $client->request(
                 'GET',
                 $url,
@@ -48,7 +49,7 @@ class ModCaseController extends AbstractController
             $modCasesContent = $response->getContent();
             $modCases = json_decode($modCasesContent, true);
 
-            $url = 'http://127.0.0.1:5565/api/v1/discord/guilds/' . $guildid; // change api url here
+            $url = Config::GetBaseUrl().'/api/v1/discord/guilds/' . $guildid; // change api url here
             $response = $client->request(
                 'GET',
                 $url,
@@ -118,7 +119,7 @@ class ModCaseController extends AbstractController
             $statusCode = 'None';
             $errorMessages = [];
             $client = HttpClient::create();
-            $url = 'http://127.0.0.1:5565/api/v1/modcases/' . $guildid . "/" . $id; // change api url here
+            $url = Config::GetBaseUrl().'/api/v1/modcases/' . $guildid . "/" . $id; // change api url here
             $response = $client->request(
                 'GET',
                 $url,
@@ -133,7 +134,7 @@ class ModCaseController extends AbstractController
             $modCase = json_decode($modCaseContent, true);
 
             try {
-                $url = 'http://127.0.0.1:5565/api/v1/discord/guilds/' . $modCase["guildId"]; // change api url here
+                $url = Config::GetBaseUrl().'/api/v1/discord/guilds/' . $modCase["guildId"]; // change api url here
                 $response = $client->request(
                     'GET',
                     $url,
@@ -154,7 +155,7 @@ class ModCaseController extends AbstractController
             }
 
             try {
-                $url = 'http://127.0.0.1:5565/api/v1/discord/users/' . $modCase["modId"]; // change api url here
+                $url = Config::GetBaseUrl().'/api/v1/discord/users/' . $modCase["modId"]; // change api url here
                 $response = $client->request(
                     'GET',
                     $url,
@@ -173,7 +174,7 @@ class ModCaseController extends AbstractController
             }
 
             try {
-                $url = 'http://127.0.0.1:5565/api/v1/discord/users/' . $modCase["lastEditedByModId"]; // change api url here
+                $url = Config::GetBaseUrl().'/api/v1/discord/users/' . $modCase["lastEditedByModId"]; // change api url here
                 $response = $client->request(
                     'GET',
                     $url,
@@ -192,7 +193,7 @@ class ModCaseController extends AbstractController
             }
 
             try {
-                $url = 'http://127.0.0.1:5565/api/v1/discord/users/' . $modCase["userId"]; // change api url here
+                $url = Config::GetBaseUrl().'/api/v1/discord/users/' . $modCase["userId"]; // change api url here
                 $response = $client->request(
                     'GET',
                     $url,

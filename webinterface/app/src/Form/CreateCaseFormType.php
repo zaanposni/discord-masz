@@ -44,6 +44,8 @@ class CreateCaseFormType extends AbstractType
                     'class' => "form-control",
                 ],
                 'label' => 'Labels',
+                'empty_data' => '',
+                'required'=> false
             ])
             ->add('description', TextareaType::class, [
                 'attr' => [
@@ -56,12 +58,16 @@ class CreateCaseFormType extends AbstractType
                     'class' => "form-control",
                 ],
                 'label' => 'Severity',
+                'empty_data' => '0',
+                'required'=> false
             ])
             ->add('occuredAt', TextType::class, [
                 'attr' => [
                     'class' => "form-control",
                 ],
                 'label' => 'Date & time',
+                'empty_data' => date("Y-m-d\\TH:i:s.u"),
+                'required'=> false
             ])
             ->add('punishment', TextType::class, [
                 'attr' => [
@@ -74,6 +80,8 @@ class CreateCaseFormType extends AbstractType
                     'class' => "form-control",
                 ],
                 'label' => 'sendNotification',
+                'empty_data' => 'false',
+                'required'=> false
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'CREATE CASE',

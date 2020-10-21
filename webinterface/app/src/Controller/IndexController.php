@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Config\Config;
 use App\Helpers\Helpers;
 use Exception;
 use Symfony\Component\HttpClient\HttpClient;
@@ -36,7 +37,7 @@ class IndexController extends AbstractController
         try {
             $guilds = array();
             foreach ($userInfo['guilds'] as &$guildid) {
-                $url = 'http://127.0.0.1:5565/api/v1/discord/guilds/' . $guildid; // change api url here
+                $url = Config::GetBaseUrl().'/api/v1/discord/guilds/' . $guildid; // change api url here
                 $response = $client->request(
                     'GET',
                     $url,
@@ -49,7 +50,7 @@ class IndexController extends AbstractController
                 $guildContent = $response->getContent();
                 $guild = json_decode($guildContent, true);  // TODO: handle error
 
-                $url = 'http://127.0.0.1:5565/api/v1/stats/' . $guildid; // change api url here
+                $url = Config::GetBaseUrl().'/api/v1/stats/' . $guildid; // change api url here
                 $response = $client->request(
                     'GET',
                     $url,
