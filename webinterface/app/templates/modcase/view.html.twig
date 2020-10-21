@@ -58,7 +58,7 @@
             <div class="row mb-1 ml-2">
                 <div class="d-flex justify-content-between">
                     {% for label in modcase.labels|default([]) %}
-                        <a href="/modcases/{{ modcase.guildId }}?labels={{ label }}">
+                        <a href="/modcases/{{ modcase.guildId }}?label={{ label }}">
                             <h3>
                                 <span type="button" class="badge badge-pill badge-info mr-1">{{ label }}</span>
                             </h3>
@@ -87,7 +87,7 @@
                         <tr>
                             <th class="font-weight-bold">UserID</th>
                             <td>
-                                <a href="/modcases/{{ modcase.guildId }}?userid={{ modcase.userId }}">
+                                <a href="/modcases/{{ modcase.guildId }}?userId={{ modcase.userId }}">
                                     {{ modcase.userId }}
                                 </a>
                             </td>
@@ -95,7 +95,7 @@
                         <tr>
                             <th class="font-weight-bold">Username</th>
                             <td class="font-weight-bold">
-                                <a href="/modcases/{{ modcase.guildId }}?userid={{ modcase.userId }}">
+                                <a href="/modcases/{{ modcase.guildId }}?userId={{ modcase.userId }}">
                                     {{ modcase.username }}
                                 </a>
                             </td>
@@ -103,7 +103,7 @@
                         <tr>
                             <th class="font-weight-bold">Nickname</th>
                             <td>
-                                <a href="/modcases/{{ modcase.guildId }}?userid={{ modcase.userId }}">
+                                <a href="/modcases/{{ modcase.guildId }}?userId={{ modcase.userId }}">
                                     {% if modcase.nickname != '' %}
                                         {{ modcase.nickname }}
                                     {% else %}
@@ -138,7 +138,7 @@
                             <th class="font-weight-bold">Moderator</th>
                             <td class="font-weight-bold">
                                 <!-- mod info -->
-                                <a href="/modcases/{{ modcase.guildId }}?modid={{ modcase.modId }}">
+                                <a href="/modcases/{{ modcase.guildId }}?modId={{ modcase.modId }}">
                                     {% if moderator|default %}
                                         <img
                                                 src="https://cdn.discordapp.com/avatars/{{ moderator.id }}/{{ moderator.avatar }}.png"
@@ -155,7 +155,7 @@
                             <th class="font-weight-bold">Last Edit by Moderator</th>
                             <td class="font-weight-bold">
                                 <!-- last mod info -->
-                                <a href="/modcases/{{ modcase.guildId }}?modid={{ lastModerator.id }}">
+                                <a href="/modcases/{{ modcase.guildId }}?modId={{ lastModerator.id }}">
                                     {% if lastModerator|default %}
                                         <img
                                                 src="https://cdn.discordapp.com/avatars/{{ lastModerator.id }}/{{ lastModerator.avatar }}.png"

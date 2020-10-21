@@ -15,7 +15,8 @@ class ModCaseController extends AbstractController
     /**
      * @Route("/modcases/{guildid}")
      */
-    public function listAll($guildid) {
+    public function listAll($guildid)
+    {
         if (!isset($_COOKIE["masz_access_token"])) {
             return $this->render('index.html.twig');
         }
@@ -47,13 +48,13 @@ class ModCaseController extends AbstractController
             $modCasesContent = $response->getContent();
             $modCases = json_decode($modCasesContent, true);
 
-            $url = 'http://127.0.0.1:5565/api/v1/discord/guilds/'.$guildid; // change api url here
+            $url = 'http://127.0.0.1:5565/api/v1/discord/guilds/' . $guildid; // change api url here
             $response = $client->request(
                 'GET',
                 $url,
                 [
                     'headers' => [
-                        'Cookie' => 'masz_access_token='.$_COOKIE["masz_access_token"],
+                        'Cookie' => 'masz_access_token=' . $_COOKIE["masz_access_token"],
                     ],
                 ]
             );
@@ -61,29 +62,43 @@ class ModCaseController extends AbstractController
             $guildContent = $response->getContent();
             $guild = json_decode($guildContent, true);
 
-            return $this->render('modcase/show.html.twig', [
-                'modcases' => $modCases,
-                'guild' => $guild,
-                'guildid' => $guild['id'],
-                'logged_in_user' => $logged_in_user
-            ]);
+            $filteredModCases = [];
+            if (empty($_GET)) {
+                $filteredModCases = $modCases;
+            } else {
+                foreach ($modCases as $modCase) {
+                    foreach ($_GET as $key => $value) {
+                        if ($modCase[$key] == $value) {
+                            $filteredModCases[] = $modCase;
+                        }
+                    }
+                }
+            }
         } catch (Exception $e) {
             return $this->render('modcase/show.html.twig', [
                 'modcases' => [],
                 'logged_in_user' => $logged_in_user,
                 'error' => [
-                    'messages' => ['Failed to load modcases. Statuscode from API: '.$statusCode]
+                    'messages' => ['Failed to load modcases. Statuscode from API: ' . $statusCode]
                 ]
             ]);
         }
-    }
 
+        return $this->render('modcase/show.html.twig', [
+            'modcases' => $filteredModCases,
+            'guild' => $guild,
+            'guildid' => $guild['id'],
+            'logged_in_user' => $logged_in_user
+        ]);
+
+    }
 
 
     /**
      * @Route("/modcases/{guildid}/{id}", requirements={"guildid"="[0-9]{18}", "id"="\d*"})
      */
-    public function showCase($guildid, $id) {
+    public function showCase($guildid, $id)
+    {
         if (!isset($_COOKIE["masz_access_token"])) {
             return $this->render('index.html.twig');
         }
@@ -132,7 +147,7 @@ class ModCaseController extends AbstractController
                 $guildContent = $response->getContent();
                 $guild = json_decode($guildContent, true);
                 $guildid = $guild['id'];
-            }  catch (Exception $e) {
+            } catch (Exception $e) {
                 $guild = null;
                 $guildid = null;
                 $errorMessages[] = 'Failed to load detailed info about guild';
@@ -219,10 +234,10 @@ class ModCaseController extends AbstractController
                 'logged_in_user' => $logged_in_user,
                 'user' => $user
             ]);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             return $this->render('modcase/view.html.twig', [
                 'error' => [
-                    'messages' => ['Failed to load modcase. Statuscode from API: '.$statusCode]
+                    'messages' => ['Failed to load modcase. Statuscode from API: ' . $statusCode]
                 ]
             ]);
         }
