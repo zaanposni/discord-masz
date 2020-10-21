@@ -10,19 +10,23 @@
             border-radius: 50%;
             border: 3px solid grey;
         }
+        .center-container {
+            display: grid;
+            place-items: center;
+        }
     </style>
 
     <div class="container d-flex flex-column flex-wrap h-100">
 
         <p class="display-1 align-self-center mt-3">Discord-MASZ</p>
 
-        <a class="custom-btn align-self-center m-3 d-flex flex-column flex-wrap justify-content-center bg-dark text-light"
-           href="/api/v1/login" target="_blank">
-            <div class="align-self-center justify-content-center text-center w-100 font-weight-bold">LOGIN WITH DISCORD</div>
-            <i class="fab fa-discord fa-9x align-self-center justify-content-center text-center w-100"></i>
-        </a>
-
-        <div class="flex-grow-1"></div>
+        <div class="flex-grow-1 center-container">
+            <a class="custom-btn align-self-center m-3 d-flex flex-column flex-wrap justify-content-center bg-dark text-light"
+               href="/api/v1/login" target="_blank">
+                <div class="align-self-center justify-content-center text-center w-100 font-weight-bold">LOGIN WITH DISCORD</div>
+                <i class="fab fa-discord fa-9x align-self-center justify-content-center text-center w-100"></i>
+            </a>
+        </div>
 
         {% if error|default %}
             <div class="card mt-3 text-danger background-blink" id="fade-it">
