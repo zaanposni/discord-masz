@@ -2,7 +2,7 @@
 <html class="h-100">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{{ tabtitle|default("Discord-MASZ") }}</title>
         {% block stylesheets %}
 
             <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">

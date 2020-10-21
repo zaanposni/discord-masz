@@ -82,6 +82,7 @@ class ModCaseCreationController extends AbstractController
             'now' => date("Y-m-d\\TH:i:s.u"),
             'logged_in_user' => $logged_in_user,
             'createCaseForm' => $form->createView(),
+            'tabtitle' => 'MASZ: New ModCase'
         ]);
     }
 }

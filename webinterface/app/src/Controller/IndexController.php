@@ -70,7 +70,8 @@ class IndexController extends AbstractController
             }
             return $this->render('guilds/show.html.twig', [
                 'guilds' => $guilds,
-                'logged_in_user' => $logged_in_user
+                'logged_in_user' => $logged_in_user,
+                'tabtitle' => 'MASZ: Your guilds'
             ]);
         } catch (Exception $e) {
             return $this->render('guilds/show.html.twig', [

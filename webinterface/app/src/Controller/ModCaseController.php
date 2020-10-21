@@ -89,7 +89,8 @@ class ModCaseController extends AbstractController
             'modcases' => $filteredModCases,
             'guild' => $guild,
             'guildid' => $guild['id'],
-            'logged_in_user' => $logged_in_user
+            'logged_in_user' => $logged_in_user,
+            'tabtitle' => 'MASZ: '.$guild['name'].': ModCases'
         ]);
 
     }
@@ -233,7 +234,8 @@ class ModCaseController extends AbstractController
                 'moderator' => $moderator,
                 'lastModerator' => $lastModerator,
                 'logged_in_user' => $logged_in_user,
-                'user' => $user
+                'user' => $user,
+                'tabtitle' => 'MASZ: #'.$modCase['id'].': '.$modCase['title']
             ]);
         } catch (Exception $e) {
             return $this->render('modcase/view.html.twig', [
