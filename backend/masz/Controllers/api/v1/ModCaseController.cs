@@ -255,11 +255,14 @@ namespace masz.Controllers
 
             ModCase newModCase = new ModCase();
             
-            var currentReportedUser = await discord.FetchMemberInfo(guildid, modCase.UserId);
-            if (currentReportedUser != null)
+            User currentReportedUser = await discord.FetchUserInfo(modCase.UserId);
+            newModCase.Username = currentReportedUser.Username;
+
+            GuildMember currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId);
+
+            if (currentReportedMember != null)
             {
-                newModCase.Username = currentReportedUser.User.Username;
-                newModCase.Nickname = currentReportedUser.Nick;
+                newModCase.Nickname = currentReportedMember.Nick;
             }
 
             newModCase.Title = modCase.Title;
