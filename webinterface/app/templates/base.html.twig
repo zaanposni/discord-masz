@@ -22,7 +22,9 @@
         {% endblock %}
     </head>
     <body class="h-100">
-        {% block body %}{% endblock %}
+        <div class="all-content">
+            {% block body %}{% endblock %}
+        </div>
         {% include 'footer.html.twig' %}
     </body>
     {% block javascripts %}

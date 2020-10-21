@@ -38,13 +38,18 @@
     -o-animation: yellow-fade 2s ease-in-out 0s;
     animation: yellow-fade 2s ease-in-out 0s;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.all-content {
+    flex: 1 0 auto;
+}
+
 #footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: orange;
-    font-weight: bold;
+    flex-shrink: 0;
 }
 
 #footer a {
