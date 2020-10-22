@@ -1,0 +1,2 @@
+default legal notes for the website
+change this at /nginx/static/legal.txt

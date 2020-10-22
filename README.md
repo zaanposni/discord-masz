@@ -19,7 +19,12 @@ The user for whom the case was created can also see it on the website, take a st
 
 ## Preview
 
-placeholder
+- Modcase overview:
+
+![alt text](/docs/modcases.png)
+- Detailed view for single modcase:
+
+![alt text](/docs/modcase.png)
 
 ## Setup - Installation
 

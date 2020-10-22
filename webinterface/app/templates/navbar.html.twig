@@ -1,38 +1,63 @@
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark" style="background-color: #5E5B52;">
     <div class="container">
-    <a class="navbar-brand" href="#">ModTool</a>
-    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse" id="navbarSupportedContent-3" style="">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link waves-effect waves-light" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link waves-effect waves-light" href="#">Guilds</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link waves-effect waves-light" href="#">Users</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link waves-effect waves-light" href="#">ModCases</a>
-            </li>
+        <a class="navbar-brand" href="/">ModTool</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarSupportedContent-3" style="">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="/">Home</a>
+                </li>
+                {% if guildid|default %}
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="/modcases/{{ guildid }}">ModCases</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="/modcases/{{ guildid }}/new">New ModCase</a>
+                    </li>
+                {% endif %}
 
-        </ul>
-        <ul class="navbar-nav ml-auto nav-flex-icons">
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item waves-effect waves-light" href="#">Profile</a>
-                    <a class="dropdown-item waves-effect waves-light" href="#">Log out</a>
-                </div>
-            </li>
-        </ul>
-    </div>
+            </ul>
+            {% if logged_in_user|default %}
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img
+                                src="https://cdn.discordapp.com/avatars/{{ logged_in_user.discordUser.id }}/{{ logged_in_user.discordUser.avatar }}.png"
+                                class="rounded-circle z-depth-0 mr-1"
+                                alt="avatar image"
+                                height="30"
+                        />
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                         aria-labelledby="navbarDropdownMenuLink">
+                        <span class="dropdown-item waves-effect waves-light">
+                            Logged in as <span class="text-danger">{{ logged_in_user.discordUser.username }}#{{ logged_in_user.discordUser.discriminator }}</span>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
     </div>
 </nav>
+<br>
+<div class="container">
+    {% if error|default %}
+        <div class="card mt-3 text-danger background-blink" id="fade-it">
+            <div class="card-body">
+                <h5 class="card-title font-weight-bold">An Error occurred</h5>
+                {% for message in error.messages %}
+                    <span class="card-text" style="white-space: pre-wrap;">{{ message }}</span><br/>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+</div>
+
 <br>

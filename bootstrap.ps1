@@ -1,15 +1,25 @@
 docker-compose stop
 
-cp default-config.json ./backend/config.json
+docker container rm masz_nginx
+docker container rm masz_backend
+docker container rm masz_sf4_apache
+docker container rm masz_sf4_php
+
+docker image rm discord-masz_nginx
+docker image rm discord-masz_sf4_apache
+docker image rm discord-discord-masz_php
+docker image rm discord-discord-masz_backend
+
+docker volume rm discord-masz_php_share
+
+cp config.json ./backend/config.json
 cp ./nginx/nginx-local.conf ./nginx/nginx.conf
 cp ./webinterface/app/.env.dev ./webinterface/app/.env
 cp .env.example .env
 
-docker-compose build
+docker-compose --env-file .env up --build --force-recreate
 
 rm -Force ./backend/config.json
 rm -Force ./nginx/nginx.conf
-rm -Force ./webinterface/app/.env
+# rm -Force ./webinterface/app/.env
 rm -Force .env
-
-docker-compose up

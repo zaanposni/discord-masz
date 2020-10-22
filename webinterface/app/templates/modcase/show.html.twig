@@ -10,123 +10,79 @@
 
     <div class="container">
         <div class="d-flex justify-content-between align-items-start">
-            <h3><strong>All ModCases (2)</strong></h3>
-            <div class="d-flex align-items-center">
-                <a type="button" class="btn btn-primary" href="#">Create new Case</a>
-            </div>
-        </div><br>
+            <!-- Infos -->
+            <div>
+                <span class="display-4 font-weight-bold">All ModCases ({{ modcases|length }})</span>
 
+                {% if guild|default %}
+                    <!-- Guild -->
+                    <div class="d-flex align-items-lg-center">
+                        <img
+                                src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png"
+                                class="rounded-circle z-depth-0 mr-1"
+                                alt="avatar image"
+                                height="35"
+                        />
+                        <span class="font-weight-bold">Guild: {{ guild.name }} <span class="text-black-50">({{ guild.id }})</span></span>
+                    </div>
+                {% endif %}
+            </div>
+
+            {% if guild|default %}
+                <!-- Buttons -->
+                <div class="d-flex align-items-center">
+                    <a type="button" class="btn btn-primary" href="/modcases/{{ guild.id }}/new">Create new Case</a>
+                </div>
+            {% endif %}
+        </div>
+        <br>
 
         <table id="dtBasicExample" class="table" cellspacing="0" width="100%">
             <thead>
-            <tr>
-
-                <th class="th-sm">
-                </th>
-                <th class="th-sm hiddencolumn">Salary
-                </th>
-            </tr>
+                <tr>
+                    <th class="th-sm"></th>
+                    <th class="th-sm hiddencolumn">UserId</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
+            {% for modcase in modcases %}
+                <tr>
+                    <td>
+                        <a class="font-weight-bold" href="/modcases/{{ modcase.guildId }}/{{ modcase.id }}">
+                        <div class="card">
+                            <div class="card-body d-flex flex-column flex-wrap">
+                                <div>
+                                    <!-- Title -->
 
-                <td>                    <div class="card">
-                        <div class="card-body">
+                                    <h4 class="card-title">
+                                            #{{ modcase.id }}
+                                            <span class="badge badge-danger">{{ modcase.punishment }}</span>
+                                            {{ modcase.username }} - {{ modcase.title }}
+                                    </h4>
 
-                            <!-- Title -->
-                            <h4 class="card-title"><span class="badge badge-danger">Ban</span> <a><strong>Disrespectful Behavior</strong> / Blixary#6333</a></h4>
-                            <!-- Text -->
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu non sodales neque sodales.
-                            </p>
-                            <!-- Button -->
-                            <a href="#" class="btn btn-orange">VIEW DETAILS</a>
+                                    <!-- Labels -->
+                                    <div class="d-flex mb-2">
+                                        {% for label in modcase.labels %}
+                                            <div type="button" class="badge badge-pill badge-info mr-1">{{ label }}</div>
+                                        {% endfor %}
+                                    </div>
 
+                                    <!-- Text -->
+                                    <p class="card-text">{{ modcase.description }}</p>
+                                </div>
+                                <div class="flex-grow-1"></div>
+                                <!-- Button -->
+                                <div class="btn btn-orange align-self-end">VIEW DETAILS</div>
+                            </div>
                         </div>
-                    </div></td>
-                <td class="hiddencolumn">$320,800</td>
-            </tr>
-            <tr>
-
-                <td>                    <div class="card">
-                        <div class="card-body">
-
-                            <!-- Title -->
-                            <h4 class="card-title"><span class="badge badge-warning">Warn</span> <a><strong>Writing in Memes</strong> / zaanposni#9295</a></h4>
-                            <!-- Text -->
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu non sodales neque sodales.
-                            </p>
-                            <!-- Button -->
-                            <a href="#" class="btn btn-orange">VIEW DETAILS</a>
-
-                        </div>
-                    </div></td>
-                <td class="hiddencolumn">$320,800</td>
-            </tr>
-
+                        </a>
+                    </td>
+                    <td class="hiddencolumn">{{ modcase.userId }}</td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDiscount">Launch
-        modal</button>
-
-    <!--Modal: modalDiscount-->
-    <div class="modal fade right" id="modalDiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true" data-backdrop="true">
-        <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-danger" role="document">
-            <!--Content-->
-            <div class="modal-content">
-                <!--Header-->
-                <div class="modal-header">
-                    <p class="heading">Discount offer:
-                        <strong>10% off</strong>
-                    </p>
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="white-text">&times;</span>
-                    </button>
-                </div>
-
-                <!--Body-->
-                <div class="modal-body">
-
-                    <div class="row">
-                        <div class="col-3">
-                            <p></p>
-                            <p class="text-center">
-                                <i class="fas fa-gift fa-4x"></i>
-                            </p>
-                        </div>
-
-                        <div class="col-9">
-                            <p>Sharing is caring. Therefore, from time to time we like to give our visitors small gifts. Today is
-                                one of those days.</p>
-                            <p>
-                                <strong>Copy the following code and use it at the checkout. It's valid for
-                                    <u>one day</u>.</strong>
-                            </p>
-                            <h2>
-                                <span class="badge">v52gs1</span>
-                            </h2>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!--Footer-->
-                <div class="modal-footer flex-center">
-                    <a href="https://mdbootstrap.com/pricing/jquery/pro/" class="btn btn-danger">Get it
-                        now
-                        <i class="far fa-gem ml-1 white-text"></i>
-                    </a>
-                    <a type="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">No, thanks</a>
-                </div>
-            </div>
-            <!--/.Content-->
-        </div>
-    </div>
-    <!--Modal: modalDiscount-->
-
 {% endblock body %}
 
 {% block scriptblock %}

@@ -2,9 +2,43 @@
 
 {% block body %}
 
+    <style>
+        .custom-btn {
+            display:block;
+            height: 300px;
+            width: 300px;
+            border-radius: 50%;
+            border: 3px solid grey;
+        }
+        .center-container {
+            display: grid;
+            place-items: center;
+        }
+    </style>
 
-    <!-- Card -->
-    <a type="button" class="btn" href="/api/v1/login" target=\"blank\ style="background-color: #7289DA;">Login with Discord</a>
+    <div class="container d-flex flex-column flex-wrap">
+
+        <p class="display-1 align-self-center mt-3">Discord-MASZ</p>
+
+        <div class="flex-grow-1 center-container">
+            <a class="custom-btn align-self-center m-3 d-flex flex-column flex-wrap justify-content-center bg-dark text-light"
+               href="/api/v1/login" target="_blank">
+                <div class="align-self-center justify-content-center text-center w-100 font-weight-bold">LOGIN WITH DISCORD</div>
+                <i class="fab fa-discord fa-9x align-self-center justify-content-center text-center w-100"></i>
+            </a>
+        </div>
+
+        {% if error|default %}
+            <div class="card mt-3 text-danger background-blink" id="fade-it">
+                <div class="card-body">
+                    <h5 class="card-title font-weight-bold">An Error occurred</h5>
+                    {% for message in error.messages %}
+                        <span class="card-text" style="white-space: pre-wrap;">{{ message }}</span><br/>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
 
 
 {% endblock body %}

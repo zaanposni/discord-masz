@@ -15,11 +15,25 @@ echo "Killed old containers"
 
 docker ps -a
 
+echo "Removing old containers/images/volumes"
+docker container rm masz_nginx
+docker container rm masz_backend
+docker container rm masz_sf4_apache
+docker container rm masz_sf4_php
+
+docker image rm discord-masz_nginx
+docker image rm discord-masz_sf4_apache
+docker image rm discord-discord-masz_php
+docker image rm discord-discord-masz_backend
+
+docker volume rm discord-masz_php_share
+echo "Removed old containers/images/volumes"
+
 bash bootstrap_init.sh
 
-echo "Build docker-compose"
-docker-compose build
-echo "Build finished"
+echo "Starting up..."
+docker-compose --env-file .env up --build --force-recreate
+echo "Started in background"
 
 echo "removing config.json from subdirectories"
 rm -f ./backend/config.json
@@ -28,9 +42,8 @@ echo "removing nginx.conf"
 rm -f ./nginx/nginx.conf
 rm -f ./webinterface/app/.env
 
-echo "Starting up..."
-docker-compose --env-file .env up -d
-echo "Started in background"
+echo "removing .env file"
+rm -f .env
 
 docker ps -a
 

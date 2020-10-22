@@ -40,7 +40,7 @@ namespace masz.Helpers
                     embed.Color = Color.Orange;
                     embed.Description = $"A **Modcase** has been updated for <@{modCase.UserId}>.\n" + 
                                          "This notification has been generated automatically.\n" + 
-                                        $"Follow [this link]({serviceBaseUrl}/{modCase.GuildId}/modcase/{modCase.Id}) to see more details.\n" +
+                                        $"Follow [this link]({serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.Id}) to see more details.\n" +
                                          "[Contribute](https://github.com/zaanposni/discord-masz/) to this moderation tool.";
                     embed.Title = $"**UPDATED** - #{modCase.Id} {modCase.Title}";
                     break;
@@ -48,7 +48,7 @@ namespace masz.Helpers
                     embed.Color = Color.Red;
                     embed.Description = $"A **Modcase** has been deleted for <@{modCase.UserId}>.\n" + 
                                         "This notification has been generated automatically.\n" + 
-                                        $"Follow [this link]({serviceBaseUrl}/{modCase.GuildId}/modcase/{modCase.Id}) to see more details.\n" +
+                                        $"Follow [this link]({serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.Id}) to see more details.\n" +
                                         "[Contribute](https://github.com/zaanposni/discord-masz/) to this moderation tool.";
                     embed.Title = $"**DELETED** - #{modCase.Id} {modCase.Title}";
                     break;
@@ -56,7 +56,7 @@ namespace masz.Helpers
                     embed.Color = Color.Green;
                     embed.Description = $"A new **Modcase** has been created for <@{modCase.UserId}>.\n" + 
                                          "This notification has been generated automatically.\n" + 
-                                        $"Follow [this link]({serviceBaseUrl}/{modCase.GuildId}/modcase/{modCase.Id}) to see more details.\n" +
+                                        $"Follow [this link]({serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.Id}) to see more details.\n" +
                                          "[Contribute](https://github.com/zaanposni/discord-masz/) to this moderation tool.";
                     embed.Title = $"**CREATED** - #{modCase.Id} {modCase.Title}";
                     break;

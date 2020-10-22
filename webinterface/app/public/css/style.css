@@ -4,3 +4,56 @@
     background-color: #5E5B52;
     border-color: #5E5B52;
 }
+#fade-it {
+    padding: 15px;
+    text-align: center;
+}
+@-webkit-keyframes yellow-fade {
+    from {
+        background: #f96;
+    }
+    to {
+        background: #fff;
+    }
+}
+@-moz-keyframes yellow-fade {
+    from {
+        background: #f96;
+    }
+    to {
+        background: #fff;
+    }
+}
+@keyframes yellow-fade {
+    from {
+        background: #f96;
+    }
+    to {
+        background: #fff;
+    }
+}
+#fade-it {
+    -webkit-animation: yellow-fade 2s ease-in-out 0s;
+    -moz-animation: yellow-fade 2s ease-in-out 0s;
+    -o-animation: yellow-fade 2s ease-in-out 0s;
+    animation: yellow-fade 2s ease-in-out 0s;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.all-content {
+    flex: 1 0 auto;
+}
+
+#footer {
+    flex-shrink: 0;
+}
+
+#footer a {
+    color: orange;
+    font-weight: bold;
+    text-decoration-color: orange;
+}
