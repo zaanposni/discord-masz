@@ -32,7 +32,7 @@ echo "Removed old containers/images/volumes"
 bash bootstrap_init.sh
 
 echo "Starting up..."
-docker-compose --env-file .env up --build --force-recreate
+docker-compose --env-file .env up --build --force-recreate -d
 echo "Started in background"
 
 echo "removing config.json from subdirectories"
