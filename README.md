@@ -17,7 +17,7 @@ The core of this tool are the **modcases**, a case represents a rule violation, 
 The server members and your moderators can be **notified** individually about the creation. <br/>
 The user for whom the case was created can also see it on the website, take a stand and your server is moderated **transparently**.
 
-## Preview
+# Preview
 
 - Modcase overview:
 
@@ -26,26 +26,65 @@ The user for whom the case was created can also see it on the website, take a st
 
 ![alt text](/docs/modcase.png)
 
-## Setup - Installation
+- Notification embed for your guild members and moderation team:
 
-### Operation System
+![alt text](/docs/embed.png)
+
+# Setup - Installation
+
+## Operation System
 
 Since I use Docker you can use an operating system of your choice, but I recommend ubuntu and will list the next steps based on a linux host.
 
-### Requirements 
+## Requirements 
 
 - [docker](https://docs.docker.com/engine/install/ubuntu/) & [docker-compose](https://docs.docker.com/compose/)
 - [jq](https://stedolan.github.io/jq/download/) - a bash tool for json
-- a Discord OAuth application (this is used as authentication and discord integration)
 
-### Setup
+## Discord OAuth
+
+Requests are authenticated using Discord OAuth2. Create your own OAuth application [here](https://discord.com/developers/applications). <br/>
+You will have to use `Client ID` and `Client Secret` in the tab `General Information` and the bot token at `Bot` later in the local config file. <br/>
+Also set the redirect paths in the tab `OAuth2`. Be sure to set `https://yourdomain.com/` and `https://yourdomain.com/signin-discord`.
+
+
+## Setup
 
 - Clone this repository
 - Create a `config.json` file in the root of the project based on the template in `default-config.json`
+  - `site_admins` is a list of Discord user id strings. This list is used to authorize users to add new guilds to the application or similiar admin tasks.
+  - `service_name` should be the name/domain the service is hosted on.
+  - `service_base_url` is the URL the service is hosted on.
+  - `nginx_mode` can be either `local` or `prod` and describes if you are hosting a development or production environment.
 - Start everything out of the box by running the `bootstrap.sh` script.
 - Your application is now hosted at `127.0.0.1:5565`, you might want to redirect your reverse proxy or similiar to this location :)
 
-## Contribute
+## First steps:
+
+- You can visit your application at `127.0.0.1:5565`. You will see a login screen that will ask you to authenticate yourself using Discord OAuth2.
+- After authorizing your service to use your Discord account you will see your profile picture in the top right corner of the index page.
+- Check your browser cookies for the access token and execute the following request to register your discord guild in the backend: <br/>
+  `modPublicNotificationWebhook` and `modInternalNotificationWebhook` are used to send notification embeds to your moderation team and guild members - you can leave them empty.
+```bash
+curl --location --request POST '127.0.0.1:5565/api/v1/configs/<guildid>' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: masz_access_token=<your_cookie>' \
+--data-raw '{
+    "modroleid": "id",
+    "adminroleid": "id",
+    "modPublicNotificationWebhook": "url_to_discord_webhook",
+    "modInternalNotificationWebhook": "url_to_discord_webhook"
+}'
+```
+
+- After creating the guild config object you can refresh the browser page and use MASZ :)
+
+# Development
+
+If you want to develop the frontend using your own symfony server, you can change the default path to the API in `src/Config/Config.php`. <br/>
+If you are using a local deployed backend you have to define `https://127.0.0.1:port/` and `https://127.0.0.1:port/signin-discord` as valid redirect in your [Discord application settings](https://discord.com/developers/applications)
+
+# Contribute
 
 Contributions are welcome. <br/>
 If you are new to open source, checkout [this tutorial](https://github.com/firstcontributions/first-contributions).
