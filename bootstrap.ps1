@@ -17,7 +17,7 @@ cp ./nginx/nginx-local.conf ./nginx/nginx.conf
 cp ./webinterface/app/.env.dev ./webinterface/app/.env
 cp .env.example .env
 
-docker-compose --env-file .env up --build --force-recreate
+docker-compose --env-file .env up --build --force-recreate -d
 
 rm -Force ./backend/config.json
 rm -Force ./nginx/nginx.conf
