@@ -11,6 +11,7 @@ namespace masz.Models
     {
         [Key]
         public int Id { get; set; }
+        public int CaseId { get; set; }
         public string GuildId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -27,6 +28,5 @@ namespace masz.Models
         public string[] Labels { get; set; }
         public string Others { get; set; }
         public bool Valid { get; set; }
-        public virtual List<ModCaseComments> ModCaseComments { get; set; }
     }
 }

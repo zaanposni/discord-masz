@@ -16,23 +16,13 @@ namespace masz.data
             builder.AddConsole();
         });
 
-        public DbSet<ModCase> ModCases { get; set; }        
-        public DbSet<ModCaseComments> ModCaseComments { get; set; }
+        public DbSet<ModCase> ModCases { get; set; }
         public DbSet<GuildConfig> GuildConfigs { get; set; }
 
         public void Configure(EntityTypeBuilder<ModCase> builder) {
             builder.Property(u => u.CreatedAt).IsRequired(true).HasDefaultValueSql("now()");
             builder.Property(u => u.Severity).HasDefaultValue(0);
             builder.Property(u => u.Valid).HasDefaultValue(true);
-        }
-
-        public void Configure(EntityTypeBuilder<ModCaseComments> builder)
-        {
-            builder.HasKey(u => u.ModCaseId);
-            builder.Property(u => u.CreatedAt).IsRequired(true).HasDefaultValueSql("now()");
-
-            // FK - configuraiton
-            builder.HasOne(u => u.ModCase).WithMany().HasForeignKey(u => u.ModCaseId).IsRequired(true);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -47,17 +37,18 @@ namespace masz.data
                 .HasKey(o => new { o.Id });
 
             modelBuilder.Entity<ModCase>()
-            .Property(e => e.Labels)
-            .HasConversion(
-                v => string.Join(',', v),
-                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
-            
-            modelBuilder.Entity<ModCaseComments>()
-                .HasKey(o => new { o.Id });
-            modelBuilder.Entity<ModCaseComments>()
-                .HasOne(p => p.ModCase)
-                .WithMany(b => b.ModCaseComments)
-                .HasForeignKey(o => new { o.ModCaseId });
+                .Property(p => p.CaseId)
+                .IsRequired(true);
+
+            modelBuilder.Entity<ModCase>()
+                .Property(p => p.GuildId)
+                .IsRequired(true);
+
+            modelBuilder.Entity<ModCase>()
+                .Property(e => e.Labels)
+                .HasConversion(
+                    v => string.Join(',', v),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
         }
     }
 }

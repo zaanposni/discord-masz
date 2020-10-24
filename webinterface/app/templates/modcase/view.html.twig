@@ -14,7 +14,7 @@
 
                 <!-- Title + Guild -->
                 <div class="flex-grow-1">
-                    <h4 class="font-weight-bold"><span class="display-4">#{{ modcase.id }}</span> {{ modcase.title }}
+                    <h4 class="font-weight-bold"><span class="display-4">#{{ modcase.caseId }}</span> {{ modcase.title }}
                     </h4>
 
                     <div class="d-flex align-items-lg-center">
@@ -45,7 +45,7 @@
                 <!-- Edit and delete buttons -->
                 <div class="d-flex flex-column align-self-end">
                     <a type="button" class="btn btn-primary"
-                       href="/api/v1/modcases/{{ modcase.guildId }}/{{ modcase.id }}" target="_blank">See raw case
+                       href="/api/v1/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}" target="_blank">See raw case
                         data</a>
                     <a type="button" class="btn btn-warning" href="#">Edit this case</a>
                     <a type="button" class="btn btn-danger" href="#">Delete this case</a>

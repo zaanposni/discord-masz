@@ -32,7 +32,7 @@ namespace masz.Helpers
 
             embed.Timestamp = DateTime.Now;
             var footer = new EmbedFooterBuilder();
-            footer.Text = $"UserId: {modCase.UserId} | ModCaseId: {modCase.Id}";
+            footer.Text = $"UserId: {modCase.UserId} | ModCaseId: {modCase.CaseId}";
             embed.Footer = footer;
 
             switch(action){
@@ -40,31 +40,31 @@ namespace masz.Helpers
                     embed.Color = Color.Orange;
                     embed.Description = $"A **Modcase** has been updated for <@{modCase.UserId}>.\n" + 
                                          "This notification has been generated automatically.\n" + 
-                                        $"Follow [this link]({serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.Id}) to see more details.\n" +
+                                        $"Follow [this link]({serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.CaseId}) to see more details.\n" +
                                          "[Contribute](https://github.com/zaanposni/discord-masz/) to this moderation tool.";
-                    embed.Title = $"**UPDATED** - #{modCase.Id} {modCase.Title}";
+                    embed.Title = $"**UPDATED** - #{modCase.CaseId} {modCase.Title}";
                     break;
                 case ModCaseAction.Deleted:
                     embed.Color = Color.Red;
                     embed.Description = $"A **Modcase** has been deleted for <@{modCase.UserId}>.\n" + 
                                         "This notification has been generated automatically.\n" + 
-                                        $"Follow [this link]({serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.Id}) to see more details.\n" +
+                                        $"Follow [this link]({serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.CaseId}) to see more details.\n" +
                                         "[Contribute](https://github.com/zaanposni/discord-masz/) to this moderation tool.";
-                    embed.Title = $"**DELETED** - #{modCase.Id} {modCase.Title}";
+                    embed.Title = $"**DELETED** - #{modCase.CaseId} {modCase.Title}";
                     break;
                 case ModCaseAction.Created:
                     embed.Color = Color.Green;
                     embed.Description = $"A new **Modcase** has been created for <@{modCase.UserId}>.\n" + 
                                          "This notification has been generated automatically.\n" + 
-                                        $"Follow [this link]({serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.Id}) to see more details.\n" +
+                                        $"Follow [this link]({serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.CaseId}) to see more details.\n" +
                                          "[Contribute](https://github.com/zaanposni/discord-masz/) to this moderation tool.";
-                    embed.Title = $"**CREATED** - #{modCase.Id} {modCase.Title}";
+                    embed.Title = $"**CREATED** - #{modCase.CaseId} {modCase.Title}";
                     break;
             }
             
             if (! string.IsNullOrEmpty(serviceBaseUrl))
             {
-                embed.Url = $"{serviceBaseUrl}/{modCase.GuildId}/modcases/{modCase.Id}";
+                embed.Url = $"{serviceBaseUrl}/{modCase.GuildId}/modcases/{modCase.CaseId}";
             }
 
             if (!string.IsNullOrEmpty(modCase.Punishment))
