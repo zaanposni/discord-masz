@@ -59,7 +59,7 @@ class ModCaseCreationController extends AbstractController
             if ($statusCode === 201) {
                 $responseContent = $response->getContent();
                 $created = json_decode($responseContent, true);
-                $id = $created['id'];
+                $id = $created['caseid'];
                 return $this->redirect('/modcases/'.$guildid.'/'.$id);
             }
 

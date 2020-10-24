@@ -133,7 +133,7 @@ namespace masz.Controllers
             } 
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Deleted ModCase.");
-            return Ok(new { id = modCase.Id });
+            return Ok(new { id = modCase.Id, caseid = modCase.CaseId });
         }
 
         [HttpPatch("{modcaseid}")]
@@ -170,6 +170,7 @@ namespace masz.Controllers
             string oldUserId = modCase.UserId;
             // unchangeable values
             int id = modCase.Id;
+            int caseid = modCase.CaseId;
             string guildId = modCase.GuildId;
             string username = modCase.Username;
             string nickname = modCase.Nickname;
@@ -184,6 +185,7 @@ namespace masz.Controllers
             modCase.Title = modCase.Title.Substring(0, Math.Min(modCase.Title.Length, 100)); // max length 100
             modCase.Punishment = modCase.Punishment.Substring(0, Math.Min(modCase.Punishment.Length, 100)); // max length 100
             modCase.Id = id;
+            modCase.CaseId = caseid;
             modCase.GuildId = guildId;
             modCase.Username = username;
             modCase.Nickname = nickname;
@@ -219,7 +221,7 @@ namespace masz.Controllers
             }  
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource updated.");
-            return Ok(new { id = modCase.Id });
+            return Ok(new { id = modCase.Id, caseid = modCase.CaseId });
         }
 
         [HttpPost]
@@ -265,6 +267,7 @@ namespace masz.Controllers
                 newModCase.Nickname = currentReportedMember.Nick;
             }
 
+            newModCase.CaseId = await database.GetHighestCaseIdForGuild(guildid) + 1;
             newModCase.Title = modCase.Title;
             newModCase.Description = modCase.Description;
             newModCase.GuildId = guildid;
@@ -295,7 +298,7 @@ namespace masz.Controllers
             }        
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 201 Resource created.");
-            return StatusCode(201, new { id = newModCase.Id });
+            return StatusCode(201, new { id = newModCase.Id, caseid = newModCase.CaseId });
         }
 
         [HttpGet("all")]

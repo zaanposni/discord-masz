@@ -54,7 +54,7 @@ namespace masz.Services
 
         public async Task<ModCase> SelectSpecificModCase(string guildId, string modCaseId)
         {
-            return await context.ModCases.AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.Id.ToString() == modCaseId);
+            return await context.ModCases.AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.CaseId.ToString() == modCaseId);
         }
 
         public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId)
@@ -85,6 +85,15 @@ namespace masz.Services
         public async Task SaveModCase(ModCase modCase)
         {
             await context.ModCases.AddAsync(modCase);
+        }
+
+        public async Task<int> GetHighestCaseIdForGuild(string guildId)
+        {
+            var query = context.ModCases.AsQueryable().Where(x => x.GuildId == guildId);
+            if(await query.CountAsync() == 0) {
+                return 0;
+            }
+            return await query.MaxAsync(p => p.CaseId);
         }
     }
 }

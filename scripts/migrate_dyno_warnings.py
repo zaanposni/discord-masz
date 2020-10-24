@@ -40,13 +40,13 @@ except KeyError:
     exit(1)
 
 SQL_STRING = ""
-NEW_ENTRY = 'INSERT INTO ModCases (CreatedAt, Description, GuildId, Labels, LastEditedAt, LastEditedByModId, ModId, ' \
+NEW_ENTRY = 'INSERT INTO ModCases (GuildId, CaseId, CreatedAt, Description, Labels, LastEditedAt, LastEditedByModId, ModId, ' \
                                    'Nickname, OccuredAt, Punishment, Severity, Title, UserId, Username, Valid)' \
-                                   ' VALUES("{}", "{}", "{}", "dyno-import", "{}", "{}", "{}", "{}", "{}", "None", 0, "Imported from Dyno", "{}", "{}", 1);'
-for case in dyno_logs:
+                                   ' VALUES("{}", {}, "{}", "{}", "dyno-import", "{}", "{}", "{}", "{}", "{}", "None", 0, "Imported from Dyno", "{}", "{}", 1);'
+for e, case in enumerate(dyno_logs, 1):
     #date = datetime.strptime(case["createdAt"], "%a, %b %-d, %Y %-I:%M %p").isoformat()
     date = dateparser.parse(case["createdAt"]).isoformat()
-    string = NEW_ENTRY.format(date, case["reason"].replace('"', "'") + f"\nDynobot case id: '{case['_id']}'", case["guild"], date, case["mod"]["id"], case["mod"]["id"],
+    string = NEW_ENTRY.format(case["guild"], e, date, case["reason"].replace('"', "'") + f"\nDynobot case id: '{case['id']}'", date, case["mod"]["id"], case["mod"]["id"],
                               case["user"]["username"].replace('"', "'"), date, case["user"]["id"], case["user"]["username"].replace('"', "'"))
     SQL_STRING += f"{string}\n"
 

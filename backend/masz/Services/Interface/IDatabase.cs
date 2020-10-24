@@ -17,6 +17,7 @@ namespace masz.Services
         Task SaveGuildConfig(GuildConfig guildConfig);
 
 
+        Task<int> GetHighestCaseIdForGuild(string guildId);
         Task<ModCase> SelectSpecificModCase(string guildId, string modCaseId);
         Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId);
         Task<List<ModCase>> SelectAllModCasesForGuild(string guildId);
