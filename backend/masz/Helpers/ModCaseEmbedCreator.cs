@@ -64,7 +64,7 @@ namespace masz.Helpers
             
             if (! string.IsNullOrEmpty(serviceBaseUrl))
             {
-                embed.Url = $"{serviceBaseUrl}/{modCase.GuildId}/modcases/{modCase.CaseId}";
+                embed.Url = $"{serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.CaseId}";
             }
 
             if (!string.IsNullOrEmpty(modCase.Punishment))
