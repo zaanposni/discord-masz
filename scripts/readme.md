@@ -39,3 +39,5 @@ python3 migrate_dyno_warnings.py --input-file input.json
 - Connect to the mysql shell using `mysql`
 - Execute `USE masz` and then paste the content of `output.sql` and press enter
 - You should be ready to see your migrated data in the frontend
+
+Note that the CaseId is auto incremented by the python script. If you already have data in your database of this guild, you have to adjust the starting value in line 46 to be higher than the highest id in your guilds records.
