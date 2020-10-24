@@ -47,6 +47,8 @@ Requests are authenticated using Discord OAuth2. Create your own OAuth applicati
 You will have to use `Client ID` and `Client Secret` in the tab `General Information` and the bot token at `Bot` later in the local config file. <br/>
 Also set the redirect paths in the tab `OAuth2`. Be sure to set `https://yourdomain.com/` and `https://yourdomain.com/signin-discord`.
 
+Invite and join the bot of your registered application to all Discord servers that you want to use.
+
 ## Setup
 
 - Clone this repository
