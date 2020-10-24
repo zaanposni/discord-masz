@@ -47,7 +47,6 @@ Requests are authenticated using Discord OAuth2. Create your own OAuth applicati
 You will have to use `Client ID` and `Client Secret` in the tab `General Information` and the bot token at `Bot` later in the local config file. <br/>
 Also set the redirect paths in the tab `OAuth2`. Be sure to set `https://yourdomain.com/` and `https://yourdomain.com/signin-discord`.
 
-
 ## Setup
 
 - Clone this repository
@@ -64,7 +63,8 @@ Also set the redirect paths in the tab `OAuth2`. Be sure to set `https://yourdom
 - You can visit your application at `127.0.0.1:5565`. You will see a login screen that will ask you to authenticate yourself using Discord OAuth2.
 - After authorizing your service to use your Discord account you will see your profile picture in the top right corner of the index page.
 - Check your browser cookies for the access token and execute the following request to register your discord guild in the backend: <br/>
-  `modPublicNotificationWebhook` and `modInternalNotificationWebhook` are used to send notification embeds to your moderation team and guild members - you can leave them empty.
+  `modPublicNotificationWebhook` and `modInternalNotificationWebhook` are used to send notification embeds to your moderation team and guild members - you can leave them empty. <br/>
+  Be sure to be logged in as a site_admin user defined in your `config.json` as only those are authorized to register new guilds
 ```bash
 curl --location --request POST '127.0.0.1:5565/api/v1/configs/<guildid>' \
 --header 'Content-Type: application/json' \
@@ -78,6 +78,10 @@ curl --location --request POST '127.0.0.1:5565/api/v1/configs/<guildid>' \
 ```
 
 - After creating the guild config object you can refresh the browser page and use MASZ :)
+
+## Migration
+
+To migrate your existing data from the Dynobot checkout [this documentation](scripts#migrate-from-dynobot-to-masz)
 
 # Development
 
