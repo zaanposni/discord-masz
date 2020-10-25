@@ -8,40 +8,50 @@
         </button>
         <div class="navbar-collapse collapse" id="navbarSupportedContent-3" style="">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link waves-effect waves-light" href="/">Home</a>
-                </li>
+
                 {% if guildid|default %}
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="/">Guilds</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link waves-effect waves-light" href="/modcases/{{ guildid }}">ModCases</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link waves-effect waves-light" href="/modcases/{{ guildid }}/new">New ModCase</a>
                     </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="/">Home</a>
+                    </li>
                 {% endif %}
-
 
             </ul>
             {% if logged_in_user|default %}
-            <ul class="navbar-nav ml-auto nav-flex-icons">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img
-                                src="https://cdn.discordapp.com/avatars/{{ logged_in_user.discordUser.id }}/{{ logged_in_user.discordUser.avatar }}.png"
-                                class="rounded-circle z-depth-0 mr-1"
-                                alt="avatar image"
-                                height="30"
-                        />
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                         aria-labelledby="navbarDropdownMenuLink">
-                        <span class="dropdown-item waves-effect waves-light">
-                            Logged in as <span class="text-danger">{{ logged_in_user.discordUser.username }}#{{ logged_in_user.discordUser.discriminator }}</span>
-                        </span>
-                    </div>
-                </li>
-            </ul>
+                <ul class="navbar-nav ml-auto nav-flex-icons">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img
+                                    src="https://cdn.discordapp.com/avatars/{{ logged_in_user.discordUser.id }}/{{ logged_in_user.discordUser.avatar }}.png"
+                                    class="rounded-circle z-depth-0 mr-1"
+                                    alt="avatar image"
+                                    height="30"
+                            />
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                             aria-labelledby="navbarDropdownMenuLink">
+                            <span class="dropdown-item waves-effect waves-light">
+                                Logged in as <span
+                                        class="text-danger">{{ logged_in_user.discordUser.username }}#{{ logged_in_user.discordUser.discriminator }}</span>
+                            </span>
+                            {% if logged_in_user.isAdmin %}
+                            <span class="dropdown-item waves-effect waves-light text-primary">
+                                Congrulations, you are a site admin!
+                            </span>
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
             {% endif %}
         </div>
     </div>

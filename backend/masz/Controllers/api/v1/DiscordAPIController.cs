@@ -9,6 +9,7 @@ using masz.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace masz.Controllers.api.v1
 {
@@ -20,11 +21,13 @@ namespace masz.Controllers.api.v1
         private readonly ILogger<DiscordAPIController> logger;
         private readonly IDiscordAPIInterface discord;
         private readonly IDatabase database;
+        private readonly IOptions<InternalConfig> config;
         private readonly IIdentityManager identityManager;
 
-        public DiscordAPIController(ILogger<DiscordAPIController> logger, IIdentityManager identityManager, IDiscordAPIInterface discord, IDatabase database)
+        public DiscordAPIController(ILogger<DiscordAPIController> logger, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discord, IDatabase database)
         {
             this.logger = logger;
+            this.config = config;
             this.discord = discord;
             this.identityManager = identityManager;
             this.database = database;
@@ -37,20 +40,29 @@ namespace masz.Controllers.api.v1
 
             User currentUser = await currentIdentity.GetCurrentDiscordUser();
 
-            List<GuildConfig> registeredGuilds = await database.SelectAllGuildConfigs();
-            List<string> intersectionGuilds = new List<string>();
+            List<string> memberGuilds = new List<string>();
+            List<string> modGuilds = new List<string>();
+            List<string> bannedGuilds = new List<string>();
+            bool siteAdmin = config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id);
 
+            List<GuildConfig> registeredGuilds = await database.SelectAllGuildConfigs();
             foreach (GuildConfig guild in registeredGuilds)
             {
                 if (await currentIdentity.IsOnGuild(guild.GuildId))
                 {
-                    intersectionGuilds.Add(guild.GuildId);
+                    if (await currentIdentity.HasModRoleOrHigherOnGuild(guild.GuildId)) {
+                        modGuilds.Add(guild.GuildId);
+                    } else {
+                        memberGuilds.Add(guild.GuildId);
+                    }
+                } else {
+                    if (await discord.GetGuildUserBan(guild.GuildId, currentUser.Id) != null) {
+                        bannedGuilds.Add(guild.GuildId);
+                    }
                 }
             }
 
-            // TODO: fetch list of guilds the user is banned on
-
-            return Ok(new APIUser(intersectionGuilds, currentUser));
+            return Ok(new APIUser(memberGuilds, bannedGuilds,  modGuilds, currentUser, siteAdmin));
         }
 
         [HttpGet("users/{userid}")]

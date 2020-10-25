@@ -67,12 +67,12 @@ namespace masz.Services
         Task<Message> GetDiscordMessage(string channelId, string messageId);
 
         /// <summary>
-        /// This method checks if a defined user is banned on a guild
+        /// This method checks if a defined user is banned on a guild and returns the ban object or null
         /// https://discord.com/developers/docs/resources/guild#get-guild-ban
         /// </summary>
         /// <param name="guildId">guild to check bans on</param>
         /// <param name="userId">user to check bans for</param>
-        /// <returns>if the defined user is banned on the defined guild</returns>
-        Task<bool> DiscordUserIsBannedOnGuild(string guildId, string userId);
+        /// <returns>returns the ban object or null if not found</returns>
+        Task<Ban> GetGuildUserBan(string guildId, string userId);
     }
 }

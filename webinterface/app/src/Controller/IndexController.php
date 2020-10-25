@@ -14,7 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class IndexController extends AbstractController
 {
-
     /**
      * @Route("/")
      */
@@ -35,41 +34,31 @@ class IndexController extends AbstractController
 
         $client = HttpClient::create();
         try {
-            $guilds = array();
-            foreach ($userInfo['guilds'] as &$guildid) {
-                $url = Config::GetBaseUrl().'/api/v1/discord/guilds/' . $guildid; // change api url here
-                $response = $client->request(
-                    'GET',
-                    $url,
-                    [
-                        'headers' => [
-                            'Cookie' => 'masz_access_token=' . $_COOKIE["masz_access_token"],
-                        ],
-                    ]
-                );
-                $guildContent = $response->getContent();
-                $guild = json_decode($guildContent, true);  // TODO: handle error
-
-                $url = Config::GetBaseUrl().'/api/v1/stats/' . $guildid; // change api url here
-                $response = $client->request(
-                    'GET',
-                    $url,
-                    [
-                        'headers' => [
-                            'Cookie' => 'masz_access_token=' . $_COOKIE["masz_access_token"],
-                        ],
-                    ]
-                );
-                $statsContent = $response->getContent();
-                $stats = json_decode($statsContent, true);  // TODO: handle error
-
-                $guilds[] = [
-                    'obj' => $guild,
-                    'stats' => $stats
+            $modGuilds = array();
+            $memberGuilds = array();
+            $bannedGuilds = array();
+            foreach ($userInfo['modGuilds'] as $guildid) {
+                $modGuilds[] = [
+                    'obj' => Helpers::GetGuildById($guildid, $_COOKIE),
+                    'stats' => Helpers::GetGuildStatsById($guildid, $_COOKIE)
+                ];
+            }
+            foreach ($userInfo['memberGuilds'] as $guildid) {
+                $memberGuilds[] = [
+                    'obj' => Helpers::GetGuildById($guildid, $_COOKIE),
+                    'stats' => Helpers::GetGuildStatsById($guildid, $_COOKIE)
+                ];
+            }
+            foreach ($userInfo['bannedGuilds'] as $guildid) {
+                $bannedGuilds[] = [
+                    'obj' => Helpers::GetGuildById($guildid, $_COOKIE),
+                    'stats' => Helpers::GetGuildStatsById($guildid, $_COOKIE)
                 ];
             }
             return $this->render('guilds/show.html.twig', [
-                'guilds' => $guilds,
+                'mod_guilds' => $modGuilds,
+                'member_guilds' => $memberGuilds,
+                'banned_guilds' => $bannedGuilds,
                 'logged_in_user' => $logged_in_user,
                 'tabtitle' => 'MASZ: Your guilds'
             ]);
