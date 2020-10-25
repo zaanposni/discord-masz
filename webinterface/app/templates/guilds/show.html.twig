@@ -5,7 +5,7 @@
     <div class="container">
 
         {% if mod_guilds|default %}
-            <span class="display-4 mb-3">Moderator guilds ({{ mod_guilds|length }})</span>
+            <span class="display-4 mb-3">Moderator Guilds ({{ mod_guilds|length }})</span>
             <div class="d-flex flex-column flex-wrap justify-content-between mt-3">
                 {% for guild in mod_guilds %}
                     <a href="/modcases/{{ guild.obj.id }}" class="mb-3">
