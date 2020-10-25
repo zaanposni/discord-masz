@@ -73,6 +73,7 @@ namespace masz
                 options.SaveTokens = true;
                 options.Prompt = "none";
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.CorrelationCookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax;
             });
 
             services.Configure<InternalConfig>(Configuration.GetSection("InternalConfig"));
