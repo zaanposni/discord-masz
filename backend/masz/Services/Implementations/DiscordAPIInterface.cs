@@ -30,9 +30,18 @@ namespace masz.Services
             restClient = new RestClient(discordBaseUrl);
         }
 
-        public Task<bool> DiscordUserIsBannedOnGuild(string guildId, string userId)
+        public async Task<Ban> GetGuildUserBan(string guildId, string userId)
         {
-            throw new NotImplementedException();
+            var request = new RestRequest(Method.GET);
+            request.Resource = $"/guilds/{guildId}/bans/{userId}";
+            request.AddHeader("Authorization", "Bot " + botToken);
+
+            var response = await restClient.ExecuteAsync<Ban>(request);
+            if (response.IsSuccessful)
+            {
+                return new Ban(response.Content);
+            }
+            return null;
         }
 
         public async Task<User> FetchCurrentUserInfo(string token)

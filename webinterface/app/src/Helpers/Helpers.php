@@ -35,4 +35,46 @@ class Helpers
             return null;
         }
     }
+
+    public static function GetGuildById($guildid, $COOKIES) {
+        try {
+            $client = HttpClient::create();
+            $url = Config::GetBaseUrl() . '/api/v1/discord/guilds/' . $guildid; // change api url here
+            $response = $client->request(
+                'GET',
+                $url,
+                [
+                    'headers' => [
+                        'Cookie' => 'masz_access_token=' . $COOKIES["masz_access_token"],
+                    ],
+                ]
+            );
+            $guildContent = $response->getContent();
+            return json_decode($guildContent, true);
+        }
+        catch (Exception $e) {
+            return null;
+        }
+    }
+
+    public static function GetGuildStatsById($guildid, $COOKIES) {
+        try {
+            $client = HttpClient::create();
+            $url = Config::GetBaseUrl() . '/api/v1/stats/' . $guildid; // change api url here
+            $response = $client->request(
+                'GET',
+                $url,
+                [
+                    'headers' => [
+                        'Cookie' => 'masz_access_token=' . $COOKIES["masz_access_token"],
+                    ],
+                ]
+            );
+            $guildContent = $response->getContent();
+            return json_decode($guildContent, true);
+        }
+        catch (Exception $e) {
+            return null;
+        }
+    }
 }
