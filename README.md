@@ -51,7 +51,7 @@ Invite and join the bot of your registered application to all Discord servers th
 
 ## Setup
 
-- Clone this repository
+- Download this repository `git clone https://github.com/zaanposni/discord-masz` ([zip link](https://codeload.github.com/zaanposni/discord-masz/zip/master))
 - Create a `config.json` file in the root of the project based on the template in `default-config.json`
   - `site_admins` is a list of Discord user id strings. This list is used to authorize users to add new guilds to the application or similiar admin tasks.
   - `service_name` should be the name/domain the service is hosted on.
