@@ -46,8 +46,10 @@ Since I use Docker you can use an operating system of your choice, but I recomme
 Requests are authenticated using Discord OAuth2. Create your own OAuth application [here](https://discord.com/developers/applications). <br/>
 You will have to use `Client ID` and `Client Secret` in the tab `General Information` and the bot token at `Bot` later in the local config file. <br/>
 Also set the redirect paths in the tab `OAuth2`. Be sure to set `https://yourdomain.com/` and `https://yourdomain.com/signin-discord`.
+if you only want to try out the project on your pc, you can also use `http://127.0.0.1:5565/` and `http://127.0.0.1:5565/signin-discord`.
 
-Invite and join the bot of your registered application to all Discord servers that you want to use.
+**Important:** Invite and join the bot of your registered application to all Discord servers that you want to use.
+If you want to use the `banned` feature (banned users can still see the guild and their cases so they know what lead to a ban), give the bot the `ban people` permission, otherwise he does not need any further permissions.
 
 ## Setup
 
