@@ -29,14 +29,14 @@ namespace masz.Services
         {
             logger.LogInformation($"Announcing modcase {modCase.Id} in guild {modCase.GuildId}.");
 
-            GuildMember member = await discord.FetchMemberInfo(modCase.GuildId, modCase.UserId);
+            User discordUser = await discord.FetchUserInfo(modCase.UserId);
 
             GuildConfig guildConfig = await dbContext.SelectSpecificGuildConfig(modCase.GuildId);
 
             if (! string.IsNullOrEmpty(guildConfig.ModPublicNotificationWebhook) && announcePublic)
             {
                 logger.LogInformation($"Sending public webhook to {guildConfig.ModPublicNotificationWebhook}.");
-                EmbedBuilder embed = ModCaseEmbedCreator.CreatePublicAnnouncementEmbed(modCase, action, member, config.Value.ServiceBaseUrl);
+                EmbedBuilder embed = ModCaseEmbedCreator.CreatePublicAnnouncementEmbed(modCase, action, discordUser, config.Value.ServiceBaseUrl);
                 DiscordMessenger.SendEmbedWebhook(guildConfig.ModPublicNotificationWebhook, embed.Build(), $"<@{modCase.UserId}>");
                 logger.LogInformation("Sent public webhook.");
             }            
@@ -44,7 +44,7 @@ namespace masz.Services
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
                 logger.LogInformation($"Sending internal webhook to {guildConfig.ModInternalNotificationWebhook}.");
-                EmbedBuilder embed = ModCaseEmbedCreator.CreatePublicAnnouncementEmbed(modCase, action, member, config.Value.ServiceBaseUrl);
+                EmbedBuilder embed = ModCaseEmbedCreator.CreatePublicAnnouncementEmbed(modCase, action, discordUser, config.Value.ServiceBaseUrl);
 
                 var mod = await discord.FetchMemberInfo(modCase.GuildId, modCase.ModId);
                 var author = new EmbedAuthorBuilder();
