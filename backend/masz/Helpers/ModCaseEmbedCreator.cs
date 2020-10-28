@@ -14,13 +14,13 @@ namespace masz.Helpers
         private static string discordBaseUrl = "https://discord.com/api";
         private static string discordCdnBaseUrl = "https://cdn.discordapp.com";
 
-        public static EmbedBuilder CreatePublicAnnouncementEmbed(ModCase modCase, ModCaseAction action, GuildMember member = null, String serviceBaseUrl = null)
+        public static EmbedBuilder CreatePublicAnnouncementEmbed(ModCase modCase, ModCaseAction action, User discordUser = null, String serviceBaseUrl = null)
         {
             var embed = new EmbedBuilder();
             
-            if (member != null)
+            if (discordUser != null)
             {
-                embed.ThumbnailUrl = $"{discordCdnBaseUrl}/avatars/{member.User.Id}/{member.User.Avatar}.png";
+                embed.ThumbnailUrl = $"{discordCdnBaseUrl}/avatars/{discordUser.Id}/{discordUser.Avatar}.png";
             }
 
             if (! string.IsNullOrEmpty(modCase.Description))
