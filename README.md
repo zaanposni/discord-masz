@@ -19,16 +19,18 @@ The user for whom the case was created can also see it on the website, take a st
 
 # Preview
 
-- Modcase overview:
-
-![alt text](/docs/modcases.png)
-- Detailed view for single modcase:
-
-![alt text](/docs/modcase.png)
-
-- Notification embed for your guild members and moderation team:
-
-![alt text](/docs/embed.png)
+<details>
+  <summary>Modcase overview (click to reveal)</summary>
+  <img src="/docs/modcases.png"/>
+</details>
+<details>
+  <summary>Detailed view for single modcase (click to reveal)</summary>
+  <img src="/docs/modcase.png"/>
+</details>
+<details>
+  <summary>Notification embed for your guild members and moderation team (click to reveal)</summary>
+  <img src="/docs/embed.png"/>
+</details>
 
 # Setup - Installation
 
@@ -45,8 +47,8 @@ Since I use Docker you can use an operating system of your choice, but I recomme
 
 Requests are authenticated using Discord OAuth2. Create your own OAuth application [here](https://discord.com/developers/applications). <br/>
 You will have to use `Client ID` and `Client Secret` in the tab `General Information` and the bot token at `Bot` later in the local config file. <br/>
-Also set the redirect paths in the tab `OAuth2`. Be sure to set `https://yourdomain.com/` and `https://yourdomain.com/signin-discord`.
-if you only want to try out the project on your pc, you can also use `http://127.0.0.1:5565/` and `http://127.0.0.1:5565/signin-discord`.
+Also set the redirect paths in the tab `OAuth2`. Be sure to set `https://yourdomain.com/` and `https://yourdomain.com/signin-discord`. <br/>
+If you only want to try out the project on your pc, you can also use `http://127.0.0.1:5565/` and `http://127.0.0.1:5565/signin-discord`.
 
 **Important:** Invite and join the bot of your registered application to all Discord servers that you want to use. <br/>
 If you want to use the `banned` feature (banned users can still see the guild and their cases so they know what lead to a ban), give the bot the `ban people` permission, otherwise the bot does not need any further permissions.
