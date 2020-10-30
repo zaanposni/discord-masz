@@ -13,6 +13,6 @@ class Config
     }
     public static function getBaseURL() {
         // return 'http://127.0.0.1:5565';  // for local development
-        return 'http://masz_nginx:80/';  // for docker deployment
+        return 'http://masz_nginx:80';  // for docker deployment
     }
 }
