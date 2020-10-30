@@ -113,6 +113,11 @@ class ModCaseController extends AbstractController
         }
 
         try {
+            $navdata = Helpers::GetNavbarStaticData();
+        } catch(Exception $e) {
+            $navdata = [];
+        }
+        try {
             $userInfo = Helpers::GetCurrentUser($_COOKIE);
             $logged_in_user = $userInfo;
             if (is_null($userInfo)) {
@@ -228,6 +233,7 @@ class ModCaseController extends AbstractController
                     'lastModerator' => $lastModerator,
                     'user' => $user,
                     'logged_in_user' => $logged_in_user,
+                    'navdata' => $navdata,
                     'error' => [
                         'messages' => $errorMessages
                     ]
@@ -241,6 +247,7 @@ class ModCaseController extends AbstractController
                 'moderator' => $moderator,
                 'lastModerator' => $lastModerator,
                 'logged_in_user' => $logged_in_user,
+                'navdata' => $navdata,
                 'user' => $user,
                 'tabtitle' => 'MASZ: #'.$modCase['id'].': '.$modCase['title']
             ]);
@@ -248,7 +255,8 @@ class ModCaseController extends AbstractController
             return $this->render('modcase/view.html.twig', [
                 'error' => [
                     'messages' => ['Failed to load modcase. Statuscode from API: ' . $statusCode]
-                ]
+                ],
+                'navdata' => $navdata
             ]);
         }
     }
