@@ -55,6 +55,7 @@ namespace masz
                 options.LoginPath = "/api/v1/login";
                 options.LogoutPath = "/api/v1/logout";
                 options.ExpireTimeSpan = new TimeSpan(7, 0, 0, 0);
+                options.Cookie.MaxAge = new TimeSpan(7, 0, 0, 0);
                 options.Cookie.Name = "masz_access_token";
                 options.Events.OnRedirectToLogin = context =>
                 {
