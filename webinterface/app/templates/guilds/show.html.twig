@@ -3,7 +3,15 @@
     {% include 'navbar.html.twig' %}
 
     <div class="container">
-
+        {% if not mod_guilds|default and not member_guilds|default and not banned_guilds|default %}
+            <div class="card rounded">
+                <div class="card-body">
+                    <h4 class="card-title"><a>Nothing here.</a></h4>
+                    <p class="card-text">There are no guilds registered that you are a member of. <br/>
+                        If you look for a guild you are banned from, the administrator might have to enable the banned feature first.</p>
+                </div>
+            </div>
+        {% endif %}
         {% if mod_guilds|default %}
             <span class="display-4 mb-3">Moderator Guilds ({{ mod_guilds|length }})</span>
             <div class="d-flex flex-column flex-wrap justify-content-between mt-3">
