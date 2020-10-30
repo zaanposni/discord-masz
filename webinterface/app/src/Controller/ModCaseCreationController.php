@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Config\Config;
 use App\Form\CreateCaseFormType;
 use App\Helpers\Helpers;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,6 +33,12 @@ class ModCaseCreationController extends AbstractController
             ]);
         }
 
+        try {
+            $navdata = Helpers::GetNavbarStaticData();
+        } catch(Exception $e) {
+            $navdata = [];
+        }
+
         $form = $this->createForm(CreateCaseFormType::class);
 
         $form->handleRequest($request);
@@ -40,7 +47,7 @@ class ModCaseCreationController extends AbstractController
             $data = $form->getData();
 
             $client = HttpClient::create();
-            $url = Config::GetBaseUrl().'/api/v1/modcases/' . $guildid; // change api url here
+            $url = Config::getAPIBaseURL().'/api/v1/modcases/' . $guildid; // change api url here
             $response = $client->request(
                 'POST',
                 $url,
@@ -70,6 +77,7 @@ class ModCaseCreationController extends AbstractController
                 'guildid' => $guildid,
                 'now' => 'test',
                 'logged_in_user' => $logged_in_user,
+                'navdata' => $navdata,
                 'createCaseForm' => $form->createView(), // TODO: error handling,
                 'error' => [
                     'messages' => $errorMessages
@@ -81,6 +89,7 @@ class ModCaseCreationController extends AbstractController
             'guildid' => $guildid,
             'now' => date("Y-m-d\\TH:i:s.u"),
             'logged_in_user' => $logged_in_user,
+            'navdata' => $navdata,
             'createCaseForm' => $form->createView(),
             'tabtitle' => 'MASZ: New ModCase'
         ]);

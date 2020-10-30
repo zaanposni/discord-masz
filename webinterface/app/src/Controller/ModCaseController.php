@@ -23,6 +23,11 @@ class ModCaseController extends AbstractController
         }
 
         try {
+            $navdata = Helpers::GetNavbarStaticData();
+        } catch(Exception $e) {
+            $navdata = [];
+        }
+        try {
             $userInfo = Helpers::GetCurrentUser($_COOKIE);
             $logged_in_user = $userInfo;
             if (is_null($userInfo)) {
@@ -35,7 +40,7 @@ class ModCaseController extends AbstractController
 
             $statusCode = 'None';
             $client = HttpClient::create();
-            $url = Config::GetBaseUrl().'/api/v1/modcases/' . $guildid . '/all'; // change api url here
+            $url = Config::getAPIBaseURL().'/api/v1/modcases/' . $guildid . '/all'; // change api url here
             $response = $client->request(
                 'GET',
                 $url,
@@ -49,7 +54,7 @@ class ModCaseController extends AbstractController
             $modCasesContent = $response->getContent();
             $modCases = json_decode($modCasesContent, true);
 
-            $url = Config::GetBaseUrl().'/api/v1/discord/guilds/' . $guildid; // change api url here
+            $url = Config::getAPIBaseURL().'/api/v1/discord/guilds/' . $guildid; // change api url here
             $response = $client->request(
                 'GET',
                 $url,
@@ -78,7 +83,8 @@ class ModCaseController extends AbstractController
         } catch (Exception $e) {
             return $this->render('modcase/show.html.twig', [
                 'modcases' => [],
-                'logged_in_user' => $logged_in_user,
+                'logged_in_user' => null,
+                'navdata' => $navdata,
                 'error' => [
                     'messages' => ['Failed to load modcases. Statuscode from API: ' . $statusCode]
                 ]
@@ -90,6 +96,7 @@ class ModCaseController extends AbstractController
             'guild' => $guild,
             'guildid' => $guild['id'],
             'logged_in_user' => $logged_in_user,
+            'navdata' => $navdata,
             'tabtitle' => 'MASZ: '.$guild['name'].': ModCases'
         ]);
 
@@ -120,7 +127,7 @@ class ModCaseController extends AbstractController
             $statusCode = 'None';
             $errorMessages = [];
             $client = HttpClient::create();
-            $url = Config::GetBaseUrl().'/api/v1/modcases/' . $guildid . "/" . $id; // change api url here
+            $url = Config::getAPIBaseURL().'/api/v1/modcases/' . $guildid . "/" . $id; // change api url here
             $response = $client->request(
                 'GET',
                 $url,
@@ -135,7 +142,7 @@ class ModCaseController extends AbstractController
             $modCase = json_decode($modCaseContent, true);
 
             try {
-                $url = Config::GetBaseUrl().'/api/v1/discord/guilds/' . $modCase["guildId"]; // change api url here
+                $url = Config::getAPIBaseURL().'/api/v1/discord/guilds/' . $modCase["guildId"]; // change api url here
                 $response = $client->request(
                     'GET',
                     $url,
@@ -156,7 +163,7 @@ class ModCaseController extends AbstractController
             }
 
             try {
-                $url = Config::GetBaseUrl().'/api/v1/discord/users/' . $modCase["modId"]; // change api url here
+                $url = Config::getAPIBaseURL().'/api/v1/discord/users/' . $modCase["modId"]; // change api url here
                 $response = $client->request(
                     'GET',
                     $url,
@@ -175,7 +182,7 @@ class ModCaseController extends AbstractController
             }
 
             try {
-                $url = Config::GetBaseUrl().'/api/v1/discord/users/' . $modCase["lastEditedByModId"]; // change api url here
+                $url = Config::getAPIBaseURL().'/api/v1/discord/users/' . $modCase["lastEditedByModId"]; // change api url here
                 $response = $client->request(
                     'GET',
                     $url,
@@ -194,7 +201,7 @@ class ModCaseController extends AbstractController
             }
 
             try {
-                $url = Config::GetBaseUrl().'/api/v1/discord/users/' . $modCase["userId"]; // change api url here
+                $url = Config::getAPIBaseURL().'/api/v1/discord/users/' . $modCase["userId"]; // change api url here
                 $response = $client->request(
                     'GET',
                     $url,

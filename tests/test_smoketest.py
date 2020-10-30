@@ -19,6 +19,12 @@ def test_ping_favicon():
     r = requests.get("http://127.0.0.1:5565/favicon.ico")
     assert r.status_code == 200
 
+def test_ping_favicon():
+    r = requests.get("http://127.0.0.1:5565/static/patchnotes.json")
+    assert r.status_code == 200
+    data = r.json()  # should not throw error
+    assert isinstance(data, list)
+
 def test_healthcheck_backend():
     headers = {
         "Accept": "application/json"

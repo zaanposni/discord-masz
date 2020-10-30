@@ -8,7 +8,6 @@
         </button>
         <div class="navbar-collapse collapse" id="navbarSupportedContent-3" style="">
             <ul class="navbar-nav mr-auto">
-
                 {% if guildid|default %}
                     <li class="nav-item">
                         <a class="nav-link waves-effect waves-light" href="/">Guilds</a>
@@ -24,7 +23,6 @@
                         <a class="nav-link waves-effect waves-light" href="/">Home</a>
                     </li>
                 {% endif %}
-
             </ul>
             {% if logged_in_user|default %}
                 <ul class="navbar-nav ml-auto nav-flex-icons">
@@ -45,7 +43,7 @@
                                         class="text-danger">{{ logged_in_user.discordUser.username }}#{{ logged_in_user.discordUser.discriminator }}</span>
                             </span>
                             {% if logged_in_user.isAdmin %}
-                            <span class="dropdown-item waves-effect waves-light text-primary">
+                                <span class="dropdown-item waves-effect waves-light text-primary">
                                 Congratulations, you are a site admin!
                             </span>
                             {% endif %}
@@ -53,9 +51,61 @@
                     </li>
                 </ul>
             {% endif %}
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-elegant px-3" data-toggle="modal" data-target="#popupPatchNotes">
+                <i class="fas fa-code-branch" aria-hidden="true"></i>
+            </button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-elegant px-3" data-toggle="modal" data-target="#popupUserSettings">
+                <i class="fas fa-sliders-h" aria-hidden="true"></i>
+            </button>
         </div>
     </div>
 </nav>
+<div class="modal fade" id="popupPatchNotes" tabindex="-1" role="dialog" aria-labelledby="popupPatchNotesLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="popupPatchNotesLabel">Patch Notes</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {% for note in navdata.patchnotes|default([]) %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title"><a>{{ note.title  }}</a></h4>
+                            <p class="card-text">{{ note.body }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% if not navdata.patchnotes|default %}
+                    <p class="text-danger">Failed to load Patch Notes.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="popupUserSettings" tabindex="-1" role="dialog" aria-labelledby="popupUserSettingsLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="popupUserSettingsLabel">Settings</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Coming soon...
+            </div>
+        </div>
+    </div>
+</div>
 <br>
 <div class="container">
     {% if error|default %}

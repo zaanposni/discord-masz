@@ -34,6 +34,11 @@ class IndexController extends AbstractController
 
         $client = HttpClient::create();
         try {
+            $navdata = Helpers::GetNavbarStaticData();
+        } catch(Exception $e) {
+            $navdata = [];
+        }
+        try {
             $modGuilds = array();
             $memberGuilds = array();
             $bannedGuilds = array();
@@ -60,7 +65,8 @@ class IndexController extends AbstractController
                 'member_guilds' => $memberGuilds,
                 'banned_guilds' => $bannedGuilds,
                 'logged_in_user' => $logged_in_user,
-                'tabtitle' => 'MASZ: Your guilds'
+                'tabtitle' => 'MASZ: Your guilds',
+                'navdata' => $navdata
             ]);
         } catch (Exception $e) {
             return $this->render('guilds/show.html.twig', [
@@ -68,7 +74,8 @@ class IndexController extends AbstractController
                 'logged_in_user' => $logged_in_user,
                 'error' => [
                     'messages' => ['Failed to fetch guild info.']
-                ]
+                ],
+                'navdata' => $navdata
             ]);
         }
 
