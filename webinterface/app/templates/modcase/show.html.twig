@@ -36,7 +36,14 @@
             {% endif %}
         </div>
         <br>
-
+        {% if not modcases|default %}
+            <div class="card rounded">
+                <div class="card-body">
+                    <h4 class="card-title"><a>Nothing here.</a></h4>
+                    <p class="card-text">There are no cases that match your search.</p>
+                </div>
+            </div>
+        {% endif %}
         <table id="dtBasicExample" class="table" cellspacing="0" width="100%">
             <thead>
                 <tr>
