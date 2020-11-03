@@ -47,8 +47,10 @@
                     <a type="button" class="btn btn-primary"
                        href="/api/v1/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}" target="_blank">See raw case
                         data</a>
-                    <a type="button" class="btn btn-warning" href="#">Edit this case</a>
-                    <a type="button" class="btn btn-danger" href="#">Delete this case</a>
+                    {% if modcase.guildId in logged_in_user.modGuilds or logged_in_user.isAdmin %}
+                        <a type="button" class="btn btn-warning" href="#">Edit this case</a>
+                        <a type="button" class="btn btn-danger" href="#">Delete this case</a>
+                    {% endif %}
                 </div>
 
             </div>
