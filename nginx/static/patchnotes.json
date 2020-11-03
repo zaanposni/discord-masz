@@ -1,6 +1,6 @@
 [
     {
-        "title": "",
+        "title": "Version 0.1",
         "body": "- Added logout option in the profile dropdown.\n- No longer accepting modcases for Discord bots.\n- Only show edit/delete/create buttons if user is a moderator or admin."
     },
     {
