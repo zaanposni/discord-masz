@@ -1,10 +1,14 @@
 [
     {
+        "title": "",
+        "body": "- Added logout option in the profile dropdown \n- No longer accepting modcases for Discord bots."
+    },
+    {
         "title": "Notice for empty results",
-        "body": "It is now displayed more clearly that a search or the displayed page does not contain any errors but is actually empty due to permissions or similar."
+        "body": "- It is now displayed more clearly that a search or the displayed page does not contain any errors but is actually empty due to permissions or similar."
     },
     {
         "title": "Added Patch Notes",
-        "body": "Added Patch Notes."
+        "body": "- Added Patch Notes."
     }
 ]

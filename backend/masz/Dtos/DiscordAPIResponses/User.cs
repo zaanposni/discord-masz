@@ -13,6 +13,7 @@ namespace masz.Dtos.DiscordAPIResponses
             Username = temp.Username;
             Discriminator = temp.Discriminator;
             Avatar = temp.Avatar;
+            Bot = temp.Bot;
         }
 
         [JsonProperty("id")]
@@ -23,5 +24,7 @@ namespace masz.Dtos.DiscordAPIResponses
         public string Discriminator { get; set; }
         [JsonProperty("avatar")]
         public string Avatar { get; set; }
+        [JsonProperty("bot")]
+        public bool Bot { get; set; }
     }
 }
