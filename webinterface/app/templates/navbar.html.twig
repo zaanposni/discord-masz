@@ -47,6 +47,9 @@
                                 Congratulations, you are a site admin!
                             </span>
                             {% endif %}
+                            <span class="dropdown-item waves-effect waves-light" onclick="window.location.href='/api/v1/logout';">
+                               Logout
+                            </span>
                         </div>
                     </li>
                 </ul>
@@ -77,8 +80,10 @@
                 {% for note in navdata.patchnotes|default([])|slice(0, 5) %}
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h4 class="card-title"><a>{{ note.title  }}</a></h4>
-                            <p class="card-text">{{ note.body }}</p>
+                            {% if note.title|default %}
+                                <h4 class="card-title"><a>{{ note.title|raw|markdown_to_html  }}</a></h4>
+                            {% endif %}
+                            <p class="card-text">{{ note.body|raw|markdown_to_html }}</p>
                         </div>
                     </div>
                 {% endfor %}

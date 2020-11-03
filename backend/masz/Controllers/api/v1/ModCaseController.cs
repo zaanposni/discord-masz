@@ -248,8 +248,8 @@ namespace masz.Controllers
                 return BadRequest("Guild not registered.");
             }
 
-            var currentModUserId = currentUser.Id;
-            if (currentModUserId == null)
+            var currentModerator = currentUser.Id;
+            if (currentModerator == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Failed to fetch mod user info.");
                 return BadRequest("Could not fetch own user info.");
@@ -258,6 +258,12 @@ namespace masz.Controllers
             ModCase newModCase = new ModCase();
             
             User currentReportedUser = await discord.FetchUserInfo(modCase.UserId);
+
+            if (currentReportedUser.Bot) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for bots.");
+                return BadRequest("Cannot create cases for bots.");
+            }
+
             newModCase.Username = currentReportedUser.Username;
 
             GuildMember currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId);
@@ -271,7 +277,7 @@ namespace masz.Controllers
             newModCase.Title = modCase.Title;
             newModCase.Description = modCase.Description;
             newModCase.GuildId = guildid;
-            newModCase.ModId = currentModUserId;
+            newModCase.ModId = currentModerator;
             newModCase.UserId = modCase.UserId;
             newModCase.Severity = modCase.Severity;
             newModCase.CreatedAt = DateTime.UtcNow;
@@ -280,7 +286,7 @@ namespace masz.Controllers
             else
                 newModCase.OccuredAt = DateTime.UtcNow;
             newModCase.LastEditedAt = DateTime.UtcNow;
-            newModCase.LastEditedByModId = currentModUserId;
+            newModCase.LastEditedByModId = currentModerator;
             newModCase.Punishment = modCase.Punishment;
             newModCase.Labels = modCase.Labels;
             newModCase.Others = modCase.Others;

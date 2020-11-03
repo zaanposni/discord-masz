@@ -5,6 +5,7 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-json": "*",
         "erusev/parsedown": "^1.7",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/asset": "5.1.*",
@@ -18,8 +19,8 @@
         "symfony/twig-bundle": "5.1.*",
         "symfony/yaml": "5.1.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0",
-        "ext-json": "*"
+        "twig/markdown-extra": "^3.1",
+        "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
     },

@@ -39,12 +39,22 @@ namespace masz.Controllers
             return this.Challenge(properties, "Discord");
         }
 
+        [HttpGet("logout")]
         [HttpPost("logout")]
         [Authorize]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return Redirect("/");
+            var properties = new AuthenticationProperties()
+            {
+                RedirectUri = "/",
+                Items =
+                {
+                    { "LoginProvider", "Discord" },
+                    { "scheme", "Discord" }
+                },
+                AllowRefresh = true,
+            };
+            return this.SignOut(properties, CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
     }
