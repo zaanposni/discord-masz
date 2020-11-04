@@ -31,7 +31,7 @@ echo "Using specified nginx config"
 if [[ $(jq '.meta.nginx_mode' $file) = *prod* ]]; then
     echo "prod"
     cp ./nginx/nginx-prod.conf ./nginx/nginx.conf
-    sed -i -e 's/{{placeholder}}/'$service_domain'/g' /tmp/file.txt
+    sed -i -e 's/{{placeholder}}/'$service_domain'/g' ./nginx/nginx.conf
     cp ./webinterface/app/.env.prod ./webinterface/app/.env
 else
     echo "local"
