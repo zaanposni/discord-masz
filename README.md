@@ -59,13 +59,9 @@ If you want to use the `banned` feature (banned users can still see the guild an
 - Create a `config.json` file in the root of the project based on the template in `default-config.json`
   - `site_admins` is a list of Discord user id strings. This list is used to authorize users to add new guilds to the application or similiar admin tasks.
   - `service_name` should be the name/domain the service is hosted on.
+  - `service_domain` is the domain the service is hosted on.
   - `service_base_url` is the URL the service is hosted on.
   - `nginx_mode` can be either `local` or `prod` and describes if you are hosting a development or production environment.
-    - if you are deploying a `prod` env, you have to use the following lines in your frontproxy:
-```
-proxy_set_header Host "yourdomain.com";
-proxy_set_header X-Forwarded-Host $http_host;
-```
 - Start everything out of the box by running the `bootstrap.sh` script.
 - Your application is now hosted at `127.0.0.1:5565`, you might want to redirect your reverse proxy or similiar to this location :)
 
