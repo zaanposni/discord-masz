@@ -15,6 +15,8 @@ mysql_user=$(jq --raw-output '.mysql_database.user' $file)
 mysql_pass=$(jq --raw-output '.mysql_database.pass' $file)
 mysql_root_pass=$(jq --raw-output '.mysql_database.root_pass' $file)
 
+service_domain=$(jq --raw-output '.meta.service_domain' $file)
+
 cat> .env <<- EOM
 MYSQL_PORT=$mysql_port
 MYSQL_DATABASE=$mysql_database
@@ -29,6 +31,7 @@ echo "Using specified nginx config"
 if [[ $(jq '.meta.nginx_mode' $file) = *prod* ]]; then
     echo "prod"
     cp ./nginx/nginx-prod.conf ./nginx/nginx.conf
+    sed -i -e 's/{{placeholder}}/'$service_domain'/g' ./nginx/nginx.conf
     cp ./webinterface/app/.env.prod ./webinterface/app/.env
 else
     echo "local"
