@@ -1,22 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {% include 'navbar.html.twig' %}
-
-    <style>
-        .hiddencolumn {
-            display: none;
-        }
-    </style>
-
     <div class="container">
         <div class="d-flex justify-content-between align-items-start">
             <h3><span class="badge badge-danger">New ModCase</span></h3>
         </div>
         <br>
-
-
         {{ form_start(createCaseForm) }}
-
         <div class="d-flex flex-wrap">
             <div class="md-form flex-grow-1">
                 {{ form_label(createCaseForm.userid) }}
@@ -35,9 +25,24 @@
                 {{ form_row(createCaseForm.severity, {'attr': {'placeholder': '0' }}) }}
             </div>
         </div>
-        <div class="md-form">
-            {{ form_row(createCaseForm.label) }}
-        </div>
+
+        <label>Labels</label>
+        <i type="button"
+           class="add-another-collection-widget list-group-item fas fa-plus"
+           data-list-selector="#labels-fields-list"></i>
+        <ul id="labels-fields-list" class="list-group list-group-horizontal-lg d-flex flex-wrap"
+            data-prototype="{{ form_widget(createCaseForm.labels.vars.prototype)|e }}"
+            data-widget-tags="{{ '<li></li>'|e }}"
+            data-widget-counter="{{ createCaseForm.labels|length }}"
+            style="list-style: none;">
+            {% for labelField in createCaseForm.labels %}
+                <li class="list-group-item">
+                    {{ form_errors(labelField) }}
+                    {{ form_widget(labelField) }}
+                </li>
+            {% endfor %}
+        </ul>
+
         <div class="md-form">
             {{ form_row(createCaseForm.title) }}
         </div>
@@ -53,18 +58,7 @@
         <div class="md-form">
             {{ form_row(createCaseForm.sendNotification) }}
         </div>
-
         {{ form_end(createCaseForm) }}
-
     </div>
 {% endblock body %}
 
-{% block scriptblock %}
-
-    <script>
-        $(document).ready(function () {
-
-            $('#dtBasicExample').DataTable();
-        });
-    </script>
-{% endblock %}
