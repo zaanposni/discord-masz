@@ -46,6 +46,9 @@ class ModCaseCreationController extends AbstractController
         if($form->isSubmitted()) {
             $data = $form->getData();
 
+            $sendNotificationRaw = $data['sendNotification'] ?? true;
+            $sendNotification = $sendNotificationRaw ? 'true' : 'false';
+
             $client = HttpClient::create();
             $url = Config::getAPIBaseURL().'/api/v1/modcases/' . $guildid; // change api url here
             $response = $client->request(
@@ -58,7 +61,10 @@ class ModCaseCreationController extends AbstractController
                         'Connection' => 'keep-alive',
                         'Content-Length' => strlen(json_encode($data))
                     ],
-                    'body' => json_encode($data)
+                    'body' => json_encode($data),
+                    'query' => [
+                        'sendNotification' => $sendNotification
+                    ]
                 ]
             );
             $statusCode = $response->getStatusCode();

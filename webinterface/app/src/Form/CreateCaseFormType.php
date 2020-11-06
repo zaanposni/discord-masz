@@ -4,6 +4,9 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -39,13 +42,17 @@ class CreateCaseFormType extends AbstractType
                 ],
                 'label' => 'Title',
             ])
-            ->add('label', TextType::class, [
-                'attr' => [
-                    'class' => "form-control",
+            ->add('labels', CollectionType::class, [
+                'entry_options' => [
+                    'attr' => ['class' => 'label-box list-group-item'],
+                    'label' => false
                 ],
-                'label' => 'Labels',
-                'empty_data' => '',
-                'required'=> false
+                'allow_add' => true,
+                'allow_delete' => true,
+                'label' => false,
+                'by_reference' => false,
+                'prototype' => true,
+                'entry_type' => TextType::class,
             ])
             ->add('description', TextareaType::class, [
                 'attr' => [
@@ -75,12 +82,12 @@ class CreateCaseFormType extends AbstractType
                 ],
                 'label' => 'Punishment',
             ])
-            ->add('sendNotification', TextType::class, [
+            ->add('sendNotification', CheckboxType::class, [
                 'attr' => [
                     'class' => "form-control",
                 ],
                 'label' => 'sendNotification',
-                'empty_data' => 'false',
+                'data' => true,
                 'required'=> false
             ])
             ->add('submit', SubmitType::class, [

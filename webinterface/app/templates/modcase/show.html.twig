@@ -40,7 +40,7 @@
         </div>
         <br>
         {% if not modcases|default %}
-            <div class="card rounded">
+            <div class="card rounded mb-3">
                 <div class="card-body">
                     <h4 class="card-title"><a>Nothing here.</a></h4>
                     <p class="card-text">There are no cases that match your search.</p>
@@ -51,7 +51,13 @@
             <thead>
             <tr>
                 <th class="th-sm"></th>
+                <td class="th-sm hiddencolumn">CaseId</td>
                 <th class="th-sm hiddencolumn">UserId</th>
+                <td class="th-sm hiddencolumn">ModId</td>
+                <td class="th-sm hiddencolumn">Labels</td>
+                <td class="th-sm hiddencolumn">Title</td>
+                <td class="th-sm hiddencolumn">Description</td>
+                <td class="th-sm hiddencolumn">Punishment</td>
             </tr>
             </thead>
             <tbody>
@@ -88,7 +94,13 @@
                             </div>
                         </a>
                     </td>
+                    <td class="hiddencolumn">{{ modcase.caseId }}</td>
                     <td class="hiddencolumn">{{ modcase.userId }}</td>
+                    <td class="hiddencolumn">{{ modcase.modId }}</td>
+                    <td class="hiddencolumn">{{ modcase.labels|join('|') }}</td>
+                    <td class="hiddencolumn">{{ modcase.title }}</td>
+                    <td class="hiddencolumn">{{ modcase.description }}</td>
+                    <td class="hiddencolumn">{{ modcase.punishment }}</td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -97,10 +109,12 @@
 {% endblock body %}
 
 {% block scriptblock %}
-
     <script>
         $(document).ready(function () {
-            $('#dtBasicExample').DataTable();
+            $('#dtBasicExample').DataTable({
+                pageLength: 100,
+                order: [1, "asc"]
+            });
         });
     </script>
 {% endblock %}
