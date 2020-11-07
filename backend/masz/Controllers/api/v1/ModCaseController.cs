@@ -184,6 +184,10 @@ namespace masz.Controllers
             // apply automated and unchangeable values
             modCase.Title = modCase.Title.Substring(0, Math.Min(modCase.Title.Length, 100)); // max length 100
             modCase.Punishment = modCase.Punishment.Substring(0, Math.Min(modCase.Punishment.Length, 100)); // max length 100
+            if (modCase.Labels == null) {
+                modCase.Labels = new string[0];
+            }
+            modCase.Labels = modCase.Labels.Distinct().ToArray();
             modCase.Id = id;
             modCase.CaseId = caseid;
             modCase.GuildId = guildId;
@@ -288,7 +292,7 @@ namespace masz.Controllers
             newModCase.LastEditedAt = DateTime.UtcNow;
             newModCase.LastEditedByModId = currentModerator;
             newModCase.Punishment = modCase.Punishment;
-            newModCase.Labels = modCase.Labels;
+            newModCase.Labels = modCase.Labels.Distinct().ToArray();
             newModCase.Others = modCase.Others;
             newModCase.Valid = true;
             
