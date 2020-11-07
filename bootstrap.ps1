@@ -1,3 +1,7 @@
+Write-Host "###################################################################################"
+Write-Host "This script copies files for a development deployment, do not use it in production."
+Write-Host "###################################################################################"
+
 docker-compose stop
 
 docker container rm masz_nginx

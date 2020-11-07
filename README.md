@@ -69,22 +69,7 @@ If you want to use the `banned` feature (banned users can still see the guild an
 
 - You can visit your application at `127.0.0.1:5565`. You will see a login screen that will ask you to authenticate yourself using Discord OAuth2.
 - After authorizing your service to use your Discord account you will see your profile picture in the top right corner of the index page.
-- Check your browser cookies for the access token and execute the following request to register your discord guild in the backend: <br/>
-  `modPublicNotificationWebhook` and `modInternalNotificationWebhook` are used to send notification embeds to your moderation team and guild members - you can leave them empty. <br/>
-  Be sure to be logged in as a site_admin user defined in your `config.json` as only those are authorized to register new guilds
-```bash
-curl --location --request POST '127.0.0.1:5565/api/v1/configs/<guildid>' \
---header 'Content-Type: application/json' \
---header 'Cookie: masz_access_token=<your_cookie>' \
---data-raw '{
-    "modroleid": "id",
-    "adminroleid": "id",
-    "modPublicNotificationWebhook": "url_to_discord_webhook",
-    "modInternalNotificationWebhook": "url_to_discord_webhook"
-}'
-```
-
-- After creating the guild config object you can refresh the browser page and use MASZ :)
+- If you are logged in as a site admin you can use the "register guild" button to register your guilds and to get started. If you do not see the button please verify that your discord user id is in the `site_admins` list of your `config.json`
 
 ## Migration
 
