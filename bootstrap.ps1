@@ -1,6 +1,6 @@
-Write-Host "###################################################################################"
-Write-Host "This script copies files for a development deployment, do not use it in production."
-Write-Host "###################################################################################"
+Write-Host "#############################################################################################################"
+Write-Host "This script copies files for a development deployment, do not use it in production, use bootstrap.sh instead."
+Write-Host "#############################################################################################################"
 
 docker-compose stop
 
