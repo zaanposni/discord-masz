@@ -3,6 +3,15 @@
     {% include 'navbar.html.twig' %}
 
     <div class="container">
+        {% if logged_in_user|default %}
+            {% if logged_in_user.isAdmin %}
+                <!-- Buttons -->
+                <div class="d-flex align-items-center">
+                    <a type="button" class="btn btn-primary" href="/newguild">Register a new guild</a>
+                </div>
+            {% endif %}
+        {% endif %}
+
         {% if not mod_guilds|default and not member_guilds|default and not banned_guilds|default %}
             <div class="card rounded">
                 <div class="card-body">
