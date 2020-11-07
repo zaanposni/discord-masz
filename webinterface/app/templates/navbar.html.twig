@@ -79,7 +79,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                {% for note in navdata.patchnotes|default([])|slice(0, 5) %}
+                {% for note in navdata.patchnotes|default([])|slice(0, 3) %}
                     <div class="card mb-3">
                         <div class="card-body">
                             {% if note.title|default %}
@@ -91,7 +91,7 @@
                 {% endfor %}
                 {% if not navdata.patchnotes|default %}
                     <p class="text-danger">Failed to load Patch Notes.</p>
-                {% elseif navdata.patchnotes|length > 5 %}
+                {% elseif navdata.patchnotes|length > 3 %}
                     <a href="/static/patchnotes.json" class="text-success">See more patch notes here.</a>
                 {% endif %}
             </div>
