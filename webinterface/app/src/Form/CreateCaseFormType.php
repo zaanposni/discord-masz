@@ -76,9 +76,19 @@ class CreateCaseFormType extends AbstractType
                 'empty_data' => date("Y-m-d\\TH:i:s.u"),
                 'required'=> false
             ])
-            ->add('punishment', TextType::class, [
+            ->add('punishment', ChoiceType::class, [
                 'attr' => [
-                    'class' => "form-control",
+                    'class' => "form-control browser-default custom-select",
+                ],
+                'choices' => [
+                    'Warn' => 'Warn',
+                    'Mute' => 'Mute',
+                    'TempMute' => 'TempMute',
+                    'Kick' => 'Kick',
+                    'Ban' => 'Ban',
+                    'TempBan' => 'TempBan',
+                    'Notice' => 'Notice',
+                    'None' => 'None'
                 ],
                 'label' => 'Punishment',
             ])
