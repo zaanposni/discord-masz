@@ -1,7 +1,7 @@
 [
     {
         "title": "Version 0.3",
-        "body": "- Added form to register guilds via frontend.\n- Fixed a bug that modcase labels could be duplicated.\n- Added choice dropdown for the punishment field in case creation"
+        "body": "- Added form to register guilds via frontend.\n- Fixed a bug that modcase labels could be duplicated.\n- Added choice dropdown for the punishment field in case creation\n- Added choice dropdown for the severity field in case creation."
     },
     {
         "title": "Version 0.2",

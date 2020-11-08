@@ -59,13 +59,18 @@ class CreateCaseFormType extends AbstractType
                 ],
                 'label' => 'Description',
             ])
-            ->add('severity', TextType::class, [
+            ->add('severity', ChoiceType::class, [
                 'attr' => [
-                    'class' => "form-control",
+                    'class' => "form-control browser-default custom-select",
                 ],
-                'label' => 'Severity',
-                'empty_data' => '0',
-                'required'=> false
+                'choices' => [
+                    'Medium' => 0,
+                    'Normal' => 1,
+                    'Hard' => 2,
+                    'Epic' => 3
+                ],
+                'data' => 1,
+                'label' => 'Severity'
             ])
             ->add('occuredAt', TextType::class, [
                 'attr' => [

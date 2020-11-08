@@ -187,6 +187,10 @@ namespace masz.Controllers
             if (modCase.Labels == null) {
                 modCase.Labels = new string[0];
             }
+            if (!Enumerable.Range(0, 4).Contains(modCase.Severity)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Severity is invalid.");
+                return BadRequest("Severity between 0 and 3 is required.");
+            }
             modCase.Labels = modCase.Labels.Distinct().ToArray();
             modCase.Id = id;
             modCase.CaseId = caseid;
