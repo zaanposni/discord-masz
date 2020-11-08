@@ -1,0 +1,12 @@
+name: PHP
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  phplint:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v1
+        - uses: michaelw90/PHP-Lint@master
