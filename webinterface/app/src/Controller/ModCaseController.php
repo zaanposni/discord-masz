@@ -249,7 +249,7 @@ class ModCaseController extends AbstractController
                 'logged_in_user' => $logged_in_user,
                 'navdata' => $navdata,
                 'user' => $user,
-                'tabtitle' => 'MASZ: #'.$modCase['id'].': '.$modCase['title']
+                'tabtitle' => 'MASZ: #'.$modCase['caseId'].': '.$modCase['title']
             ]);
         } catch (Exception $e) {
             return $this->render('modcase/view.html.twig', [
