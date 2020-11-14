@@ -1,5 +1,9 @@
 [
     {
+        "title": "Version 0.4",
+        "body": "- Added button for moderators to view all cases they created\n- Added info box if modcases are viewed as normal member without special permissions."
+    },
+    {
         "title": "Version 0.3",
         "body": "- Added form to register guilds via frontend.\n- Fixed a bug that modcase labels could be duplicated.\n- Added choice dropdown for the punishment field in case creation\n- Added choice dropdown for the severity field in case creation.\n- Now displaying the correct case id in the tab title.\n- 'See more patch notes here.' now redirects to github release page.\n- The OAuth login no longer opens in a new tab."
     },

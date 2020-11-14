@@ -28,17 +28,27 @@
                     </div>
                 {% endif %}
             </div>
-
+            <!-- Buttons -->
+            <div class="d-flex flex-column align-self-end">
             {% if guild|default %}
                 {% if guild.id in logged_in_user.modGuilds or logged_in_user.isAdmin %}
-                    <!-- Buttons -->
-                    <div class="d-flex align-items-center">
                         <a type="button" class="btn btn-primary" href="/modcases/{{ guild.id }}/new">Create new Case</a>
-                    </div>
+                {% endif %}
+                {% if guild.id in logged_in_user.modGuilds %}
+                        <a type="button" class="btn btn-primary" href="?modId={{ logged_in_user.discordUser.id }}">My Cases</a>
                 {% endif %}
             {% endif %}
+            </div>
         </div>
         <br>
+        {% if guild.id not in logged_in_user.modGuilds and not logged_in_user.isAdmin %}
+            <div class="card rounded mb-3">
+                <div class="card-body">
+                    <h4 class="card-title"><a>Restricted permissions.</a></h4>
+                    <p class="card-text">You do not have any special permissions in this guild and will therefore only see cases registered on your name.</p>
+                </div>
+            </div>
+        {% endif %}
         {% if not modcases|default %}
             <div class="card rounded mb-3">
                 <div class="card-body">
