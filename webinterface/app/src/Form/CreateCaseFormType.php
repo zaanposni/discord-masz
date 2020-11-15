@@ -22,13 +22,13 @@ class CreateCaseFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('userid', TextType::class, [
+            ->add('userId', TextType::class, [
                 'attr' => [
                     'class' => "form-control",
                 ],
                 'label' => 'Discord UserId'
             ])
-            ->add('guildid', TextType::class, [
+            ->add('guildId', TextType::class, [
                 'attr' => [
                     'class' => "form-control",
                 ],
@@ -57,7 +57,7 @@ class CreateCaseFormType extends AbstractType
                 'attr' => [
                     'class' => "form-control md-textarea",
                 ],
-                'label' => 'Description',
+                'label' => 'Description'
             ])
             ->add('severity', ChoiceType::class, [
                 'attr' => [

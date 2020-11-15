@@ -209,11 +209,20 @@ namespace masz.Controllers
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 UserId is invalid.");
                     return BadRequest("UserId is invalid.");
                 }
-                var currentReportedUser = await discord.FetchMemberInfo(guildid, modCase.UserId);
-                if (currentReportedUser != null)
+                var currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId);
+                if (currentReportedMember != null)
                 {
-                    modCase.Username = currentReportedUser.User.Username;
-                    modCase.Nickname = currentReportedUser.Nick;
+                    modCase.Username = currentReportedMember.User.Username;
+                    modCase.Nickname = currentReportedMember.Nick;
+                }
+                var currentReportedUser = await discord.FetchUserInfo(modCase.UserId);
+                if (currentReportedUser == null) {
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Invalid Discord UserId.");
+                    return BadRequest("Invalid Discord UserId.");
+                }
+                if (currentReportedMember.User.Bot) {
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for bots.");
+                    return BadRequest("Cannot create cases for bots.");
                 }
             }
 
@@ -266,7 +275,10 @@ namespace masz.Controllers
             ModCase newModCase = new ModCase();
             
             User currentReportedUser = await discord.FetchUserInfo(modCase.UserId);
-
+            if (currentReportedUser == null) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Invalid Discord UserId.");
+                return BadRequest("Invalid Discord UserId.");
+            }
             if (currentReportedUser.Bot) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for bots.");
                 return BadRequest("Cannot create cases for bots.");

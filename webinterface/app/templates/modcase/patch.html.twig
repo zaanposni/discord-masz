@@ -3,7 +3,7 @@
     {% include 'navbar.html.twig' %}
     <div class="container">
         <div class="d-flex justify-content-between align-items-start">
-            <h3><span class="badge badge-danger">New ModCase</span></h3>
+            <h3><span class="badge badge-warning">Edit ModCase</span></h3>
         </div>
         <br>
         {{ form_start(createCaseForm) }}
@@ -14,12 +14,12 @@
             </div>
             <div class="md-form flex-grow-1">
                 {{ form_label(createCaseForm.guildId) }}
-                {{ form_widget(createCaseForm.guildId, {'attr': {'placeholder': guildid }}) }}
+                {{ form_widget(createCaseForm.guildId) }}
             </div>
         </div>
         <div class="d-flex flex-wrap">
             <div class="md-form flex-grow-1">
-                {{ form_row(createCaseForm.occuredAt, {'attr': {'placeholder': now }}) }}
+                {{ form_row(createCaseForm.occuredAt) }}
             </div>
             <div class="flex-grow-1">
                 {{ form_row(createCaseForm.severity) }}
@@ -53,10 +53,14 @@
             </small>
         </div>
         <div class="">
-            {{ form_row(createCaseForm.punishment) }}
+            {{ form_label(createCaseForm.punishment) }}
+            {{ form_widget(createCaseForm.punishment, {'required': false, 'value': modcase.punishment|default, 'empty_data': modcase.punishment|default }) }}
         </div>
         <div class="md-form">
             {{ form_row(createCaseForm.sendNotification) }}
+        </div>
+        <div class="md-form">
+            {{ form_row(createCaseForm.submit, {'attr': {'class': 'btn btn-warning btn-lg btn-block' }}) }}
         </div>
         {{ form_end(createCaseForm) }}
     </div>

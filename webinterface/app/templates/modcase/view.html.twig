@@ -48,7 +48,7 @@
                        href="/api/v1/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}" target="_blank">See raw case
                         data</a>
                     {% if modcase.guildId in logged_in_user.modGuilds or logged_in_user.isAdmin %}
-                        <a type="button" class="btn btn-warning" href="#">Edit this case</a>
+                        <a type="button" class="btn btn-warning" href="/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}/edit">Edit this case</a>
                         <a type="button" class="btn btn-danger" href="#">Delete this case</a>
                     {% endif %}
                 </div>
@@ -134,7 +134,7 @@
                         </tr>
                         <tr>
                             <th class="font-weight-bold">Date & time</th>
-                            <td>{{ modcase.createdAt }}</td>
+                            <td>{{ modcase.occuredAt }}</td>
                         </tr>
                         <tr>
                             <th class="font-weight-bold">Moderator</th>
