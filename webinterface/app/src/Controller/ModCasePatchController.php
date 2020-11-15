@@ -112,7 +112,6 @@ class ModCasePatchController extends AbstractController
             ]);
         }
 
-        $form->get('punishment')->setData($modCase['punishment']);
         return $this->render('modcase/patch.html.twig', [
             'guildid' => $guildid,
             'now' => date("Y-m-d\\TH:i:s.u"),
