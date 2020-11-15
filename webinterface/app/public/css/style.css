@@ -50,6 +50,8 @@ body {
 
 #footer {
     flex-shrink: 0;
+    color: orange;
+    font-weight: bold;
 }
 
 #footer a {
