@@ -19,7 +19,7 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen
 
 WORKDIR /home/wwwroot/sf4
-RUN composer update
+RUN composer clear-cache
 RUN composer install --no-dev --optimize-autoloader
 WORKDIR /home/wwwroot
 
