@@ -17,6 +17,9 @@
     "erusev/parsedown": {
         "version": "1.7.4"
     },
+    "mikemccabe/json-patch-php": {
+        "version": "dev-master"
+    },
     "php": {
         "version": "7.4"
     },

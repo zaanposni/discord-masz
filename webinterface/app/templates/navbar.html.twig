@@ -118,14 +118,16 @@
 <br>
 <div class="container">
     {% if error|default %}
-        <div class="card mt-3 text-danger background-blink" id="fade-it">
-            <div class="card-body">
-                <h5 class="card-title font-weight-bold">An Error occurred</h5>
-                {% for message in error.messages %}
-                    <span class="card-text" style="white-space: pre-wrap;">{{ message }}</span><br/>
-                {% endfor %}
+        {% if error.messages|length > 0 %}
+            <div class="card mt-3 text-danger background-blink" id="fade-it">
+                <div class="card-body">
+                    <h5 class="card-title font-weight-bold">An Error occurred</h5>
+                    {% for message in error.messages %}
+                        <span class="card-text" style="white-space: pre-wrap;">{{ message }}</span><br/>
+                    {% endfor %}
+                </div>
             </div>
-        </div>
+        {% endif %}
     {% endif %}
 </div>
 
