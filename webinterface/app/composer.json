@@ -3,8 +3,8 @@
     "license": "proprietary",
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://github.com/mikemccabe/json-patch-php"
+            "type": "git",
+            "url": "https://github.com/mikemccabe/json-patch-php.git"
         }
     ],
     "require": {
