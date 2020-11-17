@@ -38,7 +38,7 @@ namespace masz
         {
             services.AddDbContext<DataContext>(x => x.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers()
-                .AddNewtonsoftJson();
+                .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddScoped<IDatabase, Database>();
             services.AddScoped<IDiscordAPIInterface, DiscordAPIInterface>();

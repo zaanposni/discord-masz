@@ -18,6 +18,7 @@ namespace masz.data
 
         public DbSet<ModCase> ModCases { get; set; }
         public DbSet<GuildConfig> GuildConfigs { get; set; }
+        public DbSet<ModCaseComment> ModCaseComments { get; set; }
 
         public void Configure(EntityTypeBuilder<ModCase> builder) {
             builder.Property(u => u.CreatedAt).IsRequired(true).HasDefaultValueSql("now()");
@@ -49,6 +50,12 @@ namespace masz.data
                 .HasConversion(
                     v => string.Join(',', v),
                     v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+            
+            modelBuilder.Entity<ModCaseComment>()
+                .HasOne(c => c.ModCase)
+                .WithMany(c => c.Comments)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
