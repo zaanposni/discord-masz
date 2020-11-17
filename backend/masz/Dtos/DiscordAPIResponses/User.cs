@@ -14,6 +14,17 @@ namespace masz.Dtos.DiscordAPIResponses
             Discriminator = temp.Discriminator;
             Avatar = temp.Avatar;
             Bot = temp.Bot;
+
+            if (Avatar != null) {
+                if (Avatar.StartsWith("a_")) { // gif avatar
+                    ImageUrl = $"https://cdn.discordapp.com/avatars/{Id}/{Avatar}.gif";
+                } else {
+                    ImageUrl = $"https://cdn.discordapp.com/avatars/{Id}/{Avatar}.png";
+                }
+            } else {
+                string defaultAvatar = (Int32.Parse(Discriminator) % 5).ToString();
+                ImageUrl = $"https://cdn.discordapp.com/embed/avatars/{defaultAvatar}.png";
+            }
         }
 
         [JsonProperty("id")]
@@ -26,5 +37,6 @@ namespace masz.Dtos.DiscordAPIResponses
         public string Avatar { get; set; }
         [JsonProperty("bot")]
         public bool Bot { get; set; }
+        public string ImageUrl { get; set; }
     }
 }
