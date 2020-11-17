@@ -1,7 +1,7 @@
 [
     {
         "title": "Version 0.4",
-        "body": "- Added button for moderators to view all cases they created\n- Added info box if modcases are viewed as normal member without special permissions.\n- ModCases are now editable.\n- Added more info and content to login page."
+        "body": "- Added button for moderators to view all cases they created\n- Added info box if modcases are viewed as normal member without special permissions.\n- ModCases are now editable.\n- Added more info and content to login page.\n- Fixed a bug that many fields in modcases could be edited to be null or empty.\n- Fixed edit form to display 'EDIT CASE' instead of 'CREATE CASE'"
     },
     {
         "title": "Version 0.3",

@@ -64,28 +64,25 @@ class ModCasePatchController extends AbstractController
         }
         $form = $this->createForm(CreateCaseFormType::class, $modCase);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $modCase != null) {
+        if($form->isSubmitted()) {
             $data = $form->getData();
 
             $sendNotificationRaw = $data['sendNotification'] ?? true;
             $sendNotification = $sendNotificationRaw ? 'true' : 'false';
             unset($data['sendNotification']);  // unset as this attribute is not expected by the api
-            unset($modCase['labels']);  // unset so the php lib uses operation "replace" in json patch document
-
-            $patchDocument = JsonPatch::diff($modCase, $data);
 
             $url = Config::getAPIBaseURL().'/api/v1/modcases/'.$guildid.'/'.$caseid; // change api url here
             $response = $client->request(
-                'PATCH',
+                'PUT',
                 $url,
                 [
                     'headers' => [
                         'Cookie' => 'masz_access_token=' . $_COOKIE["masz_access_token"],
                         'Content-Type' => 'application/json',
                         'Connection' => 'keep-alive',
-                        'Content-Length' => strlen(json_encode($patchDocument))
+                        'Content-Length' => strlen(json_encode($data))
                     ],
-                    'body' => json_encode($patchDocument),
+                    'body' => json_encode($data),
                     'query' => [
                         'sendNotification' => $sendNotification
                     ]
