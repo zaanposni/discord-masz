@@ -136,8 +136,8 @@ namespace masz.Controllers
             return Ok(new { id = modCase.Id, caseid = modCase.CaseId });
         }
 
-        [HttpPatch("{modcaseid}")]
-        public async Task<IActionResult> PatchSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromBody] JsonPatchDocument<ModCase> newValue, [FromQuery] bool sendNotification = true)
+        [HttpPut("{modcaseid}")]
+        public async Task<IActionResult> PutSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromBody] ModCaseForPutDto newValue, [FromQuery] bool sendNotification = true)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -161,68 +161,48 @@ namespace masz.Controllers
             }
 
             ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
+            ModCase oldModCase = (ModCase) modCase.Clone();
             if (modCase == null) 
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
                 return NotFound();
             }
 
-            string oldUserId = modCase.UserId;
-            // unchangeable values
-            int id = modCase.Id;
-            int caseid = modCase.CaseId;
-            string guildId = modCase.GuildId;
-            string username = modCase.Username;
-            string nickname = modCase.Nickname;
-            DateTime createdAt = modCase.CreatedAt;
+            modCase.Title = newValue.Title;
+            modCase.Description = newValue.Description;
+            modCase.UserId = newValue.UserId;
+            modCase.Severity = newValue.Severity;
+            modCase.OccuredAt = newValue.OccuredAt;
+            modCase.Punishment = newValue.Punishment;
+            modCase.Labels = newValue.Labels.Distinct().ToArray();
+            modCase.Others = newValue.Others;
 
-            // json patch
-            var serialized = JsonConvert.SerializeObject(newValue);
-            var deserialized = JsonConvert.DeserializeObject<JsonPatchDocument>(serialized);
-            deserialized.ApplyTo(modCase);
-
-            // apply automated and unchangeable values
-            modCase.Title = modCase.Title.Substring(0, Math.Min(modCase.Title.Length, 100)); // max length 100
-            modCase.Punishment = modCase.Punishment.Substring(0, Math.Min(modCase.Punishment.Length, 100)); // max length 100
-            if (modCase.Labels == null) {
-                modCase.Labels = new string[0];
-            }
-            if (!Enumerable.Range(0, 4).Contains(modCase.Severity)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Severity is invalid.");
-                return BadRequest("Severity between 0 and 3 is required.");
-            }
-            modCase.Labels = modCase.Labels.Distinct().ToArray();
-            modCase.Id = id;
-            modCase.CaseId = caseid;
-            modCase.GuildId = guildId;
-            modCase.Username = username;
-            modCase.Nickname = nickname;
-            modCase.CreatedAt = createdAt;
+            modCase.Id = oldModCase.Id;
+            modCase.CaseId = oldModCase.CaseId;
+            modCase.GuildId = oldModCase.GuildId;
+            modCase.Username = oldModCase.Username;
+            modCase.Nickname = oldModCase.Nickname;
+            modCase.CreatedAt = oldModCase.CreatedAt;
             modCase.LastEditedAt = DateTime.UtcNow;
             modCase.LastEditedByModId = currentUser.Id;
 
-            if (oldUserId != modCase.UserId)  // if user id got updated, update nickname and username
+            if (oldModCase.UserId != modCase.UserId)  // if user id got updated, update nickname and username
             {
-                var regex = @"^[0-9]{18}$";
-                var match = Regex.Match(modCase.UserId, regex);
-                if (!match.Success) {
-                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 UserId is invalid.");
-                    return BadRequest("UserId is invalid.");
-                }
-                var currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId);
-                if (currentReportedMember != null)
-                {
-                    modCase.Username = currentReportedMember.User.Username;
-                    modCase.Nickname = currentReportedMember.Nick;
-                }
                 var currentReportedUser = await discord.FetchUserInfo(modCase.UserId);
                 if (currentReportedUser == null) {
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Invalid Discord UserId.");
                     return BadRequest("Invalid Discord UserId.");
                 }
-                if (currentReportedMember.User.Bot) {
+                if (currentReportedUser.Bot) {
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for bots.");
                     return BadRequest("Cannot create cases for bots.");
+                }
+                modCase.Username = currentReportedUser.Username;  // update to new username
+
+                var currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId);
+                if (currentReportedMember != null)
+                {
+                    modCase.Nickname = currentReportedMember.Nick;  // update to new nickname if no member anymore leave old fetched nickname
                 }
             }
 

@@ -7,7 +7,7 @@ using masz.Dtos.ModCase;
 
 namespace masz.Models
 {
-    public class ModCase
+    public class ModCase: ICloneable
     {
         [Key]
         public int Id { get; set; }
@@ -28,5 +28,29 @@ namespace masz.Models
         public string[] Labels { get; set; }
         public string Others { get; set; }
         public bool Valid { get; set; }
+
+        public object Clone()
+        {
+            return new ModCase {
+                Id = this.Id,
+                CaseId = this.CaseId,
+                GuildId = this.GuildId,
+                Title = this.Title,
+                Description = this.Description,
+                UserId = this.UserId,
+                Username = this.Username,
+                Nickname = this.Nickname,
+                ModId = this.ModId,
+                Severity = this.Severity,
+                CreatedAt = this.CreatedAt,
+                OccuredAt = this.OccuredAt,
+                LastEditedAt = this.LastEditedAt,
+                LastEditedByModId = this.LastEditedByModId,
+                Punishment = this.Punishment,
+                Labels = this.Labels,
+                Others = this.Others,
+                Valid = this.Valid
+            };
+        }
     }
 }
