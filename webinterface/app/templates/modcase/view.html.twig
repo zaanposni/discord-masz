@@ -35,9 +35,10 @@
                 {% if user|default %}
                     <div class="align-self-end mr-4">
                         <img
-                                src="https://cdn.discordapp.com/avatars/{{ user.id }}/{{ user.avatar }}.png"
+                                src="{{ user.imageUrl }}"
                                 class="rounded-circle z-depth-0 mr-1"
                                 alt="avatar image"
+                                height="128"
                         />
                     </div>
                 {% endif %}
@@ -147,7 +148,7 @@
                                 <a href="/modcases/{{ modcase.guildId }}?modId={{ modcase.modId }}">
                                     {% if moderator|default %}
                                         <img
-                                                src="https://cdn.discordapp.com/avatars/{{ moderator.id }}/{{ moderator.avatar }}.png"
+                                                src="{{ moderator.imageUrl }}"
                                                 class="rounded-circle z-depth-0 mr-1"
                                                 alt="avatar image"
                                                 height="35"
@@ -164,7 +165,7 @@
                                 <a href="/modcases/{{ modcase.guildId }}?modId={{ lastModerator.id }}">
                                     {% if lastModerator|default %}
                                         <img
-                                                src="https://cdn.discordapp.com/avatars/{{ lastModerator.id }}/{{ lastModerator.avatar }}.png"
+                                                src="{{ lastModerator.imageUrl }}"
                                                 class="rounded-circle z-depth-0 mr-1"
                                                 alt="avatar image"
                                                 height="35"
