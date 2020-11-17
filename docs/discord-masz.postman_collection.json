@@ -1,0 +1,634 @@
+{
+	"info": {
+		"_postman_id": "87503b20-0e9f-4c0f-8258-db3e7f388fc4",
+		"name": "discord-masz",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "v1",
+			"item": [
+				{
+					"name": "guildconfig",
+					"item": [
+						{
+							"name": "guildconfig",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"modroleid\": \"414881509737103360\",\n    \"adminroleid\": \"743911979265294406\"\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/configs/{{guildid}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"configs",
+										"{{guildid}}"
+									],
+									"query": [
+										{
+											"key": "guildid",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "guildconfig",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": "masz_access_token={{masz_access_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"modroleid\": \"748944055840407653\",\n    \"adminroleid\": \"748944028116189195\",\n    \"modInternalNotificationWebhook\": \"https://discordapp.com/api/webhooks/756798126664187964/nb22gP8RHTA5D-ANZmerP_HyHbuoMbOhjhUaFYxAGbT3oEK2vRINZSAbltBmbA3LSkaj\",\n    \"modPublicNotificationWebhook\": \"https://discordapp.com/api/webhooks/756798126664187964/nb22gP8RHTA5D-ANZmerP_HyHbuoMbOhjhUaFYxAGbT3oEK2vRINZSAbltBmbA3LSkaj\"\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/configs/{{guildid}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"configs",
+										"{{guildid}}"
+									],
+									"query": [
+										{
+											"key": "guildid",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "guildconfig",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    { \"op\": \"replace\", \"path\": \"modPublicNotificationWebhook\", \"value\": \"https://discordapp.com/api/webhooks/756798126664187964/nb22gP8RHTA5D-ANZmerP_HyHbuoMbOhjhUaFYxAGbT3oEK2vRINZSAbltBmbA3LSkaj\" }\n]\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/configs/{{guildid}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"configs",
+										"{{guildid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "guildconfig",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/configs/{{guildid}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"configs",
+										"{{guildid}}"
+									],
+									"query": [
+										{
+											"key": "guildid",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "modcase",
+					"item": [
+						{
+							"name": "modcase/{id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"modcases",
+										"{{guildid}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "modcase/all",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/all",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"modcases",
+										"{{guildid}}",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "modcase/@me",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/@me",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"modcases",
+										"{{guildid}}",
+										"@me"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "modcase",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"NSFW content\",\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\n    \"userid\": \"382991040975732747\",\n    \"severity\": 0,\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\n    \"punishment\": \"warn\"\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}?sendnotification=false",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"modcases",
+										"{{guildid}}"
+									],
+									"query": [
+										{
+											"key": "sendnotification",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "modcase",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"modcases",
+										"{{guildid}}",
+										"1"
+									],
+									"query": [
+										{
+											"key": "sendnotification",
+											"value": "false",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "modcase",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"NSFW content\",\r\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\r\n    \"userid\": \"272655001329991681\",\r\n    \"severity\": 0,\r\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\r\n    \"punishment\": \"warn\",\r\n    \"occuredAt\": \"2020-11-03T16:46:05.650803\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/1?sendnotification=false",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"modcases",
+										"{{guildid}}",
+										"1"
+									],
+									"query": [
+										{
+											"key": "sendnotification",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "files",
+					"item": [
+						{
+							"name": "file",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v1/files/{{guildid}}/1/0db2fd763c4a32d373d98121989eeef50dfd9855_120a6b5f_DSC01013.JPG",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"files",
+										"{{guildid}}",
+										"1",
+										"0db2fd763c4a32d373d98121989eeef50dfd9855_120a6b5f_DSC01013.JPG"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "files",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v1/files/{{guildid}}/1/all",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"files",
+										"{{guildid}}",
+										"1",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "file",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "File",
+											"type": "file",
+											"src": "/Y:/pictures/2020_05_20/DSC01013.JPG"
+										}
+									],
+									"options": {
+										"formdata": {}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/files/{{guildid}}/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"files",
+										"{{guildid}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "discord",
+					"item": [
+						{
+							"name": "users/@me",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v1/discord/users/@me",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"discord",
+										"users",
+										"@me"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "guild",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v1/discord/guilds/{{guildid}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"discord",
+										"guilds",
+										"{{guildid}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "stats",
+					"item": [
+						{
+							"name": "stats",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v1/stats/all",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"stats",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "stats/{guildid}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v1/stats/{{guildid}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"stats",
+										"{{guildid}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "status",
+					"item": [
+						{
+							"name": "Status",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/health",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"health"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "logout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v1/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"description": "api v1\r\n",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
