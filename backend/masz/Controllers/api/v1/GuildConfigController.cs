@@ -151,8 +151,8 @@ namespace masz.Controllers
             return StatusCode(201);
         }
 
-        [HttpPatch]
-        public async Task<IActionResult> UpdateSpecificItem([FromRoute] string guildid, [FromBody] JsonPatchDocument<GuildConfig> newValue) 
+        [HttpPut]
+        public async Task<IActionResult> UpdateSpecificItem([FromRoute] string guildid, [FromBody] GuildConfigForPutDto newValue) 
         {
             // check if request is made by a site admin
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
@@ -177,18 +177,11 @@ namespace masz.Controllers
                 return NotFound();
             }
 
-            // unchangeable values
-            int id = guildConfig.Id;
-            string guildId = guildConfig.GuildId;
-
-            // json patch
-            var serialized = JsonConvert.SerializeObject(newValue);
-            var deserialized = JsonConvert.DeserializeObject<JsonPatchDocument>(serialized);
-            deserialized.ApplyTo(guildConfig);
-
-            // apply automated and unchangeable values
-            guildConfig.Id = id;
-            guildConfig.GuildId = guildId;
+            guildConfig.ModRoleId = newValue.ModRoleId;
+            guildConfig.AdminRoleId = newValue.AdminRoleId;
+            guildConfig.ModNotificationDM = newValue.ModNotificationDM;
+            guildConfig.ModInternalNotificationWebhook = newValue.ModInternalNotificationWebhook;
+            guildConfig.ModPublicNotificationWebhook = newValue.ModPublicNotificationWebhook;
 
             database.UpdateGuildConfig(guildConfig);
             await database.SaveChangesAsync();

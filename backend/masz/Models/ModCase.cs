@@ -7,7 +7,7 @@ using masz.Dtos.ModCase;
 
 namespace masz.Models
 {
-    public class ModCase: ICloneable
+    public class ModCase : ICloneable
     {
         [Key]
         public int Id { get; set; }

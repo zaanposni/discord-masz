@@ -27,6 +27,12 @@ namespace masz.Services
             await context.SaveChangesAsync();
         }
 
+
+        // ==================================================================================
+        // 
+        // Guildconfig
+        //
+        // ==================================================================================
         public async Task<GuildConfig> SelectSpecificGuildConfig(string guildId)
         {
             return await context.GuildConfigs.AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId);
@@ -51,6 +57,12 @@ namespace masz.Services
         {
             await context.GuildConfigs.AddAsync(guildConfig);
         }
+
+        // ==================================================================================
+        // 
+        // ModCase
+        //
+        // ==================================================================================
 
         public async Task<ModCase> SelectSpecificModCase(string guildId, string modCaseId)
         {
@@ -94,6 +106,32 @@ namespace masz.Services
                 return 0;
             }
             return await query.MaxAsync(p => p.CaseId);
+        }
+
+        // ==================================================================================
+        // 
+        // Comments
+        //
+        // ==================================================================================
+
+        public async Task SaveModCaseComment(ModCaseComment comment)
+        {
+            await context.ModCaseComments.AddAsync(comment);
+        }
+
+        public void UpdateModCaseComment(ModCaseComment comment)
+        {
+            context.ModCaseComments.Update(comment);
+        }
+
+        public void DeleteSpecificModCaseComment(ModCaseComment comment)
+        {
+            context.ModCaseComments.Remove(comment);
+        }
+
+        public async Task<ModCaseComment> SelectSpecificModCaseComment(int commentId)
+        {
+            return await context.ModCaseComments.AsQueryable().FirstOrDefaultAsync(c => c.Id == commentId);
         }
     }
 }

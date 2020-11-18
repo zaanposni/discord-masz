@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace masz.Dtos.GuildConfig
 {
-    public class GuildConfigForCreateDto
+    public class GuildConfigForPutDto
     {
         [Required(ErrorMessage = "ModRoleId field is required")]
         [RegularExpression(@"^[0-9]{18}$", ErrorMessage = "the role id can only consist of numbers and must be 18 characters long")]
