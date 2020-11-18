@@ -31,7 +31,7 @@
         <div class="mb-5"></div>
         <div class="flex-grow-1 center-container">
             <a class="custom-btn align-self-center m-3 d-flex flex-column flex-wrap justify-content-center bg-dark text-light"
-               href="/api/v1/login">
+               href="/api/v1/login?ReturnUrl={{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}">
                 <div class="align-self-center justify-content-center text-center w-100 font-weight-bold">LOGIN WITH
                     DISCORD
                 </div>
