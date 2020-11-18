@@ -4,6 +4,8 @@
 namespace App\Controller;
 
 
+use App\API\BasicData;
+use App\API\ModCaseAPI;
 use App\Config\Config;
 use App\Form\CreateCaseFormType;
 use App\Helpers\Helpers;
@@ -22,46 +24,23 @@ class ModCasePatchController extends AbstractController
      */
     public function patchCase($guildid, $caseid, Request $request)
     {
-        // url e.g. "/modcase/209557077343993856/new"
-        // probably validate userid and redirect to other page if not valid
+        if (!isset($_COOKIE["masz_access_token"])) {
+            return $this->render('index.html.twig');
+        }
 
-        $userInfo = Helpers::GetCurrentUser($_COOKIE);
-        $logged_in_user = $userInfo;
-        if (is_null($userInfo)) {
+        $basicData = new BasicData($_COOKIE);
+        if (is_null($basicData->loggedInUser)) {
+            $basicData->errors[] = 'Failed to fetch user info or login invalid.';
             return $this->render('index.html.twig', [
-                'error' => [
-                    'messages' => ['Failed to fetch user info or login invalid.']
-                ]
+                'basic_data' => $basicData
             ]);
         }
 
-        try {
-            $navdata = Helpers::GetNavbarStaticData();
-        } catch (Exception $e) {
-            $navdata = [];
+        $modCase = ModCaseAPI::Select($_COOKIE, $guildid, $caseid)->body;
+        if (is_null($modCase)) {
+            $basicData->errors[] = 'Failed to load modcase.';
         }
 
-        // get current modcase
-        $client = HttpClient::create();
-        $errorMessages = [];
-        try {
-            $url = Config::getAPIBaseURL().'/api/v1/modcases/'.$guildid.'/'.$caseid;
-            $response = $client->request(
-                'GET',
-                $url,
-                [
-                    'headers' => [
-                        'Cookie' => 'masz_access_token=' . $_COOKIE["masz_access_token"],
-                    ],
-                ]
-            );
-            $statusCode = $response->getStatusCode();
-            $modCaseContent = $response->getContent();
-            $modCase = json_decode($modCaseContent, true);
-        } catch(Exception $e) {
-            $errorMessages[] = 'Failed to load modcase.';
-            $modCase = null;
-        }
         $form = $this->createForm(CreateCaseFormType::class, $modCase);
         $form->handleRequest($request);
         if($form->isSubmitted()) {
@@ -71,55 +50,29 @@ class ModCasePatchController extends AbstractController
             $sendNotification = $sendNotificationRaw ? 'true' : 'false';
             unset($data['sendNotification']);  // unset as this attribute is not expected by the api
 
-            $url = Config::getAPIBaseURL().'/api/v1/modcases/'.$guildid.'/'.$caseid; // change api url here
-            $response = $client->request(
-                'PUT',
-                $url,
-                [
-                    'headers' => [
-                        'Cookie' => 'masz_access_token=' . $_COOKIE["masz_access_token"],
-                        'Content-Type' => 'application/json',
-                        'Connection' => 'keep-alive',
-                        'Content-Length' => strlen(json_encode($data))
-                    ],
-                    'body' => json_encode($data),
-                    'query' => [
-                        'sendNotification' => $sendNotification
-                    ]
-                ]
-            );
-            $statusCode = $response->getStatusCode();
+            $response = ModCaseAPI::Update($_COOKIE, $guildid, $caseid, $data, $sendNotification);
 
-            if ($statusCode === 200) {
+            if ($response->success && $response->statuscode === 200) {
                 return $this->redirect('/modcases/'.$guildid.'/'.$caseid);
             }
 
-            $errorMessages[] = 'Failed to patch ModCase. Response from API: '.$statusCode;
-            $errorMessages[] = $response->getContent(false);
+            $basicData->errors[] = 'Failed to patch ModCase. Response from API: ';
+            $basicData->errors[] = $response->toString();
+            $basicData->tabTitle = 'MASZ: Patch ModCase';
+            $basicData->currentGuild = $guildid;
             return $this->render('modcase/patch.html.twig', [
-                'guildid' => $guildid,
-                'logged_in_user' => $logged_in_user,
-                'navdata' => $navdata,
+                'basic_data' => $basicData,
                 'createCaseForm' => $form->createView(),
-                'modcase' => $modCase,
-                'tabtitle' => 'MASZ: Patch ModCase',
-                'error' => [
-                    'messages' => $errorMessages
-                ]
+                'now' => date("Y-m-d\\TH:i:s.u"),
+                'modcase' => $modCase
             ]);
         }
 
         return $this->render('modcase/patch.html.twig', [
-            'guildid' => $guildid,
-            'now' => date("Y-m-d\\TH:i:s.u"),
-            'logged_in_user' => $logged_in_user,
-            'navdata' => $navdata,
+            'basic_data' => $basicData,
             'createCaseForm' => $form->createView(),
-            'modcase' => $modCase,
-            'tabtitle' => 'MASZ: Patch ModCase',
-            'error' => [
-                'messages' => $errorMessages
-            ]
+            'now' => date("Y-m-d\\TH:i:s.u"),
+            'modcase' => $modCase
         ]);
 
     }

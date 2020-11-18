@@ -48,7 +48,7 @@
                     <a type="button" class="btn btn-primary"
                        href="/api/v1/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}" target="_blank">See raw case
                         data</a>
-                    {% if modcase.guildId in logged_in_user.modGuilds or logged_in_user.isAdmin %}
+                    {% if modcase.guildId in basic_data.loggedInUser.modGuilds or basic_data.loggedInUser.isAdmin %}
                         <a type="button" class="btn btn-warning" href="/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}/edit">Edit this case</a>
                         <a type="button" class="btn btn-danger" href="#">Delete this case</a>
                     {% endif %}
@@ -75,7 +75,7 @@
 
                 <!-- user info -->
                 <div class="col-xl-6 col-lg-6 col-md-6 sm-col-12">
-                    <h4><strong>User information</strong></h4>
+                    <h4 class="font-weight-bold">User information</h4>
 
                     <table class="table">
                         <tbody>
@@ -121,7 +121,7 @@
 
                 <!-- case info -->
                 <div class="col-xl-6 col-lg-6 col-md-6 sm-col-12">
-                    <h4><strong>Case information</strong></h4>
+                    <h4 class="font-weight-bold">Case information</h4>
                     <table class="table">
                         <tbody>
                         <tr>
@@ -182,14 +182,50 @@
             </div>
 
             <!-- Description -->
-            <div>
+            <div class="mb-3">
                 <h4 class="font-weight-bold">Full case description</h4>
                 <hr/>
                 <span style="white-space: pre-wrap;" class="text-monospace">{{ modcase.description }}</span>
             </div>
 
-        {% endif %}
+            <h4 class="font-weight-bold">Comments ({{ modcase.comments|length }})</h4>
+            <hr/>
+            <div class="d-flex flex-column flex-wrap justify-content-between mt-3">
+                {% if modcase.comments|default %}
+                    {% for comment in modcase.comments|default([]) %}
+                        <div class="card mb-3">
+                            <div class="card-body d-flex flex-row">
+                                <div class="align-self-start mr-3">
+                                    <img
+                                            src="{{ comment.discordUser.imageUrl }}"
+                                            class="card-img rounded-circle z-depth-0 mr-1"
+                                            alt="Guild icon"
+                                            height="35"
+                                    />
+                                </div>
+                                <div class="flex-grow-1">
+                                    <!-- Title -->
+                                    <h4 class="card-title">
+                                        {{ comment.discordUser.username|default(comment.userId) }}
+                                    </h4>
 
+                                    <!-- Text -->
+                                    <div class="card-text">
+                                        <span style="white-space: pre-wrap;" class="text-monospace font-small">{{ comment.createdAt }}</span><br/>
+                                        <span style="white-space: pre-wrap;" class="text-monospace">{{ comment.message }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-text">
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="mt-3"></div>
+
+        {% endif %}
     </div>
 {% endblock body %}
 

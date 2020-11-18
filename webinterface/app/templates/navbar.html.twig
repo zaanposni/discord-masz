@@ -8,16 +8,16 @@
         </button>
         <div class="navbar-collapse collapse" id="navbarSupportedContent-3" style="">
             <ul class="navbar-nav mr-auto">
-                {% if guildid|default %}
+                {% if basic_data.currentGuild|default %}
                     <li class="nav-item">
                         <a class="nav-link waves-effect waves-light" href="/">Guilds</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="/modcases/{{ guildid }}">ModCases</a>
+                        <a class="nav-link waves-effect waves-light" href="/modcases/{{ basic_data.currentGuild }}">ModCases</a>
                     </li>
-                    {% if guildid in logged_in_user.modGuilds or logged_in_user.isAdmin %}
+                    {% if basic_data.currentGuild in basic_data.loggedInUser.modGuilds or basic_data.loggedInUser.isAdmin %}
                         <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light" href="/modcases/{{ guildid }}/new">New ModCase</a>
+                            <a class="nav-link waves-effect waves-light" href="/modcases/{{ basic_data.currentGuild }}/new">New ModCase</a>
                         </li>
                     {% endif %}
                 {% else %}
@@ -26,13 +26,13 @@
                     </li>
                 {% endif %}
             </ul>
-            {% if logged_in_user|default %}
+            {% if basic_data.loggedInUser|default %}
                 <ul class="navbar-nav ml-auto nav-flex-icons">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img
-                                    src="{{ logged_in_user.discordUser.imageUrl }}"
+                                    src="{{ basic_data.loggedInUser.discordUser.imageUrl }}"
                                     class="rounded-circle z-depth-0 mr-1"
                                     alt="avatar image"
                                     height="30"
@@ -42,9 +42,9 @@
                              aria-labelledby="navbarDropdownMenuLink">
                             <span class="dropdown-item waves-effect waves-light">
                                 Logged in as <span
-                                        class="text-danger">{{ logged_in_user.discordUser.username }}#{{ logged_in_user.discordUser.discriminator }}</span>
+                                        class="text-danger">{{ basic_data.loggedInUser.discordUser.username }}#{{ basic_data.loggedInUser.discordUser.discriminator }}</span>
                             </span>
-                            {% if logged_in_user.isAdmin %}
+                            {% if basic_data.loggedInUser.isAdmin %}
                                 <span class="dropdown-item waves-effect waves-light text-primary">
                                 Congratulations, you are a site admin!
                             </span>
@@ -79,7 +79,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                {% for note in navdata.patchnotes|default([])|slice(0, 3) %}
+                {% for note in basic_data.patchNotes|default([])|slice(0, 3) %}
                     <div class="card mb-3">
                         <div class="card-body">
                             {% if note.title|default %}
@@ -89,9 +89,9 @@
                         </div>
                     </div>
                 {% endfor %}
-                {% if not navdata.patchnotes|default %}
+                {% if not basic_data.patchNotes|default %}
                     <p class="text-danger">Failed to load Patch Notes.</p>
-                {% elseif navdata.patchnotes|length > 3 %}
+                {% elseif basic_data.patchNotes|length > 3 %}
                     <a href="https://github.com/zaanposni/discord-masz/releases" target="_blank" class="text-success">See more patch notes here.</a>
                 {% endif %}
             </div>
@@ -117,12 +117,12 @@
 </div>
 <br>
 <div class="container">
-    {% if error|default %}
-        {% if error.messages|length > 0 %}
+    {% if basic_data.errors|default %}
+        {% if basic_data.errors is not empty%}
             <div class="card mt-3 text-danger background-blink" id="fade-it">
                 <div class="card-body">
                     <h5 class="card-title font-weight-bold">An Error occurred</h5>
-                    {% for message in error.messages %}
+                    {% for message in basic_data.errors %}
                         <span class="card-text" style="white-space: pre-wrap;">{{ message }}</span><br/>
                     {% endfor %}
                 </div>

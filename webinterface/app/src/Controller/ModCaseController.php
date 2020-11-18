@@ -3,6 +3,11 @@
 
 namespace App\Controller;
 
+use App\API\BasicData;
+use App\API\CommentsAPI;
+use App\API\DiscordAPI;
+use App\API\GuildConfigAPI;
+use App\API\ModCaseAPI;
 use App\Config\Config;
 use App\Helpers\Helpers;
 use Exception;
@@ -22,52 +27,27 @@ class ModCaseController extends AbstractController
             return $this->render('index.html.twig');
         }
 
-        try {
-            $navdata = Helpers::GetNavbarStaticData();
-        } catch(Exception $e) {
-            $navdata = [];
+        $basicData = new BasicData($_COOKIE);
+        $basicData->currentGuild = $guildid;
+        if (is_null($basicData->loggedInUser)) {
+            $basicData->errors[] = 'Failed to fetch user info or login invalid.';
+            return $this->render('index.html.twig', [
+                'basic_data' => $basicData
+            ]);
         }
+
+        $modCases = ModCaseAPI::SelectAll($_COOKIE, $guildid);
+        if (!$modCases->success || is_null($modCases->body)) {
+            $basicData->errors[] = 'Failed to load modcases. API: ';
+            $basicData->errors[] = $modCases->toString();
+            return $this->render('modcase/view.html.twig', [
+                'basic_data' => $basicData
+            ]);
+        }
+        $modCases = $modCases->body;
+        $guild = DiscordAPI::GetGuild($_COOKIE, $guildid)->body;
+
         try {
-            $userInfo = Helpers::GetCurrentUser($_COOKIE);
-            $logged_in_user = $userInfo;
-            if (is_null($userInfo)) {
-                return $this->render('index.html.twig', [
-                    'error' => [
-                        'messages' => ['Failed to fetch user info or login invalid.']
-                    ]
-                ]);
-            }
-
-            $statusCode = 'None';
-            $client = HttpClient::create();
-            $url = Config::getAPIBaseURL().'/api/v1/modcases/' . $guildid . '/all'; // change api url here
-            $response = $client->request(
-                'GET',
-                $url,
-                [
-                    'headers' => [
-                        'Cookie' => 'masz_access_token=' . $_COOKIE["masz_access_token"],
-                    ],
-                ]
-            );
-            $statusCode = $response->getStatusCode();
-            $modCasesContent = $response->getContent();
-            $modCases = json_decode($modCasesContent, true);
-
-            $url = Config::getAPIBaseURL().'/api/v1/discord/guilds/' . $guildid; // change api url here
-            $response = $client->request(
-                'GET',
-                $url,
-                [
-                    'headers' => [
-                        'Cookie' => 'masz_access_token=' . $_COOKIE["masz_access_token"],
-                    ],
-                ]
-            );
-            $statusCode = $response->getStatusCode();
-            $guildContent = $response->getContent();
-            $guild = json_decode($guildContent, true);
-
             $filteredModCases = [];
             if (empty($_GET)) {
                 $filteredModCases = $modCases;
@@ -81,25 +61,15 @@ class ModCaseController extends AbstractController
                 }
             }
         } catch (Exception $e) {
-            return $this->render('modcase/show.html.twig', [
-                'modcases' => [],
-                'logged_in_user' => null,
-                'navdata' => $navdata,
-                'error' => [
-                    'messages' => ['Failed to load modcases. Statuscode from API: ' . $statusCode]
-                ]
-            ]);
+            $filteredModCases = [];
         }
 
-        return $this->render('modcase/show.html.twig', [
+        $basicData->tabTitle = 'MASZ: '.$guild['name'].': ModCases';
+        return $this->render('modcase/list.html.twig', [
+            'basic_data' => $basicData,
             'modcases' => $filteredModCases,
-            'guild' => $guild,
-            'guildid' => $guild['id'],
-            'logged_in_user' => $logged_in_user,
-            'navdata' => $navdata,
-            'tabtitle' => 'MASZ: '.$guild['name'].': ModCases'
+            'guild' => $guild
         ]);
-
     }
 
 
@@ -112,153 +82,65 @@ class ModCaseController extends AbstractController
             return $this->render('index.html.twig');
         }
 
-        try {
-            $navdata = Helpers::GetNavbarStaticData();
-        } catch(Exception $e) {
-            $navdata = [];
-        }
-        try {
-            $userInfo = Helpers::GetCurrentUser($_COOKIE);
-            $logged_in_user = $userInfo;
-            if (is_null($userInfo)) {
-                return $this->render('index.html.twig', [
-                    'error' => [
-                        'messages' => ['Failed to fetch user info or login invalid.']
-                    ]
-                ]);
-            }
-
-            // create api request
-            $statusCode = 'None';
-            $errorMessages = [];
-            $client = HttpClient::create();
-            $url = Config::getAPIBaseURL().'/api/v1/modcases/' . $guildid . "/" . $id; // change api url here
-            $response = $client->request(
-                'GET',
-                $url,
-                [
-                    'headers' => [
-                        'Cookie' => 'masz_access_token=' . $_COOKIE["masz_access_token"],
-                    ],
-                ]
-            );
-            $statusCode = $response->getStatusCode();
-            $modCaseContent = $response->getContent();
-            $modCase = json_decode($modCaseContent, true);
-
-            try {
-                $url = Config::getAPIBaseURL().'/api/v1/discord/guilds/' . $modCase["guildId"]; // change api url here
-                $response = $client->request(
-                    'GET',
-                    $url,
-                    [
-                        'headers' => [
-                            'Cookie' => 'masz_access_token=' . $_COOKIE["masz_access_token"],
-                        ],
-                    ]
-                );
-                $statusCode = $response->getStatusCode();
-                $guildContent = $response->getContent();
-                $guild = json_decode($guildContent, true);
-                $guildid = $guild['id'];
-            } catch (Exception $e) {
-                $guild = null;
-                $guildid = null;
-                $errorMessages[] = 'Failed to load detailed info about guild';
-            }
-
-            try {
-                $url = Config::getAPIBaseURL().'/api/v1/discord/users/' . $modCase["modId"]; // change api url here
-                $response = $client->request(
-                    'GET',
-                    $url,
-                    [
-                        'headers' => [
-                            'Cookie' => 'masz_access_token=' . $_COOKIE["masz_access_token"],
-                        ],
-                    ]
-                );
-                $statusCode = $response->getStatusCode();
-                $moderatorContent = $response->getContent();
-                $moderator = json_decode($moderatorContent, true);
-            } catch (Exception $e) {
-                $moderator = null;
-                $errorMessages[] = 'Failed to load detailed info about moderator';
-            }
-
-            try {
-                $url = Config::getAPIBaseURL().'/api/v1/discord/users/' . $modCase["lastEditedByModId"]; // change api url here
-                $response = $client->request(
-                    'GET',
-                    $url,
-                    [
-                        'headers' => [
-                            'Cookie' => 'masz_access_token=' . $_COOKIE["masz_access_token"],
-                        ],
-                    ]
-                );
-                $statusCode = $response->getStatusCode();
-                $lastModeratorContent = $response->getContent();
-                $lastModerator = json_decode($lastModeratorContent, true);
-            } catch (Exception $e) {
-                $lastModerator = null;
-                $errorMessages[] = 'Failed to load detailed info about last moderator';
-            }
-
-            try {
-                $url = Config::getAPIBaseURL().'/api/v1/discord/users/' . $modCase["userId"]; // change api url here
-                $response = $client->request(
-                    'GET',
-                    $url,
-                    [
-                        'headers' => [
-                            'Cookie' => 'masz_access_token=' . $_COOKIE["masz_access_token"],
-                        ],
-                    ]
-                );
-                $statusCode = $response->getStatusCode();
-                $userContent = $response->getContent();
-                $user = json_decode($userContent, true);
-            } catch (Exception $e) {
-                $user = null;
-                $errorMessages[] = 'Failed to load detailed user info';
-            }
-
-            if (count($errorMessages)) {
-                return $this->render('modcase/view.html.twig', [
-                    'modcase' => $modCase,
-                    'guild' => $guild,
-                    'guildid' => $guildid,
-                    'moderator' => $moderator,
-                    'lastModerator' => $lastModerator,
-                    'user' => $user,
-                    'logged_in_user' => $logged_in_user,
-                    'navdata' => $navdata,
-                    'error' => [
-                        'messages' => $errorMessages
-                    ]
-                ]);
-            }
-
-            return $this->render('modcase/view.html.twig', [
-                'modcase' => $modCase,
-                'guild' => $guild,
-                'guildid' => $guildid,
-                'moderator' => $moderator,
-                'lastModerator' => $lastModerator,
-                'logged_in_user' => $logged_in_user,
-                'navdata' => $navdata,
-                'user' => $user,
-                'tabtitle' => 'MASZ: #'.$modCase['caseId'].': '.$modCase['title']
-            ]);
-        } catch (Exception $e) {
-            return $this->render('modcase/view.html.twig', [
-                'error' => [
-                    'messages' => ['Failed to load modcase. Statuscode from API: ' . $statusCode]
-                ],
-                'navdata' => $navdata
+        $basicData = new BasicData($_COOKIE);
+        $basicData->currentGuild = $guildid;
+        if (is_null($basicData->loggedInUser)) {
+            $basicData->errors[] = 'Failed to fetch user info or login invalid.';
+            return $this->render('index.html.twig', [
+                'basic_data' => $basicData
             ]);
         }
+
+        $modCase = ModCaseAPI::Select($_COOKIE, $guildid, $id);
+        if (!$modCase->success || is_null($modCase->body)) {
+            $basicData->errors[] = 'Failed to load modcase. API: ';
+            $basicData->errors[] = $modCase->toString();
+            return $this->render('modcase/view.html.twig', [
+                'basic_data' => $basicData
+            ]);
+        }
+        $modCase = $modCase->body;
+
+        $guild = DiscordAPI::GetGuild($_COOKIE, $guildid)->body;
+        if (is_null($guild)) {
+            $basicData->errors[] = 'Failed to load detailed info about guild';
+        }
+
+        $moderator = DiscordAPI::GetUser($_COOKIE, $modCase['modId'])->body;
+        if (is_null($moderator)) {
+            $basicData->errors[] = 'Failed to load detailed info about moderator';
+        }
+
+        $lastModerator = DiscordAPI::GetUser($_COOKIE, $modCase['lastEditedByModId'])->body;
+        if (is_null($lastModerator)) {
+            $basicData->errors[] = 'Failed to load detailed info about last moderator';
+        }
+
+        $caseUser = DiscordAPI::GetUser($_COOKIE, $modCase['userId'])->body;
+        if (is_null($caseUser)) {
+            $basicData->errors[] = 'Failed to load detailed user info';
+        }
+
+        $newComments = [];  // comments with discord user object merged
+        $fetchedUser = [];
+        foreach ($modCase['comments'] as $comment) {
+            if (!array_key_exists($comment['userId'], $fetchedUser)) {
+                $comment['discordUser'] = DiscordAPI::GetUser($_COOKIE, $comment['userId'])->body;
+            } else {
+                $comment['discordUser'] = $fetchedUser[$comment['userId']];
+            }
+            $newComments[] = $comment;
+        }
+        $modCase['comments'] = $newComments;
+
+        $basicData->tabTitle = 'MASZ: #'.$modCase['caseId'].': '.$modCase['title'];
+        return $this->render('modcase/view.html.twig', [
+            'basic_data' => $basicData,
+            'modcase' => $modCase,
+            'guild' => $guild,
+            'moderator' => $moderator,
+            'lastModerator' => $lastModerator,
+            'user' => $caseUser
+        ]);
     }
-
 }
