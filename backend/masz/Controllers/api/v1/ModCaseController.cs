@@ -161,12 +161,12 @@ namespace masz.Controllers
             }
 
             ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
-            ModCase oldModCase = (ModCase) modCase.Clone();
             if (modCase == null) 
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
                 return NotFound();
             }
+            ModCase oldModCase = (ModCase) modCase.Clone();
 
             modCase.Title = newValue.Title;
             modCase.Description = newValue.Description;

@@ -25,5 +25,11 @@ namespace masz.Services
         void DeleteSpecificModCase(ModCase modCase);
         void UpdateModCase(ModCase modCase);
         Task SaveModCase(ModCase modCase);
+
+
+        Task SaveModCaseComment(ModCaseComment comment);
+        void UpdateModCaseComment(ModCaseComment comment);
+        void DeleteSpecificModCaseComment(ModCaseComment comment);
+        Task<ModCaseComment> SelectSpecificModCaseComment(int commentId);
     }
 }
