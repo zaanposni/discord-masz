@@ -8,24 +8,24 @@ using Microsoft.Extensions.Options;
 
 namespace masz.Services
 {
-    public class ModCaseAnnouncer : IModCaseAnnouncer
+    public class DiscordAnnouncer : IDiscordAnnouncer
     {
         private static string discordCdnBaseUrl = "https://cdn.discordapp.com";
-        private readonly ILogger<ModCaseAnnouncer> logger;
+        private readonly ILogger<DiscordAnnouncer> logger;
         private readonly IDatabase dbContext;
         private readonly IOptions<InternalConfig> config;
         private readonly IDiscordAPIInterface discord;
 
-        public ModCaseAnnouncer() { }
+        public DiscordAnnouncer() { }
 
-        public ModCaseAnnouncer(ILogger<ModCaseAnnouncer> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IDatabase context)
+        public DiscordAnnouncer(ILogger<DiscordAnnouncer> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IDatabase context)
         {
             this.logger = logger;
             this.config = config;
             this.discord = discord;
             this.dbContext = context;
         }
-        public async Task AnnounceModCase(ModCase modCase, ModCaseAction action, bool announcePublic)
+        public async Task AnnounceModCase(ModCase modCase, RestAction action, bool announcePublic)
         {
             logger.LogInformation($"Announcing modcase {modCase.Id} in guild {modCase.GuildId}.");
 
@@ -36,7 +36,7 @@ namespace masz.Services
             if (! string.IsNullOrEmpty(guildConfig.ModPublicNotificationWebhook) && announcePublic)
             {
                 logger.LogInformation($"Sending public webhook to {guildConfig.ModPublicNotificationWebhook}.");
-                EmbedBuilder embed = ModCaseEmbedCreator.CreatePublicAnnouncementEmbed(modCase, action, discordUser, config.Value.ServiceBaseUrl);
+                EmbedBuilder embed = ModCaseEmbedCreator.CreatePublicCaseEmbed(modCase, action, discordUser, config.Value.ServiceBaseUrl);
                 DiscordMessenger.SendEmbedWebhook(guildConfig.ModPublicNotificationWebhook, embed.Build(), $"<@{modCase.UserId}>");
                 logger.LogInformation("Sent public webhook.");
             }            
@@ -44,7 +44,7 @@ namespace masz.Services
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
                 logger.LogInformation($"Sending internal webhook to {guildConfig.ModInternalNotificationWebhook}.");
-                EmbedBuilder embed = ModCaseEmbedCreator.CreatePublicAnnouncementEmbed(modCase, action, discordUser, config.Value.ServiceBaseUrl);
+                EmbedBuilder embed = ModCaseEmbedCreator.CreatePublicCaseEmbed(modCase, action, discordUser, config.Value.ServiceBaseUrl);
 
                 var mod = await discord.FetchMemberInfo(modCase.GuildId, modCase.ModId);
                 var author = new EmbedAuthorBuilder();
@@ -53,6 +53,24 @@ namespace masz.Services
                 embed.Author = author;
 
                 DiscordMessenger.SendEmbedWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build(), $"<@{modCase.UserId}>");
+                logger.LogInformation("Sent internal webhook.");
+            }
+        }
+
+        public async Task AnnounceComment(ModCaseComment comment, RestAction action)
+        {
+            logger.LogInformation($"Announcing comment {comment.Id} in case {comment.ModCase.CaseId} in guild {comment.ModCase.GuildId}.");
+
+            User discordUser = await discord.FetchUserInfo(comment.UserId);
+
+            GuildConfig guildConfig = await dbContext.SelectSpecificGuildConfig(comment.ModCase.GuildId);         
+
+            if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+            {
+                logger.LogInformation($"Sending internal webhook to {guildConfig.ModInternalNotificationWebhook}.");
+                EmbedBuilder embed = ModCaseEmbedCreator.CreateInternalCommentEmbed(comment, action, discordUser, config.Value.ServiceBaseUrl);
+
+                DiscordMessenger.SendEmbedWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build(), $"<@{comment.UserId}>");
                 logger.LogInformation("Sent internal webhook.");
             }
         }

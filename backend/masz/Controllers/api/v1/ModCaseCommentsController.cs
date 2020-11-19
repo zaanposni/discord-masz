@@ -30,16 +30,16 @@ namespace masz.Controllers
         private readonly IDatabase database;
         private readonly IOptions<InternalConfig> config;
         private readonly IIdentityManager identityManager;
-        private readonly IModCaseAnnouncer modCaseAnnouncer;
+        private readonly IDiscordAnnouncer discordAnnouncer;
         private readonly IDiscordAPIInterface discord;
 
-        public ModCaseCommentsController(ILogger<ModCaseCommentsController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IModCaseAnnouncer modCaseAnnouncer)
+        public ModCaseCommentsController(ILogger<ModCaseCommentsController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IDiscordAnnouncer modCaseAnnouncer)
         {
             this.logger = logger;
             this.database = database;
             this.config = config;
             this.identityManager = identityManager;
-            this.modCaseAnnouncer = modCaseAnnouncer;
+            this.discordAnnouncer = modCaseAnnouncer;
             this.discord = discordInterface;
         }
 
@@ -102,7 +102,13 @@ namespace masz.Controllers
             await database.SaveModCaseComment(commentToCreate);
             await database.SaveChangesAsync();
 
-            // TODO: notification
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
+            try {
+                await discordAnnouncer.AnnounceComment(commentToCreate, RestAction.Created);
+            }
+            catch(Exception e){
+                logger.LogError(e, "Failed to announce comment.");
+            }
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 201 Resource created.");
             return StatusCode(201, new { id = commentToCreate.Id });
@@ -165,7 +171,13 @@ namespace masz.Controllers
             database.UpdateModCaseComment(comment);
             await database.SaveChangesAsync();
 
-            // TODO: notification
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
+            try {
+                await discordAnnouncer.AnnounceComment(comment, RestAction.Edited);
+            }
+            catch(Exception e){
+                logger.LogError(e, "Failed to announce comment.");
+            }
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource updated.");
             return Ok(new { id = comment.Id });
@@ -225,7 +237,13 @@ namespace masz.Controllers
             database.DeleteSpecificModCaseComment(comment);
             await database.SaveChangesAsync();
 
-            // TODO: notification
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
+            try {
+                await discordAnnouncer.AnnounceComment(comment, RestAction.Deleted);
+            }
+            catch(Exception e){
+                logger.LogError(e, "Failed to announce comment.");
+            }
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource deleted.");
             return Ok(new { id = comment.Id });
