@@ -37,7 +37,7 @@ class ModCaseController extends AbstractController
         }
 
         $modCases = ModCaseAPI::SelectAll($_COOKIE, $guildid);
-        if (!$modCases->success || is_null($modCases->body)) {
+        if (!$modCases->success || is_null($modCases->body) || $modCases->statuscode !== 200) {
             $basicData->errors[] = 'Failed to load modcases. API: ';
             $basicData->errors[] = $modCases->toString();
             return $this->render('modcase/view.html.twig', [
@@ -92,7 +92,7 @@ class ModCaseController extends AbstractController
         }
 
         $modCase = ModCaseAPI::Select($_COOKIE, $guildid, $id);
-        if (!$modCase->success || is_null($modCase->body)) {
+        if (!$modCase->success || is_null($modCase->body) || $modCase->statuscode !== 200) {
             $basicData->errors[] = 'Failed to load modcase. API: ';
             $basicData->errors[] = $modCase->toString();
             return $this->render('modcase/view.html.twig', [

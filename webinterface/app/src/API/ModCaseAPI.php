@@ -23,7 +23,7 @@ class ModCaseAPI
                     ]
                 ]
             );
-            return new Response(true, $response->getStatusCode(), $response->getContent());
+            return new Response(true, $response->getStatusCode(), $response->getContent(false));
         } catch (Exception $e) {
             return new Response(false);
         }
