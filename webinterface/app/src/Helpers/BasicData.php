@@ -1,6 +1,6 @@
 <?php
 
-namespace App\API;
+namespace App\Helpers;
 
 use App\Config\Config;
 use App\Helpers\Helpers;
