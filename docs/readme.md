@@ -1,6 +1,6 @@
 # Preview
 
-## Notification embed for your guild members and moderation team
+## ModCase Notification embed for your guild members and moderation team
 
 <img src="embed.png"/>
 
@@ -12,3 +12,6 @@
 
 <img src="modcase.png"/>
 
+## Comment Notification embed for your moderation team
+
+<img src="comments.png"/>
