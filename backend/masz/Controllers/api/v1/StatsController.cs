@@ -19,16 +19,14 @@ namespace masz.Controllers
         private readonly IDatabase database;
         private readonly IOptions<InternalConfig> config;
         private readonly IIdentityManager identityManager;
-        private readonly IModCaseAnnouncer modCaseAnnouncer;
         private readonly IDiscordAPIInterface discord;
 
-        public StatsController(ILogger<StatsController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IModCaseAnnouncer modCaseAnnouncer)
+        public StatsController(ILogger<StatsController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface)
         {
             this.logger = logger;
             this.database = database;
             this.config = config;
             this.identityManager = identityManager;
-            this.modCaseAnnouncer = modCaseAnnouncer;
             this.discord = discordInterface;
         }
 

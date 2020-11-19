@@ -4,6 +4,10 @@
 namespace App\Controller;
 
 
+use App\API\BasicData;
+use App\API\DiscordAPI;
+use App\API\GuildConfigAPI;
+use App\API\StatsAPI;
 use App\Config\Config;
 use App\Helpers\Helpers;
 use Exception;
@@ -22,65 +26,43 @@ class IndexController extends AbstractController
             return $this->render('index.html.twig');
         }
 
-        $userInfo = Helpers::GetCurrentUser($_COOKIE);
-        $logged_in_user = $userInfo;
-        if (is_null($userInfo)) {
+        $basicData = new BasicData($_COOKIE);
+        if (is_null($basicData->loggedInUser)) {
+            $basicData->errors[] = 'Failed to fetch user info or login invalid.';
             return $this->render('index.html.twig', [
-                'error' => [
-                    'messages' => ['Failed to fetch user info or login invalid.']
-                ]
+                'basic_data' => $basicData
             ]);
         }
 
-        $client = HttpClient::create();
-        try {
-            $navdata = Helpers::GetNavbarStaticData();
-        } catch(Exception $e) {
-            $navdata = [];
-        }
-        try {
             $modGuilds = array();
             $memberGuilds = array();
             $bannedGuilds = array();
-            foreach ($userInfo['modGuilds'] as $guildid) {
+            foreach ($basicData->loggedInUser['modGuilds'] as $guildid) {
                 $modGuilds[] = [
-                    'obj' => Helpers::GetGuildById($guildid, $_COOKIE),
-                    'stats' => Helpers::GetGuildStatsById($guildid, $_COOKIE)
+                    'obj' => DiscordAPI::GetGuild($_COOKIE, $guildid)->body,
+                    'stats' => StatsAPI::Select($_COOKIE, $guildid)->body
                 ];
             }
-            foreach ($userInfo['memberGuilds'] as $guildid) {
+            foreach ($basicData->loggedInUser['memberGuilds'] as $guildid) {
                 $memberGuilds[] = [
-                    'obj' => Helpers::GetGuildById($guildid, $_COOKIE),
-                    'stats' => Helpers::GetGuildStatsById($guildid, $_COOKIE)
+                    'obj' => DiscordAPI::GetGuild($_COOKIE, $guildid)->body,
+                    'stats' => StatsAPI::Select($_COOKIE, $guildid)->body
                 ];
             }
-            foreach ($userInfo['bannedGuilds'] as $guildid) {
+            foreach ($basicData->loggedInUser['bannedGuilds'] as $guildid) {
                 $bannedGuilds[] = [
-                    'obj' => Helpers::GetGuildById($guildid, $_COOKIE),
-                    'stats' => Helpers::GetGuildStatsById($guildid, $_COOKIE)
+                    'obj' => DiscordAPI::GetGuild($_COOKIE, $guildid)->body,
+                    'stats' => StatsAPI::Select($_COOKIE, $guildid)->body
                 ];
             }
-            return $this->render('guilds/show.html.twig', [
+
+            $basicData->tabTitle = 'MASZ: Your guilds';
+            return $this->render('guilds/list.html.twig', [
+                'basic_data' => $basicData,
                 'mod_guilds' => $modGuilds,
                 'member_guilds' => $memberGuilds,
-                'banned_guilds' => $bannedGuilds,
-                'logged_in_user' => $logged_in_user,
-                'tabtitle' => 'MASZ: Your guilds',
-                'navdata' => $navdata
+                'banned_guilds' => $bannedGuilds
             ]);
-        } catch (Exception $e) {
-            return $this->render('guilds/show.html.twig', [
-                'guilds' => [],
-                'logged_in_user' => $logged_in_user,
-                'error' => [
-                    'messages' => ['Failed to fetch guild info.']
-                ],
-                'navdata' => $navdata
-            ]);
-        }
-
-
 
     }
-
 }

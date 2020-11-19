@@ -31,17 +31,17 @@
             <!-- Buttons -->
             <div class="d-flex flex-column align-self-end">
             {% if guild|default %}
-                {% if guild.id in logged_in_user.modGuilds or logged_in_user.isAdmin %}
+                {% if guild.id in basic_data.loggedInUser.modGuilds or basic_data.loggedInUser.isAdmin %}
                         <a type="button" class="btn btn-primary" href="/modcases/{{ guild.id }}/new">Create new Case</a>
                 {% endif %}
-                {% if guild.id in logged_in_user.modGuilds %}
-                        <a type="button" class="btn btn-primary" href="?modId={{ logged_in_user.discordUser.id }}">My Cases</a>
+                {% if guild.id in basic_data.loggedInUser.modGuilds %}
+                        <a type="button" class="btn btn-primary" href="?modId={{ basic_data.loggedInUser.discordUser.id }}">My Cases</a>
                 {% endif %}
             {% endif %}
             </div>
         </div>
         <br>
-        {% if guild.id not in logged_in_user.modGuilds and not logged_in_user.isAdmin %}
+        {% if guild.id not in basic_data.loggedInUser.modGuilds and not basic_data.loggedInUser.isAdmin %}
             <div class="card rounded mb-3">
                 <div class="card-body">
                     <h4 class="card-title"><a>Restricted permissions.</a></h4>

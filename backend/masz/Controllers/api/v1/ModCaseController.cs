@@ -29,16 +29,16 @@ namespace masz.Controllers
         private readonly IDatabase database;
         private readonly IOptions<InternalConfig> config;
         private readonly IIdentityManager identityManager;
-        private readonly IModCaseAnnouncer modCaseAnnouncer;
+        private readonly IDiscordAnnouncer discordAnnouncer;
         private readonly IDiscordAPIInterface discord;
 
-        public ModCaseController(ILogger<ModCaseController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IModCaseAnnouncer modCaseAnnouncer)
+        public ModCaseController(ILogger<ModCaseController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IDiscordAnnouncer modCaseAnnouncer)
         {
             this.logger = logger;
             this.database = database;
             this.config = config;
             this.identityManager = identityManager;
-            this.modCaseAnnouncer = modCaseAnnouncer;
+            this.discordAnnouncer = modCaseAnnouncer;
             this.discord = discordInterface;
         }
 
@@ -126,11 +126,11 @@ namespace masz.Controllers
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
             try {
-                await modCaseAnnouncer.AnnounceModCase(modCase, ModCaseAction.Deleted, sendNotification);
+                await discordAnnouncer.AnnounceModCase(modCase, RestAction.Deleted, sendNotification);
             }
             catch(Exception e){
                 logger.LogError(e, "Failed to announce modcase.");
-            } 
+            }
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Deleted ModCase.");
             return Ok(new { id = modCase.Id, caseid = modCase.CaseId });
@@ -211,7 +211,7 @@ namespace masz.Controllers
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
             try {
-                await modCaseAnnouncer.AnnounceModCase(modCase, ModCaseAction.Edited, sendNotification);
+                await discordAnnouncer.AnnounceModCase(modCase, RestAction.Edited, sendNotification);
             }
             catch(Exception e){
                 logger.LogError(e, "Failed to announce modcase.");
@@ -297,7 +297,7 @@ namespace masz.Controllers
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
             try {
-                await modCaseAnnouncer.AnnounceModCase(newModCase, ModCaseAction.Created, sendNotification);
+                await discordAnnouncer.AnnounceModCase(newModCase, RestAction.Created, sendNotification);
             }
             catch(Exception e){
                 logger.LogError(e, "Failed to announce modcase.");

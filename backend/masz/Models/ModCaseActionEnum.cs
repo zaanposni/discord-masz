@@ -1,6 +1,6 @@
 namespace masz.Models
 {
-    public enum ModCaseAction
+    public enum RestAction
     {
         Created,
         Edited,
