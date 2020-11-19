@@ -96,7 +96,7 @@ namespace masz.Controllers
             ModCaseComment commentToCreate = new ModCaseComment();
             commentToCreate.ModCase = modCase;
             commentToCreate.UserId = currentUser.Id;
-            commentToCreate.Message = comment.Message;
+            commentToCreate.Message = comment.Message.Trim();
             commentToCreate.CreatedAt = DateTime.UtcNow;
 
             await database.SaveModCaseComment(commentToCreate);
@@ -153,13 +153,14 @@ namespace masz.Controllers
                 return NotFound();
             }
 
+            // only commentor or site admin should be able to edit comment
             if (comment.UserId != currentUser.Id && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
 
-            comment.Message = newValue.Message;
+            comment.Message = newValue.Message.Trim();
 
             database.UpdateModCaseComment(comment);
             await database.SaveChangesAsync();

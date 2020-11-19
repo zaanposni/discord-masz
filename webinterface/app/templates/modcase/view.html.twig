@@ -216,23 +216,34 @@
                                         <span style="white-space: pre-wrap;" class="text-monospace">{{ comment.message }}</span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-text">
+                                <!-- Icons -->
+                                {% if basic_data.loggedInUser.discordUser.id != modcase.userId or basic_data.loggedInUser.discordUser.id == comment.userId %}
+                                    <div class="d-flex flex-column">
+                                        <button class="btn btn-danger" id="delete-{{ comment.id }}" onclick="deleteComment(this)">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                        <button class="btn btn-warning" id="update-{{ comment.id }}" onclick="updateComment(this)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                     {% endfor %}
                 {% endif %}
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="md-form form-group">
-                            <input type="text" class="form-control" id="newComment">
-                            <label for="newComment">Comment</label>
+                <div id="newCommentParent">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="md-form form-group">
+                                <textarea type="text" class="form-control md-textarea" id="newComment"></textarea>
+                                <label for="newComment">Comment</label>
+                            </div>
                         </div>
                     </div>
+                    <button type="submit" class="btn btn-primary btn-md" onclick="sendComment()">
+                        Post comment
+                    </button>
                 </div>
-                <button type="submit" class="btn btn-primary btn-md" onclick="sendComment()">
-                    Post comment
-                </button>
             </div>
 
             <div class="mt-3"></div>
@@ -259,13 +270,42 @@
 
     <script>
         $(document).ready(function () {
-            $('#newComment').keydown(function(e){
-                if(e.keyCode === 13)
-                {
-                    $(this).trigger('sendComment');
+            $("#newComment").on('keydown', function (e) {
+                if (e.shiftKey) { return; }
+                if (e.key === 'Enter' || e.keyCode === 13) {
+                    sendComment();
                 }
-            })
+            });
         });
+
+        function updateComment(obj) {
+            $('#notification').insertAfter($(obj).closest('.card'));
+            $('#notificationColor').attr('fill', '#f56a07');
+            $('#notificationTitle').text('Updating comment failed');
+            $('#notificationBody').text('This feature is not yet available.');
+            $('#notification').toast('show');
+        }
+
+        function deleteComment(obj) {
+            let elementId = $(obj).attr('id');
+            let commentId = elementId.slice(elementId.lastIndexOf('-') + 1);
+
+            $.ajax({
+                type: "DELETE",
+                url: "/api/v1/modcases/{{ modcase.guildId|default }}/{{ modcase.caseId|default }}/comments/" + commentId,
+                success: function (data) {
+                    location.reload()
+                },
+                error: function (errMsg) {
+                    console.log(errMsg);
+                    $('#notification').insertAfter($(obj).closest('.card'));
+                    $('#notificationColor').attr('fill', '#ac000f');
+                    $('#notificationTitle').text('Deleting comment failed');
+                    $('#notificationBody').text(errMsg.status + ': ' + errMsg.responseText);
+                    $('#notification').toast('show');
+                }
+            });
+        }
 
         function sendComment() {
             let msg = $('#newComment').val();
@@ -287,6 +327,7 @@
                 success: function(data){location.reload()},
                 error: function(errMsg) {
                     console.log(errMsg);
+                    $('#notification').insertAfter($('#newCommentParent'));
                     $('#notificationColor').attr('fill', '#ac000f');
                     $('#notificationTitle').text('Posting comment failed');
                     $('#notificationBody').text(errMsg.status + ': ' + errMsg.responseText);
