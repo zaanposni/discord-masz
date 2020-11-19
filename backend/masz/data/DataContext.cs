@@ -55,7 +55,7 @@ namespace masz.data
                 .HasOne(c => c.ModCase)
                 .WithMany(c => c.Comments)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
