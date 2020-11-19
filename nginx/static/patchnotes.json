@@ -1,7 +1,7 @@
 [
     {
-        "title": "Version 0.5",
-        "body": "- Added support for default discord user avatar.\n- Added modcase comments.\n- Login now correctly returns to the requested url.\n- It is now possible to delete modcases via frontend."
+        "title": "Version 1.0",
+        "body": "- Added support for default discord user avatar.\n- Added modcase comments.\n- Login now correctly returns to the requested url.\n- It is now possible to delete modcases via frontend.\n- Fixed query filters in case overview."
     },
     {
         "title": "Version 0.4",
