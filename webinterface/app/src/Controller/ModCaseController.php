@@ -3,7 +3,7 @@
 
 namespace App\Controller;
 
-use App\API\BasicData;
+use App\Helpers\BasicData;
 use App\API\CommentsAPI;
 use App\API\DiscordAPI;
 use App\API\GuildConfigAPI;
