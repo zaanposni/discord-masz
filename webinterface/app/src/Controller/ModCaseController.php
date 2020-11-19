@@ -54,8 +54,16 @@ class ModCaseController extends AbstractController
             } else {
                 foreach ($modCases as $modCase) {
                     foreach ($_GET as $key => $value) {
-                        if ($modCase[$key] == $value) {
-                            $filteredModCases[] = $modCase;
+                        if ($key === 'label') {
+                            if (in_array($value, $modCase['labels'])) {
+                                $filteredModCases[] = $modCase;
+                                break;
+                            }
+                        } else {
+                            if ($modCase[$key] == $value) {
+                                $filteredModCases[] = $modCase;
+                                break;
+                            }
                         }
                     }
                 }
