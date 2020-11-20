@@ -17,6 +17,10 @@ The core of this tool are the **modcases**, a case represents a rule violation, 
 The server members and your moderators can be **notified** individually about the creation. <br/>
 The user for whom the case was created can also see it on the website, take a stand and your server is moderated **transparently**.
 
+# Support and Discussion Server
+
+Join our discord server for support or similar https://discord.gg/5zjpzw6h3S
+
 # Preview
 
 <details>
