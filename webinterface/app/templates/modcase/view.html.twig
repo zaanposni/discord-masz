@@ -342,7 +342,7 @@
                 type: "DELETE",
                 url: "/api/v1/modcases/{{ modcase.guildId|default }}/{{ modcase.caseId|default }}/comments/" + commentId,
                 success: function (data) {
-                    location.reload()
+                    location.reload();
                 },
                 error: function (errMsg) {
                     console.log(errMsg);

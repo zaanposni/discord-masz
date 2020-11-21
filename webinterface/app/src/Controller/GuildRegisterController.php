@@ -4,6 +4,8 @@
 namespace App\Controller;
 
 
+use App\API\DiscordAPI;
+use App\API\MetaAPI;
 use App\Helpers\BasicData;
 use App\API\GuildConfigAPI;
 use App\Config\Config;
@@ -35,32 +37,31 @@ class GuildRegisterController extends AbstractController
             ]);
         }
 
-        $form = $this->createForm(RegisterGuildFormType::class);
-        $form->handleRequest($request);
-
-        if($form->isSubmitted()) {
-            $data = $form->getData();
-            $response = GuildConfigAPI::Post($_COOKIE, $data['guildid'], $data);
-
-            if ($response->success) {
-                if ($response->statuscode === 201) {
-                    return $this->redirect('/modcases/'. $data['guildid']);
-                }
-            }
-
+        $guilds = DiscordAPI::GetGuilds($_COOKIE);
+        if (!$guilds->success || is_null($guilds->body) || $guilds->statuscode !== 200) {
             $basicData->tabTitle = 'MASZ: New Guild';
-            $basicData->errors[] = 'Failed to create ModCase. Response from API: ';
-            $basicData->errors[] = $response->toString();
+            $basicData->errors[] = "Failed to fetch guild infos. API:";
+            $basicData->errors[] = $guilds->toString();
             return $this->render('guilds/new.html.twig', [
                 'basic_data' => $basicData,
-                'form' => $form->createView(),
+            ]);
+        }
+
+        $clientid = MetaAPI::GetClientId($_COOKIE);
+        if (!$clientid->success || is_null($clientid->body) || $clientid->statuscode !== 200) {
+            $basicData->errors[] = "Failed to fetch meta infos. API:";
+            $basicData->errors[] = $clientid->toString();
+            return $this->render('guilds/new.html.twig', [
+                'basic_data' => $basicData,
+                'guilds' => $guilds->body
             ]);
         }
 
         $basicData->tabTitle = 'MASZ: New Guild';
         return $this->render('guilds/new.html.twig', [
             'basic_data' => $basicData,
-            'form' => $form->createView(),
+            'guilds' => $guilds->body,
+            'client_id' => $clientid->body
         ]);
     }
 }

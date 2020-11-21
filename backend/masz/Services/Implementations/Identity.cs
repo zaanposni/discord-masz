@@ -154,6 +154,9 @@ namespace masz.Services
             }
 
             GuildMember guildMember = await GetGuildMembership(guildId);
+            if (guildMember == null) {
+                return false;
+            }
 
             // check for role
             return guildMember.Roles.Contains(guildConfig.ModRoleId) || guildMember.Roles.Contains(guildConfig.AdminRoleId);

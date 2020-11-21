@@ -39,6 +39,11 @@ namespace masz.Controllers.api.v1
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
 
             User currentUser = await currentIdentity.GetCurrentDiscordUser();
+             if (currentUser == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
 
             List<string> memberGuilds = new List<string>();
             List<string> modGuilds = new List<string>();
@@ -83,6 +88,26 @@ namespace masz.Controllers.api.v1
             if (guild != null)
             {
                 return Ok(guild);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("guilds")]
+        public async Task<IActionResult> GetAllGuilds()
+        {
+            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
+
+            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+             if (currentUser == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+
+            var guilds = await currentIdentity.GetCurrentGuilds();
+            if (guilds != null)
+            {
+                return Ok(guilds);
             }
             return NotFound();
         }
