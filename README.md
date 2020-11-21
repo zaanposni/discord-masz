@@ -19,7 +19,12 @@ The user for whom the case was created can also see it on the website, take a st
 
 # Support and Discussion Server
 
-Join our discord server for support or similar https://discord.gg/5zjpzw6h3S
+Join our discord server for support or similar https://discord.gg/5zjpzw6h3S.
+
+# Used by
+
+- [Community Discord "Best of Bundestag"](https://discord.gg/ezMtSwR) 1800 members
+- ["Liberale Community"](https://discord.gg/uf9bHhNMmD) 250 members
 
 # Preview
 
@@ -77,12 +82,12 @@ If you want to use the `banned` feature (banned users can still see the guild an
 
 ## Migration
 
-To migrate your existing data from the Dynobot checkout [this documentation](scripts#migrate-from-dynobot-to-masz)
+To migrate your existing data from the Dynobot checkout [this documentation](scripts#migrate-from-dynobot-to-masz).
 
 # Development
 
 If you want to develop the frontend using your own symfony server, you can change the default path to the API in `src/Config/Config.php`. <br/>
-If you are using a local deployed backend you have to define `https://127.0.0.1:port/` and `https://127.0.0.1:port/signin-discord` as valid redirect in your [Discord application settings](https://discord.com/developers/applications)
+If you are using a local deployed backend you have to define `https://127.0.0.1:port/` and `https://127.0.0.1:port/signin-discord` as valid redirect in your [Discord application settings](https://discord.com/developers/applications).
 
 # Contribute
 
