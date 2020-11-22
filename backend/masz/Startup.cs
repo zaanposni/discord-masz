@@ -43,6 +43,7 @@ namespace masz
             services.AddScoped<IDatabase, Database>();
             services.AddScoped<IDiscordAPIInterface, DiscordAPIInterface>();
             services.AddScoped<IDiscordAnnouncer, DiscordAnnouncer>();
+            services.AddScoped<IFilesHandler, FilesHandler>();
             services.AddSingleton<IIdentityManager, IdentityManager>();
 
             services.AddAuthentication(options =>

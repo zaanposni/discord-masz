@@ -77,7 +77,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"modroleid\": \"748944055840407653\",\n    \"adminroleid\": \"748944028116189195\",\n    \"modInternalNotificationWebhook\": \"https://discordapp.com/api/webhooks/756798126664187964/nb22gP8RHTA5D-ANZmerP_HyHbuoMbOhjhUaFYxAGbT3oEK2vRINZSAbltBmbA3LSkaj\",\n    \"modPublicNotificationWebhook\": \"https://discordapp.com/api/webhooks/756798126664187964/nb22gP8RHTA5D-ANZmerP_HyHbuoMbOhjhUaFYxAGbT3oEK2vRINZSAbltBmbA3LSkaj\"\n}",
+									"raw": "{\n    \"modroleid\": \"748944055840407653\",\n    \"adminroleid\": \"748944028116189195\",\n    \"modInternalNotificationWebhook\": \"\",\n    \"modPublicNotificationWebhook\": \"\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -107,7 +107,7 @@
 						{
 							"name": "guildconfig",
 							"request": {
-								"method": "PATCH",
+								"method": "PUT",
 								"header": [
 									{
 										"key": "Cookie",
@@ -117,7 +117,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "[\n    { \"op\": \"replace\", \"path\": \"modPublicNotificationWebhook\", \"value\": \"https://discordapp.com/api/webhooks/756798126664187964/nb22gP8RHTA5D-ANZmerP_HyHbuoMbOhjhUaFYxAGbT3oEK2vRINZSAbltBmbA3LSkaj\" }\n]\n",
+									"raw": "{\n    \"modroleid\": \"748944055840407653\",\n    \"adminroleid\": \"748944028116189195\",\n    \"modInternalNotificationWebhook\": \"\",\n    \"modPublicNotificationWebhook\": \"\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -393,19 +393,27 @@
 							"name": "file",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
 								"url": {
-									"raw": "{{url}}/api/v1/files/{{guildid}}/1/0db2fd763c4a32d373d98121989eeef50dfd9855_120a6b5f_DSC01013.JPG",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/modcases/1/files/31fa2dbb26dd2a1ae68c32e9e273dbd18465b5f0_1531b27b_464286a42d52e1e8528220b2c15546d2.jpg",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"files",
+										"guilds",
 										"{{guildid}}",
+										"modcases",
 										"1",
-										"0db2fd763c4a32d373d98121989eeef50dfd9855_120a6b5f_DSC01013.JPG"
+										"files",
+										"31fa2dbb26dd2a1ae68c32e9e273dbd18465b5f0_1531b27b_464286a42d52e1e8528220b2c15546d2.jpg"
 									]
 								}
 							},
@@ -415,19 +423,26 @@
 							"name": "files",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
 								"url": {
-									"raw": "{{url}}/api/v1/files/{{guildid}}/1/all",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/modcases/1/files",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"files",
+										"guilds",
 										"{{guildid}}",
+										"modcases",
 										"1",
-										"all"
+										"files"
 									]
 								}
 							},
@@ -437,14 +452,20 @@
 							"name": "file",
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "formdata",
 									"formdata": [
 										{
 											"key": "File",
 											"type": "file",
-											"src": "/Y:/pictures/2020_05_20/DSC01013.JPG"
+											"src": "/C:/Users/zaanposni/Desktop/464286a42d52e1e8528220b2c15546d2.jpg"
 										}
 									],
 									"options": {
@@ -452,16 +473,48 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/files/{{guildid}}/1",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/modcases/1/files",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"files",
+										"guilds",
 										"{{guildid}}",
-										"1"
+										"modcases",
+										"1",
+										"files"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "file",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/modcases/1/files/31fa2dbb26dd2a1ae68c32e9e273dbd18465b5f0_c60cdb01_464286a42d52e1e8528220b2c15546d2.jpg",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"modcases",
+										"1",
+										"files",
+										"31fa2dbb26dd2a1ae68c32e9e273dbd18465b5f0_c60cdb01_464286a42d52e1e8528220b2c15546d2.jpg"
 									]
 								}
 							},
@@ -692,7 +745,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/1/comments/4",
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/53/comments/35",
 									"host": [
 										"{{url}}"
 									],
@@ -701,9 +754,9 @@
 										"v1",
 										"modcases",
 										"{{guildid}}",
-										"1",
+										"53",
 										"comments",
-										"4"
+										"35"
 									]
 								}
 							},
@@ -721,7 +774,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/1/comments/6",
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/1/comments/4",
 									"host": [
 										"{{url}}"
 									],
@@ -732,7 +785,7 @@
 										"{{guildid}}",
 										"1",
 										"comments",
-										"6"
+										"4"
 									]
 								}
 							},
