@@ -1,3 +1,4 @@
+{% block body %}
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark" style="background-color: #5E5B52;">
     <div class="container">
         <a class="navbar-brand" href="/">ModTool</a>
@@ -110,7 +111,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                Coming soon...
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="darkModeToggle" onclick="darkModeToggle(this)">
+                    <label class="custom-control-label" for="darkModeToggle">Toggle dark mode</label>
+                </div>
             </div>
         </div>
     </div>
@@ -132,3 +136,53 @@
 </div>
 
 <br>
+{% endblock body %}
+{% block scriptblock %}
+
+    <script>
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+
+        function setCookie(name,value,days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+
+        $(document).ready(function () {
+            console.log(readCookie('darkmode'));
+            let darkMode = readCookie('darkmode');
+            if (darkMode === 'true' || darkMode === null) {  // default dark
+                $('#darkmode').attr('disabled', false);
+                $('#darkModeToggle').prop('checked', true);
+            } else {
+                $('#darkmode').attr('disabled', true);
+                $('#darkModeToggle').prop('checked', false);
+            }
+        });
+
+        function darkModeToggle(button) {
+            let isChecked = $(button).is(":checked")
+            if (isChecked) {
+                $('#darkmode').attr('disabled', false);
+                setCookie('darkmode', 'true', 99999);
+            } else {
+                $('#darkmode').attr('disabled', true);
+                setCookie('darkmode', 'false', 99999);
+            }
+        }
+    </script>
+
+{% endblock scriptblock %}

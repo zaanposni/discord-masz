@@ -44,7 +44,8 @@
         </ul>
 
         <div class="md-form">
-            {{ form_row(createCaseForm.title) }}
+            {{ form_label(createCaseForm.title) }}
+            {{ form_widget(createCaseForm.title) }}
         </div>
         <div class="md-form">
             {{ form_row(createCaseForm.description) }}
