@@ -105,9 +105,9 @@ To migrate your existing data from the Dynobot checkout [this documentation](scr
 
 ## Config
 
-Change `nginx_mode` in your config to `local` to deactivate rate limit and set correct headers for local deployment. <br/>
-Links in discord are generated using `service_domain` and `service_base_url`. If you want to test those, you have to adjust your config to `127.0.0.1:5565`. <br/>
-If you want to develop the frontend using your own symfony server, you can change the default path to the API in `src/Config/Config.php`. <br/>
+- Change `nginx_mode` in your config to `local` to deactivate rate limit and set correct headers for local deployment. <br/>
+- Links in discord are generated using `service_domain` and `service_base_url`. If you want to test those, you have to adjust your config to `127.0.0.1:5565`. <br/>
+- If you want to develop the frontend using your own symfony server, you can change the default path to the API in `src/Config/Config.php`. <br/>
 
 ## Discord
 
