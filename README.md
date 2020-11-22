@@ -43,6 +43,8 @@ Join our discord server for support or similar https://discord.gg/5zjpzw6h3S.
 
 # Setup - Installation
 
+The following guide assumes you want to deploy a production environment.
+
 ## Operation System
 
 Since I use Docker you can use an operating system of your choice, but I recommend ubuntu and will list the next steps based on a linux host.
@@ -51,16 +53,19 @@ Since I use Docker you can use an operating system of your choice, but I recomme
 
 - [docker](https://docs.docker.com/engine/install/ubuntu/) & [docker-compose](https://docs.docker.com/compose/)
 - [jq](https://stedolan.github.io/jq/download/) - a bash tool for json
+- a subdomain to host the application on
 
 ## Discord OAuth
 
 Requests are authenticated using Discord OAuth2. Create your own OAuth application [here](https://discord.com/developers/applications). <br/>
 You will have to use `Client ID` and `Client Secret` in the tab `General Information` and the bot token at `Bot` later in the local config file. <br/>
-Also set the redirect paths in the tab `OAuth2`. Be sure to set `https://yourdomain.com/` and `https://yourdomain.com/signin-discord`. <br/>
-If you only want to try out the project on your pc, you can also use `http://127.0.0.1:5565/` and `http://127.0.0.1:5565/signin-discord`.
-
-**Important:** Invite and join the bot of your registered application to all Discord servers that you want to use. <br/>
-If you want to use the `banned` feature (banned users can still see the guild and their cases so they know what lead to a ban), give the bot the `ban people` permission, otherwise the bot does not need any further permissions.
+Also set the redirect paths in the tab `OAuth2`. Be sure to set the following:
+```
+http://yourdomain.com/
+http://yourdomain.com/signin-discord
+https://yourdomain.com/
+https://yourdomain.com/signin-discord
+```
 
 ## Setup
 
@@ -70,15 +75,19 @@ If you want to use the `banned` feature (banned users can still see the guild an
   - `service_name` should be the name/domain the service is hosted on.
   - `service_domain` is the domain the service is hosted on.
   - `service_base_url` is the URL the service is hosted on.
-  - `nginx_mode` can be either `local` or `prod` and describes if you are hosting a development or production environment.
 - Start everything out of the box by running the `bootstrap.sh` script.
-- Your application is now hosted at `127.0.0.1:5565`, you might want to redirect your reverse proxy or similiar to this location :)
+- Your application is now hosted at `yourdomain.com`, you might want to redirect your reverse proxy or similiar to this location :)
 
 ## First steps:
 
-- You can visit your application at `127.0.0.1:5565`. You will see a login screen that will ask you to authenticate yourself using Discord OAuth2.
+- You can visit your application at `yourdomain.com`. You will see a login screen that will ask you to authenticate yourself using Discord OAuth2.
 - After authorizing your service to use your Discord account you will see your profile picture in the top right corner of the index page.
 - If you are logged in as a site admin you can use the "register guild" button to register your guilds and to get started. If you do not see the button please verify that your discord user id is in the `site_admins` list of your `config.json`
+
+## Ban feature:
+
+If you want banned users to see their cases, grant your bot the `ban people` permission. <br/>
+This way they can see the reason for their ban and comment or send an unban request.
 
 ## Migration
 
@@ -86,7 +95,14 @@ To migrate your existing data from the Dynobot checkout [this documentation](scr
 
 # Development
 
+## Config
+
+Change `nginx_mode` in your config to `local` to deactivate rate limit and set correct headers for local deployment. <br/>
+Links in discord are generated using `service_domain` and `service_base_url`. If you want to test those, you have to adjust your config to `127.0.0.1:5565`. <br/>
 If you want to develop the frontend using your own symfony server, you can change the default path to the API in `src/Config/Config.php`. <br/>
+
+## Discord
+
 If you are using a local deployed backend you have to define `https://127.0.0.1:port/` and `https://127.0.0.1:port/signin-discord` as valid redirect in your [Discord application settings](https://discord.com/developers/applications).
 
 # Contribute
