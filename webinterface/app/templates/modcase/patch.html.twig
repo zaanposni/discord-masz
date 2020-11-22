@@ -56,9 +56,13 @@
             {{ form_label(createCaseForm.punishment) }}
             {{ form_widget(createCaseForm.punishment, {'required': false, 'value': modcase.punishment|default, 'empty_data': modcase.punishment|default }) }}
         </div>
-        <div class="md-form">
-            {{ form_row(createCaseForm.sendNotification) }}
+        <br>
+        <div class="custom-control custom-checkbox">
+            {{ form_widget(createCaseForm.sendNotification) }}
+            {{ form_label(createCaseForm.sendNotification) }}
+
         </div>
+
         <div class="md-form">
             {{ form_row(createCaseForm.submit, {'attr': {'class': 'btn btn-warning btn-lg btn-block' }, 'label': 'EDIT CASE'}) }}
         </div>
