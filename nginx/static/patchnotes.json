@@ -1,7 +1,7 @@
 [
     {
         "title": "Version 1.1",
-        "body": "- Reworked dialog to register guilds.\n- Fixed a bug that occures if the bot gets removed from a registered guild.\n- Added default darkmode. Toggleable in settings top right corner."
+        "body": "- Reworked dialog to register guilds.\n- Fixed a bug that occures if the bot gets removed from a registered guild.\n- Added default darkmode. Toggleable in settings top right corner.\n- Fixed unstyled checkbox."
     },
     {
         "title": "Version 1.0",

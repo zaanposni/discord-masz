@@ -97,11 +97,15 @@ class CreateCaseFormType extends AbstractType
                 'label' => 'Punishment',
             ])
             ->add('sendNotification', CheckboxType::class, [
+
                 'attr' => [
-                    'class' => "form-control",
+                    'class' => "custom-control-input",
+                    'checked' => true
                 ],
-                'label' => 'sendNotification',
-                'data' => true,
+                'label' => 'Send notification?',
+                'label_attr' => array(
+                    'class' => 'custom-control-label'
+                ),
                 'required'=> false
             ])
             ->add('submit', SubmitType::class, [
