@@ -29,7 +29,7 @@ docker image rm discord-discord-masz_backend
 docker volume rm discord-masz_php_share
 echo "Removed old containers/images/volumes"
 
-bash bootstrap_init.sh
+bash bootstrap_init.sh || exit 5;
 
 echo "Starting up..."
 docker-compose --env-file .env up --build --force-recreate -d
