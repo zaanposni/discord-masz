@@ -78,16 +78,24 @@ https://yourdomain.com/signin-discord
 - Start everything out of the box by running the `bootstrap.sh` script.
 - Your application is now hosted at `yourdomain.com`, you might want to redirect your reverse proxy or similiar to this location :)
 
-## First steps:
+## First steps
 
 - You can visit your application at `yourdomain.com`. You will see a login screen that will ask you to authenticate yourself using Discord OAuth2.
 - After authorizing your service to use your Discord account you will see your profile picture in the top right corner of the index page.
 - If you are logged in as a site admin you can use the "register guild" button to register your guilds and to get started. If you do not see the button please verify that your discord user id is in the `site_admins` list of your `config.json`
 
-## Ban feature:
+## Ban feature
 
 If you want banned users to see their cases, grant your bot the `ban people` permission. <br/>
 This way they can see the reason for their ban and comment or send an unban request.
+
+## Update
+
+To install a new update of MASZ just use:
+```
+git pull
+./bootstrap.sh
+```
 
 ## Migration
 
