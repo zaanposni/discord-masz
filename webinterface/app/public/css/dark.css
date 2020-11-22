@@ -118,7 +118,12 @@ select:-webkit-autofill {
 }
 
 .custom-select, .custom-select:focus, input[class*="form-control"], input[class*="form-control:focus"], .dataTables_wrapper .form-control:focus {
-    color: #495057 !important;
+    background-color: unset!important;
+    color: unset;
+}
+
+.custom-select option {
+    background-color: #181a1b!important;
 }
 
 .md-form > .form-control, .md-form > .form-control:focus {

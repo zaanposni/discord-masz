@@ -56,10 +56,18 @@
         <div class="">
             {{ form_row(createCaseForm.punishment) }}
         </div>
-        <div class="md-form">
-            {{ form_row(createCaseForm.sendNotification) }}
+        <br>
+        <div class="custom-control custom-checkbox">
+            {{ form_widget(createCaseForm.sendNotification) }}
+            {{ form_label(createCaseForm.sendNotification) }}
+
         </div>
+
+        <br>
         {{ form_end(createCaseForm) }}
     </div>
+
 {% endblock body %}
+
+
 
