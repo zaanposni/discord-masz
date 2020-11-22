@@ -31,8 +31,9 @@ namespace masz.Controllers
         private readonly IIdentityManager identityManager;
         private readonly IDiscordAnnouncer discordAnnouncer;
         private readonly IDiscordAPIInterface discord;
+        private readonly IFilesHandler filesHandler;
 
-        public ModCaseController(ILogger<ModCaseController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IDiscordAnnouncer modCaseAnnouncer)
+        public ModCaseController(ILogger<ModCaseController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IDiscordAnnouncer modCaseAnnouncer, IFilesHandler filesHandler)
         {
             this.logger = logger;
             this.database = database;
@@ -40,6 +41,7 @@ namespace masz.Controllers
             this.identityManager = identityManager;
             this.discordAnnouncer = modCaseAnnouncer;
             this.discord = discordInterface;
+            this.filesHandler = filesHandler;
         }
 
         [HttpGet("{modcaseid}")]
@@ -115,10 +117,10 @@ namespace masz.Controllers
                 return NotFound();
             }
 
-            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload, guildid, modcaseid);
-            if (System.IO.Directory.Exists(uploadDir))
-            {
-                Directory.Delete(uploadDir, true);
+            try {
+                filesHandler.DeleteDirectory(Path.Combine(config.Value.AbsolutePathToFileUpload, guildid, modcaseid));
+            } catch (Exception e) {
+                logger.LogError(e, "Failed to delete files directory for modcase.");
             }
 
             database.DeleteSpecificModCase(modCase);

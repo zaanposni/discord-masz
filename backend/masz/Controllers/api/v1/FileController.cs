@@ -18,7 +18,7 @@ using Microsoft.Extensions.Options;
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("api/v1/files/{guildid}/{modcaseid}")]
+    [Route("api/v1/guilds/{guildid}/modcases/{caseid}/files")]
     [Authorize]
     public class FileController : ControllerBase
     {
@@ -26,17 +26,19 @@ namespace masz.Controllers
         private readonly IDatabase database;
         private readonly IOptions<InternalConfig> config;
         private readonly IIdentityManager identityManager;
+        private readonly IFilesHandler filesHandler;
 
-        public FileController(ILogger<FileController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager)
+        public FileController(ILogger<FileController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IFilesHandler filesHandler)
         {
             this.logger = logger;
             this.database = database;
             this.config = config;
             this.identityManager = identityManager;
+            this.filesHandler = filesHandler;
         }
 
-        [HttpGet("{filename}")]
-        public async Task<IActionResult> GetSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromRoute] string filename) 
+        [HttpDelete("{filename}")]
+        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromRoute] string caseid, [FromRoute] string filename) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -53,18 +55,47 @@ namespace masz.Controllers
             }
             // ========================================================
 
-            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload, guildid, modcaseid);
-            var filePath = Path.Combine(uploadDir, filename);
-            if (!System.IO.File.Exists(filePath))
+            var filePath = Path.Combine(config.Value.AbsolutePathToFileUpload, guildid, caseid, filename);
+            filesHandler.DeleteFile(filePath);
+
+            return Ok();
+        }
+
+        [HttpGet("{filename}")]
+        public async Task<IActionResult> GetSpecificItem([FromRoute] string guildid, [FromRoute] string caseid, [FromRoute] string filename) 
+        {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
+            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+            if (currentUser == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            ModCase modCase = await database.SelectSpecificModCase(guildid, caseid);
+            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            {
+                if (modCase == null) {
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                    return Unauthorized();                    
+                } else {
+                    if (modCase.UserId != currentUser.Id) {
+                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                        return Unauthorized();
+                    }
+                }
+            }
+            // ========================================================
+
+            var filePath = Path.Combine(config.Value.AbsolutePathToFileUpload, guildid, caseid, filename);
+            byte[] fileData = filesHandler.ReadFile(filePath);
+            if (fileData == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Not Found.");
                 return NotFound();
             }
 
-            byte[] filedata = System.IO.File.ReadAllBytes(filePath);
-            string contentType;
-            new FileExtensionContentTypeProvider().TryGetContentType(filePath, out contentType);
-            contentType = contentType ?? "application/octet-stream";
+            string contentType = filesHandler.GetContentType(filePath);
             var cd = new System.Net.Mime.ContentDisposition
             {
                 FileName = filename,
@@ -73,11 +104,11 @@ namespace masz.Controllers
             HttpContext.Response.Headers.Add("Content-Disposition", cd.ToString());
             HttpContext.Response.Headers.Add("Content-Type", contentType);
 
-            return File(filedata, contentType);
+            return File(fileData, contentType);
         }
 
-        [HttpGet("all")]
-        public async Task<IActionResult> GetAllItems([FromRoute] string guildid, [FromRoute] string modcaseid) 
+        [HttpGet]
+        public async Task<IActionResult> GetAllItems([FromRoute] string guildid, [FromRoute] string caseid) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -87,27 +118,37 @@ namespace masz.Controllers
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
+            ModCase modCase = await database.SelectSpecificModCase(guildid, caseid);
             if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
             {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
+                if (modCase == null) {
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                    return Unauthorized();                    
+                } else {
+                    if (modCase.UserId != currentUser.Id) {
+                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                        return Unauthorized();
+                    }
+                }
             }
             // ========================================================
             
-            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid, modcaseid);
-            if (!System.IO.Directory.Exists(uploadDir))
+            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid, caseid);
+
+            FileInfo[] files = filesHandler.GetFilesByDirectory(uploadDir);
+            if (files == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Not Found.");
                 return NotFound();
             }
-            FileInfo[] files = new DirectoryInfo(uploadDir).GetFiles();
+            
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning file list.");
             return Ok(new { names = files.Select(x => x.Name).ToList() } );
         }
 
         [HttpPost]
         [RequestSizeLimit(10485760)]
-        public async Task<IActionResult> PostItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromForm] UploadedFile uploadedFile)
+        public async Task<IActionResult> PostItem([FromRoute] string guildid, [FromRoute] string caseid, [FromForm] UploadedFile uploadedFile)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -130,42 +171,15 @@ namespace masz.Controllers
                 return BadRequest();
             }
 
-            if (await database.SelectSpecificModCase(guildid, modcaseid) == null)
+            if (await database.SelectSpecificModCase(guildid, caseid) == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Modcase not found.");
                 return BadRequest("Modcase not found.");
             }
 
-            var uniqueFileName = GetUniqueFileName(uploadedFile.File);
-            var uploadDir = Path.Combine(config.Value.AbsolutePathToFileUpload , guildid, modcaseid);
-            System.IO.Directory.CreateDirectory(uploadDir);
-            var filePath = Path.Combine(uploadDir, uniqueFileName);
-            await uploadedFile.File.CopyToAsync(new FileStream(filePath, FileMode.Create));
+            string uniqueFileName = await filesHandler.SaveFile(uploadedFile.File, Path.Combine(config.Value.AbsolutePathToFileUpload , guildid, caseid));
 
-            return StatusCode(201, new { path = $"/{guildid}/{modcaseid}/{uniqueFileName}" });
-        }
-
-        private string GetUniqueFileName(IFormFile file)
-        {
-            // TODO: change to hasing algorithm
-            string fileName = Path.GetFileName(file.FileName);
-            return  GetSHA1Hash(file)
-                    + "_"
-                    + Guid.NewGuid().ToString().Substring(0, 8)
-                    + "_"
-                    + Path.GetFileNameWithoutExtension(fileName)
-                    + Path.GetExtension(fileName);
-        }
-
-        private string GetSHA1Hash(IFormFile file)
-        {
-            // get stream from file then convert it to a MemoryStream
-            MemoryStream stream = new MemoryStream();
-            file.OpenReadStream().CopyTo(stream);
-            // compute md5 hash of the file's byte array.
-            byte[] bytes = SHA1.Create().ComputeHash(stream.ToArray());
-            stream.Close();
-            return BitConverter.ToString(bytes).Replace("-",string.Empty).ToLower();
+            return StatusCode(201, new { path = uniqueFileName });
         }
     }
 }
