@@ -84,7 +84,7 @@ https://yourdomain.com/signin-discord
 - After authorizing your service to use your Discord account you will see your profile picture in the top right corner of the index page.
 - If you are logged in as a site admin you can use the "register guild" button to register your guilds and to get started. If you do not see the button please verify that your discord user id is in the `site_admins` list of your `config.json`
 
-## Ban feature
+## Unban request feature
 
 If you want banned users to see their cases, grant your bot the `ban people` permission. <br/>
 This way they can see the reason for their ban and comment or send an unban request.
