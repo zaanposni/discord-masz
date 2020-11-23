@@ -12,7 +12,7 @@ class GuildConfigAPI
     {
         try {
             $client = HttpClient::create();
-            $url = Config::getAPIBaseURL() . '/api/v1/configs/' . $guildid;
+            $url = Config::getAPIBaseURL() . '/api/v1/guilds/' . $guildid;
             $response = $client->request(
                 'GET',
                 $url,
@@ -29,11 +29,11 @@ class GuildConfigAPI
         }
     }
 
-    public static function Post($COOKIES, $guildid, $data): Response
+    public static function Post($COOKIES, $data): Response
     {
         try {
             $client = HttpClient::create();
-            $url = Config::getAPIBaseURL() . '/api/v1/configs/' . $guildid;
+            $url = Config::getAPIBaseURL() . '/api/v1/guilds/';
             $response = $client->request(
                 'POST',
                 $url,
@@ -57,7 +57,7 @@ class GuildConfigAPI
     {
         try {
             $client = HttpClient::create();
-            $url = Config::getAPIBaseURL() . '/api/v1/configs/' . $guildid;
+            $url = Config::getAPIBaseURL() . '/api/v1/guilds/' . $guildid;
             $response = $client->request(
                 'PUT',
                 $url,
@@ -81,7 +81,7 @@ class GuildConfigAPI
     {
         try {
             $client = HttpClient::create();
-            $url = Config::getAPIBaseURL() . '/api/v1/modcases/' . $guildid;
+            $url = Config::getAPIBaseURL() . '/api/v1/guilds/' . $guildid;
             $response = $client->request(
                 'DELETE',
                 $url,

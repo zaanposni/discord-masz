@@ -22,6 +22,7 @@ namespace masz.Services
         Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId);
         Task<List<ModCase>> SelectAllModCasesForGuild(string guildId);
         Task<List<ModCase>> SelectAllModCases();
+        Task DeleteAllModCasesForGuild(string guildid);
         void DeleteSpecificModCase(ModCase modCase);
         void UpdateModCase(ModCase modCase);
         Task SaveModCase(ModCase modCase);
