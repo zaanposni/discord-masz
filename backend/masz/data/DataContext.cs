@@ -56,6 +56,13 @@ namespace masz.data
                 .WithMany(c => c.Comments)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ManagedPunishment>()
+                .HasOne(c => c.ModCase)
+                .WithOne(c => c.ManagedPunishment)
+                .HasForeignKey<ManagedPunishment>(c => c.CaseDbId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

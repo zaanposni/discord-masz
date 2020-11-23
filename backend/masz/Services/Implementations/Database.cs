@@ -66,7 +66,7 @@ namespace masz.Services
 
         public async Task<ModCase> SelectSpecificModCase(string guildId, string modCaseId)
         {
-            return await context.ModCases.Include(c => c.Comments).AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.CaseId.ToString() == modCaseId);
+            return await context.ModCases.Include(c => c.Comments).Include(c => c.ManagedPunishment).AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.CaseId.ToString() == modCaseId);
         }
 
         public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId)

@@ -29,6 +29,7 @@ namespace masz.Models
         public string Others { get; set; }
         public bool Valid { get; set; }
         public ICollection<ModCaseComment> Comments { get; set; }
+        public ManagedPunishment ManagedPunishment { get; set; }
 
         public object Clone()
         {
@@ -51,7 +52,8 @@ namespace masz.Models
                 Labels = this.Labels,
                 Others = this.Others,
                 Valid = this.Valid,
-                Comments = this.Comments
+                Comments = this.Comments,
+                ManagedPunishment = this.ManagedPunishment
             };
         }
     }
