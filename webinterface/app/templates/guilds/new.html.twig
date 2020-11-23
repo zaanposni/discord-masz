@@ -98,12 +98,6 @@
                 $.ajax({
                     type: "GET",
                     url: "/api/v1/discord/guilds/" + selectedGuild,
-                    beforeSend: function(request) {
-                        request.setRequestHeader("Cookie", "masz_access_token=" + token);
-                    },
-                    xhrFields: {
-                        withCredentials: true
-                    },
                     success: function (data) {
                         let modRoles = $('#form-mod-role');
                         let adminRoles = $('#form-admin-role');
@@ -217,16 +211,10 @@
             };
             $.ajax({
                 type: "POST",
-                url: "/api/v1/configs/" + obj['guildid'],
+                url: "/api/v1/guilds/",
                 data: JSON.stringify(obj),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                beforeSend: function(request) {
-                    request.setRequestHeader("Cookie", "masz_access_token=" + token);
-                },
-                xhrFields: {
-                    withCredentials: true
-                },
                 success: function (data) {
                     location.href = '/modcases/' + obj['guildid'];
                 },
@@ -247,4 +235,4 @@
         }
 
     </script>
-{% endblock %}
+{% endblock scriptblock %}

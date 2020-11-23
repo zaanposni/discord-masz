@@ -4,6 +4,9 @@ namespace masz.Dtos.GuildConfig
 {
     public class GuildConfigForCreateDto
     {
+        [Required(ErrorMessage = "GuildId field is required")]
+        [RegularExpression(@"^[0-9]{18}$", ErrorMessage = "the guild id can only consist of numbers and must be 18 characters long")]
+        public string GuildId { get; set; }
         [Required(ErrorMessage = "ModRoleId field is required")]
         [RegularExpression(@"^[0-9]{18}$", ErrorMessage = "the role id can only consist of numbers and must be 18 characters long")]
         public string ModRoleId { get; set; }

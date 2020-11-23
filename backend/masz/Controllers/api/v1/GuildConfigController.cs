@@ -16,7 +16,7 @@ using Newtonsoft.Json;
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("api/v1/configs/{guildid}")]
+    [Route("api/v1/guilds/")]
     [Authorize]
     public class GuildConfigController : ControllerBase
     {
@@ -35,7 +35,7 @@ namespace masz.Controllers
             this.discord = discordInterface;
         }
 
-        [HttpGet]
+        [HttpGet("{guildid}")]
         public async Task<IActionResult> GetSpecificItem([FromRoute] string guildid) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
@@ -64,8 +64,8 @@ namespace masz.Controllers
             return Ok(guildConfig);
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid) 
+        [HttpDelete("{guildid}")]
+        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromQuery] bool deleteCases = false) 
         {
             // check if request is made by a site admin
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
@@ -90,6 +90,9 @@ namespace masz.Controllers
                 return NotFound();
             }
 
+            if (deleteCases) {
+                await database.DeleteAllModCasesForGuild(guildid);
+            }
 
             database.DeleteSpecificGuildConfig(guildConfig);
             await database.SaveChangesAsync();
@@ -99,7 +102,7 @@ namespace masz.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateItem([FromRoute] string guildid, [FromBody] GuildConfigForCreateDto guildConfigForCreateDto) 
+        public async Task<IActionResult> CreateItem([FromBody] GuildConfigForCreateDto guildConfigForCreateDto) 
         {
             // check if request is made by a site admin
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
@@ -117,14 +120,14 @@ namespace masz.Controllers
             }
             // ========================================================
 
-            GuildConfig alreadyExists = await database.SelectSpecificGuildConfig(guildid);
+            GuildConfig alreadyExists = await database.SelectSpecificGuildConfig(guildConfigForCreateDto.GuildId);
             if (alreadyExists != null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild is already registered.");
                 return BadRequest("Guild is already registered.");
             }
 
-            Guild guild = await discord.FetchGuildInfo(guildid);
+            Guild guild = await discord.FetchGuildInfo(guildConfigForCreateDto.GuildId);
             if (guild == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not found.");
@@ -137,7 +140,7 @@ namespace masz.Controllers
             }          
 
             GuildConfig guildConfig = new GuildConfig();
-            guildConfig.GuildId = guildid;
+            guildConfig.GuildId = guildConfigForCreateDto.GuildId;
             guildConfig.ModRoleId = guildConfigForCreateDto.ModRoleId;
             guildConfig.AdminRoleId = guildConfigForCreateDto.AdminRoleId;
             guildConfig.ModNotificationDM = guildConfigForCreateDto.ModNotificationDM;
@@ -151,7 +154,7 @@ namespace masz.Controllers
             return StatusCode(201);
         }
 
-        [HttpPut]
+        [HttpPut("{guildid}")]
         public async Task<IActionResult> UpdateSpecificItem([FromRoute] string guildid, [FromBody] GuildConfigForPutDto newValue) 
         {
             // check if request is made by a site admin

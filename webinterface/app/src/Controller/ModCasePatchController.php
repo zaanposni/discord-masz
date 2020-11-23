@@ -74,6 +74,5 @@ class ModCasePatchController extends AbstractController
             'now' => date("Y-m-d\\TH:i:s.u"),
             'modcase' => $modCase
         ]);
-
     }
 }

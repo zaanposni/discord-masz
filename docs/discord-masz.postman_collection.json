@@ -38,14 +38,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/configs/{{guildid}}",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"configs",
+										"guilds",
 										"{{guildid}}"
 									],
 									"query": [
@@ -77,21 +77,20 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"modroleid\": \"748944055840407653\",\n    \"adminroleid\": \"748944028116189195\",\n    \"modInternalNotificationWebhook\": \"\",\n    \"modPublicNotificationWebhook\": \"\"\n}",
+									"raw": "{\n    \"guildid\": {{guildid}},\n    \"modroleid\": \"748944055840407653\",\n    \"adminroleid\": \"748944028116189195\",\n    \"modInternalNotificationWebhook\": \"\",\n    \"modPublicNotificationWebhook\": \"\"\n}",
 									"options": {
 										"raw": {}
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/configs/{{guildid}}",
+									"raw": "{{url}}/api/v1/guilds",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"configs",
-										"{{guildid}}"
+										"guilds"
 									],
 									"query": [
 										{
@@ -125,14 +124,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/configs/{{guildid}}",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"configs",
+										"guilds",
 										"{{guildid}}"
 									]
 								}
@@ -156,21 +155,25 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/configs/{{guildid}}",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}?deleteCases=false",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"configs",
+										"guilds",
 										"{{guildid}}"
 									],
 									"query": [
 										{
 											"key": "guildid",
-											"value": null,
+											"value": "",
 											"disabled": true
+										},
+										{
+											"key": "deleteCases",
+											"value": "false"
 										}
 									]
 								}
