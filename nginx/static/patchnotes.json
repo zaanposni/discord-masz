@@ -1,7 +1,7 @@
 [
     {
         "title": "Version 1.2",
-        "body": "- Added form to delete and edit guild configuration via frontend."
+        "body": "- Added form to delete and edit guild configuration via frontend.\n- Public announcement embeds do not contain case description anymore."
     },
     {
         "title": "Version 1.1",
