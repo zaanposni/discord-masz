@@ -45,6 +45,12 @@ namespace masz
             services.AddScoped<IDiscordAnnouncer, DiscordAnnouncer>();
             services.AddScoped<IFilesHandler, FilesHandler>();
             services.AddSingleton<IIdentityManager, IdentityManager>();
+            services.AddSingleton<IPunishmentHandler, PunishmentHandler>();
+
+            var buildServiceProvider = services.BuildServiceProvider();
+            var someSingletonService = buildServiceProvider.GetRequiredService <IPunishmentHandler>();
+            someSingletonService.StartTimer();
+
 
             services.AddAuthentication(options =>
             {

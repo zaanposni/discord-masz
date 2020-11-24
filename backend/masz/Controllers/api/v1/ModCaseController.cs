@@ -32,8 +32,9 @@ namespace masz.Controllers
         private readonly IDiscordAnnouncer discordAnnouncer;
         private readonly IDiscordAPIInterface discord;
         private readonly IFilesHandler filesHandler;
+        private readonly IPunishmentHandler punishmentHandler;
 
-        public ModCaseController(ILogger<ModCaseController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IDiscordAnnouncer modCaseAnnouncer, IFilesHandler filesHandler)
+        public ModCaseController(ILogger<ModCaseController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IDiscordAnnouncer modCaseAnnouncer, IFilesHandler filesHandler, IPunishmentHandler punishmentHandler)
         {
             this.logger = logger;
             this.database = database;
@@ -42,6 +43,7 @@ namespace masz.Controllers
             this.discordAnnouncer = modCaseAnnouncer;
             this.discord = discordInterface;
             this.filesHandler = filesHandler;
+            this.punishmentHandler = punishmentHandler;
         }
 
         [HttpGet("{modcaseid}")]
