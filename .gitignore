@@ -1028,3 +1028,4 @@ config.json
 .docker/data/*
 ###< docker ###
 .env
+webinterface/app/composer.lock
