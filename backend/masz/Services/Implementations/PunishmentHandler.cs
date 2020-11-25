@@ -89,6 +89,11 @@ namespace masz.Services
 
         public async Task UndoPunishment(ModCase modCase)
         {
+            List<ModCase> parallelCases = await database.SelectAllModCasesThatHaveParallelPunishment(modCase);
+            if (parallelCases.Count != 0) {
+                logger.LogInformation("Cannot undo punishment. There exists a parallel punishment for this case");
+                return;
+            }
             GuildConfig guildConfig = await database.SelectSpecificGuildConfig(modCase.GuildId);
             if (guildConfig == null) {
                 logger.LogError($"Punisher: Cannot execute punishment in guild {modCase.GuildId} - guildconfig not found.");
