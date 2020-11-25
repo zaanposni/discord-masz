@@ -134,7 +134,7 @@ namespace masz.Controllers
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
                     await punishmentHandler.UndoPunishment(modCase);
                 }
-                    catch(Exception e){
+                catch(Exception e){
                     logger.LogError(e, "Failed to handle punishment for modcase.");
                 }
             }
@@ -194,9 +194,9 @@ namespace masz.Controllers
             modCase.PunishmentType = newValue.PunishmentType;
             modCase.PunishedUntil = newValue.PunishedUntil;
             if (newValue.PunishedUntil == null) {
-                modCase.PunishmentActive = true;
+                modCase.PunishmentActive = newValue.PunishmentType != PunishmentType.None;
             } else {
-                modCase.PunishmentActive = newValue.PunishedUntil > DateTime.UtcNow;
+                modCase.PunishmentActive = newValue.PunishedUntil > DateTime.UtcNow && newValue.PunishmentType != PunishmentType.None;
             }
 
             modCase.Id = oldModCase.Id;
@@ -337,9 +337,9 @@ namespace masz.Controllers
             newModCase.PunishmentType = modCase.PunishmentType;
             newModCase.PunishedUntil = modCase.PunishedUntil;
             if (modCase.PunishedUntil == null) {
-                newModCase.PunishmentActive = true;
+                newModCase.PunishmentActive = modCase.PunishmentType != PunishmentType.None;
             } else {
-                newModCase.PunishmentActive = modCase.PunishedUntil > DateTime.UtcNow;
+                newModCase.PunishmentActive = modCase.PunishedUntil > DateTime.UtcNow && modCase.PunishmentType != PunishmentType.None;
             }
             
             await database.SaveModCase(newModCase);
