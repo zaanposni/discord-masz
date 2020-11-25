@@ -47,11 +47,6 @@ namespace masz
             services.AddSingleton<IIdentityManager, IdentityManager>();
             services.AddSingleton<IPunishmentHandler, PunishmentHandler>();
 
-            var buildServiceProvider = services.BuildServiceProvider();
-            var someSingletonService = buildServiceProvider.GetRequiredService <IPunishmentHandler>();
-            someSingletonService.StartTimer();
-
-
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -123,6 +118,11 @@ namespace masz
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 scope.ServiceProvider.GetService<DataContext>().Database.Migrate();
+            }
+
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                scope.ServiceProvider.GetService<IPunishmentHandler>().StartTimer();
             }
 
             app.UseHttpsRedirection();

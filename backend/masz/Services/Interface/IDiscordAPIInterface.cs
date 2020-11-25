@@ -74,5 +74,11 @@ namespace masz.Services
         /// <param name="userId">user to check bans for</param>
         /// <returns>returns the ban object or null if not found</returns>
         Task<Ban> GetGuildUserBan(string guildId, string userId);
+
+        Task<bool> BanUser(string guildId, string userId);
+        Task<bool> UnBanUser(string guildId, string userId);
+        Task<bool> GrantGuildUserRole(string guildId, string userId, string roleId);
+        Task<bool> RemoveGuildUserRole(string guildId, string userId, string roleId);
+        Task<bool> KickGuildUser(string guildId, string userId);
     }
 }

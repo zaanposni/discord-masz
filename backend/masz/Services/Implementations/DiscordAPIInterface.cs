@@ -128,5 +128,80 @@ namespace masz.Services
             var response = await restClient.ExecuteAsync<User>(request);
             return response.IsSuccessful;
         }
+
+        public async Task<bool> BanUser(string guildId, string userId)
+        {
+            var request = new RestRequest(Method.PUT);
+            request.Resource = $"/guilds/{guildId}/bans/{userId}";
+            request.AddHeader("Authorization", "Bot " + botToken);
+
+            var response = await restClient.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                return true;
+            }
+            logger.LogError($"{response.StatusCode}: {response.Content}");
+            return false;
+        }
+
+        public async Task<bool> UnBanUser(string guildId, string userId)
+        {
+            var request = new RestRequest(Method.DELETE);
+            request.Resource = $"/guilds/{guildId}/bans/{userId}";
+            request.AddHeader("Authorization", "Bot " + botToken);
+
+            var response = await restClient.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                return true;
+            }
+            logger.LogError($"{response.StatusCode}: {response.Content}");
+            return false;
+        }
+
+        public async Task<bool> GrantGuildUserRole(string guildId, string userId, string roleId)
+        {
+            var request = new RestRequest(Method.PUT);
+            request.Resource = $"/guilds/{guildId}/members/{userId}/roles/{roleId}";
+            request.AddHeader("Authorization", "Bot " + botToken);
+
+            var response = await restClient.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                return true;
+            }
+            logger.LogError($"{response.StatusCode}: {response.Content}");
+            return false;
+        }
+
+        public async Task<bool> RemoveGuildUserRole(string guildId, string userId, string roleId)
+        {
+            var request = new RestRequest(Method.DELETE);
+            request.Resource = $"/guilds/{guildId}/members/{userId}/roles/{roleId}";
+            request.AddHeader("Authorization", "Bot " + botToken);
+
+            var response = await restClient.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                return true;
+            }
+            logger.LogError($"{response.StatusCode}: {response.Content}");
+            return false;
+        }
+
+        public async Task<bool> KickGuildUser(string guildId, string userId)
+        {
+            var request = new RestRequest(Method.DELETE);
+            request.Resource = $"/guilds/{guildId}/members/{userId}";
+            request.AddHeader("Authorization", "Bot " + botToken);
+
+            var response = await restClient.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                return true;
+            }
+            logger.LogError($"{response.StatusCode}: {response.Content}");
+            return false;
+        }
     }
 }
