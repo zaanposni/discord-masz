@@ -132,7 +132,7 @@ namespace masz.Controllers
             {
                 try {
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
-                    await punishmentHandler.UndoPunishment(modCase);
+                    await punishmentHandler.UndoPunishment(modCase, database);
                 }
                 catch(Exception e){
                     logger.LogError(e, "Failed to handle punishment for modcase.");
@@ -237,12 +237,12 @@ namespace masz.Controllers
                 {
                     try {
                         logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
-                        await punishmentHandler.UndoPunishment(oldModCase);
+                        await punishmentHandler.UndoPunishment(oldModCase, database);
                         if (modCase.PunishmentActive)
                         {
                             if (modCase.PunishedUntil == null || modCase.PunishedUntil > DateTime.UtcNow)
                             {
-                                await punishmentHandler.ExecutePunishment(modCase);
+                                await punishmentHandler.ExecutePunishment(modCase, database);
                             }
                         }
                     }
@@ -351,7 +351,7 @@ namespace masz.Controllers
                 {
                     try {
                         logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
-                        await punishmentHandler.ExecutePunishment(newModCase);
+                        await punishmentHandler.ExecutePunishment(newModCase, database);
                     }
                     catch(Exception e){
                         logger.LogError(e, "Failed to handle punishment for modcase.");

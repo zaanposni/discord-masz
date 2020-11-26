@@ -87,7 +87,7 @@
                     let mutedRoles = $('#form-muted-role');
                     modRoles.append('<option selected>Moderator role</option>');
                     adminRoles.append('<option selected>Admin role</option>');
-                    mutedRoles.append('<option selected>Muted role</option>');
+                    mutedRoles.append('<option selected>Muted role for punishment</option>');
                     $.each(data['roles'], function(i, val) {
                         if (val['id'] === guildConfig['modRoleId']) {
                             modRoles.append(
@@ -127,10 +127,11 @@
         function updateGuild(button) {
             let iWebhook = $('#form-webhook-internal').val();
             let pWebhook = $('#form-webhook-public').val();
+            let mRole = $('#form-muted-role').val();
             let obj = {
                 'modroleid': $('#form-mod-role').val(),
                 'adminroleid': $('#form-admin-role').val(),
-                'mutedroleid': $('#form-muted-role').val(),
+                'mutedroleid': mRole === "Muted role for punishment" ? null : mRole,
                 'modInternalNotificationWebhook': iWebhook ? iWebhook : null,
                 'modPublicNotificationWebhook': pWebhook ? pWebhook : null,
             };

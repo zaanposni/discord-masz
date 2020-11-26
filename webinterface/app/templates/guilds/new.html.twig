@@ -193,6 +193,8 @@
             if (!isNaN(modRole)) {
                 $('#form-admin-label-role').removeClass('invisible');
                 $('#form-admin-role').removeClass('invisible');
+                $('#form-muted-label-role').removeClass('invisible');
+                $('#form-muted-role').removeClass('invisible');
             } else {
                 $('#form-admin-label-role').addClass('invisible');
                 $('#form-admin-role').addClass('invisible');
@@ -207,20 +209,6 @@
             $('#notification').toast('hide');
             let adminRole = $(this).val();
             if (!isNaN(adminRole)) {
-                $('#form-muted-label-role').removeClass('invisible');
-                $('#form-muted-role').removeClass('invisible');
-            } else {
-                $('#form-muted-label-role').addClass('invisible');
-                $('#form-muted-role').addClass('invisible');
-                $('#form-webhooks').addClass('invisible');
-                $('#form-submit').addClass('invisible');
-            }
-        });
-
-        $('#form-muted-role').change(function() {
-            $('#notification').toast('hide');
-            let mutedRole = $(this).val();
-            if (!isNaN(mutedRole)) {
                 $('#form-webhooks').removeClass('invisible');
                 $('#form-submit').removeClass('invisible');
             } else {
@@ -229,14 +217,19 @@
             }
         });
 
+        $('#form-muted-role').change(function() {
+            $('#notification').toast('hide');
+        });
+
         function submitGuild(button) {
             let iWebhook = $('#form-webhook-internal').val();
             let pWebhook = $('#form-webhook-public').val();
+            let mRole = $('#form-muted-role').val();
             let obj = {
                 'guildid': $('#form-guildselect').val(),
                 'modroleid': $('#form-mod-role').val(),
                 'adminroleid': $('#form-admin-role').val(),
-                'mutedroleid': $('#form-muted-role').val(),
+                'mutedroleid': mRole === "Muted role for punishment" ? null : mRole,
                 'modInternalNotificationWebhook': iWebhook ? iWebhook : null,
                 'modPublicNotificationWebhook': pWebhook ? pWebhook : null,
             };

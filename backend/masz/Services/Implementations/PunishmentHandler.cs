@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using masz.Models;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -12,20 +13,19 @@ namespace masz.Services
     public class PunishmentHandler : IPunishmentHandler
     {
         private readonly ILogger<PunishmentHandler> logger;
-        private readonly IDatabase database;
         private readonly IOptions<PunishmentHandler> config;
         private readonly IDiscordAPIInterface discord;
+        private readonly IServiceScopeFactory serviceScopeFactory;
 
         public PunishmentHandler() { }
 
-        public PunishmentHandler(ILogger<PunishmentHandler> logger, IOptions<PunishmentHandler> config, IDiscordAPIInterface discord, IDatabase database)
+        public PunishmentHandler(ILogger<PunishmentHandler> logger, IOptions<PunishmentHandler> config, IDiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory)
         {
             this.logger = logger;
             this.config = config;
             this.discord = discord;
-            this.database = database;
+            this.serviceScopeFactory = serviceScopeFactory;
         }
-
         public void StartTimer()
         {
             logger.LogWarning("Starting action loop.");
@@ -43,24 +43,28 @@ namespace masz.Services
 
         public async void CheckAllCurrentPunishments()
         {
-            List<ModCase> cases = await database.SelectAllModCasesWithActivePunishments();
-            
-            foreach (var element in cases)
+            using (var scope = serviceScopeFactory.CreateScope())
             {
-                if (element.PunishedUntil != null)
+                IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
+                List<ModCase> cases = await database.SelectAllModCasesWithActivePunishments();
+                
+                foreach (var element in cases)
                 {
-                    if (element.PunishedUntil <= DateTime.UtcNow)
+                    if (element.PunishedUntil != null)
                     {
-                        await UndoPunishment(element);
-                        element.PunishmentActive = false;
-                        database.UpdateModCase(element);
+                        if (element.PunishedUntil <= DateTime.UtcNow)
+                        {
+                            await UndoPunishment(element, database);
+                            element.PunishmentActive = false;
+                            database.UpdateModCase(element);
+                        }
                     }
                 }
+                await database.SaveChangesAsync();
             }
-            await database.SaveChangesAsync();
         }
 
-        public async Task ExecutePunishment(ModCase modCase)
+        public async Task ExecutePunishment(ModCase modCase, IDatabase database)
         {
             GuildConfig guildConfig = await database.SelectSpecificGuildConfig(modCase.GuildId);
             if (guildConfig == null) {
@@ -87,7 +91,7 @@ namespace masz.Services
             }
         }
 
-        public async Task UndoPunishment(ModCase modCase)
+        public async Task UndoPunishment(ModCase modCase, IDatabase database)
         {
             List<ModCase> parallelCases = await database.SelectAllModCasesThatHaveParallelPunishment(modCase);
             if (parallelCases.Count != 0) {
