@@ -10,6 +10,13 @@
 
     <div class="container">
         {% if modcase|default %}
+            {% set severities = {
+                0: 'Low',
+                1: 'Normal',
+                2: 'High',
+                3: 'Epic'
+            }
+            %}
             <div class="modal fade" id="popupDeleteCase" tabindex="-1" role="dialog" aria-labelledby="popupDeleteCaseLabel"
                  aria-hidden="true">
 
@@ -159,8 +166,9 @@
                         </tr>
                         <tr>
                             <th class="font-weight-bold">Severity</th>
-                            <td>{{ modcase.severity }}</td>
-
+                            <td>
+                                {{ severities[modcase.severity]|default(modcase.severity) }}
+                            </td>
                         </tr>
                         <tr>
                             <th class="font-weight-bold">Created at</th>
@@ -170,6 +178,12 @@
                             <th class="font-weight-bold">Occured at</th>
                             <td>{{ modcase.occuredAt }}</td>
                         </tr>
+                        {% if modcase.lastEditedAt != modcase.createdAt %}
+                            <tr>
+                                <th class="font-weight-bold">Last edited at</th>
+                                <td>{{ modcase.lastEditedAt }}</td>
+                            </tr>
+                        {% endif %}
                         <tr>
                             <th class="font-weight-bold">Moderator</th>
                             <td class="font-weight-bold">
@@ -187,23 +201,44 @@
                                 </a>
                             </td>
                         </tr>
-                        <tr>
-                            <th class="font-weight-bold">Last Edit by Moderator</th>
-                            <td class="font-weight-bold">
-                                <!-- last mod info -->
-                                <a href="/modcases/{{ modcase.guildId }}?modId={{ lastModerator.id }}">
-                                    {% if lastModerator|default %}
-                                        <img
-                                                src="{{ lastModerator.imageUrl }}"
-                                                class="rounded-circle z-depth-0 mr-1"
-                                                alt="avatar image"
-                                                height="35"
-                                        /> {{ lastModerator.username }}
+                        {% if modcase.lastEditedByModId != modcase.modId %}
+                            <tr>
+                                <th class="font-weight-bold">Last Edit by Moderator</th>
+                                <td class="font-weight-bold">
+                                    <!-- last mod info -->
+                                    <a href="/modcases/{{ modcase.guildId }}?modId={{ lastModerator.id }}">
+                                        {% if lastModerator|default %}
+                                            <img
+                                                    src="{{ lastModerator.imageUrl }}"
+                                                    class="rounded-circle z-depth-0 mr-1"
+                                                    alt="avatar image"
+                                                    height="35"
+                                            /> {{ lastModerator.username }}
+                                        {% endif %}
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                        {% if modcase.punishmentType != 0 %}
+                            <tr>
+                                <th class="font-weight-bold">Punished until</th>
+                                <td class="font-weight-bold">
+                                    {% if modcase.punishedUntil is null %}
+                                        Forever
+                                    {% else %}
+                                        {{ modcase.punishedUntil }}
                                     {% endif %}
-                                    <span class="text-black-50">({{ modcase.lastEditedByModId }})</span><br/> {{ modcase.lastEditedAt }}
-                                </a>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        {% endif %}
+                        {% if not modcase.punishmentActive and modcase.punishmentType != 0 %}
+                            <tr>
+                                <th class="font-weight-bold">Punishment</th>
+                                <td class="font-weight-bold">
+                                    Punishment inactive
+                                </td>
+                            </tr>
+                        {% endif %}
                         </tbody>
                     </table>
                 </div>

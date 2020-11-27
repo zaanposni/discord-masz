@@ -72,10 +72,18 @@ class ModCaseController extends AbstractController
             $filteredModCases = [];
         }
 
+        $activePunishmentCases = [];
+        foreach ($modCases as $modCase) {
+            if ($modCase['punishmentActive']) {
+                $activePunishmentCases[] = $modCase;
+            }
+        }
+
         $basicData->tabTitle = 'MASZ: '.$guild['name'].': ModCases';
         return $this->render('modcase/list.html.twig', [
             'basic_data' => $basicData,
             'modcases' => $filteredModCases,
+            'activePunishments' => $activePunishmentCases,
             'guild' => $guild
         ]);
     }

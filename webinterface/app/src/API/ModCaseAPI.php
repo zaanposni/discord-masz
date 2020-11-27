@@ -50,7 +50,7 @@ class ModCaseAPI
         }
     }
 
-    public static function Post($COOKIES, $guildid, $data, $sendNotification): Response
+    public static function Post($COOKIES, $guildid, $data, $sendNotification, $handlePunishment): Response
     {
         try {
             $client = HttpClient::create();
@@ -67,7 +67,8 @@ class ModCaseAPI
                     ],
                     'body' => json_encode($data),
                     'query' => [
-                        'sendNotification' => $sendNotification
+                        'sendNotification' => $sendNotification,
+                        'handlePunishment' => $handlePunishment
                     ]
                 ]
             );
@@ -77,7 +78,7 @@ class ModCaseAPI
         }
     }
 
-    public static function Update($COOKIES, $guildid, $caseid, $data, $sendNotification): Response
+    public static function Update($COOKIES, $guildid, $caseid, $data, $sendNotification, $handlePunishment): Response
     {
         try {
             $client = HttpClient::create();
@@ -94,7 +95,8 @@ class ModCaseAPI
                     ],
                     'body' => json_encode($data),
                     'query' => [
-                        'sendNotification' => $sendNotification
+                        'sendNotification' => $sendNotification,
+                        'handlePunishment' => $handlePunishment
                     ]
                 ]
             );

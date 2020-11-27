@@ -56,11 +56,18 @@
         <div class="">
             {{ form_row(createCaseForm.punishment) }}
         </div>
+        <div class="md-form invisible" id="form-punished-until">
+            {{ form_row(createCaseForm.punishedUntil, {'attr': {'placeholder': '' }}) }}
+        </div>
         <br>
         <div class="custom-control custom-checkbox">
             {{ form_widget(createCaseForm.sendNotification) }}
             {{ form_label(createCaseForm.sendNotification) }}
-
+        </div>
+        <br>
+        <div class="custom-control custom-checkbox">
+            {{ form_widget(createCaseForm.handlePunishment) }}
+            {{ form_label(createCaseForm.handlePunishment) }}
         </div>
 
         <br>
@@ -68,6 +75,32 @@
     </div>
 
 {% endblock body %}
+
+{% block scriptblock %}
+
+    <script>
+
+        $(document).ready(function () {
+            let punishment = $('#create_case_form_punishment').val();
+            if (punishment.includes('Temp')) {
+                $('#form-punished-until').removeClass("invisible");
+            } else {
+                $('#form-punished-until').addClass("invisible");
+            }
+        });
+
+        $('#create_case_form_punishment').change(function() {
+            let punishment = $(this).val();
+            if (punishment.includes('Temp')) {
+                $('#form-punished-until').removeClass("invisible");
+            } else {
+                $('#form-punished-until').addClass("invisible");
+            }
+        });
+
+    </script>
+
+{% endblock %}
 
 
 

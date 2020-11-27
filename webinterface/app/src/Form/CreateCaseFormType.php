@@ -64,9 +64,9 @@ class CreateCaseFormType extends AbstractType
                     'class' => "form-control browser-default custom-select",
                 ],
                 'choices' => [
-                    'Medium' => 0,
+                    'Low' => 0,
                     'Normal' => 1,
-                    'Hard' => 2,
+                    'High' => 2,
                     'Epic' => 3
                 ],
                 'data' => 1,
@@ -82,7 +82,7 @@ class CreateCaseFormType extends AbstractType
             ])
             ->add('punishment', ChoiceType::class, [
                 'attr' => [
-                    'class' => "form-control browser-default custom-select",
+                    'class' => "form-control browser-default custom-select"
                 ],
                 'choices' => [
                     'Warn' => 'Warn',
@@ -96,6 +96,14 @@ class CreateCaseFormType extends AbstractType
                 ],
                 'label' => 'Punishment',
             ])
+            ->add('punishedUntil', TextType::class, [
+                'attr' => [
+                    'class' => "form-control",
+                ],
+                'label' => 'Punishment until? - Leave empty for unlimited',
+                'empty_data' => null,
+                'required'=> false
+            ])
             ->add('sendNotification', CheckboxType::class, [
 
                 'attr' => [
@@ -103,6 +111,18 @@ class CreateCaseFormType extends AbstractType
                     'checked' => true
                 ],
                 'label' => 'Send notification?',
+                'label_attr' => array(
+                    'class' => 'custom-control-label'
+                ),
+                'required'=> false
+            ])
+            ->add('handlePunishment', CheckboxType::class, [
+
+                'attr' => [
+                    'class' => "custom-control-input",
+                    'checked' => true
+                ],
+                'label' => 'Execute punishment?',
                 'label_attr' => array(
                     'class' => 'custom-control-label'
                 ),

@@ -193,10 +193,14 @@ namespace masz.Controllers
             modCase.Others = newValue.Others;
             modCase.PunishmentType = newValue.PunishmentType;
             modCase.PunishedUntil = newValue.PunishedUntil;
-            if (newValue.PunishedUntil == null) {
-                modCase.PunishmentActive = newValue.PunishmentType != PunishmentType.None;
+            if (modCase.PunishmentType == PunishmentType.None) {
+                modCase.PunishedUntil = null;
+                modCase.PunishmentActive = false;
+            }
+            if (modCase.PunishedUntil == null) {
+                modCase.PunishmentActive = modCase.PunishmentType != PunishmentType.None && modCase.PunishmentType != PunishmentType.Kick;
             } else {
-                modCase.PunishmentActive = newValue.PunishedUntil > DateTime.UtcNow && newValue.PunishmentType != PunishmentType.None;
+                modCase.PunishmentActive = modCase.PunishedUntil > DateTime.UtcNow && modCase.PunishmentType != PunishmentType.None && modCase.PunishmentType != PunishmentType.Kick;
             }
 
             modCase.Id = oldModCase.Id;
@@ -233,12 +237,12 @@ namespace masz.Controllers
 
             if (handlePunishment)
             {
-                if  ( oldModCase.UserId != modCase.UserId || oldModCase.PunishmentType != modCase.PunishmentType || (oldModCase.PunishedUntil == null && modCase.PunishedUntil < DateTime.UtcNow))
+                if  ( oldModCase.UserId != modCase.UserId || oldModCase.PunishmentType != modCase.PunishmentType || oldModCase.PunishedUntil != modCase.PunishedUntil)
                 {
                     try {
                         logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
                         await punishmentHandler.UndoPunishment(oldModCase, database);
-                        if (modCase.PunishmentActive)
+                        if (modCase.PunishmentActive || (modCase.PunishmentType == PunishmentType.Kick && oldModCase.PunishmentType != PunishmentType.Kick))
                         {
                             if (modCase.PunishedUntil == null || modCase.PunishedUntil > DateTime.UtcNow)
                             {
@@ -327,8 +331,8 @@ namespace masz.Controllers
             if (modCase.OccuredAt.HasValue)
                 newModCase.OccuredAt = modCase.OccuredAt.Value;
             else
-                newModCase.OccuredAt = DateTime.UtcNow;
-            newModCase.LastEditedAt = DateTime.UtcNow;
+                newModCase.OccuredAt = newModCase.CreatedAt;
+            newModCase.LastEditedAt = newModCase.CreatedAt;
             newModCase.LastEditedByModId = currentModerator;
             newModCase.Punishment = modCase.Punishment;
             newModCase.Labels = modCase.Labels.Distinct().ToArray();
@@ -336,16 +340,20 @@ namespace masz.Controllers
             newModCase.Valid = true;
             newModCase.PunishmentType = modCase.PunishmentType;
             newModCase.PunishedUntil = modCase.PunishedUntil;
+            if (modCase.PunishmentType == PunishmentType.None) {
+                modCase.PunishedUntil = null;
+                modCase.PunishmentActive = false;
+            }
             if (modCase.PunishedUntil == null) {
-                newModCase.PunishmentActive = modCase.PunishmentType != PunishmentType.None;
+                newModCase.PunishmentActive = modCase.PunishmentType != PunishmentType.None && modCase.PunishmentType != PunishmentType.Kick;
             } else {
-                newModCase.PunishmentActive = modCase.PunishedUntil > DateTime.UtcNow && modCase.PunishmentType != PunishmentType.None;
+                newModCase.PunishmentActive = modCase.PunishedUntil > DateTime.UtcNow && modCase.PunishmentType != PunishmentType.None && modCase.PunishmentType != PunishmentType.Kick;
             }
             
             await database.SaveModCase(newModCase);
             await database.SaveChangesAsync();
 
-            if (handlePunishment && newModCase.PunishmentActive)
+            if (handlePunishment && (newModCase.PunishmentActive || newModCase.PunishmentType == PunishmentType.Kick))
             {
                 if (newModCase.PunishedUntil == null || newModCase.PunishedUntil > DateTime.UtcNow)
                 {
