@@ -219,7 +219,7 @@
                                 </td>
                             </tr>
                         {% endif %}
-                        {% if modcase.punishmentType != 0 %}
+                        {% if modcase.punishmentType != 0 and modcase.punishmentType != 2 %}
                             <tr>
                                 <th class="font-weight-bold">Punished until</th>
                                 <td class="font-weight-bold">
@@ -231,12 +231,10 @@
                                 </td>
                             </tr>
                         {% endif %}
-                        {% if not modcase.punishmentActive and modcase.punishmentType != 0 %}
+                        {% if not modcase.punishmentActive and modcase.punishmentType != 0 and modcase.punishmentType != 2 %}
                             <tr>
                                 <th class="font-weight-bold">Punishment</th>
-                                <td class="font-weight-bold">
-                                    Punishment inactive
-                                </td>
+                                <td>Punishment inactive</td>
                             </tr>
                         {% endif %}
                         </tbody>

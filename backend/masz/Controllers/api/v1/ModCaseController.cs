@@ -169,7 +169,8 @@ namespace masz.Controllers
             }
             // ========================================================
 
-            if (await database.SelectSpecificGuildConfig(guildid) == null)
+            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
+            if (guildConfig == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
                 return BadRequest("Guild not registered.");
@@ -228,6 +229,10 @@ namespace masz.Controllers
                 var currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId);
                 if (currentReportedMember != null)
                 {
+                    if (currentReportedMember.Roles.Contains(guildConfig.ModRoleId) || currentReportedMember.Roles.Contains(guildConfig.AdminRoleId)) {
+                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for team members.");
+                        return BadRequest("Cannot create cases for team members.");
+                    }
                     modCase.Nickname = currentReportedMember.Nick;  // update to new nickname if no member anymore leave old fetched nickname
                 }
             }
@@ -286,7 +291,8 @@ namespace masz.Controllers
             }
             // ========================================================
 
-            if (await database.SelectSpecificGuildConfig(guildid) == null)
+            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
+            if (guildConfig == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
                 return BadRequest("Guild not registered.");
@@ -317,6 +323,10 @@ namespace masz.Controllers
 
             if (currentReportedMember != null)
             {
+                if (currentReportedMember.Roles.Contains(guildConfig.ModRoleId) || currentReportedMember.Roles.Contains(guildConfig.AdminRoleId)) {
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for team members.");
+                    return BadRequest("Cannot create cases for team members.");
+                }
                 newModCase.Nickname = currentReportedMember.Nick;
             }
 
