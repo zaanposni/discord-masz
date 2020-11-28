@@ -4,18 +4,15 @@
 <img src="https://img.shields.io/badge/contributions-welcome-lightgreen">
 <img src="https://img.shields.io/github/contributors/zaanposni/discord-masz">
 <a href="https://github.com/zaanposni/discord-masz/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zaanposni/discord-masz.svg"/></a>
-<img src="https://img.shields.io/badge/using-asp.net-blueviolet">
-<img src="https://img.shields.io/badge/using-symfony-black">
 <img src="https://img.shields.io/badge/using-docker-blue">
-<img src="https://img.shields.io/badge/using-nginx-green">
-<img src="https://img.shields.io/badge/using-mysql-orange">
 </p>
 
 MASZ is a management and moderation overview tool for **Discord Moderators** and **Admins**. <br/>
 Keep track of all **moderation events** on your server, **search reliably** for entries and be one step ahead of trolls and rule breakers. <br/>
 The core of this tool are the **modcases**, a case represents a rule violation, an important note or similar. <br/>
 The server members and your moderators can be **notified** individually about the creation. <br/>
-The user for whom the case was created can also see it on the website, take a stand and your server is moderated **transparently**.
+The user for whom the case was created can also see it on the website, take a stand and your server is moderated **transparently**. <br/>
+This application can also **manage temporary punishments** just as temp mutes for a variable time you can define.
 
 # Support and Discussion Server
 
@@ -66,6 +63,12 @@ http://yourdomain.com/signin-discord
 https://yourdomain.com/
 https://yourdomain.com/signin-discord
 ```
+
+### Bot Intents
+
+Enable **Server Members Intent** in your bot settings.
+
+<img src="/docs/intents.png"/>
 
 ## Setup
 
