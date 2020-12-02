@@ -19,7 +19,8 @@
         </div>
         <div class="d-flex flex-wrap">
             <div class="md-form flex-grow-1">
-                {{ form_row(createCaseForm.occuredAt, {'attr': {'placeholder': now }}) }}
+                <input type="text" id="form1" class="form-control datepicker" value="{{ "now"|date("Y/m/d") }}">
+                <label for="form1">Date & time</label>
             </div>
             <div class="flex-grow-1">
                 {{ form_row(createCaseForm.severity) }}
@@ -47,6 +48,7 @@
             {{ form_label(createCaseForm.title) }}
             {{ form_widget(createCaseForm.title) }}
         </div>
+
         <div class="md-form">
             {{ form_row(createCaseForm.description) }}
             <small class="form-text text-muted">
@@ -81,6 +83,13 @@
     <script>
 
         $(document).ready(function () {
+            $('.datepicker').pickadate(options = {
+                format: 'yyyy-mm-dd',
+            } );
+
+
+
+
             let punishment = $('#create_case_form_punishment').val();
             if (punishment.includes('Temp')) {
                 $('#form-punished-until').removeClass("invisible");
