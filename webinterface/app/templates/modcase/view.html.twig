@@ -172,16 +172,18 @@
                         </tr>
                         <tr>
                             <th class="font-weight-bold">Created at</th>
-                            <td>{{ modcase.createdAt }}</td>
+                            <td>{{ modcase.createdAt | date('d.m.Y H:i:s') }}</td>
                         </tr>
-                        <tr>
-                            <th class="font-weight-bold">Occured at</th>
-                            <td>{{ modcase.occuredAt }}</td>
-                        </tr>
+                        {% if modcase.occuredAt != modcase.createdAt %}
+                            <tr>
+                                <th class="font-weight-bold">Occured at</th>
+                                <td>{{ modcase.occuredAt | date('d.m.Y H:i:s') }}</td>
+                            </tr>
+                        {% endif %}
                         {% if modcase.lastEditedAt != modcase.createdAt %}
                             <tr>
                                 <th class="font-weight-bold">Last edited at</th>
-                                <td>{{ modcase.lastEditedAt }}</td>
+                                <td>{{ modcase.lastEditedAt | date('d.m.Y H:i:s') }}</td>
                             </tr>
                         {% endif %}
                         <tr>

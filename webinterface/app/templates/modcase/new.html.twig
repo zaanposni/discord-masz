@@ -12,7 +12,7 @@
                 <label for="form-userid">UserId</label>
             </div>
             <div class="md-form flex-grow-1">
-                <input type="text" id="form-guildid" class="form-control" placeholder="{{ basic_data.currentGuild }}">
+                <input type="text" id="form-guildid" class="form-control" placeholder="{{ basic_data.currentGuild }}" disabled>
                 <label for="form-guildid">GuildId</label>
             </div>
             <div class="flex-grow-1">
@@ -109,7 +109,7 @@
             } );
 
             $('.datepicker').change(function(x) {
-                $(x.target).val($(x.target).val() + "T00:00:00");
+                if ($(x.target).val()) { $(x.target).val($(x.target).val() + "T00:00:00"); }
             });
 
             let punishment = $('#form-punishment').val();

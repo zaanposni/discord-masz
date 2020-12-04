@@ -21,7 +21,7 @@ class ModCaseCreationController extends AbstractController
     /**
      * @Route("/modcases/{guildid}/new", requirements={"guildid"="[0-9]{18}"})
      */
-    public function createCase($guildid, Request $request) {
+    public function createCase($guildid) {
         if (!isset($_COOKIE["masz_access_token"])) {
             return $this->render('index.html.twig');
         }
