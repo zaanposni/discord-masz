@@ -68,7 +68,7 @@
             <label class="custom-control-label" for="form-send-notification">Send notification?</label>
         </div>
         <br>
-        <div class="custom-control custom-checkbox" style="display: none">
+        <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="form-handle-punishment" checked>
             <label class="custom-control-label" for="form-handle-punishment">Handle punishment?</label>
         </div>
@@ -138,10 +138,8 @@
             let punishment = $('#form-punishment').val();
             if (punishment.includes('Temp')) {
                 $('#form-punished-until').closest("div").css("display", "block");
-                $('#form-handle-punishment').closest("div").css("display", "block");
             } else {
                 $('#form-punished-until').closest("div").css("display", "none");
-                $('#form-handle-punishment').closest("div").css("display", "none");
             }
         });
 
@@ -149,10 +147,8 @@
             let punishment = $('#form-punishment').val();
             if (punishment.includes('Temp')) {
                 $('#form-punished-until').closest("div").css("display", "block");
-                $('#form-handle-punishment').closest("div").css("display", "block");
             } else {
                 $('#form-punished-until').closest("div").css("display", "none");
-                $('#form-handle-punishment').closest("div").css("display", "none");
             }
         });
 
