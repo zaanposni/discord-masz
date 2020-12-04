@@ -228,7 +228,7 @@
                                     {% if modcase.punishedUntil is null %}
                                         Forever
                                     {% else %}
-                                        {{ modcase.punishedUntil }}
+                                        {{ modcase.punishedUntil | date('d.m.Y H:i:s') }}
                                     {% endif %}
                                 </td>
                             </tr>
