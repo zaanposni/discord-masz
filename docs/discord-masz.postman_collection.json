@@ -283,7 +283,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"title\": \"NSFW content\",\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\n    \"userid\": \"382991040975732747\",\n    \"severity\": 0,\n    \"occuredAt\": \"2020-11-25T20:15:47.093594\",\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\n    \"punishment\": \"warn\",\n    \"punishmentType\": 1,\n    \"punishedUntil\": null,\n    \"punishmentActive\": false\n}",
+									"raw": "{\n    \"title\": \"NSFW content\",\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\n    \"userid\": \"382991040975732747\",\n    \"severity\": 0,\n    \"occuredAt\": \"2020-11-25T20:15:47.093594\",\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\n    \"punishment\": \"warn\",\n    \"punishmentType\": 1,\n    \"punishedUntil\": null\n}",
 									"options": {
 										"raw": {}
 									}
@@ -368,7 +368,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/4?sendnotification=false&handlePunishment=true",
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/1?sendnotification=false&handlePunishment=true",
 									"host": [
 										"{{url}}"
 									],
@@ -377,7 +377,7 @@
 										"v1",
 										"modcases",
 										"{{guildid}}",
-										"4"
+										"1"
 									],
 									"query": [
 										{
