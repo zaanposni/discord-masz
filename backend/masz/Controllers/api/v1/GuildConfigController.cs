@@ -144,6 +144,7 @@ namespace masz.Controllers
             guildConfig.ModRoleId = guildConfigForCreateDto.ModRoleId;
             guildConfig.AdminRoleId = guildConfigForCreateDto.AdminRoleId;
             guildConfig.ModNotificationDM = guildConfigForCreateDto.ModNotificationDM;
+            guildConfig.MutedRoleId = guildConfigForCreateDto.MutedRoleId;
             guildConfig.ModPublicNotificationWebhook = guildConfigForCreateDto.ModPublicNotificationWebhook;
             guildConfig.ModInternalNotificationWebhook = guildConfigForCreateDto.ModInternalNotificationWebhook;
 
@@ -182,6 +183,7 @@ namespace masz.Controllers
 
             guildConfig.ModRoleId = newValue.ModRoleId;
             guildConfig.AdminRoleId = newValue.AdminRoleId;
+            guildConfig.MutedRoleId = newValue.MutedRoleId;
             guildConfig.ModNotificationDM = newValue.ModNotificationDM;
             guildConfig.ModInternalNotificationWebhook = newValue.ModInternalNotificationWebhook;
             guildConfig.ModPublicNotificationWebhook = newValue.ModPublicNotificationWebhook;

@@ -32,8 +32,9 @@ namespace masz.Controllers
         private readonly IDiscordAnnouncer discordAnnouncer;
         private readonly IDiscordAPIInterface discord;
         private readonly IFilesHandler filesHandler;
+        private readonly IPunishmentHandler punishmentHandler;
 
-        public ModCaseController(ILogger<ModCaseController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IDiscordAnnouncer modCaseAnnouncer, IFilesHandler filesHandler)
+        public ModCaseController(ILogger<ModCaseController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IDiscordAnnouncer modCaseAnnouncer, IFilesHandler filesHandler, IPunishmentHandler punishmentHandler)
         {
             this.logger = logger;
             this.database = database;
@@ -42,6 +43,7 @@ namespace masz.Controllers
             this.discordAnnouncer = modCaseAnnouncer;
             this.discord = discordInterface;
             this.filesHandler = filesHandler;
+            this.punishmentHandler = punishmentHandler;
         }
 
         [HttpGet("{modcaseid}")]
@@ -87,7 +89,7 @@ namespace masz.Controllers
         }
 
         [HttpDelete("{modcaseid}")]
-        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromQuery] bool sendNotification = true) 
+        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -126,6 +128,17 @@ namespace masz.Controllers
             database.DeleteSpecificModCase(modCase);
             await database.SaveChangesAsync();
 
+            if (handlePunishment)
+            {
+                try {
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
+                    await punishmentHandler.UndoPunishment(modCase, database);
+                }
+                catch(Exception e){
+                    logger.LogError(e, "Failed to handle punishment for modcase.");
+                }
+            }
+
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
             try {
                 await discordAnnouncer.AnnounceModCase(modCase, RestAction.Deleted, sendNotification);
@@ -139,7 +152,7 @@ namespace masz.Controllers
         }
 
         [HttpPut("{modcaseid}")]
-        public async Task<IActionResult> PutSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromBody] ModCaseForPutDto newValue, [FromQuery] bool sendNotification = true)
+        public async Task<IActionResult> PutSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromBody] ModCaseForPutDto newValue, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -156,7 +169,8 @@ namespace masz.Controllers
             }
             // ========================================================
 
-            if (await database.SelectSpecificGuildConfig(guildid) == null)
+            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
+            if (guildConfig == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
                 return BadRequest("Guild not registered.");
@@ -178,6 +192,17 @@ namespace masz.Controllers
             modCase.Punishment = newValue.Punishment;
             modCase.Labels = newValue.Labels.Distinct().ToArray();
             modCase.Others = newValue.Others;
+            modCase.PunishmentType = newValue.PunishmentType;
+            modCase.PunishedUntil = newValue.PunishedUntil;
+            if (modCase.PunishmentType == PunishmentType.None) {
+                modCase.PunishedUntil = null;
+                modCase.PunishmentActive = false;
+            }
+            if (modCase.PunishedUntil == null) {
+                modCase.PunishmentActive = modCase.PunishmentType != PunishmentType.None && modCase.PunishmentType != PunishmentType.Kick;
+            } else {
+                modCase.PunishmentActive = modCase.PunishedUntil > DateTime.UtcNow && modCase.PunishmentType != PunishmentType.None && modCase.PunishmentType != PunishmentType.Kick;
+            }
 
             modCase.Id = oldModCase.Id;
             modCase.CaseId = oldModCase.CaseId;
@@ -204,12 +229,37 @@ namespace masz.Controllers
                 var currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId);
                 if (currentReportedMember != null)
                 {
+                    if (currentReportedMember.Roles.Contains(guildConfig.ModRoleId) || currentReportedMember.Roles.Contains(guildConfig.AdminRoleId)) {
+                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for team members.");
+                        return BadRequest("Cannot create cases for team members.");
+                    }
                     modCase.Nickname = currentReportedMember.Nick;  // update to new nickname if no member anymore leave old fetched nickname
                 }
             }
 
             database.UpdateModCase(modCase);
             await database.SaveChangesAsync();
+
+            if (handlePunishment)
+            {
+                if  ( oldModCase.UserId != modCase.UserId || oldModCase.PunishmentType != modCase.PunishmentType || oldModCase.PunishedUntil != modCase.PunishedUntil)
+                {
+                    try {
+                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
+                        await punishmentHandler.UndoPunishment(oldModCase, database);
+                        if (modCase.PunishmentActive || (modCase.PunishmentType == PunishmentType.Kick && oldModCase.PunishmentType != PunishmentType.Kick))
+                        {
+                            if (modCase.PunishedUntil == null || modCase.PunishedUntil > DateTime.UtcNow)
+                            {
+                                await punishmentHandler.ExecutePunishment(modCase, database);
+                            }
+                        }
+                    }
+                    catch(Exception e){
+                        logger.LogError(e, "Failed to handle punishment for modcase.");
+                    }
+                }
+            }
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
             try {
@@ -224,7 +274,7 @@ namespace masz.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateItem([FromRoute] string guildid, [FromBody] ModCaseForCreateDto modCase, [FromQuery] bool sendNotification = true) 
+        public async Task<IActionResult> CreateItem([FromRoute] string guildid, [FromBody] ModCaseForCreateDto modCase, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -241,7 +291,8 @@ namespace masz.Controllers
             }
             // ========================================================
 
-            if (await database.SelectSpecificGuildConfig(guildid) == null)
+            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
+            if (guildConfig == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
                 return BadRequest("Guild not registered.");
@@ -272,6 +323,10 @@ namespace masz.Controllers
 
             if (currentReportedMember != null)
             {
+                if (currentReportedMember.Roles.Contains(guildConfig.ModRoleId) || currentReportedMember.Roles.Contains(guildConfig.AdminRoleId)) {
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for team members.");
+                    return BadRequest("Cannot create cases for team members.");
+                }
                 newModCase.Nickname = currentReportedMember.Nick;
             }
 
@@ -286,16 +341,41 @@ namespace masz.Controllers
             if (modCase.OccuredAt.HasValue)
                 newModCase.OccuredAt = modCase.OccuredAt.Value;
             else
-                newModCase.OccuredAt = DateTime.UtcNow;
-            newModCase.LastEditedAt = DateTime.UtcNow;
+                newModCase.OccuredAt = newModCase.CreatedAt;
+            newModCase.LastEditedAt = newModCase.CreatedAt;
             newModCase.LastEditedByModId = currentModerator;
             newModCase.Punishment = modCase.Punishment;
             newModCase.Labels = modCase.Labels.Distinct().ToArray();
             newModCase.Others = modCase.Others;
             newModCase.Valid = true;
+            newModCase.PunishmentType = modCase.PunishmentType;
+            newModCase.PunishedUntil = modCase.PunishedUntil;
+            if (modCase.PunishmentType == PunishmentType.None) {
+                modCase.PunishedUntil = null;
+                modCase.PunishmentActive = false;
+            }
+            if (modCase.PunishedUntil == null) {
+                newModCase.PunishmentActive = modCase.PunishmentType != PunishmentType.None && modCase.PunishmentType != PunishmentType.Kick;
+            } else {
+                newModCase.PunishmentActive = modCase.PunishedUntil > DateTime.UtcNow && modCase.PunishmentType != PunishmentType.None && modCase.PunishmentType != PunishmentType.Kick;
+            }
             
             await database.SaveModCase(newModCase);
             await database.SaveChangesAsync();
+
+            if (handlePunishment && (newModCase.PunishmentActive || newModCase.PunishmentType == PunishmentType.Kick))
+            {
+                if (newModCase.PunishedUntil == null || newModCase.PunishedUntil > DateTime.UtcNow)
+                {
+                    try {
+                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
+                        await punishmentHandler.ExecutePunishment(newModCase, database);
+                    }
+                    catch(Exception e){
+                        logger.LogError(e, "Failed to handle punishment for modcase.");
+                    }
+                }
+            }
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
             try {
@@ -344,7 +424,6 @@ namespace masz.Controllers
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCases.");
             return Ok(modCases);
         }
-
 
         [HttpGet("@me")]
         public async Task<IActionResult> GetSpecificItem([FromRoute] string guildid) 

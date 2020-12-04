@@ -28,6 +28,8 @@
                 <select class="browser-default custom-select m-3" id="form-mod-role"></select>
                 <label for="form-admin-role" id="form-admin-label-role">Admin Role</label>
                 <select class="browser-default custom-select m-3" id="form-admin-role"></select>
+                <label for="form-muted-role" id="form-muted-label-role">Muted Role for punishment</label>
+                <select class="browser-default custom-select m-3" id="form-muted-role"></select>
             </div>
             <div id="form-webhooks">
                 <label for="form-webhook-public">OPTIONAL: Webhook URL: public notification</label>
@@ -82,8 +84,10 @@
                     $('#form-guild-img').attr('src', 'https://cdn.discordapp.com/icons/' + guildId + '/' + data['icon'] + '.png');
                     let modRoles = $('#form-mod-role');
                     let adminRoles = $('#form-admin-role');
+                    let mutedRoles = $('#form-muted-role');
                     modRoles.append('<option selected>Moderator role</option>');
                     adminRoles.append('<option selected>Admin role</option>');
+                    mutedRoles.append('<option selected>Muted role for punishment</option>');
                     $.each(data['roles'], function(i, val) {
                         if (val['id'] === guildConfig['modRoleId']) {
                             modRoles.append(
@@ -103,6 +107,15 @@
                                 $('<option></option>').text(val['name']).attr('value', val['id']).attr('style', 'color:' + intToColor(val['color']))
                             );
                         }
+                        if (val['id'] === guildConfig['mutedRoleId']) {
+                            mutedRoles.append(
+                                $('<option selected></option>').text(val['name']).attr('value', val['id']).attr('style', 'color:' + intToColor(val['color']))
+                            );
+                        }else {
+                            mutedRoles.append(
+                                $('<option></option>').text(val['name']).attr('value', val['id']).attr('style', 'color:' + intToColor(val['color']))
+                            );
+                        }
                     });
                 },
                 error: function (errMsg) {
@@ -114,9 +127,11 @@
         function updateGuild(button) {
             let iWebhook = $('#form-webhook-internal').val();
             let pWebhook = $('#form-webhook-public').val();
+            let mRole = $('#form-muted-role').val();
             let obj = {
                 'modroleid': $('#form-mod-role').val(),
                 'adminroleid': $('#form-admin-role').val(),
+                'mutedroleid': mRole === "Muted role for punishment" ? null : mRole,
                 'modInternalNotificationWebhook': iWebhook ? iWebhook : null,
                 'modPublicNotificationWebhook': pWebhook ? pWebhook : null,
             };

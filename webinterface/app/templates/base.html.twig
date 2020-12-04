@@ -7,22 +7,22 @@
 
             <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
             <link rel="stylesheet" href="{{ asset('css/mdb.css') }}">
-{#            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.css"/>#}
             <link rel="stylesheet" href="{{ asset('css/datatables.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/default.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/default.date.css') }}">
 
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
             <link rel="stylesheet" id="darkmode" href="{{ asset('css/dark.css') }}">
 
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-
             <meta property="og:type" content="website">
             <meta property="og:site_name" content="Discord-MASZ">
             <meta property="og:title" content="Discord-MASZ">
-            <meta property="og:description" content="MASZ is a moderation tool for discord. Keep track of all moderation events on your server, search reliably for entries and be one step ahead of trolls and rule breakers. ">
+            <meta property="og:description" content="MASZ is a moderation tool for discord. Keep track of all moderation events and current punishments on your server, search reliably for entries and be one step ahead of trolls and rule breakers. ">
 
             <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+
         {% endblock %}
     </head>
     <body class="h-100">
@@ -32,12 +32,15 @@
         {% include 'footer.html.twig' %}
     </body>
     {% block javascripts %}
+
         <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/mdb.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/popper.js') }}"></script>
-
+        <script type="text/javascript" src="{{ asset('js/picker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/picker.date.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/collection_form.js') }}"></script>
+
     {% endblock %}
 </html>
 {% block scriptblock %}

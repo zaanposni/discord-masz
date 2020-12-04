@@ -156,3 +156,18 @@ select:-webkit-autofill {
 .fa-plus  {
     color: var(--dark) !important;
 }
+
+.picker__box {
+    background-color: var(--darkreader-neutral-background);
+    color: #e8e6e3;
+}
+
+.picker__footer > button {
+    background-color: var(--darkreader-neutral-background);
+    color: #e8e6e3;
+}
+
+.picker__day--highlighted {
+    background-color: inherit;
+    color: inherit;
+}

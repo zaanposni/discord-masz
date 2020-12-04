@@ -21,7 +21,7 @@ class ModCaseCreationController extends AbstractController
     /**
      * @Route("/modcases/{guildid}/new", requirements={"guildid"="[0-9]{18}"})
      */
-    public function createCase($guildid, Request $request) {
+    public function createCase($guildid) {
         if (!isset($_COOKIE["masz_access_token"])) {
             return $this->render('index.html.twig');
         }
@@ -35,34 +35,8 @@ class ModCaseCreationController extends AbstractController
             ]);
         }
 
-        $form = $this->createForm(CreateCaseFormType::class);
-        $form->handleRequest($request);
-        if($form->isSubmitted()) {
-            $data = $form->getData();
-
-            $sendNotificationRaw = $data['sendNotification'] ?? true;
-            $sendNotification = $sendNotificationRaw ? 'true' : 'false';
-
-            $response = ModCaseAPI::Post($_COOKIE, $guildid, $data, $sendNotification);
-
-            if ($response->success && $response->statuscode === 201) {
-                return $this->redirect('/modcases/'.$guildid.'/'.$response->body['caseid']);
-            }
-
-            $basicData->errors[] = 'Failed to create ModCase. Response from API: ';
-            $basicData->errors[] = $response->toString();
-            $basicData->tabTitle = 'MASZ: New ModCase';
-            return $this->render('modcase/new.html.twig', [
-                'basic_data' => $basicData,
-                'createCaseForm' => $form->createView(),
-                'now' => date("Y-m-d\\TH:i:s.u")
-            ]);
-        }
-
         return $this->render('modcase/new.html.twig', [
-            'basic_data' => $basicData,
-            'createCaseForm' => $form->createView(),
-            'now' => date("Y-m-d\\TH:i:s.u")
+            'basic_data' => $basicData
         ]);
     }
 }

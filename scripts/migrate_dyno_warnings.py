@@ -41,8 +41,8 @@ except KeyError:
 
 SQL_STRING = ""
 NEW_ENTRY = 'INSERT INTO ModCases (GuildId, CaseId, CreatedAt, Description, Labels, LastEditedAt, LastEditedByModId, ModId, ' \
-                                   'Nickname, OccuredAt, Punishment, Severity, Title, UserId, Username, Valid)' \
-                                   ' VALUES("{}", {}, "{}", "{}", "dyno-import", "{}", "{}", "{}", "{}", "{}", "None", 0, "Imported from Dyno", "{}", "{}", 1);'
+                                   'Nickname, OccuredAt, Punishment, Severity, Title, UserId, Username, Valid, PunishedUntil, PunishmentActive, PunishmentType)' \
+                                   ' VALUES("{}", {}, "{}", "{}", "dyno-import", "{}", "{}", "{}", "{}", "{}", "None", 0, "Imported from Dyno", "{}", "{}", 1, null, false, 0);'
 for e, case in enumerate(dyno_logs, 1):
     #date = datetime.strptime(case["createdAt"], "%a, %b %-d, %Y %-I:%M %p").isoformat()
     date = dateparser.parse(case["createdAt"]).isoformat()

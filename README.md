@@ -4,18 +4,15 @@
 <img src="https://img.shields.io/badge/contributions-welcome-lightgreen">
 <img src="https://img.shields.io/github/contributors/zaanposni/discord-masz">
 <a href="https://github.com/zaanposni/discord-masz/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zaanposni/discord-masz.svg"/></a>
-<img src="https://img.shields.io/badge/using-asp.net-blueviolet">
-<img src="https://img.shields.io/badge/using-symfony-black">
 <img src="https://img.shields.io/badge/using-docker-blue">
-<img src="https://img.shields.io/badge/using-nginx-green">
-<img src="https://img.shields.io/badge/using-mysql-orange">
 </p>
 
 MASZ is a management and moderation overview tool for **Discord Moderators** and **Admins**. <br/>
-Keep track of all **moderation events** on your server, **search reliably** for entries and be one step ahead of trolls and rule breakers. <br/>
+Keep track of all **moderation events** and **current punishments** on your server, **search reliably** for entries and be one step ahead of trolls and rule breakers. <br/>
 The core of this tool are the **modcases**, a case represents a rule violation, an important note or similar. <br/>
 The server members and your moderators can be **notified** individually about the creation. <br/>
-The user for whom the case was created can also see it on the website, take a stand and your server is moderated **transparently**.
+The user for whom the case was created can also see it on the website, take a stand and your server is moderated **transparently**. <br/>
+This application can also **manage temporary punishments** just as temp mutes for a variable time you can define.
 
 # Support and Discussion Server
 
@@ -43,7 +40,7 @@ Join our discord server for support or similar https://discord.gg/5zjpzw6h3S.
 
 # Setup - Installation
 
-The following guide assumes you want to deploy a production environment.
+The following guide assumes you want to deploy a production environment using docker.
 
 ## Operation System
 
@@ -54,6 +51,7 @@ Since I use Docker you can use an operating system of your choice, but I recomme
 - [docker](https://docs.docker.com/engine/install/ubuntu/) & [docker-compose](https://docs.docker.com/compose/)
 - [jq](https://stedolan.github.io/jq/download/) - a bash tool for json
 - a subdomain to host the application on
+- a reverse proxy on your host
 
 ## Discord OAuth
 
@@ -66,6 +64,12 @@ http://yourdomain.com/signin-discord
 https://yourdomain.com/
 https://yourdomain.com/signin-discord
 ```
+
+### Bot Intents
+
+Enable **Server Members Intent** in your bot settings.
+
+<img src="/docs/intents.png"/>
 
 ## Setup
 
@@ -83,11 +87,22 @@ https://yourdomain.com/signin-discord
 - You can visit your application at `yourdomain.com`. You will see a login screen that will ask you to authenticate yourself using Discord OAuth2.
 - After authorizing your service to use your Discord account you will see your profile picture in the top right corner of the index page.
 - If you are logged in as a site admin you can use the "register guild" button to register your guilds and to get started. If you do not see the button please verify that your discord user id is in the `site_admins` list of your `config.json`
+- Based on wanted features and functionalities you might have to grant your bot advanced permissions, read below for more info.
 
 ## Unban request feature
 
 If you want banned users to see their cases, grant your bot the `ban people` permission. <br/>
 This way they can see the reason for their ban and comment or send an unban request.
+
+## Punishment feature
+
+If you want the application to execute punishments like mutes and bans and manage them automatically (like unban after defined time on tempban), grant your bot the following permissions based on your needs:
+
+```
+Manage roles - for muted role
+Kick people
+Ban people
+```
 
 ## Update
 
@@ -116,5 +131,5 @@ If you are using a local deployed backend you have to define `https://127.0.0.1:
 # Contribute
 
 Contributions are welcome. <br/>
-If you are new to open source, checkout [this tutorial](https://github.com/firstcontributions/first-contributions).
-
+If you are new to open source, checkout [this tutorial](https://github.com/firstcontributions/first-contributions). <br/>
+Feel free to get in touch with me via our support server https://discord.gg/5zjpzw6h3S or via friend request on discord: **zaanposni#9295**.

@@ -77,7 +77,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"guildid\": {{guildid}},\n    \"modroleid\": \"748944055840407653\",\n    \"adminroleid\": \"748944028116189195\",\n    \"modInternalNotificationWebhook\": \"\",\n    \"modPublicNotificationWebhook\": \"\"\n}",
+									"raw": "{\n    \"guildid\": {{guildid}},\n    \"modroleid\": \"748944055840407653\",\n    \"adminroleid\": \"748944028116189195\",\n    \"modInternalNotificationWebhook\": null,\n    \"modPublicNotificationWebhook\": null\n}",
 									"options": {
 										"raw": {}
 									}
@@ -116,7 +116,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"modroleid\": \"748944055840407653\",\n    \"adminroleid\": \"748944028116189195\",\n    \"modInternalNotificationWebhook\": \"\",\n    \"modPublicNotificationWebhook\": \"\"\n}",
+									"raw": "{\n    \"modroleid\": \"748944055840407653\",\n    \"adminroleid\": \"748944028116189195\",\n    \"modInternalNotificationWebhook\": null,\n    \"modPublicNotificationWebhook\": null\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -283,13 +283,13 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"title\": \"NSFW content\",\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\n    \"userid\": \"382991040975732747\",\n    \"severity\": 0,\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\n    \"punishment\": \"warn\"\n}",
+									"raw": "{\n    \"title\": \"NSFW content\",\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\n    \"userid\": \"382991040975732747\",\n    \"severity\": 0,\n    \"occuredAt\": \"2020-11-25T20:15:47.093594\",\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\n    \"punishment\": \"warn\",\n    \"punishmentType\": 1,\n    \"punishedUntil\": null\n}",
 									"options": {
 										"raw": {}
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}?sendnotification=false",
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}?sendnotification=false&handlePunishment=true",
 									"host": [
 										"{{url}}"
 									],
@@ -303,6 +303,10 @@
 										{
 											"key": "sendnotification",
 											"value": "false"
+										},
+										{
+											"key": "handlePunishment",
+											"value": "true"
 										}
 									]
 								}
@@ -356,7 +360,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"title\": \"NSFW content\",\r\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\r\n    \"userid\": \"272655001329991681\",\r\n    \"severity\": 0,\r\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\r\n    \"punishment\": \"warn\",\r\n    \"occuredAt\": \"2020-11-03T16:46:05.650803\"\r\n}",
+									"raw": "{\r\n    \"title\": \"NSFW content\",\r\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\r\n    \"userid\": \"382991040975732747\",\r\n    \"severity\": 0,\r\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\r\n    \"punishment\": \"warn\",\r\n    \"punishmentType\": 0,\r\n    \"punishedUntil\": null,\r\n    \"punishmentActive\": true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -364,7 +368,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/1?sendnotification=false",
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/1?sendnotification=false&handlePunishment=true",
 									"host": [
 										"{{url}}"
 									],
@@ -379,6 +383,10 @@
 										{
 											"key": "sendnotification",
 											"value": "false"
+										},
+										{
+											"key": "handlePunishment",
+											"value": "true"
 										}
 									]
 								}

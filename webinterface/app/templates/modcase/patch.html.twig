@@ -3,69 +3,281 @@
     {% include 'navbar.html.twig' %}
     <div class="container">
         <div class="d-flex justify-content-between align-items-start">
-            <h3><span class="badge badge-warning">Edit ModCase</span></h3>
+            <h3><span class="badge badge-danger">New ModCase</span></h3>
         </div>
         <br>
-        {{ form_start(createCaseForm) }}
         <div class="d-flex flex-wrap">
             <div class="md-form flex-grow-1">
-                {{ form_label(createCaseForm.userId) }}
-                {{ form_widget(createCaseForm.userId) }}
+                <input type="text" id="form-userid" class="form-control" value="{{ modcase.userId }}">
+                <label for="form-userid">UserId</label>
             </div>
             <div class="md-form flex-grow-1">
-                {{ form_label(createCaseForm.guildId) }}
-                {{ form_widget(createCaseForm.guildId) }}
-            </div>
-        </div>
-        <div class="d-flex flex-wrap">
-            <div class="md-form flex-grow-1">
-                {{ form_row(createCaseForm.occuredAt) }}
+                <input type="text" id="form-guildid" class="form-control" placeholder="{{ modcase.guildId }}" disabled>
+                <label for="form-guildid">GuildId</label>
             </div>
             <div class="flex-grow-1">
-                {{ form_row(createCaseForm.severity) }}
+                <label for="form-severity">Severity</label>
+                <select id="form-severity" class="form-control browser-default custom-select">
+                    <option selected>Low</option>
+                    <option>Normal</option>
+                    <option>High</option>
+                    <option>Epic</option>
+                </select>
             </div>
         </div>
-
-        <label>Labels</label>
-        <i type="button"
-           class="add-another-collection-widget list-group-item fas fa-plus"
-           data-list-selector="#labels-fields-list"></i>
-        <ul id="labels-fields-list" class="list-group list-group-horizontal-lg d-flex flex-wrap"
-            data-prototype="{{ form_widget(createCaseForm.labels.vars.prototype)|e }}"
-            data-widget-tags="{{ '<li></li>'|e }}"
-            data-widget-counter="{{ createCaseForm.labels|length }}"
-            style="list-style: none;">
-            {% for labelField in createCaseForm.labels %}
-                <li class="list-group-item">
-                    {{ form_errors(labelField) }}
-                    {{ form_widget(labelField) }}
-                </li>
-            {% endfor %}
-        </ul>
-
-        <div class="md-form">
-            {{ form_row(createCaseForm.title) }}
+        <div class="">
+            <div class="md-form d-flex flex-row">
+                <label>Labels</label>
+                <input type="text" id="form-label-new" class="form-control flex-shrink-1" style="width:20%"/>
+                <button class="btn btn-default" id="form-labels-button" onclick="labelButton()">Add label <i class="fas fa-plus ml-1"></i></button>
+            </div>
+            <ul id="form-labels" class="list-group list-group-horizontal-lg d-flex flex-wrap"
+                style="list-style: none;" id="form-labels">
+            </ul>
         </div>
+
         <div class="md-form">
-            {{ form_row(createCaseForm.description) }}
-            <small class="form-text text-muted">
-                Please describe the case as detailed as possible. You can also add links for proofs in this field.
-            </small>
+            <input type="text" id="form-title" class="form-control" value="{{ modcase.title }}">
+            <label for="form-title">Title</label>
+        </div>
+
+        <div class="md-form">
+            <textarea id="form-description" class="form-control md-textarea">{{ modcase.description }}</textarea>
+            <label for="form-description">Description</label>
         </div>
         <div class="">
-            {{ form_label(createCaseForm.punishment) }}
-            {{ form_widget(createCaseForm.punishment, {'required': false, 'value': modcase.punishment|default, 'empty_data': modcase.punishment|default }) }}
+            <label for="form-punishment">Punishment</label>
+            <select id="form-punishment" class="form-control browser-default custom-select">
+                <option>Warn</option>
+                <option>Mute</option>
+                <option>TempMute</option>
+                <option>Kick</option>
+                <option>Ban</option>
+                <option>TempBan</option>
+                <option>Notice</option>
+                <option>None</option>
+            </select>
+        </div>
+        <div class="md-form" style="display: none">
+            <label for="form-punished-until">Punished until</label>
+            <input type="text" id="form-punished-until" class="form-control datepicker" value="{{ modcase.punishedUntil }}">
         </div>
         <br>
         <div class="custom-control custom-checkbox">
-            {{ form_widget(createCaseForm.sendNotification) }}
-            {{ form_label(createCaseForm.sendNotification) }}
-
+            <input type="checkbox" class="custom-control-input" id="form-send-notification" checked>
+            <label class="custom-control-label" for="form-send-notification">Send notification?</label>
         </div>
-
+        <br>
+        <div class="custom-control custom-checkbox" style="display: none">
+            <input type="checkbox" class="custom-control-input" id="form-handle-punishment" checked>
+            <label class="custom-control-label" for="form-handle-punishment">Handle punishment?</label>
+        </div>
         <div class="md-form">
-            {{ form_row(createCaseForm.submit, {'attr': {'class': 'btn btn-warning btn-lg btn-block' }, 'label': 'EDIT CASE'}) }}
+            <button type="submit" id="form-submit" name="submit" onclick="submitButton()"
+                    class="btn btn-danger btn-lg btn-block waves-effect waves-light">EDIT CASE</button>
         </div>
-        {{ form_end(createCaseForm) }}
+        <br>
+        <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" id="notification" style="min-width:100%">
+            <div class="toast-header">
+                <svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+                     preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                    <rect fill="#007aff" width="100%" height="100%" id="notificationColor" /></svg>
+                <strong class="mr-auto" id="notificationTitle">Post comment</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body" id="notificationBody">
+                Hello, world! This is a toast message.
+            </div>
+        </div>
     </div>
+
+    <style>
+        .custom-label {
+            cursor: pointer;
+        }
+    </style>
+
 {% endblock body %}
+
+{% block scriptblock %}
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').pickadate(options = {
+                format: 'yyyy-mm-dd',
+            } );
+
+            $('.datepicker').change(function(x) {
+                if ($(x.target).val()) { $(x.target).val($(x.target).val() + "T00:00:00"); }
+            });
+
+            let currentCase = {{ modcase|json_encode|raw }};
+            currentCase['labels'].forEach(function(label) {
+                $('#form-labels').append("<h4><span title=\"Click to delete\" onclick=\"removeLabel(this)\" class=\"badge badge-pill badge-info mr-1 custom-label\">" + label + "</span></h4>");
+            });
+
+            // map
+
+            let mappedSeverity = "Low";
+            switch(currentCase['severity']) {
+                case 1:
+                    mappedSeverity = "Normal";
+                    break;
+                case 2:
+                    mappedSeverity = "High";
+                    break;
+                case 3:
+                    mappedSeverity = "Epic";
+                    break;
+            }
+
+            $('#form-punishment').val(currentCase['punishment']);
+            $('#form-severity').val(mappedSeverity);
+
+            let punishment = $('#form-punishment').val();
+            if (punishment.includes('Temp')) {
+                $('#form-punished-until').closest("div").css("display", "block");
+                $('#form-handle-punishment').closest("div").css("display", "block");
+            } else {
+                $('#form-punished-until').closest("div").css("display", "none");
+                $('#form-handle-punishment').closest("div").css("display", "none");
+            }
+        });
+
+        $('#form-punishment').change(function() {
+            let punishment = $('#form-punishment').val();
+            if (punishment.includes('Temp')) {
+                $('#form-punished-until').closest("div").css("display", "block");
+                $('#form-handle-punishment').closest("div").css("display", "block");
+            } else {
+                $('#form-punished-until').closest("div").css("display", "none");
+                $('#form-handle-punishment').closest("div").css("display", "none");
+            }
+        });
+
+        function showNotification(element, title, body, color="#ac000f", insertAfter=true) {
+            if (insertAfter) {
+                $('#notification').insertAfter($(element));
+            } else {
+                $('#notification').insertBefore($(element));
+            }
+
+            $('#notificationColor').attr('fill', color);
+            $('#notificationTitle').text(title);
+            $('#notificationBody').text(body);
+            $('#notification').toast('show');
+        }
+
+        function labelButton() {
+            let val = $('#form-label-new').val();
+            if (val) {
+                $('#notification').toast('hide');
+                $('#form-labels').append("<h4><span title=\"Click to delete\" onclick=\"removeLabel(this)\" class=\"badge badge-pill badge-info mr-1 custom-label\">" + val + "</span></h4>");
+                $('#form-label-new').val("");
+            } else {
+                showNotification($('#form-labels'), 'Cannot add empty label.', 'Please write something first.', "#ac000f", false)
+            }
+        }
+
+        function submitButton() {
+            let labels = new Array();
+            $('.custom-label').each(function(i, obj) {
+                labels.push($(obj).text());
+            })
+            let severity = $('#form-severity').val();
+            let punishment = $('#form-punishment').val();
+            let punishmentType = $('#form-punishment').val();
+            let punishedUntil = $('#form-punished-until').val();
+
+            // fix datetimes
+
+            // map
+            let mappedPunishmentType = 0;
+            switch(punishmentType) {
+                case "TempMute":
+                    mappedPunishmentType = 1;
+                    if (!punishedUntil) {
+                        punishment = "Mute";
+                    }
+                    break;
+                case "Mute":
+                    mappedPunishmentType = 1;
+                    punishedUntil = null;
+                    break;
+                case "Kick":
+                    mappedPunishmentType = 2;
+                    punishedUntil = null;
+                    break;
+                case "TempBan":
+                    mappedPunishmentType = 3;
+                    if (!punishedUntil) {
+                        punishment = "Ban";
+                    }
+                    break;
+                case "Ban":
+                    mappedPunishmentType = 3;
+                    punishedUntil = null;
+                    break;
+            }
+
+            let mappedSeverity = 0;
+            switch(severity) {
+                case "Normal":
+                    mappedSeverity = 1;
+                    break;
+                case "High":
+                    mappedSeverity = 2;
+                    break;
+                case "Epic":
+                    mappedSeverity = 3;
+                    break;
+            }
+
+            // params
+
+            let sendNotification = $('#form-send-notification').is(":checked").toString();
+            let handlePunishment = $('#form-handle-punishment').is(":checked").toString();
+
+            // body
+
+            let body = {{ modcase|json_encode|raw }};
+
+            body['title'] = $('#form-title').val();
+            body['description'] = $('#form-description').val();
+            body['userid']= $('#form-userid').val();
+            body['severity'] = mappedSeverity;
+            body['labels'] = labels;
+            body['punishment'] = punishment;
+            body['punishmentType'] = mappedPunishmentType;
+            body['punishedUntil'] = punishedUntil;
+
+            // request
+
+            $.ajax({
+                type: "PUT",
+                url: "/api/v1/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}?sendnotification=" + sendNotification + "&handlePunishment=" + handlePunishment,
+                data: JSON.stringify(body),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data){
+                    location.href = '/modcases/{{ modcase.guildId }}/' + data['caseid'];
+                },
+                error: function(errMsg) {
+                    if (errMsg.status === 201) {  // success
+                        location.href = '/modcases/{{ modcase.guildId }}/' + errMsg['caseid'];
+                        return;
+                    }
+                    showNotification($('#form-submit'), 'Creating case failed', errMsg.status + ": " + errMsg.responseText);
+                }
+            });
+        }
+
+        function removeLabel(label) {
+            $(label).remove();
+        }
+    </script>
+{% endblock %}
+
+
+

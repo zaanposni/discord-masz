@@ -45,6 +45,7 @@ namespace masz
             services.AddScoped<IDiscordAnnouncer, DiscordAnnouncer>();
             services.AddScoped<IFilesHandler, FilesHandler>();
             services.AddSingleton<IIdentityManager, IdentityManager>();
+            services.AddSingleton<IPunishmentHandler, PunishmentHandler>();
 
             services.AddAuthentication(options =>
             {
@@ -117,6 +118,11 @@ namespace masz
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 scope.ServiceProvider.GetService<DataContext>().Database.Migrate();
+            }
+
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                scope.ServiceProvider.GetService<IPunishmentHandler>().StartTimer();
             }
 
             app.UseHttpsRedirection();

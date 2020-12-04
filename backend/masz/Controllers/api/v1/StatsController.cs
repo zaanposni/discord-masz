@@ -36,8 +36,8 @@ namespace masz.Controllers
             List<GuildConfig> guildConfigs = await database.SelectAllGuildConfigs();
             List<ModCase> modCases = await database.SelectAllModCases();
             return Ok(new {
-                guild_config_count = guildConfigs.Count,
-                modcase_count = modCases.Count
+                guilds = guildConfigs.Count,
+                modCaseCount = modCases.Count
             });
         }
 
@@ -51,8 +51,10 @@ namespace masz.Controllers
             }
 
             List<ModCase> modCases = await database.SelectAllModCasesForGuild(guildid);
+            List<ModCase> activePunishments = await database.SelectAllModCasesWithActivePunishmentForGuild(guildid);
             return Ok(new {
-                modcase_count = modCases.Count
+                modCaseCount = modCases.Count,
+                activePunishments = activePunishments.Count
             });
         }
     }

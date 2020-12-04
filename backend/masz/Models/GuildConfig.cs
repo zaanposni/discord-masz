@@ -11,6 +11,7 @@ namespace masz.Models
         public string GuildId { get; set; }
         public string ModRoleId { get; set; }
         public string AdminRoleId { get; set; }
+        public string MutedRoleId { get; set; }
         public bool ModNotificationDM { get; set; }
         public string ModPublicNotificationWebhook { get; set; }
         public string ModInternalNotificationWebhook { get; set; }
@@ -22,6 +23,7 @@ namespace masz.Models
                 GuildId = this.GuildId,
                 ModRoleId = this.ModRoleId,
                 AdminRoleId = this.AdminRoleId,
+                MutedRoleId = this.MutedRoleId,
                 ModNotificationDM = this.ModNotificationDM,
                 ModPublicNotificationWebhook = this.ModPublicNotificationWebhook,
                 ModInternalNotificationWebhook = this.ModInternalNotificationWebhook
