@@ -40,6 +40,13 @@ Join our discord server for support or similar https://discord.gg/5zjpzw6h3S.
 
 # Setup - Installation
 
+## TL;DR;
+
+- Create a discord application at https://discord.com/developers/applications
+- Set redirect urls on your discord application [as defined](https://github.com/zaanposni/discord-masz#discord-oauth)
+- Execute the `setup.py` script to configure your app and `start.sh` (or `start.ps1` on windows) to start it.
+- App will be hosted on `127.0.0.1:5565`, if you are hosting the app on a domain, redirect your reverse proxy to this local port!
+
 ## Requirements 
 
 - [docker](https://docs.docker.com/engine/install/ubuntu/) & [docker-compose](https://docs.docker.com/compose/)
@@ -53,14 +60,13 @@ If you want to deploy on a domain:
 ## Discord OAuth
 
 Requests are authenticated using Discord OAuth2. Create your own OAuth application [here](https://discord.com/developers/applications). <br/>
-You will have to use `Client ID` and `Client Secret` in the tab `General Information` and the bot token at `Bot` later in the local config file. <br/>
+You will have to use `Client ID` and `Client Secret` in the tab `General Information` and the bot token at `Bot` later in the setup. <br/>
 Also set the redirect paths in the tab `OAuth2`. Be sure to set the following:
 ```
 http://yourdomain.com/
 http://yourdomain.com/signin-discord
-https://yourdomain.com/
-https://yourdomain.com/signin-discord
 ```
+(replace with `http://127.0.0.1:5565/` if you want to deploy local)
 
 ### Bot Intents
 
