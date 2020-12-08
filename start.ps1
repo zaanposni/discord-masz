@@ -1,5 +1,5 @@
 if ( -Not (Test-Path -Path ./config.json) -or -Not (Test-Path -Path ./.deployment/)) {
-    Write-Host "Failed to find config.json or .deployment directory. Please execute install.py first."
+    Write-Host "Failed to find config.json or .deployment directory. Please execute setup.py first."
     exit 5
 } else {
     cp config.json ./backend/
