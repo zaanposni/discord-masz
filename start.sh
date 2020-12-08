@@ -31,7 +31,7 @@ cp ./.deployment/nginx.conf ./nginx/nginx.conf
 cp ./.deployment/.env ./webinterface/app/.env
 
 if [ -f ./.deployment/.domain ]; then
-    domain=`cat ./deployment/.domain`
+    domain=`cat ./.deployment/.domain`
     sed -i -e 's/{{placeholder}}/'$domain'/g' ./nginx/nginx.conf
 fi
 
