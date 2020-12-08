@@ -1,3 +1,11 @@
+echo "================================================================="
+echo "=                                                               ="
+echo "=                         DEPRECATED                            ="
+echo "=                                                               ="
+echo "=    Usage of this script is deprecated and not recommended     ="
+echo "=    Please checkout install.py for installation and setup.     ="
+echo "================================================================="
+
 echo "Copying config in subdirectories for docker"
 if [ ! -f ./config.json ]; then
     cp default-config.json ./backend/config.json
