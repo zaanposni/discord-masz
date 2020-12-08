@@ -1,4 +1,4 @@
-if [ ! -f ./config.json || ! -d ./.deployment/ ]; then
+if [[ ! -f ./config.json || ! -d ./.deployment/ ]]; then
     echo "Failed to find config.json or .deployment directory. Please execute install.py first."
     exit 5
 else
