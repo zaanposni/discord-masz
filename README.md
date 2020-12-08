@@ -40,10 +40,6 @@ Join our discord server for support or similar https://discord.gg/5zjpzw6h3S.
 
 # Setup - Installation
 
-## Operation System
-
-Since I use Docker you can use an operating system of your choice, but I recommend ubuntu and will list the next steps based on a linux host.
-
 ## Requirements 
 
 - [docker](https://docs.docker.com/engine/install/ubuntu/) & [docker-compose](https://docs.docker.com/compose/)
@@ -75,7 +71,7 @@ Enable **Server Members Intent** in your bot settings.
 ## Setup
 
 - Download this repository `git clone https://github.com/zaanposni/discord-masz` ([zip link](https://codeload.github.com/zaanposni/discord-masz/zip/master))
-- Use `python install.py` to setup the configuration.
+- Use `python3 start.py` (`python start.py` on windows) to setup the configuration.
 - Start the application with `./start.sh` (`start.ps1` on windows).
 
 ## First steps
