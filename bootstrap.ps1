@@ -1,3 +1,11 @@
+Write-Host "================================================================="
+Write-Host "=                                                               ="
+Write-Host "=                         DEPRECATED                            ="
+Write-Host "=                                                               ="
+Write-Host "=    Usage of this script is deprecated and not recommended     ="
+Write-Host "=    Please checkout install.py for installation and setup.     ="
+Write-Host "================================================================="
+
 Write-Host "#############################################################################################################"
 Write-Host "This script copies files for a development deployment, do not use it in production, use bootstrap.sh instead."
 Write-Host "#############################################################################################################"

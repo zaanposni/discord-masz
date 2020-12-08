@@ -1,6 +1,14 @@
 # This script will deploy the whole masz application as long as docker and docker-compose are installed
 # After running this script you may want to setup a reverse proxy to redirect http request to 5565
 
+echo "================================================================="
+echo "=                                                               ="
+echo "=                         DEPRECATED                            ="
+echo "=                                                               ="
+echo "=    Usage of this script is deprecated and not recommended     ="
+echo "=    Please checkout install.py for installation and setup.     ="
+echo "================================================================="
+
 if [ ! -f ./config.json ]; then
     >&2 echo "Config file not found."
     >&2 echo "Please create a config.json based on ./default-config.json and try again."

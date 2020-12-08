@@ -40,8 +40,6 @@ Join our discord server for support or similar https://discord.gg/5zjpzw6h3S.
 
 # Setup - Installation
 
-The following guide assumes you want to deploy a production environment using docker.
-
 ## Operation System
 
 Since I use Docker you can use an operating system of your choice, but I recommend ubuntu and will list the next steps based on a linux host.
@@ -49,8 +47,11 @@ Since I use Docker you can use an operating system of your choice, but I recomme
 ## Requirements 
 
 - [docker](https://docs.docker.com/engine/install/ubuntu/) & [docker-compose](https://docs.docker.com/compose/)
-- [jq](https://stedolan.github.io/jq/download/) - a bash tool for json
-- a subdomain to host the application on
+- [python3](https://www.python.org/) for setup
+
+If you want to deploy on a domain:
+
+- a (sub)domain to host the application on
 - a reverse proxy on your host
 
 ## Discord OAuth
@@ -74,19 +75,14 @@ Enable **Server Members Intent** in your bot settings.
 ## Setup
 
 - Download this repository `git clone https://github.com/zaanposni/discord-masz` ([zip link](https://codeload.github.com/zaanposni/discord-masz/zip/master))
-- Create a `config.json` file in the root of the project based on the template in `default-config.json`
-  - `site_admins` is a list of Discord user id strings. This list is used to authorize users to add new guilds to the application or similiar admin tasks.
-  - `service_name` should be the name/domain the service is hosted on.
-  - `service_domain` is the domain the service is hosted on.
-  - `service_base_url` is the URL the service is hosted on.
-- Start everything out of the box by running the `bootstrap.sh` script.
-- Your application is now hosted at `yourdomain.com`, you might want to redirect your reverse proxy or similiar to this location :)
+- Use `python install.py` to setup the configuration.
+- Start the application with `./start.sh` (`start.ps1` on windows).
 
 ## First steps
 
-- You can visit your application at `yourdomain.com`. You will see a login screen that will ask you to authenticate yourself using Discord OAuth2.
+- You can visit your application at `yourdomain.com` (or `127.0.0.1:5565`). You will see a login screen that will ask you to authenticate yourself using Discord OAuth2.
 - After authorizing your service to use your Discord account you will see your profile picture in the top right corner of the index page.
-- If you are logged in as a site admin you can use the "register guild" button to register your guilds and to get started. If you do not see the button please verify that your discord user id is in the `site_admins` list of your `config.json`
+- If you are logged in as a site admin you can use the "register guild" button to register your guilds and to get started.
 - Based on wanted features and functionalities you might have to grant your bot advanced permissions, read below for more info.
 
 ## Unban request feature
@@ -109,7 +105,7 @@ Ban people
 To install a new update of MASZ just use:
 ```
 git pull
-./bootstrap.sh
+./start.sh
 ```
 
 ## Migration
