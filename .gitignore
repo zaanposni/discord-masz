@@ -1029,3 +1029,5 @@ config.json
 ###< docker ###
 .env
 webinterface/app/composer.lock
+.deployment/*
+.vscode/settings.json
