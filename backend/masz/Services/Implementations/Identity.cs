@@ -10,7 +10,6 @@ namespace masz.Services
     public class Identity
     {
         private readonly IDiscordAPIInterface discord;
-        private readonly IDatabase database;
 
         public DateTime ValidUntil { get; set;  }
 
@@ -20,10 +19,9 @@ namespace masz.Services
         private Dictionary<string, GuildMember> GuildMemberships = new Dictionary<string, GuildMember>();
 
 
-        public Identity (string token, IDiscordAPIInterface discord, IDatabase database)
+        public Identity (string token, IDiscordAPIInterface discord)
         {
             this.discord = discord;
-            this.database = database;
             this.Token = token;
             this.ValidUntil = DateTime.Now.AddMinutes(5);
         }
@@ -139,7 +137,7 @@ namespace masz.Services
         /// </summary>
         /// <param name="guildId">the guild to check on</param>
         /// <returns>True if the user is on this guild and has at least one of the configured roles.</returns>
-        public async Task<bool> HasModRoleOrHigherOnGuild(string guildId)
+        public async Task<bool> HasModRoleOrHigherOnGuild(string guildId, IDatabase database)
         {
             if (!await IsOnGuild(guildId))
             {

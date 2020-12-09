@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\API\FilesAPI;
 use App\Helpers\BasicData;
 use App\API\CommentsAPI;
 use App\API\DiscordAPI;
@@ -137,6 +138,11 @@ class ModCaseController extends AbstractController
             $basicData->errors[] = 'Failed to load detailed user info';
         }
 
+        $files = FilesAPI::SelectAll($_COOKIE, $guildid, $modCase['caseId'])->body;
+        if (is_null($files)) {
+            $basicData->errors[] = 'Failed to load uploaded files.';
+        }
+
         $newComments = [];  // comments with discord user object merged
         $fetchedUser = [];
         foreach ($modCase['comments'] as $comment) {
@@ -156,6 +162,7 @@ class ModCaseController extends AbstractController
             'guild' => $guild,
             'moderator' => $moderator,
             'lastModerator' => $lastModerator,
+            'files' => $files,
             'user' => $caseUser
         ]);
     }
