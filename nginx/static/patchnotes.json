@@ -1,5 +1,9 @@
 [
     {
+        "title": "Version 1.3",
+        "body": "- Added suggestions and first steps tips."
+    },
+    {
         "title": "Version 1.2 - Automated punishment",
         "body": "- Added form to delete and edit guild configuration via frontend.\n- Public announcement embeds do not contain case description anymore.\n- Added DatePicker to case forms.\n- Reworked display of case details.\n- Added automated punishments that get handled by backend.\n- Added punishment tab that displays all current punishments."
     },
