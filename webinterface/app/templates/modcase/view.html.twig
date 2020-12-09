@@ -487,10 +487,7 @@
                 return;
             }
             let formData = new FormData();
-            console.log(files);
             formData.append('File', files[0]);
-
-            console.log(formData)
 
             $.ajax({
                 type: "POST",
