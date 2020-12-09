@@ -1,10 +1,13 @@
 <h1 align="center">Discord-MASZ</h1>
 
 <p align="center">
-<img src="https://img.shields.io/badge/contributions-welcome-lightgreen">
-<img src="https://img.shields.io/github/contributors/zaanposni/discord-masz">
-<a href="https://github.com/zaanposni/discord-masz/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zaanposni/discord-masz.svg"/></a>
-<img src="https://img.shields.io/badge/using-docker-blue">
+  <img src="https://img.shields.io/badge/contributions-welcome-lightgreen">
+  <img src="https://img.shields.io/github/contributors/zaanposni/discord-masz">
+  <a href="https://github.com/zaanposni/discord-masz/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zaanposni/discord-masz.svg"/></a>
+  <img src="https://img.shields.io/badge/using-docker-blue">
+  <a href="https://discord.gg/5zjpzw6h3S">
+      <img src="https://img.shields.io/discord/779262870016884756?logo=discord"
+          alt="Chat on Discord"></a>
 </p>
 
 MASZ is a management and moderation overview tool for **Discord Moderators** and **Admins**. <br/>
@@ -13,10 +16,6 @@ The core of this tool are the **modcases**, a case represents a rule violation, 
 The server members and your moderators can be **notified** individually about the creation. <br/>
 The user for whom the case was created can also see it on the website, take a stand and your server is moderated **transparently**. <br/>
 This application can also **manage temporary punishments** just as temp mutes for a variable time you can define.
-
-# Support and Discussion Server
-
-Join our discord server for support or similar https://discord.gg/5zjpzw6h3S.
 
 # Used by
 
@@ -38,14 +37,15 @@ Join our discord server for support or similar https://discord.gg/5zjpzw6h3S.
   <img src="/docs/embed.png"/>
 </details>
 
-# Setup - Installation
 
-## TL;DR;
+# Setup - TL;DR;
 
 - Create a discord application at https://discord.com/developers/applications
-- Set redirect urls on your discord application [as defined](https://github.com/zaanposni/discord-masz#discord-oauth)
+- Set redirect urls on your discord application [as defined](https://github.com/zaanposni/discord-masz#discord-oauth).
 - Execute the `setup.py` script to configure your app and `start.sh` (or `start.ps1` on windows) to start it.
 - App will be hosted on `127.0.0.1:5565`, if you are hosting the app on a domain, redirect your reverse proxy to this local port!
+
+# Setup - Installation
 
 ## Requirements 
 
@@ -59,14 +59,10 @@ If you want to deploy on a domain:
 
 ## Discord OAuth
 
-Requests are authenticated using Discord OAuth2. Create your own OAuth application [here](https://discord.com/developers/applications). <br/>
-You will have to use `Client ID` and `Client Secret` in the tab `General Information` and the bot token at `Bot` later in the setup. <br/>
-Also set the redirect paths in the tab `OAuth2`. Be sure to set the following:
-```
-http://yourdomain.com/
-http://yourdomain.com/signin-discord
-```
-(replace with `http://127.0.0.1:5565/` if you want to deploy local)
+Create your own OAuth application [here](https://discord.com/developers/applications). <br/>
+Also set the redirect paths in the tab `OAuth2`. Be sure to set the following (choose localhost or domain depending on your deployment):
+
+<img src="/docs/redirects.png"/>
 
 ### Bot Intents
 
@@ -118,8 +114,7 @@ To migrate your existing data from the Dynobot checkout [this documentation](scr
 
 ## Config
 
-- Change `nginx_mode` in your config to `local` to deactivate rate limit and set correct headers for local deployment. <br/>
-- Links in discord are generated using `service_domain` and `service_base_url`. If you want to test those, you have to adjust your config to `127.0.0.1:5565`. <br/>
+- Using the `setup.py` script. Choose "local" deployment for best development experience.
 - If you want to develop the frontend using your own symfony server, you can change the default path to the API in `src/Config/Config.php`. <br/>
 
 ## Discord
