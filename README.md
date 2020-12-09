@@ -37,7 +37,7 @@ This application can also **manage temporary punishments** just as temp mutes fo
   <img src="/docs/modcase-comments.png"/>
 </details>
 <details>
-  <summary>Uploaded for files on a modcase(click to reveal)</summary>
+  <summary>Uploaded files on a modcase(click to reveal)</summary>
   <img src="/docs/modcase-files.png"/>
 </details>
 <details>
