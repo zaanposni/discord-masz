@@ -350,7 +350,7 @@
                     <div class="d-flex flex-wrap justify-content-center" id="files-viewer">
                         {% for file in files.names|default([]) %}
                             <div class="card flex-shrink-1">
-                                {% if file|split('.')|last|lower in ['jpg', 'png', 'jpeg', 'gif'] %}
+                                {% if file|split('.')|last|lower in ['jpg', 'png', 'jpeg', 'gif', 'ico', 'tif', 'tiff'] %}
                                 <div class="view overlay">
                                     <img class="card-img-top" src="/api/v1/guilds/{{ modcase.guildId }}/modcases/{{ modcase.caseId }}/files/{{ file }}"
                                          alt="Card image cap">
