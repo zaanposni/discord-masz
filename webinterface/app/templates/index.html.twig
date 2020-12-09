@@ -173,7 +173,6 @@
         }
 
         $(document).ready(function () {
-            console.log(readCookie('darkmode'));
             let darkMode = readCookie('darkmode');
             if (darkMode === 'true' || darkMode === null) {  // default dark
                 $('#darkmode').attr('disabled', false);
