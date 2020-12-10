@@ -94,7 +94,7 @@
                 </div>
                 <div class="d-flex flex-column" style="width: unset">
                     <button type="button" class="btn btn-warning" onclick="hideSuggestions()">
-                        Do not show this again.
+                        Hide suggestions
                     </button>
                     <div class="flex-grow-1"></div>
                 </div>
@@ -303,12 +303,13 @@
 
     function hideSuggestions() {
         $('#suggestions').attr("style", "display: none!important");
-        setCookie('hide_suggestions', 'true', 99999);
+        setCookie('suggestions', 'false', 99999);
+        $('#suggestionToggle').prop('checked', true);
     }
 
     $(document).ready(function () {
-        let hide_suggestions = readCookie('hide_suggestions');
-        if (hide_suggestions === 'false' || hide_suggestions === null) {  // default dark
+        let suggestions = readCookie('suggestions');
+        if (suggestions === 'true' || suggestions === null) {  // default show
             $('#suggestions').attr("style", "display: block");
         } else {
             $('#suggestions').attr("style", "display: none!important");

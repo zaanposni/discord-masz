@@ -113,7 +113,11 @@
             <div class="modal-body">
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="darkModeToggle" onclick="darkModeToggle(this)">
-                    <label class="custom-control-label" for="darkModeToggle">Toggle dark mode</label>
+                    <label class="custom-control-label" for="darkModeToggle">Use dark mode</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="suggestionToggle" onclick="suggestionsToggle(this)">
+                    <label class="custom-control-label" for="suggestionToggle">Hide suggestions and tips</label>
                 </div>
             </div>
         </div>
@@ -170,6 +174,15 @@
                 $('#darkmode').attr('disabled', true);
                 $('#darkModeToggle').prop('checked', false);
             }
+            let suggestions = readCookie('suggestions');
+            console.log(suggestions);
+            if (suggestions === 'true' || suggestions === null) {  // default show
+                $('#suggestions').attr("style", "display: block");
+                $('#suggestionToggle').prop('checked', false);
+            } else {
+                $('#suggestions').attr("style", "display: none!important");
+                $('#suggestionToggle').prop('checked', true);
+            }
         });
 
         function darkModeToggle(button) {
@@ -180,6 +193,17 @@
             } else {
                 $('#darkmode').attr('disabled', true);
                 setCookie('darkmode', 'false', 99999);
+            }
+        }
+
+        function suggestionsToggle(button) {
+            let isChecked = $(button).is(":checked")
+            if (isChecked) {
+                $('#suggestions').attr("style", "display: none!important");
+                setCookie('suggestions', 'false', 99999);
+            } else {
+                $('#suggestions').attr("style", "display: block");
+                setCookie('suggestions', 'true', 99999);
             }
         }
     </script>
