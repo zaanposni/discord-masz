@@ -6,6 +6,15 @@
         .hiddencolumn {
             display: none;
         }
+         #files-viewer > div {
+             margin: 8px;
+             width: 20rem;
+         }
+        #files-viewer .card-img-top {
+            width: 100%;
+            height: 10vw;
+            object-fit: cover;
+        }
     </style>
 
     <div class="container">
@@ -15,303 +24,364 @@
                 1: 'Normal',
                 2: 'High',
                 3: 'Epic'
-            }
-            %}
-            <div class="modal fade" id="popupDeleteCase" tabindex="-1" role="dialog" aria-labelledby="popupDeleteCaseLabel"
-                 aria-hidden="true">
+            } %}
+        <div class="modal fade" id="popupDeleteCase" tabindex="-1" role="dialog" aria-labelledby="popupDeleteCaseLabel"
+             aria-hidden="true">
 
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title w-100" id="popupDeleteCaseLabel">Delete this case?</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="deleteCaseForm">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="deleteCaseSendNotification">
-                                            <label class="custom-control-label" for="deleteCaseSendNotification">Send public notification?</label>
-                                        </div>
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title w-100" id="popupDeleteCaseLabel">Delete this case?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="deleteCaseForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="deleteCaseSendNotification">
+                                        <label class="custom-control-label" for="deleteCaseSendNotification">Send public notification?</label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-danger btn-md" onclick="deleteCase(this)">
-                                    DELETE CASE
-                                </button>
                             </div>
+                            <button type="submit" class="btn btn-danger btn-md" onclick="deleteCase(this)">
+                                DELETE CASE
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-start align-items-start flex-wrap">
+        </div>
 
-                <!-- Title + Guild -->
-                <div class="flex-grow-1">
-                    <h4 class="font-weight-bold"><span class="display-4">#{{ modcase.caseId }}</span> {{ modcase.title }}
-                    </h4>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="modcase-tab" data-toggle="tab" href="#modcase" role="tab" aria-controls="modcase"
+                   aria-selected="true">Modcase</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments"
+                   aria-selected="false">Comments ({{ modcase.comments|length }})</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files"
+                   aria-selected="true">Files ({{ files.names|default([])|length }})</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="modcase" role="tabpanel" aria-labelledby="modcase-tab">
+                <div class="d-flex justify-content-start align-items-start flex-wrap mt-2">
 
-                    <div class="d-flex align-items-lg-center">
-                        {% if guild|default %}
-                        <img
-                                src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png"
-                                class="rounded-circle z-depth-0 mr-1"
-                                alt="avatar image"
-                                height="35"
-                        />
-                        <span class="font-weight-bold">Guild: {{ guild.name }}
-                            {% endif %}
+                    <!-- Title + Guild -->
+                    <div class="flex-grow-1">
+                        <h4 class="font-weight-bold"><span class="display-4">#{{ modcase.caseId }}</span> {{ modcase.title }}
+                        </h4>
+
+                        <div class="d-flex align-items-lg-center">
+                            {% if guild|default %}
+                            <img
+                                    src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png"
+                                    class="rounded-circle z-depth-0 mr-1"
+                                    alt="avatar image"
+                                    height="35"
+                            />
+                            <span class="font-weight-bold">Guild: {{ guild.name }}
+                                {% endif %}
                         <span class="text-black-50">({{ modcase.guildId }})</span></span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- User icon -->
-                {% if user|default %}
-                    <div class="align-self-end mr-4">
-                        <img
-                                src="{{ user.imageUrl }}"
-                                class="rounded-circle z-depth-0 mr-1"
-                                alt="avatar image"
-                                height="128"
-                        />
-                    </div>
-                {% endif %}
-
-                <!-- Edit and delete buttons -->
-                <div class="d-flex flex-column align-self-end">
-                    <a type="button" class="btn btn-primary"
-                       href="/api/v1/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}" target="_blank">See raw case
-                        data</a>
-                    {% if modcase.guildId in basic_data.loggedInUser.modGuilds or basic_data.loggedInUser.isAdmin %}
-                        <a type="button" class="btn btn-warning" href="/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}/edit">Edit this case</a>
-                        <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#popupDeleteCase" href="#">Delete this case</a>
+                    <!-- User icon -->
+                    {% if user|default %}
+                        <div class="align-self-end mr-4">
+                            <img
+                                    src="{{ user.imageUrl }}"
+                                    class="rounded-circle z-depth-0 mr-1"
+                                    alt="avatar image"
+                                    height="128"
+                            />
+                        </div>
                     {% endif %}
+
+                    <!-- Edit and delete buttons -->
+                    <div class="d-flex flex-column align-self-end">
+                        <a type="button" class="btn btn-primary"
+                           href="/api/v1/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}" target="_blank">See raw case
+                            data</a>
+                        {% if modcase.guildId in basic_data.loggedInUser.modGuilds or basic_data.loggedInUser.isAdmin %}
+                            <a type="button" class="btn btn-warning" href="/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}/edit">Edit this case</a>
+                            <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#popupDeleteCase" href="#">Delete this case</a>
+                        {% endif %}
+                    </div>
+
                 </div>
-
-            </div>
-            <br>
-
-            <!-- Labels -->
-            <div class="row mb-1 ml-2">
-                <div class="d-flex justify-content-between">
-                    {% for label in modcase.labels|default([]) %}
-                        <a href="/modcases/{{ modcase.guildId }}?label={{ label }}">
-                            <h3>
-                                <span type="button" class="badge badge-pill badge-info mr-1">{{ label }}</span>
-                            </h3>
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <!-- Table -->
-            <div class="row">
-
-                <!-- user info -->
-                <div class="col-xl-6 col-lg-6 col-md-6 sm-col-12">
-                    <h4 class="font-weight-bold">User information</h4>
-
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <th class="font-weight-bold">Punishment</th>
-                            <td>
+                <br/>
+                <!-- Labels -->
+                <div class="row mb-1 ml-2">
+                    <div class="d-flex justify-content-between">
+                        {% for label in modcase.labels|default([]) %}
+                            <a href="/modcases/{{ modcase.guildId }}?label={{ label }}">
                                 <h3>
-                                    <span class="badge badge-danger">{{ modcase.punishment }}</span>
+                                    <span type="button" class="badge badge-pill badge-info mr-1">{{ label }}</span>
                                 </h3>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="font-weight-bold">UserID</th>
-                            <td>
-                                <a href="/modcases/{{ modcase.guildId }}?userId={{ modcase.userId }}">
-                                    {{ modcase.userId }}
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="font-weight-bold">Username</th>
-                            <td class="font-weight-bold">
-                                <a href="/modcases/{{ modcase.guildId }}?userId={{ modcase.userId }}">
-                                    {{ modcase.username }}
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="font-weight-bold">Nickname</th>
-                            <td>
-                                <a href="/modcases/{{ modcase.guildId }}?userId={{ modcase.userId }}">
-                                    {% if modcase.nickname != '' %}
-                                        {{ modcase.nickname }}
-                                    {% else %}
-                                        <span class="text-danger font-weight-bold">Not set.</span>
-                                    {% endif %}
-                                </a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                            </a>
+                        {% endfor %}
+                    </div>
                 </div>
 
-                <!-- case info -->
-                <div class="col-xl-6 col-lg-6 col-md-6 sm-col-12">
-                    <h4 class="font-weight-bold">Case information</h4>
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <th class="font-weight-bold">Title</th>
-                            <td class="font-weight-bold">{{ modcase.title }}</td>
-                        </tr>
-                        <tr>
-                            <th class="font-weight-bold">Severity</th>
-                            <td>
-                                {{ severities[modcase.severity]|default(modcase.severity) }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="font-weight-bold">Created at</th>
-                            <td>{{ modcase.createdAt | date('d.m.Y H:i:s') }}</td>
-                        </tr>
-                        {% if modcase.occuredAt != modcase.createdAt %}
+                <!-- Table -->
+                <div class="row">
+
+                    <!-- user info -->
+                    <div class="col-xl-6 col-lg-6 col-md-6 sm-col-12">
+                        <h4 class="font-weight-bold">User information</h4>
+
+                        <table class="table">
+                            <tbody>
                             <tr>
-                                <th class="font-weight-bold">Occured at</th>
-                                <td>{{ modcase.occuredAt | date('d.m.Y H:i:s') }}</td>
+                                <th class="font-weight-bold">Punishment</th>
+                                <td>
+                                    <h3>
+                                        <span class="badge badge-danger">{{ modcase.punishment }}</span>
+                                    </h3>
+                                </td>
                             </tr>
-                        {% endif %}
-                        {% if modcase.lastEditedAt != modcase.createdAt %}
                             <tr>
-                                <th class="font-weight-bold">Last edited at</th>
-                                <td>{{ modcase.lastEditedAt | date('d.m.Y H:i:s') }}</td>
+                                <th class="font-weight-bold">UserID</th>
+                                <td>
+                                    <a href="/modcases/{{ modcase.guildId }}?userId={{ modcase.userId }}">
+                                        {{ modcase.userId }}
+                                    </a>
+                                </td>
                             </tr>
-                        {% endif %}
-                        <tr>
-                            <th class="font-weight-bold">Moderator</th>
-                            <td class="font-weight-bold">
-                                <!-- mod info -->
-                                <a href="/modcases/{{ modcase.guildId }}?modId={{ modcase.modId }}">
-                                    {% if moderator|default %}
-                                        <img
-                                                src="{{ moderator.imageUrl }}"
-                                                class="rounded-circle z-depth-0 mr-1"
-                                                alt="avatar image"
-                                                height="35"
-                                        /> {{ moderator.username }}
-                                    {% endif %}
-                                    <span class="text-black-50">({{ modcase.modId }})</span>
-                                </a>
-                            </td>
-                        </tr>
-                        {% if modcase.lastEditedByModId != modcase.modId %}
                             <tr>
-                                <th class="font-weight-bold">Last Edit by Moderator</th>
+                                <th class="font-weight-bold">Username</th>
                                 <td class="font-weight-bold">
-                                    <!-- last mod info -->
-                                    <a href="/modcases/{{ modcase.guildId }}?modId={{ lastModerator.id }}">
-                                        {% if lastModerator|default %}
-                                            <img
-                                                    src="{{ lastModerator.imageUrl }}"
-                                                    class="rounded-circle z-depth-0 mr-1"
-                                                    alt="avatar image"
-                                                    height="35"
-                                            /> {{ lastModerator.username }}
+                                    <a href="/modcases/{{ modcase.guildId }}?userId={{ modcase.userId }}">
+                                        {{ modcase.username }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="font-weight-bold">Nickname</th>
+                                <td>
+                                    <a href="/modcases/{{ modcase.guildId }}?userId={{ modcase.userId }}">
+                                        {% if modcase.nickname != '' %}
+                                            {{ modcase.nickname }}
+                                        {% else %}
+                                            <span class="text-danger font-weight-bold">Not set.</span>
                                         {% endif %}
                                     </a>
                                 </td>
                             </tr>
-                        {% endif %}
-                        {% if modcase.punishmentType != 0 and modcase.punishmentType != 2 %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- case info -->
+                    <div class="col-xl-6 col-lg-6 col-md-6 sm-col-12">
+                        <h4 class="font-weight-bold">Case information</h4>
+                        <table class="table">
+                            <tbody>
                             <tr>
-                                <th class="font-weight-bold">Punished until</th>
+                                <th class="font-weight-bold">Severity</th>
                                 <td>
-                                    {% if modcase.punishedUntil is null %}
-                                        Forever
-                                    {% else %}
-                                        {{ modcase.punishedUntil | date('d.m.Y H:i:s') }}
-                                    {% endif %}
+                                    {{ severities[modcase.severity]|default(modcase.severity) }}
                                 </td>
                             </tr>
-                        {% endif %}
-                        {% if not modcase.punishmentActive and modcase.punishmentType != 0 and modcase.punishmentType != 2 %}
                             <tr>
-                                <th class="font-weight-bold">Punishment</th>
-                                <td>Punishment inactive</td>
+                                <th class="font-weight-bold">Created at</th>
+                                <td>{{ modcase.createdAt | date('d.m.Y H:i:s') }}</td>
                             </tr>
-                        {% endif %}
-                        </tbody>
-                    </table>
+                            {% if modcase.occuredAt != modcase.createdAt %}
+                                <tr>
+                                    <th class="font-weight-bold">Occured at</th>
+                                    <td>{{ modcase.occuredAt | date('d.m.Y H:i:s') }}</td>
+                                </tr>
+                            {% endif %}
+                            {% if modcase.lastEditedAt != modcase.createdAt %}
+                                <tr>
+                                    <th class="font-weight-bold">Last edited at</th>
+                                    <td>{{ modcase.lastEditedAt | date('d.m.Y H:i:s') }}</td>
+                                </tr>
+                            {% endif %}
+                            <tr>
+                                <th class="font-weight-bold">Moderator</th>
+                                <td class="font-weight-bold">
+                                    <!-- mod info -->
+                                    <a href="/modcases/{{ modcase.guildId }}?modId={{ modcase.modId }}">
+                                        {% if moderator|default %}
+                                            <img
+                                                    src="{{ moderator.imageUrl }}"
+                                                    class="rounded-circle z-depth-0 mr-1"
+                                                    alt="avatar image"
+                                                    height="35"
+                                            /> {{ moderator.username }}
+                                        {% endif %}
+                                        <span class="text-black-50">({{ modcase.modId }})</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% if modcase.lastEditedByModId != modcase.modId %}
+                                <tr>
+                                    <th class="font-weight-bold">Last Edit by Moderator</th>
+                                    <td class="font-weight-bold">
+                                        <!-- last mod info -->
+                                        <a href="/modcases/{{ modcase.guildId }}?modId={{ lastModerator.id }}">
+                                            {% if lastModerator|default %}
+                                                <img
+                                                        src="{{ lastModerator.imageUrl }}"
+                                                        class="rounded-circle z-depth-0 mr-1"
+                                                        alt="avatar image"
+                                                        height="35"
+                                                /> {{ lastModerator.username }}
+                                            {% endif %}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                            {% if modcase.punishmentType != 0 and modcase.punishmentType != 2 %}
+                                <tr>
+                                    <th class="font-weight-bold">Punished until</th>
+                                    <td>
+                                        {% if modcase.punishedUntil is null %}
+                                            Forever
+                                        {% else %}
+                                            {{ modcase.punishedUntil | date('d.m.Y H:i:s') }}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endif %}
+                            {% if not modcase.punishmentActive and modcase.punishmentType != 0 and modcase.punishmentType != 2 %}
+                                <tr>
+                                    <th class="font-weight-bold">Punishment</th>
+                                    <td>Punishment inactive</td>
+                                </tr>
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
                 </div>
-                <br>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <h4 class="font-weight-bold">Full case description</h4>
+                    <hr/>
+                    <span style="white-space: pre-wrap;" class="text-monospace">{{ modcase.description }}</span>
+                </div>
             </div>
-
-            <!-- Description -->
-            <div class="mb-3">
-                <h4 class="font-weight-bold">Full case description</h4>
-                <hr/>
-                <span style="white-space: pre-wrap;" class="text-monospace">{{ modcase.description }}</span>
-            </div>
-
-            <h4 class="font-weight-bold">Comments ({{ modcase.comments|length }})</h4>
-            <hr/>
-            <div class="d-flex flex-column flex-wrap justify-content-between mt-3">
-                {% if modcase.comments|default %}
-                    {% for comment in modcase.comments|default([]) %}
-                        <div class="card mb-3">
-                            <div class="card-body d-flex flex-row">
-                                <div class="align-self-start mr-3">
-                                    <img
-                                            src="{{ comment.discordUser.imageUrl }}"
-                                            class="card-img rounded-circle z-depth-0 mr-1"
-                                            alt="avatar icon"
-                                            height="35"
-                                            style="width: unset"
-                                    />
-                                </div>
-                                <div class="flex-grow-1">
-                                    <!-- Title -->
-                                    <h4 class="card-title">
-                                        {{ comment.discordUser.username|default(comment.userId) }}
-                                    </h4>
-
-                                    <!-- Text -->
-                                    <div class="card-text">
-                                        <span style="white-space: pre-wrap;" class="text-monospace font-small">{{ comment.createdAt }}</span><br/>
-                                        <span style="white-space: pre-wrap;" class="text-monospace">{{ comment.message }}</span>
+            <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+                <div class="d-flex flex-column flex-wrap justify-content-between mt-2">
+                    {% if modcase.comments|default %}
+                        {% for comment in modcase.comments|default([]) %}
+                            <div class="card mb-3">
+                                <div class="card-body d-flex flex-row">
+                                    <div class="align-self-start mr-3">
+                                        <img
+                                                src="{{ comment.discordUser.imageUrl }}"
+                                                class="card-img rounded-circle z-depth-0 mr-1"
+                                                alt="avatar icon"
+                                                height="35"
+                                                style="width: unset"
+                                        />
                                     </div>
-                                </div>
-                                <!-- Icons -->
-                                {% if basic_data.loggedInUser.discordUser.id != modcase.userId or basic_data.loggedInUser.discordUser.id == comment.userId %}
-                                    <div class="d-flex flex-column">
-                                        <button class="btn btn-danger" id="delete-{{ comment.id }}" onclick="deleteComment(this)">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                        <button class="btn btn-warning" id="update-{{ comment.id }}" onclick="updateComment(this)">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
+                                    <div class="flex-grow-1">
+                                        <!-- Title -->
+                                        <h4 class="card-title">
+                                            {{ comment.discordUser.username|default(comment.userId) }}
+                                        </h4>
+
+                                        <!-- Text -->
+                                        <div class="card-text">
+                                            <span style="white-space: pre-wrap;" class="text-monospace font-small">{{ comment.createdAt }}</span><br/>
+                                            <span style="white-space: pre-wrap;" class="text-monospace">{{ comment.message }}</span>
+                                        </div>
                                     </div>
-                                {% endif %}
+                                    <!-- Icons -->
+                                    {% if basic_data.loggedInUser.discordUser.id != modcase.userId or basic_data.loggedInUser.discordUser.id == comment.userId %}
+                                        <div class="d-flex flex-column">
+                                            <button class="btn btn-danger" id="delete-{{ comment.id }}" onclick="deleteComment(this)">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                            <button class="btn btn-warning" id="update-{{ comment.id }}" onclick="updateComment(this)">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div id="newCommentParent">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form form-group">
+                                    <textarea type="text" class="form-control md-textarea" id="newComment"></textarea>
+                                    <label for="newComment">Comment</label>
+                                </div>
                             </div>
                         </div>
-                    {% endfor %}
-                {% endif %}
-                <div id="newCommentParent">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="md-form form-group">
-                                <textarea type="text" class="form-control md-textarea" id="newComment"></textarea>
-                                <label for="newComment">Comment</label>
+                        <button type="submit" class="btn btn-primary btn-md" onclick="sendComment()">
+                            Post comment
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mt-3"></div>
+            </div>
+            <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="files-tab">
+                {% if modcase.guildId in basic_data.loggedInUser.modGuilds or basic_data.loggedInUser.isAdmin %}
+                    <div class="mt-3 d-flex flex-row align-items-baseline" id="file-upload-container">
+                        <button class="btn btn-primary flex-shrink-0" onclick="sendFile()">
+                            Upload
+                        </button>
+                        <div class="input-group flex-shrink-1">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="file-input"
+                                       aria-describedby="file-input-label">
+                                <label class="custom-file-label" for="file-input">Choose file</label>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-md" onclick="sendComment()">
-                        Post comment
-                    </button>
-                </div>
+                {% endif %}
+                {% if files.names|default([]) %}
+                    <div class="d-flex flex-wrap justify-content-center" id="files-viewer">
+                        {% for file in files.names|default([]) %}
+                            <div class="card flex-shrink-1">
+                                {% if file|split('.')|last|lower in ['jpg', 'png', 'jpeg', 'gif', 'ico', 'tif', 'tiff'] %}
+                                <div class="view overlay">
+                                    <img class="card-img-top" src="/api/v1/guilds/{{ modcase.guildId }}/modcases/{{ modcase.caseId }}/files/{{ file }}"
+                                         alt="Card image cap">
+                                </div>
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ file|split('_', 3)|last }}</h5>
+                                    <div class="d-flex flex-row flex-wrap justify-content-center">
+                                        <a href="/api/v1/guilds/{{ modcase.guildId }}/modcases/{{ modcase.caseId }}/files/{{ file }}"
+                                           class="btn btn-primary flex-shrink-1" target="_blank">
+                                            View
+                                        </a>
+                                        {% if modcase.guildId in basic_data.loggedInUser.modGuilds or basic_data.loggedInUser.isAdmin %}
+                                            <button class="btn btn-danger" id="filedelete-{{ file }}" onclick="deleteFile(this)">
+                                                Delete
+                                            </button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="card rounded mt-2">
+                        <div class="card-body">
+                            <h4 class="card-title"><a>No files uploaded yet.</a></h4>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
-
-            <div class="mt-3"></div>
-
+        </div>
         {% endif %}
         <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" id="notification" style="min-width:100%">
             <div class="toast-header">
@@ -369,6 +439,27 @@
             $('#notification').toast('show');
         }
 
+        function deleteFile(obj) {
+            let elementId = $(obj).attr('id');
+            let fileName = elementId.slice(elementId.indexOf('-') + 1);
+
+            $.ajax({
+                type: "DELETE",
+                url: "/api/v1/guilds/{{ modcase.guildId|default }}/modcases/{{ modcase.caseId|default }}/files/" + fileName,
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (errMsg) {
+                    console.log(errMsg);
+                    $('#notification').insertAfter($(obj).closest('.card'));
+                    $('#notificationColor').attr('fill', '#ac000f');
+                    $('#notificationTitle').text('Deleting file failed');
+                    $('#notificationBody').text(errMsg.status + ': ' + errMsg.responseText);
+                    $('#notification').toast('show');
+                }
+            });
+        }
+
         function deleteComment(obj) {
             let elementId = $(obj).attr('id');
             let commentId = elementId.slice(elementId.lastIndexOf('-') + 1);
@@ -384,6 +475,32 @@
                     $('#notification').insertAfter($(obj).closest('.card'));
                     $('#notificationColor').attr('fill', '#ac000f');
                     $('#notificationTitle').text('Deleting comment failed');
+                    $('#notificationBody').text(errMsg.status + ': ' + errMsg.responseText);
+                    $('#notification').toast('show');
+                }
+            });
+        }
+
+        function sendFile() {
+            let files = ($('#file-input')[0].files);
+            if (files.length === 0) {
+                return;
+            }
+            let formData = new FormData();
+            formData.append('File', files[0]);
+
+            $.ajax({
+                type: "POST",
+                url: "/api/v1/guilds/{{ modcase.guildId|default }}/modcases/{{ modcase.caseId|default }}/files",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data){ location.reload() },
+                error: function(errMsg) {
+                    console.log(errMsg);
+                    $('#notification').insertAfter($('#file-upload-container'));
+                    $('#notificationColor').attr('fill', '#ac000f');
+                    $('#notificationTitle').text('Uploading file failed');
                     $('#notificationBody').text(errMsg.status + ': ' + errMsg.responseText);
                     $('#notification').toast('show');
                 }
@@ -407,7 +524,7 @@
                 data: JSON.stringify(body),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function(data){location.reload()},
+                success: function(data){ location.reload() },
                 error: function(errMsg) {
                     console.log(errMsg);
                     $('#notification').insertAfter($('#newCommentParent'));

@@ -33,6 +33,14 @@ This application can also **manage temporary punishments** just as temp mutes fo
   <img src="/docs/modcase.png"/>
 </details>
 <details>
+  <summary>Comments on a modcase(click to reveal)</summary>
+  <img src="/docs/modcase-comments.png"/>
+</details>
+<details>
+  <summary>Uploaded files on a modcase(click to reveal)</summary>
+  <img src="/docs/modcase-files.png"/>
+</details>
+<details>
   <summary>Notification embed for your guild members and moderation team (click to reveal)</summary>
   <img src="/docs/embed.png"/>
 </details>

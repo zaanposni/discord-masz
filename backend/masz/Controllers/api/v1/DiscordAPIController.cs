@@ -55,7 +55,7 @@ namespace masz.Controllers.api.v1
             {
                 if (await currentIdentity.IsOnGuild(guild.GuildId))
                 {
-                    if (await currentIdentity.HasModRoleOrHigherOnGuild(guild.GuildId)) {
+                    if (await currentIdentity.HasModRoleOrHigherOnGuild(guild.GuildId, this.database)) {
                         modGuilds.Add(guild.GuildId);
                     } else {
                         memberGuilds.Add(guild.GuildId);

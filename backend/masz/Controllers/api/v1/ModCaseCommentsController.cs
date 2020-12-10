@@ -55,7 +55,7 @@ namespace masz.Controllers
                 return Unauthorized();
             }
             ModCase modCase = await database.SelectSpecificModCase(guildid, caseid);
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
             {
                 if (modCase == null) {
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
@@ -82,7 +82,7 @@ namespace masz.Controllers
             }
 
             // normal user can only comment if no comments are there yet or last comment was not by him.
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
             {
                 if (modCase.Comments.Any())
                 {
@@ -126,7 +126,7 @@ namespace masz.Controllers
                 return Unauthorized();
             }
             ModCase modCase = await database.SelectSpecificModCase(guildid, caseid);
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
             {
                 if (modCase == null) {
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
@@ -195,7 +195,7 @@ namespace masz.Controllers
                 return Unauthorized();
             }
             ModCase modCase = await database.SelectSpecificModCase(guildid, caseid);
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
             {
                 if (modCase == null) {
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
@@ -228,7 +228,7 @@ namespace masz.Controllers
                 return NotFound();
             }
 
-            if (comment.UserId != currentUser.Id && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id) && !await currentIdentity.HasModRoleOrHigherOnGuild(guildid))
+            if (comment.UserId != currentUser.Id && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id) && !await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database))
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();

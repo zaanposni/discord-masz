@@ -1,7 +1,7 @@
 [
     {
-        "title": "Version 1.3",
-        "body": "- Added suggestions and first steps tips."
+        "title": "Version 1.3 - Fileupload",
+        "body": "- Added suggestions and first steps tips.\n- Added file uploads in case overview.\n- Reworked case overview into tab system."
     },
     {
         "title": "Version 1.2 - Automated punishment",

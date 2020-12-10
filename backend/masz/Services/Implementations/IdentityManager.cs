@@ -40,7 +40,7 @@ namespace masz.Services
             {
                 identities.Remove(key);
             }
-            Identity identity = new Identity(token, discord, context);
+            Identity identity = new Identity(token, discord);
             identities.Add(key, identity);
             logger.LogInformation("New identity registered.");
         }
