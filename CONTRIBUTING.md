@@ -12,7 +12,7 @@ Alternative: Send me a [mail](mailto:me@zaanposni.com).
 Feel free to open issues of any type. No matter if support, questions or feature requests!
 
 Note: There are maintainer issues that we create to keep track of things that we have to do.<br/>
-If you find an issue by us that catches your eye, feel free to comment on it if you want to implement it.
+If any of our issues catches your eye, feel free to comment on it or get in touch with us.
 
 ## Developing
 

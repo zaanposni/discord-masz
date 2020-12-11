@@ -103,28 +103,35 @@ namespace masz.Helpers
             footer.Text = $"UserId: {modCase.UserId} | ModCaseId: {modCase.CaseId}";
             embed.Footer = footer;
 
+            StringBuilder description = new StringBuilder();
+            description.Append($"A **Modcase** has been ");
+
             switch(action){
                 case RestAction.Edited:
-                    embed.Description = $"A **Modcase** has been updated for <@{modCase.UserId}>.\n" + 
-                                         "This notification has been generated automatically.\n" + 
-                                        $"Follow [this link]({serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.CaseId}) to see more details.\n" +
-                                         "[Contribute](https://github.com/zaanposni/discord-masz/) to this moderation tool.";
+                    description.Append($"updated");
                     embed.Title = $"**UPDATED** - #{modCase.CaseId} {modCase.Title}";
                     break;
                 case RestAction.Deleted:
-                    embed.Description = $"A **Modcase** has been deleted for <@{modCase.UserId}>.\n" + 
-                                        "This notification has been generated automatically.\n" +
-                                        "[Contribute](https://github.com/zaanposni/discord-masz/) to this moderation tool.";
+                    description.Append($"deleted");
                     embed.Title = $"**DELETED** - #{modCase.CaseId} {modCase.Title}";
                     break;
                 case RestAction.Created:
-                    embed.Description = $"A new **Modcase** has been created for <@{modCase.UserId}>.\n" + 
-                                         "This notification has been generated automatically.\n" + 
-                                        $"Follow [this link]({serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.CaseId}) to see more details.\n" +
-                                         "[Contribute](https://github.com/zaanposni/discord-masz/) to this moderation tool.";
+                    description.Append($"created");
                     embed.Title = $"**CREATED** - #{modCase.CaseId} {modCase.Title}";
                     break;
             }
+            
+            description.Append($" for <@{modCase.UserId}> ");
+            if (discordUser != null) {
+                description.Append($" ({discordUser.Username}#{discordUser.Discriminator}).");
+            }
+            description.Append($"\nThis notification has been generated automatically.\n");
+            if (action != RestAction.Deleted) {
+                description.Append($"Follow [this link]({serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.CaseId}) to see more details.\n");
+            }
+            description.Append($"[Contribute](https://github.com/zaanposni/discord-masz/blob/master/CONTRIBUTING.md) to this moderation tool.");
+
+            embed.Description = description.ToString();
             
             if (! string.IsNullOrEmpty(serviceBaseUrl))
             {
