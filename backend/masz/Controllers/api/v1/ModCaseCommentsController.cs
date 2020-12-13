@@ -104,7 +104,7 @@ namespace masz.Controllers
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
             try {
-                await discordAnnouncer.AnnounceComment(commentToCreate, RestAction.Created);
+                await discordAnnouncer.AnnounceComment(commentToCreate, currentUser, RestAction.Created);
             }
             catch(Exception e){
                 logger.LogError(e, "Failed to announce comment.");
@@ -173,7 +173,7 @@ namespace masz.Controllers
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
             try {
-                await discordAnnouncer.AnnounceComment(comment, RestAction.Edited);
+                await discordAnnouncer.AnnounceComment(comment, currentUser, RestAction.Edited);
             }
             catch(Exception e){
                 logger.LogError(e, "Failed to announce comment.");
@@ -239,7 +239,7 @@ namespace masz.Controllers
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
             try {
-                await discordAnnouncer.AnnounceComment(comment, RestAction.Deleted);
+                await discordAnnouncer.AnnounceComment(comment, currentUser, RestAction.Deleted);
             }
             catch(Exception e){
                 logger.LogError(e, "Failed to announce comment.");

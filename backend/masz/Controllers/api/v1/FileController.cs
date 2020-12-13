@@ -28,14 +28,16 @@ namespace masz.Controllers
         private readonly IOptions<InternalConfig> config;
         private readonly IIdentityManager identityManager;
         private readonly IFilesHandler filesHandler;
+        private readonly IDiscordAnnouncer discordAnnouncer;
 
-        public FileController(ILogger<FileController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IFilesHandler filesHandler)
+        public FileController(ILogger<FileController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IFilesHandler filesHandler, IDiscordAnnouncer discordAnnouncer)
         {
             this.logger = logger;
             this.database = database;
             this.config = config;
             this.identityManager = identityManager;
             this.filesHandler = filesHandler;
+            this.discordAnnouncer = discordAnnouncer;
         }
 
         [HttpDelete("{filename}")]
@@ -56,8 +58,28 @@ namespace masz.Controllers
             }
             // ========================================================
 
-            var filePath = Path.Combine(config.Value.AbsolutePathToFileUpload, guildid, caseid, filename);
+            ModCase modCase = await database.SelectSpecificModCase(guildid, caseid);
+            if (modCase == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Modcase not found.");
+                return BadRequest("Modcase not found.");
+            }
+
+            string filePath = Path.Combine(config.Value.AbsolutePathToFileUpload, guildid, caseid, filename);
+            if (! filesHandler.FileExists(filePath)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 File not found.");
+                return NotFound("File not found.");
+            }
+
             filesHandler.DeleteFile(filePath);
+
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
+            try {
+                await discordAnnouncer.AnnounceFile(filename, modCase, currentUser, RestAction.Deleted);
+            }
+            catch(Exception e){
+                logger.LogError(e, "Failed to announce file.");
+            }
 
             return Ok();
         }
@@ -172,13 +194,22 @@ namespace masz.Controllers
                 return BadRequest();
             }
 
-            if (await database.SelectSpecificModCase(guildid, caseid) == null)
+            ModCase modCase = await database.SelectSpecificModCase(guildid, caseid);
+            if (modCase == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Modcase not found.");
                 return BadRequest("Modcase not found.");
             }
 
             string uniqueFileName = await filesHandler.SaveFile(uploadedFile.File, Path.Combine(config.Value.AbsolutePathToFileUpload , guildid, caseid));
+
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
+            try {
+                await discordAnnouncer.AnnounceFile(uniqueFileName, modCase, currentUser, RestAction.Created);
+            }
+            catch(Exception e){
+                logger.LogError(e, "Failed to announce file.");
+            }
 
             return StatusCode(201, new { path = uniqueFileName });
         }

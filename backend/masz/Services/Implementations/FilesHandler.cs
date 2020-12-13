@@ -11,7 +11,7 @@ namespace masz.Services
     {
         public string GetContentType(string path)
         {
-            if (!System.IO.File.Exists(path)) {
+            if (!File.Exists(path)) {
                 return "application/octet-stream";
             }
 
@@ -22,7 +22,7 @@ namespace masz.Services
 
         public FileInfo[] GetFilesByDirectory(string directory)
         {
-            if (!System.IO.Directory.Exists(directory)) {
+            if (!Directory.Exists(directory)) {
                 return null;
             }
 
@@ -31,16 +31,16 @@ namespace masz.Services
 
         public byte[] ReadFile(string path)
         {
-            if (!System.IO.File.Exists(path)) {
+            if (!File.Exists(path)) {
                 return null;
             }
 
-            return System.IO.File.ReadAllBytes(path);
+            return File.ReadAllBytes(path);
         }
 
         public async Task<string> SaveFile(IFormFile file, string directory)
         {
-            System.IO.Directory.CreateDirectory(directory);
+            Directory.CreateDirectory(directory);
 
             var uniqueFileName = GetUniqueFileName(file);
             var filePath = Path.Combine(directory, uniqueFileName);
@@ -50,16 +50,21 @@ namespace masz.Services
 
         public void DeleteDirectory(string directory)
         {
-            if (System.IO.Directory.Exists(directory)) {
-                System.IO.Directory.Delete(directory, true);
+            if (Directory.Exists(directory)) {
+                Directory.Delete(directory, true);
             }
         }
 
         public void DeleteFile(string path)
         {
-            if (System.IO.File.Exists(path)) {
-                System.IO.File.Delete(path);
+            if (File.Exists(path)) {
+                File.Delete(path);
             }
+        }
+
+        public bool FileExists(string path)
+        {
+            return File.Exists(path);
         }
 
         private string GetUniqueFileName(IFormFile file)
