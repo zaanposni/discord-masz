@@ -38,22 +38,31 @@ class IndexController extends AbstractController
             $memberGuilds = array();
             $bannedGuilds = array();
             foreach ($basicData->loggedInUser['modGuilds'] as $guildid) {
-                $modGuilds[] = [
-                    'obj' => DiscordAPI::GetGuild($_COOKIE, $guildid)->body,
-                    'stats' => StatsAPI::Select($_COOKIE, $guildid)->body
-                ];
+                $guild = DiscordAPI::GetGuild($_COOKIE, $guildid);
+                if ($guild->statuscode === 200) {
+                    $modGuilds[] = [
+                        'obj' => $guild->body,
+                        'stats' => StatsAPI::Select($_COOKIE, $guildid)->body
+                    ];
+                }
             }
             foreach ($basicData->loggedInUser['memberGuilds'] as $guildid) {
-                $memberGuilds[] = [
-                    'obj' => DiscordAPI::GetGuild($_COOKIE, $guildid)->body,
-                    'stats' => StatsAPI::Select($_COOKIE, $guildid)->body
-                ];
+                $guild = DiscordAPI::GetGuild($_COOKIE, $guildid);
+                if ($guild->statuscode === 200) {
+                    $memberGuilds[] = [
+                        'obj' => $guild->body,
+                        'stats' => StatsAPI::Select($_COOKIE, $guildid)->body
+                    ];
+                }
             }
             foreach ($basicData->loggedInUser['bannedGuilds'] as $guildid) {
-                $bannedGuilds[] = [
-                    'obj' => DiscordAPI::GetGuild($_COOKIE, $guildid)->body,
-                    'stats' => StatsAPI::Select($_COOKIE, $guildid)->body
-                ];
+                $guild = DiscordAPI::GetGuild($_COOKIE, $guildid);
+                if ($guild->statuscode === 200) {
+                    $bannedGuilds[] = [
+                        'obj' => $guild->body,
+                        'stats' => StatsAPI::Select($_COOKIE, $guildid)->body
+                    ];
+                }
             }
 
             $basicData->tabTitle = 'MASZ: Your guilds';

@@ -141,7 +141,7 @@ namespace masz.Controllers
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
             try {
-                await discordAnnouncer.AnnounceModCase(modCase, RestAction.Deleted, sendNotification);
+                await discordAnnouncer.AnnounceModCase(modCase, RestAction.Deleted, currentUser, sendNotification);
             }
             catch(Exception e){
                 logger.LogError(e, "Failed to announce modcase.");
@@ -263,7 +263,7 @@ namespace masz.Controllers
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
             try {
-                await discordAnnouncer.AnnounceModCase(modCase, RestAction.Edited, sendNotification);
+                await discordAnnouncer.AnnounceModCase(modCase, RestAction.Edited, currentUser, sendNotification);
             }
             catch(Exception e){
                 logger.LogError(e, "Failed to announce modcase.");
@@ -379,7 +379,7 @@ namespace masz.Controllers
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
             try {
-                await discordAnnouncer.AnnounceModCase(newModCase, RestAction.Created, sendNotification);
+                await discordAnnouncer.AnnounceModCase(newModCase, RestAction.Created, currentUser, sendNotification);
             }
             catch(Exception e){
                 logger.LogError(e, "Failed to announce modcase.");

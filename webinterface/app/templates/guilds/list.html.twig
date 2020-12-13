@@ -26,12 +26,12 @@
                         </button>
                     </div>
                     <div class="modal-body" id="popupBody">
-                        <div id="deleteCaseForm">
-                            <div class="row">
+                        <div id="deleteGuildForm">
+                            <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="deleteCases">
-                                        <label class="custom-control-label" for="deleteCases">Delete all cases?</label>
+                                        <input type="checkbox" class="custom-control-input" id="deleteData">
+                                        <label class="custom-control-label" for="deleteData">Delete all cases and files?</label>
                                     </div>
                                 </div>
                             </div>
@@ -328,16 +328,16 @@
         let elementId = $(button).attr('id');
         selectedGuild = elementId.slice(elementId.lastIndexOf('-') + 1);
 
-        $('#popupBody > .card').remove();  // clear
+        $('#deleteGuildForm > .card').remove();  // clear
         let guildCard = $('#guild-card-' + selectedGuild).clone();
-        $('#popupBody').prepend(guildCard);
+        $('#deleteGuildForm').prepend(guildCard);
     }
 
     function deleteGuild(button) {
-        let deleteCases = $('#deleteCases').is(":checked").toString();
+        let deleteData = $('#deleteData').is(":checked").toString();
         $.ajax({
             type: "DELETE",
-            url: "/api/v1/guilds/" + selectedGuild + '?deleteCases=' + deleteCases,
+            url: "/api/v1/guilds/" + selectedGuild + '?deleteData=' + deleteData,
             success: function (data) {
                 location.reload();
             },

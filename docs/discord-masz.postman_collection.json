@@ -155,7 +155,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/guilds/{{guildid}}?deleteCases=false",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}?deleteData=false",
 									"host": [
 										"{{url}}"
 									],
@@ -172,7 +172,7 @@
 											"disabled": true
 										},
 										{
-											"key": "deleteCases",
+											"key": "deleteData",
 											"value": "false"
 										}
 									]

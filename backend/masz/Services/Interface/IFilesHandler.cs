@@ -11,6 +11,7 @@ namespace masz.Services
         FileInfo[] GetFilesByDirectory(string directory);
         Task<string> SaveFile(IFormFile file, string directory);
         void DeleteFile(string path);
+        bool FileExists(string path);
         void DeleteDirectory(string directory);
     }
 }
