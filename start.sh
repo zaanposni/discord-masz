@@ -3,6 +3,7 @@ if [[ ! -f ./config.json || ! -d ./.deployment/ ]]; then
     exit 5
 else
     cp config.json ./backend/
+    cp config.json ./discordbot/
 fi
 
 docker ps -a
@@ -18,11 +19,13 @@ docker container rm masz_nginx
 docker container rm masz_backend
 docker container rm masz_sf4_apache
 docker container rm masz_sf4_php
+docker container rm masz_discordbot
 
 docker image rm discord-masz_nginx
 docker image rm discord-masz_sf4_apache
-docker image rm discord-discord-masz_php
-docker image rm discord-discord-masz_backend
+docker image rm discord-masz_php
+docker image rm discord-masz_backend
+docker image rm discord-masz_discordbot
 
 docker volume rm discord-masz_php_share
 echo "Removed old containers/images/volumes"
@@ -41,6 +44,7 @@ echo "Started in background"
 
 echo "removing config.json from subdirectories"
 rm -f ./backend/config.json
+rm -f ./discordbot/config.json
 
 echo "removing nginx.conf"
 rm -f ./nginx/nginx.conf

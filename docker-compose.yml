@@ -75,6 +75,15 @@ services:
     networks:
     - appnetwork
 
+  discordbot:
+    build: discordbot
+    container_name: masz_discordbot
+    restart: unless-stopped
+    networks:
+      - appnetwork
+    environment:
+      - BOT_PREFIX=${BOT_PREFIX}
+
 networks:
   appnetwork:
     driver: bridge

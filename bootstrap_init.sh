@@ -9,9 +9,11 @@ echo "================================================================="
 echo "Copying config in subdirectories for docker"
 if [ ! -f ./config.json ]; then
     cp default-config.json ./backend/config.json
+    cp default-config.json ./discordbot/config.json
     file=default-config.json
 else
     cp config.json ./backend/
+    cp config.json ./discordbot/
     file=config.json
 fi
 

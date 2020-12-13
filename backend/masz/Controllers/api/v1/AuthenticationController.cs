@@ -42,7 +42,7 @@ namespace masz.Controllers
         [HttpGet("logout")]
         [HttpPost("logout")]
         [Authorize]
-        public async Task<IActionResult> Logout()
+        public IActionResult Logout()
         {
             var properties = new AuthenticationProperties()
             {

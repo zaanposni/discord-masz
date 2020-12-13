@@ -75,8 +75,17 @@ DEFAULT_CONFIG["discord"]["bot_token"] = input("Please enter the discord bot tok
 DEFAULT_CONFIG["discord"]["oauth_client_id"] = input("Please enter the discord bot client id: ")
 DEFAULT_CONFIG["discord"]["oauth_client_secret"] = input("Please enter the discord bot client secret: ")
 
+
+BOT_PREFIX = str(input("Please enter the prefix the discord bot should listen to (default is $): ")).strip()
+if BOT_PREFIX == "":
+    BOT_PREFIX = "$"
+ENV_FILE += f"\nBOT_PREFIX={BOT_PREFIX}"
+
+print("Please enter the discord id of users that should be site admins. It is recommended to be just one. You can enter as many as you want.")
+enumeration = 0
 while True:
-    site_admin = input("Please enter the discord id of users that should be site admins. It is recommended to be just one. You can enter as many as you want. Enter 'x' if you are finished: ")
+    enumeration += 1
+    site_admin = input(f"{enumeration}. Admin | Enter 'x' if you are finished: ")
     if (str(site_admin)).lower() == "x":
         break
     DEFAULT_CONFIG["discord"]["site_admins"].append(site_admin)
@@ -84,7 +93,7 @@ while True:
 print("\nSaving files...")
 
 with open("./config.json", "w") as fh:
-    json.dump(DEFAULT_CONFIG, fh)
+    json.dump(DEFAULT_CONFIG, fh, indent=4)
 
 with open("./.deployment/.docker.env", "w") as fh:
     fh.write(ENV_FILE)

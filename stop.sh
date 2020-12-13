@@ -11,11 +11,13 @@ docker container rm masz_nginx
 docker container rm masz_backend
 docker container rm masz_sf4_apache
 docker container rm masz_sf4_php
+docker container rm masz_discordbot
 
 docker image rm discord-masz_nginx
 docker image rm discord-masz_sf4_apache
-docker image rm discord-discord-masz_php
-docker image rm discord-discord-masz_backend
+docker image rm discord-masz_php
+docker image rm discord-masz_backend
+docker image rm discord-masz_discordbot
 
 docker volume rm discord-masz_php_share
 echo "Removed old containers/images/volumes"
