@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using System.Threading.Tasks;
 using masz.data;
 using masz.Dtos.DiscordAPIResponses;
@@ -25,14 +27,16 @@ namespace masz.Controllers
         private readonly IOptions<InternalConfig> config;
         private readonly IIdentityManager identityManager;
         private readonly IDiscordAPIInterface discord;
+        private readonly IFilesHandler filesHandler;
 
-        public GuildConfigController(ILogger<GuildConfigController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface)
+        public GuildConfigController(ILogger<GuildConfigController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IFilesHandler filesHandler)
         {
             this.logger = logger;
             this.database = database;
             this.config = config;
             this.identityManager = identityManager;
             this.discord = discordInterface;
+            this.filesHandler = filesHandler;
         }
 
         [HttpGet("{guildid}")]
@@ -65,7 +69,7 @@ namespace masz.Controllers
         }
 
         [HttpDelete("{guildid}")]
-        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromQuery] bool deleteCases = false) 
+        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromQuery] bool deleteData = false) 
         {
             // check if request is made by a site admin
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
@@ -90,8 +94,13 @@ namespace masz.Controllers
                 return NotFound();
             }
 
-            if (deleteCases) {
+            if (deleteData) {
                 await database.DeleteAllModCasesForGuild(guildid);
+                try {
+                    filesHandler.DeleteDirectory(Path.Combine(config.Value.AbsolutePathToFileUpload, guildid));
+                } catch (Exception e) {
+                    logger.LogError(e, "Failed to delete files directory for guilds.");
+                }
             }
 
             database.DeleteSpecificGuildConfig(guildConfig);
