@@ -3,7 +3,7 @@ import os
 from shutil import copyfile, rmtree
 
 ENV_FILE = """MYSQL_PORT=3306
-MYSQL_DATABASE=db
+MYSQL_DATABASE=masz
 MYSQL_USER=mysqldummy
 MYSQL_PASSWORD=mysqldummy
 MYSQL_ROOT_PASSWORD=root"""

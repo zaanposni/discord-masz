@@ -29,6 +29,6 @@ Write-Host "Removed old containers/images/volumes"
 
 Write-Host "Starting up..."
 
-docker-compose --env-file .\.deployment\.docker.env up --build --force-recreate
+docker-compose --env-file .\.deployment\.docker.env up --build --force-recreate -d
 
 Write-Host "Started in background"
