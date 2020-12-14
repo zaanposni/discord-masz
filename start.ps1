@@ -1,9 +1,6 @@
-if ( -Not (Test-Path -Path ./.deployment/.config.json)) {
-    Write-Host "Failed to find config.json or .deployment directory. Please execute setup.py first."
+if ( -Not (Test-Path -Path ./.deployment/.docker.env)) {
+    Write-Host "Failed to find .docker.env or .deployment directory. Please execute setup.py first."
     exit 5
-} else {
-    cp ([System.IO.Path]::GetFullPath((Join-Path (pwd) .deployment\.config.json))) ./backend/
-    cp ([System.IO.Path]::GetFullPath((Join-Path (pwd) .deployment\.config.json))) ./discordbot/
 }
 
 docker ps -a
@@ -30,15 +27,8 @@ docker image rm discord-masz_discordbot
 docker volume rm discord-masz_php_share
 Write-Host "Removed old containers/images/volumes"
 
-if ( Test-Path -Path `./.deployment/.domain` ) {
-    $domain = [IO.File]::ReadAllText([System.IO.Path]::GetFullPath((Join-Path (pwd) .deployment\.domain)))
-    (Get-Content ./nginx/nginx.conf).replace('{{placeholder}}', $domain) | Set-Content ./nginx/nginx.conf
-}
-
 Write-Host "Starting up..."
-docker-compose --env-file .\.deployment\.docker.env up --build --force-recreate -d
-Write-Host "Started in background"
 
-Write-Host "removing config.json from subdirectories"
-rm -Force ./backend/.config.json
-rm -Force ./discordbot/.config.json
+docker-compose --env-file .\.deployment\.docker.env up --build --force-recreate
+
+Write-Host "Started in background"

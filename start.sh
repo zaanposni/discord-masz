@@ -1,9 +1,6 @@
-if [[ ! -f ./.deployment/.config.json ]]; then
-    echo "Failed to find config.json or .deployment directory. Please execute setup.py first."
+if [[ ! -f ./.deployment/.docker.env ]]; then
+    echo "Failed to find .docker.env or .deployment directory. Please execute setup.py first."
     exit 5
-else
-    cp .deployment/config.json ./backend/
-    cp .deployment/config.json ./discordbot/
 fi
 
 docker ps -a
@@ -33,8 +30,3 @@ echo "Removed old containers/images/volumes"
 echo "Starting up..."
 docker-compose --env-file ./.deployment/.docker.env up --build --force-recreate -d
 echo "Started in background"
-
-echo "removing config.json from subdirectories"
-rm -f ./backend/.config.json
-rm -f ./discordbot/.config.json
-
