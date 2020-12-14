@@ -2,7 +2,7 @@ FROM python:3 as init
 WORKDIR /app
 
 COPY setup_app.py .
-COPY config.json .
+COPY .config.json .
 COPY ./masz/appsettings.json ./masz/
 
 RUN python3 setup_app.py

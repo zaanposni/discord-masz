@@ -8,7 +8,7 @@ def random_pass(pass_length=200):
     random.seed = (os.urandom(1024))
     return ''.join(random.choice(chars) for i in range(pass_length))
 
-with open("./config.json", "r") as fh:
+with open("./.config.json", "r") as fh:
     config = json.load(fh)
 
 db = config["mysql_database"]

@@ -50,13 +50,11 @@ while True:
     nginx_mode = input("Do you want to deploy on a domain or on localhost as a test version? (local/domain): ")
     if str(nginx_mode).lower() == "local":
         DEFAULT_CONFIG["meta"]["nginx_mode"] = "local"
-        copyfile("./nginx/nginx-local.conf", "./.deployment/nginx.conf")
-        copyfile("./webinterface/app/.env.dev", "./.deployment/.env")
+        ENV_FILE += f"\nDEPLOY_MODE=local"
         break
     elif str(nginx_mode).lower() == "domain":
         DEFAULT_CONFIG["meta"]["nginx_mode"] = "prod"
-        copyfile("./nginx/nginx-prod.conf", "./.deployment/nginx.conf")
-        copyfile("./webinterface/app/.env.prod", "./.deployment/.env")
+        ENV_FILE += f"\nDEPLOY_MODE=prod"
         break
     else:
         print("Invalid input please enter 'local' or 'domain'.")
@@ -69,6 +67,7 @@ else:
     DEFAULT_CONFIG["meta"]["service_name"] = domain
     DEFAULT_CONFIG["meta"]["service_domain"] = domain
     DEFAULT_CONFIG["meta"]["service_base_url"] = f"https://{domain}"
+    ENV_FILE += f"\nDEPLOY_DOMAIN={domain}"
     print("\nPlease be sure to configure your reverse proxy correctly, the docker container will be listening on local port 5565.\n")
 
 DEFAULT_CONFIG["discord"]["bot_token"] = input("Please enter the discord bot token: ")
@@ -92,15 +91,11 @@ while True:
 
 print("\nSaving files...")
 
-with open("./config.json", "w") as fh:
+with open("./.deployment/.config.json", "w") as fh:
     json.dump(DEFAULT_CONFIG, fh, indent=4)
 
 with open("./.deployment/.docker.env", "w") as fh:
     fh.write(ENV_FILE)
-
-if DEFAULT_CONFIG["meta"]["nginx_mode"] != "local":
-    with open("./.deployment/.domain", "w") as fh:
-        fh.write(DEFAULT_CONFIG["meta"]["service_domain"])
 
 print("\nYou are finished.\nYou can execute this script again if you want to change anything.\n")
 print(f"You can use the start.sh for linux or start.ps1 for windows to start the application.\nAfter starting you can access the panel at: {DEFAULT_CONFIG['meta']['service_base_url']}")

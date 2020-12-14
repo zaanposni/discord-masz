@@ -1,9 +1,9 @@
-if ( -Not (Test-Path -Path ./config.json) -or -Not (Test-Path -Path ./.deployment/)) {
+if ( -Not (Test-Path -Path ./.deployment/.config.json)) {
     Write-Host "Failed to find config.json or .deployment directory. Please execute setup.py first."
     exit 5
 } else {
-    cp config.json ./backend/
-    cp config.json ./discordbot/
+    cp ([System.IO.Path]::GetFullPath((Join-Path (pwd) .deployment\.config.json))) ./backend/
+    cp ([System.IO.Path]::GetFullPath((Join-Path (pwd) .deployment\.config.json))) ./discordbot/
 }
 
 docker ps -a
@@ -30,9 +30,6 @@ docker image rm discord-masz_discordbot
 docker volume rm discord-masz_php_share
 Write-Host "Removed old containers/images/volumes"
 
-cp ./.deployment/nginx.conf ./nginx/nginx.conf
-cp ./.deployment/.env ./webinterface/app/.env
-
 if ( Test-Path -Path `./.deployment/.domain` ) {
     $domain = [IO.File]::ReadAllText([System.IO.Path]::GetFullPath((Join-Path (pwd) .deployment\.domain)))
     (Get-Content ./nginx/nginx.conf).replace('{{placeholder}}', $domain) | Set-Content ./nginx/nginx.conf
@@ -43,9 +40,5 @@ docker-compose --env-file .\.deployment\.docker.env up --build --force-recreate 
 Write-Host "Started in background"
 
 Write-Host "removing config.json from subdirectories"
-rm -Force ./backend/config.json
-rm -Force ./discordbot/config.json
-
-Write-Host "removing nginx.conf"
-rm -Force ./nginx/nginx.conf
-rm -Force ./webinterface/app/.env
+rm -Force ./backend/.config.json
+rm -Force ./discordbot/.config.json

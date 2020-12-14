@@ -1,3 +1,17 @@
+FROM bash as init
+ARG DEPLOY_MODE
+ENV DEPLOY_MODE $DEPLOY_MODE
+WORKDIR /build
+
+COPY ./app/.env.dev .
+COPY ./app/.env.prod .
+COPY setup.sh .
+
+# generates .env file
+RUN dos2unix setup.sh
+RUN ./setup.sh
+
+
 FROM php:7.4-fpm
 
 RUN apt-get update \
@@ -9,6 +23,8 @@ COPY ./app/ ./sf4
 
 COPY php.ini /etc/php/7.4/php.ini
 COPY php-fpm-pool.conf /etc/php/7.4/pool.d/www.conf
+
+COPY --from=init /build/.env ./sf4/.env
 
 RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
    mv composer.phar /usr/local/bin/composer

@@ -53,7 +53,10 @@ services:
       - appnetwork
 
   php:
-    build: webinterface
+    build: 
+      context: webinterface
+      args: 
+       - DEPLOY_MODE=${DEPLOY_MODE}
     container_name: masz_sf4_php
     restart: unless-stopped
     volumes:
@@ -62,13 +65,16 @@ services:
       - appnetwork
 
   nginx:
+    build: 
+      context: nginx
+      args:
+        - DEPLOY_DOMAIN=${DEPLOY_DOMAIN}
     container_name: masz_nginx
     restart: unless-stopped
     depends_on:
         - db
         - backend
         - sf4_apache
-    build: nginx
     restart: unless-stopped
     ports:
       - "5565:80"

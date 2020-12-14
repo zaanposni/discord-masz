@@ -1,7 +1,7 @@
 import os.path
 import json
 
-BASE_PATH = "./config.json"
+BASE_PATH = "./.config.json"
 
 
 class Config:

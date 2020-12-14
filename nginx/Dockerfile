@@ -1,9 +1,23 @@
+FROM bash as init
+ARG DEPLOY_DOMAIN
+ENV DEPLOY_DOMAIN $DEPLOY_DOMAIN
+WORKDIR /build
+
+COPY nginx-local.conf .
+COPY nginx-prod.conf .
+COPY build_config.sh .
+
+# generates nginx.conf
+RUN dos2unix build_config.sh
+RUN ./build_config.sh
+
+
 FROM nginx:alpine
 
 RUN rm -rf /usr/share/nginx/html/*
 
 COPY static/ /var/www/data/static/
-COPY ./nginx.conf /etc/nginx/
+COPY --from=init /build/nginx.conf /etc/nginx/nginx.conf
 
 # Set timezone
 ENV TZ=Europe/Berlin
