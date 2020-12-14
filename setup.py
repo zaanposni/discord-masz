@@ -15,14 +15,6 @@ print("=                                           =")
 print("=============================================")
 print("Please be sure that you are in the root directory of this project when executing this script.\n\n")
 
-try:
-    os.mkdir("./.deployment")
-except FileExistsError:
-    rmtree("./.deployment")
-    os.mkdir("./.deployment")
-except Exception as e:
-    raise(e)
-
 local = True
 while True:
     nginx_mode = input("Do you want to deploy on a domain or on localhost as a test version? (local/domain): ")
@@ -69,6 +61,14 @@ while True:
 
 ENV_FILE += f"\nDISCORD_SITE_ADMINS={','.join(admins)}"
 print("\nSaving files...")
+
+try:
+    os.mkdir("./.deployment")
+except FileExistsError:
+    rmtree("./.deployment")
+    os.mkdir("./.deployment")
+except Exception as e:
+    raise(e)
 
 with open("./.deployment/.docker.env", "w") as fh:
     fh.write(ENV_FILE)
