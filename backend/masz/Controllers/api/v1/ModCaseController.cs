@@ -224,6 +224,10 @@ namespace masz.Controllers
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for bots.");
                     return BadRequest("Cannot create cases for bots.");
                 }
+                if (config.Value.SiteAdminDiscordUserIds.Contains(currentReportedUser.Id)) {
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for site admins.");
+                    return BadRequest("Cannot create cases for site admins.");
+                }
                 modCase.Username = currentReportedUser.Username;  // update to new username
 
                 var currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId);
@@ -315,6 +319,10 @@ namespace masz.Controllers
             if (currentReportedUser.Bot) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for bots.");
                 return BadRequest("Cannot create cases for bots.");
+            }
+            if (config.Value.SiteAdminDiscordUserIds.Contains(currentReportedUser.Id)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for site admins.");
+                return BadRequest("Cannot create cases for site admins.");
             }
 
             newModCase.Username = currentReportedUser.Username;
