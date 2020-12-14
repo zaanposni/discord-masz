@@ -5,8 +5,6 @@ import discord
 from discord.errors import LoginFailure
 from discord.ext import commands
 
-from utils.config import cfg
-
 prefix = os.getenv("BOT_PREFIX", "$")
 if prefix.strip() == "":
     prefix = "$"
@@ -50,7 +48,7 @@ async def on_ready():
 
     # discord related
     # ================================================
-    activity = cfg.get("meta", dict()).get("service_base_url", "github.com/zaanposni/discord-masz")
+    activity = os.getenv("META_SERVICE_BASE_URL", "github.com/zaanposni/discord-masz")
     if activity:
         game = discord.Game(name=activity)
         await client.change_presence(activity=game)
@@ -59,7 +57,7 @@ async def on_ready():
 
 def start_bot():
     try:
-        token = cfg.get("discord", dict())["bot_token"]
+        token = os.getenv("DISCORD_BOT_TOKEN")
     except KeyError:
         print(f"========================")
         print(f"'discord'.'bot_token' not found in config files!")
