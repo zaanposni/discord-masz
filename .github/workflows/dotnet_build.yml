@@ -1,4 +1,4 @@
-name: Backend/masz
+name: Backend
 on: [pull_request]
 
 jobs:
