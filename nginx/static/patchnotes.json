@@ -1,5 +1,9 @@
 [
     {
+        "title": "Version 1.5",
+        "body": "- Added pretty help command to discord bot.\n- Added url command to discord bot."
+    },
+    {
         "title": "Version 1.4",
         "body": "- Added discord username to announcements.\n- Files are now removed on guild deletion if wanted.\n- Improved guild deletion form.\n- Using correct permissions on guild invite link.\n- Added webhook notification for files.\n- Added more information to all webhook notifications.\n- Added simple discord bot.\n- Fixed rate limit for assets.\n- You can no longer create cases against site admins."
     },
