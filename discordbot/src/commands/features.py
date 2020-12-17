@@ -25,6 +25,7 @@ async def features(ctx):
             await ctx.send(f"MASZ is not registered on this guild.\nA siteadmin can register this guild at: {os.getenv('META_SERVICE_BASE_URL', '')}/newguild")
         else:
             await ctx.send(f"MASZ is not registered on this guild.")
+        return
     
     muted_role = cfg["MutedRoleId"]
     permissions = ctx.me.guild_permissions
