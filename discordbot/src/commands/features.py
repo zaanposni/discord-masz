@@ -51,8 +51,9 @@ async def features(ctx):
 
     if kick and ban and mute and muted_role:
         embed.description = f"{CHECK} Your bot on this guild is configured correctly. All features of MASZ can be used."
+        embed.color = 0x07eb0b
     else:
         embed.description = f"{X_CHECK} There are features of MASZ that you cannot use right now."
+        embed.color = 0xf71b02
 
     await ctx.send(embed=embed)
-
