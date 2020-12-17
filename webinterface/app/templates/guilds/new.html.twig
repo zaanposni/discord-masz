@@ -89,6 +89,12 @@
             guilds = {{ guilds|json_encode|raw }};
             token = "{{ basic_data.token|raw }}";
 
+            let urlParams = new URLSearchParams(window.location.search);
+            let guildid = urlParams.get('guildid');
+            if (guildid) {
+                $('#form-guildselect').val(guildid);
+            }
+
             on_guildselect_change();
         });
 
