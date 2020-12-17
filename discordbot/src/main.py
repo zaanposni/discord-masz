@@ -7,6 +7,7 @@ from discord.ext import commands
 from pretty_help import PrettyHelp, Navigation
 
 from commands import ALL_COMMANDS
+from data import connect as db_connect
 
 
 nav = Navigation("⬅️", "➡️", "🚫")
@@ -21,15 +22,11 @@ for command in ALL_COMMANDS:
 
 @client.event
 async def on_ready():
-    # console related
-    # ================================================
-    print(f"========================")
+    await db_connect()
+
     print(f"Logged in as \"{client.user.name}\"")
     print(f"Online in {len(client.guilds)} Guilds.")
-    print(f"========================")
 
-    # discord related
-    # ================================================
     activity = os.getenv("META_SERVICE_BASE_URL", "github.com/zaanposni/discord-masz")
     if activity:
         game = discord.Game(name=activity)
