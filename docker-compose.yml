@@ -107,6 +107,7 @@ services:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_PORT=${MYSQL_PORT}
+      - DISCORD_SITE_ADMINS=${DISCORD_SITE_ADMINS}
 
 networks:
   appnetwork:

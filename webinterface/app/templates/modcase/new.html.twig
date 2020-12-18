@@ -215,9 +215,9 @@
             // body
 
             let body = {
-                'title': $('#form-title').val(),
-                'description': $('#form-description').val(),
-                'userid': $('#form-userid').val(),
+                'title': $('#form-title').val().trim(),
+                'description': $('#form-description').val().trim(),
+                'userid': $('#form-userid').val().trim(),
                 'severity': mappedSeverity,
                 'labels': labels,
                 'punishment': punishment,
