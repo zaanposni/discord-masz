@@ -1,7 +1,7 @@
 [
     {
         "title": "Version 1.5",
-        "body": "- Added pretty help command to discord bot.\n- Added url command to discord bot.\n- Added feature command to discord bot.\n- Added register command to discord bot.\n- Added whois command to discord bot.\n- Added more style to the register guild form.\n- Now ignoring spaces in user id while creating cases.\n- Reapplying muted role if user rejoins guild."
+        "body": "- Added pretty help command to discord bot.\n- Added url command to discord bot.\n- Added feature command to discord bot.\n- Added register command to discord bot.\n- Added whois command to discord bot.\n- Added more style to the register guild form.\n- Now ignoring spaces in user id while creating cases.\n- Reapplying muted role if user rejoins guild.\n- Reworked dark mode."
     },
     {
         "title": "Version 1.4",

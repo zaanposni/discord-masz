@@ -47,7 +47,7 @@
                                 <a type="button" class="btn btn-primary" href="/modcases/{{ guild.id }}/new">Create new Case</a>
                         {% endif %}
                         {% if guild.id in basic_data.loggedInUser.modGuilds %}
-                                <a type="button" class="btn btn-primary" href="?modId={{ basic_data.loggedInUser.discordUser.id }}">My Cases</a>
+                                <a type="button" class="btn btn-primary" href="?modId={{ basic_data.loggedInUser.discordUser.id }}">My created Cases</a>
                         {% endif %}
                     {% endif %}
                     </div>

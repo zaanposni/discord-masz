@@ -99,12 +99,6 @@
                     <div class="flex-grow-1"></div>
                 </div>
             </div>
-            {% if basic_data.loggedInUser.isAdmin %}
-                <!-- Buttons -->
-                <div class="d-flex justify-content-center">
-                    <a type="button" class="btn btn-primary" href="/newguild">Register a new guild</a>
-                </div>
-            {% endif %}
         {% endif %}
         {% if not mod_guilds|default and not member_guilds|default and not banned_guilds|default %}
             <div class="card rounded">

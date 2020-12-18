@@ -23,8 +23,13 @@
                     {% endif %}
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="/">Home</a>
+                        <a class="nav-link waves-effect waves-light" href="/">Guilds</a>
                     </li>
+                    {% if basic_data.loggedInUser.isAdmin %}
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="/newguild">Register guild</a>
+                        </li>
+                    {% endif %}
                 {% endif %}
             </ul>
             {% if basic_data.loggedInUser|default %}
