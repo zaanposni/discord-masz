@@ -101,7 +101,7 @@ namespace masz.Services
 
         public async Task<List<ModCase>> SelectAllModCasesWithActivePunishments()
         {
-            return await context.ModCases.AsQueryable().Where(x => x.PunishmentActive == true && x.PunishedUntil != null).ToListAsync();
+            return await context.ModCases.AsQueryable().Where(x => x.PunishmentActive == true).ToListAsync();
         }
 
         public async Task<List<ModCase>> SelectAllModCases()

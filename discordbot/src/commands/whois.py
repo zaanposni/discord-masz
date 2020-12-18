@@ -3,7 +3,7 @@ import re
 from datetime import datetime
 
 from discord.ext import commands
-from discord import Embed
+from discord import Embed, Member
 from discord.errors import NotFound
 
 from data import get_modcases_by_user_and_guild, get_guildconfig
@@ -42,27 +42,25 @@ async def whois(ctx, arg):
     try:
         member = await ctx.guild.fetch_member(arg)
     except NotFound:
-        member = False
+        member = await ctx.bot.fetch_user(arg)
     
     cases = await get_modcases_by_user_and_guild(ctx.guild.id, arg)
+    active_punishments = [case for case in cases if case["PunishmentActive"]]
+
+    embed = Embed(description=f"<@{arg}>")    
+    embed.timestamp = datetime.now()
+    embed.set_footer(text=f"UserId: {arg}")
     
-    embed = Embed(description=f"<@{arg}>")
     if member:
-        if member.joined_at:
-            embed.add_field(name="Joined", value=member.joined_at.strftime("%d.%m.%Y %H:%M:%S"), inline=True)
+        if isinstance(member, Member):
+            if member.joined_at:
+                embed.add_field(name="Joined", value=member.joined_at.strftime("%d.%m.%Y %H:%M:%S"), inline=True)
+
         embed.add_field(name="Registered", value=member.created_at.strftime("%d.%m.%Y %H:%M:%S"), inline=True)
+        if isinstance(member, Member):
+            if member.roles[1:]:
+                embed.add_field(name=f"Roles [{len(member.roles) - 1}]", value=" ".join([f"<@&{role.id}>" for role in member.roles[1:]]), inline=False)
 
-        if member.roles[1:]:
-            embed.add_field(name=f"Roles [{len(member.roles) - 1}]", value=" ".join([f"<@&{role.id}>" for role in member.roles[1:]]), inline=False)
-    else:
-        try:
-            member = await ctx.bot.fetch_user(arg)
-        except NotFound:
-            embed.add_field(name="User", value="Failed to fetch user information.", inline=False)
-        else:
-            embed.add_field(name="Member", value="Failed to fetch member information.", inline=False)
-
-    if member:
         embed.set_author(name=str(member), icon_url=member.avatar_url)
         embed.set_thumbnail(url=member.avatar_url)
 
@@ -79,7 +77,6 @@ async def whois(ctx, arg):
             inline=False
             )
         
-        active_punishments = [case for case in cases if case["PunishmentActive"]]
         if active_punishments:
             info = ""
             for case in active_punishments:
@@ -99,8 +96,5 @@ async def whois(ctx, arg):
             
     else:
         embed.add_field(name=f"Cases [0]", value="There are no cases for this user.", inline=False)
-    
-    embed.timestamp = datetime.now()
-    embed.set_footer(text=f"UserId: {arg}")
 
     await ctx.send(embed=embed)
