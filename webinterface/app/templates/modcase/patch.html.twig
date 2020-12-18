@@ -239,9 +239,9 @@
 
             let body = {{ modcase|json_encode|raw }};
 
-            body['title'] = $('#form-title').val();
-            body['description'] = $('#form-description').val();
-            body['userid']= $('#form-userid').val();
+            body['title'] = $('#form-title').val().trim();
+            body['description'] = $('#form-description').val().trim();
+            body['userid']= $('#form-userid').val().trim();
             body['severity'] = mappedSeverity;
             body['labels'] = labels;
             body['punishment'] = punishment;
