@@ -176,8 +176,13 @@ select:-webkit-autofill {
     color: rgb(232, 230, 227) !important;
 }
 
+.badge-warning {
+    background-color:rgb(230, 160, 20) !important;
+    color: rgb(232, 230, 227) !important;
+}
+
 .btn-warning {
-	background-color: rgb(173, 116, 0) !important;
+	background-color:rgb(230, 160, 20) !important;
     color: rgb(232, 230, 227) !important;
 }
 

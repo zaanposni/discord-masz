@@ -3,17 +3,13 @@
     {% include 'navbar.html.twig' %}
     <div class="container">
         <div class="d-flex justify-content-between align-items-start">
-            <h3><span class="badge badge-danger">New ModCase</span></h3>
+            <h3><span class="badge badge-warning">Edit ModCase</span></h3>
         </div>
         <br>
         <div class="d-flex flex-wrap">
             <div class="md-form flex-grow-1">
                 <input type="text" id="form-userid" class="form-control" value="{{ modcase.userId }}">
                 <label for="form-userid">UserId</label>
-            </div>
-            <div class="md-form flex-grow-1">
-                <input type="text" id="form-guildid" class="form-control" placeholder="{{ modcase.guildId }}" disabled>
-                <label for="form-guildid">GuildId</label>
             </div>
             <div class="flex-grow-1">
                 <label for="form-severity">Severity</label>
@@ -74,7 +70,7 @@
         </div>
         <div class="md-form">
             <button type="submit" id="form-submit" name="submit" onclick="submitButton()"
-                    class="btn btn-danger btn-lg btn-block waves-effect waves-light">EDIT CASE</button>
+                    class="btn btn-warning btn-lg btn-block waves-effect waves-light">EDIT CASE</button>
         </div>
         <br>
         <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" id="notification" style="min-width:100%">
