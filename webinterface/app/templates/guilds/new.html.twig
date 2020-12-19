@@ -3,7 +3,7 @@
     {% include 'navbar.html.twig' %}
     <div class="container">
         <div class="d-flex justify-content-between align-items-start">
-            <h3><span class="badge badge-primary">Register new guild</span></h3>
+            <h3><span class="badge badge-success">Register new guild</span></h3>
         </div>
         {% if guilds|default %}
             <select class="browser-default custom-select mb-2" id="form-guildselect">
@@ -32,7 +32,7 @@
                             You need to invite the bot to this guild before you can register it. Please refresh the site after you did so.<br/>
                             <a href="https://discord.com/oauth2/authorize?client_id={{ client_id.clientid }}&permissions=268435462&scope=bot&guild_id=replace-guild-id"
                                 id="form-invite-link" target="_blank">
-                                <button type="button" class="btn btn-success">Invite link</button>
+                                <button type="button" class="btn btn-primary">Invite link</button>
                             </a>
                             <button type="button" class="btn btn-primary" onclick="on_guildselect_change()">Refresh</button>
                         </span>
@@ -53,7 +53,7 @@
                 <label for="form-webhook-internal">OPTIONAL: Webhook URL: internal notification</label>
                 <input type="text" id="form-webhook-internal" class="form-control m-2">
             </div>
-            <button type="button" class="btn btn-primary" id="form-submit" onclick="submitGuild(this)" style="display: none!important">
+            <button type="button" class="btn btn-success" id="form-submit" onclick="submitGuild(this)" style="display: none!important">
                 Register guild
             </button>
         {% endif %}
