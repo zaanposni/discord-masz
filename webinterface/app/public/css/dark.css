@@ -1,60 +1,21 @@
-.jfk-bubble.gtx-bubble, .captcheck_answer_label > input + img, embed[type=\"application/pdf\"] {
-    filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
-}
-[data-darkreader-inline-bgcolor] {
-    background-color: var(--darkreader-inline-bgcolor) !important;
-}
-[data-darkreader-inline-bgimage] {
-    background-image: var(--darkreader-inline-bgimage) !important;
-}
-[data-darkreader-inline-border] {
-    border-color: var(--darkreader-inline-border) !important;
-}
-[data-darkreader-inline-border-bottom] {
-    border-bottom-color: var(--darkreader-inline-border-bottom) !important;
-}
-[data-darkreader-inline-border-left] {
-    border-left-color: var(--darkreader-inline-border-left) !important;
-}
-[data-darkreader-inline-border-right] {
-    border-right-color: var(--darkreader-inline-border-right) !important;
-}
-[data-darkreader-inline-border-top] {
-    border-top-color: var(--darkreader-inline-border-top) !important;
-}
-[data-darkreader-inline-boxshadow] {
-    box-shadow: var(--darkreader-inline-boxshadow) !important;
-}
-[data-darkreader-inline-color] {
-    color: var(--darkreader-inline-color) !important;
-}
-[data-darkreader-inline-fill] {
-    fill: var(--darkreader-inline-fill) !important;
-}
-[data-darkreader-inline-stroke] {
-    stroke: var(--darkreader-inline-stroke) !important;
-}
-[data-darkreader-inline-outline] {
-    outline-color: var(--darkreader-inline-outline) !important;
-}
-[data-darkreader-inline-stopcolor] {
-    stop-color: var(--darkreader-inline-stopcolor) !important;
-}
 :root {
-    --darkreader-neutral-background: #181a1b;
-    --darkreader-neutral-text: #e8e6e3;
-    --darkreader-selection-background: #004daa;
-    --darkreader-selection-text: #e8e6e3;
+    --dark-text: #e8e6e3;
+    --dark-background: #06090f;
+    --dark-border-color: #383d3f;
+    --dark-navbar-background: #161b22;
+    --dark-footer-background: #0d1117;
+    --dark-modal-background: #06090f;
+    --dark-card-background: #0d1117;
 }
 html {
-    background-color: #181a1b !important;
+    background-color: var(--dark-background) !important;
 }
 html, body, input, textarea, select, button {
-    background-color: #181a1b;
+    background-color: var(--dark-background);
 }
 html, body, input, textarea, select, button {
     border-color: #736b5e;
-    color: #e8e6e3;
+    color: var(--dark-text);
 }
 a {
     color: #3391ff;
@@ -69,7 +30,7 @@ input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
     background-color: #555b00 !important;
-    color: #e8e6e3 !important;
+    color: var(--dark-text) !important;
 }
 ::-webkit-scrollbar {
     background-color: #202324;
@@ -92,23 +53,13 @@ select:-webkit-autofill {
 }
 ::selection {
     background-color: #004daa !important;
-    color: #e8e6e3 !important;
+    color: var(--dark-text) !important;
 }
 ::-moz-selection {
     background-color: #004daa !important;
-    color: #e8e6e3 !important;
+    color: var(--dark-text) !important;
 }
 
-
-
-
-
-
-.vimvixen-hint {
-    background-color: #7b5300 !important;
-    border-color: #d8b013 !important;
-    color: #f3e8c8 !important;
-}
 ::placeholder {
     opacity: 0.5 !important;
 }
@@ -119,15 +70,18 @@ select:-webkit-autofill {
 
 .custom-select, .custom-select:focus, input[class*="form-control"], input[class*="form-control:focus"], .dataTables_wrapper .form-control:focus {
     background-color: unset!important;
+    border-color: var(--dark-border-color)!important;
     color: unset;
 }
 
 .custom-select option {
-    background-color: #181a1b!important;
+    background-color: var( --dark-modal-background) !important;
+    border-color: var(--dark-border-color)!important;
 }
 
 .md-form > .form-control, .md-form > .form-control:focus {
     color: unset !important;
+    border-bottom-color: var(--dark-border-color)!important;
 }
 
 .text-black-50 {
@@ -139,9 +93,13 @@ select:-webkit-autofill {
     background-color: inherit;
 }
 
-.card, .modal-content, .toast, .label-box {
-    color: #e8e6e3;
-    background-color: var(--darkreader-neutral-background);
+.modal-content {
+    background-color: var( --dark-modal-background);
+}
+
+.card, .toast, .label-box {
+    color: var(--dark-text);
+    background-color: var(--dark-card-background);
     border-color: #828385;
 }
 
@@ -150,7 +108,7 @@ select:-webkit-autofill {
 }
 
 .table th, .table td {
-    border-top-color: #828385;
+    border-top-color: var(--dark-border-color);
 }
 
 .fa-plus  {
@@ -158,16 +116,106 @@ select:-webkit-autofill {
 }
 
 .picker__box {
-    background-color: var(--darkreader-neutral-background);
-    color: #e8e6e3;
+    background-color: var(--dark-background);
+    color: var(--dark-text);
 }
 
 .picker__footer > button {
-    background-color: var(--darkreader-neutral-background);
-    color: #e8e6e3;
+    background-color: var(--dark-background);
+    color: var(--dark-text);
 }
 
 .picker__day--highlighted {
     background-color: inherit;
     color: inherit;
+}
+
+.dropdown-menu, .dropdown-item, .dropdown-item:hover {
+    background-color: var(--dark-footer-background);
+    color: var(--dark-text);
+}
+
+.custom-footer {
+    background-color: #1d1f21!important;
+}
+
+.nav-link {
+    color: var(--dark-text)!important;
+}
+
+.nav-link:hover {
+    border-color: var(--dark-border-color)!important;
+}
+
+.nav-link.active {
+    background-color: inherit!important;
+    border-color: var(--dark-border-color)!important;
+}
+
+.nav-tabs {
+    border-color: var(--dark-border-color)!important;
+}
+
+.close, .close:hover {
+    color: var(--dark-text);
+}
+
+.navbar {
+    background-color: var(--dark-navbar-background) !important;
+}
+
+.badge-danger {
+    background-color: rgb(172, 0, 15) !important;
+    color: var(--dark-text) !important;
+}
+
+.btn-danger {
+    background-color: rgb(172, 0, 15) !important;
+    color: var(--dark-text) !important;
+}
+
+.btn-default {
+    background-color: rgb(29, 173, 159) !important;
+    color: var(--dark-text) !important;
+}
+
+.badge-warning {
+    background-color:rgb(230, 160, 20) !important;
+    color: var(--dark-text) !important;
+}
+
+.btn-warning {
+	background-color:rgb(230, 160, 20) !important;
+    color: var(--dark-text) !important;
+}
+
+.badge-primary {
+    background-color: rgb(9, 67, 162) !important;
+    color: var(--dark-text) !important;
+}
+
+.btn-primary {
+	background-color: rgb(9, 67, 162) !important;
+    color: var(--dark-text) !important;
+}
+
+.btn-orange {
+	background-color: rgb(196, 99, 0) !important;
+    color: var(--dark-text) !important;
+}
+
+.badge-success {
+	background-color: rgb(0, 160, 65) !important;
+    color: var(--dark-text) !important;
+}
+
+.btn-success {
+	background-color: rgb(0, 160, 65) !important;
+    color: var(--dark-text) !important;
+}
+
+.login-btn {
+    color: var(--dark-modal-background) !important;
+    border-color: var(--dark-border-color) !important;
+    color: var(--dark-text) !important;
 }

@@ -1,11 +1,11 @@
-name: PHP
+name: Lint
 on:
   push:
     branches:
       - master
 
 jobs:
-  phplint:
+  php:
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v1

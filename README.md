@@ -24,13 +24,11 @@ This application can also **manage temporary punishments** just as temp mutes fo
 
 # Preview
 
+<p>Detailed view for single modcase (click to reveal)</p>
+<img src="/docs/modcase.png"/>
 <details>
   <summary>Modcase overview (click to reveal)</summary>
   <img src="/docs/modcases.png"/>
-</details>
-<details>
-  <summary>Detailed view for single modcase (click to reveal)</summary>
-  <img src="/docs/modcase.png"/>
 </details>
 <details>
   <summary>Comments on a modcase(click to reveal)</summary>
@@ -43,6 +41,10 @@ This application can also **manage temporary punishments** just as temp mutes fo
 <details>
   <summary>Notification embed for your guild members and moderation team (click to reveal)</summary>
   <img src="/docs/embed.png"/>
+</details>
+<details>
+  <summary>Discord Bot commands</summary>
+  <img src="/docs/bot-commands.png"/>
 </details>
 
 

@@ -44,10 +44,7 @@
                     <div class="d-flex flex-column align-self-end">
                     {% if guild|default %}
                         {% if guild.id in basic_data.loggedInUser.modGuilds or basic_data.loggedInUser.isAdmin %}
-                                <a type="button" class="btn btn-primary" href="/modcases/{{ guild.id }}/new">Create new Case</a>
-                        {% endif %}
-                        {% if guild.id in basic_data.loggedInUser.modGuilds %}
-                                <a type="button" class="btn btn-primary" href="?modId={{ basic_data.loggedInUser.discordUser.id }}">My Cases</a>
+                                <a type="button" class="btn btn-success" href="/modcases/{{ guild.id }}/new">Create new Case</a>
                         {% endif %}
                     {% endif %}
                     </div>

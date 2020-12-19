@@ -3,10 +3,10 @@
     {% include 'navbar.html.twig' %}
     <div class="container">
         <div class="d-flex justify-content-between align-items-start">
-            <h3><span class="badge badge-primary">Register new guild</span></h3>
+            <h3><span class="badge badge-success">Register new guild</span></h3>
         </div>
         {% if guilds|default %}
-            <select class="browser-default custom-select" id="form-guildselect">
+            <select class="browser-default custom-select mb-2" id="form-guildselect">
                 <option selected>Select a guild</option>
                 {% for guild in guilds %}
                     <option value="{{ guild.id }}">
@@ -14,7 +14,7 @@
                     </option>
                 {% endfor %}
             </select>
-            <div class="card m-3 invisible" id="form-guild">
+            <div class="card m-3" id="form-guild" style="display: none!important">
                 <div class="card-body d-flex flex-row">
                     <div class="align-self-start mr-3">
                         <img
@@ -28,31 +28,34 @@
                     </div>
                     <div class="flex-grow-1">
                         <h4 class="card-title" id="form-guild-title"></h4>
-                        <span class="card-text invisible" id="form-invite">
+                        <span class="card-text" id="form-invite" style="display: none!important">
                             You need to invite the bot to this guild before you can register it. Please refresh the site after you did so.<br/>
                             <a href="https://discord.com/oauth2/authorize?client_id={{ client_id.clientid }}&permissions=268435462&scope=bot&guild_id=replace-guild-id"
                                 id="form-invite-link" target="_blank">
-                                Invite link
+                                <button type="button" class="btn btn-primary">Invite link</button>
                             </a>
+                            <button type="button" class="btn btn-primary" onclick="on_guildselect_change()">Refresh</button>
                         </span>
                     </div>
                 </div>
             </div>
-            <div class="d-flex flex-row flex-wrap invisible" id="form-roles">
+            <div class="d-flex flex-row flex-wrap" id="form-roles" style="display: none!important">
                 <label for="form-mod-role" id="form-mod-label-role">Moderator Role</label>
-                <select class="browser-default custom-select invisible m-3" id="form-mod-role"></select>
+                <select class="browser-default custom-select m-3" id="form-mod-role" style="display: none!important"></select>
                 <label for="form-admin-role" id="form-admin-label-role">Admin Role</label>
-                <select class="browser-default custom-select invisible m-3" id="form-admin-role"></select>
+                <select class="browser-default custom-select m-3" id="form-admin-role" style="display: none!important"></select>
                 <label for="form-muted-role" id="form-muted-label-role">Muted Role for punishment</label>
-                <select class="browser-default custom-select invisible m-3" id="form-muted-role"></select>
+                <select class="browser-default custom-select m-3" id="form-muted-role" style="display: none!important"></select>
             </div>
-            <div class="invisible" id="form-webhooks">
+            <div id="form-webhooks" style="display: none!important">
                 <label for="form-webhook-public">OPTIONAL: Webhook URL: public notification</label>
                 <input type="text" id="form-webhook-public" class="form-control m-2">
                 <label for="form-webhook-internal">OPTIONAL: Webhook URL: internal notification</label>
                 <input type="text" id="form-webhook-internal" class="form-control m-2">
             </div>
-            <button type="button" class="btn btn-primary invisible" id="form-submit" onclick="submitGuild(this)">Register guild</button>
+            <button type="button" class="btn btn-success" id="form-submit" onclick="submitGuild(this)" style="display: none!important">
+                Register guild
+            </button>
         {% endif %}
         <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" id="notification" style="min-width:100%">
             <div class="toast-header">
@@ -85,11 +88,19 @@
         $(document).ready(function() {
             guilds = {{ guilds|json_encode|raw }};
             token = "{{ basic_data.token|raw }}";
+
+            let urlParams = new URLSearchParams(window.location.search);
+            let guildid = urlParams.get('guildid');
+            if (guildid) {
+                $('#form-guildselect').val(guildid);
+            }
+
+            on_guildselect_change();
         });
 
-        $('#form-guildselect').change(function() {
+        function on_guildselect_change() {
             $('#notification').toast('hide');
-            let selectedGuild = $(this).val();
+            let selectedGuild = $('#form-guildselect').val();
 
             if (!isNaN(selectedGuild)) {
                 let invitelink = $('#form-invite-link').attr('href');
@@ -123,19 +134,19 @@
                         });
 
                         $('#form-guild-img').attr('src', 'https://cdn.discordapp.com/icons/' + selectedGuild + '/' + data['icon'] + '.png');
-                        $('#form-guild-img').removeClass('invisible');
+                        $('#form-guild-img').attr("style", "display: block");
                         $('#form-guild-title').text(data['name']);
-                        $('#form-guild').removeClass('invisible');
-                        $('#form-invite').addClass('invisible');
-                        $('#form-roles').removeClass('invisible');
-                        $('#form-mod-label-role').removeClass('invisible');
-                        $('#form-mod-role').removeClass('invisible');
-                        $('#form-admin-label-role').addClass('invisible');
-                        $('#form-admin-role').addClass('invisible');
-                        $('#form-muted-label-role').addClass('invisible');
-                        $('#form-muted-role').addClass('invisible');
-                        $('#form-webhooks').addClass('invisible');
-                        $('#form-submit').addClass('invisible');
+                        $('#form-guild').attr("style", "display: block");
+                        $('#form-invite').attr("style", "display: none!important");
+                        $('#form-roles').attr("style", "display: block");
+                        $('#form-mod-label-role').attr("style", "display: block");
+                        $('#form-mod-role').attr("style", "display: block");
+                        $('#form-admin-label-role').attr("style", "display: none!important");
+                        $('#form-admin-role').attr("style", "display: none!important");
+                        $('#form-muted-label-role').attr("style", "display: none!important");
+                        $('#form-muted-role').attr("style", "display: none!important");
+                        $('#form-webhooks').attr("style", "display: none!important");
+                        $('#form-submit').attr("style", "display: none!important");
                     },
                     error: function (errMsg) {
                         console.log(errMsg);
@@ -143,19 +154,19 @@
                         $('#form-mod-role option').remove();
                         $('#form-admin-role option').remove();
 
-                        $('#form-roles').addClass('invisible');
-                        $('#form-mod-label-role').addClass('invisible');
-                        $('#form-mod-role').addClass('invisible');
-                        $('#form-admin-label-role').addClass('invisible');
-                        $('#form-admin-role').addClass('invisible');
-                        $('#form-muted-label-role').addClass('invisible');
-                        $('#form-muted-role').addClass('invisible');
-                        $('#form-webhooks').addClass('invisible');
-                        $('#form-submit').addClass('invisible');
+                        $('#form-roles').attr("style", "display: none!important");
+                        $('#form-mod-label-role').attr("style", "display: none!important");
+                        $('#form-mod-role').attr("style", "display: none!important");
+                        $('#form-admin-label-role').attr("style", "display: none!important");
+                        $('#form-admin-role').attr("style", "display: none!important");
+                        $('#form-muted-label-role').attr("style", "display: none!important");
+                        $('#form-muted-role').attr("style", "display: none!important");
+                        $('#form-webhooks').attr("style", "display: none!important");
+                        $('#form-submit').attr("style", "display: none!important");
 
-                        $('#form-guild').removeClass('invisible');
-                        $('#form-guild-img').addClass('invisible');
-                        $('#form-invite').removeClass('invisible');
+                        $('#form-guild').attr("style", "display: block");
+                        $('#form-guild-img').attr("style", "display: none!important");
+                        $('#form-invite').attr("style", "display: block");
 
                         $('#notification').insertAfter($('#form-guildselect'));
                         $('#notificationColor').attr('fill', '#ac000f');
@@ -168,16 +179,16 @@
                 $('#form-mod-role option').remove();
                 $('#form-admin-role option').remove();
 
-                $('#form-guild').addClass('invisible');
-                $('#form-roles').addClass('invisible');
-                $('#form-mod-label-role').addClass('invisible');
-                $('#form-mod-role').addClass('invisible');
-                $('#form-admin-label-role').addClass('invisible');
-                $('#form-admin-role').addClass('invisible');
-                $('#form-muted-label-role').addClass('invisible');
-                $('#form-muted-role').addClass('invisible');
-                $('#form-webhooks').addClass('invisible');
-                $('#form-submit').addClass('invisible');
+                $('#form-guild').attr("style", "display: none!important");
+                $('#form-roles').attr("style", "display: none!important");
+                $('#form-mod-label-role').attr("style", "display: none!important");
+                $('#form-mod-role').attr("style", "display: none!important");
+                $('#form-admin-label-role').attr("style", "display: none!important");
+                $('#form-admin-role').attr("style", "display: none!important");
+                $('#form-muted-label-role').attr("style", "display: none!important");
+                $('#form-muted-role').attr("style", "display: none!important");
+                $('#form-webhooks').attr("style", "display: none!important");
+                $('#form-submit').attr("style", "display: none!important");
 
                 $('#notification').insertAfter($('#form-guildselect'));
                 $('#notificationColor').attr('fill', '#ac000f');
@@ -185,23 +196,25 @@
                 $('#notificationBody').text(errMsg.status + ': ' + errMsg.responseText);
                 $('#notification').toast('show');
             }
-        });
+        }
+
+        $('#form-guildselect').change(on_guildselect_change);
 
         $('#form-mod-role').change(function() {
             $('#notification').toast('hide');
             let modRole = $(this).val();
             if (!isNaN(modRole)) {
-                $('#form-admin-label-role').removeClass('invisible');
-                $('#form-admin-role').removeClass('invisible');
-                $('#form-muted-label-role').removeClass('invisible');
-                $('#form-muted-role').removeClass('invisible');
+                $('#form-admin-label-role').attr("style", "display: block");
+                $('#form-admin-role').attr("style", "display: block");
+                $('#form-muted-label-role').attr("style", "display: block");
+                $('#form-muted-role').attr("style", "display: block");
             } else {
-                $('#form-admin-label-role').addClass('invisible');
-                $('#form-admin-role').addClass('invisible');
-                $('#form-muted-label-role').addClass('invisible');
-                $('#form-muted-role').addClass('invisible');
-                $('#form-webhooks').addClass('invisible');
-                $('#form-submit').addClass('invisible');
+                $('#form-admin-label-role').attr("style", "display: none!important");
+                $('#form-admin-role').attr("style", "display: none!important");
+                $('#form-muted-label-role').attr("style", "display: none!important");
+                $('#form-muted-role').attr("style", "display: none!important");
+                $('#form-webhooks').attr("style", "display: none!important");
+                $('#form-submit').attr("style", "display: none!important");
             }
         });
 
@@ -209,11 +222,11 @@
             $('#notification').toast('hide');
             let adminRole = $(this).val();
             if (!isNaN(adminRole)) {
-                $('#form-webhooks').removeClass('invisible');
-                $('#form-submit').removeClass('invisible');
+                $('#form-webhooks').attr("style", "display: block");
+                $('#form-submit').attr("style", "display: block");
             } else {
-                $('#form-webhooks').addClass('invisible');
-                $('#form-submit').addClass('invisible');
+                $('#form-webhooks').attr("style", "display: none!important");
+                $('#form-submit').attr("style", "display: none!important");
             }
         });
 

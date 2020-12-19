@@ -29,6 +29,7 @@ class ModCasePatchController extends AbstractController
         }
 
         $basicData = new BasicData($_COOKIE);
+        $basicData->currentGuild = $guildid;
         if (is_null($basicData->loggedInUser)) {
             $basicData->errors[] = 'Failed to fetch user info or login invalid.';
             return $this->render('index.html.twig', [

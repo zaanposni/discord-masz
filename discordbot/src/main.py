@@ -4,50 +4,29 @@ import os
 import discord
 from discord.errors import LoginFailure
 from discord.ext import commands
+from pretty_help import PrettyHelp, Navigation
 
-prefix = os.getenv("BOT_PREFIX", "$")
-if prefix.strip() == "":
-    prefix = "$"
-client = commands.Bot(prefix)
-
-@client.command()
-async def version(ctx):
-    r = requests.get(f"http://masz_nginx:80/static/version.json")
-    if r.status_code != 200:
-        ctx.send(f"Failed to fetch version info. Statuscode: {r.status_code}.")
-        return
-
-    deployed_version = r.json()["version"]
-
-    r = requests.get("https://api.github.com/repos/zaanposni/discord-masz/releases")
-    if r.status_code != 200:
-        await ctx.send(f"Failed to fetch release info from github. Statuscode: {r.status_code}.")
-        return
-
-    newest_release = r.json()[0]
-    if str(newest_release["tag_name"]).lower() != str(deployed_version).lower():
-        await ctx.send(
-            f"There seems to be a newer version **{newest_release['tag_name']}**. You are on **{deployed_version}**.\nContact your site admin to install the update." +
-            "\n\nPatch Notes for the newest version:\n```\n" +
-            newest_release["body"] + "\n```"
-        )
-        return
-    else:
-        await ctx.send(f"Your deployed version **{deployed_version}** is up to date with releases on GitHub.")
+from commands import ALL_COMMANDS
+from data import connect as db_connect
 
 
+nav = Navigation("⬅️", "➡️", "🚫")
+color = discord.Color.dark_gold()
+
+client = commands.Bot(os.getenv("BOT_PREFIX", "$") if str(os.getenv("BOT_PREFIX", "$")).strip() != "" else "$")  # prefix defaults to $
+client.help_command = PrettyHelp(navigation=nav, color=color, active_time=5, no_category="Commands", sort_commands=True, show_index=False)
+
+for command in ALL_COMMANDS:
+    print(f"Register '{command}' command.")
+    client.add_command(command)
 
 @client.event
 async def on_ready():
-    # console related
-    # ================================================
-    print(f"========================")
+    await db_connect()
+
     print(f"Logged in as \"{client.user.name}\"")
     print(f"Online in {len(client.guilds)} Guilds.")
-    print(f"========================")
 
-    # discord related
-    # ================================================
     activity = os.getenv("META_SERVICE_BASE_URL", "github.com/zaanposni/discord-masz")
     if activity:
         game = discord.Game(name=activity)
