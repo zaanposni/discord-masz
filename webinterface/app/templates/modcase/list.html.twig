@@ -104,7 +104,7 @@
                                                 </div>
 
                                                 <!-- Text -->
-                                                <p class="card-text">{{ modcase.description }}</p>
+                                                <p class="card-text">{{ modcase.description|length > 100 ? modcase.description|slice(0, 100) ~ '...' : modcase.description }}</p>
                                             </div>
                                             <div class="flex-grow-1"></div>
                                             <!-- Button -->
