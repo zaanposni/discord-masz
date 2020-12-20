@@ -12,10 +12,10 @@ from data import get_modcases_by_user_and_guild, get_guildconfig
 regex = r"^[0-9]{18}$"
 
 @commands.command(help="Whois information about an user.")
-async def whois(ctx, arg):
-    if not arg:
+async def whois(ctx, userid):
+    if not userid:
         return await ctx.send("Please use `whois <userid>`.")
-    if not re.match(regex, arg):
+    if not re.match(regex, userid):
         return await ctx.send("Please use `whois <userid>`.")
     if ctx.guild is None:
         return await ctx.send("Only useable in a guild.")
@@ -40,16 +40,16 @@ async def whois(ctx, arg):
         return await ctx.send("You do not have the permission to use this command.")
     
     try:
-        member = await ctx.guild.fetch_member(arg)
+        member = await ctx.guild.fetch_member(userid)
     except NotFound:
-        member = await ctx.bot.fetch_user(arg)
+        member = await ctx.bot.fetch_user(userid)
     
-    cases = await get_modcases_by_user_and_guild(ctx.guild.id, arg)
+    cases = await get_modcases_by_user_and_guild(ctx.guild.id, userid)
     active_punishments = [case for case in cases if case["PunishmentActive"]]
 
-    embed = Embed(description=f"<@{arg}>")    
+    embed = Embed(description=f"<@{userid}>")    
     embed.timestamp = datetime.now()
-    embed.set_footer(text=f"UserId: {arg}")
+    embed.set_footer(text=f"UserId: {userid}")
     
     if member:
         if isinstance(member, Member):

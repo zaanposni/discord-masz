@@ -1,5 +1,9 @@
 [
     {
+        "title": "Version 1.5.1",
+        "body": "- Fixed link in announcement embeds.\n- Now limiting the description in case overview list so buttons do not bug.\n- Added info about command arguments in help command."
+    },
+    {
         "title": "Version 1.5",
         "body": "- Added pretty help command to discord bot.\n- Added url command to discord bot.\n- Added feature command to discord bot.\n- Added register command to discord bot.\n- Added whois command to discord bot.\n- Added more style to the register guild form.\n- Now ignoring spaces in user id while creating cases.\n- Reapplying muted role if user rejoins guild.\n- Reworked dark mode."
     },
