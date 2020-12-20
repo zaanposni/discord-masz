@@ -51,9 +51,9 @@
                                         class="text-danger">{{ basic_data.loggedInUser.discordUser.username }}#{{ basic_data.loggedInUser.discordUser.discriminator }}</span>
                             </span>
                             {% if basic_data.loggedInUser.isAdmin %}
-                                <span class="dropdown-item waves-effect waves-light text-primary">
-                                Congratulations, you are a site admin!
-                            </span>
+                                <span class="dropdown-item waves-effect waves-light">
+                                    Congratulations, you are a site admin!
+                                </span>
                             {% endif %}
                             <span class="dropdown-item waves-effect waves-light" onclick="window.location.href='/api/v1/logout';">
                                Logout
