@@ -141,6 +141,41 @@ namespace masz.Services
 
         // ==================================================================================
         // 
+        // AutoModerationEvents
+        //
+        // ==================================================================================
+
+        public async Task<int> CountAllModerationEvents()
+        {
+            return await context.AutoModerationEvents.AsQueryable().CountAsync();
+        }
+
+        public async Task<int> CountAllModerationEventsForGuild(string guildId)
+        {
+            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
+        }
+
+        public async Task<List<AutoModerationEvent>> SelectAllModerationEvents()
+        {
+            return await context.AutoModerationEvents.AsQueryable().ToListAsync();
+        }
+        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(string guildId)
+        {
+            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+        }
+        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUserOnGuild(string guildId, string userId)
+        {
+            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).ToListAsync();
+        }
+
+        public async Task DeleteAllModerationEventsForGuild(string guildid)
+        {
+            var events = await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildid).ToListAsync();
+            context.AutoModerationEvents.RemoveRange(events);
+        }
+
+        // ==================================================================================
+        // 
         // Comments
         //
         // ==================================================================================

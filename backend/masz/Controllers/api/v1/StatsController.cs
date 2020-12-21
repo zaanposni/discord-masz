@@ -34,10 +34,11 @@ namespace masz.Controllers
         public async Task<IActionResult> GetGuildStats([FromRoute] string guildid, [FromRoute] string modcaseid) 
         {
             List<GuildConfig> guildConfigs = await database.SelectAllGuildConfigs();
-            List<ModCase> modCases = await database.SelectAllModCases();
+            List<ModCase> modCases = await database.SelectAllModCases();            
             return Ok(new {
                 guilds = guildConfigs.Count,
-                modCaseCount = modCases.Count
+                modCaseCount = modCases.Count,
+                autoModerations = await database.CountAllModerationEvents()
             });
         }
 
@@ -54,7 +55,8 @@ namespace masz.Controllers
             List<ModCase> activePunishments = await database.SelectAllModCasesWithActivePunishmentForGuild(guildid);
             return Ok(new {
                 modCaseCount = modCases.Count,
-                activePunishments = activePunishments.Count
+                activePunishments = activePunishments.Count,
+                autoModerations = await database.CountAllModerationEventsForGuild(guildid)
             });
         }
     }

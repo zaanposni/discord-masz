@@ -82,7 +82,7 @@
                     <tbody>
                     {% for modcase in modcases %}
                         <tr>
-                            <td>
+                            <td data-order="{{ modcase.caseId }}">
                                 <a class="font-weight-bold" href="/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}">
                                     <div class="card">
                                         <div class="card-body d-flex flex-column flex-wrap">
@@ -179,7 +179,7 @@
                     <tbody>
                     {% for modcase in activePunishments %}
                         <tr>
-                            <td>
+                            <td data-order="{{ modcase.caseId }}">
                                 <a class="font-weight-bold" href="/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}">
                                     <div class="card">
                                         <div class="card-body d-flex flex-column flex-wrap">
@@ -231,11 +231,11 @@
         $(document).ready(function () {
             $('#tableCases').DataTable({
                 pageLength: 100,
-                order: [1, "asc"]
+                order: [0, "desc"]
             });
             $('#tablePunishments').DataTable({
                 pageLength: 100,
-                order: [1, "asc"]
+                order: [0, "desc"]
             });
         });
     </script>
