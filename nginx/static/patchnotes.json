@@ -1,5 +1,9 @@
 [
     {
+        "title": "Version 1.6",
+        "body": "- Fixed sorting in modcase table."
+    },
+    {
         "title": "Version 1.5.1",
         "body": "- Fixed link in announcement embeds.\n- Now limiting the description in case overview list so buttons do not bug.\n- Added info about command arguments in help command.\n- Also add label after pressing enter."
     },
