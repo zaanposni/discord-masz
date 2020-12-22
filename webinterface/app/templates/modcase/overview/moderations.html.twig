@@ -1,0 +1,21 @@
+{% block body %}
+<div class="d-flex justify-content-between align-items-start">
+    <!-- Infos -->
+    <div>
+        <span class="display-4 font-weight-bold">All Automoderations</span>
+    </div>
+    <!-- Buttons -->
+    <div class="d-flex flex-column align-self-end">
+    {% if guild|default %}
+        {% if guild.id in basic_data.loggedInUser.modGuilds or basic_data.loggedInUser.isAdmin %}
+                <a type="button" class="btn btn-success" href="/automoderations/{{ guild.id }}">Configure</a>
+        {% endif %}
+    {% endif %}
+    </div>
+</div>
+{% endblock body %}
+
+{% block scriptblock %}
+<script>
+</script>
+{% endblock scriptblock %}

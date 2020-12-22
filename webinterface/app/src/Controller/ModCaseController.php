@@ -31,7 +31,7 @@ class ModCaseController extends AbstractController
         $basicData = new BasicData($_COOKIE);
         $basicData->currentGuild = $guildid;
         if (is_null($basicData->loggedInUser)) {
-            $basicData->errors[] = 'Failed to fetch user info or login invalid.';
+            $basicData->errors[] = 'You have been logged out.';
             return $this->render('index.html.twig', [
                 'basic_data' => $basicData
             ]);
@@ -39,8 +39,7 @@ class ModCaseController extends AbstractController
 
         $modCases = ModCaseAPI::SelectAll($_COOKIE, $guildid);
         if (!$modCases->success || is_null($modCases->body) || $modCases->statuscode !== 200) {
-            $basicData->errors[] = 'Failed to load modcases. API: ';
-            $basicData->errors[] = $modCases->toString();
+            $basicData->errors[] = 'Failed to load modcases. API: ' . $modCases->toString();
             return $this->render('modcase/view.html.twig', [
                 'basic_data' => $basicData
             ]);
@@ -102,7 +101,7 @@ class ModCaseController extends AbstractController
         $basicData = new BasicData($_COOKIE);
         $basicData->currentGuild = $guildid;
         if (is_null($basicData->loggedInUser)) {
-            $basicData->errors[] = 'Failed to fetch user info or login invalid.';
+            $basicData->errors[] = 'You have been logged out.';
             return $this->render('index.html.twig', [
                 'basic_data' => $basicData
             ]);
@@ -110,8 +109,7 @@ class ModCaseController extends AbstractController
 
         $modCase = ModCaseAPI::Select($_COOKIE, $guildid, $id);
         if (!$modCase->success || is_null($modCase->body) || $modCase->statuscode !== 200) {
-            $basicData->errors[] = 'Failed to load modcase. API: ';
-            $basicData->errors[] = $modCase->toString();
+            $basicData->errors[] = 'Failed to load modcase. API: ' . $modCase->toString();
             return $this->render('modcase/view.html.twig', [
                 'basic_data' => $basicData
             ]);

@@ -128,21 +128,6 @@
         </div>
     </div>
 </div>
-<br>
-<div class="container">
-    {% if basic_data.errors|default %}
-        {% if basic_data.errors is not empty%}
-            <div class="card mt-3 text-danger background-blink" id="fade-it">
-                <div class="card-body">
-                    <h5 class="card-title font-weight-bold">An Error occurred</h5>
-                    {% for message in basic_data.errors %}
-                        <span class="card-text" style="white-space: pre-wrap;">{{ message }}</span><br/>
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
-    {% endif %}
-</div>
 
 <br>
 {% endblock body %}

@@ -14,7 +14,7 @@
                     </option>
                 {% endfor %}
             </select>
-            <div class="card m-3" id="form-guild" style="display: none!important">
+            <div class="card m-3" id="form-guild" style="display: none">
                 <div class="card-body d-flex flex-row">
                     <div class="align-self-start mr-3">
                         <img
@@ -28,7 +28,7 @@
                     </div>
                     <div class="flex-grow-1">
                         <h4 class="card-title" id="form-guild-title"></h4>
-                        <span class="card-text" id="form-invite" style="display: none!important">
+                        <span class="card-text" id="form-invite" style="display: none">
                             You need to invite the bot to this guild before you can register it. Please refresh the site after you did so.<br/>
                             <a href="https://discord.com/oauth2/authorize?client_id={{ client_id.clientid }}&permissions=268435462&scope=bot&guild_id=replace-guild-id"
                                 id="form-invite-link" target="_blank">
@@ -39,38 +39,24 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex flex-row flex-wrap" id="form-roles" style="display: none!important">
+            <div class="d-flex flex-row flex-wrap" id="form-roles" style="display: none">
                 <label for="form-mod-role" id="form-mod-label-role">Moderator Role</label>
-                <select class="browser-default custom-select m-3" id="form-mod-role" style="display: none!important"></select>
+                <select class="browser-default custom-select m-3" id="form-mod-role" style="display: none"></select>
                 <label for="form-admin-role" id="form-admin-label-role">Admin Role</label>
-                <select class="browser-default custom-select m-3" id="form-admin-role" style="display: none!important"></select>
+                <select class="browser-default custom-select m-3" id="form-admin-role" style="display: none"></select>
                 <label for="form-muted-role" id="form-muted-label-role">Muted Role for punishment</label>
-                <select class="browser-default custom-select m-3" id="form-muted-role" style="display: none!important"></select>
+                <select class="browser-default custom-select m-3" id="form-muted-role" style="display: none"></select>
             </div>
-            <div id="form-webhooks" style="display: none!important">
+            <div id="form-webhooks" style="display: none">
                 <label for="form-webhook-public">OPTIONAL: Webhook URL: public notification</label>
                 <input type="text" id="form-webhook-public" class="form-control m-2">
                 <label for="form-webhook-internal">OPTIONAL: Webhook URL: internal notification</label>
                 <input type="text" id="form-webhook-internal" class="form-control m-2">
             </div>
-            <button type="button" class="btn btn-success" id="form-submit" onclick="submitGuild(this)" style="display: none!important">
+            <button type="button" class="btn btn-success" id="form-submit" onclick="submitGuild(this)" style="display: none">
                 Register guild
             </button>
         {% endif %}
-        <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" id="notification" style="min-width:100%">
-            <div class="toast-header">
-                <svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
-                     preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-                    <rect fill="#007aff" width="100%" height="100%" id="notificationColor" /></svg>
-                <strong class="mr-auto" id="notificationTitle">Post comment</strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body" id="notificationBody">
-                Hello, world! This is a toast message.
-            </div>
-        </div>
     </div>
 {% endblock body %}
 {% block scriptblock %}
@@ -99,7 +85,6 @@
         });
 
         function on_guildselect_change() {
-            $('#notification').toast('hide');
             let selectedGuild = $('#form-guildselect').val();
 
             if (!isNaN(selectedGuild)) {
@@ -134,104 +119,89 @@
                         });
 
                         $('#form-guild-img').attr('src', 'https://cdn.discordapp.com/icons/' + selectedGuild + '/' + data['icon'] + '.png');
-                        $('#form-guild-img').attr("style", "display: block");
+                        $('#form-guild-img').css("display", "block");
                         $('#form-guild-title').text(data['name']);
-                        $('#form-guild').attr("style", "display: block");
-                        $('#form-invite').attr("style", "display: none!important");
-                        $('#form-roles').attr("style", "display: block");
-                        $('#form-mod-label-role').attr("style", "display: block");
-                        $('#form-mod-role').attr("style", "display: block");
-                        $('#form-admin-label-role').attr("style", "display: none!important");
-                        $('#form-admin-role').attr("style", "display: none!important");
-                        $('#form-muted-label-role').attr("style", "display: none!important");
-                        $('#form-muted-role').attr("style", "display: none!important");
-                        $('#form-webhooks').attr("style", "display: none!important");
-                        $('#form-submit').attr("style", "display: none!important");
+                        $('#form-guild').css("display", "block");
+                        $('#form-invite').css("display", "none");
+                        $('#form-roles').css("display", "block");
+                        $('#form-mod-label-role').css("display", "block");
+                        $('#form-mod-role').css("display", "block");
+                        $('#form-admin-label-role').css("display", "none");
+                        $('#form-admin-role').css("display", "none");
+                        $('#form-muted-label-role').css("display", "none");
+                        $('#form-muted-role').css("display", "none");
+                        $('#form-webhooks').css("display", "none");
+                        $('#form-submit').css("display", "none");
                     },
                     error: function (errMsg) {
-                        console.log(errMsg);
-
                         $('#form-mod-role option').remove();
                         $('#form-admin-role option').remove();
 
-                        $('#form-roles').attr("style", "display: none!important");
-                        $('#form-mod-label-role').attr("style", "display: none!important");
-                        $('#form-mod-role').attr("style", "display: none!important");
-                        $('#form-admin-label-role').attr("style", "display: none!important");
-                        $('#form-admin-role').attr("style", "display: none!important");
-                        $('#form-muted-label-role').attr("style", "display: none!important");
-                        $('#form-muted-role').attr("style", "display: none!important");
-                        $('#form-webhooks').attr("style", "display: none!important");
-                        $('#form-submit').attr("style", "display: none!important");
+                        $('#form-roles').css("display", "none");
+                        $('#form-mod-label-role').css("display", "none");
+                        $('#form-mod-role').css("display", "none");
+                        $('#form-admin-label-role').css("display", "none");
+                        $('#form-admin-role').css("display", "none");
+                        $('#form-muted-label-role').css("display", "none");
+                        $('#form-muted-role').css("display", "none");
+                        $('#form-webhooks').css("display", "none");
+                        $('#form-submit').css("display", "none");
 
-                        $('#form-guild').attr("style", "display: block");
-                        $('#form-guild-img').attr("style", "display: none!important");
-                        $('#form-invite').attr("style", "display: block");
+                        $('#form-guild').css("display", "block");
+                        $('#form-guild-img').css("display", "none");
+                        $('#form-invite').css("display", "block");
 
-                        $('#notification').insertAfter($('#form-guildselect'));
-                        $('#notificationColor').attr('fill', '#ac000f');
-                        $('#notificationTitle').text('Fetching further guild info failed.');
-                        $('#notificationBody').text(errMsg.status + ': ' + errMsg.responseText);
-                        $('#notification').toast('show');
+                        handleRequestError(errMsg, "Fetching further guild info failed")
                     }
                 });
             } else {
                 $('#form-mod-role option').remove();
                 $('#form-admin-role option').remove();
 
-                $('#form-guild').attr("style", "display: none!important");
-                $('#form-roles').attr("style", "display: none!important");
-                $('#form-mod-label-role').attr("style", "display: none!important");
-                $('#form-mod-role').attr("style", "display: none!important");
-                $('#form-admin-label-role').attr("style", "display: none!important");
-                $('#form-admin-role').attr("style", "display: none!important");
-                $('#form-muted-label-role').attr("style", "display: none!important");
-                $('#form-muted-role').attr("style", "display: none!important");
-                $('#form-webhooks').attr("style", "display: none!important");
-                $('#form-submit').attr("style", "display: none!important");
-
-                $('#notification').insertAfter($('#form-guildselect'));
-                $('#notificationColor').attr('fill', '#ac000f');
-                $('#notificationTitle').text('Fetching further guild info failed.');
-                $('#notificationBody').text(errMsg.status + ': ' + errMsg.responseText);
-                $('#notification').toast('show');
+                $('#form-guild').css("display", "none");
+                $('#form-roles').css("display", "none");
+                $('#form-mod-label-role').css("display", "none");
+                $('#form-mod-role').css("display", "none");
+                $('#form-admin-label-role').css("display", "none");
+                $('#form-admin-role').css("display", "none");
+                $('#form-muted-label-role').css("display", "none");
+                $('#form-muted-role').css("display", "none");
+                $('#form-webhooks').css("display", "none");
+                $('#form-submit').css("display", "none");
             }
         }
 
         $('#form-guildselect').change(on_guildselect_change);
 
         $('#form-mod-role').change(function() {
-            $('#notification').toast('hide');
             let modRole = $(this).val();
             if (!isNaN(modRole)) {
-                $('#form-admin-label-role').attr("style", "display: block");
-                $('#form-admin-role').attr("style", "display: block");
-                $('#form-muted-label-role').attr("style", "display: block");
-                $('#form-muted-role').attr("style", "display: block");
+                $('#form-admin-label-role').css("display", "block");
+                $('#form-admin-role').css("display", "block");
+                $('#form-muted-label-role').css("display", "block");
+                $('#form-muted-role').css("display", "block");
             } else {
-                $('#form-admin-label-role').attr("style", "display: none!important");
-                $('#form-admin-role').attr("style", "display: none!important");
-                $('#form-muted-label-role').attr("style", "display: none!important");
-                $('#form-muted-role').attr("style", "display: none!important");
-                $('#form-webhooks').attr("style", "display: none!important");
-                $('#form-submit').attr("style", "display: none!important");
+                $('#form-admin-label-role').css("display", "none");
+                $('#form-admin-role').css("display", "none");
+                $('#form-muted-label-role').css("display", "none");
+                $('#form-muted-role').css("display", "none");
+                $('#form-webhooks').css("display", "none");
+                $('#form-submit').css("display", "none");
             }
         });
 
         $('#form-admin-role').change(function() {
-            $('#notification').toast('hide');
             let adminRole = $(this).val();
             if (!isNaN(adminRole)) {
-                $('#form-webhooks').attr("style", "display: block");
-                $('#form-submit').attr("style", "display: block");
+                $('#form-webhooks').css("display", "block");
+                $('#form-submit').css("display", "block");
             } else {
-                $('#form-webhooks').attr("style", "display: none!important");
-                $('#form-submit').attr("style", "display: none!important");
+                $('#form-webhooks').css("display", "none");
+                $('#form-submit').css("display", "none");
             }
         });
 
         $('#form-muted-role').change(function() {
-            $('#notification').toast('hide');
         });
 
         function submitGuild(button) {
@@ -260,13 +230,7 @@
                         location.href = '/modcases/' + obj['guildid'];
                         return;
                     }
-                    console.log(errMsg);
-
-                    $('#notification').insertAfter($(button));
-                    $('#notificationColor').attr('fill', '#ac000f');
-                    $('#notificationTitle').text('Registering guild failed.');
-                    $('#notificationBody').text(errMsg.status + ': ' + errMsg.responseText);
-                    $('#notification').toast('show');
+                    handleRequestError(errMsg, "Registering guild failed");
                 }
             });
         }

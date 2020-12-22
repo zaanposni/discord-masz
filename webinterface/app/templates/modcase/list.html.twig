@@ -9,6 +9,23 @@
     </style>
 
     <div class="container">
+        {% if guild|default %}
+            <!-- Guild -->
+            <div class="d-flex align-items-lg-center mb-3">
+                <img
+                        src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png"
+                        class="rounded-circle z-depth-0 mr-1"
+                        alt="avatar image"
+                        height="35"
+                />
+                <span class="font-weight-bold">
+                    Guild: {{ guild.name }}
+                    <span class="text-black-50">
+                        ({{ guild.id }})
+                    </span>
+                </span>
+            </div>
+        {% endif %}
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="modcase-tab" data-toggle="tab" href="#modcases" role="tab" aria-controls="modcases"
@@ -18,209 +35,20 @@
                 <a class="nav-link" id="punishment-tab" data-toggle="tab" href="#punishments" role="tab" aria-controls="punishments"
                    aria-selected="false">Punishments ({{ activePunishments|length }})</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="moderation-tab" data-toggle="tab" href="#moderations" role="tab" aria-controls="moderations"
+                   aria-selected="false">Automoderations</a>
+            </li>
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="modcases" role="tabpanel" aria-labelledby="modcase-tab">
-                <div class="d-flex justify-content-between align-items-start">
-                    <!-- Infos -->
-                    <div>
-                        <span class="display-4 font-weight-bold">All modcases ({{ modcases|length }})</span>
-
-                        {% if guild|default %}
-                            <!-- Guild -->
-                            <div class="d-flex align-items-lg-center">
-                                <img
-                                        src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png"
-                                        class="rounded-circle z-depth-0 mr-1"
-                                        alt="avatar image"
-                                        height="35"
-                                />
-                                <span class="font-weight-bold">Guild: {{ guild.name }} <span
-                                            class="text-black-50">({{ guild.id }})</span></span>
-                            </div>
-                        {% endif %}
-                    </div>
-                    <!-- Buttons -->
-                    <div class="d-flex flex-column align-self-end">
-                    {% if guild|default %}
-                        {% if guild.id in basic_data.loggedInUser.modGuilds or basic_data.loggedInUser.isAdmin %}
-                                <a type="button" class="btn btn-success" href="/modcases/{{ guild.id }}/new">Create new Case</a>
-                        {% endif %}
-                    {% endif %}
-                    </div>
-                </div>
-                <br>
-                {% if guild.id not in basic_data.loggedInUser.modGuilds and not basic_data.loggedInUser.isAdmin %}
-                    <div class="card rounded mb-3">
-                        <div class="card-body">
-                            <h4 class="card-title"><a>Restricted permissions.</a></h4>
-                            <p class="card-text">You do not have any special permissions in this guild and will therefore only see cases registered on your name.</p>
-                        </div>
-                    </div>
-                {% endif %}
-                {% if not modcases|default %}
-                    <div class="card rounded mb-3">
-                        <div class="card-body">
-                            <h4 class="card-title"><a>Nothing here.</a></h4>
-                            <p class="card-text">There are no cases that match your search.</p>
-                        </div>
-                    </div>
-                {% endif %}
-                <table id="tableCases" class="table" cellspacing="0" width="100%">
-                    <thead>
-                    <tr>
-                        <th class="th-sm"></th>
-                        <td class="th-sm hiddencolumn">CaseId</td>
-                        <th class="th-sm hiddencolumn">UserId</th>
-                        <td class="th-sm hiddencolumn">ModId</td>
-                        <td class="th-sm hiddencolumn">Labels</td>
-                        <td class="th-sm hiddencolumn">Title</td>
-                        <td class="th-sm hiddencolumn">Description</td>
-                        <td class="th-sm hiddencolumn">Punishment</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for modcase in modcases %}
-                        <tr>
-                            <td data-order="{{ modcase.caseId }}">
-                                <a class="font-weight-bold" href="/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}">
-                                    <div class="card">
-                                        <div class="card-body d-flex flex-column flex-wrap">
-                                            <div>
-                                                <!-- Title -->
-
-                                                <h4 class="card-title">
-                                                    #{{ modcase.caseId }}
-                                                    <span class="badge badge-danger">{{ modcase.punishment }}</span>
-                                                    {{ modcase.username }} - {{ modcase.title }}
-                                                </h4>
-
-                                                <!-- Labels -->
-                                                <div class="d-flex mb-2">
-                                                    {% for label in modcase.labels %}
-                                                        <div type="button"
-                                                             class="badge badge-pill badge-info mr-1">{{ label }}</div>
-                                                    {% endfor %}
-                                                </div>
-
-                                                <!-- Text -->
-                                                <p class="card-text">{{ modcase.description|length > 100 ? modcase.description|slice(0, 100) ~ '...' : modcase.description }}</p>
-                                            </div>
-                                            <div class="flex-grow-1"></div>
-                                            <!-- Button -->
-                                            <div class="btn btn-orange align-self-end">VIEW DETAILS</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </td>
-                            <td class="hiddencolumn">{{ modcase.caseId }}</td>
-                            <td class="hiddencolumn">{{ modcase.userId }}</td>
-                            <td class="hiddencolumn">{{ modcase.modId }}</td>
-                            <td class="hiddencolumn">{{ modcase.labels|join('|') }}</td>
-                            <td class="hiddencolumn">{{ modcase.title }}</td>
-                            <td class="hiddencolumn">{{ modcase.description }}</td>
-                            <td class="hiddencolumn">{{ modcase.punishment }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                {% include 'modcase/overview/cases.html.twig' %}
             </div>
             <div class="tab-pane fade" id="punishments" role="tabpanel" aria-labelledby="punishment-tab">
-                <div class="d-flex justify-content-between align-items-start">
-                    <!-- Infos -->
-                    <div>
-                        <span class="display-4 font-weight-bold">All active punishments ({{ activePunishments|length }})</span>
-
-                        {% if guild|default %}
-                            <!-- Guild -->
-                            <div class="d-flex align-items-lg-center">
-                                <img
-                                        src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png"
-                                        class="rounded-circle z-depth-0 mr-1"
-                                        alt="avatar image"
-                                        height="35"
-                                />
-                                <span class="font-weight-bold">Guild: {{ guild.name }} <span
-                                            class="text-black-50">({{ guild.id }})</span></span>
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-                <br>
-                {% if guild.id not in basic_data.loggedInUser.modGuilds and not basic_data.loggedInUser.isAdmin %}
-                    <div class="card rounded mb-3">
-                        <div class="card-body">
-                            <h4 class="card-title"><a>Restricted permissions.</a></h4>
-                            <p class="card-text">You do not have any special permissions in this guild and will therefore only see punishments registered on your name.</p>
-                        </div>
-                    </div>
-                {% endif %}
-                {% if not activePunishments|default %}
-                    <div class="card rounded mb-3">
-                        <div class="card-body">
-                            <h4 class="card-title"><a>Nothing here.</a></h4>
-                            <p class="card-text">There are no punishments that match your search.</p>
-                        </div>
-                    </div>
-                {% endif %}
-                <table id="tablePunishments" class="table" cellspacing="0" width="100%">
-                    <thead>
-                    <tr>
-                        <th class="th-sm"></th>
-                        <td class="th-sm hiddencolumn">CaseId</td>
-                        <th class="th-sm hiddencolumn">UserId</th>
-                        <td class="th-sm hiddencolumn">ModId</td>
-                        <td class="th-sm hiddencolumn">Labels</td>
-                        <td class="th-sm hiddencolumn">Title</td>
-                        <td class="th-sm hiddencolumn">Description</td>
-                        <td class="th-sm hiddencolumn">Punishment</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for modcase in activePunishments %}
-                        <tr>
-                            <td data-order="{{ modcase.caseId }}">
-                                <a class="font-weight-bold" href="/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}">
-                                    <div class="card">
-                                        <div class="card-body d-flex flex-column flex-wrap">
-                                            <div>
-                                                <!-- Title -->
-
-                                                <h4 class="card-title">
-                                                    #{{ modcase.caseId }}
-                                                    <span class="badge badge-danger">{{ modcase.punishment }}</span>
-                                                    {{ modcase.username }} - {{ modcase.title }}
-                                                </h4>
-
-                                                <!-- Labels -->
-                                                <div class="d-flex mb-2">
-                                                    {% for label in modcase.labels %}
-                                                        <div type="button"
-                                                             class="badge badge-pill badge-info mr-1">{{ label }}</div>
-                                                    {% endfor %}
-                                                </div>
-
-                                                <!-- Text -->
-                                                <p class="card-text">{{ modcase.description|length > 100 ? modcase.description|slice(0, 100) ~ '...' : modcase.description }}</p>
-                                            </div>
-                                            <div class="flex-grow-1"></div>
-                                            <!-- Button -->
-                                            <div class="btn btn-orange align-self-end">VIEW DETAILS</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </td>
-                            <td class="hiddencolumn">{{ modcase.caseId }}</td>
-                            <td class="hiddencolumn">{{ modcase.userId }}</td>
-                            <td class="hiddencolumn">{{ modcase.modId }}</td>
-                            <td class="hiddencolumn">{{ modcase.labels|join('|') }}</td>
-                            <td class="hiddencolumn">{{ modcase.title }}</td>
-                            <td class="hiddencolumn">{{ modcase.description }}</td>
-                            <td class="hiddencolumn">{{ modcase.punishment }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                {% include 'modcase/overview/punishments.html.twig' %}
+            </div>
+            <div class="tab-pane fade" id="moderations" role="tabpanel" aria-labelledby="moderation-tab">
+                {% include 'modcase/overview/moderations.html.twig' %}
             </div>
         </div>
     </div>

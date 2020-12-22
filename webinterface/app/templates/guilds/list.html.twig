@@ -336,12 +336,7 @@
                 location.reload();
             },
             error: function (errMsg) {
-                console.log(errMsg);
-                $('#notification').insertAfter($(button));
-                $('#notificationColor').attr('fill', '#ac000f');
-                $('#notificationTitle').text('Deleting guild failed');
-                $('#notificationBody').text(errMsg.status + ': ' + errMsg.responseText);
-                $('#notification').toast('show');
+                handleRequestError(errMsg, "Deleting guild failed");
             }
         });
         console.log(selectedGuild);

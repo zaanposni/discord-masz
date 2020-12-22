@@ -23,7 +23,7 @@ class GuildPatchController extends AbstractController
 
         $basicData = new BasicData($_COOKIE);
         if (is_null($basicData->loggedInUser)) {
-            $basicData->errors[] = 'Failed to fetch user info or login invalid.';
+            $basicData->errors[] = 'You have been logged out.';
             return $this->render('index.html.twig', [
                 'basic_data' => $basicData
             ]);
