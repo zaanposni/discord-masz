@@ -51,7 +51,7 @@ class AutoModerationController extends AbstractController
             $guild["roles"][$i]["color"] = "#" . dechex($role["color"]);
         }
 
-        $basicData->tabTitle = "MASZ: Edit guild";
+        $basicData->tabTitle = "MASZ: Edit automod config";
         return $this->render('automoderation/configuration.html.twig', [
             'basic_data' => $basicData,
             'guild' => $guild,
