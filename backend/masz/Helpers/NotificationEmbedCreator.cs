@@ -39,7 +39,7 @@ namespace masz.Helpers
             
             if (actor != null)
             {
-                embed.ThumbnailUrl = $"{discordCdnBaseUrl}/avatars/{actor.Id}/{actor.Avatar}.png";
+                embed.ThumbnailUrl = actor.ImageUrl;
             }
 
             if (! string.IsNullOrEmpty(filename))
@@ -98,7 +98,7 @@ namespace masz.Helpers
             
             if (discordUser != null)
             {
-                embed.ThumbnailUrl = $"{discordCdnBaseUrl}/avatars/{discordUser.Id}/{discordUser.Avatar}.png";
+                embed.ThumbnailUrl = discordUser.ImageUrl;
             }
 
             if (! string.IsNullOrEmpty(comment.Message))
@@ -162,7 +162,7 @@ namespace masz.Helpers
             
             if (caseUser != null)
             {
-                embed.ThumbnailUrl = $"{discordCdnBaseUrl}/avatars/{caseUser.Id}/{caseUser.Avatar}.png";
+                embed.ThumbnailUrl = caseUser.ImageUrl;
             }
 
             if (! string.IsNullOrEmpty(modCase.Description) && isInternal)
