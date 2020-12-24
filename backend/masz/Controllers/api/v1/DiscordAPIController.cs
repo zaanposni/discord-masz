@@ -47,6 +47,7 @@ namespace masz.Controllers.api.v1
 
             List<string> memberGuilds = new List<string>();
             List<string> modGuilds = new List<string>();
+            List<string> adminGuilds = new List<string>();
             List<string> bannedGuilds = new List<string>();
             bool siteAdmin = config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id);
 
@@ -57,6 +58,9 @@ namespace masz.Controllers.api.v1
                 {
                     if (await currentIdentity.HasModRoleOrHigherOnGuild(guild.GuildId, this.database)) {
                         modGuilds.Add(guild.GuildId);
+                        if (await currentIdentity.HasAdminRoleOnGuild(guild.GuildId, this.database)) {
+                            adminGuilds.Add(guild.GuildId);
+                        }
                     } else {
                         memberGuilds.Add(guild.GuildId);
                     }
@@ -67,7 +71,7 @@ namespace masz.Controllers.api.v1
                 }
             }
 
-            return Ok(new APIUser(memberGuilds, bannedGuilds,  modGuilds, currentUser, siteAdmin));
+            return Ok(new APIUser(memberGuilds, bannedGuilds,  modGuilds, adminGuilds, currentUser, siteAdmin));
         }
 
         [HttpGet("users/{userid}")]

@@ -7,7 +7,7 @@
     <!-- Buttons -->
     <div class="d-flex flex-column align-self-end">
     {% if guild|default %}
-        {% if guild.id in basic_data.loggedInUser.modGuilds or basic_data.loggedInUser.isAdmin %}
+        {% if guild.id in basic_data.loggedInUser.adminGuilds or basic_data.loggedInUser.isAdmin %}
                 <a type="button" class="btn btn-success" href="/automoderations/{{ guild.id }}">Configure</a>
         {% endif %}
     {% endif %}
