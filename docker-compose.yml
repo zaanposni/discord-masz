@@ -45,7 +45,7 @@ services:
     container_name: masz_backend
     depends_on:
         db:
-            condition: service_healthy
+          condition: service_healthy
     restart: unless-stopped
     networks:
       - appnetwork
@@ -97,6 +97,9 @@ services:
     build: discordbot
     container_name: masz_discordbot
     restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
     networks:
       - appnetwork
     environment:

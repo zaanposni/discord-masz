@@ -66,11 +66,14 @@ async def whois(ctx, userid):
 
     if cases:
         info = ""
-        for case in cases:
+        for case in cases[:5]:
             info += f"[#{case['CaseId']} - {case['Title']}]"
             info += f"({os.getenv('META_SERVICE_BASE_URL', '')}/modcases/{ctx.guild.id}/{case['CaseId']})"
             info += "\n"
         
+        if len(cases) > 5:
+            info += "[...]"
+
         embed.add_field(
             name=f"Cases [{len(cases)}]",
             value=info,
@@ -79,7 +82,7 @@ async def whois(ctx, userid):
         
         if active_punishments:
             info = ""
-            for case in active_punishments:
+            for case in active_punishments[:5]:
                 info += f"{case['Punishment']}"
                 if case["PunishedUntil"] is not None:
                     info += f" (until {case['PunishedUntil'].strftime('%d.%m.%Y')}): "
@@ -88,6 +91,9 @@ async def whois(ctx, userid):
                 info += f"[#{case['CaseId']} - {case['Title']}]({os.getenv('META_SERVICE_BASE_URL', '')}/modcases/{ctx.guild.id}/{case['CaseId']})"
                 info += "\n"
             
+            if len(active_punishments) > 5:
+                info += "[...]"
+
             embed.add_field(
                 name=f"Active Punishments [{len(active_punishments)}]",
                 value=info,
