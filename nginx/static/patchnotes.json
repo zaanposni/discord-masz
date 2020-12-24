@@ -1,7 +1,7 @@
 [
     {
         "title": "Version 1.6 Automoderation",
-        "body": "- Fixed sorting in modcase table.\n- Reworked notification system. Now using JQuery Toast.\n- Fixed style in guild register dialog.\n- Added automoderation feature.\n- Added invite command."
+        "body": "- Fixed sorting in modcase table.\n- Reworked notification system. Now using JQuery Toast.\n- Fixed style in guild register dialog.\n- Added automoderation feature.\n- Added invite command.\n- Fixed url for default profil pictures in announcement.\n- Fixed output of register command in DMs.\n- Added information of punishment duration in announcement embed."
     },
     {
         "title": "Version 1.5.1",

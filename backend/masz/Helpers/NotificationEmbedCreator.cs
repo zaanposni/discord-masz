@@ -10,6 +10,7 @@ namespace masz.Helpers
     {
         private static string SCALES_EMOTE = "\u2696";
         private static string SCROLL_EMOTE = "\uD83C\uDFF7";
+        private static string ALARM_CLOCK = "\u23F0";
         private static string discordCdnBaseUrl = "https://cdn.discordapp.com";
 
         private static EmbedBuilder CreateBasicEmbed(RestAction action) 
@@ -219,6 +220,11 @@ namespace masz.Helpers
             if (!string.IsNullOrEmpty(modCase.Punishment))
             {
                 embed.AddField(SCALES_EMOTE + " - Punishment", modCase.Punishment.Substring(0, Math.Min(modCase.Punishment.Length, 1000)), true);
+            }
+
+            if (modCase.PunishedUntil != null)
+            {
+                embed.AddField(ALARM_CLOCK + " - Punished Until", modCase.PunishedUntil.Value.ToString("MM.dd.yyyy HH:mm:ss") , true);
             }
 
             if (modCase.Labels.Length != 0)
