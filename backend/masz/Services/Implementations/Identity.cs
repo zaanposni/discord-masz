@@ -133,6 +133,34 @@ namespace masz.Services
         }
 
         /// <summary>
+        /// Checks if the current user has the defined admin role on the defined guild.
+        /// </summary>
+        /// <param name="guildId">the guild to check on</param>
+        /// <returns>True if the user is on this guild and is member of the admin role.</returns>
+        public async Task<bool> HasAdminRoleOnGuild(string guildId, IDatabase database)
+        {
+            if (!await IsOnGuild(guildId))
+            {
+                return false;
+            }
+
+            // Get guild config from database
+            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildId);
+            if (guildConfig == null)
+            {
+                return false;
+            }
+
+            GuildMember guildMember = await GetGuildMembership(guildId);
+            if (guildMember == null) {
+                return false;
+            }
+
+            // check for role
+            return guildMember.Roles.Contains(guildConfig.AdminRoleId);
+        }
+
+        /// <summary>
         /// Checks if the current user has a defined team role on the defined guild.
         /// </summary>
         /// <param name="guildId">the guild to check on</param>

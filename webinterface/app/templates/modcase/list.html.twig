@@ -29,15 +29,15 @@
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="modcase-tab" data-toggle="tab" href="#modcases" role="tab" aria-controls="modcases"
-                   aria-selected="true">Modcases ({{ modcases|length }})</a>
+                   aria-selected="true">Modcases ({{ modcases|length|default(0) }})</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="punishment-tab" data-toggle="tab" href="#punishments" role="tab" aria-controls="punishments"
-                   aria-selected="false">Punishments ({{ activePunishments|length }})</a>
+                   aria-selected="false">Punishments ({{ activePunishments|length|default(0) }})</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="moderation-tab" data-toggle="tab" href="#moderations" role="tab" aria-controls="moderations"
-                   aria-selected="false">Automoderations</a>
+                   aria-selected="false">Automoderations ({{ autoModerations.count|default(0) }})</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">

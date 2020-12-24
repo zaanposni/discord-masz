@@ -220,3 +220,19 @@ select:-webkit-autofill {
     -webkit-box-shadow: unset !important;
     box-shadow: unset !important;
 }
+
+.moderation {
+    background-color: var(--dark-card-background);
+    color: var(--dark-text);
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.mod-field {
+    background-color: var(--dark-card-background);
+    color: var(--dark-text);
+}
+
+.mod-exclude-add {
+    color: var(--dark-text)!important;
+}

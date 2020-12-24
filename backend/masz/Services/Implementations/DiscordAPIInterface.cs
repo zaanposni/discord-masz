@@ -58,6 +58,35 @@ namespace masz.Services
             return null;
         }
 
+        public async Task<User> FetchCurrentBotInfo()
+        {
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/users/@me";
+            request.AddHeader("Authorization", "Bot " + botToken);
+
+            var response = await restClient.ExecuteAsync<User>(request);
+            if (response.IsSuccessful)
+            {
+                return new User(response.Content);
+            }
+            return null;
+        }
+
+        public async Task<List<Channel>> FetchGuildChannels(string guildId)
+        {
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/guilds/" + guildId + "/channels";
+            request.AddHeader("Authorization", "Bot " + botToken);
+
+            var response = await restClient.ExecuteAsync<List<Guild>>(request);
+            if (response.IsSuccessful)
+            {
+                return JsonConvert.DeserializeObject<List<Channel>>(response.Content);
+            }
+            return null;
+        }
+
+        
         public async Task<Guild> FetchGuildInfo(string guildId)
         {
             var request = new RestRequest(Method.GET);

@@ -391,7 +391,7 @@ namespace masz.Controllers
             }
             catch(Exception e){
                 logger.LogError(e, "Failed to announce modcase.");
-            }        
+            }
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 201 Resource created.");
             return StatusCode(201, new { id = newModCase.Id, caseid = newModCase.CaseId });

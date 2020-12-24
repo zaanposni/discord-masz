@@ -12,6 +12,7 @@
 
 MASZ is a management and moderation overview tool for **Discord Moderators** and **Admins**. <br/>
 Keep track of all **moderation events** and **current punishments** on your server, **search reliably** for entries and be one step ahead of trolls and rule breakers. <br/>
+Set up various limits and rules, such as **spam or banned words**, that the app will **automatically moderate**, for example with mutes or warnings. All logs can be checked on the website.<br/>
 The core of this tool are the **modcases**, a case represents a rule violation, an important note or similar. <br/>
 The server members and your moderators can be **notified** individually about the creation. <br/>
 The user for whom the case was created can also see it on the website, take a stand and your server is moderated **transparently**. <br/>
@@ -21,6 +22,11 @@ This application can also **manage temporary punishments** just as temp mutes fo
 
 - [Community Discord "Best of Bundestag"](https://discord.gg/ezMtSwR) 1800 members
 - ["Liberale Community"](https://discord.gg/uf9bHhNMmD) 250 members
+
+# Warning
+
+This application is only for self deployment. <br/>
+You can deploy it on your private computer for testing but if you want others to access the website or use the bot 24/7, you will need a domain, a server and a reverse proxy as well as enough knowledge to set those up, and maintain them.
 
 # Preview
 
@@ -45,6 +51,14 @@ This application can also **manage temporary punishments** just as temp mutes fo
 <details>
   <summary>Discord Bot commands</summary>
   <img src="/docs/bot-commands.png"/>
+</details>
+<details>
+  <summary>AutoModeration event log</summary>
+  <img src="/docs/automoderations.png"/>
+</details>
+<details>
+  <summary>AutoModeration configuration</summary>
+  <img src="/docs/automoderationconfig.png"/>
 </details>
 
 

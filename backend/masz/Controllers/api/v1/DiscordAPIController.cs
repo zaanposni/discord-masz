@@ -92,6 +92,17 @@ namespace masz.Controllers.api.v1
             return NotFound();
         }
 
+        [HttpGet("guilds/{guildid}/channels")]
+        public async Task<IActionResult> GetAllGuildChannels([FromRoute] string guildid)
+        {
+            var channels = await discord.FetchGuildChannels(guildid);
+            if (channels != null)
+            {
+                return Ok(channels);
+            }
+            return NotFound();
+        }
+
         [HttpGet("guilds")]
         public async Task<IActionResult> GetAllGuilds()
         {

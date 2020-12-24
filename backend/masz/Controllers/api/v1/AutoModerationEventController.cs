@@ -47,7 +47,7 @@ namespace masz.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllItems([FromRoute] string guildid) 
+        public async Task<IActionResult> GetAllItems([FromRoute] string guildid, [FromQuery] int startPage = 0) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -70,18 +70,24 @@ namespace masz.Controllers
                 return BadRequest("Guild not registered.");
             }
 
+            startPage = Math.Max(0, startPage);
+            int pageSize = 50;
             List<AutoModerationEvent> events = new List<AutoModerationEvent>();
+            int eventsCount = 0;
             if (String.IsNullOrEmpty(userOnly)) {
-                events = await database.SelectAllModerationEventsForGuild(guildid);       
+                events = await database.SelectAllModerationEventsForGuild(guildid, startPage, pageSize);
+                eventsCount = await database.CountAllModerationEventsForGuild(guildid);
             }
             else {
-                events = await database.SelectAllModerationEventsForSpecificUserOnGuild(guildid, currentUser.Id);  
+                events = await database.SelectAllModerationEventsForSpecificUserOnGuild(guildid, currentUser.Id, startPage, pageSize);  
+                eventsCount = await database.CountAllModerationEventsForSpecificUserOnGuild(guildid, currentUser.Id);
             }
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning Events.");
-            return Ok(events);
+            return Ok(new {
+                events = events,
+                count = eventsCount
+            });
         }
-
-
     }
 }

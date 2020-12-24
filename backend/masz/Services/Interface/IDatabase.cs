@@ -33,10 +33,18 @@ namespace masz.Services
 
         Task<int> CountAllModerationEvents();
         Task<int> CountAllModerationEventsForGuild(string guildId);
+        Task<int> CountAllModerationEventsForSpecificUserOnGuild(string guildId, string userId);
         Task<List<AutoModerationEvent>> SelectAllModerationEvents();
-        Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(string guildId);
-        Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUserOnGuild(string guildId, string userId);
+        Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(string guildId, int startPage, int pageSize);
+        Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize);
         Task DeleteAllModerationEventsForGuild(string guildid);
+        Task SaveModerationEvent(AutoModerationEvent modEvent);
+
+
+        Task<List<AutoModerationConfig>> SelectAllModerationConfigsForGuild(string guildId);
+        Task<AutoModerationConfig> SelectModerationConfigForGuildAndType(string guildId, AutoModerationType type);
+        void PutModerationConfig(AutoModerationConfig modConfig);
+        void DeleteSpecificModerationConfig(AutoModerationConfig modConfig);
 
 
         Task SaveModCaseComment(ModCaseComment comment);

@@ -155,23 +155,56 @@ namespace masz.Services
             return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
         }
 
+        public async Task<int> CountAllModerationEventsForSpecificUserOnGuild(string guildId, string userId)
+        {
+            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).CountAsync();
+        }
+
         public async Task<List<AutoModerationEvent>> SelectAllModerationEvents()
         {
             return await context.AutoModerationEvents.AsQueryable().ToListAsync();
         }
-        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(string guildId)
+        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(string guildId, int startPage, int pageSize)
         {
-            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CreatedAt).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
         }
-        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUserOnGuild(string guildId, string userId)
+        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize)
         {
-            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).ToListAsync();
+            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.CreatedAt).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
         }
 
         public async Task DeleteAllModerationEventsForGuild(string guildid)
         {
             var events = await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildid).ToListAsync();
             context.AutoModerationEvents.RemoveRange(events);
+        }
+        
+        public async Task SaveModerationEvent(AutoModerationEvent modEvent)
+        {
+            await context.AutoModerationEvents.AddAsync(modEvent);
+        }
+
+        // ==================================================================================
+        // 
+        // AutoModerationConfig
+        //
+        // ==================================================================================
+
+        public async Task<List<AutoModerationConfig>> SelectAllModerationConfigsForGuild(string guildId)
+        {
+            return await context.AutoModerationConfigs.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+        }
+        public async Task<AutoModerationConfig> SelectModerationConfigForGuildAndType(string guildId, AutoModerationType type)
+        {
+            return await context.AutoModerationConfigs.AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.AutoModerationType == type);
+        }
+        public void PutModerationConfig(AutoModerationConfig modConfig)
+        {
+            context.AutoModerationConfigs.Update(modConfig);
+        }
+        public void DeleteSpecificModerationConfig(AutoModerationConfig modConfig)
+        {
+            context.AutoModerationConfigs.Remove(modConfig);
         }
 
         // ==================================================================================
