@@ -173,6 +173,12 @@
                 $('#suggestions').attr("style", "display: none!important");
                 $('#suggestionToggle').prop('checked', true);
             }
+
+            let errors = {{ basic_data.errors|default([])|json_encode|raw }}
+            errors.forEach(element => {
+                console.log(element);
+                toastr.error(element);
+            });
         });
 
         function darkModeToggle(button) {
@@ -197,5 +203,4 @@
             }
         }
     </script>
-
 {% endblock scriptblock %}

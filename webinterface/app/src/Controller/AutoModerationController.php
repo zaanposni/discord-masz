@@ -37,16 +37,17 @@ class AutoModerationController extends AbstractController
             $basicData->errors[] = 'Failed to load current guild info.';
         }
 
-        $guildChannels = DiscordAPI::GetGuildChannels($_COOKIE, $guildid)->body;
-        if (is_null($guildChannels)) {
+        $guildChannels = DiscordAPI::GetGuildChannels($_COOKIE, $guildid);
+        if (!$guildChannels->success || is_null($guildChannels->body) || $guildChannels->statuscode !== 200) {
             $basicData->errors[] = 'Failed to load current guild channels info.';
         }
-        $guild["channels"] = $guildChannels;
+        $guild["channels"] = $guildChannels->body;
 
-        $config = AutoModerationConfigAPI::SelectAll($_COOKIE, $guildid)->body;
-        if (is_null($config)) {
-            $basicData->errors[] = 'Failed to load current configs.';
+        $config = AutoModerationConfigAPI::SelectAll($_COOKIE, $guildid);
+        if (!$config->success || is_null($config->body) || $config->statuscode !== 200) {
+            $basicData->errors[] = 'Failed to load current config.';
         }
+        $config = $config->body;
 
         foreach ($guild["roles"] as $i => $role) {
             $guild["roles"][$i]["color"] = "#" . dechex($role["color"]);

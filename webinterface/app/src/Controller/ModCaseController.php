@@ -46,30 +46,35 @@ class ModCaseController extends AbstractController
         }
         $modCase = $modCase->body;
 
-        $guild = DiscordAPI::GetGuild($_COOKIE, $guildid)->body;
-        if (is_null($guild)) {
+        $guild = DiscordAPI::GetGuild($_COOKIE, $guildid);
+        if (!$guild->success || is_null($guild->body) || $guild->statuscode !== 200) {
             $basicData->errors[] = 'Failed to load detailed info about guild';
         }
+        $guild = $guild->body;
 
-        $moderator = DiscordAPI::GetUser($_COOKIE, $modCase['modId'])->body;
-        if (is_null($moderator)) {
+        $moderator = DiscordAPI::GetUser($_COOKIE, $modCase['modId']);
+        if (!$moderator->success || is_null($moderator->body) || $moderator->statuscode !== 200) {
             $basicData->errors[] = 'Failed to load detailed info about moderator';
         }
+        $moderator = $moderator->body;
 
-        $lastModerator = DiscordAPI::GetUser($_COOKIE, $modCase['lastEditedByModId'])->body;
-        if (is_null($lastModerator)) {
+        $lastModerator = DiscordAPI::GetUser($_COOKIE, $modCase['lastEditedByModId']);
+        if (!$lastModerator->success || is_null($lastModerator->body) || $lastModerator->statuscode !== 200) {
             $basicData->errors[] = 'Failed to load detailed info about last moderator';
         }
+        $lastModerator = $lastModerator->body;
 
-        $caseUser = DiscordAPI::GetUser($_COOKIE, $modCase['userId'])->body;
-        if (is_null($caseUser)) {
+        $caseUser = DiscordAPI::GetUser($_COOKIE, $modCase['userId']);
+        if (!$caseUser->success || is_null($caseUser->body) || $caseUser->statuscode !== 200) {
             $basicData->errors[] = 'Failed to load detailed user info';
         }
+        $caseUser = $caseUser->body;
 
-        $files = FilesAPI::SelectAll($_COOKIE, $guildid, $modCase['caseId'])->body;
-        if (is_null($files)) {
+        $files = FilesAPI::SelectAll($_COOKIE, $guildid, $modCase['caseId']);
+        if (!$files->success || is_null($files->body) || $files->statuscode !== 200) {
             $basicData->errors[] = 'Failed to load uploaded files.';
         }
+        $files = $files->body;
 
         $newComments = [];  // comments with discord user object merged
         $fetchedUser = [];
