@@ -21,6 +21,21 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <div class="modal-body">
+                        <div id="deleteCaseForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="deleteCaseSendNotification">
+                                        <label class="custom-control-label" for="deleteCaseSendNotification">Send public notification?</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-danger btn-md" onclick="deleteCase(this)">
+                                DELETE CASE
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

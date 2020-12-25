@@ -114,7 +114,7 @@ namespace masz.Controllers
                     await database.SaveModCase(newModCase);
                     await database.SaveChangesAsync();
 
-                    modEvent.AssociatedCaseId = newModCase.Id;
+                    modEvent.AssociatedCaseId = newModCase.CaseId;
 
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
                     try {

@@ -57,8 +57,8 @@ def create_dm_embed(msg: Message, type: int, config) -> Embed:
 async def apply_punishment(msg: Message, type: int, config):
     if config["SendDmNotification"]:
         await msg.author.send(embed=create_dm_embed(msg, type, config))
-
-    url = "http://masz_backend/internalapi/v1/guilds/748943581523345639/modcases"
+    
+    url = f"http://masz_backend/internalapi/v1/guilds/{msg.guild.id}/modcases"
 
     payload = {
         "UserId": msg.author.id,
