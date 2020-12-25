@@ -106,6 +106,7 @@ Enable **Server Members Intent** in your bot settings.
 - After authorizing your service to use your Discord account you will see your profile picture in the top right corner of the index page.
 - If you are logged in as a site admin you can use the "register guild" button to register your guilds and to get started.
 - Based on wanted features and functionalities you might have to grant your bot advanced permissions, read below for more info.
+- Checkout the bot commands using the `help` command. Default prefix is $.
 
 ## Unban request feature
 
@@ -121,6 +122,10 @@ Manage roles - for muted role
 Kick people
 Ban people
 ```
+
+## Automoderation feature
+
+To avoid any issue for message deletion or read permissions it is recommended to grant your bot a very high and strong or even the `administrator` role.
 
 ## Update
 
