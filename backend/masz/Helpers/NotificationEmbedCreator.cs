@@ -224,7 +224,7 @@ namespace masz.Helpers
 
             if (modCase.PunishedUntil != null)
             {
-                embed.AddField(ALARM_CLOCK + " - Punished Until", modCase.PunishedUntil.Value.ToString("MM.dd.yyyy HH:mm:ss") , true);
+                embed.AddField(ALARM_CLOCK + " - Punished Until (UTC)", modCase.PunishedUntil.Value.ToString("MM.dd.yyyy HH:mm:ss"), true);
             }
 
             if (modCase.Labels.Length != 0)
@@ -237,7 +237,7 @@ namespace masz.Helpers
                         break;
                     }
                 }
-                embed.AddField(SCROLL_EMOTE + " - Labels", sb.ToString(), true);
+                embed.AddField(SCROLL_EMOTE + " - Labels", sb.ToString(), modCase.PunishedUntil == null);
             }
 
             if (isInternal)
