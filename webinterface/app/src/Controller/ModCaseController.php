@@ -20,77 +20,6 @@ class ModCaseController extends AbstractController
 {
 
     /**
-     * @Route("/modcases/{guildid}")
-     */
-    public function listAll($guildid)
-    {
-        if (!isset($_COOKIE["masz_access_token"])) {
-            return $this->render('index.html.twig');
-        }
-
-        $basicData = new BasicData($_COOKIE);
-        $basicData->currentGuild = $guildid;
-        if (is_null($basicData->loggedInUser)) {
-            $basicData->errors[] = 'Failed to fetch user info or login invalid.';
-            return $this->render('index.html.twig', [
-                'basic_data' => $basicData
-            ]);
-        }
-
-        $modCases = ModCaseAPI::SelectAll($_COOKIE, $guildid);
-        if (!$modCases->success || is_null($modCases->body) || $modCases->statuscode !== 200) {
-            $basicData->errors[] = 'Failed to load modcases. API: ';
-            $basicData->errors[] = $modCases->toString();
-            return $this->render('modcase/view.html.twig', [
-                'basic_data' => $basicData
-            ]);
-        }
-        $modCases = $modCases->body;
-        $guild = DiscordAPI::GetGuild($_COOKIE, $guildid)->body;
-
-        try {
-            $filteredModCases = [];
-            if (empty($_GET)) {
-                $filteredModCases = $modCases;
-            } else {
-                foreach ($modCases as $modCase) {
-                    foreach ($_GET as $key => $value) {
-                        if ($key === 'label') {
-                            if (in_array($value, $modCase['labels'])) {
-                                $filteredModCases[] = $modCase;
-                                break;
-                            }
-                        } else {
-                            if ($modCase[$key] == $value) {
-                                $filteredModCases[] = $modCase;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        } catch (Exception $e) {
-            $filteredModCases = [];
-        }
-
-        $activePunishmentCases = [];
-        foreach ($modCases as $modCase) {
-            if ($modCase['punishmentActive']) {
-                $activePunishmentCases[] = $modCase;
-            }
-        }
-
-        $basicData->tabTitle = 'MASZ: '.$guild['name'].': ModCases';
-        return $this->render('modcase/list.html.twig', [
-            'basic_data' => $basicData,
-            'modcases' => $filteredModCases,
-            'activePunishments' => $activePunishmentCases,
-            'guild' => $guild
-        ]);
-    }
-
-
-    /**
      * @Route("/modcases/{guildid}/{id}", requirements={"guildid"="[0-9]{18}", "id"="\d*"})
      */
     public function showCase($guildid, $id)
@@ -102,7 +31,7 @@ class ModCaseController extends AbstractController
         $basicData = new BasicData($_COOKIE);
         $basicData->currentGuild = $guildid;
         if (is_null($basicData->loggedInUser)) {
-            $basicData->errors[] = 'Failed to fetch user info or login invalid.';
+            $basicData->errors[] = 'You have been logged out.';
             return $this->render('index.html.twig', [
                 'basic_data' => $basicData
             ]);
@@ -110,38 +39,42 @@ class ModCaseController extends AbstractController
 
         $modCase = ModCaseAPI::Select($_COOKIE, $guildid, $id);
         if (!$modCase->success || is_null($modCase->body) || $modCase->statuscode !== 200) {
-            $basicData->errors[] = 'Failed to load modcase. API: ';
-            $basicData->errors[] = $modCase->toString();
+            $basicData->errors[] = 'Failed to load modcase. API: ' . $modCase->toString();
             return $this->render('modcase/view.html.twig', [
                 'basic_data' => $basicData
             ]);
         }
         $modCase = $modCase->body;
 
-        $guild = DiscordAPI::GetGuild($_COOKIE, $guildid)->body;
-        if (is_null($guild)) {
+        $guild = DiscordAPI::GetGuild($_COOKIE, $guildid);
+        if (!$guild->success || is_null($guild->body) || $guild->statuscode !== 200) {
             $basicData->errors[] = 'Failed to load detailed info about guild';
         }
+        $guild = $guild->body;
 
-        $moderator = DiscordAPI::GetUser($_COOKIE, $modCase['modId'])->body;
-        if (is_null($moderator)) {
+        $moderator = DiscordAPI::GetUser($_COOKIE, $modCase['modId']);
+        if (!$moderator->success || is_null($moderator->body) || $moderator->statuscode !== 200) {
             $basicData->errors[] = 'Failed to load detailed info about moderator';
         }
+        $moderator = $moderator->body;
 
-        $lastModerator = DiscordAPI::GetUser($_COOKIE, $modCase['lastEditedByModId'])->body;
-        if (is_null($lastModerator)) {
+        $lastModerator = DiscordAPI::GetUser($_COOKIE, $modCase['lastEditedByModId']);
+        if (!$lastModerator->success || is_null($lastModerator->body) || $lastModerator->statuscode !== 200) {
             $basicData->errors[] = 'Failed to load detailed info about last moderator';
         }
+        $lastModerator = $lastModerator->body;
 
-        $caseUser = DiscordAPI::GetUser($_COOKIE, $modCase['userId'])->body;
-        if (is_null($caseUser)) {
+        $caseUser = DiscordAPI::GetUser($_COOKIE, $modCase['userId']);
+        if (!$caseUser->success || is_null($caseUser->body) || $caseUser->statuscode !== 200) {
             $basicData->errors[] = 'Failed to load detailed user info';
         }
+        $caseUser = $caseUser->body;
 
-        $files = FilesAPI::SelectAll($_COOKIE, $guildid, $modCase['caseId'])->body;
-        if (is_null($files)) {
+        $files = FilesAPI::SelectAll($_COOKIE, $guildid, $modCase['caseId']);
+        if (!$files->success || is_null($files->body) || $files->statuscode !== 200) {
             $basicData->errors[] = 'Failed to load uploaded files.';
         }
+        $files = $files->body;
 
         $newComments = [];  // comments with discord user object merged
         $fetchedUser = [];

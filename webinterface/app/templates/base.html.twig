@@ -8,6 +8,7 @@
             <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
             <link rel="stylesheet" href="{{ asset('css/mdb.css') }}">
             <link rel="stylesheet" href="{{ asset('css/datatables.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
             <link rel="stylesheet" href="{{ asset('css/default.css') }}">
             <link rel="stylesheet" href="{{ asset('css/default.date.css') }}">
 
@@ -34,14 +35,28 @@
     {% block javascripts %}
 
         <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/handlebars.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/dateformat.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/mdb.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/popper.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/toastr.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/picker.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/picker.date.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/collection_form.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 
     {% endblock %}
+    {% include 'tools/toastr.html.twig' %}
 </html>
 {% block scriptblock %}
+<script>
+    $(document).ready(function () {
+        let errors = {{ basic_data.errors|default([])|json_encode|raw }}
+        errors.forEach(element => {
+            console.log(element);
+            toastr.error(element);
+        });
+    });
+</script>
 {% endblock %}

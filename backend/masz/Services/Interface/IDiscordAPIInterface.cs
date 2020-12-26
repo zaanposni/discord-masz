@@ -25,6 +25,13 @@ namespace masz.Services
         Task<User> FetchCurrentUserInfo(string token);
 
         /// <summary>
+        /// Returns information of current bot
+        /// https://discord.com/developers/docs/resources/user#get-user
+        /// </summary>
+        /// <returns>User object if found.</returns>
+        Task<User> FetchCurrentBotInfo();
+
+        /// <summary>
         /// Returns information of user by his id
         /// https://discord.com/developers/docs/resources/user#get-user
         /// </summary>
@@ -42,11 +49,19 @@ namespace masz.Services
         Task<GuildMember> FetchMemberInfo(string guildId, string userId);
 
         /// <summary>
-        /// Returns information of user by his id
+        /// Returns information of guild channels by guild id
+        ///https://discord.com/developers/docs/resources/guild#get-guild-channels
+        /// </summary>
+        /// <param name="guildId">discord guild id to fetch</param>
+        /// <returns>List of guild channels.</returns>
+
+        Task<List<Channel>> FetchGuildChannels(string guildId);
+        /// <summary>
+        /// Returns information of guild by its id
         /// https://discord.com/developers/docs/resources/guild#get-guild
         /// </summary>
         /// <param name="guildId">discord guild id to fetch</param>
-        /// <returns>User object if found.</returns>
+        /// <returns>Guild object if found.</returns>
         Task<Guild> FetchGuildInfo(string guildId);
 
         /// <summary>

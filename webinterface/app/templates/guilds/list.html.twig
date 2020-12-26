@@ -31,7 +31,7 @@
                                 <div class="col-md-12">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="deleteData">
-                                        <label class="custom-control-label" for="deleteData">Delete all cases and files?</label>
+                                        <label class="custom-control-label" for="deleteData">Delete all cases, files, moderationevents and configurations?</label>
                                     </div>
                                 </div>
                             </div>
@@ -336,12 +336,7 @@
                 location.reload();
             },
             error: function (errMsg) {
-                console.log(errMsg);
-                $('#notification').insertAfter($(button));
-                $('#notificationColor').attr('fill', '#ac000f');
-                $('#notificationTitle').text('Deleting guild failed');
-                $('#notificationBody').text(errMsg.status + ': ' + errMsg.responseText);
-                $('#notification').toast('show');
+                handleRequestError(errMsg, "Deleting guild failed");
             }
         });
         console.log(selectedGuild);

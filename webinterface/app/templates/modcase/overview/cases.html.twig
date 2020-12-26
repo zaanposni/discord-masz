@@ -1,0 +1,83 @@
+{% block body %}
+<div class="d-flex justify-content-between align-items-start mt-2">
+    <!-- Infos -->
+    <div>
+        <span class="display-4 font-weight-bold">All Modcases ({{ modcases|length }})</span>
+    </div>
+    <!-- Buttons -->
+    <div class="d-flex flex-column align-self-end">
+    {% if guild|default %}
+        {% if guild.id in basic_data.loggedInUser.modGuilds or basic_data.loggedInUser.isAdmin %}
+                <a type="button" class="btn btn-success" href="/modcases/{{ guild.id }}/new">Create new Case</a>
+        {% endif %}
+    {% endif %}
+    </div>
+</div>
+<br>
+{% if guild.id not in basic_data.loggedInUser.modGuilds and not basic_data.loggedInUser.isAdmin %}
+    <div class="card rounded mb-3">
+        <div class="card-body">
+            <h4 class="card-title"><a>Restricted permissions.</a></h4>
+            <p class="card-text">You do not have any special permissions in this guild and will therefore only see cases registered on your name.</p>
+        </div>
+    </div>
+{% endif %}
+<table id="tableCases" class="table" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th class="th-sm"></th>
+        <td class="th-sm hiddencolumn">CaseId</td>
+        <th class="th-sm hiddencolumn">UserId</th>
+        <td class="th-sm hiddencolumn">ModId</td>
+        <td class="th-sm hiddencolumn">Labels</td>
+        <td class="th-sm hiddencolumn">Title</td>
+        <td class="th-sm hiddencolumn">Description</td>
+        <td class="th-sm hiddencolumn">Punishment</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for modcase in modcases %}
+        <tr>
+            <td data-order="{{ modcase.caseId }}">
+                <a class="font-weight-bold" href="/modcases/{{ modcase.guildId }}/{{ modcase.caseId }}">
+                    <div class="card">
+                        <div class="card-body d-flex flex-column flex-wrap">
+                            <div>
+                                <!-- Title -->
+
+                                <h4 class="card-title">
+                                    #{{ modcase.caseId }}
+                                    <span class="badge badge-danger">{{ modcase.punishment }}</span>
+                                    {{ modcase.username }} - {{ modcase.title }}
+                                </h4>
+
+                                <!-- Labels -->
+                                <div class="d-flex mb-2">
+                                    {% for label in modcase.labels %}
+                                        <div type="button"
+                                                class="badge badge-pill badge-info mr-1">{{ label }}</div>
+                                    {% endfor %}
+                                </div>
+
+                                <!-- Text -->
+                                <p class="card-text">{{ modcase.description|length > 100 ? modcase.description|slice(0, 100) ~ '...' : modcase.description }}</p>
+                            </div>
+                            <div class="flex-grow-1"></div>
+                            <!-- Button -->
+                            <div class="btn btn-orange align-self-end">VIEW DETAILS</div>
+                        </div>
+                    </div>
+                </a>
+            </td>
+            <td class="hiddencolumn">{{ modcase.caseId }}</td>
+            <td class="hiddencolumn">{{ modcase.userId }}</td>
+            <td class="hiddencolumn">{{ modcase.modId }}</td>
+            <td class="hiddencolumn">{{ modcase.labels|join('|') }}</td>
+            <td class="hiddencolumn">{{ modcase.title }}</td>
+            <td class="hiddencolumn">{{ modcase.description }}</td>
+            <td class="hiddencolumn">{{ modcase.punishment }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}

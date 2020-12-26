@@ -1,0 +1,69 @@
+{% block body %}
+    <i class="fas fa-arrow-right fa-2x mod-icon"></i>
+    <span class="mod-title">Action</span>
+    <div class="mod-body mt-3">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="invite-exclude-team" checked disabled>
+            <label class="custom-control-label" for="invite-exclude-team" title="A log entry will always be generated.">Log entry</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="send-dm-label-{{ uniquelabel }}">
+            <label class="custom-control-label" for="send-dm-label-{{ uniquelabel }}">Send dm notification</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="delete-content-label-{{ uniquelabel }}">
+            <label class="custom-control-label" for="delete-content-label-{{ uniquelabel }}">Delete message</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" data-unique="{{ uniquelabel }}" id="create-case-label-{{ uniquelabel }}" onclick="createCaseButton(this)">
+            <label class="custom-control-label" for="create-case-label-{{ uniquelabel }}">Create case</label>
+        </div>
+        <div class="custom-control custom-checkbox" id="public-notification-{{ uniquelabel }}-container" style="display: none">
+            <input type="checkbox" class="custom-control-input" id="public-notification-label-{{ uniquelabel }}">
+            <label class="custom-control-label" for="public-notification-label-{{ uniquelabel }}">Send public notification</label>
+        </div>
+        <div class="mt-2" id="punishment-type-{{ uniquelabel }}-container" style="display: none">
+            <select id="punishment-type-{{ uniquelabel }}" class="form-control browser-default custom-select" data-unique="{{ uniquelabel }}">
+                <option value="Warn">Warn</option>
+                <option value="Mute">Mute</option>
+                <option value="TempMute">TempMute</option>
+                <option value="Kick">Kick</option>
+                <option value="Ban">Ban</option>
+                <option value="TempBan">TempBan</option>
+            </select>
+        </div>
+        <div class="mt-2" id="punishment-duration-{{ uniquelabel }}-container" style="display: none">
+            <input type="text" id="punishment-duration-{{ uniquelabel }}" class="form-control" placeholder="Duration in minutes">
+        </div>
+    </div>
+{% endblock body %}
+
+{% block scriptblock %}
+<script>
+    function createCaseButton(button) {
+        let uniquelabel = $(button).attr("data-unique");
+        if ($('#create-case-label-' + uniquelabel).is(":checked").toString() === "true") {
+            $('#punishment-type-' + uniquelabel + '-container').css("display", "block");
+            $('#public-notification-' + uniquelabel + '-container').css("display", "block");
+            punishmentChange($('#punishment-type-' + uniquelabel));
+        } else {
+            $('#punishment-type-' + uniquelabel + '-container').css("display", "none");
+            $('#public-notification-' + uniquelabel + '-container').css("display", "none");
+            $('#punishment-duration-' + uniquelabel + '-container').css("display", "none");
+        }
+    }
+
+    function punishmentChange(element) {
+        let uniquelabel = $(element).attr("data-unique");
+        let punishment = $('#punishment-type-' + uniquelabel).val();
+        if (punishment.includes('Temp')) {
+            $('#punishment-duration-' + uniquelabel + '-container').closest("div").css("display", "block");
+        } else {
+            $('#punishment-duration-' + uniquelabel + '-container').css("display", "none");
+            $('#punishment-duration-' + uniquelabel).val("");
+        }
+    }
+
+    $('#punishment-type-{{ uniquelabel }}').change(f => punishmentChange($('#punishment-type-{{ uniquelabel }}')));
+</script>
+{% endblock scriptblock %}

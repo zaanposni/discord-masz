@@ -31,7 +31,7 @@ class GuildRegisterController extends AbstractController
 
         $basicData = new BasicData($_COOKIE);
         if (is_null($basicData->loggedInUser)) {
-            $basicData->errors[] = 'Failed to fetch user info or login invalid.';
+            $basicData->errors[] = 'You have been logged out.';
             return $this->render('index.html.twig', [
                 'basic_data' => $basicData
             ]);
@@ -40,8 +40,7 @@ class GuildRegisterController extends AbstractController
         $guilds = DiscordAPI::GetGuilds($_COOKIE);
         if (!$guilds->success || is_null($guilds->body) || $guilds->statuscode !== 200) {
             $basicData->tabTitle = 'MASZ: New Guild';
-            $basicData->errors[] = "Failed to fetch guild infos. API:";
-            $basicData->errors[] = $guilds->toString();
+            $basicData->errors[] = "Failed to fetch guilds info. API:" . $guilds->toString();
             return $this->render('guilds/new.html.twig', [
                 'basic_data' => $basicData,
             ]);

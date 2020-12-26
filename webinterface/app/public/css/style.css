@@ -59,3 +59,92 @@ body {
     font-weight: bold;
     text-decoration-color: orange;
 }
+
+hr.spacer-type0 {
+    display:inline-block;
+    width: 90%;
+    border: 0;
+    height: 25px;
+    background-image: url('/img/spacer0.png');
+    background-repeat: no-repeat;
+}
+
+hr.spacer-type1 {
+    display:inline-block;
+    width: 90%;
+    border: 0;
+    height: 25px;
+    background-image: url('/img/spacer1.png');
+    background-repeat: no-repeat;
+}
+
+hr.spacer-short {
+    max-width: 12%;
+}
+
+.moderations {
+    max-width: 90%;
+}
+
+.moderation {
+    -webkit-transition: transform 0.3s ease-in;
+    -moz-transition: transform 0.3s ease-in;
+    transition: transform 0.3s ease-in;
+}
+
+.moderation:hover, .moderation-big {
+    transform: scaleX(1.05);
+    -moz-transform: scaleX(1.05);
+    -webkit-transform: scaleX(1.05);
+    -o-transform: scaleX(1.05);
+    -ms-transform: scaleX(1.05);
+}
+
+.mod-field {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    margin: 8px;
+    width: 18rem;
+}
+
+.mod-field > .mod-icon {
+    position: relative;
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    align-self: center;
+    text-align: center;
+}
+
+.mod-field > .mod-title {
+    position: relative;
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    align-self: center;
+    text-align: center;
+    font-weight: bold;
+}
+
+.mod-field > .mod-body {
+
+}
+
+.mod-field .mod-exclude-add {
+    align-self: center;
+    cursor: pointer;
+}
+
+.custom-label {
+    cursor: pointer;
+}

@@ -88,16 +88,11 @@ select:-webkit-autofill {
     color: rgba(232, 230, 227, 0.7) !important;
 }
 
-.toast-header {
-    color: inherit;
-    background-color: inherit;
-}
-
 .modal-content {
     background-color: var( --dark-modal-background);
 }
 
-.card, .toast, .label-box {
+.card, .label-box {
     color: var(--dark-text);
     background-color: var(--dark-card-background);
     border-color: #828385;
@@ -218,4 +213,26 @@ select:-webkit-autofill {
     color: var(--dark-modal-background) !important;
     border-color: var(--dark-border-color) !important;
     color: var(--dark-text) !important;
+}
+
+#toast-container > div {
+    -moz-box-shadow: unset !important;
+    -webkit-box-shadow: unset !important;
+    box-shadow: unset !important;
+}
+
+.moderation {
+    background-color: var(--dark-card-background);
+    color: var(--dark-text);
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.mod-field {
+    background-color: var(--dark-card-background);
+    color: var(--dark-text);
+}
+
+.mod-exclude-add {
+    color: var(--dark-text)!important;
 }

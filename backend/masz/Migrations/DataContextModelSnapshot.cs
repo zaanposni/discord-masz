@@ -17,6 +17,94 @@ namespace masz.Migrations
                 .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("masz.Models.AutoModerationConfig", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("AutoModerationAction")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AutoModerationType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("GuildId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IgnoreChannels")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IgnoreRoles")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("Limit")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PunishmentDurationMinutes")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PunishmentType")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("SendDmNotification")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("SendPublicNotification")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("TimeLimitMinutes")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AutoModerationConfigs");
+                });
+
+            modelBuilder.Entity("masz.Models.AutoModerationEvent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AssociatedCaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AutoModerationAction")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AutoModerationType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("GuildId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("MessageContent")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("MessageId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Nickname")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Discriminator")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AutoModerationEvents");
+                });
+
             modelBuilder.Entity("masz.Models.GuildConfig", b =>
                 {
                     b.Property<int>("Id")

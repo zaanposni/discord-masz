@@ -39,19 +39,6 @@
             </a>
         </div>
 
-        {% if basic_data.errors|default %}
-            {% if basic_data.errors is not empty%}
-                <div class="card mt-3 text-danger background-blink" id="fade-it">
-                    <div class="card-body">
-                        <h5 class="card-title font-weight-bold">An Error occurred</h5>
-                        {% for message in basic_data.errors %}
-                            <span class="card-text" style="white-space: pre-wrap;">{{ message }}</span><br/>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endif %}
-        {% endif %}
-
         <div class="d-flex p-2 justify-content-center flex-wrap" id="card-overview">
             <div class="card">
                 <div class="view overlay">
@@ -179,6 +166,11 @@
             } else {
                 $('#darkmode').attr('disabled', true);
             }
+            let errors = {{ basic_data.errors|default([])|json_encode|raw }}
+            errors.forEach(element => {
+                console.log(element);
+                toastr.error(element);
+            });
         });
     </script>
 

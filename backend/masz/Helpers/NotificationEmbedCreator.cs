@@ -10,6 +10,7 @@ namespace masz.Helpers
     {
         private static string SCALES_EMOTE = "\u2696";
         private static string SCROLL_EMOTE = "\uD83C\uDFF7";
+        private static string ALARM_CLOCK = "\u23F0";
         private static string discordCdnBaseUrl = "https://cdn.discordapp.com";
 
         private static EmbedBuilder CreateBasicEmbed(RestAction action) 
@@ -39,7 +40,7 @@ namespace masz.Helpers
             
             if (actor != null)
             {
-                embed.ThumbnailUrl = $"{discordCdnBaseUrl}/avatars/{actor.Id}/{actor.Avatar}.png";
+                embed.ThumbnailUrl = actor.ImageUrl;
             }
 
             if (! string.IsNullOrEmpty(filename))
@@ -98,7 +99,7 @@ namespace masz.Helpers
             
             if (discordUser != null)
             {
-                embed.ThumbnailUrl = $"{discordCdnBaseUrl}/avatars/{discordUser.Id}/{discordUser.Avatar}.png";
+                embed.ThumbnailUrl = discordUser.ImageUrl;
             }
 
             if (! string.IsNullOrEmpty(comment.Message))
@@ -162,7 +163,7 @@ namespace masz.Helpers
             
             if (caseUser != null)
             {
-                embed.ThumbnailUrl = $"{discordCdnBaseUrl}/avatars/{caseUser.Id}/{caseUser.Avatar}.png";
+                embed.ThumbnailUrl = caseUser.ImageUrl;
             }
 
             if (! string.IsNullOrEmpty(modCase.Description) && isInternal)
@@ -221,6 +222,11 @@ namespace masz.Helpers
                 embed.AddField(SCALES_EMOTE + " - Punishment", modCase.Punishment.Substring(0, Math.Min(modCase.Punishment.Length, 1000)), true);
             }
 
+            if (modCase.PunishedUntil != null)
+            {
+                embed.AddField(ALARM_CLOCK + " - Punished Until (UTC)", modCase.PunishedUntil.Value.ToString("MM.dd.yyyy HH:mm:ss"), true);
+            }
+
             if (modCase.Labels.Length != 0)
             {
                 StringBuilder sb = new StringBuilder();
@@ -231,7 +237,7 @@ namespace masz.Helpers
                         break;
                     }
                 }
-                embed.AddField(SCROLL_EMOTE + " - Labels", sb.ToString(), true);
+                embed.AddField(SCROLL_EMOTE + " - Labels", sb.ToString(), modCase.PunishedUntil == null);
             }
 
             if (isInternal)

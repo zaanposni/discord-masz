@@ -19,6 +19,8 @@ namespace masz.data
         public DbSet<ModCase> ModCases { get; set; }
         public DbSet<GuildConfig> GuildConfigs { get; set; }
         public DbSet<ModCaseComment> ModCaseComments { get; set; }
+        public DbSet<AutoModerationEvent> AutoModerationEvents { get; set; }
+        public DbSet<AutoModerationConfig> AutoModerationConfigs { get; set; }
 
         public void Configure(EntityTypeBuilder<ModCase> builder) {
             builder.Property(u => u.CreatedAt).IsRequired(true).HasDefaultValueSql("now()");
@@ -47,6 +49,18 @@ namespace masz.data
 
             modelBuilder.Entity<ModCase>()
                 .Property(e => e.Labels)
+                .HasConversion(
+                    v => string.Join(',', v),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+
+            modelBuilder.Entity<AutoModerationConfig>()
+                .Property(e => e.IgnoreChannels)
+                .HasConversion(
+                    v => string.Join(',', v),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+
+            modelBuilder.Entity<AutoModerationConfig>()
+                .Property(e => e.IgnoreRoles)
                 .HasConversion(
                     v => string.Join(',', v),
                     v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));

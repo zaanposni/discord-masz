@@ -8,7 +8,7 @@ from pretty_help import PrettyHelp, Navigation
 
 from commands import ALL_COMMANDS
 from data import connect as db_connect
-
+from automod import check_message
 
 nav = Navigation("⬅️", "➡️", "🚫")
 color = discord.Color.dark_gold()
@@ -32,6 +32,12 @@ async def on_ready():
         game = discord.Game(name=activity)
         await client.change_presence(activity=game)
         print(f"Set game: \"{game.name}\".")
+
+@client.event
+async def on_message(msg):
+    moderated = await check_message(msg)
+    if not moderated:
+        await client.process_commands(msg)
 
 
 def start_bot():
