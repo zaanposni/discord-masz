@@ -80,7 +80,7 @@ async def apply_punishment(msg: Message, type: int, config):
         await msg.delete()
 
 
-async def check_message(msg: Message):
+async def check_message(msg: Message) -> bool:
     if msg.guild is None:
         return False
 
@@ -89,12 +89,15 @@ async def check_message(msg: Message):
 
     guildconfig = await get_cached_guild_config(msg.guild.id)
     automodconfig = await get_cached_automod_config(msg.guild.id)
+    if not (guildconfig and automodconfig):  # guild not registered or no config
+        return
 
     if check_invite(msg):
         event_type = 0
         config = next((x for x in automodconfig if x["AutoModerationType"] == event_type), None)
         if config:
             if check_filter(msg, guildconfig, config):
+                print(f"Found invite by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                 await apply_punishment(msg, event_type, config)
                 return True
 
