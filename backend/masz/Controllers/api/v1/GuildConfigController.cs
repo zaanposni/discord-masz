@@ -101,6 +101,8 @@ namespace masz.Controllers
                 } catch (Exception e) {
                     logger.LogError(e, "Failed to delete files directory for guilds.");
                 }
+                await database.DeleteAllModerationConfigsForGuild(guildid);
+                await database.DeleteAllModerationEventsForGuild(guildid);
             }
 
             database.DeleteSpecificGuildConfig(guildConfig);

@@ -45,6 +45,7 @@ namespace masz.Services
         Task<AutoModerationConfig> SelectModerationConfigForGuildAndType(string guildId, AutoModerationType type);
         void PutModerationConfig(AutoModerationConfig modConfig);
         void DeleteSpecificModerationConfig(AutoModerationConfig modConfig);
+        Task DeleteAllModerationConfigsForGuild(string guildId);
 
 
         Task SaveModCaseComment(ModCaseComment comment);

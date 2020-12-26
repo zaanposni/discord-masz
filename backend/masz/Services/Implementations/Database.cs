@@ -206,6 +206,11 @@ namespace masz.Services
         {
             context.AutoModerationConfigs.Remove(modConfig);
         }
+        public async Task DeleteAllModerationConfigsForGuild(string guildId)
+        {
+            var events = await context.AutoModerationConfigs.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            context.AutoModerationConfigs.RemoveRange(events);
+        }
 
         // ==================================================================================
         // 
