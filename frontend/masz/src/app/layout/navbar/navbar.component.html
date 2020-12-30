@@ -1,0 +1,54 @@
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark" style="background-color: #5E5B52;" *ngIf="this.currentUser | async">
+    <div class="container">
+        <a class="navbar-brand" href="/guilds">ModTool</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarSupportedContent-3">
+            <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="/guilds">Guilds</a>
+                </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="/guilds/new">Register guild</a>
+                    </li>
+            </ul>
+                <ul class="navbar-nav ml-auto nav-flex-icons">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img
+                                    src="{{ (this.currentUser | async)?.discordUser?.imageUrl }}"
+                                    class="rounded-circle z-depth-0 mr-1"
+                                    alt="avatar image"
+                                    height="30"
+                            />
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                             aria-labelledby="navbarDropdownMenuLink">
+                            <span class="dropdown-item waves-effect waves-light">
+                                Logged in as <span
+                                        class="text-danger">{{ (this.currentUser | async)?.discordUser?.username }}#{{ (this.currentUser | async)?.discordUser?.discriminator }}</span>
+                            </span>
+                            <span class="dropdown-item waves-effect waves-light" *ngIf="(this.currentUser | async)?.isAdmin">
+                                Congratulations, you are a site admin!
+                            </span>
+                            <span class="dropdown-item waves-effect waves-light" onclick="window.location.href='/api/v1/logout';">
+                               Logout
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            <!-- Button trigger modal -->
+            <a class="btn btn-elegant px-3" href="patchnotes">
+                <i class="fas fa-code-branch" aria-hidden="true"></i>
+            </a>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-elegant px-3" data-toggle="modal" data-target="#popupUserSettings">
+                <i class="fas fa-sliders-h" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</nav>

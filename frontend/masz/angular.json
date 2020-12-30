@@ -31,9 +31,19 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/assets/css/bootstrap.css",
+              "node_modules/mdbootstrap/css/mdb.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "src/styles.scss",
+              "src/assets/css/style.css",
+              "src/assets/css/dark.css"
             ],
-            "scripts": []
+            "scripts": 
+            [
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/popper.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -127,5 +137,12 @@
       }
     }
   },
-  "defaultProject": "masz"
+  "defaultProject": "masz",
+  "schematics": {
+    "@schematics/angular": {
+      "component": {
+        "spec": false
+      }
+    }
+  }
 }

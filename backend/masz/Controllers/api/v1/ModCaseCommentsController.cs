@@ -152,7 +152,7 @@ namespace masz.Controllers
                 return NotFound();
             }
 
-            ModCaseComment comment = await database.SelectSpecificModCaseComment(commentid);
+            ModCaseComment comment = modCase.Comments.FirstOrDefault(x => x.Id == commentid);
             if (comment == null) 
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Comment not found.");
@@ -221,7 +221,7 @@ namespace masz.Controllers
                 return NotFound();
             }
 
-            ModCaseComment comment = await database.SelectSpecificModCaseComment(commentid);
+            ModCaseComment comment = modCase.Comments.FirstOrDefault(x => x.Id == commentid);
             if (comment == null) 
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Comment not found.");

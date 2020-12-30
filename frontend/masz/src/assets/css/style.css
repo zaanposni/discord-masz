@@ -1,0 +1,147 @@
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #5E5B52;
+    border-color: #5E5B52;
+}
+#fade-it {
+    padding: 15px;
+    text-align: center;
+}
+@-webkit-keyframes yellow-fade {
+    from {
+        background: #f96;
+    }
+    to {
+        background: #fff;
+    }
+}
+@-moz-keyframes yellow-fade {
+    from {
+        background: #f96;
+    }
+    to {
+        background: #fff;
+    }
+}
+@keyframes yellow-fade {
+    from {
+        background: #f96;
+    }
+    to {
+        background: #fff;
+    }
+}
+#fade-it {
+    -webkit-animation: yellow-fade 2s ease-in-out 0s;
+    -moz-animation: yellow-fade 2s ease-in-out 0s;
+    -o-animation: yellow-fade 2s ease-in-out 0s;
+    animation: yellow-fade 2s ease-in-out 0s;
+}
+
+.all-content {
+    flex: 1 0 auto;
+}
+
+hr.spacer-type0 {
+    display:inline-block;
+    width: 90%;
+    border: 0;
+    height: 25px;
+    background-image: url('/assets/img/spacer0.png');
+    background-repeat: no-repeat;
+}
+
+hr.spacer-type1 {
+    display:inline-block;
+    width: 90%;
+    border: 0;
+    height: 25px;
+    background-image: url('/assets/img/spacer1.png');
+    background-repeat: no-repeat;
+}
+
+hr.spacer-short {
+    max-width: 12%;
+}
+
+.moderations {
+    max-width: 90%;
+}
+
+.moderation {
+    -webkit-transition: transform 0.3s ease-in;
+    -moz-transition: transform 0.3s ease-in;
+    transition: transform 0.3s ease-in;
+}
+
+.moderation:hover, .moderation-big {
+    transform: scaleX(1.05);
+    -moz-transform: scaleX(1.05);
+    -webkit-transform: scaleX(1.05);
+    -o-transform: scaleX(1.05);
+    -ms-transform: scaleX(1.05);
+}
+
+.mod-field {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    margin: 8px;
+    width: 18rem;
+}
+
+.mod-field > .mod-icon {
+    position: relative;
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    align-self: center;
+    text-align: center;
+}
+
+.mod-field > .mod-title {
+    position: relative;
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    align-self: center;
+    text-align: center;
+    font-weight: bold;
+}
+
+.mod-field .mod-exclude-add {
+    align-self: center;
+    cursor: pointer;
+}
+
+.custom-label {
+    cursor: pointer;
+}
+
+app-root {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.custom-footer {
+    flex-shrink: 0;
+    color: orange;
+    font-weight: bold;
+}
+
+.custom-footer a {
+    color: orange;
+    font-weight: bold;
+    text-decoration-color: orange;
+}

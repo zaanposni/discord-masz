@@ -1,58 +1,147 @@
 [
-    {
-        "title": "Version 1.6 Automoderation",
-        "body": "- Fixed sorting in modcase table.\n- Reworked notification system. Now using JQuery Toast.\n- Fixed style in guild register dialog.\n- Added automoderation feature.\n- Added invite command.\n- Fixed url for default profil pictures in announcement.\n- Fixed output of register command in DMs.\n- Added information of punishment duration in announcement embed."
-    },
-    {
-        "title": "Version 1.5.1",
-        "body": "- Fixed link in announcement embeds.\n- Now limiting the description in case overview list so buttons do not bug.\n- Added info about command arguments in help command.\n- Also add label after pressing enter."
-    },
-    {
-        "title": "Version 1.5",
-        "body": "- Added pretty help command to discord bot.\n- Added url command to discord bot.\n- Added feature command to discord bot.\n- Added register command to discord bot.\n- Added whois command to discord bot.\n- Added more style to the register guild form.\n- Now ignoring spaces in user id while creating cases.\n- Reapplying muted role if user rejoins guild.\n- Reworked dark mode."
-    },
-    {
-        "title": "Version 1.4",
-        "body": "- Added discord username to announcements.\n- Files are now removed on guild deletion if wanted.\n- Improved guild deletion form.\n- Using correct permissions on guild invite link.\n- Added webhook notification for files.\n- Added more information to all webhook notifications.\n- Added simple discord bot.\n- Fixed rate limit for assets.\n- You can no longer create cases against site admins."
-    },
-    {
-        "title": "Version 1.3 - Fileupload",
-        "body": "- Added suggestions and first steps tips.\n- Added file uploads in case overview.\n- Reworked case overview into tab system.\n- Added toggle for suggestions in the settings tab."
-    },
-    {
-        "title": "Version 1.2 - Automated punishment",
-        "body": "- Added form to delete and edit guild configuration via frontend.\n- Public announcement embeds do not contain case description anymore.\n- Added DatePicker to case forms.\n- Reworked display of case details.\n- Added automated punishments that get handled by backend.\n- Added punishment tab that displays all current punishments."
-    },
-    {
-        "title": "Version 1.1 - Darkmode",
-        "body": "- Reworked dialog to register guilds.\n- Fixed a bug that occures if the bot gets removed from a registered guild.\n- Added default darkmode. Toggleable in settings top right corner.\n- Fixed unstyled checkbox."
-    },
-    {
-        "title": "Version 1.0 - First major release",
-        "body": "- Added support for default discord user avatar.\n- Added modcase comments.\n- Login now correctly returns to the requested url.\n- It is now possible to delete modcases via frontend.\n- Fixed query filters in case overview."
-    },
-    {
-        "title": "Version 0.4",
-        "body": "- Added button for moderators to view all cases they created\n- Added info box if modcases are viewed as normal member without special permissions.\n- ModCases are now editable.\n- Added more info and content to login page.\n- Fixed a bug that many fields in modcases could be edited to be null or empty.\n- Fixed edit form to display 'EDIT CASE' instead of 'CREATE CASE'"
-    },
-    {
-        "title": "Version 0.3",
-        "body": "- Added form to register guilds via frontend.\n- Fixed a bug that modcase labels could be duplicated.\n- Added choice dropdown for the punishment field in case creation\n- Added choice dropdown for the severity field in case creation.\n- Now displaying the correct case id in the tab title.\n- 'See more patch notes here.' now redirects to github release page.\n- The OAuth login no longer opens in a new tab."
-    },
-    {
-        "title": "Version 0.2",
-        "body": "- Fixed display of last moderator id.\n- Added search field for modcase table.\n- Added option to use labels properly on case creation."
-    },
-    {
-        "title": "Version 0.1",
-        "body": "- Added logout option in the profile dropdown.\n- No longer accepting modcases for Discord bots.\n- Only show edit/delete/create buttons if user is a moderator or admin."
-    },
-    {
-        "title": "Notice for empty results",
-        "body": "- It is now displayed more clearly that a search or the displayed page does not contain any errors but is actually empty due to permissions or similar."
-    },
-    {
-        "title": "Added Patch Notes",
-        "body": "- Added Patch Notes."
-    }
+  {
+    "title": "Version 1.6 Automoderation",
+    "version": "v1.6",
+    "changes": [
+      "Fixed sorting in modcase table.",
+      "Reworked notification system. Now using JQuery Toast.",
+      "Fixed style in guild register dialog.",
+      "Added automoderation feature.",
+      "Added invite command.",
+      "Fixed url for default profil pictures in announcement.",
+      "Fixed output of register command in DMs.",
+      "Added information of punishment duration in announcement embed."
+    ]
+  },
+  {
+    "title": "Version 1.5.1",
+    "version": "v1.5.1",
+    "changes": [
+      "Fixed link in announcement embeds.",
+      "Now limiting the description in case overview list so buttons do not bug.",
+      "Added info about command arguments in help command.",
+      "Also add label after pressing enter."
+    ]
+  },
+  {
+    "title": "Version 1.5",
+    "version": "v1.5",
+    "changes": [
+      "Added pretty help command to discord bot.",
+      "Added url command to discord bot.",
+      "Added feature command to discord bot.",
+      "Added register command to discord bot.",
+      "Added whois command to discord bot.",
+      "Added more style to the register guild form.",
+      "Now ignoring spaces in user id while creating cases.",
+      "Reapplying muted role if user rejoins guild.",
+      "Reworked dark mode."
+    ]
+  },
+  {
+    "title": "Version 1.4",
+    "version": "v1.4",
+    "changes": [
+      "Added discord username to announcements.",
+      "Files are now removed on guild deletion if wanted.",
+      "Improved guild deletion form.",
+      "Using correct permissions on guild invite link.",
+      "Added webhook notification for files.",
+      "Added more information to all webhook notifications.",
+      "Added simple discord bot.",
+      "Fixed rate limit for assets.",
+      "You can no longer create cases against site admins."
+    ]
+  },
+  {
+    "title": "Version 1.3 - Fileupload",
+    "version": "v1.3",
+    "changes": [
+      "Added suggestions and first steps tips.",
+      "Added file uploads in case overview.",
+      "Reworked case overview into tab system.",
+      "Added toggle for suggestions in the settings tab."
+    ]
+  },
+  {
+    "title": "Version 1.2 - Automated punishment",
+    "version": "v1.2",
+    "changes": [
+      "Added form to delete and edit guild configuration via frontend.",
+      "Public announcement embeds do not contain case description anymore.",
+      "Added DatePicker to case forms.",
+      "Reworked display of case details.",
+      "Added automated punishments that get handled by backend.",
+      "Added punishment tab that displays all current punishments."
+    ]
+  },
+  {
+    "title": "Version 1.1 - Darkmode",
+    "version": "v1.1",
+    "changes": [
+      "Reworked dialog to register guilds.",
+      "Fixed a bug that occures if the bot gets removed from a registered guild.",
+      "Added default darkmode. Toggleable in settings top right corner.",
+      "Fixed unstyled checkbox."
+    ]
+  },
+  {
+    "title": "Version 1.0 - First major release",
+    "version": "v1.0",
+    "changes": [
+      "Added support for default discord user avatar.",
+      "Added modcase comments.",
+      "Login now correctly returns to the requested url.",
+      "It is now possible to delete modcases via frontend.",
+      "Fixed query filters in case overview."
+    ]
+  },
+  {
+    "title": "Version 0.4",
+    "version": "v0.4",
+    "changes": [
+      "Added button for moderators to view all cases they created",
+      "Added info box if modcases are viewed as normal member without special permissions.",
+      "ModCases are now editable.",
+      "Added more info and content to login page.",
+      "Fixed a bug that many fields in modcases could be edited to be null or empty.",
+      "Fixed edit form to display 'EDIT CASE' instead of 'CREATE CASE'"
+    ]
+  },
+  {
+    "title": "Version 0.3",
+    "version": "v0.3",
+    "changes": [
+      "Added form to register guilds via frontend.",
+      "Fixed a bug that modcase labels could be duplicated.",
+      "Added choice dropdown for the punishment field in case creation",
+      "Added choice dropdown for the severity field in case creation.",
+      "Now displaying the correct case id in the tab title.",
+      "'See more patch notes here.' now redirects to github release page.",
+      "The OAuth login no longer opens in a new tab."
+    ]
+  },
+  {
+    "title": "Version 0.2",
+    "version": "v0.2",
+    "changes": [
+      "Fixed display of last moderator id.",
+      "Added search field for modcase table.",
+      "Added option to use labels properly on case creation."
+    ]
+  },
+  {
+    "title": "Version 0.1",
+    "version": "v0.1",
+    "changes": [
+      "Added logout option in the profile dropdown.",
+      "No longer accepting modcases for Discord bots.",
+      "Only show edit/delete/create buttons if user is a moderator or admin."
+    ]
+  },
+  {
+    "title": "Added Patch Notes",
+    "version": "v0.0",
+    "changes": ["Added Patch Notes."]
+  }
 ]
