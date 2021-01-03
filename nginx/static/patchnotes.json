@@ -5,7 +5,8 @@
     "changes": [
       "Reworked frontend. Now using Angular instead of PHP.",
       "Fixed some link issues in announcement embeds.",
-      "Fixed date format in announcement embed."
+      "Fixed date format in announcement embed.",
+      "Fixed wrong punishment due to Chrome Autotranslate."
     ]
   },
   {
