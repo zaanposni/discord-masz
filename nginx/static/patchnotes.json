@@ -1,5 +1,13 @@
 [
   {
+  "title": "Version 1.7 Angular Rework",
+  "version": "v1.7",
+  "changes": [
+      "Reworked frontend. Now using Angular instead of PHP",
+      "Fixed some link issues in announcement embeds."
+    ]
+  },
+  {
     "title": "Version 1.6 Automoderation",
     "version": "v1.6",
     "changes": [

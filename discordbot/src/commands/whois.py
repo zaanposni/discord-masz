@@ -66,7 +66,7 @@ async def whois(ctx, userid):
 
     if cases:
         info = ""
-        for case in cases[:5]:
+        for case in cases[:-6:-1]:
             info += f"[#{case['CaseId']} - {case['Title']}]"
             info += f"({os.getenv('META_SERVICE_BASE_URL', '')}/guilds/{ctx.guild.id}/cases/{case['CaseId']})"
             info += "\n"
@@ -82,7 +82,7 @@ async def whois(ctx, userid):
         
         if active_punishments:
             info = ""
-            for case in active_punishments[:5]:
+            for case in active_punishments[:-6:-1]:
                 info += f"{case['Punishment']}"
                 if case["PunishedUntil"] is not None:
                     info += f" (until {case['PunishedUntil'].strftime('%d.%m.%Y')}): "

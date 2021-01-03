@@ -137,9 +137,7 @@ namespace masz.Helpers
             }
 
             description.Append($"\nThis notification has been generated automatically.\n");
-            if (action != RestAction.Deleted) {
-                description.Append($"Follow [this link]({serviceBaseUrl}/guilds/{comment.ModCase.GuildId}/cases/{comment.ModCase.CaseId}) to see the corresponding case.\n");
-            }
+            description.Append($"Follow [this link]({serviceBaseUrl}/guilds/{comment.ModCase.GuildId}/cases/{comment.ModCase.CaseId}) to see the corresponding case.\n");
             description.Append($"[Contribute](https://github.com/zaanposni/discord-masz/blob/master/CONTRIBUTING.md) to this moderation tool.");
 
             embed.Description = description.ToString();
