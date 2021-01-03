@@ -148,7 +148,6 @@ There are backup example scripts in the `scripts` directory to backup uploaded f
 ## Config
 
 - Using the `setup.py` script. Choose "local" deployment for best development experience.
-- If you want to develop the frontend using your own symfony server, you can change the default path to the API in `src/Config/Config.php`. <br/>
 
 ## Discord
 

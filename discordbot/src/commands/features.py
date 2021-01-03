@@ -22,7 +22,7 @@ async def features(ctx):
     
     if cfg is None:
         if os.getenv('META_SERVICE_BASE_URL', ''):
-            await ctx.send(f"MASZ is not registered on this guild.\nA siteadmin can register this guild at: {os.getenv('META_SERVICE_BASE_URL', '')}/newguild?guildid={ctx.guild.id}")
+            await ctx.send(f"MASZ is not registered on this guild.\nA siteadmin can register this guild at: {os.getenv('META_SERVICE_BASE_URL', '')}/guilds/new?guildid={ctx.guild.id}")
         else:
             await ctx.send(f"MASZ is not registered on this guild.")
         return

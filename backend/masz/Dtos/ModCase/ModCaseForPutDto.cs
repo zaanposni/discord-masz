@@ -19,7 +19,7 @@ namespace masz.Dtos.ModCase
         [Range(0, 3)]
         public int Severity { get; set; }
         [DataType(DataType.Date)]
-        public DateTime OccuredAt { get; set; }
+        public DateTime? OccuredAt { get; set; }
         [Required(ErrorMessage = "Punishment field is required")]
         [MaxLength(100)]
         public string Punishment { get; set; }

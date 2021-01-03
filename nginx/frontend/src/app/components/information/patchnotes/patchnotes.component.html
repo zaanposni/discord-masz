@@ -1,0 +1,8 @@
+<div class="d-flex flex-column p-2 w-75 m-auto">
+    <div class="card flex-grow-1 mt-3" *ngFor="let note of (this.patchNotes | async)">
+        <div class="card-body">
+            <h5 class="card-title">{{ note.title }}</h5>
+            <span *ngFor="let change of note.changes">{{ change }}<br/></span>
+        </div>
+    </div>
+</div>

@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("api/v1/modcases/{guildid}/")]
+    [Route("api/v1/modcases/{guildid}")]
     [Authorize]
     public class ModCaseController : ControllerBase
     {
@@ -188,7 +188,10 @@ namespace masz.Controllers
             modCase.Description = newValue.Description;
             modCase.UserId = newValue.UserId;
             modCase.Severity = newValue.Severity;
-            modCase.OccuredAt = newValue.OccuredAt;
+            if (newValue.OccuredAt.HasValue)
+            {
+                modCase.OccuredAt = newValue.OccuredAt.Value;
+            }
             modCase.Punishment = newValue.Punishment;
             modCase.Labels = newValue.Labels.Distinct().ToArray();
             modCase.Others = newValue.Others;
@@ -397,7 +400,7 @@ namespace masz.Controllers
             return StatusCode(201, new { id = newModCase.Id, caseid = newModCase.CaseId });
         }
 
-        [HttpGet("all")]
+        [HttpGet]
         public async Task<IActionResult> GetAllItems([FromRoute] string guildid) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");

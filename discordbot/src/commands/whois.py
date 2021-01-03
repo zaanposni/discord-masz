@@ -28,7 +28,7 @@ async def whois(ctx, userid):
 
     if cfg is None:
         if os.getenv('META_SERVICE_BASE_URL', ''):
-            await ctx.send(f"MASZ is not registered on this guild.\nA siteadmin can register this guild at: {os.getenv('META_SERVICE_BASE_URL', '')}/newguild?guildid={ctx.guild.id}")
+            await ctx.send(f"MASZ is not registered on this guild.\nA siteadmin can register this guild at: {os.getenv('META_SERVICE_BASE_URL', '')}/guilds/new?guildid={ctx.guild.id}")
         else:
             await ctx.send(f"MASZ is not registered on this guild.")
         return
@@ -66,9 +66,9 @@ async def whois(ctx, userid):
 
     if cases:
         info = ""
-        for case in cases[:5]:
+        for case in cases[:-6:-1]:
             info += f"[#{case['CaseId']} - {case['Title']}]"
-            info += f"({os.getenv('META_SERVICE_BASE_URL', '')}/modcases/{ctx.guild.id}/{case['CaseId']})"
+            info += f"({os.getenv('META_SERVICE_BASE_URL', '')}/guilds/{ctx.guild.id}/cases/{case['CaseId']})"
             info += "\n"
         
         if len(cases) > 5:
@@ -82,13 +82,13 @@ async def whois(ctx, userid):
         
         if active_punishments:
             info = ""
-            for case in active_punishments[:5]:
+            for case in active_punishments[:-6:-1]:
                 info += f"{case['Punishment']}"
                 if case["PunishedUntil"] is not None:
                     info += f" (until {case['PunishedUntil'].strftime('%d.%m.%Y')}): "
                 else:
                     info += ": "
-                info += f"[#{case['CaseId']} - {case['Title']}]({os.getenv('META_SERVICE_BASE_URL', '')}/modcases/{ctx.guild.id}/{case['CaseId']})"
+                info += f"[#{case['CaseId']} - {case['Title']}]({os.getenv('META_SERVICE_BASE_URL', '')}/guilds/{ctx.guild.id}/cases/{case['CaseId']})"
                 info += "\n"
             
             if len(active_punishments) > 5:

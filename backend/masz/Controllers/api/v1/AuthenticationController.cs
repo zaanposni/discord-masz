@@ -22,8 +22,8 @@ namespace masz.Controllers
         [HttpGet("login")]
         public IActionResult Login([FromQuery] string ReturnUrl)
         {
-            if (ReturnUrl == null || ReturnUrl.Length == 0) {
-                ReturnUrl = $"/";
+            if (String.IsNullOrEmpty(ReturnUrl)) {
+                ReturnUrl = "/guilds";
             }
 
             var properties = new AuthenticationProperties()

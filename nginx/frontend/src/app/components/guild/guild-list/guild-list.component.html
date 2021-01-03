@@ -1,0 +1,200 @@
+<div class="d-flex p-2 justify-content-center flex-wrap" id="suggestions" *ngIf="this.showSuggestions">
+    <div class="card" *ngIf="(this.currentUser | async)?.isAdmin">
+        <div class="view overlay">
+            <img class="card-img-top" src="assets/img/rocket.png"
+                    alt="Card image cap">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">First steps</h5>
+            <p class="card-text">
+                First you have to <span class="font-weight-bold">register your guilds in this application</span>. You will be asked to add the bot to your guild if you have not already done so.<br/>
+                After registering the guild you can <span class="font-weight-bold">create cases</span>, your users can <span class="font-weight-bold">see their own cases and comment on them</span> and your <span class="font-weight-bold">moderators can keep track</span> of everything.
+            </p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="view overlay">
+            <img class="card-img-top" src="assets/img/feature.png"
+                    alt="Card image cap">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Nice to know</h5>
+            <p class="card-text">
+                Checkout the top right corner for <span class="font-weight-bold">settings</span> and <span class="font-weight-bold">patch information.</span><br/>
+                <span *ngIf="(this.currentUser | async)?.isAdmin">
+                    There are <span class="font-weight-bold">additional features</span> in this application that may require you to give your bots more permissions.
+                    Checkout the <a href="https://github.com/zaanposni/discord-masz#unban-request-feature" target="_blank">documentation</a>.
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="view overlay">
+            <img class="card-img-top" src="assets/img/github.png"
+                    alt="Card image cap">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Support</h5>
+            <p class="card-text">
+                If you enjoy MASZ please <span class="font-weight-bold">star our project on GitHub</span> and <span class="font-weight-bold">tell your friends</span> about MASZ.
+            </p>
+            <!-- Button -->
+            <a href="https://github.com/zaanposni/discord-masz" type="button" class="btn btn-purple" target="_blank">
+                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+            </a>
+        </div>
+    </div>
+    <div class="d-flex flex-column" style="width: unset">
+        <button type="button" class="btn btn-warning" (click)="hideSuggestions()">
+            Hide suggestions
+        </button>
+        <div class="flex-grow-1"></div>
+    </div>
+</div>
+<div class="card rounded" *ngIf="(this.currentUser | async)?.memberGuilds?.length + (this.currentUser | async)?.modGuilds?.length + (this.currentUser | async)?.adminGuilds?.length + (this.currentUser | async)?.bannedGuilds?.length === 0">
+    <div class="card-body">
+        <h4 class="card-title"><a>Nothing here.</a></h4>
+        <p class="card-text">There are no guilds registered that you are a member of. <br/>
+            If you look for a guild you are banned from, the administrator might have to enable the banned feature first.</p>
+    </div>
+</div>
+<span class="display-4 mb-3" *ngIf="(this.currentUser | async)?.adminGuilds?.length">Admin Guilds ({{ (this.currentUser | async)?.adminGuilds?.length }})</span>
+<div class="d-flex flex-column flex-wrap justify-content-between mt-3">
+    <div class="d-flex flex-row" *ngFor="let guild of (this.currentUser | async)?.adminGuilds">
+        <div class="mb-3 flex-grow-1 crs-pnt" (click)="this.router.navigate(['guilds', guild.id])">
+            <div class="card" id="guild-card- guild.obj.id ">
+                <div class="card-body d-flex flex-row">
+                    <div class="flex-grow-1">
+                        <!-- Title -->
+                        <h4 class="card-title">{{ guild.name }}</h4>
+
+                        <!-- Text -->
+                        <div class="card-text">
+                            <p># {{ guild.id }} </p>
+                        </div>
+                    </div>
+                    <div class="align-self-end">
+                        <img class="card-img"
+                                src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png"
+                                alt="Guild icon"/>
+                    </div>
+                </div>
+                <div class="card-text">
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column" *ngIf="(this.currentUser | async)?.isAdmin">
+            <button class="btn btn-danger" (click)="deleteGuild(guild.id, guild.name)">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+            <button class="btn btn-warning" (click)="this.router.navigate(['guilds', guild.id, 'edit'])">
+                <i class="fas fa-edit"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<span class="display-4 mb-3" *ngIf="(this.currentUser | async)?.modGuilds?.length">Moderator Guilds ({{ (this.currentUser | async)?.modGuilds?.length }})</span>
+<div class="d-flex flex-column flex-wrap justify-content-between mt-3">
+    <div class="d-flex flex-row" *ngFor="let guild of (this.currentUser | async)?.modGuilds">
+        <div class="mb-3 flex-grow-1 crs-pnt" (click)="this.router.navigate(['guilds', guild.id])">
+            <div class="card" id="guild-card- guild.obj.id ">
+                <div class="card-body d-flex flex-row">
+                    <div class="flex-grow-1">
+                        <!-- Title -->
+                        <h4 class="card-title">{{ guild.name }}</h4>
+
+                        <!-- Text -->
+                        <div class="card-text">
+                            <p># {{ guild.id }} </p>
+                        </div>
+                    </div>
+                    <div class="align-self-end">
+                        <img class="card-img"
+                                src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png"
+                                alt="Guild icon"/>
+                    </div>
+                </div>
+                <div class="card-text">
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column" *ngIf="(this.currentUser | async)?.isAdmin">
+            <button class="btn btn-danger" (click)="deleteGuild(guild.id, guild.name)">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+            <button class="btn btn-warning" (click)="this.router.navigate(['guilds', guild.id, 'edit'])">
+                <i class="fas fa-edit"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<span class="display-4 mb-3" *ngIf="(this.currentUser | async)?.memberGuilds?.length">Guilds ({{ (this.currentUser | async)?.memberGuilds?.length }})</span>
+<div class="d-flex flex-column flex-wrap justify-content-between mt-3">
+    <div class="d-flex flex-row" *ngFor="let guild of (this.currentUser | async)?.memberGuilds">
+        <div class="mb-3 flex-grow-1 crs-pnt" (click)="this.router.navigate(['guilds', guild.id])">
+            <div class="card" id="guild-card- guild.obj.id ">
+                <div class="card-body d-flex flex-row">
+                    <div class="flex-grow-1">
+                        <!-- Title -->
+                        <h4 class="card-title">{{ guild.name }}</h4>
+
+                        <!-- Text -->
+                        <div class="card-text">
+                            <p># {{ guild.id }} </p>
+                        </div>
+                    </div>
+                    <div class="align-self-end">
+                        <img class="card-img"
+                                src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png"
+                                alt="Guild icon"/>
+                    </div>
+                </div>
+                <div class="card-text">
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column" *ngIf="(this.currentUser | async)?.isAdmin">
+            <button class="btn btn-danger" (click)="deleteGuild(guild.id, guild.name)">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+            <button class="btn btn-warning" (click)="this.router.navigate(['guilds', guild.id, 'edit'])">
+                <i class="fas fa-edit"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<span class="display-4 mb-3" *ngIf="(this.currentUser | async)?.bannedGuilds?.length">Banned from Guilds ({{ (this.currentUser | async)?.bannedGuilds?.length }})</span>
+<div class="d-flex flex-column flex-wrap justify-content-between mt-3">
+    <div class="d-flex flex-row" *ngFor="let guild of (this.currentUser | async)?.bannedGuilds">
+        <div class="mb-3 flex-grow-1 crs-pnt" (click)="this.router.navigate(['guilds', guild.id])">
+            <div class="card" id="guild-card- guild.obj.id ">
+                <div class="card-body d-flex flex-row">
+                    <div class="flex-grow-1">
+                        <!-- Title -->
+                        <h4 class="card-title">{{ guild.name }}</h4>
+
+                        <!-- Text -->
+                        <div class="card-text">
+                            <p># {{ guild.id }} </p>
+                        </div>
+                    </div>
+                    <div class="align-self-end">
+                        <img class="card-img"
+                                src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png"
+                                alt="Guild icon"/>
+                    </div>
+                </div>
+                <div class="card-text">
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column" *ngIf="(this.currentUser | async)?.isAdmin">
+            <button class="btn btn-danger" (click)="deleteGuild(guild.id, guild.name)">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+            <button class="btn btn-warning" (click)="this.router.navigate(['guilds', guild.id, 'edit'])">
+                <i class="fas fa-edit"></i>
+            </button>
+        </div>
+    </div>
+</div>

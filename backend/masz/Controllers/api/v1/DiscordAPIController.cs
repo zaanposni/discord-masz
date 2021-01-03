@@ -45,28 +45,38 @@ namespace masz.Controllers.api.v1
                 return Unauthorized();
             }
 
-            List<string> memberGuilds = new List<string>();
-            List<string> modGuilds = new List<string>();
-            List<string> adminGuilds = new List<string>();
-            List<string> bannedGuilds = new List<string>();
+            List<Guild> memberGuilds = new List<Guild>();
+            List<Guild> modGuilds = new List<Guild>();
+            List<Guild> adminGuilds = new List<Guild>();
+            List<Guild> bannedGuilds = new List<Guild>();
             bool siteAdmin = config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id);
 
+            List<Guild> userGuilds = await currentIdentity.GetCurrentGuilds();
+
             List<GuildConfig> registeredGuilds = await database.SelectAllGuildConfigs();
+
+            logger.LogCritical(userGuilds.Count.ToString());
+            logger.LogCritical(registeredGuilds.Count.ToString());
+            logger.LogCritical(registeredGuilds.ToString());
+            logger.LogCritical(userGuilds.ToString());
+
             foreach (GuildConfig guild in registeredGuilds)
             {
-                if (await currentIdentity.IsOnGuild(guild.GuildId))
+                var userGuild = userGuilds.FirstOrDefault(x => x.Id == guild.GuildId);
+                if (userGuild != null)
                 {
                     if (await currentIdentity.HasModRoleOrHigherOnGuild(guild.GuildId, this.database)) {
-                        modGuilds.Add(guild.GuildId);
                         if (await currentIdentity.HasAdminRoleOnGuild(guild.GuildId, this.database)) {
-                            adminGuilds.Add(guild.GuildId);
+                            adminGuilds.Add(userGuild);
+                        } else {
+                            modGuilds.Add(userGuild);
                         }
                     } else {
-                        memberGuilds.Add(guild.GuildId);
+                        memberGuilds.Add(userGuild);
                     }
                 } else {
                     if (await discord.GetGuildUserBan(guild.GuildId, currentUser.Id) != null) {
-                        bannedGuilds.Add(guild.GuildId);
+                        bannedGuilds.Add(userGuild);
                     }
                 }
             }

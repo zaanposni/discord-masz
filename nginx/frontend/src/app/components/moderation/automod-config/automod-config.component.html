@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-between align-items-start">
+    <h3><span class="badge badge-primary">Configure auto moderations</span></h3>
+</div>
+<div class="card m-3" id="form-guild">
+    <div class="card-body d-flex flex-row">
+        <div class="align-self-start mr-3">
+            <img
+                    src="https://cdn.discordapp.com/icons/{{ (this.guild | async)?.id }}/{{ (this.guild | async)?.icon }}.png"
+                    class="rounded-circle z-depth-0 mr-1"
+                    alt="guild icon"
+                    height="35"
+            />
+        </div>
+        <div class="flex-grow-1">
+            <h4 class="card-title">{{ (this.guild | async)?.name }}</h4>
+        </div>
+    </div>
+</div>
+<div id="rules">
+    <app-automod-rule [guildId]="guildId" [type]="'0'"></app-automod-rule>
+    <div class="rule" id="rule-last">
+        <div class="d-flex" style="align-items: center">
+            <span class="flex-grow-1 mr-3" style="font-size: 20px;">
+                More rules
+            </span>
+            <hr class="spacer-type1"/>
+        </div>
+
+        <div class="card rounded mb-3">
+            <div class="card-body">
+                <h4 class="card-title"><a>More rules coming soon</a></h4>
+            </div>
+        </div>
+    </div>
+</div>

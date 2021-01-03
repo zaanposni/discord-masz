@@ -52,30 +52,6 @@ services:
     volumes:
       - filehost:/filehost
 
-  sf4_apache:
-    build: apache
-    container_name: masz_sf4_apache
-    volumes:
-      - ./apache/config/vhosts:/etc/apache2/sites-enabled
-      - php_share:/home/wwwroot/sf4
-    restart: unless-stopped
-    depends_on:
-      - php
-    networks:
-      - appnetwork
-
-  php:
-    build: 
-      context: webinterface
-      args: 
-       - DEPLOY_MODE=${DEPLOY_MODE}
-    container_name: masz_sf4_php
-    restart: unless-stopped
-    volumes:
-      - php_share:/home/wwwroot/sf4
-    networks:
-      - appnetwork
-
   nginx:
     build: 
       context: nginx
@@ -86,7 +62,6 @@ services:
     depends_on:
         - db
         - backend
-        - sf4_apache
     restart: unless-stopped
     ports:
       - "5565:80"

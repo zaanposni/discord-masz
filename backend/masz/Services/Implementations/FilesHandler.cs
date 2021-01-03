@@ -69,7 +69,6 @@ namespace masz.Services
 
         private string GetUniqueFileName(IFormFile file)
         {
-            // TODO: change to hasing algorithm
             string fileName = Path.GetFileName(file.FileName);
             return  GetSHA1Hash(file)
                     + "_"

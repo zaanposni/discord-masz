@@ -1,9 +1,0 @@
-name: Lint
-on: [pull_request]
-
-jobs:
-  php:
-    runs-on: ubuntu-latest
-    steps:
-        - uses: actions/checkout@v1
-        - uses: michaelw90/PHP-Lint@master
