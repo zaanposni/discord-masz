@@ -1,6 +1,6 @@
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark" style="background-color: #5E5B52;" *ngIf="this.currentUser | async">
     <div class="container">
-        <a class="navbar-brand" href="/guilds">ModTool</a>
+        <a class="navbar-brand" (click)="this.router.navigate(['guilds'])" style="color: #fff">MASZ</a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -8,12 +8,12 @@
         </button>
         <div class="navbar-collapse collapse" id="navbarSupportedContent-3">
             <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="/guilds">Guilds</a>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" (click)="this.router.navigate(['guilds'])">Guilds</a>
                 </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light" href="/guilds/new">Register guild</a>
-                    </li>
+                <li class="nav-item" *ngIf="(this.currentUser | async)?.isAdmin">
+                    <a class="nav-link waves-effect waves-light" (click)="this.router.navigate(['guilds', 'new'])">Register guild</a>
+                </li>
             </ul>
                 <ul class="navbar-nav ml-auto nav-flex-icons">
                     <li class="nav-item dropdown">
@@ -35,18 +35,18 @@
                             <span class="dropdown-item waves-effect waves-light" *ngIf="(this.currentUser | async)?.isAdmin">
                                 Congratulations, you are a site admin!
                             </span>
-                            <span class="dropdown-item waves-effect waves-light" onclick="window.location.href='/api/v1/logout';">
+                            <span class="dropdown-item waves-effect waves-light" onclick="window.location.href='/api/v1/logout'">
                                Logout
                             </span>
                         </div>
                     </li>
                 </ul>
             <!-- Button trigger modal -->
-            <a class="btn btn-elegant px-3" href="patchnotes">
+            <div class="btn btn-elegant px-3" (click)="this.router.navigate(['patchnotes'])">
                 <i class="fas fa-code-branch" aria-hidden="true"></i>
-            </a>
+            </div>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-elegant px-3" data-toggle="modal" data-target="#popupUserSettings">
+            <button type="button" class="btn btn-elegant px-3" (click)="this.router.navigate(['settings'])">
                 <i class="fas fa-sliders-h" aria-hidden="true"></i>
             </button>
         </div>

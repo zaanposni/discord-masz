@@ -26,8 +26,8 @@ export class AuthService {
        this.handleError(error); });
   }
 
-  getUserProfile(): Observable<AppUser> {
-    if (!this.init && this.isLoggedIn()) {
+  getUserProfile(reinit: boolean = false): Observable<AppUser> {
+    if (reinit || ( !this.init && this.isLoggedIn())) {
       this.init = true;
       this.loadUserConfig();
     }

@@ -258,3 +258,12 @@ select:-webkit-autofill {
     color: rgb(230, 160, 20)!important;
     border-color: rgb(230, 160, 20)!important;
 }
+
+.owl-dt-container {
+    background: var(--dark-background)!important;
+    color: var(--dark-text)!important;
+}
+
+.owl-dt-calendar-cell-content, .owl-dt-control-content.owl-dt-control-button-content, .owl-dt-weekday.ng-star-inserted {
+    color: var(--dark-text)!important;
+}

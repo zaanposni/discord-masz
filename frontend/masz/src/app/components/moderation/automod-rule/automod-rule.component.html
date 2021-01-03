@@ -1,0 +1,117 @@
+<div class="rule" id="rule-{{ this.uniqueLabel }}">
+    <div class="d-flex" style="align-items: center">
+                <span class="flex-grow-1 mr-3" style="font-size: 20px;">
+                    {{ title }}
+                </span>
+        <hr class="spacer-type1 "/>
+    </div>
+    <div>
+        <div class="d-flex flex-row justify-content-center align-items-center">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="rule-toggles custom-control-input active" id="config-toggle-{{ uniqueLabel }}" [(ngModel)]="automodEnabled">
+                <label class="custom-control-label" for="config-toggle-{{ uniqueLabel }}">Enable this module?</label>
+            </div>
+            <div class="flex-grow-1"></div>
+            <button type="button" class="btn btn-success align-self-end" (click)="saveChanges()">Save changes</button>
+        </div>
+        <div [class.d-none]="!this.automodEnabled">
+            <div class="d-flex flex-row justify-content-center">
+                <div class="mod-field mod-trigger">
+                    <i class="fas fa-bolt fa-2x mod-icon"></i>
+                    <span class="mod-title">Event</span>
+                    <div class="mod-body mt-3">
+                        {{ description }}
+                    </div>
+                </div>
+                <hr class="spacer-type0 spacer-short flex-shrink-1" style="margin-top: 2rem"/>
+                <div class="mod-field mod-filter">
+                    <i class="fas fa-filter fa-2x mod-icon"></i>
+                    <span class="mod-title">Filter</span>
+                    <div class="mod-body mt-3">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="exclude-team-{{ uniqueLabel }}" checked disabled>
+                            <label class="custom-control-label" for="exclude-team-{{ uniqueLabel }}" title="AutoModeration will always exclude moderators.">Exclude moderators?</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="exclude-roles-{{ uniqueLabel }}" [(ngModel)]="excludeRoles" (ngModelChange)="onExcludeRolesChange()">
+                            <label class="custom-control-label" for="exclude-roles-{{ uniqueLabel }}">Exclude roles?</label>
+                        </div>
+                        <div *ngIf="excludeRoles">
+                            <ul class="list-group list-group-horizontal-lg d-flex flex-wrap excluded-roles"
+                                style="list-style: none;">
+                                <span title="Click to delete" class="badge badge-pill badge-info mt-1 mr-1 custom-label"
+                                  [style.background-color]="generateRoleColor(role)" *ngFor="let role of excludedRoles" (click)="undoExcludeRole(role)">
+                                    {{ role.name }}
+                                </span>
+                            </ul>
+                            <div class="d-flex flex-row">
+                                <select class="exclude-roles browser-default custom-select m-3 w-75" [(ngModel)]="roleToExclude">
+                                    <option [ngValue]="role" *ngFor="let role of currentGuild?.roles" [style.color]="generateRoleColor(role)">{{ role.name }}</option>
+                                </select>
+                                <i class="fas fa-plus ml-1 mod-exclude-add" (click)="excludeRole()"></i>
+                            </div>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="exclude-channels-{{ uniqueLabel }}" [(ngModel)]="excludeChannels" (ngModelChange)="onExcludeChannelsChange()">
+                            <label class="custom-control-label" for="exclude-channels-{{ uniqueLabel }}">Exclude channels?</label>
+                        </div>
+                        <div *ngIf="excludeChannels">
+                            <ul class="list-group list-group-horizontal-lg d-flex flex-wrap excluded-channels"
+                                style="list-style: none;">
+                                <span title="Click to delete" class="badge badge-pill badge-info mt-1 mr-1 custom-label"
+                                  *ngFor="let channel of excludedChannels" (click)="undoExcludeChannel(channel)">
+                                    {{ channel.name }}
+                                </span>
+                            </ul>
+                            <div class="d-flex flex-row">
+                                <select class="exclude-channels browser-default custom-select m-3 w-75" [(ngModel)]="channelToExclude">
+                                    <option [ngValue]="channel" *ngFor="let channel of currentGuildChannels">#{{ channel.name }}</option>
+                                </select>
+                                <i class="fas fa-plus ml-1 mod-exclude-add" (click)="excludeChannel()"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="spacer-type0 spacer-short flex-shrink-1" style="margin-top: 2rem"/>
+                <div class="mod-field mod-effect">
+                    <i class="fas fa-arrow-right fa-2x mod-icon"></i>
+                    <span class="mod-title">Action</span>
+                    <div class="mod-body mt-3">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="invite-exclude-team" checked disabled>
+                            <label class="custom-control-label" for="invite-exclude-team" title="A log entry will always be generated.">Log entry</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="send-dm-label-{{ uniqueLabel }}" [(ngModel)]="sendDmNotification">
+                            <label class="custom-control-label" for="send-dm-label-{{ uniqueLabel }}">Send dm notification</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="delete-content-label-{{ uniqueLabel }}" [(ngModel)]="deleteMessage">
+                            <label class="custom-control-label" for="delete-content-label-{{ uniqueLabel }}">Delete message</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="create-case-label-{{ uniqueLabel }}" [(ngModel)]="createCase">
+                            <label class="custom-control-label" for="create-case-label-{{ uniqueLabel }}">Create case</label>
+                        </div>
+                        <div class="custom-control custom-checkbox" id="public-notification-{{ uniqueLabel }}-container" *ngIf="createCase">
+                            <input type="checkbox" class="custom-control-input" id="public-notification-label-{{ uniqueLabel }}" [(ngModel)]="sendPublicNotification">
+                            <label class="custom-control-label" for="public-notification-label-{{ uniqueLabel }}">Send public notification</label>
+                        </div>
+                        <ng-container *ngIf="createCase">
+                            <label for="form-punishment">Punishment</label>
+                            <select id="form-punishment" class="form-control browser-default custom-select" [(ngModel)]="punishment">
+                                <option value="0">Warn</option>
+                                <option value="1">Mute</option>
+                                <option value="2">TempMute</option>
+                                <option value="3">Kick</option>
+                                <option value="4">Ban</option>
+                                <option value="5">TempBan</option>
+                            </select>
+                            <input type="text" class="form-control mt-2" placeholder="Duration in minutes" *ngIf="punishment === '2' || punishment === '5'" [(ngModel)]="punishmentDuration">
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,5 @@
+@import "~@danielmoncada/angular-datetime-picker/assets/style/picker.min.css";
+
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
@@ -67,6 +69,7 @@ hr.spacer-short {
 
 .moderations {
     max-width: 90%;
+    margin: auto;
 }
 
 .moderation {
@@ -128,6 +131,10 @@ hr.spacer-short {
     cursor: pointer;
 }
 
+.crs-pnt {
+    cursor: pointer!important;
+}
+
 app-root {
     display: flex;
     min-height: 100vh;
@@ -145,3 +152,8 @@ app-root {
     font-weight: bold;
     text-decoration-color: orange;
 }
+
+.d-none {
+    display: none!important;
+}
+

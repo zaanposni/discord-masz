@@ -77,7 +77,7 @@ namespace masz.Helpers
             }
 
             description.Append($"\nThis notification has been generated automatically.\n");
-            description.Append($"Follow [this link]({serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.CaseId}) to see the corresponding case.\n");
+            description.Append($"Follow [this link]({serviceBaseUrl}/guilds/{modCase.GuildId}/cases/{modCase.CaseId}) to see the corresponding case.\n");
             if (action != RestAction.Deleted) {
                 description.Append($"Follow [this link]({serviceBaseUrl}/api/v1/guilds/{modCase.GuildId}/modcases/{modCase.CaseId}/files/{filename}) to view the file.\n");
             }
@@ -87,7 +87,7 @@ namespace masz.Helpers
             
             if (! string.IsNullOrEmpty(serviceBaseUrl))
             {
-                embed.Url = $"{serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.CaseId}";
+                embed.Url = $"{serviceBaseUrl}/guilds/{modCase.GuildId}/cases/{modCase.CaseId}";
             }
 
             return embed;
@@ -138,7 +138,7 @@ namespace masz.Helpers
 
             description.Append($"\nThis notification has been generated automatically.\n");
             if (action != RestAction.Deleted) {
-                description.Append($"Follow [this link]({serviceBaseUrl}/modcases/{comment.ModCase.GuildId}/{comment.ModCase.CaseId}) to see the corresponding case.\n");
+                description.Append($"Follow [this link]({serviceBaseUrl}/guilds/{comment.ModCase.GuildId}/cases/{comment.ModCase.CaseId}) to see the corresponding case.\n");
             }
             description.Append($"[Contribute](https://github.com/zaanposni/discord-masz/blob/master/CONTRIBUTING.md) to this moderation tool.");
 
@@ -146,7 +146,7 @@ namespace masz.Helpers
             
             if (! string.IsNullOrEmpty(serviceBaseUrl))
             {
-                embed.Url = $"{serviceBaseUrl}/modcases/{comment.ModCase.GuildId}/{comment.ModCase.CaseId}";
+                embed.Url = $"{serviceBaseUrl}/guilds/{comment.ModCase.GuildId}/cases/{comment.ModCase.CaseId}";
             }
 
             var author = new EmbedAuthorBuilder();
@@ -206,7 +206,7 @@ namespace masz.Helpers
 
             description.Append($"\nThis notification has been generated automatically.\n");
             if (action != RestAction.Deleted) {
-                description.Append($"Follow [this link]({serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.CaseId}) to see the corresponding case.\n");
+                description.Append($"Follow [this link]({serviceBaseUrl}/guilds/{modCase.GuildId}/cases/{modCase.CaseId}) to see the corresponding case.\n");
             }
             description.Append($"[Contribute](https://github.com/zaanposni/discord-masz/blob/master/CONTRIBUTING.md) to this moderation tool.");
 
@@ -214,7 +214,7 @@ namespace masz.Helpers
             
             if (! string.IsNullOrEmpty(serviceBaseUrl))
             {
-                embed.Url = $"{serviceBaseUrl}/modcases/{modCase.GuildId}/{modCase.CaseId}";
+                embed.Url = $"{serviceBaseUrl}/guilds/{modCase.GuildId}/cases/{modCase.CaseId}";
             }
 
             if (!string.IsNullOrEmpty(modCase.Punishment))
@@ -224,7 +224,7 @@ namespace masz.Helpers
 
             if (modCase.PunishedUntil != null)
             {
-                embed.AddField(ALARM_CLOCK + " - Punished Until (UTC)", modCase.PunishedUntil.Value.ToString("MM.dd.yyyy HH:mm:ss"), true);
+                embed.AddField(ALARM_CLOCK + " - Punished Until (UTC)", modCase.PunishedUntil.Value.ToString("dd.MM.yyyy HH:mm:ss"), true);
             }
 
             if (modCase.Labels.Length != 0)

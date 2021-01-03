@@ -1,10 +1,9 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Toast, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { AppUser } from 'src/app/models/AppUser';
-import { CaseComment } from 'src/app/models/CaseComment';
 import { DiscordUser } from 'src/app/models/DiscordUser';
 import { FileInfo } from 'src/app/models/FileInfo';
 import { Guild } from 'src/app/models/Guild';
@@ -21,9 +20,16 @@ import Swal from 'sweetalert2'
 })
 export class CaseViewComponent implements OnInit {
 
+  severities: { [key: number]: string} = {
+    0: 'Low',
+    1: 'Normal',
+    2: 'High',
+    3: 'Epic'
+  };
+
   @Input() newComment!: string;
 
-  previewFiles: string[] = ['jpg', 'png', 'jpeg', 'gif', 'ico', 'tif', 'tiff'];
+  previewFiles: string[] = ['jpg', 'png', 'jpeg', 'gif', 'ico', 'tif', 'tiff', 'mov'];
   guildId!: string | null;
   caseId!: string | null;
   currentUser!: Observable<AppUser>;
@@ -35,7 +41,7 @@ export class CaseViewComponent implements OnInit {
 
   users: { [key: string]: Promise<DiscordUser> } = {};
   
-  constructor(private cache: ApiCacheService, private route: ActivatedRoute, private auth: AuthService, private toastr: ToastrService, private api: ApiService, private router: Router) { }
+  constructor(private cache: ApiCacheService, private route: ActivatedRoute, private auth: AuthService, private toastr: ToastrService, private api: ApiService, public router: Router) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid');
@@ -46,12 +52,11 @@ export class CaseViewComponent implements OnInit {
     });
     this.currentUser = this.auth.getUserProfile();
 
-
-    this.files = this.cache.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/files`);
-    this.modCase = this.cache.getSimpleData(`/modcases/${this.guildId}/${this.caseId}`);
+    this.files = this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/files`).toPromise();
+    this.modCase = this.api.getSimpleData(`/modcases/${this.guildId}/${this.caseId}`).toPromise();
 
     this.modCase.then((data) => {
-      this.guild = this.cache.getSimpleData(`/discord/guilds/${data.guildId}`);
+      this.guild = this.api.getSimpleData(`/discord/guilds/${data.guildId}`).toPromise();
 
       this.users[data.userId] = this.cache.getSimpleData(`/discord/users/${data.userId}`);
       this.users[data.modId] = this.cache.getSimpleData(`/discord/users/${data.modId}`);
@@ -117,7 +122,6 @@ export class CaseViewComponent implements OnInit {
         this.toastr.success('Comment posted.');
         this.modCase = this.api.getSimpleData(`/modcases/${this.guildId}/${this.caseId}`).toPromise();
       }, (error) => {
-        console.log(error.message);
         this.toastr.error('Cannot post comment.', 'Something went wrong.');
       });
     }
@@ -129,7 +133,6 @@ export class CaseViewComponent implements OnInit {
         this.toastr.success('File uploaded.');
         this.files = this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/files`).toPromise();
       }, (error) => {
-        console.log(error.message);
         this.toastr.error('Cannot upload file.', 'Something went wrong.');
       });
     }
@@ -159,7 +162,7 @@ export class CaseViewComponent implements OnInit {
     });
   }
 
-  handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
+  handleFileInput(event: any) {
+    this.fileToUpload = event.target.files.item(0);
   }
 }

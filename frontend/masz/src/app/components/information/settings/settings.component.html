@@ -1,0 +1,8 @@
+<div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="darkModeToggle" [(ngModel)]="currentSettings.darkMode" (ngModelChange)="onChanges()">
+    <label class="custom-control-label" for="darkModeToggle">Use dark mode</label>
+</div>
+<div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="suggestionToggle" [(ngModel)]="currentSettings.showSuggestions" (ngModelChange)="onChanges()">
+    <label class="custom-control-label" for="suggestionToggle">Show suggestions and tips</label>
+</div>

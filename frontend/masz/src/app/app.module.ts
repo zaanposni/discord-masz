@@ -26,6 +26,13 @@ import { PatchnotesComponent } from './components/information/patchnotes/patchno
 import { CaseViewComponent } from './components/modcase/case-view/case-view.component';
 import { ApiCacheService } from './services/api-cache.service';
 import { FormsModule } from '@angular/forms';
+import { SettingsComponent } from './components/information/settings/settings.component';
+import { CaseNewComponent } from './components/modcase/case-new/case-new.component';
+import { AutomodConfigComponent } from './components/moderation/automod-config/automod-config.component';
+import { CaseEditComponent } from './components/modcase/case-edit/case-edit.component';
+import { OwlDateTimeModule, OwlMomentDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
+import { CookieTrackerService } from './services/cookie-tracker.service';
+import { AutomodRuleComponent } from './components/moderation/automod-rule/automod-rule.component';
 
 @NgModule({
   declarations: [
@@ -37,16 +44,20 @@ import { FormsModule } from '@angular/forms';
     GuildListComponent,
 
     IndexComponent,
+    NavbarComponent,
+    FooterComponent,
+    PatchnotesComponent,
+    SettingsComponent,
 
     PageNotFoundComponent,
 
-    NavbarComponent,
-
-    FooterComponent,
-
-    PatchnotesComponent,
-
     CaseViewComponent,
+    CaseNewComponent,
+    CaseEditComponent,
+
+    AutomodConfigComponent,
+
+    AutomodRuleComponent,
   ],
   imports: [
     CommonModule,
@@ -60,7 +71,9 @@ import { FormsModule } from '@angular/forms';
     CookieModule.forRoot(),
     AppRoutingModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    OwlDateTimeModule,
+    OwlMomentDateTimeModule
   ],
   providers: [
     ToastrService,
@@ -72,7 +85,8 @@ import { FormsModule } from '@angular/forms';
     AuthGuard,
     NonAuthGuard,
     ApiService,
-    ApiCacheService
+    ApiCacheService,
+    CookieTrackerService
   ],
   bootstrap: [AppComponent]
 })

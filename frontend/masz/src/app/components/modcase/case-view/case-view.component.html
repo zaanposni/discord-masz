@@ -8,7 +8,7 @@
             <img
                     src="https://cdn.discordapp.com/icons/{{ (this.guild | async)?.id }}/{{ (this.guild | async)?.icon }}.png"
                     class="rounded-circle z-depth-0 mr-1"
-                    alt="avatar image"
+                    alt="guild icon"
                     height="35"
             />
             <span class="font-weight-bold">Guild: {{ (this.guild | async)?.name }}
@@ -32,7 +32,7 @@
             href="/api/v1/modcases/{{( this.modCase | async)?.guildId }}/{{ (this.modCase | async)?.caseId }}" target="_blank">See raw case
             data</a>
         <ng-container *ngIf="this.isModOrHigher">
-            <a type="button" class="btn btn-warning" href="/guilds/{{ (this.modCase | async)?.guildId }}/cases/{{ (this.modCase | async)?.caseId }}/edit">Edit this case</a>
+            <a type="button" class="btn btn-warning" (click)="this.router.navigate(['guilds', this.guildId, 'cases', this.caseId, 'edit'])">Edit this case</a>
             <a type="button" class="btn btn-danger" (click)="deleteCase()">Delete this case</a>
         </ng-container>
     </div>    
@@ -40,11 +40,9 @@
 <!-- Labels -->
 <div class="row mb-1 ml-2">
     <div class="d-flex justify-content-between">
-        <a href="/guilds/{{ (this.modCase | async)?.guildId }}?label={{ label }}" *ngFor="let label of (this.modCase | async)?.labels">
-            <h3>
-                <span type="button" class="badge badge-pill badge-info mr-1">{{ label }}</span>
-            </h3>
-        </a>
+        <h3 *ngFor="let label of (this.modCase | async)?.labels">
+            <span class="badge badge-pill badge-info mr-1">{{ label }}</span>
+        </h3>
     </div>
 </div>
 <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
@@ -83,28 +81,22 @@
                     <tr>
                         <th class="font-weight-bold">UserID</th>
                         <td>
-                            <a href="/guilds/{{ (this.modCase | async)?.guildId }}?userId={{ (this.modCase | async)?.userId }}">
-                                {{ (this.modCase | async)?.userId }}
-                            </a>
+                            {{ (this.modCase | async)?.userId }}
                         </td>
                     </tr>
                     <tr>
                         <th class="font-weight-bold">Username</th>
                         <td class="font-weight-bold">
-                            <a href="/guilds/{{ (this.modCase | async)?.guildId }}?userId={{ (this.modCase | async)?.userId }}">
-                                {{ (this.modCase | async)?.username }}
-                            </a>
+                            {{ (this.modCase | async)?.username }}
                         </td>
                     </tr>
                     <tr>
                         <th class="font-weight-bold">Nickname</th>
                         <td>
-                            <a href="/guilds/{{ (this.modCase | async)?.guildId }}?userId={{ (this.modCase | async)?.userId }}">
-                                <span *ngIf="(this.modCase | async)?.nickname; else nickname_not_set">{{ (this.modCase | async)?.nickname }}</span>
-                                <ng-template #nickname_not_set>
-                                    <span class="text-danger font-weight-bold">Not set.</span>
-                                </ng-template>
-                            </a>
+                            <span *ngIf="(this.modCase | async)?.nickname; else nickname_not_set">{{ (this.modCase | async)?.nickname }}</span>
+                            <ng-template #nickname_not_set>
+                                <span class="text-danger font-weight-bold">Not set.</span>
+                            </ng-template>
                         </td>
                     </tr>
                     </tbody>
@@ -119,62 +111,59 @@
                     <tr>
                         <th class="font-weight-bold">Severity</th>
                         <td>
-                            {{ (this.modCase | async)?.severity }}
+                            {{ severities[(this.modCase | async)?.severity] }}
                         </td>
                     </tr>
                     <tr>
-                        <th class="font-weight-bold">Created at</th>
-                        <td>{{ (this.modCase | async)?.createdAt?.toLocaleString() }}</td>
+                        <th class="font-weight-bold">Created at (UTC)</th>
+                        <td>{{ (this.modCase | async)?.createdAt | date:'dd.MM.Y HH:mm:ss' }}</td>
                     </tr>
                     <tr *ngIf="(this.modCase | async)?.createdAt !== (this.modCase | async)?.occuredAt">
-                        <th class="font-weight-bold">Occured at</th>
-                        <td>{{ (this.modCase | async)?.occuredAt?.toLocaleString() }}</td>
+                        <th class="font-weight-bold">Occured at (UTC)</th>
+                        <td>{{ (this.modCase | async)?.occuredAt | date:'dd.MM.Y HH:mm:ss' }}</td>
                     </tr>
                     <tr *ngIf="(this.modCase | async)?.lastEditedAt !== (this.modCase | async)?.createdAt">
-                        <th class="font-weight-bold">Last edited at</th>
-                        <td>{{ (this.modCase | async)?.lastEditedAt?.toLocaleString() }}</td>
+                        <th class="font-weight-bold">Last edited at (UTC)</th>
+                        <td>{{ (this.modCase | async)?.lastEditedAt | date:'dd.MM.Y HH:mm:ss' }}</td>
                     </tr>
                     <tr>
                         <th class="font-weight-bold">Moderator</th>
                         <td class="font-weight-bold">
                             <!-- mod info -->
-                            <a href="/guilds/{{ (this.modCase | async)?.guildId }}?modId={{ (this.modCase | async)?.modId }}">
-                                <img
-                                    src="{{ (this.users[(this.modCase | async)?.modId] | async)?.imageUrl }}"
-                                    class="rounded-circle z-depth-0 mr-1"
-                                    alt="avatar image"
-                                    height="35"
-                                /> {{ (this.users[(this.modCase | async)?.modId] | async)?.username }}
-                                <span class="text-black-50">({{ (this.modCase | async)?.modId }})</span>
-                            </a>
+                            <img
+                                src="{{ (this.users[(this.modCase | async)?.modId] | async)?.imageUrl }}"
+                                class="rounded-circle z-depth-0 mr-1"
+                                alt="avatar image"
+                                height="35"
+                            /> {{ (this.users[(this.modCase | async)?.modId] | async)?.username }}
+                            <span class="text-black-50">({{ (this.modCase | async)?.modId }})</span>
                         </td>
                     </tr>
                     <tr *ngIf="(this.modCase | async)?.lastEditedByModId !== (this.modCase | async)?.modId">
                         <th class="font-weight-bold">Last Edit by Moderator</th>
                         <td class="font-weight-bold">
                             <!-- last mod info -->
-                            <a href="/guilds/{{ (this.modCase | async)?.guildId }}?modId={{ (this.modCase | async)?.modId }}">
-                                <img
-                                    src="{{ (this.users[(this.modCase | async)?.lastEditedByModId] | async)?.imageUrl }}"
-                                    class="rounded-circle z-depth-0 mr-1"
-                                    alt="avatar image"
-                                    height="35"
-                                /> {{ (this.users[(this.modCase | async)?.lastEditedByModId] | async)?.username }}
-                                <span class="text-black-50">({{ (this.modCase | async)?.lastEditedByModId }})</span>
-                            </a>
+                            <img
+                                src="{{ (this.users[(this.modCase | async)?.lastEditedByModId] | async)?.imageUrl }}"
+                                class="rounded-circle z-depth-0 mr-1"
+                                alt="avatar image"
+                                height="35"
+                            /> {{ (this.users[(this.modCase | async)?.lastEditedByModId] | async)?.username }}
+                            <span class="text-black-50">({{ (this.modCase | async)?.lastEditedByModId }})</span>
                         </td>
                     </tr>
-                    <!-- TODO: {% if modcase.punishmentType != 0 and modcase.punishmentType != 2 %} -->
-                    <tr>
-                        <th class="font-weight-bold">Punished until</th>
+                    <tr *ngIf="(this.modCase | async)?.punishmentType !== 0 && (this.modCase | async)?.punishmentType !== 2">
+                        <th class="font-weight-bold">Punished until (UTC)</th>
                         <td>
-                            <!--    Forever -->
-                            <!--{% else %} -->
-                            {{ (this.modCase | async)?.punishedUntil?.toLocaleString() }}
+                            <span *ngIf="(this.modCase | async)?.punishedUntil else forever">
+                                {{ (this.modCase | async)?.punishedUntil | date:'dd.MM.Y HH:mm:ss' }}
+                            </span>
+                            <ng-template #forever>
+                                <span>Forever</span>
+                            </ng-template>
                         </td>
                     </tr>
-                    <!-- TODO: {% if not modcase.punishmentActive and modcase.punishmentType != 0 and modcase.punishmentType != 2 %} -->
-                    <tr>
+                    <tr *ngIf="(this.modCase | async)?.punishmentType !== 0 && (this.modCase | async)?.punishmentType !== 2 && (this.modCase | async)?.punishmentActive === false">
                         <th class="font-weight-bold">Punishment</th>
                         <td>Punishment inactive</td>
                     </tr>
@@ -212,17 +201,17 @@
 
                             <!-- Text -->
                             <div class="card-text">
-                                <span style="white-space: pre-wrap;" class="text-monospace font-small">{{ comment.createdAt }}</span><br/>
+                                <span style="white-space: pre-wrap;" class="text-monospace font-small">{{ comment.createdAt | date:'dd.MM.Y HH:mm:ss'  }}</span><br/>
                                 <span style="white-space: pre-wrap;" class="text-monospace">{{ comment.message }}</span>
                             </div>
                         </div>
 
                         <!-- Icons -->
                         <div class="d-flex flex-column" *ngIf="(this.currentUser | async)?.discordUser?.id === comment.userId || (this.isModOrHigher)">
-                            <button class="btn btn-danger" id="delete-{{ comment.id }}" (click)="deleteComment(comment.id)">
+                            <button class="btn btn-danger" (click)="deleteComment(comment.id)">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
-                            <button class="btn btn-warning" id="update-{{ comment.id }}" (click)="updateComment(comment.id)">
+                            <button class="btn btn-warning" (click)="updateComment(comment.id)">
                                 <i class="fas fa-edit"></i>
                             </button>
                         </div>
@@ -237,7 +226,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success btn-md" (click)="sendComment()" [attr.disabled]="this.newComment ? null : ''">
+            <button type="submit" class="btn btn-success btn-md" (click)="sendComment()" [attr.disabled]="this.newComment?.trim() ? null : ''">
                 Post comment
             </button>
         </div>
@@ -252,7 +241,7 @@
                     <label class="custom-file-label" for="file">{{ this.fileToUpload ? this.fileToUpload.name : 'Choose file'}}</label>
                     <input type="file" id="file" class="custom-file-input"
                         aria-describedby="file-input-label"
-                        (change)="handleFileInput($event.target.files)">
+                        (change)="handleFileInput($event)">
                 </div>
             </div>
         </div>

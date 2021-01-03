@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
@@ -11,9 +12,9 @@ export class ApiCacheService {
 
   private data: { [path: string] : Promise<any> } = { };
 
-  getSimpleData(apiPath: string): Promise<any> {
+  getSimpleData(apiPath: string, includeBasePath: boolean = true, httpParams: HttpParams = new HttpParams(), handleApiError: boolean = true): Promise<any> {
     if ( !( apiPath in this.data) ) {
-      this.data[apiPath] = this.api.getSimpleData(apiPath).toPromise();
+      this.data[apiPath] = this.api.getSimpleData(apiPath, includeBasePath, httpParams, handleApiError).toPromise();
     }
     return this.data[apiPath];
   }

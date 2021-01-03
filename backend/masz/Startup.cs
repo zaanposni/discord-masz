@@ -59,6 +59,7 @@ namespace masz
                 options.ExpireTimeSpan = new TimeSpan(7, 0, 0, 0);
                 options.Cookie.MaxAge = new TimeSpan(7, 0, 0, 0);
                 options.Cookie.Name = "masz_access_token";
+                options.Cookie.HttpOnly = false;
                 options.Events.OnRedirectToLogin = context =>
                 {
                     context.Response.Headers["Location"] = context.RedirectUri;
@@ -77,6 +78,7 @@ namespace masz
                 options.Prompt = "none";
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.CorrelationCookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax;
+                options.CorrelationCookie.HttpOnly = false;
             });
 
             services.Configure<InternalConfig>(Configuration.GetSection("InternalConfig"));
