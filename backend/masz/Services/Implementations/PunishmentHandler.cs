@@ -50,9 +50,6 @@ namespace masz.Services
                 
                 foreach (var element in cases)
                 {
-                    if (element.PunishmentType == PunishmentType.Mute) {
-                        await ExecutePunishment(element, database);  // reapply mute if user left the guild
-                    }
                     if (element.PunishedUntil != null)
                     {
                         if (element.PunishedUntil <= DateTime.UtcNow)
