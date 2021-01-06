@@ -35,7 +35,7 @@
 </ul>
 <div class="tab-content">
     <div class="tab-pane fade show active" id="modcases" role="tabpanel" aria-labelledby="modcase-tab">
-        <div class="d-flex justify-content-between align-items-start m-2">
+        <div class="d-flex flex-wrap justify-content-between align-items-start m-2">
             <!-- Infos -->
             <div>
                 <span class="display-4 font-weight-bold">All Modcases ({{ (this.modCases | async)?.length || 0 }})</span>
@@ -101,7 +101,7 @@
         </table>
     </div>
     <div class="tab-pane fade" id="punishments" role="tabpanel" aria-labelledby="punishment-tab">
-        <div class="d-flex justify-content-between align-items-start m-2">
+        <div class="d-flex flex-wrap justify-content-between align-items-start m-2">
             <!-- Infos -->
             <div>
                 <span class="display-4 font-weight-bold">All active punishments ({{ (this.activePunishments | async)?.length || 0 }})</span>
@@ -167,12 +167,12 @@
         </table>
     </div>
     <div class="tab-pane fade" id="moderations" role="tabpanel" aria-labelledby="moderation-tab">
-        <div class="d-flex justify-content-between align-items-start m-2">
+        <div class="d-flex flex-wrap justify-content-between align-items-start m-2">
             <!-- Infos -->
             <div>
                 <span class="display-4 font-weight-bold">All Automoderations ({{ (this.moderationEventsInfo | async)?.count || 0 }})</span>
             </div>
-            <div class="d-flex flex-column align-self-end" *ngIf="this.isModOrHigher">
+            <div class="d-flex flex-column align-self-end" *ngIf="this.isAdminOrHigher">
                 <span type="button" class="btn btn-success" (click)="this.router.navigate(['guilds', this.guildId, 'automod'])">Configure</span>
             </div>
         </div>

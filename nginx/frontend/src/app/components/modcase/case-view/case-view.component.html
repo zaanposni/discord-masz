@@ -39,7 +39,7 @@
 </div>
 <!-- Labels -->
 <div class="row mb-1 ml-2">
-    <div class="d-flex justify-content-between">
+    <div class="d-flex flex-wrap">
         <h3 *ngFor="let label of (this.modCase | async)?.labels">
             <span class="badge badge-pill badge-info mr-1">{{ label }}</span>
         </h3>

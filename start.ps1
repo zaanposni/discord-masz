@@ -20,7 +20,6 @@ docker image rm discord-masz_nginx
 docker image rm discord-masz_backend
 docker image rm discord-masz_discordbot
 
-docker volume rm discord-masz_php_share
 Write-Host "Removed old containers/images/volumes"
 
 Write-Host "Starting up..."

@@ -1,7 +1,6 @@
 version: '2.2'
 
 volumes:
-  php_share:
   mysql:
   filehost:
 

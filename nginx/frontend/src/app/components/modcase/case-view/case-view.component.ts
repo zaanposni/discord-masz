@@ -29,7 +29,7 @@ export class CaseViewComponent implements OnInit {
 
   @Input() newComment!: string;
 
-  previewFiles: string[] = ['jpg', 'png', 'jpeg', 'gif', 'ico', 'tif', 'tiff', 'mov'];
+  previewFiles: string[] = ['jpg', 'png', 'jpeg', 'gif', 'ico', 'tif', 'tiff', 'mov', 'mp4'];
   guildId!: string | null;
   caseId!: string | null;
   currentUser!: Observable<AppUser>;
