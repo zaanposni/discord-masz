@@ -29,7 +29,7 @@ export class CaseViewComponent implements OnInit {
 
   @Input() newComment!: string;
 
-  previewFiles: string[] = ['jpg', 'png', 'jpeg', 'gif', 'ico', 'tif', 'tiff', 'mov', 'mp4'];
+  previewFiles: string[] = ['jpg', 'png', 'jpeg', 'gif', 'ico', 'tif', 'tiff'];
   guildId!: string | null;
   caseId!: string | null;
   currentUser!: Observable<AppUser>;
@@ -70,6 +70,10 @@ export class CaseViewComponent implements OnInit {
         }
       });
     }, (error) => { });
+  }
+
+  redirectToApi() {
+    window.location.href = `/api/v1/modcases/${this.guildId}/${this.caseId}`;
   }
 
   updateComment(commentId: number) {    

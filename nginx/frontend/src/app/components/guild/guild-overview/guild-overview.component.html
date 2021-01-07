@@ -41,7 +41,7 @@
                 <span class="display-4 font-weight-bold">All Modcases ({{ (this.modCases | async)?.length || 0 }})</span>
             </div>
             <div class="d-flex flex-column align-self-end" *ngIf="this.isModOrHigher">
-                <span type="button" class="btn btn-success" (click)="this.router.navigate(['guilds', this.guildId, 'cases', 'new'])">Create new Case</span>
+                <button class="btn btn-success" (click)="this.router.navigate(['guilds', this.guildId, 'cases', 'new'])">Create new Case</button>
             </div>
         </div>
         <table id="tableCases" class="table" cellspacing="0" width="100%">
@@ -74,9 +74,9 @@
         
                                         <!-- Labels -->
                                         <div class="d-flex mb-2">
-                                            <div type="button" class="badge badge-pill badge-info mr-1" *ngFor="let label of case.labels">
+                                            <span class="badge badge-pill badge-info mr-1" *ngFor="let label of case.labels">
                                                 {{ label }}
-                                            </div>
+                                            </span>
                                         </div>
         
                                         <!-- Text -->
@@ -140,9 +140,9 @@
         
                                         <!-- Labels -->
                                         <div class="d-flex mb-2">
-                                            <div type="button" class="badge badge-pill badge-info mr-1" *ngFor="let label of case.labels">
+                                            <span type="button" class="badge badge-pill badge-info mr-1" *ngFor="let label of case.labels">
                                                 {{ label }}
-                                            </div>
+                                            </span>
                                         </div>
         
                                         <!-- Text -->

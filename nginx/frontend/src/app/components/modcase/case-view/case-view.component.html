@@ -28,12 +28,10 @@
 
     <!-- Edit and delete buttons -->
     <div class="d-flex flex-column">
-        <a type="button" class="btn btn-primary"
-            href="/api/v1/modcases/{{( this.modCase | async)?.guildId }}/{{ (this.modCase | async)?.caseId }}" target="_blank">See raw case
-            data</a>
+        <button type="button" class="btn btn-primary" (click)="redirectToApi()">See raw case data</button>
         <ng-container *ngIf="this.isModOrHigher">
-            <a type="button" class="btn btn-warning" (click)="this.router.navigate(['guilds', this.guildId, 'cases', this.caseId, 'edit'])">Edit this case</a>
-            <a type="button" class="btn btn-danger" (click)="deleteCase()">Delete this case</a>
+            <button class="btn btn-warning" (click)="this.router.navigate(['guilds', this.guildId, 'cases', this.caseId, 'edit'])">Edit this case</button>
+            <button class="btn btn-danger" (click)="deleteCase()">Delete this case</button>
         </ng-container>
     </div>    
 </div>
