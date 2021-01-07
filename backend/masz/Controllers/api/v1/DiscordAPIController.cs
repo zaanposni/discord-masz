@@ -71,7 +71,7 @@ namespace masz.Controllers.api.v1
                     }
                 } else {
                     if (await discord.GetGuildUserBan(guild.GuildId, currentUser.Id) != null) {
-                        bannedGuilds.Add(userGuild);
+                        bannedGuilds.Add(await discord.FetchGuildInfo(guild.GuildId));
                     }
                 }
             }
