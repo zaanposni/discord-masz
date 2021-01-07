@@ -23,11 +23,6 @@ This application can also **manage temporary punishments** just as temp mutes fo
 - [Community Discord "Best of Bundestag"](https://discord.gg/ezMtSwR) 1800 members
 - ["Liberale Community"](https://discord.gg/uf9bHhNMmD) 250 members
 
-# Warning
-
-This application is only for self deployment. <br/>
-You can deploy it on your private computer for testing but if you want others to access the website or use the bot 24/7, you will need a domain, a server and a reverse proxy as well as enough knowledge to set those up, and maintain them.
-
 # Preview
 
 <p>Detailed view for single modcase (click to reveal)</p>
@@ -61,6 +56,11 @@ You can deploy it on your private computer for testing but if you want others to
   <img src="/docs/automoderationconfig.png"/>
 </details>
 
+
+# Warning
+
+This application is only for self deployment. <br/>
+You can deploy it on your private computer for testing but if you want others to access the website or use the bot 24/7, you will need a domain, a server and a reverse proxy as well as enough knowledge to set those up, and maintain them.
 
 # Requirements 
 
