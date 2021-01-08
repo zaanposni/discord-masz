@@ -34,6 +34,10 @@ export class AuthService {
     return this.currentUser$;
   }
 
+  resetCache() {
+    this.init = false;
+  }
+
   getToken(): string {
     return this.cookieService.get('masz_access_token') || '';
   }

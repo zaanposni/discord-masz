@@ -7,7 +7,9 @@
       "Added more precise specification of requirements.",
       "Removed unneeded apache files from old php setup.",
       "Now correctly reapplies muted role on member rejoin.",
-      "Fixed a bug where banned guilds are not displayed correctly."
+      "Fixed a bug where banned guilds are not displayed correctly.",
+      "Improved UX during guild register.",
+      "Added loading spinner on index page."
     ]
   },
   {

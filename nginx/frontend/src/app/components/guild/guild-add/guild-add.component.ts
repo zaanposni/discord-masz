@@ -33,7 +33,7 @@ export class GuildAddComponent implements OnInit {
   guilds: Promise<Guild[]>;
   clientid: Promise<MetaClientId>;
 
-  constructor(private api: ApiService, private cache: ApiCacheService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private api: ApiService, private cache: ApiCacheService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.guilds = this.cache.getSimpleData('/discord/guilds');
@@ -81,7 +81,8 @@ export class GuildAddComponent implements OnInit {
     };
     this.api.postSimpleData('/guilds/', data).subscribe((data) => {
       this.toastr.success('Guild created');
-      this.router.navigate(['guilds', this.selectedGuildId]);
+      this.authService.resetCache();
+      this.router.navigate(['guilds']);
     }, (error) => {
       this.toastr.error('Cannot register guild.', 'Something went wrong.');
     })
