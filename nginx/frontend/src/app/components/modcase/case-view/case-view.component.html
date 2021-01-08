@@ -28,18 +28,16 @@
 
     <!-- Edit and delete buttons -->
     <div class="d-flex flex-column">
-        <a type="button" class="btn btn-primary"
-            href="/api/v1/modcases/{{( this.modCase | async)?.guildId }}/{{ (this.modCase | async)?.caseId }}" target="_blank">See raw case
-            data</a>
+        <button type="button" class="btn btn-primary" (click)="redirectToApi()">See raw case data</button>
         <ng-container *ngIf="this.isModOrHigher">
-            <a type="button" class="btn btn-warning" (click)="this.router.navigate(['guilds', this.guildId, 'cases', this.caseId, 'edit'])">Edit this case</a>
-            <a type="button" class="btn btn-danger" (click)="deleteCase()">Delete this case</a>
+            <button class="btn btn-warning" (click)="this.router.navigate(['guilds', this.guildId, 'cases', this.caseId, 'edit'])">Edit this case</button>
+            <button class="btn btn-danger" (click)="deleteCase()">Delete this case</button>
         </ng-container>
     </div>    
 </div>
 <!-- Labels -->
 <div class="row mb-1 ml-2">
-    <div class="d-flex justify-content-between">
+    <div class="d-flex flex-wrap">
         <h3 *ngFor="let label of (this.modCase | async)?.labels">
             <span class="badge badge-pill badge-info mr-1">{{ label }}</span>
         </h3>

@@ -1,5 +1,18 @@
 [
   {
+    "title": "Version 1.7.1",
+    "version": "v1.7.1",
+    "changes": [
+      "Improved mobile frontend experience.",
+      "Added more precise specification of software requirements for masz.",
+      "Removed unneeded apache files from old php setup.",
+      "Now correctly reapplies muted role on member rejoin.",
+      "Fixed a bug where banned guilds are not displayed correctly.",
+      "Improved UX during guild register.",
+      "Added loading spinner on index page."
+    ]
+  },
+  {
     "title": "Version 1.7 Angular Rework",
     "version": "v1.7",
     "changes": [

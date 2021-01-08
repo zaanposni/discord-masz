@@ -55,11 +55,6 @@ namespace masz.Controllers.api.v1
 
             List<GuildConfig> registeredGuilds = await database.SelectAllGuildConfigs();
 
-            logger.LogCritical(userGuilds.Count.ToString());
-            logger.LogCritical(registeredGuilds.Count.ToString());
-            logger.LogCritical(registeredGuilds.ToString());
-            logger.LogCritical(userGuilds.ToString());
-
             foreach (GuildConfig guild in registeredGuilds)
             {
                 var userGuild = userGuilds.FirstOrDefault(x => x.Id == guild.GuildId);
@@ -76,7 +71,7 @@ namespace masz.Controllers.api.v1
                     }
                 } else {
                     if (await discord.GetGuildUserBan(guild.GuildId, currentUser.Id) != null) {
-                        bannedGuilds.Add(userGuild);
+                        bannedGuilds.Add(await discord.FetchGuildInfo(guild.GuildId));
                     }
                 }
             }

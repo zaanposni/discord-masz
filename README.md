@@ -23,11 +23,6 @@ This application can also **manage temporary punishments** just as temp mutes fo
 - [Community Discord "Best of Bundestag"](https://discord.gg/ezMtSwR) 1800 members
 - ["Liberale Community"](https://discord.gg/uf9bHhNMmD) 250 members
 
-# Warning
-
-This application is only for self deployment. <br/>
-You can deploy it on your private computer for testing but if you want others to access the website or use the bot 24/7, you will need a domain, a server and a reverse proxy as well as enough knowledge to set those up, and maintain them.
-
 # Preview
 
 <p>Detailed view for single modcase (click to reveal)</p>
@@ -62,24 +57,30 @@ You can deploy it on your private computer for testing but if you want others to
 </details>
 
 
-# Setup - TL;DR;
+# Warning
 
-- Create a discord application at https://discord.com/developers/applications
-- Set redirect urls on your discord application [as defined](https://github.com/zaanposni/discord-masz#discord-oauth).
-- Execute the `setup.py` script to configure your app and `start.sh` (or `start.ps1` on windows) to start it.
-- App will be hosted on `127.0.0.1:5565`, if you are hosting the app on a domain, redirect your reverse proxy to this local port!
+This application is only for self deployment. <br/>
+You can deploy it on your private computer for testing but if you want others to access the website or use the bot 24/7, you will need a domain, a server and a reverse proxy as well as enough knowledge to set those up, and maintain them.
 
-# Setup - Installation
+# Requirements 
 
-## Requirements 
-
-- [docker](https://docs.docker.com/engine/install/ubuntu/) & [docker-compose](https://docs.docker.com/compose/)
+- [docker](https://docs.docker.com/engine/install/ubuntu/) & [docker-compose](https://docs.docker.com/compose/) (`docker-compose -v` > 1.25)
 - [python3](https://www.python.org/) for setup
 
 If you want to deploy on a domain:
 
 - a (sub)domain to host the application on
 - a reverse proxy on your host
+
+# Setup - TL;DR;
+
+- Create a discord application at https://discord.com/developers/applications
+- Set redirect urls on your discord application [as defined](https://github.com/zaanposni/discord-masz#discord-oauth).
+- Enable **Server Members Intent** in your bot settings. 
+- Execute the `setup.py` script to configure your app and `start.sh` (or `start.ps1` on windows) to start it.
+- App will be hosted on `127.0.0.1:5565`, if you are hosting the app on a domain, redirect your reverse proxy to this local port!
+
+# Setup - Installation
 
 ## Discord OAuth
 
@@ -111,7 +112,8 @@ Enable **Server Members Intent** in your bot settings.
 ## Unban request feature
 
 If you want banned users to see their cases, grant your bot the `ban people` permission. <br/>
-This way they can see the reason for their ban and comment or send an unban request.
+This way they can see the reason for their ban and comment or send an unban request. <br/>
+Furthermore, make sure the bot is high enough in the role hierarchy to ban people below him.
 
 ## Punishment feature
 
@@ -122,6 +124,8 @@ Manage roles - for muted role
 Kick people
 Ban people
 ```
+
+Furthermore, make sure the bot is high enough in the role hierarchy to punish people below him.
 
 ## Automoderation feature
 

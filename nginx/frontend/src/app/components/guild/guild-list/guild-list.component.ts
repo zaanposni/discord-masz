@@ -21,17 +21,19 @@ export class GuildListComponent implements OnInit {
 
   constructor(private api: ApiService, private auth: AuthService, public cookieTracker: CookieTrackerService, public router: Router, private toastr: ToastrService) { }
 
-  currentUser!: Observable<AppUser>;
+  currentUser!: AppUser;
   showSuggestions: boolean = false;
+  loading: boolean = true;
 
   hideSuggestions() {
     this.cookieTracker.updateCookie('suggestions', 'false');
   }
 
   ngOnInit(): void {
-    this.currentUser = this.auth.getUserProfile().pipe((data) => {
-      return data;
-    });
+    this.auth.getUserProfile().subscribe((data) => {
+      this.loading = false;
+      this.currentUser = data;
+    }, () => { this.loading = false });
     this.cookieTracker.currentSettings.subscribe(data => this.showSuggestions = data.showSuggestions);
   }
 
@@ -57,14 +59,14 @@ export class GuildListComponent implements OnInit {
           if(data.isConfirmed) {
             let params = new HttpParams()
               .set('deletedata', data?.value ? 'true' : 'false');
-              this.api.deleteData(`/guilds/${guildId}`, params).subscribe((data) => {
-                this.toastr.success('Guild deleted.');
-                this.currentUser = this.auth.getUserProfile(true).pipe((data) => {
-                  return data;
-                });
-              }, (error) => {
-                this.toastr.error('Cannot delete guild.', 'Something went wrong.');
+            this.api.deleteData(`/guilds/${guildId}`, params).subscribe((data) => {
+              this.toastr.success('Guild deleted.');
+              this.auth.getUserProfile(true).subscribe((data) => {
+                this.currentUser = data;
               });
+            }, (error) => {
+              this.toastr.error('Cannot delete guild.', 'Something went wrong.');
+            });
           }
         });
       }
