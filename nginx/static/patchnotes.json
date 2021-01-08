@@ -4,7 +4,7 @@
     "version": "v1.7.1",
     "changes": [
       "Improved mobile frontend experience.",
-      "Added more precise specification of requirements.",
+      "Added more precise specification of software requirements for masz.",
       "Removed unneeded apache files from old php setup.",
       "Now correctly reapplies muted role on member rejoin.",
       "Fixed a bug where banned guilds are not displayed correctly.",
