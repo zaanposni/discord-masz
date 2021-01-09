@@ -17,6 +17,7 @@ namespace masz.Services
         private readonly ILogger<DiscordAPIInterface> logger;
         private readonly IOptions<InternalConfig> config;
         private readonly string botToken;
+        private Dictionary<string, CacheApiResponse> cache = new Dictionary<string, CacheApiResponse>();
 
         private RestClient restClient;
 
@@ -32,6 +33,11 @@ namespace masz.Services
 
         public async Task<Ban> GetGuildUserBan(string guildId, string userId)
         {
+            if (this.cache.ContainsKey($"/guilds/{guildId}/bans/{userId}")) {
+                if (this.cache[$"/guilds/{guildId}/bans/{userId}"].ExpiresAt > DateTime.Now) {
+                    return new Ban(this.cache[$"/guilds/{guildId}/bans/{userId}"].Content);
+                }
+            }
             var request = new RestRequest(Method.GET);
             request.Resource = $"/guilds/{guildId}/bans/{userId}";
             request.AddHeader("Authorization", "Bot " + botToken);
@@ -39,6 +45,7 @@ namespace masz.Services
             var response = await restClient.ExecuteAsync<Ban>(request);
             if (response.IsSuccessful)
             {
+                this.cache[$"/guilds/{guildId}/bans/{userId}"] = new CacheApiResponse(response.Content);
                 return new Ban(response.Content);
             }
             return null;
@@ -74,13 +81,19 @@ namespace masz.Services
 
         public async Task<List<Channel>> FetchGuildChannels(string guildId)
         {
+            if (this.cache.ContainsKey($"/guilds/{guildId}/channels")) {
+                if (this.cache[$"/guilds/{guildId}/channels"].ExpiresAt > DateTime.Now) {
+                    return JsonConvert.DeserializeObject<List<Channel>>(this.cache[$"/guilds/{guildId}/channels"].Content);
+                }
+            }
             var request = new RestRequest(Method.GET);
-            request.Resource = "/guilds/" + guildId + "/channels";
+            request.Resource = $"/guilds/{guildId}/channels";
             request.AddHeader("Authorization", "Bot " + botToken);
 
             var response = await restClient.ExecuteAsync<List<Guild>>(request);
             if (response.IsSuccessful)
             {
+                this.cache[$"/guilds/{guildId}/channels"] = new CacheApiResponse(response.Content);
                 return JsonConvert.DeserializeObject<List<Channel>>(response.Content);
             }
             return null;
@@ -89,13 +102,19 @@ namespace masz.Services
         
         public async Task<Guild> FetchGuildInfo(string guildId)
         {
+            if (this.cache.ContainsKey($"/guilds/{guildId}")) {
+                if (this.cache[$"/guilds/{guildId}"].ExpiresAt > DateTime.Now) {
+                    return new Guild(this.cache[$"/guilds/{guildId}"].Content);
+                }
+            }
             var request = new RestRequest(Method.GET);
-            request.Resource = "/guilds/" + guildId;
+            request.Resource = $"/guilds/{guildId}";
             request.AddHeader("Authorization", "Bot " + botToken);
 
             var response = await restClient.ExecuteAsync<Guild>(request);
             if (response.IsSuccessful)
             {
+                this.cache[$"/guilds/{guildId}"] = new CacheApiResponse(response.Content);
                 return new Guild(response.Content);
             }
             return null;
@@ -117,13 +136,19 @@ namespace masz.Services
 
         public async Task<GuildMember> FetchMemberInfo(string guildId, string userId)
         {
+            if (this.cache.ContainsKey($"/guilds/{guildId}/members/{userId}")) {
+                if (this.cache[$"/guilds/{guildId}/members/{userId}"].ExpiresAt > DateTime.Now) {
+                    return new GuildMember(this.cache[$"/guilds/{guildId}/members/{userId}"].Content);
+                }
+            }
             var request = new RestRequest(Method.GET);
-            request.Resource = "/guilds/" + guildId + "/members/" + userId;
+            request.Resource = $"/guilds/{guildId}/members/{userId}";
             request.AddHeader("Authorization", "Bot " + botToken);
 
             var response = await restClient.ExecuteAsync<GuildMember>(request);
             if (response.IsSuccessful)
             {
+                this.cache[$"/guilds/{guildId}/members/{userId}"] = new CacheApiResponse(response.Content);
                 return new GuildMember(response.Content);
             }
             return null;
@@ -131,13 +156,19 @@ namespace masz.Services
 
         public async Task<User> FetchUserInfo(string userId)
         {
+            if (this.cache.ContainsKey($"/users/{userId}")) {
+                if (this.cache[$"/users/{userId}"].ExpiresAt > DateTime.Now) {
+                    return new User(this.cache[$"/users/{userId}"].Content);
+                }
+            }
             var request = new RestRequest(Method.GET);
-            request.Resource = "/users/" + userId;
+            request.Resource = $"/users/{userId}";
             request.AddHeader("Authorization", "Bot " + botToken);
 
             var response = await restClient.ExecuteAsync<User>(request);
             if (response.IsSuccessful)
             {
+                this.cache[$"/users/{userId}"] = new CacheApiResponse(response.Content);
                 return new User(response.Content);
             }
             return null;

@@ -41,9 +41,9 @@ namespace masz
                 .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddScoped<IDatabase, Database>();
-            services.AddScoped<IDiscordAPIInterface, DiscordAPIInterface>();
             services.AddScoped<IDiscordAnnouncer, DiscordAnnouncer>();
             services.AddScoped<IFilesHandler, FilesHandler>();
+            services.AddSingleton<IDiscordAPIInterface, DiscordAPIInterface>();
             services.AddSingleton<IIdentityManager, IdentityManager>();
             services.AddSingleton<IPunishmentHandler, PunishmentHandler>();
 
@@ -81,6 +81,15 @@ namespace masz
                 options.CorrelationCookie.HttpOnly = false;
             });
 
+
+            // services.AddCors(o => o.AddPolicy("AngularDevCors", builder =>
+            // {
+            //     builder.WithOrigins("http://127.0.0.1:4200")
+            //         .AllowAnyMethod()
+            //         .AllowAnyHeader()
+            //         .AllowCredentials();
+            // }));
+
             services.Configure<InternalConfig>(Configuration.GetSection("InternalConfig"));
 
             // needed to store rate limit counters and ip rules
@@ -114,6 +123,8 @@ namespace masz
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // app.UseCors("AngularDevCors");
 
             app.UseIpRateLimiting();           
 

@@ -33,7 +33,7 @@ export class GuildListComponent implements OnInit {
     this.auth.getUserProfile().subscribe((data) => {
       this.loading = false;
       this.currentUser = data;
-    }, () => { this.loading = false });
+    }, () => { this.loading = false }, () => { this.loading = false });
     this.cookieTracker.currentSettings.subscribe(data => this.showSuggestions = data.showSuggestions);
   }
 

@@ -55,6 +55,13 @@
                 <td class="th-sm hiddencolumn">Title</td>
                 <td class="th-sm hiddencolumn">Description</td>
                 <td class="th-sm hiddencolumn">Punishment</td>
+                <td class="th-sm hiddencolumn">UsernameCase</td>
+                <td class="th-sm hiddencolumn">NicknameCase</td>
+                <td class="th-sm hiddencolumn">DiscriminatorCase</td>
+                <td class="th-sm hiddencolumn">CompleteUsernameCase</td>
+                <td class="th-sm hiddencolumn">UsernameCurrent</td>
+                <td class="th-sm hiddencolumn">DiscriminatorCurrent</td>
+                <td class="th-sm hiddencolumn">CompleteUsernameCurrent</td>
             </tr>
             </thead>
             <tbody>
@@ -103,6 +110,13 @@
                     <td class="hiddencolumn">{{ case.title }}</td>
                     <td class="hiddencolumn">{{ case.description }}</td>
                     <td class="hiddencolumn">{{ case.punishment }}</td>
+                    <td class="hiddencolumn">{{ case.username }}</td>
+                    <td class="hiddencolumn">{{ case.nickname }}</td>
+                    <td class="hiddencolumn">{{ case?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ case.username }}#{{ case?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.username }}</td>
+                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.username }}#{{ (this.users[case.userId] | async)?.discriminator }}</td>
                 </tr>
             </tbody>
         </table>
@@ -128,6 +142,13 @@
                 <td class="th-sm hiddencolumn">Title</td>
                 <td class="th-sm hiddencolumn">Description</td>
                 <td class="th-sm hiddencolumn">Punishment</td>
+                <td class="th-sm hiddencolumn">UsernameCase</td>
+                <td class="th-sm hiddencolumn">NicknameCase</td>
+                <td class="th-sm hiddencolumn">DiscriminatorCase</td>
+                <td class="th-sm hiddencolumn">CompleteUsernameCase</td>
+                <td class="th-sm hiddencolumn">UsernameCurrent</td>
+                <td class="th-sm hiddencolumn">DiscriminatorCurrent</td>
+                <td class="th-sm hiddencolumn">CompleteUsernameCurrent</td>
             </tr>
             </thead>
             <tbody>
@@ -176,6 +197,13 @@
                     <td class="hiddencolumn">{{ case.title }}</td>
                     <td class="hiddencolumn">{{ case.description }}</td>
                     <td class="hiddencolumn">{{ case.punishment }}</td>
+                    <td class="hiddencolumn">{{ case.username }}</td>
+                    <td class="hiddencolumn">{{ case.nickname }}</td>
+                    <td class="hiddencolumn">{{ case?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ case.username }}#{{ case?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.username }}</td>
+                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.username }}#{{ (this.users[case.userId] | async)?.discriminator }}</td>
                 </tr>
             </tbody>
         </table>
