@@ -267,3 +267,9 @@ select:-webkit-autofill {
 .owl-dt-calendar-cell-content, .owl-dt-control-content.owl-dt-control-button-content, .owl-dt-weekday.ng-star-inserted {
     color: var(--dark-text)!important;
 }
+
+.case-container {
+    color: var(--dark-text);
+    background-color: var(--dark-card-background);
+    border-color: #828385;
+}

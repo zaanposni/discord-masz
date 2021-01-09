@@ -1,5 +1,16 @@
 [
   {
+    "title": "Version 1.7.2",
+    "version": "v1.7.2",
+    "changes": [
+      "Reworked readme description of MASZ.",
+      "Reworked case list, now showing profil pictures too.",
+      "No showing current user info in case view.",
+      "Added discriminator to modcase model.",
+      "Limit modcase title to 35 chars."
+    ]
+  },
+  {
     "title": "Version 1.7.1",
     "version": "v1.7.1",
     "changes": [

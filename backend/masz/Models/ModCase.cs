@@ -17,6 +17,7 @@ namespace masz.Models
         public string Description { get; set; }
         public string UserId { get; set; }
         public string Username { get; set; }
+        public string Discriminator { get; set; }
         public string Nickname { get; set; }
         public string ModId { get; set; }
         public int Severity { get; set; }

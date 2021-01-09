@@ -8,7 +8,7 @@ namespace masz.Dtos.ModCase
     public class ModCaseForPutDto
     {
         [Required(ErrorMessage = "Title field is required")]
-        [MaxLength(100)]
+        [MaxLength(35)]
         public string Title { get; set; }
         [Required(ErrorMessage = "Description field is required")]
         public string Description { get; set; }

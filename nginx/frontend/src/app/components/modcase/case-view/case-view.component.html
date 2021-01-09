@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-start align-items-start flex-wrap mt-2">
     <!-- Title + Guild -->
-    <div class="flex-grow-1">
+    <div>
         <h4 class="font-weight-bold"><span class="display-4">#{{ (this.modCase | async)?.caseId }}</span> {{ (this.modCase | async)?.title }}
         </h4>
 
@@ -15,14 +15,16 @@
         <span class="text-black-50">({{ (this.modCase | async)?.guildId }})</span></span>
         </div>
     </div>
+    <div class="flex-grow-1"></div>
 
     <!-- User icon -->
-    <div class="align-self-end mr-4">
+    <div class="align-self-end">
         <img
                 src="{{ (this.users[(this.modCase | async)?.userId] | async)?.imageUrl }}"
-                class="rounded-circle z-depth-0 mr-1"
+                class="rounded-circle z-depth-0 mr-1 align-self-end"
                 alt="avatar image"
                 height="128"
+                onerror="this.src='/assets/img/default_profile.png';"
         />
     </div>
 
@@ -43,6 +45,11 @@
         </h3>
     </div>
 </div>
+<div class="alert mt-3" *ngIf="!(this.users[(this.modCase | async)?.userId] | async)">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    Failed to load current user info. You may see an old username and default profile picture.
+    It is likely that this user delete his account.
+</div>
 <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="modcase-tab" data-toggle="tab" href="#modcase" role="tab" aria-controls="modcase"
@@ -58,7 +65,7 @@
     </li>
 </ul>
 <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="modcase" role="tabpanel" aria-labelledby="modcase-tab">  
+    <div class="tab-pane fade show active" id="modcase" role="tabpanel" aria-labelledby="modcase-tab">
         <!-- Table -->
         <div class="row mt-3">
 
@@ -85,7 +92,7 @@
                     <tr>
                         <th class="font-weight-bold">Username</th>
                         <td class="font-weight-bold">
-                            {{ (this.modCase | async)?.username }}
+                            {{ (this.users[(this.modCase | async)?.userId] | async)?.username || (this.modCase | async)?.username }}<ng-container *ngIf="(this.modCase | async)?.discriminator || (this.users[(this.modCase | async)?.userId] | async)">#{{ (this.users[(this.modCase | async)?.userId] | async)?.discriminator || (this.modCase | async)?.discriminator }}</ng-container>
                         </td>
                     </tr>
                     <tr>
@@ -175,7 +182,7 @@
         <div class="mb-3">
             <h4 class="font-weight-bold">Full case description</h4>
             <hr/>
-            <span style="white-space: pre-wrap;" class="text-monospace">{{ (this.modCase | async)?.description }}</span>
+            <span style="white-space: pre-wrap; word-wrap: break-word" class="text-monospace">{{ (this.modCase | async)?.description }}</span>
         </div>
     </div>
     <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">

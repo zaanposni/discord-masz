@@ -10,13 +10,13 @@
           alt="Chat on Discord"></a>
 </p>
 
-MASZ is a management and moderation overview tool for **Discord Moderators** and **Admins**. <br/>
-Keep track of all **moderation events** and **current punishments** on your server, **search reliably** for entries and be one step ahead of trolls and rule breakers. <br/>
-Set up various limits and rules, such as **spam or banned words**, that the app will **automatically moderate**, for example with mutes or warnings. All logs can be checked on the website.<br/>
-The core of this tool are the **modcases**, a case represents a rule violation, an important note or similar. <br/>
-The server members and your moderators can be **notified** individually about the creation. <br/>
-The user for whom the case was created can also see it on the website, take a stand and your server is moderated **transparently**. <br/>
-This application can also **manage temporary punishments** just as temp mutes for a variable time you can define.
+MASZ is moderation tool for **discord moderators and admins**.<br/>
+Use **automoderation**, **temporary punishments** or register **moderation events** to keep track of anything that happens on your server.<br/>
+The core of this tool are the **modcases**, a case represents a rule violation, an important note or similar.<br/>
+Register **webhooks to notify** your staff or members about anything that happens on MASZ.<br/>
+**Upload files** as prove or post a **comment** in order to support the punishment.<br/>
+On **the website** all members can login and view modcases registered on their name and also comment on it.<br/>
+Furthermore there is a **discord bot** that can be used to **quickly check an users stats and moderation events**.<br/>
 
 # Used by
 
@@ -156,6 +156,10 @@ There are backup example scripts in the `scripts` directory to backup uploaded f
 ## Discord
 
 If you are using a local deployed backend you have to define `https://127.0.0.1:port/` and `https://127.0.0.1:port/signin-discord` as valid redirect in your [Discord application settings](https://discord.com/developers/applications).
+
+## Angular
+
+If you want to develop on the angular frontend, it would be best if you deploy the backend via `./start.sh` and enable cors in the `Startup.cs` then use the `config.ts` to redirect all requests to `127.0.0.1:5565`.
 
 # Contribute
 

@@ -34,6 +34,7 @@ export class GuildOverviewComponent implements OnInit {
   moderationEvents: AutoModerationEvent[] = new Array<AutoModerationEvent>();
   isModOrHigher: boolean = false;
   isAdminOrHigher: boolean = false;
+  users: { [key: string]: Promise<DiscordUser> } = {};
 
   iconsMap: { [key: number]: string} = {
     0: 'fas fa-link'
@@ -75,7 +76,13 @@ export class GuildOverviewComponent implements OnInit {
     });
     this.guild = this.cache.getSimpleData(`/discord/guilds/${this.guildId}`);
     this.modCases = this.api.getSimpleData(`/modcases/${this.guildId}`).toPromise();
-    this.modCases.then(() => { initDatatables(); });
+    this.modCases.then(
+      (data) => {
+        initDatatables();
+        data.forEach(element => {
+          this.users[element.userId] = this.cache.getSimpleData(`/discord/users/${element.userId}`, true, null, false);
+        });
+      });
     this.activePunishments = this.api.getSimpleData(`/modcases/${this.guildId}`).pipe(
       map(items => items.filter((item: { punishmentActive: boolean; }) => item.punishmentActive === true))
     ).toPromise();
