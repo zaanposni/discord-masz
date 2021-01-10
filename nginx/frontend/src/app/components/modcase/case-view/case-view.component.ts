@@ -38,6 +38,7 @@ export class CaseViewComponent implements OnInit {
   files!: Promise<FileInfo>;
   isModOrHigher: boolean = false;
   fileToUpload!: File | null;
+  userId: string;
 
   users: { [key: string]: Promise<DiscordUser> } = {};
   
@@ -56,9 +57,11 @@ export class CaseViewComponent implements OnInit {
     this.modCase = this.api.getSimpleData(`/modcases/${this.guildId}/${this.caseId}`).toPromise();
 
     this.modCase.then((data) => {
+      this.userId = data.userId;
+
       this.guild = this.api.getSimpleData(`/discord/guilds/${data.guildId}`).toPromise();
 
-      this.users[data.userId] = this.cache.getSimpleData(`/discord/users/${data.userId}`);
+      this.users[data.userId] = this.api.getSimpleData(`/discord/users/${data.userId}`).toPromise();
       this.users[data.modId] = this.cache.getSimpleData(`/discord/users/${data.modId}`);
       if (data.modId !== data.lastEditedByModId) {
         this.users[data.lastEditedByModId] = this.cache.getSimpleData(`/discord/users/${data.lastEditedByModId}`);
@@ -70,6 +73,10 @@ export class CaseViewComponent implements OnInit {
         }
       });
     }, (error) => { });
+  }
+
+  reloadUser() {
+    this.users[this.userId] = this.api.getSimpleData(`/discord/users/${this.userId}`).toPromise();
   }
 
   redirectToApi() {

@@ -179,6 +179,10 @@ select:-webkit-autofill {
     color: var(--dark-text) !important;
 }
 
+.badge-dark {
+    background-color: #393838 !important;
+}
+
 .btn-warning {
 	background-color:rgb(230, 160, 20) !important;
     color: var(--dark-text) !important;

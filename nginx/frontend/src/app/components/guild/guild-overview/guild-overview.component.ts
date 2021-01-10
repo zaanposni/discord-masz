@@ -81,6 +81,7 @@ export class GuildOverviewComponent implements OnInit {
         initDatatables();
         data.forEach(element => {
           this.users[element.userId] = this.cache.getSimpleData(`/discord/users/${element.userId}`, true, null, false);
+          this.users[element.modId] = this.cache.getSimpleData(`/discord/users/${element.modId}`, true, null, false);
         });
       });
     this.activePunishments = this.api.getSimpleData(`/modcases/${this.guildId}`).pipe(

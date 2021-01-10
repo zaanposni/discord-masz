@@ -48,7 +48,8 @@
 <div class="alert mt-3" *ngIf="!(this.users[(this.modCase | async)?.userId] | async)">
     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
     Failed to load current user info. You may see an old username and default profile picture.
-    It is likely that this user delete his account.
+    It is likely that this user delete his account. 
+    <span (click)="reloadUser()" class="crs-pnt">Try Reload.</span>
 </div>
 <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
     <li class="nav-item">

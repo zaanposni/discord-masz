@@ -9,7 +9,8 @@
       "Added discriminator to modcase model.",
       "Limit modcase title to 35 chars.",
       "Added backend caching for Discord API.",
-      "Improved search for modcases."
+      "Improved search for modcases.",
+      "Now showing inactive punishments in a different color."
     ]
   },
   {

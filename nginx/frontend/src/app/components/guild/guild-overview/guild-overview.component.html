@@ -70,18 +70,32 @@
                         <a class="font-weight-bold" (click)="this.router.navigate(['guilds', case.guildId, 'cases', case.caseId])">
                             <div class="case-container">
                                 <div class="case-container-body d-flex flex-wrap">
-                                    <!-- Profile picture -->  
-                                    <img
-                                        src="{{ (this.users[case.userId] | async)?.imageUrl }}"
-                                        class="rounded-circle z-depth-0 mr-3"
-                                        alt="avatar image"
-                                        height="96"
-                                        onerror="this.src='/assets/img/default_profile.png';"
-                                    />
+                                    <!-- Profile picture -->
+                                    <div class="pictures-parent mr-3">
+                                        <img
+                                            src="{{ (this.users[case.userId] | async)?.imageUrl }}"
+                                            class="rounded-circle z-depth-0 user-image"
+                                            alt="avatar image"
+                                            height="96"
+                                            onerror="this.src='/assets/img/default_profile.png';"
+                                        />
+                                        <img
+                                            src="{{ (this.users[case.modId] | async)?.imageUrl }}"
+                                            class="rounded-circle z-depth-0 mod-image"
+                                            alt="avatar image"
+                                            height="40"
+                                            title="Moderator {{ case.modId }}"
+                                            onerror="this.src='/assets/img/default_profile.png';"
+                                        />
+                                    </div>
                                     <div class="flex-shrink-1 d-flex flex-column flex-wrap">
                                         <!-- Title -->    
-                                        <h4 class="card-title">
-                                            <span class="badge badge-danger mr-1">{{ case.punishment }}</span>
+                                        <h4>
+                                            <span class="badge mr-1"
+                                             [ngClass]="(case.punishmentType === 0 || case.punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
+                                             [attr.title]="(case.punishmentType === 0 || case.punishmentActive === true) ? '' : 'This punishment is expired.'">
+                                                {{ case.punishment }}
+                                            </span>
                                             {{ (this.users[case.userId] | async)?.username || case.username }}<ng-container *ngIf="case.discriminator || (this.users[case.userId] | async)">#{{ (this.users[case.userId] | async)?.discriminator || case.discriminator }}</ng-container><br/>
                                             #{{ case.caseId }} - {{ case.title }}
                                         </h4>
