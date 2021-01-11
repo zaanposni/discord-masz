@@ -7,7 +7,6 @@ import { AppUser } from 'src/app/models/AppUser';
 import { Guild } from 'src/app/models/Guild';
 import { GuildRole } from 'src/app/models/GuildRole';
 import { MetaClientId } from 'src/app/models/MetaClientId';
-import { ApiCacheService } from 'src/app/services/api-cache.service';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -33,11 +32,11 @@ export class GuildAddComponent implements OnInit {
   guilds: Promise<Guild[]>;
   clientid: Promise<MetaClientId>;
 
-  constructor(private api: ApiService, private cache: ApiCacheService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
+  constructor(private api: ApiService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.guilds = this.cache.getSimpleData('/discord/guilds');
-    this.clientid = this.cache.getSimpleData('/meta/clientid');
+    this.guilds = this.api.getSimpleData('/discord/guilds').toPromise();
+    this.clientid = this.api.getSimpleData('/meta/clientid').toPromise();
 
     this.guilds.then(() => {
       if (this.route.snapshot.queryParamMap.get('guildid')) {

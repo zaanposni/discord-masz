@@ -12,7 +12,6 @@ import { DiscordUser } from 'src/app/models/DiscordUser';
 import { FileInfo } from 'src/app/models/FileInfo';
 import { Guild } from 'src/app/models/Guild';
 import { ModCase } from 'src/app/models/ModCase';
-import { ApiCacheService } from 'src/app/services/api-cache.service';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2'
@@ -64,7 +63,7 @@ export class GuildOverviewComponent implements OnInit {
   }
   startPage = 1;
 
-  constructor(private cache: ApiCacheService, private route: ActivatedRoute, private auth: AuthService, private toastr: ToastrService,
+  constructor(private route: ActivatedRoute, private auth: AuthService, private toastr: ToastrService,
      private api: ApiService, public router: Router) { }
 
   ngOnInit(): void {
@@ -74,14 +73,18 @@ export class GuildOverviewComponent implements OnInit {
       this.isModOrHigher = data.modGuilds.find(x => x.id === this.guildId) !== undefined || data.adminGuilds.find(x => x.id === this.guildId) !== undefined || data.isAdmin;
       this.isAdminOrHigher = data.adminGuilds.find(x => x.id === this.guildId) !== undefined || data.isAdmin;
     });
-    this.guild = this.cache.getSimpleData(`/discord/guilds/${this.guildId}`);
+    this.guild = this.api.getSimpleData(`/discord/guilds/${this.guildId}`).toPromise();
     this.modCases = this.api.getSimpleData(`/modcases/${this.guildId}`).toPromise();
     this.modCases.then(
       (data) => {
         initDatatables();
         data.forEach(element => {
-          this.users[element.userId] = this.cache.getSimpleData(`/discord/users/${element.userId}`, true, null, false);
-          this.users[element.modId] = this.cache.getSimpleData(`/discord/users/${element.modId}`, true, null, false);
+          if ( ! (element.userId in this.users) ) {
+            this.users[element.userId] = this.api.getSimpleData(`/discord/users/${element.userId}`, true, null, false).toPromise();
+          }
+          if ( ! (element.modId in this.users) ) {
+            this.users[element.modId] = this.api.getSimpleData(`/discord/users/${element.modId}`, true, null, false).toPromise();
+          }
         });
       });
     this.activePunishments = this.api.getSimpleData(`/modcases/${this.guildId}`).pipe(
