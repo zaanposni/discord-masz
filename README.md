@@ -25,12 +25,11 @@ Furthermore there is a **discord bot** that can be used to **quickly check an us
 
 # Preview
 
-<p>Detailed view for single modcase (click to reveal)</p>
+<p>Detailed view for a single modcase</p>
 <img src="/docs/modcase.png"/>
-<details>
-  <summary>Modcase overview (click to reveal)</summary>
-  <img src="/docs/modcases.png"/>
-</details>
+<p>Guild overview</p>
+<img src="/docs/modcases.png"/>
+
 <details>
   <summary>Comments on a modcase(click to reveal)</summary>
   <img src="/docs/modcase-comments.png"/>
