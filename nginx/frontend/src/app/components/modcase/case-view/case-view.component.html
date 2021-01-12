@@ -1,7 +1,9 @@
 <div class="d-flex justify-content-start align-items-start flex-wrap mt-2">
     <!-- Title + Guild -->
     <div>
-        <h4 class="font-weight-bold"><span class="display-4">#{{ (this.modCase | async)?.caseId }}</span> {{ (this.modCase | async)?.title }}
+        <h4 class="font-weight-bold">
+            <span class="display-4">#{{ (this.modCase | async)?.caseId }}</span>
+            <span style="word-break: break-all;"> {{ (this.modCase | async)?.title }}</span>
         </h4>
 
         <div class="d-flex align-items-lg-center">

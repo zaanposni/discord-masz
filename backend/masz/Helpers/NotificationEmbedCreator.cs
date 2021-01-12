@@ -164,8 +164,7 @@ namespace masz.Helpers
                 embed.ThumbnailUrl = caseUser.ImageUrl;
             }
 
-            if (! string.IsNullOrEmpty(modCase.Description) && isInternal)
-            {
+            if (! string.IsNullOrEmpty(modCase.Description)) {
                 embed.AddField("**Description**", modCase.Description.Substring(0, Math.Min(modCase.Description.Length, 1000)));
             }
             
@@ -241,7 +240,7 @@ namespace masz.Helpers
             if (isInternal)
             {
                 var author = new EmbedAuthorBuilder();
-                author.IconUrl = $"{discordCdnBaseUrl}/avatars/{actor.Id}/{actor.Avatar}.png";
+                author.IconUrl = actor.ImageUrl;
                 author.Name = actor.Username;
                 embed.Author = author;
             }
@@ -251,8 +250,7 @@ namespace masz.Helpers
     
         public static EmbedBuilder CreatePublicCaseEmbed(ModCase modCase, RestAction action, User actor, User caseUser = null, String serviceBaseUrl = null)
         {
-            EmbedBuilder embed = CreateInternalCaseEmbed(modCase, action, actor, caseUser, serviceBaseUrl, false);
-            return embed;
+            return CreateInternalCaseEmbed(modCase, action, actor, caseUser, serviceBaseUrl, false);
         }
     }
 }

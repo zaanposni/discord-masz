@@ -9,7 +9,8 @@
       "Added discriminator to modcase model.",
       "Added backend caching for Discord API.",
       "Improved search for modcases.",
-      "Now showing inactive punishments in a different color."
+      "Now showing inactive punishments in a different color.",
+      "Added description field to public announcement embed."
     ]
   },
   {
