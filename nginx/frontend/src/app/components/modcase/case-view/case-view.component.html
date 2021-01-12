@@ -18,7 +18,7 @@
     <div class="flex-grow-1"></div>
 
     <!-- User icon -->
-    <div class="align-self-end">
+    <div>
         <img
             src="{{ (this.users[(this.modCase | async)?.userId] | async)?.imageUrl }}"
             class="rounded-circle z-depth-0 mr-1 align-self-end"
@@ -29,7 +29,7 @@
     </div>
 
     <!-- Edit and delete buttons -->
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-column flex-shrink-0">
         <button type="button" class="btn btn-primary" (click)="redirectToApi()">See raw case data</button>
         <ng-container *ngIf="this.isModOrHigher">
             <button class="btn btn-warning" (click)="this.router.navigate(['guilds', this.guildId, 'cases', this.caseId, 'edit'])">Edit this case</button>

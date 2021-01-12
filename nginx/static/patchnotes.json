@@ -7,7 +7,6 @@
       "Reworked case list, now showing profil pictures too.",
       "No showing current user info in case view.",
       "Added discriminator to modcase model.",
-      "Limit modcase title to 35 chars.",
       "Added backend caching for Discord API.",
       "Improved search for modcases.",
       "Now showing inactive punishments in a different color."
