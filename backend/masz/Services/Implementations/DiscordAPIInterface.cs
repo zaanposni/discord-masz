@@ -18,7 +18,6 @@ namespace masz.Services
         private readonly IOptions<InternalConfig> config;
         private readonly string botToken;
         private Dictionary<string, CacheApiResponse> cache = new Dictionary<string, CacheApiResponse>();
-
         private RestClient restClient;
 
         public DiscordAPIInterface() {  }
@@ -46,7 +45,7 @@ namespace masz.Services
             var response = await restClient.ExecuteAsync<Ban>(request);
             if (response.IsSuccessful)
             {
-                this.cache.TryAdd($"/guilds/{guildId}/bans/{userId}", new CacheApiResponse(response.Content));
+                this.cache.TryAdd($"/guilds/{guildId}/bans/{userId}", new CacheApiResponse(response.Content, 3));
                 return new Ban(response.Content);
             }
             return null;

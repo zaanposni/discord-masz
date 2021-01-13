@@ -10,9 +10,9 @@ namespace masz.Models
         public string Content { get; set; }
         public DateTime ExpiresAt { get; set; }
 
-        public CacheApiResponse(string content) {
+        public CacheApiResponse(string content, int cacheMinutes = 30) {
             this.Content = content;
-            this.ExpiresAt = DateTime.Now.AddMinutes(15);
+            this.ExpiresAt = DateTime.Now.AddMinutes(cacheMinutes);
         }
     }
 }
