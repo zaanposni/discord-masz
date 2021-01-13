@@ -22,11 +22,11 @@
 <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="modcase-tab" data-toggle="tab" href="#modcases" role="tab" aria-controls="modcases"
-           aria-selected="true">Modcases ({{ (this.modCases | async)?.length || 0 }})</a>
+           aria-selected="true">Modcases ({{ (this.casesTable | async)?.length || 0 }})</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" id="punishment-tab" data-toggle="tab" href="#punishments" role="tab" aria-controls="punishments"
-           aria-selected="false">Active Punishments ({{ (this.activePunishments | async)?.length || 0 }})</a>
+           aria-selected="false">Active Punishments ({{ (this.punishmentTable | async)?.length || 0 }})</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" id="moderation-tab" data-toggle="tab" href="#moderations" role="tab" aria-controls="moderations"
@@ -38,11 +38,16 @@
         <div class="d-flex flex-wrap justify-content-between align-items-start m-2">
             <!-- Infos -->
             <div>
-                <span class="display-4 font-weight-bold">All Modcases ({{ (this.modCases | async)?.length || 0 }})</span>
+                <span class="display-4 font-weight-bold">All Modcases ({{ (this.casesTable | async)?.length || 0 }})</span>
             </div>
             <div class="d-flex flex-column align-self-end" *ngIf="this.isModOrHigher">
                 <button class="btn btn-success" (click)="this.router.navigate(['guilds', this.guildId, 'cases', 'new'])">Create new Case</button>
             </div>
+        </div>
+        <div *ngIf="this.caseLoading" class="d-flex flex-row" >
+            <div class="flex-grow-1"></div>
+            <img src="assets/img/spinner.gif" />
+            <div class="flex-grow-1"></div>
         </div>
         <table id="tableCases" class="table responsive" cellspacing="0" width="100%">
             <thead>
@@ -65,50 +70,51 @@
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let case of (this.modCases | async)">
-                    <td [attr.data-order]="case.caseId">
-                        <a class="font-weight-bold" (click)="this.router.navigate(['guilds', case.guildId, 'cases', case.caseId])">
+                <tr *ngFor="let entry of (this.casesTable | async)">
+                    <td [attr.data-order]="entry.modCase.caseId">
+                        <a class="font-weight-bold" (click)="this.router.navigate(['guilds', entry.modCase.guildId, 'cases', entry.modCase.caseId])">
                             <div class="case-container">
                                 <div class="case-container-body d-flex flex-wrap">
                                     <!-- Profile picture -->
                                     <div class="pictures-parent mr-3">
                                         <img
-                                            src="{{ (this.users[case.userId] | async)?.imageUrl }}"
+                                            src="{{ entry.suspect?.imageUrl }}"
                                             class="rounded-circle z-depth-0 user-image"
                                             alt="avatar image"
                                             height="96"
+                                            title="Suspect {{ entry.modCase.userId }}"
                                             onerror="this.src='/assets/img/default_profile.png';"
                                         />
                                         <img
-                                            src="{{ (this.users[case.modId] | async)?.imageUrl }}"
+                                            src="{{ entry.moderator?.imageUrl }}"
                                             class="rounded-circle z-depth-0 mod-image"
                                             alt="avatar image"
                                             height="40"
-                                            title="Moderator {{ case.modId }}"
+                                            title="Moderator {{ entry.modCase.modId }}"
                                             onerror="this.src='/assets/img/default_profile.png';"
                                         />
                                     </div>
                                     <div class="flex-shrink-1 d-flex flex-column flex-wrap">
                                         <!-- Title -->    
-                                        <h4 title="{{ case.title }}">
+                                        <h4 title="{{ entry.modCase.title }}">
                                             <span class="badge mr-1"
-                                             [ngClass]="(case.punishmentType === 0 || case.punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
-                                             [attr.title]="(case.punishmentType === 0 || case.punishmentActive === true) ? '' : 'This punishment is expired.'">
-                                                {{ case.punishment }}
+                                             [ngClass]="(entry.modCase.punishmentType === 0 || entry.modCase.punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
+                                             [attr.title]="(entry.modCase.punishmentType === 0 || entry.modCase.punishmentActive === true) ? '' : 'This punishment is expired.'">
+                                                {{ entry.modCase.punishment }}
                                             </span>
-                                            {{ (this.users[case.userId] | async)?.username || case.username }}<ng-container *ngIf="case.discriminator || (this.users[case.userId] | async)">#{{ (this.users[case.userId] | async)?.discriminator || case.discriminator }}</ng-container><br/>
-                                            #{{ case.caseId }} - {{ case.title.length > 35 ? case.title.slice(0, 35) + ' [...]' : case.title }}
+                                            {{ entry.suspect?.username || entry.modCase.username }}<ng-container *ngIf="entry.modCase.discriminator || entry.suspect">#{{ entry.suspect?.discriminator || entry.modCase.discriminator }}</ng-container><br/>
+                                            #{{ entry.modCase.caseId }} - {{ entry.modCase.title.length > 35 ? entry.modCase.title.slice(0, 35) + ' [...]' : entry.modCase.title }}
                                         </h4>
         
                                         <!-- Labels -->
                                         <div class="d-flex mb-1">
-                                            <span class="badge badge-pill badge-info mr-1" *ngFor="let label of case.labels">
+                                            <span class="badge badge-pill badge-info mr-1" *ngFor="let label of entry.modCase.labels">
                                                 {{ label }}
                                             </span>
                                         </div>
         
                                         <!-- Text -->
-                                        <span title="{{ case.description }}" style="word-wrap: break-word;">{{ case.description.length > 50 ? case.description.slice(0, 50) + ' [...]' : case.description }}</span>
+                                        <span title="{{ entry.modCase.description }}" style="word-wrap: break-word;">{{ entry.modCase.description.length > 50 ? entry.modCase.description.slice(0, 50) + ' [...]' : entry.modCase.description }}</span>
                                     </div>
                                     <div class="flex-grow-1"></div>
                                     <!-- Button -->
@@ -117,20 +123,20 @@
                             </div>
                         </a>
                     </td>
-                    <td class="hiddencolumn">{{ case.caseId }}</td>
-                    <td class="hiddencolumn">{{ case.userId }}</td>
-                    <td class="hiddencolumn">{{ case.modId }}</td>
-                    <td class="hiddencolumn">{{ case.labels.join('|') }}</td>
-                    <td class="hiddencolumn">{{ case.title }}</td>
-                    <td class="hiddencolumn">{{ case.description }}</td>
-                    <td class="hiddencolumn">{{ case.punishment }}</td>
-                    <td class="hiddencolumn">{{ case.username }}</td>
-                    <td class="hiddencolumn">{{ case.nickname }}</td>
-                    <td class="hiddencolumn">{{ case?.discriminator }}</td>
-                    <td class="hiddencolumn">{{ case.username }}#{{ case?.discriminator }}</td>
-                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.username }}</td>
-                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.discriminator }}</td>
-                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.username }}#{{ (this.users[case.userId] | async)?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.caseId }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.userId }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.modId }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.labels.join('|') }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.title }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.description }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.punishment }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.username }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.nickname }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.username }}#{{ entry.modCase?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ entry.suspect?.username }}</td>
+                    <td class="hiddencolumn">{{ entry.suspect?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ entry.suspect?.username }}#{{ entry.suspect?.discriminator }}</td>
                 </tr>
             </tbody>
         </table>
@@ -139,11 +145,16 @@
         <div class="d-flex flex-wrap justify-content-between align-items-start m-2">
             <!-- Infos -->
             <div>
-                <span class="display-4 font-weight-bold">All active punishments ({{ (this.activePunishments | async)?.length || 0 }})</span>
+                <span class="display-4 font-weight-bold">All active punishments ({{ (this.punishmentTable | async)?.length || 0 }})</span>
             </div>
             <div class="d-flex flex-column align-self-end" *ngIf="this.isModOrHigher">
                 <span type="button" class="btn btn-success" (click)="this.router.navigate(['guilds', this.guildId, 'cases', 'new'])">Create new Case</span>
             </div>
+        </div>
+        <div *ngIf="this.punishmentLoading" class="d-flex flex-row" >
+            <div class="flex-grow-1"></div>
+            <img src="assets/img/spinner.gif" />
+            <div class="flex-grow-1"></div>
         </div>
         <table id="tablePunishments" class="table responsive" cellspacing="0" width="100%">
             <thead>
@@ -166,46 +177,51 @@
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let case of (this.activePunishments | async)">
-                    <td [attr.data-order]="case.caseId">
-                        <a class="font-weight-bold" (click)="this.router.navigate(['guilds', case.guildId, 'cases', case.caseId])">
+                <tr *ngFor="let entry of (this.punishmentTable | async)">
+                    <td [attr.data-order]="entry.modCase.caseId">
+                        <a class="font-weight-bold" (click)="this.router.navigate(['guilds', entry.modCase.guildId, 'cases', entry.modCase.caseId])">
                             <div class="case-container">
                                 <div class="case-container-body d-flex flex-wrap">
                                     <!-- Profile picture -->
                                     <div class="pictures-parent mr-3">
                                         <img
-                                            src="{{ (this.users[case.userId] | async)?.imageUrl }}"
+                                            src="{{ entry.suspect?.imageUrl }}"
                                             class="rounded-circle z-depth-0 user-image"
                                             alt="avatar image"
                                             height="96"
+                                            title="Suspect {{ entry.modCase.userId }}"
                                             onerror="this.src='/assets/img/default_profile.png';"
                                         />
                                         <img
-                                            src="{{ (this.users[case.modId] | async)?.imageUrl }}"
+                                            src="{{ entry.moderator?.imageUrl }}"
                                             class="rounded-circle z-depth-0 mod-image"
                                             alt="avatar image"
                                             height="40"
-                                            title="Moderator {{ case.modId }}"
+                                            title="Moderator {{ entry.modCase.modId }}"
                                             onerror="this.src='/assets/img/default_profile.png';"
                                         />
                                     </div>
                                     <div class="flex-shrink-1 d-flex flex-column flex-wrap">
                                         <!-- Title -->    
-                                        <h4 title="{{ case.title }}">
-                                            <span class="badge badge-danger mr-1">{{ case.punishment }}</span>
-                                            {{ (this.users[case.userId] | async)?.username || case.username }}<ng-container *ngIf="case.discriminator || (this.users[case.userId] | async)">#{{ (this.users[case.userId] | async)?.discriminator || case.discriminator }}</ng-container><br/>
-                                            #{{ case.caseId }} - {{ case.title.length > 35 ? case.title.slice(0, 35) + ' [...]' : case.title }}
+                                        <h4 title="{{ entry.modCase.title }}">
+                                            <span class="badge mr-1"
+                                             [ngClass]="(entry.modCase.punishmentType === 0 || entry.modCase.punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
+                                             [attr.title]="(entry.modCase.punishmentType === 0 || entry.modCase.punishmentActive === true) ? '' : 'This punishment is expired.'">
+                                                {{ entry.modCase.punishment }}
+                                            </span>
+                                            {{ entry.suspect?.username || entry.modCase.username }}<ng-container *ngIf="entry.modCase.discriminator || entry.suspect">#{{ entry.suspect?.discriminator || entry.modCase.discriminator }}</ng-container><br/>
+                                            #{{ entry.modCase.caseId }} - {{ entry.modCase.title.length > 35 ? entry.modCase.title.slice(0, 35) + ' [...]' : entry.modCase.title }}
                                         </h4>
         
                                         <!-- Labels -->
                                         <div class="d-flex mb-1">
-                                            <span class="badge badge-pill badge-info mr-1" *ngFor="let label of case.labels">
+                                            <span class="badge badge-pill badge-info mr-1" *ngFor="let label of entry.modCase.labels">
                                                 {{ label }}
                                             </span>
                                         </div>
         
                                         <!-- Text -->
-                                        <span title="{{ case.description }}" style="word-wrap: break-word;">{{ case.description.length > 50 ? case.description.slice(0, 50) + ' [...]' : case.description }}</span>
+                                        <span title="{{ entry.modCase.description }}" style="word-wrap: break-word;">{{ entry.modCase.description.length > 50 ? entry.modCase.description.slice(0, 50) + ' [...]' : entry.modCase.description }}</span>
                                     </div>
                                     <div class="flex-grow-1"></div>
                                     <!-- Button -->
@@ -214,20 +230,20 @@
                             </div>
                         </a>
                     </td>
-                    <td class="hiddencolumn">{{ case.caseId }}</td>
-                    <td class="hiddencolumn">{{ case.userId }}</td>
-                    <td class="hiddencolumn">{{ case.modId }}</td>
-                    <td class="hiddencolumn">{{ case.labels.join('|') }}</td>
-                    <td class="hiddencolumn">{{ case.title }}</td>
-                    <td class="hiddencolumn">{{ case.description }}</td>
-                    <td class="hiddencolumn">{{ case.punishment }}</td>
-                    <td class="hiddencolumn">{{ case.username }}</td>
-                    <td class="hiddencolumn">{{ case.nickname }}</td>
-                    <td class="hiddencolumn">{{ case?.discriminator }}</td>
-                    <td class="hiddencolumn">{{ case.username }}#{{ case?.discriminator }}</td>
-                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.username }}</td>
-                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.discriminator }}</td>
-                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.username }}#{{ (this.users[case.userId] | async)?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.caseId }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.userId }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.modId }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.labels.join('|') }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.title }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.description }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.punishment }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.username }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.nickname }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.username }}#{{ entry.modCase?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ entry.suspect?.username }}</td>
+                    <td class="hiddencolumn">{{ entry.suspect?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ entry.suspect?.username }}#{{ entry.suspect?.discriminator }}</td>
                 </tr>
             </tbody>
         </table>

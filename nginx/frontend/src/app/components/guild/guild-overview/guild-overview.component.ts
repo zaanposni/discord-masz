@@ -12,11 +12,13 @@ import { DiscordUser } from 'src/app/models/DiscordUser';
 import { FileInfo } from 'src/app/models/FileInfo';
 import { Guild } from 'src/app/models/Guild';
 import { ModCase } from 'src/app/models/ModCase';
+import { ModCaseTable } from 'src/app/models/ModCaseTable';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2'
 
-declare function initDatatables(): any;
+declare function initModCaseTable(): any;
+declare function initPunishmentTable(): any;
 
 @Component({
   selector: 'app-guild-overview',
@@ -27,13 +29,14 @@ export class GuildOverviewComponent implements OnInit {
 
   guildId!: string | null;
   guild!: Promise<Guild>;
-  modCases!: Promise<ModCase[]>;
-  activePunishments!: Promise<ModCase[]>;
+  casesTable!: Promise<ModCaseTable[]>;
+  caseLoading: boolean = true;
+  punishmentTable!: Promise<ModCaseTable[]>;
+  punishmentLoading: boolean = true;
   moderationEventsInfo!: Promise<AutoModerationEventInfo>;
   moderationEvents: AutoModerationEvent[] = new Array<AutoModerationEvent>();
   isModOrHigher: boolean = false;
   isAdminOrHigher: boolean = false;
-  users: { [key: string]: Promise<DiscordUser> } = {};
 
   iconsMap: { [key: number]: string} = {
     0: 'fas fa-link'
@@ -74,22 +77,10 @@ export class GuildOverviewComponent implements OnInit {
       this.isAdminOrHigher = data.adminGuilds.find(x => x.id === this.guildId) !== undefined || data.isAdmin;
     });
     this.guild = this.api.getSimpleData(`/discord/guilds/${this.guildId}`).toPromise();
-    this.modCases = this.api.getSimpleData(`/modcases/${this.guildId}`).toPromise();
-    this.modCases.then(
-      (data) => {
-        initDatatables();
-        data.forEach(element => {
-          if ( ! (element.userId in this.users) ) {
-            this.users[element.userId] = this.api.getSimpleData(`/discord/users/${element.userId}`, true, null, false).toPromise();
-          }
-          if ( ! (element.modId in this.users) ) {
-            this.users[element.modId] = this.api.getSimpleData(`/discord/users/${element.modId}`, true, null, false).toPromise();
-          }
-        });
-      });
-    this.activePunishments = this.api.getSimpleData(`/modcases/${this.guildId}`).pipe(
-      map(items => items.filter((item: { punishmentActive: boolean; }) => item.punishmentActive === true))
-    ).toPromise();
+    this.casesTable = this.api.getSimpleData(`/guilds/${this.guildId}/modcasetable`).toPromise();
+    this.casesTable.then(() => { initModCaseTable(); this.caseLoading = false; });
+    this.punishmentTable = this.api.getSimpleData(`/guilds/${this.guildId}/punishmenttable`).toPromise();
+    this.punishmentTable.then(() => { initPunishmentTable(); this.punishmentLoading = false; });
     
     this.moderationEventsInfo = this.api.getSimpleData(`/guilds/${this.guildId}/automoderations`).toPromise().then((data) => {
       data.events.forEach((element: AutoModerationEvent) => {

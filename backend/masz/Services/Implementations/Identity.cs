@@ -23,7 +23,7 @@ namespace masz.Services
         {
             this.discord = discord;
             this.Token = token;
-            this.ValidUntil = DateTime.Now.AddMinutes(5);
+            this.ValidUntil = DateTime.Now.AddMinutes(10);
         }
 
         private async Task LoadBasicDetails()

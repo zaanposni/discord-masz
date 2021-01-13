@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "87503b20-0e9f-4c0f-8258-db3e7f388fc4",
+		"_postman_id": "b4f361ca-1687-49f0-a9d9-672384917577",
 		"name": "discord-masz",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -221,7 +221,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/all",
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}",
 									"host": [
 										"{{url}}"
 									],
@@ -229,8 +229,67 @@
 										"api",
 										"v1",
 										"modcases",
+										"{{guildid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "modcase table",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": "masz_access_token={{masz_access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/modcasetable",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
 										"{{guildid}}",
-										"all"
+										"modcasetable"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "punishment table",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": "masz_access_token={{masz_access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/punishmenttable",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"punishmenttable"
 									]
 								}
 							},
@@ -469,7 +528,7 @@
 										{
 											"key": "File",
 											"type": "file",
-											"src": "/C:/Users/zaanposni/Desktop/464286a42d52e1e8528220b2c15546d2.jpg"
+											"src": "/C:/Users/zaanposni/Desktop/bundestag_winter.jpg"
 										}
 									]
 								},
@@ -805,7 +864,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/1/comments/4",
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/1/comments/2",
 									"host": [
 										"{{url}}"
 									],
@@ -816,7 +875,7 @@
 										"{{guildid}}",
 										"1",
 										"comments",
-										"4"
+										"2"
 									]
 								}
 							},
@@ -973,7 +1032,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"AutoModerationType\": 0,\r\n    \"AutoModerationAction\": 1,\r\n    \"PunishmentType\": 3,\r\n    \"PunishmentDurationMinutes\": 1,\r\n    \"IgnoreChannels\": [],\r\n    \"IgnoreRoles\": [\"748944055840407653\"],\r\n    \"TimeLimitMinutes\": null,\r\n    \"Limit\": null,\r\n    \"SendDmNotification\": true,\r\n    \"SendPublicNotification\": true\r\n}",
+									"raw": "{\r\n    \"AutoModerationType\": 0,\r\n    \"AutoModerationAction\": 3,\r\n    \"PunishmentType\": 3,\r\n    \"PunishmentDurationMinutes\": 1,\r\n    \"IgnoreChannels\": [\"791634389855240242\", \"789071589450317824\"],\r\n    \"IgnoreRoles\": [\"748944055840407653\", \"748944055840407651\"],\r\n    \"TimeLimitMinutes\": null,\r\n    \"Limit\": null,\r\n    \"SendDmNotification\": true,\r\n    \"SendPublicNotification\": true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
