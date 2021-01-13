@@ -211,6 +211,7 @@ namespace masz.Controllers
             modCase.CaseId = oldModCase.CaseId;
             modCase.GuildId = oldModCase.GuildId;
             modCase.Username = oldModCase.Username;
+            modCase.Discriminator = oldModCase.Discriminator;
             modCase.Nickname = oldModCase.Nickname;
             modCase.CreatedAt = oldModCase.CreatedAt;
             modCase.LastEditedAt = DateTime.UtcNow;
@@ -232,6 +233,7 @@ namespace masz.Controllers
                     return BadRequest("Cannot create cases for site admins.");
                 }
                 modCase.Username = currentReportedUser.Username;  // update to new username
+                modCase.Discriminator = currentReportedUser.Discriminator;
 
                 var currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId);
                 if (currentReportedMember != null)
@@ -329,6 +331,7 @@ namespace masz.Controllers
             }
 
             newModCase.Username = currentReportedUser.Username;
+            newModCase.Discriminator = currentReportedUser.Discriminator;
 
             GuildMember currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId);
 

@@ -71,6 +71,7 @@ namespace masz.Controllers
                     newModCase.GuildId = guildid;
                     newModCase.UserId = dto.UserId;
                     newModCase.Username = dto.Username;
+                    newModCase.Discriminator = dto.Discriminator;
                     newModCase.Nickname = dto.Nickname;
                     newModCase.ModId = discordBot.Id;
                     newModCase.CreatedAt = DateTime.UtcNow;

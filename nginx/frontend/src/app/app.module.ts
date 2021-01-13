@@ -24,7 +24,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NonAuthGuard } from './guards/non-auth.guard';
 import { PatchnotesComponent } from './components/information/patchnotes/patchnotes.component';
 import { CaseViewComponent } from './components/modcase/case-view/case-view.component';
-import { ApiCacheService } from './services/api-cache.service';
 import { FormsModule } from '@angular/forms';
 import { SettingsComponent } from './components/information/settings/settings.component';
 import { CaseNewComponent } from './components/modcase/case-new/case-new.component';
@@ -85,7 +84,6 @@ import { AutomodRuleComponent } from './components/moderation/automod-rule/autom
     AuthGuard,
     NonAuthGuard,
     ApiService,
-    ApiCacheService,
     CookieTrackerService
   ],
   bootstrap: [AppComponent]

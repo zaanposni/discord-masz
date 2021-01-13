@@ -1,33 +1,37 @@
 <div class="d-flex justify-content-start align-items-start flex-wrap mt-2">
     <!-- Title + Guild -->
-    <div class="flex-grow-1">
-        <h4 class="font-weight-bold"><span class="display-4">#{{ (this.modCase | async)?.caseId }}</span> {{ (this.modCase | async)?.title }}
+    <div>
+        <h4 class="font-weight-bold">
+            <span class="display-4">#{{ (this.modCase | async)?.caseId }}</span>
+            <span style="word-break: break-all;"> {{ (this.modCase | async)?.title }}</span>
         </h4>
 
         <div class="d-flex align-items-lg-center">
             <img
-                    src="https://cdn.discordapp.com/icons/{{ (this.guild | async)?.id }}/{{ (this.guild | async)?.icon }}.png"
-                    class="rounded-circle z-depth-0 mr-1"
-                    alt="guild icon"
-                    height="35"
+                src="https://cdn.discordapp.com/icons/{{ (this.guild | async)?.id }}/{{ (this.guild | async)?.icon }}.png"
+                class="rounded-circle z-depth-0 mr-1"
+                alt="guild icon"
+                height="35"
             />
             <span class="font-weight-bold">Guild: {{ (this.guild | async)?.name }}
         <span class="text-black-50">({{ (this.modCase | async)?.guildId }})</span></span>
         </div>
     </div>
+    <div class="flex-grow-1"></div>
 
     <!-- User icon -->
-    <div class="align-self-end mr-4">
+    <div>
         <img
-                src="{{ (this.users[(this.modCase | async)?.userId] | async)?.imageUrl }}"
-                class="rounded-circle z-depth-0 mr-1"
-                alt="avatar image"
-                height="128"
+            src="{{ (this.users[(this.modCase | async)?.userId] | async)?.imageUrl }}"
+            class="rounded-circle z-depth-0 mr-1 align-self-end"
+            alt="avatar image"
+            height="128"
+            onerror="this.src='/assets/img/default_profile.png';"
         />
     </div>
 
     <!-- Edit and delete buttons -->
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-column flex-shrink-0">
         <button type="button" class="btn btn-primary" (click)="redirectToApi()">See raw case data</button>
         <ng-container *ngIf="this.isModOrHigher">
             <button class="btn btn-warning" (click)="this.router.navigate(['guilds', this.guildId, 'cases', this.caseId, 'edit'])">Edit this case</button>
@@ -42,6 +46,12 @@
             <span class="badge badge-pill badge-info mr-1">{{ label }}</span>
         </h3>
     </div>
+</div>
+<div class="alert mt-3" *ngIf="!(this.users[(this.modCase | async)?.userId] | async)">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    Failed to load current user info. You may see an old username and default profile picture.
+    It is likely that this user delete his account. 
+    <span (click)="reloadUser()" class="crs-pnt">Try Reload.</span>
 </div>
 <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
     <li class="nav-item">
@@ -58,7 +68,7 @@
     </li>
 </ul>
 <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="modcase" role="tabpanel" aria-labelledby="modcase-tab">  
+    <div class="tab-pane fade show active" id="modcase" role="tabpanel" aria-labelledby="modcase-tab">
         <!-- Table -->
         <div class="row mt-3">
 
@@ -85,15 +95,16 @@
                     <tr>
                         <th class="font-weight-bold">Username</th>
                         <td class="font-weight-bold">
-                            {{ (this.modCase | async)?.username }}
+                            {{ (this.users[(this.modCase | async)?.userId] | async)?.username || (this.modCase | async)?.username }}<ng-container *ngIf="(this.modCase | async)?.discriminator || (this.users[(this.modCase | async)?.userId] | async)">#{{ (this.users[(this.modCase | async)?.userId] | async)?.discriminator || (this.modCase | async)?.discriminator }}</ng-container>
+                            <span class="text-black-50" title="Cached data during case creation">  ({{ (this.modCase | async)?.username }}<ng-container *ngIf="(this.modCase | async)?.discriminator">#{{ (this.modCase | async)?.discriminator }}</ng-container>)</span>
                         </td>
                     </tr>
                     <tr>
                         <th class="font-weight-bold">Nickname</th>
                         <td>
-                            <span *ngIf="(this.modCase | async)?.nickname; else nickname_not_set">{{ (this.modCase | async)?.nickname }}</span>
+                            <span *ngIf="(this.modCase | async)?.nickname; else nickname_not_set" title="Cached data during case creation">{{ (this.modCase | async)?.nickname }}</span>
                             <ng-template #nickname_not_set>
-                                <span class="text-danger font-weight-bold">Not set.</span>
+                                <span class="text-danger font-weight-bold" title="Cached data during case creation">Not set.</span>
                             </ng-template>
                         </td>
                     </tr>
@@ -133,6 +144,7 @@
                                 class="rounded-circle z-depth-0 mr-1"
                                 alt="avatar image"
                                 height="35"
+                                onerror="this.src='/assets/img/default_profile.png';"
                             /> {{ (this.users[(this.modCase | async)?.modId] | async)?.username }}
                             <span class="text-black-50">({{ (this.modCase | async)?.modId }})</span>
                         </td>
@@ -146,6 +158,7 @@
                                 class="rounded-circle z-depth-0 mr-1"
                                 alt="avatar image"
                                 height="35"
+                                onerror="this.src='/assets/img/default_profile.png';"
                             /> {{ (this.users[(this.modCase | async)?.lastEditedByModId] | async)?.username }}
                             <span class="text-black-50">({{ (this.modCase | async)?.lastEditedByModId }})</span>
                         </td>
@@ -175,46 +188,46 @@
         <div class="mb-3">
             <h4 class="font-weight-bold">Full case description</h4>
             <hr/>
-            <span style="white-space: pre-wrap;" class="text-monospace">{{ (this.modCase | async)?.description }}</span>
+            <span style="white-space: pre-wrap; word-wrap: break-word" class="text-monospace">{{ (this.modCase | async)?.description }}</span>
         </div>
     </div>
     <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
         <div class="d-flex flex-column flex-wrap justify-content-between mt-2">
-                <div class="card mb-3" *ngFor="let comment of (this.modCase | async)?.comments">
-                    <div class="card-body d-flex flex-row">
-                        <div class="align-self-start mr-3">
-                            <img
-                                    src="{{ (this.users[comment.userId] | async)?.imageUrl }}"
-                                    class="card-img rounded-circle z-depth-0 mr-1"
-                                    alt="avatar icon"
-                                    height="35"
-                                    style="width: unset"
-                            />
-                        </div>
-                        <div class="flex-grow-1">
-                            <!-- Title -->
-                            <h4 class="card-title">
-                                {{ (this.users[comment.userId] | async)?.username || comment.userId }}
-                            </h4>
+            <div class="card mb-3" *ngFor="let comment of (this.modCase | async)?.comments">
+                <div class="card-body d-flex flex-row">
+                    <div class="align-self-start mr-3">
+                        <img
+                            src="{{ (this.users[comment.userId] | async)?.imageUrl }}"
+                            class="card-img rounded-circle z-depth-0 mr-1"
+                            alt="avatar icon"
+                            height="35"
+                            style="width: unset"
+                        />
+                    </div>
+                    <div class="flex-grow-1">
+                        <!-- Title -->
+                        <h4 class="card-title">
+                            {{ (this.users[comment.userId] | async)?.username || comment.userId }}
+                        </h4>
 
-                            <!-- Text -->
-                            <div class="card-text">
-                                <span style="white-space: pre-wrap;" class="text-monospace font-small">{{ comment.createdAt | date:'dd.MM.Y HH:mm:ss'  }}</span><br/>
-                                <span style="white-space: pre-wrap;" class="text-monospace">{{ comment.message }}</span>
-                            </div>
-                        </div>
-
-                        <!-- Icons -->
-                        <div class="d-flex flex-column" *ngIf="(this.currentUser | async)?.discordUser?.id === comment.userId || (this.isModOrHigher)">
-                            <button class="btn btn-danger" (click)="deleteComment(comment.id)">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                            <button class="btn btn-warning" (click)="updateComment(comment.id)">
-                                <i class="fas fa-edit"></i>
-                            </button>
+                        <!-- Text -->
+                        <div class="card-text">
+                            <span style="white-space: pre-wrap;" class="text-monospace font-small">{{ comment.createdAt | date:'dd.MM.Y HH:mm:ss'  }}</span><br/>
+                            <span style="white-space: pre-wrap;" class="text-monospace">{{ comment.message }}</span>
                         </div>
                     </div>
+
+                    <!-- Icons -->
+                    <div class="d-flex flex-column" *ngIf="(this.currentUser | async)?.discordUser?.id === comment.userId || (this.isModOrHigher)">
+                        <button class="btn btn-danger" (click)="deleteComment(comment.id)">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                        <button class="btn btn-warning" (click)="updateComment(comment.id)">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
                 </div>
+            </div>
         </div>
         <div id="newCommentParent">
             <div class="row">

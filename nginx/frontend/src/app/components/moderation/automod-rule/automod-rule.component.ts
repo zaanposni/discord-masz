@@ -8,7 +8,6 @@ import { AutoModRuleDefinition } from 'src/app/models/AutoModRuleDefinitions';
 import { Guild } from 'src/app/models/Guild';
 import { GuildChannel } from 'src/app/models/GuildChannel';
 import { GuildRole } from 'src/app/models/GuildRole';
-import { ApiCacheService } from 'src/app/services/api-cache.service';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -79,18 +78,18 @@ export class AutomodRuleComponent implements OnInit {
   @Input() punishment: string = '0';
   @Input() punishmentDuration: string = '0';
 
-  constructor(private api: ApiService, private toastr: ToastrService, private cache: ApiCacheService) { }
+  constructor(private api: ApiService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.title = this.types[this.type].title;
     this.uniqueLabel = this.types[this.type].uniqueLabel;
     this.description = this.types[this.type].description;
 
-    this.cache.getSimpleData(`/discord/guilds/${this.guildId}`).then((data) => {
+    this.api.getSimpleData(`/discord/guilds/${this.guildId}`).subscribe((data) => {
       this.currentGuild = data;
       this.reload(true);
     });
-    this.cache.getSimpleData(`/discord/guilds/${this.guildId}/channels`).then((data: GuildChannel[]) => {
+    this.api.getSimpleData(`/discord/guilds/${this.guildId}/channels`).subscribe((data: GuildChannel[]) => {
       this.currentGuildChannels = data.filter((item: GuildChannel) => item.type === '0');
       this.reload(true);
     });
@@ -100,15 +99,8 @@ export class AutomodRuleComponent implements OnInit {
     return '#' + role.color.toString(16) + ' !important';
   }
 
-  reload(cache: boolean = false) {
-    let subscription;
-    if (cache) {
-      subscription = this.cache.getSimpleData(`/guilds/${this.guildId}/automoderationconfig/${this.type}`, true, new HttpParams(), false);
-    } else {
-      subscription = this.api.getSimpleData(`/guilds/${this.guildId}/automoderationconfig/${this.type}`, true, new HttpParams(), false).toPromise();
-    }
-    
-    subscription.then((data) => {
+  reload(cache: boolean = false) {    
+    this.api.getSimpleData(`/guilds/${this.guildId}/automoderationconfig/${this.type}`, true, new HttpParams(), false).toPromise().then((data) => {
       this.config = data;
       this.automodEnabled = true;
 

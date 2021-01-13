@@ -125,9 +125,9 @@ export class CaseEditComponent implements OnInit {
 
   submitCase() {
     let data = {
-      'title': this.title,
-      'description': this.description,
-      'userid': this.userid,
+      'title': this.title.trim(),
+      'description': this.description.trim(),
+      'userid': this.userid.trim(),
       'severity': this.severity,
       'labels': this.labels,
       'punishment': this.punishmentMap[this.punishment]['punishment'],

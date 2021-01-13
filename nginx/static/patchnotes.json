@@ -1,5 +1,19 @@
 [
   {
+    "title": "Version 1.7.2",
+    "version": "v1.7.2",
+    "changes": [
+      "Reworked readme description of MASZ.",
+      "Reworked case list, now showing profil pictures too.",
+      "No showing current user info in case view.",
+      "Added discriminator to modcase model.",
+      "Added backend caching for Discord API.",
+      "Improved search for modcases.",
+      "Now showing inactive punishments in a different color.",
+      "Added description field to public announcement embed."
+    ]
+  },
+  {
     "title": "Version 1.7.1",
     "version": "v1.7.1",
     "changes": [

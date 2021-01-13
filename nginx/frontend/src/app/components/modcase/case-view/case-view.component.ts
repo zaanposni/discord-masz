@@ -8,7 +8,6 @@ import { DiscordUser } from 'src/app/models/DiscordUser';
 import { FileInfo } from 'src/app/models/FileInfo';
 import { Guild } from 'src/app/models/Guild';
 import { ModCase } from 'src/app/models/ModCase';
-import { ApiCacheService } from 'src/app/services/api-cache.service';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2'
@@ -38,10 +37,11 @@ export class CaseViewComponent implements OnInit {
   files!: Promise<FileInfo>;
   isModOrHigher: boolean = false;
   fileToUpload!: File | null;
+  userId: string;
 
   users: { [key: string]: Promise<DiscordUser> } = {};
   
-  constructor(private cache: ApiCacheService, private route: ActivatedRoute, private auth: AuthService, private toastr: ToastrService, private api: ApiService, public router: Router) { }
+  constructor(private route: ActivatedRoute, private auth: AuthService, private toastr: ToastrService, private api: ApiService, public router: Router) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid');
@@ -56,20 +56,26 @@ export class CaseViewComponent implements OnInit {
     this.modCase = this.api.getSimpleData(`/modcases/${this.guildId}/${this.caseId}`).toPromise();
 
     this.modCase.then((data) => {
+      this.userId = data.userId;
+
       this.guild = this.api.getSimpleData(`/discord/guilds/${data.guildId}`).toPromise();
 
-      this.users[data.userId] = this.cache.getSimpleData(`/discord/users/${data.userId}`);
-      this.users[data.modId] = this.cache.getSimpleData(`/discord/users/${data.modId}`);
+      this.users[data.userId] = this.api.getSimpleData(`/discord/users/${data.userId}`).toPromise();
+      this.users[data.modId] = this.api.getSimpleData(`/discord/users/${data.modId}`).toPromise();
       if (data.modId !== data.lastEditedByModId) {
-        this.users[data.lastEditedByModId] = this.cache.getSimpleData(`/discord/users/${data.lastEditedByModId}`);
+        this.users[data.lastEditedByModId] = this.api.getSimpleData(`/discord/users/${data.lastEditedByModId}`).toPromise();
       }
 
       data.comments.forEach(element => {
         if ( !(element.userId in this.users) ) {
-          this.users[element.userId] = this.cache.getSimpleData(`/discord/users/${element.userId}`);
+          this.users[element.userId] = this.api.getSimpleData(`/discord/users/${element.userId}`).toPromise();
         }
       });
     }, (error) => { });
+  }
+
+  reloadUser() {
+    this.users[this.userId] = this.api.getSimpleData(`/discord/users/${this.userId}`).toPromise();
   }
 
   redirectToApi() {

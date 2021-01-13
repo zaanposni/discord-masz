@@ -44,7 +44,7 @@
                 <button class="btn btn-success" (click)="this.router.navigate(['guilds', this.guildId, 'cases', 'new'])">Create new Case</button>
             </div>
         </div>
-        <table id="tableCases" class="table" cellspacing="0" width="100%">
+        <table id="tableCases" class="table responsive" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th class="th-sm"></th>
@@ -55,36 +55,64 @@
                 <td class="th-sm hiddencolumn">Title</td>
                 <td class="th-sm hiddencolumn">Description</td>
                 <td class="th-sm hiddencolumn">Punishment</td>
+                <td class="th-sm hiddencolumn">UsernameCase</td>
+                <td class="th-sm hiddencolumn">NicknameCase</td>
+                <td class="th-sm hiddencolumn">DiscriminatorCase</td>
+                <td class="th-sm hiddencolumn">CompleteUsernameCase</td>
+                <td class="th-sm hiddencolumn">UsernameCurrent</td>
+                <td class="th-sm hiddencolumn">DiscriminatorCurrent</td>
+                <td class="th-sm hiddencolumn">CompleteUsernameCurrent</td>
             </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let case of (this.modCases | async)">
                     <td [attr.data-order]="case.caseId">
                         <a class="font-weight-bold" (click)="this.router.navigate(['guilds', case.guildId, 'cases', case.caseId])">
-                            <div class="card">
-                                <div class="card-body d-flex flex-column flex-wrap">
-                                    <div>
-                                        <!-- Title -->
-        
-                                        <h4 class="card-title">
-                                            #{{ case.caseId }}
-                                            <span class="badge badge-danger">{{ case.punishment }}</span>
-                                            {{ case.username }} - {{ case.title }}
+                            <div class="case-container">
+                                <div class="case-container-body d-flex flex-wrap">
+                                    <!-- Profile picture -->
+                                    <div class="pictures-parent mr-3">
+                                        <img
+                                            src="{{ (this.users[case.userId] | async)?.imageUrl }}"
+                                            class="rounded-circle z-depth-0 user-image"
+                                            alt="avatar image"
+                                            height="96"
+                                            onerror="this.src='/assets/img/default_profile.png';"
+                                        />
+                                        <img
+                                            src="{{ (this.users[case.modId] | async)?.imageUrl }}"
+                                            class="rounded-circle z-depth-0 mod-image"
+                                            alt="avatar image"
+                                            height="40"
+                                            title="Moderator {{ case.modId }}"
+                                            onerror="this.src='/assets/img/default_profile.png';"
+                                        />
+                                    </div>
+                                    <div class="flex-shrink-1 d-flex flex-column flex-wrap">
+                                        <!-- Title -->    
+                                        <h4 title="{{ case.title }}">
+                                            <span class="badge mr-1"
+                                             [ngClass]="(case.punishmentType === 0 || case.punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
+                                             [attr.title]="(case.punishmentType === 0 || case.punishmentActive === true) ? '' : 'This punishment is expired.'">
+                                                {{ case.punishment }}
+                                            </span>
+                                            {{ (this.users[case.userId] | async)?.username || case.username }}<ng-container *ngIf="case.discriminator || (this.users[case.userId] | async)">#{{ (this.users[case.userId] | async)?.discriminator || case.discriminator }}</ng-container><br/>
+                                            #{{ case.caseId }} - {{ case.title.length > 35 ? case.title.slice(0, 35) + ' [...]' : case.title }}
                                         </h4>
         
                                         <!-- Labels -->
-                                        <div class="d-flex mb-2">
+                                        <div class="d-flex mb-1">
                                             <span class="badge badge-pill badge-info mr-1" *ngFor="let label of case.labels">
                                                 {{ label }}
                                             </span>
                                         </div>
         
                                         <!-- Text -->
-                                        <p class="card-text">{{ case.description.length > 100 ? case.description.slice(0, 100) + '' : case.description }}</p>
+                                        <span title="{{ case.description }}" style="word-wrap: break-word;">{{ case.description.length > 50 ? case.description.slice(0, 50) + ' [...]' : case.description }}</span>
                                     </div>
                                     <div class="flex-grow-1"></div>
                                     <!-- Button -->
-                                    <div class="btn btn-orange align-self-end">VIEW DETAILS</div>
+                                    <div class="btn btn-orange align-self-end flex-shrink-0 ml-auto">VIEW DETAILS</div>
                                 </div>
                             </div>
                         </a>
@@ -96,6 +124,13 @@
                     <td class="hiddencolumn">{{ case.title }}</td>
                     <td class="hiddencolumn">{{ case.description }}</td>
                     <td class="hiddencolumn">{{ case.punishment }}</td>
+                    <td class="hiddencolumn">{{ case.username }}</td>
+                    <td class="hiddencolumn">{{ case.nickname }}</td>
+                    <td class="hiddencolumn">{{ case?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ case.username }}#{{ case?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.username }}</td>
+                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.username }}#{{ (this.users[case.userId] | async)?.discriminator }}</td>
                 </tr>
             </tbody>
         </table>
@@ -110,7 +145,7 @@
                 <span type="button" class="btn btn-success" (click)="this.router.navigate(['guilds', this.guildId, 'cases', 'new'])">Create new Case</span>
             </div>
         </div>
-        <table id="tablePunishments" class="table" cellspacing="0" width="100%">
+        <table id="tablePunishments" class="table responsive" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th class="th-sm"></th>
@@ -121,36 +156,60 @@
                 <td class="th-sm hiddencolumn">Title</td>
                 <td class="th-sm hiddencolumn">Description</td>
                 <td class="th-sm hiddencolumn">Punishment</td>
+                <td class="th-sm hiddencolumn">UsernameCase</td>
+                <td class="th-sm hiddencolumn">NicknameCase</td>
+                <td class="th-sm hiddencolumn">DiscriminatorCase</td>
+                <td class="th-sm hiddencolumn">CompleteUsernameCase</td>
+                <td class="th-sm hiddencolumn">UsernameCurrent</td>
+                <td class="th-sm hiddencolumn">DiscriminatorCurrent</td>
+                <td class="th-sm hiddencolumn">CompleteUsernameCurrent</td>
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let case of (this.activePunishments | async)?.reverse()">
-                    <td>
+                <tr *ngFor="let case of (this.activePunishments | async)">
+                    <td [attr.data-order]="case.caseId">
                         <a class="font-weight-bold" (click)="this.router.navigate(['guilds', case.guildId, 'cases', case.caseId])">
-                            <div class="card">
-                                <div class="card-body d-flex flex-column flex-wrap">
-                                    <div>
-                                        <!-- Title -->
-        
-                                        <h4 class="card-title">
-                                            #{{ case.caseId }}
-                                            <span class="badge badge-danger">{{ case.punishment }}</span>
-                                            {{ case.username }} - {{ case.title }}
+                            <div class="case-container">
+                                <div class="case-container-body d-flex flex-wrap">
+                                    <!-- Profile picture -->
+                                    <div class="pictures-parent mr-3">
+                                        <img
+                                            src="{{ (this.users[case.userId] | async)?.imageUrl }}"
+                                            class="rounded-circle z-depth-0 user-image"
+                                            alt="avatar image"
+                                            height="96"
+                                            onerror="this.src='/assets/img/default_profile.png';"
+                                        />
+                                        <img
+                                            src="{{ (this.users[case.modId] | async)?.imageUrl }}"
+                                            class="rounded-circle z-depth-0 mod-image"
+                                            alt="avatar image"
+                                            height="40"
+                                            title="Moderator {{ case.modId }}"
+                                            onerror="this.src='/assets/img/default_profile.png';"
+                                        />
+                                    </div>
+                                    <div class="flex-shrink-1 d-flex flex-column flex-wrap">
+                                        <!-- Title -->    
+                                        <h4 title="{{ case.title }}">
+                                            <span class="badge badge-danger mr-1">{{ case.punishment }}</span>
+                                            {{ (this.users[case.userId] | async)?.username || case.username }}<ng-container *ngIf="case.discriminator || (this.users[case.userId] | async)">#{{ (this.users[case.userId] | async)?.discriminator || case.discriminator }}</ng-container><br/>
+                                            #{{ case.caseId }} - {{ case.title.length > 35 ? case.title.slice(0, 35) + ' [...]' : case.title }}
                                         </h4>
         
                                         <!-- Labels -->
-                                        <div class="d-flex mb-2">
-                                            <span type="button" class="badge badge-pill badge-info mr-1" *ngFor="let label of case.labels">
+                                        <div class="d-flex mb-1">
+                                            <span class="badge badge-pill badge-info mr-1" *ngFor="let label of case.labels">
                                                 {{ label }}
                                             </span>
                                         </div>
         
                                         <!-- Text -->
-                                        <p class="card-text">{{ case.description.length > 100 ? case.description.slice(0, 100) + '' : case.description }}</p>
+                                        <span title="{{ case.description }}" style="word-wrap: break-word;">{{ case.description.length > 50 ? case.description.slice(0, 50) + ' [...]' : case.description }}</span>
                                     </div>
                                     <div class="flex-grow-1"></div>
                                     <!-- Button -->
-                                    <div class="btn btn-orange align-self-end">VIEW DETAILS</div>
+                                    <div class="btn btn-orange align-self-end flex-shrink-0 ml-auto">VIEW DETAILS</div>
                                 </div>
                             </div>
                         </a>
@@ -162,6 +221,13 @@
                     <td class="hiddencolumn">{{ case.title }}</td>
                     <td class="hiddencolumn">{{ case.description }}</td>
                     <td class="hiddencolumn">{{ case.punishment }}</td>
+                    <td class="hiddencolumn">{{ case.username }}</td>
+                    <td class="hiddencolumn">{{ case.nickname }}</td>
+                    <td class="hiddencolumn">{{ case?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ case.username }}#{{ case?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.username }}</td>
+                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.discriminator }}</td>
+                    <td class="hiddencolumn">{{ (this.users[case.userId] | async)?.username }}#{{ (this.users[case.userId] | async)?.discriminator }}</td>
                 </tr>
             </tbody>
         </table>

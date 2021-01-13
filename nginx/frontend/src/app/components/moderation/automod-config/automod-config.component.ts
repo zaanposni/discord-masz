@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { AppUser } from 'src/app/models/AppUser';
 import { Guild } from 'src/app/models/Guild';
-import { ApiCacheService } from 'src/app/services/api-cache.service';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2'
@@ -21,7 +20,7 @@ export class AutomodConfigComponent implements OnInit {
   currentUser!: Observable<AppUser>;
   guild!: Promise<Guild>;
 
-  constructor(private cache: ApiCacheService, private route: ActivatedRoute, private auth: AuthService, private toastr: ToastrService, private api: ApiService, public router: Router) { }
+  constructor(private route: ActivatedRoute, private auth: AuthService, private toastr: ToastrService, private api: ApiService, public router: Router) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid');

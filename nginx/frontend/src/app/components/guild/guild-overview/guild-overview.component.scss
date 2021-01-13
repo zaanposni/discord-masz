@@ -1,3 +1,37 @@
 .hiddencolumn {
     display: none;
 }
+
+.case-container-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+
+.case-container {
+	font-weight: 400;
+	border: 0;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
+}
+
+.moderation {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
+}
+
+.pictures-parent {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.user-image {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.mod-image {
+    position: absolute;
+    top: 56px;
+    left: 56px;
+}
