@@ -219,7 +219,7 @@ namespace masz.Controllers
 
             if (oldModCase.UserId != modCase.UserId)  // if user id got updated, update nickname and username
             {
-                var currentReportedUser = await discord.FetchUserInfo(modCase.UserId);
+                var currentReportedUser = await discord.FetchUserInfo(modCase.UserId, true);
                 if (currentReportedUser == null) {
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Invalid Discord UserId.");
                     return BadRequest("Invalid Discord UserId.");
@@ -316,7 +316,7 @@ namespace masz.Controllers
 
             ModCase newModCase = new ModCase();
             
-            User currentReportedUser = await discord.FetchUserInfo(modCase.UserId);
+            User currentReportedUser = await discord.FetchUserInfo(modCase.UserId, true);
             if (currentReportedUser == null) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Invalid Discord UserId.");
                 return BadRequest("Invalid Discord UserId.");

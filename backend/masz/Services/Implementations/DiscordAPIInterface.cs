@@ -19,6 +19,9 @@ namespace masz.Services
         private readonly string botToken;
         private Dictionary<string, CacheApiResponse> cache = new Dictionary<string, CacheApiResponse>();
         private RestClient restClient;
+        private int lastRemaining = 1;
+        private int lastResetAt = 0;
+        private static readonly DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         public DiscordAPIInterface() {  }
         public DiscordAPIInterface(ILogger<DiscordAPIInterface> logger, IOptions<InternalConfig> config)
@@ -45,8 +48,50 @@ namespace masz.Services
             var response = await restClient.ExecuteAsync<Ban>(request);
             if (response.IsSuccessful)
             {
-                this.cache.TryAdd($"/guilds/{guildId}/bans/{userId}", new CacheApiResponse(response.Content, 3));
+                this.cache[$"/guilds/{guildId}/bans/{userId}"] = new CacheApiResponse(response.Content, 3);
                 return new Ban(response.Content);
+            }
+            return null;
+        }
+
+        public async Task<User> FetchUserInfoAsync(string userId, bool breakCache = false)
+        {
+            if (this.cache.ContainsKey($"/users/{userId}") && !breakCache) {
+                if (this.cache[$"/users/{userId}"].ExpiresAt > DateTime.Now) {
+                    return new User(this.cache[$"/users/{userId}"].Content);
+                }
+                this.cache.Remove($"/users/{userId}");
+            }
+
+            if (this.lastRemaining == 0) {
+                DateTime resetsAt = epoch.AddSeconds(lastResetAt);
+                while (DateTime.UtcNow < resetsAt) {
+                    await Task.Delay(25);
+                }
+            }
+
+            var request = new RestRequest(Method.GET);
+            request.Resource = $"/users/{userId}";
+            request.AddHeader("Authorization", "Bot " + botToken);
+
+            var response = await restClient.ExecuteAsync<User>(request);
+            if (response.IsSuccessful)
+            {
+                var limit = response.Headers.Where(x => x.Name == "x-ratelimit-remaining").Select(x => x.Value).FirstOrDefault();
+                if (limit != null) {
+                    this.lastRemaining = Int32.Parse(limit.ToString());
+                } else {
+                    this.lastRemaining = 1;
+                }
+                var reset = response.Headers.Where(x => x.Name == "x-ratelimit-reset").Select(x => x.Value).FirstOrDefault();
+                if (reset != null) {
+                    this.lastResetAt = Int32.Parse(reset.ToString());
+                } else {
+                    this.lastResetAt = 0;
+                }
+
+                this.cache[$"/users/{userId}"] = new CacheApiResponse(response.Content);
+                return new User(response.Content);
             }
             return null;
         }
@@ -94,7 +139,7 @@ namespace masz.Services
             var response = await restClient.ExecuteAsync<List<Guild>>(request);
             if (response.IsSuccessful)
             {
-                this.cache.TryAdd($"/guilds/{guildId}/channels", new CacheApiResponse(response.Content));
+                this.cache[$"/guilds/{guildId}/channels"] = new CacheApiResponse(response.Content);
                 return JsonConvert.DeserializeObject<List<Channel>>(response.Content);
             }
             return null;
@@ -115,7 +160,7 @@ namespace masz.Services
             var response = await restClient.ExecuteAsync<Guild>(request);
             if (response.IsSuccessful)
             {
-                this.cache.TryAdd($"/guilds/{guildId}", new CacheApiResponse(response.Content));
+                this.cache[$"/guilds/{guildId}"] = new CacheApiResponse(response.Content);
                 return new Guild(response.Content);
             }
             return null;
@@ -150,15 +195,15 @@ namespace masz.Services
             var response = await restClient.ExecuteAsync<GuildMember>(request);
             if (response.IsSuccessful)
             {
-                this.cache.TryAdd($"/guilds/{guildId}/members/{userId}", new CacheApiResponse(response.Content));
+                this.cache[$"/guilds/{guildId}/members/{userId}"] = new CacheApiResponse(response.Content);
                 return new GuildMember(response.Content);
             }
             return null;
         }
 
-        public async Task<User> FetchUserInfo(string userId)
+        public async Task<User> FetchUserInfo(string userId, bool breakCache = false)
         {
-            if (this.cache.ContainsKey($"/users/{userId}")) {
+            if (this.cache.ContainsKey($"/users/{userId}") && !breakCache) {
                 if (this.cache[$"/users/{userId}"].ExpiresAt > DateTime.Now) {
                     return new User(this.cache[$"/users/{userId}"].Content);
                 }
@@ -171,7 +216,7 @@ namespace masz.Services
             var response = await restClient.ExecuteAsync<User>(request);
             if (response.IsSuccessful)
             {
-                this.cache.TryAdd($"/users/{userId}", new CacheApiResponse(response.Content));
+                this.cache[$"/users/{userId}"] = new CacheApiResponse(response.Content);
                 return new User(response.Content);
             }
             return null;

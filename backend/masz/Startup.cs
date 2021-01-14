@@ -46,6 +46,7 @@ namespace masz
             services.AddSingleton<IDiscordAPIInterface, DiscordAPIInterface>();
             services.AddSingleton<IIdentityManager, IdentityManager>();
             services.AddSingleton<IPunishmentHandler, PunishmentHandler>();
+            services.AddSingleton<ICacher, Cacher>();
 
             services.AddAuthentication(options =>
             {
@@ -136,6 +137,7 @@ namespace masz
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 scope.ServiceProvider.GetService<IPunishmentHandler>().StartTimer();
+                scope.ServiceProvider.GetService<ICacher>().StartTimer();
             }
 
             app.UseHttpsRedirection();

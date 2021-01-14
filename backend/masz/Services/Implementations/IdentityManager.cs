@@ -15,7 +15,6 @@ namespace masz.Services
     public class IdentityManager : IIdentityManager
     {
         private Dictionary<string, Identity> identities = new Dictionary<string, Identity>();
-
         private readonly ILogger<IdentityManager> logger;
         private readonly IDatabase context;
         private readonly IOptions<InternalConfig> config;
@@ -41,7 +40,7 @@ namespace masz.Services
                 identities.Remove(key);
             }
             Identity identity = new Identity(token, discord);
-            identities.Add(key, identity);
+            identities[key] = identity;
             logger.LogInformation("New identity registered.");
         }
 

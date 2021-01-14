@@ -6,7 +6,7 @@
             <span style="word-break: break-all;"> {{ (this.modCase | async)?.title }}</span>
         </h4>
 
-        <div class="d-flex align-items-lg-center">
+        <div class="d-flex align-items-lg-center crs-pnt" (click)="this.router.navigate(['guilds', this.guildId])">
             <img
                 src="https://cdn.discordapp.com/icons/{{ (this.guild | async)?.id }}/{{ (this.guild | async)?.icon }}.png"
                 class="rounded-circle z-depth-0 mr-1"
@@ -14,7 +14,8 @@
                 height="35"
             />
             <span class="font-weight-bold">Guild: {{ (this.guild | async)?.name }}
-        <span class="text-black-50">({{ (this.modCase | async)?.guildId }})</span></span>
+                <span class="text-black-50">({{ (this.modCase | async)?.guildId }})</span>
+            </span>
         </div>
     </div>
     <div class="flex-grow-1"></div>
@@ -82,7 +83,11 @@
                         <th class="font-weight-bold">Punishment</th>
                         <td>
                             <h3>
-                                <span class="badge badge-danger">{{ (this.modCase | async)?.punishment }}</span>
+                                <span class="badge mr-1"
+                                    [ngClass]="((this.modCase | async).punishmentType === 0 || (this.modCase | async).punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
+                                    [attr.title]="((this.modCase | async).punishmentType === 0 || (this.modCase | async).punishmentActive === true) ? '' : 'This punishment is expired.'">
+                                    {{ (this.modCase | async).punishment }}
+                                </span>
                             </h3>
                         </td>
                     </tr>

@@ -8,6 +8,7 @@
       "No showing current user info in case view.",
       "Added discriminator to modcase model.",
       "Added backend caching for Discord API.",
+      "Optimized overall caching.",
       "Improved search for modcases.",
       "Now showing inactive punishments in a different color.",
       "Added description field to public announcement embed."
