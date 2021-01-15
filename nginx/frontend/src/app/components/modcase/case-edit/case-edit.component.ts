@@ -18,7 +18,6 @@ export class CaseEditComponent implements OnInit {
   @Input() title: string = '';
   @Input() userid: string = '';
   @Input() description: string = '';
-  @Input() severity: string = '0';
   @Input() punishment: string = '0';
   @Input() publicNotification: boolean = true;
   @Input() handlePunishment: boolean = true;;
@@ -91,7 +90,6 @@ export class CaseEditComponent implements OnInit {
       this.title = data['title'];
       this.userid = data['userId'];
       this.description = data['description'];
-      this.severity = data['severity'];
       this.labels = data['labels'];
       for (let key in this.punishmentMap) {
         if (this.punishmentMap[key]['punishment'] == data['punishment']) {
@@ -128,7 +126,6 @@ export class CaseEditComponent implements OnInit {
       'title': this.title.trim(),
       'description': this.description.trim(),
       'userid': this.userid.trim(),
-      'severity': this.severity,
       'labels': this.labels,
       'punishment': this.punishmentMap[this.punishment]['punishment'],
       'punishmentType': this.punishmentMap[this.punishment]['punishmentType'],

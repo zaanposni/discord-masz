@@ -20,7 +20,6 @@ namespace masz.Models
         public string Discriminator { get; set; }
         public string Nickname { get; set; }
         public string ModId { get; set; }
-        public int Severity { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime OccuredAt { get; set; }
         public DateTime LastEditedAt { get; set; }
@@ -46,7 +45,6 @@ namespace masz.Models
                 Username = this.Username,
                 Nickname = this.Nickname,
                 ModId = this.ModId,
-                Severity = this.Severity,
                 CreatedAt = this.CreatedAt,
                 OccuredAt = this.OccuredAt,
                 LastEditedAt = this.LastEditedAt,

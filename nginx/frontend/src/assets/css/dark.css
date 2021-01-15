@@ -277,3 +277,7 @@ select:-webkit-autofill {
     background-color: var(--dark-card-background);
     border-color: #828385;
 }
+
+hr {
+    border-top: 1px solid rgb(94, 93, 93);
+}

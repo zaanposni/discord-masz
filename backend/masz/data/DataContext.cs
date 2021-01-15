@@ -24,7 +24,6 @@ namespace masz.data
 
         public void Configure(EntityTypeBuilder<ModCase> builder) {
             builder.Property(u => u.CreatedAt).IsRequired(true).HasDefaultValueSql("now()");
-            builder.Property(u => u.Severity).HasDefaultValue(0);
             builder.Property(u => u.Valid).HasDefaultValue(true);
         }
 

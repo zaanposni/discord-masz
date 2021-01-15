@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { AppUser } from 'src/app/models/AppUser';
+import { CaseView } from 'src/app/models/CaseView';
 import { DiscordUser } from 'src/app/models/DiscordUser';
 import { FileInfo } from 'src/app/models/FileInfo';
 import { Guild } from 'src/app/models/Guild';
@@ -19,25 +20,18 @@ import Swal from 'sweetalert2'
 })
 export class CaseViewComponent implements OnInit {
 
-  severities: { [key: number]: string} = {
-    0: 'Low',
-    1: 'Normal',
-    2: 'High',
-    3: 'Epic'
-  };
-
   @Input() newComment!: string;
 
   previewFiles: string[] = ['jpg', 'png', 'jpeg', 'gif', 'ico', 'tif', 'tiff'];
   guildId!: string | null;
   caseId!: string | null;
   currentUser!: Observable<AppUser>;
-  modCase!: Promise<ModCase>;
+  caseView!: Promise<CaseView>;
+  caseLoading: boolean = true
   guild!: Promise<Guild>;
   files!: Promise<FileInfo>;
   isModOrHigher: boolean = false;
   fileToUpload!: File | null;
-  userId: string;
 
   users: { [key: string]: Promise<DiscordUser> } = {};
   
@@ -46,6 +40,8 @@ export class CaseViewComponent implements OnInit {
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid');
     this.caseId = this.route.snapshot.paramMap.get('caseid');
+    
+    this.guild = this.api.getSimpleData(`/discord/guilds/${this.guildId}`).toPromise();
 
     this.auth.getUserProfile().subscribe((data) => {
       this.isModOrHigher = data.modGuilds.find(x => x.id === this.guildId) !== undefined || data.adminGuilds.find(x => x.id === this.guildId) !== undefined || data.isAdmin;
@@ -53,29 +49,8 @@ export class CaseViewComponent implements OnInit {
     this.currentUser = this.auth.getUserProfile();
 
     this.files = this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/files`).toPromise();
-    this.modCase = this.api.getSimpleData(`/modcases/${this.guildId}/${this.caseId}`).toPromise();
-
-    this.modCase.then((data) => {
-      this.userId = data.userId;
-
-      this.guild = this.api.getSimpleData(`/discord/guilds/${data.guildId}`).toPromise();
-
-      this.users[data.userId] = this.api.getSimpleData(`/discord/users/${data.userId}`).toPromise();
-      this.users[data.modId] = this.api.getSimpleData(`/discord/users/${data.modId}`).toPromise();
-      if (data.modId !== data.lastEditedByModId) {
-        this.users[data.lastEditedByModId] = this.api.getSimpleData(`/discord/users/${data.lastEditedByModId}`).toPromise();
-      }
-
-      data.comments.forEach(element => {
-        if ( !(element.userId in this.users) ) {
-          this.users[element.userId] = this.api.getSimpleData(`/discord/users/${element.userId}`).toPromise();
-        }
-      });
-    }, (error) => { });
-  }
-
-  reloadUser() {
-    this.users[this.userId] = this.api.getSimpleData(`/discord/users/${this.userId}`).toPromise();
+    this.caseView = this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/view`).toPromise();
+    this.caseView.then(() => { this.caseLoading = false; });
   }
 
   redirectToApi() {
@@ -97,7 +72,7 @@ export class CaseViewComponent implements OnInit {
       if(data.isConfirmed) {
         this.api.deleteData(`/modcases/${this.guildId}/${this.caseId}/comments/${commentId}`).subscribe((data) => {
           this.toastr.success('Comment deleted.');
-          this.modCase = this.api.getSimpleData(`/modcases/${this.guildId}/${this.caseId}`).toPromise();
+          this.caseView = this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/view`).toPromise();
         }, (error) => {
           this.toastr.error('Cannot delete comment.', 'Something went wrong.');
         });
@@ -130,7 +105,7 @@ export class CaseViewComponent implements OnInit {
       this.newComment = '';
       this.api.postSimpleData(`/modcases/${this.guildId}/${this.caseId}/comments`, { 'message': c }).subscribe((data) => {
         this.toastr.success('Comment posted.');
-        this.modCase = this.api.getSimpleData(`/modcases/${this.guildId}/${this.caseId}`).toPromise();
+        this.caseView = this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/view`).toPromise();
       }, (error) => {
         this.toastr.error('Cannot post comment.', 'Something went wrong.');
       });
