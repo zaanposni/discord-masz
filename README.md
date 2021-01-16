@@ -95,6 +95,7 @@ Enable **Server Members Intent** in your bot settings.
 - Download this repository `git clone https://github.com/zaanposni/discord-masz` ([zip link](https://codeload.github.com/zaanposni/discord-masz/zip/master))
 - Use `python3 setup.py` (`python setup.py` on windows) to setup the configuration.
 - Start the application with `./start.sh` (`start.ps1` on windows).
+- App will be hosted on `127.0.0.1:5565`, if you are hosting the app on a domain, redirect your reverse proxy to this local port!
 
 ## First steps
 
