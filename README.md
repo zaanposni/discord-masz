@@ -93,7 +93,7 @@ Enable **Server Members Intent** in your bot settings.
 ## Setup
 
 - Download this repository `git clone https://github.com/zaanposni/discord-masz` ([zip link](https://codeload.github.com/zaanposni/discord-masz/zip/master))
-- Use `python3 start.py` (`python start.py` on windows) to setup the configuration.
+- Use `python3 setup.py` (`python setup.py` on windows) to setup the configuration.
 - Start the application with `./start.sh` (`start.ps1` on windows).
 
 ## First steps
