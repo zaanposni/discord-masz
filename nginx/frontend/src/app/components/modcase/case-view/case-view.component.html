@@ -39,8 +39,8 @@
                     <div class="flex-grow-1 d-flex flex-column">
                         <span class="font-weight-bold">Suspect</span>
                         <span>{{ (this.caseView | async)?.suspect?.username || (this.caseView | async)?.modCase?.username }}#{{ (this.caseView | async)?.suspect?.discriminator || (this.caseView | async)?.modCase?.discriminator }}</span>
-                        <br/>
-                        <span style="font-size: medium;" class="text-white-50">UserId: {{(this.caseView | async)?.modCase?.userId }}</span>
+                        <span *ngIf="(this.caseView | async)?.modCase?.nickname">Nickname: {{(this.caseView | async)?.modCase?.nickname }}</span>
+                        <span class="text-white-50">UserId: {{(this.caseView | async)?.modCase?.userId }}</span>
                     </div>
                     <div class="infobox-icon">
                         <img
@@ -60,9 +60,8 @@
                 <div class="infobox-body d-flex flex-row">
                     <div class="flex-grow-1 d-flex flex-column">
                         <span class="font-weight-bold">Guild</span>
-                        <span>{{ (this.guild | async).name }}</span>                        
-                        <br/>
-                        <span style="font-size: medium;" class="text-white-50">GuildId: {{(this.caseView | async)?.modCase?.guildId }}</span>
+                        <span>{{ (this.guild | async).name }}</span>
+                        <span class="text-white-50">GuildId: {{(this.caseView | async)?.modCase?.guildId }}</span>
                     </div>
                     <div class="infobox-icon">
                         <img
@@ -82,7 +81,6 @@
                     <div class="flex-grow-1 d-flex flex-column">
                         <span class="font-weight-bold">Moderator</span>
                         <span>{{ (this.caseView | async)?.moderator?.username }}#{{ (this.caseView | async)?.moderator?.discriminator }}</span>
-                        <br/>
                         <span style="font-size: medium;" class="text-white-50">ModId: {{(this.caseView | async)?.modCase?.modId }}</span>
                     </div>
                     <div class="infobox-icon">
@@ -150,7 +148,9 @@
                 <div class="infobox-body d-flex flex-row">
                     <div class="flex-grow-1 d-flex flex-column">
                         <span class="font-weight-bold">Created At</span>
-                        <span>{{ (this.caseView | async)?.modCase?.createdAt | date:'dd.MM.Y HH:mm:ss' }} (UTC)</span>                        
+                        <span>{{ (this.caseView | async)?.modCase?.createdAt | date:'dd.MM.Y HH:mm:ss' }} (UTC)</span>          
+                        <span class="font-weight-bold" *ngIf="(this.caseView | async)?.modCase?.lastEditedAt != (this.caseView | async)?.modCase?.createdAt">Last Edited At</span>
+                        <span *ngIf="(this.caseView | async)?.modCase?.lastEditedAt != (this.caseView | async)?.modCase?.createdAt">{{ (this.caseView | async)?.modCase?.lastEditedAt | date:'dd.MM.Y HH:mm:ss' }} (UTC)</span>              
                     </div>
                     <div class="infobox-icon">
                         <i class="far fa-clock fa-5x"></i>
@@ -163,9 +163,9 @@
             <div class="infobox bg-g-red">
                 <div class="infobox-body d-flex flex-row">
                     <div class="flex-grow-1 d-flex flex-column">
-                        <span><span class="font-weight-bold">Last Edit</span> {{ (this.caseView | async)?.modCase?.lastEditedAt | date:'dd.MM.Y HH:mm:ss' }}</span>
-                        <span>{{ (this.caseView | async)?.lastModerator?.username }}#{{ (this.caseView | async)?.lastModerator?.discriminator }}</span><br/>
-                        <span style="font-size: medium;" class="text-white-50">ModId: {{(this.caseView | async)?.modCase?.lastEditedByModId }}</span>
+                        <span class="font-weight-bold">Last Edit by Moderator</span>
+                        <span>{{ (this.caseView | async)?.lastModerator?.username }}#{{ (this.caseView | async)?.lastModerator?.discriminator }}</span>
+                        <span class="text-white-50">ModId: {{(this.caseView | async)?.modCase?.lastEditedByModId }}</span>
                     </div>
                     <div class="infobox-icon">
                         <img
@@ -209,7 +209,7 @@
             <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2" *ngFor="let file of (this.files | async)?.names">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ file.substr(file.indexOf('_', 45) + 1) }}</h5>
+                        <h5 class="card-title" style="text-align: center;">{{ file.substr(file.indexOf('_', 45) + 1) }}</h5>
                         <div class="d-flex flex-row flex-wrap justify-content-center">
                             <a href="/api/v1/guilds/{{ this.guildId }}/modcases/{{ this.caseId }}/files/{{ file }}"
                                 class="btn btn-primary flex-shrink-1" target="_blank">
