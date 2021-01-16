@@ -5,7 +5,8 @@
     "changes": [
       "Reworked case view design.",
       "Removing special characters from filenames to ensure availability.",
-      "Removed severity field."
+      "Removed severity field.",
+      "Rearranged buttons for guild edit/delete."
     ]
   },
   {
