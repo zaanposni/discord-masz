@@ -112,6 +112,23 @@ namespace masz.Controllers.api.v1
             return NotFound();
         }
 
+        [HttpGet("guilds/{guildid}/members")]
+        public async Task<IActionResult> GetGuildMembers([FromRoute] string guildid)
+        {
+            if (await database.SelectSpecificGuildConfig(guildid) == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
+                return BadRequest("Endpoint only available for registered guilds.");
+            }
+
+            var members = await discord.FetchGuildMembersAsync(guildid);
+            if (members != null)
+            {
+                return Ok(members);
+            }
+            return NotFound();
+        }
+
         [HttpGet("guilds")]
         public async Task<IActionResult> GetAllGuilds()
         {

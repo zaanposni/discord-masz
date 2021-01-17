@@ -6,6 +6,8 @@ namespace masz.Services
     public interface ICacher
     {
         void StartTimer();
-        void CacheAllKnownUsers();
+        void CacheAll();
+        Task CacheAllGuildMembers();
+        Task CacheAllKnownUsers();
     }
 }

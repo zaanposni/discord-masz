@@ -19,9 +19,8 @@ namespace masz.Services
         private readonly string botToken;
         private Dictionary<string, CacheApiResponse> cache = new Dictionary<string, CacheApiResponse>();
         private RestClient restClient;
-        private int lastRemaining = 1;
-        private int lastResetAt = 0;
         private static readonly DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        private Dictionary<string, DiscordApiRatelimit> ratelimitCache = new Dictionary<string, DiscordApiRatelimit>();
 
         public DiscordAPIInterface() {  }
         public DiscordAPIInterface(ILogger<DiscordAPIInterface> logger, IOptions<InternalConfig> config)
@@ -62,11 +61,12 @@ namespace masz.Services
                 }
                 this.cache.Remove($"/users/{userId}");
             }
-
-            if (this.lastRemaining == 0) {
-                DateTime resetsAt = epoch.AddSeconds(lastResetAt);
-                while (DateTime.UtcNow < resetsAt) {
-                    await Task.Delay(25);
+            if (this.ratelimitCache.ContainsKey("/users/")) {
+                if (this.ratelimitCache["/users/"].Remaining == 0) {
+                    DateTime resetsAt = epoch.AddSeconds(this.ratelimitCache["/users/"].ResetsAt);
+                    while (DateTime.UtcNow < resetsAt) {
+                        await Task.Delay(25);
+                    }
                 }
             }
 
@@ -77,23 +77,62 @@ namespace masz.Services
             var response = await restClient.ExecuteAsync<User>(request);
             if (response.IsSuccessful)
             {
-                var limit = response.Headers.Where(x => x.Name == "x-ratelimit-remaining").Select(x => x.Value).FirstOrDefault();
-                if (limit != null) {
-                    this.lastRemaining = Int32.Parse(limit.ToString());
-                } else {
-                    this.lastRemaining = 1;
-                }
-                var reset = response.Headers.Where(x => x.Name == "x-ratelimit-reset").Select(x => x.Value).FirstOrDefault();
-                if (reset != null) {
-                    this.lastResetAt = Int32.Parse(reset.ToString());
-                } else {
-                    this.lastResetAt = 0;
-                }
-
+                this.ratelimitCache["/users/"] = new DiscordApiRatelimit(response);
                 this.cache[$"/users/{userId}"] = new CacheApiResponse(response.Content);
+
                 return new User(response.Content);
             }
             return null;
+        }
+
+        public async Task<List<GuildMember>> FetchGuildMembersAsync(string guildId, bool breakCache = false)
+        {
+            if (this.cache.ContainsKey($"/guilds/{guildId}/members") && !breakCache) {
+                if (this.cache[$"/guilds/{guildId}/members"].ExpiresAt > DateTime.Now) {
+                    return JsonConvert.DeserializeObject<List<GuildMember>>(this.cache[$"/guilds/{guildId}/members"].Content);
+                }
+                this.cache.Remove($"/guilds/{guildId}/members");
+            }            
+
+            List<GuildMember> members = new List<GuildMember>();
+            string lastUserId = null;
+            do {
+                if (this.ratelimitCache.ContainsKey("/guilds/members/")) {
+                    if (this.ratelimitCache["/guilds/members/"].Remaining == 0) {
+                        DateTime resetsAt = epoch.AddSeconds(this.ratelimitCache["/guilds/members/"].ResetsAt);
+                        while (DateTime.UtcNow < resetsAt) {
+                            await Task.Delay(25);
+                        }
+                    }
+                }
+
+                var request = new RestRequest(Method.GET);
+                request.Resource = $"/guilds/{guildId}/members";
+                request.AddHeader("Authorization", "Bot " + botToken);
+                request.AddQueryParameter("limit", "1000");
+                if (!String.IsNullOrEmpty(lastUserId)) {
+                    request.AddQueryParameter("after", lastUserId);
+                }
+
+                var response = await restClient.ExecuteAsync<List<GuildMember>>(request);
+                if (response.IsSuccessful) {
+                    this.ratelimitCache["/guilds/members/"] = new DiscordApiRatelimit(response);
+
+                    List<GuildMember> newMembers = JsonConvert.DeserializeObject<List<GuildMember>>(response.Content);
+                    foreach (GuildMember item in newMembers)
+                    {
+                        this.cache[$"/guilds/{guildId}/members/{item.User.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(item));
+                        this.cache[$"/users/{item.User.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(item.User));
+                        lastUserId = item.User.Id;
+                        members.Add(item);
+                    }
+                } else {
+                    return new List<GuildMember>();
+                }
+            } while(members.Count != 0 && members.Count % 1000 == 0);
+
+            this.cache[$"/guilds/{guildId}/members"] = new CacheApiResponse(JsonConvert.SerializeObject(members));
+            return members;
         }
 
         public async Task<User> FetchCurrentUserInfo(string token)

@@ -440,6 +440,41 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "case view",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/modcases/:caseid/view",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"modcases",
+										":caseid",
+										"view"
+									],
+									"variable": [
+										{
+											"key": "caseid",
+											"value": "93"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -619,6 +654,39 @@
 							"response": []
 						},
 						{
+							"name": "get discord user by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/discord/users/:userid",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"discord",
+										"users",
+										":userid"
+									],
+									"variable": [
+										{
+											"key": "userid",
+											"value": "100685801385385984"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "guild",
 							"request": {
 								"method": "GET",
@@ -668,6 +736,34 @@
 										"guilds",
 										"{{guildid}}",
 										"channels"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "guildmembers",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": "masz_access_token={{masz_access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/discord/guilds/{{guildid}}/members",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"discord",
+										"guilds",
+										"{{guildid}}",
+										"members"
 									]
 								}
 							},
