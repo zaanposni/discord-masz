@@ -32,6 +32,7 @@ import { CaseEditComponent } from './components/modcase/case-edit/case-edit.comp
 import { OwlDateTimeModule, OwlMomentDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 import { CookieTrackerService } from './services/cookie-tracker.service';
 import { AutomodRuleComponent } from './components/moderation/automod-rule/automod-rule.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { AutomodRuleComponent } from './components/moderation/automod-rule/autom
     RouterModule,
     FormsModule,
     OwlDateTimeModule,
-    OwlMomentDateTimeModule
+    OwlMomentDateTimeModule,
+    AutocompleteLibModule
   ],
   providers: [
     ToastrService,

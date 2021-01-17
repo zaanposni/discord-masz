@@ -3,6 +3,7 @@
     "title": "Version 1.7.3",
     "version": "v1.7.3",
     "changes": [
+      "Guildmembers are now selectable by name during case creation.",
       "Reworked case view design.",
       "Removing special characters from filenames to ensure availability.",
       "Removed severity field.",

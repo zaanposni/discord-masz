@@ -3,6 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
+import { DiscordUser } from 'src/app/models/DiscordUser';
+import { GuildMember } from 'src/app/models/GuildMember';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -16,13 +18,16 @@ export class CaseEditComponent implements OnInit {
   caseId: string;
   @Input() punishedUntil: string;
   @Input() title: string = '';
-  @Input() userid: string = '';
+  @Input() userid: any;
   @Input() description: string = '';
   @Input() punishment: string = '0';
   @Input() publicNotification: boolean = true;
   @Input() handlePunishment: boolean = true;;
   @Input() newLabel: string = '';
   labels: string[] = [];
+  members: DiscordUser[] = [];
+  completeMemberList: GuildMember[] = [];
+  lastMemberPage = 0;
 
   constructor(private toastr: ToastrService, private api: ApiService, private route: ActivatedRoute, private router: Router) { }
 
@@ -101,6 +106,25 @@ export class CaseEditComponent implements OnInit {
       this.toastr.error("Failed to load current modcase.");
       this.router.navigate(['guilds', this.guildId]);
     });
+    this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`).subscribe((data) => {
+      this.completeMemberList = data;
+      this.scrollEnd();
+    });
+  }
+
+  scrollEnd() {
+    this.members = this.members.concat(this.completeMemberList.slice(this.lastMemberPage * 50, this.lastMemberPage * 50 + 50).map(x => x.user).filter(x => x.bot == false));
+    this.lastMemberPage++;
+  }
+
+  onChangeSearch(val: string) {
+    this.members = [];
+    if (!val) {
+      this.lastMemberPage = 0;
+      this.scrollEnd();
+    } else {
+      this.members = this.completeMemberList.filter(x => x.user.username.toLowerCase().includes(val.toLowerCase())).map(x => x.user).filter(x => x.bot == false);
+    }
   }
 
   addLabel() {
@@ -125,7 +149,7 @@ export class CaseEditComponent implements OnInit {
     let data = {
       'title': this.title.trim(),
       'description': this.description.trim(),
-      'userid': this.userid.trim(),
+      'userid': typeof this.userid === "string" ? this.userid.trim() : this.userid['id'],
       'labels': this.labels,
       'punishment': this.punishmentMap[this.punishment]['punishment'],
       'punishmentType': this.punishmentMap[this.punishment]['punishmentType'],
