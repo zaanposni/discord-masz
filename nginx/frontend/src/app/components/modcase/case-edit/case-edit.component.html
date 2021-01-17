@@ -2,10 +2,19 @@
     <h3><span class="badge badge-success">Update ModCase</span></h3>
 </div>
 <br>
-<div class="d-flex flex-wrap">
-    <div class="md-form flex-grow-1">
-        <input type="text" id="form-userid" class="form-control" placeholder="UserId" [(ngModel)]="this.userid">
-    </div>
+<div class="ng-autocomplete">
+    <ng-autocomplete
+      [data]="members"
+      [searchKeyword]="'username'"
+      (inputChanged)='onChangeSearch($event)'
+      [itemTemplate]="itemTemplate"
+      [placeholder]="'Search by username or enter a user\'s id.'"
+      [(ngModel)]="userid"
+      (scrolledToEnd)="scrollEnd()">
+    </ng-autocomplete>
+    <ng-template #itemTemplate let-item>
+        <a [innerHTML]="item.username + '#' + item.discriminator"></a>
+    </ng-template>
 </div>
 <div class="">
     <div class="md-form d-flex flex-row">
@@ -29,7 +38,7 @@
 <div class="md-form">
     <textarea id="form-description" class="form-control md-textarea" placeholder="Description" [(ngModel)]="this.description"></textarea>
 </div>
-<div class="">
+<div>
     <label for="form-punishment">Punishment</label>
     <select id="form-punishment" class="form-control browser-default custom-select" [(ngModel)]="this.punishment">
         <option value="0">Warn</option>

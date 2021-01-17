@@ -58,6 +58,7 @@ namespace masz.Services
         /// <param name="userId">discord user id to fetch</param>
         /// <returns>User object if found.</returns>
         Task<GuildMember> FetchMemberInfo(string guildId, string userId);
+        Task<List<GuildMember>> FetchGuildMembersAsync(string guildId, bool breakCache = false);
 
         /// <summary>
         /// Returns information of guild channels by guild id
