@@ -28,6 +28,8 @@ export class CaseNewComponent implements OnInit {
   completeMemberList: GuildMember[] = [];
   lastMemberPage = 0;
 
+  titleIsInvalid: boolean = false;
+
   constructor(private toastr: ToastrService, private api: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -107,6 +109,15 @@ export class CaseNewComponent implements OnInit {
   } 
 
   submitCase() {
+    // validation
+    if (this.title.trim().length > 100) {
+      console.log("invalid");
+      this.titleIsInvalid = true;
+      return;
+    }
+    console.log(this.userid);
+
+    // api
     let data = {
       'title': this.title.trim(),
       'description': this.description.trim(),

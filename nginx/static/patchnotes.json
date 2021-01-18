@@ -7,7 +7,8 @@
       "Reworked case view design.",
       "Removing special characters from filenames to ensure availability.",
       "Removed severity field.",
-      "Rearranged buttons for guild edit/delete."
+      "Rearranged buttons for guild edit/delete.",
+      "Added form validation during case creation."
     ]
   },
   {
