@@ -14,6 +14,8 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class CaseNewComponent implements OnInit {
 
+  loading: boolean = true;
+
   guildId: string;
   @Input() punishedUntil: string;
   @Input() title: string = '';
@@ -37,6 +39,10 @@ export class CaseNewComponent implements OnInit {
     this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`).subscribe((data) => {
       this.completeMemberList = data;
       this.scrollEnd();
+    }, (error) => {
+      this.toastr.error("Failed to load member list.");
+    }, () => {
+      this.loading = false;
     });
   }
 

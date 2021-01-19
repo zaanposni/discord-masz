@@ -14,6 +14,8 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class CaseEditComponent implements OnInit {
 
+  caseLoading: boolean = true;
+
   guildId: string;
   caseId: string;
   @Input() punishedUntil: string;
@@ -107,6 +109,8 @@ export class CaseEditComponent implements OnInit {
     }, (error) => {
       this.toastr.error("Failed to load current modcase.");
       this.router.navigate(['guilds', this.guildId]);
+    }, () => {
+      this.caseLoading = false;
     });
     this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`).subscribe((data) => {
       this.completeMemberList = data;

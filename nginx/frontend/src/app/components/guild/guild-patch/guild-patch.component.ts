@@ -17,6 +17,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class GuildPatchComponent implements OnInit {
 
+  guildLoading: boolean = true;
+
   displayGuildSelected: boolean = false;
   displayValidGuildSelected: boolean = false;
   displayGuildInvite: boolean = false;
@@ -49,7 +51,7 @@ export class GuildPatchComponent implements OnInit {
     }, (error) => {
       this.toastr.error("Failed to load guild config.");
       this.router.navigate(['guilds']);
-    });
+    }, () => { this.guildLoading = false; });
   }
 
   isNumber(n: any): boolean { return !isNaN(parseFloat(n)) && !isNaN(n - 0) }
