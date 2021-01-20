@@ -234,7 +234,7 @@ namespace masz.Controllers
                 modCase.Username = currentReportedUser.Username;  // update to new username
                 modCase.Discriminator = currentReportedUser.Discriminator;
 
-                var currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId);
+                var currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId, true);
                 if (currentReportedMember != null)
                 {
                     if (currentReportedMember.Roles.Contains(guildConfig.ModRoleId) || currentReportedMember.Roles.Contains(guildConfig.AdminRoleId)) {
@@ -332,7 +332,7 @@ namespace masz.Controllers
             newModCase.Username = currentReportedUser.Username;
             newModCase.Discriminator = currentReportedUser.Discriminator;
 
-            GuildMember currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId);
+            GuildMember currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId, true);
 
             if (currentReportedMember != null)
             {
