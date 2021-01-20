@@ -17,6 +17,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class GuildAddComponent implements OnInit {
 
+  loading: boolean = true;
+
   displayGuildSelected: boolean = false;
   displayValidGuildSelected: boolean = false;
   displayGuildInvite: boolean = false;
@@ -39,6 +41,7 @@ export class GuildAddComponent implements OnInit {
     this.clientid = this.api.getSimpleData('/meta/clientid').toPromise();
 
     this.guilds.then(() => {
+      this.loading = false;
       if (this.route.snapshot.queryParamMap.get('guildid')) {
         this.selectedGuildId = this.route.snapshot.queryParamMap.get('guildid');
         this.onGuildSelect();

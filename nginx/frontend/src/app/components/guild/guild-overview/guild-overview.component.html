@@ -74,7 +74,7 @@
                     <td [attr.data-order]="entry.modCase.caseId">
                         <a class="font-weight-bold" (click)="this.router.navigate(['guilds', entry.modCase.guildId, 'cases', entry.modCase.caseId])">
                             <div class="case-container">
-                                <div class="case-container-body d-flex flex-wrap">
+                                <div class="case-container-body d-flex">
                                     <!-- Profile picture -->
                                     <div class="pictures-parent mr-3">
                                         <img
@@ -107,10 +107,12 @@
                                         </h4>
         
                                         <!-- Labels -->
-                                        <div class="d-flex mb-1">
-                                            <span class="badge badge-pill badge-info mr-1" *ngFor="let label of entry.modCase.labels">
-                                                {{ label }}
-                                            </span>
+                                        <div class="row ml-1 mb-1" title="The case labels">
+                                            <div class="d-flex flex-wrap">
+                                                <span *ngFor="let label of entry.modCase.labels">
+                                                    <span class="badge badge-pill badge-info mr-1">{{ label }}</span>
+                                                </span>
+                                            </div>
                                         </div>
         
                                         <!-- Text -->
@@ -181,7 +183,7 @@
                     <td [attr.data-order]="entry.modCase.caseId">
                         <a class="font-weight-bold" (click)="this.router.navigate(['guilds', entry.modCase.guildId, 'cases', entry.modCase.caseId])">
                             <div class="case-container">
-                                <div class="case-container-body d-flex flex-wrap">
+                                <div class="case-container-body d-flex">
                                     <!-- Profile picture -->
                                     <div class="pictures-parent mr-3">
                                         <img
@@ -214,10 +216,12 @@
                                         </h4>
         
                                         <!-- Labels -->
-                                        <div class="d-flex mb-1">
-                                            <span class="badge badge-pill badge-info mr-1" *ngFor="let label of entry.modCase.labels">
-                                                {{ label }}
-                                            </span>
+                                        <div class="row ml-1 mb-1" title="The case labels">
+                                            <div class="d-flex flex-wrap">
+                                                <span *ngFor="let label of entry.modCase.labels">
+                                                    <span class="badge badge-pill badge-info mr-1">{{ label }}</span>
+                                                </span>
+                                            </div>
                                         </div>
         
                                         <!-- Text -->

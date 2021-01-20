@@ -16,6 +16,7 @@ namespace masz.Services
         private readonly IOptions<Cacher> config;
         private readonly IDiscordAPIInterface discord;
         private readonly IServiceScopeFactory serviceScopeFactory;
+        private List<string> handledUsers = new List<string>();
 
         public Cacher() { }
 
@@ -34,7 +35,7 @@ namespace masz.Services
                 {
                     while (true)
                     {
-                        CacheAllKnownUsers();
+                        CacheAll();
                         Thread.Sleep(1000 * 60 * 15);  // 15 minutes
                     }
                 });
@@ -42,26 +43,54 @@ namespace masz.Services
             logger.LogWarning("Finished action loop.");
         }
 
-        public async void CacheAllKnownUsers()
+        public async void CacheAll()
+        {
+            this.handledUsers.Clear();
+            await CacheAllGuildMembers();
+            await CacheAllKnownUsers();
+        }
+
+        public async Task CacheAllGuildMembers()
+        {
+            logger.LogInformation("Cacher | Cache all members of registered guilds.");
+            using (var scope = serviceScopeFactory.CreateScope())
+            {
+                IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
+                
+                foreach (var guild in await database.SelectAllGuildConfigs())
+                {
+                    var members = await discord.FetchGuildMembersAsync(guild.GuildId, true);
+                    foreach (var item in members)
+                    {
+                        if (!this.handledUsers.Contains(item.User.Id)) {
+                            this.handledUsers.Add(item.User.Id);
+                        }
+                    }
+                }
+            }
+            logger.LogInformation("Cacher | Done.");
+        }
+
+        public async Task CacheAllKnownUsers()
         {
             logger.LogInformation("Cacher | Cache all known users.");
             using (var scope = serviceScopeFactory.CreateScope())
             {
                 IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
-                List<string> handledUsers = new List<string>();
+                
                 foreach (var modCase in await database.SelectAllModCases())
                 {
-                    if (!handledUsers.Contains(modCase.UserId)) {
+                    if (!this.handledUsers.Contains(modCase.UserId)) {
                         await discord.FetchUserInfoAsync(modCase.UserId, true);
-                        handledUsers.Add(modCase.UserId);
+                        this.handledUsers.Add(modCase.UserId);
                     }
-                    if (!handledUsers.Contains(modCase.ModId)) {
+                    if (!this.handledUsers.Contains(modCase.ModId)) {
                         await discord.FetchUserInfoAsync(modCase.ModId, true);
-                        handledUsers.Add(modCase.ModId);
+                        this.handledUsers.Add(modCase.ModId);
                     }
-                    if (!handledUsers.Contains(modCase.LastEditedByModId)) {
+                    if (!this.handledUsers.Contains(modCase.LastEditedByModId)) {
                         await discord.FetchUserInfoAsync(modCase.LastEditedByModId, true);
-                        handledUsers.Add(modCase.LastEditedByModId);
+                        this.handledUsers.Add(modCase.LastEditedByModId);
                     }
                 }
             }

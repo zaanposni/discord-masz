@@ -1,20 +1,26 @@
+<div *ngIf="this.caseLoading" class="d-flex flex-row" >
+    <div class="flex-grow-1"></div>
+    <img src="assets/img/spinner.gif" />
+    <div class="flex-grow-1"></div>
+</div>
+<ng-container *ngIf="!this.caseLoading">
 <div class="d-flex justify-content-between align-items-start">
     <h3><span class="badge badge-success">Update ModCase</span></h3>
 </div>
 <br>
-<div class="d-flex flex-wrap">
-    <div class="md-form flex-grow-1">
-        <input type="text" id="form-userid" class="form-control" placeholder="UserId" [(ngModel)]="this.userid">
-    </div>
-    <div class="flex-grow-1">
-        <label for="form-severity">Severity</label>
-        <select id="form-severity" class="form-control browser-default custom-select" [(ngModel)]="this.severity">
-            <option selected value="0">Low</option>
-            <option value="1">Normal</option>
-            <option value="2">High</option>
-            <option value="3">Epic</option>
-        </select>
-    </div>
+<div class="ng-autocomplete">
+    <ng-autocomplete
+      [data]="members"
+      [searchKeyword]="'username'"
+      (inputChanged)='onChangeSearch($event)'
+      [itemTemplate]="itemTemplate"
+      [placeholder]="'Search by username or enter a user\'s id.'"
+      [(ngModel)]="userid"
+      (scrolledToEnd)="scrollEnd()">
+    </ng-autocomplete>
+    <ng-template #itemTemplate let-item>
+        <a [innerHTML]="item.username + '#' + item.discriminator"></a>
+    </ng-template>
 </div>
 <div class="">
     <div class="md-form d-flex flex-row">
@@ -32,13 +38,16 @@
 </div>
 
 <div class="md-form">
-    <input type="text" id="form-title" class="form-control" placeholder="Title" [(ngModel)]="this.title">
+    <input type="text" id="form-title" class="form-control"
+     placeholder="Title" [(ngModel)]="this.title" (click)="this.titleIsInvalid = false"
+     [class.invalid]="this.titleIsInvalid" [class.is-invalid]="this.titleIsInvalid">
+     <div class="invalid-feedback">Please provide a title shorter than 100 characters.</div>
 </div>
 
 <div class="md-form">
     <textarea id="form-description" class="form-control md-textarea" placeholder="Description" [(ngModel)]="this.description"></textarea>
 </div>
-<div class="">
+<div>
     <label for="form-punishment">Punishment</label>
     <select id="form-punishment" class="form-control browser-default custom-select" [(ngModel)]="this.punishment">
         <option value="0">Warn</option>
@@ -67,8 +76,9 @@
 </div>
 <div class="md-form">
     <button type="submit" id="form-submit" name="submit" (click)="submitCase()"
-            class="btn btn-success btn-lg btn-block waves-effect waves-light"
-            [attr.disabled]="this.title.trim() !== '' && this.userid !== '' && this.description !== '' ? null : ''">
-            UPDATE CASE
-        </button>
+        class="btn btn-success btn-lg btn-block waves-effect waves-light"
+        [attr.disabled]="this.title.trim() !== '' && this.userid && this.description.trim() !== '' && !this.titleIsInvalid ? null : ''">
+        UPDATE CASE
+    </button>
 </div>
+</ng-container>

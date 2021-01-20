@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.StaticFiles;
@@ -67,6 +68,22 @@ namespace masz.Services
             return File.Exists(path);
         }
 
+        private static string RemoveSpecialCharacters(string str)
+    {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < str.Length; i++)
+        {
+            if ((str[i] >= '0' && str[i] <= '9')
+                || (str[i] >= 'A' && str[i] <= 'z'
+                    || (str[i] == '.' || str[i] == '_')))
+                {
+                    sb.Append(str[i]);
+                }
+        }
+
+        return sb.ToString();
+    }
+
         private string GetUniqueFileName(IFormFile file)
         {
             string fileName = Path.GetFileName(file.FileName);
@@ -74,8 +91,8 @@ namespace masz.Services
                     + "_"
                     + Guid.NewGuid().ToString().Substring(0, 8)
                     + "_"
-                    + Path.GetFileNameWithoutExtension(fileName)
-                    + Path.GetExtension(fileName);
+                    + RemoveSpecialCharacters(Path.GetFileNameWithoutExtension(fileName))
+                    + RemoveSpecialCharacters(Path.GetExtension(fileName));
         }
 
         private string GetSHA1Hash(IFormFile file)

@@ -1,7 +1,10 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { map } from 'rxjs/operators';
+import { DiscordUser } from 'src/app/models/DiscordUser';
+import { GuildMember } from 'src/app/models/GuildMember';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -11,22 +14,51 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class CaseNewComponent implements OnInit {
 
+  loading: boolean = true;
+
   guildId: string;
   @Input() punishedUntil: string;
   @Input() title: string = '';
-  @Input() userid: string = '';
+  @Input() userid: any;
   @Input() description: string = '';
-  @Input() severity: string = '0';
   @Input() punishment: string = '0';
   @Input() publicNotification: boolean = true;
   @Input() handlePunishment: boolean = true;;
   @Input() newLabel: string = '';
   labels: string[] = [];
+  members: DiscordUser[] = [];
+  completeMemberList: GuildMember[] = [];
+  lastMemberPage = 0;
+
+  titleIsInvalid: boolean = false;
 
   constructor(private toastr: ToastrService, private api: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid');
+    this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`).subscribe((data) => {
+      this.completeMemberList = data;
+      this.scrollEnd();
+    }, (error) => {
+      this.toastr.error("Failed to load member list.");
+    }, () => {
+      this.loading = false;
+    });
+  }
+
+  scrollEnd() {
+    this.members = this.members.concat(this.completeMemberList.slice(this.lastMemberPage * 50, this.lastMemberPage * 50 + 50).map(x => x.user).filter(x => x.bot == false));
+    this.lastMemberPage++;
+  }
+
+  onChangeSearch(val: string) {
+    this.members = [];
+    if (!val) {
+      this.lastMemberPage = 0;
+      this.scrollEnd();
+    } else {
+      this.members = this.completeMemberList.filter(x => x.user.username.toLowerCase().includes(val.toLowerCase())).map(x => x.user).filter(x => x.bot == false);
+    }
   }
 
   addLabel() {
@@ -83,11 +115,19 @@ export class CaseNewComponent implements OnInit {
   } 
 
   submitCase() {
+    // validation
+    if (this.title.trim().length > 100) {
+      console.log("invalid");
+      this.titleIsInvalid = true;
+      return;
+    }
+    console.log(this.userid);
+
+    // api
     let data = {
       'title': this.title.trim(),
       'description': this.description.trim(),
-      'userid': this.userid.trim(),
-      'severity': this.severity,
+      'userid': typeof this.userid === "string" ? this.userid.trim() : this.userid['id'],
       'labels': this.labels,
       'punishment': this.punishmentMap[this.punishment]['punishment'],
       'punishmentType': this.punishmentMap[this.punishment]['punishmentType'],

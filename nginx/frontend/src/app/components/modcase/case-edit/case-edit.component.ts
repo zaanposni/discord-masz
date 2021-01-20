@@ -3,6 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
+import { DiscordUser } from 'src/app/models/DiscordUser';
+import { GuildMember } from 'src/app/models/GuildMember';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -12,19 +14,25 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class CaseEditComponent implements OnInit {
 
+  caseLoading: boolean = true;
+
   guildId: string;
   caseId: string;
   @Input() punishedUntil: string;
   @Input() title: string = '';
-  @Input() userid: string = '';
+  @Input() userid: any;
   @Input() description: string = '';
-  @Input() severity: string = '0';
   @Input() punishment: string = '0';
   @Input() publicNotification: boolean = true;
   @Input() handlePunishment: boolean = true;;
   @Input() newLabel: string = '';
   labels: string[] = [];
+  members: DiscordUser[] = [];
+  completeMemberList: GuildMember[] = [];
+  lastMemberPage = 0;
 
+  titleIsInvalid: boolean = false;
+  
   constructor(private toastr: ToastrService, private api: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   punishmentMap: { [key: string]: { [k: string]: any } } = {
@@ -91,7 +99,6 @@ export class CaseEditComponent implements OnInit {
       this.title = data['title'];
       this.userid = data['userId'];
       this.description = data['description'];
-      this.severity = data['severity'];
       this.labels = data['labels'];
       for (let key in this.punishmentMap) {
         if (this.punishmentMap[key]['punishment'] == data['punishment']) {
@@ -102,7 +109,28 @@ export class CaseEditComponent implements OnInit {
     }, (error) => {
       this.toastr.error("Failed to load current modcase.");
       this.router.navigate(['guilds', this.guildId]);
+    }, () => {
+      this.caseLoading = false;
     });
+    this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`).subscribe((data) => {
+      this.completeMemberList = data;
+      this.scrollEnd();
+    });
+  }
+
+  scrollEnd() {
+    this.members = this.members.concat(this.completeMemberList.slice(this.lastMemberPage * 50, this.lastMemberPage * 50 + 50).map(x => x.user).filter(x => x.bot == false));
+    this.lastMemberPage++;
+  }
+
+  onChangeSearch(val: string) {
+    this.members = [];
+    if (!val) {
+      this.lastMemberPage = 0;
+      this.scrollEnd();
+    } else {
+      this.members = this.completeMemberList.filter(x => x.user.username.toLowerCase().includes(val.toLowerCase())).map(x => x.user).filter(x => x.bot == false);
+    }
   }
 
   addLabel() {
@@ -124,11 +152,20 @@ export class CaseEditComponent implements OnInit {
   }
 
   submitCase() {
+    // validation
+    if (this.title.trim().length > 100) {
+      console.log("invalid");
+      this.titleIsInvalid = true;
+      return;
+    }
+    console.log(this.userid);
+
+    // api
+
     let data = {
       'title': this.title.trim(),
       'description': this.description.trim(),
-      'userid': this.userid.trim(),
-      'severity': this.severity,
+      'userid': typeof this.userid === "string" ? this.userid.trim() : this.userid['id'],
       'labels': this.labels,
       'punishment': this.punishmentMap[this.punishment]['punishment'],
       'punishmentType': this.punishmentMap[this.punishment]['punishmentType'],

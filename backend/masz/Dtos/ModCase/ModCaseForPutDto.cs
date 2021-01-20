@@ -15,9 +15,6 @@ namespace masz.Dtos.ModCase
         [Required(ErrorMessage = "UserId field is required")]
         [RegularExpression(@"^[0-9]{18}$", ErrorMessage = "the user id can only consist of numbers and must be 18 characters long")]
         public string UserId { get; set; }
-        [Required(ErrorMessage = "Severity field is required")]
-        [Range(0, 3)]
-        public int Severity { get; set; }
         [DataType(DataType.Date)]
         public DateTime? OccuredAt { get; set; }
         [Required(ErrorMessage = "Punishment field is required")]

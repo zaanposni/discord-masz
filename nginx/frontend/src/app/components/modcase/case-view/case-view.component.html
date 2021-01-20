@@ -1,258 +1,199 @@
-<div class="d-flex justify-content-start align-items-start flex-wrap mt-2">
-    <!-- Title + Guild -->
-    <div>
-        <h4 class="font-weight-bold">
-            <span class="display-4">#{{ (this.modCase | async)?.caseId }}</span>
-            <span style="word-break: break-all;"> {{ (this.modCase | async)?.title }}</span>
-        </h4>
-
-        <div class="d-flex align-items-lg-center crs-pnt" (click)="this.router.navigate(['guilds', this.guildId])">
-            <img
-                src="https://cdn.discordapp.com/icons/{{ (this.guild | async)?.id }}/{{ (this.guild | async)?.icon }}.png"
-                class="rounded-circle z-depth-0 mr-1"
-                alt="guild icon"
-                height="35"
-            />
-            <span class="font-weight-bold">Guild: {{ (this.guild | async)?.name }}
-                <span class="text-black-50">({{ (this.modCase | async)?.guildId }})</span>
-            </span>
-        </div>
-    </div>
+<div *ngIf="this.caseLoading" class="d-flex flex-row" >
     <div class="flex-grow-1"></div>
-
-    <!-- User icon -->
-    <div>
+    <img src="assets/img/spinner.gif" />
+    <div class="flex-grow-1"></div>
+</div>
+<div class="d-flex flex-column mt-2" *ngIf="!this.caseLoading">
+    <!-- User information -->
+    <div class="d-flex flex-row conditional_flex_wrap m-auto justify-content-between w-75">
         <img
-            src="{{ (this.users[(this.modCase | async)?.userId] | async)?.imageUrl }}"
-            class="rounded-circle z-depth-0 mr-1 align-self-end"
-            alt="avatar image"
-            height="128"
+            src="{{ (this.caseView | async)?.suspect?.imageUrl }}"
+            class="rounded-circle z-depth-0 mr-3"
+            alt="user image"
+            height="144"
             onerror="this.src='/assets/img/default_profile.png';"
         />
-    </div>
-
-    <!-- Edit and delete buttons -->
-    <div class="d-flex flex-column flex-shrink-0">
-        <button type="button" class="btn btn-primary" (click)="redirectToApi()">See raw case data</button>
-        <ng-container *ngIf="this.isModOrHigher">
+        <div class="d-flex flex-column flex-grow-0 font-weight-bold">
+            <span class="display-4" style="word-break: break-all;" title="The case title">{{ (this.caseView | async)?.modCase?.title }}<span class="text-black-50" title="The case id"> #{{ (this.caseView   | async)?.modCase.caseId }}</span></span>
+        </div>
+        <!-- Delete / Edit button information -->
+        <div class="d-flex flex-column ml-2 flex-shrink-0" *ngIf="this.isModOrHigher">
             <button class="btn btn-warning" (click)="this.router.navigate(['guilds', this.guildId, 'cases', this.caseId, 'edit'])">Edit this case</button>
             <button class="btn btn-danger" (click)="deleteCase()">Delete this case</button>
-        </ng-container>
-    </div>    
-</div>
-<!-- Labels -->
-<div class="row mb-1 ml-2">
-    <div class="d-flex flex-wrap">
-        <h3 *ngFor="let label of (this.modCase | async)?.labels">
-            <span class="badge badge-pill badge-info mr-1">{{ label }}</span>
-        </h3>
+        </div>  
     </div>
-</div>
-<div class="alert mt-3" *ngIf="!(this.users[(this.modCase | async)?.userId] | async)">
-    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-    Failed to load current user info. You may see an old username and default profile picture.
-    It is likely that this user delete his account. 
-    <span (click)="reloadUser()" class="crs-pnt">Try Reload.</span>
-</div>
-<ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
-    <li class="nav-item">
-        <a class="nav-link active" id="modcase-tab" data-toggle="tab" href="#modcase" role="tab" aria-controls="modcase"
-           aria-selected="true">Modcase</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments"
-           aria-selected="false">Comments ({{ (this.modCase | async)?.comments?.length }})</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files"
-           aria-selected="true">Files ({{ (this.files | async)?.names?.length }})</a>
-    </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="modcase" role="tabpanel" aria-labelledby="modcase-tab">
-        <!-- Table -->
-        <div class="row mt-3">
-
-            <!-- user info -->
-            <div class="col-xl-6 col-lg-6 col-md-6 sm-col-12">
-                <h4 class="font-weight-bold">User information</h4>
-
-                <table class="table">
-                    <tbody>
-                    <tr>
-                        <th class="font-weight-bold">Punishment</th>
-                        <td>
-                            <h3>
-                                <span class="badge mr-1"
-                                    [ngClass]="((this.modCase | async).punishmentType === 0 || (this.modCase | async).punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
-                                    [attr.title]="((this.modCase | async).punishmentType === 0 || (this.modCase | async).punishmentActive === true) ? '' : 'This punishment is expired.'">
-                                    {{ (this.modCase | async).punishment }}
-                                </span>
-                            </h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="font-weight-bold">UserID</th>
-                        <td>
-                            {{ (this.modCase | async)?.userId }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="font-weight-bold">Username</th>
-                        <td class="font-weight-bold">
-                            {{ (this.users[(this.modCase | async)?.userId] | async)?.username || (this.modCase | async)?.username }}<ng-container *ngIf="(this.modCase | async)?.discriminator || (this.users[(this.modCase | async)?.userId] | async)">#{{ (this.users[(this.modCase | async)?.userId] | async)?.discriminator || (this.modCase | async)?.discriminator }}</ng-container>
-                            <span class="text-black-50" title="Cached data during case creation">  ({{ (this.modCase | async)?.username }}<ng-container *ngIf="(this.modCase | async)?.discriminator">#{{ (this.modCase | async)?.discriminator }}</ng-container>)</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="font-weight-bold">Nickname</th>
-                        <td>
-                            <span *ngIf="(this.modCase | async)?.nickname; else nickname_not_set" title="Cached data during case creation">{{ (this.modCase | async)?.nickname }}</span>
-                            <ng-template #nickname_not_set>
-                                <span class="text-danger font-weight-bold" title="Cached data during case creation">Not set.</span>
-                            </ng-template>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- case info -->
-            <div class="col-xl-6 col-lg-6 col-md-6 sm-col-12">
-                <h4 class="font-weight-bold">Case information</h4>
-                <table class="table">
-                    <tbody>
-                    <tr>
-                        <th class="font-weight-bold">Severity</th>
-                        <td>
-                            {{ severities[(this.modCase | async)?.severity] }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="font-weight-bold">Created at (UTC)</th>
-                        <td>{{ (this.modCase | async)?.createdAt | date:'dd.MM.Y HH:mm:ss' }}</td>
-                    </tr>
-                    <tr *ngIf="(this.modCase | async)?.createdAt !== (this.modCase | async)?.occuredAt">
-                        <th class="font-weight-bold">Occured at (UTC)</th>
-                        <td>{{ (this.modCase | async)?.occuredAt | date:'dd.MM.Y HH:mm:ss' }}</td>
-                    </tr>
-                    <tr *ngIf="(this.modCase | async)?.lastEditedAt !== (this.modCase | async)?.createdAt">
-                        <th class="font-weight-bold">Last edited at (UTC)</th>
-                        <td>{{ (this.modCase | async)?.lastEditedAt | date:'dd.MM.Y HH:mm:ss' }}</td>
-                    </tr>
-                    <tr>
-                        <th class="font-weight-bold">Moderator</th>
-                        <td class="font-weight-bold">
-                            <!-- mod info -->
-                            <img
-                                src="{{ (this.users[(this.modCase | async)?.modId] | async)?.imageUrl }}"
-                                class="rounded-circle z-depth-0 mr-1"
-                                alt="avatar image"
-                                height="35"
-                                onerror="this.src='/assets/img/default_profile.png';"
-                            /> {{ (this.users[(this.modCase | async)?.modId] | async)?.username }}
-                            <span class="text-black-50">({{ (this.modCase | async)?.modId }})</span>
-                        </td>
-                    </tr>
-                    <tr *ngIf="(this.modCase | async)?.lastEditedByModId !== (this.modCase | async)?.modId">
-                        <th class="font-weight-bold">Last Edit by Moderator</th>
-                        <td class="font-weight-bold">
-                            <!-- last mod info -->
-                            <img
-                                src="{{ (this.users[(this.modCase | async)?.lastEditedByModId] | async)?.imageUrl }}"
-                                class="rounded-circle z-depth-0 mr-1"
-                                alt="avatar image"
-                                height="35"
-                                onerror="this.src='/assets/img/default_profile.png';"
-                            /> {{ (this.users[(this.modCase | async)?.lastEditedByModId] | async)?.username }}
-                            <span class="text-black-50">({{ (this.modCase | async)?.lastEditedByModId }})</span>
-                        </td>
-                    </tr>
-                    <tr *ngIf="(this.modCase | async)?.punishmentType !== 0 && (this.modCase | async)?.punishmentType !== 2">
-                        <th class="font-weight-bold">Punished until (UTC)</th>
-                        <td>
-                            <span *ngIf="(this.modCase | async)?.punishedUntil else forever">
-                                {{ (this.modCase | async)?.punishedUntil | date:'dd.MM.Y HH:mm:ss' }}
-                            </span>
-                            <ng-template #forever>
-                                <span>Forever</span>
-                            </ng-template>
-                        </td>
-                    </tr>
-                    <tr *ngIf="(this.modCase | async)?.punishmentType !== 0 && (this.modCase | async)?.punishmentType !== 2 && (this.modCase | async)?.punishmentActive === false">
-                        <th class="font-weight-bold">Punishment</th>
-                        <td>Punishment inactive</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <br>
-        </div>
-
-        <!-- Description -->
-        <div class="mb-3">
-            <h4 class="font-weight-bold">Full case description</h4>
-            <hr/>
-            <span style="white-space: pre-wrap; word-wrap: break-word" class="text-monospace">{{ (this.modCase | async)?.description }}</span>
+    <!-- Labels -->
+    <div class="row mt-3 ml-2" title="The case labels">
+        <div class="d-flex flex-wrap">
+            <h3 *ngFor="let label of (this.caseView | async)?.modCase?.labels">
+                <span class="badge badge-pill badge-info mr-1">{{ label }}</span>
+            </h3>
         </div>
     </div>
-    <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-        <div class="d-flex flex-column flex-wrap justify-content-between mt-2">
-            <div class="card mb-3" *ngFor="let comment of (this.modCase | async)?.comments">
-                <div class="card-body d-flex flex-row">
-                    <div class="align-self-start mr-3">
+    <!-- cards -->
+    <div class="row mb-3">
+        <!-- user information -->
+        <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2">
+            <div class="infobox bg-g-green">
+                <div class="infobox-body d-flex flex-row">
+                    <div class="flex-grow-1 d-flex flex-column">
+                        <span class="font-weight-bold">Suspect</span>
+                        <span>{{ (this.caseView | async)?.suspect?.username || (this.caseView | async)?.modCase?.username }}#{{ (this.caseView | async)?.suspect?.discriminator || (this.caseView | async)?.modCase?.discriminator }}</span>
+                        <span *ngIf="(this.caseView | async)?.modCase?.nickname">Nickname: {{(this.caseView | async)?.modCase?.nickname }}</span>
+                        <span class="text-white-50">UserId: {{(this.caseView | async)?.modCase?.userId }}</span>
+                    </div>
+                    <div class="infobox-icon">
                         <img
-                            src="{{ (this.users[comment.userId] | async)?.imageUrl }}"
-                            class="card-img rounded-circle z-depth-0 mr-1"
-                            alt="avatar icon"
-                            height="35"
-                            style="width: unset"
+                            src="{{ (this.caseView | async)?.suspect?.imageUrl }}"
+                            class="rounded-circle z-depth-0 mr-1"
+                            alt="suspect avatar"
+                            height="80"
+                            onerror="this.src='/assets/img/default_profile.png';"
                         />
                     </div>
-                    <div class="flex-grow-1">
-                        <!-- Title -->
-                        <h4 class="card-title">
-                            {{ (this.users[comment.userId] | async)?.username || comment.userId }}
-                        </h4>
-
-                        <!-- Text -->
-                        <div class="card-text">
-                            <span style="white-space: pre-wrap;" class="text-monospace font-small">{{ comment.createdAt | date:'dd.MM.Y HH:mm:ss'  }}</span><br/>
-                            <span style="white-space: pre-wrap;" class="text-monospace">{{ comment.message }}</span>
-                        </div>
-                    </div>
-
-                    <!-- Icons -->
-                    <div class="d-flex flex-column" *ngIf="(this.currentUser | async)?.discordUser?.id === comment.userId || (this.isModOrHigher)">
-                        <button class="btn btn-danger" (click)="deleteComment(comment.id)">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                        <button class="btn btn-warning" (click)="updateComment(comment.id)">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                    </div>
-                </div>
+                </div>                
             </div>
         </div>
-        <div id="newCommentParent">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="md-form">
-                        <textarea type="text" id="newComment" class="md-textarea form-control" placeholder="My new comment" [(ngModel)]="newComment"></textarea>
+        <!-- guilds information -->
+        <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2 crs-pnt" (click)="this.router.navigate(['guilds', this.guildId])">
+            <div class="infobox bg-g-blue">
+                <div class="infobox-body d-flex flex-row">
+                    <div class="flex-grow-1 d-flex flex-column">
+                        <span class="font-weight-bold">Guild</span>
+                        <span>{{ (this.guild | async).name }}</span>
+                        <span class="text-white-50">GuildId: {{(this.caseView | async)?.modCase?.guildId }}</span>
                     </div>
-                </div>
+                    <div class="infobox-icon">
+                        <img
+                            src="https://cdn.discordapp.com/icons/{{ (this.guild | async)?.id }}/{{ (this.guild | async)?.icon }}.png"
+                            class="rounded-circle z-depth-0 mr-1"
+                            alt="guild icon"
+                            height="80"
+                        />
+                    </div>
+                </div>                
             </div>
-            <button type="submit" class="btn btn-success btn-md" (click)="sendComment()" [attr.disabled]="this.newComment?.trim() ? null : ''">
-                Post comment
-            </button>
+        </div>
+        <!-- moderator information -->
+        <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2">
+            <div class="infobox bg-g-red">
+                <div class="infobox-body d-flex flex-row">
+                    <div class="flex-grow-1 d-flex flex-column">
+                        <span class="font-weight-bold">Moderator</span>
+                        <span>{{ (this.caseView | async)?.moderator?.username }}#{{ (this.caseView | async)?.moderator?.discriminator }}</span>
+                        <span style="font-size: medium;" class="text-white-50">ModId: {{(this.caseView | async)?.modCase?.modId }}</span>
+                    </div>
+                    <div class="infobox-icon">
+                        <img
+                            src="{{ (this.caseView | async)?.moderator?.imageUrl }}"
+                            class="rounded-circle z-depth-0 mr-1"
+                            alt="moderator avatar"
+                            height="80"
+                            onerror="this.src='/assets/img/default_profile.png';"
+                        />
+                    </div>
+                </div>                
+            </div>
+        </div>
+        <!-- punishment information -->
+        <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2">
+            <div class="infobox bg-g-orange">
+                <div class="infobox-body d-flex flex-row">
+                    <div class="flex-grow-1 d-flex flex-column">
+                        <div class="d-flex flex-row">
+                            <span class="font-weight-bold">Punishment</span>
+                            <h5 *ngIf="(this.caseView | async)?.modCase?.punishmentType != 0 && (this.caseView | async)?.modCase?.punishmentType != 2">
+                                <span class="badge ml-2"
+                                    [ngClass]="((this.caseView | async)?.modCase?.punishmentType === 0 || (this.caseView | async)?.modCase?.punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
+                                    [attr.title]="((this.caseView | async)?.modCase?.punishmentType === 0 || (this.caseView | async)?.modCase?.punishmentActive === true) ? '' : 'This punishment is expired.'">
+                                    {{ (this.caseView | async)?.modCase?.punishment }}
+                                </span>
+                            </h5>
+                        </div>
+                        <h3 *ngIf="(this.caseView | async)?.modCase?.punishmentType == 0 || (this.caseView | async)?.modCase?.punishmentType == 2">
+                            <span class="badge ml-2"
+                                [ngClass]="((this.caseView | async)?.modCase?.punishmentType === 0 || (this.caseView | async)?.modCase?.punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
+                                [attr.title]="((this.caseView | async)?.modCase?.punishmentType === 0 || (this.caseView | async)?.modCase?.punishmentActive === true) ? '' : 'This punishment is expired.'">
+                                {{ (this.caseView | async)?.modCase?.punishment }}
+                            </span>
+                        </h3>
+                        <ng-container *ngIf="(this.caseView | async)?.modCase?.punishmentType != 0 && (this.caseView | async)?.modCase?.punishmentType != 2">
+                            <span *ngIf="(this.caseView | async)?.modCase?.punishedUntil else punishedForever">
+                                Until: {{ (this.caseView | async)?.modCase?.punishedUntil | date:'dd.MM.Y HH:mm:ss' }} (UTC)
+                                <span *ngIf="(this.caseView | async)?.modCase?.punishmentActive === false">Punishment inactive.</span>
+                            </span>
+                            <ng-template #punishedForever>Punished until: Forever.</ng-template>
+                            <div class="progress w-100 m-auto" *ngIf="(this.caseView | async)?.modCase?.punishmentActive === true && (this.caseView | async)?.punishmentProgress">
+                                <div
+                                class="progress-bar"
+                                role="progressbar"
+                                title="Punishment progress"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                [attr.aria-valuenow]="(this.caseView | async)?.punishmentProgress"
+                                [style.width]="(this.caseView | async)?.punishmentProgress + '%'"
+                                ></div>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="infobox-icon">
+                        <i class="fas fa-bolt fa-5x"></i>
+                    </div>
+                </div>                
+            </div>
+        </div>
+        <!-- created at information -->
+        <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2">
+            <div class="infobox bg-g-pink">
+                <div class="infobox-body d-flex flex-row">
+                    <div class="flex-grow-1 d-flex flex-column">
+                        <span class="font-weight-bold">Created At</span>
+                        <span>{{ (this.caseView | async)?.modCase?.createdAt | date:'dd.MM.Y HH:mm:ss' }} (UTC)</span>          
+                        <span class="font-weight-bold" *ngIf="(this.caseView | async)?.modCase?.lastEditedAt != (this.caseView | async)?.modCase?.createdAt">Last Edited At</span>
+                        <span *ngIf="(this.caseView | async)?.modCase?.lastEditedAt != (this.caseView | async)?.modCase?.createdAt">{{ (this.caseView | async)?.modCase?.lastEditedAt | date:'dd.MM.Y HH:mm:ss' }} (UTC)</span>              
+                    </div>
+                    <div class="infobox-icon">
+                        <i class="far fa-clock fa-5x"></i>
+                    </div>
+                </div>                
+            </div>
+        </div>
+        <!-- Last moderator information -->
+        <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2" *ngIf="(this.caseView | async)?.modCase?.lastEditedAt != (this.caseView | async)?.modCase?.createdAt">
+            <div class="infobox bg-g-red">
+                <div class="infobox-body d-flex flex-row">
+                    <div class="flex-grow-1 d-flex flex-column">
+                        <span class="font-weight-bold">Last Edit by Moderator</span>
+                        <span>{{ (this.caseView | async)?.lastModerator?.username }}#{{ (this.caseView | async)?.lastModerator?.discriminator }}</span>
+                        <span class="text-white-50">ModId: {{(this.caseView | async)?.modCase?.lastEditedByModId }}</span>
+                    </div>
+                    <div class="infobox-icon">
+                        <img
+                            src="{{ (this.caseView | async)?.lastModerator?.imageUrl }}"
+                            class="rounded-circle z-depth-0 mr-1"
+                            alt="lastModerator avatar"
+                            height="80"
+                            onerror="this.src='/assets/img/default_profile.png';"
+                        />
+                    </div>
+                </div>                
+            </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="files-tab">
-        <div class="mt-3 d-flex flex-row align-items-baseline" id="file-upload-container" *ngIf="this.isModOrHigher">
-            <button class="btn btn-success flex-shrink-0" (click)="uploadFile()" [attr.disabled]="this.fileToUpload ? null : ''">
-                Upload
-            </button>
-            <div class="input-group flex-shrink-1">
+
+    <!-- Description -->
+    <div class="mb-3">
+        <h4 class="font-weight-bold">Description</h4>
+        <hr/>
+        <span style="white-space: pre-wrap; word-wrap: break-word" class="text-monospace">{{ (this.caseView | async)?.modCase?.description }}</span>
+    </div>
+
+    <!-- Files -->
+    <div class="mb-3" *ngIf="this.isModOrHigher || (this.files | async)?.names?.length != 0">
+        <h4 class="font-weight-bold">Uploaded files ({{ (this.files | async)?.names?.length }})</h4>
+        <hr/>
+        <div class="mt-3 d-flex flex-row align-items-baseline" *ngIf="this.isModOrHigher">
+            <div class="input-group flex-grow-0">
                 <div class="form-group">
                     <label class="custom-file-label" for="file">{{ this.fileToUpload ? this.fileToUpload.name : 'Choose file'}}</label>
                     <input type="file" id="file" class="custom-file-input"
@@ -260,31 +201,82 @@
                         (change)="handleFileInput($event)">
                 </div>
             </div>
+            <button class="btn btn-success flex-shrink-0" (click)="uploadFile()" [attr.disabled]="this.fileToUpload ? null : ''">
+                Upload
+            </button>
         </div>
-        <div class="d-flex flex-wrap justify-content-center mt-3" id="files-viewer">
-            <div class="card flex-shrink-1" *ngFor="let file of (this.files | async)?.names">
-                <div class="view overlay" *ngIf="this.previewFiles.indexOf(file.split('.')[file.split('.').length-1].toLowerCase()) > -1">
-                    <img class="card-img-top" src="/api/v1/guilds/{{ this.guildId }}/modcases/{{ this.caseId }}/files/{{ file }}"
-                            alt="Card image cap">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">{{ file.substr(file.indexOf('_', 45) + 1) }}</h5>
-                    <div class="d-flex flex-row flex-wrap justify-content-center">
-                        <a href="/api/v1/guilds/{{ this.guildId }}/modcases/{{ this.caseId }}/files/{{ file }}"
-                            class="btn btn-primary flex-shrink-1" target="_blank">
-                            View
-                        </a>
-                        <button class="btn btn-danger" *ngIf="this.isModOrHigher" (click)="deleteFile(file)">
-                            Delete
-                        </button>
+        <div class="row mt-2" id="files-viewer">
+            <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2" *ngFor="let file of (this.files | async)?.names">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center;">{{ file.substr(file.indexOf('_', 45) + 1) }}</h5>
+                        <div class="d-flex flex-row flex-wrap justify-content-center">
+                            <a href="/api/v1/guilds/{{ this.guildId }}/modcases/{{ this.caseId }}/files/{{ file }}"
+                                class="btn btn-primary flex-shrink-1" target="_blank">
+                                View
+                            </a>
+                            <button class="btn btn-danger" *ngIf="this.isModOrHigher" (click)="deleteFile(file)">
+                                Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card rounded mt-2" *ngIf="(this.files | async)?.names?.length === 0">
-            <div class="card-body">
-                <h4 class="card-title"><a>No files uploaded yet.</a></h4>
+    </div>
+
+    <!-- Comments -->
+    <div>
+        <h4 class="font-weight-bold">Comments ({{ (this.caseView | async)?.comments?.length }})</h4>
+        <hr/>
+        <div class="d-flex flex-column flex-wrap justify-content-between mt-2">
+            <div class="card mb-3" *ngFor="let comment of (this.caseView | async)?.comments">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex flex-row flex-grow-1 w-100 align-self-start">
+                        <img
+                            src="{{ comment?.user?.imageUrl }}"
+                            class="card-img rounded-circle z-depth-0 mr-1"
+                            alt="avatar icon"
+                            height="35"
+                            style="width: unset"
+                        />
+
+                        <!-- Title -->
+                        <span class="card-title">
+                            <h4 style="display: inline;">{{ comment?.user?.username || comment?.user?.id }}#{{ comment?.user?.discriminator || comment?.user?.id }}</h4>
+                            <span class="text-black-50">  {{ comment.createdAt | date:'dd.MM.Y HH:mm:ss'  }}</span>
+                        </span>
+                        
+                        <div class="flex-grow-1"></div>
+
+                        <!-- Icons -->
+                        <div class="d-flex flex-row flex-wrap align-self-end flex-grow-0" *ngIf="(this.currentUser | async)?.discordUser?.id === comment.userId || (this.isModOrHigher)">
+                            <button class="btn btn-danger" (click)="deleteComment(comment.id)">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            <button class="btn btn-warning" (click)="updateComment(comment.id)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="">
+                        <!-- Text -->
+                        <div class="card-text">
+                            <span style="white-space: pre-wrap; word-wrap: anywhere;" class="text-monospace">{{ comment.message }}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div id="newCommentParent" class="d-flex flex-row">
+            <div class="flex-grow-1">
+                <div class="md-form">
+                    <textarea type="text" id="newComment" class="md-textarea form-control" placeholder="My new comment" [(ngModel)]="newComment"></textarea>
+                </div>
+            </div>
+            <button type="submit" class="flex-shrink-1 mt-auto mb-auto btn btn-success btn-md" (click)="sendComment()" [attr.disabled]="this.newComment?.trim() ? null : ''">
+                Post comment
+            </button>
         </div>
     </div>
 </div>

@@ -11,7 +11,6 @@ export interface ModCase {
     discriminator?: string;
     nickname?: string;
     modId: string;
-    severity: number;
     createdAt: Date;
     occuredAt: Date;
     lastEditedAt: Date;

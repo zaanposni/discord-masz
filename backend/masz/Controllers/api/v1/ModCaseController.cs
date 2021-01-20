@@ -187,7 +187,6 @@ namespace masz.Controllers
             modCase.Title = newValue.Title;
             modCase.Description = newValue.Description;
             modCase.UserId = newValue.UserId;
-            modCase.Severity = newValue.Severity;
             if (newValue.OccuredAt.HasValue)
             {
                 modCase.OccuredAt = newValue.OccuredAt.Value;
@@ -350,7 +349,6 @@ namespace masz.Controllers
             newModCase.GuildId = guildid;
             newModCase.ModId = currentModerator;
             newModCase.UserId = modCase.UserId;
-            newModCase.Severity = modCase.Severity;
             newModCase.CreatedAt = DateTime.UtcNow;
             if (modCase.OccuredAt.HasValue)
                 newModCase.OccuredAt = modCase.OccuredAt.Value;

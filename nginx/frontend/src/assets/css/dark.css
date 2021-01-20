@@ -68,6 +68,21 @@ select:-webkit-autofill {
     color: unset !important;
 }
 
+.autocomplete-container .input-container input {
+    background-color: var(--dark-background);
+    border-bottom: 1px solid rgb(56, 61, 63);
+    color: var(--dark-text);
+}
+
+.autocomplete-container .suggestions-container ul li a {
+    background-color: var(--dark-card-background);
+    color: var(--dark-text);
+}
+
+.autocomplete-container .input-container .x i {
+    color: var(--dark-text);
+}
+
 .custom-select, .custom-select:focus, input[class*="form-control"], input[class*="form-control:focus"], .dataTables_wrapper .form-control:focus {
     background-color: unset!important;
     border-color: var(--dark-border-color)!important;
@@ -276,4 +291,8 @@ select:-webkit-autofill {
     color: var(--dark-text);
     background-color: var(--dark-card-background);
     border-color: #828385;
+}
+
+hr {
+    border-top: 1px solid rgb(94, 93, 93);
 }

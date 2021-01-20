@@ -1,3 +1,9 @@
+<div *ngIf="this.loading" class="d-flex flex-row" >
+    <div class="flex-grow-1"></div>
+    <img src="assets/img/spinner.gif" />
+    <div class="flex-grow-1"></div>
+</div>
+<ng-container *ngIf="!this.loading">
 <div class="d-flex justify-content-between align-items-start">
     <h3><span class="badge badge-success">Register new guild</span></h3>
 </div>
@@ -59,3 +65,4 @@
 <button type="button" class="btn btn-success" (click)="registerGuild()" [ngClass]="{'d-none': !displayValidGuildSelected}" [attr.disabled]="isNumber(modRole) && isNumber(adminRole) ? null : ''">
     Register guild
 </button>
+</ng-container>

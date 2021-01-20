@@ -18,6 +18,6 @@ export class PatchnotesComponent implements OnInit {
   constructor(private router: ActivatedRoute, private api: ApiService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.patchNotes = this.api.getSimpleData('/static/patchnotes.json?v=1.7.2', false);
+    this.patchNotes = this.api.getSimpleData('/static/patchnotes.json?v=1.7.3', false);
   }
 }
