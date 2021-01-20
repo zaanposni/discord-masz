@@ -31,8 +31,8 @@
                 <div class="infobox-body d-flex flex-row">
                     <div class="flex-grow-1 d-flex flex-column">
                         <span class="font-weight-bold">Suspect</span>
-                        <span>{{ (this.caseView | async)?.suspect?.username || (this.caseView | async)?.modCase?.username }}#{{ (this.caseView | async)?.suspect?.discriminator || (this.caseView | async)?.modCase?.discriminator }}</span>
-                        <span *ngIf="(this.caseView | async)?.modCase?.nickname">Nickname: {{(this.caseView | async)?.modCase?.nickname }}</span>
+                        <span style="word-break: break-all;">{{ (this.caseView | async)?.suspect?.username || (this.caseView | async)?.modCase?.username }}#{{ (this.caseView | async)?.suspect?.discriminator || (this.caseView | async)?.modCase?.discriminator }}</span>
+                        <span style="word-break: break-all;" *ngIf="(this.caseView | async)?.modCase?.nickname" title="Users cached nickname during case creation">{{(this.caseView | async)?.modCase?.nickname }}</span>
                         <span class="text-white-50">UserId: {{(this.caseView | async)?.modCase?.userId }}</span>
                     </div>
                     <div class="infobox-icon">
@@ -53,7 +53,7 @@
                 <div class="infobox-body d-flex flex-row">
                     <div class="flex-grow-1 d-flex flex-column">
                         <span class="font-weight-bold">Guild</span>
-                        <span>{{ (this.guild | async).name }}</span>
+                        <span style="word-break: break-all;">{{ (this.guild | async).name }}</span>
                         <span class="text-white-50">GuildId: {{(this.caseView | async)?.modCase?.guildId }}</span>
                     </div>
                     <div class="infobox-icon">
@@ -73,7 +73,7 @@
                 <div class="infobox-body d-flex flex-row">
                     <div class="flex-grow-1 d-flex flex-column">
                         <span class="font-weight-bold">Moderator</span>
-                        <span>{{ (this.caseView | async)?.moderator?.username }}#{{ (this.caseView | async)?.moderator?.discriminator }}</span>
+                        <span style="word-break: break-all;">{{ (this.caseView | async)?.moderator?.username }}#{{ (this.caseView | async)?.moderator?.discriminator }}</span>
                         <span style="font-size: medium;" class="text-white-50">ModId: {{(this.caseView | async)?.modCase?.modId }}</span>
                     </div>
                     <div class="infobox-icon">
@@ -157,7 +157,7 @@
                 <div class="infobox-body d-flex flex-row">
                     <div class="flex-grow-1 d-flex flex-column">
                         <span class="font-weight-bold">Last Edit by Moderator</span>
-                        <span>{{ (this.caseView | async)?.lastModerator?.username }}#{{ (this.caseView | async)?.lastModerator?.discriminator }}</span>
+                        <span style="word-break: break-all;">{{ (this.caseView | async)?.lastModerator?.username }}#{{ (this.caseView | async)?.lastModerator?.discriminator }}</span>
                         <span class="text-white-50">ModId: {{(this.caseView | async)?.modCase?.lastEditedByModId }}</span>
                     </div>
                     <div class="infobox-icon">
