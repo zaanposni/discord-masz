@@ -4,18 +4,11 @@
     <div class="flex-grow-1"></div>
 </div>
 <div class="d-flex flex-column mt-2" *ngIf="!this.caseLoading">
-    <!-- User information -->
-    <div class="d-flex flex-row conditional_flex_wrap m-auto justify-content-between w-75">
-        <img
-            src="{{ (this.caseView | async)?.suspect?.imageUrl }}"
-            class="rounded-circle z-depth-0 mr-3"
-            alt="user image"
-            height="144"
-            onerror="this.src='/assets/img/default_profile.png';"
-        />
-        <div class="d-flex flex-column flex-grow-0 font-weight-bold">
-            <span class="display-4" style="word-break: break-all;" title="The case title">{{ (this.caseView | async)?.modCase?.title }}<span class="text-black-50" title="The case id"> #{{ (this.caseView   | async)?.modCase.caseId }}</span></span>
+    <div class="d-flex flex-row conditional_flex_wrap m-auto justify-content-between w-100">
+        <div class="d-flex flex-column flex-grow-1 font-weight-bold">
+            <span class="display-4" style="word-break: normal;" title="The case title">{{ (this.caseView | async)?.modCase?.title }}<span class="text-black-50" title="The case id"> #{{ (this.caseView   | async)?.modCase.caseId }}</span></span>
         </div>
+
         <!-- Delete / Edit button information -->
         <div class="d-flex flex-column ml-2 flex-shrink-0" *ngIf="this.isModOrHigher">
             <button class="btn btn-warning" (click)="this.router.navigate(['guilds', this.guildId, 'cases', this.caseId, 'edit'])">Edit this case</button>
