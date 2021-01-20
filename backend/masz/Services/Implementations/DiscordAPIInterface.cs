@@ -219,9 +219,9 @@ namespace masz.Services
             return null;
         }
 
-        public async Task<GuildMember> FetchMemberInfo(string guildId, string userId)
+        public async Task<GuildMember> FetchMemberInfo(string guildId, string userId, bool breakCache = false)
         {
-            if (this.cache.ContainsKey($"/guilds/{guildId}/members/{userId}")) {
+            if (this.cache.ContainsKey($"/guilds/{guildId}/members/{userId}") && !breakCache) {
                 if (this.cache[$"/guilds/{guildId}/members/{userId}"].ExpiresAt > DateTime.Now) {
                     return new GuildMember(this.cache[$"/guilds/{guildId}/members/{userId}"].Content);
                 }

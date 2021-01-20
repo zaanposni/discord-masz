@@ -56,8 +56,9 @@ namespace masz.Services
         /// </summary>
         /// <param name="guildId">discord guild id to fetch</param>
         /// <param name="userId">discord user id to fetch</param>
+        /// <param name="breakCache">if it should ignore/break the cached user</param>
         /// <returns>User object if found.</returns>
-        Task<GuildMember> FetchMemberInfo(string guildId, string userId);
+        Task<GuildMember> FetchMemberInfo(string guildId, string userId, bool breakCache = false);
         Task<List<GuildMember>> FetchGuildMembersAsync(string guildId, bool breakCache = false);
 
         /// <summary>
