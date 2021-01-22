@@ -54,18 +54,23 @@ def create_dm_embed(msg: Message, type: int, config) -> Embed:
 
     return embed
 
-async def apply_punishment(msg: Message, type: int, config):
+async def apply_punishment(msg: Message, mod_type: int, config):
     if config["SendDmNotification"]:
-        await msg.author.send(embed=create_dm_embed(msg, type, config))
+        try:
+            await msg.author.send(embed=create_dm_embed(msg, mod_type, config))
+        except Exception as e:
+            print("Failed to send dm notification")
+            print(e)
     
     url = f"http://masz_backend/internalapi/v1/guilds/{msg.guild.id}/modcases"
 
     payload = {
         "UserId": msg.author.id,
-        "AutoModerationType": type,
+        "AutoModerationType": mod_type,
         "Username": msg.author.name,
         "Nickname": msg.author.nick,
         "Discriminator": msg.author.discriminator,
+        "ChannelId": msg.channel.id,
         "MessageId": msg.id,
         "MessageContent": msg.content
     }

@@ -1,5 +1,14 @@
 [
   {
+    "title": "Version 1.8",
+    "version": "v1.8",
+    "changes": [
+      "Fixed automoderation on message update.",
+      "Fixed error if user declines private messages by discordbot.",
+      "Including channel id in automoderation case description."
+    ]
+  },
+  {
     "title": "Version 1.7.3.1",
     "version": "v1.7.3.1",
     "changes": [

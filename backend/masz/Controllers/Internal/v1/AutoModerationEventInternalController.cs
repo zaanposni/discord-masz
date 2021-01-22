@@ -79,7 +79,7 @@ namespace masz.Controllers
                     newModCase.LastEditedByModId = discordBot.Id;
                     newModCase.OccuredAt = newModCase.CreatedAt;
                     newModCase.Title = $"AutoModeration: {dto.AutoModerationType.ToString()}";
-                    newModCase.Description = $"User triggered AutoModeration.\nEvent: {dto.AutoModerationType.ToString()}.\nAction: {modConfig.AutoModerationAction.ToString()}\nMessageId: {dto.MessageId}.\nMessage content: {dto.MessageContent}.";
+                    newModCase.Description = $"User triggered AutoModeration\nEvent: {dto.AutoModerationType.ToString()}\nAction: {modConfig.AutoModerationAction.ToString()}\nChannelId: {dto.ChannelId}\nMessageId: {dto.MessageId}\nMessage content: {dto.MessageContent}";
                     newModCase.Labels = new List<string>() { "automoderation", dto.AutoModerationType.ToString() }.ToArray();
                     newModCase.Valid = true;
                     
