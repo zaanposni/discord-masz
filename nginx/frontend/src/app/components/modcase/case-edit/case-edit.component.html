@@ -24,7 +24,7 @@
 </div>
 <div class="">
     <div class="md-form d-flex flex-row">
-        <input type="text" id="form-label-new" class="form-control flex-shrink-1" style="width:20%" placeholder="Labels" [(ngModel)]="newLabel" />
+        <input type="text" id="form-label-new" class="form-control flex-shrink-1" style="width:20%" placeholder="Labels" [(ngModel)]="newLabel" autocomplete="off"/>
         <button class="btn btn-default" id="form-labels-button" (click)="addLabel()" [attr.disabled]="this.newLabel !== '' && this.labels.indexOf(this.newLabel.trim()) === -1 ? null : ''">
             Add label <i class="fas fa-plus ml-1"></i>
         </button>
@@ -38,14 +38,14 @@
 </div>
 
 <div class="md-form">
-    <input type="text" id="form-title" class="form-control"
+    <input type="text" id="form-title" class="form-control" autocomplete="off"
      placeholder="Title" [(ngModel)]="this.title" (click)="this.titleIsInvalid = false"
      [class.invalid]="this.titleIsInvalid" [class.is-invalid]="this.titleIsInvalid">
      <div class="invalid-feedback">Please provide a title shorter than 100 characters.</div>
 </div>
 
 <div class="md-form">
-    <textarea id="form-description" class="form-control md-textarea" placeholder="Description" [(ngModel)]="this.description"></textarea>
+    <textarea id="form-description" class="form-control md-textarea" placeholder="Description" [(ngModel)]="this.description" autocomplete="off"></textarea>
 </div>
 <div>
     <label for="form-punishment">Punishment</label>

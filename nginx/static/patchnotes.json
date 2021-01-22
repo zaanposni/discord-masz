@@ -5,7 +5,9 @@
     "changes": [
       "Fixed automoderation on message update.",
       "Fixed error if user declines private messages by discordbot.",
-      "Including channel id in automoderation case description."
+      "Including channel id in automoderation case description.",
+      "Fixed styling issues with browser input autocomplete.",
+      "Added feature to edit comments."
     ]
   },
   {
