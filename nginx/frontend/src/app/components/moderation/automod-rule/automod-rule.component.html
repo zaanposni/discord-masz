@@ -20,7 +20,9 @@
                     <i class="fas fa-bolt fa-2x mod-icon"></i>
                     <span class="mod-title">Event</span>
                     <div class="mod-body mt-3">
-                        {{ description }}
+                        <span>{{ description }}</span>
+                        <input type="text" class="form-control mt-2" placeholder="Limit per message"
+                         *ngIf="showLimitField" [(ngModel)]="this.limit">
                     </div>
                 </div>
                 <hr class="spacer-type0 spacer-short flex-shrink-1" style="margin-top: 2rem"/>

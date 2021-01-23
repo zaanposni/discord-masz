@@ -8,7 +8,7 @@ export interface AutomodConfig {
     ignoreChannels: string[];
     ignoreRoles: string[];
     timeLimitMinutes?: any;
-    limit?: any;
+    limit?: number;
     sendDmNotification: boolean;
     sendPublicNotification: boolean;
 }

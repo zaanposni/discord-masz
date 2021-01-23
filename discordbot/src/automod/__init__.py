@@ -5,10 +5,23 @@ from datetime import datetime
 from discord import Message, Embed
 
 from .invite import check_message as check_invite
+from .emotes import check_message as check_emotes
+from .mentions import check_message as check_mentions
 from data import get_cached_automod_config, get_cached_guild_config
 
 
 SITE_ADMINS = os.getenv("DISCORD_SITE_ADMINS").strip(",")
+type_map = {
+    "0": "Invites are not allowed on this guild.",
+    "1": "Too many emotes per message are not allowed on this guild.",
+    "2": "Too many mentions per message are not allowed on this guild."
+}
+punishments = {
+    "0": "Warn",
+    "1": "Mute",
+    "2": "Kick",
+    "3": "Ban"
+}
 
 def check_filter(msg: Message, guildconfig, automodconfig) -> bool:
     if str(msg.author.id) in SITE_ADMINS:
@@ -26,21 +39,11 @@ def check_filter(msg: Message, guildconfig, automodconfig) -> bool:
     return True
 
 
-type_map = {
-    "0": "Invites are not allowed on this guild."
-}
-punishments = {
-    "0": "Warn",
-    "1": "Mute",
-    "2": "Kick",
-    "3": "Ban"
-}
-
-def create_dm_embed(msg: Message, type: int, config) -> Embed:
+def create_dm_embed(msg: Message, mod_type: int, config) -> Embed:
     embed = Embed(title="Automoderation")
     embed.color = 0xf71b02
     embed.timestamp = datetime.now()
-    embed.description = type_map.get(str(type), "You triggered the automoderation.")
+    embed.description = type_map.get(str(mod_type), "You triggered the automoderation.")
     embed.add_field(name="Guild", value=f"{msg.guild.name} | {msg.guild.id}", inline=False)
     embed.add_field(name="Message", value=f"{msg.id}", inline=False)
     embed.add_field(name="Channel", value=f"<#{msg.channel.id}> | {msg.channel.id}", inline=False)
@@ -49,10 +52,26 @@ def create_dm_embed(msg: Message, type: int, config) -> Embed:
         if config["PunishmentDurationMinutes"]:
             punishment = f"Temp{punishment} for {config['PunishmentDurationMinutes']} Minutes."
         embed.add_field(name="Punishment", value=punishment, inline=False)
-    embed.add_field(name="Content", value=f"> {msg.content}", inline=False)
+    embed.add_field(name="Content", value=f"> {msg.content[:1020]}", inline=False)  # limit is 1024
     embed.add_field(name="MASZ", value=f"You can view details to this automoderation on: {os.getenv('META_SERVICE_BASE_URL', 'URL not set.')}", inline=False)
 
     return embed
+
+
+def create_public_embed(msg: Message, mod_type: int, config) -> Embed:
+    embed = Embed(title="Automoderation")
+    embed.color = 0xf71b02
+    embed.timestamp = datetime.now()
+    embed.description = f'{msg.author.mention} {type_map.get(str(mod_type), "You triggered the automoderation.")}'
+    if config["AutoModerationAction"] in [2, 3]:
+        punishment = punishments[str(config['PunishmentType'])]
+        if config["PunishmentDurationMinutes"]:
+            punishment = f"Temp{punishment} for {config['PunishmentDurationMinutes']} Minutes."
+        embed.add_field(name="Punishment", value=punishment, inline=False)
+    embed.add_field(name="MASZ", value=f"You can view details to this automoderation on: {os.getenv('META_SERVICE_BASE_URL', 'URL not set.')}", inline=False)
+
+    return embed
+
 
 async def apply_punishment(msg: Message, mod_type: int, config):
     if config["SendDmNotification"]:
@@ -82,7 +101,16 @@ async def apply_punishment(msg: Message, mod_type: int, config):
     requests.post(url, headers=headers, json=payload)
 
     if config["AutoModerationAction"] in [1, 3]:
-        await msg.delete()
+        try:
+            await msg.channel.send(embed=create_public_embed(msg, mod_type, config))
+        except Exception as e:
+            print("Failed to send notification.")
+            print(e)
+        try:
+            await msg.delete()
+        except Exception as e:
+            print("Failed to delete message.")
+            print(e)
 
 
 async def check_message(msg: Message) -> bool:
@@ -97,12 +125,30 @@ async def check_message(msg: Message) -> bool:
     if not (guildconfig and automodconfig):  # guild not registered or no config
         return
 
-    if check_invite(msg):
-        event_type = 0
-        config = next((x for x in automodconfig if x["AutoModerationType"] == event_type), None)
-        if config:
+    event_type = 0
+    config = next((x for x in automodconfig if x["AutoModerationType"] == event_type), None)
+    if config:
+        if check_invite(msg):
             if check_filter(msg, guildconfig, config):
                 print(f"Found invite by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                await apply_punishment(msg, event_type, config)
+                return True
+
+    event_type = 1
+    config = next((x for x in automodconfig if x["AutoModerationType"] == event_type), None)
+    if config:
+        if check_emotes(msg, config):
+            if check_filter(msg, guildconfig, config):
+                print(f"Found emotes by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                await apply_punishment(msg, event_type, config)
+                return True
+
+    event_type = 2
+    config = next((x for x in automodconfig if x["AutoModerationType"] == event_type), None)
+    if config:
+        if check_mentions(msg, config):
+             if check_filter(msg, guildconfig, config):
+                print(f"Found mentions by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                 await apply_punishment(msg, event_type, config)
                 return True
 
