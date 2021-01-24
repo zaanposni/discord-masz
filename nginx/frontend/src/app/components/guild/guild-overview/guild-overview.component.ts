@@ -39,15 +39,19 @@ export class GuildOverviewComponent implements OnInit {
   isAdminOrHigher: boolean = false;
 
   iconsMap: { [key: number]: string} = {
-    0: 'fas fa-link',
+    0: 'far fa-envelope-open',
     1: 'far fa-smile-wink',
-    2: 'fas fa-user'
+    2: 'fas fa-user',
+    3: 'far fa-file-alt',
+    4: 'fas fa-link'
   };
 
   eventsMap: { [key: number]: string} = {
     0: 'posted an invite',
     1: 'used too many emotes',
-    2: 'mentioned too many users'
+    2: 'mentioned too many users',
+    3: 'posted too many attachments',
+    4: 'posted too many embeds'
   };
 
   actionsMap: { [key: number]: string} = {

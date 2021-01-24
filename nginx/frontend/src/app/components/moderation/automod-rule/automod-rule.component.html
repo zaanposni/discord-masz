@@ -80,8 +80,12 @@
                     <span class="mod-title">Action</span>
                     <div class="mod-body mt-3">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="invite-exclude-team" checked disabled>
-                            <label class="custom-control-label" for="invite-exclude-team" title="A log entry will always be generated.">Log entry</label>
+                            <input type="checkbox" class="custom-control-input" id="{{ uniqueLabel }}-send-internal" checked disabled>
+                            <label class="custom-control-label" for="{{ uniqueLabel }}-send-internal" title="A staff webhook will always be sent if the webhook is defined.">Send internal notification</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="{{ uniqueLabel }}-exclude-team" checked disabled>
+                            <label class="custom-control-label" for="{{ uniqueLabel }}-exclude-team" title="A log entry will always be generated.">Log entry</label>
                         </div>
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="send-dm-label-{{ uniqueLabel }}" [(ngModel)]="sendDmNotification">

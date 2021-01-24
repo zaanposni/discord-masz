@@ -3,7 +3,9 @@ namespace masz.Models
     public enum AutoModerationType
     {
         InvitePosted,
-        MassEmotes,
-        MassMentions
+        TooManyEmotes,
+        TooManyMentions,
+        TooManyAttachments,
+        TooManyEmbeds
     }
 }

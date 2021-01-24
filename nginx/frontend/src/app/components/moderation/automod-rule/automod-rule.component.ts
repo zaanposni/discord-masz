@@ -35,6 +35,18 @@ export class AutomodRuleComponent implements OnInit {
       title: 'Mentions',
       description: 'A message on your guild mentions too many users. Does not include role mentions.',
       showLimitField: true
+    },
+    '3': {
+      uniqueLabel: 'attachment',
+      title: 'Attachments',
+      description: 'A message on your guild contains too many attachments.',
+      showLimitField: true
+    },
+    '4': {
+      uniqueLabel: 'embed',
+      title: 'Embeds',
+      description: 'A message on your guild contains too many embeds. This includes preview of links.',
+      showLimitField: true
     }
   };
 
