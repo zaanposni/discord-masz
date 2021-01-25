@@ -12,7 +12,8 @@
       "Added staff webhook notification for automoderation.",
       "Fixed tabtitle.",
       "Added information about creation type to modcases.",
-      "Added filter options to modcase table."
+      "Added filter options to modcase table.",
+      "Added autolink to other cases in case description."
     ]
   },
   {

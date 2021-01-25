@@ -27,6 +27,7 @@ export class CaseViewComponent implements OnInit {
   caseId!: string | null;
   currentUser!: Observable<AppUser>;
   caseView!: Promise<CaseView>;
+  renderedDescription!: string;
   caseLoading: boolean = true
   guild!: Promise<Guild>;
   files!: Promise<FileInfo>;
@@ -50,7 +51,7 @@ export class CaseViewComponent implements OnInit {
 
     this.files = this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/files`).toPromise();
     this.caseView = this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/view`).toPromise();
-    this.caseView.then(() => { this.caseLoading = false; });
+    this.caseView.then((data) => { this.caseLoading = false; this.renderedDescription = this.renderDescription(data.modCase.description, this.guildId) });
   }
 
   redirectToApi() {
@@ -176,5 +177,11 @@ export class CaseViewComponent implements OnInit {
 
   handleFileInput(event: any) {
     this.fileToUpload = event.target.files.item(0);
+  }
+
+  renderDescription(str: string, guildId: string): string {
+    return str.replace(/#(\d+)/g, function(match, id) {
+      return `<a href="/guilds/${guildId}/cases/${id}">#${id}</a>`
+    });
   }
 }

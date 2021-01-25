@@ -94,7 +94,7 @@ select:-webkit-autofill {
     border-color: var(--dark-border-color)!important;
 }
 
-.md-form > .form-control, .md-form > .form-control:focus {
+.md-form > .form-control, .md-form > .form-control:focus, .md-form > .md-textarea {
     color: unset !important;
     border-bottom-color: var(--dark-border-color)!important;
 }
@@ -295,4 +295,8 @@ select:-webkit-autofill {
 
 hr {
     border-top: 1px solid rgb(94, 93, 93);
+}
+
+#case-view-description a {
+    color: orange;
 }

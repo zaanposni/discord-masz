@@ -178,7 +178,9 @@
     <div class="mb-3">
         <h4 class="font-weight-bold">Description</h4>
         <hr/>
-        <span style="white-space: pre-wrap; word-wrap: break-word" class="text-monospace">{{ (this.caseView | async)?.modCase?.description }}</span>
+        <span style="white-space: pre-wrap; word-wrap: break-word" class="text-monospace" id="case-view-description"
+         [innerHTML]="this.renderedDescription">
+        </span>
     </div>
 
     <!-- Files -->

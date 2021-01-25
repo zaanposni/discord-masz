@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { DiscordUser } from 'src/app/models/DiscordUser';
 import { GuildMember } from 'src/app/models/GuildMember';
 import { ApiService } from 'src/app/services/api.service';
+import { CookieTrackerService } from 'src/app/services/cookie-tracker.service';
 
 @Component({
   selector: 'app-case-new',
@@ -13,6 +14,8 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./case-new.component.scss']
 })
 export class CaseNewComponent implements OnInit {
+
+  showSuggestions: boolean = false;
 
   loading: boolean = true;
 
@@ -32,7 +35,7 @@ export class CaseNewComponent implements OnInit {
 
   titleIsInvalid: boolean = false;
 
-  constructor(private toastr: ToastrService, private api: ApiService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private toastr: ToastrService, private api: ApiService, private route: ActivatedRoute, private router: Router, public cookieTracker: CookieTrackerService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid');
@@ -44,6 +47,11 @@ export class CaseNewComponent implements OnInit {
     }, () => {
       this.loading = false;
     });
+    this.cookieTracker.currentSettings.subscribe((data) => this.showSuggestions = data.showSuggestions);
+  }
+
+  hideSuggestions() {
+    this.cookieTracker.updateCookie('suggestions', 'false');
   }
 
   scrollEnd() {

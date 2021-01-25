@@ -44,8 +44,22 @@
      <div class="invalid-feedback">Please provide a title shorter than 100 characters.</div>
 </div>
 
-<div class="md-form">
-    <textarea id="form-description" class="form-control md-textarea" placeholder="Description" [(ngModel)]="this.description" autocomplete="off"></textarea>
+<div class="md-form d-flex flex-row flex-wrap">
+    <textarea id="form-description" class="md-textarea flex-grow-1 flex-shrink-0" style="min-width: 75%;"
+     placeholder="Description" [(ngModel)]="this.description" autocomplete="off"></textarea>
+    <div class="d-flex flex-column flex-wrap justify-content-center align-items-center flex-grow-0" *ngIf="this.showSuggestions">
+        <div class="card m-1">
+            <div class="card-body">
+                <h5 class="card-title">Nice to know</h5>
+                <p class="card-text">
+                    Use "#53" to link another case.
+                </p>
+            </div>
+        </div>
+        <button type="button" class="btn btn-warning" (click)="hideSuggestions()">
+            Hide suggestions
+        </button>
+    </div>
 </div>
 <div>
     <label for="form-punishment">Punishment</label>

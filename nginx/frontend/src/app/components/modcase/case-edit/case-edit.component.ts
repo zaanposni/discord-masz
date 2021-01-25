@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DiscordUser } from 'src/app/models/DiscordUser';
 import { GuildMember } from 'src/app/models/GuildMember';
 import { ApiService } from 'src/app/services/api.service';
+import { CookieTrackerService } from 'src/app/services/cookie-tracker.service';
 
 @Component({
   selector: 'app-case-edit',
@@ -13,6 +14,8 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./case-edit.component.scss']
 })
 export class CaseEditComponent implements OnInit {
+
+  showSuggestions: boolean = false;
 
   caseLoading: boolean = true;
 
@@ -33,7 +36,7 @@ export class CaseEditComponent implements OnInit {
 
   titleIsInvalid: boolean = false;
   
-  constructor(private toastr: ToastrService, private api: ApiService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private toastr: ToastrService, private api: ApiService, private route: ActivatedRoute, private router: Router, public cookieTracker: CookieTrackerService) { }
 
   punishmentMap: { [key: string]: { [k: string]: any } } = {
     '0' : {
@@ -94,6 +97,7 @@ export class CaseEditComponent implements OnInit {
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid');
     this.caseId = this.route.snapshot.paramMap.get('caseid');
+    this.cookieTracker.currentSettings.subscribe((data) => this.showSuggestions = data.showSuggestions);
     this.api.getSimpleData(`/modcases/${this.guildId}/${this.caseId}`).subscribe((data) => {
       this.punishedUntil = data['punishedUntil'] ? moment.utc(data['punishedUntil']).toISOString() : null;
       this.title = data['title'];
@@ -116,6 +120,10 @@ export class CaseEditComponent implements OnInit {
       this.completeMemberList = data;
       this.scrollEnd();
     });
+  }
+
+  hideSuggestions() {
+    this.cookieTracker.updateCookie('suggestions', 'false');
   }
 
   scrollEnd() {
