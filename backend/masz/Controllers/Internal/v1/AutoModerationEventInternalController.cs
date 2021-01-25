@@ -82,6 +82,7 @@ namespace masz.Controllers
                     newModCase.Description = $"User triggered AutoModeration\nEvent: {dto.AutoModerationType.ToString()}\nAction: {modConfig.AutoModerationAction.ToString()}\nChannelId: {dto.ChannelId}\nMessageId: {dto.MessageId}\nMessage content: {dto.MessageContent}";
                     newModCase.Labels = new List<string>() { "automoderation", dto.AutoModerationType.ToString() }.ToArray();
                     newModCase.Valid = true;
+                    newModCase.CreationType = CaseCreationType.AutoModeration;
                     
                     if (modConfig.PunishmentType != null && modConfig.PunishmentType != PunishmentType.None)
                     {

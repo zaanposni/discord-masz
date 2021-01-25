@@ -28,6 +28,7 @@ namespace masz.Models
         public string[] Labels { get; set; }
         public string Others { get; set; }
         public bool Valid { get; set; }
+        public CaseCreationType CreationType { get; set; }
         public PunishmentType PunishmentType { get; set; }
         public DateTime? PunishedUntil { get; set; }
         public bool PunishmentActive { get; set; }

@@ -19,6 +19,7 @@ export interface ModCase {
     labels: string[];
     others?: string;
     valid: boolean;
+    creationType: number;
     punishmentType: number;
     punishedUntil: Date;
     punishmentActive: boolean;

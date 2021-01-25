@@ -10,7 +10,9 @@
       "Added feature to edit comments.",
       "Added automoderation for emotes, mentions, embeds and attachments.",
       "Added staff webhook notification for automoderation.",
-      "Fixed tabtitle."
+      "Fixed tabtitle.",
+      "Added information about creation type to modcases.",
+      "Added filter options to modcase table."
     ]
   },
   {

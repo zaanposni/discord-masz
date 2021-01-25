@@ -198,7 +198,11 @@ export class AutomodRuleComponent implements OnInit {
       return;
     }
 
-    if(!this.isNumber(this.punishmentDuration) && this.punishmentDuration) {
+    if (this.punishment !== '2' && this.punishment !== '5') {
+      this.punishmentDuration = null
+    }
+
+    if (!this.isNumber(this.punishmentDuration) && this.punishmentDuration) {
       this.toastr.error('Please enter a valid number as duration.');
       return;
     } else {
@@ -223,7 +227,7 @@ export class AutomodRuleComponent implements OnInit {
     let data: any = {
       'AutoModerationType': +this.type,
       'PunishmentType': this.punishmentMap[this.punishment]['punishmentType'],
-      'PunishmentDurationMinutes': +this.punishmentDuration,
+      'PunishmentDurationMinutes': this.punishmentDuration,
       'IgnoreChannels': this.excludedChannels.map((data) => data.id),
       'IgnoreRoles': this.excludedRoles.map((data) => data.id),
       'SendDmNotification': this.sendDmNotification,

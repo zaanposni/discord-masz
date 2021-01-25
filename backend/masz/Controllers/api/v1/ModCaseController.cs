@@ -360,6 +360,7 @@ namespace masz.Controllers
             newModCase.Labels = modCase.Labels.Distinct().ToArray();
             newModCase.Others = modCase.Others;
             newModCase.Valid = true;
+            newModCase.CreationType = CaseCreationType.Default;
             newModCase.PunishmentType = modCase.PunishmentType;
             newModCase.PunishedUntil = modCase.PunishedUntil;
             if (modCase.PunishmentType == PunishmentType.None) {
