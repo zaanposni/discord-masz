@@ -26,7 +26,8 @@ export class CaseNewComponent implements OnInit {
   @Input() description: string = '';
   @Input() punishment: string = '0';
   @Input() publicNotification: boolean = true;
-  @Input() handlePunishment: boolean = true;;
+  @Input() dmNotification: boolean = true;
+  @Input() handlePunishment: boolean = true;
   @Input() newLabel: string = '';
   labels: string[] = [];
   members: DiscordUser[] = [];
@@ -125,13 +126,12 @@ export class CaseNewComponent implements OnInit {
   submitCase() {
     // validation
     if (this.title.trim().length > 100) {
-      console.log("invalid");
       this.titleIsInvalid = true;
       return;
     }
-    console.log(this.userid);
 
     // api
+    this.loading = true;
     let data = {
       'title': this.title.trim(),
       'description': this.description.trim(),
@@ -143,13 +143,16 @@ export class CaseNewComponent implements OnInit {
     };
     let params = new HttpParams()
               .set('sendnotification', this.publicNotification ? 'true' : 'false')
-              .set('handlePunishment', this.handlePunishment ? 'true' : 'false');;
+              .set('announceDm', this.dmNotification ? 'true' : 'false')
+              .set('handlePunishment', this.handlePunishment ? 'true' : 'false');
 
     this.api.postSimpleData(`/modcases/${this.guildId}`, data, params).subscribe((data) => {
+      this.loading = false;
       this.toastr.success('Case created.');
       this.router.navigate(['guilds', this.guildId, 'cases', data['caseid']]);
     }, (error) => {
       this.toastr.error('Cannot create case.', 'Something went wrong.');
-    })
+      this.loading = false;
+    });
   }
 }

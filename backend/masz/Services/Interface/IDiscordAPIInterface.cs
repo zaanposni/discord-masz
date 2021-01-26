@@ -108,5 +108,9 @@ namespace masz.Services
         Task<bool> GrantGuildUserRole(string guildId, string userId, string roleId);
         Task<bool> RemoveGuildUserRole(string guildId, string userId, string roleId);
         Task<bool> KickGuildUser(string guildId, string userId);
+        Task<Channel> CreateDmChannel(string userId);
+        Task<bool> SendMessage(string channelId, string content);
+        Task<bool> SendEmbedMessage(string channelId, object content);
+        Task<bool> SendDmMessage(string userId, string content);
     }
 }

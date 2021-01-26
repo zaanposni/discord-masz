@@ -174,7 +174,7 @@
             </div>
             <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="p-exclude-perma" (change)="pExcludePermaSwitch($event)">
-                <label class="custom-control-label" for="p-exclude-perma">Exclude permanent punishments?</label>
+                <label class="custom-control-label" for="p-exclude-perma" title="This filter will only exclude mutes and bans, kicks and warns are not permanent">Exclude permanent punishments?</label>
             </div>
         </div>
         <div *ngIf="this.punishmentLoading" class="d-flex flex-row" >

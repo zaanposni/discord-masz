@@ -13,7 +13,8 @@
       "Fixed tabtitle.",
       "Added information about creation type to modcases.",
       "Added filter options to modcase table.",
-      "Added autolink to other cases in case description."
+      "Added autolink to other cases in case description.",
+      "Added dm notification on case creation and edit."
     ]
   },
   {

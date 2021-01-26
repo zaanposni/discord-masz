@@ -84,6 +84,11 @@
     <label class="custom-control-label" for="form-send-notification">Send notification?</label>
 </div>
 <br>
+<div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="form-send-dm" [(ngModel)]="this.dmNotification">
+    <label class="custom-control-label" for="form-send-dm">Send dm notification to suspect?</label>
+</div>
+<br>
 <div class="custom-control custom-checkbox" *ngIf="this.punishment !== '0' && this.punishment !== '6' && this.punishment !== '7'">
     <input type="checkbox" class="custom-control-input" id="form-handle-punishment" [(ngModel)]="this.handlePunishment">
     <label class="custom-control-label" for="form-handle-punishment">Handle punishment?</label>

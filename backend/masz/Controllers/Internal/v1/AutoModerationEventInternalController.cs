@@ -119,7 +119,7 @@ namespace masz.Controllers
 
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
                     try {
-                        await discordAnnouncer.AnnounceModCase(newModCase, RestAction.Created, discordBot, modConfig.SendPublicNotification);
+                        await discordAnnouncer.AnnounceModCase(newModCase, RestAction.Created, discordBot, modConfig.SendPublicNotification, false);
                     }
                     catch(Exception e){
                         logger.LogError(e, "Failed to announce modcase.");

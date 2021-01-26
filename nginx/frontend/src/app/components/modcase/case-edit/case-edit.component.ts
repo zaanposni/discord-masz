@@ -27,7 +27,8 @@ export class CaseEditComponent implements OnInit {
   @Input() description: string = '';
   @Input() punishment: string = '0';
   @Input() publicNotification: boolean = true;
-  @Input() handlePunishment: boolean = true;;
+  @Input() dmNotification: boolean = false;
+  @Input() handlePunishment: boolean = true;
   @Input() newLabel: string = '';
   labels: string[] = [];
   members: DiscordUser[] = [];
@@ -162,11 +163,9 @@ export class CaseEditComponent implements OnInit {
   submitCase() {
     // validation
     if (this.title.trim().length > 100) {
-      console.log("invalid");
       this.titleIsInvalid = true;
       return;
     }
-    console.log(this.userid);
 
     // api
 
@@ -181,7 +180,8 @@ export class CaseEditComponent implements OnInit {
     };
     let params = new HttpParams()
               .set('sendnotification', this.publicNotification ? 'true' : 'false')
-              .set('handlePunishment', this.handlePunishment ? 'true' : 'false');;
+              .set('announceDm', this.dmNotification ? 'true' : 'false')
+              .set('handlePunishment', this.handlePunishment ? 'true' : 'false');
 
     this.api.putSimpleData(`/modcases/${this.guildId}/${this.caseId}`, data, params).subscribe((data) => {
       this.toastr.success('Case updated.');

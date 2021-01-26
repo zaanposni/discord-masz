@@ -350,5 +350,69 @@ namespace masz.Services
             logger.LogError($"{response.StatusCode}: {response.Content}");
             return false;
         }
+
+        public async Task<Channel> CreateDmChannel(string userId)
+        {
+            if (this.cache.ContainsKey($"/users/@me/channels/{userId}")) {
+                if (this.cache[$"/users/@me/channels/{userId}"].ExpiresAt > DateTime.Now) {
+                    return new Channel(this.cache[$"/users/@me/channels/{userId}"].Content);
+                }
+                this.cache.Remove($"/users/@me/channels/{userId}");
+            }
+            var request = new RestRequest(Method.POST);
+            request.Resource = $"/users/@me/channels";
+            request.AddHeader("Authorization", "Bot " + botToken);
+            request.AddJsonBody(new {recipient_id = userId});
+
+            var response = await restClient.ExecuteAsync<Channel>(request);
+            if (response.IsSuccessful)
+            {
+                this.cache[$"/users/@me/channels/{userId}"] = new CacheApiResponse(response.Content);
+                return new Channel(response.Content);
+            }
+            return null;
+        }
+
+        public async Task<bool> SendMessage(string channelId, string content)
+        {
+            var request = new RestRequest(Method.POST);
+            request.Resource = $"/channels/{channelId}/messages";
+            request.AddHeader("Authorization", "Bot " + botToken);
+            request.AddJsonBody(new {content = content});
+
+            var response = await restClient.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                return true;
+            }
+            logger.LogError($"{response.StatusCode}: {response.Content}");
+            return false;
+        }
+
+        public async Task<bool> SendEmbedMessage(string channelId, object content)
+        {
+            var request = new RestRequest(Method.POST);
+            request.Resource = $"/channels/{channelId}/messages";
+            request.AddHeader("Authorization", "Bot " + botToken);
+            request.AddJsonBody(new {embed = content});
+
+            var response = await restClient.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                return true;
+            }
+            logger.LogError($"{response.StatusCode}: {response.Content}");
+            return false;
+        }
+
+        public async Task<bool> SendDmMessage(string userId, string content)
+        {
+            Channel channel = await this.CreateDmChannel(userId);
+            if (channel == null) {
+                return false;
+            }
+
+            return await this.SendMessage(channel.Id, content);
+        }
     }
 }

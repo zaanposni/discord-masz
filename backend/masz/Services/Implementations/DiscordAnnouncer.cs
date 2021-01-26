@@ -1,3 +1,4 @@
+using System.Text;
 using System.Threading.Tasks;
 using Discord;
 using masz.Dtos.DiscordAPIResponses;
@@ -25,12 +26,42 @@ namespace masz.Services
             this.discord = discord;
             this.dbContext = context;
         }
-        public async Task AnnounceModCase(ModCase modCase, RestAction action, User actor, bool announcePublic)
+        public async Task AnnounceModCase(ModCase modCase, RestAction action, User actor, bool announcePublic, bool announceDm)
         {
             logger.LogInformation($"Announcing modcase {modCase.Id} in guild {modCase.GuildId}.");
 
             User caseUser = await discord.FetchUserInfo(modCase.UserId);
             GuildConfig guildConfig = await dbContext.SelectSpecificGuildConfig(modCase.GuildId);
+
+            if (announceDm && modCase.PunishmentType != PunishmentType.None && action != RestAction.Deleted)
+            {
+                logger.LogInformation($"Sending dm notification");
+
+                Guild guild = await discord.FetchGuildInfo(modCase.GuildId);
+                StringBuilder message = new StringBuilder();
+                message.Append($"The moderators of guild `{guild.Name}` have ");
+                switch (modCase.PunishmentType) {
+                    case (PunishmentType.Mute):
+                        message.Append("muted");
+                        break;
+                    case (PunishmentType.Kick):
+                        message.Append("kicked");
+                        break;
+                    case (PunishmentType.Ban):
+                        message.Append("banned");
+                        break;
+                }
+                message.Append(" you");
+                if (modCase.PunishedUntil != null) {
+                    message.Append(" until `");
+                    message.Append(modCase.PunishedUntil.Value.ToString("dd.MM.yyyy HH:mm:ss"));
+                    message.Append(" (UTC)`");
+                }
+                message.Append($".\nFor more information or rehabilitation visit: {config.Value.ServiceBaseUrl}");
+
+                await discord.SendDmMessage(modCase.UserId, message.ToString());
+                logger.LogInformation($"Sent dm notification");
+            }
 
             if (! string.IsNullOrEmpty(guildConfig.ModPublicNotificationWebhook) && announcePublic)
             {
