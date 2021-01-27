@@ -14,7 +14,8 @@
       "Added information about creation type to modcases.",
       "Added filter options to modcase table.",
       "Added autolink to other cases in case description.",
-      "Added dm notification on case creation and edit."
+      "Added dm notification on case creation and edit.",
+      "Added loading spinner during case creation to avoid confusion on long taking api request."
     ]
   },
   {

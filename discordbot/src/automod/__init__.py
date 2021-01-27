@@ -92,7 +92,7 @@ async def apply_punishment(msg: Message, mod_type: int, config, guildconfig):
             print("Failed to send dm notification.")
             print(e)
     
-    url = f"http://masz_backend/internalapi/v1/guilds/{msg.guild.id}/modcases"
+    url = f"http://masz_backend/internalapi/v1/guilds/{msg.guild.id}/modevent"
 
     payload = {
         "UserId": msg.author.id,

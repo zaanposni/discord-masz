@@ -14,7 +14,7 @@ using Microsoft.Extensions.Options;
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("internalapi/v1/guilds/{guildid}/modcases")]
+    [Route("internalapi/v1/guilds/{guildid}/modevent")]
     public class AutoModerationEventInternalController : ControllerBase
     {
         private readonly ILogger<AutoModerationEventController> logger;
