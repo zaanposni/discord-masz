@@ -29,8 +29,9 @@ namespace masz.data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseLoggerFactory(loggerFactory)
-                .EnableSensitiveDataLogging();
+            if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_SQL_LOGGING"))) {
+                optionsBuilder.UseLoggerFactory(loggerFactory).EnableSensitiveDataLogging();
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

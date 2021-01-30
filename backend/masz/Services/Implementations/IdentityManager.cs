@@ -35,13 +35,8 @@ namespace masz.Services
             logger.LogInformation("Registering new Identity.");
             string key = httpContext.Request.Cookies["masz_access_token"];
             string token = await httpContext.GetTokenAsync("access_token");
-            if (identities.ContainsKey(key))
-            {
-                identities.Remove(key);
-            }
             Identity identity = new Identity(token, discord);
             identities[key] = identity;
-            logger.LogInformation("New identity registered.");
         }
 
         public async Task<Identity> GetIdentity(HttpContext httpContext)
@@ -54,25 +49,13 @@ namespace masz.Services
                 Identity identity = identities[key];
                 if (identity.ValidUntil >= DateTime.Now)
                 {
-                    logger.LogInformation("Returning identity.");
                     return identity;
                 }
             }
 
             logger.LogInformation("Identity not registered yet or invalid. Creating new one.");
             await RegisterNewIdentity(httpContext);
-            if (identities.ContainsKey(key))
-            {
-                Identity identity = identities[key];
-                if (identity.ValidUntil >= DateTime.Now)
-                {
-                    logger.LogInformation("Returning identity.");
-                    return identity;
-                }
-            }
-
-            logger.LogInformation("Identity is still null or invalid. Returning null.");
-            return null;
+            return identities[key];
         }
     }
 }

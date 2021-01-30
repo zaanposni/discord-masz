@@ -75,7 +75,7 @@ namespace masz.Controllers
                 return BadRequest("Guild not registered.");
             }
 
-            User currentUser = await discord.FetchUserInfoAsync(modCase.ModId);
+            User currentUser = await discord.FetchUserInfo(modCase.ModId);
             var currentModerator = currentUser.Id;
             if (currentModerator == null)
             {
@@ -160,7 +160,7 @@ namespace masz.Controllers
                 {
                     try {
                         logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
-                        await punishmentHandler.ExecutePunishment(newModCase, database);
+                        await punishmentHandler.ExecutePunishment(newModCase);
                     }
                     catch(Exception e){
                         logger.LogError(e, "Failed to handle punishment for modcase.");

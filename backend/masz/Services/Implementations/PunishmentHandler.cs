@@ -54,7 +54,7 @@ namespace masz.Services
                     {
                         if (element.PunishedUntil <= DateTime.UtcNow)
                         {
-                            await UndoPunishment(element, database);
+                            await UndoPunishment(element);
                             element.PunishmentActive = false;
                             database.UpdateModCase(element);
                         }
@@ -64,58 +64,68 @@ namespace masz.Services
             }
         }
 
-        public async Task ExecutePunishment(ModCase modCase, IDatabase database)
+        public async Task ExecutePunishment(ModCase modCase)
         {
-            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(modCase.GuildId);
-            if (guildConfig == null) {
-                logger.LogError($"Punisher: Cannot execute punishment in guild {modCase.GuildId} - guildconfig not found.");
-                return;
-            }
-            switch (modCase.PunishmentType) {
-                case PunishmentType.Mute:
-                    if (guildConfig.MutedRoleId != null) {
-                        logger.LogInformation($"Punisher: Mute User {modCase.UserId} in guild {modCase.GuildId} with role {guildConfig.MutedRoleId}.");
-                        await discord.GrantGuildUserRole(modCase.GuildId, modCase.UserId, guildConfig.MutedRoleId);
-                    } else {
-                        logger.LogInformation($"Punisher: Cannot Mute User {modCase.UserId} in guild {modCase.GuildId} - mute role undefined.");
-                    }
-                    break;
-                case PunishmentType.Ban:
-                    logger.LogInformation($"Punisher: Ban User {modCase.UserId} in guild {modCase.GuildId}.");
-                    await discord.BanUser(modCase.GuildId, modCase.UserId);
-                    break;
-                case PunishmentType.Kick:
-                    logger.LogInformation($"Punisher: Kick User {modCase.UserId} in guild {modCase.GuildId}.");
-                    await discord.KickGuildUser(modCase.GuildId, modCase.UserId);
-                    break;
+            using (var scope = serviceScopeFactory.CreateScope())
+            {
+                IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
+
+                GuildConfig guildConfig = await database.SelectSpecificGuildConfig(modCase.GuildId);
+                if (guildConfig == null) {
+                    logger.LogError($"Punisher: Cannot execute punishment in guild {modCase.GuildId} - guildconfig not found.");
+                    return;
+                }
+                switch (modCase.PunishmentType) {
+                    case PunishmentType.Mute:
+                        if (guildConfig.MutedRoleId != null) {
+                            logger.LogInformation($"Punisher: Mute User {modCase.UserId} in guild {modCase.GuildId} with role {guildConfig.MutedRoleId}.");
+                            await discord.GrantGuildUserRole(modCase.GuildId, modCase.UserId, guildConfig.MutedRoleId);
+                        } else {
+                            logger.LogInformation($"Punisher: Cannot Mute User {modCase.UserId} in guild {modCase.GuildId} - mute role undefined.");
+                        }
+                        break;
+                    case PunishmentType.Ban:
+                        logger.LogInformation($"Punisher: Ban User {modCase.UserId} in guild {modCase.GuildId}.");
+                        await discord.BanUser(modCase.GuildId, modCase.UserId);
+                        break;
+                    case PunishmentType.Kick:
+                        logger.LogInformation($"Punisher: Kick User {modCase.UserId} in guild {modCase.GuildId}.");
+                        await discord.KickGuildUser(modCase.GuildId, modCase.UserId);
+                        break;
+                }
             }
         }
 
-        public async Task UndoPunishment(ModCase modCase, IDatabase database)
+        public async Task UndoPunishment(ModCase modCase)
         {
-            List<ModCase> parallelCases = await database.SelectAllModCasesThatHaveParallelPunishment(modCase);
-            if (parallelCases.Count != 0) {
-                logger.LogInformation("Cannot undo punishment. There exists a parallel punishment for this case");
-                return;
-            }
-            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(modCase.GuildId);
-            if (guildConfig == null) {
-                logger.LogError($"Punisher: Cannot execute punishment in guild {modCase.GuildId} - guildconfig not found.");
-                return;
-            }
-            switch (modCase.PunishmentType) {
-                case PunishmentType.Mute:
-                    if (guildConfig.MutedRoleId != null) {
-                        logger.LogInformation($"Punisher: Unmute User {modCase.UserId} in guild {modCase.GuildId} with role {guildConfig.MutedRoleId}.");
-                        await discord.RemoveGuildUserRole(modCase.GuildId, modCase.UserId, guildConfig.MutedRoleId);
-                    } else {
-                        logger.LogInformation($"Punisher: Cannot Unmute User {modCase.UserId} in guild {modCase.GuildId} - mute role undefined.");
-                    }
-                    break;
-                case PunishmentType.Ban:
-                    logger.LogInformation($"Punisher: Unban User {modCase.UserId} in guild {modCase.GuildId}.");
-                    await discord.UnBanUser(modCase.GuildId, modCase.UserId);
-                    break;
+            using (var scope = serviceScopeFactory.CreateScope())
+            {
+                IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
+
+                List<ModCase> parallelCases = await database.SelectAllModCasesThatHaveParallelPunishment(modCase);
+                if (parallelCases.Count != 0) {
+                    logger.LogInformation("Cannot undo punishment. There exists a parallel punishment for this case");
+                    return;
+                }
+                GuildConfig guildConfig = await database.SelectSpecificGuildConfig(modCase.GuildId);
+                if (guildConfig == null) {
+                    logger.LogError($"Punisher: Cannot execute punishment in guild {modCase.GuildId} - guildconfig not found.");
+                    return;
+                }
+                switch (modCase.PunishmentType) {
+                    case PunishmentType.Mute:
+                        if (guildConfig.MutedRoleId != null) {
+                            logger.LogInformation($"Punisher: Unmute User {modCase.UserId} in guild {modCase.GuildId} with role {guildConfig.MutedRoleId}.");
+                            await discord.RemoveGuildUserRole(modCase.GuildId, modCase.UserId, guildConfig.MutedRoleId);
+                        } else {
+                            logger.LogInformation($"Punisher: Cannot Unmute User {modCase.UserId} in guild {modCase.GuildId} - mute role undefined.");
+                        }
+                        break;
+                    case PunishmentType.Ban:
+                        logger.LogInformation($"Punisher: Unban User {modCase.UserId} in guild {modCase.GuildId}.");
+                        await discord.UnBanUser(modCase.GuildId, modCase.UserId);
+                        break;
+                }
             }
         }
     }

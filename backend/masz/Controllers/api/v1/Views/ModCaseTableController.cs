@@ -83,8 +83,8 @@ namespace masz.Controllers
             {
                 table.Add( new ModCaseTableEntry() {
                     ModCase = c,
-                    Suspect = await discord.FetchUserInfoAsync(c.UserId),
-                    Moderator = await discord.FetchUserInfoAsync(c.ModId)
+                    Suspect = await discord.FetchUserInfo(c.UserId),
+                    Moderator = await discord.FetchUserInfo(c.ModId)
                 });
             }
 
@@ -129,8 +129,8 @@ namespace masz.Controllers
             {
                 table.Add( new ModCaseTableEntry() {
                     ModCase = c,
-                    Suspect = await discord.FetchUserInfoAsync(c.UserId),
-                    Moderator = await discord.FetchUserInfoAsync(c.ModId)
+                    Suspect = await discord.FetchUserInfo(c.UserId),
+                    Moderator = await discord.FetchUserInfo(c.ModId)
                 });
             }
 
