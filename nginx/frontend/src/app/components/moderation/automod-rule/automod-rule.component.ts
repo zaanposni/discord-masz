@@ -96,7 +96,7 @@ export class AutomodRuleComponent implements OnInit {
   excludedChannels: GuildChannel[] = [];
 
   @Input() currentGuildPromise: Promise<Guild>;
-  @Input() currentGuildChannelsPromise: Promise<GuildChannel>;
+  @Input() currentGuildChannelsPromise: Promise<GuildChannel[]>;
   currentGuild: Guild;
   currentGuildChannels: GuildChannel[];
 
