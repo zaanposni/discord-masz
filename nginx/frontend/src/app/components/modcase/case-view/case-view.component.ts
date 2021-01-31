@@ -142,7 +142,7 @@ export class CaseViewComponent implements OnInit {
 
   uploadFile() {
     if (this.fileToUpload) {
-      this.api.postFile(`/guilds/${this.guildId}/modcases/${this.caseId}/files/`, this.fileToUpload).subscribe((data) => {
+      this.api.postFile(`/guilds/${this.guildId}/modcases/${this.caseId}/files`, this.fileToUpload).subscribe((data) => {
         this.toastr.success('File uploaded.');
         this.files = this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/files`).toPromise();
       }, (error) => {

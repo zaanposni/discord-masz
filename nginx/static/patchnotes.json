@@ -17,7 +17,8 @@
       "Added dm notification on case creation and edit.",
       "Added loading spinner during case creation to avoid confusion on long taking api request.",
       "Improved backend ratelimit and caching.",
-      "Guildconfig is now editable by guild admins."
+      "Guildconfig is now editable by guild admins.",
+      "Files are now uploadable during case creation."
     ]
   },
   {

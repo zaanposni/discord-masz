@@ -30,6 +30,8 @@ export class CaseNewComponent implements OnInit {
   @Input() handlePunishment: boolean = true;
   @Input() newLabel: string = '';
   labels: string[] = [];
+  fileToUpload!: File | null;
+  filesToUpload: File[] = [];
   members: DiscordUser[] = [];
   completeMemberList: GuildMember[] = [];
   lastMemberPage = 0;
@@ -121,7 +123,37 @@ export class CaseNewComponent implements OnInit {
       'punishment': 'None',
       'punishmentType': 0
     }
-  } 
+  };
+
+  handleFileInput(event: any) {
+    this.fileToUpload = event.target.files.item(0);
+  }
+
+  addFile() {
+    console.log(this.fileToUpload);
+    if (this.fileToUpload) {
+      console.log(this.filesToUpload);
+      this.filesToUpload.push(this.fileToUpload);
+      console.log(this.filesToUpload);
+      this.fileToUpload = null;
+    }
+    console.log(this.filesToUpload);
+  }
+
+  removeFile(file: File) {
+    let index = this.filesToUpload.indexOf(file, 0);
+    if (index > -1) {
+      this.filesToUpload.splice(index, 1);
+    }
+  }
+
+  uploadFile(file: File, caseId: string) {
+    this.api.postFile(`/guilds/${this.guildId}/modcases/${caseId}/files`, file).subscribe((data) => {
+      this.toastr.success('File uploaded.');
+    }, (error) => {
+      this.toastr.error('Cannot upload file.', 'Something went wrong.');
+    });
+  }
 
   submitCase() {
     // validation
@@ -147,9 +179,13 @@ export class CaseNewComponent implements OnInit {
               .set('handlePunishment', this.handlePunishment ? 'true' : 'false');
 
     this.api.postSimpleData(`/modcases/${this.guildId}`, data, params).subscribe((data) => {
+      let caseId = data['caseid'];
+      this.toastr.success(`Case #${caseId} created.`);
+      this.filesToUpload.forEach(element => {
+        this.uploadFile(element, caseId);
+      });
       this.loading = false;
-      this.toastr.success('Case created.');
-      this.router.navigate(['guilds', this.guildId, 'cases', data['caseid']]);
+      this.router.navigate(['guilds', this.guildId, 'cases', caseId]);
     }, (error) => {
       this.toastr.error('Cannot create case.', 'Something went wrong.');
       this.loading = false;

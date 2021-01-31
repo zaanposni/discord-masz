@@ -75,6 +75,8 @@
                         <span class="font-weight-bold">Moderator</span>
                         <span style="word-break: break-all;">{{ (this.caseView | async)?.moderator?.username }}#{{ (this.caseView | async)?.moderator?.discriminator }}</span>
                         <span style="font-size: medium;" class="text-white-50">ModId: {{(this.caseView | async)?.modCase?.modId }}</span>
+                        <span style="word-break: break-all; font-size: medium;" class="text-white-50"
+                         *ngIf="(this.caseView | async)?.modCase?.creationType === 1">This case is automoderated.</span>
                     </div>
                     <div class="infobox-icon">
                         <img
