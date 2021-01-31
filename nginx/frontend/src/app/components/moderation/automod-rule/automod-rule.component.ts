@@ -95,6 +95,8 @@ export class AutomodRuleComponent implements OnInit {
   @Input() channelToExclude!: any;
   excludedChannels: GuildChannel[] = [];
 
+  @Input() currentGuildPromise: Promise<Guild>;
+  @Input() currentGuildChannelsPromise: Promise<GuildChannel>;
   currentGuild: Guild;
   currentGuildChannels: GuildChannel[];
 
@@ -115,13 +117,13 @@ export class AutomodRuleComponent implements OnInit {
     this.description = this.types[this.type].description;
     this.showLimitField = this.types[this.type].showLimitField;
 
-    this.api.getSimpleData(`/discord/guilds/${this.guildId}`).subscribe((data) => {
+    this.currentGuildPromise.then((data) => {
       this.currentGuild = data;
-      this.reload(true);
+      this.reload();
     });
-    this.api.getSimpleData(`/discord/guilds/${this.guildId}/channels`).subscribe((data: GuildChannel[]) => {
+    this.currentGuildChannelsPromise.then((data: any) => {
       this.currentGuildChannels = data.filter((item: GuildChannel) => item.type === '0');
-      this.reload(true);
+      this.reload();
     });
   }
 
@@ -129,7 +131,7 @@ export class AutomodRuleComponent implements OnInit {
     return '#' + role.color.toString(16) + ' !important';
   }
 
-  reload(cache: boolean = false) {    
+  reload() {    
     this.api.getSimpleData(`/guilds/${this.guildId}/automoderationconfig/${this.type}`, true, new HttpParams(), false).toPromise().then((data) => {
       this.config = data;
       this.automodEnabled = true;
