@@ -78,11 +78,11 @@
     <input [(ngModel)]="punishedUntil" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Punished until" id="form-punished-until">
     <owl-date-time #dt1></owl-date-time>
 </div>
-<div class="custom-control custom-checkbox" *ngIf="this.punishment !== '0' && this.punishment !== '6' && this.punishment !== '7'">
+<div class="custom-control custom-checkbox mt-2" *ngIf="this.punishment !== '0' && this.punishment !== '6' && this.punishment !== '7'">
     <input type="checkbox" class="custom-control-input" id="form-handle-punishment" [(ngModel)]="this.handlePunishment">
     <label class="custom-control-label" for="form-handle-punishment">Handle punishment?</label>
 </div>
-<div class="mt-3 d-flex flex-row align-items-baseline">
+<div class="mt-2 d-flex flex-row align-items-baseline">
     <div class="input-group flex-grow-0">
         <div class="form-group">
             <label class="custom-file-label" for="file">{{ this.fileToUpload ? this.fileToUpload.name : 'Choose file'}}</label>
