@@ -168,7 +168,7 @@ export class CaseEditComponent implements OnInit {
     }
 
     // api
-
+    this.caseLoading = true;
     let data = {
       'title': this.title.trim(),
       'description': this.description.trim(),
@@ -185,8 +185,10 @@ export class CaseEditComponent implements OnInit {
 
     this.api.putSimpleData(`/modcases/${this.guildId}/${this.caseId}`, data, params).subscribe((data) => {
       this.toastr.success('Case updated.');
+      this.caseLoading = false;
       this.router.navigate(['guilds', this.guildId, 'cases', data['caseid']]);
     }, (error) => {
+      this.caseLoading = false;
       this.toastr.error('Cannot update case.', 'Something went wrong.');
     })
   }
