@@ -44,6 +44,16 @@
                 <button class="btn btn-success" (click)="this.router.navigate(['guilds', this.guildId, 'cases', 'new'])">Create new Case</button>
             </div>
         </div>
+        <div class="d-flex flex-column flex-wrap mb-2">
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="c-exclude-automod" (change)="cExcludeAutoModSwitch($event)">
+                <label class="custom-control-label" for="c-exclude-automod" title="This filter will only work for automoderation events since release v1.8">Exclude AutoModerations?</label>
+            </div>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="c-exclude-perma" (change)="cExcludePermaSwitch($event)">
+                <label class="custom-control-label" for="c-exclude-perma">Exclude permanent punishments?</label>
+            </div>
+        </div>
         <div *ngIf="this.caseLoading" class="d-flex flex-row" >
             <div class="flex-grow-1"></div>
             <img src="assets/img/spinner.gif" />
@@ -54,6 +64,8 @@
             <tr>
                 <th class="th-sm"></th>
                 <td class="th-sm hiddencolumn">CaseId</td>
+                <td class="th-sm hiddencolumn">CreationType</td>
+                <td class="th-sm hiddencolumn">PunishmentPerma</td>
                 <th class="th-sm hiddencolumn">UserId</th>
                 <td class="th-sm hiddencolumn">ModId</td>
                 <td class="th-sm hiddencolumn">Labels</td>
@@ -126,6 +138,8 @@
                         </a>
                     </td>
                     <td class="hiddencolumn">{{ entry.modCase.caseId }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.creationType }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.punishedUntil == null && entry.modCase.punishmentType !== 0 }}</td>
                     <td class="hiddencolumn">{{ entry.modCase.userId }}</td>
                     <td class="hiddencolumn">{{ entry.modCase.modId }}</td>
                     <td class="hiddencolumn">{{ entry.modCase.labels.join('|') }}</td>
@@ -153,6 +167,16 @@
                 <span type="button" class="btn btn-success" (click)="this.router.navigate(['guilds', this.guildId, 'cases', 'new'])">Create new Case</span>
             </div>
         </div>
+        <div class="d-flex flex-column flex-wrap mb-2">
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="p-exclude-automod" (change)="pExcludeAutoModSwitch($event)">
+                <label class="custom-control-label" for="p-exclude-automod" title="This filter will only work for automoderation events since release v1.8">Exclude AutoModerations?</label>
+            </div>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="p-exclude-perma" (change)="pExcludePermaSwitch($event)">
+                <label class="custom-control-label" for="p-exclude-perma" title="This filter will only exclude mutes and bans, kicks and warns are not permanent">Exclude permanent punishments?</label>
+            </div>
+        </div>
         <div *ngIf="this.punishmentLoading" class="d-flex flex-row" >
             <div class="flex-grow-1"></div>
             <img src="assets/img/spinner.gif" />
@@ -163,6 +187,8 @@
             <tr>
                 <th class="th-sm"></th>
                 <td class="th-sm hiddencolumn">CaseId</td>
+                <td class="th-sm hiddencolumn">CreationType</td>
+                <td class="th-sm hiddencolumn">PunishmentPerma</td>
                 <th class="th-sm hiddencolumn">UserId</th>
                 <td class="th-sm hiddencolumn">ModId</td>
                 <td class="th-sm hiddencolumn">Labels</td>
@@ -235,6 +261,8 @@
                         </a>
                     </td>
                     <td class="hiddencolumn">{{ entry.modCase.caseId }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.creationType }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.punishedUntil == null && entry.modCase.punishmentType !== 0 }}</td>
                     <td class="hiddencolumn">{{ entry.modCase.userId }}</td>
                     <td class="hiddencolumn">{{ entry.modCase.modId }}</td>
                     <td class="hiddencolumn">{{ entry.modCase.labels.join('|') }}</td>

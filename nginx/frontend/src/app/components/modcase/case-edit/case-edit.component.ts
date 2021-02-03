@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DiscordUser } from 'src/app/models/DiscordUser';
 import { GuildMember } from 'src/app/models/GuildMember';
 import { ApiService } from 'src/app/services/api.service';
+import { CookieTrackerService } from 'src/app/services/cookie-tracker.service';
 
 @Component({
   selector: 'app-case-edit',
@@ -13,6 +14,8 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./case-edit.component.scss']
 })
 export class CaseEditComponent implements OnInit {
+
+  showSuggestions: boolean = false;
 
   caseLoading: boolean = true;
 
@@ -24,7 +27,8 @@ export class CaseEditComponent implements OnInit {
   @Input() description: string = '';
   @Input() punishment: string = '0';
   @Input() publicNotification: boolean = true;
-  @Input() handlePunishment: boolean = true;;
+  @Input() dmNotification: boolean = false;
+  @Input() handlePunishment: boolean = true;
   @Input() newLabel: string = '';
   labels: string[] = [];
   members: DiscordUser[] = [];
@@ -33,7 +37,7 @@ export class CaseEditComponent implements OnInit {
 
   titleIsInvalid: boolean = false;
   
-  constructor(private toastr: ToastrService, private api: ApiService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private toastr: ToastrService, private api: ApiService, private route: ActivatedRoute, private router: Router, public cookieTracker: CookieTrackerService) { }
 
   punishmentMap: { [key: string]: { [k: string]: any } } = {
     '0' : {
@@ -94,6 +98,7 @@ export class CaseEditComponent implements OnInit {
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid');
     this.caseId = this.route.snapshot.paramMap.get('caseid');
+    this.cookieTracker.currentSettings.subscribe((data) => this.showSuggestions = data.showSuggestions);
     this.api.getSimpleData(`/modcases/${this.guildId}/${this.caseId}`).subscribe((data) => {
       this.punishedUntil = data['punishedUntil'] ? moment.utc(data['punishedUntil']).toISOString() : null;
       this.title = data['title'];
@@ -116,6 +121,10 @@ export class CaseEditComponent implements OnInit {
       this.completeMemberList = data;
       this.scrollEnd();
     });
+  }
+
+  hideSuggestions() {
+    this.cookieTracker.updateCookie('suggestions', 'false');
   }
 
   scrollEnd() {
@@ -154,14 +163,12 @@ export class CaseEditComponent implements OnInit {
   submitCase() {
     // validation
     if (this.title.trim().length > 100) {
-      console.log("invalid");
       this.titleIsInvalid = true;
       return;
     }
-    console.log(this.userid);
 
     // api
-
+    this.caseLoading = true;
     let data = {
       'title': this.title.trim(),
       'description': this.description.trim(),
@@ -173,12 +180,15 @@ export class CaseEditComponent implements OnInit {
     };
     let params = new HttpParams()
               .set('sendnotification', this.publicNotification ? 'true' : 'false')
-              .set('handlePunishment', this.handlePunishment ? 'true' : 'false');;
+              .set('announceDm', this.dmNotification ? 'true' : 'false')
+              .set('handlePunishment', this.handlePunishment ? 'true' : 'false');
 
     this.api.putSimpleData(`/modcases/${this.guildId}/${this.caseId}`, data, params).subscribe((data) => {
       this.toastr.success('Case updated.');
+      this.caseLoading = false;
       this.router.navigate(['guilds', this.guildId, 'cases', data['caseid']]);
     }, (error) => {
+      this.caseLoading = false;
       this.toastr.error('Cannot update case.', 'Something went wrong.');
     })
   }

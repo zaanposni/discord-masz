@@ -27,6 +27,7 @@ export class CaseViewComponent implements OnInit {
   caseId!: string | null;
   currentUser!: Observable<AppUser>;
   caseView!: Promise<CaseView>;
+  renderedDescription!: string;
   caseLoading: boolean = true
   guild!: Promise<Guild>;
   files!: Promise<FileInfo>;
@@ -50,15 +51,41 @@ export class CaseViewComponent implements OnInit {
 
     this.files = this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/files`).toPromise();
     this.caseView = this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/view`).toPromise();
-    this.caseView.then(() => { this.caseLoading = false; });
+    this.caseView.then((data) => { this.caseLoading = false; this.renderedDescription = this.renderDescription(data.modCase.description, this.guildId) });
   }
 
   redirectToApi() {
     window.location.href = `/api/v1/modcases/${this.guildId}/${this.caseId}`;
   }
 
-  updateComment(commentId: number) {    
-    this.toastr.warning("This feature is not yet available.");
+  isEmptyOrSpaces(str: any){
+    return str === null || str.match(/^ *$/) !== null;
+  }
+
+  updateComment(commentId: number, message: string) {
+    Swal.fire({
+      title: 'Edit the comment',
+      input: 'textarea',
+      inputValue: message,
+      showCancelButton: true
+    }).then((data) => {
+      if (data.isConfirmed) {
+        if (this.isEmptyOrSpaces(data.value)) {
+          this.toastr.warning("Empty comments are not allowed.");
+          return
+        }
+        if (data.value?.trim() === message) {
+          this.toastr.warning("Content did not change.");
+          return
+        }
+        this.api.putSimpleData(`/modcases/${this.guildId}/${this.caseId}/comments/${commentId}`, { 'message': data.value }).subscribe((data) => {
+          this.toastr.success('Comment updated.');
+          this.caseView = this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/view`).toPromise();
+        }, (error) => {
+          this.toastr.error('Cannot update comment.', 'Something went wrong.');
+        });
+      }
+    });
   }
 
   deleteComment(commentId: number) {
@@ -100,21 +127,22 @@ export class CaseViewComponent implements OnInit {
   }
 
   sendComment() {
-    if (this.newComment) {
-      let c = this.newComment;
-      this.newComment = '';
-      this.api.postSimpleData(`/modcases/${this.guildId}/${this.caseId}/comments`, { 'message': c }).subscribe((data) => {
-        this.toastr.success('Comment posted.');
-        this.caseView = this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/view`).toPromise();
-      }, (error) => {
-        this.toastr.error('Cannot post comment.', 'Something went wrong.');
-      });
+    if (this.isEmptyOrSpaces(this.newComment)) {
+      this.toastr.warning("Empty comments are not allowed.");
+      return
     }
+    this.api.postSimpleData(`/modcases/${this.guildId}/${this.caseId}/comments`, { 'message': this.newComment }).subscribe((data) => {
+      this.toastr.success('Comment posted.');
+      this.caseView = this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/view`).toPromise();
+    }, (error) => {
+      this.toastr.error('Cannot post comment.', 'Something went wrong.');
+    });
+    this.newComment = '';
   }
 
   uploadFile() {
     if (this.fileToUpload) {
-      this.api.postFile(`/guilds/${this.guildId}/modcases/${this.caseId}/files/`, this.fileToUpload).subscribe((data) => {
+      this.api.postFile(`/guilds/${this.guildId}/modcases/${this.caseId}/files`, this.fileToUpload).subscribe((data) => {
         this.toastr.success('File uploaded.');
         this.files = this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/files`).toPromise();
       }, (error) => {
@@ -149,5 +177,11 @@ export class CaseViewComponent implements OnInit {
 
   handleFileInput(event: any) {
     this.fileToUpload = event.target.files.item(0);
+  }
+
+  renderDescription(str: string, guildId: string): string {
+    return str.replace(/#(\d+)/g, function(match, id) {
+      return `<a href="/guilds/${guildId}/cases/${id}">#${id}</a>`
+    });
   }
 }

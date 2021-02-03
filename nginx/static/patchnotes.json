@@ -1,5 +1,27 @@
 [
   {
+    "title": "Version 1.8",
+    "version": "v1.8",
+    "changes": [
+      "Fixed automoderation on message update.",
+      "Fixed error if user declines private messages by discordbot.",
+      "Including channel id in automoderation case description.",
+      "Fixed styling issues with browser input autocomplete.",
+      "Added feature to edit comments.",
+      "Added automoderation for emotes, mentions, embeds and attachments.",
+      "Added staff webhook notification for automoderation.",
+      "Fixed tabtitle.",
+      "Added information about creation type to modcases.",
+      "Added filter options to modcase table.",
+      "Added autolink to other cases in case description.",
+      "Added dm notification on case creation and edit.",
+      "Added loading spinner during case creation to avoid confusion on long taking api request.",
+      "Improved backend ratelimit and caching.",
+      "Guildconfig is now editable by guild admins.",
+      "Files are now uploadable during case creation."
+    ]
+  },
+  {
     "title": "Version 1.7.3.1",
     "version": "v1.7.3.1",
     "changes": [

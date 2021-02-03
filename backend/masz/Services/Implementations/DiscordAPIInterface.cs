@@ -32,82 +32,88 @@ namespace masz.Services
             restClient = new RestClient(discordBaseUrl);
         }
 
-        public async Task<Ban> GetGuildUserBan(string guildId, string userId)
+        private async Task WaitForRatelimit(string path)
         {
-            if (this.cache.ContainsKey($"/guilds/{guildId}/bans/{userId}")) {
-                if (this.cache[$"/guilds/{guildId}/bans/{userId}"].ExpiresAt > DateTime.Now) {
-                    return new Ban(this.cache[$"/guilds/{guildId}/bans/{userId}"].Content);
-                }
-                this.cache.Remove($"/guilds/{guildId}/bans/{userId}");
-            }
-            var request = new RestRequest(Method.GET);
-            request.Resource = $"/guilds/{guildId}/bans/{userId}";
-            request.AddHeader("Authorization", "Bot " + botToken);
-
-            var response = await restClient.ExecuteAsync<Ban>(request);
-            if (response.IsSuccessful)
-            {
-                this.cache[$"/guilds/{guildId}/bans/{userId}"] = new CacheApiResponse(response.Content, 3);
-                return new Ban(response.Content);
-            }
-            return null;
-        }
-
-        public async Task<User> FetchUserInfoAsync(string userId, bool breakCache = false)
-        {
-            if (this.cache.ContainsKey($"/users/{userId}") && !breakCache) {
-                if (this.cache[$"/users/{userId}"].ExpiresAt > DateTime.Now) {
-                    return new User(this.cache[$"/users/{userId}"].Content);
-                }
-                this.cache.Remove($"/users/{userId}");
-            }
-            if (this.ratelimitCache.ContainsKey("/users/")) {
-                if (this.ratelimitCache["/users/"].Remaining == 0) {
-                    DateTime resetsAt = epoch.AddSeconds(this.ratelimitCache["/users/"].ResetsAt);
+            if (this.ratelimitCache.ContainsKey(path)) {
+                if (this.ratelimitCache[path].Remaining == 0) {
+                    DateTime resetsAt = epoch.AddSeconds(this.ratelimitCache[path].ResetsAt);
                     while (DateTime.UtcNow < resetsAt) {
                         await Task.Delay(25);
                     }
                 }
             }
+        }
+
+        public async Task<Ban> GetGuildUserBan(string guildId, string userId)
+        {
+            string path = $"/guilds/{guildId}/bans/{userId}";
+            if (this.cache.ContainsKey(path)) {
+                if (this.cache[path].ExpiresAt > DateTime.Now) {
+                    return new Ban(this.cache[path].Content);
+                }
+                this.cache.Remove(path);
+            }
+            await this.WaitForRatelimit($"/guilds/{guildId}/bans");
 
             var request = new RestRequest(Method.GET);
-            request.Resource = $"/users/{userId}";
+            request.Resource = path;
+            request.AddHeader("Authorization", "Bot " + botToken);
+
+            var response = await restClient.ExecuteAsync<Ban>(request);
+            if (response.IsSuccessful)
+            {
+                this.ratelimitCache[$"/guilds/{guildId}/bans"] = new DiscordApiRatelimit(response);
+                this.cache[path] = new CacheApiResponse(response.Content, 3);
+                return new Ban(response.Content);
+            }
+            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+            return null;
+        }
+
+        public async Task<User> FetchUserInfo(string userId, bool breakCache = false)
+        {
+            string path = $"/users/{userId}";
+            if (this.cache.ContainsKey(path) && !breakCache) {
+                if (this.cache[path].ExpiresAt > DateTime.Now) {
+                    return new User(this.cache[path].Content);
+                }
+                this.cache.Remove(path);
+            }
+            await this.WaitForRatelimit("/users");
+
+            var request = new RestRequest(Method.GET);
+            request.Resource = path;
             request.AddHeader("Authorization", "Bot " + botToken);
 
             var response = await restClient.ExecuteAsync<User>(request);
             if (response.IsSuccessful)
             {
-                this.ratelimitCache["/users/"] = new DiscordApiRatelimit(response);
-                this.cache[$"/users/{userId}"] = new CacheApiResponse(response.Content);
+                this.ratelimitCache["/users"] = new DiscordApiRatelimit(response);
+                this.cache[path] = new CacheApiResponse(response.Content);
 
                 return new User(response.Content);
             }
+            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
             return null;
         }
 
-        public async Task<List<GuildMember>> FetchGuildMembersAsync(string guildId, bool breakCache = false)
+        public async Task<List<GuildMember>> FetchGuildMembers(string guildId, bool breakCache = false)
         {
-            if (this.cache.ContainsKey($"/guilds/{guildId}/members") && !breakCache) {
-                if (this.cache[$"/guilds/{guildId}/members"].ExpiresAt > DateTime.Now) {
-                    return JsonConvert.DeserializeObject<List<GuildMember>>(this.cache[$"/guilds/{guildId}/members"].Content);
+            string path = $"/guilds/{guildId}/members";
+            if (this.cache.ContainsKey(path) && !breakCache) {
+                if (this.cache[path].ExpiresAt > DateTime.Now) {
+                    return JsonConvert.DeserializeObject<List<GuildMember>>(this.cache[path].Content);
                 }
-                this.cache.Remove($"/guilds/{guildId}/members");
+                this.cache.Remove(path);
             }            
 
             List<GuildMember> members = new List<GuildMember>();
             string lastUserId = null;
             do {
-                if (this.ratelimitCache.ContainsKey("/guilds/members/")) {
-                    if (this.ratelimitCache["/guilds/members/"].Remaining == 0) {
-                        DateTime resetsAt = epoch.AddSeconds(this.ratelimitCache["/guilds/members/"].ResetsAt);
-                        while (DateTime.UtcNow < resetsAt) {
-                            await Task.Delay(25);
-                        }
-                    }
-                }
+                await this.WaitForRatelimit(path);
 
                 var request = new RestRequest(Method.GET);
-                request.Resource = $"/guilds/{guildId}/members";
+                request.Resource = path;
                 request.AddHeader("Authorization", "Bot " + botToken);
                 request.AddQueryParameter("limit", "1000");
                 if (!String.IsNullOrEmpty(lastUserId)) {
@@ -116,7 +122,7 @@ namespace masz.Services
 
                 var response = await restClient.ExecuteAsync<List<GuildMember>>(request);
                 if (response.IsSuccessful) {
-                    this.ratelimitCache["/guilds/members/"] = new DiscordApiRatelimit(response);
+                    this.ratelimitCache[path] = new DiscordApiRatelimit(response);
 
                     List<GuildMember> newMembers = JsonConvert.DeserializeObject<List<GuildMember>>(response.Content);
                     foreach (GuildMember item in newMembers)
@@ -127,16 +133,26 @@ namespace masz.Services
                         members.Add(item);
                     }
                 } else {
-                    return new List<GuildMember>();
+                    logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+                    return members;
                 }
             } while(members.Count != 0 && members.Count % 1000 == 0);
 
-            this.cache[$"/guilds/{guildId}/members"] = new CacheApiResponse(JsonConvert.SerializeObject(members));
+            this.cache[path] = new CacheApiResponse(JsonConvert.SerializeObject(members));
             return members;
         }
 
         public async Task<User> FetchCurrentUserInfo(string token)
         {
+            string path = $"/users/{token}";
+            if (this.cache.ContainsKey(path)) {
+                if (this.cache[path].ExpiresAt > DateTime.Now) {
+                    return new User(this.cache[path].Content);
+                }
+                this.cache.Remove(path);
+            }
+            await this.WaitForRatelimit(path);
+
             var request = new RestRequest(Method.GET);
             request.Resource = "/users/@me";
             request.AddHeader("Authorization", "Bearer " + token);
@@ -144,69 +160,109 @@ namespace masz.Services
             var response = await restClient.ExecuteAsync<User>(request);
             if (response.IsSuccessful)
             {
-                return new User(response.Content);
+                User returnUser = new User(response.Content);
+                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
+                this.cache[path] = new CacheApiResponse(response.Content, 3);
+                this.cache[$"/users/{returnUser.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(returnUser), 3);
+
+                return returnUser;
             }
+            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
             return null;
         }
 
         public async Task<User> FetchCurrentBotInfo()
         {
+            string path = $"/users/@me";
+            if (this.cache.ContainsKey(path)) {
+                if (this.cache[path].ExpiresAt > DateTime.Now) {
+                    return new User(this.cache[path].Content);
+                }
+                this.cache.Remove(path);
+            }
+            await this.WaitForRatelimit(path);
+
             var request = new RestRequest(Method.GET);
-            request.Resource = "/users/@me";
+            request.Resource = path;
             request.AddHeader("Authorization", "Bot " + botToken);
 
             var response = await restClient.ExecuteAsync<User>(request);
             if (response.IsSuccessful)
             {
-                return new User(response.Content);
+                User returnUser = new User(response.Content);
+                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
+                this.cache[path] = new CacheApiResponse(response.Content, 3);
+                this.cache[$"/users/{returnUser.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(returnUser), 3);
+
+                return returnUser;
             }
+            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
             return null;
         }
 
         public async Task<List<Channel>> FetchGuildChannels(string guildId)
         {
-            if (this.cache.ContainsKey($"/guilds/{guildId}/channels")) {
-                if (this.cache[$"/guilds/{guildId}/channels"].ExpiresAt > DateTime.Now) {
-                    return JsonConvert.DeserializeObject<List<Channel>>(this.cache[$"/guilds/{guildId}/channels"].Content);
+            string path = $"/guilds/{guildId}/channels";
+            if (this.cache.ContainsKey(path)) {
+                if (this.cache[path].ExpiresAt > DateTime.Now) {
+                    return JsonConvert.DeserializeObject<List<Channel>>(this.cache[path].Content);
                 }
-                this.cache.Remove($"/guilds/{guildId}/channels");
+                this.cache.Remove(path);
             }
+            await this.WaitForRatelimit(path);
+
             var request = new RestRequest(Method.GET);
-            request.Resource = $"/guilds/{guildId}/channels";
+            request.Resource = path;
             request.AddHeader("Authorization", "Bot " + botToken);
 
             var response = await restClient.ExecuteAsync<List<Guild>>(request);
             if (response.IsSuccessful)
             {
-                this.cache[$"/guilds/{guildId}/channels"] = new CacheApiResponse(response.Content);
+                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
+                this.cache[path] = new CacheApiResponse(response.Content);
                 return JsonConvert.DeserializeObject<List<Channel>>(response.Content);
             }
+            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
             return null;
         }
 
         public async Task<Guild> FetchGuildInfo(string guildId)
         {
-            if (this.cache.ContainsKey($"/guilds/{guildId}")) {
-                if (this.cache[$"/guilds/{guildId}"].ExpiresAt > DateTime.Now) {
-                    return new Guild(this.cache[$"/guilds/{guildId}"].Content);
+            string path = $"/guilds/{guildId}";
+            if (this.cache.ContainsKey(path)) {
+                if (this.cache[path].ExpiresAt > DateTime.Now) {
+                    return new Guild(this.cache[path].Content);
                 }
-                this.cache.Remove($"/guilds/{guildId}");
+                this.cache.Remove(path);
             }
+            await this.WaitForRatelimit(path);
+
             var request = new RestRequest(Method.GET);
-            request.Resource = $"/guilds/{guildId}";
+            request.Resource = path;
             request.AddHeader("Authorization", "Bot " + botToken);
 
             var response = await restClient.ExecuteAsync<Guild>(request);
             if (response.IsSuccessful)
             {
-                this.cache[$"/guilds/{guildId}"] = new CacheApiResponse(response.Content);
+                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
+                this.cache[path] = new CacheApiResponse(response.Content);
                 return new Guild(response.Content);
             }
+            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
             return null;
         }
 
         public async Task<List<Guild>> FetchGuildsOfCurrentUser(string token)
         {
+            string path = $"/users/{token}/guilds";
+            if (this.cache.ContainsKey(path)) {
+                if (this.cache[path].ExpiresAt > DateTime.Now) {
+                    return JsonConvert.DeserializeObject<List<Guild>>(this.cache[path].Content);
+                }
+                this.cache.Remove(path);
+            }
+            await this.WaitForRatelimit(path);
+
             var request = new RestRequest(Method.GET);
             request.Resource = "/users/@me/guilds";
             request.AddHeader("Authorization", "Bearer " + token);
@@ -214,50 +270,40 @@ namespace masz.Services
             var response = await restClient.ExecuteAsync<List<Guild>>(request);
             if (response.IsSuccessful)
             {
+                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
+                this.cache[path] = new CacheApiResponse(response.Content);
                 return JsonConvert.DeserializeObject<List<Guild>>(response.Content);
             }
+            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
             return null;
         }
 
         public async Task<GuildMember> FetchMemberInfo(string guildId, string userId, bool breakCache = false)
         {
-            if (this.cache.ContainsKey($"/guilds/{guildId}/members/{userId}") && !breakCache) {
-                if (this.cache[$"/guilds/{guildId}/members/{userId}"].ExpiresAt > DateTime.Now) {
-                    return new GuildMember(this.cache[$"/guilds/{guildId}/members/{userId}"].Content);
+            string path = $"/guilds/{guildId}/members/{userId}";
+            string rateLimitPath = $"/guilds/{guildId}/members";
+            if (this.cache.ContainsKey(path) && !breakCache) {
+                if (this.cache[path].ExpiresAt > DateTime.Now) {
+                    return new GuildMember(this.cache[path].Content);
                 }
-                this.cache.Remove($"/guilds/{guildId}/members/{userId}");
+                this.cache.Remove(path);
             }
+            await this.WaitForRatelimit(rateLimitPath);
+
             var request = new RestRequest(Method.GET);
-            request.Resource = $"/guilds/{guildId}/members/{userId}";
+            request.Resource = path;
             request.AddHeader("Authorization", "Bot " + botToken);
 
             var response = await restClient.ExecuteAsync<GuildMember>(request);
             if (response.IsSuccessful)
             {
-                this.cache[$"/guilds/{guildId}/members/{userId}"] = new CacheApiResponse(response.Content);
+                GuildMember returnMember = new GuildMember(response.Content);
+                this.ratelimitCache[rateLimitPath] = new DiscordApiRatelimit(response);
+                this.cache[path] = new CacheApiResponse(response.Content);
+                this.cache[$"/users/{returnMember.User.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(returnMember.User));
                 return new GuildMember(response.Content);
             }
-            return null;
-        }
-
-        public async Task<User> FetchUserInfo(string userId, bool breakCache = false)
-        {
-            if (this.cache.ContainsKey($"/users/{userId}") && !breakCache) {
-                if (this.cache[$"/users/{userId}"].ExpiresAt > DateTime.Now) {
-                    return new User(this.cache[$"/users/{userId}"].Content);
-                }
-                this.cache.Remove($"/users/{userId}");
-            }
-            var request = new RestRequest(Method.GET);
-            request.Resource = $"/users/{userId}";
-            request.AddHeader("Authorization", "Bot " + botToken);
-
-            var response = await restClient.ExecuteAsync<User>(request);
-            if (response.IsSuccessful)
-            {
-                this.cache[$"/users/{userId}"] = new CacheApiResponse(response.Content);
-                return new User(response.Content);
-            }
+            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
             return null;
         }
 
@@ -268,31 +314,54 @@ namespace masz.Services
 
         public async Task<bool> ValidateUserToken(string token)
         {
+            string path = $"/users/{token}";
+            await this.WaitForRatelimit(path);
+
             var request = new RestRequest(Method.GET);
             request.Resource = "/users/@me";
             request.AddHeader("Authorization", "Bearer " + token);
 
             var response = await restClient.ExecuteAsync<User>(request);
-            return response.IsSuccessful;
+
+            if (response.IsSuccessful)
+            {
+                User returnUser = new User(response.Content);
+                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
+                this.cache[path] = new CacheApiResponse(response.Content);
+                this.cache[$"/users/{returnUser.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(returnUser));
+
+                return true;
+            } else {                
+                logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+                return false;
+            }
         }
 
         public async Task<bool> BanUser(string guildId, string userId)
         {
+            string rateLimitPath = $"/guilds/{guildId}/bans";
+            string path = $"/guilds/{guildId}/bans/{userId}";
+            await this.WaitForRatelimit(rateLimitPath);
+
             var request = new RestRequest(Method.PUT);
-            request.Resource = $"/guilds/{guildId}/bans/{userId}";
+            request.Resource = path;
             request.AddHeader("Authorization", "Bot " + botToken);
 
             var response = await restClient.ExecuteAsync(request);
             if (response.IsSuccessful)
             {
+                this.ratelimitCache[rateLimitPath] = new DiscordApiRatelimit(response);
                 return true;
             }
-            logger.LogError($"{response.StatusCode}: {response.Content}");
+            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
             return false;
         }
 
         public async Task<bool> UnBanUser(string guildId, string userId)
         {
+            string rateLimitPath = $"/guilds/{guildId}/bans";
+            await this.WaitForRatelimit(rateLimitPath);
+
             var request = new RestRequest(Method.DELETE);
             request.Resource = $"/guilds/{guildId}/bans/{userId}";
             request.AddHeader("Authorization", "Bot " + botToken);
@@ -300,14 +369,18 @@ namespace masz.Services
             var response = await restClient.ExecuteAsync(request);
             if (response.IsSuccessful)
             {
+                this.ratelimitCache[rateLimitPath] = new DiscordApiRatelimit(response);
                 return true;
             }
-            logger.LogError($"{response.StatusCode}: {response.Content}");
+            logger.LogError($"{response.Request.Method} {rateLimitPath}: {response.StatusCode} - {response.Content}");
             return false;
         }
 
         public async Task<bool> GrantGuildUserRole(string guildId, string userId, string roleId)
         {
+            string rateLimitPath = $"/guilds/{guildId}/members/roles";
+            await this.WaitForRatelimit(rateLimitPath);
+
             var request = new RestRequest(Method.PUT);
             request.Resource = $"/guilds/{guildId}/members/{userId}/roles/{roleId}";
             request.AddHeader("Authorization", "Bot " + botToken);
@@ -315,14 +388,18 @@ namespace masz.Services
             var response = await restClient.ExecuteAsync(request);
             if (response.IsSuccessful)
             {
+                this.ratelimitCache[rateLimitPath] = new DiscordApiRatelimit(response);
                 return true;
             }
-            logger.LogError($"{response.StatusCode}: {response.Content}");
+            logger.LogError($"{response.Request.Method} {rateLimitPath}: {response.StatusCode} - {response.Content}");
             return false;
         }
 
         public async Task<bool> RemoveGuildUserRole(string guildId, string userId, string roleId)
         {
+            string rateLimitPath = $"/guilds/{guildId}/members/roles";
+            await this.WaitForRatelimit(rateLimitPath);
+
             var request = new RestRequest(Method.DELETE);
             request.Resource = $"/guilds/{guildId}/members/{userId}/roles/{roleId}";
             request.AddHeader("Authorization", "Bot " + botToken);
@@ -330,14 +407,18 @@ namespace masz.Services
             var response = await restClient.ExecuteAsync(request);
             if (response.IsSuccessful)
             {
+                this.ratelimitCache[rateLimitPath] = new DiscordApiRatelimit(response);
                 return true;
             }
-            logger.LogError($"{response.StatusCode}: {response.Content}");
+            logger.LogError($"{response.Request.Method} {rateLimitPath}: {response.StatusCode} - {response.Content}");
             return false;
         }
 
         public async Task<bool> KickGuildUser(string guildId, string userId)
         {
+            string rateLimitPath = $"/guilds/{guildId}/members";
+            await this.WaitForRatelimit(rateLimitPath);
+
             var request = new RestRequest(Method.DELETE);
             request.Resource = $"/guilds/{guildId}/members/{userId}";
             request.AddHeader("Authorization", "Bot " + botToken);
@@ -345,10 +426,88 @@ namespace masz.Services
             var response = await restClient.ExecuteAsync(request);
             if (response.IsSuccessful)
             {
+                this.ratelimitCache[rateLimitPath] = new DiscordApiRatelimit(response);
                 return true;
             }
-            logger.LogError($"{response.StatusCode}: {response.Content}");
+            logger.LogError($"{response.Request.Method} {rateLimitPath}: {response.StatusCode} - {response.Content}");
             return false;
+        }
+
+        public async Task<Channel> CreateDmChannel(string userId)
+        {
+            string path = $"/users/@me/channels/{userId}";
+            if (this.cache.ContainsKey(path)) {
+                if (this.cache[path].ExpiresAt > DateTime.Now) {
+                    return new Channel(this.cache[path].Content);
+                }
+                this.cache.Remove(path);
+            }
+            await this.WaitForRatelimit(path);
+
+            var request = new RestRequest(Method.POST);
+            request.Resource = $"/users/@me/channels";
+            request.AddHeader("Authorization", "Bot " + botToken);
+            request.AddJsonBody(new {recipient_id = userId});
+
+            var response = await restClient.ExecuteAsync<Channel>(request);
+            if (response.IsSuccessful)
+            {
+                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
+                this.cache[path] = new CacheApiResponse(response.Content);
+                return new Channel(response.Content);
+            }
+            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+            return null;
+        }
+
+        public async Task<bool> SendMessage(string channelId, string content)
+        {
+            string path = $"/channels/{channelId}/messages";
+            await this.WaitForRatelimit(path);
+
+            var request = new RestRequest(Method.POST);
+            request.Resource = path;
+            request.AddHeader("Authorization", "Bot " + botToken);
+            request.AddJsonBody(new {content = content});
+
+            var response = await restClient.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
+                return true;
+            }
+            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+            return false;
+        }
+
+        public async Task<bool> SendEmbedMessage(string channelId, object content)
+        {
+            string path = $"/channels/{channelId}/messages";
+            await this.WaitForRatelimit(path);
+
+            var request = new RestRequest(Method.POST);
+            request.Resource = path;
+            request.AddHeader("Authorization", "Bot " + botToken);
+            request.AddJsonBody(new {embed = content});
+
+            var response = await restClient.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
+                return true;
+            }
+            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+            return false;
+        }
+
+        public async Task<bool> SendDmMessage(string userId, string content)
+        {
+            Channel channel = await this.CreateDmChannel(userId);
+            if (channel == null) {
+                return false;
+            }
+
+            return await this.SendMessage(channel.Id, content);
         }
     }
 }

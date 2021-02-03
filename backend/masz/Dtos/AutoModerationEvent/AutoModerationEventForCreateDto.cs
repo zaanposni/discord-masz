@@ -12,6 +12,7 @@ namespace masz.Dtos.AutoModerationEvent
         public string Nickname { get; set; }
         public string Discriminator { get; set; }
         public string MessageId { get; set; }
+        public string ChannelId { get; set; }
         public string MessageContent { get; set; }
     }
 }

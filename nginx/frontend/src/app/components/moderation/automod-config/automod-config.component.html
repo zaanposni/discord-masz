@@ -17,7 +17,11 @@
     </div>
 </div>
 <div id="rules">
-    <app-automod-rule [guildId]="guildId" [type]="'0'"></app-automod-rule>
+    <app-automod-rule [guildId]="guildId" [type]="'0'" [currentGuildPromise]="this.guild" [currentGuildChannelsPromise]="this.guildChannels"></app-automod-rule>
+    <app-automod-rule [guildId]="guildId" [type]="'1'" [currentGuildPromise]="this.guild" [currentGuildChannelsPromise]="this.guildChannels"></app-automod-rule>
+    <app-automod-rule [guildId]="guildId" [type]="'2'" [currentGuildPromise]="this.guild" [currentGuildChannelsPromise]="this.guildChannels"></app-automod-rule>
+    <app-automod-rule [guildId]="guildId" [type]="'3'" [currentGuildPromise]="this.guild" [currentGuildChannelsPromise]="this.guildChannels"></app-automod-rule>
+    <app-automod-rule [guildId]="guildId" [type]="'4'" [currentGuildPromise]="this.guild" [currentGuildChannelsPromise]="this.guildChannels"></app-automod-rule>
     <div class="rule" id="rule-last">
         <div class="d-flex" style="align-items: center">
             <span class="flex-grow-1 mr-3" style="font-size: 20px;">

@@ -89,7 +89,7 @@ namespace masz.Controllers
         }
 
         [HttpDelete("{modcaseid}")]
-        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true) 
+        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true, [FromQuery] bool announceDm = true) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -132,7 +132,7 @@ namespace masz.Controllers
             {
                 try {
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
-                    await punishmentHandler.UndoPunishment(modCase, database);
+                    await punishmentHandler.UndoPunishment(modCase);
                 }
                 catch(Exception e){
                     logger.LogError(e, "Failed to handle punishment for modcase.");
@@ -141,7 +141,7 @@ namespace masz.Controllers
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
             try {
-                await discordAnnouncer.AnnounceModCase(modCase, RestAction.Deleted, currentUser, sendNotification);
+                await discordAnnouncer.AnnounceModCase(modCase, RestAction.Deleted, currentUser, sendNotification, announceDm);
             }
             catch(Exception e){
                 logger.LogError(e, "Failed to announce modcase.");
@@ -152,7 +152,7 @@ namespace masz.Controllers
         }
 
         [HttpPut("{modcaseid}")]
-        public async Task<IActionResult> PutSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromBody] ModCaseForPutDto newValue, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true)
+        public async Task<IActionResult> PutSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromBody] ModCaseForPutDto newValue, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true, [FromQuery] bool announceDm = true)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -248,18 +248,26 @@ namespace masz.Controllers
             database.UpdateModCase(modCase);
             await database.SaveChangesAsync();
 
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
+            try {
+                await discordAnnouncer.AnnounceModCase(modCase, RestAction.Edited, currentUser, sendNotification, announceDm);
+            }
+            catch(Exception e){
+                logger.LogError(e, "Failed to announce modcase.");
+            }
+
             if (handlePunishment)
             {
                 if  ( oldModCase.UserId != modCase.UserId || oldModCase.PunishmentType != modCase.PunishmentType || oldModCase.PunishedUntil != modCase.PunishedUntil)
                 {
                     try {
                         logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
-                        await punishmentHandler.UndoPunishment(oldModCase, database);
+                        await punishmentHandler.UndoPunishment(oldModCase);
                         if (modCase.PunishmentActive || (modCase.PunishmentType == PunishmentType.Kick && oldModCase.PunishmentType != PunishmentType.Kick))
                         {
                             if (modCase.PunishedUntil == null || modCase.PunishedUntil > DateTime.UtcNow)
                             {
-                                await punishmentHandler.ExecutePunishment(modCase, database);
+                                await punishmentHandler.ExecutePunishment(modCase);
                             }
                         }
                     }
@@ -269,20 +277,12 @@ namespace masz.Controllers
                 }
             }
 
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
-            try {
-                await discordAnnouncer.AnnounceModCase(modCase, RestAction.Edited, currentUser, sendNotification);
-            }
-            catch(Exception e){
-                logger.LogError(e, "Failed to announce modcase.");
-            }  
-
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource updated.");
             return Ok(new { id = modCase.Id, caseid = modCase.CaseId });
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateItem([FromRoute] string guildid, [FromBody] ModCaseForCreateDto modCase, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true) 
+        public async Task<IActionResult> CreateItem([FromRoute] string guildid, [FromBody] ModCaseForCreateDto modCase, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true, [FromQuery] bool announceDm = true) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -360,6 +360,7 @@ namespace masz.Controllers
             newModCase.Labels = modCase.Labels.Distinct().ToArray();
             newModCase.Others = modCase.Others;
             newModCase.Valid = true;
+            newModCase.CreationType = CaseCreationType.Default;
             newModCase.PunishmentType = modCase.PunishmentType;
             newModCase.PunishedUntil = modCase.PunishedUntil;
             if (modCase.PunishmentType == PunishmentType.None) {
@@ -375,26 +376,26 @@ namespace masz.Controllers
             await database.SaveModCase(newModCase);
             await database.SaveChangesAsync();
 
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
+            try {
+                await discordAnnouncer.AnnounceModCase(newModCase, RestAction.Created, currentUser, sendNotification, announceDm);
+            }
+            catch(Exception e){
+                logger.LogError(e, "Failed to announce modcase.");
+            }
+
             if (handlePunishment && (newModCase.PunishmentActive || newModCase.PunishmentType == PunishmentType.Kick))
             {
                 if (newModCase.PunishedUntil == null || newModCase.PunishedUntil > DateTime.UtcNow)
                 {
                     try {
                         logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
-                        await punishmentHandler.ExecutePunishment(newModCase, database);
+                        await punishmentHandler.ExecutePunishment(newModCase);
                     }
                     catch(Exception e){
                         logger.LogError(e, "Failed to handle punishment for modcase.");
                     }
                 }
-            }
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
-            try {
-                await discordAnnouncer.AnnounceModCase(newModCase, RestAction.Created, currentUser, sendNotification);
-            }
-            catch(Exception e){
-                logger.LogError(e, "Failed to announce modcase.");
             }
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 201 Resource created.");

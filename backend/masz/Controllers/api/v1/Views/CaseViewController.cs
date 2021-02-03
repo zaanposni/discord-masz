@@ -92,15 +92,15 @@ namespace masz.Controllers
                     Message = comment.Message,
                     CreatedAt = comment.CreatedAt,
                     UserId = comment.UserId,
-                    User = await discord.FetchUserInfoAsync(comment.UserId),
+                    User = await discord.FetchUserInfo(comment.UserId),
                 });
             }
 
             CaseView caseView = new CaseView(
                 modCase,
-                await discord.FetchUserInfoAsync(modCase.ModId),
-                await discord.FetchUserInfoAsync(modCase.LastEditedByModId),
-                await discord.FetchUserInfoAsync(modCase.UserId),
+                await discord.FetchUserInfo(modCase.ModId),
+                await discord.FetchUserInfo(modCase.LastEditedByModId),
+                await discord.FetchUserInfo(modCase.UserId),
                 comments
             );
 

@@ -21,7 +21,32 @@ export class AutomodRuleComponent implements OnInit {
     '0': {
       uniqueLabel: 'invite',
       title: 'Invites',
-      description: 'A message on your guild matches the invite pattern.'
+      description: 'A message on your guild matches the invite pattern.',
+      showLimitField: false
+    },
+    '1': {
+      uniqueLabel: 'emote',
+      title: 'Emotes',
+      description: 'A message on your guild contains too many emotes.',
+      showLimitField: true
+    },
+    '2': {
+      uniqueLabel: 'mention',
+      title: 'Mentions',
+      description: 'A message on your guild mentions too many users. Does not include role mentions.',
+      showLimitField: true
+    },
+    '3': {
+      uniqueLabel: 'attachment',
+      title: 'Attachments',
+      description: 'A message on your guild contains too many attachments.',
+      showLimitField: true
+    },
+    '4': {
+      uniqueLabel: 'embed',
+      title: 'Embeds',
+      description: 'A message on your guild contains too many embeds. This includes preview of links.',
+      showLimitField: true
     }
   };
 
@@ -55,8 +80,12 @@ export class AutomodRuleComponent implements OnInit {
   title: string;
   uniqueLabel: string;
   description: string;
+  showLimitField: boolean;
+
   @Input() guildId: string;
   @Input() type: string;
+
+  @Input() limit: string;
 
   @Input() excludeRoles: boolean = false;
   @Input() roleToExclude!: any;
@@ -66,6 +95,8 @@ export class AutomodRuleComponent implements OnInit {
   @Input() channelToExclude!: any;
   excludedChannels: GuildChannel[] = [];
 
+  @Input() currentGuildPromise: Promise<Guild>;
+  @Input() currentGuildChannelsPromise: Promise<GuildChannel[]>;
   currentGuild: Guild;
   currentGuildChannels: GuildChannel[];
 
@@ -84,14 +115,15 @@ export class AutomodRuleComponent implements OnInit {
     this.title = this.types[this.type].title;
     this.uniqueLabel = this.types[this.type].uniqueLabel;
     this.description = this.types[this.type].description;
+    this.showLimitField = this.types[this.type].showLimitField;
 
-    this.api.getSimpleData(`/discord/guilds/${this.guildId}`).subscribe((data) => {
+    this.currentGuildPromise.then((data) => {
       this.currentGuild = data;
-      this.reload(true);
+      this.reload();
     });
-    this.api.getSimpleData(`/discord/guilds/${this.guildId}/channels`).subscribe((data: GuildChannel[]) => {
+    this.currentGuildChannelsPromise.then((data: any) => {
       this.currentGuildChannels = data.filter((item: GuildChannel) => item.type === '0');
-      this.reload(true);
+      this.reload();
     });
   }
 
@@ -99,10 +131,12 @@ export class AutomodRuleComponent implements OnInit {
     return '#' + role.color.toString(16) + ' !important';
   }
 
-  reload(cache: boolean = false) {    
+  reload() {    
     this.api.getSimpleData(`/guilds/${this.guildId}/automoderationconfig/${this.type}`, true, new HttpParams(), false).toPromise().then((data) => {
       this.config = data;
       this.automodEnabled = true;
+
+      this.limit = this.config.limit?.toString();
 
       this.config.ignoreRoles.forEach(element => {
         this.roleToExclude = this.currentGuild.roles.find(r => { return r.id === element });
@@ -165,20 +199,37 @@ export class AutomodRuleComponent implements OnInit {
       });
       return;
     }
-    if(!this.isNumber(this.punishmentDuration) && this.punishmentDuration) {
+
+    if (this.punishment !== '2' && this.punishment !== '5') {
+      this.punishmentDuration = null
+    }
+
+    if (!this.isNumber(this.punishmentDuration) && this.punishmentDuration) {
       this.toastr.error('Please enter a valid number as duration.');
       return;
     } else {
       if (+this.punishmentDuration < 0) {
-        this.toastr.error('Please enter a valid number greater than zero as duration.');
+        this.toastr.error('Please enter a valid duration greater than or equal zero.');
         return;
+      }
+    }
+
+    if (this.showLimitField) {
+      if(!this.isNumber(this.limit)) {
+        this.toastr.error('Please enter a valid number as limit.');
+        return;
+      } else {
+        if (+this.limit < 0) {
+          this.toastr.error('Please enter a valid limit greater than or equal zero.');
+          return;
+        }
       }
     }
 
     let data: any = {
       'AutoModerationType': +this.type,
       'PunishmentType': this.punishmentMap[this.punishment]['punishmentType'],
-      'PunishmentDurationMinutes': +this.punishmentDuration,
+      'PunishmentDurationMinutes': this.punishmentDuration,
       'IgnoreChannels': this.excludedChannels.map((data) => data.id),
       'IgnoreRoles': this.excludedRoles.map((data) => data.id),
       'SendDmNotification': this.sendDmNotification,
@@ -192,8 +243,11 @@ export class AutomodRuleComponent implements OnInit {
     if (this.createCase) {
       action += 2;
     }
-
     data['AutoModerationAction'] = action;
+
+    if(this.showLimitField) {
+      data['Limit'] = +this.limit;
+    }
 
     this.api.putSimpleData(`/guilds/${this.guildId}/automoderationconfig`, data).subscribe((data) => {
       this.toastr.success("Changes saved.");

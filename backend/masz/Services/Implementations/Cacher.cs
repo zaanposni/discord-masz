@@ -59,7 +59,7 @@ namespace masz.Services
                 
                 foreach (var guild in await database.SelectAllGuildConfigs())
                 {
-                    var members = await discord.FetchGuildMembersAsync(guild.GuildId, true);
+                    var members = await discord.FetchGuildMembers(guild.GuildId, true);
                     foreach (var item in members)
                     {
                         if (!this.handledUsers.Contains(item.User.Id)) {
@@ -81,15 +81,15 @@ namespace masz.Services
                 foreach (var modCase in await database.SelectAllModCases())
                 {
                     if (!this.handledUsers.Contains(modCase.UserId)) {
-                        await discord.FetchUserInfoAsync(modCase.UserId, true);
+                        await discord.FetchUserInfo(modCase.UserId, true);
                         this.handledUsers.Add(modCase.UserId);
                     }
                     if (!this.handledUsers.Contains(modCase.ModId)) {
-                        await discord.FetchUserInfoAsync(modCase.ModId, true);
+                        await discord.FetchUserInfo(modCase.ModId, true);
                         this.handledUsers.Add(modCase.ModId);
                     }
                     if (!this.handledUsers.Contains(modCase.LastEditedByModId)) {
-                        await discord.FetchUserInfoAsync(modCase.LastEditedByModId, true);
+                        await discord.FetchUserInfo(modCase.LastEditedByModId, true);
                         this.handledUsers.Add(modCase.LastEditedByModId);
                     }
                 }

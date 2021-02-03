@@ -20,7 +20,9 @@
                     <i class="fas fa-bolt fa-2x mod-icon"></i>
                     <span class="mod-title">Event</span>
                     <div class="mod-body mt-3">
-                        {{ description }}
+                        <span>{{ description }}</span>
+                        <input type="text" class="form-control mt-2" placeholder="Limit per message"
+                         *ngIf="showLimitField" [(ngModel)]="this.limit">
                     </div>
                 </div>
                 <hr class="spacer-type0 spacer-short flex-shrink-1" style="margin-top: 2rem"/>
@@ -78,8 +80,12 @@
                     <span class="mod-title">Action</span>
                     <div class="mod-body mt-3">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="invite-exclude-team" checked disabled>
-                            <label class="custom-control-label" for="invite-exclude-team" title="A log entry will always be generated.">Log entry</label>
+                            <input type="checkbox" class="custom-control-input" id="{{ uniqueLabel }}-send-internal" checked disabled>
+                            <label class="custom-control-label" for="{{ uniqueLabel }}-send-internal" title="A staff webhook will always be sent if the webhook is defined.">Send internal notification</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="{{ uniqueLabel }}-exclude-team" checked disabled>
+                            <label class="custom-control-label" for="{{ uniqueLabel }}-exclude-team" title="A log entry will always be generated.">Log entry</label>
                         </div>
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="send-dm-label-{{ uniqueLabel }}" [(ngModel)]="sendDmNotification">

@@ -14,7 +14,6 @@ async def get_cached_automod_config(guildid: str):
     try:
         if guildid in CACHED["automodconfig"]:
             if CACHED["automodconfig"][guildid]["expires"] >= datetime.now():
-                print(CACHED["automodconfig"][guildid]["obj"])
                 return CACHED["automodconfig"][guildid]["obj"]
     except KeyError:
         pass

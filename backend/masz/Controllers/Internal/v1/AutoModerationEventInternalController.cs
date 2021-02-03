@@ -14,7 +14,7 @@ using Microsoft.Extensions.Options;
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("internalapi/v1/guilds/{guildid}/modcases")]
+    [Route("internalapi/v1/guilds/{guildid}/modevent")]
     public class AutoModerationEventInternalController : ControllerBase
     {
         private readonly ILogger<AutoModerationEventController> logger;
@@ -79,9 +79,10 @@ namespace masz.Controllers
                     newModCase.LastEditedByModId = discordBot.Id;
                     newModCase.OccuredAt = newModCase.CreatedAt;
                     newModCase.Title = $"AutoModeration: {dto.AutoModerationType.ToString()}";
-                    newModCase.Description = $"User triggered AutoModeration.\nEvent: {dto.AutoModerationType.ToString()}.\nAction: {modConfig.AutoModerationAction.ToString()}\nMessageId: {dto.MessageId}.\nMessage content: {dto.MessageContent}.";
+                    newModCase.Description = $"User triggered AutoModeration\nEvent: {dto.AutoModerationType.ToString()}\nAction: {modConfig.AutoModerationAction.ToString()}\nChannelId: {dto.ChannelId}\nMessageId: {dto.MessageId}\nMessage content: {dto.MessageContent}";
                     newModCase.Labels = new List<string>() { "automoderation", dto.AutoModerationType.ToString() }.ToArray();
                     newModCase.Valid = true;
+                    newModCase.CreationType = CaseCreationType.AutoModeration;
                     
                     if (modConfig.PunishmentType != null && modConfig.PunishmentType != PunishmentType.None)
                     {
@@ -99,7 +100,7 @@ namespace masz.Controllers
 
                         try {
                             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
-                            await punishmentHandler.ExecutePunishment(newModCase, database);
+                            await punishmentHandler.ExecutePunishment(newModCase);
                         }
                         catch(Exception e){
                             logger.LogError(e, "Failed to handle punishment for modcase.");
@@ -118,7 +119,7 @@ namespace masz.Controllers
 
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
                     try {
-                        await discordAnnouncer.AnnounceModCase(newModCase, RestAction.Created, discordBot, modConfig.SendPublicNotification);
+                        await discordAnnouncer.AnnounceModCase(newModCase, RestAction.Created, discordBot, modConfig.SendPublicNotification, false);
                     }
                     catch(Exception e){
                         logger.LogError(e, "Failed to announce modcase.");

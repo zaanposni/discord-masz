@@ -52,6 +52,19 @@ async def on_message(msg):
         await client.process_commands(msg)
 
 
+@client.event
+async def on_raw_message_edit(payload):
+    channel = client.get_channel(payload.channel_id)
+    if not channel:
+        return
+    try:
+        msg = await channel.fetch_message(payload.message_id)
+    except Exception as e:  # not found, forbidden, similar
+        print(e)
+        return
+    
+    await check_message(msg)
+
 def start_bot():
     try:
         token = os.getenv("DISCORD_BOT_TOKEN")

@@ -20,6 +20,16 @@ import Swal from 'sweetalert2'
 declare function initModCaseTable(): any;
 declare function initPunishmentTable(): any;
 
+declare function cExcludeAutoModeration(): any;
+declare function pExcludeAutoModeration(): any;
+declare function cResetAutoModeration(): any;
+declare function pResetAutoModeration(): any;
+
+declare function cExcludePermaPunishments(): any;
+declare function pExcludePermaPunishments(): any;
+declare function cResetPermaPunishments(): any;
+declare function pResetPermaPunishments(): any;
+
 @Component({
   selector: 'app-guild-overview',
   templateUrl: './guild-overview.component.html',
@@ -39,11 +49,19 @@ export class GuildOverviewComponent implements OnInit {
   isAdminOrHigher: boolean = false;
 
   iconsMap: { [key: number]: string} = {
-    0: 'fas fa-link'
+    0: 'far fa-envelope-open',
+    1: 'far fa-smile-wink',
+    2: 'fas fa-user',
+    3: 'far fa-file-alt',
+    4: 'fas fa-link'
   };
 
   eventsMap: { [key: number]: string} = {
-    0: 'posted an invite'
+    0: 'posted an invite',
+    1: 'used too many emotes',
+    2: 'mentioned too many users',
+    3: 'posted too many attachments',
+    4: 'posted too many embeds'
   };
 
   actionsMap: { [key: number]: string} = {
@@ -100,5 +118,37 @@ export class GuildOverviewComponent implements OnInit {
         this.moderationEvents.push(element);        
       });
     })
+  }
+
+  cExcludeAutoModSwitch(event: any) {
+    if(event.target.checked) {
+      cExcludeAutoModeration();
+    } else {
+      cResetAutoModeration();
+    }
+  }
+
+  cExcludePermaSwitch(event: any) {
+    if(event.target.checked) {
+      cExcludePermaPunishments();
+    } else {
+      cResetPermaPunishments();
+    }
+  }
+
+  pExcludeAutoModSwitch(event: any) {
+    if(event.target.checked) {
+      pExcludeAutoModeration();
+    } else {
+      pResetAutoModeration();
+    }
+  }
+
+  pExcludePermaSwitch(event: any) {
+    if(event.target.checked) {
+      pExcludePermaPunishments();
+    } else {
+      pResetPermaPunishments();
+    }
   }
 }

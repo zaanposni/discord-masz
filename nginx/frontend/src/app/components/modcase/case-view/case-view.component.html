@@ -75,6 +75,8 @@
                         <span class="font-weight-bold">Moderator</span>
                         <span style="word-break: break-all;">{{ (this.caseView | async)?.moderator?.username }}#{{ (this.caseView | async)?.moderator?.discriminator }}</span>
                         <span style="font-size: medium;" class="text-white-50">ModId: {{(this.caseView | async)?.modCase?.modId }}</span>
+                        <span style="word-break: break-all; font-size: medium;" class="text-white-50"
+                         *ngIf="(this.caseView | async)?.modCase?.creationType === 1">This case is automoderated.</span>
                     </div>
                     <div class="infobox-icon">
                         <img
@@ -178,7 +180,9 @@
     <div class="mb-3">
         <h4 class="font-weight-bold">Description</h4>
         <hr/>
-        <span style="white-space: pre-wrap; word-wrap: break-word" class="text-monospace">{{ (this.caseView | async)?.modCase?.description }}</span>
+        <span style="white-space: pre-wrap; word-wrap: break-word" class="text-monospace" id="case-view-description"
+         [innerHTML]="this.renderedDescription">
+        </span>
     </div>
 
     <!-- Files -->
@@ -247,7 +251,7 @@
                             <button class="btn btn-danger" (click)="deleteComment(comment.id)">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
-                            <button class="btn btn-warning" (click)="updateComment(comment.id)">
+                            <button class="btn btn-warning" (click)="updateComment(comment.id, comment.message)">
                                 <i class="fas fa-edit"></i>
                             </button>
                         </div>

@@ -8,6 +8,10 @@
 
 <img src="modcases.png"/>
 
+## Modcase creation
+
+<img src="modcasecreate.png"/>
+
 ## Detailed view for single modcase
 
 <img src="modcase.png"/>

@@ -56,7 +56,6 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     CaseEditComponent,
 
     AutomodConfigComponent,
-
     AutomodRuleComponent,
   ],
   imports: [

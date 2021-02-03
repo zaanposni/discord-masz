@@ -334,7 +334,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"title\": \"NSFW content\",\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\n    \"userid\": \"382991040975732747\",\n    \"severity\": 0,\n    \"occuredAt\": \"2020-11-25T20:15:47.093594\",\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\n    \"punishment\": \"warn\",\n    \"punishmentType\": 1,\n    \"punishedUntil\": null\n}"
+									"raw": "{\n    \"title\": \"\",\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\n    \"userid\": \"382991040975732747\",\n    \"severity\": 0,\n    \"occuredAt\": \"2020-11-25T20:15:47.093594\",\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\n    \"punishment\": \"warn\",\n    \"punishmentType\": 1,\n    \"punishedUntil\": null\n}"
 								},
 								"url": {
 									"raw": "{{url}}/api/v1/modcases/{{guildid}}?sendnotification=false&handlePunishment=true",
@@ -679,7 +679,7 @@
 									"variable": [
 										{
 											"key": "userid",
-											"value": "100685801385385984"
+											"value": "382991040975732747"
 										}
 									]
 								}
@@ -1178,7 +1178,43 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"UserId\": \"382991040975732747\",\r\n    \"AutoModerationType\": 0,\r\n    \"Username\": \"Aloha\",\r\n    \"Nickname\": null,\r\n    \"Discriminator\": \"1111\",\r\n    \"MessageId\": \"11111\",\r\n    \"MessageContent\": \"some invite\"\r\n}",
+											"raw": "{\r\n    \"UserId\": \"382991040975732747\",\r\n    \"AutoModerationType\": 0,\r\n    \"Username\": \"Aloha\",\r\n    \"Nickname\": null,\r\n    \"Discriminator\": \"1111\",\r\n    \"ChannelId\": \"756798108335210517\",\r\n    \"MessageId\": \"11111\",\r\n    \"MessageContent\": \"some invite\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/internalapi/v1/guilds/{{guildid}}/modevent",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"internalapi",
+												"v1",
+												"guilds",
+												"{{guildid}}",
+												"modevent"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "register modcase",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "{{bot_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"modcase title (max 100 chars)\",\r\n    \"description\": \"case description\",\r\n    \"modid\": \"272655001329991681\",\r\n    \"userid\": \"272745086712938497\",\r\n    \"punishment\": \"string, should be either 'Warn','Mute','TempMute', or similiar\",\r\n    \"labels\": [\"some\", \"labels\"],\r\n    \"punishmenttype\": 0,\r\n    \"punisheduntil\": \"2021-01-26T19:15:13.557448\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1197,7 +1233,8 @@
 												"{{guildid}}",
 												"modcases"
 											]
-										}
+										},
+										"description": "punishmenttypes:\r\nno direct punishment (e.g. warn) -> 0\r\nmute -> 1\r\nkick -> 2\r\nban -> 3\r\n\r\nonly define punisheduntil if its a temporary punishment"
 									},
 									"response": []
 								}

@@ -5,10 +5,27 @@ from datetime import datetime
 from discord import Message, Embed
 
 from .invite import check_message as check_invite
+from .emotes import check_message as check_emotes
+from .mentions import check_message as check_mentions
+from .attachments import check_message as check_attachments
+from .links import check_message as check_links
 from data import get_cached_automod_config, get_cached_guild_config
 
 
 SITE_ADMINS = os.getenv("DISCORD_SITE_ADMINS").strip(",")
+type_map = {
+    "0": "Invites are not allowed on this guild.",
+    "1": "Too many emotes per message are not allowed on this guild.",
+    "2": "Too many mentions per message are not allowed on this guild.",
+    "3": "Too many attachments per message are not allowed on this guild.",
+    "4": "Too many embeds per message are not allowed on this guild."
+}
+punishments = {
+    "0": "Warn",
+    "1": "Mute",
+    "2": "Kick",
+    "3": "Ban"
+}
 
 def check_filter(msg: Message, guildconfig, automodconfig) -> bool:
     if str(msg.author.id) in SITE_ADMINS:
@@ -26,21 +43,11 @@ def check_filter(msg: Message, guildconfig, automodconfig) -> bool:
     return True
 
 
-type_map = {
-    "0": "Invites are not allowed on this guild."
-}
-punishments = {
-    "0": "Warn",
-    "1": "Mute",
-    "2": "Kick",
-    "3": "Ban"
-}
-
-def create_dm_embed(msg: Message, type: int, config) -> Embed:
+def create_dm_embed(msg: Message, mod_type: int, config) -> Embed:
     embed = Embed(title="Automoderation")
     embed.color = 0xf71b02
     embed.timestamp = datetime.now()
-    embed.description = type_map.get(str(type), "You triggered the automoderation.")
+    embed.description = type_map.get(str(mod_type), "You triggered the automoderation.")
     embed.add_field(name="Guild", value=f"{msg.guild.name} | {msg.guild.id}", inline=False)
     embed.add_field(name="Message", value=f"{msg.id}", inline=False)
     embed.add_field(name="Channel", value=f"<#{msg.channel.id}> | {msg.channel.id}", inline=False)
@@ -49,23 +56,51 @@ def create_dm_embed(msg: Message, type: int, config) -> Embed:
         if config["PunishmentDurationMinutes"]:
             punishment = f"Temp{punishment} for {config['PunishmentDurationMinutes']} Minutes."
         embed.add_field(name="Punishment", value=punishment, inline=False)
-    embed.add_field(name="Content", value=f"> {msg.content}", inline=False)
+    embed.add_field(name="Content", value=f"> {msg.content[:1020]}", inline=False)  # limit is 1024
     embed.add_field(name="MASZ", value=f"You can view details to this automoderation on: {os.getenv('META_SERVICE_BASE_URL', 'URL not set.')}", inline=False)
 
     return embed
 
-async def apply_punishment(msg: Message, type: int, config):
+
+def create_public_embed(msg: Message, mod_type: int, config) -> Embed:
+    embed = Embed(title="Automoderation")
+    embed.color = 0xf71b02
+    embed.timestamp = datetime.now()
+    embed.description = f'{msg.author.mention} {type_map.get(str(mod_type), "You triggered the automoderation.")}'
+    if config["AutoModerationAction"] in [2, 3]:
+        punishment = punishments[str(config['PunishmentType'])]
+        if config["PunishmentDurationMinutes"]:
+            punishment = f"Temp{punishment} for {config['PunishmentDurationMinutes']} Minutes."
+        embed.add_field(name="Punishment", value=punishment, inline=False)
+    embed.add_field(name="MASZ", value=f"You can view details to this automoderation on: {os.getenv('META_SERVICE_BASE_URL', 'URL not set.')}", inline=False)
+
+    return embed
+
+
+async def apply_punishment(msg: Message, mod_type: int, config, guildconfig):
+    if guildconfig["ModInternalNotificationWebhook"]:
+        try:
+            requests.post(guildconfig["ModInternalNotificationWebhook"], json={ "embeds": [create_public_embed(msg, mod_type, config).to_dict()] })
+        except Exception as e:
+            print("Failed to send staff notification.")
+            print(e)
+        
     if config["SendDmNotification"]:
-        await msg.author.send(embed=create_dm_embed(msg, type, config))
+        try:
+            await msg.author.send(embed=create_dm_embed(msg, mod_type, config))
+        except Exception as e:
+            print("Failed to send dm notification.")
+            print(e)
     
-    url = f"http://masz_backend/internalapi/v1/guilds/{msg.guild.id}/modcases"
+    url = f"http://masz_backend/internalapi/v1/guilds/{msg.guild.id}/modevent"
 
     payload = {
         "UserId": msg.author.id,
-        "AutoModerationType": type,
+        "AutoModerationType": mod_type,
         "Username": msg.author.name,
         "Nickname": msg.author.nick,
         "Discriminator": msg.author.discriminator,
+        "ChannelId": msg.channel.id,
         "MessageId": msg.id,
         "MessageContent": msg.content
     }
@@ -77,7 +112,24 @@ async def apply_punishment(msg: Message, type: int, config):
     requests.post(url, headers=headers, json=payload)
 
     if config["AutoModerationAction"] in [1, 3]:
-        await msg.delete()
+        try:
+            await msg.channel.send(embed=create_public_embed(msg, mod_type, config))
+        except Exception as e:
+            print("Failed to send notification.")
+            print(e)
+        try:
+            await msg.delete()
+        except Exception as e:
+            print("Failed to delete message.")
+            print(e)
+
+
+def get_config_by_type(automodconfig, event_type):
+    for x in automodconfig:
+        if x["AutoModerationType"] == event_type:
+            return x
+    else:
+        return None
 
 
 async def check_message(msg: Message) -> bool:
@@ -92,13 +144,49 @@ async def check_message(msg: Message) -> bool:
     if not (guildconfig and automodconfig):  # guild not registered or no config
         return
 
-    if check_invite(msg):
-        event_type = 0
-        config = next((x for x in automodconfig if x["AutoModerationType"] == event_type), None)
-        if config:
+    event_type = 0
+    config = get_config_by_type(automodconfig, event_type)
+    if config:
+        if check_invite(msg):
             if check_filter(msg, guildconfig, config):
                 print(f"Found invite by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
-                await apply_punishment(msg, event_type, config)
+                await apply_punishment(msg, event_type, config, guildconfig)
+                return True
+
+    event_type = 1
+    config = get_config_by_type(automodconfig, event_type)
+    if config:
+        if check_emotes(msg, config):
+            if check_filter(msg, guildconfig, config):
+                print(f"Found emotes by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                await apply_punishment(msg, event_type, config, guildconfig)
+                return True
+
+    event_type = 2
+    config = get_config_by_type(automodconfig, event_type)
+    if config:
+        if check_mentions(msg, config):
+            if check_filter(msg, guildconfig, config):
+                print(f"Found mentions by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                await apply_punishment(msg, event_type, config, guildconfig)
+                return True
+
+    event_type = 3
+    config = get_config_by_type(automodconfig, event_type)
+    if config:
+        if check_attachments(msg, config):
+            if check_filter(msg, guildconfig, config):
+                print(f"Found attachments by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                await apply_punishment(msg, event_type, config, guildconfig)
+                return True
+
+    event_type = 4
+    config = get_config_by_type(automodconfig, event_type)
+    if config:
+        if check_links(msg, config):
+            if check_filter(msg, guildconfig, config):
+                print(f"Found embeds by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                await apply_punishment(msg, event_type, config, guildconfig)
                 return True
 
     return False

@@ -121,7 +121,7 @@ namespace masz.Controllers.api.v1
                 return BadRequest("Endpoint only available for registered guilds.");
             }
 
-            var members = await discord.FetchGuildMembersAsync(guildid);
+            var members = await discord.FetchGuildMembers(guildid);
             if (members != null)
             {
                 return Ok(members);
