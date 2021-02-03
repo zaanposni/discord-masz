@@ -22,6 +22,7 @@ Furthermore there is a **discord bot** that can be used to **quickly check an us
 
 - [Community Discord "Best of Bundestag"](https://discord.gg/ezMtSwR) 1800 members
 - ["Liberale Community"](https://discord.gg/uf9bHhNMmD) 250 members
+- ["Advertise Your Server"](https://discord.gg/promote) 52000 members
 
 # Preview
 
@@ -55,13 +56,25 @@ Furthermore there is a **discord bot** that can be used to **quickly check an us
   <img src="/docs/automoderationconfig.png"/>
 </details>
 
+# Hosting
 
-# Warning
+You can host your own instance of MASZ for free, see below for instructions. <br/>
+If you are not experienced enough to do so or just want to use MASZ right now, feel free to contact me. <br/>
+I will host an instance for you for a small fee. <br/>
+- Discord `zaanposni#9295`
+- Mail `me@zaanposni.com`
 
-This application is only for self deployment. <br/>
-You can deploy it on your private computer for testing but if you want others to access the website or use the bot 24/7, you will need a domain, a server and a reverse proxy as well as enough knowledge to set those up, and maintain them.
+# Setup - Selfhosting
 
-# Requirements 
+## TL;DR;
+
+- Create a discord application at https://discord.com/developers/applications
+- Set redirect urls on your discord application [as defined](https://github.com/zaanposni/discord-masz#discord-oauth).
+- Enable **Server Members Intent** in your bot settings. 
+- Execute the `setup.py` script to configure your app and `start.sh` (or `start.ps1` on windows) to start it.
+- App will be hosted on `127.0.0.1:5565`, if you are hosting the app on a domain, redirect your reverse proxy to this local port!
+
+## Requirements 
 
 - [docker](https://docs.docker.com/engine/install/ubuntu/) & [docker-compose](https://docs.docker.com/compose/) (`docker-compose -v` > 1.25)
 - [python3](https://www.python.org/) for setup
@@ -70,16 +83,6 @@ If you want to deploy on a domain:
 
 - a (sub)domain to host the application on
 - a reverse proxy on your host
-
-# Setup - TL;DR;
-
-- Create a discord application at https://discord.com/developers/applications
-- Set redirect urls on your discord application [as defined](https://github.com/zaanposni/discord-masz#discord-oauth).
-- Enable **Server Members Intent** in your bot settings. 
-- Execute the `setup.py` script to configure your app and `start.sh` (or `start.ps1` on windows) to start it.
-- App will be hosted on `127.0.0.1:5565`, if you are hosting the app on a domain, redirect your reverse proxy to this local port!
-
-# Setup - Installation
 
 ## Discord OAuth
 
