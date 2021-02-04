@@ -32,7 +32,7 @@
                                 Logged in as <span
                                         class="text-danger">{{ (this.currentUser | async)?.discordUser?.username }}#{{ (this.currentUser | async)?.discordUser?.discriminator }}</span>
                             </span>
-                            <span class="dropdown-item waves-effect waves-light" *ngIf="(this.currentUser | async)?.isAdmin">
+                            <span class="dropdown-item waves-effect waves-light" *ngIf="(this.currentUser | async)?.isAdmin" onclick="window.location.href='/api/v1/meta/adminstats'">
                                 Congratulations, you are a site admin!
                             </span>
                             <span class="dropdown-item waves-effect waves-light" onclick="window.location.href='/api/v1/logout'">

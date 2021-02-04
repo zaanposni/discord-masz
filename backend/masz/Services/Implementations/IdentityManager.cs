@@ -57,5 +57,10 @@ namespace masz.Services
             await RegisterNewIdentity(httpContext);
             return identities[key];
         }
+
+        public List<Identity> GetCurrentIdentities()
+        {
+            return this.identities.Values.ToList();
+        }
     }
 }
