@@ -1,5 +1,13 @@
 [
   {
+    "title": "Version 1.8.1",
+    "version": "v1.8.1",
+    "changes": [
+      "Removed kick permissions from permanent filter.",
+      "Rearranged buttons in case creation."
+    ]
+  },
+  {
     "title": "Version 1.8",
     "version": "v1.8",
     "changes": [

@@ -139,7 +139,7 @@
                     </td>
                     <td class="hiddencolumn">{{ entry.modCase.caseId }}</td>
                     <td class="hiddencolumn">{{ entry.modCase.creationType }}</td>
-                    <td class="hiddencolumn">{{ entry.modCase.punishedUntil == null && entry.modCase.punishmentType !== 0 }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.punishedUntil == null && entry.modCase.punishmentType !== 0 && entry.modCase.punishmentType !== 2 }}</td>
                     <td class="hiddencolumn">{{ entry.modCase.userId }}</td>
                     <td class="hiddencolumn">{{ entry.modCase.modId }}</td>
                     <td class="hiddencolumn">{{ entry.modCase.labels.join('|') }}</td>
@@ -262,7 +262,7 @@
                     </td>
                     <td class="hiddencolumn">{{ entry.modCase.caseId }}</td>
                     <td class="hiddencolumn">{{ entry.modCase.creationType }}</td>
-                    <td class="hiddencolumn">{{ entry.modCase.punishedUntil == null && entry.modCase.punishmentType !== 0 }}</td>
+                    <td class="hiddencolumn">{{ entry.modCase.punishedUntil == null && entry.modCase.punishmentType !== 0 && entry.modCase.punishmentType !== 2 }}</td>
                     <td class="hiddencolumn">{{ entry.modCase.userId }}</td>
                     <td class="hiddencolumn">{{ entry.modCase.modId }}</td>
                     <td class="hiddencolumn">{{ entry.modCase.labels.join('|') }}</td>
