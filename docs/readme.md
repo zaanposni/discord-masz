@@ -1,9 +1,5 @@
 # Preview
 
-## ModCase Notification embed for your guild members and moderation team
-
-<img src="embed.png"/>
-
 ## Modcase overview
 
 <img src="modcases.png"/>
@@ -15,6 +11,18 @@
 ## Detailed view for single modcase
 
 <img src="modcase.png"/>
+
+## Configuration for automoderation
+
+<img src="automoderationconfig.png"/>
+
+## Logs for automoderated events
+
+<img src="automoderations.png"/>
+
+## ModCase Notification embed for your guild members and moderation team
+
+<img src="embed.png"/>
 
 ## Comment Notification embed for your moderation team
 
