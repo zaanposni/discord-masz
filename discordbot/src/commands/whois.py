@@ -6,38 +6,18 @@ from discord.ext import commands
 from discord import Embed, Member
 from discord.errors import NotFound
 
-from data import get_modcases_by_user_and_guild, get_guildconfig
+from data import get_modcases_by_user_and_guild, get_cached_guild_config
+from .checks import registered_guild_and_admin_or_mod_only
 
-
-regex = r"^[0-9]{18}$"
+regex = re.compile(r"^[0-9]{18}$")
 
 @commands.command(help="Whois information about an user.")
+@registered_guild_and_admin_or_mod_only()
 async def whois(ctx, userid):
     if not userid:
         return await ctx.send("Please use `whois <userid>`.")
-    if not re.match(regex, userid):
+    if not regex.match(userid):
         return await ctx.send("Please use `whois <userid>`.")
-    if ctx.guild is None:
-        return await ctx.send("Only useable in a guild.")
-    
-    try:
-        cfg = await get_guildconfig(str(ctx.guild.id))
-    except Exception as e:
-        print(e)
-        return await ctx.send("Failed to fetch data from database.")
-
-    if cfg is None:
-        if os.getenv('META_SERVICE_BASE_URL', ''):
-            await ctx.send(f"MASZ is not registered on this guild.\nA siteadmin can register this guild at: {os.getenv('META_SERVICE_BASE_URL', '')}/guilds/new?guildid={ctx.guild.id}")
-        else:
-            await ctx.send(f"MASZ is not registered on this guild.")
-        return
-
-    site_admins = os.getenv("DISCORD_SITE_ADMINS").strip(",")
-    is_site_admin = str(ctx.author.id) in site_admins
-    is_admin_or_mod = any([role for role in ctx.author.roles if str(role.id) in [cfg["ModRoleId"], cfg["AdminRoleId"]]])
-    if not is_admin_or_mod and not is_site_admin:
-        return await ctx.send("You do not have the permission to use this command.")
     
     try:
         member = await ctx.guild.fetch_member(userid)
