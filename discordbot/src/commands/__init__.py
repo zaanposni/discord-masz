@@ -5,6 +5,8 @@ from .register import register
 from .whois import whois
 from .invite import invite
 from .mute import mute
+from .kick import kick
+from .ban import ban
 
-ALL_COMMANDS = [ version, url, features, register, whois, invite, mute ]
+ALL_COMMANDS = [ version, url, features, register, whois, invite, mute, kick, ban ]
 
