@@ -179,9 +179,25 @@ export class CaseViewComponent implements OnInit {
     this.fileToUpload = event.target.files.item(0);
   }
 
+  safe_tags_replace(str: any) {
+    console.log(str)
+    return str.replace(/[&<>]/g, replaceTag);
+  }
+
   renderDescription(str: string, guildId: string): string {
-    return str.replace(/#(\d+)/g, function(match, id) {
+    return this.safe_tags_replace(str).replace(/#(\d+)/g, function(match: any, id: any) {
       return `<a href="/guilds/${guildId}/cases/${id}">#${id}</a>`
     });
   }
 }
+
+const tagsToReplace: { [key: string]: string } = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;'
+};
+
+function replaceTag(tag: string) {
+  return tagsToReplace[tag] || tag;
+}
+

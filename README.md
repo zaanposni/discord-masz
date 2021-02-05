@@ -32,20 +32,12 @@ Furthermore there is a **discord bot** that can be used to **quickly check an us
 <img src="/docs/modcases.png"/>
 
 <details>
-  <summary>Comments on a modcase(click to reveal)</summary>
-  <img src="/docs/modcase-comments.png"/>
-</details>
-<details>
   <summary>Modcase creation dialog(click to reveal)</summary>
   <img src="/docs/modcasecreate.png"/>
 </details>
 <details>
-  <summary>Notification embed for your guild members and moderation team (click to reveal)</summary>
-  <img src="/docs/embed.png"/>
-</details>
-<details>
-  <summary>Discord Bot commands</summary>
-  <img src="/docs/bot-commands.png"/>
+  <summary>Command to punish via discord bot(click to reveal)</summary>
+  <img src="/docs/mute_command.png"/>
 </details>
 <details>
   <summary>AutoModeration event log</summary>
@@ -54,6 +46,18 @@ Furthermore there is a **discord bot** that can be used to **quickly check an us
 <details>
   <summary>AutoModeration configuration</summary>
   <img src="/docs/automoderationconfig.png"/>
+</details>
+<details>
+  <summary>Comments on a modcase(click to reveal)</summary>
+  <img src="/docs/modcase-comments.png"/>
+</details>
+<details>
+  <summary>Discord Bot commands</summary>
+  <img src="/docs/bot-commands.png"/>
+</details>
+<details>
+  <summary>Notification embed for your guild members and moderation team (click to reveal)</summary>
+  <img src="/docs/embed.png"/>
 </details>
 
 # Hosting

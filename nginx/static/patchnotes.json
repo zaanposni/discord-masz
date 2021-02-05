@@ -5,7 +5,8 @@
     "changes": [
       "Removed kick permissions from permanent filter.",
       "Rearranged buttons in case creation.",
-      "Added adminstats endpoint for internal insights."
+      "Added adminstats endpoint for internal insights.",
+      "Fixed html escape issue in case creation."
     ]
   },
   {

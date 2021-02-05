@@ -12,6 +12,10 @@
 
 <img src="modcase.png"/>
 
+## Commands to punish in discord
+
+<img src="mute_command.png"/>
+
 ## Configuration for automoderation
 
 <img src="automoderationconfig.png"/>

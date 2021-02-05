@@ -62,7 +62,7 @@ namespace masz.Controllers
                 return Unauthorized();
             }
 
-            if (this.config.Value.DiscordBotToken != auth) {                
+            if (this.config.Value.DiscordBotToken != auth) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
@@ -74,6 +74,19 @@ namespace masz.Controllers
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
                 return BadRequest("Guild not registered.");
             }
+
+            var actor = await discord.FetchMemberInfo(guildid, modCase.ModId, true);
+            if (actor == null) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+
+            if (!actor.Roles.Contains(guildConfig.ModRoleId) && !actor.Roles.Contains(guildConfig.AdminRoleId) && !config.Value.SiteAdminDiscordUserIds.Contains(actor.User.Id)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+
+            // ========================================================
 
             User currentUser = await discord.FetchUserInfo(modCase.ModId);
             var currentModerator = currentUser.Id;
@@ -130,7 +143,7 @@ namespace masz.Controllers
             newModCase.Labels = modCase.Labels.Distinct().ToArray();
             newModCase.Others = modCase.Others;
             newModCase.Valid = true;
-            newModCase.CreationType = CaseCreationType.Default;
+            newModCase.CreationType = CaseCreationType.ByCommand;
             newModCase.PunishmentType = modCase.PunishmentType;
             newModCase.PunishedUntil = modCase.PunishedUntil;
             if (modCase.PunishmentType == PunishmentType.None) {

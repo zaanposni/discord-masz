@@ -24,7 +24,7 @@ function cExcludeAutoModeration() {
 }
 
 function pExcludeAutoModeration() {
-    punishmentTable.column(2).search('[0|2-0]', true).draw();
+    punishmentTable.column(2).search('[0|2-9]', true).draw();
 }
 
 function cResetAutoModeration() {

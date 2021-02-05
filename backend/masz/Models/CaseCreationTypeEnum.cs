@@ -4,6 +4,7 @@ namespace masz.Models
     {
         Default,
         AutoModeration,
-        Imported
+        Imported,
+        ByCommand
     }
 }
