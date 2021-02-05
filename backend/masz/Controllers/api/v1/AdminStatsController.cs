@@ -19,12 +19,14 @@ namespace masz.Controllers
         private readonly ILogger<AdminStatsController> logger;
         private readonly IOptions<InternalConfig> config;
         private readonly IIdentityManager identityManager;
+        private readonly IDiscordAPIInterface discord;
 
-        public AdminStatsController(ILogger<AdminStatsController> logger, IOptions<InternalConfig> config, IIdentityManager identityManager)
+        public AdminStatsController(ILogger<AdminStatsController> logger, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discord)
         {
             this.logger = logger;
             this.config = config;
             this.identityManager = identityManager;
+            this.discord = discord;
         }
 
         [HttpGet("adminstats")]
@@ -50,7 +52,9 @@ namespace masz.Controllers
                 currentLogins.Add($"{user.Username}#{user.Discriminator}");
             }
 
-            return Ok(new { loginsInLast10Minutes = currentLogins });
+            var cache = this.discord.GetCache();
+
+            return Ok(new { loginsInLast10Minutes = currentLogins, cachedDataFromDiscord = cache.Keys });
         }
     }
 }

@@ -4,7 +4,8 @@
     "version": "v1.8.1",
     "changes": [
       "Removed kick permissions from permanent filter.",
-      "Rearranged buttons in case creation."
+      "Rearranged buttons in case creation.",
+      "Added adminstats endpoint for internal insights."
     ]
   },
   {

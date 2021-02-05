@@ -1,4 +1,5 @@
 ﻿using masz.Dtos.DiscordAPIResponses;
+using masz.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace masz.Services
 {
     public interface IDiscordAPIInterface
     {
+        Dictionary<string, CacheApiResponse> GetCache();
         /// <summary>
         /// Checks if the discord personal access token is valid.
         /// https://discord.com/developers/docs/resources/user#get-current-user

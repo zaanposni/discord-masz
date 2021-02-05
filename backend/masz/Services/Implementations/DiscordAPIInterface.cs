@@ -509,5 +509,10 @@ namespace masz.Services
 
             return await this.SendMessage(channel.Id, content);
         }
+
+        public Dictionary<string, CacheApiResponse> GetCache()
+        {
+            return this.cache;
+        }
     }
 }
