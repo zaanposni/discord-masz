@@ -115,6 +115,7 @@ namespace masz.Controllers
                 table = table.Where(t =>
                     contains(t.ModCase.Title, search) ||
                     contains(t.ModCase.Description, search) ||
+                    contains(t.ModCase.Punishment, search) ||
                     contains(t.ModCase.Username, search) ||
                     contains(t.ModCase.Discriminator, search) ||
                     contains(t.ModCase.Nickname, search) ||
@@ -126,6 +127,7 @@ namespace masz.Controllers
                     contains(t.ModCase.LastEditedAt, search) ||
                     contains(t.ModCase.Labels, search) ||
                     contains(t.ModCase.CaseId.ToString(), search) ||
+                    contains("#" + t.ModCase.CaseId.ToString(), search) ||
 
                     contains(t.Moderator, search) ||
                     contains(t.Suspect, search)

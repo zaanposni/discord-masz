@@ -11,7 +11,8 @@
       "Now allowing @user, username and id in $whois command.",
       "Updated discord.py to version 1.6",
       "Improved backend caching and ratelimit handling.",
-      "Added backend modcase search."
+      "Added backend modcase search.",
+      "Reworked case table and search."
     ]
   },
   {

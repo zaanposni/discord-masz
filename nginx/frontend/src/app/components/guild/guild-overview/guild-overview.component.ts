@@ -40,115 +40,22 @@ export class GuildOverviewComponent implements OnInit {
   guildId!: string | null;
   guild!: Promise<Guild>;
   casesTable!: Promise<ModCaseTable[]>;
-  caseLoading: boolean = true;
   punishmentTable!: Promise<ModCaseTable[]>;
-  punishmentLoading: boolean = true;
   moderationEventsInfo!: Promise<AutoModerationEventInfo>;
-  moderationEvents: AutoModerationEvent[] = new Array<AutoModerationEvent>();
   isModOrHigher: boolean = false;
   isAdminOrHigher: boolean = false;
-
-  iconsMap: { [key: number]: string} = {
-    0: 'far fa-envelope-open',
-    1: 'far fa-smile-wink',
-    2: 'fas fa-user',
-    3: 'far fa-file-alt',
-    4: 'fas fa-link'
-  };
-
-  eventsMap: { [key: number]: string} = {
-    0: 'posted an invite',
-    1: 'used too many emotes',
-    2: 'mentioned too many users',
-    3: 'posted too many attachments',
-    4: 'posted too many embeds'
-  };
-
-  actionsMap: { [key: number]: string} = {
-    0: 'No action was taken',
-    1: 'Content deleted',
-    2: 'Case created',
-    3: 'Content deleted and case created'
-  }
-
-  private lastDate: Date = undefined;
-  isEqualToLastDate(date: Date): boolean {
-    let b;
-    if (this.lastDate) {
-      b = new Date(date).getDate() === this.lastDate.getDate();
-    } else {
-      b = false;
-    }
-    this.lastDate = new Date(date);
-    return b;
-  }
-  startPage = 1;
 
   constructor(private route: ActivatedRoute, private auth: AuthService, private toastr: ToastrService,
      private api: ApiService, public router: Router) { }
 
   ngOnInit(): void {
-
     this.guildId = this.route.snapshot.paramMap.get('guildid');
+
     this.auth.getUserProfile().subscribe((data) => {
       this.isModOrHigher = data.modGuilds.find(x => x.id === this.guildId) !== undefined || data.adminGuilds.find(x => x.id === this.guildId) !== undefined || data.isAdmin;
       this.isAdminOrHigher = data.adminGuilds.find(x => x.id === this.guildId) !== undefined || data.isAdmin;
     });
+
     this.guild = this.api.getSimpleData(`/discord/guilds/${this.guildId}`).toPromise();
-    this.casesTable = this.api.getSimpleData(`/guilds/${this.guildId}/modcasetable`).toPromise();
-    this.casesTable.then(() => { initModCaseTable(); this.caseLoading = false; });
-    this.punishmentTable = this.api.getSimpleData(`/guilds/${this.guildId}/punishmenttable`).toPromise();
-    this.punishmentTable.then(() => { initPunishmentTable(); this.punishmentLoading = false; });
-    
-    this.moderationEventsInfo = this.api.getSimpleData(`/guilds/${this.guildId}/automoderations`).toPromise().then((data) => {
-      data.events.forEach((element: AutoModerationEvent) => {
-        this.moderationEvents.push(element);        
-      });
-      return data;
-    });
-  }
-
-  loadMoreData(): void {
-    let params = new HttpParams()
-          .set('startPage', this.startPage.toString());
-
-    this.startPage++;
-    this.api.getSimpleData(`/guilds/${this.guildId}/automoderations`, true, params).subscribe((data) => {
-      data.events.forEach((element: AutoModerationEvent) => {
-        this.moderationEvents.push(element);        
-      });
-    })
-  }
-
-  cExcludeAutoModSwitch(event: any) {
-    if(event.target.checked) {
-      cExcludeAutoModeration();
-    } else {
-      cResetAutoModeration();
-    }
-  }
-
-  cExcludePermaSwitch(event: any) {
-    if(event.target.checked) {
-      cExcludePermaPunishments();
-    } else {
-      cResetPermaPunishments();
-    }
-  }
-
-  pExcludeAutoModSwitch(event: any) {
-    if(event.target.checked) {
-      pExcludeAutoModeration();
-    } else {
-      pResetAutoModeration();
-    }
-  }
-
-  pExcludePermaSwitch(event: any) {
-    if(event.target.checked) {
-      pExcludePermaPunishments();
-    } else {
-      pResetPermaPunishments();
-    }
   }
 }

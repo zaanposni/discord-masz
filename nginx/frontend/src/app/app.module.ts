@@ -33,6 +33,10 @@ import { OwlDateTimeModule, OwlMomentDateTimeModule, OwlNativeDateTimeModule } f
 import { CookieTrackerService } from './services/cookie-tracker.service';
 import { AutomodRuleComponent } from './components/moderation/automod-rule/automod-rule.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { CaseCardComponent } from './components/guild/guild-overview/case-card/case-card.component';
+import { CaseTableComponent } from './components/guild/guild-overview/case-table/case-table.component';
+import { ModeventsTableComponent } from './components/guild/guild-overview/modevents-table/modevents-table.component';
+import { ModeventComponent } from './components/guild/guild-overview/modevent/modevent.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +61,10 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
     AutomodConfigComponent,
     AutomodRuleComponent,
+    CaseCardComponent,
+    CaseTableComponent,
+    ModeventsTableComponent,
+    ModeventComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,61 @@
+<a class="font-weight-bold" (click)="this.router.navigate(['guilds', entry.modCase.guildId, 'cases', entry.modCase.caseId])">
+    <div class="case-container">
+        <div class="case-container-body d-flex flex-wrap">
+            <!-- Profile picture -->
+            <div class="pictures-parent mr-3">
+                <img
+                    src="{{ entry.suspect?.imageUrl }}"
+                    class="rounded-circle z-depth-0 user-image"
+                    alt="avatar image"
+                    height="96"
+                    title="Suspect {{ entry.modCase.userId }}"
+                    onerror="this.src='/assets/img/default_profile.png';"
+                />
+                <img
+                    src="{{ entry.moderator?.imageUrl }}"
+                    class="rounded-circle z-depth-0 mod-image"
+                    alt="avatar image"
+                    height="40"
+                    title="Moderator {{ entry.modCase.modId }}"
+                    onerror="this.src='/assets/img/default_profile.png';"
+                />
+            </div>
+            <div class="flex-shrink-1 d-flex flex-column flex-wrap">
+                <!-- Title -->    
+                <h4 title="{{ entry.modCase.title }}" style="margin-bottom: unset;">
+                    <span class="badge mr-1"
+                     [ngClass]="(entry.modCase.punishmentType === 0 || entry.modCase.punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
+                     [attr.title]="(entry.modCase.punishmentType === 0 || entry.modCase.punishmentActive === true) ? '' : 'This punishment is expired.'">
+                        {{ entry.modCase.punishment }}
+                    </span>
+                    {{ entry.suspect?.username || entry.modCase.username }}<ng-container *ngIf="entry.modCase.discriminator || entry.suspect">#{{ entry.suspect?.discriminator || entry.modCase.discriminator }}</ng-container><br/>
+                    #{{ entry.modCase.caseId }} - {{ entry.modCase.title.length > 35 ? entry.modCase.title.slice(0, 35) + ' [...]' : entry.modCase.title }}
+                </h4>
+
+                <!-- Labels -->
+                <div class="row ml-1 mb-1" title="The case labels">
+                    <div class="d-flex flex-wrap">
+                        <span *ngFor="let label of entry.modCase.labels">
+                            <span class="badge badge-pill badge-info mr-1">{{ label }}</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Text -->
+                <span title="{{ entry.modCase.description }}" style="word-wrap: break-word;">{{ entry.modCase.description.length > 50 ? entry.modCase.description.slice(0, 50) + ' [...]' : entry.modCase.description }}</span>
+            </div>
+            <div class="flex-grow-1"></div>
+            <div class="d-flex flex-column align-content-center">
+                <span class="text-black-50" style="text-align: right;">
+                    Created: {{ entry.modCase.createdAt | date:'d. MMMM Y'  }}
+                </span>
+                <span class="text-black-50" style="text-align: right;" *ngIf="entry.modCase.punishmentActive && entry.modCase.punishedUntil">
+                    Until: {{ entry.modCase.punishedUntil | date:'d. MMMM Y'  }}
+                </span>
+                <div class="flex-grow-1"></div>
+                <!-- Button -->
+                <div class="btn btn-orange align-self-end flex-shrink-0">VIEW DETAILS</div>
+            </div>
+        </div>
+    </div>
+</a>

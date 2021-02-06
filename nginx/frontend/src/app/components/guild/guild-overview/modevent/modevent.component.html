@@ -1,0 +1,28 @@
+<div class="moderation mb-2 p-3 d-flex flex-column"
+    [class.moderation-big]="moderationBig"
+    (click)="collapse()">
+    <div class="d-flex flex-row" style="align-items: center">
+        <i class="{{ iconsMap[moderation.autoModerationType] }} mr-2"></i>
+        <span>{{ moderation.username }}#{{ moderation.discriminator }}
+            <span class="text-black-50">({{ moderation.userId }})</span>
+            <span style="color: red"> {{ eventsMap[moderation.autoModerationType] }}. </span>
+            <span>{{ actionsMap[moderation.autoModerationAction] }}.</span>
+        </span>
+        <div class="flex-grow-1"></div>
+        <a (click)="this.router.navigate(['guilds', moderation.guildId, 'cases', moderation.associatedCaseId])"
+            *ngIf="moderation.associatedCaseId" >
+            <span class="badge bg-primary">See case</span>
+        </a>
+    </div>
+    <div class="collapse" id="collapse-{{ moderation.id }}">
+        <div class="ml-3 mt-3">
+            <i class="fas fa-quote-right fa-2x"></i> <span> {{ moderation.messageContent }}</span>
+            <hr/>
+            <div class="d-flex flex-row">
+                <small class="text-black-50">MessageId: {{ moderation.messageId }}</small>
+                <div class="flex-grow-1"></div>
+                <small class="text-black-50">Timestamp (UTC): {{ moderation.createdAt | date:'dd.MM.Y HH:mm:ss' }}</small>
+            </div>
+        </div>
+    </div>
+</div>
