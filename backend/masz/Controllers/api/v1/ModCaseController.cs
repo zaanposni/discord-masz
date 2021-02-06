@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -403,7 +404,7 @@ namespace masz.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllItems([FromRoute] string guildid) 
+        public async Task<IActionResult> GetAllItems([FromRoute] string guildid, [FromQuery][Range(0, int.MaxValue)] int startPage=0) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -428,10 +429,10 @@ namespace masz.Controllers
 
             List<ModCase> modCases = new List<ModCase>();
             if (String.IsNullOrEmpty(userOnly)) {
-                modCases = await database.SelectAllModCasesForGuild(guildid);       
+                modCases = await database.SelectAllModCasesForGuild(guildid, startPage, 20);       
             }
             else {
-                modCases = await database.SelectAllModcasesForSpecificUserOnGuild(guildid, currentUser.Id);  
+                modCases = await database.SelectAllModcasesForSpecificUserOnGuild(guildid, currentUser.Id, startPage, 20);  
             }
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCases.");

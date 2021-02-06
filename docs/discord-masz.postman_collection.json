@@ -221,7 +221,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}",
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}?startPage=0",
 									"host": [
 										"{{url}}"
 									],
@@ -230,6 +230,12 @@
 										"v1",
 										"modcases",
 										"{{guildid}}"
+									],
+									"query": [
+										{
+											"key": "startPage",
+											"value": "0"
+										}
 									]
 								}
 							},
@@ -250,7 +256,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/guilds/{{guildid}}/modcasetable",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/modcasetable?startPage=0&search=hi",
 									"host": [
 										"{{url}}"
 									],
@@ -260,6 +266,16 @@
 										"guilds",
 										"{{guildid}}",
 										"modcasetable"
+									],
+									"query": [
+										{
+											"key": "startPage",
+											"value": "0"
+										},
+										{
+											"key": "search",
+											"value": "hi"
+										}
 									]
 								}
 							},
@@ -280,7 +296,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/guilds/{{guildid}}/punishmenttable",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/punishmenttable?startPage=0&search=hi",
 									"host": [
 										"{{url}}"
 									],
@@ -290,6 +306,16 @@
 										"guilds",
 										"{{guildid}}",
 										"punishmenttable"
+									],
+									"query": [
+										{
+											"key": "startPage",
+											"value": "0"
+										},
+										{
+											"key": "search",
+											"value": "hi"
+										}
 									]
 								}
 							},
@@ -679,7 +705,7 @@
 									"variable": [
 										{
 											"key": "userid",
-											"value": "382991040975732747"
+											"value": "749886323380453438"
 										}
 									]
 								}

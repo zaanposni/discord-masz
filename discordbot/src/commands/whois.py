@@ -3,33 +3,27 @@ import re
 from datetime import datetime
 
 from discord.ext import commands
-from discord import Embed, Member
+from discord import Embed, Member, User
 from discord.errors import NotFound
 
 from data import get_modcases_by_user_and_guild, get_cached_guild_config
 from .checks import registered_guild_and_admin_or_mod_only
 
-regex = re.compile(r"^[0-9]{18}$")
 
 @commands.command(help="Whois information about an user.")
 @registered_guild_and_admin_or_mod_only()
-async def whois(ctx, userid):
-    if not userid:
-        return await ctx.send("Please use `whois <userid>`.")
-    if not regex.match(userid):
-        return await ctx.send("Please use `whois <userid>`.")
-    
+async def whois(ctx, user: User):
     try:
-        member = await ctx.guild.fetch_member(userid)
+        member = await ctx.guild.fetch_member(user.id)
     except NotFound:
-        member = await ctx.bot.fetch_user(userid)
+        member = user
     
-    cases = await get_modcases_by_user_and_guild(ctx.guild.id, userid)
+    cases = await get_modcases_by_user_and_guild(ctx.guild.id, user.id)
     active_punishments = [case for case in cases if case["PunishmentActive"]]
 
-    embed = Embed(description=f"<@{userid}>")    
+    embed = Embed(description=f"<@{user.id}>")    
     embed.timestamp = datetime.now()
-    embed.set_footer(text=f"UserId: {userid}")
+    embed.set_footer(text=f"UserId: {user.id}")
     
     if member:
         if isinstance(member, Member):
@@ -84,3 +78,10 @@ async def whois(ctx, userid):
         embed.add_field(name=f"Cases [0]", value="There are no cases for this user.", inline=False)
 
     await ctx.send(embed=embed)
+
+@whois.error
+async def whois_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        await ctx.send('I could not find that user...')
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send(r"Please use \>whois @user")

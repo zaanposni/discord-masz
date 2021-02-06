@@ -79,6 +79,16 @@ namespace masz.Services
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
 
+        public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize)
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.CreatedAt).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
+        }
+
+        public async Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize)
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CreatedAt).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
+        }
+
         public async Task<List<ModCase>> SelectAllModCasesWithActivePunishmentForGuild(string guildId)
         {
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.PunishmentActive == true).ToListAsync();

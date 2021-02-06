@@ -9,7 +9,7 @@ namespace masz.Models
     public class DiscordApiRatelimit
     {
         public int Remaining { get; set; }
-        public int ResetsAt { get; set; }
+        public DateTime ResetsAt { get; set; }
 
         public DiscordApiRatelimit(IRestResponse response) {
             var limit = response.Headers.Where(x => x.Name == "x-ratelimit-remaining").Select(x => x.Value).FirstOrDefault();
@@ -18,11 +18,12 @@ namespace masz.Models
             } else {
                 this.Remaining = 1;
             }
-            var reset = response.Headers.Where(x => x.Name == "x-ratelimit-reset").Select(x => x.Value).FirstOrDefault();
+            var reset = response.Headers.Where(x => x.Name == "x-ratelimit-reset-after").Select(x => x.Value).FirstOrDefault();
+            var now = DateTime.UtcNow;
             if (reset != null) {
-                this.ResetsAt = Int32.Parse(reset.ToString());
+                this.ResetsAt = now.AddSeconds(Int32.Parse(reset.ToString()));
             } else {
-                this.ResetsAt = 0;
+                this.ResetsAt = now;
             }
         }
     }

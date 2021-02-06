@@ -21,6 +21,8 @@ namespace masz.Services
         Task<ModCase> SelectSpecificModCase(string guildId, string modCaseId);
         Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId);
         Task<List<ModCase>> SelectAllModCasesForGuild(string guildId);
+        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize);
+        Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize);
         Task<List<ModCase>> SelectAllModCasesWithActivePunishmentForGuild(string guildId);
         Task<List<ModCase>> SelectAllModCasesThatHaveParallelPunishment(ModCase modCase);
         Task<List<ModCase>> SelectAllModCasesWithActivePunishments();

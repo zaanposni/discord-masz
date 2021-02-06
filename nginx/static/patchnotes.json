@@ -7,7 +7,11 @@
       "Rearranged buttons in case creation.",
       "Added adminstats endpoint for internal insights.",
       "Fixed html escape issue in case creation.",
-      "Added bot commands to create cases via discord."
+      "Added bot commands to create cases via discord.",
+      "Now allowing @user, username and id in $whois command.",
+      "Updated discord.py to version 1.6",
+      "Improved backend caching and ratelimit handling.",
+      "Added backend modcase search."
     ]
   },
   {
