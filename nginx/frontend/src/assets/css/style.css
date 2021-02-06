@@ -67,25 +67,6 @@ hr.spacer-short {
     max-width: 12%;
 }
 
-.moderations {
-    max-width: 90%;
-    margin: auto;
-}
-
-.moderation {
-    -webkit-transition: transform 0.3s ease-in;
-    -moz-transition: transform 0.3s ease-in;
-    transition: transform 0.3s ease-in;
-}
-
-.moderation:hover, .moderation-big {
-    transform: scaleX(1.05);
-    -moz-transform: scaleX(1.05);
-    -webkit-transform: scaleX(1.05);
-    -o-transform: scaleX(1.05);
-    -ms-transform: scaleX(1.05);
-}
-
 .mod-field {
     position: relative;
     display: -ms-flexbox;
