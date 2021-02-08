@@ -21,6 +21,7 @@ namespace masz.data
         public DbSet<ModCaseComment> ModCaseComments { get; set; }
         public DbSet<AutoModerationEvent> AutoModerationEvents { get; set; }
         public DbSet<AutoModerationConfig> AutoModerationConfigs { get; set; }
+        public DbSet<CaseTemplate> CaseTemplates { get; set; }
 
         public void Configure(EntityTypeBuilder<ModCase> builder) {
             builder.Property(u => u.CreatedAt).IsRequired(true).HasDefaultValueSql("now()");
@@ -53,6 +54,12 @@ namespace masz.data
                     v => string.Join(',', v),
                     v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
 
+            modelBuilder.Entity<CaseTemplate>()
+                .Property(e => e.CaseLabels)
+                .HasConversion(
+                    v => string.Join(',', v),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+            
             modelBuilder.Entity<AutoModerationConfig>()
                 .Property(e => e.IgnoreChannels)
                 .HasConversion(

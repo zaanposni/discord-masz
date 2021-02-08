@@ -16,7 +16,7 @@ The core of this tool are the **modcases**, a case represents a rule violation, 
 Register **webhooks to notify** your staff or members about anything that happens on MASZ.<br/>
 **Upload files** as prove or post a **comment** in order to support the punishment.<br/>
 On **the website** all members can login and view modcases registered on their name and also comment on it.<br/>
-Furthermore there is a **discord bot** that can be used to **quickly check an users stats and moderation events**.<br/>
+Furthermore there is a **discord bot** that can be used to **quickly check a users stats and moderation events**.<br/>
 
 # Used by
 

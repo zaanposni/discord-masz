@@ -10,7 +10,7 @@ from data import get_modcases_by_user_and_guild, get_cached_guild_config
 from .checks import registered_guild_and_admin_or_mod_only
 
 
-@commands.command(help="Whois information about an user.")
+@commands.command(help="Whois information about a user.")
 @registered_guild_and_admin_or_mod_only()
 async def whois(ctx, user: User):
     try:

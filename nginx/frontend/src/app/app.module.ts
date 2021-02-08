@@ -37,6 +37,9 @@ import { CaseCardComponent } from './components/guild/guild-overview/case-card/c
 import { CaseTableComponent } from './components/guild/guild-overview/case-table/case-table.component';
 import { ModeventsTableComponent } from './components/guild/guild-overview/modevents-table/modevents-table.component';
 import { ModeventComponent } from './components/guild/guild-overview/modevent/modevent.component';
+import { DonateComponent } from './components/information/donate/donate.component';
+import { ProfileViewComponent } from './components/profile/profile-view/profile-view.component';
+import { TemplateCardComponent } from './components/misc/template-card/template-card.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,9 @@ import { ModeventComponent } from './components/guild/guild-overview/modevent/mo
     CaseTableComponent,
     ModeventsTableComponent,
     ModeventComponent,
+    DonateComponent,
+    ProfileViewComponent,
+    TemplateCardComponent,
   ],
   imports: [
     CommonModule,

@@ -1,12 +1,18 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
+import { AppUser } from 'src/app/models/AppUser';
+import { CaseTemplate } from 'src/app/models/CaseTemplate';
 import { DiscordUser } from 'src/app/models/DiscordUser';
 import { GuildMember } from 'src/app/models/GuildMember';
+import { TemplateView } from 'src/app/models/TemplateView';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { CookieTrackerService } from 'src/app/services/cookie-tracker.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-case-new',
@@ -15,6 +21,8 @@ import { CookieTrackerService } from 'src/app/services/cookie-tracker.service';
 })
 export class CaseNewComponent implements OnInit {
 
+  currentUser: AppUser;
+  
   showSuggestions: boolean = false;
 
   loading: boolean = true;
@@ -32,25 +40,148 @@ export class CaseNewComponent implements OnInit {
   labels: string[] = [];
   fileToUpload!: File | null;
   filesToUpload: File[] = [];
+
   members: DiscordUser[] = [];
   completeMemberList: GuildMember[] = [];
   lastMemberPage = 0;
 
+  templatesLoading: boolean = true;
+  showTemplates: TemplateView[] = [];
+  caseTemplates: TemplateView[] = [];
+  templateSearch: string;
+  onlyOwnTemplates: boolean = true;
+
   titleIsInvalid: boolean = false;
 
-  constructor(private toastr: ToastrService, private api: ApiService, private route: ActivatedRoute, private router: Router, public cookieTracker: CookieTrackerService) { }
+  constructor(private toastr: ToastrService, private api: ApiService, private route: ActivatedRoute, private router: Router, public cookieTracker: CookieTrackerService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.guildId = this.route.snapshot.paramMap.get('guildid');
+    this.guildId = this.route.snapshot.paramMap.get('guildid');    
+    this.auth.getUserProfile().subscribe((data) => {
+      this.currentUser = data;
+    });
     this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`).subscribe((data) => {
       this.completeMemberList = data;
       this.scrollEnd();
     }, (error) => {
-      this.toastr.error("Failed to load member list.");
+      this.toastr.error('Failed to load member list.');
     }, () => {
       this.loading = false;
     });
     this.cookieTracker.currentSettings.subscribe((data) => this.showSuggestions = data.showSuggestions);
+    this.reloadTemplates(null);
+
+    let templateId = this.route.snapshot.queryParamMap.get('templateid');
+    if (templateId) {
+      this.api.getSimpleData(`/templates/${templateId}`).subscribe((data) => {
+        this.applyTemplate(data);
+      }, () => {
+        this.toastr.error('Failed to apply template.', 'Something went wrong');
+      })
+    }
+  }
+
+  reloadTemplates(event: any) {
+    this.templatesLoading = true;
+    this.showTemplates = [];
+    this.api.getSimpleData(`/templatesview`).toPromise().then((data) => {
+      this.templatesLoading = false;
+      this.caseTemplates = data;
+      this.applyTemplateFilter();
+    }, () => {
+      this.toastr.error('Failed to load templates.', 'Something went wrong');
+      this.templatesLoading = false;
+    });
+  }
+
+  applyTemplateFilter() {
+    let filtered = this.caseTemplates;
+    if (this.onlyOwnTemplates) {
+      filtered = filtered.filter(x => x?.caseTemplate?.userId == this.currentUser?.discordUser?.id);
+    }
+    if (this.templateSearch) {
+      filtered = filtered.filter(x => 
+        x?.caseTemplate?.caseTitle?.includes(this.templateSearch) ||
+        x?.caseTemplate?.caseDescription?.includes(this.templateSearch) ||
+        x?.caseTemplate?.casePunishment?.includes(this.templateSearch) ||
+        x?.caseTemplate?.caseLabels?.includes(this.templateSearch) ||
+        x?.caseTemplate?.templateName?.includes(this.templateSearch)
+      );
+    }
+    this.showTemplates = filtered;
+  }
+
+  applyTemplate(template: CaseTemplate) {
+
+    this.labels = template.caseLabels;
+    this.title = template.caseTitle;
+    this.description = template.caseDescription;
+    this.punishedUntil =  template.casePunishedUntil ? moment.utc(template.casePunishedUntil).toISOString() : null;
+    this.dmNotification = template.announceDm;
+    this.publicNotification = template.sendPublicNotification;
+    this.handlePunishment = template.handlePunishment;
+
+    for (let key in this.punishmentMap) {
+      if (this.punishmentMap[key]['punishment'] == template.casePunishment) {
+        this.punishment = key;
+        break;
+      }
+    }
+
+    this.toastr.success(`Applied template \'${template.templateName}\'`);
+  }
+
+  saveAsTemplate() {
+    let visibilities: { [key: string]: string } = {
+      '0': 'Everyone',
+      '1': 'Only Mods of this guild',
+      '2': 'Only me'
+    };
+    Swal.fire({
+      title: 'Choose a visibility',
+      text: `Who should see your template?`,
+      icon: 'question',
+      input: 'select',
+      inputOptions: visibilities,
+      confirmButtonText: 'Choose',
+      showCancelButton: true
+    }).then((dialog) => {
+      if (dialog.isConfirmed) {
+        let visibility = dialog.value;
+        Swal.fire({
+          title: 'Please name your template',
+          icon: 'question',
+          input: 'text',
+          confirmButtonText: 'Create',
+          showCancelButton: true
+        }).then((dialog) => {
+          if (dialog.isConfirmed) {
+            let data = {
+              'templatename': dialog.value?.trim() !== '' ? dialog.value : this.title,
+              'viewPermission': visibility,
+              'title': this.title,
+              'description': this.description,
+              'punishment': this.punishmentMap[this.punishment]['punishment'],
+              'punishedUntil': (this.punishment === '2' || this.punishment === '5') ? new Date(this.punishedUntil).toISOString() : null,
+              'punishmentType': this.punishmentMap[this.punishment]['punishmentType'],
+              'labels': this.labels,
+              'sendPublicNotification': this.publicNotification,
+              'handlePunishment': this.handlePunishment,
+              'announceDm': this.dmNotification
+            }
+
+            let params = new HttpParams()
+              .set('guildid', this.guildId);
+            this.api.postSimpleData('/templates', data, params).subscribe(() => {
+              this.toastr.success('Template created.');
+              this.reloadTemplates(null);
+            }, () => {
+              this.toastr.error('Failed to create template', 'Something went wrong.');
+            })
+          }
+        });
+      }
+    });
   }
 
   hideSuggestions() {

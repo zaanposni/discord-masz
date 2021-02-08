@@ -798,51 +798,6 @@
 					]
 				},
 				{
-					"name": "stats",
-					"item": [
-						{
-							"name": "stats",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/api/v1/stats/all",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"stats",
-										"all"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "stats/{guildid}",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/api/v1/stats/{{guildid}}",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"stats",
-										"{{guildid}}"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "status",
 					"item": [
 						{
@@ -1172,6 +1127,140 @@
 										"guilds",
 										"{{guildid}}",
 										"automoderationconfig"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "tempaltes",
+					"item": [
+						{
+							"name": "get template",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": "masz_access_token={{masz_access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/templates/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"templates",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete template",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": "masz_access_token={{masz_access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/templates/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"templates",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "templatesview",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": "masz_access_token={{masz_access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/templatesview",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"templatesview"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create template",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"templatename\": \"cool template\",\r\n    \"viewPermission\": 1,\r\n    \"title\": \"important case\",\r\n    \"description\": \"important description\",\r\n    \"Punishment\": \"Warn\",\r\n    \"Labels\": [\"hi\", \"label,\"],\r\n    \"PunishmentType\": 0,\r\n    \"PunishedUntil\": null,\r\n    \"sendPublicNotification\": true,\r\n    \"handlePunishment\": false,\r\n    \"announceDm\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/templates?guildid={{guildid}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"templates"
+									],
+									"query": [
+										{
+											"key": "guildid",
+											"value": "{{guildid}}"
+										}
 									]
 								}
 							},

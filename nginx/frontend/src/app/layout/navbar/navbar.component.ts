@@ -11,15 +11,20 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   currentUser!: Observable<AppUser>;
+  userId: string;
 
   constructor(private authService: AuthService, public router: Router) { }
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
-      this.currentUser = this.authService.getUserProfile().pipe((data) => {
-        return data;
+      this.currentUser = this.authService.getUserProfile();
+      this.currentUser.subscribe((data) => {
+        this.userId = data?.discordUser?.id;
       });
     }
   }
-
+  	
+  navigateToProfile() {
+    this.router.navigate(['profile', this.userId]);
+  }
 }

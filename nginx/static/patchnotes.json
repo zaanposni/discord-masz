@@ -12,7 +12,9 @@
       "Updated discord.py to version 1.6",
       "Improved backend caching and ratelimit handling.",
       "Added backend modcase search.",
-      "Reworked case table and search."
+      "Reworked case table and search.",
+      "Removed stats endpoint.",
+      "Added case templates."
     ]
   },
   {

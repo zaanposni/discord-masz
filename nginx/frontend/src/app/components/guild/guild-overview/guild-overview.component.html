@@ -1,10 +1,10 @@
 <!-- Guild -->
 <div class="d-flex align-items-lg-center mb-3" *ngIf="(this.guild | async)">
     <img
-            src="https://cdn.discordapp.com/icons/{{ (this.guild | async)?.id }}/{{ (this.guild | async)?.icon }}.png"
-            class="rounded-circle z-depth-0 mr-1"
-            alt="guild icon"
-            height="35"
+        src="https://cdn.discordapp.com/icons/{{ (this.guild | async)?.id }}/{{ (this.guild | async)?.icon }}.png"
+        class="rounded-circle z-depth-0 mr-1"
+        alt="guild icon"
+        height="35"
     />
     <span class="font-weight-bold">
         Guild: {{ (this.guild | async)?.name }}

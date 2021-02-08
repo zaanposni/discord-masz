@@ -1,0 +1,37 @@
+<div class="pictures-parent">
+    <img *ngIf="template?.guild"
+        src="https://cdn.discordapp.com/icons/{{ template.guild.id }}/{{ template.guild.icon }}.png"
+        class="rounded-circle z-depth-0 guild-image"
+        alt="guild icon"
+        height="32"
+        onerror="this.src='/assets/img/default_profile.png';"
+    />
+    <br/>
+    <i class="fa fa-trash delete-icon crs-pnt" *ngIf="template?.caseTemplate?.userId === userId" (click)="deleteTemplate()"></i>
+</div>
+<div class="card-container">
+    <div class="card-container-body d-flex flex-column flex-wrap ml-2 crs-pnt" (click)="this.useTemplate.emit('use')">
+        <div class="d-flex flex-row flex-wrap align-items-baseline">
+            <h5 class="mr-2">
+                <span class="badge badge-danger">
+                    {{ template.caseTemplate.casePunishment }}
+                </span>
+            </h5>
+            <span>{{ template.caseTemplate.templateName }}</span>
+        </div>
+        <!-- Labels -->
+        <div class="row ml-1">
+            <div class="d-flex flex-wrap">
+                <span *ngFor="let label of template.caseTemplate.caseLabels">
+                    <span class="badge badge-pill badge-info mr-1">{{ label }}</span>
+                </span>
+            </div>
+        </div>
+        <span style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all" class="font-weight-bold">
+            {{ template.caseTemplate.caseTitle.length > 35 ? template.caseTemplate.caseTitle.slice(0, 35) + ' [...]' : template.caseTemplate.caseTitle }}
+        </span>
+        <span style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all">
+            {{ template.caseTemplate.caseDescription.length > 35 ? template.caseTemplate.caseDescription.slice(0, 35).replace('\n', ' ') + ' [...]' : template.caseTemplate.caseDescription.replace('\n', ' ') }}
+        </span>
+    </div>
+</div>

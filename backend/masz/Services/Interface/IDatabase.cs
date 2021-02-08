@@ -54,5 +54,11 @@ namespace masz.Services
         void UpdateModCaseComment(ModCaseComment comment);
         void DeleteSpecificModCaseComment(ModCaseComment comment);
         Task<ModCaseComment> SelectSpecificModCaseComment(int commentId);
+
+        Task SaveCaseTemplate(CaseTemplate template);
+        void DeleteSpecificCaseTemplate(CaseTemplate template);
+        Task<CaseTemplate> GetSpecificCaseTemplate(string templateId);
+        Task<List<CaseTemplate>> GetAllCaseTemplates();
+        Task<List<CaseTemplate>> GetAllTemplatesFromUser(string userId);
     }
 }

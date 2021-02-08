@@ -126,7 +126,7 @@ namespace masz.Services
                 else
                 {
                     GuildMember guildMember = await discord.FetchMemberInfo(guildId, DiscordUser.Id);
-                    GuildMemberships.Add(guildId, guildMember);
+                    GuildMemberships[guildId] = guildMember;
                     return guildMember;
                 }
             }

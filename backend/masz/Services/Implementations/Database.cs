@@ -247,5 +247,36 @@ namespace masz.Services
         {
             return await context.ModCaseComments.AsQueryable().FirstOrDefaultAsync(c => c.Id == commentId);
         }
+
+        // ==================================================================================
+        // 
+        // CaseTemplates
+        //
+        // ==================================================================================
+
+        public async Task SaveCaseTemplate(CaseTemplate template)
+        {
+            await context.CaseTemplates.AddAsync(template);
+        }
+
+        public void DeleteSpecificCaseTemplate(CaseTemplate template)
+        {
+            context.CaseTemplates.Remove(template);
+        }
+
+        public async Task<CaseTemplate> GetSpecificCaseTemplate(string templateId)
+        {
+            return await context.CaseTemplates.AsQueryable().FirstOrDefaultAsync(x => x.Id.ToString() == templateId);
+        }
+
+        public async Task<List<CaseTemplate>> GetAllCaseTemplates()
+        {
+            return await context.CaseTemplates.AsQueryable().OrderByDescending(x => x.CreatedAt).ToListAsync();
+        }
+
+        public async Task<List<CaseTemplate>> GetAllTemplatesFromUser(string userId)
+        {
+            return await context.CaseTemplates.AsQueryable().Where(x => x.UserId == userId).OrderByDescending(x => x.CreatedAt).ToListAsync();
+        }
     }
 }
