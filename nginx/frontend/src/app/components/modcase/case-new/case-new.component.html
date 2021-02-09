@@ -15,7 +15,7 @@
         </div>
     </div>
     <div style="overflow: auto; white-space: nowrap;" class="pr-3 pl-3 pb-3">
-        <app-template-card class="flex-shrink-0 flex-grow-0 d-inline-block mr-4" [template]="template" [userId]="currentUser?.discordUser?.id"
+        <app-template-card class="flex-shrink-0 flex-grow-0 d-inline-block mr-4" [template]="template" [userId]="currentUser?.discordUser?.id" [showCreator]="true"
          (reload)="reloadTemplates($event)" (useTemplate)="applyTemplate(template?.caseTemplate)"
          *ngFor="let template of this.showTemplates">
         </app-template-card>

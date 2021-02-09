@@ -14,6 +14,7 @@ export class TemplateCardComponent implements OnInit {
 
   @Input() template: TemplateView;
   @Input() userId: string;
+  @Input() showCreator: boolean = false;
 
   @Output() reload = new EventEmitter();
   @Output() useTemplate = new EventEmitter();

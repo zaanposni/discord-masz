@@ -4,9 +4,15 @@
     left: 0;
 }
 
-.guild-image {
+.first-image {
     position: relative;
     top: 20px;
+    left: -12px;
+}
+
+.second-image {
+    position: absolute;
+    top: 56px;
     left: -12px;
 }
 
@@ -16,8 +22,4 @@
     background-color: rgb(172, 0, 15);
     box-shadow: 0px 0px 2px rgb(172, 0, 15);
     padding: 0.5em 0.6em;
-
-    position: absolute;
-    top: 56px;
-    left: -12px;
 }

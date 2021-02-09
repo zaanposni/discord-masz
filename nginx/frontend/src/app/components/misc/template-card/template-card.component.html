@@ -1,13 +1,22 @@
 <div class="pictures-parent">
     <img *ngIf="template?.guild"
         src="https://cdn.discordapp.com/icons/{{ template.guild.id }}/{{ template.guild.icon }}.png"
-        class="rounded-circle z-depth-0 guild-image"
+        class="rounded-circle z-depth-0 first-image"
+        title="Guild: {{ template?.guild?.name }}"
         alt="guild icon"
         height="32"
         onerror="this.src='/assets/img/default_profile.png';"
     />
-    <br/>
-    <i class="fa fa-trash delete-icon crs-pnt" *ngIf="template?.caseTemplate?.userId === userId" (click)="deleteTemplate()"></i>
+    <img *ngIf="template?.creator && this.showCreator && template?.caseTemplate?.userId !== userId"
+        src="{{ template?.creator?.imageUrl }}"
+        class="rounded-circle z-depth-0 second-image"
+        title="Creator: {{ template?.creator?.username }}#{{ template?.creator?.discriminator }}"
+        alt="creator icon"
+        height="32"
+        onerror="this.src='/assets/img/default_profile.png';"
+    />
+    <i class="fa fa-trash delete-icon second-image crs-pnt" *ngIf="template?.caseTemplate?.userId === userId"
+     (click)="deleteTemplate()"></i>
 </div>
 <div class="card-container">
     <div class="card-container-body d-flex flex-column flex-wrap ml-2 crs-pnt" (click)="this.useTemplate.emit('use')">
