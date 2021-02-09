@@ -10,7 +10,7 @@
           alt="Chat on Discord"></a>
 </p>
 
-MASZ is a moderation tool from **discord moderators** for **discord moderators**.<br/>
+MASZ is a moderation tool from **discord moderators for discord moderators**.<br/>
 Use **automoderation**, **temporary punishments**, **moderation events**, **webhooks**, **fileuploads** or **the discord bot** to keep track of anything that happens on your server.<br/>
 On **the website** all members can login and view moderation events registered on their name and also comment on it.<br/>
 
