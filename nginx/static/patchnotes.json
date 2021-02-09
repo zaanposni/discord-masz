@@ -14,7 +14,8 @@
       "Added backend modcase search.",
       "Reworked case table and search.",
       "Removed stats endpoint.",
-      "Added case templates."
+      "Added case templates.",
+      "Improved filesystem security."
     ]
   },
   {

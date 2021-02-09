@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using masz.data;
 using masz.Dtos.DiscordAPIResponses;
@@ -84,6 +85,22 @@ namespace masz.Controllers
             return Ok();
         }
 
+        private string RemoveSpecialCharacters(string str)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < str.Length; i++)
+            {
+                if ((str[i] >= '0' && str[i] <= '9')
+                    || (str[i] >= 'A' && str[i] <= 'z'
+                        || (str[i] == '.' || str[i] == '_')))
+                    {
+                        sb.Append(str[i]);
+                    }
+            }
+
+            return sb.ToString();
+        }
+
         [HttpGet("{filename}")]
         public async Task<IActionResult> GetSpecificItem([FromRoute] string guildid, [FromRoute] string caseid, [FromRoute] string filename) 
         {
@@ -110,7 +127,12 @@ namespace masz.Controllers
             }
             // ========================================================
 
-            var filePath = Path.Combine(config.Value.AbsolutePathToFileUpload, guildid, caseid, filename);
+            var filePath = Path.Combine(config.Value.AbsolutePathToFileUpload, guildid, caseid, RemoveSpecialCharacters(filename));
+            // https://stackoverflow.com/a/1321535/9850709
+            if (Path.GetFullPath(filePath) != filePath) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Invalid path.");
+                return BadRequest();
+            }
             byte[] fileData = filesHandler.ReadFile(filePath);
             if (fileData == null)
             {
