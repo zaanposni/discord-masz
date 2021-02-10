@@ -13,9 +13,14 @@
       "Improved backend caching and ratelimit handling.",
       "Added backend modcase search.",
       "Reworked case table and search.",
+      "Fixed exposed docker port.",
       "Removed stats endpoint.",
       "Added case templates.",
-      "Improved filesystem security."
+      "Improved filesystem security.",
+      "Changed font to 'Ubuntu'.",
+      "Added donation tab.",
+      "Now showing navbar without login.",
+      "Reworked index page."
     ]
   },
   {

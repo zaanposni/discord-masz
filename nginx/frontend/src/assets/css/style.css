@@ -1,5 +1,10 @@
 @import "~@danielmoncada/angular-datetime-picker/assets/style/picker.min.css";
 
+html *
+{
+    font-family: 'Ubuntu', Roboto, sans-serif;
+}
+
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
