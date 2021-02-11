@@ -9,7 +9,7 @@
       <img src="https://img.shields.io/discord/779262870016884756?logo=discord"
           alt="Chat on Discord">
   </a>
-  <a href="https://demo.masz.zaanposni.com">
+  <a href="https://demomasz.zaanposni.com">
       <img src="https://img.shields.io/badge/demo-online-%234c1"
           alt="Online demo">
   </a>
@@ -21,7 +21,7 @@ On **the website** all members can login and view moderation events registered o
 
 # Demo <img src="https://img.shields.io/badge/demo-online-%234c1" alt="Online demo">
 
-Visit [https://demo.masz.zaanposni.com](https://demo.masz.zaanposni.com) for a demo.<br/>
+Visit [https://demomasz.zaanposni.com](https://demomasz.zaanposni.com) for a demo.<br/>
 Furthermore, join the demo guild [https://discord.gg/7ubU6aWX9c](https://discord.gg/7ubU6aWX9c).
 
 # Used by
