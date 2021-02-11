@@ -10,106 +10,26 @@
         </a>
     </div>
 
-    <div class="d-flex p-2 justify-content-center flex-wrap" id="card-overview">
-        <div class="card">
-            <div class="view overlay">
-                <img class="card-img-top" src="assets/img/masz.png"
-                        alt="Card image cap">
-                <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
+    <div style="height: 200px"></div>
+
+    <div class="infocontainer m-auto">
+        <div class="info mb-4" *ngFor="let card of (this.infoPanels | async); let i = index">
+            <div class="info-image" *ngIf="i % 2 === 0">
+                <img src="{{ card.imageSrc }}" alt="{{ card.imageAlt }}" />
             </div>
-            <div class="card-body">
-                <h5 class="card-title">MASZ - A Discord moderation tool</h5>
-                <p class="card-text">
-                    MASZ is a management and moderation overview tool for <span class="font-weight-bold">Discord Moderators and Admins</span>.
-                    Keep track of all <span class="font-weight-bold">moderation events</span> on your server, <span class="font-weight-bold">search reliably</span> for entries and be one step ahead of trolls and rule breakers.
-                </p>
+            <div class="info-text">
+                <h1>{{ card.title }}</h1>
+                <p>{{ card.description }}</p>
+                <div class="d-flex flex-row w-100" *ngIf="card.buttonText">
+                    <div class="flex-grow-1"></div>
+                    <a type="button" class="btn btn-purple" href="{{ card.buttonHref }}" target="_blank">
+                        <i class="fab fa-github" aria-hidden="true"></i> {{ card.buttonText }}
+                    </a>
+                    <div class="flex-grow-1"></div>
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="view overlay">
-                <img class="card-img-top" src="assets/img/clipboard.png"
-                        alt="Card image cap">
-                <a href="https://github.com/zaanposni/discord-masz/tree/master/docs">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Modcases</h5>
-                <p class="card-text">
-                    The core of this tool are the modcases,
-                    a case represents a <span class="font-weight-bold">rule violation</span>, an <span class="font-weight-bold">important note</span> or similar.
-                    The server members and your moderators can be notified individually upon case creation.
-                </p>
-                <!-- Button -->
-                <button onclick="window.location.href = 'https://github.com/zaanposni/discord-masz#preview'" type="button" class="btn btn-purple">
-                    <i class="fab fa-github" aria-hidden="true"></i> Preview
-                </button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="view overlay">
-                <img class="card-img-top" src="assets/img/bolt.png"
-                        alt="Card image cap">
-                <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Automoderation</h5>
-                <p class="card-text">Create and configure <span class="font-weight-bold">rules, filters and actions/punishments</span> for various events that happen on your server. For example you can delete the message and auto mute a user if he posts an discord invite.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="view overlay">
-                <img class="card-img-top" src="assets/img/github.png"
-                        alt="Card image cap">
-                <a href="https://github.com/zaanposni/discord-masz">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Open Source</h5>
-                <p class="card-text">The source code can be found on <span class="font-weight-bold">GitHub</span>. Feel free to check it out. <span class="font-weight-bold">Contributions</span> are welcome!</p>
-                <!-- Button -->
-                <button onclick="window.location.href = 'https://github.com/zaanposni/discord-masz'" type="button" class="btn btn-purple">
-                    <i class="fab fa-github" aria-hidden="true"></i> Read more
-                </button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="view overlay">
-                <img class="card-img-top" src="assets/img/rocket.png"
-                        alt="Card image cap">
-                <a href="https://github.com/zaanposni/discord-masz#hosting">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Easy to setup</h5>
-                <p class="card-text">The application can be hosted using <span class="font-weight-bold">Docker</span>. Follow our step by step guide to <span class="font-weight-bold">setup your own MASZ instance.</span></p>
-                <!-- Button -->
-                <button onclick="window.location.href = 'https://github.com/zaanposni/discord-masz#hosting'" type="button" class="btn btn-purple">
-                    <i class="fab fa-github" aria-hidden="true"></i> Setup guide
-                </button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="view overlay">
-                <img class="card-img-top" src="assets/img/feature.png"
-                        alt="Card image cap">
-                <a href="https://github.com/zaanposni/discord-masz/releases">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Feature rich</h5>
-                <p class="card-text">Check out the GitHub release page to stay up to date with newest features and fixes!</p>
-                <!-- Button -->
-                <button onclick="window.location.href = 'github.com/zaanposni/discord-masz/releases'" type="button" class="btn btn-purple">
-                    <i class="fab fa-github" aria-hidden="true"></i> GitHub
-                </button>
+            <div class="info-image mr-4" *ngIf="i % 2 !== 0">
+                <img src="{{ card.imageSrc }}" alt="{{ card.imageAlt }}" />
             </div>
         </div>
     </div>

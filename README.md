@@ -7,12 +7,22 @@
   <img src="https://img.shields.io/badge/using-docker-blue">
   <a href="https://discord.gg/5zjpzw6h3S">
       <img src="https://img.shields.io/discord/779262870016884756?logo=discord"
-          alt="Chat on Discord"></a>
+          alt="Chat on Discord">
+  </a>
+  <a href="https://demo.masz.zaanposni.com">
+      <img src="https://img.shields.io/badge/demo-online-%234c1"
+          alt="Online demo">
+  </a>
 </p>
 
 MASZ is a moderation tool from **discord moderators for discord moderators**.<br/>
 Use **automoderation**, **temporary punishments**, **moderation events**, **webhooks**, **fileuploads** or **the discord bot** to keep track of anything that happens on your server.<br/>
 On **the website** all members can login and view moderation events registered on their name and also comment on it.<br/>
+
+# Demo <img src="https://img.shields.io/badge/demo-online-%234c1" alt="Online demo">
+
+Visit [https://demo.masz.zaanposni.com](https://demo.masz.zaanposni.com) for a demo.<br/>
+Furthermore, join the demo guild [https://discord.gg/7ubU6aWX9c](https://discord.gg/7ubU6aWX9c).
 
 # Used by
 
