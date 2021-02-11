@@ -46,6 +46,8 @@ services:
         db:
           condition: service_healthy
     restart: unless-stopped
+    environment:
+      - ENABLE_DEMO_MODE=${ENABLE_DEMO_MODE}
     networks:
       - appnetwork
     volumes:
