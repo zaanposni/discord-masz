@@ -20,7 +20,8 @@
       "Changed font to 'Ubuntu'.",
       "Added donation tab.",
       "Now showing navbar without login.",
-      "Reworked index page."
+      "Reworked index page.",
+      "Fixed color in dark theme datepicker."
     ]
   },
   {

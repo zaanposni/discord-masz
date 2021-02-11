@@ -287,6 +287,10 @@ select:-webkit-autofill {
     color: var(--dark-text)!important;
 }
 
+.owl-dt-calendar-table .owl-dt-calendar-cell-today:not(.owl-dt-calendar-cell-selected) {
+	border-color: rgba(240, 237, 237, 0.87);
+}
+
 .case-container, .card-container {
     color: var(--dark-text);
     background-color: var(--dark-card-background);
