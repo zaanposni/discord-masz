@@ -7,16 +7,22 @@
   <img src="https://img.shields.io/badge/using-docker-blue">
   <a href="https://discord.gg/5zjpzw6h3S">
       <img src="https://img.shields.io/discord/779262870016884756?logo=discord"
-          alt="Chat on Discord"></a>
+          alt="Chat on Discord">
+  </a>
+  <a href="https://demomasz.zaanposni.com">
+      <img src="https://img.shields.io/badge/demo-online-%234c1"
+          alt="Online demo">
+  </a>
 </p>
 
-MASZ is moderation tool for **discord moderators and admins**.<br/>
-Use **automoderation**, **temporary punishments** or register **moderation events** to keep track of anything that happens on your server.<br/>
-The core of this tool are the **modcases**, a case represents a rule violation, an important note or similar.<br/>
-Register **webhooks to notify** your staff or members about anything that happens on MASZ.<br/>
-**Upload files** as prove or post a **comment** in order to support the punishment.<br/>
-On **the website** all members can login and view modcases registered on their name and also comment on it.<br/>
-Furthermore there is a **discord bot** that can be used to **quickly check an users stats and moderation events**.<br/>
+MASZ is a moderation tool from **discord moderators for discord moderators**.<br/>
+Use **automoderation**, **temporary punishments**, **moderation events**, **webhooks**, **fileuploads** or **the discord bot** to keep track of anything that happens on your server.<br/>
+On **the website** all members can login and view moderation events registered on their name and also comment on it.<br/>
+
+# Demo <img src="https://img.shields.io/badge/demo-online-%234c1" alt="Online demo">
+
+Visit [https://demomasz.zaanposni.com](https://demomasz.zaanposni.com) for a demo.<br/>
+Furthermore, join the demo guild [https://discord.gg/7ubU6aWX9c](https://discord.gg/7ubU6aWX9c).
 
 # Used by
 
@@ -26,45 +32,22 @@ Furthermore there is a **discord bot** that can be used to **quickly check an us
 
 # Preview
 
-<p>Detailed view for a single modcase</p>
-<img src="/docs/modcase.png"/>
-<p>Guild overview</p>
-<img src="/docs/modcases.png"/>
+| Guild overview  | Single moderation case  |
+| --------------- | ----------------------- |
+![](/docs/modcases.png)  |  ![](/docs/modcase.png)
 
-<details>
-  <summary>Comments on a modcase(click to reveal)</summary>
-  <img src="/docs/modcase-comments.png"/>
-</details>
-<details>
-  <summary>Modcase creation dialog(click to reveal)</summary>
-  <img src="/docs/modcasecreate.png"/>
-</details>
-<details>
-  <summary>Notification embed for your guild members and moderation team (click to reveal)</summary>
-  <img src="/docs/embed.png"/>
-</details>
-<details>
-  <summary>Discord Bot commands</summary>
-  <img src="/docs/bot-commands.png"/>
-</details>
-<details>
-  <summary>AutoModeration event log</summary>
-  <img src="/docs/automoderations.png"/>
-</details>
-<details>
-  <summary>AutoModeration configuration</summary>
-  <img src="/docs/automoderationconfig.png"/>
-</details>
+
+More previews and examples can be found at [https://github.com/zaanposni/discord-masz/tree/master/docs](https://github.com/zaanposni/discord-masz/tree/master/docs)
 
 # Hosting
 
-You can host your own instance of MASZ for free, see below for instructions. <br/>
+You can **host your own instance of MASZ for free**, see below for instructions. <br/>
 If you are not experienced enough to do so or just want to use MASZ right now, feel free to contact me. <br/>
 I will host an instance for you for a small fee. <br/>
 - Discord `zaanposni#9295`
 - Mail `me@zaanposni.com`
 
-# Setup - Selfhosting
+# Setup - Selfhosting <img src="https://img.shields.io/badge/using-docker-blue">
 
 ## TL;DR;
 

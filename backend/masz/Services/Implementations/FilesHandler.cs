@@ -69,20 +69,20 @@ namespace masz.Services
         }
 
         private static string RemoveSpecialCharacters(string str)
-    {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < str.Length; i++)
         {
-            if ((str[i] >= '0' && str[i] <= '9')
-                || (str[i] >= 'A' && str[i] <= 'z'
-                    || (str[i] == '.' || str[i] == '_')))
-                {
-                    sb.Append(str[i]);
-                }
-        }
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < str.Length; i++)
+            {
+                if ((str[i] >= '0' && str[i] <= '9')
+                    || (str[i] >= 'A' && str[i] <= 'z'
+                        || (str[i] == '.' || str[i] == '_')))
+                    {
+                        sb.Append(str[i]);
+                    }
+            }
 
-        return sb.ToString();
-    }
+            return sb.ToString();
+        }
 
         private string GetUniqueFileName(IFormFile file)
         {

@@ -1,0 +1,59 @@
+[
+    
+    {
+        "imageSrc": "assets/img/complaint.png",
+        "imageAlt": "Review",
+        "title": "How MASZ works",
+        "description": "A user spams in your chat. But you do not know whether you should just mute him or ban him? Is this his first time being conspicuous? You do not know? Well look up his profile and events on MASZ! See everything your moderators ever wrote about this user and punish him accordingly.",
+        "buttonText": "",
+        "buttonHref": ""
+    },
+    {
+        "imageSrc": "assets/img/masz.png",
+        "imageAlt": "MASZ logo",
+        "title": "MASZ - A Discord moderation tool",
+        "description": "MASZ is a management and moderation tool for Discord Moderators. Use automoderation, temporary punishments, moderation events, webhooks, fileuploads or the discord bot to keep track of anything that happens on your server. search reliably for entries and be one step ahead of trolls and rule breakers.",
+        "buttonText": "",
+        "buttonHref": ""
+    },
+    {
+        "imageSrc": "assets/img/modcase.png",
+        "imageAlt": "A moderation case",
+        "title": "Moderation cases",
+        "description": "The core of this tool are the modcases, a case represents a rule violation, an important note or similar. The server members and your moderators can be notified individually upon case creation.",
+        "buttonText": "Preview",
+        "buttonHref": "https://github.com/zaanposni/discord-masz#preview"
+    },
+    {
+        "imageSrc": "assets/img/automation.png",
+        "imageAlt": "Automoderation",
+        "title": "Automoderation",
+        "description": "Create and configure rules, filters and actions/punishments for various events that happen on your server. For example you can delete the message and auto mute a user if he posts an discord invite.",
+        "buttonText": "",
+        "buttonHref": ""
+    },
+    {
+        "imageSrc": "assets/img/github.png",
+        "imageAlt": "Open Source",
+        "title": "Open Source",
+        "description": "The source code can be found on. Feel free to check it out. Contributions are welcome!",
+        "buttonText": "GitHub",
+        "buttonHref": "https://github.com/zaanposni/discord-masz"
+    },
+    {
+        "imageSrc": "assets/img/shuttle.png",
+        "imageAlt": "Setup",
+        "title": "Easy to install",
+        "description": "The application can be hosted using Docker. Follow our step by step guide to setup your own MASZ instance.",
+        "buttonText": "Setup",
+        "buttonHref": "https://github.com/zaanposni/discord-masz#hosting"
+    },
+    {
+        "imageSrc": "assets/img/feature.png",
+        "imageAlt": "Features",
+        "title": "Feature rich",
+        "description": "Use automoderation, temporary punishments, moderation events, webhooks, fileuploads or the discord bot to keep track of anything that happens on your server. Check out the GitHub release page to stay up to date with newest features and fixes!",
+        "buttonText": "GitHub",
+        "buttonHref": "https://github.com/zaanposni/discord-masz/releases"
+    }
+]

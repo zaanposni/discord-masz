@@ -5,12 +5,14 @@ import { GuildAddComponent } from './components/guild/guild-add/guild-add.compon
 import { GuildListComponent } from './components/guild/guild-list/guild-list.component';
 import { GuildOverviewComponent } from './components/guild/guild-overview/guild-overview.component';
 import { GuildPatchComponent } from './components/guild/guild-patch/guild-patch.component';
+import { DonateComponent } from './components/information/donate/donate.component';
 import { PatchnotesComponent } from './components/information/patchnotes/patchnotes.component';
 import { SettingsComponent } from './components/information/settings/settings.component';
 import { CaseEditComponent } from './components/modcase/case-edit/case-edit.component';
 import { CaseNewComponent } from './components/modcase/case-new/case-new.component';
 import { CaseViewComponent } from './components/modcase/case-view/case-view.component';
 import { AutomodConfigComponent } from './components/moderation/automod-config/automod-config.component';
+import { ProfileViewComponent } from './components/profile/profile-view/profile-view.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NonAuthGuard } from './guards/non-auth.guard';
 import { IndexComponent } from './index/index.component';
@@ -24,8 +26,10 @@ const routes: Routes = [
   { path: 'guilds/:guildid/cases/new', component: CaseNewComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/cases/:caseid', component: CaseViewComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/cases/:caseid/edit', component: CaseEditComponent, canActivate: [AuthGuard] },
-  { path: 'settings',  component: SettingsComponent, canActivate: [AuthGuard] },
-  { path: 'patchnotes',  component: PatchnotesComponent, canActivate: [AuthGuard] },
+  { path: 'profile/:userid', component: ProfileViewComponent, canActivate: [AuthGuard] },
+  { path: 'settings',  component: SettingsComponent },
+  { path: 'patchnotes',  component: PatchnotesComponent },
+  { path: 'donate',  component: DonateComponent },
   { path: 'login',  component: IndexComponent, pathMatch: 'full', canActivate: [NonAuthGuard] },
   { path: '',  redirectTo: 'login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }

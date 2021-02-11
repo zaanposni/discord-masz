@@ -1,5 +1,10 @@
 @import "~@danielmoncada/angular-datetime-picker/assets/style/picker.min.css";
 
+html *
+{
+    font-family: 'Ubuntu', Roboto, sans-serif;
+}
+
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
@@ -65,25 +70,6 @@ hr.spacer-type1 {
 
 hr.spacer-short {
     max-width: 12%;
-}
-
-.moderations {
-    max-width: 90%;
-    margin: auto;
-}
-
-.moderation {
-    -webkit-transition: transform 0.3s ease-in;
-    -moz-transition: transform 0.3s ease-in;
-    transition: transform 0.3s ease-in;
-}
-
-.moderation:hover, .moderation-big {
-    transform: scaleX(1.05);
-    -moz-transform: scaleX(1.05);
-    -webkit-transform: scaleX(1.05);
-    -o-transform: scaleX(1.05);
-    -ms-transform: scaleX(1.05);
 }
 
 .mod-field {
@@ -157,3 +143,16 @@ app-root {
     display: none!important;
 }
 
+.card-container-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+    padding-bottom: 0.75rem;
+}
+
+.card-container {
+	font-weight: 400;
+    border: 0;
+    border-radius: 5px;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
+}

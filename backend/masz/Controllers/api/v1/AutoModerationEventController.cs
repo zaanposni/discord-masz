@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -47,7 +48,7 @@ namespace masz.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllItems([FromRoute] string guildid, [FromQuery] int startPage = 0) 
+        public async Task<IActionResult> GetAllItems([FromRoute] string guildid, [FromQuery][Range(0, int.MaxValue)] int startPage = 0) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -70,7 +71,6 @@ namespace masz.Controllers
                 return BadRequest("Guild not registered.");
             }
 
-            startPage = Math.Max(0, startPage);
             int pageSize = 50;
             List<AutoModerationEvent> events = new List<AutoModerationEvent>();
             int eventsCount = 0;

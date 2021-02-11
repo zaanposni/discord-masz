@@ -1,4 +1,4 @@
-discord.py==1.5.1
+discord.py==1.6
 requests==2.25.0
 git+git://github.com/zaanposni/discord-pretty-help#=egg=discord-pretty-help
 databases[mysql]==0.4.1

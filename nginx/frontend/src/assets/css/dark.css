@@ -260,7 +260,7 @@ select:-webkit-autofill {
     color: var(--dark-text)!important;
 }
 
-.swal2-checkbox {
+.swal2-checkbox, .swal2-select {
     background-color: var(--dark-card-background)!important;
     color: var(--dark-text)!important;
 }
@@ -287,7 +287,11 @@ select:-webkit-autofill {
     color: var(--dark-text)!important;
 }
 
-.case-container {
+.owl-dt-calendar-table .owl-dt-calendar-cell-today:not(.owl-dt-calendar-cell-selected) {
+	border-color: rgba(240, 237, 237, 0.87);
+}
+
+.case-container, .card-container {
     color: var(--dark-text);
     background-color: var(--dark-card-background);
     border-color: #828385;

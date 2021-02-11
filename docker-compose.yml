@@ -63,7 +63,7 @@ services:
         - backend
     restart: unless-stopped
     ports:
-      - "5565:80"
+      - "127.0.0.1:5565:80"
     networks:
     - appnetwork
 

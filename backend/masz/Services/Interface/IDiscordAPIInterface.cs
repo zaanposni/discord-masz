@@ -1,4 +1,5 @@
 ﻿using masz.Dtos.DiscordAPIResponses;
+using masz.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace masz.Services
 {
     public interface IDiscordAPIInterface
     {
+        Dictionary<string, CacheApiResponse> GetCache();
         /// <summary>
         /// Checks if the discord personal access token is valid.
         /// https://discord.com/developers/docs/resources/user#get-current-user
@@ -69,7 +71,7 @@ namespace masz.Services
         Task<Guild> FetchGuildInfo(string guildId);
 
         /// <summary>
-        /// This method returns a list of IDs for all guilds an user defined by his personal access token is member of.
+        /// This method returns a list of IDs for all guilds a user defined by his personal access token is member of.
         /// https://discord.com/developers/docs/resources/user#get-current-user-guilds
         /// </summary>
         /// <param name="token">discord personal access token to use to authenticate against the discord api</param>

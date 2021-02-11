@@ -71,12 +71,22 @@ namespace masz.Services
 
         public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId)
         {
-            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.CreatedAt).ToListAsync();
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.CaseId).ToListAsync();
         }
 
         public async Task<List<ModCase>> SelectAllModCasesForGuild(string guildId)
         {
-            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CreatedAt).ToListAsync();
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CaseId).ToListAsync();
+        }
+
+        public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize)
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.CaseId).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
+        }
+
+        public async Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize)
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CaseId).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
         }
 
         public async Task<List<ModCase>> SelectAllModCasesWithActivePunishmentForGuild(string guildId)
@@ -236,6 +246,37 @@ namespace masz.Services
         public async Task<ModCaseComment> SelectSpecificModCaseComment(int commentId)
         {
             return await context.ModCaseComments.AsQueryable().FirstOrDefaultAsync(c => c.Id == commentId);
+        }
+
+        // ==================================================================================
+        // 
+        // CaseTemplates
+        //
+        // ==================================================================================
+
+        public async Task SaveCaseTemplate(CaseTemplate template)
+        {
+            await context.CaseTemplates.AddAsync(template);
+        }
+
+        public void DeleteSpecificCaseTemplate(CaseTemplate template)
+        {
+            context.CaseTemplates.Remove(template);
+        }
+
+        public async Task<CaseTemplate> GetSpecificCaseTemplate(string templateId)
+        {
+            return await context.CaseTemplates.AsQueryable().FirstOrDefaultAsync(x => x.Id.ToString() == templateId);
+        }
+
+        public async Task<List<CaseTemplate>> GetAllCaseTemplates()
+        {
+            return await context.CaseTemplates.AsQueryable().OrderByDescending(x => x.CreatedAt).ToListAsync();
+        }
+
+        public async Task<List<CaseTemplate>> GetAllTemplatesFromUser(string userId)
+        {
+            return await context.CaseTemplates.AsQueryable().Where(x => x.UserId == userId).OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
     }
 }

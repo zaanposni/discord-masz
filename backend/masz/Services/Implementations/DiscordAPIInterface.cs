@@ -19,7 +19,6 @@ namespace masz.Services
         private readonly string botToken;
         private Dictionary<string, CacheApiResponse> cache = new Dictionary<string, CacheApiResponse>();
         private RestClient restClient;
-        private static readonly DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         private Dictionary<string, DiscordApiRatelimit> ratelimitCache = new Dictionary<string, DiscordApiRatelimit>();
 
         public DiscordAPIInterface() {  }
@@ -36,8 +35,7 @@ namespace masz.Services
         {
             if (this.ratelimitCache.ContainsKey(path)) {
                 if (this.ratelimitCache[path].Remaining == 0) {
-                    DateTime resetsAt = epoch.AddSeconds(this.ratelimitCache[path].ResetsAt);
-                    while (DateTime.UtcNow < resetsAt) {
+                    while (DateTime.UtcNow <= this.ratelimitCache[path].ResetsAt) {
                         await Task.Delay(25);
                     }
                 }
@@ -93,6 +91,7 @@ namespace masz.Services
 
                 return new User(response.Content);
             }
+            logger.LogError(response.Headers.Where(x => x.Name == "x-ratelimit-reset-after").Select(x => x.Value).FirstOrDefault().ToString());
             logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
             return null;
         }
@@ -508,6 +507,11 @@ namespace masz.Services
             }
 
             return await this.SendMessage(channel.Id, content);
+        }
+
+        public Dictionary<string, CacheApiResponse> GetCache()
+        {
+            return this.cache;
         }
     }
 }

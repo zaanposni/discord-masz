@@ -9,5 +9,6 @@ namespace masz.Services
     public interface IIdentityManager
     {
         Task<Identity> GetIdentity(HttpContext httpContext);
+        List<Identity> GetCurrentIdentities();
     }
 }

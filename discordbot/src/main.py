@@ -1,5 +1,7 @@
 import requests
 import os
+import sys
+import traceback
 
 import discord
 from discord.errors import LoginFailure
@@ -24,6 +26,15 @@ client.help_command = PrettyHelp(navigation=nav, color=color, active_time=5, no_
 for command in ALL_COMMANDS:
     print(f"Register '{command}' command.")
     client.add_command(command)
+
+
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.errors.CheckFailure) or isinstance(error, commands.errors.BadArgument) or isinstance(error, commands.errors.MissingRequiredArgument):
+        pass
+    else:
+        print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
 
 
 @client.event

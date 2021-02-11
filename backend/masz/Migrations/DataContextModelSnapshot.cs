@@ -105,6 +105,59 @@ namespace masz.Migrations
                     b.ToTable("AutoModerationEvents");
                 });
 
+            modelBuilder.Entity("masz.Models.CaseTemplate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CaseDescription")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CaseLabels")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime?>("CasePunishedUntil")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CasePunishment")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("CasePunishmentType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CaseTitle")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CreatedForGuildId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("TemplateName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("ViewPermission")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("announceDm")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("handlePunishment")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("sendPublicNotification")
+                        .HasColumnType("tinyint(1)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CaseTemplates");
+                });
+
             modelBuilder.Entity("masz.Models.GuildConfig", b =>
                 {
                     b.Property<int>("Id")

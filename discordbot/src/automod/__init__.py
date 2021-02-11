@@ -26,6 +26,9 @@ punishments = {
     "2": "Kick",
     "3": "Ban"
 }
+headers = {
+    'Authorization': os.getenv("DISCORD_BOT_TOKEN")
+}
 
 def check_filter(msg: Message, guildconfig, automodconfig) -> bool:
     if str(msg.author.id) in SITE_ADMINS:
@@ -103,10 +106,6 @@ async def apply_punishment(msg: Message, mod_type: int, config, guildconfig):
         "ChannelId": msg.channel.id,
         "MessageId": msg.id,
         "MessageContent": msg.content
-    }
-
-    headers = {
-        'Authorization': os.getenv("DISCORD_BOT_TOKEN")
     }
 
     requests.post(url, headers=headers, json=payload)

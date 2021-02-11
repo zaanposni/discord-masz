@@ -1,6 +1,7 @@
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark" style="background-color: #5E5B52;" *ngIf="this.currentUser | async">
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark" style="background-color: #5E5B52;">
     <div class="container">
-        <a class="navbar-brand" (click)="this.router.navigate(['guilds'])" style="color: #fff">MASZ</a>
+        <a class="navbar-brand" (click)="this.router.navigate(['guilds'])" style="color: #fff" *ngIf="this.currentUser | async">MASZ</a>
+        <a class="navbar-brand" (click)="this.router.navigate(['login'])" style="color: #fff" *ngIf="! (this.currentUser | async)">MASZ</a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -8,44 +9,53 @@
         </button>
         <div class="navbar-collapse collapse" id="navbarSupportedContent-3">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="this.currentUser | async">
                     <a class="nav-link waves-effect waves-light" (click)="this.router.navigate(['guilds'])">Guilds</a>
+                </li>
+                <li class="nav-item" *ngIf="this.currentUser | async">
+                    <a class="nav-link waves-effect waves-light" (click)="navigateToProfile()">Profile</a>
                 </li>
                 <li class="nav-item" *ngIf="(this.currentUser | async)?.isAdmin">
                     <a class="nav-link waves-effect waves-light" (click)="this.router.navigate(['guilds', 'new'])">Register guild</a>
                 </li>
             </ul>
-                <ul class="navbar-nav ml-auto nav-flex-icons">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img
-                                    src="{{ (this.currentUser | async)?.discordUser?.imageUrl }}"
-                                    class="rounded-circle z-depth-0 mr-1"
-                                    alt="avatar image"
-                                    height="30"
-                            />
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                             aria-labelledby="navbarDropdownMenuLink">
-                            <span class="dropdown-item waves-effect waves-light">
-                                Logged in as <span
-                                        class="text-danger">{{ (this.currentUser | async)?.discordUser?.username }}#{{ (this.currentUser | async)?.discordUser?.discriminator }}</span>
+            <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="this.currentUser | async">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img
+                                src="{{ (this.currentUser | async)?.discordUser?.imageUrl }}"
+                                class="rounded-circle z-depth-0 mr-1"
+                                alt="avatar image"
+                                height="30"
+                        />
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                            aria-labelledby="navbarDropdownMenuLink">
+                        <span class="dropdown-item waves-effect waves-light" (click)="navigateToProfile()">
+                            Logged in as
+                             <span class="text-danger">
+                                 {{ (this.currentUser | async)?.discordUser?.username }}#{{ (this.currentUser | async)?.discordUser?.discriminator }}
                             </span>
-                            <span class="dropdown-item waves-effect waves-light" *ngIf="(this.currentUser | async)?.isAdmin">
-                                Congratulations, you are a site admin!
-                            </span>
-                            <span class="dropdown-item waves-effect waves-light" onclick="window.location.href='/api/v1/logout'">
-                               Logout
-                            </span>
-                        </div>
-                    </li>
-                </ul>
-            <!-- Button trigger modal -->
+                        </span>
+                        <span class="dropdown-item waves-effect waves-light" (click)="navigateToProfile()">
+                            View profile
+                        </span>
+                        <span class="dropdown-item waves-effect waves-light" *ngIf="(this.currentUser | async)?.isAdmin" onclick="window.location.href='/api/v1/meta/adminstats'">
+                            Congratulations, you are a site admin!
+                        </span>
+                        <span class="dropdown-item waves-effect waves-light" onclick="window.location.href='/api/v1/logout'">
+                            Logout
+                        </span>
+                    </div>
+                </li>
+            </ul>
             <div class="btn btn-elegant px-3" (click)="this.router.navigate(['patchnotes'])">
                 <i class="fas fa-code-branch" aria-hidden="true"></i>
             </div>
-            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-elegant px-3" (click)="this.router.navigate(['donate'])">
+                <i class="fas fa-donate" aria-hidden="true"></i>
+            </button>
             <button type="button" class="btn btn-elegant px-3" (click)="this.router.navigate(['settings'])">
                 <i class="fas fa-sliders-h" aria-hidden="true"></i>
             </button>
