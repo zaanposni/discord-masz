@@ -171,6 +171,13 @@ namespace masz.Controllers
         {
             // check if request is made by a site admin
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+
+            // do not allow in demo mode
+            if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_DEMO_MODE"))) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Not allowed in demo mode.");
+                return BadRequest("This is not allowed in demo mode.");
+            }
+
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
             User currentUser = await currentIdentity.GetCurrentDiscordUser();
             if (currentUser == null)
