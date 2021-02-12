@@ -5,4 +5,5 @@ export interface InfoPanel {
     description: string;
     buttonText?: string;
     buttonHref?: string;
+    buttonIcon?: string;
 }

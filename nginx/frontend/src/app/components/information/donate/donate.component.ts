@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { InfoPanel } from 'src/app/models/InfoPanel';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-donate',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DonateComponent implements OnInit {
 
-  constructor() { }
+  panels!: Observable<InfoPanel[]>;
+
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.panels = this.api.getSimpleData('/static/donate.json', false);
   }
 
 }

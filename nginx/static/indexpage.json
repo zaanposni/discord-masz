@@ -1,59 +1,75 @@
 [
     
     {
-        "imageSrc": "assets/img/complaint.png",
+        "imageSrc": "assets/img/decision.svg",
         "imageAlt": "Review",
         "title": "How MASZ works",
-        "description": "A user spams in your chat. But you do not know whether you should just mute him or ban him? Is this his first time being conspicuous? You do not know? Well look up his profile and events on MASZ! See everything your moderators ever wrote about this user and punish him accordingly.",
+        "description": "A user spams in your chat. But you don't know whether you should mute or ban him? Is this his first time being offensive? Well, look up his profile and events on MASZ! See everything your moderators ever wrote about this user and punish him accordingly.",
         "buttonText": "",
-        "buttonHref": ""
+        "buttonHref": "",
+        "buttonIcon": ""
     },
     {
-        "imageSrc": "assets/img/masz.png",
-        "imageAlt": "MASZ logo",
-        "title": "MASZ - A Discord moderation tool",
-        "description": "MASZ is a management and moderation tool for Discord Moderators. Use automoderation, temporary punishments, moderation events, webhooks, fileuploads or the discord bot to keep track of anything that happens on your server. search reliably for entries and be one step ahead of trolls and rule breakers.",
+        "imageSrc": "assets/img/feature.svg",
+        "imageAlt": "Features",
+        "title": "Feature rich",
+        "description": "Use automoderation, temporary punishments, moderation events, webhooks, fileuploads or the discord bot to keep track of anything that happens on your server.",
         "buttonText": "",
-        "buttonHref": ""
+        "buttonHref": "",
+        "buttonIcon": ""
     },
     {
-        "imageSrc": "assets/img/modcase.png",
+        "imageSrc": "assets/img/note_list.svg",
         "imageAlt": "A moderation case",
         "title": "Moderation cases",
-        "description": "The core of this tool are the modcases, a case represents a rule violation, an important note or similar. The server members and your moderators can be notified individually upon case creation.",
-        "buttonText": "Preview",
-        "buttonHref": "https://github.com/zaanposni/discord-masz#preview"
+        "description": "The core of MASZ are moderation cases, a case represents a rule violation, an important note or similar. The server members and your moderators can be notified individually upon case creation.",
+        "buttonText": "",
+        "buttonHref": "",
+        "buttonIcon": ""
     },
     {
-        "imageSrc": "assets/img/automation.png",
+        "imageSrc": "assets/img/automation.svg",
         "imageAlt": "Automoderation",
         "title": "Automoderation",
-        "description": "Create and configure rules, filters and actions/punishments for various events that happen on your server. For example you can delete the message and auto mute a user if he posts an discord invite.",
+        "description": "Create and configure rules, filters and actions or punishments for various events that happen on your server. For example you can delete the message and auto mute a user if he posts an discord invite.",
         "buttonText": "",
-        "buttonHref": ""
+        "buttonHref": "",
+        "buttonIcon": ""
     },
     {
-        "imageSrc": "assets/img/github.png",
-        "imageAlt": "Open Source",
-        "title": "Open Source",
-        "description": "The source code can be found on. Feel free to check it out. Contributions are welcome!",
-        "buttonText": "GitHub",
-        "buttonHref": "https://github.com/zaanposni/discord-masz"
+        "imageSrc": "assets/img/bot.svg",
+        "imageAlt": "Bot commands",
+        "title": "Bot commands",
+        "description": "Getting raid? Use quick and simple bot commands directly in discord to mute or ban those raiders!",
+        "buttonText": "",
+        "buttonHref": "",
+        "buttonIcon": ""
     },
     {
-        "imageSrc": "assets/img/shuttle.png",
+        "imageSrc": "assets/img/rocket.svg",
         "imageAlt": "Setup",
         "title": "Easy to install",
         "description": "The application can be hosted using Docker. Follow our step by step guide to setup your own MASZ instance.",
         "buttonText": "Setup",
-        "buttonHref": "https://github.com/zaanposni/discord-masz#hosting"
+        "buttonHref": "https://github.com/zaanposni/discord-masz#hosting",
+        "buttonIcon": "fab fa-github"
     },
     {
-        "imageSrc": "assets/img/feature.png",
-        "imageAlt": "Features",
-        "title": "Feature rich",
-        "description": "Use automoderation, temporary punishments, moderation events, webhooks, fileuploads or the discord bot to keep track of anything that happens on your server. Check out the GitHub release page to stay up to date with newest features and fixes!",
+        "imageSrc": "assets/img/server.svg",
+        "imageAlt": "Host",
+        "title": "You have no server?",
+        "description": "No worries I got you! I can host you an instance of MASZ for a small fee. Feel free to contact me in discord: zaanposni#9295",
+        "buttonText": "or via mail",
+        "buttonHref": "mailto:me@zaanposni.com?subject=MASZ%20Hosting&body=Hey%20zaanposni%2C%0D%0A%0D%0AI%20would%20like%20to%20use%20MASZ.%0D%0ACan%20you%20host%20me%20an%20instance%3F%0D%0A%0D%0ABest%20regards.%0D%0A ",
+        "buttonIcon": "far fa-envelope-open"
+    },
+    {
+        "imageSrc": "assets/img/opensource.svg",
+        "imageAlt": "Open Source",
+        "title": "Open Source",
+        "description": "The source code can be found on. Feel free to check it out. Contributions are welcome!",
         "buttonText": "GitHub",
-        "buttonHref": "https://github.com/zaanposni/discord-masz/releases"
+        "buttonHref": "https://github.com/zaanposni/discord-masz",
+        "buttonIcon": "fab fa-github"
     }
 ]

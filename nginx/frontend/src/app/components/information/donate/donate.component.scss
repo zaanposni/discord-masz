@@ -1,3 +1,25 @@
+.custom-btn {
+    display: block;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    border: 3px solid grey;
+}
+
+.center-container {
+    display: grid;
+    place-items: center;
+}
+
+#card-overview > div {
+    margin: 8px;
+    width: 18rem;
+}
+#card-overview .card-img-top {
+    width: 100%;
+    object-fit: cover;
+}
+
 .info-text {
 	-webkit-box-flex: 1;
 	-moz-box-flex: 1;
@@ -118,6 +140,17 @@
 	flex-direction: row-reverse;
 }
 
+@media (max-width: 970px) {
+	.info {
+		max-width: 750px;
+		-webkit-box-orient: vertical;
+		-moz-box-orient: vertical;
+		-o-box-orient: vertical;
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+	}
+}
 .info-container {
     display: -webkit-box;
     display: -moz-box;
