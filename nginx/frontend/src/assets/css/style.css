@@ -131,6 +131,7 @@ app-root {
     flex-shrink: 0;
     color: orange;
     font-weight: bold;
+    background-color: #5E5B52!important;
 }
 
 .custom-footer a {
