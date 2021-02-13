@@ -1,5 +1,14 @@
 [
   {
+    "title": "Version 1.8.2",
+    "version": "v1.8.2",
+    "changes": [
+      "Adjusted texts and images on front and donation page.",
+      "Added auto caching of guild members on guildconfig creation.",
+      "Fixed problem with browser caching by including angular output hashing."
+    ]
+  },
+  {
     "title": "Version 1.8.1",
     "version": "v1.8.1",
     "changes": [

@@ -16,7 +16,6 @@ namespace masz.Services
         private readonly IOptions<Cacher> config;
         private readonly IDiscordAPIInterface discord;
         private readonly IServiceScopeFactory serviceScopeFactory;
-        private List<string> handledUsers = new List<string>();
 
         public Cacher() { }
 
@@ -45,14 +44,15 @@ namespace masz.Services
 
         public async void CacheAll()
         {
-            this.handledUsers.Clear();
-            await CacheAllGuildMembers();
-            await CacheAllKnownUsers();
+            List<string> handledUsers = new List<string>();
+            handledUsers.AddRange(await CacheAllGuildMembers());
+            await CacheAllKnownUsers(handledUsers);
         }
 
-        public async Task CacheAllGuildMembers()
+        public async Task<List<string>> CacheAllGuildMembers()
         {
             logger.LogInformation("Cacher | Cache all members of registered guilds.");
+            List<string> handledUsers = new List<string>();
             using (var scope = serviceScopeFactory.CreateScope())
             {
                 IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
@@ -62,16 +62,17 @@ namespace masz.Services
                     var members = await discord.FetchGuildMembers(guild.GuildId, true);
                     foreach (var item in members)
                     {
-                        if (!this.handledUsers.Contains(item.User.Id)) {
-                            this.handledUsers.Add(item.User.Id);
+                        if (!handledUsers.Contains(item.User.Id)) {
+                            handledUsers.Add(item.User.Id);
                         }
                     }
                 }
             }
             logger.LogInformation("Cacher | Done.");
+            return handledUsers;
         }
 
-        public async Task CacheAllKnownUsers()
+        public async Task<List<string>> CacheAllKnownUsers(List<string> handledUsers)
         {
             logger.LogInformation("Cacher | Cache all known users.");
             using (var scope = serviceScopeFactory.CreateScope())
@@ -80,21 +81,22 @@ namespace masz.Services
                 
                 foreach (var modCase in await database.SelectAllModCases())
                 {
-                    if (!this.handledUsers.Contains(modCase.UserId)) {
+                    if (!handledUsers.Contains(modCase.UserId)) {
                         await discord.FetchUserInfo(modCase.UserId, true);
-                        this.handledUsers.Add(modCase.UserId);
+                        handledUsers.Add(modCase.UserId);
                     }
-                    if (!this.handledUsers.Contains(modCase.ModId)) {
+                    if (!handledUsers.Contains(modCase.ModId)) {
                         await discord.FetchUserInfo(modCase.ModId, true);
-                        this.handledUsers.Add(modCase.ModId);
+                        handledUsers.Add(modCase.ModId);
                     }
-                    if (!this.handledUsers.Contains(modCase.LastEditedByModId)) {
+                    if (!handledUsers.Contains(modCase.LastEditedByModId)) {
                         await discord.FetchUserInfo(modCase.LastEditedByModId, true);
-                        this.handledUsers.Add(modCase.LastEditedByModId);
+                        handledUsers.Add(modCase.LastEditedByModId);
                     }
                 }
             }
             logger.LogInformation("Cacher | Done.");
+            return handledUsers;
         }
     }
 }
