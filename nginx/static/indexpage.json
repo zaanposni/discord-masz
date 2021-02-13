@@ -40,7 +40,7 @@
         "imageSrc": "assets/img/bot.svg",
         "imageAlt": "Bot commands",
         "title": "Bot commands",
-        "description": "Getting raid? Use quick and simple bot commands directly in discord to mute or ban those raiders!",
+        "description": "Getting raided? Use quick and simple bot commands directly in discord to mute or ban those raiders!",
         "buttonText": "",
         "buttonHref": "",
         "buttonIcon": ""
