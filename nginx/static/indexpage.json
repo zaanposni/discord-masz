@@ -67,7 +67,7 @@
         "imageSrc": "assets/img/opensource.svg",
         "imageAlt": "Open Source",
         "title": "Open Source",
-        "description": "The source code can be found on. Feel free to check it out. Contributions are welcome!",
+        "description": "The source code can be found on GitHub. Contributions are welcome!",
         "buttonText": "GitHub",
         "buttonHref": "https://github.com/zaanposni/discord-masz",
         "buttonIcon": "fab fa-github"
