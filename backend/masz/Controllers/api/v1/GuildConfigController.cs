@@ -28,8 +28,9 @@ namespace masz.Controllers
         private readonly IIdentityManager identityManager;
         private readonly IDiscordAPIInterface discord;
         private readonly IFilesHandler filesHandler;
+        private readonly ICacher cacher;
 
-        public GuildConfigController(ILogger<GuildConfigController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IFilesHandler filesHandler)
+        public GuildConfigController(ILogger<GuildConfigController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IFilesHandler filesHandler, ICacher cacher)
         {
             this.logger = logger;
             this.database = database;
@@ -37,6 +38,7 @@ namespace masz.Controllers
             this.identityManager = identityManager;
             this.discord = discordInterface;
             this.filesHandler = filesHandler;
+            this.cacher = cacher;
         }
 
         [HttpGet("{guildid}")]
@@ -161,6 +163,11 @@ namespace masz.Controllers
 
             await database.SaveGuildConfig(guildConfig);
             await database.SaveChangesAsync();
+
+            Task task = new Task(() => {
+                this.cacher.CacheAll();
+            });
+            task.Start();
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 201 Resource created.");
             return StatusCode(201);

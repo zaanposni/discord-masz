@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using masz.Models;
 
@@ -7,7 +8,7 @@ namespace masz.Services
     {
         void StartTimer();
         void CacheAll();
-        Task CacheAllGuildMembers();
-        Task CacheAllKnownUsers();
+        Task<List<string>> CacheAllGuildMembers();
+        Task<List<string>> CacheAllKnownUsers(List<string> handledUser);
     }
 }
