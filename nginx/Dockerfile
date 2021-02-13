@@ -6,7 +6,7 @@ COPY frontend/ .
 RUN npm install -g @angular/cli
 RUN npm install
 
-RUN ng build --prod
+RUN ng build --prod --output-hashing=all
 
 
 FROM bash as init
