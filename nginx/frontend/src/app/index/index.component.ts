@@ -16,7 +16,7 @@ export class IndexComponent implements OnInit {
   constructor(private authService: AuthService, private api: ApiService) { }
 
   ngOnInit(): void {
-    this.infoPanels = this.api.getSimpleData('/static/indexpage.json?v=1.8.2', false);
+    this.infoPanels = this.api.getSimpleData('/static/indexpage.json?v=1.8.2.1', false);
   }
 
 }

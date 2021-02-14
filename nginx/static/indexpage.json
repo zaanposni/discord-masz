@@ -10,6 +10,15 @@
         "buttonIcon": ""
     },
     {
+        "imageSrc": "assets/img/insight.svg",
+        "imageAlt": "Transparency",
+        "title": "Transparency",
+        "description": "By using MASZ your server moderation will become much more transparent for your members. There will be no more untraceable bans or incidents, users can either view an incident on the website or be informed via notifications.",
+        "buttonText": "",
+        "buttonHref": "",
+        "buttonIcon": ""
+    },
+    {
         "imageSrc": "assets/img/feature.svg",
         "imageAlt": "Features",
         "title": "Feature rich",
