@@ -59,6 +59,9 @@
             <button type="button" class="btn btn-elegant px-3" (click)="this.router.navigate(['settings'])">
                 <i class="fas fa-sliders-h" aria-hidden="true"></i>
             </button>
+            <button type="button" class="btn btn-danger px-3" *ngIf="(this.currentUser | async)?.isAdmin && this.currentVersion?.version !== this.githubReleases[0]?.tag_name" (click)="showUpdateWarning()">
+                <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+            </button>
         </div>
     </div>
 </nav>

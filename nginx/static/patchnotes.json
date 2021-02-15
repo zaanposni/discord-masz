@@ -3,7 +3,8 @@
     "title": "Version 1.9",
     "version": "v1.9",
     "changes": [
-      "Removed prettyhelp from discordbot."
+      "Removed prettyhelp from discordbot.",
+      "Added update information for siteadmins in navbar."
     ]
   },
   {
