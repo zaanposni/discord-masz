@@ -6,7 +6,6 @@ import traceback
 import discord
 from discord.errors import LoginFailure
 from discord.ext import commands
-from pretty_help import PrettyHelp, Navigation
 
 from commands import ALL_COMMANDS
 from data import connect as db_connect
@@ -14,14 +13,10 @@ from automod import check_message
 from punishment import handle_member_join
 
 
-nav = Navigation("⬅️", "➡️", "🚫")
-color = discord.Color.dark_gold()
-
 intents = discord.Intents.default()
 intents.members = True
 
 client = commands.Bot(os.getenv("BOT_PREFIX", "$") if str(os.getenv("BOT_PREFIX", "$")).strip() != "" else "$", intents=intents)  # prefix defaults to $
-client.help_command = PrettyHelp(navigation=nav, color=color, active_time=5, no_category="Commands", sort_commands=True, show_index=False)
 
 for command in ALL_COMMANDS:
     print(f"Register '{command}' command.")
