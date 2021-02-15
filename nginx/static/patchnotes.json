@@ -1,5 +1,12 @@
 [
   {
+    "title": "Version 1.9",
+    "version": "v1.9",
+    "changes": [
+      "Removed prettyhelp from discordbot."
+    ]
+  },
+  {
     "title": "Version 1.8.2",
     "version": "v1.8.2",
     "changes": [
