@@ -16,7 +16,7 @@ from punishment import handle_member_join
 intents = discord.Intents.default()
 intents.members = True
 
-client = commands.Bot(os.getenv("BOT_PREFIX", "$") if str(os.getenv("BOT_PREFIX", "$")).strip() != "" else "$", intents=intents)  # prefix defaults to $
+client = commands.Bot(os.getenv("BOT_PREFIX", "$") if str(os.getenv("BOT_PREFIX", "$")).strip() != "" else "$", intents=intents, help_command=None)  # prefix defaults to $
 
 for command in ALL_COMMANDS:
     print(f"Register '{command}' command.")

@@ -8,6 +8,7 @@ from .mute import mute
 from .kick import kick
 from .ban import ban
 from .warn import warn
+from .help import help
 
-ALL_COMMANDS = [ version, url, features, register, whois, invite, mute, kick, ban, warn ]
+ALL_COMMANDS = [ version, url, features, register, whois, invite, mute, kick, ban, warn, help ]
 
