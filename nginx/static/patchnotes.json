@@ -1,10 +1,12 @@
 [
   {
-    "title": "Version 1.9",
-    "version": "v1.9",
+    "title": "Version 1.8.3",
+    "version": "v1.8.3",
     "changes": [
       "Removed prettyhelp from discordbot.",
-      "Added update information for siteadmins in navbar."
+      "Added update information for siteadmins in navbar.",
+      "Fixed performance issue during case creation.",
+      "Fixed sorting of role list during guild register."
     ]
   },
   {

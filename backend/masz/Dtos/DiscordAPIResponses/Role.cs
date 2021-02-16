@@ -11,6 +11,7 @@ namespace masz.Dtos.DiscordAPIResponses
             Id = temp.Id;
             Name = temp.Name;
             Color = temp.Color;
+            Position = temp.Position;
         }
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -18,5 +19,7 @@ namespace masz.Dtos.DiscordAPIResponses
         public string Name { get; set; }
         [JsonProperty("color")]
         public int Color { get; set; }
+        [JsonProperty("position")]
+        public int Position { get; set; }
     }
 }

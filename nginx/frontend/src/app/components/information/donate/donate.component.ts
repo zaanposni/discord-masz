@@ -15,7 +15,7 @@ export class DonateComponent implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
-    this.panels = this.api.getSimpleData('/static/donate.json?v=1.9', false);
+    this.panels = this.api.getSimpleData('/static/donate.json?v=1.8.3', false);
   }
 
 }

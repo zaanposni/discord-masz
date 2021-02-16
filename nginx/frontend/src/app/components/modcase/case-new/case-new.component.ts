@@ -42,7 +42,7 @@ export class CaseNewComponent implements OnInit {
   filesToUpload: File[] = [];
 
   members: DiscordUser[] = [];
-  completeMemberList: GuildMember[] = [];
+  completeMemberList: DiscordUser[] = [];
   lastMemberPage = 0;
 
   templatesLoading: boolean = true;
@@ -60,7 +60,9 @@ export class CaseNewComponent implements OnInit {
     this.auth.getUserProfile().subscribe((data) => {
       this.currentUser = data;
     });
-    this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`).subscribe((data) => {
+    let params = new HttpParams()
+          .set('partial', 'true');
+    this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`, true, params).subscribe((data) => {
       this.completeMemberList = data;
       this.scrollEnd();
     }, (error) => {
@@ -189,7 +191,7 @@ export class CaseNewComponent implements OnInit {
   }
 
   scrollEnd() {
-    this.members = this.members.concat(this.completeMemberList.slice(this.lastMemberPage * 50, this.lastMemberPage * 50 + 50).map(x => x.user).filter(x => x.bot == false));
+    this.members = this.members.concat(this.completeMemberList.slice(this.lastMemberPage * 50, this.lastMemberPage * 50 + 50).filter(x => x.bot == false));
     this.lastMemberPage++;
   }
 
@@ -199,7 +201,7 @@ export class CaseNewComponent implements OnInit {
       this.lastMemberPage = 0;
       this.scrollEnd();
     } else {
-      this.members = this.completeMemberList.filter(x => x.user.username.toLowerCase().includes(val.toLowerCase())).map(x => x.user).filter(x => x.bot == false);
+      this.members = this.completeMemberList.filter(x => x.username.toLowerCase().includes(val.toLowerCase())).filter(x => x.bot == false);
     }
   }
 
