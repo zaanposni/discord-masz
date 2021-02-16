@@ -30,7 +30,7 @@ export class GuildAddComponent implements OnInit {
   @Input() publicWebhook!: string;
 
   selectedGuildId: string;
-  selectedGuild: Promise<Guild>;
+  selectedGuild: Guild;
   guilds: Promise<Guild[]>;
   clientid: Promise<MetaClientId>;
 
@@ -55,11 +55,24 @@ export class GuildAddComponent implements OnInit {
     return '#' + role.color.toString(16);
   }
 
+  compareRoles (a: GuildRole, b: GuildRole ) {
+    if ( a.position < b.position ){
+      return 1;
+    }
+    if ( a.position > b.position ){
+      return -1;
+    }
+    return 0;
+  }
+
   onGuildSelect() {
+    console.log("yes");
     if (this.isNumber(this.selectedGuildId)) {
       this.displayGuildSelected = true;
-      this.selectedGuild = this.api.getSimpleData(`/discord/guilds/${this.selectedGuildId}`).toPromise().then((data) => {
+      this.api.getSimpleData(`/discord/guilds/${this.selectedGuildId}`).toPromise().then((data: Guild) => {
         this.displayGuildInvite = false;
+        this.selectedGuild = data;
+        this.selectedGuild.roles = data.roles.sort(this.compareRoles);
         this.displayValidGuildSelected = true;
         return data;
       }).catch((error) => {
