@@ -3,7 +3,7 @@
     <div>
         <span class="display-4 font-weight-bold">All Automoderations ({{ (this.moderationEventsInfo | async)?.count || 0 }})</span>
     </div>
-    <div class="d-flex flex-column align-self-end" *ngIf="this.isAdminOrHigher">
+    <div class="d-flex flex-column align-self-end" *ngIf="this.isAdminOrHigher | async">
         <span type="button" class="btn btn-success" (click)="this.router.navigate(['guilds', this.guildId, 'automod'])">Configure</span>
     </div>
 </div>

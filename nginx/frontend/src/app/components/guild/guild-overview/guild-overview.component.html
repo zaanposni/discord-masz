@@ -13,7 +13,7 @@
         </span>
     </span>
 </div>
-<div class="card rounded m-2 mb-3" *ngIf="!this.isModOrHigher">
+<div class="card rounded m-2 mb-3" *ngIf="!(this.isModOrHigher | async)">
     <div class="card-body">
         <h4 class="card-title"><a>Restricted permissions.</a></h4>
         <p class="card-text">You do not have any special permissions in this guild and will therefore only see cases registered on your name.</p>
@@ -35,12 +35,12 @@
 </ul>
 <div class="tab-content">
     <div class="tab-pane fade show active" id="modcases" role="tabpanel" aria-labelledby="modcase-tab">
-        <app-case-table [isModOrHigher]="isModOrHigher" [guildId]="guildId" [uniqueIdentifier]="'caseTable'"></app-case-table>
+        <app-case-table></app-case-table>
     </div>
     <div class="tab-pane fade" id="punishments" role="tabpanel" aria-labelledby="punishment-tab">
-        <app-case-table [isModOrHigher]="isModOrHigher" [guildId]="guildId" [punishmentTable]="true" [uniqueIdentifier]="'punishmentTable'"></app-case-table>        
+        <app-case-table [punishmentTable]="true" [uniqueIdentifier]="'punishmentTable'"></app-case-table>        
     </div>
     <div class="tab-pane fade" id="moderations" role="tabpanel" aria-labelledby="moderation-tab">
-        <app-modevents-table [isAdminOrHigher]="isAdminOrHigher" [guildId]="guildId" [moderationEventsInfo]="moderationEventsInfo"></app-modevents-table>
+        <app-modevents-table ></app-modevents-table>
     </div>
 </div>

@@ -34,6 +34,18 @@ export class AuthService {
     return this.currentUser$;
   }
 
+  isModInGuild(guildId: string): Observable<boolean> {
+    return this.currentUser$.pipe(map((data: AppUser) => {
+      return data.modGuilds.find(x => x.id === guildId) !== undefined || data.adminGuilds.find(x => x.id === guildId) !== undefined || data.isAdmin;
+    }));
+  }
+
+  isAdminInGuild(guildId: string): Observable<boolean> {
+    return this.currentUser$.pipe(map((data: AppUser) => {
+      return data.adminGuilds.find(x => x.id === guildId) !== undefined || data.isAdmin;
+    }));
+  }
+
   resetCache() {
     this.init = false;
   }

@@ -1,9 +1,11 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AutoModerationEvent } from 'src/app/models/AutoModerationEvent';
 import { AutoModerationEventInfo } from 'src/app/models/AutoModerationEventInfo';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-modevents-table',
@@ -12,17 +14,19 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class ModeventsTableComponent implements OnInit {
   
-  @Input() guildId: string;
-  @Input() isAdminOrHigher: boolean = false;
-  @Input() moderationEventsInfo!: Promise<AutoModerationEventInfo>;
+  guildId: string;
+  isAdminOrHigher!: Observable<boolean>;
+  moderationEventsInfo!: Promise<AutoModerationEventInfo>;
   moderationEvents: AutoModerationEvent[] = new Array<AutoModerationEvent>();
   private lastDate: Date = undefined;
   startPage = 1;
   
-  constructor(private api: ApiService, public router: Router) { }
+  constructor(private api: ApiService, public router: Router, private auth: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.guildId = this.route.snapshot.paramMap.get('guildid');
     this.lastDate = undefined;
+    this.isAdminOrHigher = this.auth.isAdminInGuild(this.guildId);
     this.moderationEventsInfo = this.api.getSimpleData(`/guilds/${this.guildId}/automoderations`).toPromise();
     this.moderationEventsInfo.then((data) => {
       data.events.forEach((element: AutoModerationEvent) => {

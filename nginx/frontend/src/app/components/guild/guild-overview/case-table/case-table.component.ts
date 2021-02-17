@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ModCase } from 'src/app/models/ModCase';
 import { ModCaseTable } from 'src/app/models/ModCaseTable';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-case-table',
@@ -16,9 +18,9 @@ export class CaseTableComponent implements OnInit {
 
   showTable: ModCaseTable[] = new Array<ModCaseTable>();
   casesTable: ModCaseTable[] = new Array<ModCaseTable>();
-  @Input() uniqueIdentifier: string;
-  @Input() isModOrHigher: boolean = false;
-  @Input() guildId: string;
+  isModOrHigher!: Observable<boolean>;
+  guildId: string;
+  @Input() uniqueIdentifier: string = "casetable";
   @Input() punishmentTable: boolean = false;
   loading: boolean = true;
 
@@ -28,12 +30,14 @@ export class CaseTableComponent implements OnInit {
   excludePermaPunishments: boolean = false;
   excludeAutoModeration: boolean = false;
 
-  constructor(public router: Router, private api: ApiService) { }
+  constructor(public router: Router, private api: ApiService, private auth: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.guildId = this.route.snapshot.paramMap.get('guildid');
     if (this.punishmentTable) {
       this.apiUrl = "punishmenttable";
     }
+    this.isModOrHigher = this.auth.isModInGuild(this.guildId);
     this.loadFirstCases();
   }
 
