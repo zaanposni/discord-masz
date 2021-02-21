@@ -9,8 +9,8 @@
             [showCreated]="resource === 'modcasetable'" [showExpiring]="resource === 'expiringpunishment'" >
             </app-case-card-compact>
         </div>
-        <div *ngIf="!this.loading && cases == undefined">
-            <span>Failed to load cases.</span>
+        <div *ngIf="!this.loading && cases.length === 0">
+            <span>Nothing to see here.</span>
         </div>
     </div>
 </div>
