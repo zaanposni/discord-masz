@@ -36,7 +36,7 @@
                         Created: {{ entry.modCase.createdAt | date:'d. MMMM Y'  }}
                     </span>
                     <span class="text-black-50" *ngIf="entry.modCase.punishmentActive && entry.modCase.punishedUntil && this.showExpiring">
-                        Until: {{ entry.modCase.punishedUntil | date:'d. MMMM Y'  }}
+                        Until: {{ entry.modCase.punishedUntil | date:'d. MMMM Y HH:mm:ss'  }}
                     </span>
                 </div>
             </div>
