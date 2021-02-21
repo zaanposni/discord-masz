@@ -3,7 +3,9 @@
     "title": "Version 1.9 Dashboard",
     "version": "v1.9",
     "changes": [
-      "Added dashboard view for moderators and admins."
+      "Added dashboard view for moderators and admins.",
+      "Improved login UX.",
+      "Adjusted webhook notifications."
     ]
   },
   {

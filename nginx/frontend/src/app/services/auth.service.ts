@@ -23,7 +23,9 @@ export class AuthService {
     this.http.get(API_URL + '/discord/users/@me').subscribe((data) => {
       this.currentUserSubject.next(data);
     }, (error) => {
-       this.handleError(error); });
+      this.currentUserSubject.error(null);
+      this.handleError(error);
+    });
   }
 
   getUserProfile(reinit: boolean = false): Observable<AppUser> {

@@ -21,7 +21,6 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NonAuthGuard } from './guards/non-auth.guard';
 import { PatchnotesComponent } from './components/information/patchnotes/patchnotes.component';
 import { CaseViewComponent } from './components/modcase/case-view/case-view.component';
 import { FormsModule } from '@angular/forms';
@@ -123,7 +122,6 @@ import { CaseCardCompactComponent } from './components/guild/guild-dashboard/das
       multi: true
     },
     AuthGuard,
-    NonAuthGuard,
     ApiService,
     CookieTrackerService
   ],

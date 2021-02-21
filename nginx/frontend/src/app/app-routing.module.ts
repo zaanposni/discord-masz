@@ -15,7 +15,6 @@ import { CaseViewComponent } from './components/modcase/case-view/case-view.comp
 import { AutomodConfigComponent } from './components/moderation/automod-config/automod-config.component';
 import { ProfileViewComponent } from './components/profile/profile-view/profile-view.component';
 import { AuthGuard } from './guards/auth.guard';
-import { NonAuthGuard } from './guards/non-auth.guard';
 import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
@@ -32,7 +31,7 @@ const routes: Routes = [
   { path: 'settings',  component: SettingsComponent },
   { path: 'patchnotes',  component: PatchnotesComponent },
   { path: 'donate',  component: DonateComponent },
-  { path: 'login',  component: IndexComponent, pathMatch: 'full', canActivate: [NonAuthGuard] },
+  { path: 'login',  component: IndexComponent, pathMatch: 'full' },
   { path: '',  redirectTo: 'login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
