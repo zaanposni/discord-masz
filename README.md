@@ -17,7 +17,7 @@
 
 MASZ is a moderation tool from **discord moderators for discord moderators**.<br/>
 Use **automoderation**, **temporary punishments**, **moderation events**, **webhooks**, **fileuploads** or **the discord bot** to keep track of anything that happens on your server.<br/>
-On **the website** all members can login and view moderation events registered on their name and also comment on it.<br/>
+On **the website** all members can login and view moderation events registered on their name and also comment on it and start a ban appeal.<br/>
 
 # Demo <img src="https://img.shields.io/badge/demo-online-%234c1" alt="Online demo">
 
@@ -32,10 +32,7 @@ Furthermore, join the demo guild [https://discord.gg/7ubU6aWX9c](https://discord
 
 # Preview
 
-| Guild overview  | Single moderation case  |
-| --------------- | ----------------------- |
-![](/docs/modcases.png)  |  ![](/docs/modcase.png)
-
+![](/docs/dashboard.png)
 
 More previews and examples can be found at [https://github.com/zaanposni/discord-masz/tree/master/docs](https://github.com/zaanposni/discord-masz/tree/master/docs)
 

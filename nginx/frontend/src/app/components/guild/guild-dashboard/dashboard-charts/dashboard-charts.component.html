@@ -1,0 +1,27 @@
+<div class="card-container">
+    <div class="card-container-body d-flex flex-column flex-wrap flex-shrink-0 flex-grow-1">
+        <div class="d-flex flex-row flex-wrap align-items-center">
+            <span class="font-weight-bold">Overview</span>
+            <div class="flex-grow-1"></div>
+            <div class="md-form mr-1 mt-0 mb-0">
+                <span class="mr-1">Show data since:</span>
+                <input [(ngModel)]="since" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Data since?" (ngModelChange)="reload()">
+                <owl-date-time #dt1></owl-date-time>
+            </div>
+            <div class="md-form flex-shrink-0 mt-0 mb-0">
+                <button type="submit" name="submit" (click)="resetToDefault()"
+                    class="btn btn-success btn-lg btn-block waves-effect waves-light p-2">
+                    Reset
+                </button>
+            </div>
+        </div>
+        <div class="d-flex flex-row flex-wrap">
+            <app-count-chart class="flex-grow-1" [title]="'ModCases'" [max]="max"
+            [chartLoading]="loading" [chartData]="caseChartData" [chartLabels]="caseChartLabels"></app-count-chart>
+            <app-count-chart class="flex-grow-1" [title]="'Punishments'" [max]="max"
+            [chartLoading]="loading" [chartData]="punishmentChartData" [chartLabels]="punishmentChartLabels"></app-count-chart>
+            <app-count-chart class="flex-grow-1" [title]="'AutoModerations'" [max]="max"
+            [chartLoading]="loading" [chartData]="moderationChartData" [chartLabels]="moderationChartLabels"></app-count-chart>
+        </div>
+    </div>
+</div>

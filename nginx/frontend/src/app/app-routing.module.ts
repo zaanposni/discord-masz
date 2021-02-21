@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './components/defaults/page-not-found/page-not-found.component';
 import { GuildAddComponent } from './components/guild/guild-add/guild-add.component';
+import { GuildDashboardComponent } from './components/guild/guild-dashboard/guild-dashboard.component';
 import { GuildListComponent } from './components/guild/guild-list/guild-list.component';
 import { GuildOverviewComponent } from './components/guild/guild-overview/guild-overview.component';
 import { GuildPatchComponent } from './components/guild/guild-patch/guild-patch.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'guilds/:guildid/edit', component: GuildPatchComponent, canActivate: [AuthGuard] },
   { path: 'guilds/new', component: GuildAddComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid', component: GuildOverviewComponent, canActivate: [AuthGuard] },
+  { path: 'guilds/:guildid/dash', component: GuildDashboardComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/automod', component: AutomodConfigComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/cases/new', component: CaseNewComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/cases/:caseid', component: CaseViewComponent, canActivate: [AuthGuard] },

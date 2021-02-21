@@ -7,7 +7,7 @@ namespace masz.Dtos.ModCase
 {
     public class CaseTemplateForCreateDto
     {
-        [Required(ErrorMessage = "TemplateName field is required")]
+        [Required(ErrorMessage = "TemplateName field is required", AllowEmptyStrings=false)]
         [MaxLength(100)]
         public string TemplateName { get; set; }
         [Required(ErrorMessage = "ViewPermission field is required")]

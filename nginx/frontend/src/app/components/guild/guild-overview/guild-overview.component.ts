@@ -51,4 +51,8 @@ export class GuildOverviewComponent implements OnInit {
 
     this.guild = this.api.getSimpleData(`/discord/guilds/${this.guildId}`).toPromise();
   }
+
+  redirectToDashboard() {
+    this.router.navigate(['guilds', this.guildId, 'dash'])
+  }
 }

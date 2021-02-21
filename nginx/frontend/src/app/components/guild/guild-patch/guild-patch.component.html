@@ -1,8 +1,4 @@
-<div *ngIf="this.guildLoading" class="d-flex flex-row" >
-    <div class="flex-grow-1"></div>
-    <img src="assets/img/spinner.gif" />
-    <div class="flex-grow-1"></div>
-</div>
+<app-loading-spinner *ngIf="this.guildLoading"></app-loading-spinner>
 <ng-container *ngIf="!this.guildLoading">
 <div class="d-flex justify-content-between align-items-start">
     <h3><span class="badge badge-success">Update guild</span></h3>

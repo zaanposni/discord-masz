@@ -14,15 +14,15 @@
             <p class="card-text">There are no moderated events.</p>
         </div>
     </div>
-    <ng-container *ngFor="let moderation of this.moderationEvents">
+    <div *ngFor="let moderation of this.moderationEvents" class="d-flex flex-column">
         <div class="d-flex" style="align-items: center" *ngIf="!isEqualToLastDate(moderation.createdAt)">
             <span class="flex-shrink-1 mr-3" style="font-size: 20px;">
                 {{ moderation.createdAt | date:'dd.MM.Y' }}
             </span>
             <hr class="spacer-type1 flex-grow-1"/>
         </div>
-        <app-modevent [moderation]="moderation"></app-modevent>
-    </ng-container>
+        <app-modevent [moderation]="moderation" class="mb-2"></app-modevent>
+    </div>
 </div>
 <div id="loadMoreData" *ngIf="(this.moderationEventsInfo | async)?.count > 50 && this.startPage * 50 < (this.moderationEventsInfo | async)?.count">
     <div class="d-flex" style="align-items: center">

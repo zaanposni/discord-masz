@@ -1,5 +1,15 @@
 <!-- Guild -->
 <div class="d-flex align-items-lg-center mb-3" *ngIf="(this.guild | async)">
+    <div class="d-flex flex-column mr-2" *ngIf="(this.isModOrHigher | async)">
+        <div class="flex-grow-1"></div>
+        <div class="md-form flex-shrink-0 mt-0 mb-0">
+            <button type="submit" name="submit" (click)="redirectToDashboard()"
+                class="btn btn-success btn-lg btn-block waves-effect waves-light p-2">
+                Switch to new dashboard view
+            </button>
+        </div>
+        <div class="flex-grow-1"></div>
+    </div>
     <img
         src="https://cdn.discordapp.com/icons/{{ (this.guild | async)?.id }}/{{ (this.guild | async)?.icon }}.png"
         class="rounded-circle z-depth-0 mr-1"

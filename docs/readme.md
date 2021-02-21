@@ -1,5 +1,9 @@
 # Preview
 
+## Dashboard
+
+<img src="dashboard.png"/>
+
 ## Modcase overview
 
 <img src="modcases.png"/>

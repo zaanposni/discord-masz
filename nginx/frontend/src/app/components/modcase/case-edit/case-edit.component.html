@@ -1,8 +1,4 @@
-<div *ngIf="this.caseLoading" class="d-flex flex-row" >
-    <div class="flex-grow-1"></div>
-    <img src="assets/img/spinner.gif" />
-    <div class="flex-grow-1"></div>
-</div>
+<app-loading-spinner *ngIf="this.caseLoading"></app-loading-spinner>
 <ng-container *ngIf="!this.caseLoading">
 <div class="d-flex justify-content-between align-items-start">
     <h3><span class="badge badge-success">Update ModCase</span></h3>

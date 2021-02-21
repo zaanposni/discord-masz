@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   currentUser!: Observable<AppUser>;
   userId: string;
   currentVersion!: MetaVersion;
-  githubReleases!: GitHubRelease[];
+  githubReleases: GitHubRelease[] = [];
 
   constructor(private authService: AuthService, public router: Router, private api: ApiService) { }
 

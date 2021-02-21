@@ -58,15 +58,11 @@
             If you look for a guild you are banned from, the administrator might have to enable the banned feature first.</p>
     </div>
 </div>
-<div *ngIf="this.loading" class="d-flex flex-row" >
-    <div class="flex-grow-1"></div>
-    <img src="assets/img/spinner.gif" />
-    <div class="flex-grow-1"></div>
-</div>
+<app-loading-spinner *ngIf="this.loading"></app-loading-spinner>
 <span class="display-4 mb-3" *ngIf="this.currentUser?.adminGuilds?.length">Admin Guilds ({{ this.currentUser?.adminGuilds?.length }})</span>
 <div class="d-flex flex-column flex-wrap justify-content-between mt-3">
     <div class="d-flex flex-row mb-3" *ngFor="let guild of this.currentUser?.adminGuilds">
-        <div class="flex-grow-1 crs-pnt" (click)="this.router.navigate(['guilds', guild.id])">
+        <div class="flex-grow-1 crs-pnt" (click)="this.router.navigate(['guilds', guild.id, 'dash'])">
             <div class="card">
                 <div class="card-body d-flex flex-row">
                     <div class="flex-grow-1">
@@ -101,7 +97,7 @@
 <span class="display-4 mb-3" *ngIf="this.currentUser?.modGuilds?.length">Moderator Guilds ({{ this.currentUser?.modGuilds?.length }})</span>
 <div class="d-flex flex-column flex-wrap justify-content-between mt-3">
     <div class="d-flex flex-row mb-3" *ngFor="let guild of this.currentUser?.modGuilds">
-        <div class="flex-grow-1 crs-pnt" (click)="this.router.navigate(['guilds', guild.id])">
+        <div class="flex-grow-1 crs-pnt" (click)="this.router.navigate(['guilds', guild.id, 'dash'])">
             <div class="card">
                 <div class="card-body d-flex flex-row">
                     <div class="flex-grow-1">

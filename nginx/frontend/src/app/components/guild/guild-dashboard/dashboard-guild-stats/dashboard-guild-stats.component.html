@@ -1,0 +1,33 @@
+<div class="card-container">
+    <div class="card-container-body d-flex flex-column flex-wrap flex-shrink-0 flex-grow-1">
+        <span class="font-weight-bold mb-2">
+            Guildstats
+        </span>
+        <app-loading-spinner *ngIf="this.loading"></app-loading-spinner>
+        <div *ngIf="!this.loading && stats != undefined" class="w-100 d-flex flex-row flex-wrap">
+            <div class="mr-3">
+                <span>Cases</span>
+                <span class="d-block" style="font-size: x-large;">{{ stats.caseCount }}</span>
+            </div>
+            <div class="mr-3">
+                <span>Punishments</span>
+                <span class="d-block" style="font-size: x-large;">{{ stats.activeCount }}</span>
+            </div>
+            <div class="mr-3">
+                <span>Bans</span>
+                <span class="d-block" style="font-size: x-large;">{{ stats.activeBanCount }}</span>
+            </div>
+            <div class="mr-3">
+                <span>Mutes</span>
+                <span class="d-block" style="font-size: x-large;">{{ stats.activeMuteCount }}</span>
+            </div>
+            <div>
+                <span>Automoderations</span>
+                <span class="d-block" style="font-size: x-large;">{{ stats.moderationCount }}</span>
+            </div>
+        </div>
+        <div *ngIf="!this.loading && stats == undefined">
+            <span>Failed to load guild stats.</span>
+        </div>
+    </div>
+</div>

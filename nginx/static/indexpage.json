@@ -28,6 +28,15 @@
         "buttonIcon": ""
     },
     {
+        "imageSrc": "assets/img/dashboard.svg",
+        "imageAlt": "Dashboard",
+        "title": "Dashboard",
+        "description": "Use a simple and intuitive dashboard to keep up with any moderation events on your server.",
+        "buttonText": "",
+        "buttonHref": "",
+        "buttonIcon": ""
+    },
+    {
         "imageSrc": "assets/img/note_list.svg",
         "imageAlt": "A moderation case",
         "title": "Moderation cases",
@@ -55,15 +64,6 @@
         "buttonIcon": ""
     },
     {
-        "imageSrc": "assets/img/server.svg",
-        "imageAlt": "How can I get MASZ?",
-        "title": "How can I get MASZ?",
-        "description": "The easiest way to get MASZ: I will do all the work for you. For only 3€/month I will host you a server, get you a domain and provide technical support. Feel free to contact me in discord: zaanposni#9295 or via mail.",
-        "buttonText": "Mail me",
-        "buttonHref": "mailto:me@zaanposni.com?subject=MASZ%20Hosting&body=Hey%20zaanposni%2C%0D%0A%0D%0AI%20would%20like%20to%20use%20MASZ.%0D%0ACan%20you%20host%20me%20an%20instance%3F%0D%0A%0D%0ABest%20regards.%0D%0A ",
-        "buttonIcon": "far fa-envelope-open"
-    },
-    {
         "imageSrc": "assets/img/rocket.svg",
         "imageAlt": "Setup",
         "title": "Selfhosting",
@@ -71,6 +71,15 @@
         "buttonText": "Setup",
         "buttonHref": "https://github.com/zaanposni/discord-masz#hosting",
         "buttonIcon": "fab fa-github"
+    },
+    {
+        "imageSrc": "assets/img/server.svg",
+        "imageAlt": "How can I get MASZ?",
+        "title": "I cannot selfhost",
+        "description": "For a small fee per month I will host you a server, get you a domain and provide technical support. Feel free to contact me in discord: zaanposni#9295 or via mail.",
+        "buttonText": "Mail me",
+        "buttonHref": "mailto:me@zaanposni.com?subject=MASZ%20Hosting&body=Hey%20zaanposni%2C%0D%0A%0D%0AI%20would%20like%20to%20use%20MASZ.%0D%0ACan%20you%20host%20me%20an%20instance%3F%0D%0A%0D%0ABest%20regards.%0D%0A ",
+        "buttonIcon": "far fa-envelope-open"
     },
     {
         "imageSrc": "assets/img/opensource.svg",

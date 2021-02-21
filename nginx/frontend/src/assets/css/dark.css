@@ -6,6 +6,7 @@
     --dark-footer-background: #0d1117;
     --dark-modal-background: #06090f;
     --dark-card-background: #0d1117;
+    --dark-card-in-card-background: rgba(16, 21, 29, 0.87);
 }
 html {
     background-color: var(--dark-background) !important;
@@ -246,6 +247,11 @@ select:-webkit-autofill {
     border-radius: 15px;
     cursor: pointer;
 }
+.moderation-without-hover {
+    background-color: var(--dark-card-background);
+    color: var(--dark-text);
+    border-radius: 5px;
+}
 
 .mod-field {
     background-color: var(--dark-card-background);
@@ -295,6 +301,10 @@ select:-webkit-autofill {
     color: var(--dark-text);
     background-color: var(--dark-card-background);
     border-color: #828385;
+}
+
+.case-container .case-container, .card-container .card-container, .card-container .case-container, .card-container .moderation-without-hover {
+    background-color: var(--dark-card-in-card-background);
 }
 
 hr {

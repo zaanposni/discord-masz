@@ -1,8 +1,4 @@
-<div *ngIf="this.caseLoading" class="d-flex flex-row" >
-    <div class="flex-grow-1"></div>
-    <img src="assets/img/spinner.gif" />
-    <div class="flex-grow-1"></div>
-</div>
+<app-loading-spinner *ngIf="this.caseLoading"></app-loading-spinner>
 <div class="d-flex flex-column mt-2" *ngIf="!this.caseLoading">
     <div class="d-flex flex-row conditional_flex_wrap m-auto justify-content-between w-100">
         <div class="d-flex flex-column flex-grow-1 font-weight-bold">
