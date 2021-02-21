@@ -12,6 +12,17 @@
             </div>
             <div class="flex-grow-1"></div>
         </div>
+        <!-- Configure automod -->
+        <div class="d-flex flex-column m-2" *ngIf="this.isAdmin | async">
+            <div class="flex-grow-1"></div>
+            <div class="md-form flex-shrink-0 mt-0 mb-0">
+                <button type="submit" name="submit" (click)="redirectToAutoModConfig()"
+                    class="btn btn-success btn-lg btn-block waves-effect waves-light p-2">
+                    Configure AutoMod
+                </button>
+            </div>
+            <div class="flex-grow-1"></div>
+        </div>
         <!-- Create new case button -->
         <div class="d-flex flex-column m-2">
             <div class="flex-grow-1"></div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -12,6 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class GuildDashboardComponent implements OnInit {
 
   private guildId: string;
+  public isAdmin!: Observable<boolean>;
 
   constructor(private route: ActivatedRoute, private auth: AuthService, private toastr: ToastrService, private router: Router, private api: ApiService) { }
 
@@ -24,13 +26,19 @@ export class GuildDashboardComponent implements OnInit {
         this.router.navigate(['guilds']);
       }
     });
+
+    this.isAdmin = this.auth.isAdminInGuild(this.guildId);
   }
 
   redirectToCaseCreation() {
-    this.router.navigate(['guilds', this.guildId, 'cases', 'new'])
+    this.router.navigate(['guilds', this.guildId, 'cases', 'new']);
   }
 
   redirectToCaseTable() {
-    this.router.navigate(['guilds', this.guildId])
+    this.router.navigate(['guilds', this.guildId]);
+  }
+
+  redirectToAutoModConfig() {
+    this.router.navigate(['guilds', this.guildId, 'automod']);
   }
 }
