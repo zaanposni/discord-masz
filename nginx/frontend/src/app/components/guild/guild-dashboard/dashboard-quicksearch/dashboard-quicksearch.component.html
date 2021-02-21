@@ -9,10 +9,10 @@
 </div>
 <div class="card-container" [class.mb-2]="this.showOverlay" *ngIf="this.showOverlay">
     <div class="card-container-body d-flex flex-column flex-shrink-0 flex-grow-1">
-        <span style="font-size: x-large;" class="mb-2" *ngIf="this.loading; else result_title">Loading</span>
-        <ng-template #result_title>
-            <span style="font-size: x-large;" class="mb-2">{{ searchResults.length }} results found!</span>
-        </ng-template>
+        <span style="font-size: x-large;" class="mb-2" *ngIf="this.loading">Loading</span>
+        <span style="font-size: x-large;" class="mb-2" *ngIf="!this.loading && this.searchResults.length === 0">No results found!</span>
+        <span style="font-size: x-large;" class="mb-2" *ngIf="!this.loading && this.searchResults.length === 1">{{ searchResults.length }} result found!</span>
+        <span style="font-size: x-large;" class="mb-2" *ngIf="!this.loading && this.searchResults.length > 1">{{ searchResults.length }} results found!</span>
 
         <app-loading-spinner *ngIf="this.loading"></app-loading-spinner>
 
