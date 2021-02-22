@@ -4,7 +4,8 @@
     "version": "v1.9",
     "changes": [
       "Added dashboard view for moderators and admins.",
-      "Improved login UX.",
+      "Added loading spinner during login.",
+      "Correctly redirect to requested url after login.",
       "Adjusted webhook notifications."
     ]
   },
