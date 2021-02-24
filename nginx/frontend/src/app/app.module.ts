@@ -21,7 +21,6 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NonAuthGuard } from './guards/non-auth.guard';
 import { PatchnotesComponent } from './components/information/patchnotes/patchnotes.component';
 import { CaseViewComponent } from './components/modcase/case-view/case-view.component';
 import { FormsModule } from '@angular/forms';
@@ -40,6 +39,19 @@ import { ModeventComponent } from './components/guild/guild-overview/modevent/mo
 import { DonateComponent } from './components/information/donate/donate.component';
 import { ProfileViewComponent } from './components/profile/profile-view/profile-view.component';
 import { TemplateCardComponent } from './components/misc/template-card/template-card.component';
+import { GuildDashboardComponent } from './components/guild/guild-dashboard/guild-dashboard.component';
+import { ChartsModule } from 'ng2-charts';
+import { DashboardChartsComponent } from './components/guild/guild-dashboard/dashboard-charts/dashboard-charts.component';
+import { CountChartComponent } from './components/guild/guild-dashboard/dashboard-charts/count-chart/count-chart.component';
+import { LoadingSpinnerComponent } from './components/misc/loading-spinner/loading-spinner.component';
+import { DashboardQuicksearchComponent } from './components/guild/guild-dashboard/dashboard-quicksearch/dashboard-quicksearch.component';
+import { DashboardCaseListComponent } from './components/guild/guild-dashboard/dashboard-case-list/dashboard-case-list.component';
+import { DashboardMotdComponent } from './components/guild/guild-dashboard/dashboard-motd/dashboard-motd.component';
+import { DashboardGuildStatsComponent } from './components/guild/guild-dashboard/dashboard-guild-stats/dashboard-guild-stats.component';
+import { DashboardGuildinfoComponent } from './components/guild/guild-dashboard/dashboard-guildinfo/dashboard-guildinfo.component';
+import { QuicksearchCaseResultComponent } from './components/guild/guild-dashboard/dashboard-quicksearch/quicksearch-case-result/quicksearch-case-result.component';
+import { QuicksearchModerationResultComponent } from './components/guild/guild-dashboard/dashboard-quicksearch/quicksearch-moderation-result/quicksearch-moderation-result.component';
+import { CaseCardCompactComponent } from './components/guild/guild-dashboard/dashboard-case-list/case-card-compact/case-card-compact.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +83,18 @@ import { TemplateCardComponent } from './components/misc/template-card/template-
     DonateComponent,
     ProfileViewComponent,
     TemplateCardComponent,
+    GuildDashboardComponent,
+    DashboardChartsComponent,
+    CountChartComponent,
+    LoadingSpinnerComponent,
+    DashboardQuicksearchComponent,
+    DashboardCaseListComponent,
+    DashboardMotdComponent,
+    DashboardGuildStatsComponent,
+    DashboardGuildinfoComponent,
+    QuicksearchCaseResultComponent,
+    QuicksearchModerationResultComponent,
+    CaseCardCompactComponent
   ],
   imports: [
     CommonModule,
@@ -87,7 +111,8 @@ import { TemplateCardComponent } from './components/misc/template-card/template-
     FormsModule,
     OwlDateTimeModule,
     OwlMomentDateTimeModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    ChartsModule
   ],
   providers: [
     ToastrService,
@@ -97,7 +122,6 @@ import { TemplateCardComponent } from './components/misc/template-card/template-
       multi: true
     },
     AuthGuard,
-    NonAuthGuard,
     ApiService,
     CookieTrackerService
   ],

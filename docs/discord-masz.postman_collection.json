@@ -322,6 +322,47 @@
 							"response": []
 						},
 						{
+							"name": "expiring temp punishment table",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": "masz_access_token={{masz_access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/expiringpunishment?startPage=0",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"expiringpunishment"
+									],
+									"query": [
+										{
+											"key": "startPage",
+											"value": "0"
+										},
+										{
+											"key": "search",
+											"value": "hi",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "modcase/@me",
 							"request": {
 								"method": "GET",
@@ -1135,7 +1176,7 @@
 					]
 				},
 				{
-					"name": "tempaltes",
+					"name": "templates",
 					"item": [
 						{
 							"name": "get template",
@@ -1149,7 +1190,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/templates/:id",
+									"raw": "{{url}}/api/v1/templates/:id?guildid=769932817009606656",
 									"host": [
 										"{{url}}"
 									],
@@ -1159,10 +1200,16 @@
 										"templates",
 										":id"
 									],
+									"query": [
+										{
+											"key": "guildid",
+											"value": "769932817009606656"
+										}
+									],
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "9"
 										}
 									]
 								}
@@ -1213,7 +1260,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/templatesview",
+									"raw": "{{url}}/api/v1/templatesview?guildid={{guildid}}",
 									"host": [
 										"{{url}}"
 									],
@@ -1221,6 +1268,12 @@
 										"api",
 										"v1",
 										"templatesview"
+									],
+									"query": [
+										{
+											"key": "guildid",
+											"value": "{{guildid}}"
+										}
 									]
 								}
 							},
@@ -1239,7 +1292,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"templatename\": \"cool template\",\r\n    \"viewPermission\": 1,\r\n    \"title\": \"important case\",\r\n    \"description\": \"important description\",\r\n    \"Punishment\": \"Warn\",\r\n    \"Labels\": [\"hi\", \"label,\"],\r\n    \"PunishmentType\": 0,\r\n    \"PunishedUntil\": null,\r\n    \"sendPublicNotification\": true,\r\n    \"handlePunishment\": false,\r\n    \"announceDm\": true\r\n}",
+									"raw": "{\r\n    \"templatename\": \"global cool template\",\r\n    \"viewPermission\": 0,\r\n    \"title\": \"important case\",\r\n    \"description\": \"important description\",\r\n    \"Punishment\": \"Warn\",\r\n    \"Labels\": [\"hi\", \"label,\"],\r\n    \"PunishmentType\": 0,\r\n    \"PunishedUntil\": null,\r\n    \"sendPublicNotification\": true,\r\n    \"handlePunishment\": false,\r\n    \"announceDm\": true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1261,6 +1314,169 @@
 											"key": "guildid",
 											"value": "{{guildid}}"
 										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "dashboard",
+					"item": [
+						{
+							"name": "get casecount",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": "masz_access_token={{masz_access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/dashboard/chart",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"dashboard",
+										"chart"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "quicksearch",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": "masz_access_token={{masz_access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/dashboard/search?search=hi",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"dashboard",
+										"search"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "hi"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "stats",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": "masz_access_token={{masz_access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/dashboard/stats",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"dashboard",
+										"stats"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "motd",
+					"item": [
+						{
+							"name": "get motd for guild",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/motd",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"motd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create motd for guild",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": "masz_access_token={{masz_access_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"message\": \"testt\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/motd",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"motd"
 									]
 								}
 							},

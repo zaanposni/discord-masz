@@ -119,6 +119,33 @@ namespace masz.Services
             return await context.ModCases.AsQueryable().ToListAsync();
         }
 
+        public async Task<int> CountAllModCasesForGuild(string guildId)
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
+        }
+
+        public async Task<int> CountAllActivePunishmentsForGuild(string guildId)
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.PunishmentActive == true).CountAsync();
+        }
+
+        public async Task<int> CountAllActivePunishmentsForGuild(string guildId, PunishmentType type)
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.PunishmentActive == true && x.PunishmentType == type).CountAsync();
+        }
+        
+        public async Task<List<DbCount>> GetCaseCountGraph(string guildId, DateTime since)
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.CreatedAt > since)
+            .GroupBy(x => new { Day = x.CreatedAt.Date }).Select(x => new DbCount { Time = x.Key.Day, Count = x.Count() }).OrderByDescending(x => x.Time).ToListAsync();
+        }
+
+        public async Task<List<DbCount>> GetPunishmentCountGraph(string guildId, DateTime since)
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.CreatedAt > since && x.PunishmentType != PunishmentType.None)
+            .GroupBy(x => new { Day = x.CreatedAt.Date }).Select(x => new DbCount { Time = x.Key.Day, Count = x.Count() }).OrderByDescending(x => x.Time).ToListAsync();
+        }
+
         public async Task DeleteAllModCasesForGuild(string guildid)
         {
             var cases = await context.ModCases.AsQueryable().Where(x => x.GuildId == guildid).ToListAsync();
@@ -159,6 +186,12 @@ namespace masz.Services
         {
             return await context.AutoModerationEvents.AsQueryable().CountAsync();
         }
+        
+        public async Task<List<DbCount>> GetModerationCountGraph(string guildId, DateTime since)
+        {
+            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId && x.CreatedAt > since)
+            .GroupBy(x => new { Day = x.CreatedAt.Date }).Select(x => new DbCount { Time = x.Key.Day, Count = x.Count() }).OrderByDescending(x => x.Time).ToListAsync();
+        }
 
         public async Task<int> CountAllModerationEventsForGuild(string guildId)
         {
@@ -173,6 +206,10 @@ namespace masz.Services
         public async Task<List<AutoModerationEvent>> SelectAllModerationEvents()
         {
             return await context.AutoModerationEvents.AsQueryable().ToListAsync();
+        }
+        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(string guildId)
+        {
+            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
         public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(string guildId, int startPage, int pageSize)
         {
@@ -277,6 +314,21 @@ namespace masz.Services
         public async Task<List<CaseTemplate>> GetAllTemplatesFromUser(string userId)
         {
             return await context.CaseTemplates.AsQueryable().Where(x => x.UserId == userId).OrderByDescending(x => x.CreatedAt).ToListAsync();
+        }
+
+        // ==================================================================================
+        // 
+        // Motd
+        //
+        // ==================================================================================
+
+        public async Task<GuildMotd> GetMotdForGuild(string guildId)
+        {
+            return await context.GuildMotds.AsQueryable().Where(x => x.GuildId == guildId).FirstOrDefaultAsync();
+        }
+        public void SaveMotd(GuildMotd motd)
+        {
+            context.GuildMotds.Update(motd);
         }
     }
 }

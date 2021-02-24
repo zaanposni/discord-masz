@@ -39,23 +39,20 @@ export class GuildOverviewComponent implements OnInit {
 
   guildId!: string | null;
   guild!: Promise<Guild>;
-  casesTable!: Promise<ModCaseTable[]>;
-  punishmentTable!: Promise<ModCaseTable[]>;
-  moderationEventsInfo!: Promise<AutoModerationEventInfo>;
-  isModOrHigher: boolean = false;
-  isAdminOrHigher: boolean = false;
+  isModOrHigher!: Observable<boolean>;
 
   constructor(private route: ActivatedRoute, private auth: AuthService, private toastr: ToastrService,
      private api: ApiService, public router: Router) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid');
-
-    this.auth.getUserProfile().subscribe((data) => {
-      this.isModOrHigher = data.modGuilds.find(x => x.id === this.guildId) !== undefined || data.adminGuilds.find(x => x.id === this.guildId) !== undefined || data.isAdmin;
-      this.isAdminOrHigher = data.adminGuilds.find(x => x.id === this.guildId) !== undefined || data.isAdmin;
-    });
+    
+    this.isModOrHigher = this.auth.isModInGuild(this.guildId);
 
     this.guild = this.api.getSimpleData(`/discord/guilds/${this.guildId}`).toPromise();
+  }
+
+  redirectToDashboard() {
+    this.router.navigate(['guilds', this.guildId, 'dash'])
   }
 }

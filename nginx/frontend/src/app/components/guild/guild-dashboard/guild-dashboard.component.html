@@ -1,0 +1,50 @@
+<div class="d-flex flex-column w-100">
+    <div class="d-flex flex-row flex-wrap">
+        <app-dashboard-guildinfo class="flex-grow-1 m-2"></app-dashboard-guildinfo>
+        <!-- switch to old view button -->
+        <div class="d-flex flex-column m-2">
+            <div class="flex-grow-1"></div>
+            <div class="md-form flex-shrink-0 mt-0 mb-0">
+                <button type="submit" name="submit" (click)="redirectToCaseTable()"
+                    class="btn btn-success btn-lg btn-block waves-effect waves-light p-2">
+                    Switch to old view
+                </button>
+            </div>
+            <div class="flex-grow-1"></div>
+        </div>
+        <!-- Configure automod -->
+        <div class="d-flex flex-column m-2" *ngIf="this.isAdmin | async">
+            <div class="flex-grow-1"></div>
+            <div class="md-form flex-shrink-0 mt-0 mb-0">
+                <button type="submit" name="submit" (click)="redirectToAutoModConfig()"
+                    class="btn btn-success btn-lg btn-block waves-effect waves-light p-2">
+                    Configure AutoMod
+                </button>
+            </div>
+            <div class="flex-grow-1"></div>
+        </div>
+        <!-- Create new case button -->
+        <div class="d-flex flex-column m-2">
+            <div class="flex-grow-1"></div>
+            <div class="md-form flex-shrink-0 mt-0 mb-0">
+                <button type="submit" name="submit" (click)="redirectToCaseCreation()"
+                    class="btn btn-success btn-lg btn-block waves-effect waves-light p-2">
+                    Create new case
+                </button>
+            </div>
+            <div class="flex-grow-1"></div>
+        </div>
+    </div>
+    <app-dashboard-quicksearch class="d-flex flex-column m-2"></app-dashboard-quicksearch>
+    <app-dashboard-charts class="m-2"></app-dashboard-charts>
+    <div class="d-flex flex-row flex-wrap conditional-flex-column mb-2">
+        <div class="d-flex flex-column flex-wrap flex-grow-1" style="flex-basis: 0px;">
+            <app-dashboard-guild-stats class="m-2" style="flex-basis: 0px;"></app-dashboard-guild-stats>
+            <app-dashboard-case-list class="m-2" style="flex-basis: 0px;" [title]="'Newest cases'" [resource]="'modcasetable'"></app-dashboard-case-list>
+        </div>
+        <div class="d-flex flex-column flex-wrap flex-grow-1" style="flex-basis: 0px;">
+            <app-dashboard-motd class="m-2" style="flex-basis: 0px;"></app-dashboard-motd>
+            <app-dashboard-case-list class="m-2" style="flex-basis: 0px;" [title]="'Expiring punishments'" [resource]="'expiringpunishment'"></app-dashboard-case-list>
+        </div>
+    </div>
+</div>

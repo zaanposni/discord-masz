@@ -190,6 +190,29 @@ namespace masz.Migrations
                     b.ToTable("GuildConfigs");
                 });
 
+            modelBuilder.Entity("masz.Models.GuildMotd", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("GuildId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GuildMotds");
+                });
+
             modelBuilder.Entity("masz.Models.ModCase", b =>
                 {
                     b.Property<int>("Id")

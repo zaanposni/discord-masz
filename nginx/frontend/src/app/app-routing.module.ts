@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './components/defaults/page-not-found/page-not-found.component';
 import { GuildAddComponent } from './components/guild/guild-add/guild-add.component';
+import { GuildDashboardComponent } from './components/guild/guild-dashboard/guild-dashboard.component';
 import { GuildListComponent } from './components/guild/guild-list/guild-list.component';
 import { GuildOverviewComponent } from './components/guild/guild-overview/guild-overview.component';
 import { GuildPatchComponent } from './components/guild/guild-patch/guild-patch.component';
@@ -14,7 +15,6 @@ import { CaseViewComponent } from './components/modcase/case-view/case-view.comp
 import { AutomodConfigComponent } from './components/moderation/automod-config/automod-config.component';
 import { ProfileViewComponent } from './components/profile/profile-view/profile-view.component';
 import { AuthGuard } from './guards/auth.guard';
-import { NonAuthGuard } from './guards/non-auth.guard';
 import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'guilds/:guildid/edit', component: GuildPatchComponent, canActivate: [AuthGuard] },
   { path: 'guilds/new', component: GuildAddComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid', component: GuildOverviewComponent, canActivate: [AuthGuard] },
+  { path: 'guilds/:guildid/dash', component: GuildDashboardComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/automod', component: AutomodConfigComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/cases/new', component: CaseNewComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/cases/:caseid', component: CaseViewComponent, canActivate: [AuthGuard] },
@@ -30,7 +31,7 @@ const routes: Routes = [
   { path: 'settings',  component: SettingsComponent },
   { path: 'patchnotes',  component: PatchnotesComponent },
   { path: 'donate',  component: DonateComponent },
-  { path: 'login',  component: IndexComponent, pathMatch: 'full', canActivate: [NonAuthGuard] },
+  { path: 'login',  component: IndexComponent, pathMatch: 'full' },
   { path: '',  redirectTo: 'login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

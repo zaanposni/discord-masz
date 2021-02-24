@@ -87,7 +87,7 @@ export class GuildPatchComponent implements OnInit {
     };
     this.api.putSimpleData(`/guilds/${this.selectedGuildId}`, data).subscribe((data) => {
       this.toastr.success('Guild updated.');
-      this.router.navigate(['guilds', this.selectedGuildId]);
+      this.router.navigate(['guilds']);
     }, (error) => {
       this.toastr.error('Cannot update guild.', 'Something went wrong.');
     })

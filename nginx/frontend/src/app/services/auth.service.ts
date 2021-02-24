@@ -5,7 +5,7 @@ import { API_URL } from '../config/config';
 import { ReplaySubject, Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { Router } from '@angular/router';
+import { Params, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { ToastrService } from 'ngx-toastr';
 
@@ -23,7 +23,9 @@ export class AuthService {
     this.http.get(API_URL + '/discord/users/@me').subscribe((data) => {
       this.currentUserSubject.next(data);
     }, (error) => {
-       this.handleError(error); });
+      this.currentUserSubject.error(null);
+      this.handleError(error);
+    });
   }
 
   getUserProfile(reinit: boolean = false): Observable<AppUser> {
@@ -32,6 +34,18 @@ export class AuthService {
       this.loadUserConfig();
     }
     return this.currentUser$;
+  }
+
+  isModInGuild(guildId: string): Observable<boolean> {
+    return this.currentUser$.pipe(map((data: AppUser) => {
+      return data.modGuilds.find(x => x.id === guildId) !== undefined || data.adminGuilds.find(x => x.id === guildId) !== undefined || data.isAdmin;
+    }));
+  }
+
+  isAdminInGuild(guildId: string): Observable<boolean> {
+    return this.currentUser$.pipe(map((data: AppUser) => {
+      return data.adminGuilds.find(x => x.id === guildId) !== undefined || data.isAdmin;
+    }));
   }
 
   resetCache() {
@@ -62,7 +76,14 @@ export class AuthService {
       // server-side error
       if (error.status == 401 && this.isLoggedIn()) {
         this.toastr.error("You have been logged out.");
-        this.router.navigate(['login']);
+        if (location.pathname.includes('login') || location.pathname === '' || location.pathname === '/') {
+          this.router.navigate(['login']);
+        } else {
+          let params: Params = {
+            'ReturnUrl': location.pathname
+          }
+          this.router.navigate(['login'], { queryParams: params });
+        }
       }
       msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }

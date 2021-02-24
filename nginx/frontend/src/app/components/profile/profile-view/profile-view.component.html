@@ -29,10 +29,6 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex flex-row" *ngIf="!(this.templates | async)">
-            <div class="flex-grow-1"></div>
-            <img src="assets/img/spinner.gif" />
-            <div class="flex-grow-1"></div>
-        </div>
+        <app-loading-spinner *ngIf="!(this.templates | async)"></app-loading-spinner>
     </fieldset>
 </div>

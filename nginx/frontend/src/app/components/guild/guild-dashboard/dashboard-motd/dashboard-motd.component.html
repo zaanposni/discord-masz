@@ -1,0 +1,40 @@
+<div class="card-container">
+    <div class="card-container-body d-flex flex-column flex-wrap flex-shrink-0 flex-grow-1">
+        <div class="d-flex flex-row flex-wrap">
+            <span class="font-weight-bold mb-2" *ngIf="this.motd?.creator">
+                Message from {{ this.motd?.creator?.username }}#{{ this.motd?.creator?.discriminator }}
+            </span>
+            <span class="font-weight-bold mb-2" *ngIf="!this.motd?.creator">
+                Motd
+            </span>
+            <div class="flex-grow-1"></div>
+            <div class="md-form flex-shrink-0 mt-0 mb-0" *ngIf="!this.loading && !this.updateMotdMode && (this.auth.isAdminInGuild(this.guildId) | async)">
+                <button type="submit" name="submit" (click)="initUpdateMotd()"
+                    class="btn btn-success btn-lg btn-block waves-effect waves-light p-2">
+                    Edit
+                </button>
+            </div>
+        </div>
+        <ng-container *ngIf="!this.loading">
+        <div class="d-flex flex-row">
+            <img
+                src="{{ this.motd?.creator?.imageUrl }}"
+                class="rounded-circle z-depth-0 mr-3"
+                alt="creator avatar"
+                height="80"
+                onerror="this.src='/assets/img/default_profile.png';"
+            />
+            <span style="white-space: pre-wrap; word-wrap: break-word" class="text-monospace" *ngIf="!this.updateMotdMode">{{ this.motd?.motd.message }}</span>
+            <div class="md-form d-flex flex-row flex-wrap" *ngIf="this.updateMotdMode">
+                <textarea id="form-description" class="md-textarea flex-grow-1 flex-shrink-0" 
+                 placeholder="Description" [(ngModel)]="this.newMotd" autocomplete="off"></textarea>
+                <button type="submit" name="submit" (click)="updateMotd()"
+                    class="btn btn-success btn-lg btn-block waves-effect waves-light p-2">
+                    Update
+                </button>
+            </div>
+        </div>
+        </ng-container>
+        <app-loading-spinner *ngIf="this.loading"></app-loading-spinner>
+    </div>
+</div>

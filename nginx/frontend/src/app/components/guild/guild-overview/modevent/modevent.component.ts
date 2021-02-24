@@ -12,6 +12,7 @@ declare function collapseTarget(target: any): any;
 export class ModeventComponent implements OnInit {
 
   @Input() moderation: AutoModerationEvent;
+  @Input() responsive: boolean = true;
   moderationBig: boolean = false;
 
   iconsMap: { [key: number]: string} = {
@@ -45,6 +46,7 @@ export class ModeventComponent implements OnInit {
   }
 
   collapse() {
+    if (!this.responsive) { return; }
     this.moderationBig = !this.moderationBig;
     collapseTarget('#collapse-' + this.moderation.id);
   }

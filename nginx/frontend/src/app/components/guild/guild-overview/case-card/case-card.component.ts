@@ -16,5 +16,4 @@ export class CaseCardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

@@ -1,5 +1,6 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
@@ -15,7 +16,10 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): boolean {
       let loggedIn = this.authService.isLoggedIn();
       if (!loggedIn) {
-        this.router.navigate(['login']);
+        let params: Params = {
+          'ReturnUrl': location.pathname
+        }
+        this.router.navigate(['login'], { queryParams: params });
       }
       return loggedIn;
   }

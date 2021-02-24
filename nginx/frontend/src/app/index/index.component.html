@@ -1,13 +1,17 @@
 <div class="d-flex flex-column">
     <div class="mb-5"></div>
-    <div class="flex-grow-1 center-container">
+    <div class="flex-grow-1 center-container" *ngIf="!this.attemptingLogin">
         <a class="custom-btn align-self-center m-3 d-flex flex-column flex-wrap justify-content-center bg-dark text-light login-btn"
-            href="/api/v1/login?ReturnUrl=">
+            (click)="redirectToApiLogin()">
             <div class="align-self-center justify-content-center text-center w-100 font-weight-bold">LOGIN WITH
                 DISCORD
             </div>
             <i class="fab fa-discord fa-9x align-self-center justify-content-center text-center w-100"></i>
         </a>
+    </div>
+    <div *ngIf="this.attemptingLogin" class="d-flex flex-column justify-content-center align-items-center">
+        <span style="font-size: xx-large;">Logging in...</span>
+        <app-loading-spinner></app-loading-spinner>
     </div>
 
     <div style="height: 200px"></div>

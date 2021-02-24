@@ -1,4 +1,4 @@
-<div class="moderation mb-2 p-3 d-flex flex-column"
+<div class="p-3 d-flex flex-column" [ngClass]="{'moderation': this.responsive, 'moderation-without-hover': !this.responsive }"
     [class.moderation-big]="moderationBig"
     (click)="collapse()">
     <div class="d-flex flex-row" style="align-items: center">
@@ -9,12 +9,12 @@
             <span>{{ actionsMap[moderation.autoModerationAction] }}.</span>
         </span>
         <div class="flex-grow-1"></div>
-        <a (click)="this.router.navigate(['guilds', moderation.guildId, 'cases', moderation.associatedCaseId])"
+        <a href="guilds/{{ moderation.guildId }}/cases/{{ moderation.associatedCaseId }}"
             *ngIf="moderation.associatedCaseId" >
             <span class="badge bg-primary">See case</span>
         </a>
     </div>
-    <div class="collapse" id="collapse-{{ moderation.id }}">
+    <div id="collapse-{{ moderation.id }}" [class.collapse]="this.responsive">
         <div class="ml-3 mt-3">
             <i class="fas fa-quote-right fa-2x"></i> <span> {{ moderation.messageContent }}</span>
             <hr/>

@@ -1,5 +1,15 @@
 [
   {
+    "title": "Version 1.9 Dashboard",
+    "version": "v1.9",
+    "changes": [
+      "Added dashboard view for moderators and admins.",
+      "Added loading spinner during login.",
+      "Correctly redirect to requested url after login.",
+      "Adjusted webhook notifications."
+    ]
+  },
+  {
     "title": "Version 1.8.3",
     "version": "v1.8.3",
     "changes": [

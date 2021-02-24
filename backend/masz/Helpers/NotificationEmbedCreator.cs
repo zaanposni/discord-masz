@@ -76,18 +76,11 @@ namespace masz.Helpers
                 description.Append(".");
             }
 
-            description.Append($"\nThis notification has been generated automatically.\n");
-            description.Append($"Follow [this link]({serviceBaseUrl}/guilds/{modCase.GuildId}/cases/{modCase.CaseId}) to see the corresponding case.\n");
-            if (action != RestAction.Deleted) {
-                description.Append($"Follow [this link]({serviceBaseUrl}/api/v1/guilds/{modCase.GuildId}/modcases/{modCase.CaseId}/files/{filename}) to view the file.\n");
-            }
-            description.Append($"[Contribute](https://github.com/zaanposni/discord-masz/blob/master/CONTRIBUTING.md) to this moderation tool.");
-
             embed.Description = description.ToString();
             
             if (! string.IsNullOrEmpty(serviceBaseUrl))
             {
-                embed.Url = $"{serviceBaseUrl}/guilds/{modCase.GuildId}/cases/{modCase.CaseId}";
+                embed.Url = serviceBaseUrl;
             }
 
             return embed;
@@ -136,15 +129,11 @@ namespace masz.Helpers
                     break;
             }
 
-            description.Append($"\nThis notification has been generated automatically.\n");
-            description.Append($"Follow [this link]({serviceBaseUrl}/guilds/{comment.ModCase.GuildId}/cases/{comment.ModCase.CaseId}) to see the corresponding case.\n");
-            description.Append($"[Contribute](https://github.com/zaanposni/discord-masz/blob/master/CONTRIBUTING.md) to this moderation tool.");
-
             embed.Description = description.ToString();
             
             if (! string.IsNullOrEmpty(serviceBaseUrl))
             {
-                embed.Url = $"{serviceBaseUrl}/guilds/{comment.ModCase.GuildId}/cases/{comment.ModCase.CaseId}";
+                embed.Url = serviceBaseUrl;
             }
 
             var author = new EmbedAuthorBuilder();
@@ -201,17 +190,11 @@ namespace masz.Helpers
                 description.Append(".");
             }
 
-            description.Append($"\nThis notification has been generated automatically.\n");
-            if (action != RestAction.Deleted) {
-                description.Append($"Follow [this link]({serviceBaseUrl}/guilds/{modCase.GuildId}/cases/{modCase.CaseId}) to see the corresponding case.\n");
-            }
-            description.Append($"[Contribute](https://github.com/zaanposni/discord-masz/blob/master/CONTRIBUTING.md) to this moderation tool.");
-
             embed.Description = description.ToString();
             
             if (! string.IsNullOrEmpty(serviceBaseUrl))
             {
-                embed.Url = $"{serviceBaseUrl}/guilds/{modCase.GuildId}/cases/{modCase.CaseId}";
+                embed.Url = serviceBaseUrl;
             }
 
             if (!string.IsNullOrEmpty(modCase.Punishment))
