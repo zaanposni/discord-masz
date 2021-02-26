@@ -1,18 +1,16 @@
-<h1 align="center">Discord-MASZ</h1>
+<h1>Discord-MASZ</h1>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/contributions-welcome-lightgreen">
-  <img src="https://img.shields.io/github/contributors/zaanposni/discord-masz">
-  <a href="https://github.com/zaanposni/discord-masz/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zaanposni/discord-masz.svg"/></a>
+<p>
   <img src="https://img.shields.io/badge/using-docker-blue">
-  <a href="https://discord.gg/5zjpzw6h3S">
-      <img src="https://img.shields.io/discord/779262870016884756?logo=discord"
-          alt="Chat on Discord">
-  </a>
   <a href="https://demomasz.zaanposni.com">
       <img src="https://img.shields.io/badge/demo-online-%234c1"
           alt="Online demo">
   </a>
+  <a href="https://discord.gg/5zjpzw6h3S">
+      <img src="https://img.shields.io/discord/779262870016884756?logo=discord"
+          alt="Chat on Discord">
+  </a>
+  <a href="https://github.com/zaanposni/discord-masz/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zaanposni/discord-masz.svg"/></a>
 </p>
 
 MASZ is a moderation tool from **discord moderators for discord moderators**.<br/>
@@ -24,17 +22,15 @@ On **the website** all members can login and view moderation events registered o
 Visit [https://demomasz.zaanposni.com](https://demomasz.zaanposni.com) for a demo.<br/>
 Furthermore, join the demo guild [https://discord.gg/7ubU6aWX9c](https://discord.gg/7ubU6aWX9c).
 
-# Used by
-
-- [Community Discord "Best of Bundestag"](https://discord.gg/ezMtSwR) 1800 members
-- ["Liberale Community"](https://discord.gg/uf9bHhNMmD) 250 members
-- ["Advertise Your Server"](https://discord.gg/promote) 52000 members
-
 # Preview
 
 ![](/docs/dashboard.png)
 
 More previews and examples can be found at [https://github.com/zaanposni/discord-masz/tree/master/docs](https://github.com/zaanposni/discord-masz/tree/master/docs)
+
+# Support Server
+
+Join this server to receive update information or get support: https://discord.gg/5zjpzw6h3S
 
 # Hosting
 
