@@ -22,7 +22,7 @@ MASZ combines:<br/>
 # Demo <img src="https://img.shields.io/badge/demo-online-%234c1" alt="Online demo">
 
 Visit [https://demomasz.zaanposni.com](https://demomasz.zaanposni.com) for a demo.<br/>
-Furthermore, join the demo guild [https://discord.gg/7ubU6aWX9c](https://discord.gg/7ubU6aWX9c).
+Furthermore, join the demo guild [https://discord.gg/7ubU6aWX9c](https://discord.gg/7ubU6aWX9c) to get the required permissions.
 
 # Preview
 
