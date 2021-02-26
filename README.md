@@ -15,9 +15,10 @@
 Yet another moderation bot for discord.<br/>
 MASZ combines:<br/>
 - **Infractions and managed (temporary) punishments** - to moderate your server
-- **Quicksearch** - to reliably search for any infractions or notes a user has.
+- **Quicksearch** - to reliably search for any infractions or notes a user has
 - **Automoderation** - to give trolls no chance
 - **Ban appeals and webhook notifications** - to moderate your server transparently
+- **A website and a discord bot** - to use MASZ
 
 # Demo <img src="https://img.shields.io/badge/demo-online-%234c1" alt="Online demo">
 
