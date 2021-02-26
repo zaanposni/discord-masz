@@ -1,4 +1,4 @@
-<h1>Discord-MASZ</h1>
+<h1>MASZ</h1>
 
 <p>
   <img src="https://img.shields.io/badge/using-docker-blue">
@@ -13,9 +13,12 @@
   <a href="https://github.com/zaanposni/discord-masz/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zaanposni/discord-masz.svg"/></a>
 </p>
 
-MASZ is a moderation tool from **discord moderators for discord moderators**.<br/>
-Use **automoderation**, **temporary punishments**, **moderation events**, **webhooks**, **fileuploads** or **the discord bot** to keep track of anything that happens on your server.<br/>
-On **the website** all members can login and view moderation events registered on their name and also comment on it and start a ban appeal.<br/>
+Yet another moderation bot for discord.<br/>
+MASZ combines:<br/>
+- **Infractions and managed (temporary) punishments** - to moderate your server
+- **Quicksearch** - to reliably search for any infractions or notes a user has.
+- **Automoderation** - to give trolls no chance
+- **Ban appeals and webhook notifications** - to moderate your server transparently
 
 # Demo <img src="https://img.shields.io/badge/demo-online-%234c1" alt="Online demo">
 
