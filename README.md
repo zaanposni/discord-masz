@@ -1,16 +1,15 @@
 <h1>MASZ</h1>
 
 <p>
-  <img src="https://img.shields.io/badge/using-docker-blue">
   <a href="https://demomasz.zaanposni.com">
       <img src="https://img.shields.io/badge/demo-online-%234c1"
           alt="Online demo">
   </a>
+  <img src="https://img.shields.io/badge/using-docker-blue">
   <a href="https://discord.gg/5zjpzw6h3S">
       <img src="https://img.shields.io/discord/779262870016884756?logo=discord"
           alt="Chat on Discord">
   </a>
-  <a href="https://github.com/zaanposni/discord-masz/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zaanposni/discord-masz.svg"/></a>
 </p>
 
 Yet another moderation bot for discord.<br/>
