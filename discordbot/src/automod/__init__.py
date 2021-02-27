@@ -80,10 +80,16 @@ def create_public_embed(msg: Message, mod_type: int, config) -> Embed:
     return embed
 
 
+def create_internal_embed(msg: Message, mod_type: int, config) -> Embed:
+    embed = create_public_embed(msg, mod_type, config)
+    more_info = f"\nChannel: <#{msg.channel.id}>\nMessageId: {msg.id}"
+    embed.description += more_info
+    return embed
+
 async def apply_punishment(msg: Message, mod_type: int, config, guildconfig):
     if guildconfig["ModInternalNotificationWebhook"]:
         try:
-            requests.post(guildconfig["ModInternalNotificationWebhook"], json={ "embeds": [create_public_embed(msg, mod_type, config).to_dict()] })
+            requests.post(guildconfig["ModInternalNotificationWebhook"], json={ "embeds": [create_internal_embed(msg, mod_type, config).to_dict()] })
         except Exception as e:
             print("Failed to send staff notification.")
             print(e)
