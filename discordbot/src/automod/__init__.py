@@ -82,8 +82,7 @@ def create_public_embed(msg: Message, mod_type: int, config) -> Embed:
 
 def create_internal_embed(msg: Message, mod_type: int, config) -> Embed:
     embed = create_public_embed(msg, mod_type, config)
-    more_info = f"\nChannel: <#{msg.channel.id}>\nMessageId: {msg.id}"
-    embed.description += more_info
+    embed.description += f"\nChannel: <#{msg.channel.id}>\nMessageId: {msg.id}"
     return embed
 
 async def apply_punishment(msg: Message, mod_type: int, config, guildconfig):
