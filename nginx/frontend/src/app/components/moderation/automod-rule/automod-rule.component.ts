@@ -156,12 +156,11 @@ export class AutomodRuleComponent implements OnInit {
       this.sendPublicNotification = this.config.sendPublicNotification;
       this.deleteMessage = this.config.autoModerationAction === 1 || this.config.autoModerationAction === 3;
       this.createCase = this.config.autoModerationAction === 2 || this.config.autoModerationAction === 3;
-      this.punishmentDuration = this.config.punishmentDurationMinutes.toString();
 
       this.punishmentDuration = '';
       switch(this.config.punishmentType) {
         case 1:
-          if (this.config.punishmentDurationMinutes) {
+          if (this.config?.punishmentDurationMinutes) {
             this.punishment = '2';
             this.punishmentDuration = this.config.punishmentDurationMinutes.toString();
           } else {
@@ -172,7 +171,7 @@ export class AutomodRuleComponent implements OnInit {
           this.punishment = '3';
           break;
         case 3:
-          if (this.config.punishmentDurationMinutes) {
+          if (this.config?.punishmentDurationMinutes) {
             this.punishment = '5';
             this.punishmentDuration = this.config.punishmentDurationMinutes.toString();
           } else {

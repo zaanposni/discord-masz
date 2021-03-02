@@ -1,5 +1,14 @@
 [
   {
+    "title": "Version 1.9.1",
+    "version": "v1.9.1",
+    "changes": [
+      "Fixed bug that displayed configured punishments for automoderations wrong.",
+      "Adjusted styling of navbar.",
+      "Added more information to internal automod notification embed."
+    ]
+  },
+  {
     "title": "Version 1.9 Dashboard",
     "version": "v1.9",
     "changes": [
