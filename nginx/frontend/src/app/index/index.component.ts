@@ -18,7 +18,7 @@ export class IndexComponent implements OnInit {
   constructor(private authService: AuthService, private api: ApiService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.infoPanels = this.api.getSimpleData('/static/indexpage.json?v=1.9', false);
+    this.infoPanels = this.api.getSimpleData('/static/indexpage.json?v=1.9.1', false);
     if (this.authService.isLoggedIn()) {
       this.attemptingLogin = true;
       this.authService.getUserProfile().subscribe((success) => {

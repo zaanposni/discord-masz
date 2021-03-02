@@ -21,13 +21,13 @@
             </ul>
             <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="this.currentUser | async">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
+                    <a class="nav-link dropdown-toggle waves-effect waves-light p-0 m-auto" id="navbarDropdownMenuLink"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img
                                 src="{{ (this.currentUser | async)?.discordUser?.imageUrl }}"
-                                class="rounded-circle z-depth-0 mr-1"
+                                class="rounded-circle z-depth-0"
                                 alt="avatar image"
-                                height="30"
+                                height="38"
                         />
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
@@ -51,16 +51,16 @@
                 </li>
             </ul>
             <div class="btn btn-elegant px-3" (click)="this.router.navigate(['patchnotes'])">
-                <i class="fas fa-code-branch" aria-hidden="true"></i>
+                <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
             </div>
             <button type="button" class="btn btn-elegant px-3" (click)="this.router.navigate(['donate'])">
-                <i class="fas fa-donate" aria-hidden="true"></i>
+                <i class="fas fa-donate fa-fw" aria-hidden="true"></i>
             </button>
             <button type="button" class="btn btn-elegant px-3" (click)="this.router.navigate(['settings'])">
-                <i class="fas fa-sliders-h" aria-hidden="true"></i>
+                <i class="fas fa-sliders-h fa-fw" aria-hidden="true"></i>
             </button>
             <button type="button" class="btn btn-danger px-3" *ngIf="(this.currentUser | async)?.isAdmin && this.githubReleases.length !== 0 && this.currentVersion?.version !== this.githubReleases[0]?.tag_name" (click)="showUpdateWarning()">
-                <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                <i class="fas fa-exclamation-triangle fa-fw" aria-hidden="true"></i>
             </button>
         </div>
     </div>
