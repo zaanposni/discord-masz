@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
         this.userId = data?.discordUser?.id;
       });
     }
-    this.api.getSimpleData("/static/version.json", false, new HttpParams(), false).subscribe((data) => {
+    this.api.getSimpleData("/static/version.json?v=1.9.1", false, new HttpParams(), false).subscribe((data) => {
       this.currentVersion = data;
     });
     this.api.getSimpleData("/meta/githubreleases", true, new HttpParams(), false).subscribe((data) => {
