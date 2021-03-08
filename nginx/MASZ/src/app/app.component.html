@@ -72,7 +72,7 @@
               <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon" (click)="open('guilds', guild.id, 'edit'); $event.stopPropagation()">
                 edit
               </mat-icon>
-              <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon">
+              <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon" (click)="deleteGuild(guild); $event.stopPropagation()">
                 delete
               </mat-icon>
             </div>

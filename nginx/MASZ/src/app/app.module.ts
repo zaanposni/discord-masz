@@ -15,6 +15,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -42,6 +44,8 @@ import { CommonModule } from '@angular/common';
 import { GuildOverviewComponent } from './components/guilds/guild-overview/guild-overview.component';
 import { GuildAddComponent } from './components/guilds/guild-add/guild-add.component';
 import { GuildListComponent } from './components/guilds/guild-list/guild-list.component';
+import { GuildDeleteDialogComponent } from './components/guilds/guild-delete-dialog/guild-delete-dialog.component';
+import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +61,9 @@ import { GuildListComponent } from './components/guilds/guild-list/guild-list.co
     EpiclistComponent,
     GuildOverviewComponent,
     GuildAddComponent,
-    GuildListComponent
+    GuildListComponent,
+    GuildDeleteDialogComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     CommonModule,
@@ -70,6 +76,8 @@ import { GuildListComponent } from './components/guilds/guild-list/guild-list.co
       progressBar: true,
       timeOut: 5000
     }),
+    MatCheckboxModule,
+    MatDialogModule,
     MatSelectModule,
     MatInputModule,
     MatStepperModule,
