@@ -164,7 +164,7 @@ namespace masz.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("AdminRoleId")
+                    b.Property<string>("AdminRoles")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("GuildId")
@@ -179,10 +179,10 @@ namespace masz.Migrations
                     b.Property<string>("ModPublicNotificationWebhook")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("ModRoleId")
+                    b.Property<string>("ModRoles")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("MutedRoleId")
+                    b.Property<string>("MutedRoles")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");

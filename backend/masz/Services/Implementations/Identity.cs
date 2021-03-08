@@ -157,7 +157,7 @@ namespace masz.Services
             }
 
             // check for role
-            return guildMember.Roles.Contains(guildConfig.AdminRoleId);
+            return guildMember.Roles.Intersect(guildConfig.AdminRoles).Any();
         }
 
         /// <summary>
@@ -185,7 +185,12 @@ namespace masz.Services
             }
 
             // check for role
-            return guildMember.Roles.Contains(guildConfig.ModRoleId) || guildMember.Roles.Contains(guildConfig.AdminRoleId);
+            System.Console.WriteLine("hi");
+            System.Console.WriteLine(guildMember.Roles);
+            System.Console.WriteLine(guildConfig.ModRoles);
+            System.Console.WriteLine(guildConfig.AdminRoles);
+            System.Console.WriteLine(guildConfig.MutedRoles);
+            return guildMember.Roles.Intersect(guildConfig.ModRoles).Any() || guildMember.Roles.Intersect(guildConfig.AdminRoles).Any();
         }
     }
 }

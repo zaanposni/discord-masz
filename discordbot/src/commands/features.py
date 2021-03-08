@@ -27,12 +27,22 @@ async def features(ctx):
             await ctx.send(f"MASZ is not registered on this guild.")
         return
     
-    muted_role_defined = cfg["MutedRoleId"]
-    if muted_role_defined:
-        muted_role = ctx.guild.get_role(int(muted_role_defined))
-    else:
-        muted_role = None
-    muted_role_managable = muted_role is not None and ctx.me.top_role > muted_role
+    muted_role_defined = cfg["MutedRoles"]
+    muted_roles = []
+    for role in cfg["MutedRoles"].split(","):
+        if muted_role_defined:
+            muted_roles.append(ctx.guild.get_role(int(role)))
+        else:
+            muted_roles = []
+            break
+    muted_role_managable = True
+    for role in muted_roles:
+        if role is None:
+            muted_role_managable = False
+            break
+        if ctx.me.top_role <= role:
+            muted_role_managable = False
+            break
 
     permissions = ctx.me.guild_permissions
     kick = permissions.kick_members
@@ -47,7 +57,7 @@ async def features(ctx):
     if not muted_role_defined:
         missing_permissions += f"\n- {X_CHECK} Muted role not defined"
     else:
-        if muted_role:
+        if muted_roles:
             if muted_role_managable:
                 missing_permissions += f"\n- {CHECK} Muted role defined"
             else:
@@ -56,8 +66,8 @@ async def features(ctx):
             missing_permissions += f"\n- {X_CHECK} Muted role defined but invalid"
 
     embed.add_field(
-        name = f"{CHECK if kick and ban and mute and muted_role and muted_role_managable else X_CHECK} Punishment feature",
-        value = f"Register and manage punishments (e.g. tempbans, mutes, etc.).{missing_permissions if not (kick and ban and mute and muted_role and muted_role_managable) else ''}",
+        name = f"{CHECK if kick and ban and mute and muted_roles and muted_role_managable else X_CHECK} Punishment feature",
+        value = f"Register and manage punishments (e.g. tempbans, mutes, etc.).{missing_permissions if not (kick and ban and mute and muted_roles and muted_role_managable) else ''}",
         inline=False
     )
     embed.add_field(
@@ -67,7 +77,7 @@ async def features(ctx):
         inline=False
     )
 
-    if kick and ban and mute and muted_role and muted_role_managable:
+    if kick and ban and mute and muted_roles and muted_role_managable:
         embed.description = f"{CHECK} Your bot on this guild is configured correctly. All features of MASZ can be used."
         embed.color = 0x07eb0b
     else:

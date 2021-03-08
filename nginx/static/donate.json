@@ -1,6 +1,15 @@
 [
     
     {
+        "imageSrc": "assets/img/masz.png",
+        "imageAlt": "MASZ",
+        "title": "Join the community guild",
+        "description": "Join our guild to get support, be notified of updates or to get some tips and tricks.",
+        "buttonText": "Join us",
+        "buttonHref": "https://discord.gg/5zjpzw6h3S",
+        "buttonIcon": ""
+    },
+    {
         "imageSrc": "assets/img/donate.svg",
         "imageAlt": "Donate",
         "title": "Donate",

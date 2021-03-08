@@ -238,7 +238,7 @@ namespace masz.Controllers
                 var currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId, true);
                 if (currentReportedMember != null)
                 {
-                    if (currentReportedMember.Roles.Contains(guildConfig.ModRoleId) || currentReportedMember.Roles.Contains(guildConfig.AdminRoleId)) {
+                    if (currentReportedMember.Roles.Intersect(guildConfig.ModRoles).Any() || currentReportedMember.Roles.Intersect(guildConfig.AdminRoles).Any()) {
                         logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for team members.");
                         return BadRequest("Cannot create cases for team members.");
                     }
@@ -337,7 +337,7 @@ namespace masz.Controllers
 
             if (currentReportedMember != null)
             {
-                if (currentReportedMember.Roles.Contains(guildConfig.ModRoleId) || currentReportedMember.Roles.Contains(guildConfig.AdminRoleId)) {
+                if (currentReportedMember.Roles.Intersect(guildConfig.ModRoles).Any() || currentReportedMember.Roles.Intersect(guildConfig.AdminRoles).Any()) {
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for team members.");
                     return BadRequest("Cannot create cases for team members.");
                 }

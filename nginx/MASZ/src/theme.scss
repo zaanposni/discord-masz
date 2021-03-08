@@ -1,0 +1,23 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$my-app-primary: mat-palette($mat-red, 800, 900, A700);
+$my-app-accent:  mat-palette($mat-pink, 500, 900, A100);
+$my-app-warn:    mat-palette($mat-deep-orange);
+
+$my-app-theme: mat-dark-theme($my-app-primary, $my-app-accent, $my-app-warn);
+
+@include angular-material-theme($my-app-theme);
+
+
+.primary-color {
+    color: mat-color($my-app-primary);
+}
+  
+.accent-color {
+    color: mat-color($my-app-accent);
+}
+
+.primary-bg-color {
+    background-color: mat-color($my-app-primary);
+}

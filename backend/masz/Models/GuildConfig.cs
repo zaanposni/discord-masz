@@ -9,9 +9,9 @@ namespace masz.Models
     {
         public int Id { get; set; }
         public string GuildId { get; set; }
-        public string ModRoleId { get; set; }
-        public string AdminRoleId { get; set; }
-        public string MutedRoleId { get; set; }
+        public string[] ModRoles { get; set; }
+        public string[] AdminRoles { get; set; }
+        public string[] MutedRoles { get; set; }
         public bool ModNotificationDM { get; set; }
         public string ModPublicNotificationWebhook { get; set; }
         public string ModInternalNotificationWebhook { get; set; }
@@ -21,9 +21,9 @@ namespace masz.Models
             return new GuildConfig {
                 Id = this.Id,
                 GuildId = this.GuildId,
-                ModRoleId = this.ModRoleId,
-                AdminRoleId = this.AdminRoleId,
-                MutedRoleId = this.MutedRoleId,
+                ModRoles = this.ModRoles,
+                AdminRoles = this.AdminRoles,
+                MutedRoles = this.MutedRoles,
                 ModNotificationDM = this.ModNotificationDM,
                 ModPublicNotificationWebhook = this.ModPublicNotificationWebhook,
                 ModInternalNotificationWebhook = this.ModInternalNotificationWebhook

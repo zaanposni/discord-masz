@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+* {
+  scrollbar-width: 8px;
+  scrollbar-color: rgb(48, 48, 48) rgba(0, 0, 0, 0.9);
+}
+
+/* Works on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+*::-webkit-scrollbar-track {
+  background: rgb(48, 48, 48);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 20px;
+  border: 3px solid rgb(48, 48, 48);
+}
+  
+.mat-drawer-inner-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.mat-drawer-inner-container::-webkit-scrollbar {
+  display: none;
+}
+
+  
+.waiting-for-text {
+  background-color: #1f1d1d;
+  border-radius: 2rem;
+  padding: 0.5rem;
+}
+
+.crs-ptr {
+  cursor: pointer;
+}
+
+.toast-container .ngx-toastr {
+  box-shadow: none !important;
+}
+
+@media screen and (max-width: 600px) {
+  .conditional-fc {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: center!important;
+  }
+  .conditional-center {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .conditional-il {
+    order: 98;
+  }
+}

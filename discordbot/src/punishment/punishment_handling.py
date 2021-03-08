@@ -12,12 +12,13 @@ async def handle_member_join(member: Member):
     if not guildconfig:  # guild not registered or no config
         return
     
-    if not guildconfig["MutedRoleId"]:
+    if not guildconfig["MutedRoles"]:
         return
     
-    muted_role = member.guild.get_role(int(guildconfig["MutedRoleId"]))
-    if muted_role:
-        cases = await get_modcases_by_user_and_guild_with_active_mute(str(member.guild.id), str(member.id))
-        if cases: 
-            print(f"Reapplying muted role to {member} on guild {member.guild}.")
-            await member.add_roles(muted_role)
+    for role in guildconfig["MutedRoles"].split(","):
+        muted_role = member.guild.get_role(int(role))
+        if muted_role:
+            cases = await get_modcases_by_user_and_guild_with_active_mute(str(member.guild.id), str(member.id))
+            if cases: 
+                print(f"Reapplying muted role {role} to {member} on guild {member.guild}.")
+                await member.add_roles(muted_role)

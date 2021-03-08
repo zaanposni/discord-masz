@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using masz.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -48,6 +49,22 @@ namespace masz.data
             modelBuilder.Entity<ModCase>()
                 .Property(p => p.GuildId)
                 .IsRequired(true);
+
+            modelBuilder.Entity<GuildConfig>()
+                .Property(e => e.ModRoles)
+                .HasConversion(
+                    v => string.Join(',', v),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+            modelBuilder.Entity<GuildConfig>()
+                .Property(e => e.AdminRoles)
+                .HasConversion(
+                    v => string.Join(',', v),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+            modelBuilder.Entity<GuildConfig>()
+                .Property(e => e.MutedRoles)
+                .HasConversion(
+                    v => string.Join(',', v),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
 
             modelBuilder.Entity<ModCase>()
                 .Property(e => e.Labels)
