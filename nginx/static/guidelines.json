@@ -5,6 +5,10 @@
     },
     {
         "title": "$2 - DO NOT SPAM THIS INSTANCE",
-        "text": "Testing or spam-heavy use of MASZ is prohibited."
+        "text": "Testing or spam-heavy use of MASZ is strictly prohibited."
+    },
+    {
+        "title": "$3 - BUG ABUSE",
+        "text": "Abusing a bug in the MASZ frontend, backend or infrastructure is strictly prohibited."
     }
 ]

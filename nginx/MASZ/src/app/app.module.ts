@@ -24,7 +24,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IndexComponent } from './components/basic/index/index.component';
-import { SettingsComponent } from './components/basic/settings/settings.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { AuthService } from './services/auth.service';
 import { ApiInterceptor } from './services/ApiInterceptor';
@@ -46,12 +45,12 @@ import { GuildAddComponent } from './components/guilds/guild-add/guild-add.compo
 import { GuildListComponent } from './components/guilds/guild-list/guild-list.component';
 import { GuildDeleteDialogComponent } from './components/guilds/guild-delete-dialog/guild-delete-dialog.component';
 import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { GuildEditComponent } from './components/guilds/guild-edit/guild-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
-    SettingsComponent,
     GuildCardComponent,
     GuildDashboardComponent,
     NotFoundComponent,
@@ -63,7 +62,8 @@ import { ConfirmationDialogComponent } from './components/dialogs/confirmation-d
     GuildAddComponent,
     GuildListComponent,
     GuildDeleteDialogComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    GuildEditComponent
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,13 @@
 [
   {
+    "title": "Version 1.10 - Website Redesign",
+    "version": "v1.10",
+    "changes": [
+      "Reworked website design.",
+      "Allowing multiple roles for admins, moderators, and muted punishment."
+    ]
+  },
+  {
     "title": "Version 1.9.1",
     "version": "v1.9.1",
     "changes": [

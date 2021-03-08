@@ -4,7 +4,6 @@ import { DonateComponent } from './components/basic/donate/donate.component';
 import { GuidelinesComponent } from './components/basic/guidelines/guidelines.component';
 import { IndexComponent } from './components/basic/index/index.component';
 import { PatchnotesComponent } from './components/basic/patchnotes/patchnotes.component';
-import { SettingsComponent } from './components/basic/settings/settings.component';
 import { NotFoundComponent } from './components/errors/not-found/not-found.component';
 import { GuildAddComponent } from './components/guilds/guild-add/guild-add.component';
 import { GuildDashboardComponent } from './components/guilds/guild-dashboard/guild-dashboard.component';
@@ -17,7 +16,6 @@ const routes: Routes = [
   { path: 'guilds/new', component: GuildAddComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid', component: GuildOverviewComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/dash', component: GuildDashboardComponent, canActivate: [AuthGuard] },
-  { path: 'settings', component: SettingsComponent },
   { path: 'patchnotes', component: PatchnotesComponent },
   { path: 'donate', component: DonateComponent },
   { path: 'guidelines', component: GuidelinesComponent },
