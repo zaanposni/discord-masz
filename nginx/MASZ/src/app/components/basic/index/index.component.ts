@@ -30,6 +30,7 @@ export class IndexComponent implements OnInit {
   }
 
   redirectToApiLogin() {
+    this.attemptingLogin = true;
     if ('ReturnUrl' in this.route.snapshot.queryParams) {
       window.location.href=`/api/v1/login?ReturnUrl=${this.route.snapshot.queryParams['ReturnUrl']}`;
     } else {

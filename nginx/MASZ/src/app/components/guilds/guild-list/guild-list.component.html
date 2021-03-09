@@ -1,1 +1,70 @@
-<p>guild-list works!</p>
+<div style="height: 100px;"></div>
+<div class="d-flex flex-column align-items-start container">
+    <div class="mat-display-1" style="font-weight: bold;" *ngIf="this.currentUser.loading">Loading guilds</div>
+    <mat-spinner *ngIf="this.currentUser.loading"></mat-spinner>
+
+    <!-- Admin guilds -->
+    <div class="mat-display-1" style="font-weight: bold;" *ngIf="this.currentUser?.content?.adminGuilds?.length">Admin guilds</div>
+    <div class="row w-100" *ngIf="!this.currentUser.loading">
+      <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.adminGuilds" routerLink="/guilds/{{ guild.id }}">
+        <img
+            src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" 
+            class="rounded-circle" 
+            alt="guild icon"
+            width="128px"
+            height="128px"
+            onerror="this.src='/assets/img/default_profile.png';"/>
+        <div class="mat-h3 mb-0" style="font-weight: bold;">{{ guild.name }}</div>
+      </a>      
+    </div>
+
+    <!-- mod guilds -->
+    <div class="mat-display-1" style="font-weight: bold;" *ngIf="this.currentUser?.content?.modGuilds?.length">Moderator guilds</div>
+    <div class="row w-100" *ngIf="!this.currentUser.loading">
+      <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.modGuilds" routerLink="/guilds/{{ guild.id }}">
+        <img
+            src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" 
+            class="rounded-circle" 
+            alt="guild icon"
+            width="128px"
+            height="128px"
+            onerror="this.src='/assets/img/default_profile.png';"/>
+        <div class="mat-h3 mb-0" style="font-weight: bold;">{{ guild.name }}</div>
+      </a>      
+    </div>
+
+    <!-- member guilds -->
+    <div class="mat-display-1" style="font-weight: bold;" *ngIf="this.currentUser?.content?.memberGuilds?.length">Guilds</div>
+    <div class="row w-100" *ngIf="!this.currentUser.loading">
+      <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.memberGuilds" routerLink="/guilds/{{ guild.id }}">
+        <img
+            src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" 
+            class="rounded-circle" 
+            alt="guild icon"
+            width="128px"
+            height="128px"
+            onerror="this.src='/assets/img/default_profile.png';"/>
+        <div class="mat-h3 mb-0" style="font-weight: bold;">{{ guild.name }}</div>
+      </a>      
+    </div>
+
+    <!-- banned guilds -->
+    <div class="mat-display-1" style="font-weight: bold;" *ngIf="this.currentUser?.content?.bannedGuilds?.length">Banned from guilds</div>
+    <div class="row w-100" *ngIf="!this.currentUser.loading">
+      <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.bannedGuilds" routerLink="/guilds/{{ guild.id }}">
+        <img
+            src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" 
+            class="rounded-circle" 
+            alt="guild icon"
+            width="128px"
+            height="128px"
+            onerror="this.src='/assets/img/default_profile.png';"/>
+        <div class="mat-h3 mb-0" style="font-weight: bold;">{{ guild.name }}</div>
+      </a>      
+    </div>
+
+    <ng-container *ngIf="this.currentUser?.content?.bannedGuilds!.length + this.currentUser?.content?.memberGuilds!.length + this.currentUser?.content?.modGuilds!.length + this.currentUser?.content?.adminGuilds!.length === 0">
+        <img src="/assets/img/notfound.svg" class="w-50 align-self-center"/>
+        <div class="mat-display-1 align-self-center" style="font-weight: bold;">Please join a guild or get banned so I can work with you :(</div>
+    </ng-container>
+</div>
