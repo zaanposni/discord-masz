@@ -10,6 +10,9 @@ import { GuildDashboardComponent } from './components/guilds/guild-dashboard/gui
 import { GuildEditComponent } from './components/guilds/guild-edit/guild-edit.component';
 import { GuildListComponent } from './components/guilds/guild-list/guild-list.component';
 import { GuildOverviewComponent } from './components/guilds/guild-overview/guild-overview.component';
+import { ModcaseAddComponent } from './components/modcase/modcase-add/modcase-add.component';
+import { ModcaseEditComponent } from './components/modcase/modcase-edit/modcase-edit.component';
+import { ModcaseViewComponent } from './components/modcase/modcase-view/modcase-view.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -18,6 +21,9 @@ const routes: Routes = [
   { path: 'guilds/:guildid', component: GuildOverviewComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/edit', component: GuildEditComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/dash', component: GuildDashboardComponent, canActivate: [AuthGuard] },
+  { path: 'guilds/:guildid/cases/new', component: ModcaseAddComponent, canActivate: [AuthGuard] },
+  { path: 'guilds/:guildid/cases/:caseid', component: ModcaseViewComponent, canActivate: [AuthGuard] },
+  { path: 'guilds/:guildid/cases/:caseid/edit', component: ModcaseEditComponent, canActivate: [AuthGuard] },
   { path: 'patchnotes', component: PatchnotesComponent },
   { path: 'donate', component: DonateComponent },
   { path: 'guidelines', component: GuidelinesComponent },

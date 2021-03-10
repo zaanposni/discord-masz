@@ -52,7 +52,10 @@ export class GuildEditComponent implements OnInit {
     this.currentGuild = { loading: true, content: {} as Guild };
     this.api.getSimpleData(`/discord/guilds/${id}`).subscribe((data) => {
       this.currentGuild = { loading: false, content: data };
-    }, () => { this.currentGuild.loading = false; });
+    }, () => { 
+      this.currentGuild.loading = false;
+      this.toastr.error('Failed to load current guild info.');
+    });
   }
   
   loadConfig(id: string|null) {
@@ -63,7 +66,10 @@ export class GuildEditComponent implements OnInit {
       this.muteRolesGroup.setValue({ muteRoles: data.mutedRoles});
       this.webhooksGroup.setValue({ internal: data.modInternalNotificationWebhook, public: data.modPublicNotificationWebhook });
       this.currentGuildConfig = { loading: false, content: data };
-    }, () => { this.currentGuildConfig.loading = false; });
+    }, () => {
+      this.currentGuildConfig.loading = false;
+      this.toastr.error('Failed to load current guild config.');
+    });
   }
 
   updateGuild() {
