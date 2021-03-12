@@ -23,6 +23,7 @@ export class GuildOverviewComponent implements OnInit {
     }
   ]
   public isModOrHigher: boolean = false;
+  public isAdminOrHigher: boolean = false;
   selectedTab = new FormControl(0);
 
   constructor(private auth: AuthService, private route: ActivatedRoute) { }
@@ -35,6 +36,7 @@ export class GuildOverviewComponent implements OnInit {
 
   initialize(guildId: string) {
     this.tabs = [
+      
       {
         "label": "Cases",
         "icon": "list",
@@ -51,6 +53,12 @@ export class GuildOverviewComponent implements OnInit {
       if (data) {
         this.tabs.unshift({ component: 'dashboard', icon: 'dashboard', label: 'Dashboard' });
         this.selectedTab.setValue(0);
+      }
+    });
+    this.auth.isAdminInGuild(guildId).subscribe((data) => {
+      this.isAdminOrHigher = data;
+      if (data) {
+        this.tabs.push({ component: 'config', icon: 'settings', label: 'Configuration' });
       }
     });
   }

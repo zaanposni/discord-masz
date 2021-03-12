@@ -1,0 +1,41 @@
+<div class="card-container" [class.mb-2]="this.showOverlay">
+    <div class="card-container-body d-flex flex-row flex-wrap flex-shrink-0 flex-grow-1 align-items-center">
+        <mat-icon class="mr-2">search</mat-icon>
+        <mat-form-field class="flex-grow-1 m-0">
+            <mat-label>Quicksearch users, modcases, punishments, automoderations, ...</mat-label>
+            <input matInput type="text" autocomplete="off" [(ngModel)]="search"
+                [(ngModel)]="search" (ngModelChange)="onSearch($event)">
+        </mat-form-field>
+    </div>
+</div>
+<div class="card-container" [class.mb-2]="this.showOverlay" *ngIf="this.showOverlay">
+    <div class="card-container-body d-flex flex-column flex-shrink-0 flex-grow-1">
+        <span style="font-size: x-large;" class="mb-2" *ngIf="this.loading">Loading</span>
+        <span style="font-size: x-large;" class="mb-2" *ngIf="!this.loading && this.searchResults.length === 0">No results found!</span>
+        <span style="font-size: x-large;" class="mb-2" *ngIf="!this.loading && this.searchResults.length === 1">{{ searchResults.length }} result found!</span>
+        <span style="font-size: x-large;" class="mb-2" *ngIf="!this.loading && this.searchResults.length > 1">{{ searchResults.length }} results found!</span>
+
+        <mat-spinner *ngIf="this.loading"></mat-spinner>
+
+        <div class="d-flex flex-column" *ngIf="!this.loading">
+            <ng-container *ngFor="let entry of searchResults">
+                <app-quicksearch-case-result [caseEntry]="entry.entry" class="mb-1"
+                 *ngIf="entry.quickSearchEntryType === 0"></app-quicksearch-case-result>
+                <app-quicksearch-moderation-result [entry]="entry.entry" class="mb-1"
+                 *ngIf="entry.quickSearchEntryType === 1"></app-quicksearch-moderation-result>
+            </ng-container>
+            <div *ngIf="searchResults.length === 0">
+                <div class="d-flex flex-row">
+                    <div class="flex-grow-1"></div>
+                    <img src="/assets/img/notfound.svg" class="flex-grow-0 w-50" />
+                    <div class="flex-grow-1"></div>
+                </div>
+                <div class="d-flex flex-row">
+                    <div class="flex-grow-1"></div>
+                    <span style="font-size: x-large;">Nothing matches your search :(</span>
+                    <div class="flex-grow-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

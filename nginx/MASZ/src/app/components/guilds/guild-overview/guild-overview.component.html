@@ -1,7 +1,7 @@
 
-<div style="height: 100px;"></div>
+<div style="height: 100px;" class="dp-on-big-screen"></div>
 <div class="d-flex flex-column justify-content-center align-items-center">
-    <div class="d-flex flex-column justify-content-center align-items-left w-75">
+    <div class="d-flex flex-column justify-content-center align-items-left cw-75-100">
         <!-- only list for cases and automods -->
         <mat-tab-group class="flex-grow-1" [selectedIndex]="selectedTab.value" (selectedIndexChange)="selectedTab.setValue($event)">
             <mat-tab *ngFor="let tab of this.tabs">
@@ -11,7 +11,8 @@
                 </ng-template>
                 <app-guild-dashboard *ngIf="tab.component == 'dashboard'"></app-guild-dashboard>
                 <app-modcase-table *ngIf="tab.component=='cases'"></app-modcase-table>
-                <app-donate *ngIf="tab.component=='automods'"></app-donate>
+                <app-automod-table *ngIf="tab.component=='automods'"></app-automod-table>
+                <app-guild-config *ngIf="tab.component=='config'"></app-guild-config>
             </mat-tab>
             <!-- dash board optional tab? -->
         </mat-tab-group>

@@ -51,6 +51,17 @@ import { ModcaseEditComponent } from './components/modcase/modcase-edit/modcase-
 import { ModcaseViewComponent } from './components/modcase/modcase-view/modcase-view.component';
 import { GuildDashboardComponent } from './components/guilds/guild-dashboard/guild-dashboard.component';
 import { ModcaseTableComponent } from './components/modcase/modcase-table/modcase-table.component';
+import { AutomodTableComponent } from './components/automod/automod-table/automod-table.component';
+import { DashboardMotdComponent } from './components/guilds/guild-dashboard/dashboard-motd/dashboard-motd.component';
+import { DashboardQuicksearchComponent } from './components/guilds/guild-dashboard/dashboard-quicksearch/dashboard-quicksearch.component';
+import { DashboardGuildinfoComponent } from './components/guilds/guild-dashboard/dashboard-guildinfo/dashboard-guildinfo.component';
+import { DashboardGuildStatsComponent } from './components/guilds/guild-dashboard/dashboard-guild-stats/dashboard-guild-stats.component';
+import { DashboardCaseListComponent } from './components/guilds/guild-dashboard/dashboard-case-list/dashboard-case-list.component';
+import { DashboardCommentListComponent } from './components/guilds/guild-dashboard/dashboard-comment-list/dashboard-comment-list.component';
+import { DashboardChartsComponent } from './components/guilds/guild-dashboard/dashboard-charts/dashboard-charts.component';
+import { GuildConfigComponent } from './components/guilds/guild-config/guild-config.component';
+import { QuicksearchCaseResultComponent } from './components/guilds/guild-dashboard/dashboard-quicksearch/quicksearch-case-result/quicksearch-case-result.component';
+import { QuicksearchModerationResultComponent } from './components/guilds/guild-dashboard/dashboard-quicksearch/quicksearch-moderation-result/quicksearch-moderation-result.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +83,18 @@ import { ModcaseTableComponent } from './components/modcase/modcase-table/modcas
     ModcaseEditComponent,
     ModcaseViewComponent,
     GuildDashboardComponent,
-    ModcaseTableComponent
+    ModcaseTableComponent,
+    AutomodTableComponent,
+    DashboardMotdComponent,
+    DashboardQuicksearchComponent,
+    DashboardGuildinfoComponent,
+    DashboardGuildStatsComponent,
+    DashboardCaseListComponent,
+    DashboardCommentListComponent,
+    DashboardChartsComponent,
+    GuildConfigComponent,
+    QuicksearchCaseResultComponent,
+    QuicksearchModerationResultComponent
   ],
   imports: [
     CommonModule,

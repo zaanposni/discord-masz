@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-guild-dashboard',
@@ -8,10 +11,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class GuildDashboardComponent implements OnInit {
 
-  constructor(private toastr: ToastrService) { }
+  public guildId!: string;
+  public isAdminOrHigher: boolean = false;
+  constructor(private toastr: ToastrService, private route: ActivatedRoute, private api: ApiService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.toastr.success("hi");
+    this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
+    this.auth.isAdminInGuild(this.guildId).subscribe((data) => {
+      this.isAdminOrHigher = data;
+    });
   }
 
 }
