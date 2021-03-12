@@ -6,9 +6,9 @@ namespace masz.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(name: "ModRoleId", "GuildConfigs", "ModRoles");
-            migrationBuilder.RenameColumn(name: "AdminRoleId", "GuildConfigs", "AdminRoles");
-            migrationBuilder.RenameColumn(name: "MutedRoleId", "GuildConfigs", "MutedRoles");
+            migrationBuilder.RenameColumn("ModRoleId", "GuildConfigs", "ModRoles");
+            migrationBuilder.RenameColumn("AdminRoleId", "GuildConfigs", "AdminRoles");
+            migrationBuilder.RenameColumn("MutedRoleId", "GuildConfigs", "MutedRoles");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

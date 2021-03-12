@@ -184,12 +184,6 @@ namespace masz.Services
                 return false;
             }
 
-            // check for role
-            System.Console.WriteLine("hi");
-            System.Console.WriteLine(guildMember.Roles);
-            System.Console.WriteLine(guildConfig.ModRoles);
-            System.Console.WriteLine(guildConfig.AdminRoles);
-            System.Console.WriteLine(guildConfig.MutedRoles);
             return guildMember.Roles.Intersect(guildConfig.ModRoles).Any() || guildMember.Roles.Intersect(guildConfig.AdminRoles).Any();
         }
     }

@@ -77,8 +77,8 @@ export class GuildEditComponent implements OnInit {
       modRoles: this.modRolesGroup.value.modRoles,
       adminRoles: this.adminRolesGroup.value.adminRoles,
       mutedRoles: this.muteRolesGroup.value.muteRoles !== '' ? this.muteRolesGroup.value.muteRoles : [],
-      modInternalNotificationWebhook: this.webhooksGroup.value.internal.trim() != '' ? this.webhooksGroup.value.internal : null,
-      modPublicNotificationWebhook: this.webhooksGroup.value.public.trim() != '' ? this.webhooksGroup.value.public : null,
+      modInternalNotificationWebhook: this.webhooksGroup.value?.internal?.trim() ? this.webhooksGroup?.value?.internal : null,
+      modPublicNotificationWebhook: this.webhooksGroup.value?.public?.trim() ? this.webhooksGroup?.value?.public : null,
     }
 
     this.api.putSimpleData(`/guilds/${this.currentGuild?.content?.id}`, data).subscribe((data) => {
