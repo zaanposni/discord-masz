@@ -69,7 +69,7 @@
               </div>
             </a>
           </mat-expansion-panel-header>
-          <a class="d-flex" (click)="open('guilds', guild.id, 'dash')" *ngFor="let guild of this.currentUser.adminGuilds">
+          <a class="d-flex" (click)="open('guilds', guild.id)" *ngFor="let guild of this.currentUser.adminGuilds">
             <div [class.activatedNav]="activatedNav[1] === 'guilds' && activatedNav[2] === guild.id" class="d-flex flex-row rounded navitem no-p">
               <img width="24px" height="24px" src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" class="rounded-circle"/>
               <span>{{ guild.name }}</span>
@@ -95,7 +95,7 @@
               </div>
             </a>
           </mat-expansion-panel-header>
-          <a class="d-flex" (click)="open('guilds', guild.id, 'dash')" *ngFor="let guild of this.currentUser.modGuilds">
+          <a class="d-flex" (click)="open('guilds', guild.id)" *ngFor="let guild of this.currentUser.modGuilds">
             <div [class.activatedNav]="activatedNav[1] === 'guilds' && activatedNav[2] === guild.id" class="rounded navitem">
               <img width="24px" height="24px" src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" class="rounded-circle"/>
               <span>{{ guild.name }}</span>

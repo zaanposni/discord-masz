@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -32,7 +33,6 @@ import { ApiService } from './services/api.service';
 import { CookieTrackerService } from './services/cookie-tracker.service';
 import { AuthGuard } from './guards/auth.guard';
 import { GuildCardComponent } from './components/guilds/guild-card/guild-card.component';
-import { GuildDashboardComponent } from './components/guilds/guild-dashboard/guild-dashboard.component';
 import { NotFoundComponent } from './components/errors/not-found/not-found.component';
 import { CookieModule } from 'ngx-cookie';
 import { PatchnotesComponent } from './components/basic/patchnotes/patchnotes.component';
@@ -49,13 +49,14 @@ import { GuildEditComponent } from './components/guilds/guild-edit/guild-edit.co
 import { ModcaseAddComponent } from './components/modcase/modcase-add/modcase-add.component';
 import { ModcaseEditComponent } from './components/modcase/modcase-edit/modcase-edit.component';
 import { ModcaseViewComponent } from './components/modcase/modcase-view/modcase-view.component';
+import { GuildDashboardComponent } from './components/guilds/guild-dashboard/guild-dashboard.component';
+import { ModcaseTableComponent } from './components/modcase/modcase-table/modcase-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
     GuildCardComponent,
-    GuildDashboardComponent,
     NotFoundComponent,
     PatchnotesComponent,
     GuidelinesComponent,
@@ -69,7 +70,9 @@ import { ModcaseViewComponent } from './components/modcase/modcase-view/modcase-
     GuildEditComponent,
     ModcaseAddComponent,
     ModcaseEditComponent,
-    ModcaseViewComponent
+    ModcaseViewComponent,
+    GuildDashboardComponent,
+    ModcaseTableComponent
   ],
   imports: [
     CommonModule,
@@ -82,6 +85,7 @@ import { ModcaseViewComponent } from './components/modcase/modcase-view/modcase-
       progressBar: true,
       timeOut: 5000
     }),
+    MatTabsModule,
     MatCheckboxModule,
     MatDialogModule,
     MatSelectModule,

@@ -2,10 +2,10 @@
 <div class="d-flex flex-column align-items-center container" *ngIf="!this.selectedGuild">
     <div class="d-flex flex-row conditional-fc align-items-baseline w-100">
         <div class="flex-grow-1"></div>
-        <div class="mat-display-1" style="font-weight: bold;">Select a guild</div>
+        <div class="mat-display-1" style="font-weight: bold;">Add a guild</div>
         <div class="flex-grow-1"></div>
         <mat-form-field class="example-form-field">
-            <mat-label>Search for a guild</mat-label>
+            <mat-label>Search a guild</mat-label>
             <input matInput type="text" [(ngModel)]="searchGuilds" (ngModelChange)="onSearch()">
             <button mat-button *ngIf="searchGuilds" matSuffix mat-icon-button aria-label="Clear" (click)="resetSearch()">
             <mat-icon>close</mat-icon>

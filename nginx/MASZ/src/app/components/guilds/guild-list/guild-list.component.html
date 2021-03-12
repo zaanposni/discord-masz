@@ -6,7 +6,7 @@
     <!-- Admin guilds -->
     <div class="mat-display-1 mb-2 mt-4" style="font-weight: bold;" *ngIf="this.currentUser?.content?.adminGuilds?.length">Admin guilds</div>
     <div class="row w-100" *ngIf="!this.currentUser.loading">
-      <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.adminGuilds" routerLink="/guilds/{{ guild.id }}/dash">
+      <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.adminGuilds" routerLink="/guilds/{{ guild.id }}">
         <img
             src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" 
             class="rounded-circle" 
@@ -21,7 +21,7 @@
     <!-- mod guilds -->
     <div class="mat-display-1 mb-2 mt-4" style="font-weight: bold;" *ngIf="this.currentUser?.content?.modGuilds?.length">Moderator guilds</div>
     <div class="row w-100" *ngIf="!this.currentUser.loading">
-      <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.modGuilds" routerLink="/guilds/{{ guild.id }}/dash">
+      <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.modGuilds" routerLink="/guilds/{{ guild.id }}">
         <img
             src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" 
             class="rounded-circle" 

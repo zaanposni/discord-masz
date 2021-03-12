@@ -1,1 +1,19 @@
-<p>guild-overview works!</p>
+
+<div style="height: 100px;"></div>
+<div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="d-flex flex-column justify-content-center align-items-left w-75">
+        <!-- only list for cases and automods -->
+        <mat-tab-group class="flex-grow-1" [selectedIndex]="selectedTab.value" (selectedIndexChange)="selectedTab.setValue($event)">
+            <mat-tab *ngFor="let tab of this.tabs">
+                <ng-template mat-tab-label>
+                    <mat-icon class="mr-1">{{ tab.icon }}</mat-icon>
+                    {{ tab.label }}
+                </ng-template>
+                <app-guild-dashboard *ngIf="tab.component == 'dashboard'"></app-guild-dashboard>
+                <app-modcase-table *ngIf="tab.component=='cases'"></app-modcase-table>
+                <app-donate *ngIf="tab.component=='automods'"></app-donate>
+            </mat-tab>
+            <!-- dash board optional tab? -->
+        </mat-tab-group>
+    </div>
+</div>
