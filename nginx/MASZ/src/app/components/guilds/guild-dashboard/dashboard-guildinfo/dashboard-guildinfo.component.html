@@ -7,13 +7,13 @@
         <!-- Content -->
         <img *ngIf="this.guild?.content && !this.guild?.loading"
             src="https://cdn.discordapp.com/icons/{{ this.guild?.content?.id }}/{{ this.guild?.content?.icon }}.png"
-            class="rounded-circle z-depth-0 mr-1"
+            class="rounded-circle z-depth-0 mr-2"
             alt="guild icon"
             height="64"
             onerror="this.src='/assets/img/default_profile.png';"
         />
         <span class="mat-h1 font-weight-bold mb-0" *ngIf="this.guild?.content && !this.guild?.loading">
-            {{ this.guild?.content?.name }} ({{ this.guild.content?.id }})
+            {{ this.guild?.content?.name }}
         </span>
         <!-- Not loaded -->
         <span *ngIf="!this.guild?.loading && !this.guild?.content">Failed to load guild info.</span>

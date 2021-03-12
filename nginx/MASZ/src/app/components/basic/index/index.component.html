@@ -5,6 +5,9 @@
     <button mat-raised-button color="primary" class="big-button mat-display-1 mb-1" *ngIf="!this.attemptingLogin" (click)="redirectToApiLogin()">
       Login with Discord
     </button>
+    <button mat-raised-button color="primary" class="big-button mat-display-1 mb-1" *ngIf="this.attemptingLogin" [disabled]="true">
+      Logging you in with Discord
+    </button>
     <span>
       By logging in you accept our 
       <a routerLink="/guidelines" style="color: inherit; text-decoration: none">
@@ -13,8 +16,5 @@
         <span style="font-weight: bold;" class="primary-color">Guidelines</span>
       </a>.
     </span>
-    <button mat-raised-button color="primary" class="big-button mat-display-1" *ngIf="this.attemptingLogin" [disabled]="true">
-      Logging you in with Discord
-    </button>
   </div>
 </div>
