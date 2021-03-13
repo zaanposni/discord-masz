@@ -40,6 +40,7 @@ namespace masz.Services
 
         Task<int> CountAllModerationEvents();
         Task<List<DbCount>> GetModerationCountGraph(string guildId, DateTime since);
+        Task<List<AutoModerationTypeSplit>> GetModerationSplitGraph(string guildId, DateTime since);
         Task<int> CountAllModerationEventsForGuild(string guildId);
         Task<int> CountAllModerationEventsForSpecificUserOnGuild(string guildId, string userId);
         Task<List<AutoModerationEvent>> SelectAllModerationEvents();

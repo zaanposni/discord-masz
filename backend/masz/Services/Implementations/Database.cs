@@ -190,7 +190,12 @@ namespace masz.Services
         public async Task<List<DbCount>> GetModerationCountGraph(string guildId, DateTime since)
         {
             return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId && x.CreatedAt > since)
-            .GroupBy(x => new { Month = x.CreatedAt.Month, Year = x.CreatedAt.Year }).Select(x => new DbCount { Year = x.Key.Year, Month = x.Key.Month, Count = x.Count() }).OrderByDescending(x => x.Year).ThenByDescending(x => x.Month).ToListAsync();
+                .GroupBy(x => new { Month = x.CreatedAt.Month, Year = x.CreatedAt.Year }).Select(x => new DbCount { Year = x.Key.Year, Month = x.Key.Month, Count = x.Count() }).OrderByDescending(x => x.Year).ThenByDescending(x => x.Month).ToListAsync();
+        }
+        public async Task<List<AutoModerationTypeSplit>> GetModerationSplitGraph(string guildId, DateTime since)
+        {
+            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId && x.CreatedAt > since)
+                .GroupBy(x => new { Type = x.AutoModerationType }).Select(x => new AutoModerationTypeSplit { Type = x.Key.Type, Count = x.Count() }).ToListAsync();
         }
 
         public async Task<int> CountAllModerationEventsForGuild(string guildId)

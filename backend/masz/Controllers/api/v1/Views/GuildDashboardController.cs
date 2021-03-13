@@ -72,6 +72,33 @@ namespace masz.Controllers
             });
         }
 
+        [HttpGet("automodchart")]
+        public async Task<IActionResult> GetAutomodSplitChart([FromRoute] string guildid, [FromQuery] long? since = null)
+        {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
+            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+            if (currentUser == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            // ========================================================
+
+            DateTime sinceTime = DateTime.UtcNow.AddYears(-1);
+            if (since != null) {
+                sinceTime = epoch.AddSeconds(since.Value);
+            }
+
+            logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Returning dashboard graphs.");
+            return Ok(await database.GetModerationSplitGraph(guildid, sinceTime));
+        }
+
         [HttpGet("stats")]
         public async Task<IActionResult> Stats([FromRoute] string guildid)
         {
