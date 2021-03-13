@@ -4,7 +4,9 @@
     "version": "v1.10",
     "changes": [
       "Reworked website design.",
-      "Allowing multiple roles for admins, moderators, and muted punishment."
+      "Allowing multiple roles for admins, moderators, and muted punishment.",
+      "Added pie chart for automoderation type analysis.",
+      "Fixed a bug that crashed adminstats endpoint."
     ]
   },
   {
