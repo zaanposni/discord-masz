@@ -62,6 +62,8 @@ import { DashboardChartsComponent } from './components/guilds/guild-dashboard/da
 import { GuildConfigComponent } from './components/guilds/guild-config/guild-config.component';
 import { QuicksearchCaseResultComponent } from './components/guilds/guild-dashboard/dashboard-quicksearch/quicksearch-case-result/quicksearch-case-result.component';
 import { QuicksearchModerationResultComponent } from './components/guilds/guild-dashboard/dashboard-quicksearch/quicksearch-moderation-result/quicksearch-moderation-result.component';
+import { CountChartComponent } from './components/guilds/guild-dashboard/dashboard-charts/count-chart/count-chart.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -94,7 +96,8 @@ import { QuicksearchModerationResultComponent } from './components/guilds/guild-
     DashboardChartsComponent,
     GuildConfigComponent,
     QuicksearchCaseResultComponent,
-    QuicksearchModerationResultComponent
+    QuicksearchModerationResultComponent,
+    CountChartComponent
   ],
   imports: [
     CommonModule,
@@ -127,7 +130,8 @@ import { QuicksearchModerationResultComponent } from './components/guilds/guild-
     MatNativeDateModule,
 
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartsModule
   ],
   providers: [
     ToastrService,

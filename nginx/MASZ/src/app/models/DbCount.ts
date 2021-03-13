@@ -1,4 +1,5 @@
 export interface DbCount {
-  time: Date;
+  year: number;
+  month: number;
   count: number;
 }

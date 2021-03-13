@@ -1,1 +1,30 @@
-<p>dashboard-charts works!</p>
+<div class="card-container">
+    <div class="card-container-body d-flex flex-column flex-wrap flex-shrink-0 flex-grow-1 conditional-fc">
+        <div class="d-flex flex-row flex-wrap align-items-center">
+            <span class="mat-h1 font-weight-bold mb-0">Overview</span>
+            <div class="flex-grow-1"></div>
+            <mat-form-field appearance="fill" color="accent" class="mr-2">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="since" (ngModelChange)="reload()">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <button type="submit" name="submit" (click)="resetToDefault()"
+                color="accent" mat-raised-button class="p-2">
+                Reset
+            </button>
+        </div>
+        <div class="d-flex flex-row flex-wrap conditional-fc">
+            <div class="flex-grow-1"></div>
+            <app-count-chart class="flex-grow-1" [title]="'Cases'" [max]="max"
+            [chartLoading]="loading" [chartData]="caseChartData" [chartLabels]="caseChartLabels"></app-count-chart>
+            <div class="flex-grow-1"></div>
+            <app-count-chart class="flex-grow-1" [title]="'Punishments'" [max]="max"
+            [chartLoading]="loading" [chartData]="punishmentChartData" [chartLabels]="punishmentChartLabels"></app-count-chart>
+            <div class="flex-grow-1"></div>
+            <app-count-chart class="flex-grow-1" [title]="'Automoderations'"
+            [chartLoading]="loading" [chartData]="moderationChartData" [chartLabels]="moderationChartLabels"></app-count-chart>
+            <div class="flex-grow-1"></div>
+        </div>
+    </div>
+</div>
