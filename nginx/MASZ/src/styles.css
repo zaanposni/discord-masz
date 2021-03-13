@@ -109,3 +109,7 @@ a:hover {
 .case-container .case-container, .card-container .card-container, .card-container .case-container, .card-container .moderation-without-hover {
   background-color: #303030;
 }
+
+.text-black-50 {
+  color: rgba(232, 230, 227, 0.7) !important
+}

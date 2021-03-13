@@ -1,0 +1,47 @@
+<a class="font-weight-bold" routerLink="/guilds/{{entry.modCase.guildId}}/cases/{{ entry.modCase.caseId }}">
+    <div class="card-container">
+        <div class="card-container-body d-flex flex-column flex-wrap">
+            <div class="d-flex flex-row flex-wrap">
+                <!-- Profile picture -->
+                <div class="pictures-parent mr-3">
+                    <img
+                        src="{{ entry.suspect?.imageUrl }}"
+                        class="rounded-circle z-depth-0 user-image"
+                        alt="avatar image"
+                        height="64"
+                        title="Suspect {{ entry.modCase.userId }}"
+                        onerror="this.src='/assets/img/default_profile.png';"
+                    />
+                    <img
+                        src="{{ entry.moderator?.imageUrl }}"
+                        class="rounded-circle z-depth-0 mod-image"
+                        alt="avatar image"
+                        height="28"
+                        title="Moderator {{ entry.modCase.modId }}"
+                        onerror="this.src='/assets/img/default_profile.png';"
+                    />
+                </div>
+                <div class="flex-shrink-1 d-flex flex-column flex-wrap">
+                    <!-- Title -->
+                    <div>
+                        <span class="badge mat-h4 mb-0 mr-1" style="padding: .1rem .4rem; font-weight: bold;"
+                            [ngClass]="(entry.modCase.punishmentType === 0 || entry.modCase.punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
+                            [attr.title]="(entry.modCase.punishmentType === 0 || entry.modCase.punishmentActive === true) ? '' : 'This punishment is expired.'">
+                            {{ entry.modCase.punishment }}
+                        </span>
+                        <span title="{{ entry.modCase.title }}" class="mat-h2 mb-0">
+                            {{ entry.suspect?.username || entry.modCase.username }}<ng-container *ngIf="entry.modCase.discriminator || entry.suspect">#{{ entry.suspect?.discriminator || entry.modCase.discriminator }}</ng-container><br/>
+                            #{{ entry.modCase.caseId }} - {{ entry.modCase.title.length > 25 ? entry.modCase.title.slice(0, 25) + ' [...]' : entry.modCase.title }}
+                        </span>
+                    </div>
+                    <span class="text-black-50" *ngIf="this.showCreated">
+                        Created: {{ entry.modCase.createdAt | date:'d. MMMM Y'  }}
+                    </span>
+                    <span class="text-black-50" *ngIf="entry.modCase.punishmentActive && entry.modCase.punishedUntil && this.showExpiring">
+                        Until: {{ entry.modCase.punishedUntil | date:'d. MMMM Y HH:mm:ss'  }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>

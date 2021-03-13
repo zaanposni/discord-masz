@@ -6,5 +6,6 @@ namespace masz.Dtos.GuildConfig
     {
         [Required(ErrorMessage = "Message field is required", AllowEmptyStrings=false)]
         public string Message { get; set; }
+        public bool ShowMotd { get; set; } = true;
     }
 }

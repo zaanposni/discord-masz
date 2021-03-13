@@ -4,6 +4,7 @@ export interface GuildMotd {
     id: number;
     guildId: string;
     message: string;
+    showMotd: boolean;
     userId: string;
     createdAt: Date;
 }

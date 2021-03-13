@@ -55,6 +55,7 @@ namespace masz.Controllers
                     Id = 0,
                     UserId = this.config.Value.DiscordClientId,
                     Message = "Default message. An administrator of this guild can set a custom message.",
+                    ShowMotd = false,
                     CreatedAt = DateTime.UtcNow,
                     GuildId = guildid
                 };
@@ -97,6 +98,7 @@ namespace masz.Controllers
             current.GuildId = guildid;
             current.UserId = currentUser.Id;
             current.Message = motd.Message;
+            current.ShowMotd = motd.ShowMotd;
             current.CreatedAt = DateTime.UtcNow;
 
             this.database.SaveMotd(current);

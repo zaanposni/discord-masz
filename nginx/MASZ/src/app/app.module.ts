@@ -64,6 +64,8 @@ import { QuicksearchCaseResultComponent } from './components/guilds/guild-dashbo
 import { QuicksearchModerationResultComponent } from './components/guilds/guild-dashboard/dashboard-quicksearch/quicksearch-moderation-result/quicksearch-moderation-result.component';
 import { CountChartComponent } from './components/guilds/guild-dashboard/dashboard-charts/count-chart/count-chart.component';
 import { ChartsModule } from 'ng2-charts';
+import { ModcaseCardComponent } from './components/modcase/modcase-table/modcase-card/modcase-card.component';
+import { ModcaseCardCompactComponent } from './components/guilds/guild-dashboard/dashboard-case-list/modcase-card-compact/modcase-card-compact.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +99,9 @@ import { ChartsModule } from 'ng2-charts';
     GuildConfigComponent,
     QuicksearchCaseResultComponent,
     QuicksearchModerationResultComponent,
-    CountChartComponent
+    CountChartComponent,
+    ModcaseCardComponent,
+    ModcaseCardCompactComponent
   ],
   imports: [
     CommonModule,

@@ -80,7 +80,7 @@ export class DashboardChartsComponent implements OnInit {
         this.moderationChartLabels = [ sinceInsert.toString(), ...data.autoModerations.map(x => this.convertTime(x)) ];
       }
 
-      this.maxSubject$.next(Math.max( ...data.modCases.map(x => x.count), ...data.punishments.map(x => x.count), ...data.autoModerations.map(x => x.count) ));
+      this.maxSubject$.next(Math.max( ...data.modCases.map(x => x.count), ...data.punishments.map(x => x.count), ...data.autoModerations.map(x => x.count), 10 ));
 
       this.loading = false;
     }, () => { this.loading = false; });
