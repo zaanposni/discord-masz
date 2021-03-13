@@ -24,3 +24,7 @@ a {
 .card-container {
     margin: unset!important;
 }
+
+::ng-deep .caselabels mat-chip {
+    background-color: #33b5e5 !important;
+}

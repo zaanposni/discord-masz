@@ -35,13 +35,9 @@
                 </div>
 
                 <!-- Labels -->
-                <div class="row ml-1 mb-1" title="The case labels">
-                    <div class="d-flex flex-wrap">
-                        <span *ngFor="let label of entry.modCase.labels">
-                            <span class="badge badge-pill badge-info mr-1">{{ label }}</span>
-                        </span>
-                    </div>
-                </div>
+                <mat-chip-list aria-label="Fish selection" class="caselabels ml-1 mb-1" title="The case labels">
+                    <mat-chip selected *ngFor="let label of entry.modCase.labels">{{ label }}</mat-chip>
+                </mat-chip-list>
 
                 <!-- Text -->
                 <span title="{{ entry.modCase.description }}" style="word-wrap: break-word;">{{ entry.modCase.description.length > 50 ? entry.modCase.description.slice(0, 50) + ' [...]' : entry.modCase.description }}</span>

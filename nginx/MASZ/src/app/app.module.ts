@@ -18,6 +18,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -114,6 +116,8 @@ import { ModcaseCardCompactComponent } from './components/guilds/guild-dashboard
       progressBar: true,
       timeOut: 5000
     }),
+    MatChipsModule,
+    MatSlideToggleModule,
     MatTabsModule,
     MatCheckboxModule,
     MatDialogModule,
