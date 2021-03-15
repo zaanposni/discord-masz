@@ -290,6 +290,11 @@ namespace masz.Services
             return await context.ModCaseComments.AsQueryable().FirstOrDefaultAsync(c => c.Id == commentId);
         }
 
+        public async Task<List<ModCaseComment>> SelectLastModCaseCommentsByGuild(string guildId)
+        {
+            return await context.ModCaseComments.Include(x => x.ModCase).AsQueryable().Where(x => x.ModCase.GuildId == guildId).OrderByDescending(x => x.CreatedAt).Take(10).ToListAsync();
+        }
+
         // ==================================================================================
         // 
         // CaseTemplates

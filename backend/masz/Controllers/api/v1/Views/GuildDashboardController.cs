@@ -123,6 +123,7 @@ namespace masz.Controllers
             int activeMutes = await this.database.CountAllActivePunishmentsForGuild(guildid, PunishmentType.Mute);
             int autoModerations = await this.database.CountAllModerationEventsForGuild(guildid);
 
+            logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Returning stats.");
             return Ok(new {
                 caseCount = modCases,
                 activeCount = activePunishments,
@@ -130,6 +131,34 @@ namespace masz.Controllers
                 activeMuteCount = activeMutes,
                 moderationCount = autoModerations
             });
+        }
+
+        [HttpGet("latestcomments")]
+        public async Task<IActionResult> LatestComments([FromRoute] string guildid)
+        {   
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
+            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+            if (currentUser == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            // ========================================================
+            
+            logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Returning latest comments.");
+ 
+            List<CommentListView> view = new List<CommentListView>();
+            foreach (ModCaseComment comment in await database.SelectLastModCaseCommentsByGuild(guildid)) {
+                view.Add(new CommentListView(comment, await discord.FetchUserInfo(comment.UserId)));
+            }
+
+            return Ok(view);
         }
 
         [HttpGet("search")]
@@ -189,6 +218,7 @@ namespace masz.Controllers
                 }
             }
 
+            logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Returning search results.");
             return Ok(entries.OrderByDescending(x => x.CreatedAt).ToList());
         }
 
