@@ -70,6 +70,7 @@ import { ModcaseCardComponent } from './components/modcase/modcase-table/modcase
 import { ModcaseCardCompactComponent } from './components/guilds/guild-dashboard/dashboard-case-list/modcase-card-compact/modcase-card-compact.component';
 import { DashboardAutomodSplitComponent } from './components/guilds/guild-dashboard/dashboard-automod-split/dashboard-automod-split.component';
 import { AutomodCardComponent } from './components/automod/automod-card/automod-card.component';
+import { CommentsCardCompactComponent } from './components/guilds/guild-dashboard/dashboard-comment-list/comments-card-compact/comments-card-compact.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { AutomodCardComponent } from './components/automod/automod-card/automod-
     ModcaseCardComponent,
     ModcaseCardCompactComponent,
     DashboardAutomodSplitComponent,
-    AutomodCardComponent
+    AutomodCardComponent,
+    CommentsCardCompactComponent
   ],
   imports: [
     CommonModule,
