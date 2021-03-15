@@ -98,7 +98,7 @@ a:hover {
   padding: 1rem;
 }
 
-.card-container {
+.card-container, .moderation-without-hover {
   font-weight: 400;
   border: 0;
   border-radius: 5px;

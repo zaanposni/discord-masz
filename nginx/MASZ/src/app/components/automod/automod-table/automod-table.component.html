@@ -1,1 +1,25 @@
-<p>automod-table works!</p>
+<div class="d-flex flex-row justify-content-center">
+    <div style="width: 90%;">
+        <div class="moderations">
+            <div class="card rounded mb-3" *ngIf="this.maxCount === 0">
+                <div class="card-body">
+                    <h4 class="card-title"><a>Nothing here.</a></h4>
+                    <p class="card-text">There are no moderated events.</p>
+                </div>
+            </div>
+            <div *ngFor="let moderation of this.moderationEvents" class="d-flex flex-column">
+                <app-automod-card [moderation]="moderation" class="mb-2"></app-automod-card>
+            </div>
+        </div>
+        <div id="loadMoreData" *ngIf="this.maxCount > 50 && this.startPage * 50 < this.maxCount">
+            <div class="d-flex" style="align-items: center">
+                <hr class="spacer-type1 flex-grow-1"/>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-primary" (click)="loadMoreData()">
+                    Load even more data
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
