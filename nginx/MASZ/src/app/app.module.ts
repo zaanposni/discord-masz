@@ -69,6 +69,7 @@ import { ChartsModule } from 'ng2-charts';
 import { ModcaseCardComponent } from './components/modcase/modcase-table/modcase-card/modcase-card.component';
 import { ModcaseCardCompactComponent } from './components/guilds/guild-dashboard/dashboard-case-list/modcase-card-compact/modcase-card-compact.component';
 import { DashboardAutomodSplitComponent } from './components/guilds/guild-dashboard/dashboard-automod-split/dashboard-automod-split.component';
+import { AutomodCardComponent } from './components/automod/automod-card/automod-card.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,8 @@ import { DashboardAutomodSplitComponent } from './components/guilds/guild-dashbo
     CountChartComponent,
     ModcaseCardComponent,
     ModcaseCardCompactComponent,
-    DashboardAutomodSplitComponent
+    DashboardAutomodSplitComponent,
+    AutomodCardComponent
   ],
   imports: [
     CommonModule,

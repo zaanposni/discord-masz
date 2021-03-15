@@ -4,7 +4,7 @@
             Automoderation
         </span>
         <div class="w-100 d-flex flex-row flex-wrap" *ngIf="!loading">
-            <canvas baseChart height="300px" width="500px"
+            <canvas baseChart
                 [datasets]="chartData"
                 [labels]="chartLabels"
                 [options]="chartOptions"

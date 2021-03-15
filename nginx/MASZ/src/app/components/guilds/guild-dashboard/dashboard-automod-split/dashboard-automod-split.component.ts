@@ -25,8 +25,8 @@ export class DashboardAutomodSplitComponent implements OnInit {
       display: true,
       fontColor: 'rgba(232, 230, 227, 1)'
     },
-    responsive: false,
-    maintainAspectRatio: false,
+    responsive: true,
+    maintainAspectRatio: true,
     legend: {
       display: true,
       labels: {
