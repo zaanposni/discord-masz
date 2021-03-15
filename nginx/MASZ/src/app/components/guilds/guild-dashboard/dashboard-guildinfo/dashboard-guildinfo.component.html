@@ -15,6 +15,10 @@
         <span class="mat-h1 font-weight-bold mb-0" *ngIf="this.guild?.content && !this.guild?.loading">
             {{ this.guild?.content?.name }}
         </span>
+        <div class="flex-grow-1"></div>
+        <a routerLink="/guilds/{{ this.guild?.content?.id }}/cases/new" class="p-2" mat-raised-button color="accent">
+            Create new case
+        </a>
         <!-- Not loaded -->
         <span *ngIf="!this.guild?.loading && !this.guild?.content">Failed to load guild info.</span>
     </div>
