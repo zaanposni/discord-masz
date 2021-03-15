@@ -1,7 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  src: url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7GxKKTU1Kvnz.woff2) format('woff2'), local('Helvetica Neue'), local('sans-serif');
+  font-display: swap;
+}
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0;  }
 
 * {
   scrollbar-width: 8px;

@@ -8,7 +8,9 @@
       "Allowing multiple roles for admins, moderators, and muted punishment.",
       "Added pie chart for automoderation type analysis.",
       "Fixed a bug that crashed adminstats endpoint.",
-      "Added newest comments list to dashboard."
+      "Added newest comments list to dashboard.",
+      "Added robots.txt for search engines.",
+      "Improved google lighthouse rating."
     ]
   },
   {

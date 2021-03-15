@@ -9,7 +9,7 @@
       <mat-nav-list>
         <a class="d-flex">
           <div class="rounded navitem nohover">
-            <img width="24px" height="24px" src="favicon.ico"/>
+            <img width="24px" height="24px" src="favicon.ico" alt="icon"/>
             <span>{{ title }}</span>
           </div>
         </a>
@@ -18,7 +18,7 @@
           <mat-expansion-panel-header>
             <a class="d-flex">
               <div class="rounded navitem nohover">
-                <img width="24px" height="24px" src="{{ this.currentUser?.discordUser?.imageUrl }}" class="rounded-circle"/>
+                <img width="24px" height="24px" src="{{ this.currentUser?.discordUser?.imageUrl }}" alt="user icon" class="rounded-circle"/>
                 <span>{{ this.currentUser?.discordUser?.username }}#{{ this.currentUser?.discordUser?.discriminator }}</span>
               </div>
             </a>
