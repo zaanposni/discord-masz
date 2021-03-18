@@ -171,15 +171,15 @@ namespace masz.Helpers
             switch(action){
                 case RestAction.Edited:
                     description.Append($"has been updated");
-                    embed.Title = $"**UPDATED** - #{modCase.CaseId} {modCase.Title}";
+                    embed.Title = $"#{modCase.CaseId} {modCase.Title}";
                     break;
                 case RestAction.Deleted:
                     description.Append($"has been deleted");
-                    embed.Title = $"**DELETED** - #{modCase.CaseId} {modCase.Title}";
+                    embed.Title = $"#{modCase.CaseId} {modCase.Title}";
                     break;
                 case RestAction.Created:
                     description.Append($"has been created");
-                    embed.Title = $"**CREATED** - #{modCase.CaseId} {modCase.Title}";
+                    embed.Title = $"#{modCase.CaseId} {modCase.Title}";
                     break;
             }
 
