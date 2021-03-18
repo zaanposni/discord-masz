@@ -1,0 +1,19 @@
+<div class="d-flex flex-column">
+    <span class="mat-h1 font-weight-bold mb-2">MotD</span>
+    <div class="d-flex flex-column" *ngIf="this.motd.content && !this.motd.loading">
+        <mat-checkbox
+          [(ngModel)]="this.motd.content.motd.showMotd"
+          (ngModelChange)="onToggle($event)"
+          [labelPosition]="'after'">
+            Enable MotD
+        </mat-checkbox>
+        <ng-container *ngIf="this.motd.content.motd.showMotd">
+            <mat-form-field class="mb-2">
+                <mat-label>Message</mat-label>
+                <textarea matInput placeholder="Important message to my administrators." [(ngModel)]="this.motd.content.motd.message" (ngModelChange)="onChange($event)"></textarea>
+            </mat-form-field>
+        </ng-container>
+    </div>
+    <mat-spinner *ngIf="this.motd.loading"></mat-spinner>
+    <span class="mat-h1" *ngIf="!this.motd.content && !this.motd.loading">Nothing here.</span>
+</div>

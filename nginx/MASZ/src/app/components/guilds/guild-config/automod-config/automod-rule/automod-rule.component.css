@@ -1,0 +1,12 @@
+.mat-stepper-horizontal {
+    background-color: inherit;
+}
+
+.mat-form-field {
+    margin-top: 16px;
+}
+
+.mat-stepper-horizontal button {
+    margin-top: 16px;
+    margin-right: 8px;
+}

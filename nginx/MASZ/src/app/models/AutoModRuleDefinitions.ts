@@ -1,5 +1,5 @@
 export interface AutoModRuleDefinition {
-    uniqueLabel: string;
+    type: number;
     title: string;
     description: string;
     showLimitField: boolean;

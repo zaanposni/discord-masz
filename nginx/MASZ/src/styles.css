@@ -117,3 +117,15 @@ a:hover {
 .text-black-50 {
   color: rgba(232, 230, 227, 0.7) !important
 }
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
