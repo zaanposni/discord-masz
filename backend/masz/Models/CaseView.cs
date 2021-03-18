@@ -33,6 +33,7 @@ namespace masz.Models
         public User Moderator { get; set; }
         public User LastModerator { get; set; }
         public User Suspect { get; set; }
+        public User LockedBy { get; set; }
         public List<CommentsView> Comments { get; set; }
         public double? PunishmentProgress { get; set; }
     }

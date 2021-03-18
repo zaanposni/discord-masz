@@ -50,6 +50,10 @@ namespace masz.data
                 .Property(p => p.GuildId)
                 .IsRequired(true);
 
+            modelBuilder.Entity<ModCase>()
+                .Property(b => b.AllowComments)
+                .HasDefaultValue(true);
+
             modelBuilder.Entity<GuildConfig>()
                 .Property(e => e.ModRoles)
                 .HasConversion(

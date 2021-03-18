@@ -81,6 +81,11 @@ namespace masz.Controllers
                 return NotFound();
             }
 
+            if (!modCase.AllowComments) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Comments are locked.");
+                return BadRequest("Comments are locked.");
+            }
+
             // normal user can only comment if no comments are there yet or last comment was not by him.
             if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
             {
@@ -150,6 +155,11 @@ namespace masz.Controllers
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
                 return NotFound();
+            }
+
+            if (!modCase.AllowComments) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Comments are locked.");
+                return BadRequest("Comments are locked.");
             }
 
             ModCaseComment comment = modCase.Comments.FirstOrDefault(x => x.Id == commentid);

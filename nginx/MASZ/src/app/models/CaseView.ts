@@ -7,6 +7,7 @@ export interface CaseView {
     moderator: DiscordUser;
     lastModerator: DiscordUser;
     suspect: DiscordUser;
+    lockedBy: DiscordUser;
     comments: CommentView[];
     punishmentProgress?: number;
 }

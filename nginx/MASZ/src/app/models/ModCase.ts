@@ -23,5 +23,6 @@ export interface ModCase {
     punishmentType: number;
     punishedUntil: Date;
     punishmentActive: boolean;
+    allowComments: boolean;
     comments: CaseComment[];
 }

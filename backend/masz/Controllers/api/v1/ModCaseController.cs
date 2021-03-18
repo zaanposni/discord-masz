@@ -462,5 +462,113 @@ namespace masz.Controllers
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCases.");
             return Ok(modCases);
         }
+
+        [HttpPost("{modcaseid}/lock")]
+        public async Task<IActionResult> LockComments([FromRoute] string guildid, [FromRoute] string modcaseid) 
+        {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
+            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+            if (currentUser == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            // ========================================================
+
+            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
+            if (guildConfig == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
+                return BadRequest("Guild not registered.");
+            }
+
+            var currentModerator = currentUser.Id;
+            if (currentModerator == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Failed to fetch mod user info.");
+                return BadRequest("Could not fetch own user info.");
+            }
+
+            ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
+            if (modCase == null) 
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
+                return NotFound();
+            }
+
+            if (!modCase.AllowComments) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Comments are already locked.");
+                return BadRequest("Comments are already locked.");
+            }
+
+            modCase.AllowComments = false;
+            modCase.LockedAt = DateTime.Now;
+            modCase.LockedByUserId = currentUser.Id;
+
+            database.UpdateModCase(modCase);
+            await database.SaveChangesAsync();
+
+            return Ok(modcaseid);
+        }
+
+        [HttpDelete("{modcaseid}/lock")]
+        public async Task<IActionResult> UnlockComments([FromRoute] string guildid, [FromRoute] string modcaseid) 
+        {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
+            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+            if (currentUser == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            // ========================================================
+
+            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
+            if (guildConfig == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
+                return BadRequest("Guild not registered.");
+            }
+
+            var currentModerator = currentUser.Id;
+            if (currentModerator == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Failed to fetch mod user info.");
+                return BadRequest("Could not fetch own user info.");
+            }
+
+            ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
+            if (modCase == null) 
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
+                return NotFound();
+            }
+
+            if (modCase.AllowComments) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Comments are already unlocked.");
+                return BadRequest("Comments are already unlocked.");
+            }
+
+            modCase.AllowComments = true;
+            modCase.LockedAt = null;
+            modCase.LockedByUserId = null;
+
+            database.UpdateModCase(modCase);
+            await database.SaveChangesAsync();
+
+            return Ok(modcaseid);
+        }
     }
 }

@@ -32,6 +32,9 @@ namespace masz.Models
         public PunishmentType PunishmentType { get; set; }
         public DateTime? PunishedUntil { get; set; }
         public bool PunishmentActive { get; set; }
+        public bool AllowComments { get; set; }
+        public string LockedByUserId { get; set; }
+        public DateTime? LockedAt { get; set; }
         public ICollection<ModCaseComment> Comments { get; set; }
 
         public object Clone()
@@ -57,7 +60,8 @@ namespace masz.Models
                 PunishmentType = this.PunishmentType,
                 PunishedUntil = this.PunishedUntil,
                 PunishmentActive = this.PunishmentActive,
-                Comments = this.Comments
+                Comments = this.Comments,
+                AllowComments = this.AllowComments
             };
         }
     }

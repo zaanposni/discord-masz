@@ -48,7 +48,7 @@
 									"query": [
 										{
 											"key": "guildid",
-											"value": null,
+											"value": "",
 											"disabled": true
 										}
 									]
@@ -74,7 +74,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"guildid\": {{guildid}},\n    \"modroleid\": \"748944055840407653\",\n    \"adminroleid\": \"748944028116189195\",\n    \"modInternalNotificationWebhook\": null,\n    \"modPublicNotificationWebhook\": null\n}"
+									"raw": "{\n    \"guildid\": {{guildid}},\n    \"modRoles\": [\"748944055840407653\"],\n    \"adminRoles\": [\"748944028116189195\"],\n    \"mutedRoles\": [],\n    \"modInternalNotificationWebhook\": null,\n    \"modPublicNotificationWebhook\": null\n}"
 								},
 								"url": {
 									"raw": "{{url}}/api/v1/guilds",
@@ -89,7 +89,7 @@
 									"query": [
 										{
 											"key": "guildid",
-											"value": null,
+											"value": "",
 											"disabled": true
 										}
 									]
@@ -110,7 +110,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"modroleid\": \"748944055840407653\",\n    \"adminroleid\": \"748944028116189195\",\n    \"modInternalNotificationWebhook\": null,\n    \"modPublicNotificationWebhook\": null\n}",
+									"raw": "{\n    \"modRoles\": [\"748944055840407653\"],\n    \"adminRoles\": [\"748944028116189195\"],\n    \"mutedRoles\": [],\n    \"modInternalNotificationWebhook\": \"\",\n    \"modPublicNotificationWebhook\": \"\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -401,7 +401,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"title\": \"\",\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\n    \"userid\": \"382991040975732747\",\n    \"severity\": 0,\n    \"occuredAt\": \"2020-11-25T20:15:47.093594\",\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\n    \"punishment\": \"warn\",\n    \"punishmentType\": 1,\n    \"punishedUntil\": null\n}"
+									"raw": "{\n    \"title\": \"wda\",\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\n    \"userid\": \"382991040975732747\",\n    \"occuredAt\": \"2020-11-25T20:15:47.093594\",\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\n    \"punishment\": \"mute\",\n    \"punishmentType\": 1,\n    \"punishedUntil\": null\n}"
 								},
 								"url": {
 									"raw": "{{url}}/api/v1/modcases/{{guildid}}?sendnotification=false&handlePunishment=true",
@@ -536,7 +536,76 @@
 									"variable": [
 										{
 											"key": "caseid",
-											"value": "93"
+											"value": "1",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "lock further case comments",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/:caseid/lock",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"modcases",
+										"{{guildid}}",
+										":caseid",
+										"lock"
+									],
+									"variable": [
+										{
+											"key": "caseid",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "unlock  case comments",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/:caseid/lock",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"modcases",
+										"{{guildid}}",
+										":caseid",
+										"lock"
+									],
+									"variable": [
+										{
+											"key": "caseid",
+											"value": "1"
 										}
 									]
 								}
@@ -577,7 +646,8 @@
 									"variable": [
 										{
 											"key": "dataname",
-											"value": "75dece321df6407854d4e3db11cdd5e048593cbe_59057a06__.JPG"
+											"value": "75dece321df6407854d4e3db11cdd5e048593cbe_59057a06__.JPG",
+											"type": "string"
 										}
 									]
 								}
@@ -681,7 +751,8 @@
 									"variable": [
 										{
 											"key": "dataname",
-											"value": "31fa2dbb26dd2a1ae68c32e9e273dbd18465b5f0_41fc37a4_464286a42d52e1e8528220b2c15546d2.jpg"
+											"value": "31fa2dbb26dd2a1ae68c32e9e273dbd18465b5f0_41fc37a4_464286a42d52e1e8528220b2c15546d2.jpg",
+											"type": "string"
 										}
 									]
 								}
@@ -746,7 +817,8 @@
 									"variable": [
 										{
 											"key": "userid",
-											"value": "749886323380453438"
+											"value": "749886323380453438",
+											"type": "string"
 										}
 									]
 								}
@@ -916,7 +988,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/1/comments",
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/:caseid/comments",
 									"host": [
 										"{{url}}"
 									],
@@ -925,8 +997,14 @@
 										"v1",
 										"modcases",
 										"{{guildid}}",
-										"1",
+										":caseid",
 										"comments"
+									],
+									"variable": [
+										{
+											"key": "caseid",
+											"value": "1"
+										}
 									]
 								}
 							},
@@ -953,7 +1031,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/53/comments/35",
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/:caseid/comments/:commentid",
 									"host": [
 										"{{url}}"
 									],
@@ -962,9 +1040,19 @@
 										"v1",
 										"modcases",
 										"{{guildid}}",
-										"53",
+										":caseid",
 										"comments",
-										"35"
+										":commentid"
+									],
+									"variable": [
+										{
+											"key": "caseid",
+											"value": "1"
+										},
+										{
+											"key": "commentid",
+											"value": "7"
+										}
 									]
 								}
 							},
@@ -1096,7 +1184,8 @@
 									"variable": [
 										{
 											"key": "type",
-											"value": "0"
+											"value": "0",
+											"type": "string"
 										}
 									]
 								}
@@ -1130,7 +1219,8 @@
 									"variable": [
 										{
 											"key": "type",
-											"value": "0"
+											"value": "0",
+											"type": "string"
 										}
 									]
 								}
@@ -1209,7 +1299,8 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "9"
+											"value": "9",
+											"type": "string"
 										}
 									]
 								}
@@ -1241,7 +1332,8 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "1",
+											"type": "string"
 										}
 									]
 								}
@@ -1353,6 +1445,34 @@
 							"response": []
 						},
 						{
+							"name": "automodchart",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": "masz_access_token={{masz_access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/dashboard/automodchart",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"dashboard",
+										"automodchart"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "quicksearch",
 							"request": {
 								"method": "GET",
@@ -1413,6 +1533,34 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "latest comments",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": "masz_access_token={{masz_access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/dashboard/latestcomments",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"dashboard",
+										"latestcomments"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -1459,7 +1607,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"message\": \"testt\"\r\n}",
+									"raw": "{\r\n    \"message\": \"testt\",\r\n    \"showMotd\": true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
