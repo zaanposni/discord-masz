@@ -80,6 +80,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { CaseDeleteDialogComponent } from './components/dialogs/case-delete-dialog/case-delete-dialog.component';
 import { CommentEditDialogComponent } from './components/dialogs/comment-edit-dialog/comment-edit-dialog.component';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+import { TemplateCreateDialogComponent } from './components/dialogs/template-create-dialog/template-create-dialog.component';
 
 @NgModule({
   declarations: [
@@ -123,7 +124,8 @@ import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateMod
     AutomodConfigComponent,
     AutomodRuleComponent,
     CaseDeleteDialogComponent,
-    CommentEditDialogComponent
+    CommentEditDialogComponent,
+    TemplateCreateDialogComponent
   ],
   imports: [
     CommonModule,
