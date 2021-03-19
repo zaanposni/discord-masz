@@ -15,6 +15,7 @@
                             <div mat-line>{{note.caseTemplate.templateName}}</div>
                         </mat-list-item>
                     </mat-list>
+                    <span *ngIf="!this.templates.content?.length">No templates found :(</span>
                 </ng-container>
                 <mat-spinner *ngIf="this.templates.loading"></mat-spinner>
                 <div>
@@ -140,11 +141,19 @@
             </mat-step>
             <mat-step [stepControl]="optionsFormGroup">
                 <ng-template matStepLabel>Create case</ng-template>
-                <div>
+                <form [formGroup]="optionsFormGroup">
+                    <mat-checkbox
+                        formControlName="sendNotification"
+                        [labelPosition]="'after'">
+                        Send public notification
+                    </mat-checkbox>
+                </form>
+                <div *ngIf="!this.savingCase">
                     <button mat-raised-button matStepperPrevious class="mr-2 mb-2" color="accent">Back</button>
-                    <button mat-raised-button class="mr-2 mb-2" color="accent">Save as template</button>
+                    <button mat-raised-button class="mr-2 mb-2" (click)="saveTemplate()" color="accent">Save as template</button>
                     <button mat-raised-button color="accent" (click)="createCase()">Create case</button>
                 </div>
+                <mat-spinner *ngIf="this.savingCase"></mat-spinner>
             </mat-step>
         </mat-vertical-stepper>
     </div>

@@ -14,6 +14,9 @@ import { DiscordUser } from 'src/app/models/DiscordUser';
 import { TemplateView } from 'src/app/models/TemplateView';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { TemplateSettings, TemplateViewPermission } from 'src/app/models/TemplateSettings';
+import { TemplateCreateDialogComponent } from '../../dialogs/template-create-dialog/template-create-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modcase-add',
@@ -40,12 +43,14 @@ export class ModcaseAddComponent implements OnInit {
 
   public templateSearch: string = "";
   
+  public savingCase: boolean = false;
+
   public guildId!: string;
   public members: ContentLoading<DiscordUser[]> = { loading: true, content: [] };
   public templates: ContentLoading<TemplateView[]> = { loading: true, content: [] };
   public allTemplates: TemplateView[] = [];
   public displayPunishmentTypeOptions = DisplayPunishmentTypeOptions;
-  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -70,9 +75,7 @@ export class ModcaseAddComponent implements OnInit {
       sendNotification: ['']
     });
 
-    this.optionsFormGroup.setValue({
-      sendNotification: true
-    });
+    this.optionsFormGroup.controls['sendNotification'].setValue(true);
 
     this.punishmentFormGroup.get('punishmentType')?.valueChanges.subscribe((val: DisplayPunishmentType) => {
       if (val === DisplayPunishmentType.TempBan || val === DisplayPunishmentType.TempMute) {
@@ -187,14 +190,15 @@ export class ModcaseAddComponent implements OnInit {
     this.toastr.success(`Applied template ${template.templateName}.`);
   }
 
-  createCase() {    
+  createCase() {
+    this.savingCase = true;
     const data = {
       title: this.infoFormGroup.value.title,
       description: this.infoFormGroup.value.description,
       userid: this.memberFormGroup.value.member,
       labels: this.caseLabels,
       punishment: convertToPunishment(this.punishmentFormGroup.value.punishmentType),
-      PunishmentType: convertToPunishmentType(this.punishmentFormGroup.value.punishmentType),
+      punishmentType: convertToPunishmentType(this.punishmentFormGroup.value.punishmentType),
       punishedUntil: this.punishmentFormGroup.value.punishedUntil?.toISOString() ?? null,
     }
     const params = new HttpParams()
@@ -205,13 +209,52 @@ export class ModcaseAddComponent implements OnInit {
     this.api.postSimpleData(`/modcases/${this.guildId}`, data, params, true, true).subscribe((data) => {     
       const caseId = data.caseid;
       this.router.navigate(['guilds', this.guildId, 'cases', caseId]);
+      this.savingCase = false;
       this.toastr.success(`Case ${caseId} created.`);
       this.filesToUpload.forEach(element => this.uploadFile(element.data, caseId));
-    }, () => { });
+    }, () => { this.savingCase = false; });
   }
 
   deleteTemplate(templateId: number) {
 
+  }
+
+  saveTemplate() {
+    this.savingCase = true;
+    let templateSetting: TemplateSettings = {
+      name: '',
+      viewPermission: TemplateViewPermission.Self
+    };
+    const confirmDialogRef = this.dialog.open(TemplateCreateDialogComponent, {
+      data: templateSetting
+    });
+    confirmDialogRef.afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        const data = {
+          templatename: templateSetting.name,
+          viewPermission: templateSetting.viewPermission,
+          title: this.infoFormGroup.value.title,
+          description: this.infoFormGroup.value.description,
+          labels: this.caseLabels,
+          punishment: convertToPunishment(this.punishmentFormGroup.value.punishmentType),
+          punishmentType: convertToPunishmentType(this.punishmentFormGroup.value.punishmentType),
+          punishedUntil: this.punishmentFormGroup.value.punishedUntil?.toISOString() ?? null,
+          sendPublicNotification: this.optionsFormGroup.value.sendNotification,
+          handlePunishment: this.punishmentFormGroup.value.handlePunishment,
+          announceDm: this.punishmentFormGroup.value.dmNotification
+        };
+
+        const params = new HttpParams()
+          .set('guildid', this.guildId);
+
+        this.api.postSimpleData(`/templates`, data, params, true, true).subscribe((data) => {
+          this.toastr.success("Template saved.");
+          this.savingCase = false;
+        }, () => { this.savingCase = false; });
+      } else {
+        this.savingCase = false;
+      }
+    });
   }
 
   uploadFile(file: any, caseId: string) {
