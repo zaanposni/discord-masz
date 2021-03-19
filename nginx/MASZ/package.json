@@ -25,6 +25,7 @@
     "chart.js": "^2.9.4",
     "ng2-charts": "^2.4.2",
     "ngx-cookie": "^5.0.2",
+    "ngx-material-file-input": "^2.1.1",
     "ngx-toastr": "^13.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

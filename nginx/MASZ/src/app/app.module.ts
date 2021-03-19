@@ -20,6 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -74,6 +75,9 @@ import { CommentsCardCompactComponent } from './components/guilds/guild-dashboar
 import { MotdConfigComponent } from './components/guilds/guild-config/motd-config/motd-config.component';
 import { AutomodConfigComponent } from './components/guilds/guild-config/automod-config/automod-config.component';
 import { AutomodRuleComponent } from './components/guilds/guild-config/automod-config/automod-rule/automod-rule.component';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { CaseDeleteDialogComponent } from './components/dialogs/case-delete-dialog/case-delete-dialog.component';
+import { CommentEditDialogComponent } from './components/dialogs/comment-edit-dialog/comment-edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +119,9 @@ import { AutomodRuleComponent } from './components/guilds/guild-config/automod-c
     CommentsCardCompactComponent,
     MotdConfigComponent,
     AutomodConfigComponent,
-    AutomodRuleComponent
+    AutomodRuleComponent,
+    CaseDeleteDialogComponent,
+    CommentEditDialogComponent
   ],
   imports: [
     CommonModule,
@@ -128,6 +134,8 @@ import { AutomodRuleComponent } from './components/guilds/guild-config/automod-c
       progressBar: true,
       timeOut: 5000
     }),
+    MaterialFileInputModule,
+    MatProgressBarModule,
     MatChipsModule,
     MatSlideToggleModule,
     MatTabsModule,

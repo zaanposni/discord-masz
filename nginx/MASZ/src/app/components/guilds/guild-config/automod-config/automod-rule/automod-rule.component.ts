@@ -140,7 +140,7 @@ export class AutomodRuleComponent implements OnInit {
       "PunishmentDurationMinutes": this.actionForm.value.punishmentDuration !== "" ? this.actionForm.value.punishmentDuration : null,
       "IgnoreChannels": this.filterForm.value.excludeChannels !== "" ? this.filterForm.value.excludeChannels : [],
       "IgnoreRoles": this.filterForm.value.excludeRoles !== "" ? this.filterForm.value.excludeRoles : [],
-      "TimeLimitMinutes": null,
+      "TimeLimitMinutes": null as any,
       "Limit": this.eventForm.value.limit !== "" ? this.eventForm.value.limit : null,
       "SendDmNotification": this.actionForm.value.dmNotification !== "" ? this.actionForm.value.dmNotification : false,
       "SendPublicNotification": this.actionForm.value.publicNotification !== "" ? this.actionForm.value.publicNotification : false

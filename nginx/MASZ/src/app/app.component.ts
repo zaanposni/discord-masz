@@ -82,8 +82,6 @@ export class AppComponent implements OnInit{
         const confirmDialogRef = this.dialog.open(ConfirmationDialogComponent);
         confirmDialogRef.afterClosed().subscribe(confirmed => {
           if (confirmed) {
-            console.log(confirmed);
-            console.log(this.guildDeleteDialogData);
             let params = new HttpParams()
               .set('deletedata', this.guildDeleteDialogData.deleteData ? 'true' : 'false');
             this.api.deleteData(`/guilds/${this.guildDeleteDialogData.guild.id}`, params).subscribe((data) => {

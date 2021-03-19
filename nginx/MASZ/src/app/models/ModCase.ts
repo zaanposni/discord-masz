@@ -24,5 +24,7 @@ export interface ModCase {
     punishedUntil: Date;
     punishmentActive: boolean;
     allowComments: boolean;
+    lockedAt: Date;
+    lockedByUserId: string;
     comments: CaseComment[];
 }
