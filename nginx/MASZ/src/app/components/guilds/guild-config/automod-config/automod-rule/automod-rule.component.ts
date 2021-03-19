@@ -33,7 +33,7 @@ export class AutomodRuleComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private api: ApiService, private toastr: ToastrService, private _formBuilder: FormBuilder) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.eventForm = this._formBuilder.group({
       limit: ['', this.defintion.showLimitField ? Validators.min(-1) : null]
     });

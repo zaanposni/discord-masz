@@ -21,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -78,6 +79,7 @@ import { AutomodRuleComponent } from './components/guilds/guild-config/automod-c
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { CaseDeleteDialogComponent } from './components/dialogs/case-delete-dialog/case-delete-dialog.component';
 import { CommentEditDialogComponent } from './components/dialogs/comment-edit-dialog/comment-edit-dialog.component';
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 
 @NgModule({
   declarations: [
@@ -129,11 +131,15 @@ import { CommentEditDialogComponent } from './components/dialogs/comment-edit-di
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
     CookieModule.forRoot(),
     ToastrModule.forRoot({
       progressBar: true,
       timeOut: 5000
     }),
+    MatAutocompleteModule,
     MaterialFileInputModule,
     MatProgressBarModule,
     MatChipsModule,

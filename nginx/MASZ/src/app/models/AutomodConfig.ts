@@ -73,8 +73,6 @@ export function convertToAutoModPunishment(punishmentType: PunishmentType, punis
 
 export function convertToPunishmentType(type: AutoModerationPunishment) {
     switch(type) {
-        case AutoModerationPunishment.Warn:
-            return PunishmentType.None;
         case AutoModerationPunishment.Kick:
             return PunishmentType.Kick;
         case AutoModerationPunishment.Mute:
@@ -85,5 +83,7 @@ export function convertToPunishmentType(type: AutoModerationPunishment) {
             return PunishmentType.Ban;
         case AutoModerationPunishment.TempBan:
             return PunishmentType.Ban;
+        default:
+            return PunishmentType.None;
     }
 }
