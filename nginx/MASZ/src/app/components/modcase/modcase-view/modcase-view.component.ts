@@ -25,6 +25,7 @@ import { CommentEditDialogComponent } from '../../dialogs/comment-edit-dialog/co
 })
 export class ModcaseViewComponent implements OnInit {
 
+  public restoringCase: boolean = false;
 
   public guildId!: string;
   public caseId!: string;
@@ -95,19 +96,24 @@ export class ModcaseViewComponent implements OnInit {
   deleteCase() {
     const caseDeleteConfig: CaseDeleteDialogData = {
       case: this.modCase.content?.modCase as ModCase,
-      sendNotification: false
+      sendNotification: false,
+      isAdmin: this.currentUser.content?.isAdmin ?? false,
+      forceDelete: false
     };
     const confirmDialogRef = this.dialog.open(CaseDeleteDialogComponent, {
       data: caseDeleteConfig
     });
     confirmDialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
-        const params = new HttpParams()
+        let params = new HttpParams()
           .set("sendnotification", caseDeleteConfig.sendNotification? 'true' : 'false');
         
+        if (caseDeleteConfig.forceDelete) {
+          params.set('forceDelete', 'true');
+        }
+
         this.api.deleteData(`/modcases/${this.guildId}/${this.caseId}`, params).subscribe(() => {
-          this.router.navigate(["guilds", this.guildId]);
-          this.toastr.success("Case deleted.");
+          this.toastr.success("Case marked to be deleted.");
         }, () => {
           this.toastr.error("Failed to delete case.");
         });
@@ -126,6 +132,18 @@ export class ModcaseViewComponent implements OnInit {
       this.uploadFiles();
     };
     fileInput.click();
+  }
+
+  restoreCase() {
+    this.restoringCase = true;
+    this.api.deleteData(`/guilds/${this.guildId}/bin/${this.caseId}`).subscribe((data) => {
+      this.toastr.success("Restored case.");
+      this.reloadCase();
+      this.restoringCase = false;
+    }, () => {
+      this.toastr.error("Failed to restore case.");
+      this.restoringCase = false;
+    });
   }
 
   uploadFiles() {

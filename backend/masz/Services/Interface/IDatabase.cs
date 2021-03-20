@@ -19,13 +19,18 @@ namespace masz.Services
 
         Task<int> GetHighestCaseIdForGuild(string guildId);
         Task<ModCase> SelectSpecificModCase(string guildId, string modCaseId);
+        Task<List<ModCase>> SelectAllModcasesMarkedAsDeleted();
         Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId);
+        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, ModcaseTableType tableType);
+        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize);
+        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize, ModcaseTableType tableType);
         Task<List<ModCase>> SelectAllModCasesForGuild(string guildId);
+        Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, ModcaseTableType tableType);
+        Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize);
+        Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize, ModcaseTableType tableType);
         Task<int> CountAllModCasesForGuild(string guildId);
         Task<int> CountAllActivePunishmentsForGuild(string guildId);
         Task<int> CountAllActivePunishmentsForGuild(string guildId, PunishmentType type);
-        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize);
-        Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize);
         Task<List<ModCase>> SelectAllModCasesWithActivePunishmentForGuild(string guildId);
         Task<List<ModCase>> SelectAllModCasesThatHaveParallelPunishment(ModCase modCase);
         Task<List<ModCase>> SelectAllModCasesWithActivePunishments();

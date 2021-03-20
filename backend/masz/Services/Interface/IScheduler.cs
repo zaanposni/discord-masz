@@ -4,11 +4,12 @@ using masz.Models;
 
 namespace masz.Services
 {
-    public interface ICacher
+    public interface IScheduler
     {
-        void StartTimer();
+        void StartTimers();
         void CacheAll();
         Task<List<string>> CacheAllGuildMembers();
         Task<List<string>> CacheAllKnownUsers(List<string> handledUser);
+        void CheckDeletedCases();
     }
 }

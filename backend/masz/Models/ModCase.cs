@@ -35,6 +35,8 @@ namespace masz.Models
         public bool AllowComments { get; set; }
         public string LockedByUserId { get; set; }
         public DateTime? LockedAt { get; set; }
+        public DateTime? MarkedToDeleteAt { get; set; }
+        public string DeletedByUserId { get; set; }
         public ICollection<ModCaseComment> Comments { get; set; }
 
         public object Clone()
@@ -61,6 +63,8 @@ namespace masz.Models
                 PunishedUntil = this.PunishedUntil,
                 PunishmentActive = this.PunishmentActive,
                 Comments = this.Comments,
+                MarkedToDeleteAt = this.MarkedToDeleteAt,
+                DeletedByUserId = this.DeletedByUserId,
                 AllowComments = this.AllowComments
             };
         }

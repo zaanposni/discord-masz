@@ -28,9 +28,9 @@ namespace masz.Controllers
         private readonly IIdentityManager identityManager;
         private readonly IDiscordAPIInterface discord;
         private readonly IFilesHandler filesHandler;
-        private readonly ICacher cacher;
+        private readonly IScheduler cacher;
 
-        public GuildConfigController(ILogger<GuildConfigController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IFilesHandler filesHandler, ICacher cacher)
+        public GuildConfigController(ILogger<GuildConfigController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IFilesHandler filesHandler, IScheduler cacher)
         {
             this.logger = logger;
             this.database = database;

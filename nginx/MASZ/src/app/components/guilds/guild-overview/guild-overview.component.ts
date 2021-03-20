@@ -35,8 +35,7 @@ export class GuildOverviewComponent implements OnInit {
   }
 
   initialize(guildId: string) {
-    this.tabs = [
-      
+    this.tabs = [      
       {
         "label": "Cases",
         "icon": "list",
@@ -52,6 +51,7 @@ export class GuildOverviewComponent implements OnInit {
       this.isModOrHigher = data;
       if (data) {
         this.tabs.unshift({ component: 'dashboard', icon: 'dashboard', label: 'Dashboard' });
+        this.tabs.push({ component: 'bin', icon: 'delete_forever', label: 'Bin' });
         this.selectedTab.setValue(0);
       }
     });

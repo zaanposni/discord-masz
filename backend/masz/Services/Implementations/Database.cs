@@ -64,6 +64,10 @@ namespace masz.Services
         //
         // ==================================================================================
 
+        public async Task<List<ModCase>> SelectAllModcasesMarkedAsDeleted()
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.MarkedToDeleteAt < DateTime.UtcNow).ToListAsync();
+        }
         public async Task<ModCase> SelectSpecificModCase(string guildId, string modCaseId)
         {
             return await context.ModCases.Include(c => c.Comments).AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.CaseId.ToString() == modCaseId);
@@ -74,9 +78,33 @@ namespace masz.Services
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.CaseId).ToListAsync();
         }
 
+        public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, ModcaseTableType tableType)
+        {
+            switch(tableType) {
+                case ModcaseTableType.OnlyPunishments:
+                    return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId && x.PunishmentActive).OrderByDescending(x => x.CaseId).ToListAsync();
+                case ModcaseTableType.OnlyBin:
+                    return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId && x.MarkedToDeleteAt != null).OrderByDescending(x => x.CaseId).ToListAsync();
+                default:
+                    return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.CaseId).ToListAsync();
+            }
+        }
+
         public async Task<List<ModCase>> SelectAllModCasesForGuild(string guildId)
         {
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CaseId).ToListAsync();
+        }
+
+        public async Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, ModcaseTableType tableType)
+        {
+            switch(tableType) {
+                case ModcaseTableType.OnlyPunishments:
+                    return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.PunishmentActive).OrderByDescending(x => x.CaseId).ToListAsync();
+                case ModcaseTableType.OnlyBin:
+                    return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.MarkedToDeleteAt != null).OrderByDescending(x => x.CaseId).ToListAsync();
+                default:
+                    return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CaseId).ToListAsync();
+            }
         }
 
         public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize)
@@ -84,9 +112,33 @@ namespace masz.Services
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.CaseId).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
         }
 
+        public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize, ModcaseTableType tableType)
+        {
+            switch(tableType) {
+                case ModcaseTableType.OnlyPunishments:
+                    return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId && x.PunishmentActive).OrderByDescending(x => x.CaseId).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
+                case ModcaseTableType.OnlyBin:
+                    return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId && x.MarkedToDeleteAt != null).OrderByDescending(x => x.CaseId).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
+                default:
+                    return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.CaseId).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
+            }
+        }
+
         public async Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize)
         {
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CaseId).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
+        }
+
+        public async Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize, ModcaseTableType tableType)
+        {
+            switch(tableType) {
+                case ModcaseTableType.OnlyPunishments:
+                    return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.PunishmentActive).OrderByDescending(x => x.CaseId).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
+                case ModcaseTableType.OnlyBin:
+                    return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.MarkedToDeleteAt != null).OrderByDescending(x => x.CaseId).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
+                default:
+                    return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CaseId).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
+            }
         }
 
         public async Task<List<ModCase>> SelectAllModCasesWithActivePunishmentForGuild(string guildId)

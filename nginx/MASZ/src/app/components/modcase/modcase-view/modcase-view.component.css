@@ -54,4 +54,6 @@
   font: 400 16px/20px Roboto, "Helvetica Neue", sans-serif;
 }
 
-
+::ng-deep #custom-green-spinner.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: green;
+}

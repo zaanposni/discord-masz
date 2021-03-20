@@ -11,6 +11,7 @@
                 </ng-template>
                 <app-guild-dashboard *ngIf="tab.component == 'dashboard'"></app-guild-dashboard>
                 <app-modcase-table *ngIf="tab.component=='cases'"></app-modcase-table>
+                <app-modcase-table [apiUrl]="'casebin'" *ngIf="tab.component=='bin'"></app-modcase-table>
                 <app-automod-table *ngIf="tab.component=='automods'"></app-automod-table>
                 <app-guild-config *ngIf="tab.component=='config'"></app-guild-config>
             </mat-tab>

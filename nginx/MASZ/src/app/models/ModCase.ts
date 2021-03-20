@@ -26,6 +26,8 @@ export interface ModCase {
     allowComments: boolean;
     lockedAt: Date;
     lockedByUserId: string;
+    markedToDeleteAt?: Date;
+    deletedByUserId?: string;
     comments: CaseComment[];
 }
 

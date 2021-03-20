@@ -50,22 +50,28 @@ namespace masz.Controllers
         [HttpGet("modcasetable")]
         public async Task<IActionResult> GetAllModCases([FromRoute] string guildid, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null) 
         {
-            return await generateTable(guildid, false, startPage, search);
+            return await generateTable(guildid, ModcaseTableType.Default, startPage, search, ModcaseTableSortType.Default);
         }
 
         [HttpGet("punishmenttable")]
         public async Task<IActionResult> GetAllPunishments([FromRoute] string guildid, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null) 
         {
-            return await generateTable(guildid, true, startPage, search);
+            return await generateTable(guildid, ModcaseTableType.OnlyPunishments, startPage, search, ModcaseTableSortType.Default);
         }
 
         [HttpGet("expiringpunishment")]
         public async Task<IActionResult> GetExpiringPunishments([FromRoute] string guildid, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null) 
         {
-            return await generateTable(guildid, true, startPage, search, true);
+            return await generateTable(guildid, ModcaseTableType.OnlyPunishments, startPage, search, ModcaseTableSortType.SortByExpiring);
         }
 
-        private async Task<IActionResult> generateTable(string guildid, bool onlyPunishments, int startPage=0, string search=null, bool sortByExpiring=false) {
+        [HttpGet("casebin")]
+        public async Task<IActionResult> GetDeletedModCases([FromRoute] string guildid, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null) 
+        {
+            return await generateTable(guildid, ModcaseTableType.OnlyBin, startPage, search, ModcaseTableSortType.SortByDeleting);
+        }
+
+        private async Task<IActionResult> generateTable(string guildid, ModcaseTableType tableType, int startPage=0, string search=null, ModcaseTableSortType sortBy = ModcaseTableSortType.Default) {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
             User currentUser = await currentIdentity.GetCurrentDiscordUser();
@@ -90,24 +96,26 @@ namespace masz.Controllers
             List<ModCase> modCases = new List<ModCase>();
             if (String.IsNullOrEmpty(userOnly)) {
                 if (String.IsNullOrWhiteSpace(search)) {
-                    modCases = await database.SelectAllModCasesForGuild(guildid, startPage, 20);
+                    modCases = await database.SelectAllModCasesForGuild(guildid, startPage, 20, tableType);
                 } else {
-                    modCases = await database.SelectAllModCasesForGuild(guildid);
+                    modCases = await database.SelectAllModCasesForGuild(guildid, tableType);
                 }
             }
             else {                
                 if (String.IsNullOrWhiteSpace(search)) {
-                    modCases = await database.SelectAllModcasesForSpecificUserOnGuild(guildid, currentUser.Id, startPage, 20);
+                    modCases = await database.SelectAllModcasesForSpecificUserOnGuild(guildid, currentUser.Id, startPage, 20, tableType);
                 } else {
-                    modCases = await database.SelectAllModcasesForSpecificUserOnGuild(guildid, currentUser.Id);
+                    modCases = await database.SelectAllModcasesForSpecificUserOnGuild(guildid, currentUser.Id, tableType);
                 }
             }
 
-            if (onlyPunishments) {
-                modCases = modCases.Where(x => x.PunishmentActive == true).ToList();
-            }
-            if (sortByExpiring) {
-                modCases = modCases.Where(x => x.PunishedUntil != null).OrderBy(x => x.PunishedUntil).ToList();
+            switch(sortBy) {
+                case ModcaseTableSortType.SortByExpiring:
+                    modCases = modCases.Where(x => x.PunishedUntil != null).OrderBy(x => x.PunishedUntil).ToList();
+                    break;
+                case ModcaseTableSortType.SortByDeleting:
+                    modCases = modCases.OrderBy(x => x.MarkedToDeleteAt).ToList();
+                    break;
             }
 
             List<ModCaseTableEntry> table = new List<ModCaseTableEntry>();

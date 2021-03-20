@@ -44,12 +44,19 @@
             </div>
             <div class="flex-grow-1"></div>
             <div class="d-flex flex-column align-content-center">
-                <span class="text-black-50" style="text-align: right;">
-                    Created: {{ entry.modCase.createdAt | date:'d. MMMM Y'  }}
-                </span>
-                <span class="text-black-50" style="text-align: right;" *ngIf="entry.modCase.punishmentActive && entry.modCase.punishedUntil">
-                    Until: {{ entry.modCase.punishedUntil | date:'d. MMMM Y'  }}
-                </span>
+                <ng-container *ngIf="entry.modCase.markedToDeleteAt">
+                    <span class="text-black-50" style="text-align: right;">
+                        Will be deleted at: {{ entry.modCase.markedToDeleteAt | date:'d. MMMM Y'  }}
+                    </span>
+                </ng-container>
+                <ng-container *ngIf="!entry.modCase.markedToDeleteAt">
+                    <span class="text-black-50" style="text-align: right;">
+                        Created: {{ entry.modCase.createdAt | date:'d. MMMM Y'  }}
+                    </span>
+                    <span class="text-black-50" style="text-align: right;" *ngIf="entry.modCase.punishmentActive && entry.modCase.punishedUntil">
+                        Until: {{ entry.modCase.punishedUntil | date:'d. MMMM Y'  }}
+                    </span>
+                </ng-container>
                 <div class="flex-grow-1"></div>
                 <!-- Button -->
                 <button mat-raised-button color="accent">VIEW DETAILS</button>

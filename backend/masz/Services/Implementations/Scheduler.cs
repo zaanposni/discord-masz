@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using masz.Models;
@@ -10,36 +11,60 @@ using Microsoft.Extensions.Options;
 
 namespace masz.Services
 {
-    public class Cacher : ICacher
+    public class Scheduler : IScheduler
     {
-        private readonly ILogger<Cacher> logger;
-        private readonly IOptions<Cacher> config;
+        private readonly ILogger<Scheduler> logger;
+        private readonly IOptions<InternalConfig> config;
         private readonly IDiscordAPIInterface discord;
+        private readonly IFilesHandler filesHandler;
         private readonly IServiceScopeFactory serviceScopeFactory;
 
-        public Cacher() { }
+        public Scheduler() { }
 
-        public Cacher(ILogger<Cacher> logger, IOptions<Cacher> config, IDiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory)
+        public Scheduler(ILogger<Scheduler> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory, IFilesHandler filesHandler)
         {
             this.logger = logger;
             this.config = config;
             this.discord = discord;
             this.serviceScopeFactory = serviceScopeFactory;
+            this.filesHandler = filesHandler;
         }
 
-        public void StartTimer()
+        public void StartTimers()
         {
-            logger.LogWarning("Starting action loop.");
+            logger.LogWarning("Starting schedule timers.");
             Task task = new Task(() =>
                 {
                     while (true)
                     {
+                        CheckDeletedCases();
                         CacheAll();
                         Thread.Sleep(1000 * 60 * 15);  // 15 minutes
                     }
                 });
                 task.Start();
-            logger.LogWarning("Finished action loop.");
+            logger.LogWarning("Started schedule timers.");
+        }
+
+        public async void CheckDeletedCases()
+        {
+            logger.LogInformation("Casebin | Checking case bin and delete old cases.");
+            using (var scope = serviceScopeFactory.CreateScope())
+            {
+                IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
+
+                foreach (ModCase modCase in await database.SelectAllModcasesMarkedAsDeleted())
+                {
+                    try {
+                        filesHandler.DeleteDirectory(Path.Combine(config.Value.AbsolutePathToFileUpload, modCase.GuildId, modCase.CaseId.ToString()));
+                    } catch (Exception e) {
+                        logger.LogError(e, "Failed to delete files directory for modcase.");
+                    }
+                    database.DeleteSpecificModCase(modCase);
+                }
+                await database.SaveChangesAsync();
+            }
+            logger.LogInformation("Casebin | Done.");
         }
 
         public async void CacheAll()

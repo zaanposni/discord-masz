@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ModcaseTableComponent implements OnInit {
 
-  apiUrl: string = 'modcasetable'
+  @Input() apiUrl: string = 'modcasetable'
   currentPage: number = 0;
 
   showTable: ModCaseTable[] = [];
@@ -21,7 +21,6 @@ export class ModcaseTableComponent implements OnInit {
   isModOrHigher!: Observable<boolean>;
   guildId!: string;
   @Input() uniqueIdentifier: string = "casetable";
-  @Input() punishmentTable: boolean = false;
   loading: boolean = true;
 
   @Input() search!: string;
@@ -35,9 +34,6 @@ export class ModcaseTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
-    if (this.punishmentTable) {
-      this.apiUrl = "punishmenttable";
-    }
     this.isModOrHigher = this.auth.isModInGuild(this.guildId);
     this.loadFirstCases();
   }

@@ -22,14 +22,38 @@
 
                 <!-- Delete / Edit button information -->
                 <div class="d-flex flex-column ml-2 flex-shrink-0" *ngIf="this.isModOrHigher">
-                    <button mat-fab color="accent" aria-label="edit case" class="flex-grow-1 flex-shrink-0 mb-2" routerLink="/guilds/{{ this.guildId }}/cases/{{ this.caseId }}/edit">
+                    <button mat-fab color="accent" aria-label="edit case" [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined"
+                        class="flex-grow-1 flex-shrink-0 mb-2" routerLink="/guilds/{{ this.guildId }}/cases/{{ this.caseId }}/edit">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-fab color="primary" aria-label="delete case" class="flex-grow-1 flex-shrink-0" (click)="deleteCase()">
+                    <button mat-fab color="primary" aria-label="delete case" class="flex-grow-1 flex-shrink-0" (click)="deleteCase()" *ngIf="this.modCase.content?.modCase?.markedToDeleteAt == undefined">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
             </div>
+
+            <mat-card class="d-flex flex-column primary-bg-color mt-3" *ngIf="this.modCase.content?.modCase?.markedToDeleteAt">
+                <span class="mat-display-1 mb-0 font-weight-bold">
+                    <ng-container *ngIf="this.modCase.content?.deletedBy">
+                        <img src="{{ this.modCase.content?.deletedBy?.imageUrl }}"
+                                class="rounded-circle z-depth-0 mr-1"
+                                alt="avatar"
+                                height="40"
+                                onerror="this.src='/assets/img/default_profile.png';"
+                                >
+                        {{ this.modCase.content?.deletedBy?.username }}#{{ this.modCase.content?.deletedBy?.discriminator }}
+                    </ng-container>
+                    has marked this case to be deleted at {{ this.modCase.content?.modCase?.markedToDeleteAt | date:'dd.MM.Y' }}.
+                </span>
+                <div class="d-flex flex-row mt-1" *ngIf="isModOrHigher">
+                    <div class="flex-grow-1"></div>
+                    <button mat-raised-button class="align-self-end" style="background-color: green;" (click)="restoreCase()" *ngIf="!this.restoringCase">
+                        Restore
+                    </button>
+                    <mat-spinner id="custom-green-spinner" class="align-self-end" *ngIf="this.restoringCase"></mat-spinner>
+                </div>
+            </mat-card>
+
 
             <!-- Labels -->
             <mat-chip-list aria-label="case labels" class="caselabels row mt-3 ml-2" title="The case labels">
@@ -243,7 +267,7 @@
                     <div class="mat-h2 font-weight-bold">Uploaded files ({{ this.files.content?.names?.length || 0 }})</div>
                     <div class="flex-grow-1"></div>
                     <div *ngIf="this.isModOrHigher">                            
-                        <button mat-raised-button color="accent" (click)="uploadInit()">
+                        <button mat-raised-button color="accent" (click)="uploadInit()" [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined">
                             <mat-icon>file_upload</mat-icon>
                             Upload
                         </button>
@@ -261,11 +285,11 @@
                             <mat-icon mat-list-icon>description</mat-icon>
                             <div mat-line>{{file}}</div>
                             <div class="d-flex flex-row">
-                                <a mat-raised-button href="/api/v1/guilds/{{ this.guildId }}/modcases/{{ this.caseId }}/files/{{ file }}"
-                                    color="accent" target="_blank">
+                                <a mat-raised-button href="/api/v1/guilds/{{ this.guildId }}/modcases/{{ this.caseId }}/files/{{ file }}" color="accent" target="_blank">
                                     View
                                 </a>
-                                <button mat-raised-button color="primary" *ngIf="this.isModOrHigher" class="ml-2" (click)="deleteFile(file)">
+                                <button mat-raised-button color="primary" *ngIf="this.isModOrHigher" class="ml-2"
+                                 [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined" (click)="deleteFile(file)">
                                     Delete
                                 </button>
                             </div>
@@ -305,11 +329,13 @@
                                     <div class="flex-grow-1"></div>
 
                                     <!-- Icons -->
-                                    <div class="d-flex flex-row flex-wrap align-self-end flex-grow-0 flex-shrink-0" *ngIf="this.currentUser.content?.discordUser?.id === comment.userId || this.isModOrHigher">
-                                        <button mat-mini-fab color="accent" aria-label="edit comment" class="flex-shrink-0 mr-2" (click)="updateComment(comment)" *ngIf="this.modCase.content?.modCase?.allowComments">
+                                    <div class="d-flex flex-row flex-wrap align-self-end flex-grow-0 flex-shrink-0" *ngIf="this.currentUser.content?.discordUser?.id === comment.userId || this.currentUser.content?.isAdmin">
+                                        <button mat-mini-fab color="accent" aria-label="edit comment" class="flex-shrink-0 mr-2" [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined"
+                                         (click)="updateComment(comment)" *ngIf="this.modCase.content?.modCase?.allowComments">
                                             <mat-icon>edit</mat-icon>
                                         </button>
-                                        <button mat-mini-fab color="primary" aria-label="delete comment" class="flex-shrink-0" (click)="deleteComment(comment.id)">
+                                        <button mat-mini-fab color="primary" aria-label="delete comment" class="flex-shrink-0" [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined"
+                                         (click)="deleteComment(comment.id)">
                                             <mat-icon>delete</mat-icon>
                                         </button>
                                     </div>
@@ -345,12 +371,12 @@
                         <textarea matInput [(ngModel)]="newComment" [disabled]="!this.modCase.content?.modCase?.allowComments"></textarea>
                     </mat-form-field>
                     <div class="d-flex flex-column">
-                        <button mat-raised-button color="accent" class="flex-shrink-1 mb-2"
+                        <button mat-raised-button color="accent" class="flex-shrink-1 mb-2" [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined"
                         (click)="lockCaseComments()" *ngIf="this.isModOrHigher && this.modCase?.content?.modCase?.allowComments">
                             Lock comments
                         </button>
                         <button mat-raised-button color="accent" class="flex-shrink-1"
-                        (click)="postComment()" [disabled]="this.newComment?.trim() ? null : ''">
+                        (click)="postComment()"  [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined || this.newComment?.trim() == ''">
                             Post comment
                         </button>
                     </div>
