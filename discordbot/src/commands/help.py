@@ -13,6 +13,7 @@ Commands:
   version  Checks for new releases on GitHub.
   warn     Warn a user.
   whois    Whois information about a user.
+  report   Reply to a message to report it to the moderators.
 ```
 """
 
