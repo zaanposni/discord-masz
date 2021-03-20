@@ -40,7 +40,7 @@
                 <!-- user information -->
                 <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2">
                     <div class="infobox bg-g-green">
-                        <div class="infobox-body d-flex flex-row">
+                        <div class="infobox-body d-flex flex-row flex-wrap">
                             <div class="flex-grow-1 d-flex flex-column">
                                 <span class="mat-h2 mb-0 font-weight-bold">Suspect</span>
                                 <ng-container *ngIf="this.modCase.loading">
@@ -73,7 +73,7 @@
                 <!-- guilds information -->
                 <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2 crs-pnt" routerLink="/guilds/{{ this.guildId }}">
                     <div class="infobox bg-g-blue">
-                        <div class="infobox-body d-flex flex-row">
+                        <div class="infobox-body d-flex flex-row flex-wrap">
                             <div class="flex-grow-1 d-flex flex-column">
                                 <span class="mat-h2 mb-0 font-weight-bold">Guild</span>
                                 <ng-container *ngIf="this.modCase.loading">
@@ -100,7 +100,7 @@
                 <!-- moderator information -->
                 <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2">
                     <div class="infobox bg-g-red">
-                        <div class="infobox-body d-flex flex-row">
+                        <div class="infobox-body d-flex flex-row flex-wrap">
                             <div class="flex-grow-1 d-flex flex-column">
                                 <span class="mat-h2 mb-0 font-weight-bold">Moderator</span>
                                 <ng-container *ngIf="this.modCase.loading">
@@ -129,7 +129,7 @@
                 <!-- punishment information -->
                 <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2">
                     <div class="infobox bg-g-orange">
-                        <div class="infobox-body d-flex flex-row">
+                        <div class="infobox-body d-flex flex-row flex-wrap">
                             <div class="flex-grow-1 d-flex flex-column">
                                 <ng-container *ngIf="this.modCase.loading">
                                     <span class="mat-h2 mb-0 font-weight-bold">Punishment</span>
@@ -178,7 +178,7 @@
                 <!-- created at information -->
                 <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2">
                     <div class="infobox bg-g-pink">
-                        <div class="infobox-body d-flex flex-row">
+                        <div class="infobox-body d-flex flex-row flex-wrap">
                             <div class="flex-grow-1 d-flex flex-column">
                                 <span class="mat-h2 mb-0 font-weight-bold">Created At</span>
                                 <ng-container *ngIf="this.modCase.loading">
@@ -202,7 +202,7 @@
                 <!-- Last moderator information -->
                 <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2" *ngIf="this.modCase.content?.modCase?.lastEditedAt != this.modCase.content?.modCase?.createdAt">
                     <div class="infobox bg-g-red">
-                        <div class="infobox-body d-flex flex-row">
+                        <div class="infobox-body d-flex flex-row flex-wrap">
                             <div class="flex-grow-1 d-flex flex-column">
                                 <span class="mat-h2 mb-0 font-weight-bold">Last Edit by Moderator</span>
                                 <span class="mat-h3 mb-0" style="word-break: break-all;">{{ this.modCase.content?.lastModerator?.username }}#{{ this.modCase.content?.lastModerator?.discriminator }}</span>
@@ -324,7 +324,7 @@
                     <div class="d-flex flex-row flex-wrap align-items-center">
                         <img
                             src="{{ this.modCase.content?.lockedBy?.imageUrl }}"
-                            class="card-img rounded-circle z-depth-0 mr-1"
+                            class="card-img rounded-circle z-depth-0 mr-2"
                             alt="avatar icon"
                             height="32"
                             style="width: unset"

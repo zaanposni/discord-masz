@@ -172,7 +172,8 @@ export class ModcaseAddComponent implements OnInit {
     });
   }
 
-  applyTemplate(template: CaseTemplate) {
+  applyTemplate(template: CaseTemplate, stepper: any) {
+    stepper?.next();
     this.infoFormGroup.setValue({
       title: template.caseTitle,
       description: template.caseDescription
@@ -199,7 +200,7 @@ export class ModcaseAddComponent implements OnInit {
       labels: this.caseLabels,
       punishment: convertToPunishment(this.punishmentFormGroup.value.punishmentType),
       punishmentType: convertToPunishmentType(this.punishmentFormGroup.value.punishmentType),
-      punishedUntil: this.punishmentFormGroup.value.punishedUntil?.toISOString() ?? null,
+      punishedUntil: (typeof this.punishmentFormGroup.value.punishedUntil === 'string') ? this.punishmentFormGroup.value.punishedUntil : this.punishmentFormGroup.value.punishedUntil?.toISOString() ?? null,
     }
     const params = new HttpParams()
       .set('sendnotification', this.optionsFormGroup.value.sendNotification ? 'true' : 'false')
@@ -238,7 +239,7 @@ export class ModcaseAddComponent implements OnInit {
           labels: this.caseLabels,
           punishment: convertToPunishment(this.punishmentFormGroup.value.punishmentType),
           punishmentType: convertToPunishmentType(this.punishmentFormGroup.value.punishmentType),
-          punishedUntil: this.punishmentFormGroup.value.punishedUntil?.toISOString() ?? null,
+          punishedUntil: (typeof this.punishmentFormGroup.value.punishedUntil === 'string') ? this.punishmentFormGroup.value.punishedUntil : this.punishmentFormGroup.value.punishedUntil?.toISOString() ?? null,
           sendPublicNotification: this.optionsFormGroup.value.sendNotification,
           handlePunishment: this.punishmentFormGroup.value.handlePunishment,
           announceDm: this.punishmentFormGroup.value.dmNotification

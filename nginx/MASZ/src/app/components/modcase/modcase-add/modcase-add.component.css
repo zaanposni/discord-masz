@@ -9,3 +9,7 @@
 .mat-stepper-vertical {
     background-color: inherit;
 }
+
+mat-vertical-stepper .stepper-actions {
+    margin-top: 1rem;
+}
