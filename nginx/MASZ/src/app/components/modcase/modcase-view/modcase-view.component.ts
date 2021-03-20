@@ -105,15 +105,18 @@ export class ModcaseViewComponent implements OnInit {
     });
     confirmDialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
-        let params = new HttpParams()
-          .set("sendnotification", caseDeleteConfig.sendNotification? 'true' : 'false');
-        
-        if (caseDeleteConfig.forceDelete) {
-          params.set('forceDelete', 'true');
-        }
+        const params = new HttpParams()
+          .set("sendnotification", caseDeleteConfig.sendNotification ? 'true' : 'false')
+          .set('forceDelete', caseDeleteConfig.forceDelete ? 'true' : 'false');
 
         this.api.deleteData(`/modcases/${this.guildId}/${this.caseId}`, params).subscribe(() => {
-          this.toastr.success("Case marked to be deleted.");
+          if (caseDeleteConfig.forceDelete) {
+            this.toastr.success("Case deleted.");
+            this.router.navigate(['guilds', this.guildId]);
+          } else {
+            this.toastr.success("Case marked to be deleted.");
+            this.reloadCase();
+          }
         }, () => {
           this.toastr.error("Failed to delete case.");
         });

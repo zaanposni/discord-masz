@@ -12,7 +12,8 @@
       "Added robots.txt for search engines.",
       "Improved google lighthouse rating.",
       "Modcase comments are now lockable by moderators to prevent spam.",
-      "Added report command when replying on messages."
+      "Added report command when replying on messages.",
+      "Added bin system for modcases, after 7 days cases are deleted."
     ]
   },
   {
