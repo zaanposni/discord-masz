@@ -7,7 +7,7 @@ volumes:
 services:
   db:
     container_name: masz_db
-    image: mysql:5.7
+    image: mysql:8.0
     volumes:
         - mysql:/var/lib/mysql
     restart: unless-stopped

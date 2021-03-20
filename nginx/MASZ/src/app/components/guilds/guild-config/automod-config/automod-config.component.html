@@ -1,0 +1,9 @@
+<div class="d-flex flex-column">
+    <span class="mat-h1 font-weight-bold mb-2">Automoderation</span>
+    <ng-container *ngFor="let rule of this.types">
+        <app-automod-rule [guildChannels]="guildChannels" [guild]="guildInfo" [initialConfigs]="initialConfigs" [defintion]="rule"></app-automod-rule>
+        <mat-divider class="mb-2"></mat-divider>
+    </ng-container>
+    
+    
+</div>

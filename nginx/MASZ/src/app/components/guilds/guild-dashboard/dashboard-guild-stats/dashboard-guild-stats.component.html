@@ -1,0 +1,38 @@
+<div class="card-container">
+    <div class="card-container-body d-flex flex-column flex-wrap flex-shrink-0 flex-grow-1">
+        <span class="mat-h1 font-weight-bold mb-2">
+            Guildstats
+        </span>
+        <div class="w-100 d-flex flex-row flex-wrap" *ngIf="stats.loading || stats.content">
+            <div class="mr-3">
+                <span>Cases</span>
+                <span class="d-block mat-h1 mb-0" *ngIf="stats.content">{{ stats.content?.caseCount }}</span>
+                <span class="d-block mat-h1 mb-0 waiting-for-text" style="width: 40px;" *ngIf="!stats.content"></span>
+            </div>
+            <div class="mr-3">
+                <span>Punishments</span>
+                <span class="d-block mat-h1 mb-0" *ngIf="stats.content">{{ stats.content?.activeCount }}</span>
+                <span class="d-block mat-h1 mb-0 waiting-for-text" style="width: 40px;" *ngIf="!stats.content"></span>
+            </div>
+            <div class="mr-3">
+                <span>Bans</span>
+                <span class="d-block mat-h1 mb-0" *ngIf="stats.content">{{ stats.content?.activeBanCount }}</span>
+                <span class="d-block mat-h1 mb-0 waiting-for-text" style="width: 40px;" *ngIf="!stats.content"></span>
+            </div>
+            <div class="mr-3">
+                <span>Mutes</span>
+                <span class="d-block mat-h1 mb-0" *ngIf="stats.content">{{ stats.content?.activeMuteCount }}</span>
+                <span class="d-block mat-h1 mb-0 waiting-for-text" style="width: 40px;" *ngIf="!stats.content"></span>
+            </div>
+            <div>
+                <span>Automoderations</span>
+                <span class="d-block mat-h1 mb-0" *ngIf="stats.content">{{ stats.content?.moderationCount }}</span>
+                <span class="d-block mat-h1 mb-0 waiting-for-text" style="width: 40px;" *ngIf="!stats.content"></span>
+            </div>
+        </div>
+        <mat-spinner *ngIf="stats.loading"></mat-spinner>
+        <div *ngIf="!stats.loading && !stats.content">
+            <span>Failed to load guild stats.</span>
+        </div>
+    </div>
+</div>

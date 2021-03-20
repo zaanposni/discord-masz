@@ -1,0 +1,33 @@
+<a class="font-weight-bold" routerLink="/guilds/{{entry.comment.modCase?.guildId }}/cases/{{ entry.comment.modCase?.caseId }}">
+    <div class="card-container">
+        <div class="card-container-body d-flex flex-column flex-wrap">
+            <div class="d-flex flex-row flex-wrap">
+                <!-- Profile picture -->
+                <div class="pictures-parent mr-3">
+                    <img
+                        src="{{ entry.commentor?.imageUrl }}"
+                        class="rounded-circle z-depth-0 user-image"
+                        alt="avatar image"
+                        height="64"
+                        title="commentor {{ entry.comment.userId }}"
+                        onerror="this.src='/assets/img/default_profile.png';"
+                    />
+                </div>
+                <div class="flex-shrink-1 d-flex flex-column flex-wrap">
+                    <!-- Title -->
+                    <div>
+                        <span title="{{ entry.comment.modCase?.title }}" class="mat-h2 mb-0">
+                            <ng-container *ngIf="entry.commentor">{{ entry.commentor?.username }}#{{ entry.commentor?.discriminator }} in case </ng-container>#{{ entry.comment.modCase?.caseId }}<br/>
+                        </span>
+                        <span title="{{ entry.comment.message }}" class="mat-h4 mb-0">
+                            {{ entry.comment.message.length > 40 ? entry.comment.message.slice(0, 40) + ' [...]' : entry.comment.message }}
+                        </span>
+                    </div>
+                    <span class="text-black-50">
+                        Created: {{ entry.comment.createdAt | date:'d. MMMM Y HH:mm:ss'  }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>

@@ -1,0 +1,16 @@
+<div class="card-container">
+    <div class="card-container-body d-flex flex-column flex-wrap flex-shrink-0 flex-grow-1">
+        <span class="mat-h1 font-weight-bold mb-2">
+            {{ title }}
+        </span>
+        <mat-spinner *ngIf="this.loading"></mat-spinner>
+        <div *ngIf="!this.loading && cases" class="w-100 d-flex flex-column">
+            <app-modcase-card-compact *ngFor="let case of cases" [entry]="case" class="mb-1 flex-grow-1"
+            [showCreated]="resource === 'modcasetable'" [showExpiring]="resource === 'expiringpunishment'" >
+            </app-modcase-card-compact>
+        </div>
+        <div *ngIf="!this.loading && cases.length === 0">
+            <span>Nothing to see here.</span>
+        </div>
+    </div>
+</div>

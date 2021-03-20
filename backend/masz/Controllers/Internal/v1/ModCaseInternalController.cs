@@ -81,7 +81,7 @@ namespace masz.Controllers
                 return Unauthorized();
             }
 
-            if (!actor.Roles.Contains(guildConfig.ModRoleId) && !actor.Roles.Contains(guildConfig.AdminRoleId) && !config.Value.SiteAdminDiscordUserIds.Contains(actor.User.Id)) {
+            if (!actor.Roles.Intersect(guildConfig.ModRoles).Any() && !actor.Roles.Intersect(guildConfig.AdminRoles).Any() && !config.Value.SiteAdminDiscordUserIds.Contains(actor.User.Id)) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
@@ -119,7 +119,7 @@ namespace masz.Controllers
 
             if (currentReportedMember != null)
             {
-                if (currentReportedMember.Roles.Contains(guildConfig.ModRoleId) || currentReportedMember.Roles.Contains(guildConfig.AdminRoleId)) {
+                if (currentReportedMember.Roles.Intersect(guildConfig.ModRoles).Any() || currentReportedMember.Roles.Intersect(guildConfig.AdminRoles).Any()) {
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for team members.");
                     return BadRequest("Cannot create cases for team members.");
                 }

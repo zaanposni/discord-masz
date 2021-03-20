@@ -19,13 +19,18 @@ namespace masz.Services
 
         Task<int> GetHighestCaseIdForGuild(string guildId);
         Task<ModCase> SelectSpecificModCase(string guildId, string modCaseId);
+        Task<List<ModCase>> SelectAllModcasesMarkedAsDeleted();
         Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId);
+        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, ModcaseTableType tableType);
+        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize);
+        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize, ModcaseTableType tableType);
         Task<List<ModCase>> SelectAllModCasesForGuild(string guildId);
+        Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, ModcaseTableType tableType);
+        Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize);
+        Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize, ModcaseTableType tableType);
         Task<int> CountAllModCasesForGuild(string guildId);
         Task<int> CountAllActivePunishmentsForGuild(string guildId);
         Task<int> CountAllActivePunishmentsForGuild(string guildId, PunishmentType type);
-        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize);
-        Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize);
         Task<List<ModCase>> SelectAllModCasesWithActivePunishmentForGuild(string guildId);
         Task<List<ModCase>> SelectAllModCasesThatHaveParallelPunishment(ModCase modCase);
         Task<List<ModCase>> SelectAllModCasesWithActivePunishments();
@@ -40,6 +45,7 @@ namespace masz.Services
 
         Task<int> CountAllModerationEvents();
         Task<List<DbCount>> GetModerationCountGraph(string guildId, DateTime since);
+        Task<List<AutoModerationTypeSplit>> GetModerationSplitGraph(string guildId, DateTime since);
         Task<int> CountAllModerationEventsForGuild(string guildId);
         Task<int> CountAllModerationEventsForSpecificUserOnGuild(string guildId, string userId);
         Task<List<AutoModerationEvent>> SelectAllModerationEvents();
@@ -61,6 +67,7 @@ namespace masz.Services
         void UpdateModCaseComment(ModCaseComment comment);
         void DeleteSpecificModCaseComment(ModCaseComment comment);
         Task<ModCaseComment> SelectSpecificModCaseComment(int commentId);
+        Task<List<ModCaseComment>> SelectLastModCaseCommentsByGuild(string guildId);
 
         Task SaveCaseTemplate(CaseTemplate template);
         void DeleteSpecificCaseTemplate(CaseTemplate template);

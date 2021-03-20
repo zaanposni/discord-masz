@@ -90,7 +90,7 @@ namespace masz.Controllers
         }
 
         [HttpDelete("{modcaseid}")]
-        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true, [FromQuery] bool announceDm = true) 
+        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true, [FromQuery] bool announceDm = true, [FromQuery] bool forceDelete = false) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
@@ -120,14 +120,25 @@ namespace masz.Controllers
                 return NotFound();
             }
 
-            try {
-                filesHandler.DeleteDirectory(Path.Combine(config.Value.AbsolutePathToFileUpload, guildid, modcaseid));
-            } catch (Exception e) {
-                logger.LogError(e, "Failed to delete files directory for modcase.");
-            }
+            if (forceDelete && config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))  // only siteadmin should be able to force delete.
+            {
+                try {
+                    filesHandler.DeleteDirectory(Path.Combine(config.Value.AbsolutePathToFileUpload, guildid, modcaseid));
+                } catch (Exception e) {
+                    logger.LogError(e, "Failed to delete files directory for modcase.");
+                }
 
-            database.DeleteSpecificModCase(modCase);
-            await database.SaveChangesAsync();
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Force deleting ModCase.");
+                database.DeleteSpecificModCase(modCase);
+                await database.SaveChangesAsync();
+            } else {
+                modCase.MarkedToDeleteAt = DateTime.UtcNow.AddDays(7);
+                modCase.DeletedByUserId = currentUser.Id;
+
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Marking modcase as deleted.");
+                database.UpdateModCase(modCase);
+                await database.SaveChangesAsync();
+            }
 
             if (handlePunishment)
             {
@@ -183,6 +194,12 @@ namespace masz.Controllers
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
                 return NotFound();
             }
+            if (modCase.MarkedToDeleteAt != null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Case is marked to be deleted.");
+                return BadRequest("Case is marked to be deleted.");
+            }
+
             ModCase oldModCase = (ModCase) modCase.Clone();
 
             modCase.Title = newValue.Title;
@@ -238,7 +255,7 @@ namespace masz.Controllers
                 var currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId, true);
                 if (currentReportedMember != null)
                 {
-                    if (currentReportedMember.Roles.Contains(guildConfig.ModRoleId) || currentReportedMember.Roles.Contains(guildConfig.AdminRoleId)) {
+                    if (currentReportedMember.Roles.Intersect(guildConfig.ModRoles).Any() || currentReportedMember.Roles.Intersect(guildConfig.AdminRoles).Any()) {
                         logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for team members.");
                         return BadRequest("Cannot create cases for team members.");
                     }
@@ -337,7 +354,7 @@ namespace masz.Controllers
 
             if (currentReportedMember != null)
             {
-                if (currentReportedMember.Roles.Contains(guildConfig.ModRoleId) || currentReportedMember.Roles.Contains(guildConfig.AdminRoleId)) {
+                if (currentReportedMember.Roles.Intersect(guildConfig.ModRoles).Any() || currentReportedMember.Roles.Intersect(guildConfig.AdminRoles).Any()) {
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for team members.");
                     return BadRequest("Cannot create cases for team members.");
                 }
@@ -461,6 +478,126 @@ namespace masz.Controllers
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCases.");
             return Ok(modCases);
+        }
+
+        [HttpPost("{modcaseid}/lock")]
+        public async Task<IActionResult> LockComments([FromRoute] string guildid, [FromRoute] string modcaseid) 
+        {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
+            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+            if (currentUser == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            // ========================================================
+
+            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
+            if (guildConfig == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
+                return BadRequest("Guild not registered.");
+            }
+
+            var currentModerator = currentUser.Id;
+            if (currentModerator == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Failed to fetch mod user info.");
+                return BadRequest("Could not fetch own user info.");
+            }
+
+            ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
+            if (modCase == null) 
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
+                return NotFound();
+            }
+
+            if (!modCase.AllowComments) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Comments are already locked.");
+                return BadRequest("Comments are already locked.");
+            }
+
+            if (modCase.MarkedToDeleteAt != null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Case is marked to be deleted.");
+                return BadRequest("Case is marked to be deleted.");
+            }
+
+            modCase.AllowComments = false;
+            modCase.LockedAt = DateTime.Now;
+            modCase.LockedByUserId = currentUser.Id;
+
+            database.UpdateModCase(modCase);
+            await database.SaveChangesAsync();
+
+            return Ok(modcaseid);
+        }
+
+        [HttpDelete("{modcaseid}/lock")]
+        public async Task<IActionResult> UnlockComments([FromRoute] string guildid, [FromRoute] string modcaseid) 
+        {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
+            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+            if (currentUser == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            // ========================================================
+
+            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
+            if (guildConfig == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
+                return BadRequest("Guild not registered.");
+            }
+
+            var currentModerator = currentUser.Id;
+            if (currentModerator == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Failed to fetch mod user info.");
+                return BadRequest("Could not fetch own user info.");
+            }
+
+            ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
+            if (modCase == null) 
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
+                return NotFound();
+            }
+
+            if (modCase.AllowComments) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Comments are already unlocked.");
+                return BadRequest("Comments are already unlocked.");
+            }
+
+            if (modCase.MarkedToDeleteAt != null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Case is marked to be deleted.");
+                return BadRequest("Case is marked to be deleted.");
+            }
+
+            modCase.AllowComments = true;
+            modCase.LockedAt = null;
+            modCase.LockedByUserId = null;
+
+            database.UpdateModCase(modCase);
+            await database.SaveChangesAsync();
+
+            return Ok(modcaseid);
         }
     }
 }

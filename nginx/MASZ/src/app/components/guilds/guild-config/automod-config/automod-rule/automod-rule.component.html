@@ -1,0 +1,118 @@
+<div class="d-flex flex-column">
+    <span class="mat-h4 font-weight-bold mb-2">
+        <mat-checkbox
+          [(ngModel)]="this.enableConfig"
+          (ngModelChange)="onRuleToggle($event)"
+          [labelPosition]="'after'">
+          {{ defintion.title }}
+        </mat-checkbox>        
+    </span>
+    <mat-horizontal-stepper linear #stepper *ngIf="this.enableConfig" color="accent">
+        <!-- Event ####################################################################################################### -->
+        <mat-step [stepControl]="eventForm">
+          <form [formGroup]="eventForm">
+            <ng-template matStepLabel>Event</ng-template>
+            <span>{{ this.defintion.description }}</span><br/>
+            
+            <mat-form-field *ngIf="this.defintion.showLimitField">
+              <mat-label>Upper limit</mat-label>
+              <input type="number" matInput formControlName="limit" required>
+            </mat-form-field>
+            <div>
+              <button mat-raised-button matStepperNext color="accent">Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <!-- Filter ####################################################################################################### -->
+        <mat-step [stepControl]="filterForm" [optional]='true'>
+          <form [formGroup]="filterForm">
+            <ng-template matStepLabel>Filter</ng-template>
+            <span>Note: team members are always excluded.</span><br/>
+            <mat-form-field appearance="fill">
+                <mat-label>Exclude roles</mat-label>
+                <mat-select formControlName="excludeRoles" multiple>
+                <mat-option *ngFor="let role of this.guild?.roles"
+                [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
+                </mat-select>
+            </mat-form-field><br/>
+            <mat-form-field appearance="fill">
+                <mat-label>Exclude channels</mat-label>
+                <mat-select formControlName="excludeChannels" multiple>
+                <mat-option *ngFor="let channel of this.guildChannels"
+                [value]="channel.id" >#{{channel.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div>
+              <button mat-raised-button matStepperPrevious color="accent">Back</button>
+              <button mat-raised-button matStepperNext color="accent">Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <!-- Action ####################################################################################################### -->
+        <mat-step [stepControl]="actionForm">
+          <form [formGroup]="actionForm">
+            <ng-template matStepLabel>Action</ng-template>
+              <mat-checkbox
+                [labelPosition]="'after'"
+                title="A internal notification is always sent."
+                [checked]="true"
+                [disabled]="'true'">
+                Send internal notification
+              </mat-checkbox><br/>
+              <mat-checkbox
+                [labelPosition]="'after'"
+                title="A log entry is always generated."
+                [checked]="true"
+                [disabled]="'true'">
+                Log entry
+              </mat-checkbox><br/>
+              <mat-checkbox
+                formControlName="dmNotification"
+                [labelPosition]="'after'">
+                Send dm notification
+              </mat-checkbox><br/>
+              <mat-form-field appearance="fill">
+                <mat-label>Action</mat-label>
+                <mat-select formControlName="automodAction">
+                <mat-option *ngFor="let enum of automodActionOptions(); let i = index"
+                [value]="i">{{enum}}</mat-option>
+                </mat-select>
+              </mat-form-field><br/>
+              <mat-checkbox *ngIf="this.actionForm.value.automodAction >= 2"
+                formControlName="publicNotification"
+                [labelPosition]="'after'">
+                Send public notification
+              </mat-checkbox><br/>
+              <mat-form-field appearance="fill" *ngIf="this.actionForm.value.automodAction >= 2">
+                <mat-label>Punishment</mat-label>
+                <mat-select formControlName="punishment">
+                <mat-option *ngFor="let enum of autoModerationPunishmentOptions(); let i = index"
+                [value]="i">{{enum}}</mat-option>
+                </mat-select>
+              </mat-form-field><br/>
+              <mat-form-field *ngIf="this.actionForm.value.automodAction >= 2 && this.actionForm.value.punishment >= 4">
+                <mat-label>Duration in minutes</mat-label>
+                <input type="number" matInput formControlName="punishmentDuration">
+              </mat-form-field>
+            <div>
+              <button mat-raised-button matStepperPrevious color="accent">Back</button>
+              <button mat-raised-button matStepperNext color="accent">Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <!-- Done ####################################################################################################### -->
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <div class="d-flex flex-row">
+            <div class="d-flex flex-column">
+              <p>You are now done.</p>
+              <div class="d-flex flex-row">
+                <button mat-raised-button matStepperPrevious color="accent" [disabled]="tryingToSaveConfig">Back</button>
+                <button mat-raised-button color="accent" (click)="saveConfig()" [disabled]="tryingToSaveConfig">Save</button>
+              </div>
+            </div>
+            <mat-spinner *ngIf="tryingToSaveConfig"></mat-spinner>
+          </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

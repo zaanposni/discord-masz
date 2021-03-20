@@ -1,0 +1,27 @@
+<div class="p-3 d-flex flex-column moderation-without-hover">
+    <div class="d-flex flex-row" style="align-items: center">
+        <mat-icon class="mr-2">{{ iconsMap[moderation.autoModerationType] }}</mat-icon>
+        <span>{{ moderation.username }}#{{ moderation.discriminator }}
+            <span class="text-black-50">({{ moderation.userId }})</span>
+            <span class="accent-color"> {{ eventsMap[moderation.autoModerationType] }}. </span>
+            <span>{{ actionsMap[moderation.autoModerationAction] }}.</span>
+        </span>
+        <div class="flex-grow-1"></div>
+        <a routerLink="/guilds/{{ moderation.guildId }}/cases/{{ moderation.associatedCaseId }}"  *ngIf="moderation.associatedCaseId">
+            <button mat-raised-button color="accent">
+                VIEW CASE
+            </button>
+        </a>
+    </div>
+    <div>
+        <div class="ml-3 mt-3">
+            <mat-icon>format_quote</mat-icon> <span> {{ moderation.messageContent }}</span>
+            <hr/>
+            <div class="d-flex flex-row">
+                <div class="text-black-50">MessageId: {{ moderation.messageId }}</div>
+                <div class="flex-grow-1"></div>
+                <div class="text-black-50">Timestamp (UTC): {{ moderation.createdAt | date:'dd.MM.Y HH:mm:ss' }}</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -104,6 +104,13 @@ namespace masz.Controllers
                 comments
             );
 
+            if (modCase.LockedByUserId != null) {
+                caseView.LockedBy = await discord.FetchUserInfo(modCase.LockedByUserId);
+            }
+            if (modCase.MarkedToDeleteAt != null) {
+                caseView.DeletedBy = await discord.FetchUserInfo(modCase.DeletedByUserId);
+            }
+
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCase.");
             return Ok(caseView);
         }

@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Are you sure?</h1>
+<div mat-dialog-content>
+    <mat-checkbox matInput [(ngModel)]="config.sendNotification">Send public notification</mat-checkbox><br/>
+    <mat-checkbox matInput [(ngModel)]="config.forceDelete" *ngIf="this.config.isAdmin">Force delete</mat-checkbox>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="accent" [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">Confirm</button>
+</div>

@@ -1,0 +1,176 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="example-toolbar" *ngIf="this.mobileQuery.matches">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h1 class="example-app-name">{{ title }}</h1>
+  </mat-toolbar>
+  
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0" autosize>
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list>
+        <a class="d-flex">
+          <div class="rounded navitem nohover">
+            <img width="24px" height="24px" src="favicon.ico" alt="icon"/>
+            <span>{{ title }}</span>
+          </div>
+        </a>
+
+        <mat-expansion-panel *ngIf="this.currentUser && loggedIn">
+          <mat-expansion-panel-header>
+            <a class="d-flex">
+              <div class="rounded navitem nohover">
+                <img width="24px" height="24px" src="{{ this.currentUser?.discordUser?.imageUrl }}" alt="user icon" class="rounded-circle"/>
+                <span>{{ this.currentUser?.discordUser?.username }}#{{ this.currentUser?.discordUser?.discriminator }}</span>
+              </div>
+            </a>
+          </mat-expansion-panel-header>
+          <!--<a class="d-flex" (click)="open('profile', this.currentUser?.discordUser?.id)">
+            <div [class.activatedNav]="activatedNav[1] === 'profile'" class="rounded navitem">
+              <mat-icon aria-hidden="false" aria-label="tune icon">account_circle</mat-icon>
+              <span>Profile</span>
+            </div>
+          </a>-->
+          <a class="d-flex" href="/api/v1/logout">
+            <div class="rounded navitem">
+              <mat-icon aria-hidden="false" aria-label="tune icon">logout</mat-icon>
+              <span>Logout</span>
+            </div>
+          </a>
+        </mat-expansion-panel>
+
+        <a class="d-flex" (click)="open('login')" *ngIf="!loggedIn">
+          <div [class.activatedNav]="activatedNav[1].startsWith('login') || activatedNav[1] === ''" class="rounded navitem">
+            <mat-icon aria-hidden="false" aria-label="tune icon">login</mat-icon>
+            <span>Login</span>
+          </div>
+        </a>
+
+        <mat-divider *ngIf="this.currentUser && loggedIn"></mat-divider>
+
+        <a class="d-flex" (click)="open('guilds')" *ngIf="this.currentUser && loggedIn">
+          <div [class.activatedNav]="activatedNav[1] === 'guilds' && (activatedNav[2] === 'new' || activatedNav[2] === undefined)" class="rounded navitem pr-1">
+            <mat-icon aria-hidden="false" aria-label="group icon">group</mat-icon>
+            <span>All Guilds</span>
+            <div class="flex-grow-1"></div>
+            <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon"
+             (click)="open('guilds', 'new'); $event.stopPropagation()" *ngIf="this.currentUser.isAdmin">
+              add
+            </mat-icon>
+          </div>
+        </a>
+
+        <!-- Admin Guild -->
+        <!-- #################################################################################################################################################### -->
+        <mat-expansion-panel *ngIf="this.currentUser && loggedIn && this.currentUser?.adminGuilds?.length">
+          <mat-expansion-panel-header>
+            <a class="d-flex">
+              <div class="rounded navitem nohover">
+                <mat-icon aria-hidden="false" aria-label="group icon">security</mat-icon>
+                <span>Admin guilds</span>
+              </div>
+            </a>
+          </mat-expansion-panel-header>
+          <a class="d-flex" (click)="open('guilds', guild.id)" *ngFor="let guild of this.currentUser.adminGuilds">
+            <div [class.activatedNav]="activatedNav[1] === 'guilds' && activatedNav[2] === guild.id" class="d-flex flex-row rounded navitem no-p">
+              <img width="24px" height="24px" src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" class="rounded-circle"/>
+              <span>{{ guild.name }}</span>
+              <div class="flex-grow-1"></div>
+              <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon" (click)="open('guilds', guild.id, 'edit'); $event.stopPropagation()">
+                edit
+              </mat-icon>
+              <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon" (click)="deleteGuild(guild); $event.stopPropagation()">
+                delete
+              </mat-icon>
+            </div>
+          </a>
+        </mat-expansion-panel>
+        
+        <!-- Mod Guild -->
+        <!-- #################################################################################################################################################### -->
+        <mat-expansion-panel *ngIf="this.currentUser && loggedIn && this.currentUser?.modGuilds?.length">
+          <mat-expansion-panel-header>
+            <a class="d-flex">
+              <div class="rounded navitem nohover">
+                <mat-icon aria-hidden="false" aria-label="group icon">verified_user</mat-icon>
+                <span>Moderator guilds</span>
+              </div>
+            </a>
+          </mat-expansion-panel-header>
+          <a class="d-flex" (click)="open('guilds', guild.id)" *ngFor="let guild of this.currentUser.modGuilds">
+            <div [class.activatedNav]="activatedNav[1] === 'guilds' && activatedNav[2] === guild.id" class="rounded navitem">
+              <img width="24px" height="24px" src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" class="rounded-circle"/>
+              <span>{{ guild.name }}</span>
+            </div>
+          </a>
+        </mat-expansion-panel>
+
+        <!-- User Guild -->
+        <!-- #################################################################################################################################################### -->
+        <mat-expansion-panel *ngIf="this.currentUser && loggedIn && this.currentUser?.memberGuilds?.length">
+          <mat-expansion-panel-header>
+            <a class="d-flex">
+              <div class="rounded navitem nohover">
+                <mat-icon aria-hidden="false" aria-label="group icon">account_circle</mat-icon>
+                <span>Guilds</span>
+              </div>
+            </a>
+          </mat-expansion-panel-header>
+          <a class="d-flex" (click)="open('guilds', guild.id)" *ngFor="let guild of this.currentUser.memberGuilds">
+            <div [class.activatedNav]="activatedNav[1] === 'guilds' && activatedNav[2] === guild.id" class="rounded navitem">
+              <img width="24px" height="24px" src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" class="rounded-circle"/>
+              <span>{{ guild.name }}</span>
+            </div>
+          </a>
+        </mat-expansion-panel>
+
+        <!-- Banned from Guild -->
+        <!-- #################################################################################################################################################### -->
+        <mat-expansion-panel *ngIf="this.currentUser && loggedIn && this.currentUser?.bannedGuilds?.length">
+          <mat-expansion-panel-header>
+            <a class="d-flex">
+              <div class="rounded navitem nohover">
+                <mat-icon aria-hidden="false" aria-label="group icon">block</mat-icon>
+                <span>Banned from guilds</span>
+              </div>
+            </a>
+          </mat-expansion-panel-header>
+          <a class="d-flex" (click)="open('guilds', guild.id)" *ngFor="let guild of this.currentUser.bannedGuilds">
+            <div [class.activatedNav]="activatedNav[1] === 'guilds' && activatedNav[2] === guild.id" class="rounded navitem">
+              <img width="24px" height="24px" src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" class="rounded-circle"/>
+              <span>{{ guild.name }}</span>
+            </div>
+          </a>
+        </mat-expansion-panel>
+        
+        <mat-divider></mat-divider>
+        
+        <a class="d-flex" (click)="open('patchnotes')">
+          <div [class.activatedNav]="activatedNav[1] === 'patchnotes'" class="rounded navitem">
+            <mat-icon aria-hidden="false" aria-label="tune icon">update</mat-icon>
+            <span>Patchnotes</span>
+          </div>
+        </a>
+        <a class="d-flex" (click)="open('donate')">
+          <div [class.activatedNav]="activatedNav[1] === 'donate'" class="rounded navitem">
+            <mat-icon aria-hidden="false" aria-label="tune icon">forum</mat-icon>
+            <span>Community</span>
+          </div>
+        </a>
+        <a class="d-flex" (click)="open('guidelines')">
+          <div [class.activatedNav]="activatedNav[1] === 'guidelines'" class="rounded navitem">
+            <mat-icon aria-hidden="false" aria-label="tune icon">policy</mat-icon>
+            <span>Terms</span>
+          </div>
+        </a>
+        <a class="d-flex" href="legal.html" target="_blank">
+          <div class="rounded navitem">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">gavel</mat-icon>
+            <span>Legal</span>
+          </div>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>  
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

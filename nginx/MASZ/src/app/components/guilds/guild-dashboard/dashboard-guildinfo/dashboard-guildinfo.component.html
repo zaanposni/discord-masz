@@ -1,0 +1,25 @@
+<!-- Guild info -->
+<div class="card-container">
+    <div class="card-container-body d-flex flex-row flex-wrap flex-shrink-0 flex-grow-1 align-items-center">
+        <!-- Loading -->
+        <mat-spinner *ngIf="this.guild?.loading" [diameter]="64" class="mr-1"></mat-spinner>
+        <span class="mat-h1 font-weight-bold mb-0 waiting-for-text" *ngIf="this.guild?.loading" style="width: 300px;"></span>
+        <!-- Content -->
+        <img *ngIf="this.guild?.content && !this.guild?.loading"
+            src="https://cdn.discordapp.com/icons/{{ this.guild?.content?.id }}/{{ this.guild?.content?.icon }}.png"
+            class="rounded-circle z-depth-0 mr-2"
+            alt="guild icon"
+            height="64"
+            onerror="this.src='/assets/img/default_profile.png';"
+        />
+        <span class="mat-h1 font-weight-bold mb-0" *ngIf="this.guild?.content && !this.guild?.loading">
+            {{ this.guild?.content?.name }}
+        </span>
+        <div class="flex-grow-1"></div>
+        <a routerLink="/guilds/{{ this.guild?.content?.id }}/cases/new" class="p-2" mat-raised-button color="accent">
+            Create new case
+        </a>
+        <!-- Not loaded -->
+        <span *ngIf="!this.guild?.loading && !this.guild?.content">Failed to load guild info.</span>
+    </div>
+</div>

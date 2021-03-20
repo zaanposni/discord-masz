@@ -164,7 +164,7 @@ namespace masz.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("AdminRoleId")
+                    b.Property<string>("AdminRoles")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("GuildId")
@@ -179,10 +179,10 @@ namespace masz.Migrations
                     b.Property<string>("ModPublicNotificationWebhook")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("ModRoleId")
+                    b.Property<string>("ModRoles")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("MutedRoleId")
+                    b.Property<string>("MutedRoles")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
@@ -205,6 +205,9 @@ namespace masz.Migrations
                     b.Property<string>("Message")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<bool>("ShowMotd")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("UserId")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -219,6 +222,11 @@ namespace masz.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<bool>("AllowComments")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(true);
+
                     b.Property<int>("CaseId")
                         .HasColumnType("int");
 
@@ -227,6 +235,9 @@ namespace masz.Migrations
 
                     b.Property<int>("CreationType")
                         .HasColumnType("int");
+
+                    b.Property<string>("DeletedByUserId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Description")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -246,6 +257,15 @@ namespace masz.Migrations
 
                     b.Property<string>("LastEditedByModId")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime?>("LockedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("LockedByUserId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime?>("MarkedToDeleteAt")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModId")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");

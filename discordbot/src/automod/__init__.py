@@ -34,7 +34,7 @@ def check_filter(msg: Message, guildconfig, automodconfig) -> bool:
     if str(msg.author.id) in SITE_ADMINS:
         return False
     
-    unallowed_roles = automodconfig["IgnoreRoles"].split(",") + [guildconfig["ModRoleId"]] + [guildconfig["AdminRoleId"]]
+    unallowed_roles = automodconfig["IgnoreRoles"].split(",") + guildconfig["ModRoles"].split(",") + guildconfig["AdminRoles"].split(",")
     for role in msg.author.roles:
         if str(role.id) in unallowed_roles:
             return False

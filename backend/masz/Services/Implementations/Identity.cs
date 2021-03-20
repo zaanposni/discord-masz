@@ -157,7 +157,7 @@ namespace masz.Services
             }
 
             // check for role
-            return guildMember.Roles.Contains(guildConfig.AdminRoleId);
+            return guildMember.Roles.Intersect(guildConfig.AdminRoles).Any();
         }
 
         /// <summary>
@@ -184,8 +184,7 @@ namespace masz.Services
                 return false;
             }
 
-            // check for role
-            return guildMember.Roles.Contains(guildConfig.ModRoleId) || guildMember.Roles.Contains(guildConfig.AdminRoleId);
+            return guildMember.Roles.Intersect(guildConfig.ModRoles).Any() || guildMember.Roles.Intersect(guildConfig.AdminRoles).Any();
         }
     }
 }

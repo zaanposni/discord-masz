@@ -1,0 +1,124 @@
+<div style="height: 100px;" class="dp-on-big-screen"></div>
+<div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="d-flex flex-column justify-content-center align-items-center cw-75-100">
+        <mat-spinner *ngIf="this.oldCase.loading"></mat-spinner>
+        <div class="d-flex flex-column align-items-center" *ngIf="!this.oldCase.loading && !this.oldCase.content">
+            <span class="mat-display-1 font-weight-bold">Failed to load current case :(</span>
+            <img src="/assets/img/notfound.svg" class="w-50"/>
+        </div>
+        <mat-vertical-stepper [linear]="true" #stepper color="accent" class="cw-75-100" [style.display]="(!this.oldCase.loading && this.oldCase.content) ? 'block' : 'none'">
+            <mat-step [stepControl]="memberFormGroup">
+                <ng-template matStepLabel>Choose a member</ng-template>
+                <button mat-raised-button color="accent" routerLink="/guilds/{{ this.guildId }}">Back to guild.</button><br/>
+                <mat-spinner *ngIf="this.members.loading"></mat-spinner>
+                <form [formGroup]="memberFormGroup" *ngIf="!this.members.loading">
+                    <mat-form-field>
+                        <mat-label>Member</mat-label>
+                        <input type="text"
+                            placeholder="Pick one"
+                            aria-label="Member"
+                            matInput
+                            formControlName="member"
+                            [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of this.filteredMembers | async" [value]="option.id">
+                            {{option.username}}#{{option.discriminator}}
+                        </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </form>
+                <div class="stepper-actions">
+                    <button mat-raised-button matStepperPrevious class="mr-2 mb-2" color="accent">Back</button>
+                    <button mat-raised-button matStepperNext color="accent">Next</button>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="infoFormGroup">
+                <ng-template matStepLabel>Describe the case</ng-template>
+                <form [formGroup]="infoFormGroup">
+                    <mat-form-field class="w-100">
+                        <mat-label>Title</mat-label>
+                        <input matInput type="text" formControlName="title">
+                    </mat-form-field><br/>
+                    <mat-form-field class="w-100">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput type="text" formControlName="description"></textarea>
+                    </mat-form-field><br/>
+                    <mat-form-field class="w-100">
+                        <mat-label>Labels</mat-label>
+                        <mat-chip-list #chipList aria-label="Labels">
+                            <mat-chip *ngFor="let label of caseLabels" [selectable]="true"
+                                    color="accent" [removable]="true" (removed)="remove(label)">
+                            {{label}}
+                            <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+                            </mat-chip>
+                            <input placeholder="New label..."
+                                    [matChipInputFor]="chipList"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    [matChipInputAddOnBlur]="true"
+                                    (matChipInputTokenEnd)="add($event)">
+                        </mat-chip-list>
+                        </mat-form-field>
+                </form>
+                <div class="stepper-actions">
+                    <button mat-raised-button matStepperPrevious class="mr-2 mb-2" color="accent">Back</button>
+                    <button mat-raised-button matStepperNext color="accent">Next</button>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="punishmentFormGroup">
+                <ng-template matStepLabel>Choose a punishment</ng-template>
+                <form [formGroup]="punishmentFormGroup">
+                    <mat-form-field>
+                        <mat-label>Punishment</mat-label>
+                        <mat-select formControlName="punishmentType">
+                        <mat-option *ngFor="let enum of displayPunishmentTypeOptions(); let i = index"
+                        [value]="i">{{enum}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <ng-container *ngIf="this.punishmentFormGroup.value.punishmentType > 2">
+                        <br/><mat-checkbox
+                            formControlName="dmNotification"
+                            [labelPosition]="'after'">
+                            Send dm notification
+                        </mat-checkbox><br/>
+                        <mat-checkbox
+                            formControlName="handlePunishment"
+                            [labelPosition]="'after'">
+                            Handle this punishment
+                        </mat-checkbox>
+                    </ng-container>
+                    <br/>
+                    <mat-form-field *ngIf="this.punishmentFormGroup.value.punishmentType === 7 || this.punishmentFormGroup.value.punishmentType === 4">
+                        <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" formControlName="punishedUntil">
+                        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+                        <ngx-mat-datetime-picker #picker [color]="'accent'">
+                          <!-- Custom icon or text of Apply icon -->
+                          <ng-template>
+                            <mat-icon>done</mat-icon>
+                            <span>OK</span>
+                          </ng-template>
+                        </ngx-mat-datetime-picker>
+                      </mat-form-field>
+                </form>
+                <div class="stepper-actions">
+                    <button mat-raised-button matStepperPrevious class="mr-2 mb-2" color="accent">Back</button>
+                    <button mat-raised-button matStepperNext color="accent">Next</button>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="optionsFormGroup">
+                <ng-template matStepLabel>Update case</ng-template>
+                <form [formGroup]="optionsFormGroup">
+                    <mat-checkbox
+                        formControlName="sendNotification"
+                        [labelPosition]="'after'">
+                        Send public notification
+                    </mat-checkbox>
+                </form>
+                <div *ngIf="!this.savingCase" class="stepper-actions">
+                    <button mat-raised-button matStepperPrevious class="mr-2 mb-2" color="accent">Back</button>
+                    <button mat-raised-button color="accent" (click)="updateCase()">Update case</button>
+                </div>
+                <mat-spinner *ngIf="this.savingCase"></mat-spinner>
+            </mat-step>
+        </mat-vertical-stepper>
+    </div>
+</div>

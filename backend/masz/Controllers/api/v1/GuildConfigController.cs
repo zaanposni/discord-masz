@@ -28,9 +28,9 @@ namespace masz.Controllers
         private readonly IIdentityManager identityManager;
         private readonly IDiscordAPIInterface discord;
         private readonly IFilesHandler filesHandler;
-        private readonly ICacher cacher;
+        private readonly IScheduler cacher;
 
-        public GuildConfigController(ILogger<GuildConfigController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IFilesHandler filesHandler, ICacher cacher)
+        public GuildConfigController(ILogger<GuildConfigController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IFilesHandler filesHandler, IScheduler cacher)
         {
             this.logger = logger;
             this.database = database;
@@ -146,18 +146,38 @@ namespace masz.Controllers
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not found.");
                 return BadRequest("Guild not found.");
             }
-            if (guild.Roles.FindIndex(x => x.Id == guildConfigForCreateDto.ModRoleId) < 0 || guild.Roles.FindIndex(x => x.Id == guildConfigForCreateDto.AdminRoleId) < 0)
+            foreach (string role in guildConfigForCreateDto.modRoles)
             {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Roles not found.");
-                return BadRequest("Roles not found.");
-            }          
+                if (guild.Roles.FindIndex(x => x.Id == role) < 0)
+                {
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Roles not found.");
+                    return BadRequest($"Role {role} not found.");
+                }
+            }
+            foreach (string role in guildConfigForCreateDto.adminRoles)
+            {
+                if (guild.Roles.FindIndex(x => x.Id == role) < 0)
+                {
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Roles not found.");
+                    return BadRequest($"Role {role} not found.");
+                }
+            }
+            foreach (string role in guildConfigForCreateDto.mutedRoles)
+            {
+                if (guild.Roles.FindIndex(x => x.Id == role) < 0)
+                {
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Roles not found.");
+                    return BadRequest($"Role {role} not found.");
+                }
+            }
+            
 
             GuildConfig guildConfig = new GuildConfig();
             guildConfig.GuildId = guildConfigForCreateDto.GuildId;
-            guildConfig.ModRoleId = guildConfigForCreateDto.ModRoleId;
-            guildConfig.AdminRoleId = guildConfigForCreateDto.AdminRoleId;
+            guildConfig.ModRoles = guildConfigForCreateDto.modRoles;
+            guildConfig.AdminRoles = guildConfigForCreateDto.adminRoles;
             guildConfig.ModNotificationDM = guildConfigForCreateDto.ModNotificationDM;
-            guildConfig.MutedRoleId = guildConfigForCreateDto.MutedRoleId;
+            guildConfig.MutedRoles = guildConfigForCreateDto.mutedRoles;
             guildConfig.ModPublicNotificationWebhook = guildConfigForCreateDto.ModPublicNotificationWebhook;
             guildConfig.ModInternalNotificationWebhook = guildConfigForCreateDto.ModInternalNotificationWebhook;
 
@@ -206,9 +226,9 @@ namespace masz.Controllers
                 return NotFound();
             }
 
-            guildConfig.ModRoleId = newValue.ModRoleId;
-            guildConfig.AdminRoleId = newValue.AdminRoleId;
-            guildConfig.MutedRoleId = newValue.MutedRoleId;
+            guildConfig.ModRoles = newValue.modRoles;
+            guildConfig.AdminRoles = newValue.AdminRoles;
+            guildConfig.MutedRoles = newValue.mutedRoles;
             guildConfig.ModNotificationDM = newValue.ModNotificationDM;
             guildConfig.ModInternalNotificationWebhook = newValue.ModInternalNotificationWebhook;
             guildConfig.ModPublicNotificationWebhook = newValue.ModPublicNotificationWebhook;

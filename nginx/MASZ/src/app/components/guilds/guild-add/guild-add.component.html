@@ -1,0 +1,132 @@
+<div style="height: 100px;"></div>
+<div class="d-flex flex-column align-items-center container" *ngIf="!this.selectedGuild">
+    <div class="d-flex flex-row conditional-fc align-items-baseline w-100">
+        <div class="flex-grow-1"></div>
+        <div class="mat-display-1" style="font-weight: bold;">Add a guild</div>
+        <div class="flex-grow-1"></div>
+        <mat-form-field class="example-form-field">
+            <mat-label>Search a guild</mat-label>
+            <input matInput type="text" [(ngModel)]="searchGuilds" (ngModelChange)="onSearch()">
+            <button mat-button *ngIf="searchGuilds" matSuffix mat-icon-button aria-label="Clear" (click)="resetSearch()">
+            <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <mat-spinner *ngIf="this.guilds?.loading"></mat-spinner>
+    <div class="row w-100" *ngIf="!this.guilds?.loading">
+      <div class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of showGuilds" (click)="selectGuild(guild.id)">
+        <img
+            src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" 
+            class="rounded-circle" 
+            alt="guild icon"
+            width="128px"
+            height="128px"
+            onerror="this.src='/assets/img/default_profile.png';"/>
+        <div class="mat-h3 mb-0" style="font-weight: bold;">{{ guild.name }}</div>
+        <div class="mat-small">({{ guild.id }})</div>
+      </div>      
+    </div>
+</div>
+
+<div class="d-flex flex-column align-items-center container" *ngIf="this.selectedGuild" >
+    <div class="d-flex flex-row conditional-fc justify-content-center align-self-center">
+        
+        <div class="d-flex flex-column align-items-center p-4">
+            <img
+                src="https://cdn.discordapp.com/icons/{{ selectedGuild.id }}/{{ selectedGuild.icon }}.png" 
+                class="rounded-circle" 
+                alt="guild icon"
+                width="128px"
+                height="128px"
+                onerror="this.src='/assets/img/default_profile.png';"/>
+            <div class="mat-h3 mb-0" style="font-weight: bold;">{{ selectedGuild.name }}</div>
+            <div class="mat-small">({{ selectedGuild.id }})</div>
+        </div>
+
+        <div class="d-flex flex-column justify-content-center align-items-center p-4">
+            <button mat-raised-button color="primary" class="mb-2" (click)="unselectGuild()">Select another guild</button>
+            <mat-spinner *ngIf="this.selectedGuildDetails?.loading"></mat-spinner>
+            <mat-card *ngIf="!this.selectedGuildDetails?.loading && !this.selectedGuildDetails?.content">
+                <mat-card-content>You need to invite the bot first!</mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" (click)="invite()">Invite</button>
+                </mat-card-actions>
+            </mat-card>
+            <mat-vertical-stepper [linear]="true" #stepper color="accent" *ngIf="!this.selectedGuildDetails?.loading && this.selectedGuildDetails?.content">
+                <mat-step [stepControl]="adminRolesGroup">
+                    <form [formGroup]="adminRolesGroup">
+                        <ng-template matStepLabel>Select roles with admin permission</ng-template>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Admin roles</mat-label>
+                            <mat-select formControlName="adminRoles" multiple>
+                            <mat-option *ngFor="let role of selectedGuildDetails.content?.roles"
+                            [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div>
+                            <button mat-raised-button matStepperNext color="accent">Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="modRolesGroup">
+                    <form [formGroup]="modRolesGroup">
+                        <ng-template matStepLabel>Select roles with moderator permission</ng-template>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Moderator roles</mat-label>
+                            <mat-select formControlName="modRoles" multiple>
+                            <mat-option *ngFor="let role of selectedGuildDetails.content?.roles"
+                            [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div>
+                            <button mat-raised-button matStepperPrevious class="mr-2" color="accent">Back</button>
+                            <button mat-raised-button matStepperNext color="accent">Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="muteRolesGroup" [optional]='true'>
+                    <form [formGroup]="muteRolesGroup">
+                        <ng-template matStepLabel>Select roles to apply on mute punishment</ng-template>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Muted roles</mat-label>
+                            <mat-select formControlName="muteRoles" multiple>
+                            <mat-option *ngFor="let role of selectedGuildDetails.content?.roles"
+                            [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div>
+                            <button mat-raised-button matStepperPrevious class="mr-2" color="accent">Back</button>
+                            <button mat-raised-button matStepperNext color="accent">Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="webhooksGroup" [optional]='true'>
+                    <form [formGroup]="webhooksGroup">
+                        <ng-template matStepLabel>Define webhooks for notifications</ng-template>
+                        <p>
+                            <mat-form-field class="w-100">
+                                <mat-label>Internal staff notification webhook</mat-label>
+                                <input type="email" matInput formControlName="internal" placeholder="https://discordapp.com/...">
+                            </mat-form-field>
+                            <mat-form-field class="w-100">
+                                <mat-label>Public member notification webhook</mat-label>
+                                <input type="email" matInput formControlName="public" placeholder="https://discordapp.com/...">
+                            </mat-form-field>
+                        </p>
+                        <div>
+                            <button mat-raised-button matStepperPrevious class="mr-2" color="accent">Back</button>
+                            <button mat-raised-button matStepperNext color="accent">Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Done</ng-template>
+                    <div class="d-flex flex-row mt-2">
+                        <button mat-raised-button matStepperPrevious class="mr-2" color="accent">Back</button>
+                        <button mat-raised-button (click)="registerGuild()" color="accent">Register guild</button>
+                    </div>
+                </mat-step>
+            </mat-vertical-stepper>
+        </div>
+    </div>
+</div>

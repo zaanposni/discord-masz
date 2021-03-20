@@ -23,6 +23,6 @@ jobs:
     - name: Test
       run: |
         cd tests
-        sleep 5s
+        sleep 60s
         python3 -m pip install -r requirements.txt
         python3 -m pytest -v --junitxml=results/test-results.xml .

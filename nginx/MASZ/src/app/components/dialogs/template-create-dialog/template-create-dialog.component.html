@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Create template</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput type="text" [(ngModel)]="settings.name">
+    </mat-form-field><br/>
+    <mat-form-field>
+        <mat-label>Visibility</mat-label>
+        <mat-select [(ngModel)]="settings.viewPermission">
+            <mat-option *ngFor="let o of templateViewPermissionOptions(); let i = index" [value]="i">{{o}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="accent" [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="!settings.name?.trim() || !settings.viewPermission == null">Confirm</button>
+</div>

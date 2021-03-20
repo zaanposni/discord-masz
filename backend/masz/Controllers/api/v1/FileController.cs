@@ -66,6 +66,12 @@ namespace masz.Controllers
                 return BadRequest("Modcase not found.");
             }
 
+            if (modCase.MarkedToDeleteAt != null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Case is marked to be deleted.");
+                return BadRequest("Case is marked to be deleted.");
+            }
+
             string filePath = Path.Combine(config.Value.AbsolutePathToFileUpload, guildid, caseid, filename);
             if (! filesHandler.FileExists(filePath)) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 File not found.");
@@ -221,6 +227,12 @@ namespace masz.Controllers
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Modcase not found.");
                 return BadRequest("Modcase not found.");
+            }
+
+            if (modCase.MarkedToDeleteAt != null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Case is marked to be deleted.");
+                return BadRequest("Case is marked to be deleted.");
             }
 
             string uniqueFileName = await filesHandler.SaveFile(uploadedFile.File, Path.Combine(config.Value.AbsolutePathToFileUpload , guildid, caseid));

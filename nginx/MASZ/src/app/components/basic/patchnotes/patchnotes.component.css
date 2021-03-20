@@ -1,0 +1,9 @@
+.cw-50-75 {
+    width: 50% !important;
+}
+
+@media screen and (max-width: 600px) {
+    .cw-50-75 {
+        width: 75% !important
+    }
+}

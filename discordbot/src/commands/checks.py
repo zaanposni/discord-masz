@@ -15,7 +15,7 @@ async def _is_admin_or_mod(ctx) -> bool:
         return False
     
     is_site_admin = str(ctx.author.id) in site_admins
-    is_admin_or_mod = any([role for role in ctx.author.roles if str(role.id) in [cfg["ModRoleId"], cfg["AdminRoleId"]]])
+    is_admin_or_mod = any([role for role in ctx.author.roles if str(role.id) in cfg["ModRoles"].split(",") or str(role.id) in cfg["AdminRoles"].split(",")])
     return is_site_admin or is_admin_or_mod
 
 
@@ -95,13 +95,14 @@ def registered_guild_with_muted_role_and_admin_or_mod_only():
             return False
         
         cfg = await get_cached_guild_config(ctx.guild.id)
-        if not cfg["MutedRoleId"]:
-            await ctx.send("Muted Role is not defined.")
+        if not cfg["MutedRoles"]:
+            await ctx.send("Muted Roles are not defined.")
             return False
 
-        muted_role = ctx.guild.get_role(int(cfg["MutedRoleId"]))
-        if not (muted_role is not None and ctx.me.top_role > muted_role):
-            await ctx.send("Muted Role is invalid or too high in role hierarchy.")
-            return False
+        for role in cfg["MutedRoles"].split(","):
+            muted_role = ctx.guild.get_role(int(role))
+            if not (muted_role is not None and ctx.me.top_role > muted_role):
+                await ctx.send("Muted Role is invalid or too high in role hierarchy.")
+                return False
         return True
     return commands.check(predicate)
