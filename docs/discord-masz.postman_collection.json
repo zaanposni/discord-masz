@@ -177,6 +177,45 @@
 					]
 				},
 				{
+					"name": "bin",
+					"item": [
+						{
+							"name": "restore case from bin",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/bin/:caseid",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"bin",
+										":caseid"
+									],
+									"variable": [
+										{
+											"key": "caseid",
+											"value": "117"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "modcase",
 					"item": [
 						{
@@ -322,6 +361,47 @@
 							"response": []
 						},
 						{
+							"name": "modcase bin table",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": "masz_access_token={{masz_access_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/casebin?startPage=0",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"casebin"
+									],
+									"query": [
+										{
+											"key": "startPage",
+											"value": "0"
+										},
+										{
+											"key": "search",
+											"value": "hi",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "expiring temp punishment table",
 							"request": {
 								"auth": {
@@ -440,7 +520,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/1",
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/:caseid?forceDelete=false",
 									"host": [
 										"{{url}}"
 									],
@@ -449,13 +529,24 @@
 										"v1",
 										"modcases",
 										"{{guildid}}",
-										"1"
+										":caseid"
 									],
 									"query": [
 										{
 											"key": "sendnotification",
 											"value": "false",
 											"disabled": true
+										},
+										{
+											"key": "forceDelete",
+											"value": "false",
+											"description": "only siteadmins can force delete"
+										}
+									],
+									"variable": [
+										{
+											"key": "caseid",
+											"value": "117"
 										}
 									]
 								}
@@ -892,7 +983,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/discord/guilds/{{guildid}}/members",
+									"raw": "{{url}}/api/v1/discord/guilds/{{guildid}}/members?partial=false",
 									"host": [
 										"{{url}}"
 									],
@@ -903,6 +994,12 @@
 										"guilds",
 										"{{guildid}}",
 										"members"
+									],
+									"query": [
+										{
+											"key": "partial",
+											"value": "false"
+										}
 									]
 								}
 							},
