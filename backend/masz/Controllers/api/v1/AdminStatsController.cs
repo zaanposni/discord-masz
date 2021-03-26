@@ -58,7 +58,7 @@ namespace masz.Controllers
 
             var cache = this.discord.GetCache();
 
-            return Ok(new { loginsInLast10Minutes = currentLogins, cachedDataFromDiscord = cache.Keys });
+            return Ok(new { loginsInLast15Minutes = currentLogins, cachedDataFromDiscord = cache.Keys });
         }
     }
 }

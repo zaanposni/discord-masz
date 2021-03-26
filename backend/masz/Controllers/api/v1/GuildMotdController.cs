@@ -61,7 +61,7 @@ namespace masz.Controllers
                 };
             }
 
-            User creator = await this.discord.FetchUserInfo(motd.UserId);
+            User creator = await this.discord.FetchUserInfo(motd.UserId, CacheBehavior.Default);
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning motd.");
             return Ok(new { creator=creator, motd=motd });

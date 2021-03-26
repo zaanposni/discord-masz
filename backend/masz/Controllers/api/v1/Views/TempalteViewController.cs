@@ -86,8 +86,8 @@ namespace masz.Controllers
                 if (await allowedToView(template, currentIdentity)) {
                     templatesView.Add( new TemplateView() {
                         CaseTemplate = template,
-                        Creator = await discord.FetchUserInfo(template.UserId),
-                        Guild = await discord.FetchGuildInfo(template.CreatedForGuildId)
+                        Creator = await discord.FetchUserInfo(template.UserId, CacheBehavior.OnlyCache),
+                        Guild = await discord.FetchGuildInfo(template.CreatedForGuildId, CacheBehavior.Default)
                     });
                 }
             }

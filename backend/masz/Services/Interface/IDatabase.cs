@@ -35,6 +35,7 @@ namespace masz.Services
         Task<List<ModCase>> SelectAllModCasesThatHaveParallelPunishment(ModCase modCase);
         Task<List<ModCase>> SelectAllModCasesWithActivePunishments();
         Task<List<ModCase>> SelectAllModCases();
+        Task<List<ModCase>> SelectLatestModCases(DateTime timeLimit, int limit);
         Task<List<DbCount>> GetCaseCountGraph(string guildId, DateTime since);
         Task<List<DbCount>> GetPunishmentCountGraph(string guildId, DateTime since);
         Task DeleteAllModCasesForGuild(string guildid);

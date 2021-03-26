@@ -4,7 +4,9 @@
     "version": "v1.10.1",
     "changes": [
       "Minor styling fixes.",
-      "Added GitHub link to navbar."
+      "Added GitHub link to navbar.",
+      "Reworked caching behavior for guilds with many cases.",
+      "Improved backend performance especially for case creation."
     ]
   },
   {

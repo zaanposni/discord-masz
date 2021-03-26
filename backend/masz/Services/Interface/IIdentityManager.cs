@@ -10,5 +10,6 @@ namespace masz.Services
     {
         Task<Identity> GetIdentity(HttpContext httpContext);
         List<Identity> GetCurrentIdentities();
+        void ClearOldIdentities();
     }
 }

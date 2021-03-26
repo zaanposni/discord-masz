@@ -65,7 +65,7 @@ namespace masz.Controllers
                 {
                     ModCase newModCase = new ModCase();
 
-                    User discordBot = await discord.FetchCurrentBotInfo();
+                    User discordBot = await discord.FetchCurrentBotInfo(CacheBehavior.Default);
 
                     newModCase.CaseId = await database.GetHighestCaseIdForGuild(guildid) + 1;
                     newModCase.GuildId = guildid;

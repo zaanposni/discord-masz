@@ -57,6 +57,9 @@ namespace masz.Controllers.api.v1
 
             foreach (GuildConfig guild in registeredGuilds)
             {
+                if (userGuilds == null) {
+                    break;
+                }
                 var userGuild = userGuilds.FirstOrDefault(x => x.Id == guild.GuildId);
                 if (userGuild != null)
                 {
@@ -70,8 +73,8 @@ namespace masz.Controllers.api.v1
                         memberGuilds.Add(userGuild);
                     }
                 } else {
-                    if (await discord.GetGuildUserBan(guild.GuildId, currentUser.Id) != null) {
-                        bannedGuilds.Add(await discord.FetchGuildInfo(guild.GuildId));
+                    if (await discord.GetGuildUserBan(guild.GuildId, currentUser.Id, CacheBehavior.Default) != null) {
+                        bannedGuilds.Add(await discord.FetchGuildInfo(guild.GuildId, CacheBehavior.Default));
                     }
                 }
             }
@@ -82,7 +85,7 @@ namespace masz.Controllers.api.v1
         [HttpGet("users/{userid}")]
         public async Task<IActionResult> GetSpecificUser([FromRoute] string userid)
         {
-            var user = await discord.FetchUserInfo(userid);
+            var user = await discord.FetchUserInfo(userid, CacheBehavior.Default);
             if (user != null)
             {
                 return Ok(user);
@@ -93,7 +96,7 @@ namespace masz.Controllers.api.v1
         [HttpGet("guilds/{guildid}")]
         public async Task<IActionResult> GetSpecificGuild([FromRoute] string guildid)
         {
-            var guild = await discord.FetchGuildInfo(guildid);
+            var guild = await discord.FetchGuildInfo(guildid, CacheBehavior.Default);
             if (guild != null)
             {
                 return Ok(guild);
@@ -104,7 +107,7 @@ namespace masz.Controllers.api.v1
         [HttpGet("guilds/{guildid}/channels")]
         public async Task<IActionResult> GetAllGuildChannels([FromRoute] string guildid)
         {
-            var channels = await discord.FetchGuildChannels(guildid);
+            var channels = await discord.FetchGuildChannels(guildid, CacheBehavior.Default);
             if (channels != null)
             {
                 return Ok(channels);
@@ -121,7 +124,7 @@ namespace masz.Controllers.api.v1
                 return BadRequest("Endpoint only available for registered guilds.");
             }
 
-            var members = await discord.FetchGuildMembers(guildid);
+            var members = await discord.FetchGuildMembers(guildid, CacheBehavior.Default);
             if (members != null)
             {
                 if (partial) {

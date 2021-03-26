@@ -92,23 +92,23 @@ namespace masz.Controllers
                     Message = comment.Message,
                     CreatedAt = comment.CreatedAt,
                     UserId = comment.UserId,
-                    User = await discord.FetchUserInfo(comment.UserId),
+                    User = await discord.FetchUserInfo(comment.UserId, CacheBehavior.OnlyCache),
                 });
             }
 
             CaseView caseView = new CaseView(
                 modCase,
-                await discord.FetchUserInfo(modCase.ModId),
-                await discord.FetchUserInfo(modCase.LastEditedByModId),
-                await discord.FetchUserInfo(modCase.UserId),
+                await discord.FetchUserInfo(modCase.ModId, CacheBehavior.OnlyCache),
+                await discord.FetchUserInfo(modCase.LastEditedByModId, CacheBehavior.OnlyCache),
+                await discord.FetchUserInfo(modCase.UserId, CacheBehavior.OnlyCache),
                 comments
             );
 
             if (modCase.LockedByUserId != null) {
-                caseView.LockedBy = await discord.FetchUserInfo(modCase.LockedByUserId);
+                caseView.LockedBy = await discord.FetchUserInfo(modCase.LockedByUserId, CacheBehavior.OnlyCache);
             }
             if (modCase.MarkedToDeleteAt != null) {
-                caseView.DeletedBy = await discord.FetchUserInfo(modCase.DeletedByUserId);
+                caseView.DeletedBy = await discord.FetchUserInfo(modCase.DeletedByUserId, CacheBehavior.OnlyCache);
             }
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCase.");

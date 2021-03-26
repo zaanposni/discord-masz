@@ -7,6 +7,7 @@ using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace masz.Services
@@ -42,10 +43,58 @@ namespace masz.Services
             }
         }
 
-        public async Task<Ban> GetGuildUserBan(string guildId, string userId)
+        public async Task<List<Ban>> GetGuildBans(string guildId, CacheBehavior cacheBehavior)
+        {
+            string path = $"/guilds/{guildId}/bans";
+            if (cacheBehavior == CacheBehavior.OnlyCache) {
+                if (this.cache.ContainsKey(path)) {
+                    return JsonConvert.DeserializeObject<List<Ban>>(this.cache[path].Content);
+                } else {
+                    return new List<Ban>();
+                }
+            }
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
+                if (this.cache[path].ExpiresAt > DateTime.Now) {
+                    return JsonConvert.DeserializeObject<List<Ban>>(this.cache[path].Content);
+                }
+                this.cache.Remove(path);
+            }
+            await this.WaitForRatelimit($"/guilds/{guildId}/bans");
+
+            var request = new RestRequest(Method.GET);
+            request.Resource = path;
+            request.AddHeader("Authorization", "Bot " + botToken);
+
+            var response = await restClient.ExecuteAsync<List<Guild>>(request);
+            if (response.IsSuccessful)
+            {
+                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
+                this.cache[path] = new CacheApiResponse(response.Content);
+                List<Ban> returnList = JsonConvert.DeserializeObject<List<Ban>>(response.Content);
+                foreach (Ban ban in returnList)
+                {
+                    this.cache[$"{path}/{ban.User.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(ban));
+                    this.cache[$"/users/{ban.User.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(ban.User));
+                }
+                return returnList;
+            }
+            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
+                return JsonConvert.DeserializeObject<List<Ban>>(this.cache[path].Content);
+            }
+            return null;
+        }
+        public async Task<Ban> GetGuildUserBan(string guildId, string userId, CacheBehavior cacheBehavior)
         {
             string path = $"/guilds/{guildId}/bans/{userId}";
-            if (this.cache.ContainsKey(path)) {
+            if (cacheBehavior == CacheBehavior.OnlyCache) {
+                if (this.cache.ContainsKey(path)) {
+                    return new Ban(this.cache[path].Content);
+                } else {
+                    return null;
+                }
+            }
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
                 if (this.cache[path].ExpiresAt > DateTime.Now) {
                     return new Ban(this.cache[path].Content);
                 }
@@ -61,17 +110,34 @@ namespace masz.Services
             if (response.IsSuccessful)
             {
                 this.ratelimitCache[$"/guilds/{guildId}/bans"] = new DiscordApiRatelimit(response);
-                this.cache[path] = new CacheApiResponse(response.Content, 3);
-                return new Ban(response.Content);
+                this.cache[path] = new CacheApiResponse(response.Content);
+                Ban ban = new Ban(response.Content);
+                this.cache[$"/users/{ban.User.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(ban.User));
+                return ban;
+            } else {
+                if (response.StatusCode == HttpStatusCode.NotFound) {
+                    this.cache.Remove(path);  // no longer banned
+                }
             }
+            
             logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
+                return new Ban(this.cache[path].Content);
+            }
             return null;
         }
 
-        public async Task<User> FetchUserInfo(string userId, bool breakCache = false)
+        public async Task<User> FetchUserInfo(string userId, CacheBehavior cacheBehavior)
         {
             string path = $"/users/{userId}";
-            if (this.cache.ContainsKey(path) && !breakCache) {
+            if (cacheBehavior == CacheBehavior.OnlyCache) {
+                if (this.cache.ContainsKey(path)) {
+                    return new User(this.cache[path].Content);
+                } else {
+                    return null;
+                }
+            }
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
                 if (this.cache[path].ExpiresAt > DateTime.Now) {
                     return new User(this.cache[path].Content);
                 }
@@ -91,15 +157,24 @@ namespace masz.Services
 
                 return new User(response.Content);
             }
-            logger.LogError(response.Headers.Where(x => x.Name == "x-ratelimit-reset-after").Select(x => x.Value).FirstOrDefault().ToString());
             logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
+                return new User(this.cache[path].Content);
+            }
             return null;
         }
 
-        public async Task<List<GuildMember>> FetchGuildMembers(string guildId, bool breakCache = false)
+        public async Task<List<GuildMember>> FetchGuildMembers(string guildId, CacheBehavior cacheBehavior)
         {
             string path = $"/guilds/{guildId}/members";
-            if (this.cache.ContainsKey(path) && !breakCache) {
+            if (cacheBehavior == CacheBehavior.OnlyCache) {
+                if (this.cache.ContainsKey(path)) {
+                    return JsonConvert.DeserializeObject<List<GuildMember>>(this.cache[path].Content);
+                } else {
+                    return new List<GuildMember>();
+                }
+            }
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
                 if (this.cache[path].ExpiresAt > DateTime.Now) {
                     return JsonConvert.DeserializeObject<List<GuildMember>>(this.cache[path].Content);
                 }
@@ -133,6 +208,9 @@ namespace masz.Services
                     }
                 } else {
                     logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+                    if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
+                        return JsonConvert.DeserializeObject<List<GuildMember>>(this.cache[path].Content);
+                    }
                     return members;
                 }
             } while(members.Count != 0 && members.Count % 1000 == 0);
@@ -141,10 +219,17 @@ namespace masz.Services
             return members;
         }
 
-        public async Task<User> FetchCurrentUserInfo(string token)
+        public async Task<User> FetchCurrentUserInfo(string token, CacheBehavior cacheBehavior)
         {
             string path = $"/users/{token}";
-            if (this.cache.ContainsKey(path)) {
+            if (cacheBehavior == CacheBehavior.OnlyCache) {
+                if (this.cache.ContainsKey(path)) {
+                    return new User(this.cache[path].Content);
+                } else {
+                    return null;
+                }
+            }
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
                 if (this.cache[path].ExpiresAt > DateTime.Now) {
                     return new User(this.cache[path].Content);
                 }
@@ -161,19 +246,29 @@ namespace masz.Services
             {
                 User returnUser = new User(response.Content);
                 this.ratelimitCache[path] = new DiscordApiRatelimit(response);
-                this.cache[path] = new CacheApiResponse(response.Content, 3);
-                this.cache[$"/users/{returnUser.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(returnUser), 3);
+                this.cache[path] = new CacheApiResponse(response.Content);
+                this.cache[$"/users/{returnUser.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(returnUser));
 
                 return returnUser;
             }
             logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
+                return new User(this.cache[path].Content);
+            }
             return null;
         }
 
-        public async Task<User> FetchCurrentBotInfo()
+        public async Task<User> FetchCurrentBotInfo(CacheBehavior cacheBehavior)
         {
             string path = $"/users/@me";
-            if (this.cache.ContainsKey(path)) {
+            if (cacheBehavior == CacheBehavior.OnlyCache) {
+                if (this.cache.ContainsKey(path)) {
+                    return new User(this.cache[path].Content);
+                } else {
+                    return null;
+                }
+            }
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
                 if (this.cache[path].ExpiresAt > DateTime.Now) {
                     return new User(this.cache[path].Content);
                 }
@@ -190,19 +285,29 @@ namespace masz.Services
             {
                 User returnUser = new User(response.Content);
                 this.ratelimitCache[path] = new DiscordApiRatelimit(response);
-                this.cache[path] = new CacheApiResponse(response.Content, 3);
-                this.cache[$"/users/{returnUser.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(returnUser), 3);
+                this.cache[path] = new CacheApiResponse(response.Content);
+                this.cache[$"/users/{returnUser.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(returnUser));
 
                 return returnUser;
             }
             logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
+                return new User(this.cache[path].Content);
+            }
             return null;
         }
 
-        public async Task<List<Channel>> FetchGuildChannels(string guildId)
+        public async Task<List<Channel>> FetchGuildChannels(string guildId, CacheBehavior cacheBehavior)
         {
             string path = $"/guilds/{guildId}/channels";
-            if (this.cache.ContainsKey(path)) {
+            if (cacheBehavior == CacheBehavior.OnlyCache) {
+                if (this.cache.ContainsKey(path)) {
+                    return JsonConvert.DeserializeObject<List<Channel>>(this.cache[path].Content);
+                } else {
+                    return new List<Channel>();
+                }
+            }
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
                 if (this.cache[path].ExpiresAt > DateTime.Now) {
                     return JsonConvert.DeserializeObject<List<Channel>>(this.cache[path].Content);
                 }
@@ -222,13 +327,23 @@ namespace masz.Services
                 return JsonConvert.DeserializeObject<List<Channel>>(response.Content);
             }
             logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
+                return JsonConvert.DeserializeObject<List<Channel>>(this.cache[path].Content);
+            }
             return null;
         }
 
-        public async Task<Guild> FetchGuildInfo(string guildId)
+        public async Task<Guild> FetchGuildInfo(string guildId, CacheBehavior cacheBehavior)
         {
             string path = $"/guilds/{guildId}";
-            if (this.cache.ContainsKey(path)) {
+            if (cacheBehavior == CacheBehavior.OnlyCache) {
+                if (this.cache.ContainsKey(path)) {
+                    return new Guild(this.cache[path].Content);
+                } else {
+                    return null;
+                }
+            }
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
                 if (this.cache[path].ExpiresAt > DateTime.Now) {
                     return new Guild(this.cache[path].Content);
                 }
@@ -248,12 +363,22 @@ namespace masz.Services
                 return new Guild(response.Content);
             }
             logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
+                return new Guild(this.cache[path].Content);
+            }
             return null;
         }
 
-        public async Task<List<Guild>> FetchGuildsOfCurrentUser(string token)
+        public async Task<List<Guild>> FetchGuildsOfCurrentUser(string token, CacheBehavior cacheBehavior)
         {
             string path = $"/users/{token}/guilds";
+            if (cacheBehavior == CacheBehavior.OnlyCache) {
+                if (this.cache.ContainsKey(path)) {
+                    return JsonConvert.DeserializeObject<List<Guild>>(this.cache[path].Content);
+                } else {
+                    return new List<Guild>();
+                }
+            }
             if (this.cache.ContainsKey(path)) {
                 if (this.cache[path].ExpiresAt > DateTime.Now) {
                     return JsonConvert.DeserializeObject<List<Guild>>(this.cache[path].Content);
@@ -274,14 +399,24 @@ namespace masz.Services
                 return JsonConvert.DeserializeObject<List<Guild>>(response.Content);
             }
             logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
+                return JsonConvert.DeserializeObject<List<Guild>>(this.cache[path].Content);
+            }
             return null;
         }
 
-        public async Task<GuildMember> FetchMemberInfo(string guildId, string userId, bool breakCache = false)
+        public async Task<GuildMember> FetchMemberInfo(string guildId, string userId, CacheBehavior cacheBehavior)
         {
             string path = $"/guilds/{guildId}/members/{userId}";
             string rateLimitPath = $"/guilds/{guildId}/members";
-            if (this.cache.ContainsKey(path) && !breakCache) {
+            if (cacheBehavior == CacheBehavior.OnlyCache) {
+                if (this.cache.ContainsKey(path)) {
+                    return new GuildMember(this.cache[path].Content);
+                } else {
+                    return null;
+                }
+            }
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
                 if (this.cache[path].ExpiresAt > DateTime.Now) {
                     return new GuildMember(this.cache[path].Content);
                 }
@@ -303,10 +438,13 @@ namespace masz.Services
                 return new GuildMember(response.Content);
             }
             logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
+                return new GuildMember(this.cache[path].Content);
+            }
             return null;
         }
 
-        public Task<Message> GetDiscordMessage(string channelId, string messageId)
+        public Task<Message> GetDiscordMessage(string channelId, string messageId, CacheBehavior cacheBehavior)
         {
             throw new NotImplementedException();
         }

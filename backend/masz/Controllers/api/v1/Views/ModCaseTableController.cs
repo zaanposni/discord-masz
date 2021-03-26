@@ -123,8 +123,8 @@ namespace masz.Controllers
             {
                 table.Add( new ModCaseTableEntry() {
                     ModCase = c,
-                    Suspect = await discord.FetchUserInfo(c.UserId),
-                    Moderator = await discord.FetchUserInfo(c.ModId)
+                    Suspect = await discord.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache),
+                    Moderator = await discord.FetchUserInfo(c.ModId, CacheBehavior.OnlyCache)
                 });
             }
 

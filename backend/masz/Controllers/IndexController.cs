@@ -2,21 +2,20 @@ using System;
 using System.Threading.Tasks;
 using masz.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace masz.Controllers
 {
     [ApiController]
-    public class IndexController : ControllerBase
+    public class IndexController
     {
         private readonly ILogger<IndexController> logger;
-        private readonly IOptions<InternalConfig> config;
 
-        public IndexController(ILogger<IndexController> logger, IOptions<InternalConfig> config)
+        public IndexController(IServiceScopeFactory serviceScopeFactory, ILogger<IndexController> logger)
         {
             this.logger = logger;
-            this.config = config;
         }
 
         [HttpGet("/")]
@@ -27,6 +26,6 @@ namespace masz.Controllers
                 Content = "<a href=\"/api/v1/login\" target=\"blank\">Login with Discord.</a>",
                 ContentType = "text/html",
             };
-        }  
+        }
     }
 }

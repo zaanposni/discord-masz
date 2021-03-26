@@ -23,13 +23,13 @@ namespace masz.Services
         {
             this.discord = discord;
             this.Token = token;
-            this.ValidUntil = DateTime.Now.AddMinutes(10);
+            this.ValidUntil = DateTime.UtcNow.AddMinutes(15);
         }
 
         private async Task LoadBasicDetails()
         {
-            this.DiscordUser = await discord.FetchCurrentUserInfo(Token);
-            this.Guilds = await discord.FetchGuildsOfCurrentUser(Token);
+            this.DiscordUser = await discord.FetchCurrentUserInfo(Token, CacheBehavior.Default);
+            this.Guilds = await discord.FetchGuildsOfCurrentUser(Token, CacheBehavior.Default);
         }
 
         private async Task ValidateBasicDetails()
@@ -76,7 +76,7 @@ namespace masz.Services
             }
             else
             {
-                Guilds = await discord.FetchGuildsOfCurrentUser(Token);
+                Guilds = await discord.FetchGuildsOfCurrentUser(Token, CacheBehavior.Default);
                 return Guilds;
             }
         }
@@ -95,7 +95,7 @@ namespace masz.Services
                 return Guilds.Any(x => x.Id == guildId);
             } else
             {
-                Guilds = await discord.FetchGuildsOfCurrentUser(Token);
+                Guilds = await discord.FetchGuildsOfCurrentUser(Token, CacheBehavior.Default);
                 if (Guilds == null)
                 {
                     return false;
@@ -125,7 +125,7 @@ namespace masz.Services
                 }
                 else
                 {
-                    GuildMember guildMember = await discord.FetchMemberInfo(guildId, DiscordUser.Id);
+                    GuildMember guildMember = await discord.FetchMemberInfo(guildId, DiscordUser.Id, CacheBehavior.Default);
                     GuildMemberships[guildId] = guildMember;
                     return guildMember;
                 }

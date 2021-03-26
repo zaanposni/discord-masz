@@ -30,14 +30,14 @@ namespace masz.Services
         {
             logger.LogInformation($"Announcing modcase {modCase.Id} in guild {modCase.GuildId}.");
 
-            User caseUser = await discord.FetchUserInfo(modCase.UserId);
+            User caseUser = await discord.FetchUserInfo(modCase.UserId, CacheBehavior.Default);
             GuildConfig guildConfig = await dbContext.SelectSpecificGuildConfig(modCase.GuildId);
 
             if (announceDm && modCase.PunishmentType != PunishmentType.None && action != RestAction.Deleted)
             {
                 logger.LogInformation($"Sending dm notification");
 
-                Guild guild = await discord.FetchGuildInfo(modCase.GuildId);
+                Guild guild = await discord.FetchGuildInfo(modCase.GuildId, CacheBehavior.Default);
                 StringBuilder message = new StringBuilder();
                 message.Append($"The moderators of guild `{guild.Name}` have ");
                 switch (modCase.PunishmentType) {
@@ -88,7 +88,7 @@ namespace masz.Services
         {
             logger.LogInformation($"Announcing comment {comment.Id} in case {comment.ModCase.CaseId} in guild {comment.ModCase.GuildId}.");
 
-            User discordUser = await discord.FetchUserInfo(comment.UserId);
+            User discordUser = await discord.FetchUserInfo(comment.UserId, CacheBehavior.Default);
             GuildConfig guildConfig = await dbContext.SelectSpecificGuildConfig(comment.ModCase.GuildId);         
 
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))

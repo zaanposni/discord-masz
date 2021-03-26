@@ -155,7 +155,7 @@ namespace masz.Controllers
  
             List<CommentListView> view = new List<CommentListView>();
             foreach (ModCaseComment comment in await database.SelectLastModCaseCommentsByGuild(guildid)) {
-                view.Add(new CommentListView(comment, await discord.FetchUserInfo(comment.UserId)));
+                view.Add(new CommentListView(comment, await discord.FetchUserInfo(comment.UserId, CacheBehavior.Default)));
             }
 
             return Ok(view);
@@ -191,8 +191,8 @@ namespace masz.Controllers
             {
                 var entry = new ModCaseTableEntry() {
                     ModCase = c,
-                    Suspect = await discord.FetchUserInfo(c.UserId),
-                    Moderator = await discord.FetchUserInfo(c.ModId)
+                    Suspect = await discord.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache),
+                    Moderator = await discord.FetchUserInfo(c.ModId, CacheBehavior.OnlyCache)
                 };
                 if (contains(entry, search)) {
                     entries.Add(new QuickSearchEntry<ModCaseTableEntry>() {
@@ -207,7 +207,7 @@ namespace masz.Controllers
             {
                 var entry = new AutoModerationEventTableEntry() {
                     AutoModerationEvent = c,
-                    Suspect = await discord.FetchUserInfo(c.UserId)
+                    Suspect = await discord.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache)
                 };
                 if (contains(entry, search)) {
                     entries.Add(new QuickSearchEntry<AutoModerationEventTableEntry>() {

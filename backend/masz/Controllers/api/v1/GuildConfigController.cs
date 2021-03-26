@@ -140,7 +140,7 @@ namespace masz.Controllers
                 return BadRequest("Guild is already registered.");
             }
 
-            Guild guild = await discord.FetchGuildInfo(guildConfigForCreateDto.GuildId);
+            Guild guild = await discord.FetchGuildInfo(guildConfigForCreateDto.GuildId, CacheBehavior.IgnoreCache);
             if (guild == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not found.");

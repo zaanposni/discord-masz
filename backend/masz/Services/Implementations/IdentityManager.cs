@@ -43,13 +43,15 @@ namespace masz.Services
         public async Task<Identity> GetIdentity(HttpContext httpContext)
         {
             string key = httpContext.Request.Cookies["masz_access_token"];
-            string token = await httpContext.GetTokenAsync("access_token");
             if (identities.ContainsKey(key))
             {
                 Identity identity = identities[key];
-                if (identity.ValidUntil >= DateTime.Now)
+                if (identity.ValidUntil >= DateTime.UtcNow)
                 {
                     return identity;
+                } else
+                {
+                    identities.Remove(key);
                 }
             }
 
@@ -59,6 +61,19 @@ namespace masz.Services
         public List<Identity> GetCurrentIdentities()
         {
             return this.identities.Values.ToList();
+        }
+
+        public void ClearOldIdentities()
+        {
+            this.logger.LogInformation("IdentityManager | Clearing old identities.");
+            foreach (var key in this.identities.Keys)
+            {
+                if (this.identities[key].ValidUntil < DateTime.UtcNow) {
+                    this.logger.LogInformation($"IdentityManager | Clearing {key.ToString()}.");
+                    this.identities.Remove(key);
+                }
+            }
+            this.logger.LogInformation("IdentityManager | Cleared old identities.");
         }
     }
 }
