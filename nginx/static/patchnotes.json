@@ -1,5 +1,13 @@
 [
   {
+    "title": "Version 1.10.1",
+    "version": "v1.10.1",
+    "changes": [
+      "Minor styling fixes.",
+      "Added GitHub link to navbar."
+    ]
+  },
+  {
     "title": "Version 1.10 - Website Redesign",
     "version": "v1.10",
     "changes": [
