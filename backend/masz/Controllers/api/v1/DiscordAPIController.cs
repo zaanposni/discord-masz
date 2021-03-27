@@ -85,7 +85,7 @@ namespace masz.Controllers.api.v1
         [HttpGet("users/{userid}")]
         public async Task<IActionResult> GetSpecificUser([FromRoute] string userid)
         {
-            var user = await discord.FetchUserInfo(userid, CacheBehavior.Default);
+            var user = await discord.FetchUserInfo(userid, CacheBehavior.OnlyCache);
             if (user != null)
             {
                 return Ok(user);
@@ -124,7 +124,7 @@ namespace masz.Controllers.api.v1
                 return BadRequest("Endpoint only available for registered guilds.");
             }
 
-            var members = await discord.FetchGuildMembers(guildid, CacheBehavior.Default);
+            var members = await discord.FetchGuildMembers(guildid, CacheBehavior.OnlyCache);
             if (members != null)
             {
                 if (partial) {

@@ -8,7 +8,6 @@ from discord.errors import LoginFailure
 from discord.ext import commands
 
 from commands import ALL_COMMANDS
-from data import connect as db_connect
 from automod import check_message
 from punishment import handle_member_join
 
@@ -39,8 +38,6 @@ async def on_member_join(member):
 
 @client.event
 async def on_ready():
-    await db_connect()
-
     print(f"Logged in as \"{client.user.name}\"")
     print(f"Online in {len(client.guilds)} Guilds.")
 

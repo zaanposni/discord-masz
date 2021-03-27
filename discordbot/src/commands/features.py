@@ -27,6 +27,7 @@ async def features(ctx):
             await ctx.send(f"MASZ is not registered on this guild.")
         return
     
+    internal_webhook_defined = bool(cfg["ModInternalNotificationWebhook"])
     muted_role_defined = cfg["MutedRoles"]
     muted_roles = []
     for role in cfg["MutedRoles"].split(","):
@@ -68,16 +69,22 @@ async def features(ctx):
     embed.add_field(
         name = f"{CHECK if kick and ban and mute and muted_roles and muted_role_managable else X_CHECK} Punishment feature",
         value = f"Register and manage punishments (e.g. tempbans, mutes, etc.).{missing_permissions if not (kick and ban and mute and muted_roles and muted_role_managable) else ''}",
-        inline=False
+        inline = False
     )
     embed.add_field(
         name = f"{CHECK if ban else X_CHECK} Unban feature",
         value = "Allows banned members to see their cases and comment on it for unban requests.\n" +
                 f"{'Grant this bot the ban permission to use this feature.' if not ban else ''}",
-        inline=False
+        inline = False
+    )
+    embed.add_field(
+        name = f"{CHECK if internal_webhook_defined else X_CHECK} Report command",
+        value = "Allows members to use the report command.\n" +
+                f"{'Define a internal staff webhook to use this feature.' if not internal_webhook_defined else ''}",
+        inline = False
     )
 
-    if kick and ban and mute and muted_roles and muted_role_managable:
+    if kick and ban and mute and muted_roles and muted_role_managable and internal_webhook_defined:
         embed.description = f"{CHECK} Your bot on this guild is configured correctly. All features of MASZ can be used."
         embed.color = 0x07eb0b
     else:

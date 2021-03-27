@@ -90,6 +90,7 @@ namespace masz.Services
                 foreach (var guild in await database.SelectAllGuildConfigs())
                 {
                     await discord.FetchGuildInfo(guild.GuildId, CacheBehavior.IgnoreCache);
+                    await discord.FetchGuildChannels(guild.GuildId, CacheBehavior.IgnoreCache);
                 }
             }
             logger.LogInformation("Cacher | Done - Cache all registered guilds.");
