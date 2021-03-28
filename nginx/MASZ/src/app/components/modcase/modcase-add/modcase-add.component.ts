@@ -219,7 +219,7 @@ export class ModcaseAddComponent implements OnInit {
     
     this.api.postSimpleData(`/modcases/${this.guildId}`, data, params, true, true).subscribe((data) => {     
       const caseId = data.caseid;
-      this.router.navigate(['guilds', this.guildId, 'cases', caseId]);
+      this.router.navigate(['guilds', this.guildId, 'cases', caseId], { queryParams: { 'reloadfiles': this.filesToUpload.length ?? '0' } });
       this.savingCase = false;
       this.toastr.success(`Case ${caseId} created.`);
       this.filesToUpload.forEach(element => this.uploadFile(element.data, caseId));

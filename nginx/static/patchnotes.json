@@ -8,7 +8,9 @@
       "Reworked caching behavior for guilds with many cases.",
       "Improved backend performance especially for case creation.",
       "Added report command to features command.",
-      "Added option to delete templates."
+      "Added option to delete templates.",
+      "Added autorefresh for files after case creation.",
+      "Fixed a bug that made the bot unresponsive."
     ]
   },
   {

@@ -262,9 +262,9 @@
             </div>
 
             <!-- Files -->
-            <div class="mb-3" *ngIf="this.isModOrHigher || this.files.content?.names?.length != 0">
+            <div class="mb-3" *ngIf="this.isModOrHigher || (this.files.content | async)?.names?.length != 0">
                 <div class="d-flex flex-row align-items-baseline">
-                    <div class="mat-h2 font-weight-bold">Uploaded files ({{ this.files.content?.names?.length || 0 }})</div>
+                    <div class="mat-h2 font-weight-bold">Uploaded files ({{ (this.files.content | async)?.names?.length || 0 }})</div>
                     <div class="flex-grow-1"></div>
                     <div *ngIf="this.isModOrHigher">                            
                         <button mat-raised-button color="accent" (click)="uploadInit()" [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined">
@@ -281,7 +281,7 @@
                 </ng-container>
                 <ng-container *ngIf="!this.modCase.loading">
                     <mat-list>
-                        <mat-list-item *ngFor="let file of this.files.content?.names">
+                        <mat-list-item *ngFor="let file of (this.files.content | async)?.names">
                             <mat-icon mat-list-icon>description</mat-icon>
                             <div mat-line>{{file}}</div>
                             <div class="d-flex flex-row">
