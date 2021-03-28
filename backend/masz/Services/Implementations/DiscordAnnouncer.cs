@@ -11,7 +11,6 @@ namespace masz.Services
 {
     public class DiscordAnnouncer : IDiscordAnnouncer
     {
-        private static string discordCdnBaseUrl = "https://cdn.discordapp.com";
         private readonly ILogger<DiscordAnnouncer> logger;
         private readonly IDatabase dbContext;
         private readonly IOptions<InternalConfig> config;

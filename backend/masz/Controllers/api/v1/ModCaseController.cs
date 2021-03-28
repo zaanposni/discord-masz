@@ -28,7 +28,6 @@ namespace masz.Controllers
     public class ModCaseController : SimpleCaseController
     {
         private readonly ILogger<ModCaseController> logger;
-        private readonly IServiceProvider serviceProvider;
 
         public ModCaseController(IServiceProvider serviceProvider, ILogger<ModCaseController> logger) : base(serviceProvider, logger) 
         {

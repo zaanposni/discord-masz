@@ -8,8 +8,6 @@ namespace masz.Helpers
 {
     public class DiscordMessenger
     {
-        private static string discordBaseUrl = "https://discord.com/api";
-
         public static async void SendEmbedWebhook(string webhookUrl, Embed embed, string text = "")
         {
             DiscordWebhookClient DCW;
