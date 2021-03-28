@@ -7,7 +7,8 @@
       "Added GitHub link to navbar.",
       "Reworked caching behavior for guilds with many cases.",
       "Improved backend performance especially for case creation.",
-      "Added report command to features command."
+      "Added report command to features command.",
+      "Added option to delete templates."
     ]
   },
   {

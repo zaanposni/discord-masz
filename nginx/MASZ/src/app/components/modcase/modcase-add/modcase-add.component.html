@@ -12,8 +12,15 @@
                     </mat-form-field>                          
                     <mat-list>
                         <mat-list-item class="crs-ptr" *ngFor="let note of this.templates.content" (click)="applyTemplate(note.caseTemplate, stepper)">
-                            <img mat-list-icon alt="creator {{ note.caseTemplate?.userId }}" src="{{ note.creator?.imageUrl }}" />
-                            <div mat-line>{{note.caseTemplate.templateName}}</div>
+                            <img width="40px" height="40px" class="rounded-circle mr-2"
+                             alt="creator {{ note.caseTemplate?.userId }}" src="{{ note.creator?.imageUrl }}" />
+                            <div class="mr-2">
+                                {{note.caseTemplate.templateName}}
+                            </div>
+                            <button mat-mini-fab color="primary" aria-label="delete template"
+                             (click)="deleteTemplate(note.caseTemplate.id); $event.stopPropagation()" *ngIf="this.currentUser?.discordUser?.id === note.caseTemplate.userId || this.currentUser?.isAdmin">
+                                <mat-icon>delete</mat-icon>
+                            </button>
                         </mat-list-item>
                     </mat-list>
                     <span *ngIf="!this.templates.content?.length">No templates found :(</span>
