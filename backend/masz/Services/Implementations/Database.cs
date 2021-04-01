@@ -27,7 +27,6 @@ namespace masz.Services
             await context.SaveChangesAsync();
         }
 
-
         // ==================================================================================
         // 
         // Guildconfig
@@ -397,6 +396,37 @@ namespace masz.Services
         public void SaveMotd(GuildMotd motd)
         {
             context.GuildMotds.Update(motd);
+        }
+
+        // ==================================================================================
+        // 
+        // Tokens
+        //
+        // ==================================================================================
+
+        public async Task SaveToken(APIToken token)
+        {
+            await context.APITokens.AddAsync(token);
+        }
+
+        public void DeleteToken(APIToken token)
+        {
+            context.APITokens.Remove(token);
+        }
+
+        public async Task<List<APIToken>> GetAllAPIToken()
+        {
+            return await context.APITokens.AsQueryable().ToListAsync();
+        }
+
+        public async Task<APIToken> GetAPIToken()
+        {
+            return await context.APITokens.AsQueryable().FirstOrDefaultAsync();
+        }
+
+        public async Task<APIToken> GetAPIToken(int id)
+        {
+            return await context.APITokens.AsQueryable().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
     }
 }

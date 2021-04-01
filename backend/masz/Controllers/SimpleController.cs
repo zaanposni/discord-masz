@@ -30,7 +30,6 @@ namespace masz.Controllers
             this.punishmentHandler = (IPunishmentHandler) serviceProvider.GetService(typeof(IPunishmentHandler));;
         }
 
-
         public async Task<Identity> GetIdentity() {
             return await this.identityManager.GetIdentity(HttpContext);
         }

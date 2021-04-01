@@ -1,30 +1,17 @@
-﻿using masz.Dtos.DiscordAPIResponses;
+using masz.Dtos.DiscordAPIResponses;
 using masz.Models;
+using masz.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace masz.Services
+namespace masz.Models
 {
-    public class Identity
+    public class DiscordIdentity : Identity
     {
-        private readonly IDiscordAPIInterface discord;
-
-        public DateTime ValidUntil { get; set;  }
-
-        private string Token;
-        private User DiscordUser;
-        private List<Guild> Guilds;
         private Dictionary<string, GuildMember> GuildMemberships = new Dictionary<string, GuildMember>();
-
-
-        public Identity (string token, IDiscordAPIInterface discord)
-        {
-            this.discord = discord;
-            this.Token = token;
-            this.ValidUntil = DateTime.UtcNow.AddMinutes(15);
-        }
+        public DiscordIdentity (string token, IDiscordAPIInterface discord) : base(token, discord) { }
 
         private async Task LoadBasicDetails()
         {
@@ -40,34 +27,19 @@ namespace masz.Services
             }
         }
 
-        /// <summary>
-        /// This method checks if a HttpContext holds a valid Discord user token.
-        /// https://discord.com/developers/docs/resources/user#get-current-user
-        /// </summary>
-        /// <returns>if a request with the users token could be authenticated against hte discord api</returns>
-        public async Task<bool> IsAuthorized() 
+        public override async Task<bool> IsAuthorized() 
         {
             await ValidateBasicDetails();
             return DiscordUser != null;
         }
 
-        /// <summary>
-        /// This method returns the discord user of the current authenticated user in the http context
-        /// https://discord.com/developers/docs/resources/user#get-current-user
-        /// </summary>
-        /// <returns>returns current discord user if the a request against discord API could be authenticated</returns>
-        public async Task<User> GetCurrentDiscordUser()
+        public override async Task<User> GetCurrentDiscordUser()
         {
             await ValidateBasicDetails();
             return DiscordUser;
         }
 
-        /// <summary>
-        /// This method returns all guilds the user is registered on.
-        /// https://discord.com/developers/docs/resources/user#get-current-user-guilds
-        /// </summary>
-        /// <returns>List of guilds the current user is member on.</returns>
-        public async Task<List<Guild>> GetCurrentGuilds()
+        public override async Task<List<Guild>> GetCurrentGuilds()
         {
             await ValidateBasicDetails();
             if (Guilds != null)
@@ -81,13 +53,7 @@ namespace masz.Services
             }
         }
 
-        /// <summary>
-        /// This method checks if the discord user is member of a specified guild.
-        /// https://discord.com/developers/docs/resources/user#get-current-user-guilds
-        /// </summary>
-        /// <param name="guildId">guild that the user should be member of</param>
-        /// <returns>True the user is member of the specified guild.</returns>
-        public async Task<bool> IsOnGuild(string guildId)
+        public override async Task<bool> IsOnGuild(string guildId)
         {
             await ValidateBasicDetails();
             if (Guilds != null)
@@ -103,14 +69,7 @@ namespace masz.Services
                 return Guilds.Any(x => x.Id == guildId);
             }
         }
-
-        /// <summary>
-        /// This method checksif the discord user is member of a specified guild and has a mod role or higher as they are specified in the database.
-        /// https://discord.com/developers/docs/resources/guild#get-guild-member
-        /// </summary>
-        /// <param name="guildId">guild that the user requestes for</param>
-        /// <returns>the guildmember object if the current user could be found on that guild.</returns>
-        public async Task<GuildMember> GetGuildMembership(string guildId)
+        public override async Task<GuildMember> GetGuildMembership(string guildId)
         {
             if (GuildMemberships.ContainsKey(guildId))
             {
@@ -132,12 +91,7 @@ namespace masz.Services
             }
         }
 
-        /// <summary>
-        /// Checks if the current user has the defined admin role on the defined guild.
-        /// </summary>
-        /// <param name="guildId">the guild to check on</param>
-        /// <returns>True if the user is on this guild and is member of the admin role.</returns>
-        public async Task<bool> HasAdminRoleOnGuild(string guildId, IDatabase database)
+        public override async Task<bool> HasAdminRoleOnGuild(string guildId, IDatabase database)
         {
             if (!await IsOnGuild(guildId))
             {
@@ -160,12 +114,7 @@ namespace masz.Services
             return guildMember.Roles.Intersect(guildConfig.AdminRoles).Any();
         }
 
-        /// <summary>
-        /// Checks if the current user has a defined team role on the defined guild.
-        /// </summary>
-        /// <param name="guildId">the guild to check on</param>
-        /// <returns>True if the user is on this guild and has at least one of the configured roles.</returns>
-        public async Task<bool> HasModRoleOrHigherOnGuild(string guildId, IDatabase database)
+        public override async Task<bool> HasModRoleOrHigherOnGuild(string guildId, IDatabase database)
         {
             if (!await IsOnGuild(guildId))
             {

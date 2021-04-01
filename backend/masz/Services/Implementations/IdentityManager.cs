@@ -32,17 +32,36 @@ namespace masz.Services
 
         private async Task<Identity> RegisterNewIdentity(HttpContext httpContext)
         {
-            logger.LogInformation("Registering new Identity.");
-            string key = httpContext.Request.Cookies["masz_access_token"];
-            string token = await httpContext.GetTokenAsync("access_token");
-            Identity identity = new Identity(token, discord);
+            string key = String.Empty;
+            Identity identity = null;
+            if (httpContext.Request.Headers.ContainsKey("Authorization")) {
+                logger.LogInformation("Registering new TokenIdentity.");
+                key = "/api/" + httpContext.Request.Headers["Authorization"];
+                string fullToken = httpContext.Request.Headers["Authorization"];
+                string token = String.Empty;
+                try {
+                    token = fullToken.Split(' ')[1];  // exclude "Bearer" prefix
+                }
+                catch (Exception e) { }
+                identity = new TokenIdentity(token, discord, await this.context.GetAPIToken());
+            } else {
+                key = httpContext.Request.Cookies["masz_access_token"];
+                logger.LogInformation("Registering new DiscordIdentity.");
+                string token = await httpContext.GetTokenAsync("Cookies", "access_token");
+                identity = new DiscordIdentity(token, discord);
+            }
             identities[key] = identity;
             return identity;
         }
 
         public async Task<Identity> GetIdentity(HttpContext httpContext)
         {
-            string key = httpContext.Request.Cookies["masz_access_token"];
+            string key = String.Empty;
+            if (httpContext.Request.Headers.ContainsKey("Authorization")) {
+                key = "/api/" + httpContext.Request.Headers["Authorization"];
+            } else {
+                key = httpContext.Request.Cookies["masz_access_token"];
+            }
             if (identities.ContainsKey(key))
             {
                 Identity identity = identities[key];
@@ -74,6 +93,19 @@ namespace masz.Services
                 }
             }
             this.logger.LogInformation("IdentityManager | Cleared old identities.");
+        }
+
+        public void ClearTokenIdentities()
+        {
+            this.logger.LogInformation("IdentityManager | Clearing token identities.");
+            foreach (var key in this.identities.Keys)
+            {
+                if (this.identities[key] is TokenIdentity) {
+                    this.logger.LogInformation($"IdentityManager | Clearing {key.ToString()}.");
+                    this.identities.Remove(key);
+                }
+            }
+            this.logger.LogInformation("IdentityManager | Cleared token identities.");
         }
     }
 }

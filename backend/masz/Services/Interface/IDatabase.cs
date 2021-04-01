@@ -78,5 +78,11 @@ namespace masz.Services
 
         Task<GuildMotd> GetMotdForGuild(string guildId);
         void SaveMotd(GuildMotd motd);
+
+        Task SaveToken(APIToken token);
+        void DeleteToken(APIToken token);
+        Task<List<APIToken>> GetAllAPIToken();
+        Task<APIToken> GetAPIToken();
+        Task<APIToken> GetAPIToken(int id);
     }
 }

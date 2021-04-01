@@ -48,11 +48,14 @@ namespace masz.Controllers
             List<string> currentLogins = new List<string>();
             foreach (var login in this.identityManager.GetCurrentIdentities())
             {
-                var user = await login.GetCurrentDiscordUser();
-                if (user == null) {
-                    currentLogins.Add($"Failed to fetch user data. (most likely the user unauthorized masz).");
-                } else {
-                    currentLogins.Add($"{user.Username}#{user.Discriminator}");
+                if (login is DiscordIdentity) 
+                {
+                    var user = await login.GetCurrentDiscordUser();
+                    if (user == null) {
+                        currentLogins.Add($"Failed to fetch user data. (most likely the user unauthorized masz).");
+                    } else {
+                        currentLogins.Add($"{user.Username}#{user.Discriminator}");
+                    }
                 }
             }
 

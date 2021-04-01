@@ -288,7 +288,7 @@ namespace masz.Controllers
             if (obj == null) {
                 return false;
             }
-            return contains(obj.Username, search) || contains(obj.Discriminator, search);
+            return contains(obj.Username + "#" + obj.Discriminator, search);
         }
     }
 }
