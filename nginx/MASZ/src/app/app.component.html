@@ -143,6 +143,12 @@
         
         <mat-divider></mat-divider>
         
+        <a class="d-flex" (click)="open('tokens')" *ngIf="this.currentUser?.isAdmin">
+          <div [class.activatedNav]="activatedNav[1] === 'tokens'" class="rounded navitem">
+            <mat-icon aria-hidden="false" aria-label="tune icon">api</mat-icon>
+            <span>API</span>
+          </div>
+        </a>
         <a class="d-flex" (click)="open('patchnotes')">
           <div [class.activatedNav]="activatedNav[1] === 'patchnotes'" class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="tune icon">update</mat-icon>

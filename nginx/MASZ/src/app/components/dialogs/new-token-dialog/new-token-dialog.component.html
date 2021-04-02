@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Name your token.</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input type="text" matInput [(ngModel)]="token.name" />
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="accent" [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="token.name.trim() === ''">Confirm</button>
+</div>

@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "b4f361ca-1687-49f0-a9d9-672384917577",
 		"name": "discord-masz",
+		"description": "# Introduction\nWhat does your API do?\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nWhat is the preferred way of using the API?\n\n# Error Codes\nWhat errors and status codes can a user expect?\n\n# Rate limit\nIs there a limit to the number of requests an user can send?",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -206,7 +207,7 @@
 									"variable": [
 										{
 											"key": "caseid",
-											"value": "117"
+											"value": "4"
 										}
 									]
 								}
@@ -230,7 +231,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/1",
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/:caseid",
 									"host": [
 										"{{url}}"
 									],
@@ -239,7 +240,13 @@
 										"v1",
 										"modcases",
 										"{{guildid}}",
-										"1"
+										":caseid"
+									],
+									"variable": [
+										{
+											"key": "caseid",
+											"value": "4"
+										}
 									]
 								}
 							},
@@ -539,14 +546,13 @@
 										},
 										{
 											"key": "forceDelete",
-											"value": "false",
-											"description": "only siteadmins can force delete"
+											"value": "false"
 										}
 									],
 									"variable": [
 										{
 											"key": "caseid",
-											"value": "117"
+											"value": "4"
 										}
 									]
 								}
@@ -1612,6 +1618,12 @@
 										"key": "Cookie",
 										"type": "text",
 										"value": "masz_access_token={{masz_access_token}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
+										"type": "text",
+										"disabled": true
 									}
 								],
 								"url": {
@@ -1722,6 +1734,95 @@
 										"guilds",
 										"{{guildid}}",
 										"motd"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "tokens",
+					"item": [
+						{
+							"name": "get token",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/token",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create token",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"tokenname\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/token",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete token",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/token",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"token"
 									]
 								}
 							},

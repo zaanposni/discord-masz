@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TokenOverviewComponent } from './components/api/token-overview/token-overview.component';
 import { DonateComponent } from './components/basic/donate/donate.component';
 import { GuidelinesComponent } from './components/basic/guidelines/guidelines.component';
 import { IndexComponent } from './components/basic/index/index.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'guilds/:guildid/cases/new', component: ModcaseAddComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/cases/:caseid', component: ModcaseViewComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/cases/:caseid/edit', component: ModcaseEditComponent, canActivate: [AuthGuard] },
+  { path: 'tokens', component: TokenOverviewComponent, canActivate: [AuthGuard] },
   { path: 'patchnotes', component: PatchnotesComponent },
   { path: 'donate', component: DonateComponent },
   { path: 'guidelines', component: GuidelinesComponent },

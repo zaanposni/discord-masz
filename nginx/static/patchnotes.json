@@ -10,7 +10,8 @@
       "Added report command to features command.",
       "Added option to delete templates.",
       "Added autorefresh for files after case creation.",
-      "Fixed a bug that made the bot unresponsive."
+      "Fixed a bug that made the bot unresponsive.",
+      "Added full API token support."
     ]
   },
   {
