@@ -308,9 +308,10 @@ namespace masz.Controllers
         public async Task<IActionResult> GetAllItems([FromRoute] string guildid, [FromQuery][Range(0, int.MaxValue)] int startPage=0) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            IActionResult auth = await this.HandleRequest(guildid, DiscordPermission.Member);
-            if (auth != null) {
-                return auth;
+            GuildConfig guildConfig = await this.database.SelectSpecificGuildConfig(guildid);
+            if (guildConfig == null) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
+                return BadRequest("Guild not registered");
             }
             User currentUser = await this.IsValidUser();
             String userOnly = String.Empty;

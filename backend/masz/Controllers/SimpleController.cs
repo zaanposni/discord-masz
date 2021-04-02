@@ -18,6 +18,7 @@ namespace masz.Controllers
         public readonly IDiscordAnnouncer discordAnnouncer;
         public readonly IFilesHandler filesHandler;
         public readonly IPunishmentHandler punishmentHandler;
+        public readonly IScheduler cacher;
 
         public SimpleController(IServiceProvider serviceProvider)
         {
@@ -28,6 +29,7 @@ namespace masz.Controllers
             this.discordAnnouncer = (IDiscordAnnouncer) serviceProvider.GetService(typeof(IDiscordAnnouncer));;
             this.filesHandler = (IFilesHandler) serviceProvider.GetService(typeof(IFilesHandler));;
             this.punishmentHandler = (IPunishmentHandler) serviceProvider.GetService(typeof(IPunishmentHandler));;
+            this.cacher = (IScheduler) serviceProvider.GetService(typeof(IScheduler));;
         }
 
         public async Task<Identity> GetIdentity() {
@@ -66,6 +68,10 @@ namespace masz.Controllers
             User currentUser = await this.IsValidUser();
             if (currentUser == null) {
                 return false;
+            }
+            Identity currentIdentity = await this.GetIdentity();
+            if (currentIdentity is TokenIdentity) {
+                return await currentIdentity.IsAuthorized();
             }
             return config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id);
         }

@@ -360,7 +360,8 @@
                             {{ this.modCase.content?.lockedBy?.username }}#{{ this.modCase.content?.lockedBy?.discriminator }} locked comments at {{ this.modCase.content?.modCase?.lockedAt | date:'dd.MM.Y' }}
                         </div>
                         <div class="flex-grow-1"></div>
-                        <button mat-raised-button color="accent" (click)="unlockCaseComments()" *ngIf="this.isModOrHigher">
+                        <button mat-raised-button color="accent" (click)="unlockCaseComments()"
+                            *ngIf="this.isModOrHigher" [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined">
                             Unlock case comments
                         </button>
                     </div>
@@ -376,13 +377,12 @@
                             Lock comments
                         </button>
                         <button mat-raised-button color="accent" class="flex-shrink-1"
-                        (click)="postComment()"  [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined || this.newComment?.trim() == ''">
+                        (click)="postComment()"  [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined || this.newComment?.trim() == '' || !this.modCase.content?.modCase?.allowComments">
                             Post comment
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

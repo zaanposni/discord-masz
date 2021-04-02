@@ -24,27 +24,13 @@ namespace masz.Controllers
     [ApiController]
     [Route("api/v1/guilds/{guildid}")]
     [Authorize]
-    public class ModCaseTableController : ControllerBase
+    public class ModCaseTableController : SimpleCaseController
     {
         private readonly ILogger<ModCaseTableController> logger;
-        private readonly IDatabase database;
-        private readonly IOptions<InternalConfig> config;
-        private readonly IIdentityManager identityManager;
-        private readonly IDiscordAnnouncer discordAnnouncer;
-        private readonly IDiscordAPIInterface discord;
-        private readonly IFilesHandler filesHandler;
-        private readonly IPunishmentHandler punishmentHandler;
 
-        public ModCaseTableController(ILogger<ModCaseTableController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IDiscordAnnouncer modCaseAnnouncer, IFilesHandler filesHandler, IPunishmentHandler punishmentHandler)
+        public ModCaseTableController(ILogger<ModCaseTableController> logger, IServiceProvider serviceProvider) : base(serviceProvider, logger)
         {
             this.logger = logger;
-            this.database = database;
-            this.config = config;
-            this.identityManager = identityManager;
-            this.discordAnnouncer = modCaseAnnouncer;
-            this.discord = discordInterface;
-            this.filesHandler = filesHandler;
-            this.punishmentHandler = punishmentHandler;
         }
 
         [HttpGet("modcasetable")]
@@ -73,15 +59,14 @@ namespace masz.Controllers
 
         private async Task<IActionResult> generateTable(string guildid, ModcaseTableType tableType, int startPage=0, string search=null, ModcaseTableSortType sortBy = ModcaseTableSortType.Default) {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+            User currentUser = await this.IsValidUser();
             if (currentUser == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
             String userOnly = String.Empty;
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid))
             {
                 userOnly = currentUser.Id;
             }

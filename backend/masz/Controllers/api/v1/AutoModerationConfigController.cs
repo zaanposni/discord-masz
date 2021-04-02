@@ -24,65 +24,37 @@ namespace masz.Controllers
     [ApiController]
     [Route("api/v1/guilds/{guildid}/automoderationconfig/")]
     [Authorize]
-    public class AutoModerationConfigController : ControllerBase
+    public class AutoModerationConfigController : SimpleController
     {
         private readonly ILogger<AutoModerationConfigController> logger;
-        private readonly IDatabase database;
-        private readonly IOptions<InternalConfig> config;
-        private readonly IIdentityManager identityManager;
-        private readonly IDiscordAnnouncer discordAnnouncer;
-        private readonly IDiscordAPIInterface discord;
-        private readonly IFilesHandler filesHandler;
-        private readonly IPunishmentHandler punishmentHandler;
 
-        public AutoModerationConfigController(ILogger<AutoModerationConfigController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IDiscordAnnouncer modCaseAnnouncer, IFilesHandler filesHandler, IPunishmentHandler punishmentHandler)
-        {
+        public AutoModerationConfigController(IServiceProvider serviceProvider, ILogger<AutoModerationConfigController> logger) : base(serviceProvider) {
             this.logger = logger;
-            this.database = database;
-            this.config = config;
-            this.identityManager = identityManager;
-            this.discordAnnouncer = modCaseAnnouncer;
-            this.discord = discordInterface;
-            this.filesHandler = filesHandler;
-            this.punishmentHandler = punishmentHandler;
         }
 
         [HttpPut]
         public async Task<IActionResult> SetItem([FromRoute] string guildid, [FromBody] AutoModerationConfigForPutDto dto) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            if (!await currentIdentity.HasAdminRoleOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
-
             GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
             if (guildConfig == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
                 return BadRequest("Guild not registered.");
             }
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Admin, guildid)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
 
             AutoModerationConfig currentConfig = await database.SelectModerationConfigForGuildAndType(guildid, dto.AutoModerationType);
-
             if (currentConfig == null) {
                 currentConfig = new AutoModerationConfig();
             }
-            
             if (! Enum.IsDefined(typeof(AutoModerationType), dto.AutoModerationType)) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Invalid moderation type.");
                 return BadRequest("Invalid moderation type");
             }
-
             if (! Enum.IsDefined(typeof(AutoModerationAction), dto.AutoModerationAction)) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Invalid action type.");
                 return BadRequest("Invalid action type");
@@ -110,25 +82,15 @@ namespace masz.Controllers
         public async Task<IActionResult> DeleteItem([FromRoute] string guildid, [FromRoute] string type) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            if (!await currentIdentity.HasAdminRoleOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
-
             GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
             if (guildConfig == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
                 return BadRequest("Guild not registered.");
+            }
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Admin, guildid)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
             }
 
             int x = 0;
@@ -160,25 +122,15 @@ namespace masz.Controllers
         public async Task<IActionResult> GetItem([FromRoute] string guildid, [FromRoute] string type) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            if (!await currentIdentity.HasAdminRoleOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
-
             GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
             if (guildConfig == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
                 return BadRequest("Guild not registered.");
+            }
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Admin, guildid)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
             }
 
             int x = 0;
@@ -208,25 +160,15 @@ namespace masz.Controllers
         public async Task<IActionResult> GetAllItems([FromRoute] string guildid) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            if (!await currentIdentity.HasAdminRoleOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
-
             GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
             if (guildConfig == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
                 return BadRequest("Guild not registered.");
+            }
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Admin, guildid)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
             }
 
             List<AutoModerationConfig> currentConfigs = await database.SelectAllModerationConfigsForGuild(guildid);

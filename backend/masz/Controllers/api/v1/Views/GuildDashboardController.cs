@@ -23,41 +23,25 @@ namespace masz.Controllers
     [ApiController]
     [Route("api/v1/guilds/{guildid}/dashboard")]
     [Authorize]
-    public class GuildDashbordController : ControllerBase
+    public class GuildDashbordController : SimpleController
     {
         private readonly ILogger<GuildDashbordController> logger;
-        private readonly IDatabase database;
-        private readonly IOptions<InternalConfig> config;
-        private readonly IDiscordAPIInterface discord;
-        private readonly IIdentityManager identityManager;
         private static readonly DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-        public GuildDashbordController(ILogger<GuildDashbordController> logger, IDatabase database, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IIdentityManager identityManager)
+        public GuildDashbordController(ILogger<GuildDashbordController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
             this.logger = logger;
-            this.database = database;
-            this.config = config;
-            this.discord = discord;
-            this.identityManager = identityManager;
         }
 
         [HttpGet("chart")]
         public async Task<IActionResult> GetModCaseGrid([FromRoute] string guildid, [FromQuery] long? since = null)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid))
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
 
             DateTime sinceTime = DateTime.UtcNow.AddYears(-1);
             if (since != null) {
@@ -76,19 +60,11 @@ namespace masz.Controllers
         public async Task<IActionResult> GetAutomodSplitChart([FromRoute] string guildid, [FromQuery] long? since = null)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid))
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
 
             DateTime sinceTime = DateTime.UtcNow.AddYears(-1);
             if (since != null) {
@@ -103,19 +79,11 @@ namespace masz.Controllers
         public async Task<IActionResult> Stats([FromRoute] string guildid)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid))
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
 
             int modCases = await this.database.CountAllModCasesForGuild(guildid);
             int activePunishments = await this.database.CountAllActivePunishmentsForGuild(guildid);
@@ -137,19 +105,11 @@ namespace masz.Controllers
         public async Task<IActionResult> LatestComments([FromRoute] string guildid)
         {   
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid))
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
             
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Returning latest comments.");
  
@@ -165,19 +125,11 @@ namespace masz.Controllers
         public async Task<IActionResult> Search([FromRoute] string guildid, [FromQuery] string search)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid))
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
 
             if (String.IsNullOrWhiteSpace(search)) {
                 return Ok(new List<string>());

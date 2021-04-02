@@ -24,68 +24,33 @@ namespace masz.Controllers
     [ApiController]
     [Route("api/v1/modcases/{guildid}/{caseid}/comments")]
     [Authorize]
-    public class ModCaseCommentsController : ControllerBase
+    public class ModCaseCommentsController : SimpleCaseController
     {
         private readonly ILogger<ModCaseCommentsController> logger;
-        private readonly IDatabase database;
-        private readonly IOptions<InternalConfig> config;
-        private readonly IIdentityManager identityManager;
-        private readonly IDiscordAnnouncer discordAnnouncer;
-        private readonly IDiscordAPIInterface discord;
-
-        public ModCaseCommentsController(ILogger<ModCaseCommentsController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IDiscordAnnouncer modCaseAnnouncer)
+        public ModCaseCommentsController(ILogger<ModCaseCommentsController> logger, IServiceProvider serviceProvider) : base(serviceProvider, logger)
         {
             this.logger = logger;
-            this.database = database;
-            this.config = config;
-            this.identityManager = identityManager;
-            this.discordAnnouncer = modCaseAnnouncer;
-            this.discord = discordInterface;
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateItem([FromRoute] string guildid, [FromRoute] string caseid, [FromBody] ModCaseCommentForCreateDto comment) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            ModCase modCase = await database.SelectSpecificModCase(guildid, caseid);
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                if (modCase == null) {
-                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                    return Unauthorized();                    
-                } else {
-                    if (modCase.UserId != currentUser.Id) {
-                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                        return Unauthorized();
-                    }
-                }
-            }
-            // ========================================================
-
             if (await database.SelectSpecificGuildConfig(guildid) == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
                 return BadRequest("Guild not registered.");
             }
-
-            if (modCase == null) 
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
-                return NotFound();
+            User currentUser = await this.IsValidUser();
+            ModCase modCase = await this.database.SelectSpecificModCase(guildid, caseid);
+            if(! await this.IsAllowedTo(APIActionPermission.View, modCase)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
             }
-
             if (!modCase.AllowComments) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Comments are locked.");
                 return BadRequest("Comments are locked.");
             }
-
             if (modCase.MarkedToDeleteAt != null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Case is marked to be deleted.");
@@ -93,7 +58,7 @@ namespace masz.Controllers
             }
 
             // normal user can only comment if no comments are there yet or last comment was not by him.
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid))
             {
                 if (modCase.Comments.Any())
                 {
@@ -129,45 +94,21 @@ namespace masz.Controllers
         public async Task<IActionResult> UpdateSpecificItem([FromRoute] string guildid, [FromRoute] string caseid, [FromRoute] int commentid, [FromBody] ModCaseCommentForPutDto newValue)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            ModCase modCase = await database.SelectSpecificModCase(guildid, caseid);
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                if (modCase == null) {
-                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                    return Unauthorized();                    
-                } else {
-                    if (modCase.UserId != currentUser.Id) {
-                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                        return Unauthorized();
-                    }
-                }
-            }
-            // ========================================================
-
             if (await database.SelectSpecificGuildConfig(guildid) == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
                 return BadRequest("Guild not registered.");
             }
-
-            if (modCase == null) 
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
-                return NotFound();
+            User currentUser = await this.IsValidUser();
+            ModCase modCase = await this.database.SelectSpecificModCase(guildid, caseid);
+            if(! await this.IsAllowedTo(APIActionPermission.View, modCase)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
             }
-
             if (!modCase.AllowComments) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Comments are locked.");
                 return BadRequest("Comments are locked.");
             }
-
             if (modCase.MarkedToDeleteAt != null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Case is marked to be deleted.");
@@ -180,9 +121,8 @@ namespace masz.Controllers
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Comment not found.");
                 return NotFound();
             }
-
             // only commentor or site admin should be able to edit comment
-            if (comment.UserId != currentUser.Id && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            if (comment.UserId != currentUser.Id && ! await this.IsSiteAdmin())
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
@@ -209,38 +149,16 @@ namespace masz.Controllers
         public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromRoute] string caseid, [FromRoute] int commentid)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            ModCase modCase = await database.SelectSpecificModCase(guildid, caseid);
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                if (modCase == null) {
-                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                    return Unauthorized();                    
-                } else {
-                    if (modCase.UserId != currentUser.Id) {
-                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                        return Unauthorized();
-                    }
-                }
-            }
-            // ========================================================
-
             if (await database.SelectSpecificGuildConfig(guildid) == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
                 return BadRequest("Guild not registered.");
             }
-
-            if (modCase == null) 
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
-                return NotFound();
+            User currentUser = await this.IsValidUser();
+            ModCase modCase = await this.database.SelectSpecificModCase(guildid, caseid);
+            if(! await this.IsAllowedTo(APIActionPermission.View, modCase)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
             }
 
             ModCaseComment comment = modCase.Comments.FirstOrDefault(x => x.Id == commentid);
@@ -249,8 +167,7 @@ namespace masz.Controllers
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Comment not found.");
                 return NotFound();
             }
-
-            if (comment.UserId != currentUser.Id && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id) && !await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database))
+            if (comment.UserId != currentUser.Id && ! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid))
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();

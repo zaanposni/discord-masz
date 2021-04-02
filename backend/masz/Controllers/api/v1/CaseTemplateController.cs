@@ -16,23 +16,20 @@ namespace masz.Controllers
     [ApiController]
     [Route("api/v1/templates")]
     [Authorize]
-    public class CaseTemplateController : ControllerBase
+    public class CaseTemplateController : SimpleController
     {
         private readonly ILogger<CaseTemplateController> logger;
-        private readonly IDatabase database;
-        private readonly IOptions<InternalConfig> config;
-        private readonly IIdentityManager identityManager;
 
-        public CaseTemplateController(ILogger<CaseTemplateController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager)
+        public CaseTemplateController(ILogger<CaseTemplateController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
             this.logger = logger;
-            this.database = database;
-            this.config = config;
-            this.identityManager = identityManager;
         }
 
-        private async Task<bool> allowedToView(CaseTemplate template, Identity currentIdentity) {
-            var currentUser = await currentIdentity.GetCurrentDiscordUser();
+        private async Task<bool> allowedToView(CaseTemplate template) {
+            var currentUser = await this.IsValidUser();
+            if (currentUser == null) {
+                return false;
+            }
             if (config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id)) {
                 return true;
             }
@@ -48,29 +45,19 @@ namespace masz.Controllers
                 return true;
             }
 
-            return await currentIdentity.HasModRoleOrHigherOnGuild(template.CreatedForGuildId, database);
+            return await this.HasPermissionOnGuild(DiscordPermission.Moderator, template.CreatedForGuildId);
         }
 
         [HttpGet("{templateid}")]
         public async Task<IActionResult> GetTemplate([FromRoute] string templateid, [FromQuery] string guildid) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
-
             var template = await database.GetSpecificCaseTemplate(templateid);
             if (template == null) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 NotFound.");
                 return NotFound();
             }
-
-            if (! await allowedToView(template, currentIdentity)) {
+            if (! await allowedToView(template)) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
@@ -83,19 +70,17 @@ namespace masz.Controllers
         public async Task<IActionResult> CreateTemplate([FromBody] CaseTemplateForCreateDto templateDto, [FromQuery] string guildid) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+            User currentUser = await this.IsValidUser();
             if (currentUser == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid))
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
-            // ========================================================
 
             var existingTemplates = await database.GetAllTemplatesFromUser(currentUser.Id);
             if (existingTemplates.Count > 10 && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id)) {
@@ -131,14 +116,12 @@ namespace masz.Controllers
         public async Task<IActionResult> DeleteTemplate([FromRoute] string templateid) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+            User currentUser = await this.IsValidUser();
             if (currentUser == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
-            // ========================================================
 
             var template = await database.GetSpecificCaseTemplate(templateid);
             if (template == null) {
@@ -146,7 +129,7 @@ namespace masz.Controllers
                 return NotFound();
             }
 
-            if (template.UserId != currentUser.Id && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id)) {
+            if (template.UserId != currentUser.Id && ! await this.IsSiteAdmin()) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }

@@ -23,26 +23,21 @@ namespace masz.Controllers
     [ApiController]
     [Route("api/v1/templatesview")]
     [Authorize]
-    public class TemplateViewController : ControllerBase
+    public class TemplateViewController : SimpleController
     {
         private readonly ILogger<TemplateViewController> logger;
-        private readonly IDatabase database;
-        private readonly IOptions<InternalConfig> config;
-        private readonly IDiscordAPIInterface discord;
-        private readonly IIdentityManager identityManager;
 
 
-        public TemplateViewController(ILogger<TemplateViewController> logger, IDatabase database, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IIdentityManager identityManager)
+        public TemplateViewController(ILogger<TemplateViewController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
             this.logger = logger;
-            this.database = database;
-            this.config = config;
-            this.discord = discord;
-            this.identityManager = identityManager;
         }
 
-        private async Task<bool> allowedToView(CaseTemplate template, Identity currentIdentity) {
-            var currentUser = await currentIdentity.GetCurrentDiscordUser();
+        private async Task<bool> allowedToView(CaseTemplate template) {
+            var currentUser = await this.IsValidUser();
+            if (currentUser == null) {
+                return false;
+            }
             if (config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id)) {
                 return true;
             }
@@ -58,16 +53,14 @@ namespace masz.Controllers
                 return true;
             }
 
-            return await currentIdentity.HasModRoleOrHigherOnGuild(template.CreatedForGuildId, database);
+            return await this.HasPermissionOnGuild(DiscordPermission.Moderator, template.CreatedForGuildId);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetTemplatesView([FromQuery] string userId) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
+            if (await this.IsValidUser() == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
@@ -83,7 +76,7 @@ namespace masz.Controllers
             List<TemplateView> templatesView = new List<TemplateView>();
             foreach (var template in templates)
             {
-                if (await allowedToView(template, currentIdentity)) {
+                if (await allowedToView(template)) {
                     templatesView.Add( new TemplateView() {
                         CaseTemplate = template,
                         Creator = await discord.FetchUserInfo(template.UserId, CacheBehavior.OnlyCache),
