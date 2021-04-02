@@ -179,28 +179,22 @@ namespace masz.Controllers
             database.UpdateModCase(modCase);
             await database.SaveChangesAsync();
 
-            Task announcementTask = new Task(() => {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
-                discordAnnouncer.AnnounceModCase(modCase, RestAction.Edited, currentUser, sendNotification, announceDm);
-            });
-            announcementTask.Start();
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
+            await discordAnnouncer.AnnounceModCase(modCase, RestAction.Edited, currentUser, sendNotification, announceDm);
 
             if (handlePunishment)
             {
                 if  ( oldModCase.UserId != modCase.UserId || oldModCase.PunishmentType != modCase.PunishmentType || oldModCase.PunishedUntil != modCase.PunishedUntil)
                 {
-                    Task punishmentTask = new Task(() => {
-                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
-                        punishmentHandler.UndoPunishment(oldModCase);
-                        if (modCase.PunishmentActive || (modCase.PunishmentType == PunishmentType.Kick && oldModCase.PunishmentType != PunishmentType.Kick))
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
+                    await punishmentHandler.UndoPunishment(oldModCase);
+                    if (modCase.PunishmentActive || (modCase.PunishmentType == PunishmentType.Kick && oldModCase.PunishmentType != PunishmentType.Kick))
+                    {
+                        if (modCase.PunishedUntil == null || modCase.PunishedUntil > DateTime.UtcNow)
                         {
-                            if (modCase.PunishedUntil == null || modCase.PunishedUntil > DateTime.UtcNow)
-                            {
-                                punishmentHandler.ExecutePunishment(modCase);
-                            }
+                            await punishmentHandler.ExecutePunishment(modCase);
                         }
-                    });
-                    punishmentTask.Start();
+                    }
                 }
             }
 
@@ -282,21 +276,15 @@ namespace masz.Controllers
             await database.SaveModCase(newModCase);
             await database.SaveChangesAsync();
 
-            Task announcementTask = new Task(() => {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
-                discordAnnouncer.AnnounceModCase(newModCase, RestAction.Created, currentUser, sendNotification, announceDm);
-            });
-            announcementTask.Start();
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
+            await discordAnnouncer.AnnounceModCase(newModCase, RestAction.Created, currentUser, sendNotification, announceDm);
 
             if (handlePunishment && (newModCase.PunishmentActive || newModCase.PunishmentType == PunishmentType.Kick))
             {
                 if (newModCase.PunishedUntil == null || newModCase.PunishedUntil > DateTime.UtcNow)
                 {
-                    Task punishmentTask = new Task(() => {
-                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
-                        punishmentHandler.ExecutePunishment(newModCase);
-                    });
-                    punishmentTask.Start();
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
+                    await punishmentHandler.ExecutePunishment(newModCase);
                 }
             }
 

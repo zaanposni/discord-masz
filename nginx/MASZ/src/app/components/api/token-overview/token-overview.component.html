@@ -30,7 +30,7 @@
                 <mat-list-item *ngFor="let token of this.tokens?.content">
                     <mat-icon mat-list-icon>api</mat-icon>
                     <div mat-line class="font-weight-bold">{{ token.name }}</div>
-                    <div mat-line>Created: {{ token.createdAt | date}} | Until: {{ token.validUntil | date}}</div>
+                    <div mat-line>Valid until: {{ token.validUntil | date}}</div>
                     <button mat-mini-fab color="primary" aria-label="delete token" (click)="deleteToken(token.id)">
                         <mat-icon>delete</mat-icon>
                     </button>
