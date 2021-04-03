@@ -90,6 +90,7 @@ namespace masz.Services
                     case PunishmentType.Ban:
                         logger.LogInformation($"Punisher: Ban User {modCase.UserId} in guild {modCase.GuildId}.");
                         await discord.BanUser(modCase.GuildId, modCase.UserId);
+                        await discord.GetGuildUserBan(modCase.GuildId, modCase.UserId, CacheBehavior.IgnoreCache);  // refresh ban cache
                         break;
                     case PunishmentType.Kick:
                         logger.LogInformation($"Punisher: Kick User {modCase.UserId} in guild {modCase.GuildId}.");
@@ -130,6 +131,7 @@ namespace masz.Services
                     case PunishmentType.Ban:
                         logger.LogInformation($"Punisher: Unban User {modCase.UserId} in guild {modCase.GuildId}.");
                         await discord.UnBanUser(modCase.GuildId, modCase.UserId);
+                        await discord.GetGuildUserBan(modCase.GuildId, modCase.UserId, CacheBehavior.IgnoreCache);  // refresh ban cache
                         break;
                 }
             }

@@ -17,6 +17,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { TemplateSettings, TemplateViewPermission } from 'src/app/models/TemplateSettings';
 import { TemplateCreateDialogComponent } from '../../dialogs/template-create-dialog/template-create-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AppUser } from 'src/app/models/AppUser';
 
 @Component({
   selector: 'app-modcase-add',
@@ -50,6 +51,7 @@ export class ModcaseAddComponent implements OnInit {
   public templates: ContentLoading<TemplateView[]> = { loading: true, content: [] };
   public allTemplates: TemplateView[] = [];
   public displayPunishmentTypeOptions = DisplayPunishmentTypeOptions;
+  public currentUser!: AppUser;
   constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -152,7 +154,7 @@ export class ModcaseAddComponent implements OnInit {
     this.templateSearch = "";
     this.allTemplates = [];
 
-    let params = new HttpParams()
+    const params = new HttpParams()
           .set('partial', 'true');
     this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`, true, params).subscribe((data) => {
       this.members.content = data;      
@@ -161,7 +163,15 @@ export class ModcaseAddComponent implements OnInit {
       this.toastr.error("Failed to load member list.");
     });
 
-    params = new HttpParams()
+    this.reloadTemplates();
+
+    this.authService.getUserProfile().subscribe((data) => {
+      this.currentUser = data;
+    });
+  }
+
+  reloadTemplates() {
+    const params = new HttpParams()
           .set('guildid', this.guildId)
     this.api.getSimpleData(`/templatesview`, true, params).subscribe((data) => {
       this.allTemplates = data;
@@ -209,7 +219,7 @@ export class ModcaseAddComponent implements OnInit {
     
     this.api.postSimpleData(`/modcases/${this.guildId}`, data, params, true, true).subscribe((data) => {     
       const caseId = data.caseid;
-      this.router.navigate(['guilds', this.guildId, 'cases', caseId]);
+      this.router.navigate(['guilds', this.guildId, 'cases', caseId], { queryParams: { 'reloadfiles': this.filesToUpload.length ?? '0' } });
       this.savingCase = false;
       this.toastr.success(`Case ${caseId} created.`);
       this.filesToUpload.forEach(element => this.uploadFile(element.data, caseId));
@@ -217,7 +227,12 @@ export class ModcaseAddComponent implements OnInit {
   }
 
   deleteTemplate(templateId: number) {
-
+    this.api.deleteData(`/templates/${templateId}`).subscribe(() => {
+      this.reloadTemplates();
+      this.toastr.success("Template deleted.");
+    }, () => {
+      this.toastr.error("Failed to delete template.");
+    })
   }
 
   saveTemplate() {

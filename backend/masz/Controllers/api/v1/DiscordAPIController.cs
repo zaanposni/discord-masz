@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,29 +17,20 @@ namespace masz.Controllers.api.v1
     [ApiController]
     [Authorize]
     [Route("api/v1/discord")]
-    public class DiscordAPIController : ControllerBase
+    public class DiscordAPIController : SimpleController
     {
         private readonly ILogger<DiscordAPIController> logger;
-        private readonly IDiscordAPIInterface discord;
-        private readonly IDatabase database;
-        private readonly IOptions<InternalConfig> config;
-        private readonly IIdentityManager identityManager;
 
-        public DiscordAPIController(ILogger<DiscordAPIController> logger, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discord, IDatabase database)
+        public DiscordAPIController(ILogger<DiscordAPIController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
             this.logger = logger;
-            this.config = config;
-            this.discord = discord;
-            this.identityManager = identityManager;
-            this.database = database;
         }
 
         [HttpGet("users/@me")]
         public async Task<IActionResult> GetUser()
         {
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+            Identity identity = await this.GetIdentity();
+            User currentUser = await this.IsValidUser();
              if (currentUser == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
@@ -51,17 +43,20 @@ namespace masz.Controllers.api.v1
             List<Guild> bannedGuilds = new List<Guild>();
             bool siteAdmin = config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id);
 
-            List<Guild> userGuilds = await currentIdentity.GetCurrentGuilds();
+            List<Guild> userGuilds = await identity.GetCurrentGuilds();
 
             List<GuildConfig> registeredGuilds = await database.SelectAllGuildConfigs();
 
             foreach (GuildConfig guild in registeredGuilds)
             {
+                if (userGuilds == null) {
+                    break;
+                }
                 var userGuild = userGuilds.FirstOrDefault(x => x.Id == guild.GuildId);
                 if (userGuild != null)
                 {
-                    if (await currentIdentity.HasModRoleOrHigherOnGuild(guild.GuildId, this.database)) {
-                        if (await currentIdentity.HasAdminRoleOnGuild(guild.GuildId, this.database)) {
+                    if (await identity.HasModRoleOrHigherOnGuild(guild.GuildId, this.database)) {
+                        if (await identity.HasAdminRoleOnGuild(guild.GuildId, this.database)) {
                             adminGuilds.Add(userGuild);
                         } else {
                             modGuilds.Add(userGuild);
@@ -70,8 +65,8 @@ namespace masz.Controllers.api.v1
                         memberGuilds.Add(userGuild);
                     }
                 } else {
-                    if (await discord.GetGuildUserBan(guild.GuildId, currentUser.Id) != null) {
-                        bannedGuilds.Add(await discord.FetchGuildInfo(guild.GuildId));
+                    if (await discord.GetGuildUserBan(guild.GuildId, currentUser.Id, CacheBehavior.Default) != null) {
+                        bannedGuilds.Add(await discord.FetchGuildInfo(guild.GuildId, CacheBehavior.Default));
                     }
                 }
             }
@@ -82,7 +77,7 @@ namespace masz.Controllers.api.v1
         [HttpGet("users/{userid}")]
         public async Task<IActionResult> GetSpecificUser([FromRoute] string userid)
         {
-            var user = await discord.FetchUserInfo(userid);
+            var user = await discord.FetchUserInfo(userid, CacheBehavior.OnlyCache);
             if (user != null)
             {
                 return Ok(user);
@@ -93,7 +88,7 @@ namespace masz.Controllers.api.v1
         [HttpGet("guilds/{guildid}")]
         public async Task<IActionResult> GetSpecificGuild([FromRoute] string guildid)
         {
-            var guild = await discord.FetchGuildInfo(guildid);
+            var guild = await discord.FetchGuildInfo(guildid, CacheBehavior.Default);
             if (guild != null)
             {
                 return Ok(guild);
@@ -104,7 +99,7 @@ namespace masz.Controllers.api.v1
         [HttpGet("guilds/{guildid}/channels")]
         public async Task<IActionResult> GetAllGuildChannels([FromRoute] string guildid)
         {
-            var channels = await discord.FetchGuildChannels(guildid);
+            var channels = await discord.FetchGuildChannels(guildid, CacheBehavior.Default);
             if (channels != null)
             {
                 return Ok(channels);
@@ -121,7 +116,7 @@ namespace masz.Controllers.api.v1
                 return BadRequest("Endpoint only available for registered guilds.");
             }
 
-            var members = await discord.FetchGuildMembers(guildid);
+            var members = await discord.FetchGuildMembers(guildid, CacheBehavior.OnlyCache);
             if (members != null)
             {
                 if (partial) {
@@ -137,15 +132,14 @@ namespace masz.Controllers.api.v1
         [HttpGet("guilds")]
         public async Task<IActionResult> GetAllGuilds()
         {
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
+            User currentUser = await this.IsValidUser();
              if (currentUser == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
 
+            Identity currentIdentity = await this.GetIdentity();
             var guilds = await currentIdentity.GetCurrentGuilds();
             if (guilds != null)
             {

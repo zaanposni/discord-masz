@@ -27,7 +27,6 @@ namespace masz.Services
             await context.SaveChangesAsync();
         }
 
-
         // ==================================================================================
         // 
         // Guildconfig
@@ -153,6 +152,7 @@ namespace masz.Services
                   x.GuildId == modCase.GuildId &&
                   x.UserId == modCase.UserId &&
                   x.CaseId != modCase.CaseId && 
+                  x.MarkedToDeleteAt == null &&
                   x.PunishmentType == modCase.PunishmentType &&
                   x.PunishmentActive == true &&
                   (
@@ -163,12 +163,17 @@ namespace masz.Services
 
         public async Task<List<ModCase>> SelectAllModCasesWithActivePunishments()
         {
-            return await context.ModCases.AsQueryable().Where(x => x.PunishmentActive == true).ToListAsync();
+            return await context.ModCases.AsQueryable().Where(x => x.PunishmentActive == true && x.MarkedToDeleteAt == null).ToListAsync();
         }
 
         public async Task<List<ModCase>> SelectAllModCases()
         {
             return await context.ModCases.AsQueryable().ToListAsync();
+        }
+
+        public async Task<List<ModCase>> SelectLatestModCases(DateTime timeLimit, int limit = 1000)
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.CreatedAt >= timeLimit).OrderByDescending(x => x.CreatedAt).Take(limit).ToListAsync();
         }
 
         public async Task<int> CountAllModCasesForGuild(string guildId)
@@ -391,6 +396,37 @@ namespace masz.Services
         public void SaveMotd(GuildMotd motd)
         {
             context.GuildMotds.Update(motd);
+        }
+
+        // ==================================================================================
+        // 
+        // Tokens
+        //
+        // ==================================================================================
+
+        public async Task SaveToken(APIToken token)
+        {
+            await context.APITokens.AddAsync(token);
+        }
+
+        public void DeleteToken(APIToken token)
+        {
+            context.APITokens.Remove(token);
+        }
+
+        public async Task<List<APIToken>> GetAllAPIToken()
+        {
+            return await context.APITokens.AsQueryable().ToListAsync();
+        }
+
+        public async Task<APIToken> GetAPIToken()
+        {
+            return await context.APITokens.AsQueryable().FirstOrDefaultAsync();
+        }
+
+        public async Task<APIToken> GetAPIToken(int id)
+        {
+            return await context.APITokens.AsQueryable().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
     }
 }

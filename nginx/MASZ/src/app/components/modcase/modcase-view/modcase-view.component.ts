@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { AppUser } from 'src/app/models/AppUser';
 import { CaseComment } from 'src/app/models/CaseComment';
 import { CaseDeleteDialogData } from 'src/app/models/CaseDeleteDialogData';
@@ -36,7 +37,8 @@ export class ModcaseViewComponent implements OnInit {
 
   public isModOrHigher: boolean = false;
   public renderedDescription!: string;
-  public files: ContentLoading<FileInfo> = { loading: true, content: undefined };
+  private filesSubject$ = new ReplaySubject<FileInfo>(1);
+  public files: ContentLoading<Observable<FileInfo>> = { loading: true, content: this.filesSubject$.asObservable() };
   public currentUser: ContentLoading<AppUser> = { loading: true, content: undefined };
   public currentGuild: ContentLoading<Guild> = { loading: true, content: undefined };
   public modCase: ContentLoading<CaseView> = { loading: true, content: undefined };
@@ -46,6 +48,17 @@ export class ModcaseViewComponent implements OnInit {
   ngOnInit(): void {    
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
     this.caseId = this.route.snapshot.paramMap.get('caseid') as string;
+
+    // reload files from case creation
+    if (this.route.snapshot.queryParamMap.get('reloadfiles') !== '0' && this.route.snapshot.queryParamMap.get('reloadfiles') != null) {
+      var $this = this;
+      setTimeout(function() { 
+        $this.reloadFiles();
+      }, 5000);
+      setTimeout(function() { 
+        $this.reloadFiles();
+      }, 10000);
+    }   
 
     this.auth.isModInGuild(this.guildId).subscribe((data) => { this.isModOrHigher = data; });
     this.auth.getUserProfile().subscribe((data) => { this.currentUser = { loading: false, content: data }; });
@@ -60,9 +73,9 @@ export class ModcaseViewComponent implements OnInit {
   }
 
   private reloadFiles() {
-    this.files = { loading: true, content: undefined };
+    this.files.loading = true;
     this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/files`).subscribe((data) => {
-      this.files.content = data;
+      this.filesSubject$.next(data);
       this.files.loading = false;
     }, () => {
       this.files.loading = false;

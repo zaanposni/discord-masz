@@ -81,6 +81,8 @@ import { CaseDeleteDialogComponent } from './components/dialogs/case-delete-dial
 import { CommentEditDialogComponent } from './components/dialogs/comment-edit-dialog/comment-edit-dialog.component';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 import { TemplateCreateDialogComponent } from './components/dialogs/template-create-dialog/template-create-dialog.component';
+import { TokenOverviewComponent } from './components/api/token-overview/token-overview.component';
+import { NewTokenDialogComponent } from './components/dialogs/new-token-dialog/new-token-dialog.component';
 
 @NgModule({
   declarations: [
@@ -125,7 +127,9 @@ import { TemplateCreateDialogComponent } from './components/dialogs/template-cre
     AutomodRuleComponent,
     CaseDeleteDialogComponent,
     CommentEditDialogComponent,
-    TemplateCreateDialogComponent
+    TemplateCreateDialogComponent,
+    TokenOverviewComponent,
+    NewTokenDialogComponent
   ],
   imports: [
     CommonModule,

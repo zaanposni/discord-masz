@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -24,66 +25,24 @@ namespace masz.Controllers
     [ApiController]
     [Route("api/v1/modcases/{guildid}")]
     [Authorize]
-    public class ModCaseController : ControllerBase
+    public class ModCaseController : SimpleCaseController
     {
         private readonly ILogger<ModCaseController> logger;
-        private readonly IDatabase database;
-        private readonly IOptions<InternalConfig> config;
-        private readonly IIdentityManager identityManager;
-        private readonly IDiscordAnnouncer discordAnnouncer;
-        private readonly IDiscordAPIInterface discord;
-        private readonly IFilesHandler filesHandler;
-        private readonly IPunishmentHandler punishmentHandler;
 
-        public ModCaseController(ILogger<ModCaseController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IDiscordAnnouncer modCaseAnnouncer, IFilesHandler filesHandler, IPunishmentHandler punishmentHandler)
+        public ModCaseController(IServiceProvider serviceProvider, ILogger<ModCaseController> logger) : base(serviceProvider, logger) 
         {
             this.logger = logger;
-            this.database = database;
-            this.config = config;
-            this.identityManager = identityManager;
-            this.discordAnnouncer = modCaseAnnouncer;
-            this.discord = discordInterface;
-            this.filesHandler = filesHandler;
-            this.punishmentHandler = punishmentHandler;
         }
 
         [HttpGet("{modcaseid}")]
         public async Task<IActionResult> GetSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
+            IActionResult auth = await this.HandleRequest(guildid, modcaseid, APIActionPermission.View);
+            if (auth != null) {
+                return auth;
             }
             ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                if (modCase == null) {
-                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                    return Unauthorized();                    
-                } else {
-                    if (modCase.UserId != currentUser.Id) {
-                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                        return Unauthorized();
-                    }
-                }
-            }
-            // ========================================================
-
-            if (await database.SelectSpecificGuildConfig(guildid) == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
-                return BadRequest("Guild not registered.");
-            }
-
-            if (modCase == null) 
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
-                return NotFound();
-            }
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCase.");
             return Ok(modCase);
@@ -93,34 +52,14 @@ namespace masz.Controllers
         public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true, [FromQuery] bool announceDm = true, [FromQuery] bool forceDelete = false) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
+            IActionResult auth = await this.HandleRequest(guildid, modcaseid, forceDelete ? APIActionPermission.ForceDelete : APIActionPermission.Delete);
+            if (auth != null) {
+                return auth;
             }
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
-
-            if (await database.SelectSpecificGuildConfig(guildid) == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
-                return BadRequest("Guild not registered.");
-            }
-
+            User currentUser = await this.IsValidUser();
             ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
-            if (modCase == null) 
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
-                return NotFound();
-            }
 
-            if (forceDelete && config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))  // only siteadmin should be able to force delete.
+            if (forceDelete)
             {
                 try {
                     filesHandler.DeleteDirectory(Path.Combine(config.Value.AbsolutePathToFileUpload, guildid, modcaseid));
@@ -167,39 +106,13 @@ namespace masz.Controllers
         public async Task<IActionResult> PutSpecificItem([FromRoute] string guildid, [FromRoute] string modcaseid, [FromBody] ModCaseForPutDto newValue, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true, [FromQuery] bool announceDm = true)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
+            IActionResult auth = await this.HandleRequest(guildid, modcaseid, APIActionPermission.Edit);
+            if (auth != null) {
+                return auth;
             }
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
-
+            User currentUser = await this.IsValidUser();
             GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
-            if (guildConfig == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
-                return BadRequest("Guild not registered.");
-            }
-
             ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
-            if (modCase == null) 
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
-                return NotFound();
-            }
-            if (modCase.MarkedToDeleteAt != null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Case is marked to be deleted.");
-                return BadRequest("Case is marked to be deleted.");
-            }
-
             ModCase oldModCase = (ModCase) modCase.Clone();
 
             modCase.Title = newValue.Title;
@@ -236,7 +149,7 @@ namespace masz.Controllers
 
             if (oldModCase.UserId != modCase.UserId)  // if user id got updated, update nickname and username
             {
-                var currentReportedUser = await discord.FetchUserInfo(modCase.UserId, true);
+                var currentReportedUser = await discord.FetchUserInfo(modCase.UserId, CacheBehavior.IgnoreButCacheOnError);
                 if (currentReportedUser == null) {
                     logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Invalid Discord UserId.");
                     return BadRequest("Invalid Discord UserId.");
@@ -252,7 +165,7 @@ namespace masz.Controllers
                 modCase.Username = currentReportedUser.Username;  // update to new username
                 modCase.Discriminator = currentReportedUser.Discriminator;
 
-                var currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId, true);
+                var currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId, CacheBehavior.IgnoreButCacheOnError);
                 if (currentReportedMember != null)
                 {
                     if (currentReportedMember.Roles.Intersect(guildConfig.ModRoles).Any() || currentReportedMember.Roles.Intersect(guildConfig.AdminRoles).Any()) {
@@ -267,30 +180,20 @@ namespace masz.Controllers
             await database.SaveChangesAsync();
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
-            try {
-                await discordAnnouncer.AnnounceModCase(modCase, RestAction.Edited, currentUser, sendNotification, announceDm);
-            }
-            catch(Exception e){
-                logger.LogError(e, "Failed to announce modcase.");
-            }
+            await discordAnnouncer.AnnounceModCase(modCase, RestAction.Edited, currentUser, sendNotification, announceDm);
 
             if (handlePunishment)
             {
                 if  ( oldModCase.UserId != modCase.UserId || oldModCase.PunishmentType != modCase.PunishmentType || oldModCase.PunishedUntil != modCase.PunishedUntil)
                 {
-                    try {
-                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
-                        await punishmentHandler.UndoPunishment(oldModCase);
-                        if (modCase.PunishmentActive || (modCase.PunishmentType == PunishmentType.Kick && oldModCase.PunishmentType != PunishmentType.Kick))
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
+                    await punishmentHandler.UndoPunishment(oldModCase);
+                    if (modCase.PunishmentActive || (modCase.PunishmentType == PunishmentType.Kick && oldModCase.PunishmentType != PunishmentType.Kick))
+                    {
+                        if (modCase.PunishedUntil == null || modCase.PunishedUntil > DateTime.UtcNow)
                         {
-                            if (modCase.PunishedUntil == null || modCase.PunishedUntil > DateTime.UtcNow)
-                            {
-                                await punishmentHandler.ExecutePunishment(modCase);
-                            }
+                            await punishmentHandler.ExecutePunishment(modCase);
                         }
-                    }
-                    catch(Exception e){
-                        logger.LogError(e, "Failed to handle punishment for modcase.");
                     }
                 }
             }
@@ -303,37 +206,16 @@ namespace masz.Controllers
         public async Task<IActionResult> CreateItem([FromRoute] string guildid, [FromBody] ModCaseForCreateDto modCase, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true, [FromQuery] bool announceDm = true) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
+            IActionResult auth = await this.HandleRequest(guildid, DiscordPermission.Moderator);
+            if (auth != null) {
+                return auth;
             }
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
-
+            User currentUser = await this.IsValidUser();
             GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
-            if (guildConfig == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
-                return BadRequest("Guild not registered.");
-            }
-
-            var currentModerator = currentUser.Id;
-            if (currentModerator == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Failed to fetch mod user info.");
-                return BadRequest("Could not fetch own user info.");
-            }
 
             ModCase newModCase = new ModCase();
             
-            User currentReportedUser = await discord.FetchUserInfo(modCase.UserId, true);
+            User currentReportedUser = await discord.FetchUserInfo(modCase.UserId, CacheBehavior.IgnoreButCacheOnError);
             if (currentReportedUser == null) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Invalid Discord UserId.");
                 return BadRequest("Invalid Discord UserId.");
@@ -350,7 +232,7 @@ namespace masz.Controllers
             newModCase.Username = currentReportedUser.Username;
             newModCase.Discriminator = currentReportedUser.Discriminator;
 
-            GuildMember currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId, true);
+            GuildMember currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId, CacheBehavior.IgnoreButCacheOnError);
 
             if (currentReportedMember != null)
             {
@@ -365,7 +247,7 @@ namespace masz.Controllers
             newModCase.Title = modCase.Title;
             newModCase.Description = modCase.Description;
             newModCase.GuildId = guildid;
-            newModCase.ModId = currentModerator;
+            newModCase.ModId = currentUser.Id;
             newModCase.UserId = modCase.UserId;
             newModCase.CreatedAt = DateTime.UtcNow;
             if (modCase.OccuredAt.HasValue)
@@ -373,7 +255,7 @@ namespace masz.Controllers
             else
                 newModCase.OccuredAt = newModCase.CreatedAt;
             newModCase.LastEditedAt = newModCase.CreatedAt;
-            newModCase.LastEditedByModId = currentModerator;
+            newModCase.LastEditedByModId = currentUser.Id;
             newModCase.Punishment = modCase.Punishment;
             newModCase.Labels = modCase.Labels.Distinct().ToArray();
             newModCase.Others = modCase.Others;
@@ -395,24 +277,14 @@ namespace masz.Controllers
             await database.SaveChangesAsync();
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
-            try {
-                await discordAnnouncer.AnnounceModCase(newModCase, RestAction.Created, currentUser, sendNotification, announceDm);
-            }
-            catch(Exception e){
-                logger.LogError(e, "Failed to announce modcase.");
-            }
+            await discordAnnouncer.AnnounceModCase(newModCase, RestAction.Created, currentUser, sendNotification, announceDm);
 
             if (handlePunishment && (newModCase.PunishmentActive || newModCase.PunishmentType == PunishmentType.Kick))
             {
                 if (newModCase.PunishedUntil == null || newModCase.PunishedUntil > DateTime.UtcNow)
                 {
-                    try {
-                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
-                        await punishmentHandler.ExecutePunishment(newModCase);
-                    }
-                    catch(Exception e){
-                        logger.LogError(e, "Failed to handle punishment for modcase.");
-                    }
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
+                    await punishmentHandler.ExecutePunishment(newModCase);
                 }
             }
 
@@ -424,26 +296,18 @@ namespace masz.Controllers
         public async Task<IActionResult> GetAllItems([FromRoute] string guildid, [FromQuery][Range(0, int.MaxValue)] int startPage=0) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
+            GuildConfig guildConfig = await this.database.SelectSpecificGuildConfig(guildid);
+            if (guildConfig == null) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
+                return BadRequest("Guild not registered");
             }
+            User currentUser = await this.IsValidUser();
             String userOnly = String.Empty;
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid))
             {
                 userOnly = currentUser.Id;
             }
             // ========================================================
-
-            if (await database.SelectSpecificGuildConfig(guildid) == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
-                return BadRequest("Guild not registered.");
-            }
-
             List<ModCase> modCases = new List<ModCase>();
             if (String.IsNullOrEmpty(userOnly)) {
                 modCases = await database.SelectAllModCasesForGuild(guildid, startPage, 20);       
@@ -456,78 +320,19 @@ namespace masz.Controllers
             return Ok(modCases);
         }
 
-        [HttpGet("@me")]
-        public async Task<IActionResult> GetSpecificItem([FromRoute] string guildid) 
-        {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-
-            if (await database.SelectSpecificGuildConfig(guildid) == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
-                return BadRequest("Guild not registered.");
-            }
-
-            List<ModCase> modCases = await database.SelectAllModcasesForSpecificUserOnGuild(guildid, currentUser.Id);       
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCases.");
-            return Ok(modCases);
-        }
-
         [HttpPost("{modcaseid}/lock")]
         public async Task<IActionResult> LockComments([FromRoute] string guildid, [FromRoute] string modcaseid) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
+            IActionResult auth = await this.HandleRequest(guildid, modcaseid, APIActionPermission.Edit);
+            if (auth != null) {
+                return auth;
             }
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
-
-            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
-            if (guildConfig == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
-                return BadRequest("Guild not registered.");
-            }
-
-            var currentModerator = currentUser.Id;
-            if (currentModerator == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Failed to fetch mod user info.");
-                return BadRequest("Could not fetch own user info.");
-            }
-
+            User currentUser = await this.IsValidUser();
             ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
-            if (modCase == null) 
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
-                return NotFound();
-            }
-
             if (!modCase.AllowComments) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Comments are already locked.");
                 return BadRequest("Comments are already locked.");
-            }
-
-            if (modCase.MarkedToDeleteAt != null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Case is marked to be deleted.");
-                return BadRequest("Case is marked to be deleted.");
             }
 
             modCase.AllowComments = false;
@@ -544,51 +349,12 @@ namespace masz.Controllers
         public async Task<IActionResult> UnlockComments([FromRoute] string guildid, [FromRoute] string modcaseid) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
+            IActionResult auth = await this.HandleRequest(guildid, modcaseid, APIActionPermission.Edit);
+            if (auth != null) {
+                return auth;
             }
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
-
-            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
-            if (guildConfig == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
-                return BadRequest("Guild not registered.");
-            }
-
-            var currentModerator = currentUser.Id;
-            if (currentModerator == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Failed to fetch mod user info.");
-                return BadRequest("Could not fetch own user info.");
-            }
-
+            User currentUser = await this.IsValidUser();
             ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
-            if (modCase == null) 
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
-                return NotFound();
-            }
-
-            if (modCase.AllowComments) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Comments are already unlocked.");
-                return BadRequest("Comments are already unlocked.");
-            }
-
-            if (modCase.MarkedToDeleteAt != null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Case is marked to be deleted.");
-                return BadRequest("Case is marked to be deleted.");
-            }
 
             modCase.AllowComments = true;
             modCase.LockedAt = null;

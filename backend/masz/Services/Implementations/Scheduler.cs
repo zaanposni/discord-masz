@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using masz.Dtos.DiscordAPIResponses;
 using masz.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -18,16 +19,18 @@ namespace masz.Services
         private readonly IDiscordAPIInterface discord;
         private readonly IFilesHandler filesHandler;
         private readonly IServiceScopeFactory serviceScopeFactory;
+        private readonly IIdentityManager identityManager;
 
         public Scheduler() { }
 
-        public Scheduler(ILogger<Scheduler> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory, IFilesHandler filesHandler)
+        public Scheduler(ILogger<Scheduler> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory, IFilesHandler filesHandler, IIdentityManager identityManager)
         {
             this.logger = logger;
             this.config = config;
             this.discord = discord;
             this.serviceScopeFactory = serviceScopeFactory;
             this.filesHandler = filesHandler;
+            this.identityManager = identityManager;
         }
 
         public void StartTimers()
@@ -39,6 +42,7 @@ namespace masz.Services
                     {
                         CheckDeletedCases();
                         CacheAll();
+                        this.identityManager.ClearOldIdentities();
                         Thread.Sleep(1000 * 60 * 15);  // 15 minutes
                     }
                 });
@@ -69,22 +73,38 @@ namespace masz.Services
 
         public async void CacheAll()
         {
+            await CacheAllKnownGuilds();
             List<string> handledUsers = new List<string>();
-            handledUsers.AddRange(await CacheAllGuildMembers());
+            handledUsers = await CacheAllGuildBans(handledUsers);
+            handledUsers = await CacheAllGuildMembers(handledUsers);
             await CacheAllKnownUsers(handledUsers);
         }
 
-        public async Task<List<string>> CacheAllGuildMembers()
+        public async Task CacheAllKnownGuilds()
         {
-            logger.LogInformation("Cacher | Cache all members of registered guilds.");
-            List<string> handledUsers = new List<string>();
+            logger.LogInformation("Cacher | Cache all registered guilds.");
             using (var scope = serviceScopeFactory.CreateScope())
             {
                 IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
                 
                 foreach (var guild in await database.SelectAllGuildConfigs())
                 {
-                    var members = await discord.FetchGuildMembers(guild.GuildId, true);
+                    await discord.FetchGuildInfo(guild.GuildId, CacheBehavior.IgnoreCache);
+                    await discord.FetchGuildChannels(guild.GuildId, CacheBehavior.IgnoreCache);
+                }
+            }
+            logger.LogInformation("Cacher | Done - Cache all registered guilds.");
+        }
+        public async Task<List<string>> CacheAllGuildMembers(List<string> handledUsers)
+        {
+            logger.LogInformation("Cacher | Cache all members of registered guilds.");
+            using (var scope = serviceScopeFactory.CreateScope())
+            {
+                IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
+                
+                foreach (var guild in await database.SelectAllGuildConfigs())
+                {
+                    var members = await discord.FetchGuildMembers(guild.GuildId, CacheBehavior.IgnoreCache);
                     foreach (var item in members)
                     {
                         if (!handledUsers.Contains(item.User.Id)) {
@@ -93,7 +113,27 @@ namespace masz.Services
                     }
                 }
             }
-            logger.LogInformation("Cacher | Done.");
+            logger.LogInformation("Cacher | Done - Cached all members of registered guilds.");
+            return handledUsers;
+        }
+
+        public async Task<List<string>> CacheAllGuildBans(List<string> handledUsers)
+        {
+            logger.LogInformation("Cacher | Cache all bans of registered guilds.");
+            using (var scope = serviceScopeFactory.CreateScope())
+            {
+                IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
+                
+                foreach (var guild in await database.SelectAllGuildConfigs())
+                {
+                    List<Ban> bans = await this.discord.GetGuildBans(guild.GuildId, CacheBehavior.IgnoreCache);
+                    foreach (Ban ban in bans)
+                    {
+                        handledUsers.Add(ban.User.Id);
+                    }
+                }
+            }
+            logger.LogInformation("Cacher | Done - Cached all bans of registered guilds.");
             return handledUsers;
         }
 
@@ -104,23 +144,23 @@ namespace masz.Services
             {
                 IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
                 
-                foreach (var modCase in await database.SelectAllModCases())
+                foreach (var modCase in await database.SelectLatestModCases(DateTime.UtcNow.AddYears(-3), 750))
                 {
                     if (!handledUsers.Contains(modCase.UserId)) {
-                        await discord.FetchUserInfo(modCase.UserId, true);
+                        await discord.FetchUserInfo(modCase.UserId, CacheBehavior.IgnoreCache);
                         handledUsers.Add(modCase.UserId);
                     }
                     if (!handledUsers.Contains(modCase.ModId)) {
-                        await discord.FetchUserInfo(modCase.ModId, true);
+                        await discord.FetchUserInfo(modCase.ModId, CacheBehavior.IgnoreCache);
                         handledUsers.Add(modCase.ModId);
                     }
                     if (!handledUsers.Contains(modCase.LastEditedByModId)) {
-                        await discord.FetchUserInfo(modCase.LastEditedByModId, true);
+                        await discord.FetchUserInfo(modCase.LastEditedByModId, CacheBehavior.IgnoreCache);
                         handledUsers.Add(modCase.LastEditedByModId);
                     }
                 }
             }
-            logger.LogInformation("Cacher | Done.");
+            logger.LogInformation("Cacher | Done - Cache all known users.");
             return handledUsers;
         }
     }

@@ -75,7 +75,7 @@ namespace masz.Controllers
                 return BadRequest("Guild not registered.");
             }
 
-            var actor = await discord.FetchMemberInfo(guildid, modCase.ModId, true);
+            var actor = await discord.FetchMemberInfo(guildid, modCase.ModId, CacheBehavior.IgnoreButCacheOnError);
             if (actor == null) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
@@ -88,7 +88,7 @@ namespace masz.Controllers
 
             // ========================================================
 
-            User currentUser = await discord.FetchUserInfo(modCase.ModId);
+            User currentUser = await discord.FetchUserInfo(modCase.ModId, CacheBehavior.IgnoreButCacheOnError);
             var currentModerator = currentUser.Id;
             if (currentModerator == null)
             {
@@ -98,7 +98,7 @@ namespace masz.Controllers
 
             ModCase newModCase = new ModCase();
             
-            User currentReportedUser = await discord.FetchUserInfo(modCase.UserId, true);
+            User currentReportedUser = await discord.FetchUserInfo(modCase.UserId, CacheBehavior.IgnoreButCacheOnError);
             if (currentReportedUser == null) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Invalid Discord UserId.");
                 return BadRequest("Invalid Discord UserId.");
@@ -115,7 +115,7 @@ namespace masz.Controllers
             newModCase.Username = currentReportedUser.Username;
             newModCase.Discriminator = currentReportedUser.Discriminator;
 
-            GuildMember currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId, true);
+            GuildMember currentReportedMember = await discord.FetchMemberInfo(guildid, modCase.UserId, CacheBehavior.IgnoreButCacheOnError);
 
             if (currentReportedMember != null)
             {
@@ -160,24 +160,14 @@ namespace masz.Controllers
             await database.SaveChangesAsync();
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
-            try {
-                await discordAnnouncer.AnnounceModCase(newModCase, RestAction.Created, currentUser, sendNotification, announceDm);
-            }
-            catch(Exception e){
-                logger.LogError(e, "Failed to announce modcase.");
-            }
+            await discordAnnouncer.AnnounceModCase(newModCase, RestAction.Created, currentUser, sendNotification, announceDm);
 
             if (handlePunishment && (newModCase.PunishmentActive || newModCase.PunishmentType == PunishmentType.Kick))
             {
                 if (newModCase.PunishedUntil == null || newModCase.PunishedUntil > DateTime.UtcNow)
                 {
-                    try {
-                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
-                        await punishmentHandler.ExecutePunishment(newModCase);
-                    }
-                    catch(Exception e){
-                        logger.LogError(e, "Failed to handle punishment for modcase.");
-                    }
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Handling punishment.");
+                    await punishmentHandler.ExecutePunishment(newModCase);
                 }
             }
 

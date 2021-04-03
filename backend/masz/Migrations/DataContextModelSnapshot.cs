@@ -17,6 +17,32 @@ namespace masz.Migrations
                 .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("masz.Models.APIToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<byte[]>("TokenHash")
+                        .HasColumnType("longblob");
+
+                    b.Property<byte[]>("TokenSalt")
+                        .HasColumnType("longblob");
+
+                    b.Property<DateTime>("ValidUntil")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("APITokens");
+                });
+
             modelBuilder.Entity("masz.Models.AutoModerationConfig", b =>
                 {
                     b.Property<int>("Id")

@@ -4,9 +4,9 @@ import { ModCase } from "./ModCase";
 
 export interface CaseView {
     modCase: ModCase;
-    moderator: DiscordUser;
-    lastModerator: DiscordUser;
-    suspect: DiscordUser;
+    moderator?: DiscordUser;
+    lastModerator?: DiscordUser;
+    suspect?: DiscordUser;
     lockedBy?: DiscordUser;
     deletedBy?: DiscordUser;
     comments: CommentView[];

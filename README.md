@@ -19,6 +19,7 @@ MASZ combines:<br/>
 - **Automoderation** - to give trolls no chance
 - **Ban appeals and webhook notifications** - to moderate your server transparently
 - **A website and a discord bot** - to use MASZ
+- **Full API support** - for custom scripts
 
 # Demo <img src="https://img.shields.io/badge/demo-online-%234c1" alt="Online demo">
 

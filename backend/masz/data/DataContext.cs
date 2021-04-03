@@ -24,6 +24,7 @@ namespace masz.data
         public DbSet<AutoModerationConfig> AutoModerationConfigs { get; set; }
         public DbSet<CaseTemplate> CaseTemplates { get; set; }
         public DbSet<GuildMotd> GuildMotds { get; set; }
+        public DbSet<APIToken> APITokens { get; set; }
 
         public void Configure(EntityTypeBuilder<ModCase> builder) {
             builder.Property(u => u.CreatedAt).IsRequired(true).HasDefaultValueSql("now()");

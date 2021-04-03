@@ -11,6 +11,8 @@ import { GuildDeleteDialogData } from './models/GuildDeleteDialogData';
 import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { HttpParams } from '@angular/common/http';
 import { ApiService } from './services/api.service';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -30,10 +32,14 @@ export class AppComponent implements OnInit{
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, public route: ActivatedRoute,
-              private auth: AuthService, private toastr: ToastrService, private dialog: MatDialog, private api: ApiService) {
+              private auth: AuthService, private toastr: ToastrService, private dialog: MatDialog, private api: ApiService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
     this.mobileQuery = media.matchMedia('(max-width: 1000px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    this.matIconRegistry.addSvgIcon(
+      "githublogo",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/img/github.svg"));
   }
 
   ngOnInit(): void {

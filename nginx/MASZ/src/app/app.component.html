@@ -143,6 +143,12 @@
         
         <mat-divider></mat-divider>
         
+        <a class="d-flex" (click)="open('tokens')" *ngIf="this.currentUser?.isAdmin">
+          <div [class.activatedNav]="activatedNav[1] === 'tokens'" class="rounded navitem">
+            <mat-icon aria-hidden="false" aria-label="tune icon">api</mat-icon>
+            <span>API</span>
+          </div>
+        </a>
         <a class="d-flex" (click)="open('patchnotes')">
           <div [class.activatedNav]="activatedNav[1] === 'patchnotes'" class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="tune icon">update</mat-icon>
@@ -161,16 +167,29 @@
             <span>Terms</span>
           </div>
         </a>
+        <a class="d-flex" href="https://github.com/zaanposni/discord-masz" target="_blank" rel="noreferrer">
+          <div class="rounded navitem">
+            <mat-icon aria-hidden="false" aria-label="github link" svgIcon="githublogo"></mat-icon>
+            <span>GitHub</span>
+          </div>
+        </a>
         <a class="d-flex" href="legal.html" target="_blank">
           <div class="rounded navitem">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">gavel</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="legal notes">gavel</mat-icon>
             <span>Legal</span>
           </div>
         </a>
       </mat-nav-list>
-    </mat-sidenav>  
+    </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
+  <div style="display: none">
+    <nav>
+    </nav>
+    <main id="maincontent">
+    </main>
+    <a class="skip-link" href="#maincontent">Skip to main</a>
+  </div>
 </div>

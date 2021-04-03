@@ -60,7 +60,7 @@
                 <mat-chip class="mat-h1" selected *ngFor="let label of this.modCase.content?.modCase?.labels">{{ label }}</mat-chip>
             </mat-chip-list>
             <!-- cards -->
-            <div class="row mb-3">
+            <div class="row mb-3 mt-3">
                 <!-- user information -->
                 <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2">
                     <div class="infobox bg-g-green">
@@ -96,7 +96,7 @@
                 </div>
                 <!-- guilds information -->
                 <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2 crs-pnt" routerLink="/guilds/{{ this.guildId }}">
-                    <div class="infobox bg-g-blue">
+                    <div class="infobox bg-g-orange">
                         <div class="infobox-body d-flex flex-row flex-wrap">
                             <div class="flex-grow-1 d-flex flex-column">
                                 <span class="mat-h2 mb-0 font-weight-bold">Guild</span>
@@ -152,7 +152,7 @@
                 </div>
                 <!-- punishment information -->
                 <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2">
-                    <div class="infobox bg-g-orange">
+                    <div class="infobox bg-g-blue">
                         <div class="infobox-body d-flex flex-row flex-wrap">
                             <div class="flex-grow-1 d-flex flex-column">
                                 <ng-container *ngIf="this.modCase.loading">
@@ -262,9 +262,9 @@
             </div>
 
             <!-- Files -->
-            <div class="mb-3" *ngIf="this.isModOrHigher || this.files.content?.names?.length != 0">
+            <div class="mb-3" *ngIf="this.isModOrHigher || (this.files.content | async)?.names?.length != 0">
                 <div class="d-flex flex-row align-items-baseline">
-                    <div class="mat-h2 font-weight-bold">Uploaded files ({{ this.files.content?.names?.length || 0 }})</div>
+                    <div class="mat-h2 font-weight-bold">Uploaded files ({{ (this.files.content | async)?.names?.length || 0 }})</div>
                     <div class="flex-grow-1"></div>
                     <div *ngIf="this.isModOrHigher">                            
                         <button mat-raised-button color="accent" (click)="uploadInit()" [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined">
@@ -281,7 +281,7 @@
                 </ng-container>
                 <ng-container *ngIf="!this.modCase.loading">
                     <mat-list>
-                        <mat-list-item *ngFor="let file of this.files.content?.names">
+                        <mat-list-item *ngFor="let file of (this.files.content | async)?.names">
                             <mat-icon mat-list-icon>description</mat-icon>
                             <div mat-line>{{file}}</div>
                             <div class="d-flex flex-row">
@@ -360,7 +360,8 @@
                             {{ this.modCase.content?.lockedBy?.username }}#{{ this.modCase.content?.lockedBy?.discriminator }} locked comments at {{ this.modCase.content?.modCase?.lockedAt | date:'dd.MM.Y' }}
                         </div>
                         <div class="flex-grow-1"></div>
-                        <button mat-raised-button color="accent" (click)="unlockCaseComments()" *ngIf="this.isModOrHigher">
+                        <button mat-raised-button color="accent" (click)="unlockCaseComments()"
+                            *ngIf="this.isModOrHigher" [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined">
                             Unlock case comments
                         </button>
                     </div>
@@ -376,13 +377,12 @@
                             Lock comments
                         </button>
                         <button mat-raised-button color="accent" class="flex-shrink-1"
-                        (click)="postComment()"  [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined || this.newComment?.trim() == ''">
+                        (click)="postComment()"  [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined || this.newComment?.trim() == '' || !this.modCase.content?.modCase?.allowComments">
                             Post comment
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

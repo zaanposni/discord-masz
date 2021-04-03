@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using masz.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace masz.Services
     {
         Task<Identity> GetIdentity(HttpContext httpContext);
         List<Identity> GetCurrentIdentities();
+        void ClearOldIdentities();
+        void ClearTokenIdentities();
     }
 }

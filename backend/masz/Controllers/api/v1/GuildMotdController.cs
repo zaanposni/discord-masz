@@ -14,40 +14,23 @@ namespace masz.Controllers
     [ApiController]
     [Route("api/v1/guilds/{guildid}/motd")]
     [Authorize]
-    public class GuildMotdController : ControllerBase
+    public class GuildMotdController : SimpleController
     {
         private readonly ILogger<GuildMotdController> logger;
-        private readonly IDatabase database;
-        private readonly IOptions<InternalConfig> config;
-        private readonly IIdentityManager identityManager;
-        private readonly IDiscordAPIInterface discord;
 
-        public GuildMotdController(ILogger<GuildMotdController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discord)
+        public GuildMotdController(ILogger<GuildMotdController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
             this.logger = logger;
-            this.database = database;
-            this.config = config;
-            this.identityManager = identityManager;
-            this.discord = discord;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetMotd([FromRoute] string guildid)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
 
             GuildMotd motd = await this.database.GetMotdForGuild(guildid);
             if (motd == null) {
@@ -61,7 +44,7 @@ namespace masz.Controllers
                 };
             }
 
-            User creator = await this.discord.FetchUserInfo(motd.UserId);
+            User creator = await this.discord.FetchUserInfo(motd.UserId, CacheBehavior.Default);
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning motd.");
             return Ok(new { creator=creator, motd=motd });
@@ -71,25 +54,17 @@ namespace masz.Controllers
         public async Task<IActionResult> UpdateMotd([FromRoute] string guildid, [FromBody] GuildMotd motd)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Admin, guildid)) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
-            if (!await currentIdentity.HasAdminRoleOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
 
             if (string.IsNullOrWhiteSpace(motd.Message)) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Empty message.");
                 return BadRequest("Please provide a message.");
             }
 
+            User currentUser = await this.IsValidUser();
             GuildMotd current = await this.database.GetMotdForGuild(guildid);
             if (current == null) {
                 current = new GuildMotd();

@@ -10,6 +10,7 @@ using masz.Models;
 using masz.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -48,40 +49,54 @@ namespace masz
             services.AddSingleton<IPunishmentHandler, PunishmentHandler>();
             services.AddSingleton<IScheduler, Scheduler>();
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            })
-
-            .AddCookie(options =>
-            {
-                options.LoginPath = "/api/v1/login";
-                options.LogoutPath = "/api/v1/logout";
-                options.ExpireTimeSpan = new TimeSpan(7, 0, 0, 0);
-                options.Cookie.MaxAge = new TimeSpan(7, 0, 0, 0);
-                options.Cookie.Name = "masz_access_token";
-                options.Cookie.HttpOnly = false;
-                options.Events.OnRedirectToLogin = context =>
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie("Cookies", options =>
                 {
-                    context.Response.Headers["Location"] = context.RedirectUri;
-                    context.Response.StatusCode = 401;
-                    return Task.CompletedTask;
-                };
-            })
-            
-            .AddDiscord(options =>
-            {
-                options.ClientId = Configuration.GetSection("InternalConfig").GetValue<string>("DiscordClientId");
-                options.ClientSecret = Configuration.GetSection("InternalConfig").GetValue<string>("DiscordClientSecret");
-                options.Scope.Add("guilds");
-                options.Scope.Add("identify");
-                options.SaveTokens = true;
-                options.Prompt = "none";
-                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.CorrelationCookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax;
-                options.CorrelationCookie.HttpOnly = false;
-            });
+                    options.LoginPath = "/api/v1/login";
+                    options.LogoutPath = "/api/v1/logout";
+                    options.ExpireTimeSpan = new TimeSpan(7, 0, 0, 0);
+                    options.Cookie.MaxAge = new TimeSpan(7, 0, 0, 0);
+                    options.Cookie.Name = "masz_access_token";
+                    options.Cookie.HttpOnly = false;
+                    options.Events.OnRedirectToLogin = context =>
+                    {
+                        context.Response.Headers["Location"] = context.RedirectUri;
+                        context.Response.StatusCode = 401;
+                        return Task.CompletedTask;
+                    };
+                })
+                .AddDiscord(options =>
+                {
+                    options.ClientId = Configuration.GetSection("InternalConfig").GetValue<string>("DiscordClientId");
+                    options.ClientSecret = Configuration.GetSection("InternalConfig").GetValue<string>("DiscordClientSecret");
+                    options.Scope.Add("guilds");
+                    options.Scope.Add("identify");
+                    options.SaveTokens = true;
+                    options.Prompt = "none";
+                    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    options.CorrelationCookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax;
+                    options.CorrelationCookie.HttpOnly = false;
+                });
 
+            
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer("Tokens", x =>
+                {
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("InternalConfig").GetValue<string>("DiscordBotToken"))),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
+
+            services.AddAuthorization(options =>
+                {
+                    options.DefaultPolicy = new AuthorizationPolicyBuilder("Cookies", "Tokens")
+                        .RequireAuthenticatedUser()
+                        .Build();
+                });
 
             // services.AddCors(o => o.AddPolicy("AngularDevCors", builder =>
             // {

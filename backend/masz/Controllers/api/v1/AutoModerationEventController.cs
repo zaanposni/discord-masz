@@ -24,51 +24,32 @@ namespace masz.Controllers
     [ApiController]
     [Route("api/v1/guilds/{guildid}/automoderations")]
     [Authorize]
-    public class AutoModerationEventController : ControllerBase
+    public class AutoModerationEventController : SimpleController
     {
-        private readonly ILogger<ModCaseController> logger;
-        private readonly IDatabase database;
-        private readonly IOptions<InternalConfig> config;
-        private readonly IIdentityManager identityManager;
-        private readonly IDiscordAnnouncer discordAnnouncer;
-        private readonly IDiscordAPIInterface discord;
-        private readonly IFilesHandler filesHandler;
-        private readonly IPunishmentHandler punishmentHandler;
+        private readonly ILogger<AutoModerationEventController> logger;
 
-        public AutoModerationEventController(ILogger<ModCaseController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IDiscordAnnouncer modCaseAnnouncer, IFilesHandler filesHandler, IPunishmentHandler punishmentHandler)
+        public AutoModerationEventController(ILogger<AutoModerationEventController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
             this.logger = logger;
-            this.database = database;
-            this.config = config;
-            this.identityManager = identityManager;
-            this.discordAnnouncer = modCaseAnnouncer;
-            this.discord = discordInterface;
-            this.filesHandler = filesHandler;
-            this.punishmentHandler = punishmentHandler;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllItems([FromRoute] string guildid, [FromQuery][Range(0, int.MaxValue)] int startPage = 0) 
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            Identity currentIdentity = await identityManager.GetIdentity(HttpContext);
-            User currentUser = await currentIdentity.GetCurrentDiscordUser();
-            if (currentUser == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            String userOnly = String.Empty;
-            if (!await currentIdentity.HasModRoleOrHigherOnGuild(guildid, this.database) && !config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id))
-            {
-                userOnly = currentUser.Id;
-            }
-            // ========================================================
-
             if (await database.SelectSpecificGuildConfig(guildid) == null)
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
                 return BadRequest("Guild not registered.");
+            }
+            User currentUser = await this.IsValidUser();
+            if (currentUser == null) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+            string userOnly = String.Empty;
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
+                userOnly = currentUser.Id;
             }
 
             int pageSize = 50;
