@@ -105,10 +105,12 @@ namespace masz.Services
                 foreach (var guild in await database.SelectAllGuildConfigs())
                 {
                     var members = await discord.FetchGuildMembers(guild.GuildId, CacheBehavior.IgnoreCache);
-                    foreach (var item in members)
-                    {
-                        if (!handledUsers.Contains(item.User.Id)) {
-                            handledUsers.Add(item.User.Id);
+                    if (members != null) {
+                        foreach (var item in members)
+                        {
+                            if (!handledUsers.Contains(item.User.Id)) {
+                                handledUsers.Add(item.User.Id);
+                            }
                         }
                     }
                 }
@@ -127,9 +129,11 @@ namespace masz.Services
                 foreach (var guild in await database.SelectAllGuildConfigs())
                 {
                     List<Ban> bans = await this.discord.GetGuildBans(guild.GuildId, CacheBehavior.IgnoreCache);
-                    foreach (Ban ban in bans)
-                    {
-                        handledUsers.Add(ban.User.Id);
+                    if (bans != null) {
+                        foreach (Ban ban in bans)
+                        {
+                            handledUsers.Add(ban.User.Id);
+                        }
                     }
                 }
             }
