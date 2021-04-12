@@ -51,6 +51,9 @@
                     <button mat-raised-button class="align-self-end" style="background-color: green;" (click)="restoreCase()" *ngIf="!this.restoringCase">
                         Restore
                     </button>
+                    <button mat-raised-button class="align-self-end ml-2" color="accent" (click)="deleteCaseFromBin()" *ngIf="!this.restoringCase && this.currentUser.content?.isAdmin">
+                        Delete
+                    </button>
                     <mat-spinner id="custom-green-spinner" class="align-self-end" *ngIf="this.restoringCase"></mat-spinner>
                 </div>
             </mat-card>

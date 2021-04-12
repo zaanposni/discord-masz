@@ -192,7 +192,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/guilds/{{guildid}}/bin/:caseid",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/bin/:caseid/restore",
 									"host": [
 										"{{url}}"
 									],
@@ -202,7 +202,43 @@
 										"guilds",
 										"{{guildid}}",
 										"bin",
-										":caseid"
+										":caseid",
+										"restore"
+									],
+									"variable": [
+										{
+											"key": "caseid",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete case",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/bin/:caseid/delete",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"bin",
+										":caseid",
+										"delete"
 									],
 									"variable": [
 										{
@@ -483,15 +519,21 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"title\": \"wda\",\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\n    \"userid\": \"382991040975732747\",\n    \"occuredAt\": \"2020-11-25T20:15:47.093594\",\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\n    \"punishment\": \"mute\",\n    \"punishmentType\": 1,\n    \"punishedUntil\": null\n}"
+									"raw": "{\n    \"title\": \"wda\",\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\n    \"userid\": \"382991040975732747\",\n    \"occuredAt\": \"2020-11-25T20:15:47.093594\",\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\n    \"punishment\": \"warn\",\n    \"punishmentType\": 0,\n    \"punishedUntil\": null\n}"
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}?sendnotification=false&handlePunishment=true",
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}?sendnotification=true&handlePunishment=true",
 									"host": [
 										"{{url}}"
 									],
@@ -504,7 +546,7 @@
 									"query": [
 										{
 											"key": "sendnotification",
-											"value": "false"
+											"value": "true"
 										},
 										{
 											"key": "handlePunishment",
@@ -523,11 +565,17 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/:caseid?forceDelete=false",
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}/:caseid?forceDelete=true",
 									"host": [
 										"{{url}}"
 									],
@@ -546,13 +594,13 @@
 										},
 										{
 											"key": "forceDelete",
-											"value": "false"
+											"value": "true"
 										}
 									],
 									"variable": [
 										{
 											"key": "caseid",
-											"value": "4"
+											"value": "17"
 										}
 									]
 								}
@@ -726,7 +774,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/guilds/{{guildid}}/modcases/1/files/:dataname",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/modcases/:caseid/files/:dataname",
 									"host": [
 										"{{url}}"
 									],
@@ -736,14 +784,18 @@
 										"guilds",
 										"{{guildid}}",
 										"modcases",
-										"1",
+										":caseid",
 										"files",
 										":dataname"
 									],
 									"variable": [
 										{
+											"key": "caseid",
+											"value": "1"
+										},
+										{
 											"key": "dataname",
-											"value": "75dece321df6407854d4e3db11cdd5e048593cbe_59057a06__.JPG",
+											"value": "680e67b0d3528da5c1c10bc5b6db33520f4a2db5_7d2801f2_bobtreffen.png",
 											"type": "string"
 										}
 									]
@@ -763,7 +815,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/guilds/{{guildid}}/modcases/1/files",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/modcases/:caseid/files",
 									"host": [
 										"{{url}}"
 									],
@@ -773,8 +825,14 @@
 										"guilds",
 										"{{guildid}}",
 										"modcases",
-										"1",
+										":caseid",
 										"files"
+									],
+									"variable": [
+										{
+											"key": "caseid",
+											"value": "18"
+										}
 									]
 								}
 							},
@@ -848,7 +906,7 @@
 									"variable": [
 										{
 											"key": "dataname",
-											"value": "31fa2dbb26dd2a1ae68c32e9e273dbd18465b5f0_41fc37a4_464286a42d52e1e8528220b2c15546d2.jpg",
+											"value": "680e67b0d3528da5c1c10bc5b6db33520f4a2db5_7d2801f2_bobtreffen.png",
 											"type": "string"
 										}
 									]
