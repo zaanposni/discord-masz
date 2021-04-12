@@ -21,12 +21,13 @@
                 </div>
 
                 <!-- Delete / Edit button information -->
-                <div class="d-flex flex-column ml-2 flex-shrink-0" *ngIf="this.isModOrHigher">
+                <div class="d-flex flex-row flex-wrap ml-2 flex-shrink-0" *ngIf="this.isModOrHigher">
                     <button mat-fab color="accent" aria-label="edit case" [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined"
-                        class="flex-grow-1 flex-shrink-0 mb-2" routerLink="/guilds/{{ this.guildId }}/cases/{{ this.caseId }}/edit">
+                        class="flex-grow-0 flex-shrink-0 mb-2 mr-2" routerLink="/guilds/{{ this.guildId }}/cases/{{ this.caseId }}/edit">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-fab color="primary" aria-label="delete case" class="flex-grow-1 flex-shrink-0" (click)="deleteCase()" *ngIf="this.modCase.content?.modCase?.markedToDeleteAt == undefined">
+                    <button mat-fab color="primary" aria-label="delete case"
+                        class="flex-grow-0 flex-shrink-0" (click)="deleteCase()" *ngIf="this.modCase.content?.modCase?.markedToDeleteAt == undefined">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
