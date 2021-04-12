@@ -3,4 +3,5 @@ export interface AutoModRuleDefinition {
     title: string;
     description: string;
     showLimitField: boolean;
+    showTimeLimitField: boolean;
 }

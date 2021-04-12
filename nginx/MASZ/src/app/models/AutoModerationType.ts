@@ -3,5 +3,6 @@ export enum AutoModerationType {
   TooManyEmotes,
   TooManyMentions,
   TooManyAttachments,
-  TooManyEmbeds
+  TooManyEmbeds,
+  TooManyAutoModerations
 }

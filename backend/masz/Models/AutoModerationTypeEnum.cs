@@ -6,6 +6,7 @@ namespace masz.Models
         TooManyEmotes,
         TooManyMentions,
         TooManyAttachments,
-        TooManyEmbeds
+        TooManyEmbeds,
+        TooManyAutoModerations
     }
 }
