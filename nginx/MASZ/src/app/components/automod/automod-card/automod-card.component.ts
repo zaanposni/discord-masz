@@ -23,7 +23,8 @@ export class AutomodCardComponent implements OnInit {
     1: 'used too many emotes',
     2: 'mentioned too many users',
     3: 'posted too many attachments',
-    4: 'posted too many embeds'
+    4: 'posted too many embeds',
+    5: 'triggered too many automoderations'
   };
   actionsMap: { [key: number]: string} = {
     0: 'No action was taken',

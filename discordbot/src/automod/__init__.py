@@ -20,7 +20,7 @@ type_map = {
     "2": "Too many mentions per message are not allowed on this guild.",
     "3": "Too many attachments per message are not allowed on this guild.",
     "4": "Too many embeds per message are not allowed on this guild.",
-    "4": "You triggered too many automoderations."
+    "5": "You triggered too many automoderations."
 }
 punishments = {
     "0": "Warn",
@@ -147,7 +147,7 @@ async def check_multiple_punishment(msg: Message):
     if not config:
         return
     
-    if check_multiple(msg, config):
+    if await check_multiple(msg, config):
         if check_filter(msg, guildconfig, config):
             print(f"Found multiple automoderations by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
             await apply_punishment(msg, event_type, config, guildconfig)
