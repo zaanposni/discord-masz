@@ -5,7 +5,7 @@
 
     <!-- Admin guilds -->
     <div class="mat-display-1 mb-2 mt-4" style="font-weight: bold;" *ngIf="this.currentUser?.content?.adminGuilds?.length">Admin guilds</div>
-    <div class="row w-100" *ngIf="!this.currentUser.loading">
+    <div class="row w-100 justify-content-center" *ngIf="!this.currentUser.loading">
       <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.adminGuilds" routerLink="/guilds/{{ guild.id }}">
         <img
             src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" 
@@ -20,7 +20,7 @@
 
     <!-- mod guilds -->
     <div class="mat-display-1 mb-2 mt-4" style="font-weight: bold;" *ngIf="this.currentUser?.content?.modGuilds?.length">Moderator guilds</div>
-    <div class="row w-100" *ngIf="!this.currentUser.loading">
+    <div class="row w-100 justify-content-center" *ngIf="!this.currentUser.loading">
       <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.modGuilds" routerLink="/guilds/{{ guild.id }}">
         <img
             src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" 
@@ -35,7 +35,7 @@
 
     <!-- member guilds -->
     <div class="mat-display-1 mb-2 mt-4" style="font-weight: bold;" *ngIf="this.currentUser?.content?.memberGuilds?.length">Guilds</div>
-    <div class="row w-100" *ngIf="!this.currentUser.loading">
+    <div class="row w-100 justify-content-center" *ngIf="!this.currentUser.loading">
       <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.memberGuilds" routerLink="/guilds/{{ guild.id }}">
         <img
             src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" 
@@ -50,7 +50,7 @@
 
     <!-- banned guilds -->
     <div class="mat-display-1 mb-2 mt-4" style="font-weight: bold;" *ngIf="this.currentUser?.content?.bannedGuilds?.length">Banned from guilds</div>
-    <div class="row w-100" *ngIf="!this.currentUser.loading">
+    <div class="row w-100 justify-content-center" *ngIf="!this.currentUser.loading">
       <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.bannedGuilds" routerLink="/guilds/{{ guild.id }}">
         <img
             src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" 

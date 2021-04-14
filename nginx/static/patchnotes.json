@@ -4,7 +4,8 @@
     "version": "v1.10.2",
     "changes": [
       "Minor styling fixes in case view.",
-      "Added option to delete cases that are in the bin as siteadmin."
+      "Added option to delete cases that are in the bin as siteadmin.",
+      "Guildlist is now centered."
     ]
   },
   {
