@@ -23,7 +23,7 @@ namespace masz.Controllers
             this.logger = logger;
         }
 
-        [HttpDelete("{caseid}")]
+        [HttpDelete("{caseid}/restore")]
         public async Task<IActionResult> RestoreModCase([FromRoute] string guildid, [FromRoute] string caseid)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
@@ -32,6 +32,7 @@ namespace masz.Controllers
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
                 return BadRequest("Guild not registered.");
             }
+            
             if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid))
             {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
@@ -55,6 +56,41 @@ namespace masz.Controllers
             modCase.MarkedToDeleteAt = null;
 
             this.database.UpdateModCase(modCase);
+            await this.database.SaveChangesAsync();
+
+            return Ok(new { id = modCase.Id, caseid = modCase.CaseId });
+        }
+
+        [HttpDelete("{caseid}/delete")]
+        public async Task<IActionResult> DeleteModCase([FromRoute] string guildid, [FromRoute] string caseid)
+        {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            if (await database.SelectSpecificGuildConfig(guildid) == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
+                return BadRequest("Guild not registered.");
+            }
+
+            if (! await this.IsSiteAdmin())
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+
+            ModCase modCase = await database.SelectSpecificModCase(guildid, caseid);
+            if (modCase == null) 
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 ModCase not found.");
+                return NotFound();
+            }
+
+            if (modCase.MarkedToDeleteAt == null)
+            {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Case not marked to delete.");
+                return BadRequest("Case not marked to delete.");
+            }
+
+            this.database.DeleteSpecificModCase(modCase);
             await this.database.SaveChangesAsync();
 
             return Ok(new { id = modCase.Id, caseid = modCase.CaseId });

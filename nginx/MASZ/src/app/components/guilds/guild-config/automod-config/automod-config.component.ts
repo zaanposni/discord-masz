@@ -21,31 +21,43 @@ export class AutomodConfigComponent implements OnInit {
       type: 0,
       title: 'Invites',
       description: 'A message on your guild matches the invite pattern.',
-      showLimitField: false
+      showLimitField: false,
+      showTimeLimitField: false
     },
     {
       type: 1,
       title: 'Emotes',
       description: 'A message on your guild contains too many emotes.',
-      showLimitField: true
+      showLimitField: true,
+      showTimeLimitField: false
     },
     {
       type: 2,
       title: 'Mentions',
       description: 'A message on your guild mentions too many users. Does not include role mentions.',
-      showLimitField: true
+      showLimitField: true,
+      showTimeLimitField: false
     },
     {
       type: 3,
       title: 'Attachments',
       description: 'A message on your guild contains too many attachments.',
-      showLimitField: true
+      showLimitField: true,
+      showTimeLimitField: false
     },
     {
       type: 4,
       title: 'Embeds',
       description: 'A message on your guild contains too many embeds. This includes preview of links.',
-      showLimitField: true
+      showLimitField: true,
+      showTimeLimitField: false
+    },
+    {
+      type: 5,
+      title: 'Automoderations',
+      description: 'A user triggers too many automoderations in a defined timespan.',
+      showLimitField: true,
+      showTimeLimitField: true
     }
   ];
 

@@ -34,3 +34,9 @@ async def get_automod_config_by_guild(guildid: str):
     values = { "guildid": guildid }
     await connect()
     return await database.fetch_all(query=query, values=values)
+
+async def get_automodevents_by_user_since_minutes(userid: str, minutes: int):
+    query = "SELECT * FROM AutoModerationEvents WHERE UserId = :userid AND CreatedAt >= NOW() - INTERVAL :minutes MINUTE"
+    values = { "userid": userid, "minutes": minutes }
+    await connect()
+    return await database.fetch_all(query=query, values=values)

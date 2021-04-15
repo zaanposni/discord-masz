@@ -17,6 +17,10 @@
             <mat-form-field *ngIf="this.defintion.showLimitField">
               <mat-label>Upper limit</mat-label>
               <input type="number" matInput formControlName="limit" required>
+            </mat-form-field><br/>
+            <mat-form-field *ngIf="this.defintion.showTimeLimitField">
+              <mat-label>Time limit (minutes)</mat-label>
+              <input type="number" matInput formControlName="timeLimit" required>
             </mat-form-field>
             <div>
               <button mat-raised-button matStepperNext color="accent">Next</button>

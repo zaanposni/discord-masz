@@ -152,12 +152,23 @@ export class ModcaseViewComponent implements OnInit {
 
   restoreCase() {
     this.restoringCase = true;
-    this.api.deleteData(`/guilds/${this.guildId}/bin/${this.caseId}`).subscribe((data) => {
+    this.api.deleteData(`/guilds/${this.guildId}/bin/${this.caseId}/restore`).subscribe((data) => {
       this.toastr.success("Restored case.");
       this.reloadCase();
       this.restoringCase = false;
     }, () => {
       this.toastr.error("Failed to restore case.");
+      this.restoringCase = false;
+    });
+  }
+
+  deleteCaseFromBin() {
+    this.restoringCase = true;
+    this.api.deleteData(`/guilds/${this.guildId}/bin/${this.caseId}/delete`).subscribe((data) => {
+      this.toastr.success("Case deleted.");
+      this.router.navigate(['guilds', this.guildId]);
+    }, () => {
+      this.toastr.error("Failed to delete case.");
       this.restoringCase = false;
     });
   }

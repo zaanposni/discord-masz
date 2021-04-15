@@ -35,7 +35,8 @@ export class AutomodRuleComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventForm = this._formBuilder.group({
-      limit: ['', this.defintion.showLimitField ? Validators.min(-1) : null]
+      limit: ['', this.defintion.showLimitField ? Validators.min(-1) : null],
+      timeLimit: ['', this.defintion.showTimeLimitField ? Validators.min(-1) : null]
     });
     this.filterForm = this._formBuilder.group({
       excludeRoles: [''],
@@ -101,7 +102,7 @@ export class AutomodRuleComponent implements OnInit {
 
   applyConfig(config: AutomodConfig) {
     if (this.defintion.showLimitField) {
-      this.eventForm.setValue({ limit: config.limit });
+      this.eventForm.setValue({ limit: config.limit, timeLimit: this.defintion.showTimeLimitField ? config.timeLimitMinutes : '' });
     }
     
     this.filterForm.setValue({ excludeRoles: config.ignoreRoles, excludeChannels: config.ignoreChannels });
@@ -140,7 +141,7 @@ export class AutomodRuleComponent implements OnInit {
       "PunishmentDurationMinutes": this.actionForm.value.punishmentDuration !== "" ? this.actionForm.value.punishmentDuration : null,
       "IgnoreChannels": this.filterForm.value.excludeChannels !== "" ? this.filterForm.value.excludeChannels : [],
       "IgnoreRoles": this.filterForm.value.excludeRoles !== "" ? this.filterForm.value.excludeRoles : [],
-      "TimeLimitMinutes": null as any,
+      "TimeLimitMinutes": this.eventForm.value.timeLimit !== "" ? this.eventForm.value.timeLimit : null,
       "Limit": this.eventForm.value.limit !== "" ? this.eventForm.value.limit : null,
       "SendDmNotification": this.actionForm.value.dmNotification !== "" ? this.actionForm.value.dmNotification : false,
       "SendPublicNotification": this.actionForm.value.publicNotification !== "" ? this.actionForm.value.publicNotification : false

@@ -9,6 +9,7 @@ from .emotes import check_message as check_emotes
 from .mentions import check_message as check_mentions
 from .attachments import check_message as check_attachments
 from .links import check_message as check_links
+from .multiple_punishment import check_message as check_multiple
 from data import get_cached_automod_config, get_cached_guild_config
 
 
@@ -18,7 +19,8 @@ type_map = {
     "1": "Too many emotes per message are not allowed on this guild.",
     "2": "Too many mentions per message are not allowed on this guild.",
     "3": "Too many attachments per message are not allowed on this guild.",
-    "4": "Too many embeds per message are not allowed on this guild."
+    "4": "Too many embeds per message are not allowed on this guild.",
+    "5": "You triggered too many automoderations."
 }
 punishments = {
     "0": "Warn",
@@ -135,6 +137,22 @@ def get_config_by_type(automodconfig, event_type):
     else:
         return None
 
+async def check_multiple_punishment(msg: Message):
+    guildconfig = await get_cached_guild_config(msg.guild.id)
+    automodconfig = await get_cached_automod_config(msg.guild.id)
+    if not (guildconfig and automodconfig):  # guild not registered or no config
+        return
+    event_type = 5
+    config = get_config_by_type(automodconfig, event_type)
+    if not config:
+        return
+    
+    if await check_multiple(msg, config):
+        if check_filter(msg, guildconfig, config):
+            print(f"Found multiple automoderations by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+            await apply_punishment(msg, event_type, config, guildconfig)
+            return True
+
 
 async def check_message(msg: Message) -> bool:
     if msg.guild is None:
@@ -155,6 +173,7 @@ async def check_message(msg: Message) -> bool:
             if check_filter(msg, guildconfig, config):
                 print(f"Found invite by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                 await apply_punishment(msg, event_type, config, guildconfig)
+                await check_multiple_punishment(msg)
                 return True
 
     event_type = 1
@@ -164,6 +183,7 @@ async def check_message(msg: Message) -> bool:
             if check_filter(msg, guildconfig, config):
                 print(f"Found emotes by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                 await apply_punishment(msg, event_type, config, guildconfig)
+                await check_multiple_punishment(msg)
                 return True
 
     event_type = 2
@@ -173,6 +193,7 @@ async def check_message(msg: Message) -> bool:
             if check_filter(msg, guildconfig, config):
                 print(f"Found mentions by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                 await apply_punishment(msg, event_type, config, guildconfig)
+                await check_multiple_punishment(msg)
                 return True
 
     event_type = 3
@@ -182,6 +203,7 @@ async def check_message(msg: Message) -> bool:
             if check_filter(msg, guildconfig, config):
                 print(f"Found attachments by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                 await apply_punishment(msg, event_type, config, guildconfig)
+                await check_multiple_punishment(msg)
                 return True
 
     event_type = 4
@@ -191,6 +213,7 @@ async def check_message(msg: Message) -> bool:
             if check_filter(msg, guildconfig, config):
                 print(f"Found embeds by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                 await apply_punishment(msg, event_type, config, guildconfig)
+                await check_multiple_punishment(msg)
                 return True
 
     return False

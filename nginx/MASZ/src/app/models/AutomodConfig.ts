@@ -9,7 +9,7 @@ export interface AutomodConfig {
     punishmentDurationMinutes: number;
     ignoreChannels: string[];
     ignoreRoles: string[];
-    timeLimitMinutes?: any;
+    timeLimitMinutes?: number;
     limit?: number;
     sendDmNotification: boolean;
     sendPublicNotification: boolean;

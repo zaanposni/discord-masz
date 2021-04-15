@@ -38,11 +38,11 @@ Join this server to receive update information or get support: https://discord.g
 
 # Hosting
 
-You can **host your own instance of MASZ for free**, see below for instructions. <br/>
-If you are not experienced enough to do so or just want to use MASZ right now, feel free to contact me. <br/>
-I will host an instance for you for a small fee. <br/>
+You can **host your own instance of MASZ**, see below for instructions. <br/>
+If you have any questions, feel free to contact me. <br/>
+- [Discord server](https://discord.gg/5zjpzw6h3S)
 - Discord `zaanposni#9295`
-- Mail `me@zaanposni.com`
+- [Mail](mailto:me@zaanposni.com)
 
 # Setup - Selfhosting <img src="https://img.shields.io/badge/using-docker-blue">
 
