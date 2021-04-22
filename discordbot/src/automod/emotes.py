@@ -3,7 +3,7 @@ import re
 from discord import Message
 import emoji
 
-CUSTOM_EMOTE_REGEX = re.compile(r'<:\w*:\d*>')
+CUSTOM_EMOTE_REGEX = re.compile(r'<a?:\w*:\d*>')
 EMOTE_REGEX = emoji.get_emoji_regexp()
 
 def check_message(msg: Message, config) -> bool:
