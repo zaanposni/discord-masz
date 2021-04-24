@@ -70,6 +70,9 @@ namespace masz.Controllers
                 }
                 await database.DeleteAllModerationConfigsForGuild(guildid);
                 await database.DeleteAllModerationEventsForGuild(guildid);
+                await database.DeleteAllTemplatesForGuild(guildid);
+                await database.DeleteMotdForGuild(guildid);
+                await database.DeleteInviteHistoryByGuild(guildid);
             }
 
             database.DeleteSpecificGuildConfig(guildConfig);
