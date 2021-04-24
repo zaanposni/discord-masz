@@ -37,8 +37,8 @@ export class VistestComponent implements OnInit {
       color: { inherit: 'to' },
       smooth: {
         enabled: true,
-        type: 'discrete',
-        roundness: 0.5
+        type: 'continuous',
+        roundness: 0.1
       }
     },
     interaction: {
@@ -68,7 +68,7 @@ export class VistestComponent implements OnInit {
   }
 
   calculateNewNetwork(network: UserNetwork, userId: string) {
-    let baseNode = this.addNewNode(this.newUserNode, [network?.user, userId, 50]) as Node;
+    let baseNode = this.addNewNode(this.newUserNode, [network?.user, userId, 50, 'basics']) as Node;
     for (let guild of network.guilds) {
       let guildNode = this.addNewNode(this.newGuildNode, [guild, guild.id, 40, `${userId}/${guild.id}`]) as Node;
       this.addNewEdge(baseNode, guildNode);
@@ -153,10 +153,11 @@ export class VistestComponent implements OnInit {
     return newEdge;
   }
 
-  newUserNode(user: DiscordUser, backupUserId: string = '', size: number = 30): Node {
+  newUserNode(user: DiscordUser, backupUserId: string = '', size: number = 30, group: string = 'otherusers'): Node {
     return {
       id: user?.id ?? backupUserId,
       shape: 'circularImage',
+      group: group,
       image: user?.imageUrl ?? '/assets/img/default_profile.png',
       label: user != null ? `${user.username}#${user.discriminator}` : backupUserId,
       title: user?.id ?? backupUserId,
@@ -168,6 +169,7 @@ export class VistestComponent implements OnInit {
     return {
       id: idPrefix + guild?.id ?? guildId,
       shape: 'circularImage',
+      group: 'basics',
       image: guild != null ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` : '/assets/img/default_profile.png',
       label: guild != null ? guild.name : guildId,
       title: guild?.id ?? guildId,
@@ -202,6 +204,7 @@ export class VistestComponent implements OnInit {
     return {
       id: `${invite.guildId}/${invite.usedInvite}/${new Date(invite.inviteCreatedAt).getTime()}`,
       label: invite.usedInvite,
+      group: `${invite.guildId}/invites`,
       shape: 'diamond',
       title: invite?.targetChannelId,
       size: 15
@@ -212,7 +215,7 @@ export class VistestComponent implements OnInit {
     return {
       id: `${userId}/${guildId}/cases`,
       label: 'Cases',
-      group: `${guildId}/basics`,
+      group: `basics/sub`,
       shape: 'triangle',
       size: 15
     }
@@ -222,7 +225,7 @@ export class VistestComponent implements OnInit {
     return {
       id: `${userId}/${guildId}/automods`,
       label: 'Automoderations',
-      group: `${guildId}/basics`,
+      group: `basics/sub`,
       shape: 'triangle',
       size: 15
     }
