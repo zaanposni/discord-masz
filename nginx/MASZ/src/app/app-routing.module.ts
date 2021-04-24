@@ -13,6 +13,7 @@ import { GuildOverviewComponent } from './components/guilds/guild-overview/guild
 import { ModcaseAddComponent } from './components/modcase/modcase-add/modcase-add.component';
 import { ModcaseEditComponent } from './components/modcase/modcase-edit/modcase-edit.component';
 import { ModcaseViewComponent } from './components/modcase/modcase-view/modcase-view.component';
+import { VistestComponent } from './components/usergraph/vistest/vistest.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'patchnotes', component: PatchnotesComponent },
   { path: 'donate', component: DonateComponent },
   { path: 'guidelines', component: GuidelinesComponent },
+  { path: 'test', component: VistestComponent },
   { path: 'login',  component: IndexComponent, pathMatch: 'full' },
   { path: '',  redirectTo: 'login', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }

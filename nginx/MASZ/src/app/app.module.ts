@@ -83,6 +83,7 @@ import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateMod
 import { TemplateCreateDialogComponent } from './components/dialogs/template-create-dialog/template-create-dialog.component';
 import { TokenOverviewComponent } from './components/api/token-overview/token-overview.component';
 import { NewTokenDialogComponent } from './components/dialogs/new-token-dialog/new-token-dialog.component';
+import { VistestComponent } from './components/usergraph/vistest/vistest.component';
 
 @NgModule({
   declarations: [
@@ -129,7 +130,8 @@ import { NewTokenDialogComponent } from './components/dialogs/new-token-dialog/n
     CommentEditDialogComponent,
     TemplateCreateDialogComponent,
     TokenOverviewComponent,
-    NewTokenDialogComponent
+    NewTokenDialogComponent,
+    VistestComponent
   ],
   imports: [
     CommonModule,

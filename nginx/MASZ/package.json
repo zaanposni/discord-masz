@@ -30,6 +30,8 @@
     "ngx-toastr": "^13.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "vis": "^4.21.0-EOL",
+    "vis-network": "^9.0.4",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -38,6 +40,7 @@
     "@angular/compiler-cli": "~11.0.3",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
+    "@types/vis": "^4.21.21",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
