@@ -13,13 +13,16 @@ import { ApiService } from 'src/app/services/api.service';
 import { Network, DataSet, Node, Edge, Data, IdType } from 'vis';
 
 @Component({
-  selector: 'app-vistest',
-  templateUrl: './vistest.component.html',
-  styleUrls: ['./vistest.component.css']
+  selector: 'app-userscan',
+  templateUrl: './userscan.component.html',
+  styleUrls: ['./userscan.component.css']
 })
-export class VistestComponent implements OnInit {
+export class UserscanComponent implements OnInit {
 
   @ViewChild('network') el!: ElementRef;
+  timeout: any = null;
+  loading: boolean = false;
+  public search!: string;
   private networkInstance!: Network;
   private options = {
     height: '100%',
@@ -45,12 +48,38 @@ export class VistestComponent implements OnInit {
       hover: true
     }
   };
-  private nodes: Node[] = [];
-  private edges: Edge[] = [];
+  private data: {'nodes': Node[], 'edges': Edge[]} = { 'nodes': [], 'edges': [] };
 
-  constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute) { }
+  constructor(private api: ApiService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+  }
+
+  onSearch(event: any) {
+    clearTimeout(this.timeout);
+    var $this = this;
+    this.timeout = setTimeout(function () {
+      if (event.keyCode != 13) {
+        $this.executeSearch();
+      }
+    }, 500);
+  }
+
+  executeSearch() {
+    if (this.search?.trim()) {
+      this.loading = true;
+      this.reset();
+      this.loadDataForUserId(this.search?.trim()).subscribe((data: UserNetwork) => {
+        this.calculateNewNetwork(data, this.search?.trim());
+        this.loading = false;
+      }, () => {
+        this.reset();
+        this.loading = false;
+        this.toastr.error("Failed to load scan information.");
+      });
+    } else {
+      this.reset();
+    }
   }
 
   loadDataForUserId(userId: string): Observable<UserNetwork> {
@@ -59,12 +88,13 @@ export class VistestComponent implements OnInit {
 
   ngAfterViewInit() {
      const container = this.el.nativeElement;
-     this.networkInstance = new Network(container, {}, this.options);
+     this.networkInstance = new Network(container, this.data, this.options);
+  }
 
-    let userId = '382991040975732747'
-    this.loadDataForUserId(userId).subscribe((data: UserNetwork) => {
-      this.calculateNewNetwork(data, userId);
-    });
+  reset() {
+    this.data.nodes = [];
+    this.data.edges = [];
+    this.redraw();
   }
 
   calculateNewNetwork(network: UserNetwork, userId: string) {
@@ -105,7 +135,8 @@ export class VistestComponent implements OnInit {
   }
 
   redraw() {
-    this.networkInstance.setData({ 'nodes': this.nodes, 'edges': this.edges });
+    this.networkInstance.destroy
+    this.networkInstance.setData(this.data);
     this.networkInstance.redraw();
   }
 
@@ -113,13 +144,13 @@ export class VistestComponent implements OnInit {
     let newNode = func(...params);
     if (Array.isArray(newNode)) {
       newNode.forEach(element => {
-        if (this.nodes.filter(x => x.id === element?.id)?.length === 0) {
-          this.nodes.push(element);
+        if (this.data.nodes.filter(x => x.id === element?.id)?.length === 0) {
+          this.data.nodes.push(element);
         }
       });
     } else {
-      if (this.nodes.filter(x => x.id === newNode?.id)?.length === 0) {
-        this.nodes.push(newNode);
+      if (this.data.nodes.filter(x => x.id === newNode?.id)?.length === 0) {
+        this.data.nodes.push(newNode);
       }
 
     }
@@ -134,9 +165,9 @@ export class VistestComponent implements OnInit {
     if (arrow === 'from') {
       newEdge['arrows'] = { middle: { scaleFactor: 0.5 }, from: true };
     }
-    let existingEdges = this.edges.filter(x => x.id === newEdge?.id);
+    let existingEdges = this.data.edges.filter(x => x.id === newEdge?.id);
     if (existingEdges.length === 0) {
-      this.edges.push(newEdge);
+      this.data.edges.push(newEdge);
     } else if(addWithRoundness) {
       let roundness = 0;
       for (let edge of existingEdges) {
@@ -148,7 +179,7 @@ export class VistestComponent implements OnInit {
       roundness += 0.2;
       newEdge['id'] += `/${roundness}`;
       newEdge['smooth'] = {type: 'curvedCW', roundness: roundness };
-      this.edges.push(newEdge);
+      this.data.edges.push(newEdge);
     }
     return newEdge;
   }

@@ -143,6 +143,16 @@
         
         <mat-divider></mat-divider>
         
+        <a class="d-flex" (click)="open('userscan')"
+         *ngIf="this.currentUser?.modGuilds?.length || this.currentUser?.adminGuilds?.length">
+          <div [class.activatedNav]="activatedNav[1] === 'userscan'" class="rounded navitem">
+            <mat-icon aria-hidden="false" aria-label="tune icon">person_search</mat-icon>
+            <span>Userscan</span>
+          </div>
+        </a>
+
+        <mat-divider *ngIf="this.currentUser?.modGuilds?.length || this.currentUser?.adminGuilds?.length"></mat-divider>
+
         <a class="d-flex" (click)="open('tokens')" *ngIf="this.currentUser?.isAdmin">
           <div [class.activatedNav]="activatedNav[1] === 'tokens'" class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="tune icon">api</mat-icon>
