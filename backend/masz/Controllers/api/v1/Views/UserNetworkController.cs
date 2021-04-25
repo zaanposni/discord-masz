@@ -26,15 +26,23 @@ namespace masz.Controllers
         [HttpGet("{userid}")]
         public async Task<IActionResult> GetNetwork([FromRoute] string userid)
         {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             List<string> modGuilds = new List<string>();
             List<Guild> guildViews = new List<Guild>();
-            foreach (GuildConfig guildConfig in await database.SelectAllGuildConfigs()) {
+
+            List<GuildConfig> guildConfigs = await database.SelectAllGuildConfigs();
+            if (guildConfigs.Count == 0) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 No guilds registered.");
+                return BadRequest("No guilds registered.");
+            }
+            foreach (GuildConfig guildConfig in guildConfigs) {
                 if (await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildConfig.GuildId)) {
                     modGuilds.Add(guildConfig.GuildId);
                     guildViews.Add(await discord.FetchGuildInfo(guildConfig.GuildId, CacheBehavior.Default));
                 }
             }
             if (modGuilds.Count == 0) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
 
@@ -66,6 +74,7 @@ namespace masz.Controllers
             List<ModCase> modCases = (await database.SelectAllModCasesForSpecificUser(userid)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
             List<AutoModerationEvent> modEvents = (await database.SelectAllModerationEventsForSpecificUser(userid)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
 
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning network.");
             return Ok(new {
                 guilds = guildViews,
                 user = searchedUser,
