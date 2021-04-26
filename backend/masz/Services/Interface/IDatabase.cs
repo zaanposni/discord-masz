@@ -15,6 +15,7 @@ namespace masz.Services
         void DeleteSpecificGuildConfig(GuildConfig guildConfig);
         void UpdateGuildConfig(GuildConfig guildConfig);
         Task SaveGuildConfig(GuildConfig guildConfig);
+        Task<int> CountAllGuildConfigs();
 
 
         Task<int> GetHighestCaseIdForGuild(string guildId);
@@ -28,6 +29,7 @@ namespace masz.Services
         Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, ModcaseTableType tableType);
         Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize);
         Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize, ModcaseTableType tableType);
+        Task<int> CountAllModCases();
         Task<int> CountAllModCasesForGuild(string guildId);
         Task<int> CountAllActivePunishmentsForGuild(string guildId);
         Task<int> CountAllActivePunishmentsForGuild(string guildId, PunishmentType type);

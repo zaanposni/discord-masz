@@ -56,6 +56,10 @@ namespace masz.Services
         {
             await context.GuildConfigs.AddAsync(guildConfig);
         }
+        public async Task<int> CountAllGuildConfigs()
+        {
+            return await context.GuildConfigs.AsQueryable().CountAsync();
+        }
 
         // ==================================================================================
         // 
@@ -179,6 +183,11 @@ namespace masz.Services
         public async Task<List<ModCase>> SelectLatestModCases(DateTime timeLimit, int limit = 1000)
         {
             return await context.ModCases.AsQueryable().Where(x => x.CreatedAt >= timeLimit).OrderByDescending(x => x.CreatedAt).Take(limit).ToListAsync();
+        }
+
+        public async Task<int> CountAllModCases()
+        {
+            return await context.ModCases.AsQueryable().CountAsync();
         }
 
         public async Task<int> CountAllModCasesForGuild(string guildId)
