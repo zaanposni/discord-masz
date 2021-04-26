@@ -50,7 +50,7 @@ export class UserscanComponent implements OnInit {
   };
   private data: {'nodes': Node[], 'edges': Edge[]} = { 'nodes': [], 'edges': [] };
 
-  constructor(private api: ApiService, private toastr: ToastrService) { }
+  constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
@@ -89,6 +89,21 @@ export class UserscanComponent implements OnInit {
   ngAfterViewInit() {
      const container = this.el.nativeElement;
      this.networkInstance = new Network(container, this.data, this.options);
+     this.networkInstance.on("doubleClick", this.onDoubleClick.bind(this));
+     if ('userid' in this.route.snapshot.queryParams) {
+      this.search = this.route.snapshot.queryParams['userid'];
+      this.executeSearch();
+    }
+  }
+
+  onDoubleClick(params: any) {
+    if (params?.nodes?.length === 1) {
+      let node = this.data.nodes.find(x => x.id === params?.nodes[0]) as any;
+      if (node?.redirectTo) {
+        console.log(node.redirectTo);
+        window.open(node.redirectTo, '_blank');
+      }
+    }
   }
 
   reset() {
@@ -192,8 +207,9 @@ export class UserscanComponent implements OnInit {
       image: user?.imageUrl ?? '/assets/img/default_profile.png',
       label: user != null ? `${user.username}#${user.discriminator}` : backupUserId,
       title: user?.id ?? backupUserId,
-      size: size
-    }
+      size: size,
+      redirectTo: `/userscan?userid=${user?.id ?? backupUserId}`
+    } as Node
   }
   
   newGuildNode(guild: Guild, guildId: string, size: number = 30, idPrefix: string = ''): Node {
@@ -218,8 +234,9 @@ export class UserscanComponent implements OnInit {
       label: `Case #${modCase.caseId}\n${modCase.title.substr(0, 50)}`,
       title: `Punishment: ${modCase.punishment}${punishmentString}${modCase.description.substr(0, 200)}`,
       group: `${modCase.guildId}/cases`,
-      size: size
-    }
+      size: size,
+      redirectTo: `/guilds/${modCase.guildId}/cases/${modCase.caseId}`
+    } as Node
   }
 
   newEventNode(modEvent: AutoModerationEvent, size: number = 20): Node {
