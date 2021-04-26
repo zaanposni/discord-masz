@@ -1,5 +1,16 @@
 [
   {
+    "title": "Version 1.11",
+    "version": "v1.11",
+    "changes": [
+      "Added the userscan feature.",
+      "Added invite tracking.",
+      "Fixed automods for nitro emotes.",
+      "Fixed reapply of muted role on rejoin.",
+      "Added more stats to the adminstats endpoint"
+    ]
+  },
+  {
     "title": "Version 1.10.2",
     "version": "v1.10.2",
     "changes": [
