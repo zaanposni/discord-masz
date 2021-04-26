@@ -234,10 +234,10 @@ export class UserscanComponent implements OnInit {
   newInviteNode(invite: UserInvite): Node {
     return {
       id: `${invite.guildId}/${invite.usedInvite}/${new Date(invite.inviteCreatedAt).getTime()}`,
-      label: invite.usedInvite,
+      label: invite.usedInvite.substr(invite.usedInvite.lastIndexOf("/") + 1),
       group: `${invite.guildId}/invites`,
       shape: 'diamond',
-      title: invite?.targetChannelId,
+      title: invite?.usedInvite,
       size: 15
     }
   }
