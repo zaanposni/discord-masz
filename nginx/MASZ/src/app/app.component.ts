@@ -45,7 +45,7 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.router.events.subscribe((data) => {
       if (data instanceof NavigationEnd) {
-        this.activatedNav = data.url.split('/');
+        this.activatedNav = data.url.split('?')[0].split('/');
       }
     });
 

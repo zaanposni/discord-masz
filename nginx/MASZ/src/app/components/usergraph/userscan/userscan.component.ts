@@ -62,7 +62,7 @@ export class UserscanComponent implements OnInit {
       if (event.keyCode != 13) {
         $this.executeSearch();
       }
-    }, 500);
+    }, 100);
   }
 
   executeSearch() {
