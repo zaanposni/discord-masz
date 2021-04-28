@@ -40,3 +40,9 @@ async def get_automodevents_by_user_since_minutes(userid: str, minutes: int):
     values = { "userid": userid, "minutes": minutes }
     await connect()
     return await database.fetch_all(query=query, values=values)
+
+async def get_latest_joins_by_user_and_guild(userid: str, guildid: str):
+    query = "SELECT * FROM UserInvites WHERE JoinedUserId = :userid AND GuildId = :guildid ORDER BY JoinedAt DESC"
+    values = { "guildid": guildid, "userid": userid }
+    await connect()
+    return await database.fetch_all(query=query, values=values)
