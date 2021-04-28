@@ -7,7 +7,8 @@
       "Added invite tracking.",
       "Fixed automods for nitro emotes.",
       "Fixed reapply of muted role on rejoin.",
-      "Added more stats to the adminstats endpoint."
+      "Added more stats to the adminstats endpoint.",
+      "Added invite information to whois command."
     ]
   },
   {
