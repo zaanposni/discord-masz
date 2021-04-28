@@ -56,6 +56,10 @@ namespace masz.Services
         {
             await context.GuildConfigs.AddAsync(guildConfig);
         }
+        public async Task<int> CountAllGuildConfigs()
+        {
+            return await context.GuildConfigs.AsQueryable().CountAsync();
+        }
 
         // ==================================================================================
         // 
@@ -171,9 +175,19 @@ namespace masz.Services
             return await context.ModCases.AsQueryable().ToListAsync();
         }
 
+        public async Task<List<ModCase>> SelectAllModCasesForSpecificUser(string userId)
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.UserId == userId).ToListAsync();
+        }
+
         public async Task<List<ModCase>> SelectLatestModCases(DateTime timeLimit, int limit = 1000)
         {
             return await context.ModCases.AsQueryable().Where(x => x.CreatedAt >= timeLimit).OrderByDescending(x => x.CreatedAt).Take(limit).ToListAsync();
+        }
+
+        public async Task<int> CountAllModCases()
+        {
+            return await context.ModCases.AsQueryable().CountAsync();
         }
 
         public async Task<int> CountAllModCasesForGuild(string guildId)
@@ -268,6 +282,10 @@ namespace masz.Services
         public async Task<List<AutoModerationEvent>> SelectAllModerationEvents()
         {
             return await context.AutoModerationEvents.AsQueryable().ToListAsync();
+        }
+        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUser(string userId)
+        {
+            return await context.AutoModerationEvents.AsQueryable().Where(x => x.UserId == userId).ToListAsync();
         }
         public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(string guildId)
         {
@@ -383,6 +401,12 @@ namespace masz.Services
             return await context.CaseTemplates.AsQueryable().Where(x => x.UserId == userId).OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
 
+        public async Task DeleteAllTemplatesForGuild(string guildId)
+        {
+            var templates = await context.CaseTemplates.AsQueryable().Where(x => x.CreatedForGuildId == guildId).ToListAsync();
+            context.CaseTemplates.RemoveRange(templates);
+        }
+
         // ==================================================================================
         // 
         // Motd
@@ -396,6 +420,11 @@ namespace masz.Services
         public void SaveMotd(GuildMotd motd)
         {
             context.GuildMotds.Update(motd);
+        }
+        public async Task DeleteMotdForGuild(string guildId)
+        {
+            var motd = await context.GuildMotds.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            context.GuildMotds.RemoveRange(motd);
         }
 
         // ==================================================================================
@@ -427,6 +456,33 @@ namespace masz.Services
         public async Task<APIToken> GetAPIToken(int id)
         {
             return await context.APITokens.AsQueryable().Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
+
+        // ==================================================================================
+        // 
+        // UserInvites
+        //
+        // ==================================================================================
+
+        public async Task<List<UserInvite>> GetInvitedUsersByUserId(string userId)
+        {
+            return await context.UserInvites.AsQueryable().Where(x => x.InviteIssuerId == userId).ToListAsync();
+        }
+
+        public async Task<List<UserInvite>> GetUsedInvitesByUserId(string userId)
+        {
+            return await context.UserInvites.AsQueryable().Where(x => x.JoinedUserId == userId).ToListAsync();
+        }
+
+        public async Task<int> CountTrackedInvites()
+        {
+            return await context.UserInvites.AsQueryable().CountAsync();
+        }
+
+        public async Task DeleteInviteHistoryByGuild(string guildId)
+        {
+            var userinvites = await context.UserInvites.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            context.UserInvites.RemoveRange(userinvites);
         }
     }
 }

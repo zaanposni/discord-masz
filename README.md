@@ -114,6 +114,10 @@ Furthermore, make sure the bot is high enough in the role hierarchy to punish pe
 
 To avoid any issue for message deletion or read permissions it is recommended to grant your bot a very high and strong or even the `administrator` role.
 
+## Invite tracking
+
+Allows masz to track the invites new members are using. Grant your bot the `manage guild` permission to use this feature.
+
 ## Update
 
 To install a new update of MASZ just use:

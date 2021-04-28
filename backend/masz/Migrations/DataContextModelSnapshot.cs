@@ -359,6 +359,38 @@ namespace masz.Migrations
                     b.ToTable("ModCaseComments");
                 });
 
+            modelBuilder.Entity("masz.Models.UserInvite", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("GuildId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime>("InviteCreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("InviteIssuerId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime>("JoinedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("JoinedUserId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("TargetChannelId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("UsedInvite")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserInvites");
+                });
+
             modelBuilder.Entity("masz.Models.ModCaseComment", b =>
                 {
                     b.HasOne("masz.Models.ModCase", "ModCase")

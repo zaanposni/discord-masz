@@ -6,7 +6,7 @@ from discord.ext import commands
 from discord import Embed, Member, User
 from discord.errors import NotFound
 
-from data import get_modcases_by_user_and_guild, get_cached_guild_config
+from data import get_modcases_by_user_and_guild, get_cached_guild_config, get_latest_joins_by_user_and_guild
 from .checks import registered_guild_and_admin_or_mod_only
 
 
@@ -25,10 +25,14 @@ async def whois(ctx, user: User):
     embed.timestamp = datetime.now()
     embed.set_footer(text=f"UserId: {user.id}")
     
+    invites = await get_latest_joins_by_user_and_guild(user.id, ctx.guild.id)
     if member:
         if isinstance(member, Member):
             if member.joined_at:
-                embed.add_field(name="Joined", value=member.joined_at.strftime("%d.%m.%Y %H:%M:%S"), inline=True)
+                text = member.joined_at.strftime("%d.%m.%Y %H:%M:%S")
+                if invites:
+                    text += f"\nUsed invite: {invites[0]['UsedInvite']}\nBy: <@{invites[0]['InviteIssuerId']}>"
+                embed.add_field(name="Joined", value=text, inline=True)
 
         embed.add_field(name="Registered", value=member.created_at.strftime("%d.%m.%Y %H:%M:%S"), inline=True)
         if isinstance(member, Member):

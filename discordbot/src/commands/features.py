@@ -49,6 +49,7 @@ async def features(ctx):
     kick = permissions.kick_members
     ban = permissions.ban_members
     mute = permissions.manage_roles
+    manage_guild = permissions.manage_guild
 
     embed = Embed(title="Features")
     missing_permissions = f"\n- {CHECK if kick else X_CHECK} Kick permission {'not' if not kick else ''} granted" \
@@ -83,8 +84,14 @@ async def features(ctx):
                 f"{'Define a internal staff webhook to use this feature.' if not internal_webhook_defined else ''}",
         inline = False
     )
+    embed.add_field(
+        name = f"{CHECK if manage_guild else X_CHECK} Invite tracking",
+        value = "Allows masz to track the invites new members are using.\n" +
+                f"{'Grant this bot the manage guild permission to use this feature.' if not manage_guild else ''}",
+        inline = False
+    )
 
-    if kick and ban and mute and muted_roles and muted_role_managable and internal_webhook_defined:
+    if kick and ban and mute and muted_roles and muted_role_managable and internal_webhook_defined and manage_guild:
         embed.description = f"{CHECK} Your bot on this guild is configured correctly. All features of MASZ can be used."
         embed.color = 0x07eb0b
     else:

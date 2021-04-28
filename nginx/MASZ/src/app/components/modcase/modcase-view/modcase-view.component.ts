@@ -2,7 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { AppUser } from 'src/app/models/AppUser';
@@ -81,6 +81,15 @@ export class ModcaseViewComponent implements OnInit {
       this.files.loading = false;
       this.toastr.error("Failed to load files.");
     });
+  }
+
+  public redirectToUserscan(userId: any) {
+    if (this.isModOrHigher) {
+      let params: Params = {
+        'userid': userId
+      }
+      this.router.navigate(['userscan'], { queryParams: params });
+    }
   }
 
   private reloadGuild() {
