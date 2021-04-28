@@ -31,6 +31,7 @@ public class Main
             shell.start();
         } catch (LoginException e)
         {
+            Thread.currentThread().interrupt();
             log.warn("Could not connect to Discord, did you set DISCORD_BOT_TOKEN?", e);
             return;
         } catch (InterruptedException e)
@@ -38,9 +39,11 @@ public class Main
             Thread.currentThread().interrupt();
             log.error("JDA interrupted", e);
             return;
-        } catch(IllegalStateException e)
+        } catch (IllegalStateException e)
         {
-            
+            Thread.currentThread().interrupt();
+            log.error("JDA interrupted", e);
+            return;
         }
 
         log.info("System is running fine");

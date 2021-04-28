@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.entities.Invite;
 import net.dv8tion.jda.api.events.guild.invite.GuildInviteCreateEvent;
 import net.dv8tion.jda.api.events.guild.invite.GuildInviteDeleteEvent;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
+import net.dv8tion.jda.api.exceptions.InsufficientPermissionException;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
@@ -59,13 +60,19 @@ public class InvitationTracker extends ListenerAdapter implements ICommandNotify
             fetchInvites(e.getId());
         } else if (SqlConnector.isGuildRegistered(e.getId()))
         {
-            e.retrieveInvites()
-                    .queue(fetchedInvites -> getUsedInvite(fetchedInvites, event.getGuild().getId())
-                                    .ifPresent(i -> storeInDB(i, event.getMember().getId()))
-                            , failure -> log.warn("Could not fetch invites", failure.getCause()));
+            try
+            {
+                e.retrieveInvites()
+                        .queue(fetchedInvites -> getUsedInvite(fetchedInvites, event.getGuild().getId())
+                                        .ifPresent(i -> storeInDB(i, event.getMember().getId()))
+                                , failure -> log.warn("Could not fetch invites", failure.getCause()));
+            } catch (InsufficientPermissionException exception)
+            {
+                log.warn("Insufficient permissions: " + e.getId());
+            }
         } else
         {
-            log.warn("Could not registered, ignoring event: " + e.getId());
+            log.warn("Guild not registered, ignoring event: " + e.getId());
         }
     }
 
@@ -109,17 +116,21 @@ public class InvitationTracker extends ListenerAdapter implements ICommandNotify
         invites.putIfAbsent(id, new HashMap<>());
 
         var guild = Optional.ofNullable(jda.getGuildById(id));
-        guild.ifPresent(e -> e.retrieveInvites().queue(success ->
-        {
-            if (success != null)
+        try {
+            guild.ifPresent(e -> e.retrieveInvites().queue(success ->
             {
-                invites.get(id).clear();
-                for (Invite i : success)
+                if (success != null)
                 {
-                    invites.get(id).put(i.getCode(), i);
+                    invites.get(id).clear();
+                    for (Invite i : success)
+                    {
+                        invites.get(id).put(i.getCode(), i);
+                    }
                 }
-            }
-        }, failure -> log.warn("Could not fetch invites", failure.getCause())));
+            }, failure -> log.warn("Could not fetch invites", failure.getCause())));
+        } catch (InsufficientPermissionException e) {
+            log.error("Insufficient permissions in guild " + id);
+        }
 
     }
 
