@@ -24,6 +24,7 @@ export class UserscanComponent implements OnInit {
   loading: boolean = false;
   public search!: string;
   private networkInstance!: Network;
+  public showUsage: boolean = true;
   private options = {
     height: '100%',
     width: '100%',
@@ -67,6 +68,7 @@ export class UserscanComponent implements OnInit {
 
   executeSearch() {
     if (this.search?.trim()) {
+      this.showUsage = false;
       this.loading = true;
       this.reset();
       this.loadDataForUserId(this.search?.trim()).subscribe((data: UserNetwork) => {
@@ -99,8 +101,12 @@ export class UserscanComponent implements OnInit {
   onDoubleClick(params: any) {
     if (params?.nodes?.length === 1) {
       let node = this.data.nodes.find(x => x.id === params?.nodes[0]) as any;
+      if (node?.searchFor) {
+        this.search = node?.searchFor;
+        this.executeSearch();
+        return;
+      }
       if (node?.redirectTo) {
-        console.log(node.redirectTo);
         window.open(node.redirectTo, '_blank');
       }
     }
@@ -208,7 +214,7 @@ export class UserscanComponent implements OnInit {
       label: user != null ? `${user.username}#${user.discriminator}` : backupUserId,
       title: user?.id ?? backupUserId,
       size: size,
-      redirectTo: `/userscan?userid=${user?.id ?? backupUserId}`
+      searchFor: user?.id ?? backupUserId
     } as Node
   }
   

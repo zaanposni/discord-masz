@@ -9,6 +9,21 @@
                 </mat-form-field>
             </div>
         </div>
+        <div class="card-container mt-2" *ngIf="this.showUsage">
+            <div class="card-container-body d-flex flex-row conditional-fc">
+                <div class="d-flex flex-column p-4">
+                    <span class="mat-h1 font-weight-bold mb-2">
+                        Userscan
+                    </span>
+                    <p style="word-wrap: break-word;">
+                        Use this feature to get a quick overview of a member or relations to other members.<br/>
+                        This also tracks invites a new member uses so you can quickly spot alt accounts.<br/>
+                        Use a double click to view other ressources such as a modcase.
+                    </p>
+                </div>
+                <img src="/assets/img/tracking.svg" class="w-50 flex-grow-0"/>
+            </div>
+        </div>
     </div>
 </div>
 <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100">
