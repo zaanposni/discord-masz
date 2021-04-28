@@ -15,6 +15,7 @@
 Yet another moderation bot for discord.<br/>
 MASZ combines:<br/>
 - **Infractions and managed (temporary) punishments** - to moderate your server
+- **Userscan** - quickly spot relations between users with a included visualization
 - **Quicksearch** - to reliably search for any infractions or notes a user has
 - **Automoderation** - to give trolls no chance
 - **Ban appeals and webhook notifications** - to moderate your server transparently
@@ -29,6 +30,7 @@ Furthermore, join the demo guild [https://discord.gg/7ubU6aWX9c](https://discord
 # Preview
 
 ![](/docs/dashboard.png)
+![](/docs/userscan.png)
 
 More previews and examples can be found at [https://github.com/zaanposni/discord-masz/tree/master/docs](https://github.com/zaanposni/discord-masz/tree/master/docs)
 

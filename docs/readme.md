@@ -4,6 +4,10 @@
 
 <img src="dashboard.png"/>
 
+## Userscan
+
+<img src="userscan.png"/>
+
 ## Modcase overview
 
 <img src="modcases.png"/>
