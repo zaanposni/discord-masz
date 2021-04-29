@@ -54,6 +54,7 @@ export class UserscanComponent implements OnInit {
   constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
   }
 
   onSearch(event: any) {
@@ -121,7 +122,7 @@ export class UserscanComponent implements OnInit {
   calculateNewNetwork(network: UserNetwork, userId: string) {
     let baseNode = this.addNewNode(this.newUserNode, [network?.user, userId, 50, 'basics']) as Node;
     for (let guild of network.guilds) {
-      let guildNode = this.addNewNode(this.newGuildNode, [guild, guild.id, 40, `${userId}/${guild.id}`]) as Node;
+      let guildNode = this.addNewNode(this.newGuildNode, [guild, guild.id, 40, `${userId}/`]) as Node;
       this.addNewEdge(baseNode, guildNode);
       for (let invite of network.invitedBy) {
         if (invite.userInvite.guildId !== guild.id) continue;
@@ -134,8 +135,10 @@ export class UserscanComponent implements OnInit {
         if (invite.userInvite.guildId !== guild.id) continue;
         let inviteNode = this.addNewNode(this.newInviteNode, [invite.userInvite]) as Node;
         this.addNewEdge(guildNode, inviteNode, `Created at: ${new Date(invite.userInvite.inviteCreatedAt).toLocaleString()}`, false, 'to');
-        let invitedUserNode = this.addNewNode(this.newUserNode, [invite?.invitedUser, invite?.userInvite?.joinedUserId]) as Node;
-        this.addNewEdge(inviteNode, invitedUserNode, `Joined at: ${new Date(invite.userInvite.joinedAt).toLocaleString()}`, true, 'to');
+        if ( invite.userInvite.joinedUserId !== invite.userInvite.inviteIssuerId ) {
+          let invitedUserNode = this.addNewNode(this.newUserNode, [invite?.invitedUser, invite?.userInvite?.joinedUserId]) as Node;
+          this.addNewEdge(inviteNode, invitedUserNode, `Joined at: ${new Date(invite.userInvite.joinedAt).toLocaleString()}`, true, 'to');
+        }
       }
       for (let modCase of network.modCases) {
         if (modCase.guildId !== guild.id) continue;
@@ -151,7 +154,7 @@ export class UserscanComponent implements OnInit {
         let eventNode = this.addNewNode(this.newEventNode, [modEvent, 5]) as Node;
         this.addNewEdge(eventBaseNode, eventNode, `Occured at: ${new Date(modEvent.createdAt).toLocaleString()}`);
       }
-    }   
+    }
     this.redraw();
   }
 
@@ -179,17 +182,17 @@ export class UserscanComponent implements OnInit {
   }
 
   addNewEdge(from: Node, to: Node, title: string = '', addWithRoundness: boolean = false, arrow: 'to'|'from'|'no' = 'no'): Edge {
-    let newEdge = {id: `${from.id}/node/${to.id}`, from: from.id, to: to.id, title: title.trim() === '' ? undefined : title} as any;
+    let newEdge = {id: `${from.id}/edge/${to.id}`, from: from.id, to: to.id, title: title.trim() === '' ? undefined : title} as any;
     if (arrow === 'to') {
       newEdge['arrows'] = { middle: { scaleFactor: 0.5 }, to: true };
     }
     if (arrow === 'from') {
       newEdge['arrows'] = { middle: { scaleFactor: 0.5 }, from: true };
     }
-    let existingEdges = this.data.edges.filter(x => x.id === newEdge?.id);
+    let existingEdges = this.data.edges.filter(x => x.id?.toString().startsWith(newEdge?.id));
     if (existingEdges.length === 0) {
       this.data.edges.push(newEdge);
-    } else if(addWithRoundness) {
+    } else if (addWithRoundness) {
       let roundness = 0;
       for (let edge of existingEdges) {
         let s = edge?.smooth as any;
@@ -199,7 +202,7 @@ export class UserscanComponent implements OnInit {
       }
       roundness += 0.2;
       newEdge['id'] += `/${roundness}`;
-      newEdge['smooth'] = {type: 'curvedCW', roundness: roundness };
+      newEdge['smooth'] = { type: 'curvedCW', roundness: roundness, enabled: true };
       this.data.edges.push(newEdge);
     }
     return newEdge;
