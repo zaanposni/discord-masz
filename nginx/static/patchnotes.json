@@ -1,5 +1,13 @@
 [
   {
+    "title": "Version 1.11.1",
+    "version": "v1.11.1",
+    "changes": [
+      "Fixed userscan for multiple invites of same person.",
+      "No longer automuting on rejoin and case that is marked to be deleted."
+    ]
+  },
+  {
     "title": "Version 1.11",
     "version": "v1.11",
     "changes": [
