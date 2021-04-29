@@ -54,6 +54,11 @@ namespace masz.Controllers
 
             modCase.DeletedByUserId = null;
             modCase.MarkedToDeleteAt = null;
+            if (modCase.PunishedUntil == null) {
+                modCase.PunishmentActive = modCase.PunishmentType != PunishmentType.None && modCase.PunishmentType != PunishmentType.Kick;
+            } else {
+                modCase.PunishmentActive = modCase.PunishedUntil > DateTime.UtcNow && modCase.PunishmentType != PunishmentType.None && modCase.PunishmentType != PunishmentType.Kick;
+            }
 
             this.database.UpdateModCase(modCase);
             await this.database.SaveChangesAsync();

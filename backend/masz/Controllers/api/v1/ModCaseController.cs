@@ -73,6 +73,7 @@ namespace masz.Controllers
             } else {
                 modCase.MarkedToDeleteAt = DateTime.UtcNow.AddDays(7);
                 modCase.DeletedByUserId = currentUser.Id;
+                modCase.PunishmentActive = false;
 
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Marking modcase as deleted.");
                 database.UpdateModCase(modCase);
