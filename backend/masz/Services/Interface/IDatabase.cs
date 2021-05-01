@@ -99,6 +99,7 @@ namespace masz.Services
         Task<UserMapping> GetUserMappingById(string id);
         Task<List<UserMapping>> GetUserMappingsByUserId(string userId);
         Task<List<UserMapping>> GetUserMappingsByUserIdAndGuildId(string userId, string guildId);
+        Task<UserMapping> GetUserMappingByUserIdsAndGuildId(string userAId, string userBId, string guildId);
         Task<List<UserMapping>> GetUserMappingsByGuildId(string guildId);
         Task<int> CountUserMappings();
         void DeleteUserMapping(UserMapping userMapping);

@@ -505,6 +505,11 @@ namespace masz.Services
         {
             return await context.UserMappings.AsQueryable().Where(x => (x.UserA == userId || x.UserB == userId) && x.GuildId == guildId).ToListAsync();
         }
+        
+        public async Task<UserMapping> GetUserMappingByUserIdsAndGuildId(string userAId, string userBId, string guildId)
+        {
+            return await context.UserMappings.AsQueryable().Where(x => ((x.UserA == userAId || x.UserB == userAId) && (x.UserA == userBId || x.UserB == userBId)) && x.GuildId == guildId).FirstOrDefaultAsync();
+        }
 
         public async Task<List<UserMapping>> GetUserMappingsByGuildId(string guildId)
         {

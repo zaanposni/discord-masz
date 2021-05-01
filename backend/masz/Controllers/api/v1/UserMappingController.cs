@@ -44,6 +44,11 @@ namespace masz.Controllers
                 return Unauthorized();
             }
 
+            if (await this.database.GetUserMappingByUserIdsAndGuildId(userMapDto.UserA, userMapDto.UserB, guildid) != null) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Mapping already exists.");
+                return BadRequest("Mapping already exists.");
+            }
+
             UserMapping userMapping = new UserMapping();
             userMapping.GuildId = guildid;
             userMapping.CreatedAt = DateTime.UtcNow;
