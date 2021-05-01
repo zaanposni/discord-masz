@@ -491,6 +491,11 @@ namespace masz.Services
         //
         // ==================================================================================
 
+        public async Task<UserMapping> GetUserMappingById(string id)
+        {
+            return await context.UserMappings.AsQueryable().Where(x => x.Id.ToString() == id).FirstOrDefaultAsync();
+        }
+
         public async Task<List<UserMapping>> GetUserMappingsByUserId(string userId)
         {
             return await context.UserMappings.AsQueryable().Where(x => x.UserA == userId || x.UserB == userId).ToListAsync();
@@ -519,6 +524,12 @@ namespace masz.Services
         public async Task SaveUserMapping(UserMapping userMapping)
         {
             await context.UserMappings.AddAsync(userMapping);
+        }
+
+        public async Task DeleteUserMappingByGuild(string guildId)
+        {
+            var userMappings = await context.UserMappings.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            context.UserMappings.RemoveRange(userMappings);
         }
 
         // ==================================================================================
@@ -550,6 +561,12 @@ namespace masz.Services
         public async Task SaveUserNote(UserNote userNote)
         {
             await context.UserNotes.AddAsync(userNote);
+        }
+
+        public async Task DeleteUserNoteByGuild(string guildId)
+        {
+            var userNotes = await context.UserNotes.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            context.UserNotes.RemoveRange(userNotes);
         }
     }
 }

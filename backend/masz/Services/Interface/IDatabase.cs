@@ -96,17 +96,20 @@ namespace masz.Services
         Task<int> CountTrackedInvites();
         Task DeleteInviteHistoryByGuild(string guildId);
 
+        Task<UserMapping> GetUserMappingById(string id);
         Task<List<UserMapping>> GetUserMappingsByUserId(string userId);
         Task<List<UserMapping>> GetUserMappingsByUserIdAndGuildId(string userId, string guildId);
         Task<List<UserMapping>> GetUserMappingsByGuildId(string guildId);
         Task<int> CountUserMappings();
         void DeleteUserMapping(UserMapping userMapping);
         Task SaveUserMapping(UserMapping userMapping);
+        Task DeleteUserMappingByGuild(string guildId);
 
         Task<List<UserNote>> GetUserNotesByUserId(string userId);
         Task<List<UserNote>> GetUserNotesByUserIdAndGuildId(string userId, string guildId);
         Task<int> CountUserNotes();
         void DeleteUserNote(UserNote userNote);
         Task SaveUserNote(UserNote userNote);
+        Task DeleteUserNoteByGuild(string guildId);
     }
 }
