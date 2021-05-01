@@ -73,6 +73,8 @@ namespace masz.Controllers
             }
             List<ModCase> modCases = (await database.SelectAllModCasesForSpecificUser(userid)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
             List<AutoModerationEvent> modEvents = (await database.SelectAllModerationEventsForSpecificUser(userid)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
+            List<UserMapping> userMappings = (await database.GetUserMappingsByUserId(userid)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
+            List<UserNote> userNotes = (await database.GetUserNotesByUserId(userid)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning network.");
             return Ok(new {
@@ -81,7 +83,9 @@ namespace masz.Controllers
                 invited = invited,
                 invitedBy = invitedBy,
                 modCases = modCases,
-                modEvents = modEvents
+                modEvents = modEvents,
+                userMappings =  userMappings,
+                userNotes = userNotes
             });
         }
     }
