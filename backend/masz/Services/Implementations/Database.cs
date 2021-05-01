@@ -526,9 +526,9 @@ namespace masz.Services
             context.UserMappings.Remove(userMapping);
         }
 
-        public async Task SaveUserMapping(UserMapping userMapping)
+        public void SaveUserMapping(UserMapping userMapping)
         {
-            await context.UserMappings.AddAsync(userMapping);
+            context.UserMappings.Update(userMapping);
         }
 
         public async Task DeleteUserMappingByGuild(string guildId)
@@ -543,14 +543,24 @@ namespace masz.Services
         //
         // ==================================================================================
 
+        public async Task<UserNote> GetUserNoteById(string id)
+        {
+            return await context.UserNotes.AsQueryable().Where(x => x.Id.ToString() == id).FirstOrDefaultAsync();
+        }
+        
         public async Task<List<UserNote>> GetUserNotesByUserId(string userId)
         {
             return await context.UserNotes.AsQueryable().Where(x => x.UserId == userId).ToListAsync();
         }
 
-        public async Task<List<UserNote>> GetUserNotesByUserIdAndGuildId(string userId, string guildId)
+        public async Task<List<UserNote>> GetUserNotesByGuildId(string guildId)
         {
-            return await context.UserNotes.AsQueryable().Where(x => x.UserId == userId && x.GuildId == guildId).ToListAsync();
+            return await context.UserNotes.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+        }
+
+        public async Task<UserNote> GetUserNoteByUserIdAndGuildId(string userId, string guildId)
+        {
+            return await context.UserNotes.AsQueryable().Where(x => x.UserId == userId && x.GuildId == guildId).FirstOrDefaultAsync();
         }
 
         public async Task<int> CountUserNotes()
@@ -563,9 +573,9 @@ namespace masz.Services
             context.UserNotes.Remove(userNote);
         }
 
-        public async Task SaveUserNote(UserNote userNote)
+        public void SaveUserNote(UserNote userNote)
         {
-            await context.UserNotes.AddAsync(userNote);
+            context.UserNotes.Update(userNote);
         }
 
         public async Task DeleteUserNoteByGuild(string guildId)

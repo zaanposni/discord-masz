@@ -103,14 +103,16 @@ namespace masz.Services
         Task<List<UserMapping>> GetUserMappingsByGuildId(string guildId);
         Task<int> CountUserMappings();
         void DeleteUserMapping(UserMapping userMapping);
-        Task SaveUserMapping(UserMapping userMapping);
+        void SaveUserMapping(UserMapping userMapping);
         Task DeleteUserMappingByGuild(string guildId);
 
+        Task<UserNote> GetUserNoteById(string id);
         Task<List<UserNote>> GetUserNotesByUserId(string userId);
-        Task<List<UserNote>> GetUserNotesByUserIdAndGuildId(string userId, string guildId);
+        Task<List<UserNote>> GetUserNotesByGuildId(string guildId);
+        Task<UserNote> GetUserNoteByUserIdAndGuildId(string userId, string guildId);
         Task<int> CountUserNotes();
         void DeleteUserNote(UserNote userNote);
-        Task SaveUserNote(UserNote userNote);
+        void SaveUserNote(UserNote userNote);
         Task DeleteUserNoteByGuild(string guildId);
     }
 }

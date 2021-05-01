@@ -22,6 +22,19 @@ namespace masz.Controllers
             this.logger = logger;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetUserMap([FromRoute] string guildid)
+        {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning list.");
+            return Ok(await this.database.GetUserMappingsByGuildId(guildid));
+        }
+
         [HttpGet("{userid}")]
         public async Task<IActionResult> GetUserMap([FromRoute] string guildid, [FromRoute] string userid)
         {
@@ -57,15 +70,40 @@ namespace masz.Controllers
             userMapping.UserB = userMapDto.UserB;
             userMapping.Reason = userMapDto.Reason;
             
-            await this.database.SaveUserMapping(userMapping);
+            this.database.SaveUserMapping(userMapping);
             await this.database.SaveChangesAsync();
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 201 Ressource created.");
             return StatusCode(201, new { id = userMapping.Id });
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> CreateUserMap([FromRoute] string guildid, [FromRoute] string id, [FromBody] UserMappingForUpdateDto userMapDto)
+        {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+
+            UserMapping existing = await this.database.GetUserMappingById(id);
+            if (existing == null || existing.GuildId != guildid) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Not found.");
+                return NotFound();
+            }
+
+            existing.Reason = userMapDto.Reason;
+            
+            this.database.SaveUserMapping(existing);
+            await this.database.SaveChangesAsync();
+
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Ressource updated.");
+            return Ok(new { id = existing.Id });
+        }
+
+
         [HttpDelete("{id}")]
-        public async Task<IActionResult> CreateUserMap([FromRoute] string guildid, [FromRoute] string id)
+        public async Task<IActionResult> DeleteUserMap([FromRoute] string guildid, [FromRoute] string id)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
