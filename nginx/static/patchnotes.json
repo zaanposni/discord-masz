@@ -4,7 +4,8 @@
     "version": "v1.11.1",
     "changes": [
       "Fixed userscan for multiple invites of same person.",
-      "No longer automuting on rejoin and case that is marked to be deleted."
+      "No longer automuting on rejoin and case that is marked to be deleted.",
+      "Fixed a bug that did not correctly sort the expiring punishment table."
     ]
   },
   {
