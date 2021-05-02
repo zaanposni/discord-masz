@@ -96,6 +96,7 @@ namespace masz.Services
         Task<int> CountTrackedInvites();
         Task DeleteInviteHistoryByGuild(string guildId);
 
+        Task<List<UserMapping>> SelectLatestUserMappings(DateTime timeLimit, int limit);
         Task<UserMapping> GetUserMappingById(string id);
         Task<List<UserMapping>> GetUserMappingsByUserId(string userId);
         Task<List<UserMapping>> GetUserMappingsByUserIdAndGuildId(string userId, string guildId);
@@ -106,6 +107,7 @@ namespace masz.Services
         void SaveUserMapping(UserMapping userMapping);
         Task DeleteUserMappingByGuild(string guildId);
 
+        Task<List<UserNote>> SelectLatestUserNotes(DateTime timeLimit, int limit);
         Task<UserNote> GetUserNoteById(string id);
         Task<List<UserNote>> GetUserNotesByUserId(string userId);
         Task<List<UserNote>> GetUserNotesByGuildId(string guildId);

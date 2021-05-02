@@ -491,6 +491,10 @@ namespace masz.Services
         //
         // ==================================================================================
 
+        public async Task<List<UserMapping>> SelectLatestUserMappings(DateTime timeLimit, int limit)
+        {
+            return await context.UserMappings.AsQueryable().Where(x => x.CreatedAt > timeLimit).OrderByDescending(x => x.CreatedAt).Take(limit).ToListAsync();
+        }
         public async Task<UserMapping> GetUserMappingById(string id)
         {
             return await context.UserMappings.AsQueryable().Where(x => x.Id.ToString() == id).FirstOrDefaultAsync();
@@ -542,6 +546,11 @@ namespace masz.Services
         // UserNotes
         //
         // ==================================================================================
+
+        public async Task<List<UserNote>> SelectLatestUserNotes(DateTime timeLimit, int limit)
+        {
+            return await context.UserNotes.AsQueryable().Where(x => x.UpdatedAt > timeLimit).OrderByDescending(x => x.UpdatedAt).Take(limit).ToListAsync();
+        }
 
         public async Task<UserNote> GetUserNoteById(string id)
         {
