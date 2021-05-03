@@ -2,7 +2,7 @@
     <div class="p-2">
         <div class="d-flex flex-row flex-wrap align-items-center mb-4">
             <div class="flex-grow-1"></div>
-            <button mat-raised-button color="accent" class="mr-2">
+            <button mat-raised-button color="accent" class="mr-2" (click)="createNote()">
                 Create new Usernote
             </button>
             <mat-form-field>
@@ -16,7 +16,8 @@
             <app-usernote-card *ngFor="let usernote of showUserNotes | async"
                 class="mb-2"
                 [userNote]="usernote" 
-                (deleteEvent)="removeNote($event)">
+                (deleteEvent)="removeNote($event)"
+                (updateEvent)="updateEvent()">
             </app-usernote-card>
             <div class="card-container rounded m-2 mb-3" *ngIf="(this.showUserNotes | async)?.length == 0">
                 <div class="card-container-body">

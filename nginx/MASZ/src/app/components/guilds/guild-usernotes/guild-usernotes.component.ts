@@ -1,10 +1,12 @@
-import { X } from '@angular/cdk/keycodes';
+import { M, X } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, ReplaySubject } from 'rxjs';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { UserNote } from 'src/app/models/UserNote';
+import { UserNoteDto } from 'src/app/models/UserNoteDto';
 import { UserNoteView } from 'src/app/models/UserNoteView';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -71,5 +73,12 @@ export class GuildUsernotesComponent implements OnInit {
   removeNote(event: any) {
     this.allUserNotes = this.allUserNotes.filter(x => x.userNote.id !== event);
     this.search();
+  }
+
+  updateEvent() {
+    this.reloadData();
+  }
+
+  createNote() {
   }
 }

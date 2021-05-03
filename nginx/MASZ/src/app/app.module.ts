@@ -87,6 +87,7 @@ import { UserscanComponent } from './components/usergraph/userscan/userscan.comp
 import { GuildUsermappingComponent } from './components/guilds/guild-usermapping/guild-usermapping.component';
 import { GuildUsernotesComponent } from './components/guilds/guild-usernotes/guild-usernotes.component';
 import { UsernoteCardComponent } from './components/guilds/guild-usernotes/usernote-card/usernote-card.component';
+import { UsernoteEditDialogComponent } from './components/dialogs/usernote-edit-dialog/usernote-edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -137,7 +138,8 @@ import { UsernoteCardComponent } from './components/guilds/guild-usernotes/usern
     UserscanComponent,
     GuildUsermappingComponent,
     GuildUsernotesComponent,
-    UsernoteCardComponent
+    UsernoteCardComponent,
+    UsernoteEditDialogComponent
   ],
   imports: [
     CommonModule,
