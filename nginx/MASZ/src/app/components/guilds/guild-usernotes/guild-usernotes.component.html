@@ -1,0 +1,25 @@
+<div class="d-flex flex-column w-100">
+    <div class="p-2">
+        <div class="d-flex flex-row flex-wrap align-items-center mb-2">
+            <div class="flex-grow-1"></div>
+            <button mat-raised-button color="accent" class="mr-2">
+                Create new Usernote
+            </button>
+            <mat-form-field>
+                <mat-label>Search</mat-label>
+                <input matInput type="text" autocomplete="off" [attr.disabled]="this.loading ? '' : null"
+                [(ngModel)]="this.searchString" (ngModelChange)="searchChanged($event)">
+            </mat-form-field>
+        </div>
+        <mat-spinner *ngIf="this.loading"></mat-spinner>
+        <div class="d-flex flex-column" *ngIf="!this.loading">
+            <app-usernote-card [userNote]="usernote" *ngFor="let usernote of showUserNotes | async" class="mb-2"></app-usernote-card>
+            <div class="card-container rounded m-2 mb-3" *ngIf="(this.showUserNotes | async)?.length == 0">
+                <div class="card-container-body">
+                    <span class="mat-h1">Nothing here.</span>
+                    <p class="card-text">No usernotes created yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

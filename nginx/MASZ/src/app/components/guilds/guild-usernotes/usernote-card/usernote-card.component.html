@@ -1,0 +1,47 @@
+<div class="card-container">
+    <div class="card-container-body d-flex flex-wrap">
+        <!-- Profile picture -->
+        <div class="pictures-parent mr-3">
+            <img
+                src="{{ userNote.user?.imageUrl }}"
+                class="rounded-circle z-depth-0 user-image"
+                alt="avatar image"
+                height="96"
+                title="Suspect {{ userNote.userNote.userId }}"
+                onerror="this.src='/assets/img/default_profile.png';"
+            />
+            <img
+                src="{{ userNote.moderator?.imageUrl }}"
+                class="rounded-circle z-depth-0 mod-image"
+                alt="avatar image"
+                height="40"
+                title="Moderator {{ userNote.userNote.creatorId }}"
+                onerror="this.src='/assets/img/default_profile.png';"
+            />
+        </div>
+        <div class="flex-shrink-1 d-flex flex-column flex-wrap">
+            <!-- Title -->
+            <div>
+                <span title="{{ userNote.userNote.userId }}" class="mat-h2 mb-0" *ngIf="userNote.user">
+                    {{ userNote.user?.username }}#{{ userNote.user?.discriminator }}
+                </span>
+                <span title="{{ userNote.userNote.userId }}" class="mat-h2 mb-0" *ngIf="!userNote.user">
+                    {{ userNote.userNote.userId }}
+                </span>
+            </div>
+
+            <!-- Text -->
+            <span title="{{ userNote.userNote.description }}" style="word-wrap: break-word;">{{ userNote.userNote.description.length > 50 ? userNote.userNote.description.slice(0, 50) + ' [...]' : userNote.userNote.description }}</span>
+        </div>
+        <div class="flex-grow-1"></div>
+        <div class="d-flex flex-column align-content-center">
+            <span class="text-black-50" style="text-align: right;">
+                Updated: {{ userNote.userNote.updatedAt | date:'d. MMMM Y'  }}
+            </span>
+            <div class="flex-grow-1"></div>
+            <!-- Button -->
+            <button mat-raised-button color="accent" class="mt-2">EDIT</button>
+            <button mat-raised-button color="primary" class="mt-2">DELETE</button>
+        </div>
+    </div>
+</div>

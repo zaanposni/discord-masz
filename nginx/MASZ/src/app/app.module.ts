@@ -84,6 +84,9 @@ import { TemplateCreateDialogComponent } from './components/dialogs/template-cre
 import { TokenOverviewComponent } from './components/api/token-overview/token-overview.component';
 import { NewTokenDialogComponent } from './components/dialogs/new-token-dialog/new-token-dialog.component';
 import { UserscanComponent } from './components/usergraph/userscan/userscan.component';
+import { GuildUsermappingComponent } from './components/guilds/guild-usermapping/guild-usermapping.component';
+import { GuildUsernotesComponent } from './components/guilds/guild-usernotes/guild-usernotes.component';
+import { UsernoteCardComponent } from './components/guilds/guild-usernotes/usernote-card/usernote-card.component';
 
 @NgModule({
   declarations: [
@@ -131,7 +134,10 @@ import { UserscanComponent } from './components/usergraph/userscan/userscan.comp
     TemplateCreateDialogComponent,
     TokenOverviewComponent,
     NewTokenDialogComponent,
-    UserscanComponent
+    UserscanComponent,
+    GuildUsermappingComponent,
+    GuildUsernotesComponent,
+    UsernoteCardComponent
   ],
   imports: [
     CommonModule,

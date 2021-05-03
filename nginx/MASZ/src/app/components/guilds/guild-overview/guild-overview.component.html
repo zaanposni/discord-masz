@@ -14,6 +14,8 @@
                 <app-modcase-table [apiUrl]="'casebin'" *ngIf="tab.component=='bin'"></app-modcase-table>
                 <app-automod-table *ngIf="tab.component=='automods'"></app-automod-table>
                 <app-guild-config *ngIf="tab.component=='config'"></app-guild-config>
+                <app-guild-usermapping *ngIf="tab.component=='usermap'"></app-guild-usermapping>
+                <app-guild-usernotes *ngIf="tab.component=='usernote'"></app-guild-usernotes>
             </mat-tab>
             <!-- dash board optional tab? -->
         </mat-tab-group>
