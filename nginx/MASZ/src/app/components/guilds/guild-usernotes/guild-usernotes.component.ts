@@ -67,4 +67,9 @@ export class GuildUsernotesComponent implements OnInit {
       this.$showUserNotes.next(this.allUserNotes);
     }
   }
+
+  removeNote(event: any) {
+    this.allUserNotes = this.allUserNotes.filter(x => x.userNote.id !== event);
+    this.search();
+  }
 }
