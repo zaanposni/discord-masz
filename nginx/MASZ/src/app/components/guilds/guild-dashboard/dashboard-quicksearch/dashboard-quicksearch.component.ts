@@ -2,7 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { QuickSearchEntry } from 'src/app/models/QuickSearchEntry';
+import { QuickSearchResult } from 'src/app/models/QuickSearchResult';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class DashboardQuicksearchComponent implements OnInit {
   public guildId!: string;
   public showOverlay: boolean = false;
   public search!: string;
-  public searchResults: QuickSearchEntry[] = [];
+  public searchResults?: QuickSearchResult;
   public loading: boolean = true;
   timeout: any = null;
 
@@ -39,7 +39,7 @@ export class DashboardQuicksearchComponent implements OnInit {
     if (value.trim()) {
       this.loading = true;
       this.showOverlay = true;
-      this.searchResults = [];
+      this.searchResults = undefined;
       
       let params = new HttpParams()
         .set('search', value.trim());

@@ -23,10 +23,10 @@
             <!-- Title -->
             <div>
                 <span title="{{ userNote.userNote.userId }}" class="mat-h2 mb-0" *ngIf="userNote.user">
-                    {{ userNote.user?.username }}#{{ userNote.user?.discriminator }}
+                    Usernote: {{ userNote.user?.username }}#{{ userNote.user?.discriminator }}
                 </span>
                 <span title="{{ userNote.userNote.userId }}" class="mat-h2 mb-0" *ngIf="!userNote.user">
-                    {{ userNote.userNote.userId }}
+                    Usernote: {{ userNote.userNote.userId }}
                 </span>
             </div>
 
@@ -41,7 +41,7 @@
             <div class="flex-grow-1"></div>
             <!-- Button -->
             <button mat-raised-button color="accent" class="mt-2">EDIT</button>
-            <button mat-raised-button color="primary" class="mt-2" (click)="deleteNote()">DELETE</button>
+            <button mat-raised-button color="primary" class="mt-2" (click)="deleteNote()" *ngIf="this.showDeleteButton">DELETE</button>
         </div>
     </div>
 </div>

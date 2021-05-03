@@ -15,6 +15,7 @@ export class UsernoteCardComponent implements OnInit {
 
   @Output() deleteEvent = new EventEmitter<number>();
   @Input() userNote!: UserNoteView;
+  @Input() showDeleteButton: boolean = true;
   constructor(private dialog: MatDialog, private api: ApiService, private toastr: ToastrService) { }
 
   ngOnInit(): void {

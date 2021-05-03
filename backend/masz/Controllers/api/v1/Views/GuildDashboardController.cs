@@ -170,8 +170,23 @@ namespace masz.Controllers
                 }
             }
 
+            UserNote userNote = await database.GetUserNoteByUserIdAndGuildId(search, guildid);
+            UserNoteView userNoteView = null;
+            if (userNote != null) {
+                userNoteView = new UserNoteView() {
+                    UserNote = userNote,
+                    Moderator = await discord.FetchUserInfo(userNote.CreatorId, CacheBehavior.OnlyCache),
+                    User = await discord.FetchUserInfo(userNote.UserId, CacheBehavior.OnlyCache)
+                };
+            }
+            List<UserMapping> userMappings = await database.GetUserMappingsByUserIdAndGuildId(search, guildid);
+
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Returning search results.");
-            return Ok(entries.OrderByDescending(x => x.CreatedAt).ToList());
+            return Ok(new {
+                searchEntries = entries.OrderByDescending(x => x.CreatedAt).ToList(),
+                userNoteView = userNoteView,
+                userMappings = userMappings
+            });
         }
 
         private bool contains(ModCaseTableEntry obj, string search) {
