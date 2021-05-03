@@ -77,7 +77,7 @@ namespace masz.Controllers
             existing.CreatorId = (await this.IsValidUser()).Id;
             existing.UserId = userNote.UserId;
             existing.GuildId = guildid;
-            existing.Description = userNote.Description;
+            existing.Description = userNote.Description.Trim();
 
             this.database.SaveUserNote(existing);
             await this.database.SaveChangesAsync();

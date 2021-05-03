@@ -68,7 +68,7 @@ namespace masz.Controllers
             userMapping.CreatorUserId = (await this.IsValidUser()).Id;
             userMapping.UserA = userMapDto.UserA;
             userMapping.UserB = userMapDto.UserB;
-            userMapping.Reason = userMapDto.Reason;
+            userMapping.Reason = userMapDto.Reason.Trim();
             
             this.database.SaveUserMapping(userMapping);
             await this.database.SaveChangesAsync();
@@ -92,7 +92,7 @@ namespace masz.Controllers
                 return NotFound();
             }
 
-            existing.Reason = userMapDto.Reason;
+            existing.Reason = userMapDto.Reason.Trim();
             
             this.database.SaveUserMapping(existing);
             await this.database.SaveChangesAsync();
