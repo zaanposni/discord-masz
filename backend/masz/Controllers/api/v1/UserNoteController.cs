@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using masz.Dtos.DiscordAPIResponses;
 using masz.Dtos.UserNote;
 using masz.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -53,8 +54,8 @@ namespace masz.Controllers
             return Ok(userNote);
         }
 
-        [HttpPut("{userid}")]
-        public async Task<IActionResult> CreateUserNote([FromRoute] string guildid, [FromRoute] string userid, [FromBody] UserNoteForUpdateDto userNote)
+        [HttpPut]
+        public async Task<IActionResult> CreateUserNote([FromRoute] string guildid, [FromBody] UserNoteForUpdateDto userNote)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
@@ -62,13 +63,19 @@ namespace masz.Controllers
                 return Unauthorized();
             }
 
-            UserNote existing = await this.database.GetUserNoteByUserIdAndGuildId(userid, guildid);
+            User validUser = await discord.FetchUserInfo(userNote.UserId, CacheBehavior.Default);
+            if (validUser == null) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 User invalid.");
+                return BadRequest("Invalid user.");
+            }
+
+            UserNote existing = await this.database.GetUserNoteByUserIdAndGuildId(userNote.UserId, guildid);
             if (existing == null) {
                 existing = new UserNote();
             }
             existing.UpdatedAt = DateTime.UtcNow;
             existing.CreatorId = (await this.IsValidUser()).Id;
-            existing.UserId = userid;
+            existing.UserId = userNote.UserId;
             existing.GuildId = guildid;
             existing.Description = userNote.Description;
 

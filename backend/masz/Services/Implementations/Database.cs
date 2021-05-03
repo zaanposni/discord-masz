@@ -502,12 +502,12 @@ namespace masz.Services
 
         public async Task<List<UserMapping>> GetUserMappingsByUserId(string userId)
         {
-            return await context.UserMappings.AsQueryable().Where(x => x.UserA == userId || x.UserB == userId).ToListAsync();
+            return await context.UserMappings.AsQueryable().Where(x => x.UserA == userId || x.UserB == userId).OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
 
         public async Task<List<UserMapping>> GetUserMappingsByUserIdAndGuildId(string userId, string guildId)
         {
-            return await context.UserMappings.AsQueryable().Where(x => (x.UserA == userId || x.UserB == userId) && x.GuildId == guildId).ToListAsync();
+            return await context.UserMappings.AsQueryable().Where(x => (x.UserA == userId || x.UserB == userId) && x.GuildId == guildId).OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
         
         public async Task<UserMapping> GetUserMappingByUserIdsAndGuildId(string userAId, string userBId, string guildId)
@@ -517,7 +517,7 @@ namespace masz.Services
 
         public async Task<List<UserMapping>> GetUserMappingsByGuildId(string guildId)
         {
-            return await context.UserMappings.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            return await context.UserMappings.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
 
         public async Task<int> CountUserMappings()
@@ -559,12 +559,12 @@ namespace masz.Services
         
         public async Task<List<UserNote>> GetUserNotesByUserId(string userId)
         {
-            return await context.UserNotes.AsQueryable().Where(x => x.UserId == userId).ToListAsync();
+            return await context.UserNotes.AsQueryable().Where(x => x.UserId == userId).OrderByDescending(x => x.UpdatedAt).ToListAsync();
         }
 
         public async Task<List<UserNote>> GetUserNotesByGuildId(string guildId)
         {
-            return await context.UserNotes.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            return await context.UserNotes.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.UpdatedAt).ToListAsync();
         }
 
         public async Task<UserNote> GetUserNoteByUserIdAndGuildId(string userId, string guildId)
