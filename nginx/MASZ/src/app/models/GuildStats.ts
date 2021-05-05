@@ -4,4 +4,8 @@ export interface GuildStats {
     activeBanCount: number;
     activeMuteCount: number;
     moderationCount: number;
+    trackedInvites: number;
+    userMappings: number;
+    userNotes: number;
+    comments: number;
 }

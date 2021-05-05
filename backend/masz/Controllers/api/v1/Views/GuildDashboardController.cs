@@ -90,6 +90,10 @@ namespace masz.Controllers
             int activeBans = await this.database.CountAllActivePunishmentsForGuild(guildid, PunishmentType.Ban);
             int activeMutes = await this.database.CountAllActivePunishmentsForGuild(guildid, PunishmentType.Mute);
             int autoModerations = await this.database.CountAllModerationEventsForGuild(guildid);
+            int trackedInvites = await this.database.CountTrackedInvitesForGuild(guildid);
+            int userMappings = await this.database.CountUserMappingsForGuild(guildid);
+            int userNotes = await this.database.CountUserNotesForGuild(guildid);
+            int comments = await this.database.CountCommentsForGuild(guildid);
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Returning stats.");
             return Ok(new {
@@ -97,7 +101,11 @@ namespace masz.Controllers
                 activeCount = activePunishments,
                 activeBanCount = activeBans,
                 activeMuteCount = activeMutes,
-                moderationCount = autoModerations
+                moderationCount = autoModerations,
+                trackedInvites = trackedInvites,
+                userMappings = userMappings,
+                userNotes = userNotes,
+                comments = comments
             });
         }
 

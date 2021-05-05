@@ -370,6 +370,11 @@ namespace masz.Services
             return await context.ModCaseComments.Include(x => x.ModCase).AsQueryable().Where(x => x.ModCase.GuildId == guildId).OrderByDescending(x => x.CreatedAt).Take(10).ToListAsync();
         }
 
+        public async Task<int> CountCommentsForGuild(string guildId)
+        {
+            return await context.ModCaseComments.Include(x => x.ModCase).AsQueryable().Where(x => x.ModCase.GuildId == guildId).CountAsync();
+        }
+
         // ==================================================================================
         // 
         // CaseTemplates
@@ -479,6 +484,11 @@ namespace masz.Services
             return await context.UserInvites.AsQueryable().CountAsync();
         }
 
+        public async Task<int> CountTrackedInvitesForGuild(string guildId)
+        {
+            return await context.UserInvites.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
+        }
+
         public async Task DeleteInviteHistoryByGuild(string guildId)
         {
             var userinvites = await context.UserInvites.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
@@ -523,6 +533,10 @@ namespace masz.Services
         public async Task<int> CountUserMappings()
         {
             return await context.UserMappings.AsQueryable().CountAsync();
+        }
+        public async Task<int> CountUserMappingsForGuild(string guildId)
+        {
+            return await context.UserMappings.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
         }
 
         public void DeleteUserMapping(UserMapping userMapping)
@@ -575,6 +589,11 @@ namespace masz.Services
         public async Task<int> CountUserNotes()
         {
             return await context.UserNotes.AsQueryable().CountAsync();
+        }
+
+        public async Task<int> CountUserNotesForGuild(string guildId)
+        {
+            return await context.UserNotes.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
         }
 
         public void DeleteUserNote(UserNote userNote)

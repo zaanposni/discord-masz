@@ -5,7 +5,9 @@
     "changes": [
       "Fixed userscan for multiple invites of same person.",
       "No longer automuting on rejoin and case that is marked to be deleted.",
-      "Fixed a bug that did not correctly sort the expiring punishment table."
+      "Fixed a bug that did not correctly sort the expiring punishment table.",
+      "Added usernotes.",
+      "Added more information to guildstats on dashboard."
     ]
   },
   {
