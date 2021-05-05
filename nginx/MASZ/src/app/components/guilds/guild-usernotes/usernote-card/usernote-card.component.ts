@@ -44,7 +44,9 @@ export class UsernoteCardComponent implements OnInit {
       description: this.userNote.userNote.description
     };
     const editDialogRef = this.dialog.open(UsernoteEditDialogComponent, {
-      data: userNoteDto
+      data: userNoteDto,
+      minWidth: '400px',
+      minHeight: '350px'
     });
     editDialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {

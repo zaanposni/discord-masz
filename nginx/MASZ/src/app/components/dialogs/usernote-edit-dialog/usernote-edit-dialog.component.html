@@ -1,8 +1,8 @@
 <h1 mat-dialog-title>Edit usernote</h1>
-<div mat-dialog-content>
-    <mat-form-field>
+<div mat-dialog-content class="w-100">
+    <mat-form-field class="w-100">
         <mat-label>Description</mat-label>
-        <textarea matInput type="text" [(ngModel)]="settings.description"></textarea>
+        <textarea matInput type="text" [(ngModel)]="settings.description" [attr.rows]="this.initRows" class="w-100"></textarea>
     </mat-form-field>
 </div>
 <div mat-dialog-actions>

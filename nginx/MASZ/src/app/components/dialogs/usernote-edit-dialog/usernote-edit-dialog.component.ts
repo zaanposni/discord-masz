@@ -9,9 +9,11 @@ import { UserNoteDto } from 'src/app/models/UserNoteDto';
 })
 export class UsernoteEditDialogComponent implements OnInit {
 
+  public initRows = 1;
   constructor(@Inject(MAT_DIALOG_DATA) public settings: UserNoteDto) { }
 
   ngOnInit(): void {
+    this.initRows = this.settings.description.split(/\r\n|\r|\n/).length;
   }
 
 }

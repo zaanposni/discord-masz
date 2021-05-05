@@ -1,15 +1,38 @@
 <div class="d-flex flex-column w-100">
     <div class="p-2">
-        <div class="d-flex flex-row flex-wrap align-items-center mb-4">
+        <div class="d-flex flex-row flex-wrap align-items-end mb-4">
+            <form [formGroup]="newNoteFormGroup" *ngIf="!this.members.loading">
+                <mat-form-field class="mr-2">
+                    <mat-label>Member</mat-label>
+                    <input type="text"
+                        placeholder="Pick one"
+                        aria-label="Member"
+                        matInput
+                        formControlName="userid"
+                        [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of this.filteredMembers | async" [value]="option.id">
+                            {{option.username}}#{{option.discriminator}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field class="mr-2">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput type="text" formControlName="description" rows="1"></textarea>
+                </mat-form-field>
+                <button mat-raised-button color="accent" (click)="createNote()"
+                 [disabled]="!this.newNoteFormGroup.value.userid.trim() || !this.newNoteFormGroup.value.description.trim()">
+                    Create new Usernote
+                </button>
+            </form>
             <div class="flex-grow-1"></div>
-            <button mat-raised-button color="accent" class="mr-2" (click)="createNote()">
-                Create new Usernote
-            </button>
-            <mat-form-field>
-                <mat-label>Search</mat-label>
-                <input matInput type="text" autocomplete="off" [attr.disabled]="this.loading ? '' : null"
-                [(ngModel)]="this.searchString" (ngModelChange)="searchChanged($event)">
-            </mat-form-field>
+            <form>
+                <mat-form-field>
+                    <mat-label>Search</mat-label>
+                    <input matInput type="text" autocomplete="off" [attr.disabled]="this.loading ? '' : null"
+                    [(ngModel)]="this.searchString" (ngModelChange)="searchChanged($event)">
+                </mat-form-field>
+            </form>
         </div>
         <mat-spinner *ngIf="this.loading"></mat-spinner>
         <div class="d-flex flex-column" *ngIf="!this.loading">

@@ -81,4 +81,6 @@ mat-nav-list mat-expansion-panel mat-expansion-panel-header.mat-expanded {
   cursor: unset;
 }
 
-
+::ng-deep mat-dialog-container mat-form-field .mat-form-field-wrapper {
+  margin-bottom: 0;
+}

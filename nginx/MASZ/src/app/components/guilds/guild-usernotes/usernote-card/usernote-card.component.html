@@ -31,7 +31,9 @@
             </div>
 
             <!-- Text -->
-            <span title="{{ userNote.userNote.description }}" style="word-wrap: break-word;">{{ userNote.userNote.description.length > 50 ? userNote.userNote.description.slice(0, 50) + ' [...]' : userNote.userNote.description }}</span>
+            <span title="{{ userNote.userNote.description }}" style="white-space: pre-wrap; word-wrap: break-word">
+                {{ userNote.userNote.description }}
+            </span>
         </div>
         <div class="flex-grow-1"></div>
         <div class="d-flex flex-column align-content-center">
