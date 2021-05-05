@@ -7,6 +7,7 @@
       "No longer automuting on rejoin and case that is marked to be deleted.",
       "Fixed a bug that did not correctly sort the expiring punishment table.",
       "Added usernotes.",
+      "Added usermappings.",
       "Added more information to guildstats on dashboard."
     ]
   },
