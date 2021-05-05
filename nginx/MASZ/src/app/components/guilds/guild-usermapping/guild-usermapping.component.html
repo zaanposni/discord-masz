@@ -1,1 +1,65 @@
-<p>guild-usermapping works!</p>
+<div class="d-flex flex-column w-100">
+    <div class="p-2">
+        <div class="d-flex flex-row flex-wrap align-items-end mb-4">
+            <form [formGroup]="newMapFormGroup" *ngIf="!this.members.loading">
+                <mat-form-field class="mr-2">
+                    <mat-label>Member A</mat-label>
+                    <input type="text"
+                        placeholder="Pick one"
+                        aria-label="Member"
+                        matInput
+                        formControlName="userA"
+                        [matAutocomplete]="autoA">
+                    <mat-autocomplete #autoA="matAutocomplete">
+                        <mat-option *ngFor="let option of this.filteredMembersA | async" [value]="option.id">
+                            {{option.username}}#{{option.discriminator}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field class="mr-2">
+                    <mat-label>Member B</mat-label>
+                    <input type="text"
+                        placeholder="Pick one"
+                        aria-label="Member"
+                        matInput
+                        formControlName="userB"
+                        [matAutocomplete]="autoB">
+                    <mat-autocomplete #autoB="matAutocomplete">
+                        <mat-option *ngFor="let option of this.filteredMembersB | async" [value]="option.id">
+                            {{option.username}}#{{option.discriminator}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field class="mr-2">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput type="text" formControlName="reason" rows="1"></textarea>
+                </mat-form-field>
+                <button mat-raised-button color="accent" (click)="createMap()"
+                 [disabled]="!this.newMapFormGroup.value.userA.trim() || !this.newMapFormGroup.value.reason.trim() || !this.newMapFormGroup.value.userB.trim() || this.newMapFormGroup.value.userA.trim() == this.newMapFormGroup.value.userB.trim()">
+                    Create new mapping
+                </button>
+            </form>
+            <div class="flex-grow-1"></div>
+            <mat-form-field>
+                <mat-label>Search</mat-label>
+                <input matInput type="text" autocomplete="off" [attr.disabled]="this.loading ? '' : null"
+                [(ngModel)]="this.searchString" (ngModelChange)="searchChanged($event)">
+            </mat-form-field>
+        </div>
+        <mat-spinner *ngIf="this.loading"></mat-spinner>
+        <div class="d-flex flex-column" *ngIf="!this.loading">
+            <app-usermap-card *ngFor="let usermap of showUserMappings | async"
+                class="mb-2"
+                [userMap]="usermap" 
+                (deleteEvent)="removeMap($event)"
+                (updateEvent)="updateEvent()">
+            </app-usermap-card>
+            <div class="card-container rounded m-2 mb-3" *ngIf="(this.showUserMappings | async)?.length == 0">
+                <div class="card-container-body">
+                    <span class="mat-h1">Nothing here.</span>
+                    <p class="card-text">No mappings created yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

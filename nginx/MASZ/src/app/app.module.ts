@@ -88,6 +88,8 @@ import { GuildUsermappingComponent } from './components/guilds/guild-usermapping
 import { GuildUsernotesComponent } from './components/guilds/guild-usernotes/guild-usernotes.component';
 import { UsernoteCardComponent } from './components/guilds/guild-usernotes/usernote-card/usernote-card.component';
 import { UsernoteEditDialogComponent } from './components/dialogs/usernote-edit-dialog/usernote-edit-dialog.component';
+import { UsermapCardComponent } from './components/guilds/guild-usermapping/usermap-card/usermap-card.component';
+import { UsermapEditDialogComponent } from './components/dialogs/usermap-edit-dialog/usermap-edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -139,7 +141,9 @@ import { UsernoteEditDialogComponent } from './components/dialogs/usernote-edit-
     GuildUsermappingComponent,
     GuildUsernotesComponent,
     UsernoteCardComponent,
-    UsernoteEditDialogComponent
+    UsernoteEditDialogComponent,
+    UsermapCardComponent,
+    UsermapEditDialogComponent
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,7 @@
 import { DiscordUser } from "./DiscordUser";
-import { UserMapping } from "./Usermapping";
+import { UserMapping } from "./UserMapping";
 
-export interface RootObject {
+export interface UserMappingView {
     userMapping: UserMapping;
     userA?: DiscordUser;
     userB?: DiscordUser;

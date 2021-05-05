@@ -22,17 +22,15 @@
                 </mat-form-field>
                 <button mat-raised-button color="accent" (click)="createNote()"
                  [disabled]="!this.newNoteFormGroup.value.userid.trim() || !this.newNoteFormGroup.value.description.trim()">
-                    Create new Usernote
+                    Create new usernote
                 </button>
             </form>
             <div class="flex-grow-1"></div>
-            <form>
-                <mat-form-field>
-                    <mat-label>Search</mat-label>
-                    <input matInput type="text" autocomplete="off" [attr.disabled]="this.loading ? '' : null"
-                    [(ngModel)]="this.searchString" (ngModelChange)="searchChanged($event)">
-                </mat-form-field>
-            </form>
+            <mat-form-field>
+                <mat-label>Search</mat-label>
+                <input matInput type="text" autocomplete="off" [attr.disabled]="this.loading ? '' : null"
+                [(ngModel)]="this.searchString" (ngModelChange)="searchChanged($event)">
+            </mat-form-field>
         </div>
         <mat-spinner *ngIf="this.loading"></mat-spinner>
         <div class="d-flex flex-column" *ngIf="!this.loading">
