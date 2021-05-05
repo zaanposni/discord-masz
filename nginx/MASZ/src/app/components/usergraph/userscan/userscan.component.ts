@@ -158,7 +158,20 @@ export class UserscanComponent implements OnInit {
       for (let note of network.userNotes) {
         if (note.guildId !== guild.id) continue;
         let noteNode = this.addNewNode(this.newNoteNode, [note]) as Node;
-        this.addNewEdge(guildNode, noteNode, '', false, 'no', 200);
+        this.addNewEdge(guildNode, noteNode, '', false, 'no', 250);
+      }
+      for (let usermap of network.userMappings) {
+        if (usermap.userMapping.guildId !== guild.id) continue;
+        let mapBaseNode = this.addNewNode(this.newBasicMapNode, [userId, usermap.userMapping.guildId]) as Node;
+        this.addNewEdge(guildNode, mapBaseNode);
+        if (usermap.userMapping.userA !== userId) {
+          let userNode = this.addNewNode(this.newUserNode, [usermap.userA, usermap.userMapping.userA]) as Node;
+          this.addNewEdge(mapBaseNode, userNode, usermap.userMapping.reason, true, 'to');
+        }
+        else if (usermap.userMapping.userB !== userId) {
+          let userNode = this.addNewNode(this.newUserNode, [usermap.userB, usermap.userMapping.userB]) as Node;
+          this.addNewEdge(mapBaseNode, userNode, usermap.userMapping.reason, true, 'to');
+        }
       }
     }
     this.redraw();
@@ -187,7 +200,7 @@ export class UserscanComponent implements OnInit {
     return newNode;
   }
 
-  addNewEdge(from: Node, to: Node, title: string = '', addWithRoundness: boolean = false, arrow: 'to'|'from'|'no' = 'no', length: number = 120): Edge {
+  addNewEdge(from: Node, to: Node, title: string = '', addWithRoundness: boolean = false, arrow: 'to'|'from'|'no' = 'no', length: number = 160): Edge {
     let newEdge = {id: `${from.id}/edge/${to.id}`, from: from.id, to: to.id, title: title.trim() === '' ? undefined : title, length: length} as any;
     if (arrow === 'to') {
       newEdge['arrows'] = { middle: { scaleFactor: 0.5 }, to: true };
@@ -297,6 +310,16 @@ export class UserscanComponent implements OnInit {
     return {
       id: `${userId}/${guildId}/automods`,
       label: 'Automoderations',
+      group: `basics/sub`,
+      shape: 'triangle',
+      size: 15
+    }
+  }
+
+  newBasicMapNode(userId: string, guildId: string): Node {
+    return {
+      id: `${userId}/${guildId}/usermaps`,
+      label: 'Mappings',
       group: `basics/sub`,
       shape: 'triangle',
       size: 15

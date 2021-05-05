@@ -71,9 +71,22 @@ namespace masz.Controllers
                     await discord.FetchUserInfo(invite.InviteIssuerId, CacheBehavior.OnlyCache)
                 ));
             }
+            List<UserMappingView> userMappings = new List<UserMappingView>();
+            foreach(UserMapping userMapping in await database.GetUserMappingsByUserId(userid))
+            {
+                if (!modGuilds.Contains(userMapping.GuildId)) {
+                    continue;
+                }
+                userMappings.Add(new UserMappingView() {
+                    UserMapping = userMapping,
+                    Moderator = await discord.FetchUserInfo(userMapping.CreatorUserId, CacheBehavior.OnlyCache),
+                    UserA = await discord.FetchUserInfo(userMapping.UserA, CacheBehavior.OnlyCache),
+                    UserB = await discord.FetchUserInfo(userMapping.UserB, CacheBehavior.OnlyCache)
+                });
+            }
+
             List<ModCase> modCases = (await database.SelectAllModCasesForSpecificUser(userid)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
             List<AutoModerationEvent> modEvents = (await database.SelectAllModerationEventsForSpecificUser(userid)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
-            List<UserMapping> userMappings = (await database.GetUserMappingsByUserId(userid)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
             List<UserNote> userNotes = (await database.GetUserNotesByUserId(userid)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning network.");
