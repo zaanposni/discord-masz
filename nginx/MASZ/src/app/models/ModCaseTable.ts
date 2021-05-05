@@ -3,6 +3,6 @@ import { ModCase } from "./ModCase";
 
 export interface ModCaseTable {
     modCase: ModCase;
-    moderator: DiscordUser;
-    suspect: DiscordUser;
+    moderator?: DiscordUser;
+    suspect?: DiscordUser;
 }

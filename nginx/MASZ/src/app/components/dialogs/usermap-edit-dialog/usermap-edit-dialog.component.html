@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Edit usermap</h1>
+<div mat-dialog-content class="w-100">
+    <mat-form-field class="w-100">
+        <mat-label>Description</mat-label>
+        <textarea matInput type="text" [(ngModel)]="settings.reason" [attr.rows]="this.initRows" class="w-100"></textarea>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="accent" [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="!settings.reason?.trim()">Confirm</button>
+</div>

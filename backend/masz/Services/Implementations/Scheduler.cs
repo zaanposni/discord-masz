@@ -163,6 +163,34 @@ namespace masz.Services
                         handledUsers.Add(modCase.LastEditedByModId);
                     }
                 }
+
+                foreach (var userNote in await database.SelectLatestUserNotes(DateTime.UtcNow.AddYears(-3), 100))
+                {
+                    if (!handledUsers.Contains(userNote.UserId)) {
+                        await discord.FetchUserInfo(userNote.UserId, CacheBehavior.IgnoreCache);
+                        handledUsers.Add(userNote.UserId);
+                    }
+                    if (!handledUsers.Contains(userNote.CreatorId)) {
+                        await discord.FetchUserInfo(userNote.CreatorId, CacheBehavior.IgnoreCache);
+                        handledUsers.Add(userNote.CreatorId);
+                    }
+                }
+
+                foreach (var userMapping in await database.SelectLatestUserMappings(DateTime.UtcNow.AddYears(-3), 100))
+                {
+                    if (!handledUsers.Contains(userMapping.UserA)) {
+                        await discord.FetchUserInfo(userMapping.UserA, CacheBehavior.IgnoreCache);
+                        handledUsers.Add(userMapping.UserA);
+                    }
+                    if (!handledUsers.Contains(userMapping.UserB)) {
+                        await discord.FetchUserInfo(userMapping.UserB, CacheBehavior.IgnoreCache);
+                        handledUsers.Add(userMapping.UserB);
+                    }
+                    if (!handledUsers.Contains(userMapping.CreatorUserId)) {
+                        await discord.FetchUserInfo(userMapping.CreatorUserId, CacheBehavior.IgnoreCache);
+                        handledUsers.Add(userMapping.CreatorUserId);
+                    }
+                }
             }
             logger.LogInformation("Cacher | Done - Cache all known users.");
             return handledUsers;

@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using masz.Dtos.DiscordAPIResponses;
 using masz.Models;
-using masz.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace masz.Controllers
 {

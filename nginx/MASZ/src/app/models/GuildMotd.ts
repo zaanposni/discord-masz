@@ -11,5 +11,5 @@ export interface GuildMotd {
 
 export interface GuildMotdView {
     motd: GuildMotd;
-    creator: DiscordUser;
+    creator?: DiscordUser;
 }

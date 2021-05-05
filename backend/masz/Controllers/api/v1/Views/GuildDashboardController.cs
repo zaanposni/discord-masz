@@ -90,6 +90,10 @@ namespace masz.Controllers
             int activeBans = await this.database.CountAllActivePunishmentsForGuild(guildid, PunishmentType.Ban);
             int activeMutes = await this.database.CountAllActivePunishmentsForGuild(guildid, PunishmentType.Mute);
             int autoModerations = await this.database.CountAllModerationEventsForGuild(guildid);
+            int trackedInvites = await this.database.CountTrackedInvitesForGuild(guildid);
+            int userMappings = await this.database.CountUserMappingsForGuild(guildid);
+            int userNotes = await this.database.CountUserNotesForGuild(guildid);
+            int comments = await this.database.CountCommentsForGuild(guildid);
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Returning stats.");
             return Ok(new {
@@ -97,7 +101,11 @@ namespace masz.Controllers
                 activeCount = activePunishments,
                 activeBanCount = activeBans,
                 activeMuteCount = activeMutes,
-                moderationCount = autoModerations
+                moderationCount = autoModerations,
+                trackedInvites = trackedInvites,
+                userMappings = userMappings,
+                userNotes = userNotes,
+                comments = comments
             });
         }
 
@@ -170,8 +178,34 @@ namespace masz.Controllers
                 }
             }
 
+            UserNote userNote = await database.GetUserNoteByUserIdAndGuildId(search, guildid);
+            UserNoteView userNoteView = null;
+            if (userNote != null) {
+                userNoteView = new UserNoteView() {
+                    UserNote = userNote,
+                    Moderator = await discord.FetchUserInfo(userNote.CreatorId, CacheBehavior.OnlyCache),
+                    User = await discord.FetchUserInfo(userNote.UserId, CacheBehavior.OnlyCache)
+                };
+            }
+
+            List<UserMapping> userMappings = await database.GetUserMappingsByUserIdAndGuildId(search, guildid);
+            List<UserMappingView> userMappingViews = new List<UserMappingView>();
+            foreach (UserMapping userMapping in userMappings)
+            {
+                userMappingViews.Add(new UserMappingView() {
+                    UserMapping = userMapping,
+                    Moderator = await discord.FetchUserInfo(userMapping.CreatorUserId, CacheBehavior.OnlyCache),
+                    UserA = await discord.FetchUserInfo(userMapping.UserA, CacheBehavior.OnlyCache),
+                    UserB = await discord.FetchUserInfo(userMapping.UserB, CacheBehavior.OnlyCache)
+                });
+            }
+
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Returning search results.");
-            return Ok(entries.OrderByDescending(x => x.CreatedAt).ToList());
+            return Ok(new {
+                searchEntries = entries.OrderByDescending(x => x.CreatedAt).ToList(),
+                userNoteView = userNoteView,
+                userMappingViews = userMappingViews
+            });
         }
 
         private bool contains(ModCaseTableEntry obj, string search) {

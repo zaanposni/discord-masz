@@ -3,6 +3,8 @@ migrate_dyno_warnings.py
 this scripts parses all dynobot warnings registered to your guild into useable SQL Code that can be injected into the database.
 """
 
+input("WARNING: THIS SCRIPT IS DEPRECTATED. PRESS ENTER TO CONTINUE.")
+
 import json
 import os
 import argparse

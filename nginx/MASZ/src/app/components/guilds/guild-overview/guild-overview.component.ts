@@ -51,6 +51,8 @@ export class GuildOverviewComponent implements OnInit {
       this.isModOrHigher = data;
       if (data) {
         this.tabs.unshift({ component: 'dashboard', icon: 'dashboard', label: 'Dashboard' });
+        this.tabs.push({ component: 'usernote', icon: 'badge', label: 'Usernote' });
+        this.tabs.push({ component: 'usermap', icon: 'people', label: 'Usermap' });
         this.tabs.push({ component: 'bin', icon: 'delete_forever', label: 'Bin' });
         this.selectedTab.setValue(0);
       }

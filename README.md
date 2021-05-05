@@ -128,10 +128,6 @@ git pull
 ./start.sh
 ```
 
-## Migration
-
-To migrate your existing data from the Dynobot checkout [this documentation](scripts#migrate-from-dynobot-to-masz).
-
 ## Backup
 
 There are backup example scripts in the `scripts` directory to backup uploaded files and the database.

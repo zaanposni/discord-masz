@@ -9,6 +9,7 @@ import { Guild } from 'src/app/models/Guild';
 import { ModCase } from 'src/app/models/ModCase';
 import { UserInvite } from 'src/app/models/UserInvite';
 import { UserNetwork } from 'src/app/models/UserNetwork';
+import { UserNote } from 'src/app/models/UserNote';
 import { ApiService } from 'src/app/services/api.service';
 import { Network, DataSet, Node, Edge, Data, IdType } from 'vis';
 
@@ -54,6 +55,7 @@ export class UserscanComponent implements OnInit {
   constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
   }
 
   onSearch(event: any) {
@@ -121,7 +123,7 @@ export class UserscanComponent implements OnInit {
   calculateNewNetwork(network: UserNetwork, userId: string) {
     let baseNode = this.addNewNode(this.newUserNode, [network?.user, userId, 50, 'basics']) as Node;
     for (let guild of network.guilds) {
-      let guildNode = this.addNewNode(this.newGuildNode, [guild, guild.id, 40, `${userId}/${guild.id}`]) as Node;
+      let guildNode = this.addNewNode(this.newGuildNode, [guild, guild.id, 40, `${userId}/`]) as Node;
       this.addNewEdge(baseNode, guildNode);
       for (let invite of network.invitedBy) {
         if (invite.userInvite.guildId !== guild.id) continue;
@@ -134,8 +136,10 @@ export class UserscanComponent implements OnInit {
         if (invite.userInvite.guildId !== guild.id) continue;
         let inviteNode = this.addNewNode(this.newInviteNode, [invite.userInvite]) as Node;
         this.addNewEdge(guildNode, inviteNode, `Created at: ${new Date(invite.userInvite.inviteCreatedAt).toLocaleString()}`, false, 'to');
-        let invitedUserNode = this.addNewNode(this.newUserNode, [invite?.invitedUser, invite?.userInvite?.joinedUserId]) as Node;
-        this.addNewEdge(inviteNode, invitedUserNode, `Joined at: ${new Date(invite.userInvite.joinedAt).toLocaleString()}`, true, 'to');
+        if ( invite.userInvite.joinedUserId !== invite.userInvite.inviteIssuerId ) {
+          let invitedUserNode = this.addNewNode(this.newUserNode, [invite?.invitedUser, invite?.userInvite?.joinedUserId]) as Node;
+          this.addNewEdge(inviteNode, invitedUserNode, `Joined at: ${new Date(invite.userInvite.joinedAt).toLocaleString()}`, true, 'to');
+        }
       }
       for (let modCase of network.modCases) {
         if (modCase.guildId !== guild.id) continue;
@@ -151,7 +155,25 @@ export class UserscanComponent implements OnInit {
         let eventNode = this.addNewNode(this.newEventNode, [modEvent, 5]) as Node;
         this.addNewEdge(eventBaseNode, eventNode, `Occured at: ${new Date(modEvent.createdAt).toLocaleString()}`);
       }
-    }   
+      for (let note of network.userNotes) {
+        if (note.guildId !== guild.id) continue;
+        let noteNode = this.addNewNode(this.newNoteNode, [note]) as Node;
+        this.addNewEdge(guildNode, noteNode, '', false, 'no', 250);
+      }
+      for (let usermap of network.userMappings) {
+        if (usermap.userMapping.guildId !== guild.id) continue;
+        let mapBaseNode = this.addNewNode(this.newBasicMapNode, [userId, usermap.userMapping.guildId]) as Node;
+        this.addNewEdge(guildNode, mapBaseNode);
+        if (usermap.userMapping.userA !== userId) {
+          let userNode = this.addNewNode(this.newUserNode, [usermap.userA, usermap.userMapping.userA]) as Node;
+          this.addNewEdge(mapBaseNode, userNode, usermap.userMapping.reason, true, 'to');
+        }
+        else if (usermap.userMapping.userB !== userId) {
+          let userNode = this.addNewNode(this.newUserNode, [usermap.userB, usermap.userMapping.userB]) as Node;
+          this.addNewEdge(mapBaseNode, userNode, usermap.userMapping.reason, true, 'to');
+        }
+      }
+    }
     this.redraw();
   }
 
@@ -178,18 +200,18 @@ export class UserscanComponent implements OnInit {
     return newNode;
   }
 
-  addNewEdge(from: Node, to: Node, title: string = '', addWithRoundness: boolean = false, arrow: 'to'|'from'|'no' = 'no'): Edge {
-    let newEdge = {id: `${from.id}/node/${to.id}`, from: from.id, to: to.id, title: title.trim() === '' ? undefined : title} as any;
+  addNewEdge(from: Node, to: Node, title: string = '', addWithRoundness: boolean = false, arrow: 'to'|'from'|'no' = 'no', length: number = 160): Edge {
+    let newEdge = {id: `${from.id}/edge/${to.id}`, from: from.id, to: to.id, title: title.trim() === '' ? undefined : title, length: length} as any;
     if (arrow === 'to') {
       newEdge['arrows'] = { middle: { scaleFactor: 0.5 }, to: true };
     }
     if (arrow === 'from') {
       newEdge['arrows'] = { middle: { scaleFactor: 0.5 }, from: true };
     }
-    let existingEdges = this.data.edges.filter(x => x.id === newEdge?.id);
+    let existingEdges = this.data.edges.filter(x => x.id?.toString().startsWith(newEdge?.id));
     if (existingEdges.length === 0) {
       this.data.edges.push(newEdge);
-    } else if(addWithRoundness) {
+    } else if (addWithRoundness) {
       let roundness = 0;
       for (let edge of existingEdges) {
         let s = edge?.smooth as any;
@@ -199,7 +221,7 @@ export class UserscanComponent implements OnInit {
       }
       roundness += 0.2;
       newEdge['id'] += `/${roundness}`;
-      newEdge['smooth'] = {type: 'curvedCW', roundness: roundness };
+      newEdge['smooth'] = { type: 'curvedCW', roundness: roundness, enabled: true };
       this.data.edges.push(newEdge);
     }
     return newEdge;
@@ -227,6 +249,15 @@ export class UserscanComponent implements OnInit {
       label: guild != null ? guild.name : guildId,
       title: guild?.id ?? guildId,
       size: size
+    }
+  }
+
+  newNoteNode(userNote: UserNote): Node {
+    return {
+      id: `${userNote.guildId}/usernote/${userNote.id}`,
+      title: userNote.description,
+      label: userNote.description,
+      shape: 'box'
     }
   }
 
@@ -279,6 +310,16 @@ export class UserscanComponent implements OnInit {
     return {
       id: `${userId}/${guildId}/automods`,
       label: 'Automoderations',
+      group: `basics/sub`,
+      shape: 'triangle',
+      size: 15
+    }
+  }
+
+  newBasicMapNode(userId: string, guildId: string): Node {
+    return {
+      id: `${userId}/${guildId}/usermaps`,
+      label: 'Mappings',
       group: `basics/sub`,
       shape: 'triangle',
       size: 15

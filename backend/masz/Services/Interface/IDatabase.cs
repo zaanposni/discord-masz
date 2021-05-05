@@ -73,6 +73,7 @@ namespace masz.Services
         void DeleteSpecificModCaseComment(ModCaseComment comment);
         Task<ModCaseComment> SelectSpecificModCaseComment(int commentId);
         Task<List<ModCaseComment>> SelectLastModCaseCommentsByGuild(string guildId);
+        Task<int> CountCommentsForGuild(string guildId);
 
         Task SaveCaseTemplate(CaseTemplate template);
         void DeleteSpecificCaseTemplate(CaseTemplate template);
@@ -94,6 +95,30 @@ namespace masz.Services
         Task<List<UserInvite>> GetInvitedUsersByUserId(string userId);
         Task<List<UserInvite>> GetUsedInvitesByUserId(string userId);
         Task<int> CountTrackedInvites();
+        Task<int> CountTrackedInvitesForGuild(string guildId);
         Task DeleteInviteHistoryByGuild(string guildId);
+
+        Task<List<UserMapping>> SelectLatestUserMappings(DateTime timeLimit, int limit);
+        Task<UserMapping> GetUserMappingById(string id);
+        Task<List<UserMapping>> GetUserMappingsByUserId(string userId);
+        Task<List<UserMapping>> GetUserMappingsByUserIdAndGuildId(string userId, string guildId);
+        Task<UserMapping> GetUserMappingByUserIdsAndGuildId(string userAId, string userBId, string guildId);
+        Task<List<UserMapping>> GetUserMappingsByGuildId(string guildId);
+        Task<int> CountUserMappings();
+        Task<int> CountUserMappingsForGuild(string guildId);
+        void DeleteUserMapping(UserMapping userMapping);
+        void SaveUserMapping(UserMapping userMapping);
+        Task DeleteUserMappingByGuild(string guildId);
+
+        Task<List<UserNote>> SelectLatestUserNotes(DateTime timeLimit, int limit);
+        Task<UserNote> GetUserNoteById(string id);
+        Task<List<UserNote>> GetUserNotesByUserId(string userId);
+        Task<List<UserNote>> GetUserNotesByGuildId(string guildId);
+        Task<UserNote> GetUserNoteByUserIdAndGuildId(string userId, string guildId);
+        Task<int> CountUserNotes();
+        Task<int> CountUserNotesForGuild(string guildId);
+        void DeleteUserNote(UserNote userNote);
+        void SaveUserNote(UserNote userNote);
+        Task DeleteUserNoteByGuild(string guildId);
     }
 }

@@ -24,9 +24,29 @@
                 <span class="d-block mat-h1 mb-0" *ngIf="stats.content">{{ stats.content?.activeMuteCount }}</span>
                 <span class="d-block mat-h1 mb-0 waiting-for-text" style="width: 40px;" *ngIf="!stats.content"></span>
             </div>
-            <div>
+            <div class="mr-3">
                 <span>Automoderations</span>
                 <span class="d-block mat-h1 mb-0" *ngIf="stats.content">{{ stats.content?.moderationCount }}</span>
+                <span class="d-block mat-h1 mb-0 waiting-for-text" style="width: 40px;" *ngIf="!stats.content"></span>
+            </div>
+            <div class="mr-3">
+                <span>Invites</span>
+                <span class="d-block mat-h1 mb-0" *ngIf="stats.content">{{ stats.content?.trackedInvites }}</span>
+                <span class="d-block mat-h1 mb-0 waiting-for-text" style="width: 40px;" *ngIf="!stats.content"></span>
+            </div>
+            <div class="mr-3">
+                <span>Usernotes</span>
+                <span class="d-block mat-h1 mb-0" *ngIf="stats.content">{{ stats.content?.userNotes }}</span>
+                <span class="d-block mat-h1 mb-0 waiting-for-text" style="width: 40px;" *ngIf="!stats.content"></span>
+            </div>
+            <div class="mr-3">
+                <span>Usermappings</span>
+                <span class="d-block mat-h1 mb-0" *ngIf="stats.content">{{ stats.content?.userMappings }}</span>
+                <span class="d-block mat-h1 mb-0 waiting-for-text" style="width: 40px;" *ngIf="!stats.content"></span>
+            </div>
+            <div class="mr-3">
+                <span>Comments</span>
+                <span class="d-block mat-h1 mb-0" *ngIf="stats.content">{{ stats.content?.comments }}</span>
                 <span class="d-block mat-h1 mb-0 waiting-for-text" style="width: 40px;" *ngIf="!stats.content"></span>
             </div>
         </div>

@@ -6,7 +6,7 @@ from discord.ext import commands
 from discord import Embed, Member, User
 from discord.errors import NotFound
 
-from data import get_modcases_by_user_and_guild, get_cached_guild_config, get_latest_joins_by_user_and_guild
+from data import get_modcases_by_user_and_guild, get_cached_guild_config, get_latest_joins_by_user_and_guild, get_usernote_by_user_and_guild
 from .checks import registered_guild_and_admin_or_mod_only
 
 
@@ -41,6 +41,14 @@ async def whois(ctx, user: User):
 
         embed.set_author(name=str(member), icon_url=member.avatar_url)
         embed.set_thumbnail(url=member.avatar_url)
+
+    note = await get_usernote_by_user_and_guild(user.id, ctx.guild.id)
+    if note:
+        embed.add_field(
+            name=f"Usernote",
+            value=note['Description'],
+            inline=False
+            )
 
     if cases:
         info = ""

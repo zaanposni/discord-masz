@@ -78,22 +78,10 @@ namespace masz.Controllers
                 return BadRequest("Guild not registered.");
             }
 
-            List<ModCase> modCases = new List<ModCase>();
-            if (String.IsNullOrEmpty(userOnly)) {
-                if (String.IsNullOrWhiteSpace(search)) {
-                    modCases = await database.SelectAllModCasesForGuild(guildid, startPage, 20, tableType);
-                } else {
-                    modCases = await database.SelectAllModCasesForGuild(guildid, tableType);
-                }
-            }
-            else {                
-                if (String.IsNullOrWhiteSpace(search)) {
-                    modCases = await database.SelectAllModcasesForSpecificUserOnGuild(guildid, currentUser.Id, startPage, 20, tableType);
-                } else {
-                    modCases = await database.SelectAllModcasesForSpecificUserOnGuild(guildid, currentUser.Id, tableType);
-                }
-            }
+            // SELECT
+            List<ModCase> modCases = await database.SelectAllModCasesForGuild(guildid);
 
+            // ORDER BY
             switch(sortBy) {
                 case ModcaseTableSortType.SortByExpiring:
                     modCases = modCases.Where(x => x.PunishedUntil != null).OrderBy(x => x.PunishedUntil).ToList();
@@ -101,6 +89,24 @@ namespace masz.Controllers
                 case ModcaseTableSortType.SortByDeleting:
                     modCases = modCases.OrderBy(x => x.MarkedToDeleteAt).ToList();
                     break;
+            }
+            
+            // WHERE
+            if (! String.IsNullOrEmpty(userOnly)) {
+                modCases = modCases.Where(x => x.UserId == userOnly).ToList();
+            }
+            switch(tableType) {
+                case ModcaseTableType.OnlyPunishments:
+                    modCases = modCases.Where(x => x.PunishmentActive).ToList();
+                    break;
+                case ModcaseTableType.OnlyBin:
+                    modCases = modCases.Where(x => x.MarkedToDeleteAt != null).ToList();
+                    break;
+            }
+
+            // LIMIT
+            if (String.IsNullOrEmpty(search)) {
+                modCases = modCases.Skip(startPage * 20).Take(20).ToList();
             }
 
             List<ModCaseTableEntry> table = new List<ModCaseTableEntry>();

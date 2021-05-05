@@ -370,6 +370,11 @@ namespace masz.Services
             return await context.ModCaseComments.Include(x => x.ModCase).AsQueryable().Where(x => x.ModCase.GuildId == guildId).OrderByDescending(x => x.CreatedAt).Take(10).ToListAsync();
         }
 
+        public async Task<int> CountCommentsForGuild(string guildId)
+        {
+            return await context.ModCaseComments.Include(x => x.ModCase).AsQueryable().Where(x => x.ModCase.GuildId == guildId).CountAsync();
+        }
+
         // ==================================================================================
         // 
         // CaseTemplates
@@ -479,10 +484,132 @@ namespace masz.Services
             return await context.UserInvites.AsQueryable().CountAsync();
         }
 
+        public async Task<int> CountTrackedInvitesForGuild(string guildId)
+        {
+            return await context.UserInvites.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
+        }
+
         public async Task DeleteInviteHistoryByGuild(string guildId)
         {
             var userinvites = await context.UserInvites.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
             context.UserInvites.RemoveRange(userinvites);
+        }
+
+        // ==================================================================================
+        // 
+        // UserMapping
+        //
+        // ==================================================================================
+
+        public async Task<List<UserMapping>> SelectLatestUserMappings(DateTime timeLimit, int limit)
+        {
+            return await context.UserMappings.AsQueryable().Where(x => x.CreatedAt > timeLimit).OrderByDescending(x => x.CreatedAt).Take(limit).ToListAsync();
+        }
+        public async Task<UserMapping> GetUserMappingById(string id)
+        {
+            return await context.UserMappings.AsQueryable().Where(x => x.Id.ToString() == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<UserMapping>> GetUserMappingsByUserId(string userId)
+        {
+            return await context.UserMappings.AsQueryable().Where(x => x.UserA == userId || x.UserB == userId).OrderByDescending(x => x.CreatedAt).ToListAsync();
+        }
+
+        public async Task<List<UserMapping>> GetUserMappingsByUserIdAndGuildId(string userId, string guildId)
+        {
+            return await context.UserMappings.AsQueryable().Where(x => (x.UserA == userId || x.UserB == userId) && x.GuildId == guildId).OrderByDescending(x => x.CreatedAt).ToListAsync();
+        }
+        
+        public async Task<UserMapping> GetUserMappingByUserIdsAndGuildId(string userAId, string userBId, string guildId)
+        {
+            return await context.UserMappings.AsQueryable().Where(x => ((x.UserA == userAId || x.UserB == userAId) && (x.UserA == userBId || x.UserB == userBId)) && x.GuildId == guildId).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<UserMapping>> GetUserMappingsByGuildId(string guildId)
+        {
+            return await context.UserMappings.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CreatedAt).ToListAsync();
+        }
+
+        public async Task<int> CountUserMappings()
+        {
+            return await context.UserMappings.AsQueryable().CountAsync();
+        }
+        public async Task<int> CountUserMappingsForGuild(string guildId)
+        {
+            return await context.UserMappings.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
+        }
+
+        public void DeleteUserMapping(UserMapping userMapping)
+        {
+            context.UserMappings.Remove(userMapping);
+        }
+
+        public void SaveUserMapping(UserMapping userMapping)
+        {
+            context.UserMappings.Update(userMapping);
+        }
+
+        public async Task DeleteUserMappingByGuild(string guildId)
+        {
+            var userMappings = await context.UserMappings.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            context.UserMappings.RemoveRange(userMappings);
+        }
+
+        // ==================================================================================
+        // 
+        // UserNotes
+        //
+        // ==================================================================================
+
+        public async Task<List<UserNote>> SelectLatestUserNotes(DateTime timeLimit, int limit)
+        {
+            return await context.UserNotes.AsQueryable().Where(x => x.UpdatedAt > timeLimit).OrderByDescending(x => x.UpdatedAt).Take(limit).ToListAsync();
+        }
+
+        public async Task<UserNote> GetUserNoteById(string id)
+        {
+            return await context.UserNotes.AsQueryable().Where(x => x.Id.ToString() == id).FirstOrDefaultAsync();
+        }
+        
+        public async Task<List<UserNote>> GetUserNotesByUserId(string userId)
+        {
+            return await context.UserNotes.AsQueryable().Where(x => x.UserId == userId).OrderByDescending(x => x.UpdatedAt).ToListAsync();
+        }
+
+        public async Task<List<UserNote>> GetUserNotesByGuildId(string guildId)
+        {
+            return await context.UserNotes.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.UpdatedAt).ToListAsync();
+        }
+
+        public async Task<UserNote> GetUserNoteByUserIdAndGuildId(string userId, string guildId)
+        {
+            return await context.UserNotes.AsQueryable().Where(x => x.UserId == userId && x.GuildId == guildId).FirstOrDefaultAsync();
+        }
+
+        public async Task<int> CountUserNotes()
+        {
+            return await context.UserNotes.AsQueryable().CountAsync();
+        }
+
+        public async Task<int> CountUserNotesForGuild(string guildId)
+        {
+            return await context.UserNotes.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
+        }
+
+        public void DeleteUserNote(UserNote userNote)
+        {
+            context.UserNotes.Remove(userNote);
+        }
+
+        public void SaveUserNote(UserNote userNote)
+        {
+            context.UserNotes.Update(userNote);
+        }
+
+        public async Task DeleteUserNoteByGuild(string guildId)
+        {
+            var userNotes = await context.UserNotes.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            context.UserNotes.RemoveRange(userNotes);
         }
     }
 }
