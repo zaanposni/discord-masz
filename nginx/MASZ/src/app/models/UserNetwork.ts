@@ -3,6 +3,7 @@ import { DiscordUser } from "./DiscordUser";
 import { Guild } from "./Guild";
 import { ModCase } from "./ModCase";
 import { UserInviteView } from "./UserInviteView";
+import { UserNote } from "./UserNote";
 
 export interface UserNetwork {
     guilds: Guild[];
@@ -11,4 +12,6 @@ export interface UserNetwork {
     invitedBy: UserInviteView[];
     modCases: ModCase[];
     modEvents: AutoModerationEvent[];
+    userMapping: any[];
+    userNotes: UserNote[];
 }
