@@ -13,7 +13,6 @@ export class UsernoteEditDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public settings: UserNoteDto) { }
 
   ngOnInit(): void {
-    this.initRows = this.settings.description.split(/\r\n|\r|\n/).length;
+    this.initRows = Math.min(this.settings.description.split(/\r\n|\r|\n/).length, 15);
   }
-
 }

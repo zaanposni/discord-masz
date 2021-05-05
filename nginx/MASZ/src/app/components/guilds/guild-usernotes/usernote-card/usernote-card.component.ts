@@ -45,13 +45,13 @@ export class UsernoteCardComponent implements OnInit {
     };
     const editDialogRef = this.dialog.open(UsernoteEditDialogComponent, {
       data: userNoteDto,
-      minWidth: '400px',
-      minHeight: '350px'
+      minWidth: '400px'
     });
     editDialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
         this.api.putSimpleData(`/guilds/${this.userNote.userNote.guildId}/usernote`, userNoteDto).subscribe((data) => {
           this.toastr.success('Usernote updated.');
+          this.userNote.userNote.description = userNoteDto.description.trim();
           this.updateEvent.emit(0);
         }, () => {
           this.toastr.error('Failed to update usernote.');
