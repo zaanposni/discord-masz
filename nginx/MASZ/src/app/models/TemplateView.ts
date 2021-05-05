@@ -4,6 +4,6 @@ import { Guild } from "./Guild";
 
 export interface TemplateView {
     caseTemplate: CaseTemplate;
-    creator: DiscordUser;
+    creator?: DiscordUser;
     guild: Guild;
 }

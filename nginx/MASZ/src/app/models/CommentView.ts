@@ -5,5 +5,5 @@ export interface CommentView {
     message: string;
     createdAt: Date;
     userId: string;
-    user: DiscordUser;
+    user?: DiscordUser;
 }
