@@ -62,6 +62,17 @@ namespace masz.Controllers
                 return BadRequest("Mapping already exists.");
             }
 
+            User validUserA = await discord.FetchUserInfo(userMapDto.UserA, CacheBehavior.Default);
+            User validUserB = await discord.FetchUserInfo(userMapDto.UserB, CacheBehavior.Default);
+            if (validUserA == null || validUserB == null) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 User invalid.");
+                return BadRequest("Invalid user.");
+            }
+            if (userMapDto.UserA == userMapDto.UserB) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Same users.");
+                return BadRequest("Cannot be same user.");
+            }
+
             UserMapping userMapping = new UserMapping();
             userMapping.GuildId = guildid;
             userMapping.CreatedAt = DateTime.UtcNow;
