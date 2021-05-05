@@ -109,7 +109,6 @@ export class GuildUsermappingComponent implements OnInit {
 
   search() {
     let tempSearch = this.searchString.toLowerCase();
-    console.warn(tempSearch);
     if (tempSearch.trim()) {
       this.$showUserMappings.next(this.allUserMappings.filter(
         x => x.userMapping.creatorUserId.includes(tempSearch) ||
