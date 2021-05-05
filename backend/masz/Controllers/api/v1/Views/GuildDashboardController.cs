@@ -187,13 +187,24 @@ namespace masz.Controllers
                     User = await discord.FetchUserInfo(userNote.UserId, CacheBehavior.OnlyCache)
                 };
             }
+
             List<UserMapping> userMappings = await database.GetUserMappingsByUserIdAndGuildId(search, guildid);
+            List<UserMappingView> userMappingViews = new List<UserMappingView>();
+            foreach (UserMapping userMapping in userMappings)
+            {
+                userMappingViews.Add(new UserMappingView() {
+                    UserMapping = userMapping,
+                    Moderator = await discord.FetchUserInfo(userMapping.CreatorUserId, CacheBehavior.OnlyCache),
+                    UserA = await discord.FetchUserInfo(userMapping.UserA, CacheBehavior.OnlyCache),
+                    UserB = await discord.FetchUserInfo(userMapping.UserB, CacheBehavior.OnlyCache)
+                });
+            }
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 200 Returning search results.");
             return Ok(new {
                 searchEntries = entries.OrderByDescending(x => x.CreatedAt).ToList(),
                 userNoteView = userNoteView,
-                userMappings = userMappings
+                userMappingViews = userMappingViews
             });
         }
 

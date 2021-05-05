@@ -17,13 +17,19 @@
             <ng-container *ngIf="this.searchResults?.userNoteView">
                 <app-usernote-card [userNote]="this.searchResults!.userNoteView" [showDeleteButton]="false" class="mb-1"></app-usernote-card>
             </ng-container>
+            <ng-container *ngIf="this.searchResults?.userMappingViews">
+                <app-quicksearch-usermaps-result [usermaps]="this.searchResults!.userMappingViews" [searchedFor]="this.search"></app-quicksearch-usermaps-result>
+            </ng-container>
+
+            <mat-divider *ngIf="this.searchResults?.userNoteView || this.searchResults?.userMappingViews?.length !== 0" class="mb-2 mt-2"></mat-divider>
+
             <ng-container *ngFor="let entry of searchResults?.searchEntries">
                 <app-quicksearch-case-result [caseEntry]="entry.entry" class="mb-1"
                  *ngIf="entry.quickSearchEntryType === 0"></app-quicksearch-case-result>
                 <app-quicksearch-moderation-result [entry]="entry.entry" class="mb-1"
                  *ngIf="entry.quickSearchEntryType === 1"></app-quicksearch-moderation-result>
             </ng-container>
-            <div *ngIf="searchResults?.searchEntries?.length === 0 && searchResults?.userNoteView == null && searchResults?.userMappings?.length === 0">
+            <div *ngIf="searchResults?.searchEntries?.length === 0 && searchResults?.userNoteView == null && searchResults?.userMappingViews?.length === 0">
                 <div class="d-flex flex-row">
                     <div class="flex-grow-1"></div>
                     <img src="/assets/img/notfound.svg" class="flex-grow-0 w-50" />

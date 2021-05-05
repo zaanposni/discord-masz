@@ -90,6 +90,7 @@ import { UsernoteCardComponent } from './components/guilds/guild-usernotes/usern
 import { UsernoteEditDialogComponent } from './components/dialogs/usernote-edit-dialog/usernote-edit-dialog.component';
 import { UsermapCardComponent } from './components/guilds/guild-usermapping/usermap-card/usermap-card.component';
 import { UsermapEditDialogComponent } from './components/dialogs/usermap-edit-dialog/usermap-edit-dialog.component';
+import { QuicksearchUsermapsResultComponent } from './components/guilds/guild-dashboard/dashboard-quicksearch/quicksearch-usermaps-result/quicksearch-usermaps-result.component';
 
 @NgModule({
   declarations: [
@@ -143,7 +144,8 @@ import { UsermapEditDialogComponent } from './components/dialogs/usermap-edit-di
     UsernoteCardComponent,
     UsernoteEditDialogComponent,
     UsermapCardComponent,
-    UsermapEditDialogComponent
+    UsermapEditDialogComponent,
+    QuicksearchUsermapsResultComponent
   ],
   imports: [
     CommonModule,

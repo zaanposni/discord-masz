@@ -52,6 +52,7 @@ export class UsernoteCardComponent implements OnInit {
         this.api.putSimpleData(`/guilds/${this.userNote.userNote.guildId}/usernote`, userNoteDto).subscribe((data) => {
           this.toastr.success('Usernote updated.');
           this.userNote.userNote.description = userNoteDto.description.trim();
+          this.userNote.userNote.updatedAt = new Date();
           this.updateEvent.emit(0);
         }, () => {
           this.toastr.error('Failed to update usernote.');
