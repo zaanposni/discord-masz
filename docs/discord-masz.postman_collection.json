@@ -1956,6 +1956,33 @@
 							"response": []
 						},
 						{
+							"name": "usernote view by guild",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/usernoteview",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"usernoteview"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "usernotes by guild and user",
 							"request": {
 								"method": "GET",
@@ -2002,7 +2029,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"description\": \"cool user2\"\r\n}",
+									"raw": "{\r\n    \"userid\": \"272655001329991681\",\r\n    \"description\": \"cool user2\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2010,7 +2037,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/guilds/{{guildid}}/usernote/:userid",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/usernote",
 									"host": [
 										"{{url}}"
 									],
@@ -2019,14 +2046,7 @@
 										"v1",
 										"guilds",
 										"{{guildid}}",
-										"usernote",
-										":userid"
-									],
-									"variable": [
-										{
-											"key": "userid",
-											"value": "1"
-										}
+										"usernote"
 									]
 								}
 							},
@@ -2102,6 +2122,33 @@
 										"guilds",
 										"{{guildid}}",
 										"usermap"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "usermapping view by guild",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/usermapview",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"guilds",
+										"{{guildid}}",
+										"usermapview"
 									]
 								}
 							},
