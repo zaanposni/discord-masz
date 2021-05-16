@@ -291,7 +291,7 @@ export class UserscanComponent implements OnInit {
       label: invite.usedInvite.substr(invite.usedInvite.lastIndexOf("/") + 1),
       group: `${invite.guildId}/invites`,
       shape: 'diamond',
-      title: invite?.usedInvite,
+      title: `Invite: ${invite?.usedInvite}`,
       size: 15
     }
   }
