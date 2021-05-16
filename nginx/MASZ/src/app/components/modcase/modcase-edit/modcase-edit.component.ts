@@ -151,7 +151,7 @@ export class ModcaseEditComponent implements OnInit {
     const data = {
       title: this.infoFormGroup.value.title,
       description: this.infoFormGroup.value.description,
-      userid: this.memberFormGroup.value.member,
+      userid: this.memberFormGroup.value.member?.trim(),
       labels: this.caseLabels,
       punishment: convertToPunishment(this.punishmentFormGroup.value.punishmentType),
       punishmentType: convertToPunishmentType(this.punishmentFormGroup.value.punishmentType),

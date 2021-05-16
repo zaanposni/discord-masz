@@ -4,7 +4,8 @@
     "version": "v1.11.2",
     "changes": [
       "Loading guild overview content lazy.",
-      "Added more information to adminstats endpoint."
+      "Added more information to adminstats endpoint.",
+      "Improved case dialog - Trimming userid."
     ]
   },
   {
