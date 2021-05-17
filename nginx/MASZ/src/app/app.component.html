@@ -7,7 +7,7 @@
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0" autosize>
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
-        <a class="d-flex">
+        <a class="d-flex crs-ptr" (click)="open('guilds')">
           <div class="rounded navitem nohover">
             <img width="24px" height="24px" src="favicon.ico" alt="icon"/>
             <span>{{ title }}</span>

@@ -6,7 +6,8 @@
       "Loading guild overview content lazy.",
       "Added more information to adminstats endpoint.",
       "Improved case dialog - Trimming userid.",
-      "Added internal notifications for usernotes and usermappings."
+      "Added internal notifications for usernotes and usermappings.",
+      "Header in toolbar now redirects to guild list."
     ]
   },
   {
