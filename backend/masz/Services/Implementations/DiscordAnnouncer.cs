@@ -117,5 +117,40 @@ namespace masz.Services
                 logger.LogInformation("Sent internal webhook.");
             }
         }
+
+        public async Task AnnounceUserNote(UserNote userNote, User actor, RestAction action)
+        {
+            logger.LogInformation($"Announcing usernote {userNote.Id} in guild {userNote.GuildId}.");
+
+            GuildConfig guildConfig = await dbContext.SelectSpecificGuildConfig(userNote.GuildId);
+
+            if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+            {
+                logger.LogInformation($"Sending internal webhook to {guildConfig.ModInternalNotificationWebhook}.");
+                
+                User user = await this.discord.FetchUserInfo(userNote.UserId, CacheBehavior.OnlyCache);
+                EmbedBuilder embed = NotificationEmbedCreator.CreateInternalUserNoteEmbed(userNote, user, actor, action, config.Value.ServiceBaseUrl);
+
+                DiscordMessenger.SendEmbedWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
+                logger.LogInformation("Sent internal webhook.");
+            }
+        }
+
+        public async Task AnnounceUserMapping(UserMapping userMapping, User actor, RestAction action)
+        {
+            logger.LogInformation($"Announcing usermap {userMapping.Id} in guild {userMapping.GuildId}.");
+
+            GuildConfig guildConfig = await dbContext.SelectSpecificGuildConfig(userMapping.GuildId);
+
+            if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+            {
+                logger.LogInformation($"Sending internal webhook to {guildConfig.ModInternalNotificationWebhook}.");
+                
+                EmbedBuilder embed = NotificationEmbedCreator.CreateInternalUserMappingEmbed(userMapping, actor, action, config.Value.ServiceBaseUrl);
+
+                DiscordMessenger.SendEmbedWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
+                logger.LogInformation("Sent internal webhook.");
+            }
+        }
     }
 }

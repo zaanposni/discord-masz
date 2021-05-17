@@ -12,16 +12,16 @@
   "private": true,
   "dependencies": {
     "@angular-material-components/datetime-picker": "^5.1.0",
-    "@angular/animations": "~11.0.3",
-    "@angular/cdk": "^11.2.3",
-    "@angular/common": "~11.0.3",
-    "@angular/compiler": "~11.0.3",
-    "@angular/core": "~11.0.3",
-    "@angular/forms": "~11.0.3",
-    "@angular/material": "^11.2.3",
-    "@angular/platform-browser": "~11.0.3",
-    "@angular/platform-browser-dynamic": "~11.0.3",
-    "@angular/router": "~11.0.3",
+    "@angular/animations": "~12.0.0-rc.3",
+    "@angular/cdk": "^12.0.0-rc.3",
+    "@angular/common": "~12.0.0-rc.3",
+    "@angular/compiler": "~12.0.0-rc.3",
+    "@angular/core": "~12.0.0-rc.3",
+    "@angular/forms": "~12.0.0-rc.3",
+    "@angular/material": "^12.0.0-rc.3",
+    "@angular/platform-browser": "~12.0.0-rc.3",
+    "@angular/platform-browser-dynamic": "~12.0.0-rc.3",
+    "@angular/router": "~12.0.0-rc.3",
     "bootstrap": "^4.6.0",
     "chart.js": "^2.9.4",
     "ng2-charts": "^2.4.2",
@@ -32,12 +32,12 @@
     "tslib": "^2.0.0",
     "vis": "^4.21.0-EOL",
     "vis-network": "^9.0.4",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1100.3",
-    "@angular/cli": "~11.0.3",
-    "@angular/compiler-cli": "~11.0.3",
+    "@angular-devkit/build-angular": "^12.0.0-rc.3",
+    "@angular/cli": "~12.0.0-rc.3",
+    "@angular/compiler-cli": "~12.0.0-rc.3",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "@types/vis": "^4.21.21",
@@ -52,6 +52,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.2"
+    "typescript": "~4.2.4"
   }
 }

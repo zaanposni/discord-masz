@@ -84,6 +84,8 @@ namespace masz.Controllers
             this.database.SaveUserMapping(userMapping);
             await this.database.SaveChangesAsync();
 
+            await this.discordAnnouncer.AnnounceUserMapping(userMapping, await this.IsValidUser(), RestAction.Created);
+
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 201 Ressource created.");
             return StatusCode(201, new { id = userMapping.Id });
         }
@@ -107,6 +109,8 @@ namespace masz.Controllers
             
             this.database.SaveUserMapping(existing);
             await this.database.SaveChangesAsync();
+            
+            await this.discordAnnouncer.AnnounceUserMapping(existing, await this.IsValidUser(), RestAction.Edited);
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Ressource updated.");
             return Ok(new { id = existing.Id });
@@ -130,6 +134,8 @@ namespace masz.Controllers
 
             this.database.DeleteUserMapping(existing);
             await this.database.SaveChangesAsync();
+            
+            await this.discordAnnouncer.AnnounceUserMapping(existing, await this.IsValidUser(), RestAction.Deleted);
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Ressource deleted.");
             return Ok(new { id = existing.Id });

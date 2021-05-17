@@ -82,6 +82,9 @@ namespace masz.Controllers
             this.database.SaveUserNote(existing);
             await this.database.SaveChangesAsync();
 
+            await this.discordAnnouncer.AnnounceUserNote(existing, await this.IsValidUser(), RestAction.Created);
+            
+
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 201 Ressource updated.");
             return StatusCode(201, new { id = existing.Id });
         }
@@ -103,6 +106,8 @@ namespace masz.Controllers
 
             this.database.DeleteUserNote(existing);
             await this.database.SaveChangesAsync();
+            
+            await this.discordAnnouncer.AnnounceUserNote(existing, await this.IsValidUser(), RestAction.Deleted);
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Ressource deleted.");
             return Ok(new { id = existing.Id });

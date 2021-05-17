@@ -235,5 +235,57 @@ namespace masz.Helpers
         {
             return CreateInternalCaseEmbed(modCase, action, actor, caseUser, serviceBaseUrl, false);
         }
+
+        public static EmbedBuilder CreateInternalUserNoteEmbed(UserNote userNote, User user, User moderator, RestAction restAction, String serviceBaseUrl = null)
+        {
+            EmbedBuilder embed = CreateBasicEmbed(restAction);
+            if (! string.IsNullOrEmpty(serviceBaseUrl))
+            {
+                embed.Url = serviceBaseUrl;
+            }
+
+            embed.Title = $"Usernote #{userNote.Id}";
+            embed.AddField("**Description**", userNote.Description.Substring(0, Math.Min(userNote.Description.Length, 1000)));
+            if (user != null)
+            {
+                embed.ThumbnailUrl = user.ImageUrl;
+            }            
+
+            var author = new EmbedAuthorBuilder();
+            author.IconUrl = moderator.ImageUrl;
+            author.Name = moderator.Username;
+            embed.Author = author;
+
+            var footer = new EmbedFooterBuilder();
+            footer.Text = $"UserId: {userNote.UserId} | UserNoteId: {userNote.Id}";
+            embed.Footer = footer;
+
+            return embed;
+        }
+
+        public static EmbedBuilder CreateInternalUserMappingEmbed(UserMapping userMapping, User moderator, RestAction restAction, String serviceBaseUrl = null)
+        {
+            EmbedBuilder embed = CreateBasicEmbed(restAction);
+            if (! string.IsNullOrEmpty(serviceBaseUrl))
+            {
+                embed.Url = serviceBaseUrl;
+            }
+
+            embed.Title = $"Usermap #{userMapping.Id}";
+            embed.Description = $"Usermap between <@{userMapping.UserA}> and <@{userMapping.UserB}>.";
+
+            embed.AddField("**Description**", userMapping.Reason.Substring(0, Math.Min(userMapping.Reason.Length, 1000)));
+
+            var author = new EmbedAuthorBuilder();
+            author.IconUrl = moderator.ImageUrl;
+            author.Name = moderator.Username;
+            embed.Author = author;
+
+            var footer = new EmbedFooterBuilder();
+            footer.Text = $"UserA: {userMapping.UserA} | UserB: {userMapping.UserB} | UserMapId: {userMapping.Id}";
+            embed.Footer = footer;
+
+            return embed;
+        }
     }
 }
