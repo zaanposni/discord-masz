@@ -87,8 +87,8 @@ Enable **Server Members Intent** in your bot settings.
 ## First steps
 
 - You can visit your application at `yourdomain.com` (or `127.0.0.1:5565`). You will see a login screen that will ask you to authenticate yourself using Discord OAuth2.
-- After authorizing your service to use your Discord account you will see your profile picture in the top right corner of the index page.
-- If you are logged in as a site admin you can use the "register guild" button to register your guilds and to get started.
+- After authorizing your service to use your Discord account you will see your profile picture in the toolbar.
+- If you are logged in as a siteadmin, you can use the "register guild" (+) button to register your guilds and to get started.
 - Based on wanted features and functionalities you might have to grant your bot advanced permissions, read below for more info.
 - Checkout the bot commands using the `help` command. Default prefix is $.
 
@@ -116,7 +116,7 @@ To avoid any issue for message deletion or read permissions it is recommended to
 
 ## ⭐ Invite tracking
 
-Allows masz to track the invites new members are using. Grant your bot the `manage guild` permission to use this feature.
+Allows MASZ to track the invites new members are using. Grant your bot the `manage guild` permission to use this feature.
 
 ## 🛰️ Update
 
