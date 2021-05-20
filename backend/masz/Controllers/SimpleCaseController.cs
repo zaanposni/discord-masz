@@ -85,8 +85,18 @@ namespace masz.Controllers
             return null;
         }
 
-        public async Task<bool> HasPermissionExecutePunishment(string guildId, PunishmentType punishment)
+        public async Task<bool> HasPermissionToExecutePunishment(string guildId, PunishmentType punishment)
         {
+            GuildConfig guildConfig = await this.GuildIsRegistered(guildId);
+            if (guildConfig == null)
+            {
+                return false;
+            }
+            if (! guildConfig.StrictModPermissionCheck)
+            {
+                return true;
+            }
+
             switch (punishment)
             {
                 case PunishmentType.Kick:
