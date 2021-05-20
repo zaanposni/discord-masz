@@ -111,6 +111,11 @@ namespace masz.Controllers
             if (auth != null) {
                 return auth;
             }
+            if (! await this.HasPermissionToExecutePunishment(guildid, newValue.PunishmentType)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized - Missing discord permissions.");
+                return Unauthorized("Missing discord permissions. Strict permissions enabled.");
+            }
+
             User currentUser = await this.IsValidUser();
             GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
             ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
@@ -228,6 +233,10 @@ namespace masz.Controllers
             if (config.Value.SiteAdminDiscordUserIds.Contains(currentReportedUser.Id)) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for site admins.");
                 return BadRequest("Cannot create cases for site admins.");
+            }
+            if (! await this.HasPermissionToExecutePunishment(guildid, modCase.PunishmentType)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized - Missing discord permissions.");
+                return Unauthorized("Missing discord permissions. Strict permissions enabled.");
             }
 
             newModCase.Username = currentReportedUser.Username;
