@@ -64,8 +64,8 @@
                         </div>
                     </form>
                 </mat-step>
-                <mat-step [stepControl]="webhooksGroup" [optional]='true'>
-                    <form [formGroup]="webhooksGroup">
+                <mat-step [stepControl]="configGroup" [optional]='true'>
+                    <form [formGroup]="configGroup">
                         <ng-template matStepLabel>Define webhooks for notifications</ng-template>
                         <p>
                             <mat-form-field class="w-100">
@@ -76,6 +76,11 @@
                                 <mat-label>Public member notification webhook</mat-label>
                                 <input type="email" matInput formControlName="public" placeholder="https://discordapp.com/...">
                             </mat-form-field>
+                            <mat-checkbox
+                                formControlName="strictPermissionCheck"
+                                [labelPosition]="'after'">
+                                Strict permission check
+                            </mat-checkbox>
                         </p>
                         <div>
                             <button mat-raised-button matStepperPrevious class="mr-2" color="accent">Back</button>
