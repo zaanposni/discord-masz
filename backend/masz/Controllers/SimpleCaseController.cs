@@ -84,5 +84,18 @@ namespace masz.Controllers
 
             return null;
         }
+
+        public async Task<bool> HasPermissionExecutePunishment(string guildId, PunishmentType punishment)
+        {
+            switch (punishment)
+            {
+                case PunishmentType.Kick:
+                    return await this.HasRolePermissionInGuild(guildId, DiscordBitPermissionFlags.KICK_MEMBERS);
+                case PunishmentType.Ban:
+                    return await this.HasRolePermissionInGuild(guildId, DiscordBitPermissionFlags.BAN_MEMBERS);
+                default:
+                    return true;
+            }
+        }
     }
 }

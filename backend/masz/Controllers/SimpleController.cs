@@ -134,5 +134,29 @@ namespace masz.Controllers
         public async Task<GuildConfig> GuildIsRegistered(string guildId) {
             return await database.SelectSpecificGuildConfig(guildId);
         }
+
+        public async Task<bool> HasRolePermissionInGuild(string guildId, DiscordBitPermissionFlags checkPermission)
+        {
+            User user = await this.IsValidUser();
+            Guild guild = await this.discord.FetchGuildInfo(guildId, CacheBehavior.Default);
+            if (await GuildIsRegistered(guildId) == null || user == null || guild == null) {
+                return false;
+            }
+            GuildMember member = await this.discord.FetchMemberInfo(guildId, user.Id, CacheBehavior.Default);
+            if (member == null) {
+                return false;
+            }
+            foreach (string roleId in member.Roles)
+            {
+                Role role = guild.Roles.Find(x => x.Id == roleId);
+                if (role != null) {
+                    int permission = Int32.Parse(role.Permissions);
+                    if ((permission & 1 << (int) checkPermission) >= 1) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }
