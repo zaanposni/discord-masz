@@ -22,27 +22,13 @@ namespace masz.Controllers
 {
     [ApiController]
     [Route("internalapi/v1/guilds/{guildid}/modcases")]
-    public class ModCaseInternalController : ControllerBase
+    public class ModCaseInternalController : SimpleCaseController
     {
         private readonly ILogger<ModCaseInternalController> logger;
-        private readonly IDatabase database;
-        private readonly IOptions<InternalConfig> config;
-        private readonly IIdentityManager identityManager;
-        private readonly IDiscordAnnouncer discordAnnouncer;
-        private readonly IDiscordAPIInterface discord;
-        private readonly IFilesHandler filesHandler;
-        private readonly IPunishmentHandler punishmentHandler;
 
-        public ModCaseInternalController(ILogger<ModCaseInternalController> logger, IDatabase database, IOptions<InternalConfig> config, IIdentityManager identityManager, IDiscordAPIInterface discordInterface, IDiscordAnnouncer modCaseAnnouncer, IFilesHandler filesHandler, IPunishmentHandler punishmentHandler)
+        public ModCaseInternalController(IServiceProvider serviceProvider, ILogger<ModCaseInternalController> logger) : base(serviceProvider, logger) 
         {
             this.logger = logger;
-            this.database = database;
-            this.config = config;
-            this.identityManager = identityManager;
-            this.discordAnnouncer = modCaseAnnouncer;
-            this.discord = discordInterface;
-            this.filesHandler = filesHandler;
-            this.punishmentHandler = punishmentHandler;
         }
 
         [HttpPost]
@@ -110,6 +96,10 @@ namespace masz.Controllers
             if (config.Value.SiteAdminDiscordUserIds.Contains(currentReportedUser.Id)) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for site admins.");
                 return BadRequest("Cannot create cases for site admins.");
+            }
+            if (! await this.HasPermissionToExecutePunishment(guildid, modCase.PunishmentType)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized - Missing discord permissions.");
+                return Unauthorized("Missing discord permissions. Strict permissions enabled.");
             }
 
             newModCase.Username = currentReportedUser.Username;
