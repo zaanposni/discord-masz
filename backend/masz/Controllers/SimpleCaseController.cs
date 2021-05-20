@@ -87,6 +87,9 @@ namespace masz.Controllers
 
         public async Task<bool> HasPermissionToExecutePunishment(string guildId, PunishmentType punishment)
         {
+            if (await this.IsSiteAdmin()) {
+                return true;
+            }
             GuildConfig guildConfig = await this.GuildIsRegistered(guildId);
             if (guildConfig == null)
             {

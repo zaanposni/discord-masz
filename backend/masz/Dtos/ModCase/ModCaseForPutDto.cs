@@ -23,6 +23,7 @@ namespace masz.Dtos.ModCase
         public string[] Labels { get; set; } = new string[0];
         public string Others { get; set; }
         [Required(ErrorMessage = "PunishmentType field is required")]
+        [EnumDataType(typeof(PunishmentType))]
         public PunishmentType PunishmentType { get; set; }
         public DateTime? PunishedUntil { get; set; }
         public bool PunishmentActive { get; set; } = false;

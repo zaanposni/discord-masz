@@ -97,7 +97,7 @@ namespace masz.Controllers
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Cannot create cases for site admins.");
                 return BadRequest("Cannot create cases for site admins.");
             }
-            if (! await this.HasPermissionToExecutePunishment(guildid, modCase.PunishmentType)) {
+            if (! await this.HasPermissionToExecutePunishment(guildid, modCase.ModId, modCase.PunishmentType)) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized - Missing discord permissions.");
                 return Unauthorized("Missing discord permissions. Strict permissions enabled.");
             }
@@ -163,6 +163,53 @@ namespace masz.Controllers
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 201 Resource created.");
             return StatusCode(201, new { id = newModCase.Id, caseid = newModCase.CaseId });
+        }
+
+        private async Task<bool> HasPermissionToExecutePunishment(string guildId, string userId, PunishmentType punishment)
+        {
+            GuildConfig guildConfig = await this.GuildIsRegistered(guildId);
+            if (guildConfig == null)
+            {
+                return false;
+            }
+            if (! guildConfig.StrictModPermissionCheck)
+            {
+                return true;
+            }
+
+            switch (punishment)
+            {
+                case PunishmentType.Kick:
+                    return await this.HasDiscordPermission(guildId, userId, DiscordBitPermissionFlags.KICK_MEMBERS);
+                case PunishmentType.Ban:
+                    return await this.HasDiscordPermission(guildId, userId, DiscordBitPermissionFlags.BAN_MEMBERS);
+                default:
+                    return true;
+            }
+        }
+
+        private async Task<bool> HasDiscordPermission(string guildId, string userId, DiscordBitPermissionFlags discordPermission)
+        {
+            User user = await this.discord.FetchUserInfo(userId, CacheBehavior.Default);
+            Guild guild = await this.discord.FetchGuildInfo(guildId, CacheBehavior.Default);
+            if (await GuildIsRegistered(guildId) == null || user == null || guild == null) {
+                return false;
+            }
+            GuildMember member = await this.discord.FetchMemberInfo(guildId, userId, CacheBehavior.Default);
+            if (member == null) {
+                return false;
+            }
+            foreach (string roleId in member.Roles)
+            {
+                Role role = guild.Roles.Find(x => x.Id == roleId);
+                if (role != null) {
+                    int permission = Int32.Parse(role.Permissions);
+                    if ((permission & 1 << (int) discordPermission) >= 1) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }
