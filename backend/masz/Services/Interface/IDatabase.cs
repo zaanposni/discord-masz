@@ -88,6 +88,7 @@ namespace masz.Services
 
         Task SaveToken(APIToken token);
         void DeleteToken(APIToken token);
+        Task<int> CountAllAPITokens();
         Task<List<APIToken>> GetAllAPIToken();
         Task<APIToken> GetAPIToken();
         Task<APIToken> GetAPIToken(int id);

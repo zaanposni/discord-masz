@@ -23,12 +23,7 @@
               </div>
             </a>
           </mat-expansion-panel-header>
-          <!--<a class="d-flex" (click)="open('profile', this.currentUser?.discordUser?.id)">
-            <div [class.activatedNav]="activatedNav[1] === 'profile'" class="rounded navitem">
-              <mat-icon aria-hidden="false" aria-label="tune icon">account_circle</mat-icon>
-              <span>Profile</span>
-            </div>
-          </a>-->
+
           <a class="d-flex" href="/api/v1/logout">
             <div class="rounded navitem">
               <mat-icon aria-hidden="false" aria-label="tune icon">logout</mat-icon>
@@ -157,6 +152,12 @@
           <div [class.activatedNav]="activatedNav[1] === 'tokens'" class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="tune icon">api</mat-icon>
             <span>API</span>
+          </div>
+        </a>
+        <a class="d-flex" href="/api/v1/meta/adminstats" target="_blank" *ngIf="this.currentUser?.isAdmin">
+          <div class="rounded navitem">
+            <mat-icon aria-hidden="false" aria-label="tune icon">insights</mat-icon>
+            <span>Adminstats</span>
           </div>
         </a>
         <a class="d-flex" (click)="open('patchnotes')">
