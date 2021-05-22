@@ -56,8 +56,9 @@ namespace masz.Controllers
                 automodEvents = await database.CountAllModerationEvents(),
                 userNotes = await database.CountUserNotes(),
                 userMappings = await database.CountUserMappings(),
+                apiTokens = await database.CountAllAPITokens(),
                 cachedDataFromDiscord = cache.Keys
-                });
+            });
         }
     }
 }

@@ -118,6 +118,12 @@ To avoid any issue for message deletion or read permissions it is recommended to
 
 Allows MASZ to track the invites new members are using. Grant your bot the `manage guild` permission to use this feature.
 
+## ⭐ Strict permission check
+
+You can enable strict permissions in your guildconfig. This mode will check your moderators role permissions before creating a modcase.
+A moderator can only create a kick or ban modcase if he has the respective permission in discord.
+If you do not enable this mode, moderators can create any modcase.
+
 ## 🛰️ Update
 
 To install a new update of MASZ just use:

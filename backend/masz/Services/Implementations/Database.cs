@@ -448,6 +448,11 @@ namespace masz.Services
             context.APITokens.Remove(token);
         }
 
+        public async Task<int> CountAllAPITokens()
+        {
+            return await context.APITokens.AsQueryable().CountAsync();
+        }
+
         public async Task<List<APIToken>> GetAllAPIToken()
         {
             return await context.APITokens.AsQueryable().ToListAsync();

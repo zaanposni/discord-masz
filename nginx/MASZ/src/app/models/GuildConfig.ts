@@ -5,6 +5,7 @@ export interface GuildConfig {
     adminRoles: string[];
     mutedRoles: string[];
     modNotificationDM: boolean;
+    strictModPermissionCheck: boolean;
     modPublicNotificationWebhook: string;
     modInternalNotificationWebhook: string;
 }

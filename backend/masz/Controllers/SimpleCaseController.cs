@@ -84,5 +84,31 @@ namespace masz.Controllers
 
             return null;
         }
+
+        public async Task<bool> HasPermissionToExecutePunishment(string guildId, PunishmentType punishment)
+        {
+            if (await this.IsSiteAdmin()) {
+                return true;
+            }
+            GuildConfig guildConfig = await this.GuildIsRegistered(guildId);
+            if (guildConfig == null)
+            {
+                return false;
+            }
+            if (! guildConfig.StrictModPermissionCheck)
+            {
+                return true;
+            }
+
+            switch (punishment)
+            {
+                case PunishmentType.Kick:
+                    return await this.HasRolePermissionInGuild(guildId, DiscordBitPermissionFlags.KICK_MEMBERS);
+                case PunishmentType.Ban:
+                    return await this.HasRolePermissionInGuild(guildId, DiscordBitPermissionFlags.BAN_MEMBERS);
+                default:
+                    return true;
+            }
+        }
     }
 }

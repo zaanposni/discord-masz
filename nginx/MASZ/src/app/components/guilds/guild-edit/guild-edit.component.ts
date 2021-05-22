@@ -18,7 +18,7 @@ export class GuildEditComponent implements OnInit {
   public adminRolesGroup!: FormGroup;
   public modRolesGroup!: FormGroup;
   public muteRolesGroup!: FormGroup;
-  public webhooksGroup!: FormGroup;
+  public configGroup!: FormGroup;
   
   public currentGuild: ContentLoading<Guild> = { loading: true, content: {} as Guild }
   public currentGuildConfig: ContentLoading<GuildConfig> = { loading: true, content: {} as GuildConfig }
@@ -34,9 +34,10 @@ export class GuildEditComponent implements OnInit {
     this.muteRolesGroup = this._formBuilder.group({
       muteRoles: ['']
     });
-    this.webhooksGroup = this._formBuilder.group({
+    this.configGroup = this._formBuilder.group({
       internal: ['', Validators.pattern("^https://discordapp.com/api/webhooks/.+$")],
-      public: ['', Validators.pattern("^https://discordapp.com/api/webhooks/.+$")]
+      public: ['', Validators.pattern("^https://discordapp.com/api/webhooks/.+$")],
+      strictPermissionCheck: ['']
     });
     
     const guildId = this.route.snapshot.paramMap.get('guildid');
@@ -64,7 +65,7 @@ export class GuildEditComponent implements OnInit {
       this.modRolesGroup.setValue({ modRoles: data.modRoles });
       this.adminRolesGroup.setValue({ adminRoles: data.adminRoles});
       this.muteRolesGroup.setValue({ muteRoles: data.mutedRoles});
-      this.webhooksGroup.setValue({ internal: data.modInternalNotificationWebhook, public: data.modPublicNotificationWebhook });
+      this.configGroup.setValue({ internal: data.modInternalNotificationWebhook, public: data.modPublicNotificationWebhook, strictPermissionCheck: data.strictModPermissionCheck });
       this.currentGuildConfig = { loading: false, content: data };
     }, () => {
       this.currentGuildConfig.loading = false;
@@ -77,8 +78,9 @@ export class GuildEditComponent implements OnInit {
       modRoles: this.modRolesGroup.value.modRoles,
       adminRoles: this.adminRolesGroup.value.adminRoles,
       mutedRoles: this.muteRolesGroup.value.muteRoles !== '' ? this.muteRolesGroup.value.muteRoles : [],
-      modInternalNotificationWebhook: this.webhooksGroup.value?.internal?.trim() ? this.webhooksGroup?.value?.internal : null,
-      modPublicNotificationWebhook: this.webhooksGroup.value?.public?.trim() ? this.webhooksGroup?.value?.public : null,
+      modInternalNotificationWebhook: this.configGroup.value?.internal?.trim() ? this.configGroup?.value?.internal : null,
+      modPublicNotificationWebhook: this.configGroup.value?.public?.trim() ? this.configGroup?.value?.public : null,
+      strictModPermissionCheck: this.configGroup.value?.strictPermissionCheck
     }
 
     this.api.putSimpleData(`/guilds/${this.currentGuild?.content?.id}`, data).subscribe((data) => {

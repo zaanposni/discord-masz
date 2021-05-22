@@ -138,6 +138,7 @@ namespace masz.Controllers
             guildConfig.MutedRoles = guildConfigForCreateDto.mutedRoles;
             guildConfig.ModPublicNotificationWebhook = guildConfigForCreateDto.ModPublicNotificationWebhook;
             guildConfig.ModInternalNotificationWebhook = guildConfigForCreateDto.ModInternalNotificationWebhook;
+            guildConfig.StrictModPermissionCheck = guildConfigForCreateDto.StrictModPermissionCheck;
 
             await database.SaveGuildConfig(guildConfig);
             await database.SaveChangesAsync();
@@ -175,6 +176,7 @@ namespace masz.Controllers
             guildConfig.ModNotificationDM = newValue.ModNotificationDM;
             guildConfig.ModInternalNotificationWebhook = newValue.ModInternalNotificationWebhook;
             guildConfig.ModPublicNotificationWebhook = newValue.ModPublicNotificationWebhook;
+            guildConfig.StrictModPermissionCheck = newValue.StrictModPermissionCheck;
 
             database.UpdateGuildConfig(guildConfig);
             await database.SaveChangesAsync();

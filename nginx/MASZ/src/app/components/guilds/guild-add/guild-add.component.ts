@@ -19,7 +19,7 @@ export class GuildAddComponent implements OnInit {
   public adminRolesGroup!: FormGroup;
   public modRolesGroup!: FormGroup;
   public muteRolesGroup!: FormGroup;
-  public webhooksGroup!: FormGroup;
+  public configGroup!: FormGroup;
 
   public guilds!: ContentLoading<Guild[]>;
   public searchGuilds!: string;
@@ -42,9 +42,10 @@ export class GuildAddComponent implements OnInit {
     this.muteRolesGroup = this._formBuilder.group({
       muteRoles: ['']
     });
-    this.webhooksGroup = this._formBuilder.group({
+    this.configGroup = this._formBuilder.group({
       internal: ['', Validators.pattern("^https://discordapp.com/api/webhooks/.+$")],
-      public: ['', Validators.pattern("^https://discordapp.com/api/webhooks/.+$")]
+      public: ['', Validators.pattern("^https://discordapp.com/api/webhooks/.+$")],
+      strictPermissionCheck: ['']
     });
     
     this.reloadGuilds();
@@ -117,8 +118,9 @@ export class GuildAddComponent implements OnInit {
       modRoles: this.modRolesGroup.value.modRoles,
       adminRoles: this.adminRolesGroup.value.adminRoles,
       mutedRoles: this.muteRolesGroup.value.muteRoles !== '' ? this.muteRolesGroup.value.muteRoles : [],
-      modInternalNotificationWebhook: this.webhooksGroup.value?.internal?.trim() != '' ? this.webhooksGroup?.value?.internal : null,
-      modPublicNotificationWebhook: this.webhooksGroup.value?.public?.trim() != '' ? this.webhooksGroup?.value?.public : null,
+      modInternalNotificationWebhook: this.configGroup.value?.internal?.trim() != '' ? this.configGroup?.value?.internal : null,
+      modPublicNotificationWebhook: this.configGroup.value?.public?.trim() != '' ? this.configGroup?.value?.public : null,
+      strictModPermissionCheck: this.configGroup.value?.strictPermissionCheck
     }    
 
     this.api.postSimpleData('/guilds/', data).subscribe((data) => {
@@ -137,6 +139,6 @@ export class GuildAddComponent implements OnInit {
     this.modRolesGroup.reset();
     this.adminRolesGroup.reset();
     this.muteRolesGroup.reset();
-    this.webhooksGroup.reset();
+    this.configGroup.reset();
   }
 }
