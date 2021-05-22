@@ -3,7 +3,7 @@
     "title": "Version 1.11.3",
     "version": "v1.11.3",
     "changes": [
-      "Added strict permission checks.",
+      "Added strict permission checks (thanks to Flix#8361).",
       "Added more information to adminstats endpoint.",
       "Added navbar link to adminstats endpoint (siteadmin only)."
     ]
