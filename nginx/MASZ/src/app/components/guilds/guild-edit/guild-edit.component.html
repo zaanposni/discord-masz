@@ -67,21 +67,25 @@
                 <mat-step [stepControl]="configGroup" [optional]='true'>
                     <form [formGroup]="configGroup">
                         <ng-template matStepLabel>Further configuration</ng-template>
-                        <p>
-                            <mat-form-field class="w-100">
-                                <mat-label>Internal staff notification webhook</mat-label>
-                                <input type="email" matInput formControlName="internal" placeholder="https://discordapp.com/...">
-                            </mat-form-field>
-                            <mat-form-field class="w-100">
-                                <mat-label>Public member notification webhook</mat-label>
-                                <input type="email" matInput formControlName="public" placeholder="https://discordapp.com/...">
-                            </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Internal staff notification webhook</mat-label>
+                            <input type="email" matInput formControlName="internal" placeholder="https://discordapp.com/...">
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Public member notification webhook</mat-label>
+                            <input type="email" matInput formControlName="public" placeholder="https://discordapp.com/...">
+                        </mat-form-field>
+                        <div class="d-flex flex-row">
                             <mat-checkbox
+                                class="mr-2"
                                 formControlName="strictPermissionCheck"
                                 [labelPosition]="'after'">
                                 Strict permission check
                             </mat-checkbox>
-                        </p>
+                            <mat-icon matTooltip="A moderator needs kick/ban permissions on discord to create kick/ban modcases.">
+                                help_outline
+                            </mat-icon>
+                        </div>
                         <div>
                             <button mat-raised-button matStepperPrevious class="mr-2" color="accent">Back</button>
                             <button mat-raised-button matStepperNext color="accent">Next</button>

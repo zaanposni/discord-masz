@@ -23,6 +23,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -161,6 +162,7 @@ import { QuicksearchUsermapsResultComponent } from './components/guilds/guild-da
       progressBar: true,
       timeOut: 5000
     }),
+    MatTooltipModule,
     MatAutocompleteModule,
     MaterialFileInputModule,
     MatProgressBarModule,
