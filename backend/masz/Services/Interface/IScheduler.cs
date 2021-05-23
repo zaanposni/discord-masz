@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using masz.Models;
@@ -6,6 +7,7 @@ namespace masz.Services
 {
     public interface IScheduler
     {
+        DateTime GetNextCacheSchedule();
         void StartTimers();
         void CacheAll();
         Task<List<string>> CacheAllGuildBans(List<string> handledUsers);
