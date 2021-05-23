@@ -2,13 +2,28 @@
 <div class="d-flex flex-column justify-content-center align-items-center">
     <div class="d-flex flex-column justify-content-center align-items-left cw-50-75">
         <div class="mat-display-2 font-weight-bold">Insights</div>
-
-        <div class="card-container">
-            <div class="card-container-body d-flex flex-row flex-wrap flex-shrink-0 flex-grow-1 align-items-center">
-                ddawdawd
-                daw
-                daw
-            </div>
+        <app-adminlist class="flex-grow-1"
+            [title]="'Currently logged in'"
+            [showList]="stats.content?.loginsInLast15Minutes"
+            [loading]="stats.loading">
+        </app-adminlist>
+        
+        <div class="d-flex flex-row flex-wrap" *ngIf="!stats.loading && stats.content != undefined" id="statcards">
+            <app-statcard [emote]="'dns'" [text]="stats.content?.guilds" [title]="'Guilds'"></app-statcard>
+            <app-statcard [emote]="'description'" [text]="stats.content?.modCases" [title]="'Modcases'"></app-statcard>
+            <app-statcard [emote]="'bolt'" [text]="stats.content?.automodEvents" [title]="'Automods'"></app-statcard>
+            <app-statcard [emote]="'badge'" [text]="stats.content?.userNotes" [title]="'Usernotes'"></app-statcard>
+            <app-statcard [emote]="'people'" [text]="stats.content?.userMappings" [title]="'Usermaps'"></app-statcard>
+            <app-statcard [emote]="'link'" [text]="stats.content?.trackedInvites" [title]="'Invites'"></app-statcard>
+            <app-statcard [emote]="'api'" [text]="stats.content?.apiTokens" [title]="'API tokens'"></app-statcard>
+            <app-statcard [emote]="'schedule'" [text]="minutesToNewCache + ':' + secondsToNewCache" [title]="'Next cache'"></app-statcard>
         </div>
+
+        <app-adminlist class="flex-grow-1"
+            [title]="'Discord cache'"
+            [showList]="stats.content?.cachedDataFromDiscord"
+            [loading]="stats.loading"
+            [emote]="'save'">
+        </app-adminlist>
     </div>
 </div>

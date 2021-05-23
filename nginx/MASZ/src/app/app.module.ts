@@ -93,6 +93,8 @@ import { UsermapCardComponent } from './components/guilds/guild-usermapping/user
 import { UsermapEditDialogComponent } from './components/dialogs/usermap-edit-dialog/usermap-edit-dialog.component';
 import { QuicksearchUsermapsResultComponent } from './components/guilds/guild-dashboard/dashboard-quicksearch/quicksearch-usermaps-result/quicksearch-usermaps-result.component';
 import { AdminstatsComponent } from './components/api/adminstats/adminstats.component';
+import { AdminlistComponent } from './components/api/adminstats/adminlist/adminlist.component';
+import { StatcardComponent } from './components/api/adminstats/statcard/statcard.component';
 
 @NgModule({
   declarations: [
@@ -148,7 +150,9 @@ import { AdminstatsComponent } from './components/api/adminstats/adminstats.comp
     UsermapCardComponent,
     UsermapEditDialogComponent,
     QuicksearchUsermapsResultComponent,
-    AdminstatsComponent
+    AdminstatsComponent,
+    AdminlistComponent,
+    StatcardComponent
   ],
   imports: [
     CommonModule,

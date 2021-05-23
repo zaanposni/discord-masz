@@ -41,7 +41,7 @@ namespace masz.Controllers
                 {
                     var user = await login.GetCurrentDiscordUser();
                     if (user == null) {
-                        currentLogins.Add($"Failed to fetch user data. (most likely the user unauthorized masz).");
+                        currentLogins.Add($"Invalid user.");
                     } else {
                         currentLogins.Add($"{user.Username}#{user.Discriminator}");
                     }

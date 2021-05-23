@@ -1,0 +1,7 @@
+::ng-deep app-adminstats .card-container {
+    margin: 0.5rem!important
+}
+
+::ng-deep app-adminstats #statcards app-statcard {
+    flex: 1 0 25%;
+}
