@@ -68,7 +68,7 @@ namespace masz.Services
             return File.Exists(path);
         }
 
-        private static string RemoveSpecialCharacters(string str)
+        public string RemoveSpecialCharacters(string str)
         {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < str.Length; i++)
