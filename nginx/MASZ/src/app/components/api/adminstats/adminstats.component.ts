@@ -14,8 +14,8 @@ export class AdminstatsComponent implements OnInit {
 
   private subscription?: any;
   private timeDifference?: number;
-  public secondsToNewCache?: string = '00';
-  public minutesToNewCache?: string = '00';
+  public secondsToNewCache?: string = '--';
+  public minutesToNewCache?: string = '--';
   public stats: ContentLoading<Adminstats> = { loading: true, content: undefined };
 
   constructor(private api: ApiService, private toastr: ToastrService) { }
