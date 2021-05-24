@@ -139,6 +139,7 @@ namespace masz.Controllers
             guildConfig.ModPublicNotificationWebhook = guildConfigForCreateDto.ModPublicNotificationWebhook;
             guildConfig.ModInternalNotificationWebhook = guildConfigForCreateDto.ModInternalNotificationWebhook;
             guildConfig.StrictModPermissionCheck = guildConfigForCreateDto.StrictModPermissionCheck;
+            guildConfig.ExecuteWhoisOnJoin = guildConfig.ExecuteWhoisOnJoin;
 
             await database.SaveGuildConfig(guildConfig);
             await database.SaveChangesAsync();
@@ -177,6 +178,7 @@ namespace masz.Controllers
             guildConfig.ModInternalNotificationWebhook = newValue.ModInternalNotificationWebhook;
             guildConfig.ModPublicNotificationWebhook = newValue.ModPublicNotificationWebhook;
             guildConfig.StrictModPermissionCheck = newValue.StrictModPermissionCheck;
+            guildConfig.ExecuteWhoisOnJoin = newValue.ExecuteWhoisOnJoin;
 
             database.UpdateGuildConfig(guildConfig);
             await database.SaveChangesAsync();

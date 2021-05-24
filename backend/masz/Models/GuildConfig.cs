@@ -16,6 +16,7 @@ namespace masz.Models
         public string ModPublicNotificationWebhook { get; set; }
         public string ModInternalNotificationWebhook { get; set; }
         public bool StrictModPermissionCheck { get; set; }
+        public bool ExecuteWhoisOnJoin { get; set; }
 
         public object Clone()
         {
@@ -28,7 +29,8 @@ namespace masz.Models
                 ModNotificationDM = this.ModNotificationDM,
                 ModPublicNotificationWebhook = this.ModPublicNotificationWebhook,
                 ModInternalNotificationWebhook = this.ModInternalNotificationWebhook,
-                StrictModPermissionCheck = this.StrictModPermissionCheck
+                StrictModPermissionCheck = this.StrictModPermissionCheck,
+                ExecuteWhoisOnJoin = this.ExecuteWhoisOnJoin
             };
         }
     }
