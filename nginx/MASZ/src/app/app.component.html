@@ -154,10 +154,10 @@
             <span>API</span>
           </div>
         </a>
-        <a class="d-flex" href="/api/v1/meta/adminstats" target="_blank" *ngIf="this.currentUser?.isAdmin">
-          <div class="rounded navitem">
+        <a class="d-flex" (click)="open('adminstats')" *ngIf="this.currentUser?.isAdmin">
+          <div [class.activatedNav]="activatedNav[1] === 'adminstats'" class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="tune icon">insights</mat-icon>
-            <span>Adminstats</span>
+            <span>Insights</span>
           </div>
         </a>
         <a class="d-flex" (click)="open('patchnotes')">

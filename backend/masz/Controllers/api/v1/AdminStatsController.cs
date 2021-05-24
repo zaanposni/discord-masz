@@ -18,10 +18,12 @@ namespace masz.Controllers
     {
         private readonly ILogger<AdminStatsController> logger;
         private readonly IIdentityManager identityManager;
+        private readonly IScheduler scheduler;
 
-        public AdminStatsController(IServiceProvider serviceProvider, ILogger<AdminStatsController> logger, IIdentityManager identityManager) : base(serviceProvider) {
+        public AdminStatsController(IServiceProvider serviceProvider, ILogger<AdminStatsController> logger, IIdentityManager identityManager, IScheduler scheduler) : base(serviceProvider) {
             this.logger = logger;
             this.identityManager = identityManager;
+            this.scheduler = scheduler;
         }
 
         [HttpGet("adminstats")]
@@ -39,7 +41,7 @@ namespace masz.Controllers
                 {
                     var user = await login.GetCurrentDiscordUser();
                     if (user == null) {
-                        currentLogins.Add($"Failed to fetch user data. (most likely the user unauthorized masz).");
+                        currentLogins.Add($"Invalid user.");
                     } else {
                         currentLogins.Add($"{user.Username}#{user.Discriminator}");
                     }
@@ -57,6 +59,7 @@ namespace masz.Controllers
                 userNotes = await database.CountUserNotes(),
                 userMappings = await database.CountUserMappings(),
                 apiTokens = await database.CountAllAPITokens(),
+                nextCache = this.scheduler.GetNextCacheSchedule(),
                 cachedDataFromDiscord = cache.Keys
             });
         }

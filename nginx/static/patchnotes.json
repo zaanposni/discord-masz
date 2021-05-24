@@ -1,5 +1,14 @@
 [
   {
+    "title": "Version 1.11.4",
+    "version": "v1.11.4",
+    "changes": [
+      "Added visualized adminstats (insights).",
+      "Added whois on memberjoin configurable in guildconfig (thanks to Bricksmaster#7130).",
+      "Fixed a bug during guild registration."
+    ]
+  },
+  {
     "title": "Version 1.11.3",
     "version": "v1.11.3",
     "changes": [

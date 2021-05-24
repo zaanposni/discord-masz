@@ -14,9 +14,6 @@
 					"item": [
 						{
 							"name": "guildconfig",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
 							"request": {
 								"method": "GET",
 								"header": [
@@ -31,10 +28,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"modroleid\": \"414881509737103360\",\n    \"adminroleid\": \"743911979265294406\"\n}"
-								},
 								"url": {
 									"raw": "{{url}}/api/v1/guilds/{{guildid}}",
 									"host": [
@@ -75,7 +68,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"guildid\": {{guildid}},\n    \"modRoles\": [\"748944055840407653\"],\n    \"adminRoles\": [\"748944028116189195\"],\n    \"mutedRoles\": [],\n    \"modInternalNotificationWebhook\": null,\n    \"modPublicNotificationWebhook\": null\n}"
+									"raw": "{\n    \"guildid\": {{guildid}},\n    \"modRoles\": [\"748944055840407653\"],\n    \"adminRoles\": [\"748944028116189195\"],\n    \"mutedRoles\": [],\n    \"modInternalNotificationWebhook\": null,\n    \"modPublicNotificationWebhook\": null,\n    \"strictModPermissionCheck\": false,\n    \"executeWhoisOnJoin\": false\n}"
 								},
 								"url": {
 									"raw": "{{url}}/api/v1/guilds",
@@ -111,7 +104,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"modRoles\": [\"748944055840407653\"],\n    \"adminRoles\": [\"748944028116189195\"],\n    \"mutedRoles\": [],\n    \"modInternalNotificationWebhook\": \"\",\n    \"modPublicNotificationWebhook\": \"\"\n}",
+									"raw": "{\n    \"modRoles\": [\n        \"748944055840407653\"\n    ],\n    \"adminRoles\": [\n        \"748944028116189195\"\n    ],\n    \"mutedRoles\": [\n        \"781210253336510474\",\n        \"791752233389391882\"\n    ],\n    \"modNotificationDM\": false,\n    \"modPublicNotificationWebhook\": \"\",\n    \"modInternalNotificationWebhook\": \"\",\n    \"strictModPermissionCheck\": true,\n    \"executeWhoisOnJoin\": true\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -519,21 +512,21 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
-										"type": "text",
-										"disabled": true
+										"type": "text"
 									},
 									{
 										"key": "Authorization",
 										"value": "Bearer {{masz_api_token}}",
-										"type": "text"
+										"type": "text",
+										"disabled": true
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"title\": \"wda\",\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\n    \"userid\": \"382991040975732747\",\n    \"occuredAt\": \"2020-11-25T20:15:47.093594\",\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\n    \"punishment\": \"warn\",\n    \"punishmentType\": 0,\n    \"punishedUntil\": null\n}"
+									"raw": "{\n    \"title\": \"wda\",\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\n    \"userid\": \"382991040975732747\",\n    \"occuredAt\": \"2020-11-25T20:15:47.093594\",\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\n    \"punishment\": \"kick\",\n    \"punishmentType\": 2,\n    \"punishedUntil\": null\n}"
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}?sendnotification=true&handlePunishment=true",
+									"raw": "{{url}}/api/v1/modcases/{{guildid}}?sendnotification=true&handlePunishment=false",
 									"host": [
 										"{{url}}"
 									],
@@ -550,7 +543,7 @@
 										},
 										{
 											"key": "handlePunishment",
-											"value": "true"
+											"value": "false"
 										}
 									]
 								}

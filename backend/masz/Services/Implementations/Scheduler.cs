@@ -20,6 +20,7 @@ namespace masz.Services
         private readonly IFilesHandler filesHandler;
         private readonly IServiceScopeFactory serviceScopeFactory;
         private readonly IIdentityManager identityManager;
+        private DateTime nextCacheSchedule;
 
         public Scheduler() { }
 
@@ -43,6 +44,7 @@ namespace masz.Services
                         CheckDeletedCases();
                         CacheAll();
                         this.identityManager.ClearOldIdentities();
+                        this.nextCacheSchedule = DateTime.UtcNow.AddMinutes(15);
                         Thread.Sleep(1000 * 60 * 15);  // 15 minutes
                     }
                 });
@@ -194,6 +196,11 @@ namespace masz.Services
             }
             logger.LogInformation("Cacher | Done - Cache all known users.");
             return handledUsers;
+        }
+
+        public DateTime GetNextCacheSchedule()
+        {
+            return this.nextCacheSchedule;
         }
     }
 }

@@ -45,7 +45,8 @@ export class GuildAddComponent implements OnInit {
     this.configGroup = this._formBuilder.group({
       internal: ['', Validators.pattern("^https://discordapp.com/api/webhooks/.+$")],
       public: ['', Validators.pattern("^https://discordapp.com/api/webhooks/.+$")],
-      strictPermissionCheck: ['']
+      strictPermissionCheck: [''],
+      executeWhoisOnJoin: ['']
     });
     
     this.reloadGuilds();
@@ -120,7 +121,8 @@ export class GuildAddComponent implements OnInit {
       mutedRoles: this.muteRolesGroup.value.muteRoles !== '' ? this.muteRolesGroup.value.muteRoles : [],
       modInternalNotificationWebhook: this.configGroup.value?.internal?.trim() != '' ? this.configGroup?.value?.internal : null,
       modPublicNotificationWebhook: this.configGroup.value?.public?.trim() != '' ? this.configGroup?.value?.public : null,
-      strictModPermissionCheck: this.configGroup.value?.strictPermissionCheck
+      strictModPermissionCheck: this.configGroup.value?.strictPermissionCheck !== '' ? this.configGroup.value?.strictPermissionCheck : false,
+      executeWhoisOnJoin: this.configGroup.value?.executeWhoisOnJoin !== '' ? this.configGroup.value?.executeWhoisOnJoin : false
     }    
 
     this.api.postSimpleData('/guilds/', data).subscribe((data) => {

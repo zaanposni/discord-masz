@@ -18,5 +18,6 @@ namespace masz.Dtos.GuildConfig
         [RegularExpression(@"^https://discordapp.com/.*$", ErrorMessage = "please specify a url that starts with 'https://discordapp.com/'.")]
         public string ModInternalNotificationWebhook { get; set; }
         public bool StrictModPermissionCheck { get; set; }
+        public bool ExecuteWhoisOnJoin { get; set; }
     }
 }
