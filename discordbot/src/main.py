@@ -6,11 +6,13 @@ import traceback
 import discord
 from discord.errors import LoginFailure
 from discord.ext import commands
+from discord import Webhook, RequestsWebhookAdapter
 
 from commands import ALL_COMMANDS
 from automod import check_message
-from punishment import handle_member_join
-
+from punishment import handle_member_join as handle_punishment_on_member_join
+from data import get_cached_guild_config
+from helpers import create_whois_embed
 
 intents = discord.Intents.default()
 intents.members = True
@@ -33,8 +35,13 @@ async def on_command_error(ctx, error):
 
 @client.event
 async def on_member_join(member):
-    await handle_member_join(member)
-
+    await handle_punishment_on_member_join(member)
+    guildconfig = await get_cached_guild_config(str(member.guild.id))
+    if guildconfig:
+        embed = await create_whois_embed(member.guild, member)
+        if guildconfig["ModInternalNotificationWebhook"]:
+            webhook = Webhook.from_url(guildconfig["ModInternalNotificationWebhook"], adapter=RequestsWebhookAdapter())
+            webhook.send(content="Member joined.", embed=embed)
 
 @client.event
 async def on_ready():
