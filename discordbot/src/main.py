@@ -39,7 +39,7 @@ async def on_member_join(member):
     guildconfig = await get_cached_guild_config(str(member.guild.id))
     if guildconfig:
         embed = await create_whois_embed(member.guild, member)
-        if guildconfig["ModInternalNotificationWebhook"]:
+        if guildconfig["ModInternalNotificationWebhook"] and guildconfig["ExecuteWhoisOnJoin"]:
             webhook = Webhook.from_url(guildconfig["ModInternalNotificationWebhook"], adapter=RequestsWebhookAdapter())
             webhook.send(content="Member joined.", embed=embed)
 
