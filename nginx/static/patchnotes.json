@@ -1,5 +1,12 @@
 [
   {
+    "title": "Version 1.11.4.1",
+    "version": "v1.11.4.1",
+    "changes": [
+      "Fixes a bug in auto whois."
+    ]
+  },
+  {
     "title": "Version 1.11.4",
     "version": "v1.11.4",
     "changes": [
