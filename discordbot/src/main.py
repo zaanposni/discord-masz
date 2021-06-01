@@ -2,6 +2,7 @@ import requests
 import os
 import sys
 import traceback
+import asyncio
 
 import discord
 from discord.errors import LoginFailure
@@ -40,6 +41,7 @@ async def on_member_join(member):
     if guildconfig:
         embed = await create_whois_embed(member.guild, member)
         if guildconfig["ModInternalNotificationWebhook"] and guildconfig["ExecuteWhoisOnJoin"]:
+            await asyncio.sleep(5)  # wait for invitationtracker
             webhook = Webhook.from_url(guildconfig["ModInternalNotificationWebhook"], adapter=RequestsWebhookAdapter())
             webhook.send(content="Member joined.", embed=embed)
 
