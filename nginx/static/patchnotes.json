@@ -1,5 +1,13 @@
 [
   {
+    "title": "Version 1.11.5",
+    "version": "v1.11.5",
+    "changes": [
+      "Fixed dependency vulnerabilities.",
+      "Allowing discordapp.com and discord.com as webhooks in guildconfig."
+    ]
+  },
+  {
     "title": "Version 1.11.4.1",
     "version": "v1.11.4.1",
     "changes": [

@@ -35,8 +35,8 @@ export class GuildEditComponent implements OnInit {
       muteRoles: ['']
     });
     this.configGroup = this._formBuilder.group({
-      internal: ['', Validators.pattern("^https://discordapp.com/api/webhooks/.+$")],
-      public: ['', Validators.pattern("^https://discordapp.com/api/webhooks/.+$")],
+      internal: ['', Validators.pattern("^https://discord(app)?\.com/api/webhooks/.+$")],
+      public: ['', Validators.pattern("^https://discord(app)?\.com/api/webhooks/.+$")],
       strictPermissionCheck: [''],
       executeWhoisOnJoin: ['']
     });
