@@ -137,7 +137,13 @@ namespace masz.Controllers
             guildConfig.ModNotificationDM = guildConfigForCreateDto.ModNotificationDM;
             guildConfig.MutedRoles = guildConfigForCreateDto.mutedRoles;
             guildConfig.ModPublicNotificationWebhook = guildConfigForCreateDto.ModPublicNotificationWebhook;
+            if (guildConfig.ModPublicNotificationWebhook != null) {
+                guildConfig.ModPublicNotificationWebhook = guildConfig.ModPublicNotificationWebhook.Replace("discord.com", "discordapp.com");
+            }
             guildConfig.ModInternalNotificationWebhook = guildConfigForCreateDto.ModInternalNotificationWebhook;
+            if (guildConfig.ModInternalNotificationWebhook != null) {
+                guildConfig.ModInternalNotificationWebhook = guildConfig.ModInternalNotificationWebhook.Replace("discord.com", "discordapp.com");
+            }
             guildConfig.StrictModPermissionCheck = guildConfigForCreateDto.StrictModPermissionCheck;
             guildConfig.ExecuteWhoisOnJoin = guildConfigForCreateDto.ExecuteWhoisOnJoin;
 
@@ -176,7 +182,13 @@ namespace masz.Controllers
             guildConfig.MutedRoles = newValue.mutedRoles;
             guildConfig.ModNotificationDM = newValue.ModNotificationDM;
             guildConfig.ModInternalNotificationWebhook = newValue.ModInternalNotificationWebhook;
+            if (guildConfig.ModInternalNotificationWebhook != null) {
+                guildConfig.ModInternalNotificationWebhook = guildConfig.ModInternalNotificationWebhook.Replace("discord.com", "discordapp.com");
+            }
             guildConfig.ModPublicNotificationWebhook = newValue.ModPublicNotificationWebhook;
+            if (guildConfig.ModPublicNotificationWebhook != null) {
+                guildConfig.ModPublicNotificationWebhook = guildConfig.ModPublicNotificationWebhook.Replace("discord.com", "discordapp.com");
+            }
             guildConfig.StrictModPermissionCheck = newValue.StrictModPermissionCheck;
             guildConfig.ExecuteWhoisOnJoin = newValue.ExecuteWhoisOnJoin;
 
