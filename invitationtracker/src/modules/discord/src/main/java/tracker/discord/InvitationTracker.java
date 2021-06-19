@@ -19,6 +19,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -75,9 +76,14 @@ public class InvitationTracker extends ListenerAdapter implements ICommandNotify
                         GuildConfig guildConfig = SqlConnector.getGuildConfig(event.getGuild().getId());
                         if (guildConfig != null) {
                             if (guildConfig.getExecuteWhoisOnJoin() && guildConfig.getInternalWebhook() != null) {
+                                DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                                 sendWebhook(
                                     guildConfig.getInternalWebhook(),
-                                    event.getMember().getAsMention() + " joined with invite " + i.getUrl() + " by " + i.getInviter().getAsMention()
+                                    event.getMember().getAsMention() +
+                                     " (registered: `" + fmt.format(event.getMember().getTimeCreated()) +
+                                     "`) joined with invite <" + i.getUrl() +
+                                     "> (created `" + fmt.format(i.getTimeCreated()) +
+                                     "`) by " + i.getInviter().getAsMention() + "."
                                 );
                             }
                         }
