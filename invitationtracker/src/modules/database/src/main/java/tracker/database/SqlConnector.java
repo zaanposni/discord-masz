@@ -67,6 +67,42 @@ public class SqlConnector
         return false;
     }
 
+    public static GuildConfig getGuildConfig(String guildId)
+    {
+        try (var connect = DriverManager.getConnection(baseUrl + dbName + urlConfigs, loginName, loginPw);
+             var statement = connect.createStatement())
+        {
+            var query = "select * from " + tableNameGuildConfig + " where GuildId = \"" + guildId + "\"";
+            var result = statement.executeQuery(query);
+            if (result == null)
+            {
+                return null;
+            }
+            result.beforeFirst();
+            result.last();
+            var size = result.getRow();
+            if (size < 1)
+            {
+                return null;
+            }
+            return new GuildConfig(
+                result.getInt("Id"),
+                result.getString("GuildId"),
+                result.getString("ModRoles"),
+                result.getString("AdminRoles"),
+                result.getString("MutedRoles"),
+                result.getString("ModInternalNotificationWebhook"),
+                result.getString("ModPublicNotificationWebhook"),
+                result.getBoolean("StrictModPermissionCheck"),
+                result.getBoolean("ExecuteWhoisOnJoin")
+            );
+        } catch (Exception e)
+        {
+            log.error("Could not update database", e);
+        }
+        return null;
+    }
+
     public static void writeInviteEntry(UserInvite invite)
     {
         try (var connect = DriverManager.getConnection(baseUrl + dbName + urlConfigs, loginName, loginPw);

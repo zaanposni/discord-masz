@@ -13,6 +13,11 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 import javax.security.auth.login.LoginException;
+
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.OffsetDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -20,6 +25,7 @@ import java.util.stream.Collectors;
 import lombok.extern.log4j.Log4j;
 import tracker.cli.ICommandNotify;
 import tracker.cli.IExitNotify;
+import tracker.database.GuildConfig;
 import tracker.database.SqlConnector;
 import tracker.database.UserInvite;
 
@@ -62,10 +68,21 @@ public class InvitationTracker extends ListenerAdapter implements ICommandNotify
         {
             try
             {
-                e.retrieveInvites()
-                        .queue(fetchedInvites -> getUsedInvite(fetchedInvites, event.getGuild().getId())
-                                        .ifPresent(i -> storeInDB(i, event.getMember().getId()))
-                                , failure -> log.warn("Could not fetch invites", failure.getCause()));
+                e.retrieveInvites().queue(fetchedInvites -> {
+                    Optional<Invite> usedInvite = getUsedInvite(fetchedInvites, event.getGuild().getId());
+                    usedInvite.ifPresent(i -> {
+                        storeInDB(i, event.getMember().getId());
+                        GuildConfig guildConfig = SqlConnector.getGuildConfig(event.getGuild().getId());
+                        if (guildConfig != null) {
+                            if (guildConfig.getExecuteWhoisOnJoin() && guildConfig.getInternalWebhook() != null) {
+                                sendWebhook(
+                                    guildConfig.getInternalWebhook(),
+                                    event.getMember().getAsMention() + " joined with invite " + i.getUrl() + " by " + i.getInviter().getAsMention()
+                                );
+                            }
+                        }
+                    });
+                }, failure -> log.warn("Could not fetch invites", failure.getCause()));
             } catch (InsufficientPermissionException exception)
             {
                 log.warn("Insufficient permissions: " + e.getId());
@@ -76,7 +93,7 @@ public class InvitationTracker extends ListenerAdapter implements ICommandNotify
         }
     }
 
-    private void storeInDB(Invite usedInvite, String joinedUser)
+    private void storeInDB(Invite usedInvite, String joinedUserId)
     {
         var guild = usedInvite.getGuild();
         if (guild != null && usedInvite.getInviter() != null && usedInvite.getChannel() != null)
@@ -84,10 +101,11 @@ public class InvitationTracker extends ListenerAdapter implements ICommandNotify
             var currentDate = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
             var timeCreated = new java.sql.Timestamp(usedInvite.getTimeCreated().toInstant().toEpochMilli());
 
-            log.info("Invite link: " + usedInvite.getUrl() +
-                    " User joined: " + guild.getName() +
-                    " Invited by " + usedInvite.getInviter());
-            var userInvite = new UserInvite(guild.getId(), usedInvite.getChannel().getId(), joinedUser, usedInvite.getUrl(),
+            log.info(" User " + joinedUserId +
+                    " used " + usedInvite.getUrl() +
+                    " to join " + guild.getName() +
+                    " invited by " + usedInvite.getInviter());
+            var userInvite = new UserInvite(guild.getId(), usedInvite.getChannel().getId(), joinedUserId, usedInvite.getUrl(),
                     usedInvite.getInviter().getId(), currentDate, timeCreated);
             SqlConnector.writeInviteEntry(userInvite);
         } else
@@ -109,6 +127,28 @@ public class InvitationTracker extends ListenerAdapter implements ICommandNotify
     {
         log.info("Invite " + event.getUrl() + " deleted for guild " + event.getGuild().getName());
         fetchInvites(event.getGuild().getId());
+    }
+
+    public void sendWebhook(String webhookUrl, String message)
+    {
+        try {
+            URL url = new URL(webhookUrl);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Accept", "application/json");
+            con.setRequestProperty("Content-Type", "application/json");
+            con.setDoOutput(true);
+            OutputStream os = con.getOutputStream();
+            OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
+            osw.write("{\"content\": \"" + message + "\"}");
+            osw.flush();
+            osw.close();
+            os.close();
+            log.info(con.getResponseCode() + ": " + con.getResponseMessage());
+        } catch(Exception e) {
+            log.error("Failed to send webhook.");
+            log.error(e.getMessage());
+        }
     }
 
     public void fetchInvites(String id)
