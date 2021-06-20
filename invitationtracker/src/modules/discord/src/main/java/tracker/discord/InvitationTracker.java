@@ -73,12 +73,12 @@ public class InvitationTracker extends ListenerAdapter implements ICommandNotify
                     Optional<Invite> usedInvite = getUsedInvite(fetchedInvites, event.getGuild().getId());
                     usedInvite.ifPresent(i -> {
                         storeInDB(i, event.getMember().getId());
-                        GuildConfig guildConfig = SqlConnector.getGuildConfig(event.getGuild().getId());
-                        if (guildConfig != null) {
-                            if (guildConfig.getExecuteWhoisOnJoin() && guildConfig.getInternalWebhook() != null) {
+                        Optional<GuildConfig> guildConfig = SqlConnector.getGuildConfig(event.getGuild().getId());
+                        guildConfig.ifPresent(g -> {
+                            if (g.getExecuteWhoisOnJoin() && g.getInternalWebhook() != null) {
                                 DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                                 sendWebhook(
-                                    guildConfig.getInternalWebhook(),
+                                    g.getInternalWebhook(),
                                     event.getMember().getAsMention() +
                                      " (registered: `" + fmt.format(event.getMember().getTimeCreated()) +
                                      "`) joined with invite <" + i.getUrl() +
@@ -86,7 +86,7 @@ public class InvitationTracker extends ListenerAdapter implements ICommandNotify
                                      "`) by " + i.getInviter().getAsMention() + "."
                                 );
                             }
-                        }
+                        });
                     });
                 }, failure -> log.warn("Could not fetch invites", failure.getCause()));
             } catch (InsufficientPermissionException exception)
@@ -152,8 +152,7 @@ public class InvitationTracker extends ListenerAdapter implements ICommandNotify
             os.close();
             log.info(con.getResponseCode() + ": " + con.getResponseMessage());
         } catch(Exception e) {
-            log.error("Failed to send webhook.");
-            log.error(e.getMessage());
+            log.error("Failed to send webhook.", e);
         }
     }
 
