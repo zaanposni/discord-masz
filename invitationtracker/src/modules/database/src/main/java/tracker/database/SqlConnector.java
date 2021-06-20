@@ -4,6 +4,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 import java.sql.*;
+import java.util.Optional;
 
 @Log4j
 public class SqlConnector
@@ -65,6 +66,42 @@ public class SqlConnector
             log.error("Could not update database", e);
         }
         return false;
+    }
+
+    public static Optional<GuildConfig> getGuildConfig(String guildId)
+    {
+        try (var connect = DriverManager.getConnection(baseUrl + dbName + urlConfigs, loginName, loginPw);
+             var statement = connect.createStatement())
+        {
+            var query = "select * from " + tableNameGuildConfig + " where GuildId = \"" + guildId + "\"";
+            var result = statement.executeQuery(query);
+            if (result == null)
+            {
+                return Optional.empty();
+            }
+            result.beforeFirst();
+            result.last();
+            var size = result.getRow();
+            if (size < 1)
+            {
+                return Optional.empty();
+            }
+            return Optional.of(new GuildConfig(
+                result.getInt("Id"),
+                result.getString("GuildId"),
+                result.getString("ModRoles"),
+                result.getString("AdminRoles"),
+                result.getString("MutedRoles"),
+                result.getString("ModInternalNotificationWebhook"),
+                result.getString("ModPublicNotificationWebhook"),
+                result.getBoolean("StrictModPermissionCheck"),
+                result.getBoolean("ExecuteWhoisOnJoin")
+            ));
+        } catch (Exception e)
+        {
+            log.error("Could not update database", e);
+        }
+        return Optional.empty();
     }
 
     public static void writeInviteEntry(UserInvite invite)
