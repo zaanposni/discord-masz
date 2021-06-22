@@ -37,7 +37,7 @@ namespace masz.Services
                         Thread.Sleep(1000 * 60);
                     }
                 });
-                task.Start();
+            task.Start();
             logger.LogWarning("Finished action loop.");
         }
 
