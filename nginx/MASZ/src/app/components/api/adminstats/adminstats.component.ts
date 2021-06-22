@@ -60,8 +60,8 @@ export class AdminstatsComponent implements OnInit {
     const confirmDialogRef = this.dialog.open(ConfirmationDialogComponent);
     confirmDialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
-        this.stats = { loading: true, content: undefined };
         this.api.postSimpleData(`/meta/cache`, {}).subscribe((data) => {
+          this.stats = { loading: true, content: undefined };
           this.toastr.success("Cache cleared.");
           setTimeout(() => {
             this.reload();                
