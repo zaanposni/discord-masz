@@ -31,11 +31,11 @@
             </ng-container>
             <mat-list-item *ngIf="!loading && (showList == undefined || showList?.length == 0)">
                 <mat-icon mat-list-icon>error_outline</mat-icon>
-                <div mat-line>No logins found.</div>
+                <div mat-line>{{ errorMessage }}</div>
             </mat-list-item>
         </mat-list>
         <button mat-raised-button color="accent"
-            *ngIf="!this.showAll && showList?.slice(5)?.length != 0 && !loading"
+            *ngIf="!this.showAll && showList?.slice(5)?.length != 0 && !loading && showList"
             (click)="this.showAll = true">
                 Show more
         </button>

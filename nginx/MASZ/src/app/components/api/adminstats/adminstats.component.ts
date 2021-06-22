@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { interval } from 'rxjs';
 import { Adminstats } from 'src/app/models/Adminstats';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { ApiService } from 'src/app/services/api.service';
+import { ConfirmationDialogComponent } from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-adminstats',
@@ -18,7 +20,7 @@ export class AdminstatsComponent implements OnInit {
   public minutesToNewCache?: string = '--';
   public stats: ContentLoading<Adminstats> = { loading: true, content: undefined };
 
-  constructor(private api: ApiService, private toastr: ToastrService) { }
+  constructor(private api: ApiService, private toastr: ToastrService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.reload();
@@ -52,5 +54,23 @@ export class AdminstatsComponent implements OnInit {
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
- }
+  }
+
+  public triggerCache() {
+    const confirmDialogRef = this.dialog.open(ConfirmationDialogComponent);
+    confirmDialogRef.afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        this.api.postSimpleData(`/meta/cache`, {}).subscribe((data) => {
+          this.stats = { loading: true, content: undefined };
+          this.toastr.success("Cache cleared.");
+          setTimeout(() => {
+            this.reload();                
+          }, 2000);
+        }, (error) => {
+          this.toastr.error("Something went wrong.");
+          console.error(error);
+        });
+      }
+    });
+  }
 }

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b4f361ca-1687-49f0-a9d9-672384917577",
+		"_postman_id": "2b26a0ad-43ae-4279-9f65-7298cf76f29c",
 		"name": "discord-masz",
 		"description": "# Introduction\nWhat does your API do?\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nWhat is the preferred way of using the API?\n\n# Error Codes\nWhat errors and status codes can a user expect?\n\n# Rate limit\nIs there a limit to the number of requests an user can send?",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -25,6 +25,12 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
 										"type": "text"
 									}
 								],
@@ -674,8 +680,7 @@
 									"variable": [
 										{
 											"key": "caseid",
-											"value": "1",
-											"type": "string"
+											"value": "1"
 										}
 									]
 								}
@@ -788,8 +793,7 @@
 										},
 										{
 											"key": "dataname",
-											"value": "680e67b0d3528da5c1c10bc5b6db33520f4a2db5_7d2801f2_bobtreffen.png",
-											"type": "string"
+											"value": "680e67b0d3528da5c1c10bc5b6db33520f4a2db5_7d2801f2_bobtreffen.png"
 										}
 									]
 								}
@@ -899,8 +903,7 @@
 									"variable": [
 										{
 											"key": "dataname",
-											"value": "680e67b0d3528da5c1c10bc5b6db33520f4a2db5_7d2801f2_bobtreffen.png",
-											"type": "string"
+											"value": "680e67b0d3528da5c1c10bc5b6db33520f4a2db5_7d2801f2_bobtreffen.png"
 										}
 									]
 								}
@@ -920,6 +923,11 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
 										"type": "text"
 									}
 								],
@@ -947,6 +955,12 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
 										"type": "text"
 									}
 								],
@@ -965,8 +979,7 @@
 									"variable": [
 										{
 											"key": "userid",
-											"value": "749886323380453438",
-											"type": "string"
+											"value": "272655001329991681"
 										}
 									]
 								}
@@ -1338,8 +1351,7 @@
 									"variable": [
 										{
 											"key": "type",
-											"value": "0",
-											"type": "string"
+											"value": "0"
 										}
 									]
 								}
@@ -1373,8 +1385,7 @@
 									"variable": [
 										{
 											"key": "type",
-											"value": "0",
-											"type": "string"
+											"value": "0"
 										}
 									]
 								}
@@ -1453,8 +1464,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "9",
-											"type": "string"
+											"value": "9"
 										}
 									]
 								}
@@ -1486,8 +1496,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1",
-											"type": "string"
+											"value": "1"
 										}
 									]
 								}
@@ -1909,7 +1918,7 @@
 									"variable": [
 										{
 											"key": "userid",
-											"value": "12"
+											"value": "272655001329991681"
 										}
 									]
 								}
@@ -2298,6 +2307,73 @@
 											"key": "id",
 											"value": "1"
 										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "admin",
+					"item": [
+						{
+							"name": "adminstats",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/meta/adminstats",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"meta",
+										"adminstats"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "trigger recache",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/meta/cache",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"meta",
+										"cache"
 									]
 								}
 							},

@@ -63,5 +63,21 @@ namespace masz.Controllers
                 cachedDataFromDiscord = cache.Keys
             });
         }
+
+        [HttpPost("cache")]
+        public async Task<IActionResult> TriggerCache() {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            if (! await this.IsSiteAdmin()) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+
+            Task task = new Task(() => {
+                this.cacher.CacheAll();
+            });
+            task.Start();
+
+            return Ok();
+        }
     }
 }
