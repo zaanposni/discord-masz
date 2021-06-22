@@ -1,7 +1,13 @@
 <div style="height: 100px;"></div>
 <div class="d-flex flex-column justify-content-center align-items-center">
     <div class="d-flex flex-column justify-content-center align-items-left cw-50-75">
-        <div class="mat-display-2 font-weight-bold">Insights</div>
+        <div class="mat-display-2 font-weight-bold mb-0">Insights</div>
+        <div class="d-flex flex-row justify-content-end m-2">
+            <button mat-raised-button color="primary" aria-label="create token" class="flex-shrink-1" (click)="triggerCache()"
+                [disabled]="stats.loading">
+                Clear Cache
+            </button>
+        </div>
         <app-adminlist class="flex-grow-1"
             [title]="'Currently logged in'"
             [showList]="stats.content?.loginsInLast15Minutes"
@@ -23,7 +29,8 @@
             [title]="'Discord cache'"
             [showList]="stats.content?.cachedDataFromDiscord"
             [loading]="stats.loading"
-            [emote]="'save'">
+            [emote]="'save'"
+            [errorMessage]="'No cached data found.'">
         </app-adminlist>
     </div>
 </div>

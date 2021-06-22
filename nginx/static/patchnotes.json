@@ -1,5 +1,13 @@
 [
   {
+    "title": "Version 1.11.6",
+    "version": "v1.11.6",
+    "changes": [
+      "Added a clear cache button in the insights dashboard.",
+      "Adjusted some error messages to be clearer."
+    ]
+  },
+  {
     "title": "Version 1.11.5",
     "version": "v1.11.5",
     "changes": [
