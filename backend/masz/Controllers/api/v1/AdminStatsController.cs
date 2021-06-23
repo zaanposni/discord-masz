@@ -74,6 +74,7 @@ namespace masz.Controllers
 
             Task task = new Task(() => {
                 this.cacher.CacheAll();
+                this.identityManager.ClearAllIdentities();
             });
             task.Start();
 

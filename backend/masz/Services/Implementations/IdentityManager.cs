@@ -82,6 +82,11 @@ namespace masz.Services
             return this.identities.Values.ToList();
         }
 
+        public void ClearAllIdentities()
+        {
+            this.identities.Clear();
+        }
+
         public void ClearOldIdentities()
         {
             this.logger.LogInformation("IdentityManager | Clearing old identities.");
