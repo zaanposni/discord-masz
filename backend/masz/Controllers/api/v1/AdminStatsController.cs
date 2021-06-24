@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using masz.Dtos.DiscordAPIResponses;
 using masz.Models;
@@ -50,7 +51,12 @@ namespace masz.Controllers
 
             var cache = this.discord.GetCache();
 
+            var stopwatch = Stopwatch.StartNew();
+            await this.discord.FetchCurrentBotInfo(CacheBehavior.IgnoreCache);
+            stopwatch.Stop();
+
             return Ok(new {
+                lastPing = stopwatch.ElapsedMilliseconds,
                 loginsInLast15Minutes = currentLogins,
                 trackedInvites = await database.CountTrackedInvites(),
                 modCases = await database.CountAllModCases(),

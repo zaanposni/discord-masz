@@ -2,7 +2,20 @@
 <div class="d-flex flex-column justify-content-center align-items-center">
     <div class="d-flex flex-column justify-content-center align-items-left cw-50-75">
         <div class="mat-display-2 font-weight-bold mb-0">Insights</div>
-        <div class="d-flex flex-row justify-content-end m-2">
+        <div class="d-flex flex-row justify-content-end align-items-center mr-2"
+            *ngIf="!stats.loading && stats.content != undefined">
+            <div class="dot" title="Last ping to discord"
+                [class.dot-green]="stats.content.lastPing < 300"
+                [class.dot-orange]="stats.content.lastPing > 300 && stats.content.lastPing < 500"
+                [class.dot-red]="stats.content.lastPing > 500">
+            </div>
+            <span class="mat-headline mb-0" style="font-weight: 500;" title="Server ping to discord"
+                
+                [style.color]="stats.content.lastPing > 300 ? stats.content.lastPing > 500 ? 'red' : 'orange' : '#3bd671'">
+                {{ stats.content?.lastPing }}ms
+            </span>
+        </div>
+        <div class="d-flex flex-row justify-content-end m-2 align-items-center">
             <button mat-raised-button color="primary" aria-label="create token" class="flex-shrink-1" (click)="triggerCache()"
                 [disabled]="stats.loading">
                 Clear Cache

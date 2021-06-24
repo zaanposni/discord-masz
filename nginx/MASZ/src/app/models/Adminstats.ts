@@ -1,4 +1,5 @@
 export interface Adminstats {
+    lastPing: number;
     loginsInLast15Minutes: string[];
     trackedInvites: number;
     modCases: number;
