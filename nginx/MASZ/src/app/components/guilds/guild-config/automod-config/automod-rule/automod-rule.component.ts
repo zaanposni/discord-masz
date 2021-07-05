@@ -31,12 +31,15 @@ export class AutomodRuleComponent implements OnInit {
   public automodActionOptions = AutoModerationActionOptions;
   public autoModerationPunishmentOptions = AutoModerationPunishmentOptions;
 
+  public initRowsCustomWords = 1;
+
   constructor(private route: ActivatedRoute, private api: ApiService, private toastr: ToastrService, private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.eventForm = this._formBuilder.group({
       limit: ['', this.defintion.showLimitField ? Validators.min(-1) : null],
-      timeLimit: ['', this.defintion.showTimeLimitField ? Validators.min(-1) : null]
+      timeLimit: ['', this.defintion.showTimeLimitField ? Validators.min(-1) : null],
+      customWord: ['', this.defintion.showCustomField ? Validators.required : null]
     });
     this.filterForm = this._formBuilder.group({
       excludeRoles: [''],
@@ -102,7 +105,14 @@ export class AutomodRuleComponent implements OnInit {
 
   applyConfig(config: AutomodConfig) {
     if (this.defintion.showLimitField) {
-      this.eventForm.setValue({ limit: config.limit, timeLimit: this.defintion.showTimeLimitField ? config.timeLimitMinutes : '' });
+      this.eventForm.setValue({
+        limit: config.limit,
+        timeLimit: this.defintion.showTimeLimitField ? config.timeLimitMinutes : '',
+        customWord: this.defintion.showCustomField ? config.customWordFilter : ''
+      });
+    }
+    if (config.customWordFilter) {
+      this.initRowsCustomWords = Math.min(config.customWordFilter.split(/\r\n|\r|\n/).length, 15);
     }
     
     this.filterForm.setValue({ excludeRoles: config.ignoreRoles, excludeChannels: config.ignoreChannels });
@@ -142,6 +152,7 @@ export class AutomodRuleComponent implements OnInit {
       "IgnoreChannels": this.filterForm.value.excludeChannels !== "" ? this.filterForm.value.excludeChannels : [],
       "IgnoreRoles": this.filterForm.value.excludeRoles !== "" ? this.filterForm.value.excludeRoles : [],
       "TimeLimitMinutes": this.eventForm.value.timeLimit !== "" ? this.eventForm.value.timeLimit : null,
+      "CustomWordFilter": this.eventForm.value.customWord !== "" ? this.eventForm.value.customWord : null,
       "Limit": this.eventForm.value.limit !== "" ? this.eventForm.value.limit : null,
       "SendDmNotification": this.actionForm.value.dmNotification !== "" ? this.actionForm.value.dmNotification : false,
       "SendPublicNotification": this.actionForm.value.publicNotification !== "" ? this.actionForm.value.publicNotification : false

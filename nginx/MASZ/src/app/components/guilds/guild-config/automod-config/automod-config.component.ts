@@ -58,6 +58,17 @@ export class AutomodConfigComponent implements OnInit {
       description: 'A user triggers too many automoderations in a defined timespan.',
       showLimitField: true,
       showTimeLimitField: true
+    },
+    {
+      type: 6,
+      title: 'Custom filter',
+      description: 'A user uses too many words defined in your list.',
+      showLimitField: true,
+      showTimeLimitField: false,
+      showCustomField: true,
+      tooltip: 'Words are checked line by line case insensitive.',
+      link: 'https://gist.github.com/zaanposni/4f3aa7b29d54005d34eb78f6acfe93eb',
+      linkText: 'Example'
     }
   ];
 

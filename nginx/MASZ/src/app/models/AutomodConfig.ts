@@ -11,6 +11,7 @@ export interface AutomodConfig {
     ignoreRoles: string[];
     timeLimitMinutes?: number;
     limit?: number;
+    customWordFilter?: string;
     sendDmNotification: boolean;
     sendPublicNotification: boolean;
 }
