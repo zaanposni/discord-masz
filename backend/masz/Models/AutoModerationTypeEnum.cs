@@ -7,6 +7,7 @@ namespace masz.Models
         TooManyMentions,
         TooManyAttachments,
         TooManyEmbeds,
-        TooManyAutoModerations
+        TooManyAutoModerations,
+        CustomWordFilter
     }
 }

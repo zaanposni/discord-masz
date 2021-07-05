@@ -67,6 +67,7 @@ namespace masz.Controllers
             currentConfig.IgnoreRoles = dto.IgnoreRoles.Distinct().ToArray();
             currentConfig.Limit = dto.Limit;
             currentConfig.TimeLimitMinutes = dto.TimeLimitMinutes;
+            currentConfig.CustomWordFilter = dto.CustomWordFilter;
             currentConfig.PunishmentType = dto.PunishmentType;
             currentConfig.PunishmentDurationMinutes = dto.PunishmentDurationMinutes;
             currentConfig.SendPublicNotification = dto.SendPublicNotification;
