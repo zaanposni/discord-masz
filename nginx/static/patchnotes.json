@@ -17,6 +17,10 @@
       {
         "title": "404 - Page.",
         "description": "Added a cool picture to the 404 error page."
+      },
+      {
+        "title": "Automoderation bugged.",
+        "description": "A bug was fixed that prevented the display of the automod event log."
       }
     ]
   },
