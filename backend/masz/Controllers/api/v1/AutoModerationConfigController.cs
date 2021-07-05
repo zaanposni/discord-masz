@@ -68,6 +68,9 @@ namespace masz.Controllers
             currentConfig.Limit = dto.Limit;
             currentConfig.TimeLimitMinutes = dto.TimeLimitMinutes;
             currentConfig.CustomWordFilter = dto.CustomWordFilter;
+            if (currentConfig.CustomWordFilter != null) {
+                currentConfig.CustomWordFilter = currentConfig.CustomWordFilter.ToLower();
+            }
             currentConfig.PunishmentType = dto.PunishmentType;
             currentConfig.PunishmentDurationMinutes = dto.PunishmentDurationMinutes;
             currentConfig.SendPublicNotification = dto.SendPublicNotification;
