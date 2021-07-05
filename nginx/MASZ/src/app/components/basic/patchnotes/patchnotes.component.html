@@ -24,12 +24,12 @@
                                 <span class="mat-h2 mb-0" style="font-weight: bold; color: #d81b0e">BREAKING</span>
                                 <div class="flex-grow-1 ml-4 mr-4" style="background-color: #d81b0e; height: 3px"></div>
                             </div>
-                            <div class="mat-4 mb-2 pl-4" *ngFor="let change of note.breaking">
+                            <ul class="mat-4 mb-2 pl-4" *ngFor="let change of note.breaking">
                                 <li class="pn-details">
                                     <b>{{ change.title }} </b>
                                     {{ change.description }}
                                 </li>
-                            </div>
+                            </ul>
                         </div>
                         <div *ngIf="note.features">
                             <div class="d-flex flex-row align-items-center mb-2">
@@ -48,23 +48,23 @@
                                 <span class="mat-h2 mb-0" style="font-weight: bold; color: #faa61a">FIXES AND UPDATES</span>
                                 <div class="flex-grow-1 ml-4 mr-4" style="background-color: #faa61a; height: 3px"></div>
                             </div>
-                            <div class="mat-h4 mb-2 pl-4" *ngFor="let change of note.fixes">
+                            <ul class="mat-h4 mb-2 pl-4" *ngFor="let change of note.fixes">
                                 <li class="pn-details">
                                     <b>{{ change.title }} </b>
                                     {{ change.description }}
                                 </li>
-                            </div>
+                            </ul>
                         </div>
                         <div *ngIf="note.changes">
                             <div class="d-flex flex-row align-items-center mb-2">
                                 <span class="mat-h2 mb-0">CHANGES</span>
                                 <div class="flex-grow-1 ml-4 mr-4" style="background-color: white; height: 3px"></div>
                             </div>
-                            <div class="mat-h4 mb-2 pl-4" *ngFor="let change of note.changes">
+                            <ul class="mat-h4 mb-2 pl-4" *ngFor="let change of note.changes">
                                 <li class="pn-details">
                                     {{ change }}
                                 </li>
-                            </div>
+                            </ul>
                         </div>
                     </mat-card-content>
                 </mat-card>
