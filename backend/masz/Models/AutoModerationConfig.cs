@@ -20,6 +20,7 @@ namespace masz.Models
         public string[] IgnoreRoles { get; set; }
         public int? TimeLimitMinutes { get; set; }
         public int? Limit { get; set; }
+        public string CustomWordFilter { get; set; }
         public bool SendDmNotification { get; set; }
         public bool SendPublicNotification { get; set; }
     }

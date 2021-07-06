@@ -4,4 +4,8 @@ export interface AutoModRuleDefinition {
     description: string;
     showLimitField: boolean;
     showTimeLimitField: boolean;
+    showCustomField?: boolean;
+    tooltip?: string;
+    link?: string;
+    linkText?: string;
 }

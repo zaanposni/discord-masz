@@ -16,6 +16,7 @@ namespace masz.Dtos.AutoModerationConfig
         public string[] IgnoreRoles { get; set; } = new string[0];
         public int? TimeLimitMinutes { get; set; }
         public int? Limit { get; set; }
+        public string CustomWordFilter { get; set; }
         public bool SendDmNotification { get; set; }
         public bool SendPublicNotification { get; set; }
     }

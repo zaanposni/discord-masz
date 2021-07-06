@@ -16,7 +16,9 @@ export class AutomodCardComponent implements OnInit {
     1: 'sentiment_satisfied_alt',
     2: 'person',
     3: 'description',
-    4: 'attach_file'
+    4: 'attach_file',
+    5: 'history',
+    6: 'do_not_disturb'
   };
   eventsMap: { [key: number]: string} = {
     0: 'posted an invite',
@@ -24,7 +26,8 @@ export class AutomodCardComponent implements OnInit {
     2: 'mentioned too many users',
     3: 'posted too many attachments',
     4: 'posted too many embeds',
-    5: 'triggered too many automoderations'
+    5: 'triggered too many automoderations',
+    6: 'used too many unallowed words'
   };
   actionsMap: { [key: number]: string} = {
     0: 'No action was taken',

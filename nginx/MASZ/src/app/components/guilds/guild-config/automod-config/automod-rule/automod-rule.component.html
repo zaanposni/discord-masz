@@ -12,7 +12,18 @@
         <mat-step [stepControl]="eventForm">
           <form [formGroup]="eventForm">
             <ng-template matStepLabel>Event</ng-template>
-            <span>{{ this.defintion.description }}</span><br/>
+            <div>
+              <div class="d-flex flex-row align-items-center">
+                <span>{{ this.defintion.description }}  </span>
+                <mat-icon matTooltip="{{ this.defintion.tooltip }}" *ngIf="this.defintion.tooltip">
+                    help_outline
+                </mat-icon>
+              </div>
+              <a href="{{ this.defintion.link }}" target="_blank" *ngIf="this.defintion.link"
+                 rel="noopener" class="p-2" mat-raised-button color="accent">
+                {{ this.defintion.linkText }}
+              </a>
+            </div>
             
             <mat-form-field *ngIf="this.defintion.showLimitField">
               <mat-label>Upper limit</mat-label>
@@ -21,6 +32,10 @@
             <mat-form-field *ngIf="this.defintion.showTimeLimitField">
               <mat-label>Time limit (minutes)</mat-label>
               <input type="number" matInput formControlName="timeLimit" required>
+            </mat-form-field>
+            <mat-form-field *ngIf="this.defintion.showCustomField">
+              <mat-label>Custom words (divide by newline)</mat-label>
+              <textarea matInput type="text" formControlName="customWord" [attr.rows]="this.initRowsCustomWords" required></textarea>
             </mat-form-field>
             <div>
               <button mat-raised-button matStepperNext color="accent">Next</button>

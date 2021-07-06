@@ -1,10 +1,55 @@
 [
   {
+    "title": "Version 1.11.7",
+    "version": "v1.11.7",
+    "released_at": "2021-07-06",
+    "features": [
+      {
+        "title": "Styled patchnotes.",
+        "description": "Patchnotes got a brand new style."
+      },
+      {
+        "title": "Custom word filter.",
+        "description": "Added a custom word filter for automoderation."
+      },
+      {
+        "title": "More complexe help.",
+        "description": "Added help pages for each command to the discordbot."
+      },
+      {
+        "title": "Temporary punishments.",
+        "description": "Added a tempban and tempmute command to the discordbot."
+      }
+    ],
+    "fixes": [
+      {
+        "title": "404 - Page.",
+        "description": "Added a cool picture to the 404 error page."
+      },
+      {
+        "title": "Automoderation bugged.",
+        "description": "A bug was fixed that prevented the display of the automod event log."
+      },
+      {
+        "title": "Case creation info.",
+        "description": "Added more information about the case creation type to the modcase view."
+      }
+    ]
+  },
+  {
     "title": "Version 1.11.6",
     "version": "v1.11.6",
-    "changes": [
-      "Added a clear cache button in the insights dashboard.",
-      "Adjusted some error messages to be clearer."
+    "features": [
+      {
+        "title": "Clear cache button.",
+        "description": "Added a button on the insight page that allows siteadmins to control the backend discord cache."
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Error messages.",
+        "description": "Adjusted some error messages to be clearer."
+      }
     ]
   },
   {
