@@ -21,12 +21,13 @@ Commands:
 
 complexe_help = {
     "ban": "Ban a user.\nYou can use the users id, name or tag.\n```\n$ban @user <reason>\n```\nAlso see: $help tempban",
-    "tempban": "Ban a user for a defined time.\nYou can use the users id, name or tag.\nUse the following as time range: `1d` `1h` or `1m`\n```\n$ban @user <time range> <reason>\n```\nAlso see: $help ban",
+    "tempban": "Ban a user for a defined time.\nYou can use the users id, name or tag.\nUse the following as time range: `1d` `1h` or `1m`\nDefaults to 1 hour.\n```\n$tempban @user <time range> <reason>\n```\nAlso see: $help ban",
     "features": "Checks if further configuration is needed to use MASZ features.\n```\n$features\n```",
     "help": "Well...",
     "invite": "How to invite this bot.\n```\n$invite\n```",
     "kick": "Kick a user.\nYou can use the users id, name or tag.\n```\n$kick @user <reason>\n```",
     "mute": "Mute a user.\nYou can use the users id, name or tag.\n```\n$mute @user <reason>\n```\nAlso see: $help tempmute",
+    "tempmute": "Mute a user for a defined time.\nYou can use the users id, name or tag.\nUse the following as time range: `1d` `1h` or `1m`\nDefaults to 1 hour.\n```\n$tempmute @user <time range> <reason>\n```\nAlso see: $help mute",
     "register": "Displays the URL to register the current guild.\n```\n$register\n```",
     "url": "Displays the URL MASZ is deployed on.\n```\n$url\n```",
     "version": "Checks for new releases on GitHub.\n```\n$version\n```",
