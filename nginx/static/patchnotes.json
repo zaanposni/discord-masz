@@ -11,6 +11,14 @@
       {
         "title": "Custom word filter.",
         "description": "Added a custom word filter for automoderation."
+      },
+      {
+        "title": "More complexe help.",
+        "description": "Added help pages for each command to the discordbot."
+      },
+      {
+        "title": "Temporary punishments.",
+        "description": "Added a tempban and tempmute command to the discordbot."
       }
     ],
     "fixes": [
@@ -21,6 +29,10 @@
       {
         "title": "Automoderation bugged.",
         "description": "A bug was fixed that prevented the display of the automod event log."
+      },
+      {
+        "title": "Case creation info.",
+        "description": "Added more information about the case creation type to the modcase view."
       }
     ]
   },
