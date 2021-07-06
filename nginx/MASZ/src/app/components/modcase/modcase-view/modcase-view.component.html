@@ -139,7 +139,11 @@
                                     <span class="mat-h3 mb-0" style="word-break: break-all;">{{ this.modCase.content?.moderator?.username }}#{{ this.modCase.content?.moderator?.discriminator }}</span>
                                     <span style="font-size: medium;" class="mat-h3 mb-0 text-white-50">ID: {{this.modCase.content?.modCase?.modId }}</span>
                                     <span style="word-break: break-all; font-size: medium;" class="mat-h3 mb-0 text-white-50"
-                                    *ngIf="this.modCase.content?.modCase?.creationType === 1">This case is automoderated.</span>
+                                    *ngIf="this.modCase.content?.modCase?.creationType === 1">Case is automoderated.</span>
+                                    <span style="word-break: break-all; font-size: medium;" class="mat-h3 mb-0 text-white-50"
+                                    *ngIf="this.modCase.content?.modCase?.creationType === 2">Case is imported.</span>
+                                    <span style="word-break: break-all; font-size: medium;" class="mat-h3 mb-0 text-white-50"
+                                    *ngIf="this.modCase.content?.modCase?.creationType === 3">Case created by command.</span>
                                 </ng-container>
                             </div>
                             <div class="infobox-icon">
