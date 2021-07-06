@@ -9,7 +9,9 @@ from .kick import kick
 from .ban import ban
 from .warn import warn
 from .report import report
+from .tempmute import tempmute
+from .tempban import tempban
 from .help import help
 
-ALL_COMMANDS = [ version, url, features, register, whois, invite, mute, kick, ban, warn, report, help ]
+ALL_COMMANDS = [ version, url, features, register, whois, invite, mute, kick, ban, warn, report, tempmute, tempban, help ]
 
