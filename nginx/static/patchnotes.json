@@ -1,5 +1,17 @@
 [
   {
+    "title": "Version 1.12",
+    "version": "v1.12",
+    "released_at": "2021-07-17",
+    "features": [ ],
+    "fixes": [
+      {
+        "title": "Improved help command.",
+        "description": "Bot output and help pages now use configured bot prefix instead of default \"$\"."
+      }
+    ]
+  },
+  {
     "title": "Version 1.11.7",
     "version": "v1.11.7",
     "released_at": "2021-07-06",
