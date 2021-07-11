@@ -22,5 +22,10 @@ namespace masz.Models
                 CreatedAt = this.CreatedAt
             };
         }
+
+        public void RemoveModeratorInfo()
+        {
+            this.UserId = null;
+        }
     }
 }

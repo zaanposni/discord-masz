@@ -68,5 +68,18 @@ namespace masz.Models
                 AllowComments = this.AllowComments
             };
         }
+
+        public void RemoveModeratorInfo()
+        {
+            this.ModId = null;
+            this.LastEditedByModId = null;
+            this.LockedByUserId = null;
+            this.DeletedByUserId = null;
+
+            foreach (var comment in this.Comments)
+            {
+                comment.RemoveModeratorInfo();
+            }
+        }
     }
 }

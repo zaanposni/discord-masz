@@ -13,5 +13,11 @@ namespace masz.Models
         public DateTime CreatedAt { get; set; }
         public String UserId { get; set; }
         public User User { get; set; }
+
+        public void RemoveModeratorInfo()
+        {
+            this.UserId = null;
+            this.User = null;
+        }
     }
 }
