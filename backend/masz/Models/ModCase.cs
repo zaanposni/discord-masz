@@ -33,7 +33,7 @@ namespace masz.Models
         public DateTime? PunishedUntil { get; set; }
         public bool PunishmentActive { get; set; }
         public bool AllowComments { get; set; }
-        public string LockedByUserId { get; set; }
+        public string? LockedByUserId { get; set; }
         public DateTime? LockedAt { get; set; }
         public DateTime? MarkedToDeleteAt { get; set; }
         public string DeletedByUserId { get; set; }
@@ -62,10 +62,12 @@ namespace masz.Models
                 PunishmentType = this.PunishmentType,
                 PunishedUntil = this.PunishedUntil,
                 PunishmentActive = this.PunishmentActive,
-                Comments = this.Comments,
+                AllowComments = this.AllowComments,
+                LockedByUserId = this.LockedByUserId,
+                LockedAt = this.LockedAt,
                 MarkedToDeleteAt = this.MarkedToDeleteAt,
                 DeletedByUserId = this.DeletedByUserId,
-                AllowComments = this.AllowComments
+                Comments = this.Comments,
             };
         }
 
@@ -76,9 +78,11 @@ namespace masz.Models
             this.LockedByUserId = null;
             this.DeletedByUserId = null;
 
-            foreach (var comment in this.Comments)
-            {
-                comment.RemoveModeratorInfo();
+            if (this.Comments != null) {
+                foreach (var comment in this.Comments)
+                {
+                    comment.RemoveModeratorInfo();
+                }
             }
         }
     }
