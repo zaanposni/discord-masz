@@ -8,6 +8,8 @@ from discord import Embed, Member
 from discord.errors import NotFound
 
 from .checks import registered_guild_and_admin_or_mod_only
+from helpers import get_prefix
+
 
 regex = re.compile(r"^[0-9]{18}$")
 
@@ -49,4 +51,4 @@ async def kick_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('I could not find that member...')
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(r"Please use \>kick @user the reason")
+        await ctx.send(f"Please use `{get_prefix()}kick @user <reason>`\nAlso see `{get_prefix()}help kick`")
