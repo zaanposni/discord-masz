@@ -35,16 +35,18 @@
 
             <mat-card class="d-flex flex-column primary-bg-color mt-3" *ngIf="this.modCase.content?.modCase?.markedToDeleteAt">
                 <span class="mat-display-1 mb-0 font-weight-bold">
-                    <ng-container *ngIf="this.modCase.content?.deletedBy">
-                        <img src="{{ this.modCase.content?.deletedBy?.imageUrl }}"
-                                class="rounded-circle z-depth-0 mr-1"
-                                alt="avatar"
-                                height="40"
-                                onerror="this.src='/assets/img/default_profile.png';"
-                                >
+                    <img class="rounded-circle z-depth-0 mr-1"
+                        [attr.src]="this.modCase.content?.deletedBy ? this.modCase.content?.deletedBy?.imageUrl : 'https://cdn.discordapp.com/icons/' + this.currentGuild.content?.id + '/' + this.currentGuild.content?.icon + '.png'"
+                        alt="avatar"
+                        height="40"
+                        onerror="this.src='/assets/img/default_profile.png';" />
+                    <span *ngIf="this.modCase.content?.deletedBy">
                         {{ this.modCase.content?.deletedBy?.username }}#{{ this.modCase.content?.deletedBy?.discriminator }}
-                    </ng-container>
-                    has marked this case to be deleted at {{ this.modCase.content?.modCase?.markedToDeleteAt | date:'dd.MM.Y' }}.
+                    </span>
+                    <span *ngIf="! this.modCase.content?.deletedBy">
+                        Moderators
+                    </span>
+                    marked this case to be deleted at {{ this.modCase.content?.modCase?.markedToDeleteAt | date:'dd.MM.Y' }}.
                 </span>
                 <div class="d-flex flex-row mt-1" *ngIf="isModOrHigher">
                     <div class="flex-grow-1"></div>
@@ -321,7 +323,7 @@
                             <div class="card-container-body d-flex flex-column">
                                 <div class="d-flex flex-row flex-grow-1 w-100 align-self-start">
                                     <img
-                                        src="{{ comment?.user?.imageUrl }}"
+                                        [attr.src]="comment?.userId ? comment?.user?.imageUrl : 'https://cdn.discordapp.com/icons/' + this.currentGuild.content?.id + '/' + this.currentGuild.content?.icon + '.png'"
                                         class="card-img rounded-circle z-depth-0 mr-1"
                                         alt="avatar icon"
                                         height="32"
@@ -331,7 +333,12 @@
 
                                     <!-- Title -->
                                     <span>
-                                        <div class="mat-h3" style="display: inline;">{{ comment?.user?.username || comment?.user?.id }}#{{ comment?.user?.discriminator || comment?.user?.id }}</div>
+                                        <div class="mat-h3" style="display: inline;" *ngIf="comment?.userId">
+                                            {{ comment?.user?.username || comment?.user?.id }}#{{ comment?.user?.discriminator || comment?.user?.id }}
+                                        </div>
+                                        <div class="mat-h3" style="display: inline;" *ngIf="! comment?.userId">
+                                            Moderators
+                                        </div>
                                         <span class="mat-h3 text-black-50">  {{ comment.createdAt | date:'dd.MM.Y HH:mm:ss'  }}</span>
                                     </span>
                                     
@@ -358,15 +365,18 @@
                     <mat-divider class="mb-2" *ngIf="this.modCase?.content?.modCase?.comments?.length"></mat-divider>
                     <div class="d-flex flex-row flex-wrap align-items-center">
                         <img
-                            src="{{ this.modCase.content?.lockedBy?.imageUrl }}"
+                            [attr.src]="this.modCase.content?.lockedBy ? this.modCase.content?.lockedBy?.imageUrl : 'https://cdn.discordapp.com/icons/' + this.currentGuild.content?.id + '/' + this.currentGuild.content?.icon + '.png'"
                             class="card-img rounded-circle z-depth-0 mr-2"
                             alt="avatar icon"
                             height="32"
                             style="width: unset"
                             onerror="this.src='/assets/img/default_profile.png';"
                         />
-                        <div class="mat-h3 mb-0 warn-color" style="display: inline">
+                        <div class="mat-h3 mb-0 warn-color" style="display: inline" *ngIf="this.modCase.content?.lockedBy">
                             {{ this.modCase.content?.lockedBy?.username }}#{{ this.modCase.content?.lockedBy?.discriminator }} locked comments at {{ this.modCase.content?.modCase?.lockedAt | date:'dd.MM.Y' }}
+                        </div>
+                        <div class="mat-h3 mb-0 warn-color" style="display: inline" *ngIf="! this.modCase.content?.lockedBy">
+                            Moderators locked comments at {{ this.modCase.content?.modCase?.lockedAt | date:'dd.MM.Y' }}
                         </div>
                         <div class="flex-grow-1"></div>
                         <button mat-raised-button color="accent" (click)="unlockCaseComments()"
