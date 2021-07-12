@@ -81,7 +81,7 @@ namespace masz.Models
             if (this.Comments != null) {
                 foreach (var comment in this.Comments)
                 {
-                    comment.RemoveModeratorInfo();
+                    comment.RemoveModeratorInfo(this.UserId);
                 }
             }
         }

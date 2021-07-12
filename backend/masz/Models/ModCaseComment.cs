@@ -23,9 +23,11 @@ namespace masz.Models
             };
         }
 
-        public void RemoveModeratorInfo()
+        public void RemoveModeratorInfo(String suspectId)
         {
-            this.UserId = null;
+            if (this.UserId != suspectId) {
+                this.UserId = null;
+            }            
         }
     }
 }

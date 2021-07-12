@@ -14,10 +14,12 @@ namespace masz.Models
         public String UserId { get; set; }
         public User User { get; set; }
 
-        public void RemoveModeratorInfo()
+        public void RemoveModeratorInfo(String suspectId)
         {
-            this.UserId = null;
-            this.User = null;
+            if (this.UserId != suspectId) {
+                this.UserId = null;
+                this.User = null;
+            }
         }
     }
 }

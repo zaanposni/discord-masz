@@ -48,7 +48,7 @@ namespace masz.Models
 
             foreach (var comment in this.Comments)
             {
-                comment.RemoveModeratorInfo();
+                comment.RemoveModeratorInfo(this.ModCase.UserId);
             }
         }
     }
