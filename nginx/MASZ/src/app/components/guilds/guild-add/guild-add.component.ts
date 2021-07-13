@@ -46,7 +46,8 @@ export class GuildAddComponent implements OnInit {
       internal: ['', Validators.pattern("^https://discord(app)?\.com/api/webhooks/.+$")],
       public: ['', Validators.pattern("^https://discord(app)?\.com/api/webhooks/.+$")],
       strictPermissionCheck: [''],
-      executeWhoisOnJoin: ['']
+      executeWhoisOnJoin: [''],
+      publishModeratorInfo: ['']
     });
     
     this.reloadGuilds();
@@ -122,8 +123,9 @@ export class GuildAddComponent implements OnInit {
       modInternalNotificationWebhook: this.configGroup.value?.internal?.trim() != '' ? this.configGroup?.value?.internal : null,
       modPublicNotificationWebhook: this.configGroup.value?.public?.trim() != '' ? this.configGroup?.value?.public : null,
       strictModPermissionCheck: this.configGroup.value?.strictPermissionCheck !== '' ? this.configGroup.value?.strictPermissionCheck : false,
-      executeWhoisOnJoin: this.configGroup.value?.executeWhoisOnJoin !== '' ? this.configGroup.value?.executeWhoisOnJoin : false
-    }    
+      executeWhoisOnJoin: this.configGroup.value?.executeWhoisOnJoin !== '' ? this.configGroup.value?.executeWhoisOnJoin : false,
+      publishModeratorInfo: this.configGroup.value?.publishModeratorInfo !== '' ? this.configGroup.value?.publishModeratorInfo : false
+    }
 
     this.api.postSimpleData('/guilds/', data).subscribe((data) => {
       this.toastr.success('Guild created');

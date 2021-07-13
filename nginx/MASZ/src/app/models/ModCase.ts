@@ -10,11 +10,11 @@ export interface ModCase {
     username: string;
     discriminator?: string;
     nickname?: string;
-    modId: string;
+    modId?: string;
     createdAt: Date;
     occuredAt: Date;
     lastEditedAt: Date;
-    lastEditedByModId: string;
+    lastEditedByModId?: string;
     punishment: string;
     labels: string[];
     others?: string;

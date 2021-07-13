@@ -37,5 +37,19 @@ namespace masz.Models
         public User DeletedBy { get; set; }
         public List<CommentsView> Comments { get; set; }
         public double? PunishmentProgress { get; set; }
+
+        public void RemoveModeratorInfo()
+        {
+            this.Moderator = null;
+            this.LastModerator = null;
+            this.LockedBy = null;
+            this.DeletedBy = null;
+            this.ModCase.RemoveModeratorInfo();
+
+            foreach (var comment in this.Comments)
+            {
+                comment.RemoveModeratorInfo(this.ModCase.UserId);
+            }
+        }
     }
 }

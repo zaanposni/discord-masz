@@ -148,10 +148,11 @@ export class ModcaseViewComponent implements OnInit {
 
   uploadInit() {
     const fileInput = this.fileInput.nativeElement;
-    fileInput .onchange = () => {
-      for (let index = 0; index < fileInput .files.length; index++)
+    this.filesToUpload = [];
+    fileInput.onchange = () => {
+      for (let index = 0; index < fileInput.files.length; index++)
       {
-        const file = fileInput .files[index];
+        const file = fileInput.files[index];
         this.filesToUpload.push({ data: file, inProgress: false, progress: 0});
       }
       this.uploadFiles();

@@ -17,6 +17,7 @@ namespace masz.Models
         public string ModInternalNotificationWebhook { get; set; }
         public bool StrictModPermissionCheck { get; set; }
         public bool ExecuteWhoisOnJoin { get; set; }
+        public bool PublishModeratorInfo { get; set; }
 
         public object Clone()
         {

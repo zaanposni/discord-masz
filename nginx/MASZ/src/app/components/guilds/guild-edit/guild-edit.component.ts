@@ -38,7 +38,8 @@ export class GuildEditComponent implements OnInit {
       internal: ['', Validators.pattern("^https://discord(app)?\.com/api/webhooks/.+$")],
       public: ['', Validators.pattern("^https://discord(app)?\.com/api/webhooks/.+$")],
       strictPermissionCheck: [''],
-      executeWhoisOnJoin: ['']
+      executeWhoisOnJoin: [''],
+      publishModeratorInfo: ['']
     });
     
     const guildId = this.route.snapshot.paramMap.get('guildid');
@@ -66,7 +67,13 @@ export class GuildEditComponent implements OnInit {
       this.modRolesGroup.setValue({ modRoles: data.modRoles });
       this.adminRolesGroup.setValue({ adminRoles: data.adminRoles});
       this.muteRolesGroup.setValue({ muteRoles: data.mutedRoles});
-      this.configGroup.setValue({ internal: data.modInternalNotificationWebhook, public: data.modPublicNotificationWebhook, strictPermissionCheck: data.strictModPermissionCheck, executeWhoisOnJoin: data.executeWhoisOnJoin });
+      this.configGroup.setValue({
+        internal: data.modInternalNotificationWebhook,
+        public: data.modPublicNotificationWebhook,
+        strictPermissionCheck: data.strictModPermissionCheck,
+        executeWhoisOnJoin: data.executeWhoisOnJoin,
+        publishModeratorInfo: data.publishModeratorInfo
+      });
       this.currentGuildConfig = { loading: false, content: data };
     }, () => {
       this.currentGuildConfig.loading = false;
@@ -82,7 +89,8 @@ export class GuildEditComponent implements OnInit {
       modInternalNotificationWebhook: this.configGroup.value?.internal?.trim() ? this.configGroup?.value?.internal : null,
       modPublicNotificationWebhook: this.configGroup.value?.public?.trim() ? this.configGroup?.value?.public : null,
       strictModPermissionCheck: this.configGroup.value?.strictPermissionCheck !== '' ? this.configGroup.value?.strictPermissionCheck : false,
-      executeWhoisOnJoin: this.configGroup.value?.executeWhoisOnJoin !== '' ? this.configGroup.value?.executeWhoisOnJoin : false
+      executeWhoisOnJoin: this.configGroup.value?.executeWhoisOnJoin !== '' ? this.configGroup.value?.executeWhoisOnJoin : false,
+      publishModeratorInfo: this.configGroup.value?.publishModeratorInfo !== '' ? this.configGroup.value?.publishModeratorInfo : false
     }
 
     this.api.putSimpleData(`/guilds/${this.currentGuild?.content?.id}`, data).subscribe((data) => {

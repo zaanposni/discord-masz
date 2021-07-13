@@ -22,5 +22,6 @@ namespace masz.Dtos.GuildConfig
         public string ModInternalNotificationWebhook { get; set; }
         public bool ExecuteWhoisOnJoin { get; set; } = false;
         public bool StrictModPermissionCheck { get; set; } = false;
+        public bool PublishModeratorInfo { get; set; } = true;
     }
 }

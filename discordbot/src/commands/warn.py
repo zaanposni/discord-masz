@@ -8,6 +8,8 @@ from discord import Embed, Member
 from discord.errors import NotFound
 
 from .checks import registered_guild_and_admin_or_mod_only
+from helpers import get_prefix
+
 
 regex = re.compile(r"^[0-9]{18}$")
 
@@ -41,7 +43,7 @@ async def warn(ctx, member: Member, *reason):
     elif r.status_code == 401:
         await ctx.send("You are not allowed to do this.")
     else:
-        await ctx.send("Something went wrong.")
+        await ctx.send(f"Something went wrong.\nCode: {r.status_code}\nText: {r.text}")
 
 
 @warn.error
@@ -49,4 +51,4 @@ async def warn_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('I could not find that member...')
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(r"Please use \>warn @user the reason")
+        await ctx.send(f"Please use `{get_prefix()}warn <username|userid|usermention> <reason>`\nAlso see `{get_prefix()}help warn`")

@@ -62,11 +62,28 @@ namespace masz.Models
                 PunishmentType = this.PunishmentType,
                 PunishedUntil = this.PunishedUntil,
                 PunishmentActive = this.PunishmentActive,
-                Comments = this.Comments,
+                AllowComments = this.AllowComments,
+                LockedByUserId = this.LockedByUserId,
+                LockedAt = this.LockedAt,
                 MarkedToDeleteAt = this.MarkedToDeleteAt,
                 DeletedByUserId = this.DeletedByUserId,
-                AllowComments = this.AllowComments
+                Comments = this.Comments,
             };
+        }
+
+        public void RemoveModeratorInfo()
+        {
+            this.ModId = null;
+            this.LastEditedByModId = null;
+            this.LockedByUserId = null;
+            this.DeletedByUserId = null;
+
+            if (this.Comments != null) {
+                foreach (var comment in this.Comments)
+                {
+                    comment.RemoveModeratorInfo(this.UserId);
+                }
+            }
         }
     }
 }

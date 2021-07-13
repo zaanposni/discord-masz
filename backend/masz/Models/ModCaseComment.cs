@@ -22,5 +22,12 @@ namespace masz.Models
                 CreatedAt = this.CreatedAt
             };
         }
+
+        public void RemoveModeratorInfo(String suspectId)
+        {
+            if (this.UserId != suspectId) {
+                this.UserId = null;
+            }            
+        }
     }
 }

@@ -59,6 +59,10 @@ namespace masz.data
                 .HasDefaultValue(true);
 
             modelBuilder.Entity<GuildConfig>()
+                .Property(b => b.PublishModeratorInfo)
+                .HasDefaultValue(true);
+
+            modelBuilder.Entity<GuildConfig>()
                 .Property(e => e.ModRoles)
                 .HasConversion(
                     v => string.Join(',', v),

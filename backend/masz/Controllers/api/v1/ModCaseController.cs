@@ -44,6 +44,10 @@ namespace masz.Controllers
             }
             ModCase modCase = await database.SelectSpecificModCase(guildid, modcaseid);
 
+            if (!(await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid) || (await this.GuildIsRegistered(guildid)).PublishModeratorInfo)) {
+                modCase.RemoveModeratorInfo();
+            }
+
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCase.");
             return Ok(modCase);
         }
@@ -324,6 +328,13 @@ namespace masz.Controllers
             }
             else {
                 modCases = await database.SelectAllModcasesForSpecificUserOnGuild(guildid, currentUser.Id, startPage, 20);  
+            }
+
+            if (!(await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid) || (await this.GuildIsRegistered(guildid)).PublishModeratorInfo)) {
+                foreach (var modCase in modCases)
+                {
+                    modCase.RemoveModeratorInfo();
+                }
             }
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCases.");
