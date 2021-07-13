@@ -15,8 +15,16 @@
     ],
     "fixes": [
       {
-        "title": "Improved help command.",
+        "title": "Use correct bot prefix.",
         "description": "Bot output and help pages now use configured bot prefix instead of default \"$\"."
+      },      
+      {
+        "title": "Improved help command.",
+        "description": "Help command now displays parameters more intuitive. More help for durations and user parameters."
+      },
+      {
+        "title": "Intuitive dates.",
+        "description": "The bot now uses a months abbreviated name instead of a number to ensure a less error-prone transmission of information."
       },
       {
         "title": "Fixed multiple files upload.",
