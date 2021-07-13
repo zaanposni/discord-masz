@@ -33,7 +33,7 @@ namespace masz.Models
         public DateTime? PunishedUntil { get; set; }
         public bool PunishmentActive { get; set; }
         public bool AllowComments { get; set; }
-        public string? LockedByUserId { get; set; }
+        public string LockedByUserId { get; set; }
         public DateTime? LockedAt { get; set; }
         public DateTime? MarkedToDeleteAt { get; set; }
         public string DeletedByUserId { get; set; }
