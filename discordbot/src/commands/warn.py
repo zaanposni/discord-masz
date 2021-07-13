@@ -51,4 +51,4 @@ async def warn_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('I could not find that member...')
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(f"Please use `{get_prefix()}warn @user <reason>`\nAlso see `{get_prefix()}help warn`")
+        await ctx.send(f"Please use `{get_prefix()}warn <username|userid|usermention> <reason>`\nAlso see `{get_prefix()}help warn`")

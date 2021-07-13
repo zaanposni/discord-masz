@@ -56,4 +56,4 @@ async def tempmute_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('I could not find that member...')
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(f"Please use `{get_prefix()}tempmute @user <time range> <reason>`\nAlso see `{get_prefix()}help tempmute`")
+        await ctx.send(f"Please use `{get_prefix()}tempmute <username|userid|usermention> <duration> <reason>`\nAlso see `{get_prefix()}help tempmute`")

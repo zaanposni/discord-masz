@@ -51,4 +51,4 @@ async def kick_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('I could not find that member...')
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(f"Please use `{get_prefix()}kick @user <reason>`\nAlso see `{get_prefix()}help kick`")
+        await ctx.send(f"Please use `{get_prefix()}kick <username|userid|usermention> <reason>`\nAlso see `{get_prefix()}help kick`")

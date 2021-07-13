@@ -56,4 +56,4 @@ async def tempban_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('I could not find that member...')
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(f"Please use `{get_prefix()}tempban @user <time range> <reason>`\nAlso see `{get_prefix()}help tempban`")
+        await ctx.send(f"Please use `{get_prefix()}tempban <username|userid|usermention> <duration> <reason>`\nAlso see `{get_prefix()}help tempban`")
