@@ -3,11 +3,20 @@
     "title": "Version 1.12",
     "version": "v1.12",
     "released_at": "2021-07-17",
-    "features": [ ],
+    "features": [
+      {
+        "title": "Hide moderator info.",
+        "description": "The publication of moderator information can now be deactivated on guild level."
+      }
+    ],
     "fixes": [
       {
         "title": "Improved help command.",
         "description": "Bot output and help pages now use configured bot prefix instead of default \"$\"."
+      },
+      {
+        "title": "Fixed multiple files upload.",
+        "description": "Fixed a bug that uploaded files several times if the upload button was used more than once."
       }
     ]
   },
