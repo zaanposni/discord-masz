@@ -10,7 +10,7 @@
       },
       {
         "title": "$cases command.",
-        "description": "The new $cases discord command allows users to view a list of their modcases and active punishments without logging in to MASZ."
+        "description": "The new $cases command allows users to view a list of their modcases and active punishments without logging in to MASZ."
       }
     ],
     "fixes": [
