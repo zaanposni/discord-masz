@@ -19,6 +19,7 @@ Commands:
   warn     Warn a user.
   whois    Whois information about a user.
   report   Reply to a message to report it to the moderators.
+  cases    See a list of your modcases.
 ```
 """
 
@@ -36,7 +37,8 @@ complexe_help = {
     "version": f"Checks for new releases on GitHub.\n```\n{get_prefix()}version\n```",
     "warn": f"Warn a user.\nYou can use the users id, name or tag.\n```\n{get_prefix()}warn @user <reason>\n```",
     "whois": f"Whois information about a user.\nYou can use the users id, name or tag.\n```\n{get_prefix()}whois @user\n```",
-    "report": f"Reply to a message to report it to the moderators.\n```\n{get_prefix()}report\n```"
+    "report": f"Reply to a message to report it to the moderators.\n```\n{get_prefix()}report\n```",
+    "cases": f"See a list of your modcases.\nOptionally filter by guild id.\n```\n{get_prefix()}cases [guild_id]\n```"
 }
 
 @commands.command()

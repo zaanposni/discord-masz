@@ -11,7 +11,8 @@ from .warn import warn
 from .report import report
 from .tempmute import tempmute
 from .tempban import tempban
+from .cases import cases
 from .help import help
 
-ALL_COMMANDS = [ version, url, features, register, whois, invite, mute, kick, ban, warn, report, tempmute, tempban, help ]
+ALL_COMMANDS = [ version, url, features, register, whois, invite, mute, kick, ban, warn, report, tempmute, tempban, cases, help ]
 

@@ -7,6 +7,10 @@
       {
         "title": "Hide moderator info.",
         "description": "The publication of moderator information can now be deactivated on guild level."
+      },
+      {
+        "title": "$cases command.",
+        "description": "The new $cases discord command allows users to view a list of their modcases and active punishments without logging in to MASZ."
       }
     ],
     "fixes": [
@@ -17,6 +21,10 @@
       {
         "title": "Fixed multiple files upload.",
         "description": "Fixed a bug that uploaded files several times if the upload button was used more than once."
+      },
+      {
+        "title": "Better error messages for $warn and $kick.",
+        "description": "API error will now be displayed if $warn or $kick is used."
       }
     ]
   },

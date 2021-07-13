@@ -43,7 +43,7 @@ async def warn(ctx, member: Member, *reason):
     elif r.status_code == 401:
         await ctx.send("You are not allowed to do this.")
     else:
-        await ctx.send("Something went wrong.")
+        await ctx.send(f"Something went wrong.\nCode: {r.status_code}\nText: {r.text}")
 
 
 @warn.error

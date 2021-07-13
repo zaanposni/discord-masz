@@ -1,11 +1,10 @@
 import os
-import re
 from datetime import datetime
 
 from discord import Embed, Member, User, Guild
 from discord.errors import NotFound
 
-from data import get_modcases_by_user_and_guild, get_cached_guild_config, get_latest_joins_by_user_and_guild, get_usernote_by_user_and_guild
+from data import get_modcases_by_user_and_guild, get_latest_joins_by_user_and_guild, get_usernote_by_user_and_guild
 
 async def create_whois_embed(guild: Guild, user: User):
     try:
@@ -66,7 +65,7 @@ async def create_whois_embed(guild: Guild, user: User):
             for case in active_punishments[:-6:-1]:
                 info += f"{case['Punishment']}"
                 if case["PunishedUntil"] is not None:
-                    info += f" (until {case['PunishedUntil'].strftime('%d.%m.%Y')}): "
+                    info += f" (until {case['PunishedUntil'].strftime('%d %b %Y')}): "
                 else:
                     info += ": "
                 info += f"[#{case['CaseId']} - {case['Title']}]({os.getenv('META_SERVICE_BASE_URL', '')}/guilds/{guild.id}/cases/{case['CaseId']})"
