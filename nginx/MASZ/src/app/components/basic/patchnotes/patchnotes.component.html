@@ -13,7 +13,7 @@
                         </div>
                     </mat-card-title>
                     <mat-card-content>
-                        <div *ngIf="note.released_at" class="mat-caption mb-0" style="color: grey; line-height: 12px">
+                        <div *ngIf="note.released_at" class="mat-caption mb-0" style="color: grey; line-height: 12px" title="release date">
                             {{ note.released_at | date:'d MMMM Y' }}
                         </div>
                         <div *ngIf="!note.released_at" class="mat-caption mb-0" style="color: grey; line-height: 12px">
