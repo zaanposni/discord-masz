@@ -12,7 +12,8 @@ from .report import report
 from .tempmute import tempmute
 from .tempban import tempban
 from .cases import cases
+from .viewg import viewg
 from .help import help
 
-ALL_COMMANDS = [ version, url, features, register, whois, invite, mute, kick, ban, warn, report, tempmute, tempban, cases, help ]
+ALL_COMMANDS = [ version, url, features, register, whois, invite, mute, kick, ban, warn, report, tempmute, tempban, cases, viewg, help ]
 

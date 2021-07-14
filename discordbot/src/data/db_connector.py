@@ -23,6 +23,12 @@ async def get_modcases_by_user_and_guild(guildid: str, userid: str):
     await connect()
     return await database.fetch_all(query=query, values=values)
 
+async def get_modcase_by_guild_and_case_id(guildid: str, caseid: str):
+    query = "SELECT * FROM ModCases WHERE GuildId = :guildid AND CaseId = :caseid"
+    values = { "guildid": guildid, "caseid": caseid }
+    await connect()
+    return await database.fetch_one(query=query, values=values)
+
 async def get_modcases_by_user_and_guild_with_active_mute(guildid: str, userid: str):
     query = "SELECT * FROM ModCases WHERE GuildId = :guildid AND UserId = :userid AND PunishmentActive = 1 AND PunishmentType = 1 AND MarkedToDeleteAt IS NULL"
     values = { "guildid": guildid, "userid": userid }
