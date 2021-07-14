@@ -11,6 +11,10 @@
       {
         "title": "$cases command.",
         "description": "The new $cases command allows users to view a list of their modcases and active punishments without logging in to MASZ."
+      },
+      {
+        "title": "$view command.",
+        "description": "The new $view command allows users to view details of their modcase without logging in to MASZ."
       }
     ],
     "fixes": [
