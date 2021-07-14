@@ -20,6 +20,8 @@ Commands:
   whois    Whois information about a user.
   report   Reply to a message to report it to the moderators.
   cases    See a list of your modcases.
+  view     View details of a modcase in the current guild.
+  viewg    View details of a modcase given another guild id.
 ```
 """
 
@@ -39,7 +41,9 @@ complexe_help = {
     "whois": f"Whois information about a user.\n```\n{get_prefix()}whois <username|userid|usermention>\n```",
     "report": f"Reply to a message to report it to the moderators.\n```\n{get_prefix()}report\n```",
     "cases": f"See a list of your modcases.\nOptionally filter by guild id.\n```\n{get_prefix()}cases [guild_id]\n```",
-    "duration": f"Use the following as duration: `1d` `1h` or `1m`.\nCombine them for a more detailed time range:\n- `1d12h30m` means 1 day, 12 hours, 30 minutes"
+    "duration": f"Use the following as duration: `1d` `1h` or `1m`.\nCombine them for a more detailed time range:\n- `1d12h30m` means 1 day, 12 hours, 30 minutes",
+    "view": f"View details of a modcase in the current guild.\n```\n{get_prefix()}view <caseid>\n```",
+    "viewg": f"View details of a modcase given another guild id.\n```\n{get_prefix()}viewg <guildid> <caseid>\n```"
 }
 
 @commands.command()
