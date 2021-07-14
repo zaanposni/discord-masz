@@ -13,7 +13,8 @@ from .tempmute import tempmute
 from .tempban import tempban
 from .cases import cases
 from .viewg import viewg
+from .view import view
 from .help import help
 
-ALL_COMMANDS = [ version, url, features, register, whois, invite, mute, kick, ban, warn, report, tempmute, tempban, cases, viewg, help ]
+ALL_COMMANDS = [ version, url, features, register, whois, invite, mute, kick, ban, warn, report, tempmute, tempban, cases, viewg, view, help ]
 
