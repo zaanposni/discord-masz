@@ -67,6 +67,6 @@ async def create_modcase_embed(bot, modcase) -> Embed:
         except Exception as e:
             print(e)
     else:
-        embed.set_footer("Moderator info hidden.")
+        embed.set_footer(text="Moderator info hidden.")
 
     return embed
