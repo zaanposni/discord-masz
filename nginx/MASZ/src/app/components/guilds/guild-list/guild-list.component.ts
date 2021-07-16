@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppUser } from 'src/app/models/AppUser';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,7 +13,7 @@ export class GuildListComponent implements OnInit {
 
   public currentUser: ContentLoading<AppUser> = { loading: true, content: {} as AppUser }
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.login();
@@ -25,7 +26,8 @@ export class GuildListComponent implements OnInit {
     }, () => { this.currentUser.loading = false });
   }
 
-  selectGuild(guildId: string) {
-
+  open(...target: any[]) {
+    const url = target.join('/');
+    this.router.navigateByUrl(url);    
   }
 }
