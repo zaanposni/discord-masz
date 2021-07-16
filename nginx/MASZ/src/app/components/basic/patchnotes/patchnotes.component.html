@@ -33,7 +33,7 @@
                         </div>
                         <div *ngIf="note.features">
                             <div class="d-flex flex-row align-items-center mb-2">
-                                <span class="mat-h2 mb-0" style="font-weight: bold; color: #43b581">NEW FEATURES</span>
+                                <span class="mat-h2 mb-0" style="font-weight: bold; color: #43b581">FEATURES</span>
                                 <div class="flex-grow-1 ml-4 mr-4" style="background-color: #43b581; height: 3px"></div>
                             </div>
                             <ul class="mat-h4 mb-2 pl-4" *ngFor="let change of note.features">
@@ -45,10 +45,22 @@
                         </div>
                         <div *ngIf="note.fixes">
                             <div class="d-flex flex-row align-items-center mb-2">
-                                <span class="mat-h2 mb-0" style="font-weight: bold; color: #faa61a">FIXES AND UPDATES</span>
+                                <span class="mat-h2 mb-0" style="font-weight: bold; color: #faa61a">FIXES</span>
                                 <div class="flex-grow-1 ml-4 mr-4" style="background-color: #faa61a; height: 3px"></div>
                             </div>
                             <ul class="mat-h4 mb-2 pl-4" *ngFor="let change of note.fixes">
+                                <li class="pn-details">
+                                    <b>{{ change.title }} </b>
+                                    {{ change.description }}
+                                </li>
+                            </ul>
+                        </div>
+                        <div *ngIf="note.technical">
+                            <div class="d-flex flex-row align-items-center mb-2">
+                                <span class="mat-h2 mb-0" style="font-weight: bold; color: #00acc8">TECHNICAL</span>
+                                <div class="flex-grow-1 ml-4 mr-4" style="background-color: #00acc8; height: 3px"></div>
+                            </div>
+                            <ul class="mat-h4 mb-2 pl-4" *ngFor="let change of note.technical">
                                 <li class="pn-details">
                                     <b>{{ change.title }} </b>
                                     {{ change.description }}

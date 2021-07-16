@@ -38,6 +38,12 @@
         "title": "Better error messages for $warn and $kick.",
         "description": "API error will now be displayed if $warn or $kick is used."
       }
+    ],
+    "technical": [
+      {
+        "title": "RestSharp.",
+        "description": "Upgraded RestSharp to v106.12.0"
+      }
     ]
   },
   {
