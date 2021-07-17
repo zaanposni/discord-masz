@@ -35,7 +35,6 @@ import { AuthService } from './services/auth.service';
 import { ApiInterceptor } from './services/ApiInterceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiService } from './services/api.service';
-import { CookieTrackerService } from './services/cookie-tracker.service';
 import { AuthGuard } from './guards/auth.guard';
 import { GuildCardComponent } from './components/guilds/guild-card/guild-card.component';
 import { NotFoundComponent } from './components/errors/not-found/not-found.component';
@@ -205,8 +204,7 @@ import { StatcardComponent } from './components/api/adminstats/statcard/statcard
       multi: true
     },
     AuthGuard,
-    ApiService,
-    CookieTrackerService
+    ApiService
   ],
   bootstrap: [AppComponent]
 })
