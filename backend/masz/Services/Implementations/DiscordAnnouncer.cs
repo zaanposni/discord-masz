@@ -25,6 +25,11 @@ namespace masz.Services
             this.discord = discord;
             this.dbContext = context;
         }
+
+        // https://codereview.stackexchange.com/a/257121
+        private static string GetEnvironmentVariable(string name, string defaultValue)
+            => System.Environment.GetEnvironmentVariable(name) is string v && v.Length > 0 ? v : defaultValue;
+
         public async Task AnnounceModCase(ModCase modCase, RestAction action, User actor, bool announcePublic, bool announceDm)
         {
             logger.LogInformation($"Announcing modcase {modCase.Id} in guild {modCase.GuildId}.");
@@ -56,7 +61,9 @@ namespace masz.Services
                     message.Append(modCase.PunishedUntil.Value.ToString("dd.MM.yyyy HH:mm:ss"));
                     message.Append(" (UTC)`");
                 }
-                message.Append($".\nFor more information or rehabilitation visit: {config.Value.ServiceBaseUrl}");
+                string prefix = GetEnvironmentVariable("BOT_PREFIX", "$");
+                message.Append($".\nUse `{prefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.");
+                message.Append($"\nFor more information or rehabilitation visit: {config.Value.ServiceBaseUrl}");
 
                 await discord.SendDmMessage(modCase.UserId, message.ToString());
                 logger.LogInformation($"Sent dm notification");

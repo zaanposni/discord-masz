@@ -19,7 +19,6 @@ def parse_delta(delta):
     if match:
         parts = {k: int(v) for k, v in match.groupdict().items() if v}
         delta = timedelta(**parts)
-        print(delta)
         if delta == timedelta(0):
             return None
         else:

@@ -48,6 +48,7 @@ services:
     restart: unless-stopped
     environment:
       - ENABLE_DEMO_MODE=${ENABLE_DEMO_MODE}
+      - BOT_PREFIX=${BOT_PREFIX}
     networks:
       - appnetwork
     volumes:

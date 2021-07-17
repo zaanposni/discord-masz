@@ -69,6 +69,10 @@ namespace masz.Controllers
                 caseView.DeletedBy = await discord.FetchUserInfo(modCase.DeletedByUserId, CacheBehavior.OnlyCache);
             }
 
+            if (!(await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid) || (await this.GuildIsRegistered(guildid)).PublishModeratorInfo)) {
+                caseView.RemoveModeratorInfo();
+            }
+
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCase.");
             return Ok(caseView);
         }

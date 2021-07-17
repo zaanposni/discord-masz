@@ -146,6 +146,7 @@ namespace masz.Controllers
             }
             guildConfig.StrictModPermissionCheck = guildConfigForCreateDto.StrictModPermissionCheck;
             guildConfig.ExecuteWhoisOnJoin = guildConfigForCreateDto.ExecuteWhoisOnJoin;
+            guildConfig.PublishModeratorInfo = guildConfigForCreateDto.PublishModeratorInfo;
 
             await database.SaveGuildConfig(guildConfig);
             await database.SaveChangesAsync();
@@ -191,6 +192,7 @@ namespace masz.Controllers
             }
             guildConfig.StrictModPermissionCheck = newValue.StrictModPermissionCheck;
             guildConfig.ExecuteWhoisOnJoin = newValue.ExecuteWhoisOnJoin;
+            guildConfig.PublishModeratorInfo = newValue.PublishModeratorInfo;
 
             database.UpdateGuildConfig(guildConfig);
             await database.SaveChangesAsync();

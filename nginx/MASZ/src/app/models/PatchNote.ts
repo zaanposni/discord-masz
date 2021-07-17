@@ -5,6 +5,7 @@ export interface PatchNote {
     features: PatchNoteDetail[];
     fixes: PatchNoteDetail[];
     breaking: PatchNoteDetail[];
+    technical: PatchNoteDetail[];
     version: string;
 }
 

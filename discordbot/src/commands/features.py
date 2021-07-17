@@ -86,7 +86,7 @@ async def features(ctx):
     )
     embed.add_field(
         name = f"{CHECK if manage_guild else X_CHECK} Invite tracking",
-        value = "Allows masz to track the invites new members are using.\n" +
+        value = "Allows MASZ to track the invites new members are using.\n" +
                 f"{'Grant this bot the manage guild permission to use this feature.' if not manage_guild else ''}",
         inline = False
     )

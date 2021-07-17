@@ -109,14 +109,19 @@ namespace masz.Controllers
                 modCases = modCases.Skip(startPage * 20).Take(20).ToList();
             }
 
+            bool publishMod = (await this.GuildIsRegistered(guildid)).PublishModeratorInfo || await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid);
             List<ModCaseTableEntry> table = new List<ModCaseTableEntry>();
             foreach (var c in modCases)
             {
-                table.Add( new ModCaseTableEntry() {
+                var entry = new ModCaseTableEntry() {
                     ModCase = c,
                     Suspect = await discord.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache),
                     Moderator = await discord.FetchUserInfo(c.ModId, CacheBehavior.OnlyCache)
-                });
+                };
+                if (!publishMod) {
+                    entry.RemoveModeratorInfo();
+                }
+                table.Add(entry);
             }
 
             if (!String.IsNullOrWhiteSpace(search)) {
