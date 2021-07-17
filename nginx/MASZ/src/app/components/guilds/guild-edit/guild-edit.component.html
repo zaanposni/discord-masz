@@ -10,7 +10,7 @@
                 width="128px"
                 height="128px"
                 onerror="this.src='/assets/img/default_profile.png';"/>
-            <div class="mat-h3 mb-0" style="font-weight: bold;">{{ currentGuild?.content?.name }}</div>
+            <div class="mat-h3 mb-0 font-weight-bold">{{ currentGuild?.content?.name }}</div>
             <div class="mat-small">({{ currentGuild?.content?.id }})</div>
         </div>
 
@@ -94,6 +94,17 @@
                                 Execute whois on member join
                             </mat-checkbox>
                             <mat-icon matTooltip="Automatically sends information about the joined user to your internal webhook if defined.">
+                                help_outline
+                            </mat-icon>
+                        </div>
+                        <div class="d-flex flex-row">
+                            <mat-checkbox
+                                class="mr-2"
+                                formControlName="publishModeratorInfo"
+                                [labelPosition]="'after'">
+                                Publish moderator information
+                            </mat-checkbox>
+                            <mat-icon matTooltip="A suspect will be able to see which moderator punished him.">
                                 help_outline
                             </mat-icon>
                         </div>

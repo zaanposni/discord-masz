@@ -1,5 +1,52 @@
 [
   {
+    "title": "Version 1.12",
+    "version": "v1.12",
+    "released_at": "2021-07-17",
+    "features": [
+      {
+        "title": "Hide moderator info.",
+        "description": "The publication of moderator information can now be deactivated on guild level."
+      },
+      {
+        "title": "$cases command.",
+        "description": "The new $cases command allows users to view a list of their modcases and active punishments without logging in to MASZ."
+      },
+      {
+        "title": "$view command.",
+        "description": "The new $view command allows users to view details of their modcase without logging in to MASZ."
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Use correct bot prefix.",
+        "description": "Bot output and help pages now use configured bot prefix instead of default \"$\"."
+      },      
+      {
+        "title": "Improved help command.",
+        "description": "Help command now displays parameters more intuitive. More help for durations and user parameters."
+      },
+      {
+        "title": "Intuitive dates.",
+        "description": "The bot now uses a months abbreviated name instead of a number to ensure a less error-prone transmission of information."
+      },
+      {
+        "title": "Fixed multiple files upload.",
+        "description": "Fixed a bug that uploaded files several times if the upload button was used more than once."
+      },
+      {
+        "title": "Better error messages for $warn and $kick.",
+        "description": "API error will now be displayed if $warn or $kick is used."
+      }
+    ],
+    "technical": [
+      {
+        "title": "RestSharp.",
+        "description": "Upgraded RestSharp to v106.12.0"
+      }
+    ]
+  },
+  {
     "title": "Version 1.11.7",
     "version": "v1.11.7",
     "released_at": "2021-07-06",

@@ -9,4 +9,5 @@ export interface GuildConfig {
     executeWhoisOnJoin: boolean;
     modPublicNotificationWebhook: string;
     modInternalNotificationWebhook: string;
+    publishModeratorInfo: boolean;
 }

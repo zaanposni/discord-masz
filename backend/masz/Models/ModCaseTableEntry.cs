@@ -11,5 +11,11 @@ namespace masz.Models
         public ModCase ModCase { get; set; }
         public User Moderator { get; set; }
         public User Suspect { get; set; }
+
+        public void RemoveModeratorInfo()
+        {
+            this.Moderator = null;
+            this.ModCase.RemoveModeratorInfo();
+        }
     }
 }

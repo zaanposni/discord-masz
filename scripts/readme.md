@@ -1,5 +1,9 @@
 # Scripts
 
+## Backups
+
+Use the scripts `backup_db.sh` and `backup_files.sh` as examples to backup your MASZ instance.
+
 ## Migrate from dynobot to masz
 
 To migrate your warnings from dynobots database to masz follow this guide:
