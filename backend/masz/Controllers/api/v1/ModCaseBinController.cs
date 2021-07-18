@@ -63,7 +63,7 @@ namespace masz.Controllers
             this.database.UpdateModCase(modCase);
             await this.database.SaveChangesAsync();
 
-            return Ok(new { id = modCase.Id, caseid = modCase.CaseId });
+            return Ok(modCase);
         }
 
         [HttpDelete("{caseid}/delete")]
@@ -98,7 +98,7 @@ namespace masz.Controllers
             this.database.DeleteSpecificModCase(modCase);
             await this.database.SaveChangesAsync();
 
-            return Ok(new { id = modCase.Id, caseid = modCase.CaseId });
+            return Ok(modCase);
         }
     }
 }

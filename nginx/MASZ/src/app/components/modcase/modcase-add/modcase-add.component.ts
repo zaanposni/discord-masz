@@ -218,7 +218,7 @@ export class ModcaseAddComponent implements OnInit {
       .set('announceDm', this.punishmentFormGroup.value.dmNotification ? 'true' : 'false');
     
     this.api.postSimpleData(`/modcases/${this.guildId}`, data, params, true, true).subscribe((data) => {     
-      const caseId = data.caseid;
+      const caseId = data.caseId;
       this.router.navigate(['guilds', this.guildId, 'cases', caseId], { queryParams: { 'reloadfiles': this.filesToUpload.length ?? '0' } });
       this.savingCase = false;
       this.toastr.success(`Case ${caseId} created.`);

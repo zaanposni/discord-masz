@@ -87,7 +87,7 @@ namespace masz.Controllers
             await this.discordAnnouncer.AnnounceUserMapping(userMapping, await this.IsValidUser(), RestAction.Created);
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 201 Ressource created.");
-            return StatusCode(201, new { id = userMapping.Id });
+            return StatusCode(201, userMapping);
         }
 
         [HttpPut("{id}")]
@@ -113,7 +113,7 @@ namespace masz.Controllers
             await this.discordAnnouncer.AnnounceUserMapping(existing, await this.IsValidUser(), RestAction.Edited);
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Ressource updated.");
-            return Ok(new { id = existing.Id });
+            return Ok(existing);
         }
 
 
@@ -138,7 +138,7 @@ namespace masz.Controllers
             await this.discordAnnouncer.AnnounceUserMapping(existing, await this.IsValidUser(), RestAction.Deleted);
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Ressource deleted.");
-            return Ok(new { id = existing.Id });
+            return Ok(existing);
         }
     }
 }
