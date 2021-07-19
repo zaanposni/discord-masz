@@ -1,0 +1,12 @@
+.guildicon-missing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: baseline;
+    border-width: 3px !important;
+    border-color: rgb(66, 66, 66) !important;
+}
+
+.guildicon-missing:hover {
+    background-color: rgb(66, 66, 66) !important;
+}

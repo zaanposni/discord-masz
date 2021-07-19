@@ -95,6 +95,7 @@ import { QuicksearchUsermapsResultComponent } from './components/guilds/guild-da
 import { AdminstatsComponent } from './components/api/adminstats/adminstats.component';
 import { AdminlistComponent } from './components/api/adminstats/adminlist/adminlist.component';
 import { StatcardComponent } from './components/api/adminstats/statcard/statcard.component';
+import { GuildIconComponent } from './components/basic/guild-icon/guild-icon.component';
 
 @NgModule({
   declarations: [
@@ -152,7 +153,8 @@ import { StatcardComponent } from './components/api/adminstats/statcard/statcard
     QuicksearchUsermapsResultComponent,
     AdminstatsComponent,
     AdminlistComponent,
-    StatcardComponent
+    StatcardComponent,
+    GuildIconComponent
   ],
   imports: [
     CommonModule,
