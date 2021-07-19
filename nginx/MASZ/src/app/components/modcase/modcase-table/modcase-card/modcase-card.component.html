@@ -46,13 +46,13 @@
             <div class="d-flex flex-column align-content-center">
                 <ng-container>
                     <span class="text-black-50" style="text-align: right;">
-                        Created: {{ entry.modCase.createdAt | date:'d. MMMM Y'  }}
+                        Created: {{ entry.modCase.createdAt | date:'d MMMM Y'  }}
                     </span>
                     <span class="text-black-50" style="text-align: right;" *ngIf="entry.modCase.punishmentActive && entry.modCase.punishedUntil">
-                        Until: {{ entry.modCase.punishedUntil | date:'d. MMMM Y'  }}
+                        Until: {{ entry.modCase.punishedUntil | date:'d MMMM Y'  }}
                     </span>
                     <span class="text-black-50" style="text-align: right;" *ngIf="entry.modCase.markedToDeleteAt">
-                        Delete: {{ entry.modCase.markedToDeleteAt | date:'d. MMMM Y'  }}
+                        Delete: {{ entry.modCase.markedToDeleteAt | date:'d MMMM Y'  }}
                     </span>
                 </ng-container>
                 <div class="flex-grow-1"></div>
