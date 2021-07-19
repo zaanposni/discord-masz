@@ -30,8 +30,9 @@ h1.example-app-name {
   flex: 1 0 auto;
 }
 
-mat-nav-list mat-icon, mat-nav-list a app-guild-icon,
-mat-nav-list mat-icon, mat-nav-list a img {
+mat-nav-list mat-icon,
+mat-nav-list a app-guild-icon,
+mat-nav-list a img {
   margin-right: 15px;
 }
 
