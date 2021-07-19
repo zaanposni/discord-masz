@@ -12,6 +12,9 @@ export class GuildIconComponent implements OnInit {
   @Input() public guild?: Guild = undefined;
   @Input() public width: string = '24px';
   @Input() public height: string = '24px';
+  @Input() public showBorder: boolean = true;
+  @Input() public darkBorder: boolean = false;
+  @Input() public staticBackground: boolean = true;
 
   constructor() { }
 

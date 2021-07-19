@@ -3,13 +3,7 @@
     <div class="d-flex flex-row conditional-fc justify-content-center align-self-center">
         
         <div class="d-flex flex-column align-items-center p-4">
-            <img
-                src="https://cdn.discordapp.com/icons/{{ currentGuild?.content?.id }}/{{ currentGuild?.content?.icon }}.png" 
-                class="rounded-circle" 
-                alt="guild icon"
-                width="128px"
-                height="128px"
-                onerror="this.src='/assets/img/default_profile.png';"/>
+            <app-guild-icon [guild]="currentGuild?.content" [width]="'128px'" [height]="'128px'"></app-guild-icon>
             <div class="mat-h3 mb-0 font-weight-bold">{{ currentGuild?.content?.name }}</div>
             <div class="mat-small">({{ currentGuild?.content?.id }})</div>
         </div>
