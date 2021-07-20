@@ -66,7 +66,7 @@
           </mat-expansion-panel-header>
           <a class="d-flex" (click)="open('guilds', guild.id)" *ngFor="let guild of this.currentUser.adminGuilds">
             <div [class.activatedNav]="activatedNav[1] === 'guilds' && activatedNav[2] === guild.id" class="d-flex flex-row rounded navitem no-p">
-              <img width="24px" height="24px" src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" alt="guild image" class="rounded-circle"/>
+              <app-guild-icon [guild]="guild" [showBorder]="false"></app-guild-icon>
               <span>{{ guild.name }}</span>
               <div class="flex-grow-1"></div>
               <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon" (click)="open('guilds', guild.id, 'edit'); $event.stopPropagation()">
@@ -92,7 +92,7 @@
           </mat-expansion-panel-header>
           <a class="d-flex" (click)="open('guilds', guild.id)" *ngFor="let guild of this.currentUser.modGuilds">
             <div [class.activatedNav]="activatedNav[1] === 'guilds' && activatedNav[2] === guild.id" class="rounded navitem">
-              <img width="24px" height="24px" src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" alt="guild image" class="rounded-circle"/>
+              <app-guild-icon [guild]="guild" [showBorder]="false"></app-guild-icon>
               <span>{{ guild.name }}</span>
             </div>
           </a>
@@ -111,7 +111,7 @@
           </mat-expansion-panel-header>
           <a class="d-flex" (click)="open('guilds', guild.id)" *ngFor="let guild of this.currentUser.memberGuilds">
             <div [class.activatedNav]="activatedNav[1] === 'guilds' && activatedNav[2] === guild.id" class="rounded navitem">
-              <img width="24px" height="24px" src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" alt="guild image" class="rounded-circle"/>
+              <app-guild-icon [guild]="guild" [showBorder]="false"></app-guild-icon>
               <span>{{ guild.name }}</span>
             </div>
           </a>
@@ -130,7 +130,7 @@
           </mat-expansion-panel-header>
           <a class="d-flex" (click)="open('guilds', guild.id)" *ngFor="let guild of this.currentUser.bannedGuilds">
             <div [class.activatedNav]="activatedNav[1] === 'guilds' && activatedNav[2] === guild.id" class="rounded navitem">
-              <img width="24px" height="24px" src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" alt="guild image" class="rounded-circle"/>
+              <app-guild-icon [guild]="guild" [showBorder]="false"></app-guild-icon>
               <span>{{ guild.name }}</span>
             </div>
           </a>
