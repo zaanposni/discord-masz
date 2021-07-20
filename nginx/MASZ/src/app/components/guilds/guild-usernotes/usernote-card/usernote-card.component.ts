@@ -28,7 +28,7 @@ export class UsernoteCardComponent implements OnInit {
     const confirmDialogRef = this.dialog.open(ConfirmationDialogComponent);
     confirmDialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
-        this.api.deleteData(`/guilds/${this.userNote.userNote.guildId}/usernote/${this.userNote.userNote.id}`).subscribe((data) => {
+        this.api.deleteData(`/guilds/${this.userNote.userNote.guildId}/usernote/${this.userNote.userNote.userId}`).subscribe((data) => {
           this.deleteEvent.emit(this.userNote.userNote.id);
           this.toastr.success('Usernote deleted.');
         }, () => {
