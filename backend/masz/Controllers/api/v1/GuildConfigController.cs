@@ -157,7 +157,7 @@ namespace masz.Controllers
             task.Start();
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 201 Resource created.");
-            return StatusCode(201);
+            return StatusCode(201, guildConfig);
         }
 
         [HttpPut("{guildid}")]
@@ -198,7 +198,7 @@ namespace masz.Controllers
             await database.SaveChangesAsync();
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource updated.");
-            return Ok();
+            return Ok(guildConfig);
         }
     }
 }

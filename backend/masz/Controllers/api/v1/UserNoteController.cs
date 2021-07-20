@@ -86,7 +86,7 @@ namespace masz.Controllers
             
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 201 Ressource updated.");
-            return StatusCode(201, new { id = existing.Id });
+            return StatusCode(201, existing);
         }
 
         [HttpDelete("{id}")]
@@ -110,7 +110,7 @@ namespace masz.Controllers
             await this.discordAnnouncer.AnnounceUserNote(existing, await this.IsValidUser(), RestAction.Deleted);
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Ressource deleted.");
-            return Ok(new { id = existing.Id });
+            return Ok(existing);
         }
     }
 }

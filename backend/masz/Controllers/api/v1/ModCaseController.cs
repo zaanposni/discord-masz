@@ -104,7 +104,7 @@ namespace masz.Controllers
             }
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Deleted ModCase.");
-            return Ok(new { id = modCase.Id, caseid = modCase.CaseId });
+            return Ok(modCase);
         }
 
         [HttpPut("{modcaseid}")]
@@ -209,7 +209,7 @@ namespace masz.Controllers
             }
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource updated.");
-            return Ok(new { id = modCase.Id, caseid = modCase.CaseId });
+            return Ok(modCase);
         }
 
         [HttpPost]
@@ -303,7 +303,7 @@ namespace masz.Controllers
             }
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 201 Resource created.");
-            return StatusCode(201, new { id = newModCase.Id, caseid = newModCase.CaseId });
+            return StatusCode(201, newModCase);
         }
 
         [HttpGet]
@@ -363,7 +363,7 @@ namespace masz.Controllers
             database.UpdateModCase(modCase);
             await database.SaveChangesAsync();
 
-            return Ok(modcaseid);
+            return Ok(modCase);
         }
 
         [HttpDelete("{modcaseid}/lock")]
@@ -384,7 +384,7 @@ namespace masz.Controllers
             database.UpdateModCase(modCase);
             await database.SaveChangesAsync();
 
-            return Ok(modcaseid);
+            return Ok(modCase);
         }
     }
 }

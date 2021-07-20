@@ -109,7 +109,7 @@ namespace masz.Controllers
             await database.SaveChangesAsync();
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 201 Resource created.");
-            return StatusCode(201, new { id = template.Id });
+            return StatusCode(201, template);
         }
 
         [HttpDelete("{templateid}")]
@@ -138,7 +138,7 @@ namespace masz.Controllers
             await database.SaveChangesAsync();
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Template deleted.");
-            return Ok();
+            return Ok(template);
         }
     }
 }

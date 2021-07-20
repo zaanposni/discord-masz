@@ -77,7 +77,7 @@ namespace masz.Controllers
             await this.database.SaveChangesAsync();
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Motd saved.");
-            return Ok(new { id = current.Id });
+            return Ok(current);
         }
     }
 }

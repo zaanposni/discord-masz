@@ -163,7 +163,7 @@ export class ModcaseEditComponent implements OnInit {
       .set('announceDm', this.punishmentFormGroup.value.dmNotification ? 'true' : 'false');
 
       this.api.putSimpleData(`/modcases/${this.guildId}/${this.caseId}`, data, params, true, true).subscribe((data) => {     
-        const caseId = data.caseid;
+        const caseId = data.caseId;
         this.router.navigate(['guilds', this.guildId, 'cases', caseId]);
         this.savingCase = false;
         this.toastr.success(`Case ${caseId} updated.`);
