@@ -1,5 +1,36 @@
 [
   {
+    "title": "Version 1.12.1",
+    "version": "v1.12.1",
+    "released_at": "2021-07-31",
+    "features": [
+      {
+        "title": "Guild icons.",
+        "description": "Default and animated guilds are now supported on the website."
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Intuitive dates.",
+        "description": "The website now uses a months name instead of a number to ensure a less error-prone transmission of information."
+      },
+      {
+        "title": "API changes.",
+        "description": "Usernotes are now deletable by userid and not by resource id. Models on PUT, POST and DELETE requests are now fully returned instead of the ID only."
+      }
+    ],
+    "technical": [
+      {
+        "title": "API Wrapper.",
+        "description": "A python library to integrate the MASZ API in your project has been released. Search for \"MASZ\" on pypi.org"
+      },
+      {
+        "title": "Cookie service.",
+        "description": "MASZ has not been using cookies for quite some time, the code to read cookies has now been removed as well."
+      }
+    ]
+  },
+  {
     "title": "Version 1.12",
     "version": "v1.12",
     "released_at": "2021-07-17",
