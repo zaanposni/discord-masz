@@ -12,4 +12,6 @@ export interface PatchNote {
 export interface PatchNoteDetail {
     title: string;
     description: string;
+    link?: string;
+    icon?: string;
 }

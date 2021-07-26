@@ -7,6 +7,10 @@
       {
         "title": "Guild icons.",
         "description": "Default and animated guilds are now supported on the website."
+      },
+      {
+        "title": "Links in patchnotes.",
+        "description": "Patchnotes now support links to refer to further resources."
       }
     ],
     "fixes": [
@@ -22,7 +26,9 @@
     "technical": [
       {
         "title": "API Wrapper.",
-        "description": "A python library to integrate the MASZ API in your project has been released. Search for \"MASZ\" on pypi.org"
+        "description": "A python library to integrate the MASZ API in your project has been released.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/masz-api-wrapper"
       },
       {
         "title": "Cookie service.",

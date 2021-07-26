@@ -62,8 +62,15 @@
                             </div>
                             <ul class="mat-h4 mb-2 pl-4" *ngFor="let change of note.technical">
                                 <li class="pn-details">
-                                    <b>{{ change.title }} </b>
-                                    {{ change.description }}
+                                    <div class="d-flex flex-row">
+                                        <div class="pn-details-text">
+                                            <b>{{ change.title }} </b>
+                                            {{ change.description }}
+                                        </div>
+                                        <a href="{{ change.link }}" target="_blank" *ngIf="change.icon">
+                                            <mat-icon aria-hidden="false" aria-label="tune icon">{{ change.icon }}</mat-icon>
+                                        </a>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
