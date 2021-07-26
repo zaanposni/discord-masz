@@ -138,7 +138,7 @@ There are backup example scripts in the `scripts` directory to backup uploaded f
 
 ## 🤖 API scripting
 
-As a siteadmin you can create token to authenticate yourself while making API requests.
+As a siteadmin you can create token to authenticate yourself while making API requests.<br/>
 You can also use my [python library](https://github.com/zaanposni/masz-api-wrapper) to integrate the MASZ API into your project.
 
 # Development
