@@ -5,13 +5,7 @@
         <mat-spinner *ngIf="this.guild?.loading" [diameter]="64" class="mr-1"></mat-spinner>
         <span class="mat-h1 font-weight-bold mb-0 waiting-for-text" *ngIf="this.guild?.loading" style="width: 300px;"></span>
         <!-- Content -->
-        <img *ngIf="this.guild?.content && !this.guild?.loading"
-            src="https://cdn.discordapp.com/icons/{{ this.guild?.content?.id }}/{{ this.guild?.content?.icon }}.png"
-            class="rounded-circle z-depth-0 mr-2"
-            alt="guild icon"
-            height="64"
-            onerror="this.src='/assets/img/default_profile.png';"
-        />
+        <app-guild-icon [guild]="guild?.content" [width]="'64px'" [height]="'64px'" [darkBorder]="true" class="mr-2"></app-guild-icon>
         <span class="mat-h1 font-weight-bold mb-0" *ngIf="this.guild?.content && !this.guild?.loading">
             {{ this.guild?.content?.name }}
         </span>

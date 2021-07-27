@@ -1,0 +1,38 @@
+<ng-container *ngIf="this.guild">
+    <ng-container *ngIf="this.guild?.icon">
+        <img
+            *ngIf="guild?.icon?.startsWith('a_')"
+            [attr.width]="this.width"
+            [attr.height]="this.height"
+            src="https://cdn.discordapp.com/icons/{{ guild?.id }}/{{ guild?.icon }}.gif"
+            alt="Guild {{ guild?.name }}"
+            class="rounded-circle"
+            onerror="this.src='/assets/img/default_profile.png';"
+        />
+        <img
+            *ngIf="!guild?.icon?.startsWith('a_')"
+            [attr.width]="this.width"
+            [attr.height]="this.height"
+            src="https://cdn.discordapp.com/icons/{{ guild?.id }}/{{ guild?.icon }}.png"
+            alt="Guild {{ guild?.name }}"
+            class="rounded-circle"
+            onerror="this.src='/assets/img/default_profile.png';"
+        />
+    </ng-container>
+    <div *ngIf="!this.guild?.icon" class="guildicon-missing mat-h1 mb-0 rounded-circle"
+        [class.border]="this.showBorder"
+        [class.custom-dark-border]="this.darkBorder"
+        [class.static-background]="this.staticBackground"
+        [style.width]="this.width" [style.height]="this.height">
+        {{ guild?.name?.charAt(0) }}
+    </div>
+</ng-container>
+<ng-container *ngIf="!this.guild">
+    <img
+        [attr.width]="this.width"
+        [attr.height]="this.height"
+        src="/assets/img/default_profile.png"
+        alt="guild image"
+        class="rounded-circle"
+    />
+</ng-container>

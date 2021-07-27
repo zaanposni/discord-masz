@@ -1,4 +1,5 @@
 {
-  "version": "v1.12",
+  "version": "v1.12.1",
+  "wrapper_version": 1,
   "pre_release": false
 }

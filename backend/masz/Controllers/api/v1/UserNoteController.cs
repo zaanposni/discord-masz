@@ -86,11 +86,11 @@ namespace masz.Controllers
             
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 201 Ressource updated.");
-            return StatusCode(201, new { id = existing.Id });
+            return StatusCode(201, existing);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUserNote([FromRoute] string guildid, [FromRoute] string id)
+        [HttpDelete("{userid}")]
+        public async Task<IActionResult> DeleteUserNote([FromRoute] string guildid, [FromRoute] string userid)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
@@ -98,7 +98,7 @@ namespace masz.Controllers
                 return Unauthorized();
             }
 
-            UserNote existing = await this.database.GetUserNoteById(id);
+            UserNote existing = await this.database.GetUserNoteByUserIdAndGuildId(userid, guildid);
             if (existing == null) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Not Found.");
                 return NotFound();
@@ -110,7 +110,7 @@ namespace masz.Controllers
             await this.discordAnnouncer.AnnounceUserNote(existing, await this.IsValidUser(), RestAction.Deleted);
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Ressource deleted.");
-            return Ok(new { id = existing.Id });
+            return Ok(existing);
         }
     }
 }

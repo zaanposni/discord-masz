@@ -7,13 +7,7 @@
     <div class="mat-display-1 mb-2 mt-4 font-weight-bold" *ngIf="this.currentUser?.content?.adminGuilds?.length">Admin guilds</div>
     <div class="row w-100 justify-content-center" *ngIf="!this.currentUser.loading">
       <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.adminGuilds" routerLink="/guilds/{{ guild.id }}">
-        <img
-            src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" 
-            class="rounded-circle" 
-            alt="guild icon"
-            width="128px"
-            height="128px"
-            onerror="this.src='/assets/img/default_profile.png';"/>
+        <app-guild-icon [guild]="guild" [width]="'128px'" [height]="'128px'"></app-guild-icon>
         <div class="mat-h3 mb-0 font-weight-bold">{{ guild.name }}</div>
       </a>      
     </div>
@@ -22,13 +16,7 @@
     <div class="mat-display-1 mb-2 mt-4 font-weight-bold" *ngIf="this.currentUser?.content?.modGuilds?.length">Moderator guilds</div>
     <div class="row w-100 justify-content-center" *ngIf="!this.currentUser.loading">
       <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.modGuilds" routerLink="/guilds/{{ guild.id }}">
-        <img
-            src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" 
-            class="rounded-circle" 
-            alt="guild icon"
-            width="128px"
-            height="128px"
-            onerror="this.src='/assets/img/default_profile.png';"/>
+        <app-guild-icon [guild]="guild" [width]="'128px'" [height]="'128px'"></app-guild-icon>
         <div class="mat-h3 mb-0 font-weight-bold">{{ guild.name }}</div>
       </a>      
     </div>
@@ -37,13 +25,7 @@
     <div class="mat-display-1 mb-2 mt-4 font-weight-bold" *ngIf="this.currentUser?.content?.memberGuilds?.length">Guilds</div>
     <div class="row w-100 justify-content-center" *ngIf="!this.currentUser.loading">
       <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.memberGuilds" routerLink="/guilds/{{ guild.id }}">
-        <img
-            src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" 
-            class="rounded-circle" 
-            alt="guild icon"
-            width="128px"
-            height="128px"
-            onerror="this.src='/assets/img/default_profile.png';"/>
+        <app-guild-icon [guild]="guild" [width]="'128px'" [height]="'128px'"></app-guild-icon>
         <div class="mat-h3 mb-0 font-weight-bold">{{ guild.name }}</div>
       </a>      
     </div>
@@ -52,13 +34,7 @@
     <div class="mat-display-1 mb-2 mt-4 font-weight-bold" *ngIf="this.currentUser?.content?.bannedGuilds?.length">Banned from guilds</div>
     <div class="row w-100 justify-content-center" *ngIf="!this.currentUser.loading">
       <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.bannedGuilds" routerLink="/guilds/{{ guild.id }}">
-        <img
-            src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.png" 
-            class="rounded-circle" 
-            alt="guild icon"
-            width="128px"
-            height="128px"
-            onerror="this.src='/assets/img/default_profile.png';"/>
+        <app-guild-icon [guild]="guild" [width]="'128px'" [height]="'128px'"></app-guild-icon>
         <div class="mat-h3 mb-0 font-weight-bold">{{ guild.name }}</div>
       </a>      
     </div>

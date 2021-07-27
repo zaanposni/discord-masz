@@ -87,7 +87,7 @@ namespace masz.Controllers
             }
 
             logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 201 Resource created.");
-            return StatusCode(201, new { id = commentToCreate.Id });
+            return StatusCode(201, commentToCreate);
         }
 
         [HttpPut("{commentid}")]
@@ -142,7 +142,7 @@ namespace masz.Controllers
             }
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource updated.");
-            return Ok(new { id = comment.Id });
+            return Ok(comment);
         }
 
         [HttpDelete("{commentid}")]
@@ -185,7 +185,7 @@ namespace masz.Controllers
             }
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource deleted.");
-            return Ok(new { id = comment.Id });
+            return Ok(comment);
         }
     }
 }

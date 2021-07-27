@@ -20,8 +20,11 @@ namespace masz.Dtos.GuildConfig
         [Url(ErrorMessage = "Webhook needs to be a valid url")]
         [RegularExpression(@"^https://discord(app)?\.com/.*$", ErrorMessage = "please specify a url that starts with 'https://discordapp.com/'.")]
         public string ModInternalNotificationWebhook { get; set; }
-        public bool ExecuteWhoisOnJoin { get; set; } = false;
-        public bool StrictModPermissionCheck { get; set; } = false;
-        public bool PublishModeratorInfo { get; set; } = true;
+        [Required(ErrorMessage = "ExecuteWhoisOnJoin field is required")]
+        public bool ExecuteWhoisOnJoin { get; set; }
+        [Required(ErrorMessage = "StrictModPermissionCheck field is required")]
+        public bool StrictModPermissionCheck { get; set; }
+        [Required(ErrorMessage = "PublishModeratorInfo field is required")]
+        public bool PublishModeratorInfo { get; set; }
     }
 }

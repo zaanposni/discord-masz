@@ -35,7 +35,6 @@ import { AuthService } from './services/auth.service';
 import { ApiInterceptor } from './services/ApiInterceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiService } from './services/api.service';
-import { CookieTrackerService } from './services/cookie-tracker.service';
 import { AuthGuard } from './guards/auth.guard';
 import { GuildCardComponent } from './components/guilds/guild-card/guild-card.component';
 import { NotFoundComponent } from './components/errors/not-found/not-found.component';
@@ -95,6 +94,7 @@ import { QuicksearchUsermapsResultComponent } from './components/guilds/guild-da
 import { AdminstatsComponent } from './components/api/adminstats/adminstats.component';
 import { AdminlistComponent } from './components/api/adminstats/adminlist/adminlist.component';
 import { StatcardComponent } from './components/api/adminstats/statcard/statcard.component';
+import { GuildIconComponent } from './components/basic/guild-icon/guild-icon.component';
 
 @NgModule({
   declarations: [
@@ -152,7 +152,8 @@ import { StatcardComponent } from './components/api/adminstats/statcard/statcard
     QuicksearchUsermapsResultComponent,
     AdminstatsComponent,
     AdminlistComponent,
-    StatcardComponent
+    StatcardComponent,
+    GuildIconComponent
   ],
   imports: [
     CommonModule,
@@ -205,8 +206,7 @@ import { StatcardComponent } from './components/api/adminstats/statcard/statcard
       multi: true
     },
     AuthGuard,
-    ApiService,
-    CookieTrackerService
+    ApiService
   ],
   bootstrap: [AppComponent]
 })

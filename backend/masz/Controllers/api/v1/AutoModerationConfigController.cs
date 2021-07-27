@@ -79,7 +79,7 @@ namespace masz.Controllers
             database.PutModerationConfig(currentConfig);
             await database.SaveChangesAsync();
 
-            return Ok(new { Id = currentConfig.Id, GuildId = currentConfig.GuildId, Type = currentConfig.AutoModerationType });
+            return Ok(currentConfig);
         }
 
         [HttpDelete("{type}")]
@@ -116,7 +116,7 @@ namespace masz.Controllers
             if (currentConfig != null) {
                 database.DeleteSpecificModerationConfig(currentConfig);
                 await database.SaveChangesAsync();
-                return Ok(new { id = currentConfig.Id });
+                return Ok(currentConfig);
             } else {
                 return NotFound();
             }

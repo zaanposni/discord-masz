@@ -136,6 +136,11 @@ git pull
 
 There are backup example scripts in the `scripts` directory to backup uploaded files and the database.
 
+## 🤖 API scripting
+
+As a siteadmin you can create a token to authenticate yourself while making API requests.<br/>
+You can also use my [python library](https://github.com/zaanposni/masz-api-wrapper) to integrate the MASZ API into your project.
+
 # Development
 
 ## Config
