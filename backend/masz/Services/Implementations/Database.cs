@@ -207,14 +207,14 @@ namespace masz.Services
         
         public async Task<List<DbCount>> GetCaseCountGraph(string guildId, DateTime since)
         {
-            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.CreatedAt > since)
-            .GroupBy(x => new { Month = x.CreatedAt.Month, Year = x.CreatedAt.Year }).Select(x => new DbCount { Year = x.Key.Year, Month = x.Key.Month, Count = x.Count() }).OrderByDescending(x => x.Year).ThenByDescending(x => x.Month).ToListAsync();
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.OccuredAt > since)
+            .GroupBy(x => new { Month = x.OccuredAt.Month, Year = x.OccuredAt.Year }).Select(x => new DbCount { Year = x.Key.Year, Month = x.Key.Month, Count = x.Count() }).OrderByDescending(x => x.Year).ThenByDescending(x => x.Month).ToListAsync();
         }
 
         public async Task<List<DbCount>> GetPunishmentCountGraph(string guildId, DateTime since)
         {
-            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.CreatedAt > since && x.PunishmentType != PunishmentType.None)
-            .GroupBy(x => new { Month = x.CreatedAt.Month, Year = x.CreatedAt.Year }).Select(x => new DbCount { Year = x.Key.Year, Month = x.Key.Month, Count = x.Count() }).OrderByDescending(x => x.Year).ThenByDescending(x => x.Month).ToListAsync();
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.OccuredAt > since && x.PunishmentType != PunishmentType.None)
+            .GroupBy(x => new { Month = x.OccuredAt.Month, Year = x.OccuredAt.Year }).Select(x => new DbCount { Year = x.Key.Year, Month = x.Key.Month, Count = x.Count() }).OrderByDescending(x => x.Year).ThenByDescending(x => x.Month).ToListAsync();
         }
 
         public async Task DeleteAllModCasesForGuild(string guildid)
