@@ -165,8 +165,10 @@ namespace masz.Controllers
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_DEMO_MODE"))) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Not allowed in demo mode.");
-                return BadRequest("This is not allowed in demo mode.");
+                if (! await this.IsSiteAdmin()) {  // siteadmins can overwrite in demo mode
+                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Not allowed in demo mode.");
+                    return BadRequest("This is not allowed in demo mode.");
+                }
             }
             GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
             if (guildConfig == null) {
