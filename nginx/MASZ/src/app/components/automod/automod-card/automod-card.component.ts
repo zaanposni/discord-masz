@@ -18,7 +18,8 @@ export class AutomodCardComponent implements OnInit {
     3: 'description',
     4: 'attach_file',
     5: 'history',
-    6: 'do_not_disturb'
+    6: 'do_not_disturb',
+    7: 'history'
   };
   eventsMap: { [key: number]: string} = {
     0: 'posted an invite',
@@ -27,7 +28,8 @@ export class AutomodCardComponent implements OnInit {
     3: 'posted too many attachments',
     4: 'posted too many embeds',
     5: 'triggered too many automoderations',
-    6: 'used too many unallowed words'
+    6: 'used too many unallowed words',
+    7: 'sent too many messages'
   };
   actionsMap: { [key: number]: string} = {
     0: 'No action was taken',

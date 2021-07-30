@@ -69,7 +69,15 @@ export class AutomodConfigComponent implements OnInit {
       tooltip: 'Words are checked line by line case insensitive.',
       link: 'https://gist.github.com/zaanposni/4f3aa7b29d54005d34eb78f6acfe93eb',
       linkText: 'Example'
-    }
+    },
+    {
+      type: 7,
+      title: 'Too Many Messages',
+      description: 'This Automod is triggered, when too many messages in a timespan are sent by a user',
+      showLimitField: true,
+      showTimeLimitField: true
+    },
+
   ];
 
   public guildId!: string;

@@ -11,6 +11,7 @@ from .attachments import check_message as check_attachments
 from .links import check_message as check_links
 from .multiple_punishment import check_message as check_multiple
 from .custom_words import check_message as check_custom
+from .timecheck import check_message as check_time
 from data import get_cached_automod_config, get_cached_guild_config
 
 
@@ -22,7 +23,8 @@ type_map = {
     "3": "Too many attachments per message are not allowed on this guild.",
     "4": "Too many embeds per message are not allowed on this guild.",
     "5": "You triggered too many automoderations.",
-    "6": "You used too many unallowed words."
+    "6": "You used too many unallowed words.",
+    "7": "You sent to many messages at a time(spam)"
 }
 punishments = {
     "0": "Warn",
@@ -224,6 +226,16 @@ async def check_message(msg: Message) -> bool:
     config = get_config_by_type(automodconfig, event_type)
     if config:
         if check_custom(msg, config):
+            if check_filter(msg, guildconfig, config):
+                print(f"Found customs by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                await apply_punishment(msg, event_type, config, guildconfig)
+                await check_multiple_punishment(msg)
+                return True
+
+    event_type = 7
+    config = get_config_by_type(automodconfig, event_type)
+    if config:
+        if check_time(msg, config):
             if check_filter(msg, guildconfig, config):
                 print(f"Found customs by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                 await apply_punishment(msg, event_type, config, guildconfig)
