@@ -16,6 +16,7 @@ export class AuthService {
   private currentUserSubject = new ReplaySubject<any>();
   currentUser$ = this.currentUserSubject.asObservable();
   private init = false;
+  private loginBlacklist = ['/patchnotes', '/oauthfailed', '/guidelines', '/donate'];
 
   constructor(private http: HttpClient, private router: Router, private cookieService: CookieService, private toastr: ToastrService) { }
 
@@ -79,10 +80,12 @@ export class AuthService {
         if (location.pathname.includes('login') || location.pathname === '' || location.pathname === '/') {
           this.router.navigate(['login']);
         } else {
-          let params: Params = {
-            'ReturnUrl': location.pathname
+          if (!this.loginBlacklist.includes(location.pathname)) {
+            let params: Params = {
+              'ReturnUrl': location.pathname
+            }
+            this.router.navigate(['login'], { queryParams: params });
           }
-          this.router.navigate(['login'], { queryParams: params });
         }
       }
       msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
