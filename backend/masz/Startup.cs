@@ -73,6 +73,7 @@ namespace masz
                     options.Scope.Add("identify");
                     options.SaveTokens = true;
                     options.Prompt = "none";
+                    options.AccessDeniedPath = "/oauthfailed";
                     options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                     options.CorrelationCookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax;
                     options.CorrelationCookie.HttpOnly = false;

@@ -95,6 +95,7 @@ import { AdminstatsComponent } from './components/api/adminstats/adminstats.comp
 import { AdminlistComponent } from './components/api/adminstats/adminlist/adminlist.component';
 import { StatcardComponent } from './components/api/adminstats/statcard/statcard.component';
 import { GuildIconComponent } from './components/basic/guild-icon/guild-icon.component';
+import { OauthFailedComponent } from './components/errors/oauth-failed/oauth-failed.component';
 
 @NgModule({
   declarations: [
@@ -153,7 +154,8 @@ import { GuildIconComponent } from './components/basic/guild-icon/guild-icon.com
     AdminstatsComponent,
     AdminlistComponent,
     StatcardComponent,
-    GuildIconComponent
+    GuildIconComponent,
+    OauthFailedComponent
   ],
   imports: [
     CommonModule,
