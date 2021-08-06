@@ -60,8 +60,9 @@ export class TokenOverviewComponent implements OnInit {
   }
 
   copyTokenToClipboard() {
-    navigator.clipboard.writeText(this.newToken).then().catch(e => console.error(e));
-    this.toastr.success("Copied to clipboard.");
+    navigator.clipboard.writeText(this.newToken).then(() => {
+      this.toastr.success("Copied to clipboard.");
+    }).catch(e => console.error(e));    
   }
 
   deleteToken(id: number) {
