@@ -86,9 +86,9 @@ export class ModcaseViewComponent implements OnInit {
   public redirectToUserscan(userId: any) {
     if (this.isModOrHigher) {
       let params: Params = {
-        'userid': userId
+        'search': userId
       }
-      this.router.navigate(['userscan'], { queryParams: params });
+      this.router.navigate(['scanning'], { queryParams: params });
     }
   }
 

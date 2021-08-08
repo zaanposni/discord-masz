@@ -28,6 +28,7 @@ const routes: Routes = [
   { path: 'guilds/:guildid/cases/:caseid/edit', component: ModcaseEditComponent, canActivate: [AuthGuard] },
   { path: 'tokens', component: TokenOverviewComponent, canActivate: [AuthGuard] },
   { path: 'userscan', component: UserscanComponent, canActivate: [AuthGuard] },
+  { path: 'scanning', component: UserscanComponent, canActivate: [AuthGuard] },
   { path: 'adminstats', component: AdminstatsComponent, canActivate: [AuthGuard] },
   { path: 'patchnotes', component: PatchnotesComponent },
   { path: 'oauthfailed', component: OauthFailedComponent },

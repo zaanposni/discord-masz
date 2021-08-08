@@ -6,6 +6,7 @@ import { AutoModerationEvent } from 'src/app/models/AutoModerationEvent';
 import { AutoModerationType } from 'src/app/models/AutoModerationType';
 import { DiscordUser } from 'src/app/models/DiscordUser';
 import { Guild } from 'src/app/models/Guild';
+import { InviteNetwork } from 'src/app/models/InviteNetwork';
 import { ModCase } from 'src/app/models/ModCase';
 import { UserInvite } from 'src/app/models/UserInvite';
 import { UserNetwork } from 'src/app/models/UserNetwork';
@@ -73,29 +74,55 @@ export class UserscanComponent implements OnInit {
       this.showUsage = false;
       this.loading = true;
       this.reset();
-      this.loadDataForUserId(this.search?.trim()).subscribe((data: UserNetwork) => {
-        this.calculateNewNetwork(data, this.search?.trim());
-        this.loading = false;
-      }, () => {
-        this.reset();
-        this.loading = false;
-        this.toastr.error("Failed to load scan information.");
-      });
+
+      let searchString = this.search?.trim();
+
+      let userIdRegex = new RegExp('[0-9]{16,20}', 'i');
+      if (userIdRegex.test(searchString)) {
+        this.loadDataForUserId(searchString).subscribe((data: UserNetwork) => {
+          this.calculateNewUserNetwork(data, this.search?.trim());
+          this.loading = false;
+        }, () => {
+          this.reset();
+          this.loading = false;
+          this.toastr.error("Failed to load scan information.");
+        });
+
+      } else {
+        searchString = searchString.substring(searchString.lastIndexOf('/') + 1)
+        this.loadDataForInvite(encodeURIComponent(`https://discord.gg/${searchString}`)).subscribe((data: InviteNetwork) => {
+          this.calculateNewInviteNetwork(data, this.search?.trim());
+          this.loading = false;
+        }, (error) => {
+          this.reset();
+          this.loading = false;
+          if (error?.error?.status === 404) {
+            this.toastr.error("No information for this invite found.");
+          } else {
+            this.toastr.error("Failed to load scan information.");
+          }
+        });
+      }
+
     } else {
       this.reset();
     }
   }
 
   loadDataForUserId(userId: string): Observable<UserNetwork> {
-    return this.api.getSimpleData(`/network/${userId}`);
+    return this.api.getSimpleData(`/network/user/${userId}`);
+  }
+
+  loadDataForInvite(inviteCode: string): Observable<InviteNetwork> {
+    return this.api.getSimpleData(`/network/invite/${inviteCode}`);
   }
 
   ngAfterViewInit() {
      const container = this.el.nativeElement;
      this.networkInstance = new Network(container, this.data, this.options);
      this.networkInstance.on("doubleClick", this.onDoubleClick.bind(this));
-     if ('userid' in this.route.snapshot.queryParams) {
-      this.search = this.route.snapshot.queryParams['userid'];
+     if ('search' in this.route.snapshot.queryParams) {
+      this.search = this.route.snapshot.queryParams['search'];
       this.executeSearch();
     }
   }
@@ -120,7 +147,26 @@ export class UserscanComponent implements OnInit {
     this.redraw();
   }
 
-  calculateNewNetwork(network: UserNetwork, userId: string) {
+  calculateNewInviteNetwork(network: InviteNetwork, searchString: string) {
+    let guild = network?.guild;
+    if (!guild) return;
+
+    let baseNode = this.addNewNode(this.newGuildNode, [guild, guild.id, 40, `${searchString}/`]) as Node;
+
+    for (let invite of network.invites) {
+      if (invite.userInvite.guildId !== guild.id) continue;
+      let inviteNode = this.addNewNode(this.newInviteNode, [invite.userInvite]) as Node;
+      this.addNewEdge(baseNode, inviteNode, '', false, 'no');
+      let inviterUserNode = this.addNewNode(this.newUserNode, [invite?.invitedBy, invite?.userInvite?.inviteIssuerId, 50]) as Node;
+      this.addNewEdge(inviteNode, inviterUserNode, `Created at: ${new Date(invite.userInvite.inviteCreatedAt).toLocaleString()}`, false, 'from');
+      let invitedUserNode = this.addNewNode(this.newUserNode, [invite?.invitedUser, invite?.userInvite?.joinedUserId]) as Node;
+      this.addNewEdge(inviteNode, invitedUserNode, `Joined at: ${new Date(invite.userInvite.joinedAt).toLocaleString()}`, true, 'to');
+    }
+
+    this.redraw();
+  }
+
+  calculateNewUserNetwork(network: UserNetwork, userId: string) {
     let baseNode = this.addNewNode(this.newUserNode, [network?.user, userId, 50, 'basics']) as Node;
     for (let guild of network.guilds) {
       let guildNode = this.addNewNode(this.newGuildNode, [guild, guild.id, 40, `${userId}/`]) as Node;
@@ -292,8 +338,9 @@ export class UserscanComponent implements OnInit {
       group: `${invite.guildId}/invites`,
       shape: 'diamond',
       title: `Invite: ${invite?.usedInvite}`,
+      searchFor: invite?.usedInvite,
       size: 15
-    }
+    } as Node
   }
 
   newBasicCasesNode(userId: string, guildId: string): Node {
