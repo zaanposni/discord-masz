@@ -1,5 +1,5 @@
 #imports
-from discord import message
+from discord import Message
 #from sched import scheduler
 from time import time#, sleep
 #from os import system
