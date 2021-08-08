@@ -15,8 +15,8 @@ export class AutomodCardComponent implements OnInit {
     0: 'forward_to_inbox',
     1: 'sentiment_satisfied_alt',
     2: 'person',
-    3: 'description',
-    4: 'attach_file',
+    3: 'attach_file',
+    4: 'description',
     5: 'history',
     6: 'do_not_disturb'
   };
