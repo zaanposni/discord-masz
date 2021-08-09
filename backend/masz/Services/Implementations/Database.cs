@@ -500,6 +500,11 @@ namespace masz.Services
             context.UserInvites.RemoveRange(userinvites);
         }
 
+        public async Task<List<UserInvite>> GetInvitesByCode(string code)
+        {
+            return await context.UserInvites.AsQueryable().Where(x => x.UsedInvite == code).ToListAsync();
+        }
+
         // ==================================================================================
         // 
         // UserMapping

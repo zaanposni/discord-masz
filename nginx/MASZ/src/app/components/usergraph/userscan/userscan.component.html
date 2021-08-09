@@ -4,7 +4,7 @@
             <div class="card-container-body d-flex flex-row flex-wrap flex-shrink-0 flex-grow-1 align-items-center">
                 <mat-icon class="mr-2">search</mat-icon>
                 <mat-form-field class="flex-grow-1 m-0">
-                    <mat-label>Enter a userid</mat-label>
+                    <mat-label>Enter a users id or invite code</mat-label>
                     <input matInput type="text" autocomplete="off" [(ngModel)]="search" (ngModelChange)="onSearch($event)">
                 </mat-form-field>
             </div>
@@ -16,13 +16,30 @@
                         Userscan
                     </span>
                     <p style="word-wrap: break-word;">
-                        Use this feature to get a quick overview of a member or relations to other members.<br/>
+                        Enter a users id to get a quick overview of a member or relations to other members.<br/>
                         This also tracks invites a new member uses so you can quickly spot alt accounts.<br/>
                         Use a double click to view other ressources such as a modcase.
                     </p>
                 </div>
-                <img src="/assets/img/tracking.svg" class="w-50 flex-grow-0"/>
+                <img src="/assets/img/tracking.svg" class="w-50 flex-grow-0" alt="tracking image"/>
             </div>
+        </div>
+        <div class="card-container mt-2" *ngIf="this.showUsage">
+            <div class="card-container-body d-flex flex-row conditional-fc">
+                <img src="/assets/img/connection.svg" class="w-50 flex-grow-0" alt="connection image"/>
+                <div class="d-flex flex-column p-4">
+                    <span class="mat-h1 font-weight-bold mb-2">
+                        Invitescan
+                    </span>
+                    <p style="word-wrap: break-word;">
+                        Enter an invite code or link to get a quick overview of an invite or relations to other members.<br/>
+                        Use a double click to view other ressources such as another user.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-center p-4">
+            <mat-spinner *ngIf="this.loading && !this.showUsage"></mat-spinner>
         </div>
     </div>
 </div>

@@ -22,6 +22,7 @@ Commands:
   cases    See a list of your modcases.
   view     View details of a modcase in the current guild.
   viewg    View details of a modcase given another guild id.
+  track    Track an invite in your guild, its creator and its users.
 ```
 """
 
@@ -43,7 +44,8 @@ complexe_help = {
     "cases": f"See a list of your modcases.\nOptionally filter by guild id.\n```\n{get_prefix()}cases [guild_id]\n```",
     "duration": f"Use the following as duration: `1d` `1h` or `1m`.\nCombine them for a more detailed time range:\n- `1d12h30m` means 1 day, 12 hours, 30 minutes",
     "view": f"View details of a modcase in the current guild.\n```\n{get_prefix()}view <caseid>\n```",
-    "viewg": f"View details of a modcase given another guild id.\n```\n{get_prefix()}viewg <guildid> <caseid>\n```"
+    "viewg": f"View details of a modcase given another guild id.\n```\n{get_prefix()}viewg <guildid> <caseid>\n```",
+    "track": f"Track an invite in your guild, its creator and its users.\nEither enter the invite code or the url in the format `https://discord.gg/<code>`.\n```\n{get_prefix()}track <code|url>\n```"
 }
 
 @commands.command()

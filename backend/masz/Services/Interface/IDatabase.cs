@@ -95,6 +95,7 @@ namespace masz.Services
 
         Task<List<UserInvite>> GetInvitedUsersByUserId(string userId);
         Task<List<UserInvite>> GetUsedInvitesByUserId(string userId);
+        Task<List<UserInvite>> GetInvitesByCode(string code);
         Task<int> CountTrackedInvites();
         Task<int> CountTrackedInvitesForGuild(string guildId);
         Task DeleteInviteHistoryByGuild(string guildId);

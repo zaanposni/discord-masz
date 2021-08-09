@@ -53,8 +53,14 @@ async def get_latest_joins_by_user_and_guild(userid: str, guildid: str):
     await connect()
     return await database.fetch_all(query=query, values=values)
 
-async  def get_usernote_by_user_and_guild(userid: str, guildid: str):
+async def get_usernote_by_user_and_guild(userid: str, guildid: str):
     query = "SELECT * FROM UserNotes WHERE GuildId = :guildid AND UserId = :userid"
     values = { "guildid": guildid, "userid": userid }
     await connect()
     return await database.fetch_one(query=query, values=values)
+
+async def get_invites_by_guild_and_code(guildid: str, code: str):
+    query = "SELECT * FROM UserInvites WHERE GuildId = :guildid AND UsedInvite = :code"
+    values = { "guildid": guildid, "code": code }
+    await connect()
+    return await database.fetch_all(query=query, values=values)
