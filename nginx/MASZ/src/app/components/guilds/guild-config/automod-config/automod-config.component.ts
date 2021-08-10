@@ -72,8 +72,8 @@ export class AutomodConfigComponent implements OnInit {
     },
     {
       type: 7,
-      title: 'Too Many Messages',
-      description: 'This Automod is triggered, when too many messages in a timespan are sent by a user',
+      title: 'Spam',
+      description: 'A user on your guild sends too many messages in a timespan',
       showLimitField: true,
       showTimeLimitField: true
     },
