@@ -24,7 +24,7 @@ type_map = {
     "4": "Too many embeds per message are not allowed on this guild.",
     "5": "You triggered too many automoderations.",
     "6": "You used too many unallowed words.",
-    "7": "You sent to many messages at a time(spam)"
+    "7": "You sent to many messages at a time"
 }
 punishments = {
     "0": "Warn",
@@ -237,7 +237,7 @@ async def check_message(msg: Message) -> bool:
     if config:
         if check_time(msg, config):
             if check_filter(msg, guildconfig, config):
-                print(f"Found customs by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                print(f"Found spam by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                 await apply_punishment(msg, event_type, config, guildconfig)
                 await check_multiple_punishment(msg)
                 return True
