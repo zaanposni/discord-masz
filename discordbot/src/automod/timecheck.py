@@ -37,11 +37,11 @@ def check_message(msg: Message, config):
     tempmsgcount = 0
     for i in range(len(msgboard)):
         #check whether the board already contains the author of the message
-        if msgboard[i][0] == msg.author:
+        if msgboard[i][0] == msg.author.id:
             msgboard[i][1].append(ts)
             return len(msgboard[i][1]) > allowed
     else:
         #and else let it contain it
-        msgboard.append([msg.author,[ts]])
+        msgboard.append([msg.author.id,[ts]])
         return 1 > allowed
     
