@@ -21,7 +21,7 @@
                             [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <div>
+                        <div class="stepper-actions">
                             <button mat-raised-button matStepperNext color="accent">Next</button>
                         </div>
                     </form>
@@ -36,7 +36,7 @@
                             [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <div>
+                        <div class="stepper-actions">
                             <button mat-raised-button matStepperPrevious class="mr-2" color="accent">Back</button>
                             <button mat-raised-button matStepperNext color="accent">Next</button>
                         </div>
@@ -52,7 +52,7 @@
                             [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <div>
+                        <div class="stepper-actions">
                             <button mat-raised-button matStepperPrevious class="mr-2" color="accent">Back</button>
                             <button mat-raised-button matStepperNext color="accent">Next</button>
                         </div>
@@ -102,7 +102,7 @@
                                 help_outline
                             </mat-icon>
                         </div>
-                        <div>
+                        <div class="stepper-actions">
                             <button mat-raised-button matStepperPrevious class="mr-2" color="accent">Back</button>
                             <button mat-raised-button matStepperNext color="accent">Next</button>
                         </div>
@@ -110,7 +110,7 @@
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel>Done</ng-template>
-                    <div class="d-flex flex-row mt-2">
+                    <div class="d-flex flex-row mt-2 stepper-actions">
                         <button mat-raised-button matStepperPrevious class="mr-2" color="accent">Back</button>
                         <button mat-raised-button color="accent" (click)="updateGuild()">Update guild</button>
                     </div>
