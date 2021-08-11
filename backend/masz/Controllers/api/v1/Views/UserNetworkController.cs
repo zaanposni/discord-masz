@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using masz.Dtos.DiscordAPIResponses;
 using masz.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -23,8 +24,8 @@ namespace masz.Controllers
             this.logger = logger;
         }
 
-        [HttpGet("{userid}")]
-        public async Task<IActionResult> GetNetwork([FromRoute] string userid)
+        [HttpGet("user/{userid}")]
+        public async Task<IActionResult> GetUserNetwork([FromRoute] string userid)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             List<string> modGuilds = new List<string>();
@@ -99,6 +100,40 @@ namespace masz.Controllers
                 modEvents = modEvents,
                 userMappings =  userMappings,
                 userNotes = userNotes
+            });
+        }
+
+        [HttpGet("invite/{inviteCode}")]
+        public async Task<IActionResult> GetInviteNetwork([FromRoute] string inviteCode)
+        {
+            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            
+            List<UserInvite> invites = await database.GetInvitesByCode(HttpUtility.UrlDecode(inviteCode));
+            if (invites == null || invites.Count == 0) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Invite not found.");
+                return NotFound();
+            }
+
+            if (!await this.HasPermissionOnGuild(DiscordPermission.Moderator, invites[0].GuildId)) {
+                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
+            }
+
+            Guild guild = await discord.FetchGuildInfo(invites[0].GuildId, CacheBehavior.Default);
+
+            List<UserInviteView> inviteViews = new List<UserInviteView>();
+            foreach(UserInvite invite in invites)
+            {
+                inviteViews.Add(new UserInviteView(
+                    invite,
+                    await discord.FetchUserInfo(invite.JoinedUserId, CacheBehavior.OnlyCache),
+                    await discord.FetchUserInfo(invite.InviteIssuerId, CacheBehavior.OnlyCache)
+                ));
+            }
+
+            return Ok(new {
+                invites = inviteViews,
+                guild = guild
             });
         }
     }

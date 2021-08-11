@@ -59,6 +59,12 @@ export class TokenOverviewComponent implements OnInit {
     });
   }
 
+  copyTokenToClipboard() {
+    navigator.clipboard.writeText(this.newToken).then(() => {
+      this.toastr.success("Copied to clipboard.");
+    }).catch(e => console.error(e));    
+  }
+
   deleteToken(id: number) {
     this.api.deleteData(`/token`).subscribe((data) => {
       this.reloadToken();

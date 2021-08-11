@@ -7,6 +7,7 @@ import { GuidelinesComponent } from './components/basic/guidelines/guidelines.co
 import { IndexComponent } from './components/basic/index/index.component';
 import { PatchnotesComponent } from './components/basic/patchnotes/patchnotes.component';
 import { NotFoundComponent } from './components/errors/not-found/not-found.component';
+import { OauthFailedComponent } from './components/errors/oauth-failed/oauth-failed.component';
 import { GuildAddComponent } from './components/guilds/guild-add/guild-add.component';
 import { GuildEditComponent } from './components/guilds/guild-edit/guild-edit.component';
 import { GuildListComponent } from './components/guilds/guild-list/guild-list.component';
@@ -27,8 +28,10 @@ const routes: Routes = [
   { path: 'guilds/:guildid/cases/:caseid/edit', component: ModcaseEditComponent, canActivate: [AuthGuard] },
   { path: 'tokens', component: TokenOverviewComponent, canActivate: [AuthGuard] },
   { path: 'userscan', component: UserscanComponent, canActivate: [AuthGuard] },
+  { path: 'scanning', component: UserscanComponent, canActivate: [AuthGuard] },
   { path: 'adminstats', component: AdminstatsComponent, canActivate: [AuthGuard] },
   { path: 'patchnotes', component: PatchnotesComponent },
+  { path: 'oauthfailed', component: OauthFailedComponent },
   { path: 'donate', component: DonateComponent },
   { path: 'guidelines', component: GuidelinesComponent },
   { path: 'login',  component: IndexComponent, pathMatch: 'full' },

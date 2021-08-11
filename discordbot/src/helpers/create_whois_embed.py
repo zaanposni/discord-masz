@@ -31,18 +31,28 @@ async def create_whois_embed(guild: Guild, user: User):
         embed.add_field(name="Registered", value=member.created_at.strftime("%d.%m.%Y %H:%M:%S"), inline=True)
         if isinstance(member, Member):
             if member.roles[1:]:
-                embed.add_field(name=f"Roles [{len(member.roles) - 1}]", value=" ".join([f"<@&{role.id}>" for role in member.roles[1:]]), inline=False)
+                role_string = ""
+                for role in member.roles[1:]:
+                    if len(role_string) + len(f" <@&{role.id}>") < 1000:
+                        role_string += f" <@&{role.id}>"
+                    else:
+                        role_string += " [...]"
+                        break
+                embed.add_field(name=f"Roles [{len(member.roles) - 1}]", value=role_string, inline=False)
 
         embed.set_author(name=str(member), icon_url=member.avatar_url)
         embed.set_thumbnail(url=member.avatar_url)
 
     note = await get_usernote_by_user_and_guild(user.id, guild.id)
     if note:
+        value = note['Description']
+        if len(value) > 1000:
+            value = value[:1000] + " [...]"
         embed.add_field(
             name=f"Usernote",
-            value=note['Description'],
+            value=value,
             inline=False
-            )
+        )
 
     if cases:
         info = ""
