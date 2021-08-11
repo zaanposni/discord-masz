@@ -19,7 +19,7 @@ export class AutomodCardComponent implements OnInit {
     4: 'attach_file',
     5: 'history',
     6: 'do_not_disturb',
-    7: 'history'
+    7: 'manage_search'
   };
   eventsMap: { [key: number]: string} = {
     0: 'posted an invite',

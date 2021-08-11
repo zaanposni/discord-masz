@@ -73,7 +73,7 @@ export class AutomodConfigComponent implements OnInit {
     {
       type: 7,
       title: 'Spam',
-      description: 'A user on your guild sends too many messages in a timespan',
+      description: 'A user on your guild sends too many messages in a timespan.',
       showLimitField: true,
       showTimeLimitField: true
     },

@@ -24,7 +24,7 @@ type_map = {
     "4": "Too many embeds per message are not allowed on this guild.",
     "5": "You triggered too many automoderations.",
     "6": "You used too many unallowed words.",
-    "7": "You sent to many messages at a time"
+    "7": "You sent too many messages at a time."
 }
 punishments = {
     "0": "Warn",
