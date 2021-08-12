@@ -83,6 +83,12 @@ mat-nav-list mat-expansion-panel mat-expansion-panel-header.mat-expanded {
   cursor: unset;
 }
 
+/* weird stuff inside of mat inputs */
+::ng-deep .mat-form-field-wrapper{
+  margin-bottom: -1.25em;
+}
+
+/* remove scrollbar in dialogs */
 ::ng-deep mat-dialog-container mat-form-field .mat-form-field-wrapper {
   margin-bottom: 0;
 }
