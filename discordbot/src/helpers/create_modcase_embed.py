@@ -1,7 +1,6 @@
 import os
-from datetime import datetime
 
-from discord import Embed, NotFound
+from discord import Embed
 
 from data import get_cached_guild_config
 

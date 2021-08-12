@@ -24,9 +24,13 @@
         <mat-spinner *ngIf="this.generatingNewToken"></mat-spinner>
         <div *ngIf="this.newToken" class="mt-3">
             <div class="mat-h3 font-weight-bold mb-1 primary-color">Save this token securely.</div>
-            <span class="mat-h3 text-black-50" style="word-wrap: break-word; word-break: break-all;">
-                {{ this.newToken }}
-            </span>
+            <div class="d-flex flex-row align-items-center mb-4">
+                <span class="mat-h3 mb-0 text-black-50 flex-grow-1 pr-2" style="word-wrap: break-word; word-break: break-all;">{{ this.newToken }}</span>
+                <button mat-fab color="primary" aria-label="copy token" class="flex-shrink-0"
+                    title="copy token to clipboard" (click)="this.copyTokenToClipboard()">
+                    <mat-icon>content_copy</mat-icon>
+                </button>
+            </div>
         </div>
         <mat-divider class="mt-3"></mat-divider>
         <mat-list>
