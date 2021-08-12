@@ -67,7 +67,7 @@ async def on_raw_message_edit(payload):
         print(e)
         return
     
-    await check_message(msg)
+    await check_message(msg, True)
 
 def start_bot():
     try:
