@@ -1,5 +1,69 @@
 [
   {
+    "title": "Version 1.13",
+    "version": "v1.13",
+    "released_at": "2021-08-28",
+    "contributors": [
+      {
+        "name": "BS-scripter",
+        "link": "https://github.com/BS-scripter",
+        "icon": "https://avatars0.githubusercontent.com/u/64974851?v=4"
+      }
+    ],
+    "features": [
+      {
+        "title": "OAuth error page.",
+        "description": "An error page has been added to catch the failure of the discord oauth login.",
+        "icon": "link",
+        "link": "/oauthfailed"
+      },
+      {
+        "title": "Copy token button.",
+        "description": "A button has been added to copy a new API token to your clipboard."
+      },
+      {
+        "title": "Invitescan.",
+        "description": "Userscanning has been extended to support invites as input as well and is now called \"Scanning\"."
+      },
+      {
+        "title": "Invitetracking command.",
+        "description": "Added the command $track to view insights of an invite on your guild."
+      },
+      {
+        "title": "Spam automoderation.",
+        "description": "Added automoderation for spam. Trigger on x messages in y minutes.",
+        "icon": "code",
+        "link": "https://github.com/zaanposni/discord-masz/pull/352"
+      },
+      {
+        "title": "Mentioning contributors.",
+        "description": "Contributors are now mentioned here. Thank you all <3."
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Whois embed.",
+        "description": "Fixed a bug that caused the content of the embed to be too long."
+      },
+      {
+        "title": "Automoderation presentation.",
+        "description": "Swapped icons for attachment and embed automoderation events. I even believe that was never planned to be like this :D"
+      },
+      {
+        "title": "Button misalignment.",
+        "description": "Fixed a css bug that caused the buttons to be aligned incorrectly.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/355"
+      }
+    ],
+    "technical": [
+      {
+        "title": "Security warnings.",
+        "description": "Adjusted several npm dependencies to fix vulnerabilities."
+      }
+    ]
+  },
+  {
     "title": "Version 1.12.1",
     "version": "v1.12.1",
     "released_at": "2021-07-31",
