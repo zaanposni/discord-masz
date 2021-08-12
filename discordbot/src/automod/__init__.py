@@ -158,7 +158,7 @@ async def check_multiple_punishment(msg: Message):
             return True
 
 
-async def check_message(msg: Message) -> bool:
+async def check_message(msg: Message, on_edit: bool = False) -> bool:
     if msg.guild is None:
         return False
 
@@ -232,15 +232,16 @@ async def check_message(msg: Message) -> bool:
                 await check_multiple_punishment(msg)
                 return True
 
-    event_type = 7
-    config = get_config_by_type(automodconfig, event_type)
-    if config:
-        if check_time(msg, config):
-            if check_filter(msg, guildconfig, config):
-                print(f"Found spam by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
-                await apply_punishment(msg, event_type, config, guildconfig)
-                await check_multiple_punishment(msg)
-                return True
+    if not on_edit:  # do not execute spam check on edited messages
+        event_type = 7
+        config = get_config_by_type(automodconfig, event_type)
+        if config:
+            if check_time(msg, config):
+                if check_filter(msg, guildconfig, config):
+                    print(f"Found spam by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                    await apply_punishment(msg, event_type, config, guildconfig)
+                    await check_multiple_punishment(msg)
+                    return True
 
     return False
 
