@@ -140,7 +140,7 @@
         
         <a class="d-flex" (click)="open('scanning')"
          *ngIf="this.currentUser?.modGuilds?.length || this.currentUser?.adminGuilds?.length || this.currentUser?.isAdmin">
-          <div [class.activatedNav]="activatedNav[1] === 'userscan'" class="rounded navitem">
+          <div [class.activatedNav]="activatedNav[1] === 'userscan' || activatedNav[1] === 'scanning'" class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="tune icon">person_search</mat-icon>
             <span>Scanning</span>
           </div>
