@@ -2,13 +2,15 @@ import os
 
 from databases import Database
 
+from helpers import console
+
 
 c_str = f'mysql://{os.getenv("MYSQL_USER")}:{os.getenv("MYSQL_PASSWORD")}@{os.getenv("MYSQL_HOST")}:{os.getenv("MYSQL_PORT")}/{os.getenv("MYSQL_DATABASE")}'
 database = Database(c_str)
 
 async def connect():
     if not database.is_connected:
-        print("Connecting database")
+        console.info("Connecting database")
         await database.connect()
 
 async def get_guildconfig(guildid: str):

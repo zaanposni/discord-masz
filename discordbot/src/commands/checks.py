@@ -3,6 +3,7 @@ import os
 from discord.ext import commands
 
 from data import get_cached_guild_config
+from helpers import console
 
 site_admins = os.getenv("DISCORD_SITE_ADMINS").strip(",")
 
@@ -11,7 +12,7 @@ async def _is_admin_or_mod(ctx) -> bool:
     try:
         cfg = await get_cached_guild_config(str(ctx.guild.id))
     except Exception as e:
-        print(e)
+        console.critical("Failed to load guildconfig: {e}")
         return False
     
     is_site_admin = str(ctx.author.id) in site_admins
@@ -26,7 +27,7 @@ async def _is_registered_guild(ctx) -> bool:
     try:
         cfg = await get_cached_guild_config(str(ctx.guild.id))
     except Exception as e:
-        print(e)
+        console.critical("Failed to load guildconfig: {e}")
         return False
 
     return cfg is not None
