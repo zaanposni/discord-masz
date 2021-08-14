@@ -38,6 +38,10 @@
       {
         "title": "Mentioning contributors.",
         "description": "Contributors are now mentioned here. Thank you all <3."
+      },
+      {
+        "title": "Cleanup command.",
+        "description": "Added the command $cleanup to tidy up guild channels."
       }
     ],
     "fixes": [
