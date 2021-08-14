@@ -15,7 +15,8 @@ from .cases import cases
 from .viewg import viewg
 from .view import view
 from .track import track
+from .cleanup import cleanup
 from .help import help
 
-ALL_COMMANDS = [ version, url, features, register, whois, invite, mute, kick, ban, warn, report, tempmute, tempban, cases, viewg, view, track, help ]
+ALL_COMMANDS = [ version, url, features, register, whois, invite, mute, kick, ban, warn, report, tempmute, tempban, cases, viewg, view, track, cleanup, help ]
 
