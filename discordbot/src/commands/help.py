@@ -23,6 +23,7 @@ Commands:
   view     View details of a modcase in the current guild.
   viewg    View details of a modcase given another guild id.
   track    Track an invite in your guild, its creator and its users.
+  cleanup  Cleanup specific data from the server and/or channel.
 ```
 """
 
@@ -45,7 +46,8 @@ complexe_help = {
     "duration": f"Use the following as duration: `1d` `1h` or `1m`.\nCombine them for a more detailed time range:\n- `1d12h30m` means 1 day, 12 hours, 30 minutes",
     "view": f"View details of a modcase in the current guild.\n```\n{get_prefix()}view <caseid>\n```",
     "viewg": f"View details of a modcase given another guild id.\n```\n{get_prefix()}viewg <guildid> <caseid>\n```",
-    "track": f"Track an invite in your guild, its creator and its users.\nEither enter the invite code or the url in the format `https://discord.gg/<code>`.\n```\n{get_prefix()}track <code|url>\n```"
+    "track": f"Track an invite in your guild, its creator and its users.\nEither enter the invite code or the url in the format `https://discord.gg/<code>`.\n```\n{get_prefix()}track <code|url>\n```",
+    "cleanup": f"Cleanup specific data from the server and/or channel.\nValid modes:\n```\nattachments - delete all messages with files\nbot - delete all messages sent by a bot\ninvites - delete all invites of the current guild\nmessages - delete all messages\nreactions - delete all reactions to messages\n``` ```\n{get_prefix()}cleanup <mode> [channel=current] [count=100]\n```"
 }
 
 @commands.command()
