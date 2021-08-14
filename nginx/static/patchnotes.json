@@ -42,6 +42,10 @@
       {
         "title": "Cleanup command.",
         "description": "Added the command $cleanup to tidy up guild channels."
+      },
+      {
+        "title": "Improved bot logging.",
+        "description": "The logging of the \"masz_discordbot\" container was improved. The library \"rich\" is used now to format logs."
       }
     ],
     "fixes": [
