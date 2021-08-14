@@ -3,9 +3,11 @@ from discord.ext import commands
 from .checks import _is_admin_or_mod
 from helpers import create_modcase_embed
 from data import get_modcase_by_guild_and_case_id
+from .record_usage import record_usage
 
 
 @commands.command(help="View details of a modcase.")
+@commands.before_invoke(record_usage)
 async def viewg(ctx, guild_id, case_id):
     if not str(guild_id).isnumeric() or not str(case_id).isnumeric():
         return await ctx.send("Invalid input")

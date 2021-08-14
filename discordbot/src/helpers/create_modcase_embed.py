@@ -3,6 +3,7 @@ import os
 from discord import Embed
 
 from data import get_cached_guild_config
+from helpers import console
 
 async def create_modcase_embed(bot, modcase) -> Embed:    
     guild_config = await get_cached_guild_config(modcase["GuildId"])
@@ -21,7 +22,7 @@ async def create_modcase_embed(bot, modcase) -> Embed:
         user = await bot.fetch_user(int(modcase["UserId"]))
         embed.set_thumbnail(url=user.avatar_url)
     except Exception as e:
-        print(e)
+        console.critical("Failed to fetch user for modcase: {e}")
 
     title = f'#{modcase["CaseId"]} {modcase["Title"][:200]}'   
     if len(modcase["Title"]) > 200:
@@ -64,7 +65,7 @@ async def create_modcase_embed(bot, modcase) -> Embed:
                 icon_url=mod.avatar_url
             )
         except Exception as e:
-            print(e)
+            console.critical("Failed to fetch user for modcase: {e}")
     else:
         embed.set_footer(text="Moderator hidden")
 

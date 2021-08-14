@@ -6,9 +6,11 @@ from discord import Embed
 
 from .checks import registered_guild_and_admin_or_mod_only
 from data import get_invites_by_guild_and_code
+from .record_usage import record_usage
 
 
 @commands.command(help="Track an invite, its creator and its users.")
+@commands.before_invoke(record_usage)
 @registered_guild_and_admin_or_mod_only()
 async def track(ctx, code):
     if "discord" not in code:

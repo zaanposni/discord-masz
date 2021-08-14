@@ -5,10 +5,12 @@ from discord.ext import commands
 
 from .checks import registered_guild_only
 from data import get_cached_guild_config
+from .record_usage import record_usage
 
 
 @commands.command(help="Use this while replying to a message to report it to the moderators.")
 @registered_guild_only()
+@commands.before_invoke(record_usage)
 async def report(ctx):
     if ctx.message.reference:
         if ctx.message.reference.message_id:

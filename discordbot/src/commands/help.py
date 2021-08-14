@@ -1,7 +1,7 @@
 from discord.ext import commands
 
 from helpers import get_prefix
-
+from .record_usage import record_usage
 
 output = """```
 Commands:
@@ -51,6 +51,7 @@ complexe_help = {
 }
 
 @commands.command()
+@commands.before_invoke(record_usage)
 async def help(context, arg=None):
     if arg:
         await context.send(complexe_help.get(arg, "Command not found."))

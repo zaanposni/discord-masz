@@ -13,7 +13,7 @@ from .multiple_punishment import check_message as check_multiple
 from .custom_words import check_message as check_custom
 from .timecheck import check_message as check_time
 from data import get_cached_automod_config, get_cached_guild_config
-
+from helpers import console
 
 SITE_ADMINS = os.getenv("DISCORD_SITE_ADMINS").strip(",")
 type_map = {
@@ -96,15 +96,13 @@ async def apply_punishment(msg: Message, mod_type: int, config, guildconfig):
         try:
             requests.post(guildconfig["ModInternalNotificationWebhook"], json={ "embeds": [create_internal_embed(msg, mod_type, config).to_dict()] })
         except Exception as e:
-            print("Failed to send staff notification.")
-            print(e)
+            console.critical("Failed to send staff notification: {e}")
         
     if config["SendDmNotification"]:
         try:
             await msg.author.send(embed=create_dm_embed(msg, mod_type, config))
         except Exception as e:
-            print("Failed to send dm notification.")
-            print(e)
+            console.critical("Failed to send dm notification: {e}")
     
     url = f"http://masz_backend/internalapi/v1/guilds/{msg.guild.id}/modevent"
 
@@ -125,13 +123,11 @@ async def apply_punishment(msg: Message, mod_type: int, config, guildconfig):
         try:
             await msg.channel.send(embed=create_public_embed(msg, mod_type, config))
         except Exception as e:
-            print("Failed to send notification.")
-            print(e)
+            console.critical("Failed to send notification: {e}")
         try:
             await msg.delete()
         except Exception as e:
-            print("Failed to delete message.")
-            print(e)
+            console.critical("Failed to delete message: {e}")
 
 
 def get_config_by_type(automodconfig, event_type):
@@ -153,7 +149,7 @@ async def check_multiple_punishment(msg: Message):
     
     if await check_multiple(msg, config):
         if check_filter(msg, guildconfig, config):
-            print(f"Found multiple automoderations by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+            console.info(f"Found multiple automoderations by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
             await apply_punishment(msg, event_type, config, guildconfig)
             return True
 
@@ -175,7 +171,7 @@ async def check_message(msg: Message, on_edit: bool = False) -> bool:
     if config:
         if check_invite(msg):
             if check_filter(msg, guildconfig, config):
-                print(f"Found invite by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                console.info(f"Found invite by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                 await apply_punishment(msg, event_type, config, guildconfig)
                 await check_multiple_punishment(msg)
                 return True
@@ -185,7 +181,7 @@ async def check_message(msg: Message, on_edit: bool = False) -> bool:
     if config:
         if check_emotes(msg, config):
             if check_filter(msg, guildconfig, config):
-                print(f"Found emotes by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                console.info(f"Found emotes by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                 await apply_punishment(msg, event_type, config, guildconfig)
                 await check_multiple_punishment(msg)
                 return True
@@ -195,7 +191,7 @@ async def check_message(msg: Message, on_edit: bool = False) -> bool:
     if config:
         if check_mentions(msg, config):
             if check_filter(msg, guildconfig, config):
-                print(f"Found mentions by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                console.info(f"Found mentions by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                 await apply_punishment(msg, event_type, config, guildconfig)
                 await check_multiple_punishment(msg)
                 return True
@@ -205,7 +201,7 @@ async def check_message(msg: Message, on_edit: bool = False) -> bool:
     if config:
         if check_attachments(msg, config):
             if check_filter(msg, guildconfig, config):
-                print(f"Found attachments by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                console.info(f"Found attachments by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                 await apply_punishment(msg, event_type, config, guildconfig)
                 await check_multiple_punishment(msg)
                 return True
@@ -215,7 +211,7 @@ async def check_message(msg: Message, on_edit: bool = False) -> bool:
     if config:
         if check_links(msg, config):
             if check_filter(msg, guildconfig, config):
-                print(f"Found embeds by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                console.info(f"Found embeds by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                 await apply_punishment(msg, event_type, config, guildconfig)
                 await check_multiple_punishment(msg)
                 return True
@@ -227,7 +223,7 @@ async def check_message(msg: Message, on_edit: bool = False) -> bool:
     if config:
         if check_custom(msg, config):
             if check_filter(msg, guildconfig, config):
-                print(f"Found customs by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                console.info(f"Found customs by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                 await apply_punishment(msg, event_type, config, guildconfig)
                 await check_multiple_punishment(msg)
                 return True
@@ -238,7 +234,7 @@ async def check_message(msg: Message, on_edit: bool = False) -> bool:
         if config:
             if check_time(msg, config):
                 if check_filter(msg, guildconfig, config):
-                    print(f"Found spam by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
+                    console.info(f"Found spam by {msg.author} | {msg.author.id} in message {msg.id} in guild {msg.guild.name} | {msg.guild.id}.")
                     await apply_punishment(msg, event_type, config, guildconfig)
                     await check_multiple_punishment(msg)
                     return True

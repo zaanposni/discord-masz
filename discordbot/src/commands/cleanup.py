@@ -4,6 +4,7 @@ from discord.errors import Forbidden
 
 from helpers import get_prefix
 from .checks import registered_guild_and_admin_or_mod_only
+from .record_usage import record_usage
 
 def is_bot(m):
     return m.author.bot
@@ -13,6 +14,7 @@ def has_attchment(m):
 
 
 @commands.command(help="Cleanup specific data from the server and/or channel.")
+@commands.before_invoke(record_usage)
 @registered_guild_and_admin_or_mod_only()
 async def cleanup(ctx, mode: str, channel: TextChannel = None, count: int = 100):
     mode = mode.lower()
