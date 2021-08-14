@@ -7,6 +7,7 @@ from discord.ext import commands
 from data import get_modcases_by_user_and_guild
 from .checks import registered_guild_only
 from helpers import get_prefix
+from .record_usage import record_usage
 
 
 async def create_embed_for_guild(guild_id, user_id):
@@ -58,6 +59,7 @@ async def create_embed_for_guild(guild_id, user_id):
 
 
 @commands.command(help="List cases of current user.")
+@commands.before_invoke(record_usage)
 async def cases(ctx, guild_id = None):
     if guild_id is None:
         if ctx.guild is None:

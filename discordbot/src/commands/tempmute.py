@@ -8,6 +8,7 @@ from discord import Member
 
 from .checks import registered_guild_with_muted_role_and_admin_or_mod_only
 from helpers import parse_delta, get_prefix
+from .record_usage import record_usage
 
 
 regex = re.compile(r"^[0-9]{18}$")
@@ -17,6 +18,7 @@ headers = {
 }
 
 @commands.command(help="Mute a user.")
+@commands.before_invoke(record_usage)
 @registered_guild_with_muted_role_and_admin_or_mod_only()
 async def tempmute(ctx, member: Member, time, *reason):
     if not len(reason):

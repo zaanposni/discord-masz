@@ -5,11 +5,13 @@ from discord import Embed
 
 from data import get_guildconfig
 from helpers import console
+from .record_usage import record_usage
 
 CHECK = "✅"
 X_CHECK = "❌"
 
 @commands.command(help="Checks if further configuration is needed to use MASZ features.")
+@commands.before_invoke(record_usage)
 async def features(ctx):
     if ctx.guild is None:
         await ctx.send("Only useable in a guild.")

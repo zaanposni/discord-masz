@@ -3,9 +3,11 @@ from discord.ext import commands
 from .checks import _is_admin_or_mod, registered_guild_only
 from helpers import create_modcase_embed
 from data import get_modcase_by_guild_and_case_id
+from .record_usage import record_usage
 
 
 @commands.command(help="View details of a modcase.")
+@commands.before_invoke(record_usage)
 @registered_guild_only()
 async def view(ctx, case_id):
     if not str(case_id).isnumeric():

@@ -2,8 +2,11 @@ import requests
 
 from discord.ext import commands
 
+from .record_usage import record_usage
+
 
 @commands.command(help="Checks for new releases on GitHub.")
+@commands.before_invoke(record_usage)
 async def version(ctx):
     try:
         r = requests.get(f"http://masz_nginx:80/static/version.json")
