@@ -25,6 +25,8 @@ async def cleanup(ctx, mode: str, channel: TextChannel = None, count: int = 100)
         await ctx.send("I can't clean up more than 1000 messages at once. Continuing with 1000...")
     if count < 0:
         return await ctx.send("I can't clean up negative messages...")
+    if count != 0:
+        count += 1  # add one to make sure we don't count the message itself
 
     try:
         if mode in ["invite", "invites"]:
