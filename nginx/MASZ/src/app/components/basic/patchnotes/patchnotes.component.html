@@ -19,10 +19,13 @@
                         <div *ngIf="!note.released_at" class="mat-caption mb-2" style="color: grey; line-height: 12px">
                             Unknown release date
                         </div>
-                        <div class="d-flex flex-row" *ngIf="note?.contributors">
-                            <span class="mat-h2 mb-0 font-weight-bold" style="color: #fc22a8">CONTRIBUTORS</span>
-                            <div class="mx-4">
-                                <div *ngFor="let contributor of note?.contributors">
+                        <div *ngIf="note?.contributors">
+                            <div class="d-flex flex-row align-items-center mb-2">
+                                <span class="mat-h2 mb-0 font-weight-bold" style="color: #fc22a8">CONTRIBUTORS</span>
+                                <div class="flex-grow-1 mx-4" style="background-color: #fc22a8; height: 3px"></div>
+                            </div>
+                            <div class="d-flex flex-row flex-wrap mb-2 pl-4">
+                                <div class="pr-1 pb-1" *ngFor="let contributor of note?.contributors">
                                     <a href="{{ contributor.link }}" target="_blank">
                                         <img
                                             width="32"
