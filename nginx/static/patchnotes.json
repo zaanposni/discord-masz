@@ -7,7 +7,12 @@
       {
         "name": "BS-scripter",
         "link": "https://github.com/BS-scripter",
-        "icon": "https://avatars0.githubusercontent.com/u/64974851?v=4"
+        "icon": "https://avatars.githubusercontent.com/u/64974851?v=4"
+      },
+      {
+        "name": "knabb215",
+        "link": "https://github.com/knabb215",
+        "icon": "https://avatars.githubusercontent.com/u/16668654?v=4"
       }
     ],
     "features": [
@@ -42,10 +47,6 @@
       {
         "title": "Cleanup command.",
         "description": "Added the command $cleanup to tidy up guild channels."
-      },
-      {
-        "title": "Improved bot logging.",
-        "description": "The logging of the \"masz_discordbot\" container was improved. The library \"rich\" is used now to format logs."
       }
     ],
     "fixes": [
@@ -62,6 +63,10 @@
         "description": "Fixed a css bug that caused the buttons to be aligned incorrectly.",
         "icon": "link",
         "link": "https://github.com/zaanposni/discord-masz/issues/355"
+      },
+      {
+        "title": "Improved bot logging.",
+        "description": "The logging of the \"masz_discordbot\" container was improved. The library \"rich\" is used now to format logs."
       }
     ],
     "technical": [
