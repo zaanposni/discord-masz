@@ -1,7 +1,11 @@
 from discord.ext import commands
+from discord_slash import SlashContext
+from discord_slash.utils import manage_commands
 
 from helpers import get_prefix
 from .record_usage import record_usage
+from client import slash
+
 
 output = """```
 Commands:
@@ -50,10 +54,21 @@ complexe_help = {
     "cleanup": f"Cleanup specific data from the server and/or channel.\nValid modes:\n```\nattachments - delete all messages with files\nbot - delete all messages sent by a bot\ninvites - delete all invites of the current guild\nmessages - delete all messages\nreactions - delete all reactions to messages\n``` ```\n{get_prefix()}cleanup <mode> [channel=current] [count=100]\n```"
 }
 
+@slash.slash(
+    name="help",
+    description="Displays manual pages for different commands.",
+    options=[manage_commands.create_option("cmd", "Command.", 3, False)],
+)
+async def help_slash(ctx: SlashContext, cmd=None):
+    await _help(ctx, cmd)
+
 @commands.command()
-@commands.before_invoke(record_usage)
-async def help(context, arg=None):
+async def help(ctx, arg=None):
+    await _help(ctx, arg)
+
+async def _help(ctx, arg=None):
+    record_usage(ctx)
     if arg:
-        await context.send(complexe_help.get(arg, "Command not found."))
+        await ctx.send(complexe_help.get(arg, "Command not found."))
     else:
-        await context.send(output)
+        await ctx.send(output)
