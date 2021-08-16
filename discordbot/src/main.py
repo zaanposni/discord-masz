@@ -6,19 +6,12 @@ import discord
 from discord.errors import LoginFailure
 from discord.ext import commands
 
-from helpers import get_prefix, console
+from helpers import console
 from commands import ALL_COMMANDS
 from automod import check_message
 from punishment import handle_member_join as handle_punishment_on_member_join
+from client import client, slash
 
-
-intents = discord.Intents.default()
-intents.members = True
-
-console.info(f"Using prefix '{get_prefix()}'.")
-console.info("Registering intents.")
-console.info("Deactivating default help command.")
-client = commands.Bot(get_prefix() if str(get_prefix()).strip() != "" else "$", intents=intents, help_command=None)  # prefix defaults to $
 
 with console.status(f"[bold_green]Registering commands...[/bold_green]") as status:
     for command in ALL_COMMANDS:
@@ -32,7 +25,7 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.errors.CheckFailure) or isinstance(error, commands.errors.BadArgument) or isinstance(error, commands.errors.MissingRequiredArgument):
         pass
     else:
-        console.critical('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        console.critical('Ignoring exception in command {}:'.format(ctx.command))
         traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
 
 
@@ -45,6 +38,8 @@ async def on_member_join(member):
 async def on_ready():
     console.info(f"Logged in as \"{client.user.name}\"")
     console.info(f"Online in {len(client.guilds)} Guilds.")
+
+    await slash.sync_all_commands()
 
     activity = os.getenv("META_SERVICE_BASE_URL", "github.com/zaanposni/discord-masz")
     if activity:
