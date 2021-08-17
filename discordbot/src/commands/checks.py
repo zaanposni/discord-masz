@@ -1,6 +1,7 @@
 import os
 
 from discord.ext import commands
+from discord.ext.commands.errors import CheckFailure
 
 from data import get_cached_guild_config
 from helpers import console
@@ -42,20 +43,21 @@ def guild_only():
     return commands.check(predicate)
 
 
-def registered_guild_only():
-    async def predicate(ctx):
+def registered_guild_only(func):
+    async def predicate(ctx, *args, **kwargs):
         if ctx.guild is None:
             await ctx.send("Only useable in a guild.")
-            return False
+            raise CheckFailure("Only useable in a guild.")
 
         if not await _is_registered_guild(ctx):
             if os.getenv('META_SERVICE_BASE_URL', ''):
                 await ctx.send(f"MASZ is not registered on this guild.\nA siteadmin can register this guild at: {os.getenv('META_SERVICE_BASE_URL', '')}/guilds/new?guildid={ctx.guild.id}")
             else:
                 await ctx.send(f"MASZ is not registered on this guild.")
-            return False
-        return True
-    return commands.check(predicate)
+            raise CheckFailure(f"MASZ is not registered on this guild.")
+        
+        await func(ctx, *args, **kwargs)
+    return predicate
 
 
 def registered_guild_and_admin_or_mod_only():

@@ -1,11 +1,7 @@
-from discord.ext import commands
-from discord_slash import SlashContext
-from discord_slash.utils import manage_commands
+from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
 
 from helpers import get_prefix
 from .record_usage import record_usage
-from client import slash
-
 
 output = """```
 Commands:
@@ -54,21 +50,21 @@ complexe_help = {
     "cleanup": f"Cleanup specific data from the server and/or channel.\nValid modes:\n```\nattachments - delete all messages with files\nbot - delete all messages sent by a bot\ninvites - delete all invites of the current guild\nmessages - delete all messages\nreactions - delete all reactions to messages\n``` ```\n{get_prefix()}cleanup <mode> [channel=current] [count=100]\n```"
 }
 
-@slash.slash(
-    name="help",
-    description="Displays manual pages for different commands.",
-    options=[manage_commands.create_option("cmd", "Command.", 3, False)],
-)
-async def help_slash(ctx: SlashContext, cmd=None):
-    await _help(ctx, cmd)
 
-@commands.command()
-async def help(ctx, arg=None):
-    await _help(ctx, arg)
-
-async def _help(ctx, arg=None):
+async def _help(ctx, cmd=None):
     record_usage(ctx)
-    if arg:
-        await ctx.send(complexe_help.get(arg, "Command not found."))
+
+    if cmd:
+        await ctx.send(complexe_help.get(cmd, "Command not found."))
     else:
         await ctx.send(output)
+
+
+help_command = {
+    "func": _help,
+    "name": "help",
+    "description": "Displays manual pages for different commands.",
+    "options": [
+        create_option("cmd", "Command.", SlashCommandOptionType.STRING, False)
+    ]
+}

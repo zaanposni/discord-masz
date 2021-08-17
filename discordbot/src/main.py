@@ -1,33 +1,38 @@
+import inspect
+from logging import LogRecord
 import os
 import sys
 import traceback
 
 import discord
 from discord.errors import LoginFailure
-from discord.ext import commands
+from discord.ext.commands.errors import CheckFailure, BadArgument, MissingRequiredArgument
+from discord_slash.error import CheckFailure as SlashCheckFailure
 
 from helpers import console
-from commands import ALL_COMMANDS
+from commands import register_commands, ALL_COMMANDS
 from automod import check_message
 from punishment import handle_member_join as handle_punishment_on_member_join
 from client import client, slash
 
 
-with console.status(f"[bold_green]Registering commands...[/bold_green]") as status:
-    for command in ALL_COMMANDS:
-        console.info(f"Registering command '{command}'.")
-        client.add_command(command)
-console.info(f"[bold_green]Registered {len(ALL_COMMANDS)} commands.[/bold_green]")
+register_commands(ALL_COMMANDS)
 
-@client.event
-async def on_command_error(ctx, error):
+async def log_error(ctx, error):
     console.critical(f"{ctx.author} failed to use '{ctx.command}' - '{error}'.")
-    if isinstance(error, commands.errors.CheckFailure) or isinstance(error, commands.errors.BadArgument) or isinstance(error, commands.errors.MissingRequiredArgument):
+    if isinstance(error, (CheckFailure, SlashCheckFailure, BadArgument, MissingRequiredArgument)):
         pass
     else:
         console.critical('Ignoring exception in command {}:'.format(ctx.command))
         traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
 
+@client.event
+async def on_command_error(ctx, error):
+    await log_error(ctx, error)
+
+@client.event
+async def on_slash_command_error(ctx, error):
+    await log_error(ctx, error)
 
 @client.event
 async def on_member_join(member):
