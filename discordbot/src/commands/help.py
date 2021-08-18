@@ -60,7 +60,7 @@ async def _help(ctx, cmd=None):
         await ctx.send(output)
 
 
-help_command = {
+help = {
     "func": _help,
     "name": "help",
     "description": "Displays manual pages for different commands.",
