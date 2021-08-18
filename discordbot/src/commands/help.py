@@ -3,6 +3,7 @@ from discord_slash.utils.manage_commands import create_option, SlashCommandOptio
 from helpers import get_prefix
 from .record_usage import record_usage
 
+
 output = """```
 Commands:
   ban      Ban a user.
@@ -53,7 +54,6 @@ complexe_help = {
 
 async def _help(ctx, cmd=None):
     record_usage(ctx)
-
     if cmd:
         await ctx.send(complexe_help.get(cmd, "Command not found."))
     else:
