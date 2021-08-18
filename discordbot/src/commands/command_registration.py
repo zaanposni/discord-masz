@@ -12,8 +12,8 @@ def register_commands(commands):
                 cmd = Command(
                         command["func"],
                         name=command.get("name", command["func"].__name__),
-                        help=command.get("description"),
-                        brief=command.get("description"),
+                        help=command.get("description", "A command"),
+                        brief=command.get("description", "A command"),
                         usage=command.get("usage"),
                     )
             except KeyError as e:
@@ -25,7 +25,7 @@ def register_commands(commands):
             slash.add_slash_command(
                 cmd=command["func"],
                 name=command.get("name", command["func"].__name__),
-                description=command.get("description"),
+                description=command.get("description", "A command"),
                 options=command.get("options"),
             )
 
