@@ -1,7 +1,7 @@
 from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
 
 from helpers import get_prefix
-from .record_usage import record_usage
+from .infrastructure import record_usage, CommandDefinition, help_service
 
 
 output = """```
@@ -31,7 +31,7 @@ Commands:
 complexe_help = {
     "ban": f"Ban a user.\n```\n{get_prefix()}ban <username|userid|usermention> <reason>\n```",
     "tempban": f"Ban a user for a defined duration.\n```\n{get_prefix()}tempban <username|userid|usermention> <duration> <reason>\n```Also see: `{get_prefix()}help duration`",
-    "features": f"Checks if further configuration is needed to use MASZ features.\n```\n{get_prefix()}features\n```",
+    "features": f"\n```\n{get_prefix()}features\n```",
     "help": f"Well...",
     "invite": f"How to invite this bot.\n```\n{get_prefix()}invite\n```",
     "kick": f"Kick a user.\n```\n{get_prefix()}kick <username|userid|usermention> <reason>\n```",
@@ -41,7 +41,7 @@ complexe_help = {
     "url": f"Displays the URL MASZ is deployed on.\n```\n{get_prefix()}url\n```",
     "version": f"Checks for new releases on GitHub.\n```\n{get_prefix()}version\n```",
     "warn": f"Warn a user.\n```\n{get_prefix()}warn <username|userid|usermention> <reason>\n```",
-    "whois": f"Whois information about a user.\n```\n{get_prefix()}whois <username|userid|usermention>\n```",
+    "whois": "",
     "report": f"Reply to a message to report it to the moderators.\n```\n{get_prefix()}report\n```",
     "cases": f"See a list of your modcases.\nOptionally filter by guild id.\n```\n{get_prefix()}cases [guild_id]\n```",
     "duration": f"Use the following as duration: `1d` `1h` or `1m`.\nCombine them for a more detailed time range:\n- `1d12h30m` means 1 day, 12 hours, 30 minutes",
@@ -55,16 +55,21 @@ complexe_help = {
 async def _help(ctx, cmd=None):
     record_usage(ctx)
     if cmd:
-        await ctx.send(complexe_help.get(cmd, "Command not found."))
+        cmd_details = help_service.get_command(cmd)
+        if cmd_details:
+            await ctx.send(cmd_details.long_help)
+        else:
+            await ctx.send("Command not found.")
     else:
-        await ctx.send(output)
+        await ctx.send(help_service.get_help_page())
 
 
-help = {
-    "func": _help,
-    "name": "help",
-    "description": "Displays manual pages for different commands.",
-    "options": [
+help = CommandDefinition(
+    func=_help,
+    short_help="Displays manual pages for different commands.",
+    long_help="Displays manual pages for different commands.",
+    usage="help",
+    options=[
         create_option("cmd", "Command.", SlashCommandOptionType.STRING, False)
     ]
-}
+)

@@ -10,13 +10,11 @@ from discord.ext.commands.errors import CheckFailure, BadArgument, MissingRequir
 from discord_slash.error import CheckFailure as SlashCheckFailure
 
 from helpers import console
-from commands import register_commands, ALL_COMMANDS
+from commands import ALL_COMMANDS
 from automod import check_message
 from punishment import handle_member_join as handle_punishment_on_member_join
 from client import client, slash
 
-
-register_commands(ALL_COMMANDS)
 
 async def log_error(ctx, error):
     console.critical(f"{ctx.author} failed to use '{ctx.command}' - '{error}'.")

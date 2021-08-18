@@ -1,22 +1,24 @@
-from discord.ext import commands
 from discord import User
+from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
 
-from .checks import registered_guild_and_admin_or_mod_only
 from helpers import create_whois_embed, get_prefix
-from .record_usage import record_usage
+from .infrastructure import record_usage, registered_guild_and_admin_or_mod_only, CommandDefinition
 
 
-@commands.command(help="Whois information about a user.")
-@commands.before_invoke(record_usage)
-@registered_guild_and_admin_or_mod_only()
-async def whois(ctx, user: User):
+async def _whois(ctx, user: User):
+    await registered_guild_and_admin_or_mod_only(ctx)
+    record_usage(ctx)
     embed = await create_whois_embed(ctx.guild, user)
     if embed:
         await ctx.send(embed=embed)
 
-@whois.error
-async def whois_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        await ctx.send('I could not find that user...')
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(f"Please use `{get_prefix()}whois @user`\nAlso see `{get_prefix()}help whois`")
+
+whois = CommandDefinition(
+    func=_whois,
+    short_help="Whois information about a user.",
+    long_help=f"Whois information about a user.",
+    usage=f"{get_prefix()}whois <username|userid|usermention>",
+    options=[
+        create_option("user", "User to scan.", SlashCommandOptionType.USER, True)
+    ]
+)

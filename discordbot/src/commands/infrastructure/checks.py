@@ -1,6 +1,5 @@
 import os
 
-from discord.ext import commands
 from discord.ext.commands.errors import CheckFailure
 
 from data import get_cached_guild_config

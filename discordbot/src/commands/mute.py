@@ -1,32 +1,24 @@
 import os
-import re
-from datetime import datetime
 import requests
 
-from discord.ext import commands
-from discord import Embed, Member
-from discord.errors import NotFound
+from discord import Member
+from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
 
-from .checks import registered_guild_with_muted_role_and_admin_or_mod_only
-from helpers import get_prefix
-from .record_usage import record_usage
+from .infrastructure import record_usage, registered_guild_with_muted_role_and_admin_or_mod_only
 
-
-regex = re.compile(r"^[0-9]{18}$")
 
 headers = {
     'Authorization': os.getenv("DISCORD_BOT_TOKEN")
 }
 
-@commands.command(help="Mute a user.")
-@commands.before_invoke(record_usage)
-@registered_guild_with_muted_role_and_admin_or_mod_only()
-async def mute(ctx, member: Member, *reason):
-    if not len(reason):
+async def _mute(ctx, member: Member, *, reason):
+    await registered_guild_with_muted_role_and_admin_or_mod_only(ctx)
+    record_usage(ctx)
+
+    if not reason:
         await ctx.send("Please provide a reason.")
         return
     
-    reason = ' '.join(reason)
     modCase = {
         "title": reason[:99],
         "description": reason,
@@ -48,9 +40,11 @@ async def mute(ctx, member: Member, *reason):
         await ctx.send(f"Something went wrong.\nCode: {r.status_code}\nText: {r.text}")
 
 
-@mute.error
-async def mute_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        await ctx.send('I could not find that member...')
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(f"Please use `{get_prefix()}mute <username|userid|usermention> <reason>`\nAlso see `{get_prefix()}help mute`")
+mute = {
+    "func": _mute,
+    "description": "Mute a member.",
+    "options": [
+        create_option("member", "Member to mute.", SlashCommandOptionType.USER, True),
+        create_option("reason", "Reason to mute.", SlashCommandOptionType.STRING, True),
+    ]
+}

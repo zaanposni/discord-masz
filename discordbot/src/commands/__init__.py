@@ -1,10 +1,10 @@
-from discord.ext.commands.help import HelpCommand
-from .version import version
-from .url import url
-from .features import features
-from .register import register
-from .whois import whois
 from .invite import invite
+from .version import version
+from .features import features
+from .whois import whois
+from .register import register
+""" 
+from .url import url
 from .mute import mute
 from .kick import kick
 from .ban import ban
@@ -16,9 +16,11 @@ from .cases import cases
 from .viewg import viewg
 from .view import view
 from .track import track
-from .cleanup import cleanup
-from .help import help_command
-from .command_registration import register_commands
+from .cleanup import cleanup """
+from .help import help
+from .infrastructure import register_commands
 
-ALL_COMMANDS = [ help_command ]
 
+ALL_COMMANDS = [ invite, version, features, whois, register, help ]
+
+register_commands(ALL_COMMANDS)
