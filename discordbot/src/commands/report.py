@@ -19,11 +19,11 @@ async def _report(ctx):
                 if guild["ModInternalNotificationWebhook"]:
                     msg = await ctx.fetch_message(ctx.message.reference.message_id)
                     if msg:
-                        report_string = f"<@{ctx.author.id}> reported a message from <@{msg.author.id}> in <#{ctx.channel.id}>."
+                        report_string = f"<@{ctx.author.id}> reported a message from <@{msg.author.id}> in <#{ctx.channel.id}>.\n<{msg.jump_url}>"
                         if msg.content:
-                            report_string += f"\n<{msg.jump_url}>\n```\n{msg.content[:1800]}\n```"
+                            report_string += f"\n```\n{msg.content[:1800]}\n```"
                         if msg.attachments:
-                            report_string += f"\nThis message contains {len(msg.attachments)} attachments."
+                            report_string += f"\nThis message contains {len(msg.attachments)} attachment(s)."
                         data = {
                             "content": report_string
                         }
@@ -53,7 +53,7 @@ async def report_menu(ctx: MenuContext):
                 if ctx.target_message.content:
                     report_string += f"\n```\n{ctx.target_message.content[:1800]}\n```"
                 if ctx.target_message.attachments:
-                    report_string += f"\nThis message contains {len(ctx.target_message.attachments)} attachments."
+                    report_string += f"\nThis message contains {len(ctx.target_message.attachments)} attachment(s)."
                 data = {
                     "content": report_string
                 }
