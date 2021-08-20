@@ -50,6 +50,10 @@ async def on_ready():
         await client.change_presence(activity=game)
         console.info(f"Set status: \"{game.name}\".")
 
+@client.event
+async def on_guild_join(guild):
+    console.info(f"Joined guild \"{guild}\".")
+    await slash.sync_all_commands()
 
 @client.event
 async def on_message(msg):
