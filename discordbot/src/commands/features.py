@@ -12,8 +12,8 @@ X_CHECK = "❌"
 
 
 async def _features(ctx):
-    record_usage(ctx)
     await registered_guild_and_admin_or_mod_only(ctx)
+    record_usage(ctx)
     if ctx.guild is None:
         await ctx.send("Only useable in a guild.")
         return
