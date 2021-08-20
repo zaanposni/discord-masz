@@ -47,6 +47,10 @@
       {
         "title": "Cleanup command.",
         "description": "Added the command $cleanup to tidy up guild channels."
+      },
+      {
+        "title": "Slash commands.",
+        "description": "MASZ is now supporting slash commands. Be sure to authorize your bot with the \"applications.commands\" scope."
       }
     ],
     "fixes": [
