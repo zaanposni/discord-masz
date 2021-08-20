@@ -1,17 +1,17 @@
 # Contributing
 
-All forms of contributions are **welcome**.
+All forms of contributions are **welcome**.<br/>
+Feel free to comment existing issues/discussions or create a new one if you have an idea!
 
-However, you may want to get in touch with us before you start something big!
+- [https://discord.gg/5zjpzw6h3S](https://discord.gg/5zjpzw6h3S)
+- Discord: `zaanposni#9295`
+- [mail me](mailto:me@zaanposni.com)
 
-Join our discord -> [https://discord.gg/5zjpzw6h3S](https://discord.gg/5zjpzw6h3S) <br/>
-Alternative: Send me a [mail](mailto:me@zaanposni.com).
+## Issues and Discussions
 
-# Issues
+Feel free to open issues and discussions of any type. No matter if support, questions or feature requests!
 
-Feel free to open issues of any type. No matter if support, questions or feature requests!
-
-Note: There are maintainer issues that we create to keep track of things that we have to do.<br/>
+**Note**: There are maintainer issues that we create to keep track of things that we have to do.<br/>
 If any of our issues catches your eye, feel free to comment on it or get in touch with us.
 
 ## Developing
