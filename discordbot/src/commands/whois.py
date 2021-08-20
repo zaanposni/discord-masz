@@ -17,7 +17,7 @@ whois = CommandDefinition(
     func=_whois,
     short_help="Whois information about a user.",
     long_help=f"Whois information about a user.",
-    usage=f"{get_prefix()}whois <username|userid|usermention>",
+    usage=f"whois <username|userid|usermention>",
     options=[
         create_option("user", "User to scan.", SlashCommandOptionType.USER, True)
     ]

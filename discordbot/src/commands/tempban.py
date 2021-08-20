@@ -1,36 +1,30 @@
 import os
-import re
 from datetime import datetime, timedelta
 import requests
 
-from discord.ext import commands
 from discord import Member
+from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
 
-from .checks import registered_guild_and_admin_or_mod_only
-from helpers import parse_delta, get_prefix
-from .record_usage import record_usage
+from helpers import parse_delta
+from .infrastructure import record_usage, registered_guild_and_admin_or_mod_only, CommandDefinition
 
-
-regex = re.compile(r"^[0-9]{18}$")
 
 headers = {
     'Authorization': os.getenv("DISCORD_BOT_TOKEN")
 }
 
-@commands.command(help="Ban a user.")
-@commands.before_invoke(record_usage)
-@registered_guild_and_admin_or_mod_only()
-async def tempban(ctx, member: Member, time, *reason):
-    if not len(reason):
+async def _tempban(ctx, member: Member, duration, *, reason):#
+    await registered_guild_and_admin_or_mod_only(ctx)
+    record_usage(ctx)
+    if not reason:
         await ctx.send("Please provide a reason.")
         return
     
-    time_range = parse_delta(time)
+    time_range = parse_delta(duration)
     if not time_range:
         time_range = timedelta(hours=1)
     punished_until = datetime.utcnow() + time_range
     
-    reason = ' '.join(reason)
     modCase = {
         "title": reason[:99],
         "description": reason,
@@ -53,9 +47,14 @@ async def tempban(ctx, member: Member, time, *reason):
         await ctx.send(f"Something went wrong.\nCode: {r.status_code}\nText: {r.text}")
 
 
-@tempban.error
-async def tempban_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        await ctx.send('I could not find that member...')
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(f"Please use `{get_prefix()}tempban <username|userid|usermention> <duration> <reason>`\nAlso see `{get_prefix()}help tempban`")
+tempban = CommandDefinition(
+    func=_tempban,
+    short_help="Tempban a member.",
+    long_help="Tempban a member. This also creates a modcase.",
+    usage="tempban <username|userid|usermention> <duration> <reason>",
+    options=[
+        create_option("member", "Member to ban.", SlashCommandOptionType.USER, True),
+        create_option("duration", "Duration to ban.", SlashCommandOptionType.STRING, True),
+        create_option("reason", "Reason to ban.", SlashCommandOptionType.STRING, True),
+    ]
+)

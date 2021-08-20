@@ -1,22 +1,21 @@
-from discord import TextChannel, Client
-from discord.ext import commands
+from discord import TextChannel
 from discord.errors import Forbidden
+from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
 
-from helpers import get_prefix
-from .checks import registered_guild_and_admin_or_mod_only
-from .record_usage import record_usage
+from .infrastructure import record_usage, CommandDefinition, registered_guild_and_admin_or_mod_only
+
 
 def is_bot(m):
     return m.author.bot
+
 
 def has_attchment(m):
     return bool(m.attachments)
 
 
-@commands.command(help="Cleanup specific data from the server and/or channel.")
-@commands.before_invoke(record_usage)
-@registered_guild_and_admin_or_mod_only()
-async def cleanup(ctx, mode: str, channel: TextChannel = None, count: int = 100):
+async def _cleanup(ctx, mode: str, channel: TextChannel = None, count: int = 100):
+    await registered_guild_and_admin_or_mod_only(ctx)
+    record_usage(ctx)
     mode = mode.lower()
     if ctx.guild is None:
         return
@@ -37,7 +36,7 @@ async def cleanup(ctx, mode: str, channel: TextChannel = None, count: int = 100)
             for invite in await ctx.guild.invites():
                 invite_count += 1
                 await invite.delete()
-            return await ctx.send(f"Cleaned up {count} invite(s).")
+            return await ctx.send(f"Cleaned up {invite_count} invite(s).")
         elif mode in ["bot", "bots"]:
             await add_loading_reaction(ctx)
             deleted = await channel.purge(limit=count, check=is_bot)
@@ -75,9 +74,16 @@ async def add_loading_reaction(ctx):
         pass    
 
 
-@cleanup.error
-async def cleanup_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        await ctx.send(str(error).replace('"int"', '"number"'))  # log user friendly
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(f"{str(error).capitalize()}\nPlease use `{get_prefix()}cleanup <mode> [channel=current] [count=100]`\nAlso see `{get_prefix()}help cleanup`")
+cleanup = CommandDefinition(
+    func=_cleanup,
+    short_help="Cleanup specific data from the server and/or channel.",
+    long_help="Cleanup specific data from the server and/or channel.\nValid modes:\n```\nattachments - delete all messages with files\nbot - delete all messages sent by a bot\ninvites - delete all invites of the current guild\nmessages - delete all messages\nreactions - delete all reactions to messages\n```",
+    usage="cleanup <mode> [channel=current] [count=100]",
+    options=[
+        create_option("mode", "which data you want to delete.", SlashCommandOptionType.STRING, True),
+        create_option("channel", "where to delete, defaults to current.", SlashCommandOptionType.CHANNEL, False),
+        create_option("count", "how many messages to scan for your mode.", SlashCommandOptionType.INTEGER, False),
+    ],
+    skip_dots=True
+)
+

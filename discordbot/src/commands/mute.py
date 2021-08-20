@@ -4,7 +4,7 @@ import requests
 from discord import Member
 from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
 
-from .infrastructure import record_usage, registered_guild_with_muted_role_and_admin_or_mod_only
+from .infrastructure import record_usage, registered_guild_with_muted_role_and_admin_or_mod_only, CommandDefinition
 
 
 headers = {
@@ -14,10 +14,8 @@ headers = {
 async def _mute(ctx, member: Member, *, reason):
     await registered_guild_with_muted_role_and_admin_or_mod_only(ctx)
     record_usage(ctx)
-
     if not reason:
-        await ctx.send("Please provide a reason.")
-        return
+        return await ctx.send("Please provide a reason.")
     
     modCase = {
         "title": reason[:99],
@@ -40,11 +38,13 @@ async def _mute(ctx, member: Member, *, reason):
         await ctx.send(f"Something went wrong.\nCode: {r.status_code}\nText: {r.text}")
 
 
-mute = {
-    "func": _mute,
-    "description": "Mute a member.",
-    "options": [
+mute = CommandDefinition(
+    func=_mute,
+    short_help="Mute a member.",
+    long_help="Mute a member. This also creates a modcase.",
+    usage="mute <username|userid|usermention> <reason>",
+    options=[
         create_option("member", "Member to mute.", SlashCommandOptionType.USER, True),
         create_option("reason", "Reason to mute.", SlashCommandOptionType.STRING, True),
     ]
-}
+)

@@ -28,13 +28,12 @@ def register_command(command: CommandDefinition):
             help=command.long_help,
             brief=command.short_help
         )
-    cmd.on_error = on_command_error
     console.info(f"Registering command '{cmd.name}'.")
     help_service.register_command(command)
     client.add_command(cmd)
     slash.add_slash_command(
         cmd=command.func,
         name=command.name,
-        description=command.description,
+        description=command.description[:99],
         options=command.options
     )

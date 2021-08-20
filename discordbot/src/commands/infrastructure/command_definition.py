@@ -16,7 +16,7 @@ class CommandDefinition:
     options: List[dict] = []
 
     # constructor with default values
-    def __init__(self, func: Callable, short_help: str, long_help: str, usage: str = None, options: List[dict] = None, name: str = None):
+    def __init__(self, func: Callable, short_help: str, long_help: str, usage: str = None, options: List[dict] = None, name: str = None, skip_dots: bool = False):
         """
         Initialize the command definition.
         :param func: The function that implements the command.
@@ -30,9 +30,10 @@ class CommandDefinition:
 
         self.name = name if name is not None else func.__name__.strip("_")
 
-        if not short_help.endswith("."):
+        if not short_help.endswith(".") and not skip_dots:
             short_help += "."
         self.short_help = short_help
+        self.description = short_help
 
         if usage is None:
             usage = self.name
@@ -41,9 +42,8 @@ class CommandDefinition:
         else:
             self.usage = usage
 
-        if not long_help.endswith("."):
+        if not long_help.endswith(".") and not skip_dots:
             long_help += "."
-        self.description = long_help
         self.long_help = long_help + f"\n```\n{self.usage}\n```"
         
         self.options = options or []
