@@ -1,13 +1,7 @@
-import inspect
-from logging import LogRecord
 import os
-import sys
-import traceback
 
 import discord
 from discord.errors import LoginFailure
-from discord.ext.commands.errors import CheckFailure, BadArgument, MissingRequiredArgument
-from discord_slash.error import CheckFailure as SlashCheckFailure
 
 from helpers import console
 from commands import on_command_error as _on_command_error
@@ -15,14 +9,6 @@ from automod import check_message
 from punishment import handle_member_join as handle_punishment_on_member_join
 from client import client, slash
 
-
-async def log_error(ctx, error):
-    console.critical(f"{ctx.author} failed to use '{ctx.command}' - '{error}'.")
-    if isinstance(error, (CheckFailure, SlashCheckFailure, BadArgument, MissingRequiredArgument)):
-        pass
-    else:
-        console.critical('Ignoring exception in command {}:'.format(ctx.command))
-        traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
 
 @client.event
 async def on_command_error(ctx, error):
