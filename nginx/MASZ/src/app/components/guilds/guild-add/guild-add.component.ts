@@ -100,7 +100,7 @@ export class GuildAddComponent implements OnInit {
   invite() {
     this.selectedGuildDetails = { loading: true, content: undefined };
     var win = window.open(
-      `https://discord.com/oauth2/authorize?client_id=${this.clientId}&permissions=8&scope=bot&guild_id=${this.selectedGuild?.id}`, 
+      `https://discord.com/oauth2/authorize?client_id=${this.clientId}&permissions=8&scope=bot%20applications.commands&guild_id=${this.selectedGuild?.id}`, 
       "Secure Payment", "status=yes;width=150,height=400");
     if (win === null) {
       this.toastr.error("Failed to open invite window.");
