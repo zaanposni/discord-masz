@@ -17,7 +17,6 @@ async def _warn(ctx, member: Member, *, reason):
     if not reason:
         return await ctx.send("Please provide a reason.")
     
-    reason = ' '.join(reason)
     modCase = {
         "title": reason[:99],
         "description": reason,
