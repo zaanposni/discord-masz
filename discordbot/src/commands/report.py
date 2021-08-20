@@ -1,17 +1,14 @@
-import os
 import requests
 
-from discord.ext import commands
+from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
 
-from .checks import registered_guild_only
 from data import get_cached_guild_config
-from .record_usage import record_usage
+from .infrastructure import registered_guild_only, record_usage, CommandDefinition
 
 
-@commands.command(help="Use this while replying to a message to report it to the moderators.")
-@registered_guild_only()
-@commands.before_invoke(record_usage)
-async def report(ctx):
+async def _report(ctx):
+    await registered_guild_only(ctx)
+    record_usage(ctx)
     if ctx.message.reference:
         if ctx.message.reference.message_id:
             guild = await get_cached_guild_config(str(ctx.guild.id))
@@ -24,3 +21,11 @@ async def report(ctx):
                     r = requests.post(guild["ModInternalNotificationWebhook"], json=data)
                     if r.status_code == 204:
                         await ctx.message.add_reaction("✅")
+
+
+report = CommandDefinition(
+    func=_report,
+    short_help="Report a message to the moderators.",
+    long_help="Use this while replying to a message to report it to the moderators."
+)
+

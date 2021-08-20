@@ -1,9 +1,9 @@
-from .version import version
-from .url import url
-from .features import features
-from .register import register
-from .whois import whois
 from .invite import invite
+from .version import version
+from .features import features
+from .whois import whois
+from .register import register
+from .url import url
 from .mute import mute
 from .kick import kick
 from .ban import ban
@@ -17,6 +17,9 @@ from .view import view
 from .track import track
 from .cleanup import cleanup
 from .help import help
+from .infrastructure import register_commands, on_command_error
 
-ALL_COMMANDS = [ version, url, features, register, whois, invite, mute, kick, ban, warn, report, tempmute, tempban, cases, viewg, view, track, cleanup, help ]
 
+ALL_COMMANDS = [ invite, version, features, whois, register, url, mute, kick, ban, warn, report, tempmute, tempban, cases, viewg, view, track, cleanup, help ]
+
+register_commands(ALL_COMMANDS)

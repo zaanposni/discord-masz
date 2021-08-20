@@ -1,18 +1,19 @@
 import os
 
-from discord.ext import commands
 from discord import Embed
 
 from data import get_guildconfig
 from helpers import console
-from .record_usage import record_usage
+from .infrastructure import registered_guild_and_admin_or_mod_only, record_usage, CommandDefinition
+
 
 CHECK = "✅"
 X_CHECK = "❌"
 
-@commands.command(help="Checks if further configuration is needed to use MASZ features.")
-@commands.before_invoke(record_usage)
-async def features(ctx):
+
+async def _features(ctx):
+    await registered_guild_and_admin_or_mod_only(ctx)
+    record_usage(ctx)
     if ctx.guild is None:
         await ctx.send("Only useable in a guild.")
         return
@@ -102,3 +103,10 @@ async def features(ctx):
         embed.color = 0xf71b02
 
     await ctx.send(embed=embed)
+
+
+features = CommandDefinition(
+    func=_features,
+    short_help="Checks if further configuration is needed to use MASZ features.",
+    long_help=f"Checks if further configuration is needed to use MASZ features.",
+)

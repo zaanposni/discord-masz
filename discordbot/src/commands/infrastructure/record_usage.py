@@ -1,6 +1,7 @@
 from helpers import console
 
-async def record_usage(ctx):
+
+def record_usage(ctx):
     if ctx.guild:
         console.info(f"{ctx.author} used {ctx.command} in {ctx.guild}|#{ctx.channel}")
     else:

@@ -1,40 +1,36 @@
+import inspect
+from logging import LogRecord
 import os
 import sys
 import traceback
 
 import discord
 from discord.errors import LoginFailure
-from discord.ext import commands
+from discord.ext.commands.errors import CheckFailure, BadArgument, MissingRequiredArgument
+from discord_slash.error import CheckFailure as SlashCheckFailure
 
-from helpers import get_prefix, console
-from commands import ALL_COMMANDS
+from helpers import console
+from commands import on_command_error as _on_command_error
 from automod import check_message
 from punishment import handle_member_join as handle_punishment_on_member_join
+from client import client, slash
 
 
-intents = discord.Intents.default()
-intents.members = True
-
-console.info(f"Using prefix '{get_prefix()}'.")
-console.info("Registering intents.")
-console.info("Deactivating default help command.")
-client = commands.Bot(get_prefix() if str(get_prefix()).strip() != "" else "$", intents=intents, help_command=None)  # prefix defaults to $
-
-with console.status(f"[bold_green]Registering commands...[/bold_green]") as status:
-    for command in ALL_COMMANDS:
-        console.info(f"Registering command '{command}'.")
-        client.add_command(command)
-console.info(f"[bold_green]Registered {len(ALL_COMMANDS)} commands.[/bold_green]")
+async def log_error(ctx, error):
+    console.critical(f"{ctx.author} failed to use '{ctx.command}' - '{error}'.")
+    if isinstance(error, (CheckFailure, SlashCheckFailure, BadArgument, MissingRequiredArgument)):
+        pass
+    else:
+        console.critical('Ignoring exception in command {}:'.format(ctx.command))
+        traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
 
 @client.event
 async def on_command_error(ctx, error):
-    console.critical(f"{ctx.author} failed to use '{ctx.command}' - '{error}'.")
-    if isinstance(error, commands.errors.CheckFailure) or isinstance(error, commands.errors.BadArgument) or isinstance(error, commands.errors.MissingRequiredArgument):
-        pass
-    else:
-        console.critical('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
-        traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
+    await _on_command_error(ctx, error)
 
+@client.event
+async def on_slash_command_error(ctx, error):
+    await _on_command_error(ctx, error)
 
 @client.event
 async def on_member_join(member):
@@ -46,12 +42,18 @@ async def on_ready():
     console.info(f"Logged in as \"{client.user.name}\"")
     console.info(f"Online in {len(client.guilds)} Guilds.")
 
+    await slash.sync_all_commands()
+
     activity = os.getenv("META_SERVICE_BASE_URL", "github.com/zaanposni/discord-masz")
     if activity:
         game = discord.Game(name=activity)
         await client.change_presence(activity=game)
         console.info(f"Set status: \"{game.name}\".")
 
+@client.event
+async def on_guild_join(guild):
+    console.info(f"Joined guild \"{guild}\".")
+    await slash.sync_all_commands()
 
 @client.event
 async def on_message(msg):
