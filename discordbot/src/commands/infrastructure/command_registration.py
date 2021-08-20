@@ -1,3 +1,6 @@
+import sys
+import traceback
+
 from discord.ext.commands import Command, MissingRequiredArgument, BadArgument
 
 from client import slash, client
@@ -20,6 +23,10 @@ async def on_command_error(ctx, error):
             await ctx.send(f"{error_msg}\nPlease use: `{cmd.usage}`")
         else:
             await ctx.send(f"{error_msg}\nPlease refer to: `{get_prefix()}help {str(ctx.command)}`.")
+    else:
+        console.critical(f"Ignoring exception in command {ctx.command}:")
+        traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
+
 
 def register_command(command: CommandDefinition):
     cmd = Command(
@@ -31,9 +38,11 @@ def register_command(command: CommandDefinition):
     console.info(f"Registering command '{cmd.name}'.")
     help_service.register_command(command)
     client.add_command(cmd)
-    slash.add_slash_command(
-        cmd=command.func,
-        name=command.name,
-        description=command.description[:99],
-        options=command.options
-    )
+
+    if command.register_slash:
+        slash.add_slash_command(
+            cmd=command.func,
+            name=command.name,
+            description=command.description[:99],
+            options=command.options
+        )

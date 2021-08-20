@@ -16,7 +16,7 @@ class CommandDefinition:
     options: List[dict] = []
 
     # constructor with default values
-    def __init__(self, func: Callable, short_help: str, long_help: str, usage: str = None, options: List[dict] = None, name: str = None, skip_dots: bool = False):
+    def __init__(self, func: Callable, short_help: str, long_help: str, usage: str = None, options: List[dict] = None, name: str = None, skip_dots: bool = False, register_slash: bool = True):
         """
         Initialize the command definition.
         :param func: The function that implements the command.
@@ -34,6 +34,7 @@ class CommandDefinition:
             short_help += "."
         self.short_help = short_help
         self.description = short_help
+        self.register_slash = register_slash
 
         if usage is None:
             usage = self.name
