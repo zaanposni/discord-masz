@@ -2,6 +2,7 @@ export interface PatchNote {
     title: string;
     released_at: Date;
     changes: string[];
+    contributors?: Contributor[];
     features: PatchNoteDetail[];
     fixes: PatchNoteDetail[];
     breaking: PatchNoteDetail[];
@@ -14,4 +15,10 @@ export interface PatchNoteDetail {
     description: string;
     link?: string;
     icon?: string;
+}
+
+export interface Contributor {
+    name: string;
+    link: string;
+    icon: string;
 }
