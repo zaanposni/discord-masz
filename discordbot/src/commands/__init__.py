@@ -21,6 +21,6 @@ from .say import say
 from .infrastructure import register_commands, on_command_error
 
 
-ALL_COMMANDS = [ invite, version, features, whois, register, url, mute, kick, ban, warn, report, tempmute, tempban, cases, viewg, view, track, cleanup, help ]
+ALL_COMMANDS = [ invite, version, features, whois, register, url, mute, kick, ban, warn, report, tempmute, tempban, cases, viewg, view, track, cleanup, help, say ]
 
 register_commands(ALL_COMMANDS)
