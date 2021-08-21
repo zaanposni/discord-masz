@@ -5,6 +5,7 @@ from datetime import datetime
 from discord import Member, Embed
 
 from data import get_cached_guild_config, get_modcases_by_user_and_guild_with_active_mute
+from helpers import console
 
 
 async def handle_member_join(member: Member):
@@ -20,5 +21,5 @@ async def handle_member_join(member: Member):
         for role in guildconfig["MutedRoles"].split(","):
             muted_role = member.guild.get_role(int(role))
             if muted_role:
-                print(f"Reapplying muted role {role} to {member} on guild {member.guild}.")
+                console.info(f"Reapplying muted role {role} to {member} on guild {member.guild}.")
                 await member.add_roles(muted_role)

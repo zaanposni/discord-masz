@@ -1,16 +1,15 @@
 from datetime import datetime
 
 from discord.errors import NotFound
-from discord.ext import commands
 from discord import Embed
+from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
 
-from .checks import registered_guild_and_admin_or_mod_only
 from data import get_invites_by_guild_and_code
+from .infrastructure import record_usage, CommandDefinition, registered_guild_and_admin_or_mod_only
 
-
-@commands.command(help="Track an invite, its creator and its users.")
-@registered_guild_and_admin_or_mod_only()
-async def track(ctx, code):
+async def _track(ctx, code):
+    await registered_guild_and_admin_or_mod_only(ctx)
+    record_usage(ctx)
     if "discord" not in code:
         full_code = f"https://discord.gg/{code}"
     else:
@@ -55,3 +54,14 @@ async def track(ctx, code):
     embed.timestamp = datetime.now()
 
     return await ctx.send(embed=embed)
+
+
+track = CommandDefinition(
+    func=_track,
+    short_help="Track an invite, its creator and its users.",
+    long_help="Track an invite in your guild, its creator and its users.\nEither enter the invite code or the url in the format `https://discord.gg/<code>`.",
+    usage="track <code|url>",
+    options=[
+        create_option("code", "the invite code or link.", SlashCommandOptionType.STRING, False)
+    ]
+)

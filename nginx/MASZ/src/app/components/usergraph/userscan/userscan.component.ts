@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -90,7 +91,7 @@ export class UserscanComponent implements OnInit {
 
       } else {
         searchString = searchString.substring(searchString.lastIndexOf('/') + 1)
-        this.loadDataForInvite(encodeURIComponent(`https://discord.gg/${searchString}`)).subscribe((data: InviteNetwork) => {
+        this.loadDataForInvite(`https://discord.gg/${searchString}`).subscribe((data: InviteNetwork) => {
           this.calculateNewInviteNetwork(data, this.search?.trim());
           this.loading = false;
         }, (error) => {
@@ -110,11 +111,13 @@ export class UserscanComponent implements OnInit {
   }
 
   loadDataForUserId(userId: string): Observable<UserNetwork> {
-    return this.api.getSimpleData(`/network/user/${userId}`);
+    let params = new HttpParams().set('userId', userId);
+    return this.api.getSimpleData(`/network/user`, true, params);
   }
 
-  loadDataForInvite(inviteCode: string): Observable<InviteNetwork> {
-    return this.api.getSimpleData(`/network/invite/${inviteCode}`);
+  loadDataForInvite(inviteUrl: string): Observable<InviteNetwork> {
+    let params = new HttpParams().set('inviteUrl', inviteUrl);
+    return this.api.getSimpleData(`/network/invite`, true, params);
   }
 
   ngAfterViewInit() {

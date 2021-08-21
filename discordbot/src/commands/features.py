@@ -1,22 +1,26 @@
 import os
 
-from discord.ext import commands
 from discord import Embed
 
 from data import get_guildconfig
+from helpers import console
+from .infrastructure import registered_guild_and_admin_or_mod_only, record_usage, CommandDefinition
+
 
 CHECK = "✅"
 X_CHECK = "❌"
 
-@commands.command(help="Checks if further configuration is needed to use MASZ features.")
-async def features(ctx):
+
+async def _features(ctx):
+    await registered_guild_and_admin_or_mod_only(ctx)
+    record_usage(ctx)
     if ctx.guild is None:
         await ctx.send("Only useable in a guild.")
         return
     try:
         cfg = await get_guildconfig(str(ctx.guild.id))
     except Exception as e:
-        print(e)
+        console.critical(f"Failed to get guildconfig: {e}")
         await ctx.send("Failed to fetch data from database.")
         return
     
@@ -99,3 +103,10 @@ async def features(ctx):
         embed.color = 0xf71b02
 
     await ctx.send(embed=embed)
+
+
+features = CommandDefinition(
+    func=_features,
+    short_help="Checks if further configuration is needed to use MASZ features.",
+    long_help=f"Checks if further configuration is needed to use MASZ features.",
+)

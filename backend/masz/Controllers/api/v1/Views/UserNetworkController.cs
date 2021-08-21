@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -24,8 +25,8 @@ namespace masz.Controllers
             this.logger = logger;
         }
 
-        [HttpGet("user/{userid}")]
-        public async Task<IActionResult> GetUserNetwork([FromRoute] string userid)
+        [HttpGet("user")]
+        public async Task<IActionResult> GetUserNetwork([FromQuery][Required] string userId)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             List<string> modGuilds = new List<string>();
@@ -47,9 +48,9 @@ namespace masz.Controllers
                 return Unauthorized();
             }
 
-            User searchedUser = await discord.FetchUserInfo(userid, CacheBehavior.IgnoreButCacheOnError);
+            User searchedUser = await discord.FetchUserInfo(userId, CacheBehavior.IgnoreButCacheOnError);
             List<UserInviteView> invited = new List<UserInviteView>();
-            foreach(UserInvite invite in await database.GetInvitedUsersByUserId(userid)) 
+            foreach(UserInvite invite in await database.GetInvitedUsersByUserId(userId)) 
             {
                 if (!modGuilds.Contains(invite.GuildId)) {
                     continue;
@@ -61,7 +62,7 @@ namespace masz.Controllers
                 ));
             }
             List<UserInviteView> invitedBy = new List<UserInviteView>();
-            foreach(UserInvite invite in await database.GetUsedInvitesByUserId(userid)) 
+            foreach(UserInvite invite in await database.GetUsedInvitesByUserId(userId)) 
             {
                 if (!modGuilds.Contains(invite.GuildId)) {
                     continue;
@@ -73,7 +74,7 @@ namespace masz.Controllers
                 ));
             }
             List<UserMappingView> userMappings = new List<UserMappingView>();
-            foreach(UserMapping userMapping in await database.GetUserMappingsByUserId(userid))
+            foreach(UserMapping userMapping in await database.GetUserMappingsByUserId(userId))
             {
                 if (!modGuilds.Contains(userMapping.GuildId)) {
                     continue;
@@ -86,9 +87,9 @@ namespace masz.Controllers
                 });
             }
 
-            List<ModCase> modCases = (await database.SelectAllModCasesForSpecificUser(userid)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
-            List<AutoModerationEvent> modEvents = (await database.SelectAllModerationEventsForSpecificUser(userid)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
-            List<UserNote> userNotes = (await database.GetUserNotesByUserId(userid)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
+            List<ModCase> modCases = (await database.SelectAllModCasesForSpecificUser(userId)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
+            List<AutoModerationEvent> modEvents = (await database.SelectAllModerationEventsForSpecificUser(userId)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
+            List<UserNote> userNotes = (await database.GetUserNotesByUserId(userId)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
 
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning network.");
             return Ok(new {
@@ -103,12 +104,12 @@ namespace masz.Controllers
             });
         }
 
-        [HttpGet("invite/{inviteCode}")]
-        public async Task<IActionResult> GetInviteNetwork([FromRoute] string inviteCode)
+        [HttpGet("invite")]
+        public async Task<IActionResult> GetInviteNetwork([FromQuery][Required] string inviteUrl)
         {
             logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
             
-            List<UserInvite> invites = await database.GetInvitesByCode(HttpUtility.UrlDecode(inviteCode));
+            List<UserInvite> invites = await database.GetInvitesByCode(inviteUrl);
             if (invites == null || invites.Count == 0) {
                 logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Invite not found.");
                 return NotFound();

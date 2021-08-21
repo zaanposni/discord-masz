@@ -32,14 +32,14 @@
             <div>
                 <span title="{{ userMap.userMapping.userA }}" class="mat-h2 mb-0">
                     <span *ngIf="userMap.userA">
-                        {{ userMap.userA?.username }}#{{ userMap.userA?.discriminator }} ({{ userMap.userMapping.userA }})
+                        {{ userMap.userA?.username }}#{{ userMap.userA?.discriminator }}
                     </span>
                     <span *ngIf="!userMap.userA">
                         {{ userMap.userMapping.userB }}
                     </span>
                      - 
-                     <span *ngIf="userMap.userB">
-                        {{ userMap.userB?.username }}#{{ userMap.userB?.discriminator }} ({{ userMap.userMapping.userB }})
+                    <span *ngIf="userMap.userB">
+                        {{ userMap.userB?.username }}#{{ userMap.userB?.discriminator }}
                     </span>
                     <span *ngIf="!userMap.userB">
                         {{ userMap.userMapping.userB }}

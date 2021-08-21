@@ -100,7 +100,7 @@ export class GuildAddComponent implements OnInit {
   invite() {
     this.selectedGuildDetails = { loading: true, content: undefined };
     var win = window.open(
-      `https://discord.com/oauth2/authorize?client_id=${this.clientId}&permissions=8&scope=bot&guild_id=${this.selectedGuild?.id}`, 
+      `https://discord.com/oauth2/authorize?client_id=${this.clientId}&permissions=8&scope=bot%20applications.commands&guild_id=${this.selectedGuild?.id}`, 
       "Secure Payment", "status=yes;width=150,height=400");
     if (win === null) {
       this.toastr.error("Failed to open invite window.");
@@ -122,9 +122,9 @@ export class GuildAddComponent implements OnInit {
       mutedRoles: this.muteRolesGroup.value.muteRoles !== '' ? this.muteRolesGroup.value.muteRoles : [],
       modInternalNotificationWebhook: this.configGroup.value?.internal?.trim() != '' ? this.configGroup?.value?.internal : null,
       modPublicNotificationWebhook: this.configGroup.value?.public?.trim() != '' ? this.configGroup?.value?.public : null,
-      strictModPermissionCheck: this.configGroup.value?.strictPermissionCheck !== '' ? this.configGroup.value?.strictPermissionCheck : false,
-      executeWhoisOnJoin: this.configGroup.value?.executeWhoisOnJoin !== '' ? this.configGroup.value?.executeWhoisOnJoin : false,
-      publishModeratorInfo: this.configGroup.value?.publishModeratorInfo !== '' ? this.configGroup.value?.publishModeratorInfo : false
+      strictModPermissionCheck: (this.configGroup.value?.strictPermissionCheck !== '' ? this.configGroup.value?.strictPermissionCheck : false) ?? false,
+      executeWhoisOnJoin: (this.configGroup.value?.executeWhoisOnJoin !== '' ? this.configGroup.value?.executeWhoisOnJoin : false) ?? false,
+      publishModeratorInfo: (this.configGroup.value?.publishModeratorInfo !== '' ? this.configGroup.value?.publishModeratorInfo : false) ?? false
     }
 
     this.api.postSimpleData('/guilds/', data).subscribe((data) => {

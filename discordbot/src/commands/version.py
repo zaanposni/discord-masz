@@ -1,10 +1,11 @@
 import requests
 
-from discord.ext import commands
+from .infrastructure import record_usage, CommandDefinition
+from helpers import get_prefix
 
 
-@commands.command(help="Checks for new releases on GitHub.")
-async def version(ctx):
+async def _version(ctx):
+    record_usage(ctx)
     try:
         r = requests.get(f"http://masz_nginx:80/static/version.json")
     except:
@@ -34,3 +35,10 @@ async def version(ctx):
             )
     else:
         await ctx.send(f"Your deployed version **{deployed_version}** is up to date with releases on GitHub.")
+
+
+version = CommandDefinition(
+    func=_version,
+    short_help="Checks for new releases on GitHub.",
+    long_help=f"Checks for new releases on GitHub.",
+)

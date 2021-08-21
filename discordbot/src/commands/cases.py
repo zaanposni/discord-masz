@@ -1,12 +1,12 @@
 import os
 from datetime import datetime
 
-from discord import Embed, Member, User, Guild
-from discord.ext import commands
+from discord import Embed
+from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
 
 from data import get_modcases_by_user_and_guild
-from .checks import registered_guild_only
 from helpers import get_prefix
+from .infrastructure import record_usage, CommandDefinition
 
 
 async def create_embed_for_guild(guild_id, user_id):
@@ -57,12 +57,23 @@ async def create_embed_for_guild(guild_id, user_id):
     return embed
 
 
-@commands.command(help="List cases of current user.")
-async def cases(ctx, guild_id = None):
-    if guild_id is None:
+async def _cases(ctx, guildid = None):
+    record_usage(ctx)
+    if guildid is None:
         if ctx.guild is None:
             return await ctx.send(f"Please use `{get_prefix()}cases [guild_id]`\nAlso see `{get_prefix()}help cases`")
-        guild_id = ctx.guild.id
-    embed = await create_embed_for_guild(guild_id, ctx.author.id)
+        guildid = ctx.guild.id
+    embed = await create_embed_for_guild(guildid, ctx.author.id)
     if embed:
         await ctx.send(embed=embed)
+
+
+cases = CommandDefinition(
+    func=_cases,
+    short_help="List cases of current user.",
+    long_help="List cases of current user.",
+    usage="cases [guild_id]",
+    options=[
+        create_option("guildid", "Guild to search cases in.", SlashCommandOptionType.STRING, False)
+    ]
+)

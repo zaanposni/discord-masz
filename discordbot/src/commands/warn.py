@@ -1,30 +1,22 @@
 import os
-import re
-from datetime import datetime
 import requests
 
-from discord.ext import commands
-from discord import Embed, Member
-from discord.errors import NotFound
+from discord import Member
+from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
 
-from .checks import registered_guild_and_admin_or_mod_only
-from helpers import get_prefix
+from .infrastructure import record_usage, registered_guild_and_admin_or_mod_only, CommandDefinition
 
-
-regex = re.compile(r"^[0-9]{18}$")
 
 headers = {
     'Authorization': os.getenv("DISCORD_BOT_TOKEN")
 }
 
-@commands.command(help="Warn a user.")
-@registered_guild_and_admin_or_mod_only()
-async def warn(ctx, member: Member, *reason):
-    if not len(reason):
-        await ctx.send("Please provide a reason.")
-        return
+async def _warn(ctx, member: Member, *, reason):
+    await registered_guild_and_admin_or_mod_only(ctx)
+    record_usage(ctx)
+    if not reason:
+        return await ctx.send("Please provide a reason.")
     
-    reason = ' '.join(reason)
     modCase = {
         "title": reason[:99],
         "description": reason,
@@ -46,9 +38,14 @@ async def warn(ctx, member: Member, *reason):
         await ctx.send(f"Something went wrong.\nCode: {r.status_code}\nText: {r.text}")
 
 
-@warn.error
-async def warn_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        await ctx.send('I could not find that member...')
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(f"Please use `{get_prefix()}warn <username|userid|usermention> <reason>`\nAlso see `{get_prefix()}help warn`")
+warn = CommandDefinition(
+    func=_warn,
+    short_help="Warn a member.",
+    long_help="Warn a member. This also creates a modcase.",
+    usage="warn <username|userid|usermention> <reason>",
+    options=[
+        create_option("member", "Member to warn.", SlashCommandOptionType.USER, True),
+        create_option("reason", "Reason to warn.", SlashCommandOptionType.STRING, True),
+    ]
+)
+
