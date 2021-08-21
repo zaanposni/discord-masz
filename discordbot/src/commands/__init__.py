@@ -17,6 +17,7 @@ from .view import view
 from .track import track
 from .cleanup import cleanup
 from .help import help
+from .say import say
 from .infrastructure import register_commands, on_command_error
 
 
