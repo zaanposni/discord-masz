@@ -30,7 +30,7 @@ class CommandDefinition:
 
         self.name = name if name is not None else func.__name__.strip("_")
 
-        if not short_help.endswith(".") and not skip_dots:
+        if not short_help.endswith((".", "!", "?", ";")) and not skip_dots:
             short_help += "."
         self.short_help = short_help
         self.description = short_help
@@ -43,7 +43,7 @@ class CommandDefinition:
         else:
             self.usage = usage
 
-        if not long_help.endswith(".") and not skip_dots:
+        if not long_help.endswith((".", "!", "?", ";")) and not skip_dots:
             long_help += "."
         self.long_help = long_help + f"\n```\n{self.usage}\n```"
         
