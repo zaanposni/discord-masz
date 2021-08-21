@@ -1,7 +1,11 @@
 from discord import TextChannel
 from discord.errors import Forbidden
+from discord.ext.commands import Context
+from discord_slash import SlashContext
 from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
 
+
+from helpers import console
 from .infrastructure import record_usage, CommandDefinition, registered_guild_and_admin_or_mod_only
 
 
@@ -26,8 +30,6 @@ async def _cleanup(ctx, mode: str, channel: TextChannel = None, count: int = 100
         await ctx.send("I can't clean up more than 1000 messages at once. Continuing with 1000...")
     if count < 0:
         return await ctx.send("I can't clean up negative messages...")
-    if count != 0:
-        count += 1  # add one to make sure we don't count the message itself
 
     try:
         if mode in ["invite", "invites"]:
@@ -54,7 +56,7 @@ async def _cleanup(ctx, mode: str, channel: TextChannel = None, count: int = 100
             message_count = 0
             reaction_count = 0
             async for message in channel.history(limit=count):
-                if message.id == ctx.message.id:
+                if ctx.message and message.id == ctx.message.id:
                     continue  # do not clean current message with loading reaction
                 if message.reactions:
                     message_count += 1
@@ -68,10 +70,16 @@ async def _cleanup(ctx, mode: str, channel: TextChannel = None, count: int = 100
 
 
 async def add_loading_reaction(ctx):
-    try:
-        await ctx.message.add_reaction("👀")
-    except Exception:  # maybe the bot has no permissions to add reactions but that should not break this command
-        pass    
+    if isinstance(ctx, SlashContext):
+        try:
+            await ctx.defer()
+        except Exception as e:  # will only work in slash context
+            console.error("Failed to defer slash cleanup command: {e}")
+    if isinstance(ctx, Context):
+        try:
+            await ctx.message.add_reaction("👀")
+        except Exception as e:  # maybe the bot has no permissions to add reactions but that should not break this command
+            console.error("Failed to add reaction to cleanup command: {e}")
 
 
 cleanup = CommandDefinition(
