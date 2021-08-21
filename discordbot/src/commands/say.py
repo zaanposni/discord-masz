@@ -1,27 +1,39 @@
+# imports
 from discord import TextChannel
 from discord.ext.commands import Context
 from .infrastructure import record_usage, CommandDefinition, registered_guild_and_admin_or_mod_only
+from discord_slash import SlashContext
 from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
+from helpers import console
 
+# procedure when the say command is triggered
 async def _say(ctx, channel: TextChannel = None, *,message):
+    #check permissions
     await registered_guild_and_admin_or_mod_only(ctx)
+    # record the usage
     record_usage(ctx)
+    # check if no message is specified. If, cancel command procedure and output error
     if message is None:
-        await ctx.send("Please write a message.")
+        await ctx.send("Please write a message.",hidden=True)
         return
-    if Channel is None:
+    # If no channel is specified, use the current channel. Technically not required as the channel is required
+    if channel is None:
         channel = ctx.channel
+    #check whether command is triggered by slash command or message. required for feedback 
     slash = isinstance(ctx, SlashContext)
+    # if triggered by message, add the 👀 reaction to confirm the message is being processed
     if slash:
         try:
             await ctx.message.add_reaction("👀")
         except Exception as e:
             console.error("Failed to add reaction to say command: {e}")
+    # try to send the message the user wants to. Save whether this was successful
     try:
         await channel.send(message)
         success = True
     except Exception as f:
         success = False
+    # If the message has been sent, tell that to the user with a reaction(command message) or a message(slash command). This includes an error handler if the confirmation couldn't be sent too
     if success:
         if slash:
             try:
@@ -33,6 +45,7 @@ async def _say(ctx, channel: TextChannel = None, *,message):
                 await ctx.message.add_reaction("✅")
             except Exception as e:
                 console.error("Failed to add reaction to say command: {e}")
+    # and do the same if the message couldn't been sent
     else:
         if slash:
             try:
@@ -46,7 +59,7 @@ async def _say(ctx, channel: TextChannel = None, *,message):
                 console.error("Failed to add reaction to say command: {e}")
 
 
-
+# register the command for slash commands
 say = CommandDefinition(
     func= _say,
     short_help = "Let the bot send a message",
