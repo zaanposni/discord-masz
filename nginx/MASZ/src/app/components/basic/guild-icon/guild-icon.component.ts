@@ -7,7 +7,7 @@ import { Guild } from 'src/app/models/Guild';
   templateUrl: './guild-icon.component.html',
   styleUrls: ['./guild-icon.component.css']
 })
-export class GuildIconComponent implements OnInit {
+export class GuildIconComponent {
 
   @Input() public guild?: Guild = undefined;
   @Input() public width: string = '24px';
@@ -17,9 +17,5 @@ export class GuildIconComponent implements OnInit {
   @Input() public staticBackground: boolean = true;
 
   constructor() { }
-
-  ngOnInit(): void {
-    console.log("test", this.width)
-  }
 
 }

@@ -137,7 +137,7 @@ export class AutomodRuleComponent implements OnInit {
       this.toastr.success("Config deleted.");
       this.reload();
     }, (error) => {
-      console.log('Failed to delete config.');
+      this.toastr.error('Failed to delete config.');
       this.reload();
     });
   }
