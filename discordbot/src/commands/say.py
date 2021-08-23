@@ -1,10 +1,12 @@
-# imports
+#third-party imports
 from discord import TextChannel
 from discord.ext.commands import Context
-from .infrastructure import record_usage, CommandDefinition, registered_guild_and_admin_or_mod_only
 from discord_slash import SlashContext
 from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
+
+# integrated imports
 from helpers import console
+from .infrastructure import record_usage, CommandDefinition, registered_guild_and_admin_or_mod_only
 
 # procedure when the say command is triggered
 async def _say(ctx, channel: TextChannel = None, *,message):
