@@ -197,10 +197,7 @@ namespace masz.Helpers
                 embed.Url = serviceBaseUrl;
             }
 
-            if (!string.IsNullOrEmpty(modCase.Punishment))
-            {
-                embed.AddField(SCALES_EMOTE + " - Punishment", modCase.Punishment.Substring(0, Math.Min(modCase.Punishment.Length, 1000)), true);
-            }
+            embed.AddField(SCALES_EMOTE + " - Punishment", modCase.GetPunishment(), true);
 
             if (modCase.PunishedUntil != null)
             {

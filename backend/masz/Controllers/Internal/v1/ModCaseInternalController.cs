@@ -129,7 +129,6 @@ namespace masz.Controllers
                 newModCase.OccuredAt = newModCase.CreatedAt;
             newModCase.LastEditedAt = newModCase.CreatedAt;
             newModCase.LastEditedByModId = currentModerator;
-            newModCase.Punishment = modCase.Punishment;
             newModCase.Labels = modCase.Labels.Distinct().ToArray();
             newModCase.Others = modCase.Others;
             newModCase.Valid = true;

@@ -17,7 +17,6 @@ namespace masz.Models
         public string CaseTitle { get; set; }
         public string CaseDescription { get; set; }
         public string[] CaseLabels { get; set; }
-        public string CasePunishment { get; set; }
         public PunishmentType CasePunishmentType { get; set; }
         public DateTime? CasePunishedUntil { get; set; }
         public bool sendPublicNotification { get; set; }

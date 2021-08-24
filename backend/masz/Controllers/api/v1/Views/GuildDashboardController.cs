@@ -222,7 +222,7 @@ namespace masz.Controllers
         private bool contains(ModCase obj, string search) {
             return contains(obj.Title, search) ||
                     contains(obj.Description, search) ||
-                    contains(obj.Punishment, search) ||
+                    contains(obj.GetPunishment(), search) ||
                     contains(obj.Username, search) ||
                     contains(obj.Discriminator, search) ||
                     contains(obj.Nickname, search) ||

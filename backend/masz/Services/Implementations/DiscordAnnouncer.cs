@@ -45,6 +45,9 @@ namespace masz.Services
                 StringBuilder message = new StringBuilder();
                 message.Append($"The moderators of guild `{guild.Name}` have ");
                 switch (modCase.PunishmentType) {
+                    case (PunishmentType.None):
+                        message.Append("warned");
+                        break;
                     case (PunishmentType.Mute):
                         message.Append("muted");
                         break;

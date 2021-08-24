@@ -24,7 +24,6 @@ namespace masz.Models
         public DateTime OccuredAt { get; set; }
         public DateTime LastEditedAt { get; set; }
         public string LastEditedByModId { get; set; }
-        public string Punishment { get; set; }
         public string[] Labels { get; set; }
         public string Others { get; set; }
         public bool Valid { get; set; }
@@ -55,7 +54,6 @@ namespace masz.Models
                 OccuredAt = this.OccuredAt,
                 LastEditedAt = this.LastEditedAt,
                 LastEditedByModId = this.LastEditedByModId,
-                Punishment = this.Punishment,
                 Labels = this.Labels,
                 Others = this.Others,
                 Valid = this.Valid,
@@ -84,6 +82,18 @@ namespace masz.Models
                     comment.RemoveModeratorInfo(this.UserId);
                 }
             }
+        }
+
+        public string GetPunishment() 
+        {
+            if (this.PunishmentType == PunishmentType.None) {
+                return "Warn";
+            }
+            string punishment = this.PunishmentType.ToString();
+            if (this.PunishedUntil.HasValue) {
+                punishment = "Temp" + punishment;
+            }
+            return punishment;
         }
     }
 }

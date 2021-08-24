@@ -91,10 +91,9 @@ namespace masz.Controllers
 
                         if (modConfig.PunishmentDurationMinutes == null)
                         {
-                            newModCase.Punishment = newModCase.PunishmentType.ToString();
                             newModCase.PunishedUntil = null;
-                        } else {
-                            newModCase.Punishment = "Temp" + newModCase.PunishmentType.ToString();
+                        } else
+                        {
                             newModCase.PunishedUntil = DateTime.UtcNow.AddMinutes(modConfig.PunishmentDurationMinutes.Value) ;
                         }
 
@@ -106,7 +105,6 @@ namespace masz.Controllers
                             logger.LogError(e, "Failed to handle punishment for modcase.");
                         }
                     } else {
-                        newModCase.Punishment = "Warn";
                         newModCase.PunishmentType = PunishmentType.None;
                         newModCase.PunishedUntil = null;
                         newModCase.PunishmentActive = false;

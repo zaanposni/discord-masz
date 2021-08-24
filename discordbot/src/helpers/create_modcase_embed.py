@@ -3,7 +3,9 @@ import os
 from discord import Embed
 
 from data import get_cached_guild_config
+from .modcase_punishment import get_modcase_punishment
 from helpers import console
+
 
 async def create_modcase_embed(bot, modcase) -> Embed:    
     guild_config = await get_cached_guild_config(modcase["GuildId"])
@@ -36,7 +38,7 @@ async def create_modcase_embed(bot, modcase) -> Embed:
     
     embed.add_field(
         name="⚖️ - Punishment",
-        value= modcase["Punishment"],
+        value=get_modcase_punishment(modcase),
         inline=True
     )
     if modcase["PunishedUntil"]:

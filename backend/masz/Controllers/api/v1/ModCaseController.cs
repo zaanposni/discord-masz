@@ -132,7 +132,6 @@ namespace masz.Controllers
             {
                 modCase.OccuredAt = newValue.OccuredAt.Value;
             }
-            modCase.Punishment = newValue.Punishment;
             modCase.Labels = newValue.Labels.Distinct().ToArray();
             modCase.Others = newValue.Others;
             modCase.PunishmentType = newValue.PunishmentType;
@@ -270,7 +269,6 @@ namespace masz.Controllers
                 newModCase.OccuredAt = newModCase.CreatedAt;
             newModCase.LastEditedAt = newModCase.CreatedAt;
             newModCase.LastEditedByModId = currentUser.Id;
-            newModCase.Punishment = modCase.Punishment;
             newModCase.Labels = modCase.Labels.Distinct().ToArray();
             newModCase.Others = modCase.Others;
             newModCase.Valid = true;

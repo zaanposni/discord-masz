@@ -5,7 +5,7 @@ from discord import Embed
 from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
 
 from data import get_modcases_by_user_and_guild
-from helpers import get_prefix
+from helpers import get_prefix, get_modcase_punishment
 from .infrastructure import record_usage, CommandDefinition
 
 
@@ -36,7 +36,7 @@ async def create_embed_for_guild(guild_id, user_id):
         if active_punishments:
             info = ""
             for case in active_punishments[:-6:-1]:
-                info += f"{case['Punishment']}"
+                info += f"{get_modcase_punishment(case)}"
                 if case["PunishedUntil"] is not None:
                     info += f" (until {case['PunishedUntil'].strftime('%d %b %Y')}): "
                 else:

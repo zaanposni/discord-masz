@@ -21,9 +21,6 @@ namespace masz.Dtos.ModCase
         public string UserId { get; set; }
         [DataType(DataType.Date)]
         public DateTime? OccuredAt { get; set; }
-        [Required(ErrorMessage = "Punishment field is required")]
-        [MaxLength(100)]
-        public string Punishment { get; set; }
         public string[] Labels { get; set; } = new string[0];
         public string Others { get; set; }
         [Required(ErrorMessage = "PunishmentType field is required")]
