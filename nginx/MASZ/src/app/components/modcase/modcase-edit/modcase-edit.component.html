@@ -73,21 +73,18 @@
                         <mat-option *ngFor="let enum of displayPunishmentTypeOptions(); let i = index"
                         [value]="i">{{enum}}</mat-option>
                         </mat-select>
-                    </mat-form-field>
-                    <ng-container *ngIf="this.punishmentFormGroup.value.punishmentType > 2">
-                        <br/><mat-checkbox
-                            formControlName="dmNotification"
-                            [labelPosition]="'after'">
-                            Send dm notification
-                        </mat-checkbox><br/>
-                        <mat-checkbox
-                            formControlName="handlePunishment"
-                            [labelPosition]="'after'">
-                            Handle this punishment
-                        </mat-checkbox>
-                    </ng-container>
-                    <br/>
-                    <mat-form-field *ngIf="this.punishmentFormGroup.value.punishmentType === 7 || this.punishmentFormGroup.value.punishmentType === 4">
+                    </mat-form-field><br/>
+                    <mat-checkbox
+                        formControlName="dmNotification"
+                        [labelPosition]="'after'">
+                        Send dm notification
+                    </mat-checkbox><br/>
+                    <mat-checkbox *ngIf="this.punishmentFormGroup.value.punishmentType >= 1"
+                        formControlName="handlePunishment"
+                        [labelPosition]="'after'">
+                        Handle this punishment
+                    </mat-checkbox><br/>
+                    <mat-form-field *ngIf="this.punishmentFormGroup.value.punishmentType === 1 || this.punishmentFormGroup.value.punishmentType === 3">
                         <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" formControlName="punishedUntil">
                         <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
                         <ngx-mat-datetime-picker #picker [color]="'accent'">

@@ -172,7 +172,7 @@
                                             <span class="badge mat-h4 mb-0 ml-2" style="padding: .1rem .4rem"
                                                 [ngClass]="(this.modCase.content?.modCase?.punishmentType === 0 || this.modCase.content?.modCase?.punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
                                                 [attr.title]="(this.modCase.content?.modCase?.punishmentType === 0 || this.modCase.content?.modCase?.punishmentActive === true) ? '' : 'This punishment is expired.'">
-                                                {{ this.modCase.content?.modCase?.punishment }}
+                                                {{ convertModcaseToPunishmentString(this.modCase.content?.modCase) }}
                                             </span>
                                         </h5>
                                     </div>
@@ -180,7 +180,7 @@
                                         <span class="badge mat-h4 mb-0 ml-2" style="padding: .1rem .4rem"
                                             [ngClass]="(this.modCase.content?.modCase?.punishmentType === 0 || this.modCase.content?.modCase?.punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
                                             [attr.title]="(this.modCase.content?.modCase?.punishmentType === 0 || this.modCase.content?.modCase?.punishmentActive === true) ? '' : 'This punishment is expired.'">
-                                            {{ this.modCase.content?.modCase?.punishment }}
+                                            {{ convertModcaseToPunishmentString(this.modCase.content?.modCase) }}
                                         </span>
                                     </h3>
                                     <ng-container *ngIf="this.modCase.content?.modCase?.punishmentType != 0 && this.modCase.content?.modCase?.punishmentType != 2">

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { AutomodConfig } from 'src/app/models/AutomodConfig';
+import { AutoModerationConfig } from 'src/app/models/AutoModerationConfig';
 import { AutoModRuleDefinition } from 'src/app/models/AutoModRuleDefinitions';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { Guild } from 'src/app/models/Guild';
@@ -83,7 +83,7 @@ export class AutomodConfigComponent implements OnInit {
   public guildId!: string;
   public guildInfo!: Guild;
   public guildChannels!: GuildChannel[];
-  public initialConfigs!: Promise<AutomodConfig[]>;
+  public initialConfigs!: Promise<AutoModerationConfig[]>;
 
   constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute) { }
   

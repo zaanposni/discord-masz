@@ -104,12 +104,11 @@
               </mat-checkbox><br/>
               <mat-form-field appearance="fill" *ngIf="this.actionForm.value.automodAction >= 2">
                 <mat-label>Punishment</mat-label>
-                <mat-select formControlName="punishment">
-                <mat-option *ngFor="let enum of autoModerationPunishmentOptions(); let i = index"
-                [value]="i">{{enum}}</mat-option>
+                <mat-select formControlName="punishmentType">
+                <mat-option *ngFor="let enum of punishmentTypes(); let i = index" [value]="i">{{enum}}</mat-option>
                 </mat-select>
               </mat-form-field><br/>
-              <mat-form-field *ngIf="this.actionForm.value.automodAction >= 2 && this.actionForm.value.punishment >= 4">
+              <mat-form-field *ngIf="this.actionForm.value.automodAction >= 2 && (this.actionForm.value.punishmentType === 1 || this.actionForm.value.punishmentType === 3)">
                 <mat-label>Duration in minutes</mat-label>
                 <input type="number" matInput formControlName="punishmentDuration">
               </mat-form-field>

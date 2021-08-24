@@ -2,13 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
-import { AutomodConfig, AutoModerationAction, AutoModerationActionOptions, AutoModerationPunishmentOptions, convertToAutoModPunishment, convertToPunishmentType } from 'src/app/models/AutomodConfig';
+import { AutoModerationActionOptions } from 'src/app/models/AutoModerationAction';
+import { AutoModerationConfig } from 'src/app/models/AutoModerationConfig';
 import { AutoModRuleDefinition } from 'src/app/models/AutoModRuleDefinitions';
-import { ContentLoading } from 'src/app/models/ContentLoading';
 import { Guild } from 'src/app/models/Guild';
 import { GuildChannel } from 'src/app/models/GuildChannel';
 import { GuildRole } from 'src/app/models/GuildRole';
+import { PunishmentTypeOptions } from 'src/app/models/PunishmentType';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -24,12 +24,12 @@ export class AutomodRuleComponent implements OnInit {
   @Input() defintion!: AutoModRuleDefinition;
   @Input() guildChannels!: GuildChannel[];
   @Input() guild!: Guild;
-  @Input() initialConfigs!: Promise<AutomodConfig[]>;
+  @Input() initialConfigs!: Promise<AutoModerationConfig[]>;
   public guildId!: string;
   public enableConfig: boolean = false;
   public tryingToSaveConfig: boolean = false;
   public automodActionOptions = AutoModerationActionOptions;
-  public autoModerationPunishmentOptions = AutoModerationPunishmentOptions;
+  public punishmentTypes = PunishmentTypeOptions;
 
   public initRowsCustomWords = 1;
 
@@ -49,30 +49,19 @@ export class AutomodRuleComponent implements OnInit {
       dmNotification: [''],
       automodAction: ['', Validators.required],
       publicNotification: [''],
-      punishment: [''],
+      punishmentType: [''],
       punishmentDuration: ['']
     });
 
     this.actionForm.get('automodAction')?.valueChanges.subscribe(val => {
       if (val >= 2) {
-          this.actionForm.controls['punishment'].setValidators([Validators.required]);
-          this.actionForm.controls['punishment'].setValue(0);
-          this.actionForm.controls['punishment'].updateValueAndValidity();
+          this.actionForm.controls['punishmentType'].setValidators([Validators.required]);
+          this.actionForm.controls['punishmentType'].setValue(0);
+          this.actionForm.controls['punishmentType'].updateValueAndValidity();
       } else {
-          this.actionForm.controls['punishment'].clearValidators();
-          this.actionForm.controls['punishment'].setValue(null);
-          this.actionForm.controls['punishment'].updateValueAndValidity();
-          this.actionForm.controls['punishmentDuration'].clearValidators();
-          this.actionForm.controls['punishmentDuration'].setValue(null);
-          this.actionForm.controls['punishmentDuration'].updateValueAndValidity();
-      }
-    });
-
-    this.actionForm.get('punishment')?.valueChanges.subscribe(val => {
-      if (val >= 4) {
-          this.actionForm.controls['punishmentDuration'].setValidators([Validators.required, Validators.min(1)]);
-          this.actionForm.controls['punishmentDuration'].updateValueAndValidity();
-      } else {
+          this.actionForm.controls['punishmentType'].clearValidators();
+          this.actionForm.controls['punishmentType'].setValue(null);
+          this.actionForm.controls['punishmentType'].updateValueAndValidity();
           this.actionForm.controls['punishmentDuration'].clearValidators();
           this.actionForm.controls['punishmentDuration'].setValue(null);
           this.actionForm.controls['punishmentDuration'].updateValueAndValidity();
@@ -80,7 +69,7 @@ export class AutomodRuleComponent implements OnInit {
     });
 
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
-    this.initialConfigs.then((data: AutomodConfig[]) => {  
+    this.initialConfigs.then((data: AutoModerationConfig[]) => {  
       // if type in initial loaded configs
       if (data.filter(x => x.autoModerationType == this.defintion.type).length) {
         this.enableConfig = true;
@@ -103,7 +92,7 @@ export class AutomodRuleComponent implements OnInit {
     })
   }
 
-  applyConfig(config: AutomodConfig) {
+  applyConfig(config: AutoModerationConfig) {
     if (this.defintion.showLimitField) {
       this.eventForm.setValue({
         limit: config.limit,
@@ -121,7 +110,7 @@ export class AutomodRuleComponent implements OnInit {
       dmNotification: config.sendDmNotification,
       publicNotification: config.sendPublicNotification,
       automodAction: config.autoModerationAction,
-      punishment: convertToAutoModPunishment(config.punishmentType, config.punishmentDurationMinutes),
+      punishmentType: config.punishmentType,
       punishmentDuration: config.punishmentDurationMinutes
     });
   }
@@ -147,7 +136,7 @@ export class AutomodRuleComponent implements OnInit {
     const data = {
       "AutoModerationType": this.defintion.type,
       "AutoModerationAction": this.actionForm.value.automodAction,
-      "PunishmentType": convertToPunishmentType(this.actionForm.value.punishment),
+      "PunishmentType": this.actionForm.value.punishmentType,
       "PunishmentDurationMinutes": this.actionForm.value.punishmentDuration !== "" ? this.actionForm.value.punishmentDuration : null,
       "IgnoreChannels": this.filterForm.value.excludeChannels !== "" ? this.filterForm.value.excludeChannels : [],
       "IgnoreRoles": this.filterForm.value.excludeRoles !== "" ? this.filterForm.value.excludeRoles : [],

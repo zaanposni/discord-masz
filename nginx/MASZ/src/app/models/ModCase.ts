@@ -1,4 +1,5 @@
 import { CaseComment } from "./CaseComment";
+import { PunishmentType } from "./PunishmentType";
 
 export interface ModCase {
     id: number;
@@ -15,7 +16,6 @@ export interface ModCase {
     occuredAt: Date;
     lastEditedAt: Date;
     lastEditedByModId?: string;
-    punishment: string;
     labels: string[];
     others?: string;
     valid: boolean;
@@ -31,93 +31,26 @@ export interface ModCase {
     comments: CaseComment[];
 }
 
-export enum PunishmentType {
-    None,
-    Mute,
-    Kick,
-    Ban
-}
-
-export enum DisplayPunishmentType {
-    None,
-    Warn,
-    Notice,
-    Mute,
-    TempMute,
-    Kick,
-    Ban,
-    TempBan
-}
-
-export function DisplayPunishmentTypeOptions() : Array<string> {
-    var keys = Object.keys(DisplayPunishmentType);
-    return keys.slice(keys.length / 2);
-}
-
-export function convertToDisplayPunishmentType(type: PunishmentType, punishment: string, until: Date|undefined): DisplayPunishmentType {
-    switch(type) {
+export function convertModcaseToPunishmentString(modcase?: ModCase): string {
+    if (!modcase) {
+        return "Unknown";
+    }
+    switch (modcase.punishmentType) {
         case PunishmentType.None:
-            switch(punishment.trim().toLowerCase()) {
-                case 'notice':
-                    return DisplayPunishmentType.Notice;
-                case 'none':
-                    return DisplayPunishmentType.None;
-                default:
-                    return DisplayPunishmentType.Warn;
-            }
-        case PunishmentType.Kick:
-            return DisplayPunishmentType.Kick;
+            return "Warn";
         case PunishmentType.Mute:
-            if (until) {
-                return DisplayPunishmentType.TempMute;
-            } else {
-                return DisplayPunishmentType.Mute;
+            if (modcase.punishedUntil) {
+                return "TempMute"
             }
+            return "Mute";
+        case PunishmentType.Kick:
+            return "Kick";
         case PunishmentType.Ban:
-            if (until) {
-                return DisplayPunishmentType.TempBan;
-            } else {
-                return DisplayPunishmentType.Ban;
+            if (modcase.punishedUntil) {
+                return "TempBan"
             }
+            return "Ban";
         default:
-            return DisplayPunishmentType.Warn;
-    }
-}
-
-export function convertToPunishmentType(type: DisplayPunishmentType): PunishmentType {
-    switch(type) {
-        case DisplayPunishmentType.Kick:
-            return PunishmentType.Kick;
-        case DisplayPunishmentType.Mute:
-            return PunishmentType.Mute;
-        case DisplayPunishmentType.TempMute:
-            return PunishmentType.Mute;
-        case DisplayPunishmentType.Ban:
-            return PunishmentType.Ban;
-        case DisplayPunishmentType.TempBan:
-            return PunishmentType.Ban;
-        default:
-            return PunishmentType.None;
-    }
-}
-
-export function convertToPunishment(type: DisplayPunishmentType): string {
-    switch(type) {
-        case DisplayPunishmentType.Kick:
-            return 'Kick';
-        case DisplayPunishmentType.Mute:
-            return 'Mute';
-        case DisplayPunishmentType.TempMute:
-            return 'TempMute';
-        case DisplayPunishmentType.Ban:
-            return 'Ban';
-        case DisplayPunishmentType.TempBan:
-            return 'TempBan';
-        case DisplayPunishmentType.Notice:
-            return 'Notice';
-        case DisplayPunishmentType.Warn:
-            return 'Warn';
-        default:
-            return 'None';
+            return "None";
     }
 }

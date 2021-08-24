@@ -8,7 +8,7 @@ import { AutoModerationType } from 'src/app/models/AutoModerationType';
 import { DiscordUser } from 'src/app/models/DiscordUser';
 import { Guild } from 'src/app/models/Guild';
 import { InviteNetwork } from 'src/app/models/InviteNetwork';
-import { ModCase } from 'src/app/models/ModCase';
+import { convertModcaseToPunishmentString, ModCase } from 'src/app/models/ModCase';
 import { UserInvite } from 'src/app/models/UserInvite';
 import { UserNetwork } from 'src/app/models/UserNetwork';
 import { UserNote } from 'src/app/models/UserNote';
@@ -311,14 +311,14 @@ export class UserscanComponent implements OnInit {
   }
 
   newCaseNode(modCase: ModCase, size: number = 20): Node {
-    let punishmentString = '';
+    let punishmentString = convertModcaseToPunishmentString(modCase);
     if (modCase.punishedUntil != null) {
-      punishmentString = `, Until: ${new Date(modCase.punishedUntil).toLocaleString()}`;
+      punishmentString += `, Until: ${new Date(modCase.punishedUntil).toLocaleString()}`;
     }
     return {
       id: `${modCase.guildId}/case/${modCase.caseId}`,
       label: `Case #${modCase.caseId}\n${modCase.title.substr(0, 50)}`,
-      title: `Punishment: ${modCase.punishment}${punishmentString}${modCase.description.substr(0, 200)}`,
+      title: `Punishment: ${convertModcaseToPunishmentString(modCase)}${modCase.description.substr(0, 200)}`,
       group: `${modCase.guildId}/cases`,
       size: size,
       redirectTo: `/guilds/${modCase.guildId}/cases/${modCase.caseId}`

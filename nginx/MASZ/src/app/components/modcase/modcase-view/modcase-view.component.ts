@@ -13,7 +13,7 @@ import { CommentEditDialog } from 'src/app/models/CommentEditDialog';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { FileInfo } from 'src/app/models/FileInfo';
 import { Guild } from 'src/app/models/Guild';
-import { ModCase } from 'src/app/models/ModCase';
+import { convertModcaseToPunishmentString, ModCase } from 'src/app/models/ModCase';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CaseDeleteDialogComponent } from '../../dialogs/case-delete-dialog/case-delete-dialog.component';
@@ -25,7 +25,7 @@ import { CommentEditDialogComponent } from '../../dialogs/comment-edit-dialog/co
   styleUrls: ['./modcase-view.component.css']
 })
 export class ModcaseViewComponent implements OnInit {
-
+  public convertModcaseToPunishmentString = convertModcaseToPunishmentString;
   public restoringCase: boolean = false;
 
   public guildId!: string;

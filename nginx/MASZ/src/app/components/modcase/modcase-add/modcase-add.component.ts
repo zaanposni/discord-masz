@@ -6,8 +6,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { filter, map, startWith } from 'rxjs/operators';
-import { convertToDisplayPunishmentType, convertToPunishment, convertToPunishmentType, DisplayPunishmentType, DisplayPunishmentTypeOptions, PunishmentType } from 'src/app/models/ModCase';
+import { map, startWith } from 'rxjs/operators';
 import { CaseTemplate } from 'src/app/models/CaseTemplate';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { DiscordUser } from 'src/app/models/DiscordUser';
@@ -18,6 +17,7 @@ import { TemplateSettings, TemplateViewPermission } from 'src/app/models/Templat
 import { TemplateCreateDialogComponent } from '../../dialogs/template-create-dialog/template-create-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AppUser } from 'src/app/models/AppUser';
+import { PunishmentType, PunishmentTypeOptions } from 'src/app/models/PunishmentType';
 
 @Component({
   selector: 'app-modcase-add',
@@ -50,7 +50,7 @@ export class ModcaseAddComponent implements OnInit {
   public members: ContentLoading<DiscordUser[]> = { loading: true, content: [] };
   public templates: ContentLoading<TemplateView[]> = { loading: true, content: [] };
   public allTemplates: TemplateView[] = [];
-  public displayPunishmentTypeOptions = DisplayPunishmentTypeOptions;
+  public displayPunishmentTypeOptions = PunishmentTypeOptions;
   public currentUser!: AppUser;
   constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { }
 
@@ -79,21 +79,15 @@ export class ModcaseAddComponent implements OnInit {
 
     this.optionsFormGroup.controls['sendNotification'].setValue(true);
 
-    this.punishmentFormGroup.get('punishmentType')?.valueChanges.subscribe((val: DisplayPunishmentType) => {
-      if (val === DisplayPunishmentType.TempBan || val === DisplayPunishmentType.TempMute) {
-        this.punishmentFormGroup.controls['punishedUntil'].setValidators(Validators.required);
-        this.punishmentFormGroup.controls['punishedUntil'].updateValueAndValidity();
-      } else {
-        this.punishmentFormGroup.controls['punishedUntil'].clearValidators();
+    this.punishmentFormGroup.get('punishmentType')?.valueChanges.subscribe((val: PunishmentType) => {
+      if (val !== PunishmentType.Ban && val !== PunishmentType.Mute) {
         this.punishmentFormGroup.controls['punishedUntil'].setValue(null);
         this.punishmentFormGroup.controls['punishedUntil'].updateValueAndValidity();
       }
-      if (val > 2) {
-        this.punishmentFormGroup.controls['dmNotification'].setValue(true);
-        this.punishmentFormGroup.controls['handlePunishment'].setValue(true);
-      } else {
-        this.punishmentFormGroup.controls['dmNotification'].setValue(false);
+      if (val === PunishmentType.None) {
         this.punishmentFormGroup.controls['handlePunishment'].setValue(false);
+      } else {
+        this.punishmentFormGroup.controls['handlePunishment'].setValue(true);
       }
     });
 
@@ -190,7 +184,7 @@ export class ModcaseAddComponent implements OnInit {
     });
     this.caseLabels = template.caseLabels;
     this.punishmentFormGroup.setValue({
-      punishmentType: convertToDisplayPunishmentType(template.casePunishmentType, template.casePunishment, template.casePunishedUntil),
+      punishmentType: template.casePunishmentType,
       dmNotification: template.announceDm,
       handlePunishment: template.handlePunishment,
       punishedUntil: template.casePunishedUntil
@@ -208,8 +202,7 @@ export class ModcaseAddComponent implements OnInit {
       description: this.infoFormGroup.value.description,
       userid: this.memberFormGroup.value.member?.trim(),
       labels: this.caseLabels,
-      punishment: convertToPunishment(this.punishmentFormGroup.value.punishmentType),
-      punishmentType: convertToPunishmentType(this.punishmentFormGroup.value.punishmentType),
+      punishmentType: this.punishmentFormGroup.value.punishmentType,
       punishedUntil: (typeof this.punishmentFormGroup.value.punishedUntil === 'string') ? this.punishmentFormGroup.value.punishedUntil : this.punishmentFormGroup.value.punishedUntil?.toISOString() ?? null,
     }
     const params = new HttpParams()
@@ -252,8 +245,7 @@ export class ModcaseAddComponent implements OnInit {
           title: this.infoFormGroup.value.title,
           description: this.infoFormGroup.value.description,
           labels: this.caseLabels,
-          punishment: convertToPunishment(this.punishmentFormGroup.value.punishmentType),
-          punishmentType: convertToPunishmentType(this.punishmentFormGroup.value.punishmentType),
+          punishmentType: this.punishmentFormGroup.value.punishmentType,
           punishedUntil: (typeof this.punishmentFormGroup.value.punishedUntil === 'string') ? this.punishmentFormGroup.value.punishedUntil : this.punishmentFormGroup.value.punishedUntil?.toISOString() ?? null,
           sendPublicNotification: this.optionsFormGroup.value.sendNotification,
           handlePunishment: this.punishmentFormGroup.value.handlePunishment,

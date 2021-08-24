@@ -26,7 +26,7 @@
                     <span class="badge mat-h4 mb-0 mr-1" style="padding: .1rem .4rem"
                         [ngClass]="(entry.modCase.punishmentType === 0 || entry.modCase.punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
                         [attr.title]="(entry.modCase.punishmentType === 0 || entry.modCase.punishmentActive === true) ? '' : 'This punishment is expired.'">
-                        {{ entry.modCase.punishment }}
+                        {{ convertModcaseToPunishmentString(entry.modCase) }}
                     </span>
                     <span title="{{ entry.modCase.title }}" class="mat-h2 mb-0">
                         {{ entry.suspect?.username || entry.modCase.username }}<ng-container *ngIf="entry.modCase.discriminator || entry.suspect">#{{ entry.suspect?.discriminator || entry.modCase.discriminator }}</ng-container><br/>

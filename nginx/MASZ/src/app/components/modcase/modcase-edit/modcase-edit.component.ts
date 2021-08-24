@@ -11,7 +11,8 @@ import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { DiscordUser } from 'src/app/models/DiscordUser';
-import { convertToDisplayPunishmentType, convertToPunishment, convertToPunishmentType, DisplayPunishmentType, DisplayPunishmentTypeOptions, ModCase } from 'src/app/models/ModCase';
+import { ModCase } from 'src/app/models/ModCase';
+import { PunishmentType, PunishmentTypeOptions } from 'src/app/models/PunishmentType';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -40,7 +41,7 @@ export class ModcaseEditComponent implements OnInit {
   public caseId!: string;
   public members: ContentLoading<DiscordUser[]> = { loading: true, content: [] };
   public oldCase: ContentLoading<ModCase> = { loading: true, content: undefined };
-  public displayPunishmentTypeOptions = DisplayPunishmentTypeOptions;
+  public displayPunishmentTypeOptions = PunishmentTypeOptions;
   
   constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { }
 
@@ -67,20 +68,15 @@ export class ModcaseEditComponent implements OnInit {
 
     this.optionsFormGroup.controls['sendNotification'].setValue(true);
 
-    this.punishmentFormGroup.get('punishmentType')?.valueChanges.subscribe((val: DisplayPunishmentType) => {
-      if (val === DisplayPunishmentType.TempBan || val === DisplayPunishmentType.TempMute) {
-        this.punishmentFormGroup.controls['punishedUntil'].setValidators(Validators.required);
-        this.punishmentFormGroup.controls['punishedUntil'].updateValueAndValidity();
-      } else {
-        this.punishmentFormGroup.controls['punishedUntil'].clearValidators();
+    this.punishmentFormGroup.get('punishmentType')?.valueChanges.subscribe((val: PunishmentType) => {
+      if (val !== PunishmentType.Ban && val !== PunishmentType.Mute) {
         this.punishmentFormGroup.controls['punishedUntil'].setValue(null);
         this.punishmentFormGroup.controls['punishedUntil'].updateValueAndValidity();
       }
-      if (val > 2) {
-        this.punishmentFormGroup.controls['handlePunishment'].setValue(true);
-      } else {
-        this.punishmentFormGroup.controls['dmNotification'].setValue(false);
+      if (val === PunishmentType.None) {
         this.punishmentFormGroup.controls['handlePunishment'].setValue(false);
+      } else {
+        this.punishmentFormGroup.controls['handlePunishment'].setValue(true);
       }
     });
 
@@ -136,7 +132,7 @@ export class ModcaseEditComponent implements OnInit {
     });
     this.caseLabels = modCase.labels;
     this.punishmentFormGroup.setValue({
-      punishmentType: convertToDisplayPunishmentType(modCase.punishmentType, modCase.punishment, modCase.punishedUntil),
+      punishmentType: modCase.punishmentType,
       dmNotification: false,
       handlePunishment: false,
       punishedUntil: modCase.punishedUntil
@@ -153,8 +149,7 @@ export class ModcaseEditComponent implements OnInit {
       description: this.infoFormGroup.value.description,
       userid: this.memberFormGroup.value.member?.trim(),
       labels: this.caseLabels,
-      punishment: convertToPunishment(this.punishmentFormGroup.value.punishmentType),
-      punishmentType: convertToPunishmentType(this.punishmentFormGroup.value.punishmentType),
+      punishmentType: this.punishmentFormGroup.value.punishmentType,
       punishedUntil: (typeof this.punishmentFormGroup.value.punishedUntil === 'string') ? this.punishmentFormGroup.value.punishedUntil : this.punishmentFormGroup.value.punishedUntil?.toISOString() ?? null,
     };
     const params = new HttpParams()

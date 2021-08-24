@@ -10,6 +10,6 @@ export enum TemplateViewPermission {
 }
 
 export function TemplateViewPermissionOptions() : Array<string> {
-    var keys = Object.keys(TemplateViewPermission);
+    let keys = Object.keys(TemplateViewPermission);
     return keys.slice(keys.length / 2);
 }
