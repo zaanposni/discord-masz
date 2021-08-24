@@ -18,9 +18,10 @@ from .track import track
 from .cleanup import cleanup
 from .github import github
 from .help import help
+from .say import say
 from .infrastructure import register_commands, on_command_error
 
 
-ALL_COMMANDS = [ invite, version, features, whois, register, url, mute, kick, ban, warn, report, tempmute, tempban, cases, viewg, view, track, cleanup, github, help ]
+ALL_COMMANDS = [ invite, version, features, whois, register, url, mute, kick, ban, warn, report, tempmute, tempban, cases, viewg, view, track, cleanup, github, say, help ]
 
 register_commands(ALL_COMMANDS)
