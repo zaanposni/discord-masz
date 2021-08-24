@@ -35,24 +35,24 @@ async def _say(ctx, channel: TextChannel = None, *,message):
             try:
                 await ctx.send("Message sent", hidden=True)
             except Exception as e:
-                console.error("confirmation message couldn't be sent. The command may have worked anyway.: {e}")
+                console.critical("confirmation message couldn't be sent. The command may have worked anyway.: {e}")
         else:
             try:
                 await ctx.message.add_reaction("✅")
             except Exception as e:
-                console.error("Failed to add reaction to say command: {e}")
+                console.critical("Failed to add reaction to say command: {e}")
     # and do the same if the message couldn't been sent
     else:
         if slash:
             try:
                 await ctx.send("Message couldn't be sent. Maybe 'Send message'-Permission is not given to this bot for the demanded channel?", hidden=True)
             except Exception as e:
-                console.error("confirmation message couldn't be sent. Sending the required message also failed: {e}")
+                console.critical("confirmation message couldn't be sent. Sending the required message also failed: {e}")
         else:
             try:
                 await ctx.message.add_reaction("❌")
             except Exception as e:
-                console.error("Failed to add reaction to say command: {e}")
+                console.critical("Failed to add reaction to say command: {e}")
 
 
 # register the command for slash commands
