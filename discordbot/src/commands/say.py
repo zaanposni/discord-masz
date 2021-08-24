@@ -23,12 +23,6 @@ async def _say(ctx, channel: TextChannel = None, *,message):
         channel = ctx.channel
     #check whether command is triggered by slash command or message. required for feedback 
     slash = isinstance(ctx, SlashContext)
-    # if triggered by message, add the 👀 reaction to confirm the message is being processed
-    if slash:
-        try:
-            await ctx.message.add_reaction("👀")
-        except Exception as e:
-            console.error("Failed to add reaction to say command: {e}")
     # try to send the message the user wants to. Save whether this was successful
     try:
         await channel.send(message)
