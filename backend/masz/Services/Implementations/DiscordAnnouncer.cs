@@ -37,7 +37,7 @@ namespace masz.Services
             User caseUser = await discord.FetchUserInfo(modCase.UserId, CacheBehavior.Default);
             GuildConfig guildConfig = await dbContext.SelectSpecificGuildConfig(modCase.GuildId);
 
-            if (announceDm && modCase.PunishmentType != PunishmentType.None && action != RestAction.Deleted)
+            if (announceDm && action != RestAction.Deleted)
             {
                 logger.LogInformation($"Sending dm notification");
 
