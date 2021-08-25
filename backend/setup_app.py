@@ -22,6 +22,7 @@ data["InternalConfig"]["DiscordClientId"] = os.getenv("DISCORD_OAUTH_CLIENT_ID")
 data["InternalConfig"]["DiscordClientSecret"] = os.getenv("DISCORD_OAUTH_CLIENT_SECRET")
 data["InternalConfig"]["ServiceHostName"] = os.getenv("META_SERVICE_NAME")
 data["InternalConfig"]["ServiceBaseUrl"] = os.getenv("META_SERVICE_BASE_URL")
+data["InternalConfig"]["DefaultLanguage"] = os.getenv("DEFAULT_LANGUAGE", "en")
 try:
     data["InternalConfig"]["SiteAdminDiscordUserIds"] = list(os.getenv("DISCORD_SITE_ADMINS").split(","))
 except:

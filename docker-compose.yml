@@ -41,6 +41,7 @@ services:
         - DISCORD_OAUTH_CLIENT_SECRET=${DISCORD_OAUTH_CLIENT_SECRET}
         - DISCORD_SITE_ADMINS=${DISCORD_SITE_ADMINS}
         - META_SERVICE_BASE_URL=${META_SERVICE_BASE_URL}
+        - DEFAULT_LANGUAGE=${DEFAULT_LANGUAGE}
     container_name: masz_backend
     depends_on:
         db:
