@@ -13,6 +13,6 @@ namespace masz.Models
         public string ServiceHostName { get; set; }
         public string ServiceBaseUrl { get; set; }
         public List<string> SiteAdminDiscordUserIds { get; set; }
-        public Language DefaultLanguage { get; set; }
+        public string DefaultLanguage { get; set; }
     }
 }

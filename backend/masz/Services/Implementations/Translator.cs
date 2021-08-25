@@ -27,7 +27,22 @@ namespace masz.Services
             this.logger = logger;
             this.config = config;
             this.context = context;
-            this.translation = Translation.Ctx(config.Value.DefaultLanguage);
+            Language useLanguage = Language.en;
+            switch (config.Value.DefaultLanguage) {
+                case "de":
+                    useLanguage = Language.de;
+                    break;
+                case "it":
+                    useLanguage = Language.it;
+                    break;
+                case "fr":
+                    useLanguage = Language.fr;
+                    break;
+                case "es":
+                    useLanguage = Language.es;
+                    break;
+            }
+            this.translation = Translation.Ctx(useLanguage);
         }
 
         public async Task SetContext(string guildId)
