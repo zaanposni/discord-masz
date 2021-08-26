@@ -38,7 +38,7 @@ with console.status("[bold green]Generating backend...") as status:
         global TRANSLATION_STATS
         if "description" not in node:
             for key, value in node.items():
-                generate_backend_node(value, prevKeys + key.capitalize())
+                generate_backend_node(value, prevKeys + key)
         else:
             console.log(f"Generating {prevKeys}...")
             TRANSLATION_NODES += 1
@@ -58,11 +58,11 @@ with console.status("[bold green]Generating backend...") as status:
             BACKEND_STRING += generate
 
     for key, value in BACKEND_DATA.items():
-        generate_backend_node(value, key.capitalize())
+        generate_backend_node(value, key)
     BACKEND_STRING += BACKEND_TEMPLATE_END
 
     with open(BACKEND_OUTPUT_PATH, "w", encoding="utf-8") as f:
-        f.write(BACKEND_STRING)
+        f.write(BACKEND_STRING.replace("\t", "    "))
 
 console.log("[bright_green]Generated backend[/bright_green].")
 
