@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using masz.Translations;
 
 namespace masz.Models
 {
@@ -18,6 +19,7 @@ namespace masz.Models
         public bool StrictModPermissionCheck { get; set; }
         public bool ExecuteWhoisOnJoin { get; set; }
         public bool PublishModeratorInfo { get; set; }
+        public Language PreferredLanguage { get; set; }
 
         public object Clone()
         {
@@ -31,7 +33,8 @@ namespace masz.Models
                 ModPublicNotificationWebhook = this.ModPublicNotificationWebhook,
                 ModInternalNotificationWebhook = this.ModInternalNotificationWebhook,
                 StrictModPermissionCheck = this.StrictModPermissionCheck,
-                ExecuteWhoisOnJoin = this.ExecuteWhoisOnJoin
+                ExecuteWhoisOnJoin = this.ExecuteWhoisOnJoin,
+                PreferredLanguage = this.PreferredLanguage
             };
         }
     }
