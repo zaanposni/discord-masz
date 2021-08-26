@@ -10,34 +10,38 @@ namespace masz.Translations
         public static Translation Ctx(Language preferredLanguage = Language.en) {
             return new Translation(preferredLanguage);
         }
+		public string Punishment() {
+			switch (this.preferredLanguage) {
+				case Language.en:
+					return "Punishment";
+				case Language.de:
+					return "Bestrafung";
+			}
+			return "Punishment";
+		}
+		public string Description() {
+			switch (this.preferredLanguage) {
+				case Language.en:
+					return "Description";
+				case Language.de:
+					return "Beschreibung";
+			}
+			return "Description";
+		}
+		public string NotificationModcaseCreatePublic(masz.Models.ModCase modCase) {
+			switch (this.preferredLanguage) {
+				case Language.en:
+					return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.";
+			}
+			return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.";
+		}
+		public string NotificationModcaseCreateInternal(masz.Models.ModCase modCase, masz.Dtos.DiscordAPIResponses.User moderator) {
+			switch (this.preferredLanguage) {
+				case Language.en:
+					return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
+			}
+			return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
+		}
 
-        public string Welcome(string name) {
-            switch (this.preferredLanguage) {
-                case Language.en:
-                    return $"Welcome {name}";
-                case Language.de:
-                    return $"Willkommen {name}";
-                case Language.fr:
-                    return $"Bienvenue {name}";
-                case Language.es:
-                    return $"Bienvenido {name}";
-                case Language.it:
-                    return $"Benvenuto {name}";
-            }
-            return $"Welcome {name}";
-        }
-        public string Zen(string name) {
-            switch (this.preferredLanguage) {
-                case Language.en:
-                    return $"{name} Anything added dilutes everything else.";
-                case Language.de:
-                    return $"{name} Alles hängt von allen anderen ab.";
-                case Language.fr:
-                    return $"{name} Tout est ajouté à tout.";
-                case Language.es:
-                    return $"{name} Cualquier cosa añadida desaparece de todo.";
-            }
-            return $"{name} Anything added dilutes everything else.";
-        }
     }
 }

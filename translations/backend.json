@@ -1,0 +1,33 @@
+{
+    "Punishment": {
+        "description": "The word 'punishment'",
+        "en": "Punishment",
+        "de": "Bestrafung"
+    },
+    "Description": {
+        "description": "The word 'description'",
+        "en": "Description",
+        "de": "Beschreibung"
+    },
+    "Notification" : {
+        "Modcase": {
+            "Create": {
+                "Public": {
+                    "description": "Webhook notification for modcase creation. This does not disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase"
+                    },
+                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created."
+                },
+                "Internal": {
+                    "description": "Webhook notification for modcase creation. This does disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase",
+                        "moderator": "masz.Dtos.DiscordAPIResponses.User"
+                    },
+                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator})."
+                }
+            }
+        }
+    }
+}
