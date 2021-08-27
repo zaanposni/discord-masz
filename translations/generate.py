@@ -49,11 +49,13 @@ with console.status("[bold green]Generating backend...") as status:
             for lang, translation in node.items():
                 if lang.lower() in ["description", "var_types"]:
                     continue
+                t = translation.replace('\n', '\\n')
                 TRANSLATION_STATS[lang.lower()] = TRANSLATION_STATS.get(lang.lower(), 0) + 1
                 generate += f"\t\t\t\tcase Language.{lang.lower()}:\n"
-                generate += f"\t\t\t\t\treturn {insert_interpolation}\"{translation}\";\n"
+                generate += f"\t\t\t\t\treturn {insert_interpolation}\"{t}\";\n"
             generate += "\t\t\t}\n"
-            generate += f"\t\t\treturn {insert_interpolation}\"{node['en']}\";\n"
+            t = node['en'].replace('\n', '\\n')
+            generate += f"\t\t\treturn {insert_interpolation}\"{t}\";\n"
             generate += "\t\t}\n"
             BACKEND_STRING += generate
 
