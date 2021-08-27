@@ -58,6 +58,7 @@ namespace masz.Controllers
             return Ok(new {
                 lastPing = stopwatch.ElapsedMilliseconds,
                 loginsInLast15Minutes = currentLogins,
+                defaultLanguage = this.config.Value.DefaultLanguage,
                 trackedInvites = await database.CountTrackedInvites(),
                 modCases = await database.CountAllModCases(),
                 guilds = await database.CountAllGuildConfigs(),

@@ -13,7 +13,7 @@ namespace masz.Helpers
             DiscordWebhookClient DCW;
             try {
                 DCW = new DiscordWebhookClient(webhookUrl: webhookUrl);
-            } 
+            }
             catch(Discord.Net.HttpException ex) {
                 System.Console.WriteLine($"Failed to initialize webhook.\n{ex.ToString()}");
                 return;

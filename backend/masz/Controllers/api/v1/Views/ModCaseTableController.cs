@@ -27,10 +27,12 @@ namespace masz.Controllers
     public class ModCaseTableController : SimpleCaseController
     {
         private readonly ILogger<ModCaseTableController> logger;
+        private readonly ITranslator translator;
 
-        public ModCaseTableController(ILogger<ModCaseTableController> logger, IServiceProvider serviceProvider) : base(serviceProvider, logger)
+        public ModCaseTableController(ILogger<ModCaseTableController> logger, ITranslator translator, IServiceProvider serviceProvider) : base(serviceProvider, logger)
         {
             this.logger = logger;
+            this.translator = translator;
         }
 
         [HttpGet("modcasetable")]
@@ -128,7 +130,7 @@ namespace masz.Controllers
                 table = table.Where(t =>
                     contains(t.ModCase.Title, search) ||
                     contains(t.ModCase.Description, search) ||
-                    contains(t.ModCase.GetPunishment(), search) ||
+                    contains(t.ModCase.GetPunishment(translator), search) ||
                     contains(t.ModCase.Username, search) ||
                     contains(t.ModCase.Discriminator, search) ||
                     contains(t.ModCase.Nickname, search) ||
