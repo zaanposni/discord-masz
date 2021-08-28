@@ -12,6 +12,8 @@ except ImportError:
     print("Please install the rich module.\npip install rich")
 
 
+print(Panel("\nWelcome to [red]MASZ[/red] :eyes: \nBe sure that you are in the root directory of this project when executing this script.\n", title="MASZ"))
+
 with open("./translations/supported_languages.json", "r", encoding="utf-8") as f:
     SUPPORTED_LANGUAGES = json.load(f)
 
@@ -23,8 +25,6 @@ ENV_FILE = {
     "MYSQL_ROOT_PASSWORD": "root"
 }
 
-print(Panel("\nWelcome to [red]MASZ[/red] :eyes: \nBe sure that you are in the root directory of this project when executing this script.\n", title="MASZ"))
-
 local = Prompt.ask(":question_mark: Do you want to deploy on a domain or on localhost as a test version", choices=["domain", "local"], default="domain").lower() == "local"
 if local:
     ENV_FILE["DEPLOY_MODE"] = "local"
@@ -34,7 +34,7 @@ if local:
     service_base_url = "http://127.0.0.1:5565"
 else:
     ENV_FILE["DEPLOY_MODE"] = "domain"
-    domain = Prompt.ask(":question_mark: Enter your (sub)domain", default="my.example.com")
+    domain = Prompt.ask(":question_mark: Enter your (sub)domain", default="masz.example.com")
     ENV_FILE["META_SERVICE_DOMAIN"] = domain
     ENV_FILE["META_SERVICE_BASE_URL"] = f"https://{domain}"
     ENV_FILE["META_SERVICE_NAME"] = domain
