@@ -8,9 +8,11 @@ namespace masz.Services
     {
         Task SetContext(string guildId);
         void SetContext(GuildConfig guildConfig);
-        void SetContext(Language guildConfig);
+        void SetContext(Language language);
         Translation T();
         Translation T(GuildConfig guildConfig);
-        Translation T(Language guildConfig);
+        Translation T(Language language);
+        Translation T(Language? language);
+        Language GetLanguage();
     }
 }

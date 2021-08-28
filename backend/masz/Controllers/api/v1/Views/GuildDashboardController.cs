@@ -1,22 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using masz.data;
 using masz.Dtos.DiscordAPIResponses;
-using masz.Dtos.ModCase;
 using masz.Models;
-using masz.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 
 namespace masz.Controllers
 {
@@ -26,13 +18,11 @@ namespace masz.Controllers
     public class GuildDashbordController : SimpleController
     {
         private readonly ILogger<GuildDashbordController> logger;
-        private readonly ITranslator translator;
         private static readonly DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-        public GuildDashbordController(ILogger<GuildDashbordController> logger, ITranslator translator, IServiceProvider serviceProvider) : base(serviceProvider)
+        public GuildDashbordController(ILogger<GuildDashbordController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
             this.logger = logger;
-            this.translator = translator;
         }
 
         [HttpGet("chart")]

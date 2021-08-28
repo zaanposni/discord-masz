@@ -27,12 +27,10 @@ namespace masz.Controllers
     public class ModCaseTableController : SimpleCaseController
     {
         private readonly ILogger<ModCaseTableController> logger;
-        private readonly ITranslator translator;
 
-        public ModCaseTableController(ILogger<ModCaseTableController> logger, ITranslator translator, IServiceProvider serviceProvider) : base(serviceProvider, logger)
+        public ModCaseTableController(ILogger<ModCaseTableController> logger, IServiceProvider serviceProvider) : base(serviceProvider, logger)
         {
             this.logger = logger;
-            this.translator = translator;
         }
 
         [HttpGet("modcasetable")]
