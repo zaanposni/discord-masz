@@ -4,10 +4,57 @@
         "en": "Punishment",
         "de": "Bestrafung"
     },
+    "PunishmentUntil": {
+        "description": "headline for a temporary punishment stating the timezone",
+        "var_types": {
+            "timezone": "string"
+        },
+        "en": "Punished until ({timezone})",
+        "de": "Bestrafung bis ({timezone})"
+    },
     "Description": {
         "description": "The word 'description'",
         "en": "Description",
         "de": "Beschreibung"
+    },
+    "Labels": {
+        "description": "The word 'labels'",
+        "en": "Labels",
+        "de": "Labels"
+    },
+    "Filename": {
+        "description": "The word 'filename'. The name of a file",
+        "en": "Filename",
+        "de": "Dateiname"
+    },
+    "Message": {
+        "description": "The word 'message'",
+        "en": "Message",
+        "de": "Nachricht"
+    },
+    "Enums": {
+        "Punishment": {
+            "Mute": {
+                "description": "The word 'mute'",
+                "en": "Mute",
+                "de": "Stummschaltung"
+            },
+            "Ban": {
+                "description": "The word 'ban'",
+                "en": "Ban",
+                "de": "Sperrung"
+            },
+            "Kick": {
+                "description": "The word 'kick'",
+                "en": "Kick",
+                "de": "Kick"
+            },
+            "Warn": {
+                "description": "The word 'warn'",
+                "en": "Warn",
+                "de": "Verwarnung"
+            }
+        }
     },
     "Notification" : {
         "Modcase": {
@@ -17,7 +64,8 @@
                     "var_types": {
                         "modCase": "masz.Models.ModCase"
                     },
-                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created."
+                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde erstellt."
                 },
                 "Internal": {
                     "description": "Webhook notification for modcase creation. This does disclose information about the moderator.",
@@ -25,8 +73,207 @@
                         "modCase": "masz.Models.ModCase",
                         "moderator": "masz.Dtos.DiscordAPIResponses.User"
                     },
-                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator})."
+                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstellt."
                 }
+            },
+            "Update": {
+                "Public": {
+                    "description": "Webhook notification for modcase update. This does not disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase"
+                    },
+                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated.",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde aktualisiert."
+                },
+                "Internal": {
+                    "description": "Webhook notification for modcase update. This does disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase",
+                        "moderator": "masz.Dtos.DiscordAPIResponses.User"
+                    },
+                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert."
+                }
+            },
+            "Delete": {
+                "Public": {
+                    "description": "Webhook notification for modcase deletion. This does not disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase"
+                    },
+                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted.",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde gelöscht."
+                },
+                "Internal": {
+                    "description": "Webhook notification for modcase deletion. This does disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase",
+                        "moderator": "masz.Dtos.DiscordAPIResponses.User"
+                    },
+                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) gelöscht."
+                }
+            },
+            "Comments": {
+                "Short": {
+                    "Create": {
+                        "description": "A modcase comment has been created.",
+                        "en": "Comment created",
+                        "de": "Kommentar erstellt"
+                    },
+                    "Update": {
+                        "description": "A modcase comment has been updated.",
+                        "en": "Comment updated",
+                        "de": "Kommentar aktualisiert"
+                    },
+                    "Delete": {
+                        "description": "A modcase comment has been deleted.",
+                        "en": "Comment deleted",
+                        "de": "Kommentar gelöscht"
+                    }
+                },
+                "Create": {
+                    "description": "A modcase comment has been created.",
+                    "var_types": {
+                        "actor": "masz.Dtos.DiscordAPIResponses.User"
+                    },
+                    "en" : "A **comment** has been created by <@{actor.Id}>.",
+                    "de": "Ein **Kommentar** wurde von <@{actor.Id}> erstellt."
+                },
+                "Update": {
+                    "description": "A modcase comment has been updated.",
+                    "var_types": {
+                        "actor": "masz.Dtos.DiscordAPIResponses.User"
+                    },
+                    "en" : "A **comment** has been updated by <@{actor.Id}>.",
+                    "de": "Ein **Kommentar** wurde von <@{actor.Id}> aktualisiert."
+                },
+                "Delete": {
+                    "description": "A modcase comment has been deleted.",
+                    "var_types": {
+                        "actor": "masz.Dtos.DiscordAPIResponses.User"
+                    },
+                    "en" : "A **comment** has been deleted by <@{actor.Id}>.",
+                    "de": "Ein **Kommentar** wurde von <@{actor.Id}> gelöscht."
+                }
+            },
+            "File": {
+                "Create": {
+                    "description": "Webhook notification for modcase file creation.",
+                    "var_types": {
+                        "actor": "masz.Dtos.DiscordAPIResponses.User"
+                    },
+                    "en" : "A **file** has been uploaded by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
+                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochgeladen."
+                },
+                "Delete": {
+                    "description": "Webhook notification for modcase file deletion.",
+                    "var_types": {
+                        "actor": "masz.Dtos.DiscordAPIResponses.User"
+                    },
+                    "en" : "A **file** has been deleted by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
+                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) gelöscht."
+                },
+                "Update": {
+                    "description": "Webhook notification for modcase file update.",
+                    "var_types": {
+                        "actor": "masz.Dtos.DiscordAPIResponses.User"
+                    },
+                    "en" : "A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
+                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert."
+                }
+            },
+            "DM": {
+                "Warn": {
+                    "description": "DM notification for warn modcase. This does not disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase",
+                        "guild": "masz.Dtos.DiscordAPIResponses.Guild",
+                        "botPrefix": "string",
+                        "serviceBaseUrl": "string"
+                    },
+                    "en" : "The moderators of guild `{guild.Name}` have warned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                    "de" : "Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                },
+                "Mute": {
+                    "Temp": {
+                        "description": "DM notification for temp mute modcase. This does not disclose information about the moderator.",
+                        "var_types": {
+                            "modCase": "masz.Models.ModCase",
+                            "guild": "masz.Dtos.DiscordAPIResponses.Guild",
+                            "botPrefix": "string",
+                            "serviceBaseUrl": "string",
+                            "timezone": "string"
+                        },
+                        "en" : "The moderators of guild `{guild.Name}` have temporarily muted you until `{modCase.PunishedUntil.Value.ToString(\"dd.MMMM.yyyy HH:mm:ss\")} ({timezone})`.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich temporär stummgeschalten bis `{modCase.PunishedUntil.Value.ToString(\"dd.MMMM.yyyy HH:mm:ss\")} ({timezone})`.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                    },
+                    "Perm": {
+                        "description": "DM notification for perm mute modcase. This does not disclose information about the moderator.",
+                        "var_types": {
+                            "modCase": "masz.Models.ModCase",
+                            "guild": "masz.Dtos.DiscordAPIResponses.Guild",
+                            "botPrefix": "string",
+                            "serviceBaseUrl": "string"
+                        },
+                        "en" : "The moderators of guild `{guild.Name}` have muted you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                    }
+                },
+                "Ban": {
+                    "Temp": {
+                        "description": "DM notification for temp ban modcase. This does not disclose information about the moderator.",
+                        "var_types": {
+                            "modCase": "masz.Models.ModCase",
+                            "guild": "masz.Dtos.DiscordAPIResponses.Guild",
+                            "botPrefix": "string",
+                            "serviceBaseUrl": "string",
+                            "timezone": "string"
+                        },
+                        "en" : "The moderators of guild `{guild.Name}` have temporarily banned you until `{modCase.PunishedUntil.Value.ToString(\"dd.MMMM.yyyy HH:mm:ss\")} ({timezone})`.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich temporär gebannt bis `{modCase.PunishedUntil.Value.ToString(\"dd.MMMM.yyyy HH:mm:ss\")} ({timezone})`.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                    },
+                    "Perm": {
+                        "description": "DM notification for perm ban modcase. This does not disclose information about the moderator.",
+                        "var_types": {
+                            "modCase": "masz.Models.ModCase",
+                            "guild": "masz.Dtos.DiscordAPIResponses.Guild",
+                            "botPrefix": "string",
+                            "serviceBaseUrl": "string"
+                        },
+                        "en" : "The moderators of guild `{guild.Name}` have banned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich gebannt.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                    }
+                },
+                "Kick": {
+                    "description": "DM notification for kick modcase. This does not disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase",
+                        "guild": "masz.Dtos.DiscordAPIResponses.Guild",
+                        "botPrefix": "string",
+                        "serviceBaseUrl": "string"
+                    },
+                    "en" : "The moderators of guild `{guild.Name}` have kicked you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                    "de" : "Die Moderatoren von `{guild.Name}` haben dich kickt.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                }
+            }
+        },
+        "Files": {
+            "Create": {
+                "description": "A file has been uploaded.",
+                "en": "File uploaded",
+                "de": "Datei hochgeladen"
+            },
+            "Delete": {
+                "description": "A file has been deleted.",
+                "en": "File deleted",
+                "de": "Datei gelöscht"
+            },
+            "Update": {
+                "description": "A file has been updated.",
+                "en": "File updated",
+                "de": "Datei aktualisiert"
             }
         }
     }

@@ -15,15 +15,19 @@ namespace masz.Services
         private readonly IDatabase dbContext;
         private readonly IOptions<InternalConfig> config;
         private readonly IDiscordAPIInterface discord;
+        private readonly INotificationEmbedCreator notificationEmbedCreator;
+        private readonly ITranslator translator;
 
         public DiscordAnnouncer() { }
 
-        public DiscordAnnouncer(ILogger<DiscordAnnouncer> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IDatabase context)
+        public DiscordAnnouncer(ILogger<DiscordAnnouncer> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IDatabase context, INotificationEmbedCreator notificationContentCreator, ITranslator translator)
         {
             this.logger = logger;
             this.config = config;
             this.discord = discord;
             this.dbContext = context;
+            this.notificationEmbedCreator = notificationContentCreator;
+            this.translator = translator;
         }
 
         // https://codereview.stackexchange.com/a/257121
@@ -42,33 +46,31 @@ namespace masz.Services
                 logger.LogInformation($"Sending dm notification");
 
                 Guild guild = await discord.FetchGuildInfo(modCase.GuildId, CacheBehavior.Default);
-                StringBuilder message = new StringBuilder();
-                message.Append($"The moderators of guild `{guild.Name}` have ");
+                string prefix = GetEnvironmentVariable("DISCORD_PREFIX", "$");
+                string message = string.Empty;
                 switch (modCase.PunishmentType) {
-                    case (PunishmentType.None):
-                        message.Append("warned");
-                        break;
                     case (PunishmentType.Mute):
-                        message.Append("muted");
+                        if (modCase.PunishedUntil.HasValue) {
+                            message = translator.T().NotificationModcaseDMMuteTemp(modCase, guild, prefix, config.Value.ServiceBaseUrl, "UTC");
+                        } else {
+                            message = translator.T().NotificationModcaseDMMutePerm(modCase, guild, prefix, config.Value.ServiceBaseUrl);
+                        }
                         break;
                     case (PunishmentType.Kick):
-                        message.Append("kicked");
+                        message = translator.T().NotificationModcaseDMKick(modCase, guild, prefix, config.Value.ServiceBaseUrl);
                         break;
                     case (PunishmentType.Ban):
-                        message.Append("banned");
+                        if (modCase.PunishedUntil.HasValue) {
+                            message = translator.T().NotificationModcaseDMBanTemp(modCase, guild, prefix, config.Value.ServiceBaseUrl, "UTC");
+                        } else {
+                            message = translator.T().NotificationModcaseDMBanPerm(modCase, guild, prefix, config.Value.ServiceBaseUrl);
+                        }
+                        break;
+                    default:
+                        message = translator.T().NotificationModcaseDMWarn(modCase, guild, prefix, config.Value.ServiceBaseUrl);
                         break;
                 }
-                message.Append(" you");
-                if (modCase.PunishedUntil != null) {
-                    message.Append(" until `");
-                    message.Append(modCase.PunishedUntil.Value.ToString("dd.MM.yyyy HH:mm:ss"));
-                    message.Append(" (UTC)`");
-                }
-                string prefix = GetEnvironmentVariable("BOT_PREFIX", "$");
-                message.Append($".\nUse `{prefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.");
-                message.Append($"\nFor more information or rehabilitation visit: {config.Value.ServiceBaseUrl}");
-
-                await discord.SendDmMessage(modCase.UserId, message.ToString());
+                await discord.SendDmMessage(modCase.UserId, message);
                 logger.LogInformation($"Sent dm notification");
             }
 
@@ -76,17 +78,17 @@ namespace masz.Services
             {
                 logger.LogInformation($"Sending public webhook to {guildConfig.ModPublicNotificationWebhook}.");
 
-                EmbedBuilder embed = NotificationEmbedCreator.CreatePublicCaseEmbed(modCase, action, actor, caseUser, config.Value.ServiceBaseUrl);
+                EmbedBuilder embed = await notificationEmbedCreator.CreateModcaseEmbed(modCase, action, actor, caseUser, false);
 
                 DiscordMessenger.SendEmbedWebhook(guildConfig.ModPublicNotificationWebhook, embed.Build(), $"<@{modCase.UserId}>");
                 logger.LogInformation("Sent public webhook.");
-            }            
+            }
 
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
                 logger.LogInformation($"Sending internal webhook to {guildConfig.ModInternalNotificationWebhook}.");
 
-                EmbedBuilder embed = NotificationEmbedCreator.CreateInternalCaseEmbed(modCase, action, actor, caseUser, config.Value.ServiceBaseUrl);
+                EmbedBuilder embed = await notificationEmbedCreator.CreateModcaseEmbed(modCase, action, actor, caseUser, true);
 
                 DiscordMessenger.SendEmbedWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build(), $"<@{modCase.UserId}>");
                 logger.LogInformation("Sent internal webhook.");
@@ -97,14 +99,15 @@ namespace masz.Services
         {
             logger.LogInformation($"Announcing comment {comment.Id} in case {comment.ModCase.CaseId} in guild {comment.ModCase.GuildId}.");
 
-            User discordUser = await discord.FetchUserInfo(comment.UserId, CacheBehavior.Default);
-            GuildConfig guildConfig = await dbContext.SelectSpecificGuildConfig(comment.ModCase.GuildId);         
+            GuildConfig guildConfig = await dbContext.SelectSpecificGuildConfig(comment.ModCase.GuildId);
 
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
                 logger.LogInformation($"Sending internal webhook to {guildConfig.ModInternalNotificationWebhook}.");
-                
-                EmbedBuilder embed = NotificationEmbedCreator.CreateInternalCommentEmbed(comment, action, actor, discordUser, config.Value.ServiceBaseUrl);
+
+                User discordUser = await discord.FetchUserInfo(comment.UserId, CacheBehavior.Default);
+
+                EmbedBuilder embed = await notificationEmbedCreator.CreateCommentEmbed(comment, action, actor);
 
                 DiscordMessenger.SendEmbedWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
                 logger.LogInformation("Sent internal webhook.");
@@ -120,8 +123,8 @@ namespace masz.Services
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
                 logger.LogInformation($"Sending internal webhook to {guildConfig.ModInternalNotificationWebhook}.");
-                
-                EmbedBuilder embed = NotificationEmbedCreator.CreateInternalFilesEmbed(filename, modCase, action, actor, config.Value.ServiceBaseUrl);
+
+                EmbedBuilder embed = await notificationEmbedCreator.CreateFileEmbed(filename, modCase, action, actor);
 
                 DiscordMessenger.SendEmbedWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
                 logger.LogInformation("Sent internal webhook.");
@@ -137,9 +140,10 @@ namespace masz.Services
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
                 logger.LogInformation($"Sending internal webhook to {guildConfig.ModInternalNotificationWebhook}.");
-                
-                User user = await this.discord.FetchUserInfo(userNote.UserId, CacheBehavior.OnlyCache);
-                EmbedBuilder embed = NotificationEmbedCreator.CreateInternalUserNoteEmbed(userNote, user, actor, action, config.Value.ServiceBaseUrl);
+
+                User user = await this.discord.FetchUserInfo(userNote.UserId, CacheBehavior.Default);
+
+                EmbedBuilder embed = await notificationEmbedCreator.CreateUserNoteEmbed(userNote, action, actor, user);
 
                 DiscordMessenger.SendEmbedWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
                 logger.LogInformation("Sent internal webhook.");
@@ -155,8 +159,8 @@ namespace masz.Services
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
                 logger.LogInformation($"Sending internal webhook to {guildConfig.ModInternalNotificationWebhook}.");
-                
-                EmbedBuilder embed = NotificationEmbedCreator.CreateInternalUserMappingEmbed(userMapping, actor, action, config.Value.ServiceBaseUrl);
+
+                EmbedBuilder embed = await notificationEmbedCreator.CreateUserMapEmbed(userMapping, action, actor);
 
                 DiscordMessenger.SendEmbedWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
                 logger.LogInformation("Sent internal webhook.");

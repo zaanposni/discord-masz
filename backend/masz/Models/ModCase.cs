@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.Serialization;
-using masz.Dtos.ModCase;
+using masz.Services;
 
 namespace masz.Models
 {
@@ -84,16 +82,18 @@ namespace masz.Models
             }
         }
 
-        public string GetPunishment() 
+        public string GetPunishment(ITranslator translator)
         {
-            if (this.PunishmentType == PunishmentType.None) {
-                return "Warn";
+            switch (this.PunishmentType) {
+                case PunishmentType.Mute:
+                    return translator.T().EnumsPunishmentMute();
+                case PunishmentType.Kick:
+                    return translator.T().EnumsPunishmentKick();
+                case PunishmentType.Ban:
+                    return translator.T().EnumsPunishmentBan();
+                default:
+                    return translator.T().EnumsPunishmentWarn();
             }
-            string punishment = this.PunishmentType.ToString();
-            if (this.PunishedUntil.HasValue) {
-                punishment = "Temp" + punishment;
-            }
-            return punishment;
         }
     }
 }

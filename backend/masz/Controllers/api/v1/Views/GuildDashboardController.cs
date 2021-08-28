@@ -26,11 +26,13 @@ namespace masz.Controllers
     public class GuildDashbordController : SimpleController
     {
         private readonly ILogger<GuildDashbordController> logger;
+        private readonly ITranslator translator;
         private static readonly DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-        public GuildDashbordController(ILogger<GuildDashbordController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public GuildDashbordController(ILogger<GuildDashbordController> logger, ITranslator translator, IServiceProvider serviceProvider) : base(serviceProvider)
         {
             this.logger = logger;
+            this.translator = translator;
         }
 
         [HttpGet("chart")]
@@ -222,7 +224,7 @@ namespace masz.Controllers
         private bool contains(ModCase obj, string search) {
             return contains(obj.Title, search) ||
                     contains(obj.Description, search) ||
-                    contains(obj.GetPunishment(), search) ||
+                    contains(obj.GetPunishment(translator), search) ||
                     contains(obj.Username, search) ||
                     contains(obj.Discriminator, search) ||
                     contains(obj.Nickname, search) ||
