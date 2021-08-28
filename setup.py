@@ -48,7 +48,6 @@ ENV_FILE["DISCORD_OAUTH_CLIENT_SECRET"] = Prompt.ask(":question_mark: Enter your
 
 ENV_FILE["BOT_PREFIX"] = Prompt.ask(":question_mark: Enter your bot prefix", default="$")
 
-
 print(":question_mark: Enter the discord id of users that should be site admins.\n[bright_black]It is recommended to be just one. You can enter as many as you want.[/bright_black]")
 admins = []
 while True:
