@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { APIEnum } from 'src/app/models/APIEnum';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { DiscordUser } from 'src/app/models/DiscordUser';
 import { ModCase } from 'src/app/models/ModCase';
@@ -33,16 +34,16 @@ export class ModcaseEditComponent implements OnInit {
   public caseLabels: string[] = [];
 
   public savingCase: boolean = false;
-  
+
   public memberForm = new FormControl();
   public filteredMembers!: Observable<DiscordUser[]>;
-  
+
   public guildId!: string;
   public caseId!: string;
   public members: ContentLoading<DiscordUser[]> = { loading: true, content: [] };
   public oldCase: ContentLoading<ModCase> = { loading: true, content: undefined };
-  public displayPunishmentTypeOptions = PunishmentTypeOptions;
-  
+  public punishmentOptions: ContentLoading<APIEnum[]> = { loading: true, content: [] };
+
   constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -101,10 +102,18 @@ export class ModcaseEditComponent implements OnInit {
       this.oldCase.loading = false;
     });
 
+    this.api.getSimpleData(`/enums/punishment`).subscribe((data) => {
+      this.punishmentOptions.content = data;
+      this.punishmentOptions.loading = false;
+    }, () => {
+      this.punishmentOptions.loading = false;
+      this.toastr.error("Failed to load punishment enum.");
+    });
+
     let params = new HttpParams()
           .set('partial', 'true');
     this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`, true, params).subscribe((data) => {
-      this.members.content = data;      
+      this.members.content = data;
       this.members.loading = false;
     }, () => {
       this.toastr.error("Failed to load member list.");
@@ -157,7 +166,7 @@ export class ModcaseEditComponent implements OnInit {
       .set('handlePunishment', this.punishmentFormGroup.value.handlePunishment ? 'true' : 'false')
       .set('announceDm', this.punishmentFormGroup.value.dmNotification ? 'true' : 'false');
 
-      this.api.putSimpleData(`/modcases/${this.guildId}/${this.caseId}`, data, params, true, true).subscribe((data) => {     
+      this.api.putSimpleData(`/modcases/${this.guildId}/${this.caseId}`, data, params, true, true).subscribe((data) => {
         const caseId = data.caseId;
         this.router.navigate(['guilds', this.guildId, 'cases', caseId]);
         this.savingCase = false;

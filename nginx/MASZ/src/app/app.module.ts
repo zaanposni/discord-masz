@@ -96,6 +96,7 @@ import { AdminlistComponent } from './components/api/adminstats/adminlist/adminl
 import { StatcardComponent } from './components/api/adminstats/statcard/statcard.component';
 import { GuildIconComponent } from './components/basic/guild-icon/guild-icon.component';
 import { OauthFailedComponent } from './components/errors/oauth-failed/oauth-failed.component';
+import { EnumManagerService } from './services/enum-manager.service';
 
 @NgModule({
   declarations: [
@@ -208,6 +209,7 @@ import { OauthFailedComponent } from './components/errors/oauth-failed/oauth-fai
       multi: true
     },
     AuthGuard,
+    EnumManagerService,
     ApiService
   ],
   bootstrap: [AppComponent]

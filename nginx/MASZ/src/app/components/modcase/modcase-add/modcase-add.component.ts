@@ -18,6 +18,7 @@ import { TemplateCreateDialogComponent } from '../../dialogs/template-create-dia
 import { MatDialog } from '@angular/material/dialog';
 import { AppUser } from 'src/app/models/AppUser';
 import { PunishmentType, PunishmentTypeOptions } from 'src/app/models/PunishmentType';
+import { APIEnum } from 'src/app/models/APIEnum';
 
 @Component({
   selector: 'app-modcase-add',
@@ -43,14 +44,14 @@ export class ModcaseAddComponent implements OnInit {
   public filteredMembers!: Observable<DiscordUser[]>;
 
   public templateSearch: string = "";
-  
+
   public savingCase: boolean = false;
 
   public guildId!: string;
   public members: ContentLoading<DiscordUser[]> = { loading: true, content: [] };
   public templates: ContentLoading<TemplateView[]> = { loading: true, content: [] };
   public allTemplates: TemplateView[] = [];
-  public displayPunishmentTypeOptions = PunishmentTypeOptions;
+  public punishmentOptions: ContentLoading<APIEnum[]> = { loading: true, content: [] };
   public currentUser!: AppUser;
   constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { }
 
@@ -115,8 +116,7 @@ export class ModcaseAddComponent implements OnInit {
     fileInput .onchange = () => {
       for (let index = 0; index < fileInput .files.length; index++)
       {
-        const file = fileInput .files[index];        
-        
+        const file = fileInput.files[index];
         this.filesToUpload.push({ data: file, inProgress: false, progress: 0});
       }
     };
@@ -145,16 +145,26 @@ export class ModcaseAddComponent implements OnInit {
   reload() {
     this.members = { loading: true, content: [] };
     this.templates = { loading: true, content: [] };
+    this.punishmentOptions = { loading: true, content: [] };
     this.templateSearch = "";
     this.allTemplates = [];
 
     const params = new HttpParams()
           .set('partial', 'true');
     this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`, true, params).subscribe((data) => {
-      this.members.content = data;      
+      this.members.content = data;
       this.members.loading = false;
     }, () => {
+      this.members.loading = false;
       this.toastr.error("Failed to load member list.");
+    });
+
+    this.api.getSimpleData(`/enums/punishment`).subscribe((data) => {
+      this.punishmentOptions.content = data;
+      this.punishmentOptions.loading = false;
+    }, () => {
+      this.punishmentOptions.loading = false;
+      this.toastr.error("Failed to load punishment enum.");
     });
 
     this.reloadTemplates();
@@ -209,8 +219,8 @@ export class ModcaseAddComponent implements OnInit {
       .set('sendnotification', this.optionsFormGroup.value.sendNotification ? 'true' : 'false')
       .set('handlePunishment', this.punishmentFormGroup.value.handlePunishment ? 'true' : 'false')
       .set('announceDm', this.punishmentFormGroup.value.dmNotification ? 'true' : 'false');
-    
-    this.api.postSimpleData(`/modcases/${this.guildId}`, data, params, true, true).subscribe((data) => {     
+
+    this.api.postSimpleData(`/modcases/${this.guildId}`, data, params, true, true).subscribe((data) => {
       const caseId = data.caseId;
       this.router.navigate(['guilds', this.guildId, 'cases', caseId], { queryParams: { 'reloadfiles': this.filesToUpload.length ?? '0' } });
       this.savingCase = false;
