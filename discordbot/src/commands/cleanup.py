@@ -2,7 +2,7 @@ from discord import TextChannel
 from discord.errors import Forbidden
 from discord.ext.commands import Context
 from discord_slash import SlashContext
-from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
+from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType, create_choice
 
 
 from helpers import console
@@ -88,7 +88,13 @@ cleanup = CommandDefinition(
     long_help="Cleanup specific data from the server and/or channel.\nValid modes:\n```\nattachments - delete all messages with files\nbot - delete all messages sent by a bot\ninvites - delete all invites of the current guild\nmessages - delete all messages\nreactions - delete all reactions to messages\n```",
     usage="cleanup <mode> [channel=current] [count=100]",
     options=[
-        create_option("mode", "which data you want to delete.", SlashCommandOptionType.STRING, True),
+        create_option("mode", "which data you want to delete.", SlashCommandOptionType.STRING, True, choices=[
+            create_choice("attachments", "Attachments"),
+            create_choice("bot", "Bots"),
+            create_choice("invites", "Invites"),
+            create_choice("messages", "Messages"),
+            create_choice("reactions", "Reactions")
+        ]),
         create_option("channel", "where to delete, defaults to current.", SlashCommandOptionType.CHANNEL, False),
         create_option("count", "how many messages to scan for your mode.", SlashCommandOptionType.INTEGER, False),
     ],
