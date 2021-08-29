@@ -3,9 +3,12 @@ from datetime import datetime
 from discord.errors import NotFound
 from discord import Embed
 from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
+from discord_slash import SlashContext
 
 from data import get_invites_by_guild_and_code
 from .infrastructure import record_usage, CommandDefinition, registered_guild_and_admin_or_mod_only
+from helpers import console
+
 
 async def _track(ctx, code):
     await registered_guild_and_admin_or_mod_only(ctx)
@@ -14,6 +17,12 @@ async def _track(ctx, code):
         full_code = f"https://discord.gg/{code}"
     else:
         full_code = code
+
+    if isinstance(ctx, SlashContext):
+        try:
+            await ctx.defer()
+        except Exception as e:  # will only work in slash context
+            console.error("Failed to defer slash track command: {e}")
 
     invites = await get_invites_by_guild_and_code(ctx.guild.id, full_code)
     if not invites:
@@ -62,6 +71,6 @@ track = CommandDefinition(
     long_help="Track an invite in your guild, its creator and its users.\nEither enter the invite code or the url in the format `https://discord.gg/<code>`.",
     usage="track <code|url>",
     options=[
-        create_option("code", "the invite code or link.", SlashCommandOptionType.STRING, False)
+        create_option("code", "the invite code or link.", SlashCommandOptionType.STRING, True)
     ]
 )
