@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 from discord import Embed
 
@@ -23,14 +24,14 @@ async def _features(ctx):
         console.critical(f"Failed to get guildconfig: {e}")
         await ctx.send("Failed to fetch data from database.")
         return
-    
+
     if cfg is None:
         if os.getenv('META_SERVICE_BASE_URL', ''):
             await ctx.send(f"MASZ is not registered on this guild.\nA siteadmin can register this guild at: {os.getenv('META_SERVICE_BASE_URL', '')}/guilds/new?guildid={ctx.guild.id}")
         else:
             await ctx.send(f"MASZ is not registered on this guild.")
         return
-    
+
     internal_webhook_defined = bool(cfg["ModInternalNotificationWebhook"])
     muted_role_defined = cfg["MutedRoles"]
     muted_roles = []
@@ -56,6 +57,7 @@ async def _features(ctx):
     manage_guild = permissions.manage_guild
 
     embed = Embed(title="Features")
+    embed.timestamp = datetime.now()
     missing_permissions = f"\n- {CHECK if kick else X_CHECK} Kick permission {'not' if not kick else ''} granted" \
                           f"\n- {CHECK if ban else X_CHECK} Ban permission {'not' if not ban else ''} granted" \
                           f"\n- {CHECK if mute else X_CHECK} Manage role permission {'not' if not mute else ''} granted"
@@ -72,12 +74,12 @@ async def _features(ctx):
             missing_permissions += f"\n- {X_CHECK} Muted role defined but invalid"
 
     embed.add_field(
-        name = f"{CHECK if kick and ban and mute and muted_roles and muted_role_managable else X_CHECK} Punishment feature",
-        value = f"Register and manage punishments (e.g. tempbans, mutes, etc.).{missing_permissions if not (kick and ban and mute and muted_roles and muted_role_managable) else ''}",
+        name = f"{CHECK if kick and ban and mute and muted_roles and muted_role_managable else X_CHECK} Punishment execution",
+        value = f"Let MASZ handle punishments (e.g. tempbans, mutes, etc.).{missing_permissions if not (kick and ban and mute and muted_roles and muted_role_managable) else ''}",
         inline = False
     )
     embed.add_field(
-        name = f"{CHECK if ban else X_CHECK} Unban feature",
+        name = f"{CHECK if ban else X_CHECK} Unban requests",
         value = "Allows banned members to see their cases and comment on it for unban requests.\n" +
                 f"{'Grant this bot the ban permission to use this feature.' if not ban else ''}",
         inline = False
