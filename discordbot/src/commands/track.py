@@ -7,6 +7,8 @@ from discord_slash import SlashContext
 
 from data import get_invites_by_guild_and_code
 from .infrastructure import record_usage, CommandDefinition, registered_guild_and_admin_or_mod_only
+from helpers import console
+
 
 async def _track(ctx, code):
     await registered_guild_and_admin_or_mod_only(ctx)
@@ -21,7 +23,6 @@ async def _track(ctx, code):
             await ctx.defer()
         except Exception as e:  # will only work in slash context
             console.error("Failed to defer slash track command: {e}")
-
 
     invites = await get_invites_by_guild_and_code(ctx.guild.id, full_code)
     if not invites:
