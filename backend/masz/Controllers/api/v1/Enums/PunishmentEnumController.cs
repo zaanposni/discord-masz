@@ -14,9 +14,9 @@ namespace masz.Controllers
     [Route("api/v1/enums/")]
     public class PunishmentEnumController : SimpleController
     {
-        private readonly ILogger<StatusController> logger;
+        private readonly ILogger<PunishmentEnumController> logger;
 
-        public PunishmentEnumController(ILogger<StatusController> logger, IOptions<InternalConfig> config, IServiceProvider serviceProvider) : base(serviceProvider)
+        public PunishmentEnumController(ILogger<PunishmentEnumController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
             this.logger = logger;
         }

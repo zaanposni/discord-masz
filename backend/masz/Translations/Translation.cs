@@ -100,6 +100,69 @@ namespace masz.Translations
             }
             return "Warn";
         }
+        public string EnumsViewPermissionSelf() {
+            switch (this.preferredLanguage) {
+                case Language.en:
+                    return "Self";
+                case Language.de:
+                    return "Privat";
+            }
+            return "Self";
+        }
+        public string EnumsViewPermissionGuild() {
+            switch (this.preferredLanguage) {
+                case Language.en:
+                    return "Guild";
+                case Language.de:
+                    return "Gilde";
+            }
+            return "Guild";
+        }
+        public string EnumsViewPermissionGlobal() {
+            switch (this.preferredLanguage) {
+                case Language.en:
+                    return "Global";
+                case Language.de:
+                    return "Global";
+            }
+            return "Global";
+        }
+        public string EnumsAutoModActionsNone() {
+            switch (this.preferredLanguage) {
+                case Language.en:
+                    return "None";
+                case Language.de:
+                    return "Keine Aktion";
+            }
+            return "None";
+        }
+        public string EnumsAutoModActionsContentDeleted() {
+            switch (this.preferredLanguage) {
+                case Language.en:
+                    return "Content deleted";
+                case Language.de:
+                    return "Nachricht gelöscht";
+            }
+            return "Content deleted";
+        }
+        public string EnumsAutoModActionsCaseCreated() {
+            switch (this.preferredLanguage) {
+                case Language.en:
+                    return "Case created";
+                case Language.de:
+                    return "Vorfall erstellt";
+            }
+            return "Case created";
+        }
+        public string EnumsAutoModActionsContentDeletedAndCaseCreated() {
+            switch (this.preferredLanguage) {
+                case Language.en:
+                    return "Content deleted and case created";
+                case Language.de:
+                    return "Nachricht gelöscht und Vorfall erstellt";
+            }
+            return "Content deleted and case created";
+        }
         public string NotificationModcaseCreatePublic(masz.Models.ModCase modCase) {
             switch (this.preferredLanguage) {
                 case Language.en:
