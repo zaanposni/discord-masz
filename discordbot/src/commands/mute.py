@@ -4,7 +4,7 @@ import requests
 from discord import Member
 from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
 
-from .infrastructure import record_usage, registered_guild_with_muted_role_and_admin_or_mod_only, CommandDefinition
+from .infrastructure import record_usage, registered_guild_with_muted_role_and_admin_or_mod_only, CommandDefinition, defer_cmd
 
 
 headers = {
@@ -14,9 +14,10 @@ headers = {
 async def _mute(ctx, member: Member, *, reason):
     await registered_guild_with_muted_role_and_admin_or_mod_only(ctx)
     record_usage(ctx)
+    await defer_cmd(ctx)
     if not reason:
         return await ctx.send("Please provide a reason.")
-    
+
     modCase = {
         "title": reason[:99],
         "description": reason,

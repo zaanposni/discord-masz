@@ -75,7 +75,8 @@ export class AutomodConfigComponent implements OnInit {
       title: 'Spam',
       description: 'A user on your guild sends too many messages in a timespan.',
       showLimitField: true,
-      showTimeLimitField: true
+      showTimeLimitField: true,
+      timeLimitFieldMessage: 'Time limit (seconds)'
     },
 
   ];
@@ -86,7 +87,7 @@ export class AutomodConfigComponent implements OnInit {
   public initialConfigs!: Promise<AutomodConfig[]>;
 
   constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute) { }
-  
+
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
     this.reload();

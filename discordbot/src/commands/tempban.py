@@ -6,7 +6,7 @@ from discord import Member
 from discord_slash.utils.manage_commands import create_option, SlashCommandOptionType
 
 from helpers import parse_delta
-from .infrastructure import record_usage, registered_guild_and_admin_or_mod_only, CommandDefinition
+from .infrastructure import record_usage, registered_guild_and_admin_or_mod_only, CommandDefinition, defer_cmd
 
 
 headers = {
@@ -16,15 +16,16 @@ headers = {
 async def _tempban(ctx, member: Member, duration, *, reason):#
     await registered_guild_and_admin_or_mod_only(ctx)
     record_usage(ctx)
+    await defer_cmd(ctx)
     if not reason:
         await ctx.send("Please provide a reason.")
         return
-    
+
     time_range = parse_delta(duration)
     if not time_range:
         time_range = timedelta(hours=1)
     punished_until = datetime.utcnow() + time_range
-    
+
     modCase = {
         "title": reason[:99],
         "description": reason,

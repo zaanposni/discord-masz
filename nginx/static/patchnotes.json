@@ -1,5 +1,51 @@
 [
   {
+    "title": "Version 1.13.1",
+    "version": "v1.13.1",
+    "released_at": "2021-08-29",
+    "contributors": [
+      {
+        "name": "FlixProd",
+        "link": "https://github.com/FlixProd",
+        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+      }
+    ],
+    "breaking": [
+      {
+        "title": "Spam automod uses seconds.",
+        "description": "The spam automoderation now uses seconds instead of minutes. Please change your current configuration if needed."
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Cleanup mode choices.",
+        "description": "Added choices to cleanup command to improve UX.",
+        "icon": "code",
+        "link": "https://github.com/zaanposni/discord-masz/pull/399"
+      },
+      {
+        "title": "Fixed errors in track command.",
+        "description": "Command does not longer fail on valid unused invite.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/397"
+      },
+      {
+        "title": "Added error message to report command.",
+        "description": "The report command will now respond with an error if there is no internal webhook configured."
+      },
+      {
+        "title": "Defering commands.",
+        "description": "Slash commands will now be defered if they take too long to avoid errors."
+      }
+    ],
+    "technical": [
+      {
+        "title": "Security warnings.",
+        "description": "Adjusted a nuget dependency to fix vulnerabilities."
+      }
+    ]
+  },
+  {
     "title": "Version 1.13",
     "version": "v1.13",
     "released_at": "2021-08-21",
