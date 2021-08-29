@@ -6,7 +6,7 @@ from discord_slash.utils.manage_commands import create_option, SlashCommandOptio
 
 
 from helpers import console
-from .infrastructure import record_usage, CommandDefinition, registered_guild_and_admin_or_mod_only
+from .infrastructure import record_usage, CommandDefinition, registered_guild_and_admin_or_mod_only, defer_cmd
 
 
 def is_bot(m):
@@ -70,11 +70,7 @@ async def _cleanup(ctx, mode: str, channel: TextChannel = None, count: int = 100
 
 
 async def add_loading_reaction(ctx):
-    if isinstance(ctx, SlashContext):
-        try:
-            await ctx.defer()
-        except Exception as e:  # will only work in slash context
-            console.error("Failed to defer slash cleanup command: {e}")
+    await defer_cmd(ctx)
     if isinstance(ctx, Context):
         try:
             await ctx.message.add_reaction("👀")

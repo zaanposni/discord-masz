@@ -19,9 +19,17 @@
       },
       {
         "title": "Fixed errors in track command.",
-        "description": "Fixed an error if the command takes too long. Command does not longer fail on valid unused invite.",
+        "description": "Command does not longer fail on valid unused invite.",
         "icon": "link",
         "link": "https://github.com/zaanposni/discord-masz/issues/397"
+      },
+      {
+        "title": "Added error message to report command.",
+        "description": "The report command will now respond with an error if there is no internal webhook configured."
+      },
+      {
+        "title": "Defering commands.",
+        "description": "Slash commands will now be defered if they take too long to avoid errors."
       }
     ],
     "technical": [
