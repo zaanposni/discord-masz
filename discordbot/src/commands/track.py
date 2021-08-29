@@ -70,6 +70,6 @@ track = CommandDefinition(
     long_help="Track an invite in your guild, its creator and its users.\nEither enter the invite code or the url in the format `https://discord.gg/<code>`.",
     usage="track <code|url>",
     options=[
-        create_option("code", "the invite code or link.", SlashCommandOptionType.STRING, False)
+        create_option("code", "the invite code or link.", SlashCommandOptionType.STRING, True)
     ]
 )
