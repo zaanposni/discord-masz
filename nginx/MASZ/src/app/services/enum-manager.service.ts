@@ -24,7 +24,8 @@ export class EnumManagerService {
 
   renewAllEnums() {
     for (let key in this.cachedEnums) {
-      this.getEnum(key, true);
+      this.cachedEnums[key].complete();
+      delete this.cachedEnums[key];
     }
   }
 }
