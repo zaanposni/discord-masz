@@ -11,18 +11,18 @@ def check_message(msg: Message, config):
 
     # read config
     allowed = config["Limit"]
-    allowed_since = config["TimeLimitMinutes"]
+    allowed_since = config["TimeLimitMinutes"]  # for this automod it is handled in seconds
     if allowed is None or allowed_since is None:
         return False
 
     # set guild config in msg_board if it doesn't exist
     if msg.guild.id not in msg_board:
         msg_board[msg.guild.id] = {}
-    
+
     ts = time()  # current timestamp
 
     # filter out messages older thaan TimeLimitMinutes
-    delts = ts - allowed_since * 60  # delts is the time minus the TimeLimitMinutes => the time messages older than should be deleted
+    delts = ts - allowed_since  # delts is the time minus the TimeLimitMinutes => the time messages older than should be deleted
     for user in list(msg_board[msg.guild.id].keys()):
         new = [j for j in msg_board[msg.guild.id][user] if j > delts]
         if new:
