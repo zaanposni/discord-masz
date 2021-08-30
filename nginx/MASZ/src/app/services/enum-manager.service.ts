@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
+import { APIEnumTypes } from '../models/APIEmumTypes';
 import { APIEnum } from '../models/APIEnum';
 import { ApiService } from './api.service';
 
@@ -12,7 +13,7 @@ export class EnumManagerService {
 
   constructor(private api: ApiService) { }
 
-  public getEnum(enumName: string, renew: boolean = false) {
+  public getEnum(enumName: APIEnumTypes, renew: boolean = false) {
     if ((! (enumName in this.cachedEnums)) || renew) {
       this.cachedEnums[enumName] = new ReplaySubject<APIEnum[]>(1);
       this.api.getSimpleData(`/enums/${enumName}`).subscribe(data => {

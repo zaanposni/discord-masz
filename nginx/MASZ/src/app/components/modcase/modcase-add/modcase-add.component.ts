@@ -19,6 +19,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AppUser } from 'src/app/models/AppUser';
 import { PunishmentType, PunishmentTypeOptions } from 'src/app/models/PunishmentType';
 import { APIEnum } from 'src/app/models/APIEnum';
+import { EnumManagerService } from 'src/app/services/enum-manager.service';
+import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
 
 @Component({
   selector: 'app-modcase-add',
@@ -53,7 +55,7 @@ export class ModcaseAddComponent implements OnInit {
   public allTemplates: TemplateView[] = [];
   public punishmentOptions: ContentLoading<APIEnum[]> = { loading: true, content: [] };
   public currentUser!: AppUser;
-  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { }
+  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog, private enumManager: EnumManagerService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -159,7 +161,7 @@ export class ModcaseAddComponent implements OnInit {
       this.toastr.error("Failed to load member list.");
     });
 
-    this.api.getSimpleData(`/enums/punishment`).subscribe((data) => {
+    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe((data) => {
       this.punishmentOptions.content = data;
       this.punishmentOptions.loading = false;
     }, () => {

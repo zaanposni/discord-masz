@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
 import { APIEnum } from 'src/app/models/APIEnum';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { convertModcaseToPunishmentString } from 'src/app/models/ModCase';
@@ -22,7 +23,7 @@ export class ModcaseCardCompactComponent implements OnInit {
   constructor(private enumManager: EnumManagerService) { }
 
   ngOnInit(): void {
-    this.enumManager.getEnum('punishment').subscribe((data) => {
+    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe((data) => {
       this.punishments.loading = false;
       this.punishments.content = data;
       this.punishment = convertModcaseToPunishmentString(this.entry?.modCase, this.punishments.content);

@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
 import { APIEnum } from 'src/app/models/APIEnum';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { DiscordUser } from 'src/app/models/DiscordUser';
@@ -16,6 +17,7 @@ import { ModCase } from 'src/app/models/ModCase';
 import { PunishmentType, PunishmentTypeOptions } from 'src/app/models/PunishmentType';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { EnumManagerService } from 'src/app/services/enum-manager.service';
 
 @Component({
   selector: 'app-modcase-edit',
@@ -44,7 +46,7 @@ export class ModcaseEditComponent implements OnInit {
   public oldCase: ContentLoading<ModCase> = { loading: true, content: undefined };
   public punishmentOptions: ContentLoading<APIEnum[]> = { loading: true, content: [] };
 
-  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { }
+  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog, private enumManager: EnumManagerService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -102,7 +104,7 @@ export class ModcaseEditComponent implements OnInit {
       this.oldCase.loading = false;
     });
 
-    this.api.getSimpleData(`/enums/punishment`).subscribe((data) => {
+    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe((data) => {
       this.punishmentOptions.content = data;
       this.punishmentOptions.loading = false;
     }, () => {

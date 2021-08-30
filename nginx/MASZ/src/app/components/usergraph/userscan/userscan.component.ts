@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
 import { APIEnum } from 'src/app/models/APIEnum';
 import { AutoModerationEvent } from 'src/app/models/AutoModerationEvent';
 import { AutoModerationType } from 'src/app/models/AutoModerationType';
@@ -67,7 +68,7 @@ export class UserscanComponent implements OnInit {
 
   reloadPunishmentEnum() {
     this.punishments.loading = true;
-    this.enumManager.getEnum("punishment").subscribe((data: APIEnum[]) => {
+    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe((data: APIEnum[]) => {
       this.punishments.loading = false;
       this.punishments.content = data;
     }, () => {

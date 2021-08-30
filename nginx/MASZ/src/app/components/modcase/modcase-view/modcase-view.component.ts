@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
 import { APIEnum } from 'src/app/models/APIEnum';
 import { AppUser } from 'src/app/models/AppUser';
 import { CaseComment } from 'src/app/models/CaseComment';
@@ -78,7 +79,7 @@ export class ModcaseViewComponent implements OnInit {
 
   private reloadPunishmentEnum() {
     this.punishments = { loading: true, content: [] };
-    this.enumManager.getEnum('punishment').subscribe((data) => {
+    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe((data) => {
       this.punishments.loading = false;
       this.punishments.content = data;
       this.punishment = convertModcaseToPunishmentString(this.modCase.content?.modCase, this.punishments?.content);

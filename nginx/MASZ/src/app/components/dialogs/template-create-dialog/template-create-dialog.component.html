@@ -7,7 +7,7 @@
     <mat-form-field class="mb-2">
         <mat-label>Visibility</mat-label>
         <mat-select [(ngModel)]="settings.viewPermission">
-            <mat-option *ngFor="let o of templateViewPermissionOptions(); let i = index" [value]="i">{{o}}</mat-option>
+            <mat-option *ngFor="let o of templateViewPermissionOptions.content" [value]="o.key">{{ o.value }}</mat-option>
         </mat-select>
     </mat-form-field>
 </div>
