@@ -17,7 +17,7 @@ import { TemplateSettings, TemplateViewPermission } from 'src/app/models/Templat
 import { TemplateCreateDialogComponent } from '../../dialogs/template-create-dialog/template-create-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AppUser } from 'src/app/models/AppUser';
-import { PunishmentType, PunishmentTypeOptions } from 'src/app/models/PunishmentType';
+import { PunishmentType } from 'src/app/models/PunishmentType';
 import { APIEnum } from 'src/app/models/APIEnum';
 import { EnumManagerService } from 'src/app/services/enum-manager.service';
 import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
