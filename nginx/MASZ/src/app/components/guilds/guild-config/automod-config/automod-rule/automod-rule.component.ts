@@ -2,14 +2,16 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AutoModerationActionOptions } from 'src/app/models/AutoModerationAction';
+import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
+import { APIEnum } from 'src/app/models/APIEnum';
 import { AutoModerationConfig } from 'src/app/models/AutoModerationConfig';
 import { AutoModRuleDefinition } from 'src/app/models/AutoModRuleDefinitions';
+import { ContentLoading } from 'src/app/models/ContentLoading';
 import { Guild } from 'src/app/models/Guild';
 import { GuildChannel } from 'src/app/models/GuildChannel';
 import { GuildRole } from 'src/app/models/GuildRole';
-import { PunishmentTypeOptions } from 'src/app/models/PunishmentType';
 import { ApiService } from 'src/app/services/api.service';
+import { EnumManagerService } from 'src/app/services/enum-manager.service';
 
 @Component({
   selector: 'app-automod-rule',
@@ -28,12 +30,12 @@ export class AutomodRuleComponent implements OnInit {
   public guildId!: string;
   public enableConfig: boolean = false;
   public tryingToSaveConfig: boolean = false;
-  public automodActionOptions = AutoModerationActionOptions;
-  public punishmentTypes = PunishmentTypeOptions;
+  public automodActionOptions: ContentLoading<APIEnum[]> = { loading: true, content: [] };
+  public punishmentTypes: ContentLoading<APIEnum[]> = { loading: true, content: [] };
 
   public initRowsCustomWords = 1;
 
-  constructor(private route: ActivatedRoute, private api: ApiService, private toastr: ToastrService, private _formBuilder: FormBuilder) { }
+  constructor(private route: ActivatedRoute, private api: ApiService, private toastr: ToastrService, private _formBuilder: FormBuilder, private enumManager: EnumManagerService) { }
 
   ngOnInit(): void {
     this.eventForm = this._formBuilder.group({
@@ -69,15 +71,31 @@ export class AutomodRuleComponent implements OnInit {
     });
 
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
-    this.initialConfigs.then((data: AutoModerationConfig[]) => {  
+    this.initialConfigs.then((data: AutoModerationConfig[]) => {
       // if type in initial loaded configs
       if (data.filter(x => x.autoModerationType == this.defintion.type).length) {
         this.enableConfig = true;
         this.applyConfig(data.filter(x => x.autoModerationType == this.defintion.type)[0]);
-      } else {        
+      } else {
         this.enableConfig = false;
       }
-    })
+    });
+
+    this.enumManager.getEnum(APIEnumTypes.AUTOMODACTION).subscribe((data) => {
+      this.automodActionOptions.loading = false;
+      this.automodActionOptions.content = data;
+    }, (error) => {
+      console.error(error);
+      this.automodActionOptions.loading = false;
+    });
+
+    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe((data) => {
+      this.punishmentTypes.loading = false;
+      this.punishmentTypes.content = data;
+    }, (error) => {
+      console.error(error);
+      this.punishmentTypes.loading = false;
+    });
   }
 
   generateRoleColor(role: GuildRole): string {
@@ -89,7 +107,7 @@ export class AutomodRuleComponent implements OnInit {
     this.api.getSimpleData(`/guilds/${this.guildId}/automoderationconfig/${this.defintion.type}`).subscribe((data) => {
       this.enableConfig = true;
       this.applyConfig(data);
-    })
+    });
   }
 
   applyConfig(config: AutoModerationConfig) {
@@ -103,7 +121,7 @@ export class AutomodRuleComponent implements OnInit {
     if (config.customWordFilter) {
       this.initRowsCustomWords = Math.min(config.customWordFilter.split(/\r\n|\r|\n/).length, 15);
     }
-    
+
     this.filterForm.setValue({ excludeRoles: config.ignoreRoles, excludeChannels: config.ignoreChannels });
 
     this.actionForm.setValue({
@@ -146,7 +164,7 @@ export class AutomodRuleComponent implements OnInit {
       "SendDmNotification": this.actionForm.value.dmNotification !== "" ? this.actionForm.value.dmNotification : false,
       "SendPublicNotification": this.actionForm.value.publicNotification !== "" ? this.actionForm.value.publicNotification : false
     }
-    
+
     this.api.putSimpleData(`/guilds/${this.guildId}/automoderationconfig`, data).subscribe((data) => {
       this.tryingToSaveConfig = false;
       this.toastr.success("Saved config.");
@@ -154,7 +172,7 @@ export class AutomodRuleComponent implements OnInit {
     }, (error) => {
       this.tryingToSaveConfig = false;
       this.toastr.error('Failed to update config.')
-    });    
+    });
 
   }
 }

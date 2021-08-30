@@ -5,7 +5,7 @@
           (ngModelChange)="onRuleToggle($event)"
           [labelPosition]="'after'">
           {{ defintion.title }}
-        </mat-checkbox>        
+        </mat-checkbox>
     </span>
     <mat-horizontal-stepper linear #stepper *ngIf="this.enableConfig" color="accent">
         <!-- Event ####################################################################################################### -->
@@ -24,7 +24,7 @@
                 {{ this.defintion.linkText }}
               </a>
             </div>
-            
+
             <mat-form-field *ngIf="this.defintion.showLimitField">
               <mat-label>Upper limit</mat-label>
               <input type="number" matInput formControlName="limit" required>
@@ -93,8 +93,7 @@
               <mat-form-field appearance="fill">
                 <mat-label>Action</mat-label>
                 <mat-select formControlName="automodAction">
-                <mat-option *ngFor="let enum of automodActionOptions(); let i = index"
-                [value]="i">{{enum}}</mat-option>
+                <mat-option *ngFor="let enum of automodActionOptions.content" [value]="enum.key">{{ enum.value }}</mat-option>
                 </mat-select>
               </mat-form-field><br/>
               <mat-checkbox *ngIf="this.actionForm.value.automodAction >= 2"
@@ -105,7 +104,7 @@
               <mat-form-field appearance="fill" *ngIf="this.actionForm.value.automodAction >= 2">
                 <mat-label>Punishment</mat-label>
                 <mat-select formControlName="punishmentType">
-                <mat-option *ngFor="let enum of punishmentTypes(); let i = index" [value]="i">{{enum}}</mat-option>
+                <mat-option *ngFor="let enum of punishmentTypes.content" [value]="enum.key">{{ enum.value }}</mat-option>
                 </mat-select>
               </mat-form-field><br/>
               <mat-form-field *ngIf="this.actionForm.value.automodAction >= 2 && (this.actionForm.value.punishmentType === 1 || this.actionForm.value.punishmentType === 3)">
