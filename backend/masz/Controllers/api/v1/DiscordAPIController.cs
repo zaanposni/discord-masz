@@ -41,32 +41,33 @@ namespace masz.Controllers.api.v1
             List<Guild> modGuilds = new List<Guild>();
             List<Guild> adminGuilds = new List<Guild>();
             List<Guild> bannedGuilds = new List<Guild>();
-            bool siteAdmin = config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id);
+            bool siteAdmin = config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id) || identity is TokenIdentity;
 
-            List<Guild> userGuilds = await identity.GetCurrentGuilds();
+            if (identity is DiscordIdentity) {
+                List<Guild> userGuilds = await identity.GetCurrentGuilds();
+                List<GuildConfig> registeredGuilds = await database.SelectAllGuildConfigs();
 
-            List<GuildConfig> registeredGuilds = await database.SelectAllGuildConfigs();
-
-            foreach (GuildConfig guild in registeredGuilds)
-            {
-                if (userGuilds == null) {
-                    break;
-                }
-                var userGuild = userGuilds.FirstOrDefault(x => x.Id == guild.GuildId);
-                if (userGuild != null)
+                foreach (GuildConfig guild in registeredGuilds)
                 {
-                    if (await identity.HasModRoleOrHigherOnGuild(guild.GuildId, this.database)) {
-                        if (await identity.HasAdminRoleOnGuild(guild.GuildId, this.database)) {
-                            adminGuilds.Add(userGuild);
+                    if (userGuilds == null) {
+                        break;
+                    }
+                    var userGuild = userGuilds.FirstOrDefault(x => x.Id == guild.GuildId);
+                    if (userGuild != null)
+                    {
+                        if (await identity.HasModRoleOrHigherOnGuild(guild.GuildId, this.database)) {
+                            if (await identity.HasAdminRoleOnGuild(guild.GuildId, this.database)) {
+                                adminGuilds.Add(userGuild);
+                            } else {
+                                modGuilds.Add(userGuild);
+                            }
                         } else {
-                            modGuilds.Add(userGuild);
+                            memberGuilds.Add(userGuild);
                         }
                     } else {
-                        memberGuilds.Add(userGuild);
-                    }
-                } else {
-                    if (await discord.GetGuildUserBan(guild.GuildId, currentUser.Id, CacheBehavior.Default) != null) {
-                        bannedGuilds.Add(await discord.FetchGuildInfo(guild.GuildId, CacheBehavior.Default));
+                        if (await discord.GetGuildUserBan(guild.GuildId, currentUser.Id, CacheBehavior.Default) != null) {
+                            bannedGuilds.Add(await discord.FetchGuildInfo(guild.GuildId, CacheBehavior.Default));
+                        }
                     }
                 }
             }

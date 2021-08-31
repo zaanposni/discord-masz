@@ -29,9 +29,9 @@ namespace masz.Models
             }
         }
 
-        public override async Task<bool> IsAuthorized() 
+        public override Task<bool> IsAuthorized() 
         {
-            return this.isValid;
+            return Task.FromResult<bool>(this.isValid);
         }
 
         public override async Task<User> GetCurrentDiscordUser()
@@ -42,9 +42,9 @@ namespace masz.Models
             return null;
         }
 
-        public override async Task<List<Guild>> GetCurrentGuilds()
+        public override Task<List<Guild>> GetCurrentGuilds()
         {
-            return new List<Guild>();
+            return Task.FromResult<List<Guild>>(new List<Guild>());
         }
 
         public override async Task<bool> IsOnGuild(string guildId)
@@ -52,9 +52,9 @@ namespace masz.Models
             return await this.IsAuthorized();
         }
 
-        public override async Task<GuildMember> GetGuildMembership(string guildId)
+        public override Task<GuildMember> GetGuildMembership(string guildId)
         {
-            return null;
+            return Task.FromResult<GuildMember>(null);
         }
 
         public override async Task<bool> HasAdminRoleOnGuild(string guildId, IDatabase database)

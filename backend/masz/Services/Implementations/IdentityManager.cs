@@ -39,10 +39,14 @@ namespace masz.Services
                 key = "/api/" + httpContext.Request.Headers["Authorization"];
                 string fullToken = httpContext.Request.Headers["Authorization"];
                 string token = String.Empty;
-                try {
+                try
+                {
                     token = fullToken.Split(' ')[1];  // exclude "Bearer" prefix
                 }
-                catch (Exception e) { }
+                catch (Exception e)
+                {
+                    logger.LogError("Error while parsing token: " + e.Message);
+                }
                 identity = new TokenIdentity(token, discord, await this.context.GetAPIToken());
             } else {
                 key = httpContext.Request.Cookies["masz_access_token"];
