@@ -79,5 +79,18 @@ namespace masz.Services
             this.SetContext(language);
             return this.translation;
         }
+
+        public Translation T(Language? language)
+        {
+            if (language.HasValue) {
+                this.SetContext(language.Value);
+            }
+            return this.translation;
+        }
+
+        public Language GetLanguage()
+        {
+            return this.translation.preferredLanguage;
+        }
     }
 }

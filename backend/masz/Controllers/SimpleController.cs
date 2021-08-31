@@ -19,6 +19,7 @@ namespace masz.Controllers
         public readonly IFilesHandler filesHandler;
         public readonly IPunishmentHandler punishmentHandler;
         public readonly IScheduler cacher;
+        public readonly ITranslator translator;
 
         public SimpleController(IServiceProvider serviceProvider)
         {
@@ -30,6 +31,7 @@ namespace masz.Controllers
             this.filesHandler = (IFilesHandler) serviceProvider.GetService(typeof(IFilesHandler));;
             this.punishmentHandler = (IPunishmentHandler) serviceProvider.GetService(typeof(IPunishmentHandler));;
             this.cacher = (IScheduler) serviceProvider.GetService(typeof(IScheduler));;
+            this.translator = (ITranslator) serviceProvider.GetService(typeof(ITranslator));;
         }
 
         public async Task<Identity> GetIdentity() {

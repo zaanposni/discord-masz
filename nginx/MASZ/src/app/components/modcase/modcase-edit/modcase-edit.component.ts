@@ -1,20 +1,22 @@
 import { ENTER, COMMA, SPACE } from '@angular/cdk/keycodes';
 import { HttpParams } from '@angular/common/http';
-import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
-import { MatStepper } from '@angular/material/stepper';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
+import { APIEnum } from 'src/app/models/APIEnum';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { DiscordUser } from 'src/app/models/DiscordUser';
 import { ModCase } from 'src/app/models/ModCase';
-import { PunishmentType, PunishmentTypeOptions } from 'src/app/models/PunishmentType';
+import { PunishmentType } from 'src/app/models/PunishmentType';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { EnumManagerService } from 'src/app/services/enum-manager.service';
 
 @Component({
   selector: 'app-modcase-edit',
@@ -33,17 +35,17 @@ export class ModcaseEditComponent implements OnInit {
   public caseLabels: string[] = [];
 
   public savingCase: boolean = false;
-  
+
   public memberForm = new FormControl();
   public filteredMembers!: Observable<DiscordUser[]>;
-  
+
   public guildId!: string;
   public caseId!: string;
   public members: ContentLoading<DiscordUser[]> = { loading: true, content: [] };
   public oldCase: ContentLoading<ModCase> = { loading: true, content: undefined };
-  public displayPunishmentTypeOptions = PunishmentTypeOptions;
-  
-  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { }
+  public punishmentOptions: ContentLoading<APIEnum[]> = { loading: true, content: [] };
+
+  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog, private enumManager: EnumManagerService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -101,10 +103,18 @@ export class ModcaseEditComponent implements OnInit {
       this.oldCase.loading = false;
     });
 
+    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe((data) => {
+      this.punishmentOptions.content = data;
+      this.punishmentOptions.loading = false;
+    }, () => {
+      this.punishmentOptions.loading = false;
+      this.toastr.error("Failed to load punishment enum.");
+    });
+
     let params = new HttpParams()
           .set('partial', 'true');
     this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`, true, params).subscribe((data) => {
-      this.members.content = data;      
+      this.members.content = data;
       this.members.loading = false;
     }, () => {
       this.toastr.error("Failed to load member list.");
@@ -157,7 +167,7 @@ export class ModcaseEditComponent implements OnInit {
       .set('handlePunishment', this.punishmentFormGroup.value.handlePunishment ? 'true' : 'false')
       .set('announceDm', this.punishmentFormGroup.value.dmNotification ? 'true' : 'false');
 
-      this.api.putSimpleData(`/modcases/${this.guildId}/${this.caseId}`, data, params, true, true).subscribe((data) => {     
+      this.api.putSimpleData(`/modcases/${this.guildId}/${this.caseId}`, data, params, true, true).subscribe((data) => {
         const caseId = data.caseId;
         this.router.navigate(['guilds', this.guildId, 'cases', caseId]);
         this.savingCase = false;

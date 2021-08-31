@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
+import { APIEnum } from 'src/app/models/APIEnum';
 import { AppUser } from 'src/app/models/AppUser';
 import { CaseComment } from 'src/app/models/CaseComment';
 import { CaseDeleteDialogData } from 'src/app/models/CaseDeleteDialogData';
@@ -16,6 +18,7 @@ import { Guild } from 'src/app/models/Guild';
 import { convertModcaseToPunishmentString, ModCase } from 'src/app/models/ModCase';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { EnumManagerService } from 'src/app/services/enum-manager.service';
 import { CaseDeleteDialogComponent } from '../../dialogs/case-delete-dialog/case-delete-dialog.component';
 import { CommentEditDialogComponent } from '../../dialogs/comment-edit-dialog/comment-edit-dialog.component';
 
@@ -42,23 +45,24 @@ export class ModcaseViewComponent implements OnInit {
   public currentUser: ContentLoading<AppUser> = { loading: true, content: undefined };
   public currentGuild: ContentLoading<Guild> = { loading: true, content: undefined };
   public modCase: ContentLoading<CaseView> = { loading: true, content: undefined };
-  constructor(private route: ActivatedRoute, private auth: AuthService, private toastr: ToastrService, private api: ApiService, public router: Router, private _formBuilder: FormBuilder, private dialog: MatDialog) { }
-  
-  
-  ngOnInit(): void {    
+  public punishments: ContentLoading<APIEnum[]> = { loading: true, content: [] };
+  public punishment: string = "Unknown";
+  constructor(private route: ActivatedRoute, private auth: AuthService, private toastr: ToastrService, private api: ApiService, public router: Router, private _formBuilder: FormBuilder, private dialog: MatDialog, private enumManager: EnumManagerService) { }
+
+  ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
     this.caseId = this.route.snapshot.paramMap.get('caseid') as string;
 
     // reload files from case creation
     if (this.route.snapshot.queryParamMap.get('reloadfiles') !== '0' && this.route.snapshot.queryParamMap.get('reloadfiles') != null) {
       var $this = this;
-      setTimeout(function() { 
+      setTimeout(function() {
         $this.reloadFiles();
       }, 5000);
-      setTimeout(function() { 
+      setTimeout(function() {
         $this.reloadFiles();
       }, 10000);
-    }   
+    }
 
     this.auth.isModInGuild(this.guildId).subscribe((data) => { this.isModOrHigher = data; });
     this.auth.getUserProfile().subscribe((data) => { this.currentUser = { loading: false, content: data }; });
@@ -69,7 +73,20 @@ export class ModcaseViewComponent implements OnInit {
   private reload() {
     this.reloadCase();
     this.reloadGuild();
+    this.reloadPunishmentEnum();
     this.reloadFiles();
+  }
+
+  private reloadPunishmentEnum() {
+    this.punishments = { loading: true, content: [] };
+    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe((data) => {
+      this.punishments.loading = false;
+      this.punishments.content = data;
+      this.punishment = convertModcaseToPunishmentString(this.modCase.content?.modCase, this.punishments?.content);
+    }, () => {
+      this.punishments.loading = false;
+      this.toastr.error("Failed to load punishments.");
+    });
   }
 
   private reloadFiles() {
@@ -108,6 +125,7 @@ export class ModcaseViewComponent implements OnInit {
     this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/view`).subscribe((data) => {
       this.modCase.content = data;
       this.renderedDescription = this.renderDescription(data.modCase.description, this.guildId)
+      this.punishment = convertModcaseToPunishmentString(this.modCase.content?.modCase, this.punishments?.content);
       this.modCase.loading = false;
     }, () => {
       this.modCase.loading = false;

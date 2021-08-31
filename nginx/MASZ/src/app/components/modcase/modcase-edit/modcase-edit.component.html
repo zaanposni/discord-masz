@@ -9,7 +9,7 @@
         <mat-vertical-stepper [linear]="true" #stepper color="accent" class="cw-75-100" [style.display]="(!this.oldCase.loading && this.oldCase.content) ? 'block' : 'none'">
             <mat-step [stepControl]="memberFormGroup">
                 <ng-template matStepLabel>Choose a member</ng-template>
-                <button mat-raised-button color="accent" routerLink="/guilds/{{ this.guildId }}">Back to guild.</button><br/>
+                <button mat-raised-button color="accent" routerLink="/guilds/{{ this.guildId }}/cases/{{ this.caseId }}">Back to modcase.</button><br/>
                 <mat-spinner *ngIf="this.members.loading"></mat-spinner>
                 <form [formGroup]="memberFormGroup" class="mt-3" *ngIf="!this.members.loading">
                     <mat-form-field>
@@ -70,8 +70,7 @@
                     <mat-form-field>
                         <mat-label>Punishment</mat-label>
                         <mat-select formControlName="punishmentType">
-                        <mat-option *ngFor="let enum of displayPunishmentTypeOptions(); let i = index"
-                        [value]="i">{{enum}}</mat-option>
+                        <mat-option *ngFor="let enum of punishmentOptions.content" [value]="enum.key">{{ enum.value }}</mat-option>
                         </mat-select>
                     </mat-form-field><br/>
                     <mat-checkbox

@@ -3,8 +3,11 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
+import { APIEnum } from 'src/app/models/APIEnum';
 import { AutoModerationEvent } from 'src/app/models/AutoModerationEvent';
 import { AutoModerationType } from 'src/app/models/AutoModerationType';
+import { ContentLoading } from 'src/app/models/ContentLoading';
 import { DiscordUser } from 'src/app/models/DiscordUser';
 import { Guild } from 'src/app/models/Guild';
 import { InviteNetwork } from 'src/app/models/InviteNetwork';
@@ -13,6 +16,7 @@ import { UserInvite } from 'src/app/models/UserInvite';
 import { UserNetwork } from 'src/app/models/UserNetwork';
 import { UserNote } from 'src/app/models/UserNote';
 import { ApiService } from 'src/app/services/api.service';
+import { EnumManagerService } from 'src/app/services/enum-manager.service';
 import { Network, DataSet, Node, Edge, Data, IdType } from 'vis';
 
 @Component({
@@ -53,11 +57,23 @@ export class UserscanComponent implements OnInit {
     }
   };
   private data: {'nodes': Node[], 'edges': Edge[]} = { 'nodes': [], 'edges': [] };
+  private punishments: ContentLoading<APIEnum[]> = { loading: true, content: [] };
 
-  constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute) { }
+  constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute, private enumManager: EnumManagerService) { }
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+    this.reloadPunishmentEnum();
+  }
+
+  reloadPunishmentEnum() {
+    this.punishments.loading = true;
+    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe((data: APIEnum[]) => {
+      this.punishments.loading = false;
+      this.punishments.content = data;
+    }, () => {
+      this.punishments.loading = false;
+    });
   }
 
   onSearch(event: any) {
@@ -194,7 +210,7 @@ export class UserscanComponent implements OnInit {
         if (modCase.guildId !== guild.id) continue;
         let caseBaseNode = this.addNewNode(this.newBasicCasesNode, [userId, guild.id]) as Node;
         this.addNewEdge(guildNode, caseBaseNode);
-        let caseNode = this.addNewNode(this.newCaseNode, [modCase]) as Node;
+        let caseNode = this.addNewNode(this.newCaseNode.bind(this), [modCase]) as Node;
         this.addNewEdge(caseBaseNode, caseNode, `Created at: ${new Date(modCase.createdAt).toLocaleString()}`);
       }
       for (let modEvent of network.modEvents) {
@@ -311,14 +327,14 @@ export class UserscanComponent implements OnInit {
   }
 
   newCaseNode(modCase: ModCase, size: number = 20): Node {
-    let punishmentString = convertModcaseToPunishmentString(modCase);
+    let punishmentString = convertModcaseToPunishmentString(modCase, this.punishments.content);
     if (modCase.punishedUntil != null) {
       punishmentString += `, Until: ${new Date(modCase.punishedUntil).toLocaleString()}`;
     }
     return {
       id: `${modCase.guildId}/case/${modCase.caseId}`,
       label: `Case #${modCase.caseId}\n${modCase.title.substr(0, 50)}`,
-      title: `Punishment: ${convertModcaseToPunishmentString(modCase)}${modCase.description.substr(0, 200)}`,
+      title: `Punishment: ${punishmentString} ${modCase.description.substr(0, 200)}`,
       group: `${modCase.guildId}/cases`,
       size: size,
       redirectTo: `/guilds/${modCase.guildId}/cases/${modCase.caseId}`

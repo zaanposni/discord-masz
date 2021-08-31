@@ -1,3 +1,4 @@
+import { APIEnum } from "./APIEnum";
 import { CaseComment } from "./CaseComment";
 import { PunishmentType } from "./PunishmentType";
 
@@ -31,26 +32,6 @@ export interface ModCase {
     comments: CaseComment[];
 }
 
-export function convertModcaseToPunishmentString(modcase?: ModCase): string {
-    if (!modcase) {
-        return "Unknown";
-    }
-    switch (modcase.punishmentType) {
-        case PunishmentType.None:
-            return "Warn";
-        case PunishmentType.Mute:
-            if (modcase.punishedUntil) {
-                return "TempMute"
-            }
-            return "Mute";
-        case PunishmentType.Kick:
-            return "Kick";
-        case PunishmentType.Ban:
-            if (modcase.punishedUntil) {
-                return "TempBan"
-            }
-            return "Ban";
-        default:
-            return "None";
-    }
+export function convertModcaseToPunishmentString(modcase?: ModCase, punishments?: APIEnum[]): string {
+    return punishments?.find(x => x.key === modcase?.punishmentType)?.value ?? "Unknown";
 }
