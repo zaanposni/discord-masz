@@ -49,6 +49,8 @@ namespace masz.Services
             _client.MessageUpdated += this.MessageUpdatedHandler;
             _client.GuildCreated += this.GuildCreatedHandler;
             _client.GuildMemberAdded += this.GuildMemberAddedHandler;
+            _client.InviteCreated += this.InviteCreatedHandler;
+            _client.InviteDeleted += this.InviteDeletedHandler;
 
             var slash = _client.UseSlashCommands(new SlashCommandsConfiguration
             {
@@ -89,6 +91,19 @@ namespace masz.Services
         private Task GuildMemberAddedHandler(DiscordClient client, GuildMemberAddEventArgs e)
         {
             // TODO: punishment check
+            // TODO: invite handling
+            return Task.CompletedTask;
+        }
+
+        private Task InviteCreatedHandler(DiscordClient sender, InviteCreateEventArgs e)
+        {
+            // TODO: invite handling
+            return Task.CompletedTask;
+        }
+
+        private Task InviteDeletedHandler(DiscordClient sender, InviteDeleteEventArgs e)
+        {
+            // TODO: invite handling
             return Task.CompletedTask;
         }
 
