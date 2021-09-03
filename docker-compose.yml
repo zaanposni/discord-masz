@@ -71,43 +71,6 @@ services:
     networks:
     - appnetwork
 
-  discordbot:
-    build: discordbot
-    container_name: masz_discordbot
-    restart: unless-stopped
-    depends_on:
-      db:
-        condition: service_healthy
-    networks:
-      - appnetwork
-    environment:
-      - BOT_PREFIX=${BOT_PREFIX}
-      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
-      - META_SERVICE_BASE_URL=${META_SERVICE_BASE_URL}
-      - MYSQL_HOST=db
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_PORT=${MYSQL_PORT}
-      - DISCORD_SITE_ADMINS=${DISCORD_SITE_ADMINS}
-
-  invitationtracker:
-    build: invitationtracker
-    container_name: masz_invitationtracker
-    restart: unless-stopped
-    depends_on:
-      db:
-        condition: service_healthy
-    networks:
-      - appnetwork
-    environment:
-      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
-      - MYSQL_HOST=db
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_PORT=${MYSQL_PORT}
-
 networks:
   appnetwork:
     driver: bridge
