@@ -1,20 +1,17 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AspNet.Security.OAuth.Discord;
 using AspNetCoreRateLimit;
 using masz.data;
 using masz.Models;
 using masz.Services;
+using masz.Logger;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -46,6 +43,8 @@ namespace masz
             services.AddScoped<IFilesHandler, FilesHandler>();
             services.AddScoped<ITranslator, Translator>();
             services.AddScoped<INotificationEmbedCreator, NotificationEmbedCreator>();
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton<IDiscordBot, DiscordBot>();
             services.AddSingleton<IDiscordAPIInterface, DiscordAPIInterface>();
             services.AddSingleton<IIdentityManager, IdentityManager>();
             services.AddSingleton<IPunishmentHandler, PunishmentHandler>();
@@ -136,16 +135,18 @@ namespace masz
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddProvider(new CustomLoggerProvider());
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            // app.UseCors("AngularDevCors");
+            //  app.UseCors("AngularDevCors");
 
-            app.UseIpRateLimiting();           
+            app.UseIpRateLimiting();
 
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
@@ -156,6 +157,7 @@ namespace masz
             {
                 scope.ServiceProvider.GetService<IPunishmentHandler>().StartTimer();
                 scope.ServiceProvider.GetService<IScheduler>().StartTimers();
+                scope.ServiceProvider.GetService<IDiscordBot>().Start();
             }
 
             app.UseHttpsRedirection();
