@@ -1,5 +1,5 @@
-if ( -Not (Test-Path -Path ./.deployment/.docker.env)) {
-    Write-Host "Failed to find .docker.env or .deployment directory. Please execute setup.py first."
+if ( -Not (Test-Path -Path ./.env)) {
+    Write-Host "Failed to find .env file. Please execute setup.py first."
     exit 5
 }
 
@@ -27,6 +27,6 @@ Write-Host "Removed old containers/images/volumes"
 
 Write-Host "Starting up..."
 
-docker-compose --env-file .\.deployment\.docker.env up --build --force-recreate -d
+docker-compose up --build --force-recreate -d
 
 Write-Host "Started in background"

@@ -1,5 +1,5 @@
-if [[ ! -f ./.deployment/.docker.env ]]; then
-    echo "Failed to find .docker.env or .deployment directory. Please execute setup.py first."
+if [[ ! -f ./.env ]]; then
+    echo "Failed to find .env file. Please execute setup.py first."
     exit 5
 fi
 
@@ -25,5 +25,5 @@ docker image rm discord-masz_invitationtracker
 echo "Removed old containers/images/volumes"
 
 echo "Starting up..."
-docker-compose --env-file ./.deployment/.docker.env up --build --force-recreate -d
+docker-compose up --build --force-recreate -d
 echo "Started in background"

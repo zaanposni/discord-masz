@@ -1,5 +1,4 @@
 import json
-import os
 from shutil import rmtree
 
 try:
@@ -84,15 +83,7 @@ env_string = ""
 for key, value in ENV_FILE.items():
     env_string += f"{key}={value}\n"
 
-try:
-    os.mkdir("./.deployment")
-except FileExistsError:
-    rmtree("./.deployment")
-    os.mkdir("./.deployment")
-except Exception as e:
-    raise(e)
-
-with open("./.deployment/.docker.env", "w") as fh:
+with open("./.env", "w") as fh:
     fh.write(env_string)
 
 print("\n:+1: [bright_green]You are finished[/bright_green].\n[bright_black]You can execute this script again if you want to change anything.[/bright_black]")
