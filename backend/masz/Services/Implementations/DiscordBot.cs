@@ -19,60 +19,83 @@ namespace masz.Services
 {
     public class DiscordBot : IDiscordBot
     {
-        private readonly ILogger<DiscordClient> logger;
-        private readonly IOptions<InternalConfig> config;
-        private readonly IDatabase context;
-        private readonly ITranslator translator;
-        private IConfiguration configuration;
-        private readonly DiscordClient client;
-        private DiscordConfiguration discordConfiguration;
-        private IServiceProvider serviceProvider;
+        private readonly ILogger<DiscordClient> _logger;
+        private readonly IOptions<InternalConfig> _config;
+        private readonly IDatabase _context;
+        private readonly ITranslator _translator;
+        private IConfiguration _configuration;
+        private readonly DiscordClient _client;
+        private DiscordConfiguration _discordConfiguration;
+        private IServiceProvider _serviceProvider;
 
         public DiscordBot(ILogger<DiscordClient> logger, IOptions<InternalConfig> config, IDatabase context, ITranslator translator, IConfiguration configuration, IServiceProvider serviceProvider)
         {
-            this.logger = logger;
-            this.config = config;
-            this.context = context;
-            this.translator = translator;
-            this.configuration = configuration;
-            this.serviceProvider = serviceProvider;
+            _logger = logger;
+            _config = config;
+            _context = context;
+            _translator = translator;
+            _configuration = configuration;
+            _serviceProvider = serviceProvider;
 
-            this.discordConfiguration = new DiscordConfiguration()
+            _discordConfiguration = new DiscordConfiguration()
             {
-                Token = this.config.Value.DiscordBotToken,
+                Token = _config.Value.DiscordBotToken,
                 TokenType = TokenType.Bot,
                 Intents = DiscordIntents.AllUnprivileged | DiscordIntents.GuildMembers
             };
 
-            this.client = new DiscordClient(this.discordConfiguration);
-            this.client.MessageCreated += this.MessageCreatedHandler;
+            _client = new DiscordClient(_discordConfiguration);
+            _client.MessageCreated += this.MessageCreatedHandler;
+            _client.MessageUpdated += this.MessageUpdatedHandler;
+            _client.GuildCreated += this.GuildCreatedHandler;
+            _client.GuildMemberAdded += this.GuildMemberAddedHandler;
 
-            var slash = client.UseSlashCommands(new SlashCommandsConfiguration
+            var slash = _client.UseSlashCommands(new SlashCommandsConfiguration
             {
                 Services = serviceProvider
             });
 
-            slash.RegisterCommands<PingCommand>(748943581523345639);
+            ulong? debugGuild = null;  // set your guild id here to enable fast syncing debug commands
+
+            slash.RegisterCommands<PingCommand>(debugGuild);
 
             slash.SlashCommandErrored += CmdErroredHandler;
         }
 
         public async Task Start()
         {
-            DiscordActivity activity = new DiscordActivity(this.translator.T().Description());
-            await this.client.ConnectAsync(activity);
+            DiscordActivity activity = new DiscordActivity(_config.Value.ServiceBaseUrl, ActivityType.Watching);
+            await _client.ConnectAsync(activity);
         }
 
-        public async Task MessageCreatedHandler(DiscordClient client, MessageCreateEventArgs e)
+        private Task MessageCreatedHandler(DiscordClient client, MessageCreateEventArgs e)
         {
-            if (e.Author != client.CurrentUser) {
-                await e.Channel.SendMessageAsync("test");
-            }
+            // TODO: automod
+            return Task.CompletedTask;
         }
 
-        private async Task CmdErroredHandler(SlashCommandsExtension _, SlashCommandErrorEventArgs e)
+        private Task MessageUpdatedHandler(DiscordClient client, MessageUpdateEventArgs e)
         {
-            this.logger.LogError(e.Exception.ToString());
+            // TODO: automod
+            return Task.CompletedTask;
+        }
+
+        private Task GuildCreatedHandler(DiscordClient client, GuildCreateEventArgs e)
+        {
+            _logger.LogInformation($"I joined guild '{e.Guild.Name}' with ID: '{e.Guild.Id}'");
+            return Task.CompletedTask;
+        }
+
+        private Task GuildMemberAddedHandler(DiscordClient client, GuildMemberAddEventArgs e)
+        {
+            // TODO: punishment check
+            return Task.CompletedTask;
+        }
+
+        private Task CmdErroredHandler(SlashCommandsExtension _, SlashCommandErrorEventArgs e)
+        {
+            _logger.LogError($"Command '{e.Context.CommandName}' invoked by '{e.Context.User.Username}#{e.Context.User.Discriminator}' failed: " + e.Exception.Message);
+            return Task.CompletedTask;
         }
     }
 }
