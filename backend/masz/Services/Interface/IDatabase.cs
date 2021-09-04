@@ -11,7 +11,7 @@ namespace masz.Services
     {
         Task SaveChangesAsync();
 
-        Task<GuildConfig> SelectSpecificGuildConfig(string guildId);
+        Task<GuildConfig> SelectSpecificGuildConfig(ulong guildId);
         Task<List<GuildConfig>> SelectAllGuildConfigs();
         void DeleteSpecificGuildConfig(GuildConfig guildConfig);
         void UpdateGuildConfig(GuildConfig guildConfig);
@@ -19,73 +19,73 @@ namespace masz.Services
         Task<int> CountAllGuildConfigs();
 
 
-        Task<int> GetHighestCaseIdForGuild(string guildId);
-        Task<ModCase> SelectSpecificModCase(string guildId, string modCaseId);
+        Task<int> GetHighestCaseIdForGuild(ulong guildId);
+        Task<ModCase> SelectSpecificModCase(ulong guildId, int modCaseId);
         Task<List<ModCase>> SelectAllModcasesMarkedAsDeleted();
-        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId);
-        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, ModcaseTableType tableType);
-        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize);
-        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize, ModcaseTableType tableType);
-        Task<List<ModCase>> SelectAllModCasesForGuild(string guildId);
-        Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, ModcaseTableType tableType);
-        Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize);
-        Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize, ModcaseTableType tableType);
+        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(ulong guildId, ulong userId);
+        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(ulong guildId, ulong userId, ModcaseTableType tableType);
+        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(ulong guildId, ulong userId, int startPage, int pageSize);
+        Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(ulong guildId, ulong userId, int startPage, int pageSize, ModcaseTableType tableType);
+        Task<List<ModCase>> SelectAllModCasesForGuild(ulong guildId);
+        Task<List<ModCase>> SelectAllModCasesForGuild(ulong guildId, ModcaseTableType tableType);
+        Task<List<ModCase>> SelectAllModCasesForGuild(ulong guildId, int startPage, int pageSize);
+        Task<List<ModCase>> SelectAllModCasesForGuild(ulong guildId, int startPage, int pageSize, ModcaseTableType tableType);
         Task<int> CountAllModCases();
-        Task<int> CountAllModCasesForGuild(string guildId);
-        Task<int> CountAllActivePunishmentsForGuild(string guildId);
-        Task<int> CountAllActivePunishmentsForGuild(string guildId, PunishmentType type);
-        Task<List<ModCase>> SelectAllModCasesWithActivePunishmentForGuild(string guildId);
+        Task<int> CountAllModCasesForGuild(ulong guildId);
+        Task<int> CountAllActivePunishmentsForGuild(ulong guildId);
+        Task<int> CountAllActivePunishmentsForGuild(ulong guildId, PunishmentType type);
+        Task<List<ModCase>> SelectAllModCasesWithActivePunishmentForGuild(ulong guildId);
         Task<List<ModCase>> SelectAllModCasesThatHaveParallelPunishment(ModCase modCase);
         Task<List<ModCase>> SelectAllModCasesWithActivePunishments();
         Task<List<ModCase>> SelectAllModCases();
-        Task<List<ModCase>> SelectAllModCasesForSpecificUser(string userId);
+        Task<List<ModCase>> SelectAllModCasesForSpecificUser(ulong userId);
         Task<List<ModCase>> SelectLatestModCases(DateTime timeLimit, int limit);
-        Task<List<DbCount>> GetCaseCountGraph(string guildId, DateTime since);
-        Task<List<DbCount>> GetPunishmentCountGraph(string guildId, DateTime since);
-        Task DeleteAllModCasesForGuild(string guildid);
+        Task<List<DbCount>> GetCaseCountGraph(ulong guildId, DateTime since);
+        Task<List<DbCount>> GetPunishmentCountGraph(ulong guildId, DateTime since);
+        Task DeleteAllModCasesForGuild(ulong guildId);
         void DeleteSpecificModCase(ModCase modCase);
         void UpdateModCase(ModCase modCase);
         Task SaveModCase(ModCase modCase);
 
 
         Task<int> CountAllModerationEvents();
-        Task<List<DbCount>> GetModerationCountGraph(string guildId, DateTime since);
-        Task<List<AutoModerationTypeSplit>> GetModerationSplitGraph(string guildId, DateTime since);
-        Task<int> CountAllModerationEventsForGuild(string guildId);
-        Task<int> CountAllModerationEventsForSpecificUserOnGuild(string guildId, string userId);
+        Task<List<DbCount>> GetModerationCountGraph(ulong guildId, DateTime since);
+        Task<List<AutoModerationTypeSplit>> GetModerationSplitGraph(ulong guildId, DateTime since);
+        Task<int> CountAllModerationEventsForGuild(ulong guildId);
+        Task<int> CountAllModerationEventsForSpecificUserOnGuild(ulong guildId, ulong userId);
         Task<List<AutoModerationEvent>> SelectAllModerationEvents();
-        Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUser(string userId);
-        Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(string guildId);
-        Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(string guildId, int startPage, int pageSize);
-        Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize);
-        Task DeleteAllModerationEventsForGuild(string guildid);
+        Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUser(ulong userId);
+        Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(ulong guildId);
+        Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(ulong guildId, int startPage, int pageSize);
+        Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUserOnGuild(ulong guildId, ulong userId, int startPage, int pageSize);
+        Task DeleteAllModerationEventsForGuild(ulong guildId);
         Task SaveModerationEvent(AutoModerationEvent modEvent);
 
 
-        Task<List<AutoModerationConfig>> SelectAllModerationConfigsForGuild(string guildId);
-        Task<AutoModerationConfig> SelectModerationConfigForGuildAndType(string guildId, AutoModerationType type);
+        Task<List<AutoModerationConfig>> SelectAllModerationConfigsForGuild(ulong guildId);
+        Task<AutoModerationConfig> SelectModerationConfigForGuildAndType(ulong guildId, AutoModerationType type);
         void PutModerationConfig(AutoModerationConfig modConfig);
         void DeleteSpecificModerationConfig(AutoModerationConfig modConfig);
-        Task DeleteAllModerationConfigsForGuild(string guildId);
+        Task DeleteAllModerationConfigsForGuild(ulong guildId);
 
 
         Task SaveModCaseComment(ModCaseComment comment);
         void UpdateModCaseComment(ModCaseComment comment);
         void DeleteSpecificModCaseComment(ModCaseComment comment);
         Task<ModCaseComment> SelectSpecificModCaseComment(int commentId);
-        Task<List<ModCaseComment>> SelectLastModCaseCommentsByGuild(string guildId);
-        Task<int> CountCommentsForGuild(string guildId);
+        Task<List<ModCaseComment>> SelectLastModCaseCommentsByGuild(ulong guildId);
+        Task<int> CountCommentsForGuild(ulong guildId);
 
         Task SaveCaseTemplate(CaseTemplate template);
         void DeleteSpecificCaseTemplate(CaseTemplate template);
-        Task<CaseTemplate> GetSpecificCaseTemplate(string templateId);
+        Task<CaseTemplate> GetSpecificCaseTemplate(int templateId);
         Task<List<CaseTemplate>> GetAllCaseTemplates();
-        Task<List<CaseTemplate>> GetAllTemplatesFromUser(string userId);
-        Task DeleteAllTemplatesForGuild(string guildId);
+        Task<List<CaseTemplate>> GetAllTemplatesFromUser(ulong userId);
+        Task DeleteAllTemplatesForGuild(ulong guildId);
 
-        Task<GuildMotd> GetMotdForGuild(string guildId);
+        Task<GuildMotd> GetMotdForGuild(ulong guildId);
         void SaveMotd(GuildMotd motd);
-        Task DeleteMotdForGuild(string guildId);
+        Task DeleteMotdForGuild(ulong guildId);
 
         Task SaveToken(APIToken token);
         void DeleteToken(APIToken token);
@@ -94,34 +94,34 @@ namespace masz.Services
         Task<APIToken> GetAPIToken();
         Task<APIToken> GetAPIToken(int id);
 
-        Task<List<UserInvite>> GetInvitedUsersByUserId(string userId);
-        Task<List<UserInvite>> GetUsedInvitesByUserId(string userId);
+        Task<List<UserInvite>> GetInvitedUsersByUserId(ulong userId);
+        Task<List<UserInvite>> GetUsedInvitesByUserId(ulong userId);
         Task<List<UserInvite>> GetInvitesByCode(string code);
         Task<int> CountTrackedInvites();
-        Task<int> CountTrackedInvitesForGuild(string guildId);
-        Task DeleteInviteHistoryByGuild(string guildId);
+        Task<int> CountTrackedInvitesForGuild(ulong guildId);
+        Task DeleteInviteHistoryByGuild(ulong guildId);
 
         Task<List<UserMapping>> SelectLatestUserMappings(DateTime timeLimit, int limit);
-        Task<UserMapping> GetUserMappingById(string id);
-        Task<List<UserMapping>> GetUserMappingsByUserId(string userId);
-        Task<List<UserMapping>> GetUserMappingsByUserIdAndGuildId(string userId, string guildId);
-        Task<UserMapping> GetUserMappingByUserIdsAndGuildId(string userAId, string userBId, string guildId);
-        Task<List<UserMapping>> GetUserMappingsByGuildId(string guildId);
+        Task<UserMapping> GetUserMappingById(int id);
+        Task<List<UserMapping>> GetUserMappingsByUserId(ulong userId);
+        Task<List<UserMapping>> GetUserMappingsByUserIdAndGuildId(ulong userId, ulong guildId);
+        Task<UserMapping> GetUserMappingByUserIdsAndGuildId(ulong userAId, ulong userBId, ulong guildId);
+        Task<List<UserMapping>> GetUserMappingsByGuildId(ulong guildId);
         Task<int> CountUserMappings();
-        Task<int> CountUserMappingsForGuild(string guildId);
+        Task<int> CountUserMappingsForGuild(ulong guildId);
         void DeleteUserMapping(UserMapping userMapping);
         void SaveUserMapping(UserMapping userMapping);
-        Task DeleteUserMappingByGuild(string guildId);
+        Task DeleteUserMappingByGuild(ulong guildId);
 
         Task<List<UserNote>> SelectLatestUserNotes(DateTime timeLimit, int limit);
-        Task<UserNote> GetUserNoteById(string id);
-        Task<List<UserNote>> GetUserNotesByUserId(string userId);
-        Task<List<UserNote>> GetUserNotesByGuildId(string guildId);
-        Task<UserNote> GetUserNoteByUserIdAndGuildId(string userId, string guildId);
+        Task<UserNote> GetUserNoteById(int id);
+        Task<List<UserNote>> GetUserNotesByUserId(ulong userId);
+        Task<List<UserNote>> GetUserNotesByGuildId(ulong guildId);
+        Task<UserNote> GetUserNoteByUserIdAndGuildId(ulong userId, ulong guildId);
         Task<int> CountUserNotes();
-        Task<int> CountUserNotesForGuild(string guildId);
+        Task<int> CountUserNotesForGuild(ulong guildId);
         void DeleteUserNote(UserNote userNote);
         void SaveUserNote(UserNote userNote);
-        Task DeleteUserNoteByGuild(string guildId);
+        Task DeleteUserNoteByGuild(ulong guildId);
     }
 }

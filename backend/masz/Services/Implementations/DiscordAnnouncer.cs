@@ -1,7 +1,6 @@
-using System.Text;
 using System.Threading.Tasks;
 using Discord;
-using masz.Dtos.DiscordAPIResponses;
+using DSharpPlus.Entities;
 using masz.Helpers;
 using masz.Models;
 using Microsoft.Extensions.Logging;
@@ -34,18 +33,18 @@ namespace masz.Services
         private static string GetEnvironmentVariable(string name, string defaultValue)
             => System.Environment.GetEnvironmentVariable(name) is string v && v.Length > 0 ? v : defaultValue;
 
-        public async Task AnnounceModCase(ModCase modCase, RestAction action, User actor, bool announcePublic, bool announceDm)
+        public async Task AnnounceModCase(ModCase modCase, RestAction action, DiscordUser actor, bool announcePublic, bool announceDm)
         {
             logger.LogInformation($"Announcing modcase {modCase.Id} in guild {modCase.GuildId}.");
 
-            User caseUser = await discord.FetchUserInfo(modCase.UserId, CacheBehavior.Default);
+            DiscordUser caseUser = await discord.FetchUserInfo(modCase.UserId, CacheBehavior.Default);
             GuildConfig guildConfig = await dbContext.SelectSpecificGuildConfig(modCase.GuildId);
 
             if (announceDm && action != RestAction.Deleted)
             {
                 logger.LogInformation($"Sending dm notification");
 
-                Guild guild = await discord.FetchGuildInfo(modCase.GuildId, CacheBehavior.Default);
+                DiscordGuild guild = await discord.FetchGuildInfo(modCase.GuildId, CacheBehavior.Default);
                 string prefix = GetEnvironmentVariable("DISCORD_PREFIX", "$");
                 string message = string.Empty;
                 switch (modCase.PunishmentType) {
@@ -95,7 +94,7 @@ namespace masz.Services
             }
         }
 
-        public async Task AnnounceComment(ModCaseComment comment, User actor, RestAction action)
+        public async Task AnnounceComment(ModCaseComment comment, DiscordUser actor, RestAction action)
         {
             logger.LogInformation($"Announcing comment {comment.Id} in case {comment.ModCase.CaseId} in guild {comment.ModCase.GuildId}.");
 
@@ -105,7 +104,7 @@ namespace masz.Services
             {
                 logger.LogInformation($"Sending internal webhook to {guildConfig.ModInternalNotificationWebhook}.");
 
-                User discordUser = await discord.FetchUserInfo(comment.UserId, CacheBehavior.Default);
+                DiscordUser discordUser = await discord.FetchUserInfo(comment.UserId, CacheBehavior.Default);
 
                 EmbedBuilder embed = await notificationEmbedCreator.CreateCommentEmbed(comment, action, actor);
 
@@ -114,7 +113,7 @@ namespace masz.Services
             }
         }
 
-        public async Task AnnounceFile(string filename, ModCase modCase, User actor, RestAction action)
+        public async Task AnnounceFile(string filename, ModCase modCase, DiscordUser actor, RestAction action)
         {
             logger.LogInformation($"Announcing file {filename} in case {modCase.CaseId} in guild {modCase.GuildId}.");
 
@@ -131,7 +130,7 @@ namespace masz.Services
             }
         }
 
-        public async Task AnnounceUserNote(UserNote userNote, User actor, RestAction action)
+        public async Task AnnounceUserNote(UserNote userNote, DiscordUser actor, RestAction action)
         {
             logger.LogInformation($"Announcing usernote {userNote.Id} in guild {userNote.GuildId}.");
 
@@ -141,16 +140,16 @@ namespace masz.Services
             {
                 logger.LogInformation($"Sending internal webhook to {guildConfig.ModInternalNotificationWebhook}.");
 
-                User user = await this.discord.FetchUserInfo(userNote.UserId, CacheBehavior.Default);
+                DiscordUser DiscordUser = await this.discord.FetchUserInfo(userNote.UserId, CacheBehavior.Default);
 
-                EmbedBuilder embed = await notificationEmbedCreator.CreateUserNoteEmbed(userNote, action, actor, user);
+                EmbedBuilder embed = await notificationEmbedCreator.CreateUserNoteEmbed(userNote, action, actor, DiscordUser);
 
                 DiscordMessenger.SendEmbedWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
                 logger.LogInformation("Sent internal webhook.");
             }
         }
 
-        public async Task AnnounceUserMapping(UserMapping userMapping, User actor, RestAction action)
+        public async Task AnnounceUserMapping(UserMapping userMapping, DiscordUser actor, RestAction action)
         {
             logger.LogInformation($"Announcing usermap {userMapping.Id} in guild {userMapping.GuildId}.");
 

@@ -172,7 +172,7 @@ namespace masz.Translations
             }
             return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.";
         }
-        public string NotificationModcaseCreateInternal(masz.Models.ModCase modCase, masz.Dtos.DiscordAPIResponses.User moderator) {
+        public string NotificationModcaseCreateInternal(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordUser moderator) {
             switch (this.preferredLanguage) {
                 case Language.en:
                     return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
@@ -190,7 +190,7 @@ namespace masz.Translations
             }
             return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated.";
         }
-        public string NotificationModcaseUpdateInternal(masz.Models.ModCase modCase, masz.Dtos.DiscordAPIResponses.User moderator) {
+        public string NotificationModcaseUpdateInternal(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordUser moderator) {
             switch (this.preferredLanguage) {
                 case Language.en:
                     return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
@@ -208,7 +208,7 @@ namespace masz.Translations
             }
             return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted.";
         }
-        public string NotificationModcaseDeleteInternal(masz.Models.ModCase modCase, masz.Dtos.DiscordAPIResponses.User moderator) {
+        public string NotificationModcaseDeleteInternal(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordUser moderator) {
             switch (this.preferredLanguage) {
                 case Language.en:
                     return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
@@ -244,7 +244,7 @@ namespace masz.Translations
             }
             return "Comment deleted";
         }
-        public string NotificationModcaseCommentsCreate(masz.Dtos.DiscordAPIResponses.User actor) {
+        public string NotificationModcaseCommentsCreate(DSharpPlus.Entities.DiscordUser actor) {
             switch (this.preferredLanguage) {
                 case Language.en:
                     return $"A **comment** has been created by <@{actor.Id}>.";
@@ -253,7 +253,7 @@ namespace masz.Translations
             }
             return $"A **comment** has been created by <@{actor.Id}>.";
         }
-        public string NotificationModcaseCommentsUpdate(masz.Dtos.DiscordAPIResponses.User actor) {
+        public string NotificationModcaseCommentsUpdate(DSharpPlus.Entities.DiscordUser actor) {
             switch (this.preferredLanguage) {
                 case Language.en:
                     return $"A **comment** has been updated by <@{actor.Id}>.";
@@ -262,7 +262,7 @@ namespace masz.Translations
             }
             return $"A **comment** has been updated by <@{actor.Id}>.";
         }
-        public string NotificationModcaseCommentsDelete(masz.Dtos.DiscordAPIResponses.User actor) {
+        public string NotificationModcaseCommentsDelete(DSharpPlus.Entities.DiscordUser actor) {
             switch (this.preferredLanguage) {
                 case Language.en:
                     return $"A **comment** has been deleted by <@{actor.Id}>.";
@@ -271,7 +271,7 @@ namespace masz.Translations
             }
             return $"A **comment** has been deleted by <@{actor.Id}>.";
         }
-        public string NotificationModcaseFileCreate(masz.Dtos.DiscordAPIResponses.User actor) {
+        public string NotificationModcaseFileCreate(DSharpPlus.Entities.DiscordUser actor) {
             switch (this.preferredLanguage) {
                 case Language.en:
                     return $"A **file** has been uploaded by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
@@ -280,7 +280,7 @@ namespace masz.Translations
             }
             return $"A **file** has been uploaded by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
         }
-        public string NotificationModcaseFileDelete(masz.Dtos.DiscordAPIResponses.User actor) {
+        public string NotificationModcaseFileDelete(DSharpPlus.Entities.DiscordUser actor) {
             switch (this.preferredLanguage) {
                 case Language.en:
                     return $"A **file** has been deleted by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
@@ -289,7 +289,7 @@ namespace masz.Translations
             }
             return $"A **file** has been deleted by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
         }
-        public string NotificationModcaseFileUpdate(masz.Dtos.DiscordAPIResponses.User actor) {
+        public string NotificationModcaseFileUpdate(DSharpPlus.Entities.DiscordUser actor) {
             switch (this.preferredLanguage) {
                 case Language.en:
                     return $"A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
@@ -298,7 +298,7 @@ namespace masz.Translations
             }
             return $"A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
         }
-        public string NotificationModcaseDMWarn(masz.Models.ModCase modCase, masz.Dtos.DiscordAPIResponses.Guild guild, string botPrefix, string serviceBaseUrl) {
+        public string NotificationModcaseDMWarn(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl) {
             switch (this.preferredLanguage) {
                 case Language.en:
                     return $"The moderators of guild `{guild.Name}` have warned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
@@ -307,7 +307,7 @@ namespace masz.Translations
             }
             return $"The moderators of guild `{guild.Name}` have warned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
-        public string NotificationModcaseDMMuteTemp(masz.Models.ModCase modCase, masz.Dtos.DiscordAPIResponses.Guild guild, string botPrefix, string serviceBaseUrl, string timezone) {
+        public string NotificationModcaseDMMuteTemp(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl, string timezone) {
             switch (this.preferredLanguage) {
                 case Language.en:
                     return $"The moderators of guild `{guild.Name}` have temporarily muted you until `{modCase.PunishedUntil.Value.ToString("dd.MMMM.yyyy HH:mm:ss")} ({timezone})`.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
@@ -316,7 +316,7 @@ namespace masz.Translations
             }
             return $"The moderators of guild `{guild.Name}` have temporarily muted you until `{modCase.PunishedUntil.Value.ToString("dd.MMMM.yyyy HH:mm:ss")} ({timezone})`.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
-        public string NotificationModcaseDMMutePerm(masz.Models.ModCase modCase, masz.Dtos.DiscordAPIResponses.Guild guild, string botPrefix, string serviceBaseUrl) {
+        public string NotificationModcaseDMMutePerm(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl) {
             switch (this.preferredLanguage) {
                 case Language.en:
                     return $"The moderators of guild `{guild.Name}` have muted you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
@@ -325,7 +325,7 @@ namespace masz.Translations
             }
             return $"The moderators of guild `{guild.Name}` have muted you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
-        public string NotificationModcaseDMBanTemp(masz.Models.ModCase modCase, masz.Dtos.DiscordAPIResponses.Guild guild, string botPrefix, string serviceBaseUrl, string timezone) {
+        public string NotificationModcaseDMBanTemp(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl, string timezone) {
             switch (this.preferredLanguage) {
                 case Language.en:
                     return $"The moderators of guild `{guild.Name}` have temporarily banned you until `{modCase.PunishedUntil.Value.ToString("dd.MMMM.yyyy HH:mm:ss")} ({timezone})`.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
@@ -334,7 +334,7 @@ namespace masz.Translations
             }
             return $"The moderators of guild `{guild.Name}` have temporarily banned you until `{modCase.PunishedUntil.Value.ToString("dd.MMMM.yyyy HH:mm:ss")} ({timezone})`.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
-        public string NotificationModcaseDMBanPerm(masz.Models.ModCase modCase, masz.Dtos.DiscordAPIResponses.Guild guild, string botPrefix, string serviceBaseUrl) {
+        public string NotificationModcaseDMBanPerm(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl) {
             switch (this.preferredLanguage) {
                 case Language.en:
                     return $"The moderators of guild `{guild.Name}` have banned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
@@ -343,7 +343,7 @@ namespace masz.Translations
             }
             return $"The moderators of guild `{guild.Name}` have banned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
-        public string NotificationModcaseDMKick(masz.Models.ModCase modCase, masz.Dtos.DiscordAPIResponses.Guild guild, string botPrefix, string serviceBaseUrl) {
+        public string NotificationModcaseDMKick(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl) {
             switch (this.preferredLanguage) {
                 case Language.en:
                     return $"The moderators of guild `{guild.Name}` have kicked you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";

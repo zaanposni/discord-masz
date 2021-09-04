@@ -47,7 +47,7 @@ namespace masz.Services
             {
                 IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
                 List<ModCase> cases = await database.SelectAllModCasesWithActivePunishments();
-                
+
                 foreach (var element in cases)
                 {
                     if (element.PunishedUntil != null)
@@ -81,7 +81,8 @@ namespace masz.Services
                             logger.LogInformation($"Punisher: Mute User {modCase.UserId} in guild {modCase.GuildId} with role {guildConfig.MutedRoles}.");
                             foreach (string role in guildConfig.MutedRoles)
                             {
-                                await discord.GrantGuildUserRole(modCase.GuildId, modCase.UserId, role);
+                                ulong roleId = ulong.Parse(role);
+                                await discord.GrantGuildUserRole(modCase.GuildId, modCase.UserId, roleId);
                             }
                         } else {
                             logger.LogInformation($"Punisher: Cannot Mute User {modCase.UserId} in guild {modCase.GuildId} - mute role undefined.");
@@ -119,10 +120,11 @@ namespace masz.Services
                 switch (modCase.PunishmentType) {
                     case PunishmentType.Mute:
                         if (guildConfig.MutedRoles.Length != 0) {
-                            logger.LogInformation($"Punisher: Unmute User {modCase.UserId} in guild {modCase.GuildId} with role {guildConfig.MutedRoles}.");                            
+                            logger.LogInformation($"Punisher: Unmute User {modCase.UserId} in guild {modCase.GuildId} with role {guildConfig.MutedRoles}.");
                             foreach (string role in guildConfig.MutedRoles)
                             {
-                                await discord.RemoveGuildUserRole(modCase.GuildId, modCase.UserId, role);
+                                ulong roleId = ulong.Parse(role);
+                                await discord.RemoveGuildUserRole(modCase.GuildId, modCase.UserId, roleId);
                             }
                         } else {
                             logger.LogInformation($"Punisher: Cannot Unmute User {modCase.UserId} in guild {modCase.GuildId} - mute role undefined.");

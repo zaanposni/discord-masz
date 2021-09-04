@@ -6,11 +6,4 @@ namespace masz.Models
         OnlyPunishments,
         OnlyBin
     }
-
-    public enum ModcaseTableSortType
-    {
-        Default,
-        SortByExpiring,
-        SortByDeleting
-    }    
 }

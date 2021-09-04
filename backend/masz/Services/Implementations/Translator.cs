@@ -1,13 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
-using masz.Dtos.DiscordAPIResponses;
 using masz.Models;
 using masz.Translations;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -45,7 +38,7 @@ namespace masz.Services
             this.translation = Translation.Ctx(useLanguage);
         }
 
-        public async Task SetContext(string guildId)
+        public async Task SetContext(ulong guildId)
         {
             GuildConfig guildConfig = await this.context.SelectSpecificGuildConfig(guildId);
             this.SetContext(guildConfig);

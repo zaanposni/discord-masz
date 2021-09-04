@@ -10,18 +10,18 @@ namespace masz.Models
         [Key]
         public int Id { get; set; }
         public int CaseId { get; set; }
-        public string GuildId { get; set; }
+        public ulong GuildId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string UserId { get; set; }
+        public ulong UserId { get; set; }
         public string Username { get; set; }
         public string Discriminator { get; set; }
         public string Nickname { get; set; }
-        public string ModId { get; set; }
+        public ulong ModId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime OccuredAt { get; set; }
         public DateTime LastEditedAt { get; set; }
-        public string LastEditedByModId { get; set; }
+        public ulong LastEditedByModId { get; set; }
         public string[] Labels { get; set; }
         public string Others { get; set; }
         public bool Valid { get; set; }
@@ -30,10 +30,10 @@ namespace masz.Models
         public DateTime? PunishedUntil { get; set; }
         public bool PunishmentActive { get; set; }
         public bool AllowComments { get; set; }
-        public string LockedByUserId { get; set; }
+        public ulong LockedByUserId { get; set; }
         public DateTime? LockedAt { get; set; }
         public DateTime? MarkedToDeleteAt { get; set; }
-        public string DeletedByUserId { get; set; }
+        public ulong DeletedByUserId { get; set; }
         public ICollection<ModCaseComment> Comments { get; set; }
 
         public object Clone()
@@ -69,10 +69,10 @@ namespace masz.Models
 
         public void RemoveModeratorInfo()
         {
-            this.ModId = null;
-            this.LastEditedByModId = null;
-            this.LockedByUserId = null;
-            this.DeletedByUserId = null;
+            this.ModId = 0;
+            this.LastEditedByModId = 0;
+            this.LockedByUserId = 0;
+            this.DeletedByUserId = 0;
 
             if (this.Comments != null) {
                 foreach (var comment in this.Comments)

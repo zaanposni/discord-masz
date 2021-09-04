@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using System.Threading.Tasks;
 using Discord;
-using masz.Dtos.DiscordAPIResponses;
+using DSharpPlus.Entities;
 using masz.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -26,7 +26,7 @@ namespace masz.Services
             this.translator = translator;
         }
 
-        private EmbedBuilder CreateBasicEmbed(RestAction action, User author = null)
+        private EmbedBuilder CreateBasicEmbed(RestAction action, DiscordUser author = null)
         {
             EmbedBuilder embed = new EmbedBuilder();
 
@@ -46,7 +46,7 @@ namespace masz.Services
 
             if (author != null) {
                 var embedAuthor = new EmbedAuthorBuilder();
-                embedAuthor.IconUrl = author.ImageUrl;
+                embedAuthor.IconUrl = author.AvatarUrl;
                 embedAuthor.Name = author.Username;
                 embed.Author = embedAuthor;
             }
@@ -60,7 +60,7 @@ namespace masz.Services
             return embed;
         }
 
-        public async Task<EmbedBuilder> CreateModcaseEmbed(ModCase modCase, RestAction action, User actor, User suspect = null, bool isInternal = true)
+        public async Task<EmbedBuilder> CreateModcaseEmbed(ModCase modCase, RestAction action, DiscordUser actor, DiscordUser suspect = null, bool isInternal = true)
         {
             await translator.SetContext(modCase.GuildId);
             EmbedBuilder embed;
@@ -73,7 +73,7 @@ namespace masz.Services
             // Thumbnail
             if (suspect != null)
             {
-                embed.ThumbnailUrl = suspect.ImageUrl;
+                embed.ThumbnailUrl = suspect.AvatarUrl;
             }
 
             // Description
@@ -136,13 +136,13 @@ namespace masz.Services
             return embed;
         }
 
-        public async Task<EmbedBuilder> CreateFileEmbed(string filename, ModCase modCase, RestAction action, User actor)
+        public async Task<EmbedBuilder> CreateFileEmbed(string filename, ModCase modCase, RestAction action, DiscordUser actor)
         {
             await translator.SetContext(modCase.GuildId);
             EmbedBuilder embed = CreateBasicEmbed(action, actor);
 
             // Thumbnail
-            embed.ThumbnailUrl = actor.ImageUrl;
+            embed.ThumbnailUrl = actor.AvatarUrl;
 
             // Footer
             var footer = new EmbedFooterBuilder();
@@ -170,14 +170,14 @@ namespace masz.Services
             return embed;
         }
 
-        public async Task<EmbedBuilder> CreateCommentEmbed(ModCaseComment comment, RestAction action, User actor)
+        public async Task<EmbedBuilder> CreateCommentEmbed(ModCaseComment comment, RestAction action, DiscordUser actor)
         {
             await translator.SetContext(comment.ModCase.GuildId);
             EmbedBuilder embed = CreateBasicEmbed(action, actor);
 
             if (actor != null)
             {
-                embed.ThumbnailUrl = actor.ImageUrl;
+                embed.ThumbnailUrl = actor.AvatarUrl;
             }
 
             switch(action){
@@ -206,14 +206,14 @@ namespace masz.Services
             return embed;
         }
 
-        public async Task<EmbedBuilder> CreateUserNoteEmbed(UserNote userNote, RestAction action, User actor, User target)
+        public async Task<EmbedBuilder> CreateUserNoteEmbed(UserNote userNote, RestAction action, DiscordUser actor, DiscordUser target)
         {
             await translator.SetContext(userNote.GuildId);
             EmbedBuilder embed = CreateBasicEmbed(action, actor);
 
             if (actor != null)
             {
-                embed.ThumbnailUrl = target.ImageUrl;
+                embed.ThumbnailUrl = target.AvatarUrl;
             }
 
             embed.AddField($"**{translator.T().Description()}**", userNote.Description.Substring(0, Math.Min(userNote.Description.Length, 1000)));
@@ -227,7 +227,7 @@ namespace masz.Services
             return embed;
         }
 
-        public async Task<EmbedBuilder> CreateUserMapEmbed(UserMapping userMapping, RestAction action, User actor)
+        public async Task<EmbedBuilder> CreateUserMapEmbed(UserMapping userMapping, RestAction action, DiscordUser actor)
         {
             await translator.SetContext(userMapping.GuildId);
             EmbedBuilder embed = CreateBasicEmbed(action, actor);

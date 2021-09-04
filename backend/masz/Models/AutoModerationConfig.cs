@@ -11,7 +11,7 @@ namespace masz.Models
     {
         [Key]
         public int Id { get; set; }
-        public string GuildId { get; set; }
+        public ulong GuildId { get; set; }
         public AutoModerationType AutoModerationType { get; set; }
         public AutoModerationAction AutoModerationAction { get; set; }
         public PunishmentType? PunishmentType { get; set; }

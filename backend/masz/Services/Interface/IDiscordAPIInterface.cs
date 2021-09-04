@@ -1,8 +1,6 @@
-﻿using masz.Dtos.DiscordAPIResponses;
+﻿using DSharpPlus.Entities;
 using masz.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace masz.Services
@@ -11,27 +9,19 @@ namespace masz.Services
     {
         Dictionary<string, CacheApiResponse> GetCache();
         /// <summary>
-        /// Checks if the discord personal access token is valid.
-        /// https://discord.com/developers/docs/resources/user#get-current-user
-        /// </summary>
-        /// <param name="token">discord personal access token to use to authenticate against the discord api</param>
-        /// <returns>True if the request could be authenticated and thus the token is valid.</returns>
-        Task<bool> ValidateUserToken(string token);
-
-        /// <summary>
         /// Returns information of user by his id
         /// https://discord.com/developers/docs/resources/user#get-user
         /// </summary>
         /// <param name="token">discord personal access token to use to authenticate against the discord api</param>
         /// <returns>User object if found.</returns>
-        Task<User> FetchCurrentUserInfo(string token, CacheBehavior cacheBehavior);
+        Task<DiscordUser> FetchCurrentUserInfo(string token, CacheBehavior cacheBehavior);
 
         /// <summary>
         /// Returns information of current bot
         /// https://discord.com/developers/docs/resources/user#get-user
         /// </summary>
         /// <returns>User object if found.</returns>
-        Task<User> FetchCurrentBotInfo(CacheBehavior cacheBehavior);
+        DiscordUser GetCurrentBotInfo(CacheBehavior cacheBehavior);
 
         /// <summary>
         /// Returns information of user by his id
@@ -41,7 +31,7 @@ namespace masz.Services
         /// <param name="userId">discord user id to fetch</param>
         /// <param name="breakCache">if it should ignore/break the cached user</param>
         /// <returns>User object if found.</returns>
-        Task<User> FetchUserInfo(string userId, CacheBehavior cacheBehavior);
+        Task<DiscordUser> FetchUserInfo(ulong userId, CacheBehavior cacheBehavior);
 
         /// <summary>
         /// Returns information of a discord guild member bis his id and the guilds
@@ -51,8 +41,8 @@ namespace masz.Services
         /// <param name="userId">discord user id to fetch</param>
         /// <param name="breakCache">if it should ignore/break the cached user</param>
         /// <returns>User object if found.</returns>
-        Task<GuildMember> FetchMemberInfo(string guildId, string userId, CacheBehavior cacheBehavior);
-        Task<List<GuildMember>> FetchGuildMembers(string guildId, CacheBehavior cacheBehavior);
+        Task<DiscordMember> FetchMemberInfo(ulong guildId, ulong userId, CacheBehavior cacheBehavior);
+        Task<List<DiscordMember>> FetchGuildMembers(ulong guildId, CacheBehavior cacheBehavior);
 
         /// <summary>
         /// Returns information of guild channels by guild id
@@ -61,14 +51,14 @@ namespace masz.Services
         /// <param name="guildId">discord guild id to fetch</param>
         /// <returns>List of guild channels.</returns>
 
-        Task<List<Channel>> FetchGuildChannels(string guildId, CacheBehavior cacheBehavior);
+        Task<List<DiscordChannel>> FetchGuildChannels(ulong guildId, CacheBehavior cacheBehavior);
         /// <summary>
         /// Returns information of guild by its id
         /// https://discord.com/developers/docs/resources/guild#get-guild
         /// </summary>
         /// <param name="guildId">discord guild id to fetch</param>
         /// <returns>Guild object if found.</returns>
-        Task<Guild> FetchGuildInfo(string guildId, CacheBehavior cacheBehavior);
+        Task<DiscordGuild> FetchGuildInfo(ulong guildId, CacheBehavior cacheBehavior);
 
         /// <summary>
         /// This method returns a list of IDs for all guilds a user defined by his personal access token is member of.
@@ -76,7 +66,7 @@ namespace masz.Services
         /// </summary>
         /// <param name="token">discord personal access token to use to authenticate against the discord api</param>
         /// <returns>List of guildId snowflakes that the user is member of.</returns>
-        Task<List<Guild>> FetchGuildsOfCurrentUser(string token, CacheBehavior cacheBehavior);
+        Task<List<DiscordGuild>> FetchGuildsOfCurrentUser(string token, CacheBehavior cacheBehavior);
 
         /// <summary>
         /// This method fetches a discord guild channel message
@@ -85,7 +75,7 @@ namespace masz.Services
         /// <param name="channelId"></param>
         /// <param name="messageId"></param>
         /// <returns>fetched message or null if not found</returns>
-        Task<Message> GetDiscordMessage(string channelId, string messageId, CacheBehavior cacheBehavior);
+        Task<DiscordMessage> GetDiscordMessage(ulong channelId, ulong messageId, CacheBehavior cacheBehavior);
 
         /// <summary>
         /// This method checks if a defined user is banned on a guild and returns the ban object or null
@@ -94,16 +84,15 @@ namespace masz.Services
         /// <param name="guildId">guild to check bans on</param>
         /// <param name="userId">user to check bans for</param>
         /// <returns>returns the ban object or null if not found</returns>
-        Task<Ban> GetGuildUserBan(string guildId, string userId, CacheBehavior cacheBehavior);
-        Task<List<Ban>> GetGuildBans(string guildId, CacheBehavior cacheBehavior);
-        Task<bool> BanUser(string guildId, string userId);
-        Task<bool> UnBanUser(string guildId, string userId);
-        Task<bool> GrantGuildUserRole(string guildId, string userId, string roleId);
-        Task<bool> RemoveGuildUserRole(string guildId, string userId, string roleId);
-        Task<bool> KickGuildUser(string guildId, string userId);
-        Task<Channel> CreateDmChannel(string userId);
-        Task<bool> SendMessage(string channelId, string content);
-        Task<bool> SendEmbedMessage(string channelId, object content);
-        Task<bool> SendDmMessage(string userId, string content);
+        Task<DiscordBan> GetGuildUserBan(ulong guildId, ulong userId, CacheBehavior cacheBehavior);
+        Task<List<DiscordBan>> GetGuildBans(ulong guildId, CacheBehavior cacheBehavior);
+        Task<bool> BanUser(ulong guildId, ulong userId);
+        Task<bool> UnBanUser(ulong guildId, ulong userId);
+        Task<bool> GrantGuildUserRole(ulong guildId, ulong userId, ulong roleId);
+        Task<bool> RemoveGuildUserRole(ulong guildId, ulong userId, ulong roleId);
+        Task<bool> KickGuildUser(ulong guildId, ulong userId);
+        Task<DiscordChannel> CreateDmChannel(ulong userId);
+        Task<bool> SendMessage(ulong channelId, string content, DiscordEmbed embed);
+        Task<bool> SendDmMessage(ulong userId, string content);
     }
 }

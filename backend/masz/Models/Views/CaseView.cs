@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using masz.Dtos.DiscordAPIResponses;
+using DSharpPlus.Entities;
 
 namespace masz.Models
 {
     public class CaseView
     {
-        public CaseView(ModCase modCase, User moderator, User lastModerator, User suspect, List<CommentsView> comments)
+        public CaseView(ModCase modCase, DiscordUser moderator, DiscordUser lastModerator, DiscordUser suspect, List<CommentsView> comments)
         {
             ModCase = modCase;
             Moderator = moderator;
@@ -30,11 +28,11 @@ namespace masz.Models
             }
         }
         public ModCase ModCase { get; set; }
-        public User Moderator { get; set; }
-        public User LastModerator { get; set; }
-        public User Suspect { get; set; }
-        public User LockedBy { get; set; }
-        public User DeletedBy { get; set; }
+        public DiscordUser Moderator { get; set; }
+        public DiscordUser LastModerator { get; set; }
+        public DiscordUser Suspect { get; set; }
+        public DiscordUser LockedBy { get; set; }
+        public DiscordUser DeletedBy { get; set; }
         public List<CommentsView> Comments { get; set; }
         public double? PunishmentProgress { get; set; }
 
@@ -48,7 +46,7 @@ namespace masz.Models
 
             foreach (var comment in this.Comments)
             {
-                comment.RemoveModeratorInfo(this.ModCase.UserId);
+                comment.RemoveModeratorInfo(ModCase.UserId);
             }
         }
     }

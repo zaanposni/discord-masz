@@ -1,56 +1,35 @@
 using System;
 using System.Threading.Tasks;
-using masz.Dtos.DiscordAPIResponses;
 using masz.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace masz.Controllers
 {
     public class SimpleCaseController : SimpleController
     {
-        private readonly IServiceProvider serviceProvider;
-        private readonly ILogger<SimpleCaseController> logger;
+        private readonly IServiceProvider _serviceProvider;
+        private readonly ILogger<SimpleCaseController> _logger;
 
         public SimpleCaseController(IServiceProvider serviceProvider, ILogger<SimpleCaseController> logger) : base(serviceProvider) {
-            this.serviceProvider = serviceProvider;
-            this.logger = logger;
-        }
-
-        private async Task<IActionResult> GuildIsValid(string guildId)
-        {
-            GuildConfig guildConfig = await this.database.SelectSpecificGuildConfig(guildId);
-            if (guildConfig == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
-                return BadRequest("Guild not registered.");
-            }
-            return null;
-        }
-        private async Task<IActionResult> UserIsValid()
-        {
-            User user = await this.IsValidUser();
-            if (user == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            return null;
+            _serviceProvider = serviceProvider;
+            _logger = logger;
         }
 
         public async Task<IActionResult> HandleRequest(string guildId, DiscordPermission permission)
         {
-            IActionResult guild = await GuildIsValid(guildId);
-            if (guild != null) {
-                return guild;
+            GuildConfig guild = await GuildIsRegistered(guildId);
+            if (guild == null) {
+                _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
             }
-            IActionResult user = await UserIsValid();
-            if (user != null) {
-                return user;
+            Identity currentIdentity = await GetIdentity();
+            if (currentIdentity == null) {
+                _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
             }
-            if(! await this.HasPermissionOnGuild(permission, guildId)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+            if(! await currentIdentity.HasPermissionOnGuild(permission, guildId)) {
+                _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
 
@@ -59,26 +38,32 @@ namespace masz.Controllers
 
         public async Task<IActionResult> HandleRequest(string guildId, string caseId, APIActionPermission permission)
         {
-            IActionResult guild = await GuildIsValid(guildId);
-            if (guild != null) {
-                return guild;
+            GuildConfig guild = await GuildIsRegistered(guildId);
+            if (guild == null)
+            {
+                _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
             }
-            IActionResult user = await UserIsValid();
-            if (user != null) {
-                return user;
+            Identity currentIdentity = await GetIdentity();
+            if (currentIdentity == null)
+            {
+                _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+                return Unauthorized();
             }
-            ModCase modCase = await database.SelectSpecificModCase(guildId, caseId);
-            if (modCase == null) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Not Found.");
+            ModCase modCase = await _database.SelectSpecificModCase(guildId, caseId);
+            if (modCase == null)
+            {
+                _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Not Found.");
                 return NotFound();
             }
-            if (!await this.IsAllowedTo(permission, modCase)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
+            if (!await currentIdentity.IsAllowedTo(permission, modCase))
+            {
+                _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
             if (modCase.MarkedToDeleteAt != null && permission == APIActionPermission.Edit)
             {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Case is marked to be deleted.");
+                _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Case is marked to be deleted.");
                 return BadRequest("Case is marked to be deleted.");
             }
 
@@ -87,28 +72,35 @@ namespace masz.Controllers
 
         public async Task<bool> HasPermissionToExecutePunishment(string guildId, PunishmentType punishment)
         {
-            if (await this.IsSiteAdmin()) {
+            Identity currentIdentity = await GetIdentity();
+            if (currentIdentity == null)
+            {
+                return false;
+            }
+            if (await currentIdentity.IsSiteAdmin())
+            {
                 return true;
             }
-            GuildConfig guildConfig = await this.GuildIsRegistered(guildId);
+            GuildConfig guildConfig = await GuildIsRegistered(guildId);
             if (guildConfig == null)
             {
                 return false;
             }
-            if (! guildConfig.StrictModPermissionCheck)
+            if (! await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
             {
-                return true;
+                return false;
             }
-
-            switch (punishment)
+            if (guildConfig.StrictModPermissionCheck)
             {
-                case PunishmentType.Kick:
-                    return await this.HasRolePermissionInGuild(guildId, DiscordBitPermissionFlags.KICK_MEMBERS);
-                case PunishmentType.Ban:
-                    return await this.HasRolePermissionInGuild(guildId, DiscordBitPermissionFlags.BAN_MEMBERS);
-                default:
-                    return true;
+                switch (punishment)
+                {
+                    case PunishmentType.Kick:
+                        return await currentIdentity.HasRolePermissionInGuild(guildId, DSharpPlus.Permissions.KickMembers);
+                    case PunishmentType.Ban:
+                        return await currentIdentity.HasRolePermissionInGuild(guildId, DSharpPlus.Permissions.BanMembers);
+                }
             }
+            return true;
         }
     }
 }

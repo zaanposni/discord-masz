@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using masz.Dtos.DiscordAPIResponses;
+using DSharpPlus.Entities;
 using masz.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -62,7 +61,7 @@ namespace masz.Services
                 foreach (ModCase modCase in await database.SelectAllModcasesMarkedAsDeleted())
                 {
                     try {
-                        filesHandler.DeleteDirectory(Path.Combine(config.Value.AbsolutePathToFileUpload, modCase.GuildId, modCase.CaseId.ToString()));
+                        filesHandler.DeleteDirectory(Path.Combine(config.Value.AbsolutePathToFileUpload, modCase.GuildId.ToString(), modCase.CaseId.ToString()));
                     } catch (Exception e) {
                         logger.LogError(e, "Failed to delete files directory for modcase.");
                     }
@@ -76,7 +75,7 @@ namespace masz.Services
         public async void CacheAll()
         {
             await CacheAllKnownGuilds();
-            List<string> handledUsers = new List<string>();
+            List<ulong> handledUsers = new List<ulong>();
             handledUsers = await CacheAllGuildBans(handledUsers);
             handledUsers = await CacheAllGuildMembers(handledUsers);
             await CacheAllKnownUsers(handledUsers);
@@ -88,7 +87,7 @@ namespace masz.Services
             using (var scope = serviceScopeFactory.CreateScope())
             {
                 IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
-                
+
                 foreach (var guild in await database.SelectAllGuildConfigs())
                 {
                     await discord.FetchGuildInfo(guild.GuildId, CacheBehavior.IgnoreCache);
@@ -97,21 +96,21 @@ namespace masz.Services
             }
             logger.LogInformation("Cacher | Done - Cache all registered guilds.");
         }
-        public async Task<List<string>> CacheAllGuildMembers(List<string> handledUsers)
+        public async Task<List<ulong>> CacheAllGuildMembers(List<ulong> handledUsers)
         {
             logger.LogInformation("Cacher | Cache all members of registered guilds.");
             using (var scope = serviceScopeFactory.CreateScope())
             {
                 IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
-                
+
                 foreach (var guild in await database.SelectAllGuildConfigs())
                 {
                     var members = await discord.FetchGuildMembers(guild.GuildId, CacheBehavior.IgnoreCache);
                     if (members != null) {
                         foreach (var item in members)
                         {
-                            if (!handledUsers.Contains(item.User.Id)) {
-                                handledUsers.Add(item.User.Id);
+                            if (!handledUsers.Contains(item.Id)) {
+                                handledUsers.Add(item.Id);
                             }
                         }
                     }
@@ -121,18 +120,18 @@ namespace masz.Services
             return handledUsers;
         }
 
-        public async Task<List<string>> CacheAllGuildBans(List<string> handledUsers)
+        public async Task<List<ulong>> CacheAllGuildBans(List<ulong> handledUsers)
         {
             logger.LogInformation("Cacher | Cache all bans of registered guilds.");
             using (var scope = serviceScopeFactory.CreateScope())
             {
                 IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
-                
+
                 foreach (var guild in await database.SelectAllGuildConfigs())
                 {
-                    List<Ban> bans = await this.discord.GetGuildBans(guild.GuildId, CacheBehavior.IgnoreCache);
+                    List<DiscordBan> bans = await this.discord.GetGuildBans(guild.GuildId, CacheBehavior.IgnoreCache);
                     if (bans != null) {
-                        foreach (Ban ban in bans)
+                        foreach (DiscordBan ban in bans)
                         {
                             handledUsers.Add(ban.User.Id);
                         }
@@ -143,13 +142,13 @@ namespace masz.Services
             return handledUsers;
         }
 
-        public async Task<List<string>> CacheAllKnownUsers(List<string> handledUsers)
+        public async Task<List<ulong>> CacheAllKnownUsers(List<ulong> handledUsers)
         {
             logger.LogInformation("Cacher | Cache all known users.");
             using (var scope = serviceScopeFactory.CreateScope())
             {
                 IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
-                
+
                 foreach (var modCase in await database.SelectLatestModCases(DateTime.UtcNow.AddYears(-3), 750))
                 {
                     if (!handledUsers.Contains(modCase.UserId)) {

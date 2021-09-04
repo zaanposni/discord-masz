@@ -38,7 +38,7 @@ namespace masz.Controllers
             List<string> currentLogins = new List<string>();
             foreach (var login in this.identityManager.GetCurrentIdentities())
             {
-                if (login is DiscordIdentity) 
+                if (login is DiscordOAuthIdentity) 
                 {
                     var user = await login.GetCurrentDiscordUser();
                     if (user == null) {

@@ -43,7 +43,7 @@ namespace masz.Controllers.api.v1
             List<Guild> bannedGuilds = new List<Guild>();
             bool siteAdmin = config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id) || identity is TokenIdentity;
 
-            if (identity is DiscordIdentity) {
+            if (identity is DiscordOAuthIdentity) {
                 List<Guild> userGuilds = await identity.GetCurrentGuilds();
                 List<GuildConfig> registeredGuilds = await database.SelectAllGuildConfigs();
 

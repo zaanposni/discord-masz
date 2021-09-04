@@ -9,7 +9,7 @@ namespace masz.Models
         public int Id { get; set; }
         public ModCase ModCase { get; set; }
         public string Message { get; set; }
-        public string UserId { get; set; }
+        public ulong UserId { get; set; }
         public DateTime CreatedAt { get; set; }
 
         public object Clone()
@@ -23,11 +23,11 @@ namespace masz.Models
             };
         }
 
-        public void RemoveModeratorInfo(String suspectId)
+        public void RemoveModeratorInfo(ulong suspectId)
         {
             if (this.UserId != suspectId) {
-                this.UserId = null;
-            }            
+                this.UserId = 0;
+            }
         }
     }
 }

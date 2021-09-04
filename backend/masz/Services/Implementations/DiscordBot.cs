@@ -112,5 +112,10 @@ namespace masz.Services
             _logger.LogError($"Command '{e.Context.CommandName}' invoked by '{e.Context.User.Username}#{e.Context.User.Discriminator}' failed: " + e.Exception.Message);
             return Task.CompletedTask;
         }
+
+        public DiscordClient GetClient()
+        {
+            return _client;
+        }
     }
 }

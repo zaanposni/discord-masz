@@ -1,6 +1,6 @@
 namespace masz.Models
 {
-    public enum DiscordBitPermissionFlags
+    public enum DiscordBitPermissionFlag
     {
         CREATE_INSTANT_INVITE,
         KICK_MEMBERS,

@@ -1,4 +1,6 @@
-﻿using masz.Dtos.DiscordAPIResponses;
+﻿using DSharpPlus;
+using DSharpPlus.Entities;
+using masz.Exceptions;
 using masz.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -13,643 +15,501 @@ using System.Threading.Tasks;
 namespace masz.Services
 {
     public class DiscordAPIInterface : IDiscordAPIInterface
-    {        
-        private string discordBaseUrl => "https://discord.com/api";
-        private readonly ILogger<DiscordAPIInterface> logger;
-        private readonly IOptions<InternalConfig> config;
-        private readonly string botToken;
-        private Dictionary<string, CacheApiResponse> cache = new Dictionary<string, CacheApiResponse>();
-        private RestClient restClient;
-        private Dictionary<string, DiscordApiRatelimit> ratelimitCache = new Dictionary<string, DiscordApiRatelimit>();
+    {
+        private readonly ILogger<DiscordAPIInterface> _logger;
+        private readonly IOptions<InternalConfig> _config;
+        private readonly IDiscordBot _discordBot;
+        private readonly DiscordRestClient _discordRestClient;
+        private Dictionary<string, CacheApiResponse> _cache = new Dictionary<string, CacheApiResponse>();
 
         public DiscordAPIInterface() {  }
-        public DiscordAPIInterface(ILogger<DiscordAPIInterface> logger, IOptions<InternalConfig> config)
+        public DiscordAPIInterface(ILogger<DiscordAPIInterface> logger, IOptions<InternalConfig> config, IDiscordBot discordBot)
         {
-            this.logger = logger;
-            this.config = config;
-            this.botToken = config.Value.DiscordBotToken;
-
-            restClient = new RestClient(discordBaseUrl);
-        }
-
-        private async Task WaitForRatelimit(string path)
-        {
-            if (this.ratelimitCache.ContainsKey(path)) {
-                if (this.ratelimitCache[path].Remaining == 0) {
-                    while (DateTime.UtcNow <= this.ratelimitCache[path].ResetsAt) {
-                        await Task.Delay(25);
-                    }
-                }
-            }
-        }
-
-        public async Task<List<Ban>> GetGuildBans(string guildId, CacheBehavior cacheBehavior)
-        {
-            string path = $"/guilds/{guildId}/bans";
-            if (cacheBehavior == CacheBehavior.OnlyCache) {
-                if (this.cache.ContainsKey(path)) {
-                    return JsonConvert.DeserializeObject<List<Ban>>(this.cache[path].Content);
-                } else {
-                    return new List<Ban>();
-                }
-            }
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
-                if (this.cache[path].ExpiresAt > DateTime.Now) {
-                    return JsonConvert.DeserializeObject<List<Ban>>(this.cache[path].Content);
-                }
-                this.cache.Remove(path);
-            }
-            await this.WaitForRatelimit($"/guilds/{guildId}/bans");
-
-            var request = new RestRequest(Method.GET);
-            request.Resource = path;
-            request.AddHeader("Authorization", "Bot " + botToken);
-
-            var response = await restClient.ExecuteAsync<List<Guild>>(request);
-            if (response.IsSuccessful)
+            this._logger = logger;
+            this._config = config;
+            this._discordBot = discordBot;
+            this._discordRestClient = new DiscordRestClient(new DiscordConfiguration
             {
-                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
-                this.cache[path] = new CacheApiResponse(response.Content);
-                List<Ban> returnList = JsonConvert.DeserializeObject<List<Ban>>(response.Content);
-                foreach (Ban ban in returnList)
+                Token = _config.Value.DiscordBotToken,
+                TokenType = TokenType.Bot,
+            });
+        }
+
+        public DiscordRestClient GetOAuthClient(string token)
+        {
+            return new DiscordRestClient(new DiscordConfiguration
+            {
+                Token = token,
+                TokenType = TokenType.Bearer,
+            });
+        }
+
+        private T TryGetFromCache<T>(string cacheKey, CacheBehavior cacheBehavior)
+        {
+            if (cacheBehavior == CacheBehavior.OnlyCache) {
+                if (_cache.ContainsKey(cacheKey)) {
+                    return _cache[cacheKey].GetContent<T>();
+                } else {
+                    throw new NotFoundInCacheException(cacheKey);
+                }
+            }
+            if (_cache.ContainsKey(cacheKey) && cacheBehavior == CacheBehavior.Default) {
+                if (! _cache[cacheKey].IsExpired()) {
+                    return _cache[cacheKey].GetContent<T>();
+                }
+                _cache.Remove(cacheKey);
+            }
+            return default(T);
+        }
+
+        private T FallBackToCache<T>(string cacheKey, CacheBehavior cacheBehavior)
+        {
+            if (cacheBehavior != CacheBehavior.IgnoreCache)
+            {
+                if (_cache.ContainsKey(cacheKey))
                 {
-                    this.cache[$"{path}/{ban.User.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(ban));
-                    this.cache[$"/users/{ban.User.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(ban.User));
-                }
-                return returnList;
-            }
-            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
-                return JsonConvert.DeserializeObject<List<Ban>>(this.cache[path].Content);
-            }
-            return null;
-        }
-        public async Task<Ban> GetGuildUserBan(string guildId, string userId, CacheBehavior cacheBehavior)
-        {
-            string path = $"/guilds/{guildId}/bans/{userId}";
-            if (cacheBehavior == CacheBehavior.OnlyCache) {
-                if (this.cache.ContainsKey(path)) {
-                    return new Ban(this.cache[path].Content);
-                } else {
-                    return null;
-                }
-            }
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
-                if (this.cache[path].ExpiresAt > DateTime.Now) {
-                    return new Ban(this.cache[path].Content);
-                }
-                this.cache.Remove(path);
-            }
-            await this.WaitForRatelimit($"/guilds/{guildId}/bans");
-
-            var request = new RestRequest(Method.GET);
-            request.Resource = path;
-            request.AddHeader("Authorization", "Bot " + botToken);
-
-            var response = await restClient.ExecuteAsync<Ban>(request);
-            if (response.IsSuccessful)
-            {
-                this.ratelimitCache[$"/guilds/{guildId}/bans"] = new DiscordApiRatelimit(response);
-                this.cache[path] = new CacheApiResponse(response.Content);
-                Ban ban = new Ban(response.Content);
-                this.cache[$"/users/{ban.User.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(ban.User));
-                return ban;
-            } else {
-                if (response.StatusCode == HttpStatusCode.NotFound) {
-                    this.cache.Remove(path);  // no longer banned
-                }
-            }
-            
-            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
-                return new Ban(this.cache[path].Content);
-            }
-            return null;
-        }
-
-        public async Task<User> FetchUserInfo(string userId, CacheBehavior cacheBehavior)
-        {
-            string path = $"/users/{userId}";
-            if (cacheBehavior == CacheBehavior.OnlyCache) {
-                if (this.cache.ContainsKey(path)) {
-                    return new User(this.cache[path].Content);
-                } else {
-                    return null;
-                }
-            }
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
-                if (this.cache[path].ExpiresAt > DateTime.Now) {
-                    return new User(this.cache[path].Content);
-                }
-                this.cache.Remove(path);
-            }
-            await this.WaitForRatelimit("/users");
-
-            var request = new RestRequest(Method.GET);
-            request.Resource = path;
-            request.AddHeader("Authorization", "Bot " + botToken);
-
-            var response = await restClient.ExecuteAsync<User>(request);
-            if (response.IsSuccessful)
-            {
-                this.ratelimitCache["/users"] = new DiscordApiRatelimit(response);
-                this.cache[path] = new CacheApiResponse(response.Content);
-
-                return new User(response.Content);
-            }
-            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
-                return new User(this.cache[path].Content);
-            }
-            return null;
-        }
-
-        public async Task<List<GuildMember>> FetchGuildMembers(string guildId, CacheBehavior cacheBehavior)
-        {
-            string path = $"/guilds/{guildId}/members";
-            if (cacheBehavior == CacheBehavior.OnlyCache) {
-                if (this.cache.ContainsKey(path)) {
-                    return JsonConvert.DeserializeObject<List<GuildMember>>(this.cache[path].Content);
-                } else {
-                    return new List<GuildMember>();
-                }
-            }
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
-                if (this.cache[path].ExpiresAt > DateTime.Now) {
-                    return JsonConvert.DeserializeObject<List<GuildMember>>(this.cache[path].Content);
-                }
-                this.cache.Remove(path);
-            }            
-
-            List<GuildMember> members = new List<GuildMember>();
-            string lastUserId = null;
-            do {
-                await this.WaitForRatelimit(path);
-
-                var request = new RestRequest(Method.GET);
-                request.Resource = path;
-                request.AddHeader("Authorization", "Bot " + botToken);
-                request.AddQueryParameter("limit", "1000");
-                if (!String.IsNullOrEmpty(lastUserId)) {
-                    request.AddQueryParameter("after", lastUserId);
-                }
-
-                var response = await restClient.ExecuteAsync<List<GuildMember>>(request);
-                if (response.IsSuccessful) {
-                    this.ratelimitCache[path] = new DiscordApiRatelimit(response);
-
-                    List<GuildMember> newMembers = JsonConvert.DeserializeObject<List<GuildMember>>(response.Content);
-                    foreach (GuildMember item in newMembers)
+                    if (! _cache[cacheKey].IsExpired())
                     {
-                        this.cache[$"/guilds/{guildId}/members/{item.User.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(item));
-                        this.cache[$"/users/{item.User.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(item.User));
-                        lastUserId = item.User.Id;
-                        members.Add(item);
+                        return _cache[cacheKey].GetContent<T>();
                     }
-                } else {
-                    logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
-                    if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
-                        return JsonConvert.DeserializeObject<List<GuildMember>>(this.cache[path].Content);
-                    }
-                    return members;
+                    _cache.Remove(cacheKey);
                 }
-            } while(members.Count != 0 && members.Count % 1000 == 0);
+            }
+            return default(T);
+        }
 
-            this.cache[path] = new CacheApiResponse(JsonConvert.SerializeObject(members));
+        public async Task<List<DiscordBan>> GetGuildBans(ulong guildId, CacheBehavior cacheBehavior)
+        {
+            // do cache stuff --------------------
+            string cacheKey = $"/guilds/{guildId}/bans";
+            List<DiscordBan> bans = null;
+            try
+            {
+                bans = TryGetFromCache<List<DiscordBan>>(cacheKey, cacheBehavior);
+                if (bans != null) return bans;
+            } catch (NotFoundInCacheException)
+            {
+                return new List<DiscordBan>();
+            }
+
+            // rqeuest ---------------------------
+            try
+            {
+                bans = (await _discordRestClient.GetGuildBansAsync(guildId)).ToList();
+            } catch (Exception e)
+            {
+                _logger.LogError($"Failed to fetch guild bans for guild '{guildId}' from API.", e);
+                return FallBackToCache<List<DiscordBan>>(cacheKey, cacheBehavior);
+            }
+
+            // cache -----------------------------
+            _cache[cacheKey] = new CacheApiResponse(bans);
+            foreach (DiscordBan ban in bans)
+            {
+                _cache[$"{cacheKey}/{ban.User.Id}"] = new CacheApiResponse(ban.User);
+                _cache[$"/users/{ban.User.Id}"] = new CacheApiResponse(ban.User);
+            }
+            return bans;
+        }
+
+        public async Task<DiscordBan> GetGuildUserBan(ulong guildId, ulong userId, CacheBehavior cacheBehavior)
+        {
+            // do cache stuff --------------------
+            string cacheKey = $"/guilds/{guildId}/bans/{userId}";
+            DiscordBan ban = null;
+            try
+            {
+                ban = TryGetFromCache<DiscordBan>(cacheKey, cacheBehavior);
+                if (ban != null) return ban;
+            } catch (NotFoundInCacheException)
+            {
+                return ban;
+            }
+
+            // rqeuest ---------------------------
+            try
+            {
+                ban = await  _discordRestClient.GetGuildBanAsync(guildId, userId);
+            } catch (Exception e)
+            {
+                _logger.LogError($"Failed to fetch guild ban for guild '{guildId}' and user '{userId}' from API.", e);
+                return FallBackToCache<DiscordBan>(cacheKey, cacheBehavior);
+            }
+
+            // cache -----------------------------
+            _cache[cacheKey] = new CacheApiResponse(ban);
+            _cache[$"/users/{ban.User.Id}"] = new CacheApiResponse(ban.User);
+            return ban;
+        }
+
+        public async Task<DiscordUser> FetchUserInfo(ulong userId, CacheBehavior cacheBehavior)
+        {
+            // do cache stuff --------------------
+            string cacheKey = $"/users/{userId}";
+            DiscordUser user = null;
+            try
+            {
+                user = TryGetFromCache<DiscordUser>(cacheKey, cacheBehavior);
+                if (user != null) return user;
+            } catch (NotFoundInCacheException)
+            {
+                return user;
+            }
+
+            // rqeuest ---------------------------
+            try
+            {
+                user = await _discordRestClient.GetUserAsync(userId);
+            } catch (Exception e)
+            {
+                _logger.LogError($"Failed to fetch user '{userId}' from API.", e);
+                return FallBackToCache<DiscordUser>(cacheKey, cacheBehavior);
+            }
+
+            // cache -----------------------------
+            _cache[cacheKey] = new CacheApiResponse(user);
+            return user;
+        }
+
+        public async Task<List<DiscordMember>> FetchGuildMembers(ulong guildId, CacheBehavior cacheBehavior)
+        {
+            // do cache stuff --------------------
+            string cacheKey = $"/guilds/{guildId}/members";
+            List<DiscordMember> members = null;
+            try
+            {
+                members = TryGetFromCache<List<DiscordMember>>(cacheKey, cacheBehavior);
+                if (members != null) return members;
+            } catch (NotFoundInCacheException)
+            {
+                return new List<DiscordMember>();
+            }
+
+            // rqeuest ---------------------------
+            try
+            {
+                DiscordGuild guild = await FetchGuildInfo(guildId, cacheBehavior);
+                if (guild == null)
+                {
+                    return new List<DiscordMember>();
+                }
+                members = (await guild.GetAllMembersAsync()).ToList();
+            } catch (Exception e)
+            {
+                _logger.LogError($"Failed to fetch members for guild '{guildId}' from API.", e);
+                return FallBackToCache<List<DiscordMember>>(cacheKey, cacheBehavior);
+            }
+
+            // cache -----------------------------
+            foreach (DiscordMember item in members)
+            {
+                _cache[$"/guilds/{guildId}/members/{item.Id}"] = new CacheApiResponse(item);
+                _cache[$"/users/{item.Id}"] = new CacheApiResponse((DiscordUser) item);
+            }
+            _cache[cacheKey] = new CacheApiResponse(members);
             return members;
         }
 
-        public async Task<User> FetchCurrentUserInfo(string token, CacheBehavior cacheBehavior)
+        public async Task<DiscordUser> FetchCurrentUserInfo(string token, CacheBehavior cacheBehavior)
         {
-            string path = $"/users/{token}";
-            if (cacheBehavior == CacheBehavior.OnlyCache) {
-                if (this.cache.ContainsKey(path)) {
-                    return new User(this.cache[path].Content);
-                } else {
-                    return null;
-                }
-            }
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
-                if (this.cache[path].ExpiresAt > DateTime.Now) {
-                    return new User(this.cache[path].Content);
-                }
-                this.cache.Remove(path);
-            }
-            await this.WaitForRatelimit(path);
-
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/users/@me";
-            request.AddHeader("Authorization", "Bearer " + token);
-
-            var response = await restClient.ExecuteAsync<User>(request);
-            if (response.IsSuccessful)
+            // do cache stuff --------------------
+            string cacheKey = $"/users/{token}";
+            DiscordUser user = null;
+            try
             {
-                User returnUser = new User(response.Content);
-                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
-                this.cache[path] = new CacheApiResponse(response.Content);
-                this.cache[$"/users/{returnUser.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(returnUser));
+                user = TryGetFromCache<DiscordUser>(cacheKey, cacheBehavior);
+                if (user != null) return user;
+            } catch (NotFoundInCacheException)
+            {
+                return user;
+            }
 
-                return returnUser;
+            // rqeuest ---------------------------
+            try
+            {
+                user = await GetOAuthClient(token).GetCurrentUserAsync();
+            } catch (Exception e)
+            {
+                _logger.LogError($"Failed to fetch current user for token '{token}' from API.", e);
+                return FallBackToCache<DiscordUser>(cacheKey, cacheBehavior);
             }
-            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
-                return new User(this.cache[path].Content);
-            }
-            return null;
+
+            // cache -----------------------------
+            _cache[cacheKey] = new CacheApiResponse(user);
+            return user;
         }
 
-        public async Task<User> FetchCurrentBotInfo(CacheBehavior cacheBehavior)
+        public DiscordUser GetCurrentBotInfo(CacheBehavior cacheBehavior)
         {
-            string path = $"/users/@me";
-            if (cacheBehavior == CacheBehavior.OnlyCache) {
-                if (this.cache.ContainsKey(path)) {
-                    return new User(this.cache[path].Content);
-                } else {
-                    return null;
-                }
-            }
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
-                if (this.cache[path].ExpiresAt > DateTime.Now) {
-                    return new User(this.cache[path].Content);
-                }
-                this.cache.Remove(path);
-            }
-            await this.WaitForRatelimit(path);
-
-            var request = new RestRequest(Method.GET);
-            request.Resource = path;
-            request.AddHeader("Authorization", "Bot " + botToken);
-
-            var response = await restClient.ExecuteAsync<User>(request);
-            if (response.IsSuccessful)
-            {
-                User returnUser = new User(response.Content);
-                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
-                this.cache[path] = new CacheApiResponse(response.Content);
-                this.cache[$"/users/{returnUser.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(returnUser));
-
-                return returnUser;
-            }
-            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
-                return new User(this.cache[path].Content);
-            }
-            return null;
+            return _discordRestClient.CurrentUser;
         }
 
-        public async Task<List<Channel>> FetchGuildChannels(string guildId, CacheBehavior cacheBehavior)
+        public async Task<List<DiscordChannel>> FetchGuildChannels(ulong guildId, CacheBehavior cacheBehavior)
         {
-            string path = $"/guilds/{guildId}/channels";
-            if (cacheBehavior == CacheBehavior.OnlyCache) {
-                if (this.cache.ContainsKey(path)) {
-                    return JsonConvert.DeserializeObject<List<Channel>>(this.cache[path].Content);
-                } else {
-                    return new List<Channel>();
-                }
-            }
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
-                if (this.cache[path].ExpiresAt > DateTime.Now) {
-                    return JsonConvert.DeserializeObject<List<Channel>>(this.cache[path].Content);
-                }
-                this.cache.Remove(path);
-            }
-            await this.WaitForRatelimit(path);
-
-            var request = new RestRequest(Method.GET);
-            request.Resource = path;
-            request.AddHeader("Authorization", "Bot " + botToken);
-
-            var response = await restClient.ExecuteAsync<List<Guild>>(request);
-            if (response.IsSuccessful)
+            // do cache stuff --------------------
+            string cacheKey = $"/guilds/{guildId}/channels";
+            List<DiscordChannel> channels = null;
+            try
             {
-                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
-                this.cache[path] = new CacheApiResponse(response.Content);
-                return JsonConvert.DeserializeObject<List<Channel>>(response.Content);
+                channels = TryGetFromCache<List<DiscordChannel>>(cacheKey, cacheBehavior);
+                if (channels != null) return channels;
+            } catch (NotFoundInCacheException)
+            {
+                return new List<DiscordChannel>();
             }
-            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
-                return JsonConvert.DeserializeObject<List<Channel>>(this.cache[path].Content);
+
+            // rqeuest ---------------------------
+            try
+            {
+                channels = (await _discordRestClient.GetGuildChannelsAsync(guildId)).ToList();
+            } catch (Exception e)
+            {
+                _logger.LogError($"Failed to fetch guild channels for guild '{guildId}' from API.", e);
+                return FallBackToCache<List<DiscordChannel>>(cacheKey, cacheBehavior);
             }
-            return null;
+
+            // cache -----------------------------
+            _cache[cacheKey] = new CacheApiResponse(channels);
+            return channels;
         }
 
-        public async Task<Guild> FetchGuildInfo(string guildId, CacheBehavior cacheBehavior)
+        public async Task<DiscordGuild> FetchGuildInfo(ulong guildId, CacheBehavior cacheBehavior)
         {
-            string path = $"/guilds/{guildId}";
-            if (cacheBehavior == CacheBehavior.OnlyCache) {
-                if (this.cache.ContainsKey(path)) {
-                    return new Guild(this.cache[path].Content);
-                } else {
-                    return null;
-                }
-            }
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
-                if (this.cache[path].ExpiresAt > DateTime.Now) {
-                    return new Guild(this.cache[path].Content);
-                }
-                this.cache.Remove(path);
-            }
-            await this.WaitForRatelimit(path);
-
-            var request = new RestRequest(Method.GET);
-            request.Resource = path;
-            request.AddHeader("Authorization", "Bot " + botToken);
-
-            var response = await restClient.ExecuteAsync<Guild>(request);
-            if (response.IsSuccessful)
+            // do cache stuff --------------------
+            string cacheKey = $"/guilds/{guildId}";
+            DiscordGuild guild = null;
+            try
             {
-                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
-                this.cache[path] = new CacheApiResponse(response.Content);
-                return new Guild(response.Content);
+                guild = TryGetFromCache<DiscordGuild>(cacheKey, cacheBehavior);
+                if (guild != null) return guild;
+            } catch (NotFoundInCacheException)
+            {
+                return null;
             }
-            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
-                return new Guild(this.cache[path].Content);
+
+            // rqeuest ---------------------------
+            try
+            {
+                guild = await _discordRestClient.GetGuildAsync(guildId);
+            } catch (Exception e)
+            {
+                _logger.LogError($"Failed to fetch guild '{guildId}' from API.", e);
+                return FallBackToCache<DiscordGuild>(cacheKey, cacheBehavior);
             }
-            return null;
+
+            // cache -----------------------------
+            _cache[cacheKey] = new CacheApiResponse(guild);
+            return guild;
         }
 
-        public async Task<List<Guild>> FetchGuildsOfCurrentUser(string token, CacheBehavior cacheBehavior)
+        public async Task<List<DiscordGuild>> FetchGuildsOfCurrentUser(string token, CacheBehavior cacheBehavior)
         {
-            string path = $"/users/{token}/guilds";
-            if (cacheBehavior == CacheBehavior.OnlyCache) {
-                if (this.cache.ContainsKey(path)) {
-                    return JsonConvert.DeserializeObject<List<Guild>>(this.cache[path].Content);
-                } else {
-                    return new List<Guild>();
-                }
-            }
-            if (this.cache.ContainsKey(path)) {
-                if (this.cache[path].ExpiresAt > DateTime.Now) {
-                    return JsonConvert.DeserializeObject<List<Guild>>(this.cache[path].Content);
-                }
-                this.cache.Remove(path);
-            }
-            await this.WaitForRatelimit(path);
-
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/users/@me/guilds";
-            request.AddHeader("Authorization", "Bearer " + token);
-
-            var response = await restClient.ExecuteAsync<List<Guild>>(request);
-            if (response.IsSuccessful)
+            // do cache stuff --------------------
+            string cacheKey = $"/users/{token}/guilds";
+            List<DiscordGuild> guilds = null;
+            try
             {
-                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
-                this.cache[path] = new CacheApiResponse(response.Content);
-                return JsonConvert.DeserializeObject<List<Guild>>(response.Content);
+                guilds = TryGetFromCache<List<DiscordGuild>>(cacheKey, cacheBehavior);
+                if (guilds != null) return guilds;
+            } catch (NotFoundInCacheException)
+            {
+                return new List<DiscordGuild>();
             }
-            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
-                return JsonConvert.DeserializeObject<List<Guild>>(this.cache[path].Content);
+
+            // rqeuest ---------------------------
+            try
+            {
+                guilds = (await GetOAuthClient(token).GetCurrentUserGuildsAsync(limit: 200)).ToList();  // max 200 guilds
+            } catch (Exception e)
+            {
+                _logger.LogError($"Failed to fetch guilds of current user for token '{token}' from API.", e);
+                return FallBackToCache<List<DiscordGuild>>(cacheKey, cacheBehavior);
             }
-            return null;
+
+            // cache -----------------------------
+            _cache[cacheKey] = new CacheApiResponse(guilds);
+            return guilds;
         }
 
-        public async Task<GuildMember> FetchMemberInfo(string guildId, string userId, CacheBehavior cacheBehavior)
+        public async Task<DiscordMember> FetchMemberInfo(ulong guildId, ulong userId, CacheBehavior cacheBehavior)
         {
-            string path = $"/guilds/{guildId}/members/{userId}";
-            string rateLimitPath = $"/guilds/{guildId}/members";
-            if (cacheBehavior == CacheBehavior.OnlyCache) {
-                if (this.cache.ContainsKey(path)) {
-                    return new GuildMember(this.cache[path].Content);
-                } else {
-                    return null;
-                }
-            }
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.Default) {
-                if (this.cache[path].ExpiresAt > DateTime.Now) {
-                    return new GuildMember(this.cache[path].Content);
-                }
-                this.cache.Remove(path);
-            }
-            await this.WaitForRatelimit(rateLimitPath);
-
-            var request = new RestRequest(Method.GET);
-            request.Resource = path;
-            request.AddHeader("Authorization", "Bot " + botToken);
-
-            var response = await restClient.ExecuteAsync<GuildMember>(request);
-            if (response.IsSuccessful)
+            // do cache stuff --------------------
+            string cacheKey = $"/guilds/{guildId}/members/{userId}";
+            DiscordMember member = null;
+            try
             {
-                GuildMember returnMember = new GuildMember(response.Content);
-                this.ratelimitCache[rateLimitPath] = new DiscordApiRatelimit(response);
-                this.cache[path] = new CacheApiResponse(response.Content);
-                this.cache[$"/users/{returnMember.User.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(returnMember.User));
-                return new GuildMember(response.Content);
+                member = TryGetFromCache<DiscordMember>(cacheKey, cacheBehavior);
+                if (member != null) return member;
+            } catch (NotFoundInCacheException)
+            {
+                return null;
             }
-            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
-            if (this.cache.ContainsKey(path) && cacheBehavior == CacheBehavior.IgnoreButCacheOnError) {
-                return new GuildMember(this.cache[path].Content);
+
+            // rqeuest ---------------------------
+            try
+            {
+                member = await _discordRestClient.GetGuildMemberAsync(guildId, userId);
+            } catch (Exception e)
+            {
+                _logger.LogError($"Failed to fetch guild '{guildId}' member '{userId}' from API.", e);
+                return FallBackToCache<DiscordMember>(cacheKey, cacheBehavior);
             }
-            return null;
+
+            // cache -----------------------------
+            _cache[cacheKey] = new CacheApiResponse(member);
+            _cache[$"/users/{member.Id}"] = new CacheApiResponse((DiscordUser) member);
+            return member;
         }
 
-        public Task<Message> GetDiscordMessage(string channelId, string messageId, CacheBehavior cacheBehavior)
+        public Task<DiscordMessage> GetDiscordMessage(ulong channelId, ulong messageId, CacheBehavior cacheBehavior)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> ValidateUserToken(string token)
+        public async Task<bool> BanUser(ulong guildId, ulong userId)
         {
-            string path = $"/users/{token}";
-            await this.WaitForRatelimit(path);
-
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/users/@me";
-            request.AddHeader("Authorization", "Bearer " + token);
-
-            var response = await restClient.ExecuteAsync<User>(request);
-
-            if (response.IsSuccessful)
+            // rqeuest ---------------------------
+            try
             {
-                User returnUser = new User(response.Content);
-                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
-                this.cache[path] = new CacheApiResponse(response.Content);
-                this.cache[$"/users/{returnUser.Id}"] = new CacheApiResponse(JsonConvert.SerializeObject(returnUser));
-
-                return true;
-            } else {                
-                logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
+                DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
+                if (guild == null) return false;
+                await guild.BanMemberAsync(userId, 0);
+            } catch (Exception e)
+            {
+                _logger.LogError($"Failed to ban user '{userId}' from guild '{guildId}'.", e);
                 return false;
             }
+            return true;
         }
 
-        public async Task<bool> BanUser(string guildId, string userId)
+        public async Task<bool> UnBanUser(ulong guildId, ulong userId)
         {
-            string rateLimitPath = $"/guilds/{guildId}/bans";
-            string path = $"/guilds/{guildId}/bans/{userId}";
-            await this.WaitForRatelimit(rateLimitPath);
-
-            var request = new RestRequest(Method.PUT);
-            request.Resource = path;
-            request.AddHeader("Authorization", "Bot " + botToken);
-
-            var response = await restClient.ExecuteAsync(request);
-            if (response.IsSuccessful)
+            // rqeuest ---------------------------
+            try
             {
-                this.ratelimitCache[rateLimitPath] = new DiscordApiRatelimit(response);
-                return true;
-            }
-            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
-            return false;
-        }
-
-        public async Task<bool> UnBanUser(string guildId, string userId)
-        {
-            string rateLimitPath = $"/guilds/{guildId}/bans";
-            await this.WaitForRatelimit(rateLimitPath);
-
-            var request = new RestRequest(Method.DELETE);
-            request.Resource = $"/guilds/{guildId}/bans/{userId}";
-            request.AddHeader("Authorization", "Bot " + botToken);
-
-            var response = await restClient.ExecuteAsync(request);
-            if (response.IsSuccessful)
+                DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
+                if (guild == null) return false;
+                await guild.UnbanMemberAsync(userId);
+            } catch (Exception e)
             {
-                this.ratelimitCache[rateLimitPath] = new DiscordApiRatelimit(response);
-                return true;
+                _logger.LogError($"Failed to unban user '{userId}' from guild '{guildId}'.", e);
+                return false;
             }
-            logger.LogError($"{response.Request.Method} {rateLimitPath}: {response.StatusCode} - {response.Content}");
-            return false;
+            return true;
         }
 
-        public async Task<bool> GrantGuildUserRole(string guildId, string userId, string roleId)
+        public async Task<bool> GrantGuildUserRole(ulong guildId, ulong userId, ulong roleId)
         {
-            string rateLimitPath = $"/guilds/{guildId}/members/roles";
-            await this.WaitForRatelimit(rateLimitPath);
-
-            var request = new RestRequest(Method.PUT);
-            request.Resource = $"/guilds/{guildId}/members/{userId}/roles/{roleId}";
-            request.AddHeader("Authorization", "Bot " + botToken);
-
-            var response = await restClient.ExecuteAsync(request);
-            if (response.IsSuccessful)
+            // rqeuest ---------------------------
+            try
             {
-                this.ratelimitCache[rateLimitPath] = new DiscordApiRatelimit(response);
-                return true;
-            }
-            logger.LogError($"{response.Request.Method} {rateLimitPath}: {response.StatusCode} - {response.Content}");
-            return false;
-        }
-
-        public async Task<bool> RemoveGuildUserRole(string guildId, string userId, string roleId)
-        {
-            string rateLimitPath = $"/guilds/{guildId}/members/roles";
-            await this.WaitForRatelimit(rateLimitPath);
-
-            var request = new RestRequest(Method.DELETE);
-            request.Resource = $"/guilds/{guildId}/members/{userId}/roles/{roleId}";
-            request.AddHeader("Authorization", "Bot " + botToken);
-
-            var response = await restClient.ExecuteAsync(request);
-            if (response.IsSuccessful)
+                DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
+                if (guild == null) return false;
+                DiscordMember member = await FetchMemberInfo(guildId, userId, CacheBehavior.Default);
+                if (member == null) return false;
+                if(! guild.Roles.ContainsKey(roleId)) return false;
+                await member.GrantRoleAsync(guild.Roles[roleId]);
+            } catch (Exception e)
             {
-                this.ratelimitCache[rateLimitPath] = new DiscordApiRatelimit(response);
-                return true;
+                _logger.LogError($"Failed to grant user '{userId}' from guild '{guildId}' role '{roleId}'.", e);
+                return false;
             }
-            logger.LogError($"{response.Request.Method} {rateLimitPath}: {response.StatusCode} - {response.Content}");
-            return false;
+            return true;
         }
 
-        public async Task<bool> KickGuildUser(string guildId, string userId)
+        public async Task<bool> RemoveGuildUserRole(ulong guildId, ulong userId, ulong roleId)
         {
-            string rateLimitPath = $"/guilds/{guildId}/members";
-            await this.WaitForRatelimit(rateLimitPath);
-
-            var request = new RestRequest(Method.DELETE);
-            request.Resource = $"/guilds/{guildId}/members/{userId}";
-            request.AddHeader("Authorization", "Bot " + botToken);
-
-            var response = await restClient.ExecuteAsync(request);
-            if (response.IsSuccessful)
+            // rqeuest ---------------------------
+            try
             {
-                this.ratelimitCache[rateLimitPath] = new DiscordApiRatelimit(response);
-                return true;
-            }
-            logger.LogError($"{response.Request.Method} {rateLimitPath}: {response.StatusCode} - {response.Content}");
-            return false;
-        }
-
-        public async Task<Channel> CreateDmChannel(string userId)
-        {
-            string path = $"/users/@me/channels/{userId}";
-            if (this.cache.ContainsKey(path)) {
-                if (this.cache[path].ExpiresAt > DateTime.Now) {
-                    return new Channel(this.cache[path].Content);
-                }
-                this.cache.Remove(path);
-            }
-            await this.WaitForRatelimit(path);
-
-            var request = new RestRequest(Method.POST);
-            request.Resource = $"/users/@me/channels";
-            request.AddHeader("Authorization", "Bot " + botToken);
-            request.AddJsonBody(new {recipient_id = userId});
-
-            var response = await restClient.ExecuteAsync<Channel>(request);
-            if (response.IsSuccessful)
+                DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
+                if (guild == null) return false;
+                DiscordMember member = await FetchMemberInfo(guildId, userId, CacheBehavior.Default);
+                if (member == null) return false;
+                if(! guild.Roles.ContainsKey(roleId)) return false;
+                await member.RevokeRoleAsync(guild.Roles[roleId]);
+            } catch (Exception e)
             {
-                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
-                this.cache[path] = new CacheApiResponse(response.Content);
-                return new Channel(response.Content);
+                _logger.LogError($"Failed to revoke user '{userId}' from guild '{guildId}' role '{roleId}'.", e);
+                return false;
             }
-            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
-            return null;
+            return true;
         }
 
-        public async Task<bool> SendMessage(string channelId, string content)
+        public async Task<bool> KickGuildUser(ulong guildId, ulong userId)
         {
-            string path = $"/channels/{channelId}/messages";
-            await this.WaitForRatelimit(path);
-
-            var request = new RestRequest(Method.POST);
-            request.Resource = path;
-            request.AddHeader("Authorization", "Bot " + botToken);
-            request.AddJsonBody(new {content = content});
-
-            var response = await restClient.ExecuteAsync(request);
-            if (response.IsSuccessful)
+            // rqeuest ---------------------------
+            try
             {
-                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
-                return true;
-            }
-            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
-            return false;
-        }
-
-        public async Task<bool> SendEmbedMessage(string channelId, object content)
-        {
-            string path = $"/channels/{channelId}/messages";
-            await this.WaitForRatelimit(path);
-
-            var request = new RestRequest(Method.POST);
-            request.Resource = path;
-            request.AddHeader("Authorization", "Bot " + botToken);
-            request.AddJsonBody(new {embed = content});
-
-            var response = await restClient.ExecuteAsync(request);
-            if (response.IsSuccessful)
+                DiscordMember member = await FetchMemberInfo(guildId, userId, CacheBehavior.Default);
+                if (member == null) return false;
+                await member.RemoveAsync();
+            } catch (Exception e)
             {
-                this.ratelimitCache[path] = new DiscordApiRatelimit(response);
-                return true;
+                _logger.LogError($"Failed to kick user '{userId}' from guild '{guildId}'.", e);
+                return false;
             }
-            logger.LogError($"{response.Request.Method} {path}: {response.StatusCode} - {response.Content}");
-            return false;
+            return true;
         }
 
-        public async Task<bool> SendDmMessage(string userId, string content)
+        public async Task<DiscordChannel> CreateDmChannel(ulong userId)
         {
-            Channel channel = await this.CreateDmChannel(userId);
+            // do cache stuff --------------------
+            string cacheKey = $"/users/@me/channels/{userId}";
+            DiscordChannel channel = null;
+            try
+            {
+                channel = TryGetFromCache<DiscordChannel>(cacheKey, CacheBehavior.Default);
+                if (channel != null) return channel;
+            } catch (NotFoundInCacheException)
+            {
+                return null;
+            }
+
+            // rqeuest ---------------------------
+            try
+            {
+                channel = await _discordRestClient.CreateDmAsync(userId);
+            } catch (Exception e)
+            {
+                _logger.LogError($"Failed to create dm with user '{userId}'.", e);
+                return FallBackToCache<DiscordChannel>(cacheKey, CacheBehavior.Default);
+            }
+
+            // cache -----------------------------
+            _cache[cacheKey] = new CacheApiResponse(channel);
+            return channel;
+        }
+
+        public async Task<bool> SendMessage(ulong channelId, string content = null, DiscordEmbed embed = null)
+        {
+            // rqeuest ---------------------------
+            try
+            {
+                DiscordChannel channel = await  _discordRestClient.GetChannelAsync(channelId);
+                if (channel == null) return false;
+                await channel.SendMessageAsync(content, embed);
+            } catch (Exception e)
+            {
+                _logger.LogError($"Failed to send message to channel '{channelId}'.", e);
+                return false;
+            }
+            return true;
+        }
+
+        public async Task<bool> SendDmMessage(ulong userId, string content)
+        {
+            DiscordChannel channel = await CreateDmChannel(userId);
             if (channel == null) {
                 return false;
             }
 
-            return await this.SendMessage(channel.Id, content);
+            return await SendMessage(channel.Id, content);
         }
 
         public Dictionary<string, CacheApiResponse> GetCache()
         {
-            return this.cache;
+            return _cache;
         }
     }
 }

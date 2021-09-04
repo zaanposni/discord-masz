@@ -14,5 +14,6 @@ namespace masz.Services
         void ClearAllIdentities();
         void ClearOldIdentities();
         void ClearTokenIdentities();
+        Task<Identity> GetIdentityByUserId(ulong userId);
     }
 }

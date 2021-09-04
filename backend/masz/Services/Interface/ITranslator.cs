@@ -6,7 +6,7 @@ namespace masz.Services
 {
     public interface ITranslator
     {
-        Task SetContext(string guildId);
+        Task SetContext(ulong guildId);
         void SetContext(GuildConfig guildConfig);
         void SetContext(Language language);
         Translation T();

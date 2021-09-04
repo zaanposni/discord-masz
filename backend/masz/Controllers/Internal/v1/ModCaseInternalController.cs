@@ -179,15 +179,15 @@ namespace masz.Controllers
             switch (punishment)
             {
                 case PunishmentType.Kick:
-                    return await this.HasDiscordPermission(guildId, userId, DiscordBitPermissionFlags.KICK_MEMBERS);
+                    return await this.HasDiscordPermission(guildId, userId, DiscordBitPermissionFlag.KICK_MEMBERS);
                 case PunishmentType.Ban:
-                    return await this.HasDiscordPermission(guildId, userId, DiscordBitPermissionFlags.BAN_MEMBERS);
+                    return await this.HasDiscordPermission(guildId, userId, DiscordBitPermissionFlag.BAN_MEMBERS);
                 default:
                     return true;
             }
         }
 
-        private async Task<bool> HasDiscordPermission(string guildId, string userId, DiscordBitPermissionFlags discordPermission)
+        private async Task<bool> HasDiscordPermission(string guildId, string userId, DiscordBitPermissionFlag discordPermission)
         {
             User user = await this.discord.FetchUserInfo(userId, CacheBehavior.Default);
             Guild guild = await this.discord.FetchGuildInfo(guildId, CacheBehavior.Default);

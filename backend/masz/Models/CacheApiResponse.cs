@@ -1,18 +1,22 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace masz.Models
 {
     public class CacheApiResponse
     {
-        public string Content { get; set; }
-        public DateTime ExpiresAt { get; set; }
+        private object Content { get; set; }
+        private DateTime ExpiresAt { get; set; }
 
-        public CacheApiResponse(string content, int cacheMinutes = 30) {
-            this.Content = content;
-            this.ExpiresAt = DateTime.Now.AddMinutes(cacheMinutes);
+        public CacheApiResponse(object content, int cacheMinutes = 30) {
+            Content = content;
+            ExpiresAt = DateTime.Now.AddMinutes(cacheMinutes);
+        }
+
+        public T GetContent<T>() {
+            return (T)Content;
+        }
+        public bool IsExpired() {
+            return DateTime.Now > ExpiresAt;
         }
     }
 }

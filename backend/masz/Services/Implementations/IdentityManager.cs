@@ -15,19 +15,21 @@ namespace masz.Services
     public class IdentityManager : IIdentityManager
     {
         private Dictionary<string, Identity> identities = new Dictionary<string, Identity>();
-        private readonly ILogger<IdentityManager> logger;
-        private readonly IDatabase context;
-        private readonly IOptions<InternalConfig> config;
-        private readonly IDiscordAPIInterface discord;
+        private readonly ILogger<IdentityManager> _logger;
+        private readonly IDatabase _context;
+        private readonly IOptions<InternalConfig> _config;
+        private readonly IDiscordAPIInterface _discord;
+        private readonly IServiceProvider _serviceProvider;
 
         public IdentityManager() { }
 
-        public IdentityManager(ILogger<IdentityManager> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IDatabase context)
+        public IdentityManager(ILogger<IdentityManager> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IDatabase context, IServiceProvider serviceProvider)
         {
-            this.logger = logger;
-            this.config = config;
-            this.discord = discord;
-            this.context = context;
+            _logger = logger;
+            _config = config;
+            _discord = discord;
+            _context = context;
+            _serviceProvider = serviceProvider;
         }
 
         private async Task<Identity> RegisterNewIdentity(HttpContext httpContext)
@@ -35,7 +37,7 @@ namespace masz.Services
             string key = String.Empty;
             Identity identity = null;
             if (httpContext.Request.Headers.ContainsKey("Authorization")) {
-                logger.LogInformation("Registering new TokenIdentity.");
+                _logger.LogInformation("Registering new TokenIdentity.");
                 key = "/api/" + httpContext.Request.Headers["Authorization"];
                 string fullToken = httpContext.Request.Headers["Authorization"];
                 string token = String.Empty;
@@ -45,14 +47,14 @@ namespace masz.Services
                 }
                 catch (Exception e)
                 {
-                    logger.LogError("Error while parsing token: " + e.Message);
+                    _logger.LogError("Error while parsing token: " + e.Message);
                 }
-                identity = new TokenIdentity(token, discord, await this.context.GetAPIToken());
+                identity = new TokenIdentity(token, _serviceProvider, await _context.GetAPIToken());
             } else {
                 key = httpContext.Request.Cookies["masz_access_token"];
-                logger.LogInformation("Registering new DiscordIdentity.");
+                _logger.LogInformation("Registering new DiscordIdentity.");
                 string token = await httpContext.GetTokenAsync("Cookies", "access_token");
-                identity = new DiscordIdentity(token, discord);
+                identity = await DiscordOAuthIdentity.Create(token, _serviceProvider);
             }
             identities[key] = identity;
             return identity;
@@ -93,28 +95,33 @@ namespace masz.Services
 
         public void ClearOldIdentities()
         {
-            this.logger.LogInformation("IdentityManager | Clearing old identities.");
+            _logger.LogInformation("IdentityManager | Clearing old identities.");
             foreach (var key in this.identities.Keys)
             {
                 if (this.identities[key].ValidUntil < DateTime.UtcNow) {
-                    this.logger.LogInformation($"IdentityManager | Clearing {key.ToString()}.");
+                    _logger.LogInformation($"IdentityManager | Clearing {key.ToString()}.");
                     this.identities.Remove(key);
                 }
             }
-            this.logger.LogInformation("IdentityManager | Cleared old identities.");
+            _logger.LogInformation("IdentityManager | Cleared old identities.");
         }
 
         public void ClearTokenIdentities()
         {
-            this.logger.LogInformation("IdentityManager | Clearing token identities.");
+            _logger.LogInformation("IdentityManager | Clearing token identities.");
             foreach (var key in this.identities.Keys)
             {
                 if (this.identities[key] is TokenIdentity) {
-                    this.logger.LogInformation($"IdentityManager | Clearing {key.ToString()}.");
+                    _logger.LogInformation($"IdentityManager | Clearing {key.ToString()}.");
                     this.identities.Remove(key);
                 }
             }
-            this.logger.LogInformation("IdentityManager | Cleared token identities.");
+            _logger.LogInformation("IdentityManager | Cleared token identities.");
+        }
+
+        public Task<Identity> GetIdentityByUserId(ulong userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

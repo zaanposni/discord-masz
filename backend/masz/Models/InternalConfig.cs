@@ -12,7 +12,7 @@ namespace masz.Models
         public string AbsolutePathToFileUpload { get; set; }
         public string ServiceHostName { get; set; }
         public string ServiceBaseUrl { get; set; }
-        public List<string> SiteAdminDiscordUserIds { get; set; }
+        public List<ulong> SiteAdminDiscordUserIds { get; set; }
         public string DefaultLanguage { get; set; }
     }
 }

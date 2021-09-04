@@ -110,7 +110,7 @@
                     "description": "Webhook notification for modcase creation. This does disclose information about the moderator.",
                     "var_types": {
                         "modCase": "masz.Models.ModCase",
-                        "moderator": "masz.Dtos.DiscordAPIResponses.User"
+                        "moderator": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstellt."
@@ -129,7 +129,7 @@
                     "description": "Webhook notification for modcase update. This does disclose information about the moderator.",
                     "var_types": {
                         "modCase": "masz.Models.ModCase",
-                        "moderator": "masz.Dtos.DiscordAPIResponses.User"
+                        "moderator": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert."
@@ -148,7 +148,7 @@
                     "description": "Webhook notification for modcase deletion. This does disclose information about the moderator.",
                     "var_types": {
                         "modCase": "masz.Models.ModCase",
-                        "moderator": "masz.Dtos.DiscordAPIResponses.User"
+                        "moderator": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) gelöscht."
@@ -175,7 +175,7 @@
                 "Create": {
                     "description": "A modcase comment has been created.",
                     "var_types": {
-                        "actor": "masz.Dtos.DiscordAPIResponses.User"
+                        "actor": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **comment** has been created by <@{actor.Id}>.",
                     "de": "Ein **Kommentar** wurde von <@{actor.Id}> erstellt."
@@ -183,7 +183,7 @@
                 "Update": {
                     "description": "A modcase comment has been updated.",
                     "var_types": {
-                        "actor": "masz.Dtos.DiscordAPIResponses.User"
+                        "actor": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **comment** has been updated by <@{actor.Id}>.",
                     "de": "Ein **Kommentar** wurde von <@{actor.Id}> aktualisiert."
@@ -191,7 +191,7 @@
                 "Delete": {
                     "description": "A modcase comment has been deleted.",
                     "var_types": {
-                        "actor": "masz.Dtos.DiscordAPIResponses.User"
+                        "actor": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **comment** has been deleted by <@{actor.Id}>.",
                     "de": "Ein **Kommentar** wurde von <@{actor.Id}> gelöscht."
@@ -201,7 +201,7 @@
                 "Create": {
                     "description": "Webhook notification for modcase file creation.",
                     "var_types": {
-                        "actor": "masz.Dtos.DiscordAPIResponses.User"
+                        "actor": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **file** has been uploaded by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
                     "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochgeladen."
@@ -209,7 +209,7 @@
                 "Delete": {
                     "description": "Webhook notification for modcase file deletion.",
                     "var_types": {
-                        "actor": "masz.Dtos.DiscordAPIResponses.User"
+                        "actor": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **file** has been deleted by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
                     "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) gelöscht."
@@ -217,7 +217,7 @@
                 "Update": {
                     "description": "Webhook notification for modcase file update.",
                     "var_types": {
-                        "actor": "masz.Dtos.DiscordAPIResponses.User"
+                        "actor": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
                     "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert."
@@ -228,7 +228,7 @@
                     "description": "DM notification for warn modcase. This does not disclose information about the moderator.",
                     "var_types": {
                         "modCase": "masz.Models.ModCase",
-                        "guild": "masz.Dtos.DiscordAPIResponses.Guild",
+                        "guild": "DSharpPlus.Entities.DiscordGuild",
                         "botPrefix": "string",
                         "serviceBaseUrl": "string"
                     },
@@ -240,7 +240,7 @@
                         "description": "DM notification for temp mute modcase. This does not disclose information about the moderator.",
                         "var_types": {
                             "modCase": "masz.Models.ModCase",
-                            "guild": "masz.Dtos.DiscordAPIResponses.Guild",
+                            "guild": "DSharpPlus.Entities.DiscordGuild",
                             "botPrefix": "string",
                             "serviceBaseUrl": "string",
                             "timezone": "string"
@@ -252,7 +252,7 @@
                         "description": "DM notification for perm mute modcase. This does not disclose information about the moderator.",
                         "var_types": {
                             "modCase": "masz.Models.ModCase",
-                            "guild": "masz.Dtos.DiscordAPIResponses.Guild",
+                            "guild": "DSharpPlus.Entities.DiscordGuild",
                             "botPrefix": "string",
                             "serviceBaseUrl": "string"
                         },
@@ -265,7 +265,7 @@
                         "description": "DM notification for temp ban modcase. This does not disclose information about the moderator.",
                         "var_types": {
                             "modCase": "masz.Models.ModCase",
-                            "guild": "masz.Dtos.DiscordAPIResponses.Guild",
+                            "guild": "DSharpPlus.Entities.DiscordGuild",
                             "botPrefix": "string",
                             "serviceBaseUrl": "string",
                             "timezone": "string"
@@ -277,7 +277,7 @@
                         "description": "DM notification for perm ban modcase. This does not disclose information about the moderator.",
                         "var_types": {
                             "modCase": "masz.Models.ModCase",
-                            "guild": "masz.Dtos.DiscordAPIResponses.Guild",
+                            "guild": "DSharpPlus.Entities.DiscordGuild",
                             "botPrefix": "string",
                             "serviceBaseUrl": "string"
                         },
@@ -289,7 +289,7 @@
                     "description": "DM notification for kick modcase. This does not disclose information about the moderator.",
                     "var_types": {
                         "modCase": "masz.Models.ModCase",
-                        "guild": "masz.Dtos.DiscordAPIResponses.Guild",
+                        "guild": "DSharpPlus.Entities.DiscordGuild",
                         "botPrefix": "string",
                         "serviceBaseUrl": "string"
                     },
