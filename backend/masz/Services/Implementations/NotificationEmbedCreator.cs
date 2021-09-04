@@ -1,7 +1,6 @@
 using System;
 using System.Text;
 using System.Threading.Tasks;
-using Discord;
 using DSharpPlus.Entities;
 using masz.Models;
 using Microsoft.Extensions.Logging;
@@ -17,7 +16,6 @@ namespace masz.Services
         private readonly string SCALES_EMOTE = "\u2696";
         private readonly string SCROLL_EMOTE = "\uD83C\uDFF7";
         private readonly string ALARM_CLOCK = "\u23F0";
-        private readonly string discordCdnBaseUrl = "https://cdn.discordapp.com";
 
         public NotificationEmbedCreator(ILogger<Scheduler> logger, IOptions<InternalConfig> config, IDatabase context, ITranslator translator)
         {
@@ -26,29 +24,30 @@ namespace masz.Services
             this.translator = translator;
         }
 
-        private EmbedBuilder CreateBasicEmbed(RestAction action, DiscordUser author = null)
+        private DiscordEmbedBuilder CreateBasicEmbed(RestAction action, DiscordUser author = null)
         {
-            EmbedBuilder embed = new EmbedBuilder();
+            DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
 
             embed.Timestamp = DateTime.Now;
 
             switch(action) {
                 case RestAction.Edited:
-                    embed.Color = Color.Orange;
+                    embed.Color = DiscordColor.Orange;
                     break;
                 case RestAction.Deleted:
-                    embed.Color = Color.Red;
+                    embed.Color = DiscordColor.Red;
                     break;
                 case RestAction.Created:
-                    embed.Color = Color.Green;
+                    embed.Color = DiscordColor.Green;
                     break;
             }
 
             if (author != null) {
-                var embedAuthor = new EmbedAuthorBuilder();
-                embedAuthor.IconUrl = author.AvatarUrl;
-                embedAuthor.Name = author.Username;
-                embed.Author = embedAuthor;
+                embed.WithAuthor(
+                    author.Username,
+                    author.AvatarUrl,
+                    author.AvatarUrl
+                );
             }
 
             // Url
@@ -60,10 +59,10 @@ namespace masz.Services
             return embed;
         }
 
-        public async Task<EmbedBuilder> CreateModcaseEmbed(ModCase modCase, RestAction action, DiscordUser actor, DiscordUser suspect = null, bool isInternal = true)
+        public async Task<DiscordEmbedBuilder> CreateModcaseEmbed(ModCase modCase, RestAction action, DiscordUser actor, DiscordUser suspect = null, bool isInternal = true)
         {
             await translator.SetContext(modCase.GuildId);
-            EmbedBuilder embed;
+            DiscordEmbedBuilder embed;
             if (isInternal) {
                 embed = CreateBasicEmbed(action);
             } else {
@@ -73,7 +72,7 @@ namespace masz.Services
             // Thumbnail
             if (suspect != null)
             {
-                embed.ThumbnailUrl = suspect.AvatarUrl;
+                embed.WithThumbnail(suspect.AvatarUrl);
             }
 
             // Description
@@ -83,9 +82,7 @@ namespace masz.Services
             embed.Title = $"#{modCase.CaseId} {modCase.Title}";
 
             // Footer
-            var footer = new EmbedFooterBuilder();
-            footer.Text = $"UserId: {modCase.UserId} | ModCaseId: {modCase.CaseId}";
-            embed.Footer = footer;
+            embed.WithFooter($"UserId: {modCase.UserId} | ModCaseId: {modCase.CaseId}");
 
             // Description
             switch(action){
@@ -136,18 +133,16 @@ namespace masz.Services
             return embed;
         }
 
-        public async Task<EmbedBuilder> CreateFileEmbed(string filename, ModCase modCase, RestAction action, DiscordUser actor)
+        public async Task<DiscordEmbedBuilder> CreateFileEmbed(string filename, ModCase modCase, RestAction action, DiscordUser actor)
         {
             await translator.SetContext(modCase.GuildId);
-            EmbedBuilder embed = CreateBasicEmbed(action, actor);
+            DiscordEmbedBuilder embed = CreateBasicEmbed(action, actor);
 
             // Thumbnail
-            embed.ThumbnailUrl = actor.AvatarUrl;
+            embed.WithThumbnail(actor.AvatarUrl);
 
             // Footer
-            var footer = new EmbedFooterBuilder();
-            footer.Text = $"UserId: {actor.Id} | ModCaseId: {modCase.CaseId}";
-            embed.Footer = footer;
+            embed.WithFooter($"UserId: {actor.Id} | ModCaseId: {modCase.CaseId}");
 
             // Filename
             embed.AddField($"**{translator.T().Filename()}**", filename.Substring(0, Math.Min(filename.Length, 1000)));
@@ -170,14 +165,14 @@ namespace masz.Services
             return embed;
         }
 
-        public async Task<EmbedBuilder> CreateCommentEmbed(ModCaseComment comment, RestAction action, DiscordUser actor)
+        public async Task<DiscordEmbedBuilder> CreateCommentEmbed(ModCaseComment comment, RestAction action, DiscordUser actor)
         {
             await translator.SetContext(comment.ModCase.GuildId);
-            EmbedBuilder embed = CreateBasicEmbed(action, actor);
+            DiscordEmbedBuilder embed = CreateBasicEmbed(action, actor);
 
             if (actor != null)
             {
-                embed.ThumbnailUrl = actor.AvatarUrl;
+                embed.WithThumbnail(actor.AvatarUrl);
             }
 
             switch(action){
@@ -199,47 +194,41 @@ namespace masz.Services
             embed.AddField($"**{translator.T().Message()}**", comment.Message.Substring(0, Math.Min(comment.Message.Length, 1000)));
 
             // Footer
-            var footer = new EmbedFooterBuilder();
-            footer.Text = $"UserId: {actor.Id} | ModCaseId: {comment.ModCase.CaseId}";
-            embed.Footer = footer;
+            embed.WithFooter($"UserId: {actor.Id} | ModCaseId: {comment.ModCase.CaseId}");
 
             return embed;
         }
 
-        public async Task<EmbedBuilder> CreateUserNoteEmbed(UserNote userNote, RestAction action, DiscordUser actor, DiscordUser target)
+        public async Task<DiscordEmbedBuilder> CreateUserNoteEmbed(UserNote userNote, RestAction action, DiscordUser actor, DiscordUser target)
         {
             await translator.SetContext(userNote.GuildId);
-            EmbedBuilder embed = CreateBasicEmbed(action, actor);
+            DiscordEmbedBuilder embed = CreateBasicEmbed(action, actor);
 
             if (actor != null)
             {
-                embed.ThumbnailUrl = target.AvatarUrl;
+                embed.WithThumbnail(target.AvatarUrl);
             }
 
             embed.AddField($"**{translator.T().Description()}**", userNote.Description.Substring(0, Math.Min(userNote.Description.Length, 1000)));
 
             embed.Title = $"Usernote #{userNote.Id}";
 
-            var footer = new EmbedFooterBuilder();
-            footer.Text = $"UserId: {userNote.UserId} | UserNoteId: {userNote.Id}";
-            embed.Footer = footer;
+            embed.WithFooter($"UserId: {userNote.UserId} | UserNoteId: {userNote.Id}");
 
             return embed;
         }
 
-        public async Task<EmbedBuilder> CreateUserMapEmbed(UserMapping userMapping, RestAction action, DiscordUser actor)
+        public async Task<DiscordEmbedBuilder> CreateUserMapEmbed(UserMapping userMapping, RestAction action, DiscordUser actor)
         {
             await translator.SetContext(userMapping.GuildId);
-            EmbedBuilder embed = CreateBasicEmbed(action, actor);
+            DiscordEmbedBuilder embed = CreateBasicEmbed(action, actor);
 
             embed.AddField($"**{translator.T().Description()}**", userMapping.Reason.Substring(0, Math.Min(userMapping.Reason.Length, 1000)));
 
             embed.Title = $"Usermap #{userMapping.Id}";
             embed.Description = $"Usermap between <@{userMapping.UserA}> and <@{userMapping.UserB}>.";
 
-            var footer = new EmbedFooterBuilder();
-            footer.Text = $"UserA: {userMapping.UserA} | UserB: {userMapping.UserB} | UserMapId: {userMapping.Id}";
-            embed.Footer = footer;
+            embed.WithFooter($"UserA: {userMapping.UserA} | UserB: {userMapping.UserB} | UserMapId: {userMapping.Id}");
 
             return embed;
         }

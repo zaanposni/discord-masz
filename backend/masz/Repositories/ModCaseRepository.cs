@@ -4,9 +4,7 @@ using System.Threading.Tasks;
 using DSharpPlus.Entities;
 using masz.Enums;
 using masz.Exceptions;
-using masz.Helpers;
 using masz.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
 namespace masz.Repositories

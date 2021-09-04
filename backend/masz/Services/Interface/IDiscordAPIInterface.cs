@@ -94,5 +94,6 @@ namespace masz.Services
         Task<DiscordChannel> CreateDmChannel(ulong userId);
         Task<bool> SendMessage(ulong channelId, string content, DiscordEmbed embed);
         Task<bool> SendDmMessage(ulong userId, string content);
+        Task<bool> ExecuteWebhook(string url, DiscordEmbed embed = null, string content = null);
     }
 }

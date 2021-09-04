@@ -507,9 +507,35 @@ namespace masz.Services
             return await SendMessage(channel.Id, content);
         }
 
+        public async Task<bool> ExecuteWebhook(string url, DiscordEmbed embed = null, string content = null)
+        {
+            DiscordWebhookBuilder builder = new DiscordWebhookBuilder();
+            if (embed != null)
+            {
+                builder.AddEmbed(embed);
+            }
+            if (content != null)
+            {
+                builder.WithContent(content);
+            }
+            ulong id;
+            string token;
+            try {
+                var splitted = url.Split('/');
+                id = ulong.Parse(splitted[splitted.Length - 2]);
+                token = splitted[splitted.Length - 1];
+            } catch (Exception e)
+            {
+                _logger.LogError($"Failed to parse webhook url '{url}'.", e);
+                return false;
+            }
+            return (await _discordRestClient.ExecuteWebhookAsync(id, token, builder)) != null;
+        }
+
         public Dictionary<string, CacheApiResponse> GetCache()
         {
             return _cache;
         }
+
     }
 }
