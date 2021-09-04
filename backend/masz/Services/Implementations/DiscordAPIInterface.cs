@@ -95,7 +95,9 @@ namespace masz.Services
             // rqeuest ---------------------------
             try
             {
-                bans = (await _discordRestClient.GetGuildBansAsync(guildId)).ToList();
+                DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
+                if (guild == null) return new List<DiscordBan>();
+                bans = (await guild.GetBansAsync()).ToList();
             } catch (Exception e)
             {
                 _logger.LogError($"Failed to fetch guild bans for guild '{guildId}' from API.", e);
@@ -129,7 +131,9 @@ namespace masz.Services
             // rqeuest ---------------------------
             try
             {
-                ban = await  _discordRestClient.GetGuildBanAsync(guildId, userId);
+                DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
+                if (guild == null) return null;
+                ban = await guild.GetBanAsync(userId);
             } catch (Exception e)
             {
                 _logger.LogError($"Failed to fetch guild ban for guild '{guildId}' and user '{userId}' from API.", e);
@@ -159,7 +163,7 @@ namespace masz.Services
             // rqeuest ---------------------------
             try
             {
-                user = await _discordRestClient.GetUserAsync(userId);
+                user = await _discordBot.GetClient().GetUserAsync(userId);
             } catch (Exception e)
             {
                 _logger.LogError($"Failed to fetch user '{userId}' from API.", e);
@@ -189,10 +193,7 @@ namespace masz.Services
             try
             {
                 DiscordGuild guild = await FetchGuildInfo(guildId, cacheBehavior);
-                if (guild == null)
-                {
-                    return new List<DiscordMember>();
-                }
+                if (guild == null) return new List<DiscordMember>();
                 members = (await guild.GetAllMembersAsync()).ToList();
             } catch (Exception e)
             {
@@ -241,7 +242,7 @@ namespace masz.Services
 
         public DiscordUser GetCurrentBotInfo(CacheBehavior cacheBehavior)
         {
-            return _discordRestClient.CurrentUser;
+            return _discordBot.GetClient().CurrentUser;
         }
 
         public async Task<List<DiscordChannel>> FetchGuildChannels(ulong guildId, CacheBehavior cacheBehavior)
@@ -261,7 +262,9 @@ namespace masz.Services
             // rqeuest ---------------------------
             try
             {
-                channels = (await _discordRestClient.GetGuildChannelsAsync(guildId)).ToList();
+                DiscordGuild guild = await FetchGuildInfo(guildId, cacheBehavior);
+                if (guild == null) return new List<DiscordChannel>();
+                channels = (await guild.GetChannelsAsync()).ToList();
             } catch (Exception e)
             {
                 _logger.LogError($"Failed to fetch guild channels for guild '{guildId}' from API.", e);
@@ -290,7 +293,7 @@ namespace masz.Services
             // rqeuest ---------------------------
             try
             {
-                guild = await _discordRestClient.GetGuildAsync(guildId);
+                guild = await _discordBot.GetClient().GetGuildAsync(guildId);
             } catch (Exception e)
             {
                 _logger.LogError($"Failed to fetch guild '{guildId}' from API.", e);
@@ -339,7 +342,7 @@ namespace masz.Services
             try
             {
                 member = TryGetFromCache<DiscordMember>(cacheKey, cacheBehavior);
-                if (member != null) return member;
+                // if (member != null) return member;
             } catch (NotFoundInCacheException)
             {
                 return null;
@@ -348,7 +351,8 @@ namespace masz.Services
             // rqeuest ---------------------------
             try
             {
-                member = await _discordRestClient.GetGuildMemberAsync(guildId, userId);
+                DiscordGuild g = await _discordBot.GetClient().GetGuildAsync(guildId);
+                member = await g.GetMemberAsync(userId);
             } catch (Exception e)
             {
                 _logger.LogError($"Failed to fetch guild '{guildId}' member '{userId}' from API.", e);
@@ -357,7 +361,7 @@ namespace masz.Services
 
             // cache -----------------------------
             _cache[cacheKey] = new CacheApiResponse(member);
-            _cache[$"/users/{member.Id}"] = new CacheApiResponse((DiscordUser) member);
+            // TODO: _cache[$"/users/{member.Id}"] = new CacheApiResponse((DiscordUser) member);
             return member;
         }
 
@@ -486,7 +490,7 @@ namespace masz.Services
             // rqeuest ---------------------------
             try
             {
-                DiscordChannel channel = await  _discordRestClient.GetChannelAsync(channelId);
+                DiscordChannel channel = await  _discordBot.GetClient().GetChannelAsync(channelId);
                 if (channel == null) return false;
                 await channel.SendMessageAsync(content, embed);
             } catch (Exception e)

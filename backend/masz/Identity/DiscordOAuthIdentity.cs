@@ -1,5 +1,6 @@
 using DSharpPlus.Entities;
 using masz.Services;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace masz.Models
 {
     public class DiscordOAuthIdentity : Identity
     {
+        private readonly ILogger<DiscordOAuthIdentity> _logger;
         private Dictionary<ulong, DiscordMember> GuildMemberships = new Dictionary<ulong, DiscordMember>();
         public async static Task<DiscordOAuthIdentity> Create(string token, IServiceProvider serviceProvider)
         {
@@ -23,6 +25,7 @@ namespace masz.Models
         {
             this.currentUser = currentUser;
             this.currentUserGuilds = userGuilds;
+            this._logger = serviceProvider.GetService(typeof(ILogger<DiscordOAuthIdentity>)) as ILogger<DiscordOAuthIdentity>;
         }
 
         public override bool IsAuthorized()
@@ -107,9 +110,21 @@ namespace masz.Models
             if (guildMember == null) {
                 return false;
             }
-
-            return guildMember.Roles.Where(x => guildConfig.AdminRoles.Contains(x.Id.ToString()) ||
-                                                guildConfig.ModRoles.Contains(x.Id.ToString())).Any();
+            _logger.LogWarning("here");
+            _logger.LogWarning(String.Join(",", guildConfig.ModRoles));
+            _logger.LogWarning(String.Join(",", guildConfig.GuildId));
+            _logger.LogWarning(String.Join(",", guildConfig.AdminRoles));
+            _logger.LogWarning(guildMember.Roles.ToString());
+            _logger.LogWarning((guildMember.Roles == null).ToString());
+            _logger.LogWarning("here2");
+            _logger.LogWarning(guildMember.Roles.Any().ToString());
+            foreach (DiscordRole role in guildMember.Roles)
+            {
+                _logger.LogWarning(role.Name.ToString());
+                _logger.LogWarning(role.Id.ToString());
+            }
+            return guildMember.Roles.Any(x => guildConfig.AdminRoles.Contains(x.Id.ToString()) ||
+                                                guildConfig.ModRoles.Contains(x.Id.ToString()));
         }
 
         public override bool IsSiteAdmin()

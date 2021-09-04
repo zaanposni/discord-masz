@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using DSharpPlus.Entities;
+using masz.Models.Views;
 
 namespace masz.Dtos.UserAPIResponses
 {
     public class APIUser
     {
-        public APIUser(List<DiscordGuild> memberGuilds, List<DiscordGuild> bannedGuilds, List<DiscordGuild> modGuilds, List<DiscordGuild> adminGuilds, DiscordUser discordUser, bool isAdmin=false)
+        public APIUser(List<DiscordGuildView> memberGuilds, List<DiscordGuildView> bannedGuilds, List<DiscordGuildView> modGuilds, List<DiscordGuildView> adminGuilds, DiscordUser discordUser, bool isAdmin=false)
         {
             MemberGuilds = memberGuilds;
             BannedGuilds = bannedGuilds;
@@ -15,10 +16,10 @@ namespace masz.Dtos.UserAPIResponses
             IsAdmin = isAdmin;
         }
 
-        public List<DiscordGuild> MemberGuilds { get; set; }
-        public List<DiscordGuild> BannedGuilds { get; set; }
-        public List<DiscordGuild> ModGuilds { get; set; }
-        public List<DiscordGuild> AdminGuilds { get; set; }
+        public List<DiscordGuildView> MemberGuilds { get; set; }
+        public List<DiscordGuildView> BannedGuilds { get; set; }
+        public List<DiscordGuildView> ModGuilds { get; set; }
+        public List<DiscordGuildView> AdminGuilds { get; set; }
         public DiscordUser DiscordUser { get; set; }
         public bool IsAdmin { get; set; }
     }
