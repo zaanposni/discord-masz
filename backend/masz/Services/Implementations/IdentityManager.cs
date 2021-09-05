@@ -1,4 +1,5 @@
-﻿using masz.data;
+﻿using DSharpPlus.Entities;
+using masz.data;
 using masz.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.CookiePolicy;
@@ -60,6 +61,14 @@ namespace masz.Services
             return identity;
         }
 
+        private async Task<Identity> RegisterNewIdentity(DiscordUser user)
+        {
+            string key = $"/discord/cmd/{user.Id}";
+            Identity identity = await DiscordCommandIdentity.Create(user, _serviceProvider);
+            identities[key] = identity;
+            return identity;
+        }
+
         public async Task<Identity> GetIdentity(HttpContext httpContext)
         {
             string key = String.Empty;
@@ -81,6 +90,28 @@ namespace masz.Services
             }
 
             return await RegisterNewIdentity(httpContext);
+        }
+
+        public async Task<Identity> GetIdentity(DiscordUser user)
+        {
+            if (user == null)
+            {
+                return null;
+            }
+            string key = $"/discord/cmd/{user.Id}";
+            if (identities.ContainsKey(key))
+            {
+                Identity identity = identities[key];
+                if (identity.ValidUntil >= DateTime.UtcNow)
+                {
+                    return identity;
+                } else
+                {
+                    identities.Remove(key);
+                }
+            }
+
+            return await RegisterNewIdentity(user);
         }
 
         public List<Identity> GetCurrentIdentities()

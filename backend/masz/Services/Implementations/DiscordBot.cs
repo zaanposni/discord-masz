@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using masz.Commands;
+using masz.Exceptions;
 
 namespace masz.Services
 {
@@ -107,10 +108,19 @@ namespace masz.Services
             return Task.CompletedTask;
         }
 
-        private Task CmdErroredHandler(SlashCommandsExtension _, SlashCommandErrorEventArgs e)
+        private async Task CmdErroredHandler(SlashCommandsExtension _, SlashCommandErrorEventArgs e)
         {
-            _logger.LogError($"Command '{e.Context.CommandName}' invoked by '{e.Context.User.Username}#{e.Context.User.Discriminator}' failed: " + e.Exception.Message);
-            return Task.CompletedTask;
+            if (e.Exception is BaseAPIException)
+            {
+                _logger.LogError($"Command '{e.Context.CommandName}' invoked by '{e.Context.User.Username}#{e.Context.User.Discriminator}' failed: {(e.Exception as BaseAPIException).error}");
+                var response = new DiscordInteractionResponseBuilder();
+                response.WithContent((e.Exception as BaseAPIException).error.ToString());
+                response.IsEphemeral = true;
+                await e.Context.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, response);
+            } else
+            {
+                _logger.LogError($"Command '{e.Context.CommandName}' invoked by '{e.Context.User.Username}#{e.Context.User.Discriminator}' failed: " + e.Exception.Message);
+            }
         }
 
         public DiscordClient GetClient()

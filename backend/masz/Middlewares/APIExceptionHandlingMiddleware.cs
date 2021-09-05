@@ -29,7 +29,7 @@ namespace masz.Middlewares
             {
                 string message = ex.Message;
                 context.Response.StatusCode = 400;
-                if (ex is InvalidIdentityException)
+                if (ex is InvalidIdentityException || ex is UnauthorizedException)
                 {
                     context.Response.StatusCode = 401;
                 }

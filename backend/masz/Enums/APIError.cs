@@ -11,5 +11,6 @@ namespace masz.Enums
         ResourceNotFound = 6,
         InvalidIdentity = 7,
         GuildUnregistered = 8,
+        Unauthorized = 9,
     }
 }
