@@ -12,7 +12,7 @@ namespace masz.Dtos.UserAPIResponses
             BannedGuilds = bannedGuilds;
             ModGuilds = modGuilds;
             AdminGuilds = adminGuilds;
-            DiscordUser = discordUser;
+            DiscordUser = new DiscordUserView(discordUser);
             IsAdmin = isAdmin;
         }
 
@@ -20,7 +20,7 @@ namespace masz.Dtos.UserAPIResponses
         public List<DiscordGuildView> BannedGuilds { get; set; }
         public List<DiscordGuildView> ModGuilds { get; set; }
         public List<DiscordGuildView> AdminGuilds { get; set; }
-        public DiscordUser DiscordUser { get; set; }
+        public DiscordUserView DiscordUser { get; set; }
         public bool IsAdmin { get; set; }
     }
 }

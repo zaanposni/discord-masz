@@ -110,19 +110,6 @@ namespace masz.Models
             if (guildMember == null) {
                 return false;
             }
-            _logger.LogWarning("here");
-            _logger.LogWarning(String.Join(",", guildConfig.ModRoles));
-            _logger.LogWarning(String.Join(",", guildConfig.GuildId));
-            _logger.LogWarning(String.Join(",", guildConfig.AdminRoles));
-            _logger.LogWarning(guildMember.Roles.ToString());
-            _logger.LogWarning((guildMember.Roles == null).ToString());
-            _logger.LogWarning("here2");
-            _logger.LogWarning(guildMember.Roles.Any().ToString());
-            foreach (DiscordRole role in guildMember.Roles)
-            {
-                _logger.LogWarning(role.Name.ToString());
-                _logger.LogWarning(role.Id.ToString());
-            }
             return guildMember.Roles.Any(x => guildConfig.AdminRoles.Contains(x.Id.ToString()) ||
                                                 guildConfig.ModRoles.Contains(x.Id.ToString()));
         }

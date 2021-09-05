@@ -11,13 +11,13 @@ namespace masz.Models.Views
         public string Permissions { get; set; }
 
         public DiscordRoleView() { }
-        public DiscordRoleView(DiscordRole guild)
+        public DiscordRoleView(DiscordRole role)
         {
-            Id = guild.Id;
-            Name = guild.Name;
-            Color = guild.Color.Value;
-            Position = guild.Position;
-            Permissions = guild.Permissions.GetHashCode().ToString();
+            Id = role.Id;
+            Name = role.Name;
+            Color = role.Color.Value;
+            Position = role.Position;
+            Permissions = role.Permissions.GetHashCode().ToString();
         }
     }
 }

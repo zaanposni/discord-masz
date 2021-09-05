@@ -89,7 +89,7 @@ namespace masz.Controllers.api.v1
             var DiscordUser = await _discordAPI.FetchUserInfo(userid, CacheBehavior.OnlyCache);
             if (DiscordUser != null)
             {
-                return Ok(DiscordUser);
+                return Ok(new DiscordUserView(DiscordUser));
             }
             return NotFound();
         }
@@ -130,7 +130,7 @@ namespace masz.Controllers.api.v1
             {
                 if (partial)
                 {
-                    return Ok(members.Select(x => (DiscordUser) x).ToList());
+                    return Ok(members.Select(x => new DiscordUserView(x)).ToList());
                 } else {
                     return Ok(members);
                 }

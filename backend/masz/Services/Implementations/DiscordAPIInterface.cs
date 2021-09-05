@@ -92,7 +92,7 @@ namespace masz.Services
                 return new List<DiscordBan>();
             }
 
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
@@ -128,7 +128,7 @@ namespace masz.Services
                 return ban;
             }
 
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
@@ -160,7 +160,7 @@ namespace masz.Services
                 return user;
             }
 
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 user = await _discordBot.GetClient().GetUserAsync(userId);
@@ -189,7 +189,7 @@ namespace masz.Services
                 return new List<DiscordMember>();
             }
 
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 DiscordGuild guild = await FetchGuildInfo(guildId, cacheBehavior);
@@ -225,7 +225,7 @@ namespace masz.Services
                 return user;
             }
 
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 user = await GetOAuthClient(token).GetCurrentUserAsync();
@@ -259,7 +259,7 @@ namespace masz.Services
                 return new List<DiscordChannel>();
             }
 
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 DiscordGuild guild = await FetchGuildInfo(guildId, cacheBehavior);
@@ -290,7 +290,7 @@ namespace masz.Services
                 return null;
             }
 
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 guild = await _discordBot.GetClient().GetGuildAsync(guildId);
@@ -319,7 +319,7 @@ namespace masz.Services
                 return new List<DiscordGuild>();
             }
 
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 guilds = (await GetOAuthClient(token).GetCurrentUserGuildsAsync(limit: 200)).ToList();  // max 200 guilds
@@ -348,7 +348,7 @@ namespace masz.Services
                 return null;
             }
 
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 DiscordGuild g = await _discordBot.GetClient().GetGuildAsync(guildId);
@@ -372,7 +372,7 @@ namespace masz.Services
 
         public async Task<bool> BanUser(ulong guildId, ulong userId)
         {
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
@@ -388,7 +388,7 @@ namespace masz.Services
 
         public async Task<bool> UnBanUser(ulong guildId, ulong userId)
         {
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
@@ -404,7 +404,7 @@ namespace masz.Services
 
         public async Task<bool> GrantGuildUserRole(ulong guildId, ulong userId, ulong roleId)
         {
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
@@ -423,7 +423,7 @@ namespace masz.Services
 
         public async Task<bool> RemoveGuildUserRole(ulong guildId, ulong userId, ulong roleId)
         {
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
@@ -442,7 +442,7 @@ namespace masz.Services
 
         public async Task<bool> KickGuildUser(ulong guildId, ulong userId)
         {
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 DiscordMember member = await FetchMemberInfo(guildId, userId, CacheBehavior.Default);
@@ -470,7 +470,7 @@ namespace masz.Services
                 return null;
             }
 
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 channel = await _discordRestClient.CreateDmAsync(userId);
@@ -487,7 +487,7 @@ namespace masz.Services
 
         public async Task<bool> SendMessage(ulong channelId, string content = null, DiscordEmbed embed = null)
         {
-            // rqeuest ---------------------------
+            // request ---------------------------
             try
             {
                 DiscordChannel channel = await  _discordBot.GetClient().GetChannelAsync(channelId);
