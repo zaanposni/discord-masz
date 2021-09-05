@@ -13,14 +13,14 @@ namespace masz.Repositories
         protected ILogger<T> _logger { get; set; }
         protected IDatabase _database { get; set; }
         protected IDiscordAPIInterface _discordAPI { get; set; }
-        public readonly IOptions<InternalConfig> _config;
-        private readonly IIdentityManager _identityManager;
-        public readonly IDiscordAnnouncer _discordAnnouncer;
-        public readonly IFilesHandler _filesHandler;
-        public readonly IPunishmentHandler _punishmentHandler;
-        public readonly IScheduler _scheduler;
-        public readonly ITranslator _translator;
-        public readonly IServiceProvider _serviceProvider;
+        protected readonly IOptions<InternalConfig> _config;
+        protected readonly IIdentityManager _identityManager;
+        protected readonly IDiscordAnnouncer _discordAnnouncer;
+        protected readonly IFilesHandler _filesHandler;
+        protected readonly IPunishmentHandler _punishmentHandler;
+        protected readonly IScheduler _scheduler;
+        protected readonly ITranslator _translator;
+        protected readonly IServiceProvider _serviceProvider;
         public BaseRepository(IServiceProvider serviceProvider)
         {
             this._logger = (ILogger<T>) serviceProvider.GetService(typeof(ILogger<T>));

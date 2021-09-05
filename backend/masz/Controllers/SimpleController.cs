@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using DSharpPlus.Entities;
+using masz.Exceptions;
 using masz.Models;
 using masz.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -22,11 +24,24 @@ namespace masz.Controllers
         }
 
         public async Task<Identity> GetIdentity() {
-            return await _identityManager.GetIdentity(HttpContext);
+            Identity identity = await _identityManager.GetIdentity(HttpContext);
+            if (identity == null) {
+                throw new InvalidIdentityException();
+            }
+            return identity;
         }
 
-        public async Task<GuildConfig> GuildIsRegistered(ulong guildId) {
-            return await _database.SelectSpecificGuildConfig(guildId);
+        public async Task<DiscordUser> GetCurrentDiscordUser() {
+            Identity identity = await GetIdentity();
+            return identity.GetCurrentUser();
+        }
+
+        public async Task<GuildConfig> GetRegisteredGuild(ulong guildId) {
+            GuildConfig guildConfig = await _database.SelectSpecificGuildConfig(guildId);
+            if (guildConfig == null) {
+                throw new UnregisteredGuildException(guildId);
+            }
+            return guildConfig;
         }
     }
 }

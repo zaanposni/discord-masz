@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using masz.Models;
+using masz.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -8,7 +9,7 @@ namespace masz.Controllers
 {
     public class SimpleCaseController : SimpleController
     {
-        private readonly IServiceProvider _serviceProvider;
+        protected readonly IServiceProvider _serviceProvider;
         private readonly ILogger<SimpleCaseController> _logger;
 
         public SimpleCaseController(IServiceProvider serviceProvider, ILogger<SimpleCaseController> logger) : base(serviceProvider) {
@@ -18,16 +19,8 @@ namespace masz.Controllers
 
         public async Task<IActionResult> HandleRequest(ulong guildId, DiscordPermission permission)
         {
-            GuildConfig guild = await GuildIsRegistered(guildId);
-            if (guild == null) {
-                _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            GuildConfig guild = await GetRegisteredGuild(guildId);
             Identity currentIdentity = await GetIdentity();
-            if (currentIdentity == null) {
-                _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
             if(! await currentIdentity.HasPermissionOnGuild(permission, guildId)) {
                 _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
@@ -38,19 +31,9 @@ namespace masz.Controllers
 
         public async Task<IActionResult> HandleRequest(ulong guildId, int caseId, APIActionPermission permission)
         {
-            GuildConfig guild = await GuildIsRegistered(guildId);
-            if (guild == null)
-            {
-                _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            GuildConfig guild = await GetRegisteredGuild(guildId);
             Identity currentIdentity = await GetIdentity();
-            if (currentIdentity == null)
-            {
-                _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            ModCase modCase = await _database.SelectSpecificModCase(guildId, caseId);
+            ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider).GetModCase(guildId, caseId);
             if (modCase == null)
             {
                 _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Not Found.");
@@ -73,19 +56,11 @@ namespace masz.Controllers
         public async Task<bool> HasPermissionToExecutePunishment(ulong guildId, PunishmentType punishment)
         {
             Identity currentIdentity = await GetIdentity();
-            if (currentIdentity == null)
-            {
-                return false;
-            }
             if (currentIdentity.IsSiteAdmin())
             {
                 return true;
             }
-            GuildConfig guildConfig = await GuildIsRegistered(guildId);
-            if (guildConfig == null)
-            {
-                return false;
-            }
+            GuildConfig guildConfig = await GetRegisteredGuild(guildId);
             if (! await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
             {
                 return false;

@@ -12,9 +12,10 @@ namespace masz.Repositories
 
     public class ModCaseRepository : BaseRepository<ModCaseRepository>
     {
-        public ModCaseRepository(IServiceProvider serviceProvider) : base(serviceProvider) { }
+        private ModCaseRepository(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
-        public async Task<ModCase> CreateModcase(ModCase modCase, bool handlePunishment, bool sendPublicNotification, bool sendDmNotification)
+        public static ModCaseRepository CreateDefault(IServiceProvider serviceProvider) => new ModCaseRepository(serviceProvider);
+        public async Task<ModCase> CreateModCase(ModCase modCase, bool handlePunishment, bool sendPublicNotification, bool sendDmNotification)
         {
             DiscordUser moderator = await _discordAPI.FetchUserInfo(modCase.ModId, CacheBehavior.Default);
             DiscordUser currentReportedUser = await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.IgnoreButCacheOnError);
@@ -97,6 +98,10 @@ namespace masz.Repositories
                 }
             }
             return modCase;
+        }
+        public async Task<ModCase> GetModCase(ulong guildId, int caseId)
+        {
+            return await _database.SelectSpecificModCase(guildId, caseId);
         }
     }
 }

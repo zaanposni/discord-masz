@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using DSharpPlus.Entities;
 using masz.Dtos.UserAPIResponses;
+using masz.Exceptions;
 using masz.Models;
 using masz.Models.Views;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
 namespace masz.Controllers.api.v1
 {
@@ -29,17 +29,14 @@ namespace masz.Controllers.api.v1
         public async Task<IActionResult> GetUser()
         {
             Identity identity = await this.GetIdentity();
-             if (identity.currentUser == null)
-            {
-                _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            DiscordUser currentUser = identity.GetCurrentUser();
+            List<DiscordGuild> currentUserGuilds = identity.GetCurrentUserGuilds();
 
             List<DiscordGuildView> memberGuilds = new List<DiscordGuildView>();
             List<DiscordGuildView> modGuilds = new List<DiscordGuildView>();
             List<DiscordGuildView> adminGuilds = new List<DiscordGuildView>();
             List<DiscordGuildView> bannedGuilds = new List<DiscordGuildView>();
-            bool siteAdmin = _config.Value.SiteAdminDiscordUserIds.Contains(identity.currentUser.Id) || identity is TokenIdentity;
+            bool siteAdmin = _config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id) || identity is TokenIdentity;
 
             if (identity is DiscordOAuthIdentity)
             {
@@ -47,11 +44,7 @@ namespace masz.Controllers.api.v1
 
                 foreach (GuildConfig guild in registeredGuilds)
                 {
-                    if (identity.currentUserGuilds == null)
-                    {
-                        break;
-                    }
-                    DiscordGuild userGuild = identity.currentUserGuilds.FirstOrDefault(x => x.Id == guild.GuildId);
+                    DiscordGuild userGuild = currentUserGuilds.FirstOrDefault(x => x.Id == guild.GuildId);
                     if (userGuild != null)
                     {
                         userGuild = await _discordAPI.FetchGuildInfo(userGuild.Id, CacheBehavior.Default);
@@ -72,7 +65,7 @@ namespace masz.Controllers.api.v1
                         }
                     } else
                     {
-                        if (await _discordAPI.GetGuildUserBan(guild.GuildId, identity.currentUser.Id, CacheBehavior.Default) != null)
+                        if (await _discordAPI.GetGuildUserBan(guild.GuildId, currentUser.Id, CacheBehavior.Default) != null)
                         {
                             bannedGuilds.Add(new DiscordGuildView(await _discordAPI.FetchGuildInfo(guild.GuildId, CacheBehavior.Default)));
                         }
@@ -80,7 +73,7 @@ namespace masz.Controllers.api.v1
                 }
             }
 
-            return Ok(new APIUser(memberGuilds, bannedGuilds,  modGuilds, adminGuilds, identity.currentUser, siteAdmin));
+            return Ok(new APIUser(memberGuilds, bannedGuilds,  modGuilds, adminGuilds, currentUser, siteAdmin));
         }
 
         [HttpGet("users/{userid}")]
@@ -116,16 +109,12 @@ namespace masz.Controllers.api.v1
             return NotFound();
         }
 
-        [HttpGet("guilds/{guildid}/members")]
-        public async Task<IActionResult> GetGuildMembers([FromRoute] ulong guildid, [FromQuery] bool partial=false)
+        [HttpGet("guilds/{guildId}/members")]
+        public async Task<IActionResult> GetGuildMembers([FromRoute] ulong guildId, [FromQuery] bool partial=false)
         {
-            if (await _database.SelectSpecificGuildConfig(guildid) == null)
-            {
-                _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
-                return BadRequest("Endpoint only available for registered guilds.");
-            }
+            await GetRegisteredGuild(guildId);  // Endpoint only available for registered guilds.
 
-            var members = await _discordAPI.FetchGuildMembers(guildid, CacheBehavior.OnlyCache);
+            var members = await _discordAPI.FetchGuildMembers(guildId, CacheBehavior.OnlyCache);
             if (members != null)
             {
                 if (partial)
@@ -142,17 +131,7 @@ namespace masz.Controllers.api.v1
         public async Task<IActionResult> GetAllGuilds()
         {
             Identity identity = await this.GetIdentity();
-            if (identity.currentUser == null)
-            {
-                _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-
-            if (identity.currentUserGuilds != null)
-            {
-                return Ok(identity.currentUserGuilds);
-            }
-            return NotFound();
+            return Ok(identity.GetCurrentUserGuilds());
         }
     }
 }

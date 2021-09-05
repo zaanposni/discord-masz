@@ -1,5 +1,6 @@
 ﻿using DSharpPlus;
 using DSharpPlus.Entities;
+using masz.Exceptions;
 using masz.Services;
 using Microsoft.Extensions.Options;
 using System;
@@ -15,8 +16,8 @@ namespace masz.Models
         protected readonly IOptions<InternalConfig> _config;
         public DateTime ValidUntil { get; set; }
         protected string Token;
-        public DiscordUser currentUser;
-        public List<DiscordGuild> currentUserGuilds;
+        protected DiscordUser currentUser;
+        protected List<DiscordGuild> currentUserGuilds;
         public Identity (string token, IServiceProvider serviceProvider)
         {
             Token = token;
@@ -158,6 +159,24 @@ namespace masz.Models
                     return await HasAdminRoleOnGuild(guildId);
             }
             return false;
+        }
+
+        public DiscordUser GetCurrentUser()
+        {
+            if (currentUser == null)
+            {
+                throw new InvalidIdentityException(Token);
+            }
+            return currentUser;
+        }
+
+        public List<DiscordGuild> GetCurrentUserGuilds()
+        {
+            if (currentUserGuilds == null)
+            {
+                throw new InvalidIdentityException(Token);
+            }
+            return currentUserGuilds;
         }
     }
 }
