@@ -19,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using masz.Middlewares;
 
 namespace masz
 {
@@ -143,6 +144,8 @@ namespace masz
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware<RequestLoggingMiddleware>();
 
             //  app.UseCors("AngularDevCors");
 

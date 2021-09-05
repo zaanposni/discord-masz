@@ -67,7 +67,23 @@ namespace masz.Logger
                     _categoryName = _categoryName.Split('.').Last();
                 }
 
-                Console.WriteLine($"[{shortLogLevel}] {_categoryName}[{eventId.Id}]: {formatter(state, exception)}");
+                string prefix = $"[{shortLogLevel}] ";
+                if (_categoryName == "RequestLoggingMiddleware")
+                {
+                    prefix += $"ReqLog[{eventId.Id}]: ";
+                } else
+                {
+                    prefix += $"{_categoryName}[{eventId.Id}]: ";
+                }
+
+                Console.WriteLine($"{prefix}{formatter(state, exception)}");
+                if (exception != null)
+                {
+                    if (exception.StackTrace != null)
+                    {
+                        Console.Write(exception.StackTrace);
+                    }
+                }
                 Console.ResetColor();
             }
 
