@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using DSharpPlus;
 using DSharpPlus.SlashCommands;
+using masz.Enums;
 using masz.Exceptions;
 using masz.Models;
 using masz.Services;
@@ -49,15 +50,62 @@ namespace masz.Commands
             return await base.BeforeExecutionAsync(ctx);
         }
 
-        protected async Task RequireRegisteredGuild(InteractionContext ctx)
+        protected async Task Require(InteractionContext ctx, params RequireCheckEnum[] checks)
+        {
+            foreach (RequireCheckEnum check in checks)
+            {
+                switch (check)
+                {
+                    case RequireCheckEnum.GuildRegistered:
+                        await RequireRegisteredGuild(ctx);
+                        continue;
+                    case RequireCheckEnum.GuildMember:
+                        await RequireDiscordPermission(ctx, DiscordPermission.Member);
+                        continue;
+                    case RequireCheckEnum.GuildModerator:
+                        await RequireDiscordPermission(ctx, DiscordPermission.Moderator);
+                        continue;
+                    case RequireCheckEnum.GuildAdmin:
+                        await RequireDiscordPermission(ctx, DiscordPermission.Admin);
+                        continue;
+                    case RequireCheckEnum.GuildMuteRole:
+                        await RequireGuildWithMutedRole(ctx);
+                        continue;
+                    case RequireCheckEnum.SiteAdmin:
+                        await RequireSiteAdmin(ctx);
+                        continue;
+                }
+            }
+        }
+
+        private Task RequireSiteAdmin(InteractionContext ctx)
+        {
+            if (! _currentIdentity.IsSiteAdmin())
+            {
+                throw new UnauthorizedException("Only site admins allowed.");
+            }
+            return Task.CompletedTask;
+        }
+
+        private async Task RequireRegisteredGuild(InteractionContext ctx)
         {
             if (await _database.SelectSpecificGuildConfig(ctx.Guild.Id) == null)
+            {
+                throw new GuildWithoutMutedRoleException(ctx.Guild.Id);
+            }
+        }
+
+        private async Task RequireGuildWithMutedRole(InteractionContext ctx)
+        {
+            await RequireRegisteredGuild(ctx);
+            GuildConfig guildConfig = await _database.SelectSpecificGuildConfig(ctx.Guild.Id);
+            if (guildConfig.MutedRoles.Length == 0)
             {
                 throw new UnregisteredGuildException(ctx.Guild.Id);
             }
         }
 
-        protected async Task RequireDiscordPermission(InteractionContext ctx, DiscordPermission permission)
+        private async Task RequireDiscordPermission(InteractionContext ctx, DiscordPermission permission)
         {
             await RequireRegisteredGuild(ctx);
             if (_currentIdentity.IsSiteAdmin())

@@ -12,5 +12,6 @@ namespace masz.Enums
         InvalidIdentity = 7,
         GuildUnregistered = 8,
         Unauthorized = 9,
+        GuildUndefinedMutedRoles = 10,
     }
 }

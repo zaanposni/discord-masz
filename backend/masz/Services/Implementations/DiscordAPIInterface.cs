@@ -342,7 +342,7 @@ namespace masz.Services
             try
             {
                 member = TryGetFromCache<DiscordMember>(cacheKey, cacheBehavior);
-                // if (member != null) return member;
+                if (member != null) return member;
             } catch (NotFoundInCacheException)
             {
                 return null;
