@@ -13,15 +13,13 @@ namespace masz.Controllers
     {
         private readonly ILogger<IndexController> logger;
 
-        public IndexController(IServiceScopeFactory serviceScopeFactory, ILogger<IndexController> logger)
+        public IndexController()
         {
-            this.logger = logger;
         }
 
         [HttpGet("/")]
         public IActionResult Index() {
-            logger.LogInformation("/ | Returning Index.");
-            return new ContentResult() 
+            return new ContentResult()
             {
                 Content = "<a href=\"/api/v1/login\" target=\"blank\">Login with Discord.</a>",
                 ContentType = "text/html",
