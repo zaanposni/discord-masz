@@ -16,7 +16,7 @@ namespace masz.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> HandleRequest(string guildId, DiscordPermission permission)
+        public async Task<IActionResult> HandleRequest(ulong guildId, DiscordPermission permission)
         {
             GuildConfig guild = await GuildIsRegistered(guildId);
             if (guild == null) {
@@ -36,7 +36,7 @@ namespace masz.Controllers
             return null;
         }
 
-        public async Task<IActionResult> HandleRequest(string guildId, string caseId, APIActionPermission permission)
+        public async Task<IActionResult> HandleRequest(ulong guildId, int caseId, APIActionPermission permission)
         {
             GuildConfig guild = await GuildIsRegistered(guildId);
             if (guild == null)
@@ -70,14 +70,14 @@ namespace masz.Controllers
             return null;
         }
 
-        public async Task<bool> HasPermissionToExecutePunishment(string guildId, PunishmentType punishment)
+        public async Task<bool> HasPermissionToExecutePunishment(ulong guildId, PunishmentType punishment)
         {
             Identity currentIdentity = await GetIdentity();
             if (currentIdentity == null)
             {
                 return false;
             }
-            if (await currentIdentity.IsSiteAdmin())
+            if (currentIdentity.IsSiteAdmin())
             {
                 return true;
             }
