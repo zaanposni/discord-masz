@@ -8,5 +8,8 @@ namespace masz.Enums
         ProtectedModCaseSuspectIsBot = 3,
         ProtectedModCaseSuspectIsSiteAdmin = 4,
         ProtectedModCaseSuspectIsTeam = 5,
+        ResourceNotFound = 6,
+        InvalidIdentity = 7,
+        GuildUnregistered = 8,
     }
 }

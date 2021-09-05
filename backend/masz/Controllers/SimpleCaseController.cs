@@ -33,7 +33,7 @@ namespace masz.Controllers
         {
             GuildConfig guild = await GetRegisteredGuild(guildId);
             Identity currentIdentity = await GetIdentity();
-            ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider).GetModCase(guildId, caseId);
+            ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetModCase(guildId, caseId);
             if (modCase == null)
             {
                 _logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Not Found.");

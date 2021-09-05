@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DSharpPlus.Entities;
@@ -12,9 +13,13 @@ namespace masz.Repositories
 
     public class ModCaseRepository : BaseRepository<ModCaseRepository>
     {
-        private ModCaseRepository(IServiceProvider serviceProvider) : base(serviceProvider) { }
+        private readonly Identity _identity;
+        private ModCaseRepository(IServiceProvider serviceProvider, Identity identity) : base(serviceProvider)
+        {
+            _identity = identity;
+        }
 
-        public static ModCaseRepository CreateDefault(IServiceProvider serviceProvider) => new ModCaseRepository(serviceProvider);
+        public static ModCaseRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new ModCaseRepository(serviceProvider, identity);
         public async Task<ModCase> CreateModCase(ModCase modCase, bool handlePunishment, bool sendPublicNotification, bool sendDmNotification)
         {
             DiscordUser moderator = await _discordAPI.FetchUserInfo(modCase.ModId, CacheBehavior.Default);
@@ -24,7 +29,7 @@ namespace masz.Repositories
             if (guildConfig == null)
             {
                 _logger.LogError("Guild is not registered.");
-                throw new UnregisteredGuildException("Guild not registered", modCase.GuildId);
+                throw new UnregisteredGuildException(modCase.GuildId);
             }
 
             if (currentReportedUser == null)
@@ -102,6 +107,37 @@ namespace masz.Repositories
         public async Task<ModCase> GetModCase(ulong guildId, int caseId)
         {
             return await _database.SelectSpecificModCase(guildId, caseId);
+        }
+        public async Task DeleteModCase(ulong guildId, int caseId, bool forceDelete=false)
+        {
+            ModCase modCase = await this.GetModCase(guildId, caseId);
+
+            if (modCase == null)
+            {
+                _logger.LogError($"ModCase with id {caseId} does not exist.");
+                throw new ResourceNotFoundException($"ModCase with id {caseId} does not exist.");
+            }
+
+            if (forceDelete)
+            {
+                try {
+                    _filesHandler.DeleteDirectory(Path.Combine(_config.Value.AbsolutePathToFileUpload, guildId.ToString(), caseId.ToString()));
+                } catch (Exception e) {
+                    _logger.LogError(e, $"Failed to delete files directory for modcase {guildId}/{caseId}.");
+                }
+
+                _logger.LogInformation($"Force deleting modCase {guildId}/{caseId}.");
+                _database.DeleteSpecificModCase(modCase);
+                await _database.SaveChangesAsync();
+            } else {
+                modCase.MarkedToDeleteAt = DateTime.UtcNow.AddDays(7);
+                modCase.DeletedByUserId = _identity.GetCurrentUser().Id;
+                modCase.PunishmentActive = false;
+
+                _logger.LogInformation($"Marking modcase {guildId}/{caseId} as deleted.");
+                _database.UpdateModCase(modCase);
+                await _database.SaveChangesAsync();
+            }
         }
     }
 }

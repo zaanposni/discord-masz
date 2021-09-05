@@ -1,6 +1,6 @@
 namespace masz.Exceptions
 {
-    public class NotFoundInCacheException : BaseAPIException
+    public class NotFoundInCacheException : BaseException
     {
         public string CacheKey { get; set; }
         public NotFoundInCacheException(string message, string cacheKey) : base(message)

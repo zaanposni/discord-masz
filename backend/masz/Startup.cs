@@ -146,7 +146,7 @@ namespace masz
             }
 
             app.UseMiddleware<RequestLoggingMiddleware>();
-            app.UseMiddleware<IdentityExceptionHandlingMiddleware>();
+            app.UseMiddleware<APIExceptionHandlingMiddleware>();
 
             //  app.UseCors("AngularDevCors");
 
