@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using DSharpPlus.Entities;
 using masz.Models;
 using masz.Services;
 using Microsoft.Extensions.Logging;
@@ -34,6 +36,84 @@ namespace masz.Repositories
             this._scheduler = (IScheduler) serviceProvider.GetService(typeof(IScheduler));
             this._translator = (ITranslator) serviceProvider.GetService(typeof(ITranslator));
             this._serviceProvider = serviceProvider;
+        }
+
+        protected bool contains(ModCaseTableEntry obj, string search)
+        {
+            if (obj == null) return false;
+            return contains(obj.ModCase, search) ||
+                   contains(obj.Moderator, search) ||
+                   contains(obj.Suspect, search);
+        }
+
+        protected bool contains(AutoModerationEventTableEntry obj, string search)
+        {
+            if (obj == null) return false;
+            return contains(obj.AutoModerationEvent, search) ||
+                   contains(obj.Suspect, search);
+        }
+
+        protected bool contains(ModCase obj, string search)
+        {
+            if (obj == null) return false;
+            return contains(obj.Title, search) ||
+                   contains(obj.Description, search) ||
+                   contains(obj.GetPunishment(_translator), search) ||
+                   contains(obj.Username, search) ||
+                   contains(obj.Discriminator, search) ||
+                   contains(obj.Nickname, search) ||
+                   contains(obj.UserId, search) ||
+                   contains(obj.ModId, search) ||
+                   contains(obj.LastEditedByModId, search) ||
+                   contains(obj.CreatedAt, search) ||
+                   contains(obj.OccuredAt, search) ||
+                   contains(obj.LastEditedAt, search) ||
+                   contains(obj.Labels, search) ||
+                   contains(obj.CaseId.ToString(), search) ||
+                   contains($"#{obj.CaseId}", search);
+        }
+
+        protected bool contains(AutoModerationEvent obj, string search)
+        {
+            if (obj == null) return false;
+            return contains(obj.AutoModerationAction.ToString(), search) ||
+                   contains(obj.AutoModerationType.ToString(), search) ||
+                   contains(obj.CreatedAt, search) ||
+                   contains(obj.Discriminator, search) ||
+                   contains(obj.Username, search) ||
+                   contains(obj.Nickname, search) ||
+                   contains(obj.UserId, search) ||
+                   contains(obj.MessageContent, search) ||
+                   contains(obj.MessageId, search);
+        }
+
+        protected bool contains(string obj, string search)
+        {
+            if (String.IsNullOrWhiteSpace(obj)) return false;
+            return obj.Contains(search, StringComparison.CurrentCultureIgnoreCase);
+        }
+
+        protected bool contains(ulong obj, string search)
+        {
+            return contains(obj.ToString(), search);
+        }
+
+        protected bool contains(DateTime obj, string search)
+        {
+            if (obj == null) return false;
+            return contains(obj.ToString(), search);
+        }
+
+        protected bool contains(string[] obj, string search)
+        {
+            if (obj == null) return false;
+            return obj.Any(x => contains(x, search));
+        }
+
+        protected bool contains(DiscordUser obj, string search)
+        {
+            if (obj == null) return false;
+            return contains($"{obj.Username}#{obj.Discriminator}", search);
         }
     }
 }

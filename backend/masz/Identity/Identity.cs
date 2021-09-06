@@ -100,10 +100,21 @@ namespace masz.Models
                         return false;
                     }
                     return modCase.UserId == currentUser.Id || await HasPermissionOnGuild(DiscordPermission.Moderator, modCase.GuildId);
-                case APIActionPermission.Edit: case APIActionPermission.Delete:
+                case APIActionPermission.Delete:
                     return await HasPermissionOnGuild(DiscordPermission.Moderator, modCase.GuildId);
                 case APIActionPermission.ForceDelete:
                     return false;  // only siteadmin
+                case APIActionPermission.Edit:
+                    GuildConfig guildConfig = await GetDatabase().SelectSpecificGuildConfig(modCase.GuildId);
+                    if (guildConfig.StrictModPermissionCheck) {
+                        Permissions x = Permissions.None;
+                        if (modCase.PunishmentType == PunishmentType.Ban) x = Permissions.BanMembers;
+                        if (modCase.PunishmentType == PunishmentType.Mute) x = Permissions.BanMembers;
+                        return await HasPermissionOnGuild(DiscordPermission.Moderator, modCase.GuildId) &&
+                               await HasRolePermissionInGuild(modCase.GuildId, x);
+                    } else {
+                        return await HasPermissionOnGuild(DiscordPermission.Moderator, modCase.GuildId);
+                    }
             }
             return false;
         }
@@ -177,6 +188,34 @@ namespace masz.Models
                 throw new InvalidIdentityException(Token);
             }
             return currentUserGuilds;
+        }
+
+        public async Task<bool> HasPermissionToExecutePunishment(ulong guildId, PunishmentType punishment)
+        {
+            GuildConfig guildConfig = await GetDatabase().SelectSpecificGuildConfig(guildId);
+            if (guildConfig == null)
+            {
+                return false;
+            }
+            if (! await HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
+            {
+                return false;
+            }
+            if (IsSiteAdmin())
+            {
+                return true;
+            }
+            if (guildConfig.StrictModPermissionCheck)
+            {
+                switch (punishment)
+                {
+                    case PunishmentType.Kick:
+                        return await HasRolePermissionInGuild(guildId, DSharpPlus.Permissions.KickMembers);
+                    case PunishmentType.Ban:
+                        return await HasRolePermissionInGuild(guildId, DSharpPlus.Permissions.BanMembers);
+                }
+            }
+            return true;
         }
     }
 }

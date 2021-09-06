@@ -361,7 +361,7 @@ namespace masz.Services
 
             // cache -----------------------------
             _cache[cacheKey] = new CacheApiResponse(member);
-            // TODO: _cache[$"/users/{member.Id}"] = new CacheApiResponse((DiscordUser) member);
+            _cache[$"/users/{member.Id}"] = new CacheApiResponse((DiscordUser) member);
             return member;
         }
 

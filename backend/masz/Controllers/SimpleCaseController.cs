@@ -52,30 +52,5 @@ namespace masz.Controllers
 
             return null;
         }
-
-        public async Task<bool> HasPermissionToExecutePunishment(ulong guildId, PunishmentType punishment)
-        {
-            Identity currentIdentity = await GetIdentity();
-            if (currentIdentity.IsSiteAdmin())
-            {
-                return true;
-            }
-            GuildConfig guildConfig = await GetRegisteredGuild(guildId);
-            if (! await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
-            {
-                return false;
-            }
-            if (guildConfig.StrictModPermissionCheck)
-            {
-                switch (punishment)
-                {
-                    case PunishmentType.Kick:
-                        return await currentIdentity.HasRolePermissionInGuild(guildId, DSharpPlus.Permissions.KickMembers);
-                    case PunishmentType.Ban:
-                        return await currentIdentity.HasRolePermissionInGuild(guildId, DSharpPlus.Permissions.BanMembers);
-                }
-            }
-            return true;
-        }
     }
 }

@@ -13,8 +13,7 @@ namespace masz.Dtos.ModCase
         [Required(ErrorMessage = "Description field is required")]
         public string Description { get; set; }
         [Required(ErrorMessage = "UserId field is required")]
-        [RegularExpression(@"^[0-9]{18}$", ErrorMessage = "the user id can only consist of numbers and must be 18 characters long")]
-        public string UserId { get; set; }
+        public ulong UserId { get; set; }
         [DataType(DataType.Date)]
         public DateTime? OccuredAt { get; set; }
         public string[] Labels { get; set; } = new string[0];
