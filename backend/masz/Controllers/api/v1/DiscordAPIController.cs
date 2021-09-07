@@ -110,19 +110,14 @@ namespace masz.Controllers.api.v1
         }
 
         [HttpGet("guilds/{guildId}/members")]
-        public async Task<IActionResult> GetGuildMembers([FromRoute] ulong guildId, [FromQuery] bool partial=false)
+        public async Task<IActionResult> GetGuildMembers([FromRoute] ulong guildId)
         {
             await GetRegisteredGuild(guildId);  // Endpoint only available for registered guilds.
 
             var members = await _discordAPI.FetchGuildMembers(guildId, CacheBehavior.OnlyCache);
             if (members != null)
             {
-                if (partial)
-                {
-                    return Ok(members.Select(x => new DiscordUserView(x)).ToList());
-                } else {
-                    return Ok(members);
-                }
+                return Ok(members.Select(x => new DiscordUserView(x)).ToList());
             }
             return NotFound();
         }
