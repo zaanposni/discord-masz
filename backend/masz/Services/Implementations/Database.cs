@@ -28,9 +28,9 @@ namespace masz.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task<bool> CanConnectAsync(CancellationToken cancellationToken)
+        public async Task<bool> CanConnectAsync()
         {
-            return await context.Database.CanConnectAsync(cancellationToken);
+            return await context.Database.CanConnectAsync();
         }
 
         // ==================================================================================

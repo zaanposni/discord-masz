@@ -22,6 +22,7 @@ namespace masz.Services
         /// </summary>
         /// <returns>User object if found.</returns>
         DiscordUser GetCurrentBotInfo(CacheBehavior cacheBehavior);
+        Task<DiscordUser> FetchCurrentBotInfo();
 
         /// <summary>
         /// Returns information of user by his id

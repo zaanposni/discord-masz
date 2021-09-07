@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using masz.Dtos.DiscordAPIResponses;
 using masz.Models;
+using masz.Repositories;
 using masz.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,71 +17,85 @@ namespace masz.Controllers
     [Authorize]
     public class AdminStatsController : SimpleController
     {
-        private readonly ILogger<AdminStatsController> logger;
-        private readonly IIdentityManager identityManager;
-        private readonly IScheduler scheduler;
+        private readonly ILogger<AdminStatsController> _logger;
 
-        public AdminStatsController(IServiceProvider serviceProvider, ILogger<AdminStatsController> logger, IIdentityManager identityManager, IScheduler scheduler) : base(serviceProvider) {
-            this.logger = logger;
-            this.identityManager = identityManager;
-            this.scheduler = scheduler;
+        public AdminStatsController(IServiceProvider serviceProvider, ILogger<AdminStatsController> logger) : base(serviceProvider) {
+            _logger = logger;
         }
 
         [HttpGet("adminstats")]
-        public async Task<IActionResult> Status() {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (! await this.IsSiteAdmin()) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+        public async Task<IActionResult> Status()
+        {
+            Identity identity = await GetIdentity();
+            if (! identity.IsSiteAdmin()) return Unauthorized();
 
             List<string> currentLogins = new List<string>();
-            foreach (var login in this.identityManager.GetCurrentIdentities())
+            foreach (var login in _identityManager.GetCurrentIdentities())
             {
-                if (login is DiscordOAuthIdentity) 
+                if (login is DiscordOAuthIdentity)
                 {
-                    var user = await login.GetCurrentDiscordUser();
-                    if (user == null) {
+                    try
+                    {
+                        var user = login.GetCurrentUser();
+                        if (user == null)
+                        {
+                            currentLogins.Add($"Invalid user.");
+                        } else
+                        {
+                            currentLogins.Add($"{user.Username}#{user.Discriminator}");
+                        }
+                    } catch (Exception e)
+                    {
+                        _logger.LogError(e, "Error getting logged in user.");
                         currentLogins.Add($"Invalid user.");
-                    } else {
-                        currentLogins.Add($"{user.Username}#{user.Discriminator}");
                     }
                 }
             }
 
-            var cache = this.discord.GetCache();
+            StatusRepository repo = StatusRepository.CreateDefault(_serviceProvider);
 
-            var stopwatch = Stopwatch.StartNew();
-            await this.discord.FetchCurrentBotInfo(CacheBehavior.IgnoreCache);
-            stopwatch.Stop();
+            StatusDetail botDetails = repo.GetBotStatus();
+            StatusDetail dbDetails = await repo.GetDbStatus();
+            StatusDetail cacheDetails = repo.GetCacheStatus();
+            StatusDetail discordAPIDetails = await repo.GetDiscordAPIStatus();
+
+            int cacheCount;
+            try
+            {
+                cacheCount = _discordAPI.GetCache().Keys.Count;
+            } catch (Exception e)
+            {
+                _logger.LogError(e, "Failed to get cache count.");
+                cacheCount = -1;
+            }
 
             return Ok(new {
-                lastPing = stopwatch.ElapsedMilliseconds,
+                botStatus = botDetails,
+                dbStatus = dbDetails,
+                cacheStatus = cacheDetails,
+                discordStatus = discordAPIDetails,
                 loginsInLast15Minutes = currentLogins,
-                defaultLanguage = this.config.Value.DefaultLanguage,
-                trackedInvites = await database.CountTrackedInvites(),
-                modCases = await database.CountAllModCases(),
-                guilds = await database.CountAllGuildConfigs(),
-                automodEvents = await database.CountAllModerationEvents(),
-                userNotes = await database.CountUserNotes(),
-                userMappings = await database.CountUserMappings(),
-                apiTokens = await database.CountAllAPITokens(),
-                nextCache = this.scheduler.GetNextCacheSchedule(),
-                cachedDataFromDiscord = cache.Keys
+                defaultLanguage = _config.Value.DefaultLanguage,
+                trackedInvites = await _database.CountTrackedInvites(),
+                modCases = await _database.CountAllModCases(),
+                guilds = await _database.CountAllGuildConfigs(),
+                automodEvents = await _database.CountAllModerationEvents(),
+                userNotes = await _database.CountUserNotes(),
+                userMappings = await _database.CountUserMappings(),
+                apiTokens = await _database.CountAllAPITokens(),
+                nextCache = _scheduler.GetNextCacheSchedule(),
+                cachedDataFromDiscord = cacheCount
             });
         }
 
         [HttpPost("cache")]
         public async Task<IActionResult> TriggerCache() {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (! await this.IsSiteAdmin()) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            Identity identity = await GetIdentity();
+            if (! identity.IsSiteAdmin()) return Unauthorized();
 
             Task task = new Task(() => {
-                this.cacher.CacheAll();
-                this.identityManager.ClearAllIdentities();
+                _identityManager.ClearAllIdentities();
+                _scheduler.CacheAll();
             });
             task.Start();
 

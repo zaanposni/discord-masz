@@ -245,6 +245,16 @@ namespace masz.Services
             return _discordBot.GetClient().CurrentUser;
         }
 
+        public async Task<DiscordUser> FetchCurrentBotInfo()
+        {
+            var client = new DiscordRestClient(new DiscordConfiguration
+            {
+                Token = _config.Value.DiscordBotToken,
+                TokenType = TokenType.Bot,
+            });
+            return await client.GetCurrentUserAsync();
+        }
+
         public async Task<List<DiscordChannel>> FetchGuildChannels(ulong guildId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------

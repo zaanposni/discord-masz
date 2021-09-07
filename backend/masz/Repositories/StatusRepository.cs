@@ -11,25 +11,20 @@ namespace masz.Repositories
 
     public class StatusRepository : BaseRepository<StatusRepository>
     {
-        private readonly Identity _identity;
-        private StatusRepository(IServiceProvider serviceProvider, Identity identity) : base(serviceProvider)
+        private StatusRepository(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _identity = identity;
         }
 
-        public static StatusRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new StatusRepository(serviceProvider, identity);
+        public static StatusRepository CreateDefault(IServiceProvider serviceProvider) => new StatusRepository(serviceProvider);
 
         public async Task<StatusDetail> GetDbStatus()
         {
             StatusDetail dbStatus = new StatusDetail();
             try
             {
-                CancellationTokenSource source = new CancellationTokenSource();
-                source.CancelAfter(TimeSpan.FromSeconds(3));
-                Task<bool> task = Task.Run(() => _database.CanConnectAsync(source.Token), source.Token);
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
-                dbStatus.Online = await task;
+                dbStatus.Online = await _database.CanConnectAsync();
                 timer.Stop();
                 dbStatus.ResponseTime = timer.Elapsed.TotalMilliseconds;
             } catch (Exception)
@@ -38,7 +33,6 @@ namespace masz.Repositories
             }
             return dbStatus;
         }
-
         public StatusDetail GetBotStatus()
         {
             StatusDetail botStatus = new StatusDetail();
@@ -56,7 +50,6 @@ namespace masz.Repositories
             }
             return botStatus;
         }
-
         public StatusDetail GetCacheStatus()
         {
             StatusDetail cacheStatus = new StatusDetail();
@@ -77,6 +70,27 @@ namespace masz.Repositories
                 cacheStatus.Online = false;
             }
             return cacheStatus;
+        }
+        public async Task<StatusDetail> GetDiscordAPIStatus()
+        {
+            StatusDetail dbStatus = new StatusDetail();
+            try
+            {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
+                DiscordUser user = await _discordAPI.FetchCurrentBotInfo();
+                timer.Stop();
+                dbStatus.ResponseTime = timer.Elapsed.TotalMilliseconds;
+                if (user == null)
+                {
+                    dbStatus.Online = false;
+                    dbStatus.Message = "Failed to fetch from discord API.";
+                }
+            } catch (Exception)
+            {
+                dbStatus.Online = false;
+            }
+            return dbStatus;
         }
     }
 }

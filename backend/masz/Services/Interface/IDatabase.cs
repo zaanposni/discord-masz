@@ -9,7 +9,7 @@ namespace masz.Services
     public interface IDatabase
     {
         Task SaveChangesAsync();
-        Task<bool> CanConnectAsync(CancellationToken cancellationToken);
+        Task<bool> CanConnectAsync();
 
         Task<GuildConfig> SelectSpecificGuildConfig(ulong guildId);
         Task<List<GuildConfig>> SelectAllGuildConfigs();
