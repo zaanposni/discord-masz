@@ -12,7 +12,7 @@ namespace masz.Commands
 {
 
     [SlashModuleLifespan(SlashModuleLifespan.Scoped)]
-    public class BaseCommand<T> : SlashCommandModule
+    public class BaseCommand<T> : ApplicationCommandModule
     {
 
         protected ILogger<T> _logger { get; set; }
@@ -20,6 +20,7 @@ namespace masz.Commands
         protected ITranslator _translator { get; set; }
         protected IIdentityManager _identityManager { get; set; }
         protected Identity _currentIdentity { get; set; }
+        protected IDiscordAPIInterface _discordAPI { get; set; }
 
         public BaseCommand(IServiceProvider serviceProvider)
         {
@@ -27,9 +28,10 @@ namespace masz.Commands
             this._database = (IDatabase) serviceProvider.GetService(typeof(IDatabase));
             this._translator = (ITranslator) serviceProvider.GetService(typeof(ITranslator));
             this._identityManager = (IIdentityManager) serviceProvider.GetService(typeof(IIdentityManager));
+            this._discordAPI = (IDiscordAPIInterface) serviceProvider.GetService(typeof(IDiscordAPIInterface));
         }
 
-        public override async Task<bool> BeforeExecutionAsync(InteractionContext ctx)
+        public override async Task<bool> BeforeSlashExecutionAsync(InteractionContext ctx)
         {
             if (ctx.Channel.Type == ChannelType.Text)
             {
@@ -47,10 +49,31 @@ namespace masz.Commands
                 return false;  // do not execute the slash command
             }
 
-            return await base.BeforeExecutionAsync(ctx);
+            return await base.BeforeSlashExecutionAsync(ctx);
         }
 
-        protected async Task Require(InteractionContext ctx, params RequireCheckEnum[] checks)
+        public async Task<bool> BeforeExecutionAsync(ContextMenuContext ctx)
+        {
+            if (ctx.Channel.Type == ChannelType.Text)
+            {
+                _logger.LogInformation($"{ctx.User.Id} used {ctx.CommandName} in {ctx.Channel.Id} | {ctx.Guild.Name}");
+            }
+            else
+            {
+                _logger.LogInformation($"{ctx.User.Id} used {ctx.CommandName} in DM");
+            }
+
+            _currentIdentity = await _identityManager.GetIdentity(ctx.User);
+            if (_currentIdentity == null)
+            {
+                _logger.LogError($"Failed to register command identity for '{ctx.User.Id}'.");
+                return false;  // do not execute the context command
+            }
+
+            return await base.BeforeContextMenuExecutionAsync(ctx);
+        }
+
+        protected async Task Require(BaseContext ctx, params RequireCheckEnum[] checks)
         {
             foreach (RequireCheckEnum check in checks)
             {
@@ -78,7 +101,7 @@ namespace masz.Commands
             }
         }
 
-        private Task RequireSiteAdmin(InteractionContext ctx)
+        private Task RequireSiteAdmin(BaseContext ctx)
         {
             if (! _currentIdentity.IsSiteAdmin())
             {
@@ -87,7 +110,7 @@ namespace masz.Commands
             return Task.CompletedTask;
         }
 
-        private async Task RequireRegisteredGuild(InteractionContext ctx)
+        private async Task RequireRegisteredGuild(BaseContext ctx)
         {
             if (await _database.SelectSpecificGuildConfig(ctx.Guild.Id) == null)
             {
@@ -95,7 +118,7 @@ namespace masz.Commands
             }
         }
 
-        private async Task RequireGuildWithMutedRole(InteractionContext ctx)
+        private async Task RequireGuildWithMutedRole(BaseContext ctx)
         {
             await RequireRegisteredGuild(ctx);
             GuildConfig guildConfig = await _database.SelectSpecificGuildConfig(ctx.Guild.Id);
@@ -105,7 +128,7 @@ namespace masz.Commands
             }
         }
 
-        private async Task RequireDiscordPermission(InteractionContext ctx, DiscordPermission permission)
+        private async Task RequireDiscordPermission(BaseContext ctx, DiscordPermission permission)
         {
             await RequireRegisteredGuild(ctx);
             if (_currentIdentity.IsSiteAdmin())

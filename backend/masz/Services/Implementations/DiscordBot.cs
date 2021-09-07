@@ -61,6 +61,7 @@ namespace masz.Services
             ulong? debugGuild = null;  // set your guild id here to enable fast syncing debug commands
 
             slash.RegisterCommands<PingCommand>(debugGuild);
+            slash.RegisterCommands<ReportCommand>(debugGuild);
 
             slash.SlashCommandErrored += CmdErroredHandler;
         }
