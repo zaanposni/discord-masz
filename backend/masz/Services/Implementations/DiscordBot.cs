@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using masz.Commands;
 using masz.Exceptions;
+using System.Net.WebSockets;
 
 namespace masz.Services
 {
@@ -28,6 +29,8 @@ namespace masz.Services
         private readonly DiscordClient _client;
         private DiscordConfiguration _discordConfiguration;
         private IServiceProvider _serviceProvider;
+        private bool _isRunning = false;
+        private DateTime? _lastDisconnect = null;
 
         public DiscordBot(ILogger<DiscordClient> logger, IOptions<InternalConfig> config, IDatabase context, ITranslator translator, IConfiguration configuration, IServiceProvider serviceProvider)
         {
@@ -53,6 +56,10 @@ namespace masz.Services
             _client.InviteCreated += this.InviteCreatedHandler;
             _client.InviteDeleted += this.InviteDeletedHandler;
 
+            _client.SocketErrored += this.SocketErroredHandler;
+            _client.Resumed += this.ResumedHandler;
+            _client.Ready += this.ReadyHandler;
+
             var slash = _client.UseSlashCommands(new SlashCommandsConfiguration
             {
                 Services = serviceProvider
@@ -70,6 +77,41 @@ namespace masz.Services
         {
             DiscordActivity activity = new DiscordActivity(_config.Value.ServiceBaseUrl, ActivityType.Watching);
             await _client.ConnectAsync(activity);
+        }
+
+        public bool IsRunning()
+        {
+            return _isRunning;
+        }
+
+        public DateTime? GetLastDisconnectTime()
+        {
+            return _lastDisconnect;
+        }
+
+        private Task ResumedHandler(DiscordClient sender, ReadyEventArgs e)
+        {
+            _logger.LogWarning("Client reconnected.");
+            _isRunning = true;
+            return Task.CompletedTask;
+        }
+
+        private Task SocketErroredHandler(DiscordClient sender, SocketErrorEventArgs e)
+        {
+            if (e.Exception is WebSocketException)
+            {
+                _logger.LogCritical("Client disconnected.");
+                _isRunning = false;
+                _lastDisconnect = DateTime.UtcNow;
+            }
+            return Task.CompletedTask;
+        }
+
+        private Task ReadyHandler(DiscordClient sender, ReadyEventArgs e)
+        {
+            _logger.LogInformation("Client connected.");
+            _isRunning = true;
+            return Task.CompletedTask;
         }
 
         private Task MessageCreatedHandler(DiscordClient client, MessageCreateEventArgs e)

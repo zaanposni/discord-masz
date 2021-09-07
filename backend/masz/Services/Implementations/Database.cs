@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace masz.Services
@@ -25,6 +26,11 @@ namespace masz.Services
         public async Task SaveChangesAsync()
         {
             await context.SaveChangesAsync();
+        }
+
+        public async Task<bool> CanConnectAsync(CancellationToken cancellationToken)
+        {
+            return await context.Database.CanConnectAsync(cancellationToken);
         }
 
         // ==================================================================================

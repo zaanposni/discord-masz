@@ -15,12 +15,14 @@ namespace masz.Controllers
         protected readonly IIdentityManager _identityManager;
         protected readonly IOptions<InternalConfig> _config;
         protected readonly IDiscordAPIInterface _discordAPI;
+        protected readonly IDiscordBot _discordBot;
         public SimpleController(IServiceProvider serviceProvider)
         {
             _database = (IDatabase) serviceProvider.GetService(typeof(IDatabase));
             _identityManager = (IIdentityManager) serviceProvider.GetService(typeof(IIdentityManager));
             _config = (IOptions<InternalConfig>) serviceProvider.GetService(typeof(IOptions<InternalConfig>));
             _discordAPI = (IDiscordAPIInterface) serviceProvider.GetService(typeof(IDiscordAPIInterface));
+            _discordBot = (IDiscordBot) serviceProvider.GetService(typeof(IDiscordBot));
         }
 
         public async Task<Identity> GetIdentity() {

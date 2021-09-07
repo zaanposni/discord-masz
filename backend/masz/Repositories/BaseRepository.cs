@@ -22,6 +22,7 @@ namespace masz.Repositories
         protected readonly IPunishmentHandler _punishmentHandler;
         protected readonly IScheduler _scheduler;
         protected readonly ITranslator _translator;
+        protected readonly IDiscordBot _discordBot;
         protected readonly IServiceProvider _serviceProvider;
         public BaseRepository(IServiceProvider serviceProvider)
         {
@@ -35,6 +36,7 @@ namespace masz.Repositories
             this._punishmentHandler = (IPunishmentHandler) serviceProvider.GetService(typeof(IPunishmentHandler));
             this._scheduler = (IScheduler) serviceProvider.GetService(typeof(IScheduler));
             this._translator = (ITranslator) serviceProvider.GetService(typeof(ITranslator));
+            this._discordBot = (IDiscordBot) serviceProvider.GetService(typeof(IDiscordBot));
             this._serviceProvider = serviceProvider;
         }
 

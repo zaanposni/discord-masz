@@ -1,8 +1,7 @@
 ﻿using masz.Models;
-using masz.Translations;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace masz.Services
@@ -10,6 +9,7 @@ namespace masz.Services
     public interface IDatabase
     {
         Task SaveChangesAsync();
+        Task<bool> CanConnectAsync(CancellationToken cancellationToken);
 
         Task<GuildConfig> SelectSpecificGuildConfig(ulong guildId);
         Task<List<GuildConfig>> SelectAllGuildConfigs();

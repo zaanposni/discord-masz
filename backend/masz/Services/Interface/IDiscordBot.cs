@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using DSharpPlus;
 
@@ -7,5 +8,7 @@ namespace masz.Services
     {
         Task Start();
         DiscordClient GetClient();
+        bool IsRunning();
+        DateTime? GetLastDisconnectTime();
     }
 }
