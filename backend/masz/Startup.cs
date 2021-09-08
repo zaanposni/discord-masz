@@ -20,6 +20,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using masz.Middlewares;
+using masz.Plugins;
+using System.Linq;
 
 namespace masz
 {
@@ -40,16 +42,22 @@ namespace masz
                 .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddScoped<IDatabase, Database>();
-            services.AddScoped<IDiscordAnnouncer, DiscordAnnouncer>();
-            services.AddScoped<IFilesHandler, FilesHandler>();
             services.AddScoped<ITranslator, Translator>();
-            services.AddScoped<INotificationEmbedCreator, NotificationEmbedCreator>();
+            services.AddSingleton<IDiscordAnnouncer, DiscordAnnouncer>();
+            services.AddSingleton<IFilesHandler, FilesHandler>();
+            services.AddSingleton<INotificationEmbedCreator, NotificationEmbedCreator>();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton<IDiscordBot, DiscordBot>();
             services.AddSingleton<IDiscordAPIInterface, DiscordAPIInterface>();
             services.AddSingleton<IIdentityManager, IdentityManager>();
             services.AddSingleton<IPunishmentHandler, PunishmentHandler>();
             services.AddSingleton<IScheduler, Scheduler>();
+
+            // Register your plugins here
+            // ######################################################################################################
+            // services.AddSingleton<IBasePlugin, ExampleWebhookPlugin>();
+            // services.AddSingleton<IBasePlugin, ExampleBackgroundPlugin>();
+            // ######################################################################################################
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie("Cookies", options =>
@@ -81,7 +89,7 @@ namespace masz
                     options.CorrelationCookie.HttpOnly = false;
                 });
 
-            
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer("Tokens", x =>
                 {
@@ -162,6 +170,7 @@ namespace masz
                 scope.ServiceProvider.GetService<IPunishmentHandler>().StartTimer();
                 scope.ServiceProvider.GetService<IScheduler>().StartTimers();
                 scope.ServiceProvider.GetService<IDiscordBot>().Start();
+                scope.ServiceProvider.GetServices<IBasePlugin>().ToList().ForEach(x => x.RegisterEvents());
             }
 
             app.UseHttpsRedirection();

@@ -79,6 +79,7 @@ namespace masz.Logger
                 Console.WriteLine($"{prefix}{formatter(state, exception)}");
                 if (exception != null)
                 {
+                    Console.Write(exception.Message);
                     if (exception.StackTrace != null)
                     {
                         Console.Write(exception.StackTrace);

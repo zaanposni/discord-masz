@@ -1,0 +1,39 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using masz.Events;
+using Microsoft.Extensions.Logging;
+
+/*
+
+This is an example of a webhook plugin.
+It shows how to use masz services like the "_discordAPI" which is a discord API wrapper.
+For further documentation of the services, see the "Services" folder.
+This plugin executes a webhook every time a identity is registered.
+
+*/
+
+namespace masz.Plugins
+{
+    public class ExampleWebhookPlugin : BasePlugin, IBasePlugin
+    {
+        private readonly ILogger<ExampleWebhookPlugin> _logger;
+        private readonly string _webhookUrl = "https://discordapp.com/api/webhooks/123/xyz";
+        public ExampleWebhookPlugin() { }
+        public ExampleWebhookPlugin(ILogger<ExampleWebhookPlugin> logger, IServiceProvider serviceProvider): base(serviceProvider)
+        {
+            _logger = logger;
+        }
+
+        public void RegisterEvents()
+        {
+            _identityManager.OnIdentityRegistered += OnIdentityRegistered;
+        }
+
+        private async Task OnIdentityRegistered(IdentityRegisteredEventArgs e)
+        {
+            _logger.LogInformation($"Identity {e.GetIdentity().GetCurrentUser().Username} registered2!");
+            await _discordAPI.ExecuteWebhook(_webhookUrl, null, $"Identity {e.GetIdentity().GetCurrentUser().Username} registered!");
+        }
+    }
+}

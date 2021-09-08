@@ -1,8 +1,7 @@
 ﻿using DSharpPlus.Entities;
-using masz.data;
+using masz.Events;
 using masz.Models;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -21,6 +20,7 @@ namespace masz.Services
         private readonly IOptions<InternalConfig> _config;
         private readonly IDiscordAPIInterface _discord;
         private readonly IServiceProvider _serviceProvider;
+        public event AsyncEventHandler<IdentityRegisteredEventArgs> OnIdentityRegistered;
 
         public IdentityManager() { }
 
@@ -31,6 +31,7 @@ namespace masz.Services
             _discord = discord;
             _context = context;
             _serviceProvider = serviceProvider;
+            // OnIdentityRegistered = new AsyncEventHandler<IdentityRegisteredEventArgs>(async (args) => { });
         }
 
         private async Task<Identity> RegisterNewIdentity(HttpContext httpContext)
@@ -58,6 +59,10 @@ namespace masz.Services
                 identity = await DiscordOAuthIdentity.Create(token, _serviceProvider);
             }
             identities[key] = identity;
+            if (OnIdentityRegistered != null)
+            {
+                await OnIdentityRegistered(new IdentityRegisteredEventArgs(identity));
+            }
             return identity;
         }
 
@@ -66,6 +71,10 @@ namespace masz.Services
             string key = $"/discord/cmd/{user.Id}";
             Identity identity = await DiscordCommandIdentity.Create(user, _serviceProvider);
             identities[key] = identity;
+            if (OnIdentityRegistered != null)
+            {
+                await OnIdentityRegistered(new IdentityRegisteredEventArgs(identity));
+            }
             return identity;
         }
 
