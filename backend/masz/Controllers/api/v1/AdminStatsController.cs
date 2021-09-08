@@ -59,16 +59,6 @@ namespace masz.Controllers
             StatusDetail cacheDetails = repo.GetCacheStatus();
             StatusDetail discordAPIDetails = await repo.GetDiscordAPIStatus();
 
-            int cacheCount;
-            try
-            {
-                cacheCount = _discordAPI.GetCache().Keys.Count;
-            } catch (Exception e)
-            {
-                _logger.LogError(e, "Failed to get cache count.");
-                cacheCount = -1;
-            }
-
             return Ok(new {
                 botStatus = botDetails,
                 dbStatus = dbDetails,
@@ -84,7 +74,7 @@ namespace masz.Controllers
                 userMappings = await _database.CountUserMappings(),
                 apiTokens = await _database.CountAllAPITokens(),
                 nextCache = _scheduler.GetNextCacheSchedule(),
-                cachedDataFromDiscord = cacheCount
+                cachedDataFromDiscord = _discordAPI.GetCache().Keys
             });
         }
 
