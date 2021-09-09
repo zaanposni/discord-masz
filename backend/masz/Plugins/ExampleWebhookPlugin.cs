@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 using masz.Events;
 using Microsoft.Extensions.Logging;
@@ -25,14 +24,14 @@ namespace masz.Plugins
             _logger = logger;
         }
 
-        public void RegisterEvents()
+        public void Init()
         {
             _identityManager.OnIdentityRegistered += OnIdentityRegistered;
         }
 
         private async Task OnIdentityRegistered(IdentityRegisteredEventArgs e)
         {
-            _logger.LogInformation($"Identity {e.GetIdentity().GetCurrentUser().Username} registered2!");
+            _logger.LogInformation($"Identity {e.GetIdentity().GetCurrentUser().Username} registered!");
             await _discordAPI.ExecuteWebhook(_webhookUrl, null, $"Identity {e.GetIdentity().GetCurrentUser().Username} registered!");
         }
     }

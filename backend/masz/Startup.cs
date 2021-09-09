@@ -22,6 +22,7 @@ using Microsoft.IdentityModel.Tokens;
 using masz.Middlewares;
 using masz.Plugins;
 using System.Linq;
+using Scrutor;
 
 namespace masz
 {
@@ -51,12 +52,26 @@ namespace masz
             services.AddSingleton<IDiscordAPIInterface, DiscordAPIInterface>();
             services.AddSingleton<IIdentityManager, IdentityManager>();
             services.AddSingleton<IPunishmentHandler, PunishmentHandler>();
+            services.AddSingleton<IEventHandler, Services.EventHandler>();
             services.AddSingleton<IScheduler, Scheduler>();
 
-            // Register your plugins here
+            // Plugin
             // ######################################################################################################
-            // services.AddSingleton<IBasePlugin, ExampleWebhookPlugin>();
-            // services.AddSingleton<IBasePlugin, ExampleBackgroundPlugin>();
+            if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
+            {
+                Console.WriteLine("########################################################################################################");
+                Console.WriteLine("ENABLED CUSTOM PLUGINS!");
+                Console.WriteLine("This might impact the performance or security of your masz instance!");
+                Console.WriteLine("Use this only if you know what you are doing!");
+                Console.WriteLine("For support and more information, refer to the creator or community of your plugin!");
+                Console.WriteLine("########################################################################################################");
+
+                services.Scan(scan => scan
+                    .FromAssemblyOf<IBasePlugin>()
+                    .AddClasses(classes => classes.InNamespaces("masz.Plugins"))
+                    .AsImplementedInterfaces()
+                    .WithSingletonLifetime());
+            }
             // ######################################################################################################
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -170,7 +185,10 @@ namespace masz
                 scope.ServiceProvider.GetService<IPunishmentHandler>().StartTimer();
                 scope.ServiceProvider.GetService<IScheduler>().StartTimers();
                 scope.ServiceProvider.GetService<IDiscordBot>().Start();
-                scope.ServiceProvider.GetServices<IBasePlugin>().ToList().ForEach(x => x.RegisterEvents());
+                if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
+                {
+                    scope.ServiceProvider.GetServices<IBasePlugin>().ToList().ForEach(x => x.Init());
+                }
             }
 
             app.UseHttpsRedirection();

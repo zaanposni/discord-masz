@@ -20,18 +20,18 @@ namespace masz.Services
         private readonly IOptions<InternalConfig> _config;
         private readonly IDiscordAPIInterface _discord;
         private readonly IServiceProvider _serviceProvider;
+        private readonly IEventHandler _eventHandler;
         public event AsyncEventHandler<IdentityRegisteredEventArgs> OnIdentityRegistered;
-
         public IdentityManager() { }
 
-        public IdentityManager(ILogger<IdentityManager> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IDatabase context, IServiceProvider serviceProvider)
+        public IdentityManager(ILogger<IdentityManager> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IDatabase context, IServiceProvider serviceProvider, IEventHandler eventHandler)
         {
             _logger = logger;
             _config = config;
             _discord = discord;
             _context = context;
             _serviceProvider = serviceProvider;
-            // OnIdentityRegistered = new AsyncEventHandler<IdentityRegisteredEventArgs>(async (args) => { });
+            _eventHandler = eventHandler;
         }
 
         private async Task<Identity> RegisterNewIdentity(HttpContext httpContext)
@@ -59,10 +59,7 @@ namespace masz.Services
                 identity = await DiscordOAuthIdentity.Create(token, _serviceProvider);
             }
             identities[key] = identity;
-            if (OnIdentityRegistered != null)
-            {
-                await OnIdentityRegistered(new IdentityRegisteredEventArgs(identity));
-            }
+            await _eventHandler.Invoke<IdentityRegisteredEventArgs>(OnIdentityRegistered, new IdentityRegisteredEventArgs(identity));
             return identity;
         }
 
@@ -71,10 +68,7 @@ namespace masz.Services
             string key = $"/discord/cmd/{user.Id}";
             Identity identity = await DiscordCommandIdentity.Create(user, _serviceProvider);
             identities[key] = identity;
-            if (OnIdentityRegistered != null)
-            {
-                await OnIdentityRegistered(new IdentityRegisteredEventArgs(identity));
-            }
+            await _eventHandler.Invoke<IdentityRegisteredEventArgs>(OnIdentityRegistered, new IdentityRegisteredEventArgs(identity));
             return identity;
         }
 

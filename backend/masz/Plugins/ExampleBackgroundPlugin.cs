@@ -24,7 +24,7 @@ namespace masz.Plugins
             _logger = logger;
         }
 
-        public void RegisterEvents()
+        public void Init()
         {
             _identityManager.OnIdentityRegistered += OnIdentityRegistered;
         }

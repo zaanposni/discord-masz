@@ -50,6 +50,7 @@ services:
     restart: unless-stopped
     environment:
       - ENABLE_DEMO_MODE=${ENABLE_DEMO_MODE}
+      - ENABLE_CUSTOM_PLUGINS=${ENABLE_CUSTOM_PLUGINS}
     networks:
       - appnetwork
     volumes:
