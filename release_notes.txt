@@ -1,0 +1,14 @@
+# v2
+
+- restore of a modcase will now trigger the punishment again
+- api errors now return a json with the error message and code
+- plugins
+- custom events
+- improved adminstats controller
+- only return partial member list
+- report command now lists url for attachments
+- move env file to root
+- custom logger for backend stuff
+- enum api
+
+
