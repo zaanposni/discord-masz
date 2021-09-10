@@ -110,7 +110,7 @@ namespace masz.Repositories
             }
             return modCase;
         }
-        public async Task<ModCase> DeleteModCase(ulong guildId, int caseId, bool forceDelete=false, bool handlePunishment = true, bool announcePublic = true)
+        public async Task<ModCase> DeleteModCase(ulong guildId, int caseId, bool forceDelete = false, bool handlePunishment = true, bool announcePublic = true)
         {
             ModCase modCase = await this.GetModCase(guildId, caseId);
 
@@ -302,12 +302,19 @@ namespace masz.Repositories
         public async Task<ModCase> RestoreCase(ulong guildId, int caseId)
         {
             ModCase modCase = await GetModCase(guildId, caseId);
-            modCase.AllowComments = true;
-            modCase.LockedAt = null;
-            modCase.LockedByUserId = 0;
+            modCase.MarkedToDeleteAt = null;
+            modCase.DeletedByUserId = 0;
 
             _database.UpdateModCase(modCase);
             await _database.SaveChangesAsync();
+
+            try {
+                _logger.LogInformation($"Handling punishment for case {guildId}/{caseId}.");
+                await _punishmentHandler.ExecutePunishment(modCase);
+            }
+            catch(Exception e){
+                _logger.LogError(e, $"Failed to handle punishment for modcase {guildId}/{caseId}.");
+            }
 
             return modCase;
         }
