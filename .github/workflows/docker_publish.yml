@@ -15,6 +15,7 @@ jobs:
       - name: Determine version
         run: |
           VERSION=$(cat nginx/static/version.json | jq -r '.version')$($(cat nginx/static/version.json | jq -r '.pre_release') && echo "a" || :)
+          echo "I found version: $VERSION"
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Set up QEMU
