@@ -124,13 +124,16 @@ namespace masz
                         .Build();
                 });
 
-            // services.AddCors(o => o.AddPolicy("AngularDevCors", builder =>
-            // {
-            //     builder.WithOrigins("http://127.0.0.1:4200")
-            //         .AllowAnyMethod()
-            //         .AllowAnyHeader()
-            //         .AllowCredentials();
-            // }));
+            if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CORS")))
+            {
+                services.AddCors(o => o.AddPolicy("AngularDevCors", builder =>
+                {
+                    builder.WithOrigins("http://127.0.0.1:4200")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                }));
+            }
 
             services.Configure<InternalConfig>(Configuration.GetSection("InternalConfig"));
 
@@ -171,7 +174,10 @@ namespace masz
             app.UseMiddleware<RequestLoggingMiddleware>();
             app.UseMiddleware<APIExceptionHandlingMiddleware>();
 
-            //  app.UseCors("AngularDevCors");
+            if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CORS")))
+            {
+                app.UseCors("AngularDevCors");
+            }
 
             app.UseIpRateLimiting();
 

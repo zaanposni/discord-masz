@@ -16,8 +16,8 @@ namespace masz.Models
         public AutoModerationAction AutoModerationAction { get; set; }
         public PunishmentType? PunishmentType { get; set; }
         public int? PunishmentDurationMinutes { get; set; }
-        public string[] IgnoreChannels { get; set; }
-        public string[] IgnoreRoles { get; set; }
+        public ulong[] IgnoreChannels { get; set; }
+        public ulong[] IgnoreRoles { get; set; }
         public int? TimeLimitMinutes { get; set; }
         public int? Limit { get; set; }
         public string CustomWordFilter { get; set; }

@@ -7,6 +7,7 @@ using masz.Dtos.GuildConfig;
 using masz.Enums;
 using masz.Exceptions;
 using masz.Models;
+using masz.Models.Views;
 using masz.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -33,7 +34,7 @@ namespace masz.Controllers
         {
             await RequirePermission(guildId, DiscordPermission.Admin);
 
-            return Ok(await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(guildId));
+            return Ok(new GuildConfigView(await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(guildId)));
         }
 
         [HttpDelete("{guildId}")]
@@ -60,47 +61,14 @@ namespace masz.Controllers
                 }
             } catch (ResourceNotFoundException) { }
 
-            DiscordGuild guild = await _discordAPI.FetchGuildInfo(guildConfigForCreateDto.GuildId, CacheBehavior.IgnoreCache);
-            if (guild == null)
-            {
-                return BadRequest("Guild not found.");
-            }
-            foreach (ulong role in guildConfigForCreateDto.modRoles)
-            {
-                if (guild.Roles.ContainsKey(role))
-                {
-                    return BadRequest($"Role {role} not found.");
-                }
-            }
-            foreach (ulong role in guildConfigForCreateDto.adminRoles)
-            {
-                if (guild.Roles.ContainsKey(role))
-                {
-                    return BadRequest($"Role {role} not found.");
-                }
-            }
-            foreach (ulong role in guildConfigForCreateDto.mutedRoles)
-            {
-                if (guild.Roles.ContainsKey(role))
-                {
-                    return BadRequest($"Role {role} not found.");
-                }
-            }
-
             GuildConfig guildConfig = new GuildConfig();
             guildConfig.GuildId = guildConfigForCreateDto.GuildId;
-            guildConfig.ModRoles = guildConfigForCreateDto.modRoles.Select(x => x.ToString()).ToArray();
-            guildConfig.AdminRoles = guildConfigForCreateDto.adminRoles.Select(x => x.ToString()).ToArray();
+            guildConfig.ModRoles = guildConfigForCreateDto.modRoles;
+            guildConfig.AdminRoles = guildConfigForCreateDto.adminRoles;
             guildConfig.ModNotificationDM = guildConfigForCreateDto.ModNotificationDM;
-            guildConfig.MutedRoles = guildConfigForCreateDto.mutedRoles.Select(x => x.ToString()).ToArray();
+            guildConfig.MutedRoles = guildConfigForCreateDto.mutedRoles;
             guildConfig.ModPublicNotificationWebhook = guildConfigForCreateDto.ModPublicNotificationWebhook;
-            if (guildConfig.ModPublicNotificationWebhook != null) {
-                guildConfig.ModPublicNotificationWebhook = guildConfig.ModPublicNotificationWebhook.Replace("discord.com", "discordapp.com");
-            }
             guildConfig.ModInternalNotificationWebhook = guildConfigForCreateDto.ModInternalNotificationWebhook;
-            if (guildConfig.ModInternalNotificationWebhook != null) {
-                guildConfig.ModInternalNotificationWebhook = guildConfig.ModInternalNotificationWebhook.Replace("discord.com", "discordapp.com");
-            }
             guildConfig.StrictModPermissionCheck = guildConfigForCreateDto.StrictModPermissionCheck;
             guildConfig.ExecuteWhoisOnJoin = guildConfigForCreateDto.ExecuteWhoisOnJoin;
             guildConfig.PublishModeratorInfo = guildConfigForCreateDto.PublishModeratorInfo;
@@ -124,12 +92,13 @@ namespace masz.Controllers
                     throw new BaseAPIException("Demo mode is enabled. Only site admins can edit guild configs.", APIError.NotAllowedInDemoMode);
                 }
             }
+
             GuildConfig guildConfig = await GetRegisteredGuild(guildId);
 
-            guildConfig.ModRoles = newValue.ModRoles.Select(x => x.ToString()).ToArray();
-            guildConfig.AdminRoles = newValue.AdminRoles.Select(x => x.ToString()).ToArray();
+            guildConfig.ModRoles = newValue.ModRoles;
+            guildConfig.AdminRoles = newValue.AdminRoles;
             guildConfig.ModNotificationDM = newValue.ModNotificationDM;
-            guildConfig.MutedRoles = newValue.MutedRoles.Select(x => x.ToString()).ToArray();
+            guildConfig.MutedRoles = newValue.MutedRoles;
             guildConfig.ModInternalNotificationWebhook = newValue.ModInternalNotificationWebhook;
             if (guildConfig.ModInternalNotificationWebhook != null) {
                 guildConfig.ModInternalNotificationWebhook = guildConfig.ModInternalNotificationWebhook.Replace("discord.com", "discordapp.com");

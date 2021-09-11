@@ -17,5 +17,6 @@ namespace masz.Enums
         ModCaseIsNotMarkedToBeDeleted = 12,
         GuildAlreadyRegistered = 13,
         NotAllowedInDemoMode = 14,
+        RoleNotFound = 15,
     }
 }

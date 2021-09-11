@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using masz.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -66,17 +67,17 @@ namespace masz.data
                 .Property(e => e.ModRoles)
                 .HasConversion(
                     v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => ulong.Parse(x)).ToArray());
             modelBuilder.Entity<GuildConfig>()
                 .Property(e => e.AdminRoles)
                 .HasConversion(
                     v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => ulong.Parse(x)).ToArray());
             modelBuilder.Entity<GuildConfig>()
                 .Property(e => e.MutedRoles)
                 .HasConversion(
                     v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => ulong.Parse(x)).ToArray());
 
             modelBuilder.Entity<ModCase>()
                 .Property(e => e.Labels)
@@ -89,19 +90,19 @@ namespace masz.data
                 .HasConversion(
                     v => string.Join(',', v),
                     v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
-            
+
             modelBuilder.Entity<AutoModerationConfig>()
                 .Property(e => e.IgnoreChannels)
                 .HasConversion(
                     v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => ulong.Parse(x)).ToArray());
 
             modelBuilder.Entity<AutoModerationConfig>()
                 .Property(e => e.IgnoreRoles)
                 .HasConversion(
                     v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
-            
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => ulong.Parse(x)).ToArray());
+
             modelBuilder.Entity<ModCaseComment>()
                 .HasOne(c => c.ModCase)
                 .WithMany(c => c.Comments)

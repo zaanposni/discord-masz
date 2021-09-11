@@ -4,7 +4,7 @@ namespace masz.Models.Views
 {
     public class DiscordUserView
     {
-        public ulong Id { get; set; }
+        public string Id { get; set; }
         public string Username { get; set; }
         public string Discriminator { get; set; }
         public string ImageUrl { get; set; }
@@ -16,7 +16,7 @@ namespace masz.Models.Views
         public DiscordUserView() { }
         public DiscordUserView(DiscordUser user)
         {
-            Id = user.Id;
+            Id = user.Id.ToString();
             Username = user.Username;
             Discriminator = user.Discriminator;
             ImageUrl = user.AvatarUrl;

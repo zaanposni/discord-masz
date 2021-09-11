@@ -4,7 +4,7 @@ namespace masz.Models.Views
 {
     public class DiscordRoleView
     {
-        public ulong Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public int Color { get; set; }
         public int Position { get; set; }
@@ -13,7 +13,7 @@ namespace masz.Models.Views
         public DiscordRoleView() { }
         public DiscordRoleView(DiscordRole role)
         {
-            Id = role.Id;
+            Id = role.Id.ToString();
             Name = role.Name;
             Color = role.Color.Value;
             Position = role.Position;

@@ -35,6 +35,40 @@ namespace masz.Repositories
 
         public async Task<GuildConfig> CreateGuildConfig(GuildConfig guildConfig)
         {
+            DiscordGuild guild = await _discordAPI.FetchGuildInfo(guildConfig.GuildId, CacheBehavior.IgnoreCache);
+            if (guild == null)
+            {
+                throw new ResourceNotFoundException($"Guild with id {guildConfig.GuildId} not found.");
+            }
+            foreach (ulong role in guildConfig.ModRoles)
+            {
+                if (! guild.Roles.ContainsKey(role))
+                {
+                    throw new RoleNotFoundException(role);
+                }
+            }
+            foreach (ulong role in guildConfig.AdminRoles)
+            {
+                if (! guild.Roles.ContainsKey(role))
+                {
+                    throw new RoleNotFoundException(role);
+                }
+            }
+            foreach (ulong role in guildConfig.MutedRoles)
+            {
+                if (! guild.Roles.ContainsKey(role))
+                {
+                    throw new RoleNotFoundException(role);
+                }
+            }
+
+            if (guildConfig.ModInternalNotificationWebhook != null) {
+                guildConfig.ModInternalNotificationWebhook = guildConfig.ModInternalNotificationWebhook.Replace("discord.com", "discordapp.com");
+            }
+            if (guildConfig.ModPublicNotificationWebhook != null) {
+                guildConfig.ModPublicNotificationWebhook = guildConfig.ModPublicNotificationWebhook.Replace("discord.com", "discordapp.com");
+            }
+
             await _database.SaveGuildConfig(guildConfig);
             await _database.SaveChangesAsync();
             return guildConfig;
@@ -42,6 +76,40 @@ namespace masz.Repositories
 
         public async Task<GuildConfig> UpdateGuildConfig(GuildConfig guildConfig)
         {
+            DiscordGuild guild = await _discordAPI.FetchGuildInfo(guildConfig.GuildId, CacheBehavior.IgnoreCache);
+            if (guild == null)
+            {
+                throw new ResourceNotFoundException($"Guild with id {guildConfig.GuildId} not found.");
+            }
+            foreach (ulong role in guildConfig.ModRoles)
+            {
+                if (! guild.Roles.ContainsKey(role))
+                {
+                    throw new RoleNotFoundException(role);
+                }
+            }
+            foreach (ulong role in guildConfig.AdminRoles)
+            {
+                if (! guild.Roles.ContainsKey(role))
+                {
+                    throw new RoleNotFoundException(role);
+                }
+            }
+            foreach (ulong role in guildConfig.MutedRoles)
+            {
+                if (! guild.Roles.ContainsKey(role))
+                {
+                    throw new RoleNotFoundException(role);
+                }
+            }
+
+            if (guildConfig.ModInternalNotificationWebhook != null) {
+                guildConfig.ModInternalNotificationWebhook = guildConfig.ModInternalNotificationWebhook.Replace("discord.com", "discordapp.com");
+            }
+            if (guildConfig.ModPublicNotificationWebhook != null) {
+                guildConfig.ModPublicNotificationWebhook = guildConfig.ModPublicNotificationWebhook.Replace("discord.com", "discordapp.com");
+            }
+
             _database.UpdateGuildConfig(guildConfig);
             await _database.SaveChangesAsync();
             return guildConfig;

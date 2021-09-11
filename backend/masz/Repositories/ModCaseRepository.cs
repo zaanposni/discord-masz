@@ -56,8 +56,8 @@ namespace masz.Repositories
             DiscordMember currentReportedMember = await _discordAPI.FetchMemberInfo(modCase.GuildId, modCase.UserId, CacheBehavior.IgnoreButCacheOnError);
             if (currentReportedMember != null)
             {
-                if (currentReportedMember.Roles.Where(x => guildConfig.ModRoles.Contains(x.Id.ToString())).Any() ||
-                    currentReportedMember.Roles.Where(x => guildConfig.AdminRoles.Contains(x.Id.ToString())).Any())
+                if (currentReportedMember.Roles.Where(x => guildConfig.ModRoles.Contains(x.Id)).Any() ||
+                    currentReportedMember.Roles.Where(x => guildConfig.AdminRoles.Contains(x.Id)).Any())
                 {
                     _logger.LogInformation("Cannot create cases for team members.");
                     throw new ProtectedModCaseSuspectException("Cannot create cases for team members.", modCase).WithError(APIError.ProtectedModCaseSuspectIsTeam);
@@ -196,8 +196,8 @@ namespace masz.Repositories
             DiscordMember currentReportedMember = await _discordAPI.FetchMemberInfo(modCase.GuildId, modCase.UserId, CacheBehavior.IgnoreButCacheOnError);
             if (currentReportedMember != null)
             {
-                if (currentReportedMember.Roles.Where(x => guildConfig.ModRoles.Contains(x.Id.ToString())).Any() ||
-                    currentReportedMember.Roles.Where(x => guildConfig.AdminRoles.Contains(x.Id.ToString())).Any())
+                if (currentReportedMember.Roles.Where(x => guildConfig.ModRoles.Contains(x.Id)).Any() ||
+                    currentReportedMember.Roles.Where(x => guildConfig.AdminRoles.Contains(x.Id)).Any())
                 {
                     _logger.LogInformation("Cannot create cases for team members.");
                     throw new ProtectedModCaseSuspectException("Cannot create cases for team members.", modCase).WithError(APIError.ProtectedModCaseSuspectIsTeam);

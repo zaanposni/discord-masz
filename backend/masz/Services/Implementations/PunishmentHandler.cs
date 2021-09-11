@@ -86,10 +86,9 @@ namespace masz.Services
                     case PunishmentType.Mute:
                         if (guildConfig.MutedRoles.Length != 0) {
                             _logger.LogInformation($"Punisher: Mute User {modCase.UserId} in guild {modCase.GuildId} with role {guildConfig.MutedRoles}.");
-                            foreach (string role in guildConfig.MutedRoles)
+                            foreach (ulong role in guildConfig.MutedRoles)
                             {
-                                ulong roleId = ulong.Parse(role);
-                                await _discord.GrantGuildUserRole(modCase.GuildId, modCase.UserId, roleId);
+                                await _discord.GrantGuildUserRole(modCase.GuildId, modCase.UserId, role);
                             }
                         } else {
                             _logger.LogInformation($"Punisher: Cannot Mute User {modCase.UserId} in guild {modCase.GuildId} - mute role undefined.");
@@ -134,10 +133,9 @@ namespace masz.Services
                     case PunishmentType.Mute:
                         if (guildConfig.MutedRoles.Length != 0) {
                             _logger.LogInformation($"Punisher: Unmute User {modCase.UserId} in guild {modCase.GuildId} with role {guildConfig.MutedRoles}.");
-                            foreach (string role in guildConfig.MutedRoles)
+                            foreach (ulong role in guildConfig.MutedRoles)
                             {
-                                ulong roleId = ulong.Parse(role);
-                                await _discord.RemoveGuildUserRole(modCase.GuildId, modCase.UserId, roleId);
+                                await _discord.RemoveGuildUserRole(modCase.GuildId, modCase.UserId, role);
                             }
                         } else {
                             _logger.LogInformation($"Punisher: Cannot Unmute User {modCase.UserId} in guild {modCase.GuildId} - mute role undefined.");

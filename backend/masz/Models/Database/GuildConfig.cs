@@ -10,9 +10,9 @@ namespace masz.Models
     {
         public int Id { get; set; }
         public ulong GuildId { get; set; }
-        public string[] ModRoles { get; set; }
-        public string[] AdminRoles { get; set; }
-        public string[] MutedRoles { get; set; }
+        public ulong[] ModRoles { get; set; }
+        public ulong[] AdminRoles { get; set; }
+        public ulong[] MutedRoles { get; set; }
         public bool ModNotificationDM { get; set; }
         public string ModPublicNotificationWebhook { get; set; }
         public string ModInternalNotificationWebhook { get; set; }
