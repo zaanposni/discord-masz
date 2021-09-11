@@ -171,6 +171,7 @@ namespace masz
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseMiddleware<HeaderMiddleware>();
             app.UseMiddleware<RequestLoggingMiddleware>();
             app.UseMiddleware<APIExceptionHandlingMiddleware>();
 
