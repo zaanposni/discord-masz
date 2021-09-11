@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using masz.Exceptions;
 using masz.Models;
+using masz.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -12,23 +14,23 @@ namespace masz.Services
 {
     public class PunishmentHandler : IPunishmentHandler
     {
-        private readonly ILogger<PunishmentHandler> logger;
-        private readonly IOptions<PunishmentHandler> config;
-        private readonly IDiscordAPIInterface discord;
-        private readonly IServiceScopeFactory serviceScopeFactory;
+        private readonly ILogger<PunishmentHandler> _logger;
+        private readonly IOptions<PunishmentHandler> _config;
+        private readonly IDiscordAPIInterface _discord;
+        private readonly IServiceScopeFactory _serviceScopeFactory;
 
         public PunishmentHandler() { }
 
         public PunishmentHandler(ILogger<PunishmentHandler> logger, IOptions<PunishmentHandler> config, IDiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory)
         {
-            this.logger = logger;
-            this.config = config;
-            this.discord = discord;
-            this.serviceScopeFactory = serviceScopeFactory;
+            _logger = logger;
+            _config = config;
+            _discord = discord;
+            _serviceScopeFactory = serviceScopeFactory;
         }
         public void StartTimer()
         {
-            logger.LogWarning("Starting action loop.");
+            _logger.LogWarning("Starting action loop.");
             Task task = new Task(() =>
                 {
                     while (true)
@@ -38,12 +40,12 @@ namespace masz.Services
                     }
                 });
             task.Start();
-            logger.LogWarning("Finished action loop.");
+            _logger.LogWarning("Finished action loop.");
         }
 
         public async void CheckAllCurrentPunishments()
         {
-            using (var scope = serviceScopeFactory.CreateScope())
+            using (var scope = _serviceScopeFactory.CreateScope())
             {
                 IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
                 List<ModCase> cases = await database.SelectAllModCasesWithActivePunishments();
@@ -66,36 +68,41 @@ namespace masz.Services
 
         public async Task ExecutePunishment(ModCase modCase)
         {
-            using (var scope = serviceScopeFactory.CreateScope())
+            using (var scope = _serviceScopeFactory.CreateScope())
             {
                 IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
 
-                GuildConfig guildConfig = await database.SelectSpecificGuildConfig(modCase.GuildId);
-                if (guildConfig == null) {
-                    logger.LogError($"Punisher: Cannot execute punishment in guild {modCase.GuildId} - guildconfig not found.");
+                GuildConfig guildConfig;
+                try
+                {
+                    guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(modCase.GuildId);
+                } catch(ResourceNotFoundException)
+                {
+                    _logger.LogError($"Punisher: Cannot execute punishment in guild {modCase.GuildId} - guildconfig not found.");
                     return;
                 }
+
                 switch (modCase.PunishmentType) {
                     case PunishmentType.Mute:
                         if (guildConfig.MutedRoles.Length != 0) {
-                            logger.LogInformation($"Punisher: Mute User {modCase.UserId} in guild {modCase.GuildId} with role {guildConfig.MutedRoles}.");
+                            _logger.LogInformation($"Punisher: Mute User {modCase.UserId} in guild {modCase.GuildId} with role {guildConfig.MutedRoles}.");
                             foreach (string role in guildConfig.MutedRoles)
                             {
                                 ulong roleId = ulong.Parse(role);
-                                await discord.GrantGuildUserRole(modCase.GuildId, modCase.UserId, roleId);
+                                await _discord.GrantGuildUserRole(modCase.GuildId, modCase.UserId, roleId);
                             }
                         } else {
-                            logger.LogInformation($"Punisher: Cannot Mute User {modCase.UserId} in guild {modCase.GuildId} - mute role undefined.");
+                            _logger.LogInformation($"Punisher: Cannot Mute User {modCase.UserId} in guild {modCase.GuildId} - mute role undefined.");
                         }
                         break;
                     case PunishmentType.Ban:
-                        logger.LogInformation($"Punisher: Ban User {modCase.UserId} in guild {modCase.GuildId}.");
-                        await discord.BanUser(modCase.GuildId, modCase.UserId);
-                        await discord.GetGuildUserBan(modCase.GuildId, modCase.UserId, CacheBehavior.IgnoreCache);  // refresh ban cache
+                        _logger.LogInformation($"Punisher: Ban User {modCase.UserId} in guild {modCase.GuildId}.");
+                        await _discord.BanUser(modCase.GuildId, modCase.UserId);
+                        await _discord.GetGuildUserBan(modCase.GuildId, modCase.UserId, CacheBehavior.IgnoreCache);  // refresh ban cache
                         break;
                     case PunishmentType.Kick:
-                        logger.LogInformation($"Punisher: Kick User {modCase.UserId} in guild {modCase.GuildId}.");
-                        await discord.KickGuildUser(modCase.GuildId, modCase.UserId);
+                        _logger.LogInformation($"Punisher: Kick User {modCase.UserId} in guild {modCase.GuildId}.");
+                        await _discord.KickGuildUser(modCase.GuildId, modCase.UserId);
                         break;
                 }
             }
@@ -103,37 +110,43 @@ namespace masz.Services
 
         public async Task UndoPunishment(ModCase modCase)
         {
-            using (var scope = serviceScopeFactory.CreateScope())
+            using (var scope = _serviceScopeFactory.CreateScope())
             {
                 IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
 
                 List<ModCase> parallelCases = await database.SelectAllModCasesThatHaveParallelPunishment(modCase);
                 if (parallelCases.Count != 0) {
-                    logger.LogInformation("Cannot undo punishment. There exists a parallel punishment for this case");
+                    _logger.LogInformation("Cannot undo punishment. There exists a parallel punishment for this case");
                     return;
                 }
-                GuildConfig guildConfig = await database.SelectSpecificGuildConfig(modCase.GuildId);
-                if (guildConfig == null) {
-                    logger.LogError($"Punisher: Cannot execute punishment in guild {modCase.GuildId} - guildconfig not found.");
+
+                GuildConfig guildConfig;
+                try
+                {
+                    guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(modCase.GuildId);
+                } catch(ResourceNotFoundException)
+                {
+                    _logger.LogError($"Punisher: Cannot execute punishment in guild {modCase.GuildId} - guildconfig not found.");
                     return;
                 }
+
                 switch (modCase.PunishmentType) {
                     case PunishmentType.Mute:
                         if (guildConfig.MutedRoles.Length != 0) {
-                            logger.LogInformation($"Punisher: Unmute User {modCase.UserId} in guild {modCase.GuildId} with role {guildConfig.MutedRoles}.");
+                            _logger.LogInformation($"Punisher: Unmute User {modCase.UserId} in guild {modCase.GuildId} with role {guildConfig.MutedRoles}.");
                             foreach (string role in guildConfig.MutedRoles)
                             {
                                 ulong roleId = ulong.Parse(role);
-                                await discord.RemoveGuildUserRole(modCase.GuildId, modCase.UserId, roleId);
+                                await _discord.RemoveGuildUserRole(modCase.GuildId, modCase.UserId, roleId);
                             }
                         } else {
-                            logger.LogInformation($"Punisher: Cannot Unmute User {modCase.UserId} in guild {modCase.GuildId} - mute role undefined.");
+                            _logger.LogInformation($"Punisher: Cannot Unmute User {modCase.UserId} in guild {modCase.GuildId} - mute role undefined.");
                         }
                         break;
                     case PunishmentType.Ban:
-                        logger.LogInformation($"Punisher: Unban User {modCase.UserId} in guild {modCase.GuildId}.");
-                        await discord.UnBanUser(modCase.GuildId, modCase.UserId);
-                        await discord.GetGuildUserBan(modCase.GuildId, modCase.UserId, CacheBehavior.IgnoreCache);  // refresh ban cache
+                        _logger.LogInformation($"Punisher: Unban User {modCase.UserId} in guild {modCase.GuildId}.");
+                        await _discord.UnBanUser(modCase.GuildId, modCase.UserId);
+                        await _discord.GetGuildUserBan(modCase.GuildId, modCase.UserId, CacheBehavior.IgnoreCache);  // refresh ban cache
                         break;
                 }
             }

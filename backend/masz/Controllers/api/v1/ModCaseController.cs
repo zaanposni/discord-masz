@@ -91,9 +91,7 @@ namespace masz.Controllers
         public async Task<IActionResult> CreateItem([FromRoute] ulong guildId, [FromBody] ModCaseForCreateDto modCaseDto, [FromQuery] bool sendPublicNotification = true, [FromQuery] bool handlePunishment = true, [FromQuery] bool sendDmNotification = true)
         {
             Identity currentIdentity = await GetIdentity();
-            if (await currentIdentity.HasPermissionToExecutePunishment(guildId, modCaseDto.PunishmentType)) return Unauthorized();
-
-            GuildConfig guildConfig = await _database.SelectSpecificGuildConfig(guildId);
+            if (! await currentIdentity.HasPermissionToExecutePunishment(guildId, modCaseDto.PunishmentType)) return Unauthorized();
 
             ModCase newModCase = new ModCase();
 

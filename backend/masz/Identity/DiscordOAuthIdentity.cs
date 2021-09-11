@@ -1,4 +1,6 @@
 using DSharpPlus.Entities;
+using masz.Exceptions;
+using masz.Repositories;
 using masz.Services;
 using Microsoft.Extensions.Logging;
 using System;
@@ -72,11 +74,11 @@ namespace masz.Models
                 return false;
             }
 
-            IDatabase database = GetDatabase();
-
-            // Get guild config from database
-            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildId);
-            if (guildConfig == null)
+            GuildConfig guildConfig;
+            try
+            {
+                guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(guildId);
+            } catch (ResourceNotFoundException)
             {
                 return false;
             }
@@ -97,11 +99,11 @@ namespace masz.Models
                 return false;
             }
 
-            IDatabase database = GetDatabase();
-
-            // Get guild config from database
-            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildId);
-            if (guildConfig == null)
+            GuildConfig guildConfig;
+            try
+            {
+                guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(guildId);
+            } catch (ResourceNotFoundException)
             {
                 return false;
             }

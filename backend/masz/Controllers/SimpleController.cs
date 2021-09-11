@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using DSharpPlus.Entities;
 using masz.Exceptions;
 using masz.Models;
+using masz.Repositories;
 using masz.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -43,11 +44,13 @@ namespace masz.Controllers
         }
 
         public async Task<GuildConfig> GetRegisteredGuild(ulong guildId) {
-            GuildConfig guildConfig = await _database.SelectSpecificGuildConfig(guildId);
-            if (guildConfig == null) {
+            try
+            {
+                return await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(guildId);
+            } catch (ResourceNotFoundException)
+            {
                 throw new UnregisteredGuildException(guildId);
             }
-            return guildConfig;
         }
     }
 }

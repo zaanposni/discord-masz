@@ -25,11 +25,12 @@ namespace masz.Repositories
         {
             DiscordUser moderator = await _discordAPI.FetchUserInfo(modCase.ModId, CacheBehavior.Default);
             DiscordUser currentReportedUser = await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.IgnoreButCacheOnError);
-            GuildConfig guildConfig = await _database.SelectSpecificGuildConfig(modCase.GuildId);
 
-            if (guildConfig == null)
+            GuildConfig guildConfig;
+            try
             {
-                _logger.LogError("Guild is not registered.");
+                guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(modCase.GuildId);
+            } catch (ResourceNotFoundException) {
                 throw new UnregisteredGuildException(modCase.GuildId);
             }
 
@@ -116,9 +117,11 @@ namespace masz.Repositories
 
             if (forceDelete)
             {
-                try {
+                try
+                {
                     _filesHandler.DeleteDirectory(Path.Combine(_config.Value.AbsolutePathToFileUpload, guildId.ToString(), caseId.ToString()));
-                } catch (Exception e) {
+                } catch (Exception e) 
+                {
                     _logger.LogError(e, $"Failed to delete files directory for modcase {guildId}/{caseId}.");
                 }
 
@@ -137,19 +140,23 @@ namespace masz.Repositories
 
             if (handlePunishment)
             {
-                try {
+                try
+                {
                     _logger.LogInformation($"Handling punishment for case {guildId}/{caseId}.");
                     await _punishmentHandler.UndoPunishment(modCase);
                 }
-                catch(Exception e){
+                catch(Exception e)
+                {
                     _logger.LogError(e, $"Failed to handle punishment for modcase {guildId}/{caseId}.");
                 }
             }
 
-            try {
+            try
+            {
                 await _discordAnnouncer.AnnounceModCase(modCase, RestAction.Deleted, _identity.GetCurrentUser(), announcePublic, false);
             }
-            catch(Exception e){
+            catch(Exception e)
+            {
                 _logger.LogError(e, "Failed to announce modcase.");
             }
             return modCase;
@@ -158,13 +165,15 @@ namespace masz.Repositories
         {
             DiscordUser moderator = await _discordAPI.FetchUserInfo(modCase.LastEditedByModId, CacheBehavior.Default);
             DiscordUser currentReportedUser = await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.IgnoreButCacheOnError);
-            GuildConfig guildConfig = await _database.SelectSpecificGuildConfig(modCase.GuildId);
-
-            if (guildConfig == null)
+            GuildConfig guildConfig;
+            try
             {
-                _logger.LogError("Guild is not registered.");
+                guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(modCase.GuildId);
+            } catch (ResourceNotFoundException)
+            {
                 throw new UnregisteredGuildException(modCase.GuildId);
             }
+
             if (currentReportedUser == null)
             {
                 _logger.LogError("Failed to fetch modcase suspect.");
@@ -221,22 +230,18 @@ namespace masz.Repositories
             }
             return modCase;
         }
-
         public async Task<List<ModCase>> GetCasePagination(ulong guildId, int startPage = 1, int pageSize = 20)
         {
             return await _database.SelectAllModCasesForGuild(guildId, startPage, pageSize);
         }
-
         public async Task<List<ModCase>> GetCasePaginationFilteredForUser(ulong guildId, ulong userId, int startPage = 1, int pageSize = 20)
         {
             return await _database.SelectAllModcasesForSpecificUserOnGuild(guildId, userId, startPage, pageSize);
         }
-
         public async Task<List<ModCase>> GetCasesForUser(ulong userId)
         {
             return await _database.SelectAllModCasesForSpecificUser(userId);
         }
-
         public async Task<List<ModCase>> SearchCases(ulong guildId, string searchString)
         {
             List<ModCase> modCases = await _database.SelectAllModCasesForGuild(guildId);
@@ -254,7 +259,6 @@ namespace masz.Repositories
             }
             return filteredModCases;
         }
-
         public async Task<List<ModCase>> SearchCasesFilteredForUser(ulong guildId, ulong userId, string searchString)
         {
             List<ModCase> modCases = await _database.SelectAllModcasesForSpecificUserOnGuild(guildId, userId);
@@ -272,7 +276,6 @@ namespace masz.Repositories
             }
             return filteredModCases;
         }
-
         public async Task<ModCase> LockCaseComments(ulong guildId, int caseId, DiscordUser moderator)
         {
             ModCase modCase = await GetModCase(guildId, caseId);
@@ -285,7 +288,6 @@ namespace masz.Repositories
 
             return modCase;
         }
-
         public async Task<ModCase> UnlockCaseComments(ulong guildId, int caseId)
         {
             ModCase modCase = await GetModCase(guildId, caseId);
@@ -298,7 +300,6 @@ namespace masz.Repositories
 
             return modCase;
         }
-
         public async Task<ModCase> RestoreCase(ulong guildId, int caseId)
         {
             ModCase modCase = await GetModCase(guildId, caseId);
@@ -308,11 +309,13 @@ namespace masz.Repositories
             _database.UpdateModCase(modCase);
             await _database.SaveChangesAsync();
 
-            try {
+            try
+            {
                 _logger.LogInformation($"Handling punishment for case {guildId}/{caseId}.");
                 await _punishmentHandler.ExecutePunishment(modCase);
             }
-            catch(Exception e){
+            catch(Exception e)
+            {
                 _logger.LogError(e, $"Failed to handle punishment for modcase {guildId}/{caseId}.");
             }
 

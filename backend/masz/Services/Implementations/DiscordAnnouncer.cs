@@ -1,6 +1,8 @@
+using System;
 using System.Threading.Tasks;
 using DSharpPlus.Entities;
 using masz.Models;
+using masz.Repositories;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -14,10 +16,11 @@ namespace masz.Services
         private readonly IDiscordAPIInterface _discordAPI;
         private readonly INotificationEmbedCreator _notificationEmbedCreator;
         private readonly ITranslator _translator;
+        private readonly IServiceProvider _serviceProvider;
 
         public DiscordAnnouncer() { }
 
-        public DiscordAnnouncer(ILogger<DiscordAnnouncer> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discordAPI, IDatabase context, INotificationEmbedCreator notificationContentCreator, ITranslator translator)
+        public DiscordAnnouncer(ILogger<DiscordAnnouncer> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discordAPI, IDatabase context, INotificationEmbedCreator notificationContentCreator, ITranslator translator, IServiceProvider serviceProvider)
         {
             _logger = logger;
             _config = config;
@@ -25,6 +28,7 @@ namespace masz.Services
             _database = context;
             _notificationEmbedCreator = notificationContentCreator;
             _translator = translator;
+            _serviceProvider = serviceProvider;
         }
 
         // https://codereview.stackexchange.com/a/257121
@@ -36,7 +40,7 @@ namespace masz.Services
             _logger.LogInformation($"Announcing modcase {modCase.Id} in guild {modCase.GuildId}.");
 
             DiscordUser caseUser = await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.Default);
-            GuildConfig guildConfig = await _database.SelectSpecificGuildConfig(modCase.GuildId);
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(modCase.GuildId);
 
             if (announceDm && action != RestAction.Deleted)
             {
@@ -96,7 +100,7 @@ namespace masz.Services
         {
             _logger.LogInformation($"Announcing comment {comment.Id} in case {comment.ModCase.CaseId} in guild {comment.ModCase.GuildId}.");
 
-            GuildConfig guildConfig = await _database.SelectSpecificGuildConfig(comment.ModCase.GuildId);
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(comment.ModCase.GuildId);
 
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
@@ -115,7 +119,7 @@ namespace masz.Services
         {
             _logger.LogInformation($"Announcing file {filename} in case {modCase.CaseId} in guild {modCase.GuildId}.");
 
-            GuildConfig guildConfig = await _database.SelectSpecificGuildConfig(modCase.GuildId);
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(modCase.GuildId);
 
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
@@ -132,7 +136,7 @@ namespace masz.Services
         {
             _logger.LogInformation($"Announcing usernote {userNote.Id} in guild {userNote.GuildId}.");
 
-            GuildConfig guildConfig = await _database.SelectSpecificGuildConfig(userNote.GuildId);
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(userNote.GuildId);
 
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
@@ -151,7 +155,7 @@ namespace masz.Services
         {
             _logger.LogInformation($"Announcing usermap {userMapping.Id} in guild {userMapping.GuildId}.");
 
-            GuildConfig guildConfig = await _database.SelectSpecificGuildConfig(userMapping.GuildId);
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(userMapping.GuildId);
 
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {

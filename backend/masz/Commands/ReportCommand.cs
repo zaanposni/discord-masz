@@ -7,6 +7,7 @@ using DSharpPlus.Entities;
 using DSharpPlus.SlashCommands;
 using masz.Enums;
 using masz.Models;
+using masz.Repositories;
 using Microsoft.Extensions.Logging;
 
 namespace masz.Commands
@@ -20,7 +21,7 @@ namespace masz.Commands
         public async Task Report(ContextMenuContext ctx)
         {
             await Require(ctx, RequireCheckEnum.GuildRegistered);
-            GuildConfig guildConfig = await _database.SelectSpecificGuildConfig(ctx.Guild.Id);
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(ctx.Guild.Id);
 
             DiscordInteractionResponseBuilder response =  new DiscordInteractionResponseBuilder();
             response.IsEphemeral = true;

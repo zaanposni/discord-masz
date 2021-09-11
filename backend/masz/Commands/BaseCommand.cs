@@ -5,6 +5,7 @@ using DSharpPlus.SlashCommands;
 using masz.Enums;
 using masz.Exceptions;
 using masz.Models;
+using masz.Repositories;
 using masz.Services;
 using Microsoft.Extensions.Logging;
 
@@ -21,14 +22,16 @@ namespace masz.Commands
         protected IIdentityManager _identityManager { get; set; }
         protected Identity _currentIdentity { get; set; }
         protected IDiscordAPIInterface _discordAPI { get; set; }
+        protected IServiceProvider _serviceProvider { get; set; }
 
         public BaseCommand(IServiceProvider serviceProvider)
         {
-            this._logger = (ILogger<T>) serviceProvider.GetService(typeof(ILogger<T>));
-            this._database = (IDatabase) serviceProvider.GetService(typeof(IDatabase));
-            this._translator = (ITranslator) serviceProvider.GetService(typeof(ITranslator));
-            this._identityManager = (IIdentityManager) serviceProvider.GetService(typeof(IIdentityManager));
-            this._discordAPI = (IDiscordAPIInterface) serviceProvider.GetService(typeof(IDiscordAPIInterface));
+            _logger = (ILogger<T>) serviceProvider.GetService(typeof(ILogger<T>));
+            _database = (IDatabase) serviceProvider.GetService(typeof(IDatabase));
+            _translator = (ITranslator) serviceProvider.GetService(typeof(ITranslator));
+            _identityManager = (IIdentityManager) serviceProvider.GetService(typeof(IIdentityManager));
+            _discordAPI = (IDiscordAPIInterface) serviceProvider.GetService(typeof(IDiscordAPIInterface));
+            _serviceProvider = serviceProvider;
         }
 
         public override async Task<bool> BeforeSlashExecutionAsync(InteractionContext ctx)
@@ -112,17 +115,25 @@ namespace masz.Commands
 
         private async Task RequireRegisteredGuild(BaseContext ctx)
         {
-            if (await _database.SelectSpecificGuildConfig(ctx.Guild.Id) == null)
+            try
             {
-                throw new GuildWithoutMutedRoleException(ctx.Guild.Id);
+                await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(ctx.Guild.Id);
+            } catch (ResourceNotFoundException)
+            {
+                throw new UnregisteredGuildException(ctx.Guild.Id);
             }
         }
 
         private async Task RequireGuildWithMutedRole(BaseContext ctx)
         {
-            await RequireRegisteredGuild(ctx);
-            GuildConfig guildConfig = await _database.SelectSpecificGuildConfig(ctx.Guild.Id);
-            if (guildConfig.MutedRoles.Length == 0)
+            try
+            {
+                GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(ctx.Guild.Id);
+                if (guildConfig.MutedRoles.Length == 0)
+                {
+                    throw new GuildWithoutMutedRoleException(ctx.Guild.Id);
+                }
+            } catch (ResourceNotFoundException)
             {
                 throw new UnregisteredGuildException(ctx.Guild.Id);
             }

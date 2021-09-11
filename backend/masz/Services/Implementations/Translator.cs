@@ -1,5 +1,7 @@
+using System;
 using System.Threading.Tasks;
 using masz.Models;
+using masz.Repositories;
 using masz.Translations;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -8,18 +10,18 @@ namespace masz.Services
 {
     public class Translator : ITranslator
     {
-        private readonly ILogger<Scheduler> logger;
-        private readonly IOptions<InternalConfig> config;
-        private readonly IDatabase context;
-        private readonly Translation translation;
+        private readonly ILogger<Scheduler> _logger;
+        private readonly IOptions<InternalConfig> _config;
+        private readonly Translation _translation;
+        private readonly IServiceProvider _serviceProvider;
 
         public Translator() { }
 
-        public Translator(ILogger<Scheduler> logger, IOptions<InternalConfig> config, IDatabase context)
+        public Translator(ILogger<Scheduler> logger, IOptions<InternalConfig> config, IDatabase context, IServiceProvider serviceProvider)
         {
-            this.logger = logger;
-            this.config = config;
-            this.context = context;
+            _logger = logger;
+            _config = config;
+            _serviceProvider = serviceProvider;
             Language useLanguage = Language.en;
             switch (config.Value.DefaultLanguage) {
                 case "de":
@@ -35,55 +37,55 @@ namespace masz.Services
                     useLanguage = Language.es;
                     break;
             }
-            this.translation = Translation.Ctx(useLanguage);
+            _translation = Translation.Ctx(useLanguage);
         }
 
         public async Task SetContext(ulong guildId)
         {
-            GuildConfig guildConfig = await this.context.SelectSpecificGuildConfig(guildId);
-            this.SetContext(guildConfig);
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(guildId);
+            SetContext(guildConfig);
         }
 
         public void SetContext(GuildConfig guildConfig)
         {
             if (guildConfig != null) {
-                this.SetContext(guildConfig.PreferredLanguage);
+                SetContext(guildConfig.PreferredLanguage);
             }
         }
 
         public void SetContext(Language language)
         {
-            this.translation.preferredLanguage = language;
+            _translation.preferredLanguage = language;
         }
 
         public Translation T()
         {
-            return this.translation;
+            return _translation;
         }
 
         public Translation T(GuildConfig guildConfig)
         {
-            this.SetContext(guildConfig);
-            return this.translation;
+            SetContext(guildConfig);
+            return _translation;
         }
 
         public Translation T(Language language)
         {
-            this.SetContext(language);
-            return this.translation;
+            SetContext(language);
+            return _translation;
         }
 
         public Translation T(Language? language)
         {
             if (language.HasValue) {
-                this.SetContext(language.Value);
+                SetContext(language.Value);
             }
-            return this.translation;
+            return _translation;
         }
 
         public Language GetLanguage()
         {
-            return this.translation.preferredLanguage;
+            return _translation.preferredLanguage;
         }
     }
 }

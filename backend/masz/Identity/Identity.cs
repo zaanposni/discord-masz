@@ -1,6 +1,7 @@
 ﻿using DSharpPlus;
 using DSharpPlus.Entities;
 using masz.Exceptions;
+using masz.Repositories;
 using masz.Services;
 using Microsoft.Extensions.Options;
 using System;
@@ -105,7 +106,14 @@ namespace masz.Models
                 case APIActionPermission.ForceDelete:
                     return false;  // only siteadmin
                 case APIActionPermission.Edit:
-                    GuildConfig guildConfig = await GetDatabase().SelectSpecificGuildConfig(modCase.GuildId);
+                    GuildConfig guildConfig;
+                    try
+                    {
+                        guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(modCase.GuildId);
+                    } catch (ResourceNotFoundException)
+                    {
+                        return false;
+                    }
                     if (guildConfig.StrictModPermissionCheck) {
                         Permissions x = Permissions.None;
                         if (modCase.PunishmentType == PunishmentType.Ban) x = Permissions.BanMembers;
@@ -192,8 +200,11 @@ namespace masz.Models
 
         public async Task<bool> HasPermissionToExecutePunishment(ulong guildId, PunishmentType punishment)
         {
-            GuildConfig guildConfig = await GetDatabase().SelectSpecificGuildConfig(guildId);
-            if (guildConfig == null)
+            GuildConfig guildConfig;
+            try
+            {
+                guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(guildId);
+            } catch (ResourceNotFoundException)
             {
                 return false;
             }
