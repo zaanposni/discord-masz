@@ -143,6 +143,10 @@ You can also use my [python library](https://github.com/zaanposni/masz-api-wrapp
 
 # Development
 
+```bash
+docker-compose -f docker-compose-dev.yml up
+```
+
 ## Config
 
 - Using the `setup.py` script. Choose "local" deployment for best development experience.

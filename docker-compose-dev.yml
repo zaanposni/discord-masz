@@ -28,8 +28,9 @@ services:
       - appnetwork
 
   backend:
+    build:
+      context: backend
     container_name: masz_backend
-    image: ghcr.io/zaanposni/masz_backend:0.0.1
     depends_on:
         db:
           condition: service_healthy
@@ -56,8 +57,9 @@ services:
       - filehost:/filehost
 
   nginx:
+    build:
+      context: nginx
     container_name: masz_nginx
-    image: ghcr.io/zaanposni/masz_nginx:0.0.1
     restart: unless-stopped
     depends_on:
         - db
