@@ -74,7 +74,7 @@ namespace masz.Middlewares
             }
             try
             {
-                _logger.LogInformation($"INCCC {method} {context.Request?.Path.Value} | {GetIP(context)}");
+                _logger.LogInformation($"INC {method} {context.Request?.Path.Value} | {GetIP(context)}");
                 await _next(context);
                 _logger.LogInformation($"{context.Response?.StatusCode} {method} {context.Request?.Path.Value}");
             } catch (Exception e)
