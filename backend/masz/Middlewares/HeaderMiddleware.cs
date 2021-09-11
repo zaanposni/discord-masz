@@ -24,7 +24,7 @@ namespace masz.Middlewares
         public async Task Invoke(HttpContext context)
         {
             _logger.LogInformation("Setting header host " + _config.Value.ServiceHostName);
-            context.Request.Headers.Add("Host", _config.Value.ServiceHostName);
+            context.Request.Headers["Host"] = _config.Value.ServiceHostName;
             await _next(context);
         }
     }
