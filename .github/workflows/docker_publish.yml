@@ -12,6 +12,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Determine version
+        run: |
+          VERSION=$($(cat nginx/static/version.json | jq -r '.version')$($(cat nginx/static/version.json | jq -r '.pre_release') && echo "a" || :))
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
@@ -30,11 +35,15 @@ jobs:
         with:
           context: backend
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/masz_backend:latest
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/masz_backend:latest
+            ghcr.io/${{ github.repository_owner }}/masz_backend:${{ VERSION }}
 
       - name: Build and push frontend
         uses: docker/build-push-action@v2
         with:
           context: nginx
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/masz_nginx:latest
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/masz_nginx:latest
+            ghcr.io/${{ github.repository_owner }}/masz_nginx:${{ VERSION }}
