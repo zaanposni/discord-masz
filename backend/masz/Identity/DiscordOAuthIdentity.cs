@@ -66,7 +66,6 @@ namespace masz.Models
                 return guildMember;
             }
         }
-
         public override async Task<bool> HasAdminRoleOnGuild(ulong guildId)
         {
             if (! IsOnGuild(guildId))
@@ -91,7 +90,6 @@ namespace masz.Models
             // check for role
             return guildMember.Roles.Where(x => guildConfig.AdminRoles.Contains(x.Id.ToString())).Any();
         }
-
         public override async Task<bool> HasModRoleOrHigherOnGuild(ulong guildId)
         {
             if (! IsOnGuild(guildId))
@@ -115,7 +113,6 @@ namespace masz.Models
             return guildMember.Roles.Any(x => guildConfig.AdminRoles.Contains(x.Id.ToString()) ||
                                                 guildConfig.ModRoles.Contains(x.Id.ToString()));
         }
-
         public override bool IsSiteAdmin()
         {
             if (currentUser == null) {

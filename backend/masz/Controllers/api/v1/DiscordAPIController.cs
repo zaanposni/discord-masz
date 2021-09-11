@@ -126,7 +126,7 @@ namespace masz.Controllers.api.v1
         public async Task<IActionResult> GetAllGuilds()
         {
             Identity identity = await this.GetIdentity();
-            return Ok(identity.GetCurrentUserGuilds());
+            return Ok(identity.GetCurrentUserGuilds().Select(x => new DiscordGuildView(x)).ToList());
         }
     }
 }

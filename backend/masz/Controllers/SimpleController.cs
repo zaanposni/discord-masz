@@ -52,5 +52,22 @@ namespace masz.Controllers
                 throw new UnregisteredGuildException(guildId);
             }
         }
+
+        public async Task RequirePermission(ulong guildId, DiscordPermission permission)
+        {
+            GuildConfig guild = await GetRegisteredGuild(guildId);
+            Identity currentIdentity = await GetIdentity();
+            if(! await currentIdentity.HasPermissionOnGuild(permission, guildId)) {
+                throw new UnauthorizedException();
+            }
+        }
+
+        public async Task RequireSiteAdmin()
+        {
+            Identity currentIdentity = await GetIdentity();
+            if(! currentIdentity.IsSiteAdmin()) {
+                throw new UnauthorizedException();
+            }
+        }
     }
 }

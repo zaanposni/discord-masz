@@ -40,7 +40,6 @@ namespace masz.Models
         /// </summary>
         /// <returns>if a request with the users token could be authenticated against hte discord api</returns>
         public abstract bool IsAuthorized();
-
         /// <summary>
         /// This method checks if the discord user is member of a specified guild.
         /// https://discord.com/developers/docs/resources/user#get-current-user-guilds
@@ -48,7 +47,6 @@ namespace masz.Models
         /// <param name="guildId">guild that the user should be member of</param>
         /// <returns>True the user is member of the specified guild.</returns>
         public abstract bool IsOnGuild(ulong guildId);
-
         /// <summary>
         /// This method checksif the discord user is member of a specified guild and has a mod role or higher as they are specified in the database.
         /// https://discord.com/developers/docs/resources/guild#get-guild-member
@@ -56,14 +54,12 @@ namespace masz.Models
         /// <param name="guildId">guild that the user requestes for</param>
         /// <returns>the guildmember object if the current user could be found on that guild.</returns>
         public abstract Task<DiscordMember> GetGuildMembership(ulong guildId);
-
         /// <summary>
         /// Checks if the current user has the defined admin role on the defined guild.
         /// </summary>
         /// <param name="guildId">the guild to check on</param>
         /// <returns>True if the user is on this guild and is member of the admin role.</returns>
         public abstract Task<bool> HasAdminRoleOnGuild(ulong guildId);
-
         /// <summary>
         /// Checks if the current user has a defined team role on the defined guild.
         /// </summary>
@@ -179,7 +175,6 @@ namespace masz.Models
             }
             return false;
         }
-
         public DiscordUser GetCurrentUser()
         {
             if (currentUser == null)
@@ -188,7 +183,6 @@ namespace masz.Models
             }
             return currentUser;
         }
-
         public List<DiscordGuild> GetCurrentUserGuilds()
         {
             if (currentUserGuilds == null)
@@ -197,7 +191,6 @@ namespace masz.Models
             }
             return currentUserGuilds;
         }
-
         public async Task<bool> HasPermissionToExecutePunishment(ulong guildId, PunishmentType punishment)
         {
             GuildConfig guildConfig;

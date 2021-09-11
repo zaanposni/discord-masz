@@ -15,17 +15,7 @@ namespace masz.Controllers
         public SimpleCaseController(IServiceProvider serviceProvider, ILogger<SimpleCaseController> logger) : base(serviceProvider) {
             _logger = logger;
         }
-
-        public async Task RequiredPermission(ulong guildId, DiscordPermission permission)
-        {
-            GuildConfig guild = await GetRegisteredGuild(guildId);
-            Identity currentIdentity = await GetIdentity();
-            if(! await currentIdentity.HasPermissionOnGuild(permission, guildId)) {
-                throw new UnauthorizedException();
-            }
-        }
-
-        public async Task RequiredPermission(ulong guildId, int caseId, APIActionPermission permission)
+        public async Task RequirePermission(ulong guildId, int caseId, APIActionPermission permission)
         {
             GuildConfig guild = await GetRegisteredGuild(guildId);
             Identity currentIdentity = await GetIdentity();

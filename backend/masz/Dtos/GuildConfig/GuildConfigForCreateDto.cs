@@ -5,14 +5,13 @@ namespace masz.Dtos.GuildConfig
     public class GuildConfigForCreateDto
     {
         [Required(ErrorMessage = "GuildId field is required")]
-        [RegularExpression(@"^[0-9]{18}$", ErrorMessage = "the guild id can only consist of numbers and must be 18 characters long")]
-        public string GuildId { get; set; }
+        public ulong GuildId { get; set; }
         [Required(ErrorMessage = "ModRoles field is required")]
-        public string[] modRoles { get; set; }
+        public ulong[] modRoles { get; set; }
         [Required(ErrorMessage = "AdminRoles field is required")]
-        public string[] adminRoles { get; set; }
+        public ulong[] adminRoles { get; set; }
         [Required(ErrorMessage = "MutedRoles field is required")]
-        public string[] mutedRoles { get; set; }
+        public ulong[] mutedRoles { get; set; }
         public bool ModNotificationDM { get; set; }
         [Url(ErrorMessage = "Webhook needs to be a valid url")]
         [RegularExpression(@"^https://discord(app)?\.com/.*$", ErrorMessage = "please specify a url that starts with 'https://discordapp.com/'.")]

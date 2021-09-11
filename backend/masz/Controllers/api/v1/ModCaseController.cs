@@ -31,7 +31,7 @@ namespace masz.Controllers
         [HttpGet("{caseId}")]
         public async Task<IActionResult> GetSpecificItem([FromRoute] ulong guildId, [FromRoute] int caseId)
         {
-            await RequiredPermission(guildId, caseId, APIActionPermission.View);
+            await RequirePermission(guildId, caseId, APIActionPermission.View);
 
             Identity currentIdentity = await GetIdentity();
             ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetModCase(guildId, caseId);
@@ -50,7 +50,7 @@ namespace masz.Controllers
         [HttpDelete("{caseId}")]
         public async Task<IActionResult> DeleteSpecificItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true, [FromQuery] bool forceDelete = false)
         {
-            await RequiredPermission(guildId, caseId, forceDelete ? APIActionPermission.ForceDelete : APIActionPermission.Delete);
+            await RequirePermission(guildId, caseId, forceDelete ? APIActionPermission.ForceDelete : APIActionPermission.Delete);
 
             Identity currentIdentity = await GetIdentity();
             ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).DeleteModCase(guildId, caseId, forceDelete, handlePunishment, sendNotification);
@@ -61,7 +61,7 @@ namespace masz.Controllers
         [HttpPut("{caseId}")]
         public async Task<IActionResult> PutSpecificItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromBody] ModCaseForPutDto newValue, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true)
         {
-            await RequiredPermission(guildId, caseId, APIActionPermission.Edit);
+            await RequirePermission(guildId, caseId, APIActionPermission.Edit);
 
             Identity currentIdentity = await GetIdentity();
             var repo = ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity);
@@ -146,7 +146,7 @@ namespace masz.Controllers
         [HttpPost("{caseId}/lock")]
         public async Task<IActionResult> LockComments([FromRoute] ulong guildId, [FromRoute] int caseId)
         {
-            await RequiredPermission(guildId, caseId, APIActionPermission.Edit);
+            await RequirePermission(guildId, caseId, APIActionPermission.Edit);
 
             Identity currentIdentity = await GetIdentity();
             ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).LockCaseComments(guildId, caseId, currentIdentity.GetCurrentUser());
@@ -157,7 +157,7 @@ namespace masz.Controllers
         [HttpDelete("{caseId}/lock")]
         public async Task<IActionResult> UnlockComments([FromRoute] ulong guildId, [FromRoute] int caseId)
         {
-            await RequiredPermission(guildId, caseId, APIActionPermission.Edit);
+            await RequirePermission(guildId, caseId, APIActionPermission.Edit);
 
             Identity currentIdentity = await GetIdentity();
             ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).UnlockCaseComments(guildId, caseId);

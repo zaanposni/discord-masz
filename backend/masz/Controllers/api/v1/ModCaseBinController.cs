@@ -24,7 +24,7 @@ namespace masz.Controllers
         [HttpDelete("{caseId}/restore")]
         public async Task<IActionResult> RestoreModCase([FromRoute] ulong guildId, [FromRoute] int caseId)
         {
-            await RequiredPermission(guildId, DiscordPermission.Moderator);
+            await RequirePermission(guildId, DiscordPermission.Moderator);
 
             ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, await GetIdentity()).RestoreCase(guildId, caseId);
 
@@ -35,10 +35,7 @@ namespace masz.Controllers
         public async Task<IActionResult> DeleteModCase([FromRoute] ulong guildId, [FromRoute] int caseId)
         {
             Identity currentIdentity = await GetIdentity();
-            if (! currentIdentity.IsSiteAdmin())
-            {
-                throw new UnauthorizedException();
-            }
+            await RequireSiteAdmin();
 
             await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).DeleteModCase(guildId, caseId, true, true, false);
 

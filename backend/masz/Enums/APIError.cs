@@ -15,5 +15,7 @@ namespace masz.Enums
         GuildUndefinedMutedRoles = 10,
         ModCaseIsMarkedToBeDeleted = 11,
         ModCaseIsNotMarkedToBeDeleted = 12,
+        GuildAlreadyRegistered = 13,
+        NotAllowedInDemoMode = 14,
     }
 }
