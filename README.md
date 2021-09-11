@@ -51,7 +51,7 @@ If you have any questions, feel free to contact me. <br/>
 - Create a discord application at https://discord.com/developers/applications
 - Set redirect urls on your discord application [as defined](https://github.com/zaanposni/discord-masz#discord-oauth).
 - Enable **Server Members Intent** in your bot settings. 
-- Execute the `setup.py` script to configure your app and `start.sh` (or `start.ps1` on windows) to start it.
+- Execute the `setup.py` script to configure your app and `docker-compuse up -d` to start it.
 - App will be hosted on `127.0.0.1:5565`, if you are hosting the app on a domain, redirect your reverse proxy to this local port!
 
 ## Requirements 
@@ -81,7 +81,7 @@ Enable **Server Members Intent** in your bot settings.
 
 - Download this repository `git clone https://github.com/zaanposni/discord-masz` ([zip link](https://codeload.github.com/zaanposni/discord-masz/zip/master))
 - Use `python3 setup.py` (`python setup.py` on windows) to setup the configuration.
-- Start the application with `./start.sh` (`start.ps1` on windows).
+- Start the application with `docker-compose up -d`.
 - App will be hosted on `127.0.0.1:5565`, if you are hosting the app on a domain, redirect your reverse proxy to this local port!
 
 ## First steps
@@ -127,9 +127,10 @@ If you do not enable this mode, moderators can create any modcase.
 ## 🛰️ Update
 
 To install a new update of MASZ just use:
-```
-git pull
-./start.sh
+
+```bash
+docker-compose pull
+docker-compose up -d
 ```
 
 ## 🗃️ Backup
@@ -157,7 +158,7 @@ If you are using a local deployed backend you have to define `https://127.0.0.1:
 
 ## Angular
 
-If you want to develop on the angular frontend, it would be best if you deploy the backend via `./start.sh` and enable cors in the `Startup.cs` then use the `config.ts` to redirect all requests to `127.0.0.1:5565`.
+If you want to develop on the angular frontend, set the env var `ENABLE_CORS=true` for the backend container.
 
 # 🤝 Contribute
 
