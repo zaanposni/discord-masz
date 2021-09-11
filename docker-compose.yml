@@ -29,7 +29,7 @@ services:
 
   backend:
     container_name: masz_backend
-    image: ghcr.io/zaanposni/masz_backend:0.0.1
+    image: ghcr.io/zaanposni/masz_backend:latest
     depends_on:
         db:
           condition: service_healthy
@@ -57,7 +57,7 @@ services:
 
   nginx:
     container_name: masz_nginx
-    image: ghcr.io/zaanposni/masz_nginx:0.0.1
+    image: ghcr.io/zaanposni/masz_nginx:latest
     restart: unless-stopped
     depends_on:
         - db
