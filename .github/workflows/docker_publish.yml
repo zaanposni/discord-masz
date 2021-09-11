@@ -37,7 +37,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/masz_backend:latest
-            ghcr.io/${{ github.repository_owner }}/masz_backend:${{ VERSION }}
+            ghcr.io/${{ github.repository_owner }}/masz_backend:${{ env.VERSION }}
 
       - name: Build and push frontend
         uses: docker/build-push-action@v2
@@ -46,4 +46,4 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/masz_nginx:latest
-            ghcr.io/${{ github.repository_owner }}/masz_nginx:${{ VERSION }}
+            ghcr.io/${{ github.repository_owner }}/masz_nginx:${{ env.VERSION }}
