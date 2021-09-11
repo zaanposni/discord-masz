@@ -118,7 +118,7 @@ namespace masz.Models
             if (currentUser == null) {
                 return false;
             }
-            return _config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id);
+            return _config.GetSiteAdmins().Contains(currentUser.Id);
         }
     }
 }

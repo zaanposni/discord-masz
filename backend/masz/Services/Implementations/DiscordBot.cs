@@ -22,28 +22,26 @@ namespace masz.Services
     public class DiscordBot : IDiscordBot
     {
         private readonly ILogger<DiscordClient> _logger;
-        private readonly IOptions<InternalConfig> _config;
+        private readonly IInternalConfiguration _config;
         private readonly IDatabase _context;
         private readonly ITranslator _translator;
-        private IConfiguration _configuration;
         private readonly DiscordClient _client;
         private DiscordConfiguration _discordConfiguration;
         private IServiceProvider _serviceProvider;
         private bool _isRunning = false;
         private DateTime? _lastDisconnect = null;
 
-        public DiscordBot(ILogger<DiscordClient> logger, IOptions<InternalConfig> config, IDatabase context, ITranslator translator, IConfiguration configuration, IServiceProvider serviceProvider)
+        public DiscordBot(ILogger<DiscordClient> logger, IInternalConfiguration config, IDatabase context, ITranslator translator, IServiceProvider serviceProvider)
         {
             _logger = logger;
             _config = config;
             _context = context;
             _translator = translator;
-            _configuration = configuration;
             _serviceProvider = serviceProvider;
 
             _discordConfiguration = new DiscordConfiguration()
             {
-                Token = _config.Value.DiscordBotToken,
+                Token = _config.GetBotToken(),
                 TokenType = TokenType.Bot,
                 Intents = DiscordIntents.AllUnprivileged | DiscordIntents.GuildMembers
             };
@@ -65,7 +63,7 @@ namespace masz.Services
                 Services = serviceProvider
             });
 
-            ulong? debugGuild = null;  // set your guild id here to enable fast syncing debug commands
+            ulong? debugGuild = 748943581523345639;  // set your guild id here to enable fast syncing debug commands
 
             slash.RegisterCommands<PingCommand>(debugGuild);
             slash.RegisterCommands<ReportCommand>(debugGuild);
@@ -75,7 +73,7 @@ namespace masz.Services
 
         public async Task Start()
         {
-            DiscordActivity activity = new DiscordActivity(_config.Value.ServiceBaseUrl, ActivityType.Watching);
+            DiscordActivity activity = new DiscordActivity(_config.GetBaseUrl(), ActivityType.Watching);
             await _client.ConnectAsync(activity);
         }
 

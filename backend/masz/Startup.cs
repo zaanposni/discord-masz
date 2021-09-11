@@ -38,7 +38,11 @@ namespace masz
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(x => x.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DataContext>(x => x.UseMySql($"Server=" + System.Environment.GetEnvironmentVariable("MYSQL_HOST") + ";" +
+                                                               $"Port=" + System.Environment.GetEnvironmentVariable("MYSQL_PORT") + ";" +
+                                                               $"Database=" + System.Environment.GetEnvironmentVariable("MYSQL_DATABASE") + ";" +
+                                                               $"Uid=" + System.Environment.GetEnvironmentVariable("MYSQL_USER") + ";" +
+                                                               $"Pwd=" + System.Environment.GetEnvironmentVariable("MYSQL_PASSWORD") + ";"));
             services.AddControllers()
                 .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
@@ -47,7 +51,7 @@ namespace masz
             services.AddSingleton<IDiscordAnnouncer, DiscordAnnouncer>();
             services.AddSingleton<IFilesHandler, FilesHandler>();
             services.AddSingleton<INotificationEmbedCreator, NotificationEmbedCreator>();
-            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton<IInternalConfiguration, InternalConfiguration>();
             services.AddSingleton<IDiscordBot, DiscordBot>();
             services.AddSingleton<IDiscordAPIInterface, DiscordAPIInterface>();
             services.AddSingleton<IIdentityManager, IdentityManager>();
@@ -92,8 +96,8 @@ namespace masz
                 })
                 .AddDiscord(options =>
                 {
-                    options.ClientId = Configuration.GetSection("InternalConfig").GetValue<string>("DiscordClientId");
-                    options.ClientSecret = Configuration.GetSection("InternalConfig").GetValue<string>("DiscordClientSecret");
+                    options.ClientId = System.Environment.GetEnvironmentVariable("DISCORD_OAUTH_CLIENT_ID");
+                    options.ClientSecret = System.Environment.GetEnvironmentVariable("DISCORD_OAUTH_CLIENT_SECRET");
                     options.Scope.Add("guilds");
                     options.Scope.Add("identify");
                     options.SaveTokens = true;
@@ -111,7 +115,9 @@ namespace masz
                     x.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("InternalConfig").GetValue<string>("DiscordBotToken"))),
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(
+                                System.Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN"))),
                         ValidateIssuer = false,
                         ValidateAudience = false
                     };
@@ -134,8 +140,6 @@ namespace masz
                         .AllowCredentials();
                 }));
             }
-
-            services.Configure<InternalConfig>(Configuration.GetSection("InternalConfig"));
 
             // needed to store rate limit counters and ip rules
             services.AddMemoryCache();
@@ -189,6 +193,7 @@ namespace masz
 
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
+                scope.ServiceProvider.GetService<IInternalConfiguration>().Init();
                 scope.ServiceProvider.GetService<IPunishmentHandler>().StartTimer();
                 scope.ServiceProvider.GetService<IScheduler>().StartTimers();
                 scope.ServiceProvider.GetService<IDiscordBot>().Start();

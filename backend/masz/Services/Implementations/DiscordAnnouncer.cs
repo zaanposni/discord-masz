@@ -12,7 +12,7 @@ namespace masz.Services
     {
         private readonly ILogger<DiscordAnnouncer> _logger;
         private readonly IDatabase _database;
-        private readonly IOptions<InternalConfig> _config;
+        private readonly IInternalConfiguration _config;
         private readonly IDiscordAPIInterface _discordAPI;
         private readonly INotificationEmbedCreator _notificationEmbedCreator;
         private readonly ITranslator _translator;
@@ -20,7 +20,7 @@ namespace masz.Services
 
         public DiscordAnnouncer() { }
 
-        public DiscordAnnouncer(ILogger<DiscordAnnouncer> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discordAPI, IDatabase context, INotificationEmbedCreator notificationContentCreator, ITranslator translator, IServiceProvider serviceProvider)
+        public DiscordAnnouncer(ILogger<DiscordAnnouncer> logger, IInternalConfiguration config, IDiscordAPIInterface discordAPI, IDatabase context, INotificationEmbedCreator notificationContentCreator, ITranslator translator, IServiceProvider serviceProvider)
         {
             _logger = logger;
             _config = config;
@@ -52,23 +52,23 @@ namespace masz.Services
                 switch (modCase.PunishmentType) {
                     case (PunishmentType.Mute):
                         if (modCase.PunishedUntil.HasValue) {
-                            message = _translator.T().NotificationModcaseDMMuteTemp(modCase, guild, prefix, _config.Value.ServiceBaseUrl, "UTC");
+                            message = _translator.T().NotificationModcaseDMMuteTemp(modCase, guild, prefix, _config.GetBaseUrl(), "UTC");
                         } else {
-                            message = _translator.T().NotificationModcaseDMMutePerm(modCase, guild, prefix, _config.Value.ServiceBaseUrl);
+                            message = _translator.T().NotificationModcaseDMMutePerm(modCase, guild, prefix, _config.GetBaseUrl());
                         }
                         break;
                     case (PunishmentType.Kick):
-                        message = _translator.T().NotificationModcaseDMKick(modCase, guild, prefix, _config.Value.ServiceBaseUrl);
+                        message = _translator.T().NotificationModcaseDMKick(modCase, guild, prefix, _config.GetBaseUrl());
                         break;
                     case (PunishmentType.Ban):
                         if (modCase.PunishedUntil.HasValue) {
-                            message = _translator.T().NotificationModcaseDMBanTemp(modCase, guild, prefix, _config.Value.ServiceBaseUrl, "UTC");
+                            message = _translator.T().NotificationModcaseDMBanTemp(modCase, guild, prefix, _config.GetBaseUrl(), "UTC");
                         } else {
-                            message = _translator.T().NotificationModcaseDMBanPerm(modCase, guild, prefix, _config.Value.ServiceBaseUrl);
+                            message = _translator.T().NotificationModcaseDMBanPerm(modCase, guild, prefix, _config.GetBaseUrl());
                         }
                         break;
                     default:
-                        message = _translator.T().NotificationModcaseDMWarn(modCase, guild, prefix, _config.Value.ServiceBaseUrl);
+                        message = _translator.T().NotificationModcaseDMWarn(modCase, guild, prefix, _config.GetBaseUrl());
                         break;
                 }
                 await _discordAPI.SendDmMessage(modCase.UserId, message);

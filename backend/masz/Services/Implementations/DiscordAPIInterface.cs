@@ -17,20 +17,20 @@ namespace masz.Services
     public class DiscordAPIInterface : IDiscordAPIInterface
     {
         private readonly ILogger<DiscordAPIInterface> _logger;
-        private readonly IOptions<InternalConfig> _config;
+        private readonly IInternalConfiguration _config;
         private readonly IDiscordBot _discordBot;
         private readonly DiscordRestClient _discordRestClient;
         private Dictionary<string, CacheApiResponse> _cache = new Dictionary<string, CacheApiResponse>();
 
         public DiscordAPIInterface() {  }
-        public DiscordAPIInterface(ILogger<DiscordAPIInterface> logger, IOptions<InternalConfig> config, IDiscordBot discordBot)
+        public DiscordAPIInterface(ILogger<DiscordAPIInterface> logger, IInternalConfiguration config, IDiscordBot discordBot)
         {
             this._logger = logger;
             this._config = config;
             this._discordBot = discordBot;
             this._discordRestClient = new DiscordRestClient(new DiscordConfiguration
             {
-                Token = _config.Value.DiscordBotToken,
+                Token = _config.GetBotToken(),
                 TokenType = TokenType.Bot,
             });
         }
@@ -249,7 +249,7 @@ namespace masz.Services
         {
             var client = new DiscordRestClient(new DiscordConfiguration
             {
-                Token = _config.Value.DiscordBotToken,
+                Token = _config.GetBotToken(),
                 TokenType = TokenType.Bot,
             });
             return await client.GetCurrentUserAsync();

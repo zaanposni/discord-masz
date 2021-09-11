@@ -121,7 +121,7 @@ namespace masz.Repositories
             if (deleteData) {
                 await _database.DeleteAllModCasesForGuild(guildId);
                 try {
-                    _filesHandler.DeleteDirectory(Path.Combine(_config.Value.AbsolutePathToFileUpload, guildId.ToString()));
+                    _filesHandler.DeleteDirectory(Path.Combine(_config.GetFileUploadPath(), guildId.ToString()));
                 } catch (Exception e) {
                     _logger.LogError(e, "Failed to delete files directory for guilds.");
                 }

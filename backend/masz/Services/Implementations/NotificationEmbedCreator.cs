@@ -11,13 +11,13 @@ namespace masz.Services
     public class NotificationEmbedCreator : INotificationEmbedCreator
     {
         private readonly ILogger<Scheduler> logger;
-        private readonly IOptions<InternalConfig> config;
+        private readonly IInternalConfiguration config;
         private readonly ITranslator translator;
         private readonly string SCALES_EMOTE = "\u2696";
         private readonly string SCROLL_EMOTE = "\uD83C\uDFF7";
         private readonly string ALARM_CLOCK = "\u23F0";
 
-        public NotificationEmbedCreator(ILogger<Scheduler> logger, IOptions<InternalConfig> config, IDatabase context, ITranslator translator)
+        public NotificationEmbedCreator(ILogger<Scheduler> logger, IInternalConfiguration config, IDatabase context, ITranslator translator)
         {
             this.logger = logger;
             this.config = config;
@@ -51,9 +51,9 @@ namespace masz.Services
             }
 
             // Url
-            if (! string.IsNullOrEmpty(config.Value.ServiceBaseUrl))
+            if (! string.IsNullOrEmpty(config.GetBaseUrl()))
             {
-                embed.Url = config.Value.ServiceBaseUrl;
+                embed.Url = config.GetBaseUrl();
             }
 
             return embed;

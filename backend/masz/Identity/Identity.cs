@@ -14,7 +14,7 @@ namespace masz.Models
     {
         protected readonly IServiceProvider _serviceProvider;
         protected readonly IDiscordAPIInterface _discordAPI;
-        protected readonly IOptions<InternalConfig> _config;
+        protected readonly IInternalConfiguration _config;
         public DateTime ValidUntil { get; set; }
         protected string Token;
         protected DiscordUser currentUser;
@@ -26,7 +26,7 @@ namespace masz.Models
 
             _serviceProvider = serviceProvider;
             _discordAPI = (IDiscordAPIInterface) serviceProvider.GetService(typeof(IDiscordAPIInterface));
-            _config = (IOptions<InternalConfig>) serviceProvider.GetService(typeof(IOptions<InternalConfig>));
+            _config = (IInternalConfiguration) serviceProvider.GetService(typeof(IInternalConfiguration));
         }
 
         public IDatabase GetDatabase()

@@ -15,7 +15,7 @@ namespace masz.Repositories
         protected ILogger<T> _logger { get; set; }
         protected IDatabase _database { get; set; }
         protected IDiscordAPIInterface _discordAPI { get; set; }
-        protected readonly IOptions<InternalConfig> _config;
+        protected readonly IInternalConfiguration _config;
         protected readonly IIdentityManager _identityManager;
         protected readonly IDiscordAnnouncer _discordAnnouncer;
         protected readonly IFilesHandler _filesHandler;
@@ -29,7 +29,7 @@ namespace masz.Repositories
             this._logger = (ILogger<T>) serviceProvider.GetService(typeof(ILogger<T>));
             this._database = (IDatabase) serviceProvider.GetService(typeof(IDatabase));
             this._discordAPI = (IDiscordAPIInterface) serviceProvider.GetService(typeof(IDiscordAPIInterface));
-            this._config = (IOptions<InternalConfig>) serviceProvider.GetService(typeof(IOptions<InternalConfig>));
+            this._config = (IInternalConfiguration) serviceProvider.GetService(typeof(IInternalConfiguration));
             this._identityManager = (IIdentityManager) serviceProvider.GetService(typeof(IIdentityManager));
             this._discordAnnouncer = (IDiscordAnnouncer) serviceProvider.GetService(typeof(IDiscordAnnouncer));
             this._filesHandler = (IFilesHandler) serviceProvider.GetService(typeof(IFilesHandler));

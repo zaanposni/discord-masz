@@ -17,14 +17,14 @@ namespace masz.Services
         private Dictionary<string, Identity> identities = new Dictionary<string, Identity>();
         private readonly ILogger<IdentityManager> _logger;
         private readonly IDatabase _context;
-        private readonly IOptions<InternalConfig> _config;
+        private readonly IInternalConfiguration _config;
         private readonly IDiscordAPIInterface _discord;
         private readonly IServiceProvider _serviceProvider;
         private readonly IEventHandler _eventHandler;
         public event AsyncEventHandler<IdentityRegisteredEventArgs> OnIdentityRegistered;
         public IdentityManager() { }
 
-        public IdentityManager(ILogger<IdentityManager> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IDatabase context, IServiceProvider serviceProvider, IEventHandler eventHandler)
+        public IdentityManager(ILogger<IdentityManager> logger, IInternalConfiguration config, IDiscordAPIInterface discord, IDatabase context, IServiceProvider serviceProvider, IEventHandler eventHandler)
         {
             _logger = logger;
             _config = config;

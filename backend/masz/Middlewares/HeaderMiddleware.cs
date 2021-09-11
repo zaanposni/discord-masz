@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using masz.Models;
+using masz.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -12,9 +13,9 @@ namespace masz.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
-        private readonly IOptions<InternalConfig> _config;
+        private readonly IInternalConfiguration _config;
 
-        public HeaderMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, IOptions<InternalConfig> config)
+        public HeaderMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, IInternalConfiguration config)
         {
             _next = next;
             _logger = loggerFactory.CreateLogger<HeaderMiddleware>();
@@ -23,8 +24,7 @@ namespace masz.Middlewares
 
         public async Task Invoke(HttpContext context)
         {
-            _logger.LogInformation("Setting header host " + _config.Value.ServiceHostName);
-            context.Request.Headers["Host"] = _config.Value.ServiceHostName;
+            context.Request.Headers["Host"] = _config.GetServiceDomain();
             await _next(context);
         }
     }

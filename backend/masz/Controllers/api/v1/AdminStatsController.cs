@@ -65,7 +65,7 @@ namespace masz.Controllers
                 cacheStatus = cacheDetails,
                 discordStatus = discordAPIDetails,
                 loginsInLast15Minutes = currentLogins,
-                defaultLanguage = _config.Value.DefaultLanguage,
+                defaultLanguage = _config.GetDefaultLanguage(),
                 trackedInvites = await _database.CountTrackedInvites(),
                 modCases = await _database.CountAllModCases(),
                 guilds = await _database.CountAllGuildConfigs(),

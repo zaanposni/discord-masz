@@ -14,7 +14,7 @@ namespace masz.Services
     public class Scheduler : IScheduler
     {
         private readonly ILogger<Scheduler> logger;
-        private readonly IOptions<InternalConfig> config;
+        private readonly IInternalConfiguration config;
         private readonly IDiscordAPIInterface discord;
         private readonly IFilesHandler filesHandler;
         private readonly IServiceScopeFactory serviceScopeFactory;
@@ -23,7 +23,7 @@ namespace masz.Services
 
         public Scheduler() { }
 
-        public Scheduler(ILogger<Scheduler> logger, IOptions<InternalConfig> config, IDiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory, IFilesHandler filesHandler, IIdentityManager identityManager)
+        public Scheduler(ILogger<Scheduler> logger, IInternalConfiguration config, IDiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory, IFilesHandler filesHandler, IIdentityManager identityManager)
         {
             this.logger = logger;
             this.config = config;
@@ -61,7 +61,7 @@ namespace masz.Services
                 foreach (ModCase modCase in await database.SelectAllModcasesMarkedAsDeleted())
                 {
                     try {
-                        filesHandler.DeleteDirectory(Path.Combine(config.Value.AbsolutePathToFileUpload, modCase.GuildId.ToString(), modCase.CaseId.ToString()));
+                        filesHandler.DeleteDirectory(Path.Combine(config.GetFileUploadPath(), modCase.GuildId.ToString(), modCase.CaseId.ToString()));
                     } catch (Exception e) {
                         logger.LogError(e, "Failed to delete files directory for modcase.");
                     }

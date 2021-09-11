@@ -44,7 +44,7 @@ namespace masz.Repositories
                 _logger.LogError("Cannot create cases for bots.");
                 throw new ProtectedModCaseSuspectException("Cannot create cases for bots.", modCase).WithError(APIError.ProtectedModCaseSuspectIsBot);
             }
-            if (_config.Value.SiteAdminDiscordUserIds.Contains(currentReportedUser.Id))
+            if (_config.GetSiteAdmins().Contains(currentReportedUser.Id))
             {
                 _logger.LogInformation("Cannot create cases for site admins.");
                 throw new ProtectedModCaseSuspectException("Cannot create cases for site admins.", modCase).WithError(APIError.ProtectedModCaseSuspectIsSiteAdmin);
@@ -119,8 +119,8 @@ namespace masz.Repositories
             {
                 try
                 {
-                    _filesHandler.DeleteDirectory(Path.Combine(_config.Value.AbsolutePathToFileUpload, guildId.ToString(), caseId.ToString()));
-                } catch (Exception e) 
+                    _filesHandler.DeleteDirectory(Path.Combine(_config.GetFileUploadPath(), guildId.ToString(), caseId.ToString()));
+                } catch (Exception e)
                 {
                     _logger.LogError(e, $"Failed to delete files directory for modcase {guildId}/{caseId}.");
                 }
@@ -184,7 +184,7 @@ namespace masz.Repositories
                 _logger.LogError("Cannot edit cases for bots.");
                 throw new ProtectedModCaseSuspectException("Cannot edit cases for bots.", modCase).WithError(APIError.ProtectedModCaseSuspectIsBot);
             }
-            if (_config.Value.SiteAdminDiscordUserIds.Contains(currentReportedUser.Id))
+            if (_config.GetSiteAdmins().Contains(currentReportedUser.Id))
             {
                 _logger.LogInformation("Cannot edit cases for site admins.");
                 throw new ProtectedModCaseSuspectException("Cannot edit cases for site admins.", modCase).WithError(APIError.ProtectedModCaseSuspectIsSiteAdmin);

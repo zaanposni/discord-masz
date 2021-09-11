@@ -4,40 +4,24 @@ using masz.Models;
 using masz.Repositories;
 using masz.Translations;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace masz.Services
 {
     public class Translator : ITranslator
     {
         private readonly ILogger<Scheduler> _logger;
-        private readonly IOptions<InternalConfig> _config;
+        private readonly IInternalConfiguration _config;
         private readonly Translation _translation;
         private readonly IServiceProvider _serviceProvider;
 
         public Translator() { }
 
-        public Translator(ILogger<Scheduler> logger, IOptions<InternalConfig> config, IDatabase context, IServiceProvider serviceProvider)
+        public Translator(ILogger<Scheduler> logger, IInternalConfiguration config, IDatabase context, IServiceProvider serviceProvider)
         {
             _logger = logger;
             _config = config;
             _serviceProvider = serviceProvider;
-            Language useLanguage = Language.en;
-            switch (config.Value.DefaultLanguage) {
-                case "de":
-                    useLanguage = Language.de;
-                    break;
-                case "it":
-                    useLanguage = Language.it;
-                    break;
-                case "fr":
-                    useLanguage = Language.fr;
-                    break;
-                case "es":
-                    useLanguage = Language.es;
-                    break;
-            }
-            _translation = Translation.Ctx(useLanguage);
+            _translation = Translation.Ctx(_config.GetDefaultLanguage());
         }
 
         public async Task SetContext(ulong guildId)

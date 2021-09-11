@@ -26,8 +26,8 @@ namespace masz.Controllers
                 {
                     return Ok(new {
                         status = "ok",
-                        lang = _config.Value.DefaultLanguage,
-                        name = _config.Value.ServiceHostName,
+                        lang = _config.GetDefaultLanguage(),
+                        name = _config.GetHostName(),
                         server_time = DateTime.Now.ToString(),
                         server_time_utc = DateTime.UtcNow.ToString()
                     });

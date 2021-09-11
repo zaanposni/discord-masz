@@ -36,7 +36,7 @@ namespace masz.Controllers.api.v1
             List<DiscordGuildView> modGuilds = new List<DiscordGuildView>();
             List<DiscordGuildView> adminGuilds = new List<DiscordGuildView>();
             List<DiscordGuildView> bannedGuilds = new List<DiscordGuildView>();
-            bool siteAdmin = _config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id) || identity is TokenIdentity;
+            bool siteAdmin = _config.GetSiteAdmins().Contains(currentUser.Id) || identity is TokenIdentity;
 
             if (identity is DiscordOAuthIdentity)
             {

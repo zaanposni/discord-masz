@@ -15,13 +15,13 @@ namespace masz.Services
     public class PunishmentHandler : IPunishmentHandler
     {
         private readonly ILogger<PunishmentHandler> _logger;
-        private readonly IOptions<PunishmentHandler> _config;
+        private readonly IInternalConfiguration _config;
         private readonly IDiscordAPIInterface _discord;
         private readonly IServiceScopeFactory _serviceScopeFactory;
 
         public PunishmentHandler() { }
 
-        public PunishmentHandler(ILogger<PunishmentHandler> logger, IOptions<PunishmentHandler> config, IDiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory)
+        public PunishmentHandler(ILogger<PunishmentHandler> logger, IInternalConfiguration config, IDiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory)
         {
             _logger = logger;
             _config = config;

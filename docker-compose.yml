@@ -30,25 +30,25 @@ services:
   backend:
     build:
       context: backend
-      args:
-        - MYSQL_DATABASE=${MYSQL_DATABASE}
-        - MYSQL_USER=${MYSQL_USER}
-        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-        - MYSQL_PORT=${MYSQL_PORT}
-        - MYSQL_HOST=db
-        - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
-        - DISCORD_OAUTH_CLIENT_ID=${DISCORD_OAUTH_CLIENT_ID}
-        - DISCORD_OAUTH_CLIENT_SECRET=${DISCORD_OAUTH_CLIENT_SECRET}
-        - DISCORD_SITE_ADMINS=${DISCORD_SITE_ADMINS}
-        - META_SERVICE_BASE_URL=${META_SERVICE_BASE_URL}
-        - META_SERVICE_NAME=${META_SERVICE_NAME}
-        - DEFAULT_LANGUAGE=${DEFAULT_LANGUAGE}
     container_name: masz_backend
     depends_on:
         db:
           condition: service_healthy
     restart: unless-stopped
     environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_PORT=${MYSQL_PORT}
+      - MYSQL_HOST=db
+      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
+      - DISCORD_OAUTH_CLIENT_ID=${DISCORD_OAUTH_CLIENT_ID}
+      - DISCORD_OAUTH_CLIENT_SECRET=${DISCORD_OAUTH_CLIENT_SECRET}
+      - DISCORD_SITE_ADMINS=${DISCORD_SITE_ADMINS}
+      - META_SERVICE_BASE_URL=${META_SERVICE_BASE_URL}
+      - META_SERVICE_NAME=${META_SERVICE_NAME}
+      - META_SERVICE_DOMAIN=${META_SERVICE_DOMAIN}
+      - DEFAULT_LANGUAGE=${DEFAULT_LANGUAGE}
       - ENABLE_DEMO_MODE=${ENABLE_DEMO_MODE}
       - ENABLE_CUSTOM_PLUGINS=${ENABLE_CUSTOM_PLUGINS}
     networks:
@@ -59,8 +59,6 @@ services:
   nginx:
     build:
       context: nginx
-      args:
-        - DEPLOY_DOMAIN=${DEPLOY_DOMAIN}
     container_name: masz_nginx
     restart: unless-stopped
     depends_on:
