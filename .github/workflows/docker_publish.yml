@@ -37,7 +37,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: '🚀 Pushed `masz_backend:${{ env.VERSION }}` and `masz_backend:latest` with `${{ env.SIZE_BACKEND }}`.\n - <https://github.com/zaanposni/discord-masz/pkgs/container/masz_backend>'
+          args: '🚀 Pushed `masz_backend:${{ env.VERSION }}` and `masz_backend:latest` with `${{ env.SIZE_BACKEND }}`. \r\n - <https://github.com/zaanposni/discord-masz/pkgs/container/masz_backend>'
 
       - name: Build and push frontend
         run: |
