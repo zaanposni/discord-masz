@@ -48,3 +48,19 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository_owner }}/masz_nginx:latest
             ghcr.io/${{ github.repository_owner }}/masz_nginx:${{ env.VERSION }}
+
+      - name: Calculate image sizes
+        run: |
+          SIZE_BACKEND=$(docker image inspect ghcr.io/${{ github.repository_owner }}/masz_backend:latest | jq -r '.[0].Size' | numfmt --to=si)
+          SIZE_NGINX=$(docker image inspect ghcr.io/${{ github.repository_owner }}/masz_nginx:latest | jq -r '.[0].Size' | numfmt --to=si)
+          echo "I found backend size: $SIZE_BACKEND"
+          echo "I found nginx size: $SIZE_NGINX"
+          echo "SIZE_BACKEND=$SIZE_BACKEND" >> $GITHUB_ENV
+          echo "SIZE_NGINX=$SIZE_NGINX" >> $GITHUB_ENV
+
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: '🚀 I have published new masz images with tags `{{ env.VERSION }}` and `latest`.\n- <https://github.com/zaanposni/discord-masz/pkgs/container/masz_backend> `{{ env.SIZE_BACKEND }}`\n- <https://github.com/zaanposni/discord-masz/pkgs/container/masz_nginx> `{{ env.SIZE_NGINX }}`'
