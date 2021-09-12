@@ -145,7 +145,7 @@ You can also use my [python library](https://github.com/zaanposni/masz-api-wrapp
 # Development
 
 ```bash
-docker-compose -f docker-compose-dev.yml up
+docker-compose -f docker-compose-dev.yml up --force-recreate --build
 ```
 
 ## Config
