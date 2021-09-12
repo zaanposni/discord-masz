@@ -12,6 +12,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Send discord notification backend
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: '🚀 testx. \\n test \\\n test \\\\n test'
+
       - name: Determine version
         run: |
           VERSION=$(cat nginx/static/version.json | jq -r '.version')$($(cat nginx/static/version.json | jq -r '.pre_release') && echo "a" || :)
@@ -50,6 +57,10 @@ jobs:
         uses: Ilshidur/action-discord@master
         with:
           args: '🚀 Published `masz_backend:${{ env.VERSION }}` and `masz_backend:latest` with `${{ env.SIZE_BACKEND }}`.'
+
+      - name: Sleep for 3 seconds
+        run: sleep 3s
+        shell: bash
 
       - name: Send discord notification frontend
         env:
