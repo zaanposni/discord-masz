@@ -37,3 +37,8 @@ If you need to do longer lasting tasks, please refer to the `ExampleBackgroundPl
 Your plugin does not need to listen on masz events.\
 You can also do your own background stuff like monitoring or cleaning database content.\
 Your service is registered as a singleton.
+
+## Events
+
+You can find all subscribable events in the _eventHandler property.\
+For example `_eventHandler.OnIdentityRegistered`.

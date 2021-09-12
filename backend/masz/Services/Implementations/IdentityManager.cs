@@ -4,7 +4,6 @@ using masz.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,19 +18,18 @@ namespace masz.Services
         private readonly IDatabase _context;
         private readonly IInternalConfiguration _config;
         private readonly IDiscordAPIInterface _discord;
-        private readonly IServiceProvider _serviceProvider;
         private readonly IEventHandler _eventHandler;
-        public event AsyncEventHandler<IdentityRegisteredEventArgs> OnIdentityRegistered;
+        private readonly IServiceProvider _serviceProvider;
         public IdentityManager() { }
 
-        public IdentityManager(ILogger<IdentityManager> logger, IInternalConfiguration config, IDiscordAPIInterface discord, IDatabase context, IServiceProvider serviceProvider, IEventHandler eventHandler)
+        public IdentityManager(ILogger<IdentityManager> logger, IInternalConfiguration config, IDiscordAPIInterface discord, IDatabase context, IEventHandler eventHandler, IServiceProvider serviceProvider)
         {
             _logger = logger;
             _config = config;
             _discord = discord;
             _context = context;
-            _serviceProvider = serviceProvider;
             _eventHandler = eventHandler;
+            _serviceProvider = serviceProvider;
         }
 
         private async Task<Identity> RegisterNewIdentity(HttpContext httpContext)
@@ -59,7 +57,7 @@ namespace masz.Services
                 identity = await DiscordOAuthIdentity.Create(token, _serviceProvider);
             }
             identities[key] = identity;
-            await _eventHandler.Invoke<IdentityRegisteredEventArgs>(OnIdentityRegistered, new IdentityRegisteredEventArgs(identity));
+            await _eventHandler.InvokeIdentityRegistered(new IdentityRegisteredEventArgs(identity));
             return identity;
         }
 
@@ -68,7 +66,7 @@ namespace masz.Services
             string key = $"/discord/cmd/{user.Id}";
             Identity identity = await DiscordCommandIdentity.Create(user, _serviceProvider);
             identities[key] = identity;
-            await _eventHandler.Invoke<IdentityRegisteredEventArgs>(OnIdentityRegistered, new IdentityRegisteredEventArgs(identity));
+            await _eventHandler.InvokeIdentityRegistered(new IdentityRegisteredEventArgs(identity));
             return identity;
         }
 

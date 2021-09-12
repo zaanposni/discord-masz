@@ -1,7 +1,5 @@
 using System;
-using masz.Models;
 using masz.Services;
-using Microsoft.Extensions.Options;
 
 namespace masz.Plugins
 {
@@ -13,6 +11,7 @@ namespace masz.Plugins
         protected readonly IDiscordAPIInterface _discordAPI;
         protected readonly IDiscordBot _discordBot;
         protected readonly IScheduler _scheduler;
+        protected readonly IEventHandler _eventHandler;
         protected readonly IServiceProvider _serviceProvider;
 
         public BasePlugin() { }
@@ -25,6 +24,7 @@ namespace masz.Plugins
             _discordAPI = (IDiscordAPIInterface) serviceProvider.GetService(typeof(IDiscordAPIInterface));
             _discordBot = (IDiscordBot) serviceProvider.GetService(typeof(IDiscordBot));
             _scheduler = (IScheduler) serviceProvider.GetService(typeof(IScheduler));
+            _eventHandler = (IEventHandler) serviceProvider.GetService(typeof(IEventHandler));
             _serviceProvider = serviceProvider;
         }
     }

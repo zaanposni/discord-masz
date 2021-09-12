@@ -4,7 +4,6 @@ using DSharpPlus.Entities;
 using masz.Models;
 using masz.Services;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace masz.Repositories
 {
@@ -23,6 +22,7 @@ namespace masz.Repositories
         protected readonly IScheduler _scheduler;
         protected readonly ITranslator _translator;
         protected readonly IDiscordBot _discordBot;
+        protected readonly IEventHandler _eventHandler;
         protected readonly IServiceProvider _serviceProvider;
         public BaseRepository(IServiceProvider serviceProvider)
         {
@@ -37,6 +37,7 @@ namespace masz.Repositories
             this._scheduler = (IScheduler) serviceProvider.GetService(typeof(IScheduler));
             this._translator = (ITranslator) serviceProvider.GetService(typeof(ITranslator));
             this._discordBot = (IDiscordBot) serviceProvider.GetService(typeof(IDiscordBot));
+            this._eventHandler = (IEventHandler) serviceProvider.GetService(typeof(IEventHandler));
             this._serviceProvider = serviceProvider;
         }
 

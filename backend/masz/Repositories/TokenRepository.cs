@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.IO;
-using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using DSharpPlus.Entities;
 using masz.Dtos.Tokens;
-using masz.Enums;
+using masz.Events;
 using masz.Exceptions;
 using masz.Models;
 using Microsoft.Extensions.Logging;
@@ -53,6 +50,9 @@ namespace masz.Repositories
 
             await _database.SaveToken(apiToken);
             await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeTokenCreated(new TokenCreatedEventArgs(apiToken));
+
             return new CreatedTokenDto() {
                 Token = token,
                 Id = apiToken.Id
@@ -61,8 +61,10 @@ namespace masz.Repositories
 
         public async Task DeleteToken()
         {
-            _database.DeleteToken(await GetToken());
+            APIToken apiToken = await GetToken();
+            _database.DeleteToken(apiToken);
             await _database.SaveChangesAsync();
+            await _eventHandler.InvokeTokenDeleted(new TokenDeletedEventArgs(apiToken));
         }
 
         private string generateToken(string name) {

@@ -26,7 +26,7 @@ namespace masz.Plugins
 
         public void Init()
         {
-            _identityManager.OnIdentityRegistered += OnIdentityRegistered;
+            _eventHandler.OnIdentityRegistered += OnIdentityRegistered;
         }
 
         private Task OnIdentityRegistered(IdentityRegisteredEventArgs e)
