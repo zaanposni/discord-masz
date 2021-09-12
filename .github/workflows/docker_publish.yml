@@ -32,12 +32,12 @@ jobs:
           echo "I found backend size: $SIZE_BACKEND"
           echo "SIZE_BACKEND=$SIZE_BACKEND" >> $GITHUB_ENV
 
-      - name: Discord notification
+      - name: Send discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: '🚀 Pushed `masz_backend:${{ env.VERSION }}` and `masz_backend:latest` with `${{ env.SIZE_BACKEND }}`.\n- <https://github.com/zaanposni/discord-masz/pkgs/container/masz_backend>'
+          args: '🚀 Pushed `masz_backend:${{ env.VERSION }}` and `masz_backend:latest` with `${{ env.SIZE_BACKEND }}`.\n - <https://github.com/zaanposni/discord-masz/pkgs/container/masz_backend>'
 
       - name: Build and push frontend
         run: |
@@ -53,9 +53,9 @@ jobs:
           echo "I found nginx size: $SIZE_NGINX"
           echo "SIZE_NGINX=$SIZE_NGINX" >> $GITHUB_ENV
 
-      - name: Discord notification
+      - name: Send discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: '🚀 Pushed `masz_nginx:${{ env.VERSION }}` and `masz_nginx:latest` with `${{ env.SIZE_NGINX }}`.\n- <https://github.com/zaanposni/discord-masz/pkgs/container/masz_nginx>'
+          args: '🚀 Pushed `masz_nginx:${{ env.VERSION }}` and `masz_nginx:latest` with `${{ env.SIZE_NGINX }}`.\\n- <https://github.com/zaanposni/discord-masz/pkgs/container/masz_nginx>'
