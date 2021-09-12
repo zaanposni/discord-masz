@@ -17,7 +17,9 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: '🚀 testx. \\n test \\\n test \\\\n test'
+          args:
+            - '🚀 testx. \\n test \\\n test \\\\n test'
+            - '🚀 testx. \\n test \\\n test \\\\n test'
 
       - name: Determine version
         run: |
