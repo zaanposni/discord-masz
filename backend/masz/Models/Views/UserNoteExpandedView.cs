@@ -11,8 +11,8 @@ namespace masz.Models
         public UserNoteExpandedView(UserNote userNote, DiscordUser user, DiscordUser moderator)
         {
             UserNote = new UserNoteView(userNote);
-            User = new DiscordUserView(user);
-            Moderator = new DiscordUserView(moderator);
+            User = DiscordUserView.CreateOrDefault(user);
+            Moderator = DiscordUserView.CreateOrDefault(moderator);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace masz.Dtos.UserAPIResponses
             BannedGuilds = bannedGuilds;
             ModGuilds = modGuilds;
             AdminGuilds = adminGuilds;
-            DiscordUser = new DiscordUserView(discordUser);
+            DiscordUser = DiscordUserView.CreateOrDefault(discordUser);
             IsAdmin = isAdmin;
         }
 

@@ -67,21 +67,6 @@ namespace masz.Models
             };
         }
 
-        public void RemoveModeratorInfo()
-        {
-            this.ModId = 0;
-            this.LastEditedByModId = 0;
-            this.LockedByUserId = 0;
-            this.DeletedByUserId = 0;
-
-            if (this.Comments != null) {
-                foreach (var comment in this.Comments)
-                {
-                    comment.RemoveModeratorInfo(this.UserId);
-                }
-            }
-        }
-
         public string GetPunishment(ITranslator translator)
         {
             switch (this.PunishmentType) {

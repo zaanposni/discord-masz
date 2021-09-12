@@ -13,9 +13,10 @@ namespace masz.Models.Views
         public bool Bot { get; set; }
 
 
-        public DiscordUserView() { }
-        public DiscordUserView(DiscordUser user)
+        private DiscordUserView() { }
+        private DiscordUserView(DiscordUser user)
         {
+            if (user == null) return;
             Id = user.Id.ToString();
             Username = user.Username;
             Discriminator = user.Discriminator;
@@ -23,6 +24,12 @@ namespace masz.Models.Views
             Locale = user.Locale;
             Avatar = user.AvatarHash;
             Bot = user.IsBot;
+        }
+
+        public static DiscordUserView CreateOrDefault(DiscordUser user)
+        {
+            if (user == null) return null;
+            return new DiscordUserView(user);
         }
     }
 }

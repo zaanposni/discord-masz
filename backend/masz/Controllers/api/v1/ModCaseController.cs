@@ -34,7 +34,7 @@ namespace masz.Controllers
             await RequirePermission(guildId, caseId, APIActionPermission.View);
 
             Identity currentIdentity = await GetIdentity();
-            ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetModCase(guildId, caseId);
+            CaseView modCase = new CaseView(await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetModCase(guildId, caseId));
 
             if (! (await GetRegisteredGuild(guildId)).PublishModeratorInfo)
             {
@@ -121,12 +121,12 @@ namespace masz.Controllers
                 userOnly = currentIdentity.GetCurrentUser().Id;
             }
             // ========================================================
-            List<ModCase> modCases = new List<ModCase>();
+            List<CaseView> modCases = new List<CaseView>();
             if (userOnly == 0) {
-                modCases = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetCasePagination(guildId, startPage);
+                modCases = (await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetCasePagination(guildId, startPage)).Select(x => new CaseView(x)).ToList();
             }
             else {
-                modCases = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetCasePaginationFilteredForUser(guildId, userOnly, startPage);
+                modCases = (await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetCasePaginationFilteredForUser(guildId, userOnly, startPage)).Select(x => new CaseView(x)).ToList();
             }
 
             if (! (await GetRegisteredGuild(guildId)).PublishModeratorInfo)

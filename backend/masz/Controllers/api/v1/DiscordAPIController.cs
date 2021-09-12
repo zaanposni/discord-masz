@@ -82,7 +82,7 @@ namespace masz.Controllers.api.v1
             var DiscordUser = await _discordAPI.FetchUserInfo(userid, CacheBehavior.OnlyCache);
             if (DiscordUser != null)
             {
-                return Ok(new DiscordUserView(DiscordUser));
+                return Ok(DiscordUserView.CreateOrDefault(DiscordUser));
             }
             return NotFound();
         }
@@ -117,7 +117,7 @@ namespace masz.Controllers.api.v1
             var members = await _discordAPI.FetchGuildMembers(guildId, CacheBehavior.OnlyCache);
             if (members != null)
             {
-                return Ok(members.Select(x => new DiscordUserView(x)).ToList());
+                return Ok(members.Select(x => DiscordUserView.CreateOrDefault(x)).ToList());
             }
             return NotFound();
         }

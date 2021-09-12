@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using DSharpPlus.Entities;
 using masz.Models;
+using masz.Models.Views;
 using masz.Services;
 using Microsoft.Extensions.Logging;
 
@@ -76,6 +77,26 @@ namespace masz.Repositories
                    contains($"#{obj.CaseId}", search);
         }
 
+        protected bool contains(CaseView obj, string search)
+        {
+            if (obj == null) return false;
+            return contains(obj.Title, search) ||
+                   contains(obj.Description, search) ||
+                   contains(obj.GetPunishment(_translator), search) ||
+                   contains(obj.Username, search) ||
+                   contains(obj.Discriminator, search) ||
+                   contains(obj.Nickname, search) ||
+                   contains(obj.UserId, search) ||
+                   contains(obj.ModId, search) ||
+                   contains(obj.LastEditedByModId, search) ||
+                   contains(obj.CreatedAt, search) ||
+                   contains(obj.OccuredAt, search) ||
+                   contains(obj.LastEditedAt, search) ||
+                   contains(obj.Labels, search) ||
+                   contains(obj.CaseId.ToString(), search) ||
+                   contains($"#{obj.CaseId}", search);
+        }
+
         protected bool contains(AutoModerationEvent obj, string search)
         {
             if (obj == null) return false;
@@ -114,6 +135,12 @@ namespace masz.Repositories
         }
 
         protected bool contains(DiscordUser obj, string search)
+        {
+            if (obj == null) return false;
+            return contains($"{obj.Username}#{obj.Discriminator}", search);
+        }
+
+        protected bool contains(DiscordUserView obj, string search)
         {
             if (obj == null) return false;
             return contains($"{obj.Username}#{obj.Discriminator}", search);

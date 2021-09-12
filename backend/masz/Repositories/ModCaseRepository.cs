@@ -248,13 +248,13 @@ namespace masz.Repositories
             List<ModCase> filteredModCases = new List<ModCase>();
             foreach (var c in modCases)
             {
-                var entry = new ModCaseTableEntry() {
-                    ModCase = c,
-                    Suspect = await _discordAPI.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache),
-                    Moderator = await _discordAPI.FetchUserInfo(c.ModId, CacheBehavior.OnlyCache)
-                };
+                var entry = new ModCaseTableEntry(
+                    c,
+                    await _discordAPI.FetchUserInfo(c.ModId, CacheBehavior.OnlyCache),
+                    await _discordAPI.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache)
+                );
                 if (contains(entry, searchString)) {
-                    filteredModCases.Add(entry.ModCase);
+                    filteredModCases.Add(c);
                 }
             }
             return filteredModCases;
@@ -265,13 +265,13 @@ namespace masz.Repositories
             List<ModCase> filteredModCases = new List<ModCase>();
             foreach (var c in modCases)
             {
-                var entry = new ModCaseTableEntry() {
-                    ModCase = c,
-                    Suspect = await _discordAPI.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache),
-                    Moderator = await _discordAPI.FetchUserInfo(c.ModId, CacheBehavior.OnlyCache)
-                };
+                var entry = new ModCaseTableEntry(
+                    c,
+                    await _discordAPI.FetchUserInfo(c.ModId, CacheBehavior.OnlyCache),
+                    await _discordAPI.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache)
+                );
                 if (contains(entry, searchString)) {
-                    filteredModCases.Add(entry.ModCase);
+                    filteredModCases.Add(c);
                 }
             }
             return filteredModCases;

@@ -1,5 +1,5 @@
 using System;
-using DSharpPlus.Entities;
+using masz.Models.Views;
 
 namespace masz.Models
 {
@@ -8,14 +8,20 @@ namespace masz.Models
         public int Id { get; set; }
         public String Message { get; set; }
         public DateTime CreatedAt { get; set; }
-        public ulong UserId { get; set; }
-        public DiscordUser User { get; set; }
+        public string UserId { get; set; }
 
-        public void RemoveModeratorInfo(ulong suspectId)
+        public CommentsView(ModCaseComment comment)
+        {
+            Id = comment.Id;
+            Message = comment.Message;
+            CreatedAt = comment.CreatedAt;
+            UserId = comment.UserId.ToString();
+        }
+
+        public void RemoveModeratorInfo(string suspectId)
         {
             if (UserId != suspectId) {
-                UserId = 0;
-                User = null;
+                UserId = null;
             }
         }
     }

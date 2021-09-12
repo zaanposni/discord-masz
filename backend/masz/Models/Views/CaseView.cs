@@ -1,52 +1,86 @@
 using System;
 using System.Collections.Generic;
-using DSharpPlus.Entities;
+using masz.Services;
 
 namespace masz.Models
 {
     public class CaseView
     {
-        public CaseView(ModCase modCase, DiscordUser moderator, DiscordUser lastModerator, DiscordUser suspect, List<CommentsView> comments)
+        public int Id { get; set; }
+        public int CaseId { get; set; }
+        public string GuildId { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string UserId { get; set; }
+        public string Username { get; set; }
+        public string Discriminator { get; set; }
+        public string Nickname { get; set; }
+        public string ModId { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime OccuredAt { get; set; }
+        public DateTime LastEditedAt { get; set; }
+        public string LastEditedByModId { get; set; }
+        public string[] Labels { get; set; }
+        public string Others { get; set; }
+        public bool Valid { get; set; }
+        public CaseCreationType CreationType { get; set; }
+        public PunishmentType PunishmentType { get; set; }
+        public DateTime? PunishedUntil { get; set; }
+        public bool PunishmentActive { get; set; }
+        public bool AllowComments { get; set; }
+        public string LockedByUserId { get; set; }
+        public DateTime? LockedAt { get; set; }
+        public DateTime? MarkedToDeleteAt { get; set; }
+        public string DeletedByUserId { get; set; }
+        public CaseView(ModCase modCase)
         {
-            ModCase = modCase;
-            Moderator = moderator;
-            LastModerator = lastModerator;
-            Suspect = suspect;
-            Comments = comments;
-
-            if (modCase.PunishedUntil != null) {
-                if (modCase.PunishedUntil > modCase.CreatedAt) {
-                    if (modCase.PunishedUntil < DateTime.UtcNow) {
-                        PunishmentProgress = 100;
-                    } else {
-                        double totalPunished = (modCase.PunishedUntil.Value - modCase.CreatedAt).TotalSeconds;
-                        double alreadyPunished = (DateTime.UtcNow - modCase.CreatedAt).TotalSeconds;
-
-                        PunishmentProgress = alreadyPunished / totalPunished * 100;
-                    }
-                }
-            }
+            Id = modCase.Id;
+            CaseId = modCase.CaseId;
+            GuildId = modCase.GuildId.ToString();
+            Title = modCase.Title;
+            Description = modCase.Description;
+            UserId = modCase.UserId.ToString();
+            Username = modCase.Username;
+            Discriminator = modCase.Discriminator;
+            Nickname = modCase.Nickname;
+            ModId = modCase.ModId.ToString();
+            CreatedAt = modCase.CreatedAt;
+            OccuredAt = modCase.OccuredAt;
+            LastEditedAt = modCase.LastEditedAt;
+            LastEditedByModId = modCase.LastEditedByModId.ToString();
+            Labels = modCase.Labels;
+            Others = modCase.Others;
+            Valid = modCase.Valid;
+            CreationType = modCase.CreationType;
+            PunishmentType = modCase.PunishmentType;
+            PunishedUntil = modCase.PunishedUntil;
+            PunishmentActive = modCase.PunishmentActive;
+            AllowComments = modCase.AllowComments;
+            LockedByUserId = modCase.LockedByUserId.ToString();
+            LockedAt = modCase.LockedAt;
+            MarkedToDeleteAt = modCase.MarkedToDeleteAt;
+            DeletedByUserId = modCase.DeletedByUserId.ToString();
         }
-        public ModCase ModCase { get; set; }
-        public DiscordUser Moderator { get; set; }
-        public DiscordUser LastModerator { get; set; }
-        public DiscordUser Suspect { get; set; }
-        public DiscordUser LockedBy { get; set; }
-        public DiscordUser DeletedBy { get; set; }
-        public List<CommentsView> Comments { get; set; }
-        public double? PunishmentProgress { get; set; }
 
         public void RemoveModeratorInfo()
         {
-            this.Moderator = null;
-            this.LastModerator = null;
-            this.LockedBy = null;
-            this.DeletedBy = null;
-            this.ModCase.RemoveModeratorInfo();
+            ModId = null;
+            LastEditedByModId = null;
+            LockedByUserId = null;
+            DeletedByUserId = null;
+        }
 
-            foreach (var comment in this.Comments)
-            {
-                comment.RemoveModeratorInfo(ModCase.UserId);
+        public string GetPunishment(ITranslator translator)
+        {
+            switch (this.PunishmentType) {
+                case PunishmentType.Mute:
+                    return translator.T().EnumsPunishmentMute();
+                case PunishmentType.Kick:
+                    return translator.T().EnumsPunishmentKick();
+                case PunishmentType.Ban:
+                    return translator.T().EnumsPunishmentBan();
+                default:
+                    return translator.T().EnumsPunishmentWarn();
             }
         }
     }
