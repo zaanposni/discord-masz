@@ -1,0 +1,88 @@
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using DSharpPlus.Entities;
+using masz.Dtos.Tokens;
+using masz.Events;
+using masz.Exceptions;
+using masz.Models;
+using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+
+namespace masz.Repositories
+{
+
+    public class UserNoteRepository : BaseRepository<UserNoteRepository>
+    {
+        private readonly Identity _identity;
+        private UserNoteRepository(IServiceProvider serviceProvider, Identity identity) : base(serviceProvider)
+        {
+            _identity = identity;
+        }
+        public static UserNoteRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new UserNoteRepository(serviceProvider, identity);
+        public async Task<UserNote> GetUserNote(ulong guildId, ulong userId)
+        {
+            UserNote userNote = await _database.GetUserNoteByUserIdAndGuildId(userId, guildId);
+            if (userNote == null)
+            {
+                _logger.LogWarning($"UserNote for guild {guildId} and user {userId} not found.");
+                throw new ResourceNotFoundException($"UserNote for guild {guildId} and user {userId} not found.");
+            }
+            return userNote;
+        }
+
+        public async Task<List<UserNote>> GetUserNotesByGuild(ulong guildId)
+        {
+            return await _database.GetUserNotesByGuildId(guildId);
+        }
+
+        public async Task<List<UserNote>> GetUserNotesByUser(ulong userId)
+        {
+            return await _database.GetUserNotesByUserId(userId);
+        }
+
+        public async Task<UserNote> CreateOrUpdateUserNote(ulong guildId, ulong userId, string content)
+        {
+            DiscordUser validUser = await _discordAPI.FetchUserInfo(userId, CacheBehavior.Default);
+            if (validUser == null) {
+                throw new InvalidDiscordUserException("User not found", userId);
+            }
+
+            UserNote userNote;
+            RestAction action = RestAction.Edited;
+            try {
+                userNote = await GetUserNote(guildId, userId);
+            } catch (ResourceNotFoundException) {
+                userNote = new UserNote();
+                userNote.GuildId = guildId;
+                userNote.UserId = userId;
+                action = RestAction.Created;
+            }
+            userNote.UpdatedAt = DateTime.UtcNow;
+            userNote.CreatorId = _identity.GetCurrentUser().Id;
+
+            userNote.Description = content;
+
+            _database.SaveUserNote(userNote);
+            await _database.SaveChangesAsync();
+
+            await _discordAnnouncer.AnnounceUserNote(userNote, _identity.GetCurrentUser(), action);
+
+            return userNote;
+        }
+
+        public async Task DeleteUserNote(ulong guildId, ulong userId)
+        {
+            UserNote userNote = await GetUserNote(guildId, userId);
+
+            _database.DeleteUserNote(userNote);
+            await _database.SaveChangesAsync();
+
+            await _discordAnnouncer.AnnounceUserNote(userNote, _identity.GetCurrentUser(), RestAction.Deleted);
+        }
+    }
+}
