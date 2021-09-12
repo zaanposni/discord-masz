@@ -53,8 +53,8 @@ jobs:
 
       - name: Calculate image sizes
         run: |
-          SIZE_BACKEND=$(echo "${{ steps.backendbuild.outputs.version }}" | numfmt --to=si)
-          SIZE_NGINX=$(echo "${{ steps.frontendbuild.outputs.version }}" | numfmt --to=si)
+          SIZE_BACKEND=$(echo "${{ steps.backendbuild.outputs.size }}" | numfmt --to=si)
+          SIZE_NGINX=$(echo "${{ steps.frontendbuild.outputs.size }}" | numfmt --to=si)
           echo "I found backend size: $SIZE_BACKEND"
           echo "I found nginx size: $SIZE_NGINX"
           echo "SIZE_BACKEND=$SIZE_BACKEND" >> $GITHUB_ENV
