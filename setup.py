@@ -79,6 +79,9 @@ console = Console()
 console.print(table)
 ENV_FILE["DEFAULT_LANGUAGE"] = Prompt.ask(":question_mark: Enter the default language MASZ should use", choices=SUPPORTED_LANGUAGES.keys(), default="en")
 
+ENV_FILE["ENABLE_DEMO_MODE"] = "false"
+ENV_FILE["ENABLE_CUSTOM_PLUGINS"] = "false"
+
 env_string = ""
 for key, value in ENV_FILE.items():
     env_string += f"{key}={value}\n"
