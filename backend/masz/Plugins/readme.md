@@ -8,6 +8,7 @@ Your service has to
 
 - be in the namespace `masz.Plugins`.
 - implement the interface `masz.Plugins.IBasePlugin` and inherit the class `masz.Plugins.BasePlugin`.
+- set the `ENABLE_CUSTOM_PLUGINS` env var to `true` in your `.env` file.
 
 ## Access masz resources
 
