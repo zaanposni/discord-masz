@@ -22,7 +22,7 @@ jobs:
         run: |
           cd backend
           docker build -t ghcr.io/${{ github.repository_owner }}/masz_backend:latest -t ghcr.io/${{ github.repository_owner }}/masz_backend:${{ env.VERSION }} .
-          docker login ghcr.io -u zaanposni -p ${{ secrets.GITHUB_TOKEN }}
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u zaanposni --password-stdin
           docker push ghcr.io/${{ github.repository_owner }}/masz_backend:latest
           docker push ghcr.io/${{ github.repository_owner }}/masz_backend:${{ env.VERSION }}
 
@@ -30,7 +30,7 @@ jobs:
         run: |
           cd nginx
           docker build -t ghcr.io/${{ github.repository_owner }}/masz_nginx:latest -t ghcr.io/${{ github.repository_owner }}/masz_nginx:${{ env.VERSION }} .
-          docker login ghcr.io -u zaanposni -p ${{ secrets.GITHUB_TOKEN }}
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u zaanposni --password-stdin
           docker push ghcr.io/${{ github.repository_owner }}/masz_nginx:latest
           docker push ghcr.io/${{ github.repository_owner }}/masz_nginx:${{ env.VERSION }}
 
@@ -48,4 +48,4 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: '🚀 I have published new masz images with tags `{{ env.VERSION }}` and `latest`.\n- <https://github.com/zaanposni/discord-masz/pkgs/container/masz_backend> `{{ env.SIZE_BACKEND }}`\n- <https://github.com/zaanposni/discord-masz/pkgs/container/masz_nginx> `{{ env.SIZE_NGINX }}`'
+          args: '🚀 I have published new masz images with tags `${{ env.VERSION }}` and `latest`.\n- <https://github.com/zaanposni/discord-masz/pkgs/container/masz_backend> `${{ env.SIZE_BACKEND }}`\n- <https://github.com/zaanposni/discord-masz/pkgs/container/masz_nginx> `${{ env.SIZE_NGINX }}`'
