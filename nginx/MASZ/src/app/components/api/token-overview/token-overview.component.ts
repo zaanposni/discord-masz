@@ -49,7 +49,7 @@ export class TokenOverviewComponent implements OnInit {
         this.generatingNewToken = true;
         this.api.postSimpleData(`/token`, tokenDialogData).subscribe((data) => {
           this.generatingNewToken = false;
-          this.newToken = data.generatedToken;
+          this.newToken = data.token;
           this.reloadToken();
         }, () => {
           this.toastr.error("Failed to generate token.");

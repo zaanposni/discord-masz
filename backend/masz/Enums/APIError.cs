@@ -18,5 +18,7 @@ namespace masz.Enums
         GuildAlreadyRegistered = 13,
         NotAllowedInDemoMode = 14,
         RoleNotFound = 15,
+        TokenCannotManageThisResource = 16,
+        TokenAlreadyRegistered = 17,
     }
 }
