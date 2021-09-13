@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using masz.Models;
 using masz.Repositories;
-using masz.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace masz.Controllers
 {
@@ -26,8 +23,8 @@ namespace masz.Controllers
         [HttpGet("adminstats")]
         public async Task<IActionResult> Status()
         {
-            Identity identity = await GetIdentity();
-            if (! identity.IsSiteAdmin()) return Unauthorized();
+            Identity currentIdentity = await GetIdentity();
+            if (! currentIdentity.IsSiteAdmin()) return Unauthorized();
 
             List<string> currentLogins = new List<string>();
             foreach (var login in _identityManager.GetCurrentIdentities())
@@ -66,13 +63,13 @@ namespace masz.Controllers
                 discordStatus = discordAPIDetails,
                 loginsInLast15Minutes = currentLogins,
                 defaultLanguage = _config.GetDefaultLanguage(),
-                trackedInvites = await _database.CountTrackedInvites(),
-                modCases = await _database.CountAllModCases(),
-                guilds = await _database.CountAllGuildConfigs(),
-                automodEvents = await _database.CountAllModerationEvents(),
-                userNotes = await _database.CountUserNotes(),
-                userMappings = await _database.CountUserMappings(),
-                apiTokens = await _database.CountAllAPITokens(),
+                trackedInvites = await InviteRepository.CreateDefault(_serviceProvider).CountInvites(),
+                modCases = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).CountAllCases(),
+                guilds = await GuildConfigRepository.CreateDefault(_serviceProvider).CountGuildConfigs(),
+                automodEvents = await AutoModerationEventRepository.CreateDefault(_serviceProvider).CountEvents(),
+                userNotes = await UserNoteRepository.CreateWithBotIdentity(_serviceProvider).CountUserNotes(),
+                userMappings = await UserMapRepository.CreateWithBotIdentity(_serviceProvider).CountAllUserMaps(),
+                apiTokens = await TokenRepository.CreateDefault(_serviceProvider).CountTokens(),
                 nextCache = _scheduler.GetNextCacheSchedule(),
                 cachedDataFromDiscord = _discordAPI.GetCache().Keys
             });
