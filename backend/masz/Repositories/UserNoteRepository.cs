@@ -18,12 +18,17 @@ namespace masz.Repositories
 
     public class UserNoteRepository : BaseRepository<UserNoteRepository>
     {
-        private readonly Identity _identity;
-        private UserNoteRepository(IServiceProvider serviceProvider, Identity identity) : base(serviceProvider)
+        private readonly DiscordUser _currentUser;
+        private UserNoteRepository(IServiceProvider serviceProvider, DiscordUser currentUser) : base(serviceProvider)
         {
-            _identity = identity;
+            _currentUser = currentUser;
         }
-        public static UserNoteRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new UserNoteRepository(serviceProvider, identity);
+        private UserNoteRepository(IServiceProvider serviceProvider) : base(serviceProvider)
+        {
+            _currentUser = _discordAPI.GetCurrentBotInfo(CacheBehavior.Default);
+        }
+        public static UserNoteRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new UserNoteRepository(serviceProvider, identity.GetCurrentUser());
+        public static UserNoteRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new UserNoteRepository(serviceProvider);
         public async Task<UserNote> GetUserNote(ulong guildId, ulong userId)
         {
             UserNote userNote = await _database.GetUserNoteByUserIdAndGuildId(userId, guildId);
@@ -34,17 +39,14 @@ namespace masz.Repositories
             }
             return userNote;
         }
-
         public async Task<List<UserNote>> GetUserNotesByGuild(ulong guildId)
         {
             return await _database.GetUserNotesByGuildId(guildId);
         }
-
         public async Task<List<UserNote>> GetUserNotesByUser(ulong userId)
         {
             return await _database.GetUserNotesByUserId(userId);
         }
-
         public async Task<UserNote> CreateOrUpdateUserNote(ulong guildId, ulong userId, string content)
         {
             DiscordUser validUser = await _discordAPI.FetchUserInfo(userId, CacheBehavior.Default);
@@ -63,18 +65,17 @@ namespace masz.Repositories
                 action = RestAction.Created;
             }
             userNote.UpdatedAt = DateTime.UtcNow;
-            userNote.CreatorId = _identity.GetCurrentUser().Id;
+            userNote.CreatorId = _currentUser.Id;
 
             userNote.Description = content;
 
             _database.SaveUserNote(userNote);
             await _database.SaveChangesAsync();
 
-            await _discordAnnouncer.AnnounceUserNote(userNote, _identity.GetCurrentUser(), action);
+            await _discordAnnouncer.AnnounceUserNote(userNote, _currentUser, action);
 
             return userNote;
         }
-
         public async Task DeleteUserNote(ulong guildId, ulong userId)
         {
             UserNote userNote = await GetUserNote(guildId, userId);
@@ -82,7 +83,20 @@ namespace masz.Repositories
             _database.DeleteUserNote(userNote);
             await _database.SaveChangesAsync();
 
-            await _discordAnnouncer.AnnounceUserNote(userNote, _identity.GetCurrentUser(), RestAction.Deleted);
+            await _discordAnnouncer.AnnounceUserNote(userNote, _currentUser, RestAction.Deleted);
+        }
+        public async Task DeleteForGuild(ulong guildId)
+        {
+            await _database.DeleteUserNoteByGuild(guildId);
+            await _database.SaveChangesAsync();
+        }
+        public async Task<int> CountUserNotesForGuild(ulong guildId)
+        {
+            return await _database.CountUserNotesForGuild(guildId);
+        }
+        public async Task<int> CountUserNotes()
+        {
+            return await _database.CountUserNotes();
         }
     }
 }
