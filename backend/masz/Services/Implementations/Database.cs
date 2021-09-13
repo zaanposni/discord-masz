@@ -480,14 +480,24 @@ namespace masz.Services
         //
         // ==================================================================================
 
-        public async Task<List<UserInvite>> GetInvitedUsersByUserId(ulong userId)
+        public async Task<List<UserInvite>> GetInvitedUsersByUser(ulong userId)
         {
             return await context.UserInvites.AsQueryable().Where(x => x.InviteIssuerId == userId).ToListAsync();
         }
 
-        public async Task<List<UserInvite>> GetUsedInvitesByUserId(ulong userId)
+        public async Task<List<UserInvite>> GetInvitedUsersByUserAndGuild(ulong userId, ulong guildId)
+        {
+            return await context.UserInvites.AsQueryable().Where(x => x.InviteIssuerId == userId && x.GuildId == guildId).ToListAsync();
+        }
+
+        public async Task<List<UserInvite>> GetUsedInvitesByUser(ulong userId)
         {
             return await context.UserInvites.AsQueryable().Where(x => x.JoinedUserId == userId).ToListAsync();
+        }
+
+        public async Task<List<UserInvite>> GetUsedInvitesByUserAndGuild(ulong userId, ulong guildId)
+        {
+            return await context.UserInvites.AsQueryable().Where(x => x.JoinedUserId == userId && x.GuildId == guildId).ToListAsync();
         }
 
         public async Task<int> CountTrackedInvites()
@@ -509,6 +519,11 @@ namespace masz.Services
         public async Task<List<UserInvite>> GetInvitesByCode(string code)
         {
             return await context.UserInvites.AsQueryable().Where(x => x.UsedInvite == code).ToListAsync();
+        }
+
+        public async Task SaveInvite(UserInvite userInvite)
+        {
+            await context.UserInvites.AddAsync(userInvite);
         }
 
         // ==================================================================================

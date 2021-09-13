@@ -94,9 +94,12 @@ namespace masz.Services
         Task<APIToken> GetAPIToken();
         Task<APIToken> GetAPIToken(int id);
 
-        Task<List<UserInvite>> GetInvitedUsersByUserId(ulong userId);
-        Task<List<UserInvite>> GetUsedInvitesByUserId(ulong userId);
+        Task<List<UserInvite>> GetInvitedUsersByUser(ulong userId);
+        Task<List<UserInvite>> GetInvitedUsersByUserAndGuild(ulong userId, ulong guildId);
+        Task<List<UserInvite>> GetUsedInvitesByUser(ulong userId);
+        Task<List<UserInvite>> GetUsedInvitesByUserAndGuild(ulong userId, ulong guildId);
         Task<List<UserInvite>> GetInvitesByCode(string code);
+        Task SaveInvite(UserInvite invite);
         Task<int> CountTrackedInvites();
         Task<int> CountTrackedInvitesForGuild(ulong guildId);
         Task DeleteInviteHistoryByGuild(ulong guildId);
