@@ -7,6 +7,7 @@ using masz.Dtos.UserAPIResponses;
 using masz.Exceptions;
 using masz.Models;
 using masz.Models.Views;
+using masz.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -40,7 +41,7 @@ namespace masz.Controllers.api.v1
 
             if (identity is DiscordOAuthIdentity)
             {
-                List<GuildConfig> registeredGuilds = await _database.SelectAllGuildConfigs();
+                List<GuildConfig> registeredGuilds = await GuildConfigRepository.CreateDefault(_serviceProvider).GetAllGuildConfigs();
 
                 foreach (GuildConfig guild in registeredGuilds)
                 {

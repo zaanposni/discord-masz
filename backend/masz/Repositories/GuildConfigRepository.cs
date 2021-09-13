@@ -28,9 +28,14 @@ namespace masz.Repositories
             return guildConfig;
         }
 
-        public async Task<List<GuildConfig>> GetAllGuildConfig()
+        public async Task<List<GuildConfig>> GetAllGuildConfigs()
         {
             return await _database.SelectAllGuildConfigs();
+        }
+
+        public async Task<int> CountGuildConfigs()
+        {
+            return await _database.CountAllGuildConfigs();
         }
 
         public async Task<GuildConfig> CreateGuildConfig(GuildConfig guildConfig)

@@ -242,6 +242,14 @@ namespace masz.Repositories
         {
             return await _database.SelectAllModCasesForSpecificUser(userId);
         }
+        public async Task<int> CountAllCases()
+        {
+            return await _database.CountAllModCases();
+        }
+        public async Task<int> CountAllCasesForGuild(ulong guildId)
+        {
+            return await _database.CountAllModCasesForGuild(guildId);
+        }
         public async Task<List<ModCase>> SearchCases(ulong guildId, string searchString)
         {
             List<ModCase> modCases = await _database.SelectAllModCasesForGuild(guildId);

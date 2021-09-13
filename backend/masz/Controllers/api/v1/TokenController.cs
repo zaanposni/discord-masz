@@ -37,13 +37,14 @@ namespace masz.Controllers
                 throw new BaseAPIException("Tokens cannot manage this resource.", APIError.TokenCannotManageThisResource);
             }
 
-            if (await _database.GetAPIToken() != null) {
+            var repo = TokenRepository.CreateDefault(_serviceProvider);
+            if (await repo.GetToken() != null) {
                 throw new BaseAPIException("There already is a token.", APIError.TokenAlreadyRegistered);
             }
 
             _identityManager.ClearTokenIdentities();
 
-            return Ok(await TokenRepository.CreateDefault(_serviceProvider).RegisterToken(tokenDto.Name));
+            return Ok(await repo.RegisterToken(tokenDto.Name));
         }
 
         [HttpDelete]

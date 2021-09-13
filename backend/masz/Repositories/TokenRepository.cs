@@ -31,9 +31,14 @@ namespace masz.Repositories
             return apiToken;
         }
 
-        public async Task<List<APIToken>> GetAllGuildConfig()
+        public async Task<List<APIToken>> GetAllTokens()
         {
             return await _database.GetAllAPIToken();
+        }
+
+        public async Task<int> CountTokens()
+        {
+            return await _database.CountAllAPITokens();
         }
 
         public async Task<CreatedTokenDto> RegisterToken(string name)

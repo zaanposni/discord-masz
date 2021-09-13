@@ -12,7 +12,6 @@ namespace masz.Controllers
 {
     public class SimpleController : ControllerBase
     {
-        protected readonly IDatabase _database;
         protected readonly IIdentityManager _identityManager;
         protected readonly IInternalConfiguration _config;
         protected readonly IDiscordAPIInterface _discordAPI;
@@ -22,7 +21,6 @@ namespace masz.Controllers
         protected readonly IServiceProvider _serviceProvider;
         public SimpleController(IServiceProvider serviceProvider)
         {
-            _database = (IDatabase) serviceProvider.GetService(typeof(IDatabase));
             _identityManager = (IIdentityManager) serviceProvider.GetService(typeof(IIdentityManager));
             _config = (IInternalConfiguration) serviceProvider.GetService(typeof(IInternalConfiguration));
             _discordAPI = (IDiscordAPIInterface) serviceProvider.GetService(typeof(IDiscordAPIInterface));
