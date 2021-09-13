@@ -14,16 +14,19 @@ namespace masz.Repositories
 
     public class ModCaseRepository : BaseRepository<ModCaseRepository>
     {
-        private readonly Identity _identity;
-        private ModCaseRepository(IServiceProvider serviceProvider, Identity identity) : base(serviceProvider)
+        private readonly DiscordUser _currentUser;
+        private ModCaseRepository(IServiceProvider serviceProvider, DiscordUser currentUser) : base(serviceProvider)
         {
-            _identity = identity;
+            _currentUser = currentUser;
         }
-
-        public static ModCaseRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new ModCaseRepository(serviceProvider, identity);
+        private ModCaseRepository(IServiceProvider serviceProvider) : base(serviceProvider)
+        {
+            _currentUser = _discordAPI.GetCurrentBotInfo(CacheBehavior.Default);
+        }
+        public static ModCaseRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new ModCaseRepository(serviceProvider, identity.GetCurrentUser());
+        public static ModCaseRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new ModCaseRepository(serviceProvider);
         public async Task<ModCase> CreateModCase(ModCase modCase, bool handlePunishment, bool sendPublicNotification, bool sendDmNotification)
         {
-            DiscordUser moderator = await _discordAPI.FetchUserInfo(modCase.ModId, CacheBehavior.Default);
             DiscordUser currentReportedUser = await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.IgnoreButCacheOnError);
 
             GuildConfig guildConfig;
@@ -74,8 +77,9 @@ namespace masz.Repositories
             {
                 modCase.OccuredAt = modCase.CreatedAt;
             }
+            modCase.ModId = _currentUser.Id;
             modCase.LastEditedAt = modCase.CreatedAt;
-            modCase.LastEditedByModId = moderator.Id;
+            modCase.LastEditedByModId = _currentUser.Id;
             modCase.Labels = modCase.Labels.Distinct().ToArray();
             modCase.Valid = true;
             if (modCase.PunishmentType == PunishmentType.None || modCase.PunishmentType == PunishmentType.Kick)
@@ -90,7 +94,7 @@ namespace masz.Repositories
             await _database.SaveModCase(modCase);
             await _database.SaveChangesAsync();
 
-            await _discordAnnouncer.AnnounceModCase(modCase, RestAction.Created, moderator, sendPublicNotification, sendDmNotification);
+            await _discordAnnouncer.AnnounceModCase(modCase, RestAction.Created, _currentUser, sendPublicNotification, sendDmNotification);
 
             if (handlePunishment && (modCase.PunishmentActive || modCase.PunishmentType == PunishmentType.Kick))
             {
@@ -130,7 +134,7 @@ namespace masz.Repositories
                 await _database.SaveChangesAsync();
             } else {
                 modCase.MarkedToDeleteAt = DateTime.UtcNow.AddDays(7);
-                modCase.DeletedByUserId = _identity.GetCurrentUser().Id;
+                modCase.DeletedByUserId = _currentUser.Id;
                 modCase.PunishmentActive = false;
 
                 _logger.LogInformation($"Marking modcase {guildId}/{caseId} as deleted.");
@@ -153,7 +157,7 @@ namespace masz.Repositories
 
             try
             {
-                await _discordAnnouncer.AnnounceModCase(modCase, RestAction.Deleted, _identity.GetCurrentUser(), announcePublic, false);
+                await _discordAnnouncer.AnnounceModCase(modCase, RestAction.Deleted, _currentUser, announcePublic, false);
             }
             catch(Exception e)
             {
@@ -163,7 +167,6 @@ namespace masz.Repositories
         }
         public async Task<ModCase> UpdateModCase(ModCase modCase, bool handlePunishment, bool sendPublicNotification)
         {
-            DiscordUser moderator = await _discordAPI.FetchUserInfo(modCase.LastEditedByModId, CacheBehavior.Default);
             DiscordUser currentReportedUser = await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.IgnoreButCacheOnError);
             GuildConfig guildConfig;
             try
@@ -206,6 +209,7 @@ namespace masz.Repositories
             }
 
             modCase.LastEditedAt = modCase.CreatedAt;
+            modCase.LastEditedByModId = _currentUser.Id;
             modCase.Valid = true;
             if (modCase.PunishmentType == PunishmentType.None || modCase.PunishmentType == PunishmentType.Kick)
             {
@@ -219,7 +223,7 @@ namespace masz.Repositories
             _database.UpdateModCase(modCase);
             await _database.SaveChangesAsync();
 
-            await _discordAnnouncer.AnnounceModCase(modCase, RestAction.Edited, moderator, sendPublicNotification, false);
+            await _discordAnnouncer.AnnounceModCase(modCase, RestAction.Edited, _currentUser, sendPublicNotification, false);
 
             if (handlePunishment && (modCase.PunishmentActive || modCase.PunishmentType == PunishmentType.Kick))
             {
