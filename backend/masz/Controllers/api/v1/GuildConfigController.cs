@@ -60,6 +60,7 @@ namespace masz.Controllers
                     throw new GuildAlreadyRegisteredException(guildConfigForCreateDto.GuildId);
                 }
             } catch (ResourceNotFoundException) { }
+              catch (UnregisteredGuildException) { }
 
             GuildConfig guildConfig = new GuildConfig();
             guildConfig.GuildId = guildConfigForCreateDto.GuildId;
