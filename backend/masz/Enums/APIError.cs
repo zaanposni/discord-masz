@@ -20,5 +20,7 @@ namespace masz.Enums
         RoleNotFound = 15,
         TokenCannotManageThisResource = 16,
         TokenAlreadyRegistered = 17,
+        CannotBeSameUser = 18,
+        ResourceAlreadyExists = 19,
     }
 }

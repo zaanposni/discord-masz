@@ -63,8 +63,9 @@ namespace masz.Repositories
         }
         public async Task<UserMapping> CreateOrUpdateUserMap(ulong guildId, ulong userA, ulong userB, string content)
         {
-            if( await _discordAPI.FetchUserInfo(userA, CacheBehavior.Default) == null) throw new InvalidDiscordUserException("User not found", userA);
-            if( await _discordAPI.FetchUserInfo(userB, CacheBehavior.Default) == null) throw new InvalidDiscordUserException("User not found", userB);
+            if (await _discordAPI.FetchUserInfo(userA, CacheBehavior.Default) == null) throw new InvalidDiscordUserException("User not found", userA);
+            if (await _discordAPI.FetchUserInfo(userB, CacheBehavior.Default) == null) throw new InvalidDiscordUserException("User not found", userB);
+            if (userA == userB) throw new InvalidUserMapException();
 
             UserMapping userMapping;
             RestAction action = RestAction.Edited;
