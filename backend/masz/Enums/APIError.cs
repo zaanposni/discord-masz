@@ -24,5 +24,7 @@ namespace masz.Enums
         ResourceAlreadyExists = 19,
         ModCaseDoesNotAllowComments = 20,
         LastCommentAlreadyFromSuspect = 21,
+        InvalidAutomoderationAction = 22,
+        InvalidAutomoderationType = 23,
     }
 }

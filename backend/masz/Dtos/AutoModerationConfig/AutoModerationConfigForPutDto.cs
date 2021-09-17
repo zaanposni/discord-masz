@@ -12,8 +12,8 @@ namespace masz.Dtos.AutoModerationConfig
         public AutoModerationAction AutoModerationAction { get; set; }
         public PunishmentType? PunishmentType { get; set; }
         public int? PunishmentDurationMinutes { get; set; }
-        public string[] IgnoreChannels { get; set; } = new string[0];
-        public string[] IgnoreRoles { get; set; } = new string[0];
+        public ulong[] IgnoreChannels { get; set; } = new ulong[0];
+        public ulong[] IgnoreRoles { get; set; } = new ulong[0];
         public int? TimeLimitMinutes { get; set; }
         public int? Limit { get; set; }
         public string CustomWordFilter { get; set; }

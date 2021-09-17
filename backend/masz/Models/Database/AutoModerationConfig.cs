@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
+using masz.Dtos.AutoModerationConfig;
 using masz.Dtos.ModCase;
 
 namespace masz.Models
@@ -23,5 +24,25 @@ namespace masz.Models
         public string CustomWordFilter { get; set; }
         public bool SendDmNotification { get; set; }
         public bool SendPublicNotification { get; set; }
+
+        public AutoModerationConfig()
+        {
+        }
+
+        public AutoModerationConfig(AutoModerationConfigForPutDto dto, ulong guildId)
+        {
+            GuildId = guildId;
+            AutoModerationType = dto.AutoModerationType;
+            AutoModerationAction = dto.AutoModerationAction;
+            PunishmentType = dto.PunishmentType;
+            PunishmentDurationMinutes = dto.PunishmentDurationMinutes;
+            IgnoreChannels = dto.IgnoreChannels;
+            IgnoreRoles = dto.IgnoreRoles;
+            TimeLimitMinutes = dto.TimeLimitMinutes;
+            Limit = dto.Limit;
+            CustomWordFilter = dto.CustomWordFilter;
+            SendDmNotification = dto.SendDmNotification;
+            SendPublicNotification = dto.SendPublicNotification;
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using masz.Dtos.Tokens;
+using masz.Enums;
 using masz.Events;
 using masz.Exceptions;
 using masz.Models;
@@ -38,6 +39,13 @@ namespace masz.Repositories
 
         public async Task<AutoModerationConfig> UpdateConfig(AutoModerationConfig newValue)
         {
+            if (! Enum.IsDefined(typeof(AutoModerationType), newValue.AutoModerationType)) {
+                throw new BaseAPIException("Invalid automod type.", APIError.InvalidAutomoderationType);
+            }
+            if (! Enum.IsDefined(typeof(AutoModerationAction), newValue.AutoModerationAction)) {
+                throw new BaseAPIException("Invalid automod action.", APIError.InvalidAutomoderationAction);
+            }
+
             AutoModerationConfig autoModerationConfig;
             try
             {
@@ -68,6 +76,14 @@ namespace masz.Repositories
         {
             await _database.DeleteAllModerationConfigsForGuild(guildId);
             await _database.SaveChangesAsync();
+        }
+
+        public async Task<AutoModerationConfig> DeleteConfigForGuild(ulong guildId, AutoModerationType type)
+        {
+            AutoModerationConfig config = await GetConfigsByGuildAndType(guildId, type);
+            _database.DeleteSpecificModerationConfig(config);
+            await _database.SaveChangesAsync();
+            return config;
         }
     }
 }
