@@ -69,7 +69,13 @@
 									{
 										"key": "Cookie",
 										"type": "text",
-										"value": "masz_access_token={{masz_access_token}}"
+										"value": "masz_access_token={{masz_access_token}}",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -188,6 +194,11 @@
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
 										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -207,7 +218,7 @@
 									"variable": [
 										{
 											"key": "caseid",
-											"value": "4"
+											"value": "193"
 										}
 									]
 								}
@@ -242,7 +253,7 @@
 									"variable": [
 										{
 											"key": "caseid",
-											"value": "4"
+											"value": "1"
 										}
 									]
 								}
@@ -272,21 +283,22 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/:caseid",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/cases/:caseid",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"modcases",
+										"guilds",
 										"{{guildid}}",
+										"cases",
 										":caseid"
 									],
 									"variable": [
 										{
 											"key": "caseid",
-											"value": "1"
+											"value": "193"
 										}
 									]
 								}
@@ -314,15 +326,16 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}?startPage=0",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/cases?startPage=0",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"modcases",
-										"{{guildid}}"
+										"guilds",
+										"{{guildid}}",
+										"cases"
 									],
 									"query": [
 										{
@@ -584,25 +597,26 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
-										"type": "text",
-										"disabled": true
+										"type": "text"
 									},
 									{
 										"key": "Authorization",
 										"value": "Bearer {{masz_api_token}}",
-										"type": "text"
+										"type": "text",
+										"disabled": true
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/:caseid?forceDelete=true",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/cases/:caseid?forceDelete=false",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"modcases",
+										"guilds",
 										"{{guildid}}",
+										"cases",
 										":caseid"
 									],
 									"query": [
@@ -613,13 +627,13 @@
 										},
 										{
 											"key": "forceDelete",
-											"value": "true"
+											"value": "false"
 										}
 									],
 									"variable": [
 										{
 											"key": "caseid",
-											"value": "17"
+											"value": "1"
 										}
 									]
 								}
@@ -639,7 +653,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"title\": \"NSFW content\",\r\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\r\n    \"userid\": \"382991040975732747\",\r\n    \"severity\": 0,\r\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\r\n    \"punishment\": \"warn\",\r\n    \"punishmentType\": 0,\r\n    \"punishedUntil\": null,\r\n    \"punishmentActive\": true\r\n}",
+									"raw": "{\r\n    \"title\": \"NSFW content\",\r\n    \"description\": \"Posten von NSFW content, \\nUser wird verwarnt!\",\r\n    \"userid\": \"382991040975732747\",\r\n    \"severity\": 0,\r\n    \"labels\": [\"nsfw\", \"a\", \"nsfw\"],\r\n    \"punishment\": \"warn\",\r\n    \"punishmentType\": 1,\r\n    \"punishedUntil\": null,\r\n    \"punishmentActive\": true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -647,15 +661,16 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/1?sendnotification=false&handlePunishment=true",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/cases/1?sendnotification=false&handlePunishment=true",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"modcases",
+										"guilds",
 										"{{guildid}}",
+										"cases",
 										"1"
 									],
 									"query": [
@@ -943,7 +958,8 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
-										"type": "text"
+										"type": "text",
+										"disabled": true
 									},
 									{
 										"key": "Authorization",
@@ -1162,6 +1178,12 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
 										"type": "text"
 									}
 								],
@@ -1175,22 +1197,23 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/:caseid/comments",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/cases/:caseid/comments",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"modcases",
+										"guilds",
 										"{{guildid}}",
+										"cases",
 										":caseid",
 										"comments"
 									],
 									"variable": [
 										{
 											"key": "caseid",
-											"value": "1"
+											"value": "193"
 										}
 									]
 								}
@@ -1206,11 +1229,17 @@
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
 										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
+										"type": "text",
+										"disabled": true
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"message\": \"new message\"\r\n}",
+									"raw": "{\r\n    \"message\": \"new message222\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1218,15 +1247,16 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/modcases/{{guildid}}/:caseid/comments/:commentid",
+									"raw": "{{url}}/api/v1/guilds/{{guildid}}/cases/:caseid/comments/:commentid",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"modcases",
+										"guilds",
 										"{{guildid}}",
+										"cases",
 										":caseid",
 										"comments",
 										":commentid"
@@ -1234,11 +1264,11 @@
 									"variable": [
 										{
 											"key": "caseid",
-											"value": "1"
+											"value": "193"
 										},
 										{
 											"key": "commentid",
-											"value": "7"
+											"value": "2"
 										}
 									]
 								}
@@ -1832,6 +1862,12 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
 										"type": "text"
 									}
 								],
@@ -1858,6 +1894,12 @@
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
 										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
+										"type": "text",
+										"disabled": true
 									}
 								],
 								"body": {
@@ -1892,6 +1934,12 @@
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
 										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
+										"type": "text",
+										"disabled": true
 									}
 								],
 								"url": {
@@ -1991,6 +2039,12 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
 										"type": "text"
 									}
 								],
@@ -2043,7 +2097,7 @@
 									"variable": [
 										{
 											"key": "userid",
-											"value": "382991040975732747"
+											"value": "402427944729051167 "
 										}
 									]
 								}
@@ -2058,6 +2112,11 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
 										"type": "text"
 									}
 								],
@@ -2142,6 +2201,12 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
 										"type": "text"
 									}
 								],
@@ -2196,6 +2261,12 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
 										"type": "text"
 									}
 								],
@@ -2215,7 +2286,7 @@
 									"variable": [
 										{
 											"key": "userid",
-											"value": "12"
+											"value": "272745086712938497"
 										}
 									]
 								}
@@ -2230,12 +2301,18 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"userA\": 14,\r\n    \"userB\": 12,\r\n    \"reason\": \"cool reason\"\r\n}",
+									"raw": "{\r\n    \"userA\": 272655001329991681,\r\n    \"userB\": \"223120222121492480\",\r\n    \"reason\": \"cool reason\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2243,7 +2320,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/guilds/{{guildid}}/usermap",
+									"raw": "{{url}}/api/v1/guilds/769932817009606656/usermap",
 									"host": [
 										"{{url}}"
 									],
@@ -2251,7 +2328,7 @@
 										"api",
 										"v1",
 										"guilds",
-										"{{guildid}}",
+										"769932817009606656",
 										"usermap"
 									]
 								}
@@ -2266,6 +2343,12 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
 										"type": "text"
 									}
 								],
@@ -2294,7 +2377,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "3"
+											"value": "9"
 										}
 									]
 								}
@@ -2309,6 +2392,12 @@
 									{
 										"key": "Cookie",
 										"value": "masz_access_token={{masz_access_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{masz_api_token}}",
 										"type": "text"
 									}
 								],
@@ -2337,7 +2426,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "10"
 										}
 									]
 								}
