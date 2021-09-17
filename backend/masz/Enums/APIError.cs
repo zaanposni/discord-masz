@@ -22,5 +22,6 @@ namespace masz.Enums
         TokenAlreadyRegistered = 17,
         CannotBeSameUser = 18,
         ResourceAlreadyExists = 19,
+        ModCaseDoesNotAllowComments = 20,
     }
 }
