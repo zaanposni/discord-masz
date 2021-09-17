@@ -50,7 +50,7 @@ namespace masz.Repositories
                    contains(obj.Suspect, search);
         }
 
-        protected bool contains(AutoModerationEventTableEntry obj, string search)
+        protected bool contains(AutoModerationEventExpandedView obj, string search)
         {
             if (obj == null) return false;
             return contains(obj.AutoModerationEvent, search) ||
@@ -97,7 +97,7 @@ namespace masz.Repositories
                    contains($"#{obj.CaseId}", search);
         }
 
-        protected bool contains(AutoModerationEvent obj, string search)
+        protected bool contains(AutoModerationEventView obj, string search)
         {
             if (obj == null) return false;
             return contains(obj.AutoModerationAction.ToString(), search) ||

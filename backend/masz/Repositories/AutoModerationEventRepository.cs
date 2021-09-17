@@ -22,6 +22,10 @@ namespace masz.Repositories
         {
             return await _database.CountAllModerationEventsForGuild(guildId);
         }
+        public async Task<int> CountEventsByGuildAndUser(ulong guildId, ulong userId)
+        {
+            return await _database.CountAllModerationEventsForSpecificUserOnGuild(guildId, userId);
+        }
         public async Task<AutoModerationEvent> RegisterEvent(AutoModerationEvent modEvent)
         {
             AutoModerationConfig modConfig = await AutoModerationConfigRepository.CreateDefault(_serviceProvider).GetConfigsByGuildAndType(modEvent.GuildId, modEvent.AutoModerationType);
@@ -75,6 +79,14 @@ namespace masz.Repositories
         {
             await _database.DeleteAllModerationEventsForGuild(guildId);
             await _database.SaveChangesAsync();
+        }
+        public async Task<List<AutoModerationEvent>> GetPagination(ulong guildId, int startPage = 1, int pageSize = 20)
+        {
+            return await _database.SelectAllModerationEventsForGuild(guildId, startPage, pageSize);
+        }
+        public async Task<List<AutoModerationEvent>> GetPaginationFilteredForUser(ulong guildId, ulong userId, int startPage = 1, int pageSize = 20)
+        {
+            return await _database.SelectAllModerationEventsForSpecificUserOnGuild(guildId, userId, startPage, pageSize);
         }
     }
 }
