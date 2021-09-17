@@ -23,5 +23,6 @@ namespace masz.Enums
         CannotBeSameUser = 18,
         ResourceAlreadyExists = 19,
         ModCaseDoesNotAllowComments = 20,
+        LastCommentAlreadyFromSuspect = 21,
     }
 }

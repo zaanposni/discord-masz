@@ -47,7 +47,7 @@ namespace masz.Repositories
             {
                 throw new CaseIsLockedException();
             }
-            if (! modCase.MarkedToDeleteAt.HasValue)
+            if (modCase.MarkedToDeleteAt.HasValue)
             {
                 throw new CaseMarkedToBeDeletedException();
             }
@@ -72,7 +72,7 @@ namespace masz.Repositories
             {
                 throw new CaseIsLockedException();
             }
-            if (! modCase.MarkedToDeleteAt.HasValue)
+            if (modCase.MarkedToDeleteAt.HasValue)
             {
                 throw new CaseMarkedToBeDeletedException();
             }
@@ -91,7 +91,7 @@ namespace masz.Repositories
             return newComment;
         }
 
-        public async Task DeleteComment(ulong guildId, int caseId, int commentId, string newMessage)
+        public async Task<ModCaseComment> DeleteComment(ulong guildId, int caseId, int commentId)
         {
             ModCase modCase = await ModCaseRepository.CreateWithBotIdentity(_serviceProvider).GetModCase(guildId, caseId);
 
@@ -99,19 +99,21 @@ namespace masz.Repositories
             {
                 throw new CaseIsLockedException();
             }
-            if (! modCase.MarkedToDeleteAt.HasValue)
+            if (modCase.MarkedToDeleteAt.HasValue)
             {
                 throw new CaseMarkedToBeDeletedException();
             }
 
-            ModCaseComment newComment = modCase.Comments.FirstOrDefault(c => c.Id == commentId);
-            if (newComment == null)
+            ModCaseComment deleteComment = modCase.Comments.FirstOrDefault(c => c.Id == commentId);
+            if (deleteComment == null)
             {
                 throw new ResourceNotFoundException();
             }
 
-            _database.DeleteSpecificModCaseComment(newComment);
+            _database.DeleteSpecificModCaseComment(deleteComment);
             await _database.SaveChangesAsync();
+
+            return deleteComment;
         }
     }
 }
