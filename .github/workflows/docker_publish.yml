@@ -18,22 +18,24 @@ jobs:
           echo "I found version: $VERSION"
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-      - name: Build and push backend
+      - name: Build backend
         run: |
           cd backend
           docker build -t ghcr.io/${{ github.repository_owner }}/masz_backend:latest -t ghcr.io/${{ github.repository_owner }}/masz_backend:${{ env.VERSION }} .
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u zaanposni --password-stdin
-          docker push ghcr.io/${{ github.repository_owner }}/masz_backend:latest
-          docker push ghcr.io/${{ github.repository_owner }}/masz_backend:${{ env.VERSION }}
 
-
-      - name: Build and push frontend
+      - name: Build frontend
         run: |
           cd nginx
           docker build -t ghcr.io/${{ github.repository_owner }}/masz_nginx:latest -t ghcr.io/${{ github.repository_owner }}/masz_nginx:${{ env.VERSION }} .
+
+      - name: Push images
+        run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u zaanposni --password-stdin
+          docker push ghcr.io/${{ github.repository_owner }}/masz_backend:latest
+          docker push ghcr.io/${{ github.repository_owner }}/masz_backend:${{ env.VERSION }}
           docker push ghcr.io/${{ github.repository_owner }}/masz_nginx:latest
           docker push ghcr.io/${{ github.repository_owner }}/masz_nginx:${{ env.VERSION }}
+
 
       - name: Calculate image sizes
         run: |
