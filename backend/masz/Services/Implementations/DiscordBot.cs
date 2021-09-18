@@ -23,7 +23,6 @@ namespace masz.Services
     {
         private readonly ILogger<DiscordClient> _logger;
         private readonly IInternalConfiguration _config;
-        private readonly IDatabase _context;
         private readonly ITranslator _translator;
         private readonly DiscordClient _client;
         private DiscordConfiguration _discordConfiguration;
@@ -31,11 +30,10 @@ namespace masz.Services
         private bool _isRunning = false;
         private DateTime? _lastDisconnect = null;
 
-        public DiscordBot(ILogger<DiscordClient> logger, IInternalConfiguration config, IDatabase context, ITranslator translator, IServiceProvider serviceProvider)
+        public DiscordBot(ILogger<DiscordClient> logger, IInternalConfiguration config, ITranslator translator, IServiceProvider serviceProvider)
         {
             _logger = logger;
             _config = config;
-            _context = context;
             _translator = translator;
             _serviceProvider = serviceProvider;
 

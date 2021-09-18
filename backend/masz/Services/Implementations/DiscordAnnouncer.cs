@@ -11,7 +11,6 @@ namespace masz.Services
     public class DiscordAnnouncer : IDiscordAnnouncer
     {
         private readonly ILogger<DiscordAnnouncer> _logger;
-        private readonly IDatabase _database;
         private readonly IInternalConfiguration _config;
         private readonly IDiscordAPIInterface _discordAPI;
         private readonly INotificationEmbedCreator _notificationEmbedCreator;
@@ -20,12 +19,11 @@ namespace masz.Services
 
         public DiscordAnnouncer() { }
 
-        public DiscordAnnouncer(ILogger<DiscordAnnouncer> logger, IInternalConfiguration config, IDiscordAPIInterface discordAPI, IDatabase context, INotificationEmbedCreator notificationContentCreator, ITranslator translator, IServiceProvider serviceProvider)
+        public DiscordAnnouncer(ILogger<DiscordAnnouncer> logger, IInternalConfiguration config, IDiscordAPIInterface discordAPI, INotificationEmbedCreator notificationContentCreator, ITranslator translator, IServiceProvider serviceProvider)
         {
             _logger = logger;
             _config = config;
             _discordAPI = discordAPI;
-            _database = context;
             _notificationEmbedCreator = notificationContentCreator;
             _translator = translator;
             _serviceProvider = serviceProvider;

@@ -16,7 +16,7 @@ namespace masz.Services
 
         public Translator() { }
 
-        public Translator(ILogger<Scheduler> logger, IInternalConfiguration config, IDatabase context, IServiceProvider serviceProvider)
+        public Translator(ILogger<Scheduler> logger, IInternalConfiguration config, IServiceProvider serviceProvider)
         {
             _logger = logger;
             _config = config;

@@ -1,6 +1,8 @@
 ﻿using DSharpPlus.Entities;
 using masz.Events;
+using masz.Exceptions;
 using masz.Models;
+using masz.Repositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -15,19 +17,17 @@ namespace masz.Services
     {
         private Dictionary<string, Identity> identities = new Dictionary<string, Identity>();
         private readonly ILogger<IdentityManager> _logger;
-        private readonly IDatabase _context;
         private readonly IInternalConfiguration _config;
         private readonly IDiscordAPIInterface _discord;
         private readonly IEventHandler _eventHandler;
         private readonly IServiceProvider _serviceProvider;
         public IdentityManager() { }
 
-        public IdentityManager(ILogger<IdentityManager> logger, IInternalConfiguration config, IDiscordAPIInterface discord, IDatabase context, IEventHandler eventHandler, IServiceProvider serviceProvider)
+        public IdentityManager(ILogger<IdentityManager> logger, IInternalConfiguration config, IDiscordAPIInterface discord, IEventHandler eventHandler, IServiceProvider serviceProvider)
         {
             _logger = logger;
             _config = config;
             _discord = discord;
-            _context = context;
             _eventHandler = eventHandler;
             _serviceProvider = serviceProvider;
         }
@@ -49,7 +49,12 @@ namespace masz.Services
                 {
                     _logger.LogError("Error while parsing token: " + e.Message);
                 }
-                identity = new TokenIdentity(token, _serviceProvider, await _context.GetAPIToken());
+                APIToken registeredToken = null;
+                try
+                {
+                    registeredToken = await TokenRepository.CreateDefault(_serviceProvider).GetToken();
+                } catch (ResourceNotFoundException) { }
+                identity = new TokenIdentity(token, _serviceProvider, registeredToken);
             } else {
                 key = httpContext.Request.Cookies["masz_access_token"];
                 _logger.LogInformation("Registering new DiscordIdentity.");
