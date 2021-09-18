@@ -14,22 +14,20 @@ namespace masz.Controllers
     [Route("api/v1/enums/")]
     public class PunishmentEnumController : SimpleController
     {
-        private readonly ILogger<PunishmentEnumController> logger;
+        private readonly ILogger<PunishmentEnumController> _logger;
 
         public PunishmentEnumController(ILogger<PunishmentEnumController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
         [HttpGet("punishment")]
         public IActionResult Punishment([FromQuery] Language? language = null) {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-
             List<EnumDto> enums = new List<EnumDto>();
-            enums.Add(new EnumDto((int) PunishmentType.None, translator.T(language).EnumsPunishmentWarn()));
-            enums.Add(new EnumDto((int) PunishmentType.Mute, translator.T(language).EnumsPunishmentMute()));
-            enums.Add(new EnumDto((int) PunishmentType.Kick, translator.T(language).EnumsPunishmentKick()));
-            enums.Add(new EnumDto((int) PunishmentType.Ban, translator.T(language).EnumsPunishmentBan()));
+            enums.Add(new EnumDto((int) PunishmentType.None, _translator.T(language).EnumsPunishmentWarn()));
+            enums.Add(new EnumDto((int) PunishmentType.Mute, _translator.T(language).EnumsPunishmentMute()));
+            enums.Add(new EnumDto((int) PunishmentType.Kick, _translator.T(language).EnumsPunishmentKick()));
+            enums.Add(new EnumDto((int) PunishmentType.Ban, _translator.T(language).EnumsPunishmentBan()));
 
             return Ok(enums);
         }

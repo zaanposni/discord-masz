@@ -12,21 +12,19 @@ namespace masz.Controllers
     [Route("api/v1/enums/")]
     public class ViewPermissionsEnumController : SimpleController
     {
-        private readonly ILogger<ViewPermissionsEnumController> logger;
+        private readonly ILogger<ViewPermissionsEnumController> _logger;
 
         public ViewPermissionsEnumController(ILogger<ViewPermissionsEnumController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
         [HttpGet("viewpermission")]
         public IActionResult ViewPermissions([FromQuery] Language? language = null) {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-
             List<EnumDto> enums = new List<EnumDto>();
-            enums.Add(new EnumDto((int) ViewPermission.Global, translator.T(language).EnumsViewPermissionGlobal()));
-            enums.Add(new EnumDto((int) ViewPermission.Guild, translator.T(language).EnumsViewPermissionGuild()));
-            enums.Add(new EnumDto((int) ViewPermission.Self, translator.T(language).EnumsViewPermissionSelf()));
+            enums.Add(new EnumDto((int) ViewPermission.Global, _translator.T(language).EnumsViewPermissionGlobal()));
+            enums.Add(new EnumDto((int) ViewPermission.Guild, _translator.T(language).EnumsViewPermissionGuild()));
+            enums.Add(new EnumDto((int) ViewPermission.Self, _translator.T(language).EnumsViewPermissionSelf()));
 
             return Ok(enums);
         }
