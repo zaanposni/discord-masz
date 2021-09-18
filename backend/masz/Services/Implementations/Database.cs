@@ -418,6 +418,11 @@ namespace masz.Services
             context.CaseTemplates.RemoveRange(templates);
         }
 
+        public async Task<int> CountAllCaseTemplates()
+        {
+            return await context.CaseTemplates.AsQueryable().CountAsync();
+        }
+
         // ==================================================================================
         //
         // Motd

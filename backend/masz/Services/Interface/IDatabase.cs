@@ -82,6 +82,7 @@ namespace masz.Services
         Task<List<CaseTemplate>> GetAllCaseTemplates();
         Task<List<CaseTemplate>> GetAllTemplatesFromUser(ulong userId);
         Task DeleteAllTemplatesForGuild(ulong guildId);
+        Task<int> CountAllCaseTemplates();
 
         Task<GuildMotd> GetMotdForGuild(ulong guildId);
         void SaveMotd(GuildMotd motd);
