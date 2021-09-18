@@ -38,7 +38,7 @@ namespace masz.Repositories
             }
             return motd;
         }
-        public async Task<GuildMotd> CreateOrUpdateUserNote(ulong guildId, string content, bool visible)
+        public async Task<GuildMotd> CreateOrUpdateMotd(ulong guildId, string content, bool visible)
         {
             GuildMotd motd;
             try {
