@@ -1,85 +1,67 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using masz.data;
-using masz.Dtos.DiscordAPIResponses;
-using masz.Dtos.ModCase;
 using masz.Models;
-using masz.Services;
+using masz.Models.Views;
+using masz.Repositories;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("api/v1/guilds/{guildid}")]
+    [Route("api/v1/guilds/{guildId}")]
     [Authorize]
     public class ModCaseTableController : SimpleCaseController
     {
-        private readonly ILogger<ModCaseTableController> logger;
+        private readonly ILogger<ModCaseTableController> _logger;
 
         public ModCaseTableController(ILogger<ModCaseTableController> logger, IServiceProvider serviceProvider) : base(serviceProvider, logger)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
         [HttpGet("modcasetable")]
-        public async Task<IActionResult> GetAllModCases([FromRoute] string guildid, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null) 
+        public async Task<IActionResult> GetAllModCases([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null)
         {
-            return await generateTable(guildid, ModcaseTableType.Default, startPage, search, ModcaseTableSortType.Default);
+            return await generateTable(guildId, ModcaseTableType.Default, startPage, search, ModcaseTableSortType.Default);
         }
 
         [HttpGet("punishmenttable")]
-        public async Task<IActionResult> GetAllPunishments([FromRoute] string guildid, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null) 
+        public async Task<IActionResult> GetAllPunishments([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null)
         {
-            return await generateTable(guildid, ModcaseTableType.OnlyPunishments, startPage, search, ModcaseTableSortType.Default);
+            return await generateTable(guildId, ModcaseTableType.OnlyPunishments, startPage, search, ModcaseTableSortType.Default);
         }
 
         [HttpGet("expiringpunishment")]
-        public async Task<IActionResult> GetExpiringPunishments([FromRoute] string guildid, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null) 
+        public async Task<IActionResult> GetExpiringPunishments([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null)
         {
-            return await generateTable(guildid, ModcaseTableType.OnlyPunishments, startPage, search, ModcaseTableSortType.SortByExpiring);
+            return await generateTable(guildId, ModcaseTableType.OnlyPunishments, startPage, search, ModcaseTableSortType.SortByExpiring);
         }
 
         [HttpGet("casebin")]
-        public async Task<IActionResult> GetDeletedModCases([FromRoute] string guildid, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null) 
+        public async Task<IActionResult> GetDeletedModCases([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null)
         {
-            return await generateTable(guildid, ModcaseTableType.OnlyBin, startPage, search, ModcaseTableSortType.SortByDeleting);
+            return await generateTable(guildId, ModcaseTableType.OnlyBin, startPage, search, ModcaseTableSortType.SortByDeleting);
         }
 
-        private async Task<IActionResult> generateTable(string guildid, ModcaseTableType tableType, int startPage=0, string search=null, ModcaseTableSortType sortBy = ModcaseTableSortType.Default) {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            User currentUser = await this.IsValidUser();
-            if (currentUser == null)
+        private async Task<IActionResult> generateTable(ulong guildId, ModcaseTableType tableType, int startPage=0, string search=null, ModcaseTableSortType sortBy = ModcaseTableSortType.Default) {
+            Identity identity = await GetIdentity();
+            GuildConfig guildConfig = await GetRegisteredGuild(guildId);
+
+            ulong userOnly = 0;
+            if (! await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
             {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            String userOnly = String.Empty;
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid))
-            {
-                userOnly = currentUser.Id;
+                userOnly = identity.GetCurrentUser().Id;
             }
             // ========================================================
 
-            if (await database.SelectSpecificGuildConfig(guildid) == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
-                return BadRequest("Guild not registered.");
-            }
-
             // SELECT
-            List<ModCase> modCases = await database.SelectAllModCasesForGuild(guildid);
+            List<ModCase> modCases = await ModCaseRepository.CreateDefault(_serviceProvider, identity).GetCasesForGuild(guildId);
 
             // ORDER BY
             switch(sortBy) {
@@ -90,11 +72,12 @@ namespace masz.Controllers
                     modCases = modCases.OrderBy(x => x.MarkedToDeleteAt).ToList();
                     break;
             }
-            
+
             // WHERE
-            if (! String.IsNullOrEmpty(userOnly)) {
+            if (userOnly!= 0) {
                 modCases = modCases.Where(x => x.UserId == userOnly).ToList();
             }
+
             switch(tableType) {
                 case ModcaseTableType.OnlyPunishments:
                     modCases = modCases.Where(x => x.PunishmentActive).ToList();
@@ -109,15 +92,15 @@ namespace masz.Controllers
                 modCases = modCases.Skip(startPage * 20).Take(20).ToList();
             }
 
-            bool publishMod = (await this.GuildIsRegistered(guildid)).PublishModeratorInfo || await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid);
+            bool publishMod = guildConfig.PublishModeratorInfo || await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId);
             List<ModCaseTableEntry> table = new List<ModCaseTableEntry>();
             foreach (var c in modCases)
             {
-                var entry = new ModCaseTableEntry() {
-                    ModCase = c,
-                    Suspect = await discord.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache),
-                    Moderator = await discord.FetchUserInfo(c.ModId, CacheBehavior.OnlyCache)
-                };
+                var entry = new ModCaseTableEntry(
+                    c,
+                    await _discordAPI.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache),
+                    await _discordAPI.FetchUserInfo(c.ModId, CacheBehavior.OnlyCache)
+                );
                 if (!publishMod) {
                     entry.RemoveModeratorInfo();
                 }
@@ -128,7 +111,7 @@ namespace masz.Controllers
                 table = table.Where(t =>
                     contains(t.ModCase.Title, search) ||
                     contains(t.ModCase.Description, search) ||
-                    contains(t.ModCase.GetPunishment(translator), search) ||
+                    contains(t.ModCase.GetPunishment(_translator), search) ||
                     contains(t.ModCase.Username, search) ||
                     contains(t.ModCase.Discriminator, search) ||
                     contains(t.ModCase.Nickname, search) ||
@@ -147,7 +130,6 @@ namespace masz.Controllers
                 ).ToList();
             }
 
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCases.");
             return Ok(table);
         }
 
@@ -172,7 +154,7 @@ namespace masz.Controllers
             return obj.Contains(search);
         }
 
-        private bool contains(User obj, string search) {
+        private bool contains(DiscordUserView obj, string search) {
             if (obj == null) {
                 return false;
             }

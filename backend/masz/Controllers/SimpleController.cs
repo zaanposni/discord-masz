@@ -19,6 +19,7 @@ namespace masz.Controllers
         protected readonly IScheduler _scheduler;
         protected readonly IDiscordAnnouncer _discordAnnouncer;
         protected readonly IServiceProvider _serviceProvider;
+        protected readonly ITranslator _translator;
         public SimpleController(IServiceProvider serviceProvider)
         {
             _identityManager = (IIdentityManager) serviceProvider.GetService(typeof(IIdentityManager));
@@ -27,6 +28,7 @@ namespace masz.Controllers
             _discordBot = (IDiscordBot) serviceProvider.GetService(typeof(IDiscordBot));
             _scheduler = (IScheduler) serviceProvider.GetService(typeof(IScheduler));
             _discordAnnouncer = (IDiscordAnnouncer) serviceProvider.GetService(typeof(IDiscordAnnouncer));
+            _translator = (ITranslator) serviceProvider.GetService(typeof(ITranslator));
             _serviceProvider = serviceProvider;
         }
 
