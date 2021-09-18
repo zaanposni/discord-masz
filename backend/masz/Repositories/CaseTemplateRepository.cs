@@ -12,6 +12,7 @@ namespace masz.Repositories
         private readonly bool _isBot;
         private readonly Identity _identity;
         private readonly DiscordUser _currentUser;
+        private readonly int MAX_ALLOWED_CASE_TEMPLATES_PER_USER = 20;
         private CaseTemplateRepository(IServiceProvider serviceProvider, Identity identity) : base(serviceProvider)
         {
             _currentUser = identity.GetCurrentUser();
@@ -33,6 +34,12 @@ namespace masz.Repositories
 
         public async Task<CaseTemplate> CreateTemplate(CaseTemplate template)
         {
+            var existingTemplates = await _database.GetAllTemplatesFromUser(template.UserId);
+            if (existingTemplates.Count >= MAX_ALLOWED_CASE_TEMPLATES_PER_USER)
+            {
+                throw new TooManyTemplatesCreatedException();
+            }
+
             template.CreatedAt = DateTime.UtcNow;
             template.UserId = _currentUser.Id;
 

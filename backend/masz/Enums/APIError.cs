@@ -26,5 +26,6 @@ namespace masz.Enums
         LastCommentAlreadyFromSuspect = 21,
         InvalidAutomoderationAction = 22,
         InvalidAutomoderationType = 23,
+        TooManyTemplates = 24,
     }
 }
