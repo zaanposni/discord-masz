@@ -69,15 +69,15 @@ export class ModcaseAddComponent implements OnInit {
     });
     this.punishmentFormGroup = this._formBuilder.group({
       punishmentType: ['', Validators.required],
-      dmNotification: [''],
-      handlePunishment: [''],
+      dmNotification: [false],
+      handlePunishment: [false],
       punishedUntil: ['']
     });
     this.filesFormGroup = this._formBuilder.group({
       files: ['']
     });
     this.optionsFormGroup = this._formBuilder.group({
-      sendNotification: ['']
+      sendNotification: [false]
     });
 
     this.optionsFormGroup.controls['sendNotification'].setValue(true);
@@ -91,6 +91,7 @@ export class ModcaseAddComponent implements OnInit {
         this.punishmentFormGroup.controls['handlePunishment'].setValue(false);
       } else {
         this.punishmentFormGroup.controls['handlePunishment'].setValue(true);
+        this.punishmentFormGroup.controls['dmNotification'].setValue(true);
       }
     });
 
@@ -259,9 +260,9 @@ export class ModcaseAddComponent implements OnInit {
           labels: this.caseLabels,
           punishmentType: this.punishmentFormGroup.value.punishmentType,
           punishedUntil: (typeof this.punishmentFormGroup.value.punishedUntil === 'string') ? this.punishmentFormGroup.value.punishedUntil : this.punishmentFormGroup.value.punishedUntil?.toISOString() ?? null,
-          sendPublicNotification: this.optionsFormGroup.value.sendNotification,
-          handlePunishment: this.punishmentFormGroup.value.handlePunishment,
-          announceDm: this.punishmentFormGroup.value.dmNotification
+          sendPublicNotification: this.optionsFormGroup.value.sendNotification ?? false,
+          handlePunishment: this.punishmentFormGroup.value.handlePunishment ?? false,
+          announceDm: this.punishmentFormGroup.value.dmNotification ?? false
         };
 
         const params = new HttpParams()

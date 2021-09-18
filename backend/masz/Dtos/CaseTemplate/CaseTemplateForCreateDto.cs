@@ -21,8 +21,11 @@ namespace masz.Dtos.ModCase
         [Required(ErrorMessage = "PunishmentType field is required")]
         public PunishmentType PunishmentType { get; set; }
         public DateTime? PunishedUntil { get; set; }
+        [Required]
         public bool sendPublicNotification { get; set; } = false;
+        [Required]
         public bool handlePunishment { get; set; } = false;
+        [Required]
         public bool announceDm { get; set; } = false;
     }
 }
