@@ -3,6 +3,7 @@ using DSharpPlus.Entities;
 using masz.Exceptions;
 using masz.Repositories;
 using masz.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -12,26 +13,21 @@ namespace masz.Models
 {
     public abstract class Identity
     {
-        protected readonly IServiceProvider _serviceProvider;
+        protected readonly IServiceScopeFactory _serviceScopeFactory;
         protected readonly IDiscordAPIInterface _discordAPI;
         protected readonly IInternalConfiguration _config;
         public DateTime ValidUntil { get; set; }
         protected string Token;
         protected DiscordUser currentUser;
         protected List<DiscordGuild> currentUserGuilds;
-        public Identity (string token, IServiceProvider serviceProvider)
+        public Identity (string token, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
         {
             Token = token;
             ValidUntil = DateTime.UtcNow.AddMinutes(15);
 
-            _serviceProvider = serviceProvider;
+            _serviceScopeFactory = serviceScopeFactory;
             _discordAPI = (IDiscordAPIInterface) serviceProvider.GetService(typeof(IDiscordAPIInterface));
             _config = (IInternalConfiguration) serviceProvider.GetService(typeof(IInternalConfiguration));
-        }
-
-        public IDatabase GetDatabase()
-        {
-            return (IDatabase) _serviceProvider.GetService(typeof(IDatabase));
         }
 
         /// <summary>
@@ -105,7 +101,10 @@ namespace masz.Models
                     GuildConfig guildConfig;
                     try
                     {
-                        guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(modCase.GuildId);
+                        using (var scope = _serviceScopeFactory.CreateScope())
+                        {
+                            guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(modCase.GuildId);
+                        }
                     } catch (ResourceNotFoundException)
                     {
                         return false;
@@ -196,7 +195,10 @@ namespace masz.Models
             GuildConfig guildConfig;
             try
             {
-                guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(guildId);
+                using (var scope = _serviceScopeFactory.CreateScope())
+                {
+                    guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guildId);
+                }
             } catch (ResourceNotFoundException)
             {
                 return false;

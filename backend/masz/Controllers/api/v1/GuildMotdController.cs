@@ -26,8 +26,9 @@ namespace masz.Controllers
         public async Task<IActionResult> GetMotd([FromRoute] ulong guildId)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
+            Identity identity = await GetIdentity();
 
-            GuildMotd motd = await GuildMotdRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetMotd(guildId);
+            GuildMotd motd = await GuildMotdRepository.CreateDefault(_serviceProvider, identity).GetMotd(guildId);
 
             DiscordUser creator = await _discordAPI.FetchUserInfo(motd.UserId, CacheBehavior.Default);
 

@@ -5,6 +5,7 @@ using masz.Models;
 using masz.Repositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -21,15 +22,17 @@ namespace masz.Services
         private readonly IDiscordAPIInterface _discord;
         private readonly IEventHandler _eventHandler;
         private readonly IServiceProvider _serviceProvider;
+        private readonly IServiceScopeFactory _serviceScopeFactory;
         public IdentityManager() { }
 
-        public IdentityManager(ILogger<IdentityManager> logger, IInternalConfiguration config, IDiscordAPIInterface discord, IEventHandler eventHandler, IServiceProvider serviceProvider)
+        public IdentityManager(ILogger<IdentityManager> logger, IInternalConfiguration config, IDiscordAPIInterface discord, IEventHandler eventHandler, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
         {
             _logger = logger;
             _config = config;
             _discord = discord;
             _eventHandler = eventHandler;
             _serviceProvider = serviceProvider;
+            _serviceScopeFactory = serviceScopeFactory;
         }
 
         private async Task<Identity> RegisterNewIdentity(HttpContext httpContext)
@@ -54,12 +57,12 @@ namespace masz.Services
                 {
                     registeredToken = await TokenRepository.CreateDefault(_serviceProvider).GetToken();
                 } catch (ResourceNotFoundException) { }
-                identity = new TokenIdentity(token, _serviceProvider, registeredToken);
+                identity = new TokenIdentity(token, _serviceProvider, registeredToken, _serviceScopeFactory);
             } else {
                 key = httpContext.Request.Cookies["masz_access_token"];
                 _logger.LogInformation("Registering new DiscordIdentity.");
                 string token = await httpContext.GetTokenAsync("Cookies", "access_token");
-                identity = await DiscordOAuthIdentity.Create(token, _serviceProvider);
+                identity = await DiscordOAuthIdentity.Create(token, _serviceProvider, _serviceScopeFactory);
             }
             identities[key] = identity;
             await _eventHandler.InvokeIdentityRegistered(new IdentityRegisteredEventArgs(identity));
@@ -69,7 +72,7 @@ namespace masz.Services
         private async Task<Identity> RegisterNewIdentity(DiscordUser user)
         {
             string key = $"/discord/cmd/{user.Id}";
-            Identity identity = await DiscordCommandIdentity.Create(user, _serviceProvider);
+            Identity identity = await DiscordCommandIdentity.Create(user, _serviceProvider, _serviceScopeFactory);
             identities[key] = identity;
             await _eventHandler.InvokeIdentityRegistered(new IdentityRegisteredEventArgs(identity));
             return identity;

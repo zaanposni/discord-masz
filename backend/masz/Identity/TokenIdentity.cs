@@ -1,4 +1,5 @@
 using DSharpPlus.Entities;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -10,7 +11,7 @@ namespace masz.Models
     public class TokenIdentity : Identity
     {
         private bool isValid = false;
-        public TokenIdentity (string token, IServiceProvider serviceProvider, APIToken dbToken) : base(token, serviceProvider)
+        public TokenIdentity (string token, IServiceProvider serviceProvider, APIToken dbToken, IServiceScopeFactory serviceScopeFactory) : base(token, serviceProvider, serviceScopeFactory)
         {
             if (dbToken != null) {
                 using var hmac = new HMACSHA512(dbToken.TokenSalt);
