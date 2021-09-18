@@ -52,6 +52,7 @@ services:
       - ENABLE_DEMO_MODE=${ENABLE_DEMO_MODE}
       - ENABLE_CUSTOM_PLUGINS=${ENABLE_CUSTOM_PLUGINS}
       - ABSOLUTE_PATH_TO_FILE_UPLOAD=/filehost/
+      - ENABLE_CORS=true
     networks:
       - appnetwork
     volumes:
