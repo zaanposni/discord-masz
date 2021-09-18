@@ -1,17 +1,27 @@
-using DSharpPlus.Entities;
+using System;
 
 namespace masz.Models
 {
     public class UserInviteView
     {
-        public UserInviteView(UserInvite userInvite, DiscordUser invitedUser, DiscordUser invitedBy)
+        public int Id { get; set; }
+        public string GuildId { get; set; }
+        public string TargetChannelId { get; set; }
+        public string JoinedUserId { get; set; }
+        public string UsedInvite { get; set; }
+        public string InviteIssuerId { get; set; }
+        public DateTime JoinedAt { get; set; }
+        public DateTime InviteCreatedAt { get; set; }
+        public UserInviteView(UserInvite userInvite)
         {
-            this.UserInvite = userInvite;
-            this.InvitedUser = invitedUser;
-            this.InvitedBy = invitedBy;
+            Id = userInvite.Id;
+            GuildId = userInvite.GuildId.ToString();
+            TargetChannelId = userInvite.TargetChannelId.ToString();
+            JoinedUserId = userInvite.JoinedUserId.ToString();
+            UsedInvite = userInvite.UsedInvite;
+            InviteIssuerId = userInvite.InviteIssuerId.ToString();
+            JoinedAt = userInvite.JoinedAt;
+            InviteCreatedAt = userInvite.InviteCreatedAt;
         }
-        public UserInvite UserInvite { get; set; }
-        public DiscordUser InvitedUser { get; set; }
-        public DiscordUser InvitedBy { get; set; }
     }
 }

@@ -88,5 +88,10 @@ namespace masz.Repositories
         {
             return await _database.SelectAllModerationEventsForSpecificUserOnGuild(guildId, userId, startPage, pageSize);
         }
+
+        public async Task<List<AutoModerationEvent>> GetAllEventsForUser(ulong userId)
+        {
+            return await _database.SelectAllModerationEventsForSpecificUser(userId);
+        }
     }
 }

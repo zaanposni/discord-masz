@@ -28,5 +28,6 @@ namespace masz.Enums
         InvalidAutomoderationType = 23,
         TooManyTemplates = 24,
         InvalidFilePath = 25,
+        NoGuildsRegistered = 26,
     }
 }

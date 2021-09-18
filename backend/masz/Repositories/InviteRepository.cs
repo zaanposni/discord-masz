@@ -56,5 +56,9 @@ namespace masz.Repositories
             await _database.DeleteInviteHistoryByGuild(guildId);
             await _database.SaveChangesAsync();
         }
+        public async Task<List<UserInvite>> GetInvitesByCode(string code)
+        {
+            return await _database.GetInvitesByCode(code);
+        }
     }
 }
