@@ -7,7 +7,7 @@ namespace masz.Exceptions
         public InvalidPathException(string message) : base(message, APIError.InvalidFilePath)
         {
         }
-        public InvalidPathException() : base("Invalid identity (token) encountered.", APIError.InvalidFilePath)
+        public InvalidPathException() : base("Invalid file path provided.", APIError.InvalidFilePath)
         {
         }
     }

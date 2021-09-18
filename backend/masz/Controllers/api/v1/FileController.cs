@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using masz.Dtos.ModCase;
+using masz.Exceptions;
 using masz.Models;
 using masz.Repositories;
 using Microsoft.AspNetCore.Authorization;
@@ -53,7 +55,13 @@ namespace masz.Controllers
             await RequirePermission(guildId, caseId, APIActionPermission.View);
             Identity identity = await GetIdentity();
 
-            return Ok(new { names = FileRepository.CreateDefault(_serviceProvider, identity).GetCaseFiles(guildId, caseId)});
+            List<string> files = new List<string>();
+            try
+            {
+                files = FileRepository.CreateDefault(_serviceProvider, identity).GetCaseFiles(guildId, caseId);
+            } catch (InvalidPathException) { }
+
+            return Ok(new { names = files});
         }
 
         [HttpPost]
