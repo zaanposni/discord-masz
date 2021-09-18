@@ -91,7 +91,7 @@ export class ModcaseViewComponent implements OnInit {
 
   private reloadFiles() {
     this.files.loading = true;
-    this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/files`).subscribe((data) => {
+    this.api.getSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/files`).subscribe((data) => {
       this.filesSubject$.next(data);
       this.files.loading = false;
     }, () => {
@@ -122,7 +122,7 @@ export class ModcaseViewComponent implements OnInit {
 
   private reloadCase() {
     this.modCase = { loading: true, content: undefined };
-    this.api.getSimpleData(`/guilds/${this.guildId}/modcases/${this.caseId}/view`).subscribe((data) => {
+    this.api.getSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/view`).subscribe((data) => {
       this.modCase.content = data;
       this.renderedDescription = this.renderDescription(data.modCase.description, this.guildId)
       this.punishment = convertModcaseToPunishmentString(this.modCase.content?.modCase, this.punishments?.content);
@@ -149,7 +149,7 @@ export class ModcaseViewComponent implements OnInit {
           .set("sendnotification", caseDeleteConfig.sendNotification ? 'true' : 'false')
           .set('forceDelete', caseDeleteConfig.forceDelete ? 'true' : 'false');
 
-        this.api.deleteData(`/modcases/${this.guildId}/${this.caseId}`, params).subscribe(() => {
+        this.api.deleteData(`/guilds/${this.guildId}/cases/${this.caseId}`, params).subscribe(() => {
           if (caseDeleteConfig.forceDelete) {
             this.toastr.success("Case deleted.");
             this.router.navigate(['guilds', this.guildId]);
@@ -203,7 +203,7 @@ export class ModcaseViewComponent implements OnInit {
 
   uploadFiles() {
     for (let file of this.filesToUpload.map(x => x.data)) {
-      this.api.postFile(`/guilds/${this.guildId}/modcases/${this.caseId}/files`, file).subscribe((data) => {
+      this.api.postFile(`/guilds/${this.guildId}/cases/${this.caseId}/files`, file).subscribe((data) => {
         this.toastr.success('File uploaded.');
         this.reloadFiles();
       }, (error) => {
@@ -213,7 +213,7 @@ export class ModcaseViewComponent implements OnInit {
   }
 
   deleteFile(filename: string) {
-    this.api.deleteData(`/guilds/${this.guildId}/modcases/${this.caseId}/files/${filename}`).subscribe((data) => {
+    this.api.deleteData(`/guilds/${this.guildId}/cases/${this.caseId}/files/${filename}`).subscribe((data) => {
       this.toastr.success("File deleted.");
       this.reloadFiles();
     }, () => {
@@ -222,7 +222,7 @@ export class ModcaseViewComponent implements OnInit {
   }
 
   deleteComment(commentId: number) {
-    this.api.deleteData(`/modcases/${this.guildId}/${this.caseId}/comments/${commentId}`).subscribe(() => {
+    this.api.deleteData(`/guilds/${this.guildId}/cases/${this.caseId}/comments/${commentId}`).subscribe(() => {
       this.toastr.success("Comment deleted");
       this.reloadCase();
     }, () => {
@@ -242,7 +242,7 @@ export class ModcaseViewComponent implements OnInit {
         const data = {
           "message": commentDialog.message
         }
-        this.api.putSimpleData(`/modcases/${this.guildId}/${this.caseId}/comments/${comment.id}`, data).subscribe(() => {
+        this.api.putSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/comments/${comment.id}`, data).subscribe(() => {
           this.toastr.success("Comment updated.");
           this.reloadCase();
         }, () => {
@@ -258,7 +258,7 @@ export class ModcaseViewComponent implements OnInit {
       "message": this.newComment.trim()
     };
 
-    this.api.postSimpleData(`/modcases/${this.guildId}/${this.caseId}/comments`, data).subscribe(() => {
+    this.api.postSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/comments`, data).subscribe(() => {
       this.newComment = "";
       this.toastr.success("Comment posted.");
       this.reloadCase();
@@ -268,7 +268,7 @@ export class ModcaseViewComponent implements OnInit {
   }
 
   lockCaseComments() {
-    this.api.postSimpleData(`/modcases/${this.guildId}/${this.caseId}/lock`, null).subscribe(() => {
+    this.api.postSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/lock`, null).subscribe(() => {
       this.toastr.success("Locked comments.");
       this.reloadCase();
     }, () => {
@@ -277,7 +277,7 @@ export class ModcaseViewComponent implements OnInit {
   }
 
   unlockCaseComments() {
-    this.api.deleteData(`/modcases/${this.guildId}/${this.caseId}/lock`).subscribe(() => {
+    this.api.deleteData(`/guilds/${this.guildId}/cases/${this.caseId}/lock`).subscribe(() => {
       this.toastr.success("Unlocked comments.");
       this.reloadCase();
     }, () => {
@@ -292,7 +292,7 @@ export class ModcaseViewComponent implements OnInit {
   renderDescription(str: string, guildId: string): string {
     return this.safe_tags_replace(str).replace(/#(\d+)/g, function(match: any, id: any) {
       return `<a href="/guilds/${guildId}/cases/${id}">#${id}</a>`
-    });
+    });  // TODO: make this a routerLink?
   }
 }
 

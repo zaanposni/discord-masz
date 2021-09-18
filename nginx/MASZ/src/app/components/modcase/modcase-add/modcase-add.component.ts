@@ -222,7 +222,7 @@ export class ModcaseAddComponent implements OnInit {
       .set('handlePunishment', this.punishmentFormGroup.value.handlePunishment ? 'true' : 'false')
       .set('announceDm', this.punishmentFormGroup.value.dmNotification ? 'true' : 'false');
 
-    this.api.postSimpleData(`/modcases/${this.guildId}`, data, params, true, true).subscribe((data) => {
+    this.api.postSimpleData(`/guilds/${this.guildId}/cases`, data, params, true, true).subscribe((data) => {
       const caseId = data.caseId;
       this.router.navigate(['guilds', this.guildId, 'cases', caseId], { queryParams: { 'reloadfiles': this.filesToUpload.length ?? '0' } });
       this.savingCase = false;
@@ -278,7 +278,7 @@ export class ModcaseAddComponent implements OnInit {
   }
 
   uploadFile(file: any, caseId: string) {
-    this.api.postFile(`/guilds/${this.guildId}/modcases/${caseId}/files`, file).subscribe((data) => {
+    this.api.postFile(`/guilds/${this.guildId}/cases/${caseId}/files`, file).subscribe((data) => {
       this.toastr.success(`File ${file.data.name} uploaded.`);
     }, (error) => {
       this.toastr.error('Failed to upload file.');

@@ -94,7 +94,7 @@ export class ModcaseEditComponent implements OnInit {
     this.members = { loading: true, content: [] };
     this.oldCase = { loading: true, content: undefined };
 
-    this.api.getSimpleData(`/modcases/${this.guildId}/${this.caseId}`).subscribe((data) => {
+    this.api.getSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}`).subscribe((data) => {
       this.oldCase.content = data;
       this.applyOldCase(data);
       this.oldCase.loading = false;
@@ -167,7 +167,7 @@ export class ModcaseEditComponent implements OnInit {
       .set('handlePunishment', this.punishmentFormGroup.value.handlePunishment ? 'true' : 'false')
       .set('announceDm', this.punishmentFormGroup.value.dmNotification ? 'true' : 'false');
 
-      this.api.putSimpleData(`/modcases/${this.guildId}/${this.caseId}`, data, params, true, true).subscribe((data) => {
+      this.api.putSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}`, data, params, true, true).subscribe((data) => {
         const caseId = data.caseId;
         this.router.navigate(['guilds', this.guildId, 'cases', caseId]);
         this.savingCase = false;
