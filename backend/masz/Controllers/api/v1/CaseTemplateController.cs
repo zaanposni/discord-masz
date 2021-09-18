@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using masz.Dtos.ModCase;
 using masz.Models;
+using masz.Models.Views;
 using masz.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -45,7 +46,9 @@ namespace masz.Controllers
                 handlePunishment = templateDto.handlePunishment
             };
 
-            return StatusCode(201, await CaseTemplateRepository.CreateDefault(_serviceProvider, currentIdentity).CreateTemplate(template));
+            CaseTemplate createdTemplate = await CaseTemplateRepository.CreateDefault(_serviceProvider, currentIdentity).CreateTemplate(template);
+
+            return StatusCode(201, new CaseTemplateView(createdTemplate));
         }
 
         [HttpDelete("{templateId}")]
@@ -62,7 +65,9 @@ namespace masz.Controllers
                 return Unauthorized();
             }
 
-            return Ok(repo.DeleteTemplate(template));
+            await repo.DeleteTemplate(template);
+
+            return Ok(new CaseTemplateView(template));
         }
     }
 }
