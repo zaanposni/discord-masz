@@ -291,7 +291,7 @@
                             <mat-icon mat-list-icon>description</mat-icon>
                             <div mat-line>{{file}}</div>
                             <div class="d-flex flex-row">
-                                <a mat-raised-button href="/api/v1/guilds/{{ this.guildId }}/modcases/{{ this.caseId }}/files/{{ file }}" color="accent" target="_blank">
+                                <a mat-raised-button href="/api/v1/guilds/{{ this.guildId }}/cases/{{ this.caseId }}/files/{{ file }}" color="accent" target="_blank">
                                     View
                                 </a>
                                 <button mat-raised-button color="primary" *ngIf="this.isModOrHigher" class="ml-2"
