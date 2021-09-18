@@ -258,6 +258,18 @@ namespace masz.Repositories
         {
             return await _database.CountAllModCasesForGuild(guildId);
         }
+        public async Task<int> CountAllPunishmentsForGuild(ulong guildId)
+        {
+            return await _database.CountAllActivePunishmentsForGuild(guildId);
+        }
+        public async Task<int> CountAllActiveMutesForGuild(ulong guildId)
+        {
+            return await _database.CountAllActivePunishmentsForGuild(guildId, PunishmentType.Mute);
+        }
+        public async Task<int> CountAllActiveBansForGuild(ulong guildId)
+        {
+            return await _database.CountAllActivePunishmentsForGuild(guildId, PunishmentType.Ban);
+        }
         public async Task<List<ModCase>> SearchCases(ulong guildId, string searchString)
         {
             List<ModCase> modCases = await _database.SelectAllModCasesForGuild(guildId);
@@ -336,6 +348,16 @@ namespace masz.Repositories
             }
 
             return modCase;
+        }
+
+        public async Task<List<DbCount>> GetCounts(ulong guildId, DateTime since)
+        {
+            return await _database.GetCaseCountGraph(guildId, since);
+        }
+
+        public async Task<List<DbCount>> GetPunishmentCounts(ulong guildId, DateTime since)
+        {
+            return await _database.GetPunishmentCountGraph(guildId, since);
         }
     }
 }

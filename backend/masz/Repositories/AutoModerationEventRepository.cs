@@ -93,5 +93,29 @@ namespace masz.Repositories
         {
             return await _database.SelectAllModerationEventsForSpecificUser(userId);
         }
+        public async Task<List<DbCount>> GetCounts(ulong guildId, DateTime since)
+        {
+            return await _database.GetModerationCountGraph(guildId, since);
+        }
+        public async Task<List<AutoModerationTypeSplit>> GetCountsByType(ulong guildId, DateTime since)
+        {
+            return await _database.GetModerationSplitGraph(guildId, since);
+        }
+        public async Task<List<AutoModerationEvent>> SearchInGuild(ulong guildId, string searchString)
+        {
+            List<AutoModerationEvent> events = await _database.SelectAllModerationEventsForGuild(guildId);
+            List<AutoModerationEvent> filteredEvents = new List<AutoModerationEvent>();
+            foreach (var c in events)
+            {
+                var entry = new AutoModerationEventExpandedView(
+                    c,
+                    await _discordAPI.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache)
+                );
+                if (contains(entry, searchString)) {
+                    filteredEvents.Add(c);
+                }
+            }
+            return filteredEvents;
+        }
     }
 }

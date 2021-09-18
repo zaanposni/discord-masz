@@ -8,15 +8,13 @@ namespace masz.Models
 {
     public class CaseExpandedView
     {
-        public CaseExpandedView(ModCase modCase, DiscordUser moderator, DiscordUser lastModerator, DiscordUser suspect, DiscordUser lockedBy, DiscordUser deletedBy)
+        public CaseExpandedView(ModCase modCase, DiscordUser moderator, DiscordUser lastModerator, DiscordUser suspect, List<CommentExpandedView> comments)
         {
             ModCase = new CaseView(modCase);
             Moderator = DiscordUserView.CreateOrDefault(moderator);
             LastModerator = DiscordUserView.CreateOrDefault(lastModerator);
             Suspect = DiscordUserView.CreateOrDefault(suspect);
-            LockedBy = DiscordUserView.CreateOrDefault(lockedBy);
-            DeletedBy = DiscordUserView.CreateOrDefault(deletedBy);
-            if (modCase.Comments != null) Comments = modCase.Comments.Select(x => new CommentsView(x)).ToList();
+            Comments = comments;
 
             if (modCase.PunishedUntil != null) {
                 if (modCase.PunishedUntil > modCase.CreatedAt) {
@@ -37,7 +35,7 @@ namespace masz.Models
         public DiscordUserView Suspect { get; set; }
         public DiscordUserView LockedBy { get; set; }
         public DiscordUserView DeletedBy { get; set; }
-        public List<CommentsView> Comments { get; set; }
+        public List<CommentExpandedView> Comments { get; set; }
         public double? PunishmentProgress { get; set; }
 
         public void RemoveModeratorInfo()
