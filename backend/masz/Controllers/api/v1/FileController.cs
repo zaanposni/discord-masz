@@ -59,7 +59,7 @@ namespace masz.Controllers
             try
             {
                 files = FileRepository.CreateDefault(_serviceProvider, identity).GetCaseFiles(guildId, caseId);
-            } catch (InvalidPathException) { }
+            } catch (ResourceNotFoundException) { }
 
             return Ok(new { names = files});
         }
@@ -71,7 +71,7 @@ namespace masz.Controllers
             await RequirePermission(guildId, caseId, APIActionPermission.Edit);
             Identity identity = await GetIdentity();
 
-            return Ok(new { path = FileRepository.CreateDefault(_serviceProvider, identity).UploadFile(uploadedFile.File, guildId, caseId)});
+            return Ok(new { path = await FileRepository.CreateDefault(_serviceProvider, identity).UploadFile(uploadedFile.File, guildId, caseId)});
         }
     }
 }

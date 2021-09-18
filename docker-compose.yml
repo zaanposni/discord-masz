@@ -50,6 +50,7 @@ services:
       - DEFAULT_LANGUAGE=${DEFAULT_LANGUAGE}
       - ENABLE_DEMO_MODE=${ENABLE_DEMO_MODE}
       - ENABLE_CUSTOM_PLUGINS=${ENABLE_CUSTOM_PLUGINS}
+      - ABSOLUTE_PATH_TO_FILE_UPLOAD=/filehost/
     networks:
       - appnetwork
     volumes:
