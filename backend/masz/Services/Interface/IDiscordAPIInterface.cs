@@ -93,7 +93,7 @@ namespace masz.Services
         Task<bool> RemoveGuildUserRole(ulong guildId, ulong userId, ulong roleId);
         Task<bool> KickGuildUser(ulong guildId, ulong userId);
         Task<DiscordChannel> CreateDmChannel(ulong userId);
-        Task<bool> SendMessage(ulong channelId, string content, DiscordEmbed embed);
+        Task<bool> SendMessage(ulong channelId, string content);
         Task<bool> SendDmMessage(ulong userId, string content);
         Task<bool> ExecuteWebhook(string url, DiscordEmbed embed = null, string content = null);
     }

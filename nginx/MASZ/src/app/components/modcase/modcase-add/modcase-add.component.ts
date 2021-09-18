@@ -221,7 +221,7 @@ export class ModcaseAddComponent implements OnInit {
     const params = new HttpParams()
       .set('sendnotification', this.optionsFormGroup.value.sendNotification ? 'true' : 'false')
       .set('handlePunishment', this.punishmentFormGroup.value.handlePunishment ? 'true' : 'false')
-      .set('announceDm', this.punishmentFormGroup.value.dmNotification ? 'true' : 'false');
+      .set('sendDmNotification', this.punishmentFormGroup.value.dmNotification ? 'true' : 'false');
 
     this.api.postSimpleData(`/guilds/${this.guildId}/cases`, data, params, true, true).subscribe((data) => {
       const caseId = data.caseId;

@@ -100,7 +100,7 @@ namespace masz.Services
                 bans = (await guild.GetBansAsync()).ToList();
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to fetch guild bans for guild '{guildId}' from API.", e);
+                _logger.LogError(e, $"Failed to fetch guild bans for guild '{guildId}' from API.");
                 return FallBackToCache<List<DiscordBan>>(cacheKey, cacheBehavior);
             }
 
@@ -136,7 +136,7 @@ namespace masz.Services
                 ban = await guild.GetBanAsync(userId);
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to fetch guild ban for guild '{guildId}' and user '{userId}' from API.", e);
+                _logger.LogError(e, $"Failed to fetch guild ban for guild '{guildId}' and user '{userId}' from API.");
                 return FallBackToCache<DiscordBan>(cacheKey, cacheBehavior);
             }
 
@@ -166,7 +166,7 @@ namespace masz.Services
                 user = await _discordBot.GetClient().GetUserAsync(userId);
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to fetch user '{userId}' from API.", e);
+                _logger.LogError(e, $"Failed to fetch user '{userId}' from API.");
                 return FallBackToCache<DiscordUser>(cacheKey, cacheBehavior);
             }
 
@@ -197,7 +197,7 @@ namespace masz.Services
                 members = (await guild.GetAllMembersAsync()).ToList();
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to fetch members for guild '{guildId}' from API.", e);
+                _logger.LogError(e, $"Failed to fetch members for guild '{guildId}' from API.");
                 return FallBackToCache<List<DiscordMember>>(cacheKey, cacheBehavior);
             }
 
@@ -231,7 +231,7 @@ namespace masz.Services
                 user = await GetOAuthClient(token).GetCurrentUserAsync();
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to fetch current user for token '{token}' from API.", e);
+                _logger.LogError(e, $"Failed to fetch current user for token '{token}' from API.");
                 return FallBackToCache<DiscordUser>(cacheKey, cacheBehavior);
             }
 
@@ -277,7 +277,7 @@ namespace masz.Services
                 channels = (await guild.GetChannelsAsync()).ToList();
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to fetch guild channels for guild '{guildId}' from API.", e);
+                _logger.LogError(e, $"Failed to fetch guild channels for guild '{guildId}' from API.");
                 return FallBackToCache<List<DiscordChannel>>(cacheKey, cacheBehavior);
             }
 
@@ -306,7 +306,7 @@ namespace masz.Services
                 guild = await _discordBot.GetClient().GetGuildAsync(guildId);
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to fetch guild '{guildId}' from API.", e);
+                _logger.LogError(e, $"Failed to fetch guild '{guildId}' from API.");
                 return FallBackToCache<DiscordGuild>(cacheKey, cacheBehavior);
             }
 
@@ -335,7 +335,7 @@ namespace masz.Services
                 guilds = (await GetOAuthClient(token).GetCurrentUserGuildsAsync(limit: 200)).ToList();  // max 200 guilds
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to fetch guilds of current user for token '{token}' from API.", e);
+                _logger.LogError(e, $"Failed to fetch guilds of current user for token '{token}' from API.");
                 return FallBackToCache<List<DiscordGuild>>(cacheKey, cacheBehavior);
             }
 
@@ -365,7 +365,7 @@ namespace masz.Services
                 member = await g.GetMemberAsync(userId);
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to fetch guild '{guildId}' member '{userId}' from API.", e);
+                _logger.LogError(e, $"Failed to fetch guild '{guildId}' member '{userId}' from API.");
                 return FallBackToCache<DiscordMember>(cacheKey, cacheBehavior);
             }
 
@@ -390,7 +390,7 @@ namespace masz.Services
                 await guild.BanMemberAsync(userId, 0);
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to ban user '{userId}' from guild '{guildId}'.", e);
+                _logger.LogError(e, $"Failed to ban user '{userId}' from guild '{guildId}'.");
                 return false;
             }
             return true;
@@ -406,7 +406,7 @@ namespace masz.Services
                 await guild.UnbanMemberAsync(userId);
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to unban user '{userId}' from guild '{guildId}'.", e);
+                _logger.LogError(e, $"Failed to unban user '{userId}' from guild '{guildId}'.");
                 return false;
             }
             return true;
@@ -425,7 +425,7 @@ namespace masz.Services
                 await member.GrantRoleAsync(guild.Roles[roleId]);
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to grant user '{userId}' from guild '{guildId}' role '{roleId}'.", e);
+                _logger.LogError(e, $"Failed to grant user '{userId}' from guild '{guildId}' role '{roleId}'.");
                 return false;
             }
             return true;
@@ -444,7 +444,7 @@ namespace masz.Services
                 await member.RevokeRoleAsync(guild.Roles[roleId]);
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to revoke user '{userId}' from guild '{guildId}' role '{roleId}'.", e);
+                _logger.LogError(e, $"Failed to revoke user '{userId}' from guild '{guildId}' role '{roleId}'.");
                 return false;
             }
             return true;
@@ -460,7 +460,7 @@ namespace masz.Services
                 await member.RemoveAsync();
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to kick user '{userId}' from guild '{guildId}'.", e);
+                _logger.LogError(e, $"Failed to kick user '{userId}' from guild '{guildId}'.");
                 return false;
             }
             return true;
@@ -486,7 +486,7 @@ namespace masz.Services
                 channel = await _discordRestClient.CreateDmAsync(userId);
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to create dm with user '{userId}'.", e);
+                _logger.LogError(e, $"Failed to create dm with user '{userId}'.");
                 return FallBackToCache<DiscordChannel>(cacheKey, CacheBehavior.Default);
             }
 
@@ -495,17 +495,17 @@ namespace masz.Services
             return channel;
         }
 
-        public async Task<bool> SendMessage(ulong channelId, string content = null, DiscordEmbed embed = null)
+        public async Task<bool> SendMessage(ulong channelId, string content = null)
         {
             // request ---------------------------
             try
             {
                 DiscordChannel channel = await  _discordBot.GetClient().GetChannelAsync(channelId);
                 if (channel == null) return false;
-                await channel.SendMessageAsync(content, embed);
+                await channel.SendMessageAsync(content);
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to send message to channel '{channelId}'.", e);
+                _logger.LogError(e, $"Failed to send message to channel '{channelId}'.");
                 return false;
             }
             return true;
@@ -540,7 +540,7 @@ namespace masz.Services
                 token = splitted[splitted.Length - 1];
             } catch (Exception e)
             {
-                _logger.LogError($"Failed to parse webhook url '{url}'.", e);
+                _logger.LogError(e, $"Failed to parse webhook url '{url}'.");
                 return false;
             }
             return (await _discordRestClient.ExecuteWebhookAsync(id, token, builder)) != null;
