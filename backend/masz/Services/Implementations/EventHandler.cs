@@ -25,8 +25,14 @@ namespace masz.Services
         public async Task InvokeIdentityRegistered(IdentityRegisteredEventArgs eventArgs) => await Invoke(OnIdentityRegistered, eventArgs);
         public async Task InvokeTokenCreated(TokenCreatedEventArgs eventArgs) => await Invoke(OnTokenCreated, eventArgs);
         public async Task InvokeTokenDeleted(TokenDeletedEventArgs eventArgs) => await Invoke(OnTokenDeleted, eventArgs);
+        public async Task InvokeAutoModerationConfigUpdated(AutoModerationConfigUpdatedEventArgs eventArgs) => await Invoke(OnAutoModerationConfigUpdated, eventArgs);
+        public async Task InvokeAutoModerationConfigDeleted(AutoModerationConfigDeletedEventArgs eventArgs) => await Invoke(OnAutoModerationConfigDeleted, eventArgs);
+        public async Task InvokeAutoModerationEventRegistered(AutoModerationEventRegisteredEventArgs eventArgs) => await Invoke(OnAutoModerationEventRegistered, eventArgs);
         public event AsyncEventHandler<IdentityRegisteredEventArgs> OnIdentityRegistered;
         public event AsyncEventHandler<TokenCreatedEventArgs> OnTokenCreated;
         public event AsyncEventHandler<TokenDeletedEventArgs> OnTokenDeleted;
+        public event AsyncEventHandler<AutoModerationConfigUpdatedEventArgs> OnAutoModerationConfigUpdated;
+        public event AsyncEventHandler<AutoModerationConfigDeletedEventArgs> OnAutoModerationConfigDeleted;
+        public event AsyncEventHandler<AutoModerationEventRegisteredEventArgs> OnAutoModerationEventRegistered;
     }
 }

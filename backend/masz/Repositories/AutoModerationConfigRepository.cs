@@ -69,6 +69,9 @@ namespace masz.Repositories
 
             _database.PutModerationConfig(autoModerationConfig);
             await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeAutoModerationConfigUpdated(new AutoModerationConfigUpdatedEventArgs(autoModerationConfig));
+
             return autoModerationConfig;
         }
 
@@ -81,8 +84,12 @@ namespace masz.Repositories
         public async Task<AutoModerationConfig> DeleteConfigForGuild(ulong guildId, AutoModerationType type)
         {
             AutoModerationConfig config = await GetConfigsByGuildAndType(guildId, type);
+
             _database.DeleteSpecificModerationConfig(config);
             await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeAutoModerationConfigDeleted(new AutoModerationConfigDeletedEventArgs(config));
+
             return config;
         }
     }

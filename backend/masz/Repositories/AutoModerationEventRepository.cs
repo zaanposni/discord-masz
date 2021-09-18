@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DSharpPlus.Entities;
+using masz.Events;
 using masz.Models;
 using Microsoft.Extensions.Logging;
 
@@ -73,6 +74,8 @@ namespace masz.Repositories
             await _database.SaveModerationEvent(modEvent);
             await _database.SaveChangesAsync();
 
+            await _eventHandler.InvokeAutoModerationEventRegistered(new AutoModerationEventRegisteredEventArgs(modEvent));
+
             return modEvent;
         }
         public async Task DeleteEventsForGuild(ulong guildId)
@@ -88,7 +91,6 @@ namespace masz.Repositories
         {
             return await _database.SelectAllModerationEventsForSpecificUserOnGuild(guildId, userId, startPage, pageSize);
         }
-
         public async Task<List<AutoModerationEvent>> GetAllEventsForUser(ulong userId)
         {
             return await _database.SelectAllModerationEventsForSpecificUser(userId);
