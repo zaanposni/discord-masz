@@ -6,6 +6,7 @@ from .command_registration import register_command as _register_command
 from .command_registration import on_command_error
 from .command_definition import CommandDefinition
 from .record_usage import record_usage
+from .defer_cmd import defer_cmd
 from .help_service import help_service
 
 

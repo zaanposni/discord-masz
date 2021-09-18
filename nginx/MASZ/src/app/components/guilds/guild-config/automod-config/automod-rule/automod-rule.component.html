@@ -4,7 +4,7 @@
           [(ngModel)]="this.enableConfig"
           (ngModelChange)="onRuleToggle($event)"
           [labelPosition]="'after'">
-          {{ defintion.title }}
+          {{ definition.title }}
         </mat-checkbox>
     </span>
     <mat-horizontal-stepper linear #stepper *ngIf="this.enableConfig" color="accent">
@@ -14,26 +14,27 @@
             <ng-template matStepLabel>Event</ng-template>
             <div>
               <div class="d-flex flex-row align-items-center">
-                <span>{{ this.defintion.description }}  </span>
-                <mat-icon matTooltip="{{ this.defintion.tooltip }}" *ngIf="this.defintion.tooltip">
+                <span>{{ this.definition.description }}  </span>
+                <mat-icon matTooltip="{{ this.definition.tooltip }}" *ngIf="this.definition.tooltip">
                     help_outline
                 </mat-icon>
               </div>
-              <a href="{{ this.defintion.link }}" target="_blank" *ngIf="this.defintion.link"
+              <a href="{{ this.definition.link }}" target="_blank" *ngIf="this.definition.link"
                  rel="noopener" class="p-2" mat-raised-button color="accent">
-                {{ this.defintion.linkText }}
+                {{ this.definition.linkText }}
               </a>
             </div>
 
-            <mat-form-field *ngIf="this.defintion.showLimitField">
+            <mat-form-field *ngIf="this.definition.showLimitField">
               <mat-label>Upper limit</mat-label>
               <input type="number" matInput formControlName="limit" required>
             </mat-form-field><br/>
-            <mat-form-field *ngIf="this.defintion.showTimeLimitField">
-              <mat-label>Time limit (minutes)</mat-label>
+            <mat-form-field *ngIf="this.definition.showTimeLimitField">
+              <mat-label *ngIf="this.definition.timeLimitFieldMessage">{{ this.definition.timeLimitFieldMessage }}</mat-label>
+              <mat-label *ngIf="!this.definition.timeLimitFieldMessage">Time limit (minutes)</mat-label>
               <input type="number" matInput formControlName="timeLimit" required>
             </mat-form-field>
-            <mat-form-field *ngIf="this.defintion.showCustomField">
+            <mat-form-field *ngIf="this.definition.showCustomField">
               <mat-label>Custom words (divide by newline)</mat-label>
               <textarea matInput type="text" formControlName="customWord" [attr.rows]="this.initRowsCustomWords" required></textarea>
             </mat-form-field>
@@ -42,7 +43,7 @@
             </div>
           </form>
         </mat-step>
-        <!-- Filter ####################################################################################################### -->
+        <!-- Filter #########################################t############################################################## -->
         <mat-step [stepControl]="filterForm" [optional]='true'>
           <form [formGroup]="filterForm">
             <ng-template matStepLabel>Filter</ng-template>

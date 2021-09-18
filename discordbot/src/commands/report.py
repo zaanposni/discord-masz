@@ -1,7 +1,6 @@
-import re
 import requests
 
-from discord_slash.context import MenuContext
+from discord_slash.context import MenuContext, SlashContext
 from discord_slash.model import ContextMenuType
 
 from data import get_cached_guild_config
@@ -30,6 +29,8 @@ async def _report(ctx):
                         r = requests.post(guild["ModInternalNotificationWebhook"], json=data)
                         if r.status_code == 204:
                             await ctx.message.add_reaction("✅")
+                else:
+                    await ctx.send("This guild does not have a webhook set up for reporting.")
 
 
 report = CommandDefinition(
@@ -60,3 +61,5 @@ async def report_menu(ctx: MenuContext):
                 r = requests.post(guild["ModInternalNotificationWebhook"], json=data)
                 if r.status_code == 204:
                     await ctx.send("Report sent.", hidden=True)
+            else:
+                await ctx.send("This guild does not have a webhook set up for reporting.", hidden=True)

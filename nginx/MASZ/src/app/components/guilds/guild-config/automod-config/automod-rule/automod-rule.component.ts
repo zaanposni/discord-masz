@@ -23,7 +23,7 @@ export class AutomodRuleComponent implements OnInit {
   eventForm!: FormGroup;
   filterForm!: FormGroup;
   actionForm!: FormGroup;
-  @Input() defintion!: AutoModRuleDefinition;
+  @Input() definition!: AutoModRuleDefinition;
   @Input() guildChannels!: GuildChannel[];
   @Input() guild!: Guild;
   @Input() initialConfigs!: Promise<AutoModerationConfig[]>;
@@ -39,9 +39,9 @@ export class AutomodRuleComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventForm = this._formBuilder.group({
-      limit: ['', this.defintion.showLimitField ? Validators.min(-1) : null],
-      timeLimit: ['', this.defintion.showTimeLimitField ? Validators.min(-1) : null],
-      customWord: ['', this.defintion.showCustomField ? Validators.required : null]
+      limit: ['', this.definition.showLimitField ? Validators.min(-1) : null],
+      timeLimit: ['', this.definition.showTimeLimitField ? Validators.min(-1) : null],
+      customWord: ['', this.definition.showCustomField ? Validators.required : null]
     });
     this.filterForm = this._formBuilder.group({
       excludeRoles: [''],
@@ -73,9 +73,9 @@ export class AutomodRuleComponent implements OnInit {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
     this.initialConfigs.then((data: AutoModerationConfig[]) => {
       // if type in initial loaded configs
-      if (data.filter(x => x.autoModerationType == this.defintion.type).length) {
+      if (data.filter(x => x.autoModerationType == this.definition.type).length) {
         this.enableConfig = true;
-        this.applyConfig(data.filter(x => x.autoModerationType == this.defintion.type)[0]);
+        this.applyConfig(data.filter(x => x.autoModerationType == this.definition.type)[0]);
       } else {
         this.enableConfig = false;
       }
@@ -104,18 +104,18 @@ export class AutomodRuleComponent implements OnInit {
 
   reload() {
     this.enableConfig = false;
-    this.api.getSimpleData(`/guilds/${this.guildId}/automoderationconfig/${this.defintion.type}`).subscribe((data) => {
+    this.api.getSimpleData(`/guilds/${this.guildId}/automoderationconfig/${this.definition.type}`).subscribe((data) => {
       this.enableConfig = true;
       this.applyConfig(data);
     });
   }
 
   applyConfig(config: AutoModerationConfig) {
-    if (this.defintion.showLimitField) {
+    if (this.definition.showLimitField) {
       this.eventForm.setValue({
         limit: config.limit,
-        timeLimit: this.defintion.showTimeLimitField ? config.timeLimitMinutes : '',
-        customWord: this.defintion.showCustomField ? config.customWordFilter : ''
+        timeLimit: this.definition.showTimeLimitField ? config.timeLimitMinutes : '',
+        customWord: this.definition.showCustomField ? config.customWordFilter : ''
       });
     }
     if (config.customWordFilter) {
@@ -140,7 +140,7 @@ export class AutomodRuleComponent implements OnInit {
   }
 
   deleteConfig() {
-    this.api.deleteData(`/guilds/${this.guildId}/automoderationconfig/${this.defintion.type}`).subscribe((data) => {
+    this.api.deleteData(`/guilds/${this.guildId}/automoderationconfig/${this.definition.type}`).subscribe((data) => {
       this.toastr.success("Config deleted.");
       this.reload();
     }, (error) => {
@@ -152,7 +152,7 @@ export class AutomodRuleComponent implements OnInit {
   saveConfig() {
     this.tryingToSaveConfig = true;
     const data = {
-      "AutoModerationType": this.defintion.type,
+      "AutoModerationType": this.definition.type,
       "AutoModerationAction": this.actionForm.value.automodAction,
       "PunishmentType": this.actionForm.value.punishmentType,
       "PunishmentDurationMinutes": this.actionForm.value.punishmentDuration !== "" ? this.actionForm.value.punishmentDuration : null,
