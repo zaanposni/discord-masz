@@ -7,7 +7,7 @@ using DSharpPlus.SlashCommands;
 namespace masz.Commands
 {
 
-    public class GitHubCommand : BaseCommand<PingCommand>
+    public class GitHubCommand : BaseCommand<GitHubCommand>
     {
         public GitHubCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 

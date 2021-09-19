@@ -7,7 +7,7 @@ using DSharpPlus.SlashCommands;
 namespace masz.Commands
 {
 
-    public class UrlCommand : BaseCommand<PingCommand>
+    public class UrlCommand : BaseCommand<UrlCommand>
     {
         public UrlCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 

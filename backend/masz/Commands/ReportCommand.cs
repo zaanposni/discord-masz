@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 namespace masz.Commands
 {
 
-    public class ReportCommand : BaseCommand<PingCommand>
+    public class ReportCommand : BaseCommand<ReportCommand>
     {
         public ReportCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 

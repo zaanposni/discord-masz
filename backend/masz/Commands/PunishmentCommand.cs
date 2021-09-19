@@ -10,7 +10,7 @@ using masz.Repositories;
 namespace masz.Commands
 {
 
-    public class PunishmentCommand : BaseCommand<PingCommand>
+    public class PunishmentCommand : BaseCommand<PunishmentCommand>
     {
         public PunishmentCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
