@@ -11,7 +11,7 @@ namespace masz.Models
         public string UsedInvite { get; set; }
         public string InviteIssuerId { get; set; }
         public DateTime JoinedAt { get; set; }
-        public DateTime InviteCreatedAt { get; set; }
+        public DateTime? InviteCreatedAt { get; set; }
         public UserInviteView(UserInvite userInvite)
         {
             Id = userInvite.Id;

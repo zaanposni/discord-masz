@@ -13,6 +13,6 @@ namespace masz.Models
         public string UsedInvite { get; set; }
         public ulong InviteIssuerId { get; set; }
         public DateTime JoinedAt { get; set; }
-        public DateTime InviteCreatedAt { get; set; }
+        public DateTime? InviteCreatedAt { get; set; }
     }
 }
