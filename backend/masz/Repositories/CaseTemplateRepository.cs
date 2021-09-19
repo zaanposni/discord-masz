@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DSharpPlus.Entities;
+using masz.Events;
 using masz.Exceptions;
 using masz.Models;
 namespace masz.Repositories
@@ -46,6 +47,8 @@ namespace masz.Repositories
             await _database.SaveCaseTemplate(template);
             await _database.SaveChangesAsync();
 
+            await _eventHandler.InvokeCaseTemplateCreated(new CaseTemplateCreatedEventArgs(template));
+
             return template;
         }
 
@@ -63,6 +66,8 @@ namespace masz.Repositories
         {
             _database.DeleteSpecificCaseTemplate(template);
             await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeCaseTemplateDeleted(new CaseTemplateDeletedEventArgs(template));
         }
 
         public async Task<List<CaseTemplate>> GetTemplatesBasedOnPermissions()

@@ -28,11 +28,16 @@ namespace masz.Services
         public async Task InvokeAutoModerationConfigUpdated(AutoModerationConfigUpdatedEventArgs eventArgs) => await Invoke(OnAutoModerationConfigUpdated, eventArgs);
         public async Task InvokeAutoModerationConfigDeleted(AutoModerationConfigDeletedEventArgs eventArgs) => await Invoke(OnAutoModerationConfigDeleted, eventArgs);
         public async Task InvokeAutoModerationEventRegistered(AutoModerationEventRegisteredEventArgs eventArgs) => await Invoke(OnAutoModerationEventRegistered, eventArgs);
+        public Task InvokeCaseTemplateCreated(CaseTemplateCreatedEventArgs eventArgs) => Invoke(OnCaseTemplateCreated, eventArgs);
+        public Task InvokeCaseTemplateDeleted(CaseTemplateDeletedEventArgs eventArgs) => Invoke(OnCaseTemplateDeleted, eventArgs);
+
         public event AsyncEventHandler<IdentityRegisteredEventArgs> OnIdentityRegistered;
         public event AsyncEventHandler<TokenCreatedEventArgs> OnTokenCreated;
         public event AsyncEventHandler<TokenDeletedEventArgs> OnTokenDeleted;
         public event AsyncEventHandler<AutoModerationConfigUpdatedEventArgs> OnAutoModerationConfigUpdated;
         public event AsyncEventHandler<AutoModerationConfigDeletedEventArgs> OnAutoModerationConfigDeleted;
         public event AsyncEventHandler<AutoModerationEventRegisteredEventArgs> OnAutoModerationEventRegistered;
+        public event AsyncEventHandler<CaseTemplateCreatedEventArgs> OnCaseTemplateCreated;
+        public event AsyncEventHandler<CaseTemplateDeletedEventArgs> OnCaseTemplateDeleted;
     }
 }
