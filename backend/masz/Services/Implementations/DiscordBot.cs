@@ -130,7 +130,14 @@ namespace masz.Services
 
         private Task GuildMemberAddedHandler(DiscordClient client, GuildMemberAddEventArgs e)
         {
-            // TODO: punishment check
+            try
+            {
+                IPunishmentHandler handler = _serviceProvider.GetService<IPunishmentHandler>();
+                handler.HandleMemberJoin(client, e);
+            } catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to handle punishment on member join.");
+            }
             // TODO: invite handling
             return Task.CompletedTask;
         }

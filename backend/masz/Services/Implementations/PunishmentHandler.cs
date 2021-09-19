@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DSharpPlus;
+using DSharpPlus.EventArgs;
 using masz.Exceptions;
 using masz.Models;
 using masz.Repositories;
@@ -148,6 +150,39 @@ namespace masz.Services
                         await _discord.GetGuildUserBan(modCase.GuildId, modCase.UserId, CacheBehavior.IgnoreCache);  // refresh ban cache
                         break;
                 }
+            }
+        }
+    
+        public async Task HandleMemberJoin(DiscordClient client, GuildMemberAddEventArgs e)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
+
+                GuildConfig guildConfig;
+                try
+                {
+                    guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(e.Guild.Id);
+                } catch(ResourceNotFoundException)
+                {
+                    _logger.LogInformation($"Cannot execute punishment in guild {e.Guild.Id} - guildconfig not found.");
+                    return;
+                }
+
+                if (guildConfig.MutedRoles.Length == 0)
+                {
+                    return;
+                }
+
+                List<ModCase> modCases = await database.SelectAllModCasesWithActiveMuteForGuildAndUser(e.Guild.Id, e.Member.Id);
+                if (modCases.Count == 0)
+                {
+                    return;
+                }
+
+                _logger.LogInformation($"Muted member {e.Member.Id} rejoined guild {e.Guild.Id}");
+
+                await ExecutePunishment(modCases[0]);
             }
         }
     }

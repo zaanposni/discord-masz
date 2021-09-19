@@ -155,6 +155,11 @@ namespace masz.Services
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.PunishmentActive == true).ToListAsync();
         }
 
+        public async Task<List<ModCase>> SelectAllModCasesWithActiveMuteForGuildAndUser(ulong guildId, ulong userId)
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId && x.PunishmentActive == true && x.PunishmentType == PunishmentType.Mute && x.MarkedToDeleteAt == null).ToListAsync();
+        }
+
         public async Task<List<ModCase>> SelectAllModCasesThatHaveParallelPunishment(ModCase modCase)
         {
             return await context.ModCases.AsQueryable().Where(

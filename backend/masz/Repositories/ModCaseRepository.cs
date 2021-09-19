@@ -361,12 +361,10 @@ namespace masz.Repositories
 
             return modCase;
         }
-
         public async Task<List<DbCount>> GetCounts(ulong guildId, DateTime since)
         {
             return await _database.GetCaseCountGraph(guildId, since);
         }
-
         public async Task<List<DbCount>> GetPunishmentCounts(ulong guildId, DateTime since)
         {
             return await _database.GetPunishmentCountGraph(guildId, since);

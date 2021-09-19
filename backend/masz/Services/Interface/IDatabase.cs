@@ -35,6 +35,7 @@ namespace masz.Services
         Task<int> CountAllActivePunishmentsForGuild(ulong guildId);
         Task<int> CountAllActivePunishmentsForGuild(ulong guildId, PunishmentType type);
         Task<List<ModCase>> SelectAllModCasesWithActivePunishmentForGuild(ulong guildId);
+        Task<List<ModCase>> SelectAllModCasesWithActiveMuteForGuildAndUser(ulong guildId, ulong userId);
         Task<List<ModCase>> SelectAllModCasesThatHaveParallelPunishment(ModCase modCase);
         Task<List<ModCase>> SelectAllModCasesWithActivePunishments();
         Task<List<ModCase>> SelectAllModCases();
