@@ -67,7 +67,8 @@ namespace masz.Logger
                     _categoryName = _categoryName.Split('.').Last();
                 }
 
-                string prefix = $"[{shortLogLevel}] ";
+                string currentTime = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+                string prefix = $"[{currentTime}] [{shortLogLevel}] ";
                 if (_categoryName == "RequestLoggingMiddleware")
                 {
                     prefix += $"ReqLog[{eventId.Id}]: ";
