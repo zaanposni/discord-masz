@@ -54,6 +54,11 @@ namespace masz.Commands
                 return false;  // do not execute the slash command
             }
 
+            if (ctx.Guild != null)
+            {
+                await _translator.SetContext(ctx.Guild.Id);
+            }
+
             return await base.BeforeSlashExecutionAsync(ctx);
         }
 
