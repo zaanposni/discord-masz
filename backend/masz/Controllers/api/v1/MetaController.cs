@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using masz.Models;
+using masz.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -14,26 +15,22 @@ namespace masz.Controllers
     [Authorize]
     public class MetaController : ControllerBase
     {
-        private readonly ILogger<MetaController> logger;
-        private readonly IOptions<InternalConfig> config;
+        private readonly ILogger<MetaController> _logger;
+        private readonly IInternalConfiguration _config;
 
-        public MetaController(ILogger<MetaController> logger, IOptions<InternalConfig> config)
+        public MetaController(ILogger<MetaController> logger, IInternalConfiguration config)
         {
-            this.logger = logger;
-            this.config = config;
+            _logger = logger;
+            _config = config;
         }
 
         [HttpGet("clientid")]
         public IActionResult GetClientId() {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-
-            return Ok(new { clientid = config.Value.DiscordClientId });
+            return Ok(new { clientid = _config.GetClientId() });
         }
 
         [HttpGet("githubreleases")]
         public async Task<IActionResult> GetReleases() {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-
             var restClient = new RestClient("https://api.github.com/");
             var request = new RestRequest(Method.GET);
             request.Resource = "/repos/zaanposni/discord-masz/releases";
