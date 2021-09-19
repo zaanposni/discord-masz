@@ -123,6 +123,9 @@ namespace masz.Commands
             } catch (ResourceNotFoundException)
             {
                 throw new UnregisteredGuildException(ctx.Guild.Id);
+            } catch (NullReferenceException)
+            {
+                throw new BaseAPIException("Only usable in a guild.", APIError.OnlyUsableInAGuild);
             }
         }
 

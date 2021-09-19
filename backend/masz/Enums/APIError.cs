@@ -29,5 +29,6 @@ namespace masz.Enums
         TooManyTemplates = 24,
         InvalidFilePath = 25,
         NoGuildsRegistered = 26,
+        OnlyUsableInAGuild = 27,
     }
 }
