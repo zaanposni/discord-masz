@@ -21,6 +21,7 @@ namespace masz.Commands
         protected ITranslator _translator { get; set; }
         protected IIdentityManager _identityManager { get; set; }
         protected Identity _currentIdentity { get; set; }
+        protected IInternalConfiguration _config { get; set; }
         protected IDiscordAPIInterface _discordAPI { get; set; }
         protected IServiceProvider _serviceProvider { get; set; }
 
@@ -30,6 +31,7 @@ namespace masz.Commands
             _database = (IDatabase) serviceProvider.GetService(typeof(IDatabase));
             _translator = (ITranslator) serviceProvider.GetService(typeof(ITranslator));
             _identityManager = (IIdentityManager) serviceProvider.GetService(typeof(IIdentityManager));
+            _config = (IInternalConfiguration) serviceProvider.GetService(typeof(IInternalConfiguration));
             _discordAPI = (IDiscordAPIInterface) serviceProvider.GetService(typeof(IDiscordAPIInterface));
             _serviceProvider = serviceProvider;
         }

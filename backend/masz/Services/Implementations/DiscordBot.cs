@@ -67,6 +67,7 @@ namespace masz.Services
 
             slash.RegisterCommands<PingCommand>(debugGuild);
             slash.RegisterCommands<ReportCommand>(debugGuild);
+            slash.RegisterCommands<PunishmentCommand>(debugGuild);
 
             slash.SlashCommandErrored += CmdErroredHandler;
         }
@@ -251,13 +252,18 @@ namespace masz.Services
             if (e.Exception is BaseAPIException)
             {
                 _logger.LogError($"Command '{e.Context.CommandName}' invoked by '{e.Context.User.Username}#{e.Context.User.Discriminator}' failed: {(e.Exception as BaseAPIException).error}");
+
                 var response = new DiscordInteractionResponseBuilder();
-                response.WithContent((e.Exception as BaseAPIException).error.ToString());
                 response.IsEphemeral = true;
-                await e.Context.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, response);
+
+                string errorCode = "0#" + ((int) ((e.Exception as BaseAPIException).error)).ToString("D7");
+
+                await e.Context.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, response.WithContent(
+                    $"Something went wrong.\n`{(e.Exception as BaseAPIException).Message}`\n**Code** `{errorCode}`"
+                ));
             } else
             {
-                _logger.LogError($"Command '{e.Context.CommandName}' invoked by '{e.Context.User.Username}#{e.Context.User.Discriminator}' failed: " + e.Exception.Message);
+                _logger.LogError($"Command '{e.Context.CommandName}' invoked by '{e.Context.User.Username}#{e.Context.User.Discriminator}' failed: " + e.Exception.Message + "\n" + e.Exception.StackTrace);
             }
         }
 

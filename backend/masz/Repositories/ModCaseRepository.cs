@@ -81,7 +81,13 @@ namespace masz.Repositories
             modCase.ModId = _currentUser.Id;
             modCase.LastEditedAt = modCase.CreatedAt;
             modCase.LastEditedByModId = _currentUser.Id;
-            modCase.Labels = modCase.Labels.Distinct().ToArray();
+            if (modCase.Labels != null)
+            {
+                modCase.Labels = modCase.Labels.Distinct().ToArray();
+            } else
+            {
+                modCase.Labels = new string[0];
+            }
             modCase.Valid = true;
             if (modCase.PunishmentType == PunishmentType.None || modCase.PunishmentType == PunishmentType.Kick)
             {
