@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DSharpPlus.Entities;
 using masz.Enums;
+using masz.Events;
 using masz.Exceptions;
 using masz.Models;
 using Microsoft.Extensions.Logging;
@@ -76,6 +77,9 @@ namespace masz.Repositories
 
             await _database.SaveGuildConfig(guildConfig);
             await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeGuildRegistered(new GuildRegisteredEventArgs(guildConfig));
+
             return guildConfig;
         }
 
@@ -117,6 +121,9 @@ namespace masz.Repositories
 
             _database.UpdateGuildConfig(guildConfig);
             await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeGuildUpdated(new GuildUpdatedEventArgs(guildConfig));
+
             return guildConfig;
         }
 
@@ -141,6 +148,9 @@ namespace masz.Repositories
 
             _database.DeleteSpecificGuildConfig(guildConfig);
             await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeGuildDeleted(new GuildDeletedEventArgs(guildConfig));
+
             return guildConfig;
         }
     }

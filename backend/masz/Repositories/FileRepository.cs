@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using DSharpPlus.Entities;
+using masz.Events;
 using masz.Exceptions;
 using masz.Models;
 using Microsoft.AspNetCore.Http;
@@ -114,6 +115,9 @@ namespace masz.Repositories
             {
                 _logger.LogError(e, "Failed to announce file.");
             }
+
+            await _eventHandler.InvokeFileUploaded(new FileUploadedEventArgs(GetCaseFile(guildId, caseId, fileName)));
+
             return fileName;
         }
 

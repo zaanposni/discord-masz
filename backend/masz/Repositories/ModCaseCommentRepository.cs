@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DSharpPlus.Entities;
+using masz.Events;
 using masz.Exceptions;
 using masz.Models;
 
@@ -61,6 +62,8 @@ namespace masz.Repositories
             await _database.SaveModCaseComment(newComment);
             await _database.SaveChangesAsync();
 
+            await _eventHandler.InvokeModCaseCommentCreated(new ModCaseCommentCreatedEventArgs(newComment));
+
             return newComment;
         }
 
@@ -88,6 +91,8 @@ namespace masz.Repositories
             _database.UpdateModCaseComment(newComment);
             await _database.SaveChangesAsync();
 
+            await _eventHandler.InvokeModCaseCommentUpdated(new ModCaseCommentUpdatedEventArgs(newComment));
+
             return newComment;
         }
 
@@ -112,6 +117,8 @@ namespace masz.Repositories
 
             _database.DeleteSpecificModCaseComment(deleteComment);
             await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeModCaseCommentDeleted(new ModCaseCommentDeletedEventArgs(deleteComment));
 
             return deleteComment;
         }

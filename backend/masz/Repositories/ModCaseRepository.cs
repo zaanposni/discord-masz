@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DSharpPlus.Entities;
 using masz.Enums;
+using masz.Events;
 using masz.Exceptions;
 using masz.Models;
 using Microsoft.Extensions.Logging;
@@ -94,6 +95,8 @@ namespace masz.Repositories
             await _database.SaveModCase(modCase);
             await _database.SaveChangesAsync();
 
+            await _eventHandler.InvokeModCaseCreated(new ModCaseCreatedEventArgs(modCase));
+
             await _discordAnnouncer.AnnounceModCase(modCase, RestAction.Created, _currentUser, sendPublicNotification, sendDmNotification);
 
             if (handlePunishment && (modCase.PunishmentActive || modCase.PunishmentType == PunishmentType.Kick))
@@ -103,6 +106,7 @@ namespace masz.Repositories
                     await _punishmentHandler.ExecutePunishment(modCase);
                 }
             }
+
             return modCase;
         }
         public async Task<ModCase> GetModCase(ulong guildId, int caseId)
@@ -132,6 +136,8 @@ namespace masz.Repositories
                 _logger.LogInformation($"Force deleting modCase {guildId}/{caseId}.");
                 _database.DeleteSpecificModCase(modCase);
                 await _database.SaveChangesAsync();
+
+                await _eventHandler.InvokeModCaseDeleted(new ModCaseDeletedEventArgs(modCase));
             } else {
                 modCase.MarkedToDeleteAt = DateTime.UtcNow.AddDays(7);
                 modCase.DeletedByUserId = _currentUser.Id;
@@ -140,6 +146,8 @@ namespace masz.Repositories
                 _logger.LogInformation($"Marking modcase {guildId}/{caseId} as deleted.");
                 _database.UpdateModCase(modCase);
                 await _database.SaveChangesAsync();
+
+                await _eventHandler.InvokeModCaseMarkedToBeDeleted(new ModCaseMarkedToBeDeletedEventArgs(modCase));
             }
 
             if (handlePunishment)
@@ -222,6 +230,8 @@ namespace masz.Repositories
 
             _database.UpdateModCase(modCase);
             await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeModCaseDeleted(new ModCaseDeletedEventArgs(modCase));
 
             await _discordAnnouncer.AnnounceModCase(modCase, RestAction.Edited, _currentUser, sendPublicNotification, false);
 
@@ -336,6 +346,8 @@ namespace masz.Repositories
 
             _database.UpdateModCase(modCase);
             await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeModCaseRestored(new ModCaseRestoredEventArgs(modCase));
 
             try
             {

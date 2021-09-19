@@ -72,6 +72,8 @@ namespace masz.Repositories
             _database.SaveUserNote(userNote);
             await _database.SaveChangesAsync();
 
+            await _eventHandler.InvokeUserNoteUpdated(new UserNoteUpdatedEventArgs(userNote));
+
             await _discordAnnouncer.AnnounceUserNote(userNote, _currentUser, action);
 
             return userNote;
@@ -82,6 +84,8 @@ namespace masz.Repositories
 
             _database.DeleteUserNote(userNote);
             await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeUserNoteDeleted(new UserNoteDeletedEventArgs(userNote));
 
             await _discordAnnouncer.AnnounceUserNote(userNote, _currentUser, RestAction.Deleted);
         }

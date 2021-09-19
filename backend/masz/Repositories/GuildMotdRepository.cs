@@ -56,6 +56,8 @@ namespace masz.Repositories
             _database.SaveMotd(motd);
             await _database.SaveChangesAsync();
 
+            await _eventHandler.InvokeGuildMotdUpdated(new GuildMotdUpdatedEventArgs(motd));
+
             return motd;
         }
         public async Task DeleteForGuild(ulong guildId)

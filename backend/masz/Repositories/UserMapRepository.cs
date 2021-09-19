@@ -86,6 +86,8 @@ namespace masz.Repositories
             _database.SaveUserMapping(userMapping);
             await _database.SaveChangesAsync();
 
+            await _eventHandler.InvokeUserMapUpdated(new UserMapUpdatedEventArgs(userMapping));
+
             await _discordAnnouncer.AnnounceUserMapping(userMapping, _currentUser, action);
 
             return userMapping;
@@ -96,6 +98,8 @@ namespace masz.Repositories
 
             _database.DeleteUserMapping(userMapping);
             await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeUserMapDeleted(new UserMapDeletedEventArgs(userMapping));
 
             await _discordAnnouncer.AnnounceUserMapping(userMapping, _currentUser, RestAction.Deleted);
         }

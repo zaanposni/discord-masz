@@ -49,6 +49,9 @@ namespace masz.Repositories
         {
             await _database.SaveInvite(invite);
             await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeInviteUsageRegistered(new InviteUsageRegisteredEventArgs(invite));
+
             return invite;
         }
         public async Task DeleteInvitesByGuild(ulong guildId)
