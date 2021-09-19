@@ -63,7 +63,7 @@ namespace masz.Services
             });
 
             // TODO: remove
-            ulong? debugGuild = 748943581523345639;  // set your guild id here to enable fast syncing debug commands
+            ulong? debugGuild = null;  // set your guild id here to enable fast syncing debug commands
 
             slash.RegisterCommands<PingCommand>(debugGuild);
             slash.RegisterCommands<ReportCommand>(debugGuild);
@@ -253,14 +253,18 @@ namespace masz.Services
             {
                 _logger.LogError($"Command '{e.Context.CommandName}' invoked by '{e.Context.User.Username}#{e.Context.User.Discriminator}' failed: {(e.Exception as BaseAPIException).error}");
 
-                var response = new DiscordInteractionResponseBuilder();
-                response.IsEphemeral = true;
-
                 string errorCode = "0#" + ((int) ((e.Exception as BaseAPIException).error)).ToString("D7");
-
-                await e.Context.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, response.WithContent(
-                    $"Something went wrong.\n`{(e.Exception as BaseAPIException).Message}`\n**Code** `{errorCode}`"
-                ));
+                try
+                {
+                    await e.Context.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().AsEphemeral(true).WithContent(
+                        $"Something went wrong.\n`{(e.Exception as BaseAPIException).Message}`\n**Code** `{errorCode}`"
+                    ));
+                } catch (DSharpPlus.Exceptions.NotFoundException)
+                {
+                    await e.Context.EditResponseAsync(new DiscordWebhookBuilder().WithContent(
+                        $"Something went wrong.\n`{(e.Exception as BaseAPIException).Message}`\n**Code** `{errorCode}`"
+                    ));
+                }
             } else
             {
                 _logger.LogError($"Command '{e.Context.CommandName}' invoked by '{e.Context.User.Username}#{e.Context.User.Discriminator}' failed: " + e.Exception.Message + "\n" + e.Exception.StackTrace);
