@@ -32,6 +32,12 @@ namespace masz.Controllers.api.v1
             return Ok(DiscordUserView.CreateOrDefault(_discordAPI.GetCurrentBotInfo(CacheBehavior.Default)));
         }
 
+        [HttpGet("application/bot")]
+        public IActionResult GetApplication()
+        {
+            return Ok(DiscordApplicationView.CreateOrDefault(_discordAPI.GetCurrentApplicationInfo()));
+        }
+
         [HttpGet("users/@me")]
         public async Task<IActionResult> GetUser()
         {

@@ -245,6 +245,11 @@ namespace masz.Services
             return _discordBot.GetClient().CurrentUser;
         }
 
+        public DiscordApplication GetCurrentApplicationInfo()
+        {
+            return _discordBot.GetClient().CurrentApplication;
+        }
+
         public async Task<DiscordUser> FetchCurrentBotInfo()
         {
             var client = new DiscordRestClient(new DiscordConfiguration
