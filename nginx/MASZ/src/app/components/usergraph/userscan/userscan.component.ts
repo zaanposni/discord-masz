@@ -176,8 +176,11 @@ export class UserscanComponent implements OnInit {
       if (invite.userInvite.guildId !== guild.id) continue;
       let inviteNode = this.addNewNode(this.newInviteNode, [invite.userInvite]) as Node;
       this.addNewEdge(baseNode, inviteNode, '', false, 'no');
-      let inviterUserNode = this.addNewNode(this.newUserNode, [invite?.invitedBy, invite?.userInvite?.inviteIssuerId, 50]) as Node;
-      this.addNewEdge(inviteNode, inviterUserNode, `Created at: ${new Date(invite.userInvite.inviteCreatedAt).toLocaleString()}`, false, 'from');
+      if (invite?.userInvite?.inviteIssuerId !== "0")
+      {
+        let inviterUserNode = this.addNewNode(this.newUserNode, [invite?.invitedBy, invite?.userInvite?.inviteIssuerId, 50]) as Node;
+        this.addNewEdge(inviteNode, inviterUserNode, `Created at: ${new Date(invite.userInvite.inviteCreatedAt).toLocaleString()}`, false, 'from');
+      }
       let invitedUserNode = this.addNewNode(this.newUserNode, [invite?.invitedUser, invite?.userInvite?.joinedUserId]) as Node;
       this.addNewEdge(inviteNode, invitedUserNode, `Joined at: ${new Date(invite.userInvite.joinedAt).toLocaleString()}`, true, 'to');
     }
@@ -194,8 +197,11 @@ export class UserscanComponent implements OnInit {
         if (invite.userInvite.guildId !== guild.id) continue;
         let inviteNode = this.addNewNode(this.newInviteNode, [invite.userInvite]) as Node;
         this.addNewEdge(guildNode, inviteNode, `Joined at: ${new Date(invite.userInvite.joinedAt).toLocaleString()}`, true, 'from');
-        let invitedUserNode = this.addNewNode(this.newUserNode, [invite?.invitedBy, invite?.userInvite?.inviteIssuerId]) as Node;
-        this.addNewEdge(inviteNode, invitedUserNode, `Created at: ${new Date(invite.userInvite.inviteCreatedAt).toLocaleString()}`, false, 'from');
+        if (invite?.userInvite?.inviteIssuerId !== "0")
+        {
+          let invitedUserNode = this.addNewNode(this.newUserNode, [invite?.invitedBy, invite?.userInvite?.inviteIssuerId]) as Node;
+          this.addNewEdge(inviteNode, invitedUserNode, `Created at: ${new Date(invite.userInvite.inviteCreatedAt).toLocaleString()}`, false, 'from');
+        }
       }
       for (let invite of network.invited) {
         if (invite.userInvite.guildId !== guild.id) continue;
