@@ -68,6 +68,10 @@ namespace masz.Services
             slash.RegisterCommands<PingCommand>(debugGuild);
             slash.RegisterCommands<ReportCommand>(debugGuild);
             slash.RegisterCommands<PunishmentCommand>(debugGuild);
+            slash.RegisterCommands<GitHubCommand>(debugGuild);
+            slash.RegisterCommands<InviteCommand>(debugGuild);
+            slash.RegisterCommands<RegisterCommand>(debugGuild);
+            slash.RegisterCommands<UrlCommand>(debugGuild);
 
             slash.SlashCommandErrored += CmdErroredHandler;
         }
