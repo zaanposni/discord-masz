@@ -14,7 +14,7 @@ using masz.Repositories;
 namespace masz.Commands
 {
 
-    public class WhoisCommand : BaseCommand<PingCommand>
+    public class WhoisCommand : BaseCommand<WhoisCommand>
     {
         public WhoisCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
