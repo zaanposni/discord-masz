@@ -29,6 +29,7 @@ namespace masz.Models.Views
         public static DiscordUserView CreateOrDefault(DiscordUser user)
         {
             if (user == null) return null;
+            if (user.Id == 0) return null;
             return new DiscordUserView(user);
         }
     }
