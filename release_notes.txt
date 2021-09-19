@@ -10,5 +10,5 @@
 - move env file to root
 - custom logger for backend stuff
 - enum api
-
+- fixed invitetracking for vanityurls
 

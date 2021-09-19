@@ -139,7 +139,7 @@ namespace masz.Services
             try
             {
                 DiscordInvite vanityInvite = await guild.GetVanityInviteAsync();
-                invites.Add(new TrackedInvite(vanityInvite.Guild.Id, vanityInvite.Code, vanityInvite.Uses));
+                invites.Add(new TrackedInvite(guild.Id, vanityInvite.Code, vanityInvite.Uses));
             } catch (DSharpPlus.Exceptions.UnauthorizedException) { }
             return invites;
         }
