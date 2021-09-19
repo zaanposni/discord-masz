@@ -166,6 +166,15 @@ namespace masz.Services
                 _logger.LogError(ex, "Failed to handle punishment on member join.");
             }
 
+            GuildConfig guildConfig;
+            try
+            {
+                guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(e.Guild.Id);
+            } catch (ResourceNotFoundException)
+            {
+                return;
+            }
+
             List<TrackedInvite> newInvites = await FetchInvites(e.Guild);
             TrackedInvite usedInvite = null;
             try
@@ -190,7 +199,22 @@ namespace masz.Services
 
                 _logger.LogInformation($"User {e.Member.Username}#{e.Member.Discriminator} joined guild {e.Guild.Name} with ID: {e.Guild.Id} using invite {usedInvite.Code}");
 
-                // TODO: auto whois
+                if (guildConfig.ExecuteWhoisOnJoin && ! String.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+                {
+                    string message;
+                    string registeredTime = e.Member.CreationTimestamp.ToString("yyyy-MM-dd HH:mm:ss");
+                    if (invite.InviteIssuerId != 0 && invite.InviteCreatedAt != null)
+                    {
+                        string createdTime = invite.InviteCreatedAt.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                        message = $"{e.Member.Mention} (registered `{registeredTime}`) joined with invite <{invite.UsedInvite}> (created `{createdTime}`) by <@{invite.InviteIssuerId}>.";
+                    } else
+                    {
+                        message = $"{e.Member.Mention} (registered `{registeredTime}`) joined with invite <{invite.UsedInvite}>.";
+                    }
+
+                    IDiscordAPIInterface discordAPI = _serviceProvider.GetService<IDiscordAPIInterface>();
+                    await discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, null, message);
+                }
 
                 await InviteRepository.CreateDefault(_serviceProvider).CreateInvite(invite);
             }
