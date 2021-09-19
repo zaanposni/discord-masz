@@ -34,7 +34,6 @@ namespace masz.Repositories
             UserNote userNote = await _database.GetUserNoteByUserIdAndGuildId(userId, guildId);
             if (userNote == null)
             {
-                _logger.LogWarning($"UserNote for guild {guildId} and user {userId} not found.");
                 throw new ResourceNotFoundException($"UserNote for guild {guildId} and user {userId} not found.");
             }
             return userNote;
