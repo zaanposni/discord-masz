@@ -66,7 +66,7 @@ namespace masz.Commands
         {
             if (ctx.Channel.Type == ChannelType.Text)
             {
-                _logger.LogInformation($"{ctx.User.Id} used {ctx.CommandName} in {ctx.Channel.Id} | {ctx.Guild.Name}");
+                _logger.LogInformation($"{ctx.User.Id} used {ctx.CommandName} in {ctx.Channel.Id} | {ctx.Guild.Id} {ctx.Guild.Name}");
             }
             else
             {
