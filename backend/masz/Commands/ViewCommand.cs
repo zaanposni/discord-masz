@@ -21,7 +21,7 @@ namespace masz.Commands
         public ViewCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [SlashCommand("view", "View details of a modcase.")]
-        public async Task Ping(InteractionContext ctx, [Option("id", "the id of the case")] long caseId, [Option("guildid", "the id of the guild")] string guildId = "")
+        public async Task View(InteractionContext ctx, [Option("id", "the id of the case")] long caseId, [Option("guildid", "the id of the guild")] string guildId = "")
         {
             // parse to ulong because discord sux
             ulong parsedGuildId = 0;
