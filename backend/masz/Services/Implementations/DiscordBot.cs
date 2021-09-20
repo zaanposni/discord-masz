@@ -74,6 +74,7 @@ namespace masz.Services
             slash.RegisterCommands<UrlCommand>(debugGuild);
             slash.RegisterCommands<WhoisCommand>(debugGuild);
             slash.RegisterCommands<ViewCommand>(debugGuild);
+            slash.RegisterCommands<TrackCommand>(debugGuild);
 
             slash.SlashCommandErrored += CmdErroredHandler;
         }
