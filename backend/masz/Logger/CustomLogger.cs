@@ -64,18 +64,14 @@ namespace masz.Logger
                 }
 
                 if (_categoryName.StartsWith(_maszPrefix)) {
-                    _categoryName = _categoryName.Split('.').Last();
+                    _categoryName = _categoryName.Split('.').Last()
+                                                 .Replace("RequestLoggingMiddleware", "ReqLog")
+                                                 .Replace("Command", "Cmd")
+                                                 .Replace("Interface", "I");
                 }
 
                 string currentTime = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
-                string prefix = $"[{currentTime}] [{shortLogLevel}] ";
-                if (_categoryName == "RequestLoggingMiddleware")
-                {
-                    prefix += $"ReqLog[{eventId.Id}]: ";
-                } else
-                {
-                    prefix += $"{_categoryName}[{eventId.Id}]: ";
-                }
+                string prefix = $"[{currentTime}] [{shortLogLevel}] {_categoryName}[{eventId.Id}]: ";
 
                 Console.WriteLine($"{prefix}{formatter(state, exception)}");
                 if (exception != null)
