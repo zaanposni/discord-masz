@@ -14,3 +14,4 @@
 - punish command that combines all punishment types and durations :o
 - whois no longer shows roles
 - version command is no longer supported
+- cases command is no longer supported
