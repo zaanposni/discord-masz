@@ -15,6 +15,7 @@ using masz.InviteTracking;
 using System.Collections.Generic;
 using System.Linq;
 using masz.Repositories;
+using masz.Logger;
 
 namespace masz.Services
 {
@@ -36,11 +37,14 @@ namespace masz.Services
             _translator = translator;
             _serviceProvider = serviceProvider;
 
+            var loggerFactory = new LoggerFactory();
+            loggerFactory.AddProvider(new CustomLoggerProvider());
             _discordConfiguration = new DiscordConfiguration()
             {
                 Token = _config.GetBotToken(),
                 TokenType = TokenType.Bot,
-                Intents = DiscordIntents.AllUnprivileged | DiscordIntents.GuildMembers
+                Intents = DiscordIntents.AllUnprivileged | DiscordIntents.GuildMembers,
+                LoggerFactory = loggerFactory
             };
 
             _client = new DiscordClient(_discordConfiguration);
