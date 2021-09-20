@@ -16,11 +16,31 @@ namespace masz.Logger
         public class CustomConsoleLogger : ILogger
         {
             private string _categoryName;
+            private LogLevel _level = LogLevel.Information;
             private readonly string _maszPrefix = "masz.";
+            private readonly string _dSharpPlusPrefix = "DSharpPlus.";
 
             public CustomConsoleLogger(string categoryName)
             {
                 _categoryName = categoryName;
+            }
+
+            public void SetLogLevel(LogLevel logLevel)
+            {
+                _level = logLevel;
+            }
+
+            private bool IsBlocked(string message, LogLevel logLevel)
+            {
+                if (_categoryName == "DSharpPlus.BaseDiscordClient")
+                {
+                    // this is really annoying... and not even a real warning...
+                    if (message.Contains("Pre-emptive ratelimit triggered - waiting until") && logLevel == LogLevel.Warning)
+                    {
+                        return true;
+                    }
+                }
+                return false;
             }
 
             public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
@@ -29,6 +49,9 @@ namespace masz.Logger
                 {
                     return;
                 }
+
+                string message = formatter(state, exception);
+                if (IsBlocked(message, logLevel)) { return; }
 
                 string shortLogLevel = logLevel.ToString().ToUpper();
                 switch(logLevel)
@@ -68,12 +91,14 @@ namespace masz.Logger
                                                  .Replace("RequestLoggingMiddleware", "ReqLog")
                                                  .Replace("Command", "Cmd")
                                                  .Replace("Interface", "I");
+                } else if (_categoryName.StartsWith(_dSharpPlusPrefix)) {
+                    _categoryName = _categoryName.Replace("DSharpPlus.", "D#.");
                 }
 
                 string currentTime = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
                 string prefix = $"[{currentTime}] [{shortLogLevel}] {_categoryName}[{eventId.Id}]: ";
 
-                Console.WriteLine($"{prefix}{formatter(state, exception)}");
+                Console.WriteLine($"{prefix}{message}");
                 if (exception != null)
                 {
                     Console.WriteLine(exception.Message);
@@ -87,7 +112,7 @@ namespace masz.Logger
 
             public bool IsEnabled(LogLevel logLevel)
             {
-                return true;
+                return  logLevel >= _level;
             }
 
             public IDisposable BeginScope<TState>(TState state)
