@@ -62,7 +62,7 @@ namespace masz.Models
         /// <param name="guildId">the guild to check on</param>
         /// <returns>True if the user is on this guild and has at least one of the configured roles.</returns>
         public abstract Task<bool> HasModRoleOrHigherOnGuild(ulong guildId);
-        public async Task<bool> HasRolePermissionInGuild(ulong guildId, Permissions permission)
+        public async Task<bool> HasRolePermissionInGuild(ulong guildId, DiscordBitPermissionFlag permission)
         {
             DiscordGuild guild = await _discordAPI.FetchGuildInfo(guildId, CacheBehavior.Default);
             if (currentUser == null || guild == null)
@@ -109,15 +109,15 @@ namespace masz.Models
                     {
                         return false;
                     }
-                    if (guildConfig.StrictModPermissionCheck) {
-                        Permissions x = Permissions.None;
-                        if (modCase.PunishmentType == PunishmentType.Ban) x = Permissions.BanMembers;
-                        if (modCase.PunishmentType == PunishmentType.Mute) x = Permissions.BanMembers;
+                    if (guildConfig.StrictModPermissionCheck && modCase.PunishmentType != PunishmentType.None) {
+                        DiscordBitPermissionFlag x = DiscordBitPermissionFlag.CREATE_INSTANT_INVITE;
+                        if (modCase.PunishmentType == PunishmentType.Kick) x = DiscordBitPermissionFlag.KICK_MEMBERS;
+                        if (modCase.PunishmentType == PunishmentType.Ban) x = DiscordBitPermissionFlag.BAN_MEMBERS;
+                        if (modCase.PunishmentType == PunishmentType.Mute) x = DiscordBitPermissionFlag.MANAGE_ROLES;
                         return await HasPermissionOnGuild(DiscordPermission.Moderator, modCase.GuildId) &&
-                               await HasRolePermissionInGuild(modCase.GuildId, x);
-                    } else {
-                        return await HasPermissionOnGuild(DiscordPermission.Moderator, modCase.GuildId);
+                            await HasRolePermissionInGuild(modCase.GuildId, x);
                     }
+                    return await HasPermissionOnGuild(DiscordPermission.Moderator, modCase.GuildId);
             }
             return false;
         }
@@ -216,9 +216,9 @@ namespace masz.Models
                 switch (punishment)
                 {
                     case PunishmentType.Kick:
-                        return await HasRolePermissionInGuild(guildId, DSharpPlus.Permissions.KickMembers);
+                        return await HasRolePermissionInGuild(guildId, DiscordBitPermissionFlag.KICK_MEMBERS);
                     case PunishmentType.Ban:
-                        return await HasRolePermissionInGuild(guildId, DSharpPlus.Permissions.BanMembers);
+                        return await HasRolePermissionInGuild(guildId, DiscordBitPermissionFlag.BAN_MEMBERS);
                 }
             }
             return true;
