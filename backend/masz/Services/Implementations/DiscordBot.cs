@@ -65,7 +65,6 @@ namespace masz.Services
             // TODO: remove
             ulong? debugGuild = null;  // set your guild id here to enable fast syncing debug commands
 
-            slash.RegisterCommands<PingCommand>(debugGuild);
             slash.RegisterCommands<ReportCommand>(debugGuild);
             slash.RegisterCommands<PunishmentCommand>(debugGuild);
             slash.RegisterCommands<GitHubCommand>(debugGuild);
