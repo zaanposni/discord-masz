@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using DSharpPlus.Entities;
+using masz.Enums;
 using masz.Models;
 
 namespace masz.Services

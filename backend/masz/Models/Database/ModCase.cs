@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using masz.Services;
+using masz.Enums;
 
 namespace masz.Models
 {
@@ -69,16 +70,7 @@ namespace masz.Models
 
         public string GetPunishment(ITranslator translator)
         {
-            switch (this.PunishmentType) {
-                case PunishmentType.Mute:
-                    return translator.T().EnumsPunishmentMute();
-                case PunishmentType.Kick:
-                    return translator.T().EnumsPunishmentKick();
-                case PunishmentType.Ban:
-                    return translator.T().EnumsPunishmentBan();
-                default:
-                    return translator.T().EnumsPunishmentWarn();
-            }
+            return translator.T().Enum(PunishmentType);
         }
     }
 }

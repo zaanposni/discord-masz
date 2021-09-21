@@ -32,14 +32,18 @@ namespace masz.Services
 
         public void SetContext(GuildConfig guildConfig)
         {
-            if (guildConfig != null) {
+            if (guildConfig != null)
+            {
                 SetContext(guildConfig.PreferredLanguage);
             }
         }
 
-        public void SetContext(Language language)
+        public void SetContext(Language? language)
         {
-            _translation.preferredLanguage = language;
+            if (language != null)
+            {
+                _translation.preferredLanguage = language.Value;
+            }
         }
 
         public Translation T()
@@ -61,7 +65,8 @@ namespace masz.Services
 
         public Translation T(Language? language)
         {
-            if (language.HasValue) {
+            if (language.HasValue)
+            {
                 SetContext(language.Value);
             }
             return _translation;

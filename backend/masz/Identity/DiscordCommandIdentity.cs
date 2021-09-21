@@ -8,6 +8,7 @@ using masz.Repositories;
 using masz.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using masz.Enums;
 
 namespace masz.Models
 {

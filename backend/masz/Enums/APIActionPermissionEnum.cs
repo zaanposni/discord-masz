@@ -1,4 +1,4 @@
-namespace masz.Models
+namespace masz.Enums
 {
     public enum APIActionPermission
     {

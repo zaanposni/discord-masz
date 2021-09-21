@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using masz.Dtos.Enum;
+using masz.Enums;
 using masz.Models;
 using masz.Translations;
 using Microsoft.AspNetCore.Mvc;
@@ -21,12 +22,13 @@ namespace masz.Controllers
 
         [HttpGet("viewpermission")]
         public IActionResult ViewPermissions([FromQuery] Language? language = null) {
-            List<EnumDto> enums = new List<EnumDto>();
-            enums.Add(new EnumDto((int) ViewPermission.Global, _translator.T(language).EnumsViewPermissionGlobal()));
-            enums.Add(new EnumDto((int) ViewPermission.Guild, _translator.T(language).EnumsViewPermissionGuild()));
-            enums.Add(new EnumDto((int) ViewPermission.Self, _translator.T(language).EnumsViewPermissionSelf()));
-
-            return Ok(enums);
+            _translator.SetContext(language);
+            return Ok(new List<EnumDto>()
+            {
+                EnumDto.Create((int) ViewPermission.Global, _translator.T().Enum(ViewPermission.Global)),
+                EnumDto.Create((int) ViewPermission.Guild, _translator.T().Enum(ViewPermission.Guild)),
+                EnumDto.Create((int) ViewPermission.Self, _translator.T().Enum(ViewPermission.Self))
+            });
         }
     }
 }

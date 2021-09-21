@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using masz.Dtos.Enum;
+using masz.Enums;
 using masz.Models;
 using masz.Services;
 using masz.Translations;
@@ -23,13 +24,14 @@ namespace masz.Controllers
 
         [HttpGet("punishment")]
         public IActionResult Punishment([FromQuery] Language? language = null) {
-            List<EnumDto> enums = new List<EnumDto>();
-            enums.Add(new EnumDto((int) PunishmentType.None, _translator.T(language).EnumsPunishmentWarn()));
-            enums.Add(new EnumDto((int) PunishmentType.Mute, _translator.T(language).EnumsPunishmentMute()));
-            enums.Add(new EnumDto((int) PunishmentType.Kick, _translator.T(language).EnumsPunishmentKick()));
-            enums.Add(new EnumDto((int) PunishmentType.Ban, _translator.T(language).EnumsPunishmentBan()));
-
-            return Ok(enums);
+            _translator.SetContext(language);
+            return Ok(new List<EnumDto>()
+            {
+                EnumDto.Create((int) PunishmentType.None, _translator.T().Enum(PunishmentType.None)),
+                EnumDto.Create((int) PunishmentType.Mute, _translator.T().Enum(PunishmentType.Mute)),
+                EnumDto.Create((int) PunishmentType.Kick, _translator.T().Enum(PunishmentType.Kick)),
+                EnumDto.Create((int) PunishmentType.Ban, _translator.T().Enum(PunishmentType.Ban))
+            });
         }
     }
 }

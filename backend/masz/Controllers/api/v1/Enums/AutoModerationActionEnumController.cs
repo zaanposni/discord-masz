@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using masz.Dtos.Enum;
-using masz.Models;
+using masz.Enums;
 using masz.Translations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -21,13 +21,14 @@ namespace masz.Controllers
 
         [HttpGet("automodaction")]
         public IActionResult AutoModActions([FromQuery] Language? language = null) {
-            List<EnumDto> enums = new List<EnumDto>();
-            enums.Add(new EnumDto((int) AutoModerationAction.None, _translator.T(language).EnumsAutoModActionsNone()));
-            enums.Add(new EnumDto((int) AutoModerationAction.ContentDeleted, _translator.T(language).EnumsAutoModActionsContentDeleted()));
-            enums.Add(new EnumDto((int) AutoModerationAction.CaseCreated, _translator.T(language).EnumsAutoModActionsCaseCreated()));
-            enums.Add(new EnumDto((int) AutoModerationAction.ContentDeletedAndCaseCreated, _translator.T(language).EnumsAutoModActionsContentDeletedAndCaseCreated()));
-
-            return Ok(enums);
+            _translator.SetContext(language);
+            return Ok(new List<EnumDto>()
+            {
+                EnumDto.Create((int) AutoModerationAction.None, _translator.T().Enum(AutoModerationAction.None)),
+                EnumDto.Create((int) AutoModerationAction.ContentDeleted, _translator.T().Enum(AutoModerationAction.ContentDeleted)),
+                EnumDto.Create((int) AutoModerationAction.CaseCreated, _translator.T().Enum(AutoModerationAction.CaseCreated)),
+                EnumDto.Create((int) AutoModerationAction.ContentDeletedAndCaseCreated, _translator.T().Enum(AutoModerationAction.ContentDeletedAndCaseCreated))
+            });
         }
     }
 }

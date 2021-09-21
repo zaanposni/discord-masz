@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using masz.Exceptions;
 using masz.Models;
 using masz.Repositories;
-using Microsoft.AspNetCore.Mvc;
+using masz.Enums;
 using Microsoft.Extensions.Logging;
 
 namespace masz.Controllers

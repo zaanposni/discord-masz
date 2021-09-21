@@ -1,4 +1,5 @@
 ﻿using DSharpPlus.Entities;
+using masz.Enums;
 using masz.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;

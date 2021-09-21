@@ -1,6 +1,5 @@
-using System;
 using System.ComponentModel.DataAnnotations;
-using masz.Models;
+using masz.Enums;
 
 namespace masz.Dtos.AutoModerationConfig
 {

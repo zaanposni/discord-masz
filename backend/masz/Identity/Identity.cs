@@ -1,5 +1,6 @@
 ﻿using DSharpPlus;
 using DSharpPlus.Entities;
+using masz.Enums;
 using masz.Exceptions;
 using masz.Repositories;
 using masz.Services;

@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.Serialization;
 using masz.Dtos.AutoModerationConfig;
-using masz.Dtos.ModCase;
+using masz.Enums;
 
 namespace masz.Models
 {

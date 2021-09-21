@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using DSharpPlus.Entities;
+using masz.Enums;
 using masz.Exceptions;
 using masz.Models;
 using masz.Models.Views;

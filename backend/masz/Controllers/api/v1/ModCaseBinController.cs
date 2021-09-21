@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using masz.Exceptions;
+using masz.Enums;
 using masz.Models;
 using masz.Repositories;
 using Microsoft.AspNetCore.Authorization;

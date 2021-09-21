@@ -11,7 +11,7 @@ namespace masz.Translations
             return new Translation(preferredLanguage);
         }
         public string Punishment() {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return "Punishment";
                 case Language.de:
@@ -20,7 +20,7 @@ namespace masz.Translations
             return "Punishment";
         }
         public string PunishmentUntil(string timezone) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"Punished until ({timezone})";
                 case Language.de:
@@ -29,7 +29,7 @@ namespace masz.Translations
             return $"Punished until ({timezone})";
         }
         public string Description() {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return "Description";
                 case Language.de:
@@ -38,7 +38,7 @@ namespace masz.Translations
             return "Description";
         }
         public string Labels() {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return "Labels";
                 case Language.de:
@@ -47,7 +47,7 @@ namespace masz.Translations
             return "Labels";
         }
         public string Filename() {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return "Filename";
                 case Language.de:
@@ -56,7 +56,7 @@ namespace masz.Translations
             return "Filename";
         }
         public string Message() {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return "Message";
                 case Language.de:
@@ -64,107 +64,8 @@ namespace masz.Translations
             }
             return "Message";
         }
-        public string EnumsPunishmentMute() {
-            switch (this.preferredLanguage) {
-                case Language.en:
-                    return "Mute";
-                case Language.de:
-                    return "Stummschaltung";
-            }
-            return "Mute";
-        }
-        public string EnumsPunishmentBan() {
-            switch (this.preferredLanguage) {
-                case Language.en:
-                    return "Ban";
-                case Language.de:
-                    return "Sperrung";
-            }
-            return "Ban";
-        }
-        public string EnumsPunishmentKick() {
-            switch (this.preferredLanguage) {
-                case Language.en:
-                    return "Kick";
-                case Language.de:
-                    return "Kick";
-            }
-            return "Kick";
-        }
-        public string EnumsPunishmentWarn() {
-            switch (this.preferredLanguage) {
-                case Language.en:
-                    return "Warn";
-                case Language.de:
-                    return "Verwarnung";
-            }
-            return "Warn";
-        }
-        public string EnumsViewPermissionSelf() {
-            switch (this.preferredLanguage) {
-                case Language.en:
-                    return "Self";
-                case Language.de:
-                    return "Privat";
-            }
-            return "Self";
-        }
-        public string EnumsViewPermissionGuild() {
-            switch (this.preferredLanguage) {
-                case Language.en:
-                    return "Guild";
-                case Language.de:
-                    return "Gilde";
-            }
-            return "Guild";
-        }
-        public string EnumsViewPermissionGlobal() {
-            switch (this.preferredLanguage) {
-                case Language.en:
-                    return "Global";
-                case Language.de:
-                    return "Global";
-            }
-            return "Global";
-        }
-        public string EnumsAutoModActionsNone() {
-            switch (this.preferredLanguage) {
-                case Language.en:
-                    return "None";
-                case Language.de:
-                    return "Keine Aktion";
-            }
-            return "None";
-        }
-        public string EnumsAutoModActionsContentDeleted() {
-            switch (this.preferredLanguage) {
-                case Language.en:
-                    return "Content deleted";
-                case Language.de:
-                    return "Nachricht gelöscht";
-            }
-            return "Content deleted";
-        }
-        public string EnumsAutoModActionsCaseCreated() {
-            switch (this.preferredLanguage) {
-                case Language.en:
-                    return "Case created";
-                case Language.de:
-                    return "Vorfall erstellt";
-            }
-            return "Case created";
-        }
-        public string EnumsAutoModActionsContentDeletedAndCaseCreated() {
-            switch (this.preferredLanguage) {
-                case Language.en:
-                    return "Content deleted and case created";
-                case Language.de:
-                    return "Nachricht gelöscht und Vorfall erstellt";
-            }
-            return "Content deleted and case created";
-        }
         public string NotificationModcaseCreatePublic(masz.Models.ModCase modCase) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.";
                 case Language.de:
@@ -173,7 +74,7 @@ namespace masz.Translations
             return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.";
         }
         public string NotificationModcaseCreateInternal(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordUser moderator) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
                 case Language.de:
@@ -182,7 +83,7 @@ namespace masz.Translations
             return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
         }
         public string NotificationModcaseUpdatePublic(masz.Models.ModCase modCase) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated.";
                 case Language.de:
@@ -191,7 +92,7 @@ namespace masz.Translations
             return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated.";
         }
         public string NotificationModcaseUpdateInternal(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordUser moderator) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
                 case Language.de:
@@ -200,7 +101,7 @@ namespace masz.Translations
             return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
         }
         public string NotificationModcaseDeletePublic(masz.Models.ModCase modCase) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted.";
                 case Language.de:
@@ -209,7 +110,7 @@ namespace masz.Translations
             return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted.";
         }
         public string NotificationModcaseDeleteInternal(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordUser moderator) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
                 case Language.de:
@@ -218,7 +119,7 @@ namespace masz.Translations
             return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
         }
         public string NotificationModcaseCommentsShortCreate() {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return "Comment created";
                 case Language.de:
@@ -227,7 +128,7 @@ namespace masz.Translations
             return "Comment created";
         }
         public string NotificationModcaseCommentsShortUpdate() {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return "Comment updated";
                 case Language.de:
@@ -236,7 +137,7 @@ namespace masz.Translations
             return "Comment updated";
         }
         public string NotificationModcaseCommentsShortDelete() {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return "Comment deleted";
                 case Language.de:
@@ -245,7 +146,7 @@ namespace masz.Translations
             return "Comment deleted";
         }
         public string NotificationModcaseCommentsCreate(DSharpPlus.Entities.DiscordUser actor) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"A **comment** has been created by <@{actor.Id}>.";
                 case Language.de:
@@ -254,7 +155,7 @@ namespace masz.Translations
             return $"A **comment** has been created by <@{actor.Id}>.";
         }
         public string NotificationModcaseCommentsUpdate(DSharpPlus.Entities.DiscordUser actor) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"A **comment** has been updated by <@{actor.Id}>.";
                 case Language.de:
@@ -263,7 +164,7 @@ namespace masz.Translations
             return $"A **comment** has been updated by <@{actor.Id}>.";
         }
         public string NotificationModcaseCommentsDelete(DSharpPlus.Entities.DiscordUser actor) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"A **comment** has been deleted by <@{actor.Id}>.";
                 case Language.de:
@@ -272,7 +173,7 @@ namespace masz.Translations
             return $"A **comment** has been deleted by <@{actor.Id}>.";
         }
         public string NotificationModcaseFileCreate(DSharpPlus.Entities.DiscordUser actor) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"A **file** has been uploaded by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
                 case Language.de:
@@ -281,7 +182,7 @@ namespace masz.Translations
             return $"A **file** has been uploaded by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
         }
         public string NotificationModcaseFileDelete(DSharpPlus.Entities.DiscordUser actor) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"A **file** has been deleted by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
                 case Language.de:
@@ -290,7 +191,7 @@ namespace masz.Translations
             return $"A **file** has been deleted by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
         }
         public string NotificationModcaseFileUpdate(DSharpPlus.Entities.DiscordUser actor) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
                 case Language.de:
@@ -299,7 +200,7 @@ namespace masz.Translations
             return $"A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
         }
         public string NotificationModcaseDMWarn(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"The moderators of guild `{guild.Name}` have warned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
@@ -308,7 +209,7 @@ namespace masz.Translations
             return $"The moderators of guild `{guild.Name}` have warned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
         public string NotificationModcaseDMMuteTemp(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl, string timezone) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"The moderators of guild `{guild.Name}` have temporarily muted you until `{modCase.PunishedUntil.Value.ToString("dd.MMMM.yyyy HH:mm:ss")} ({timezone})`.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
@@ -317,7 +218,7 @@ namespace masz.Translations
             return $"The moderators of guild `{guild.Name}` have temporarily muted you until `{modCase.PunishedUntil.Value.ToString("dd.MMMM.yyyy HH:mm:ss")} ({timezone})`.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
         public string NotificationModcaseDMMutePerm(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"The moderators of guild `{guild.Name}` have muted you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
@@ -326,7 +227,7 @@ namespace masz.Translations
             return $"The moderators of guild `{guild.Name}` have muted you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
         public string NotificationModcaseDMBanTemp(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl, string timezone) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"The moderators of guild `{guild.Name}` have temporarily banned you until `{modCase.PunishedUntil.Value.ToString("dd.MMMM.yyyy HH:mm:ss")} ({timezone})`.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
@@ -335,7 +236,7 @@ namespace masz.Translations
             return $"The moderators of guild `{guild.Name}` have temporarily banned you until `{modCase.PunishedUntil.Value.ToString("dd.MMMM.yyyy HH:mm:ss")} ({timezone})`.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
         public string NotificationModcaseDMBanPerm(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"The moderators of guild `{guild.Name}` have banned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
@@ -344,7 +245,7 @@ namespace masz.Translations
             return $"The moderators of guild `{guild.Name}` have banned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
         public string NotificationModcaseDMKick(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl) {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return $"The moderators of guild `{guild.Name}` have kicked you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
@@ -353,7 +254,7 @@ namespace masz.Translations
             return $"The moderators of guild `{guild.Name}` have kicked you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
         public string NotificationFilesCreate() {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return "File uploaded";
                 case Language.de:
@@ -362,7 +263,7 @@ namespace masz.Translations
             return "File uploaded";
         }
         public string NotificationFilesDelete() {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return "File deleted";
                 case Language.de:
@@ -371,13 +272,116 @@ namespace masz.Translations
             return "File deleted";
         }
         public string NotificationFilesUpdate() {
-            switch (this.preferredLanguage) {
+            switch (preferredLanguage) {
                 case Language.en:
                     return "File updated";
                 case Language.de:
                     return "Datei aktualisiert";
             }
             return "File updated";
+        }
+        public string Enum(masz.Enums.PunishmentType enumValue) {
+            switch (enumValue) {
+                case masz.Enums.PunishmentType.Mute:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Mute";
+                        case Language.de:
+                            return "Stummschaltung";
+                    }
+                    break;
+                case masz.Enums.PunishmentType.Ban:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Ban";
+                        case Language.de:
+                            return "Sperrung";
+                    }
+                    break;
+                case masz.Enums.PunishmentType.Kick:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Kick";
+                        case Language.de:
+                            return "Kick";
+                    }
+                    break;
+                case masz.Enums.PunishmentType.None:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Warn";
+                        case Language.de:
+                            return "Verwarnung";
+                    }
+                    break;
+            }
+            return "Unknown";
+        }
+        public string Enum(masz.Enums.ViewPermission enumValue) {
+            switch (enumValue) {
+                case masz.Enums.ViewPermission.Self:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Self";
+                        case Language.de:
+                            return "Privat";
+                    }
+                    break;
+                case masz.Enums.ViewPermission.Guild:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Guild";
+                        case Language.de:
+                            return "Gilde";
+                    }
+                    break;
+                case masz.Enums.ViewPermission.Global:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Global";
+                        case Language.de:
+                            return "Global";
+                    }
+                    break;
+            }
+            return "Unknown";
+        }
+        public string Enum(masz.Enums.AutoModerationAction enumValue) {
+            switch (enumValue) {
+                case masz.Enums.AutoModerationAction.None:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "None";
+                        case Language.de:
+                            return "Keine Aktion";
+                    }
+                    break;
+                case masz.Enums.AutoModerationAction.ContentDeleted:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Content deleted";
+                        case Language.de:
+                            return "Nachricht gelöscht";
+                    }
+                    break;
+                case masz.Enums.AutoModerationAction.CaseCreated:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Case created";
+                        case Language.de:
+                            return "Vorfall erstellt";
+                    }
+                    break;
+                case masz.Enums.AutoModerationAction.ContentDeletedAndCaseCreated:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Content deleted and case created";
+                        case Language.de:
+                            return "Nachricht gelöscht und Vorfall erstellt";
+                    }
+                    break;
+            }
+            return "Unknown";
         }
 
     }

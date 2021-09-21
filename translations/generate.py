@@ -7,6 +7,8 @@ console = Console()
 
 BACKEND_OUTPUT_PATH = "../backend/masz/Translations/Translation.cs"
 
+DEFAULT_ENUM_NAMESPACE = "masz.Enums"
+
 TRANSLATION_NODES = 0
 TRANSLATION_STATS = dict()
 
@@ -45,7 +47,7 @@ with console.status("[bold green]Generating backend...") as status:
             vars = [f"{v} {k}" for k, v in node.get("var_types", dict()).items()]
             insert_interpolation = "$" if vars else ""
             generate = f"\t\tpublic string {prevKeys}({', '.join(vars)}) " + "{\n"
-            generate += "\t\t\tswitch (this.preferredLanguage) {\n"
+            generate += "\t\t\tswitch (preferredLanguage) {\n"
             for lang, translation in node.items():
                 if lang.lower() in ["description", "var_types"]:
                     continue
@@ -61,6 +63,40 @@ with console.status("[bold green]Generating backend...") as status:
 
     for key, value in BACKEND_DATA.items():
         generate_backend_node(value, key)
+
+    with open("backend_enum.json", "r", encoding="utf-8") as f:
+        BACKEND_DATA = json.load(f)
+
+    def generate_backend_enum(node, enum_name):
+        global TRANSLATION_NODES
+        global BACKEND_STRING
+        global TRANSLATION_STATS
+        console.log(f"Generating {enum_name}...")
+        vars = [f"{v} {k}" for k, v in node.get("var_types", dict()).items()]
+        generate = f"\t\tpublic string Enum({DEFAULT_ENUM_NAMESPACE}.{enum_name} enumValue) " + "{\n"
+        generate += "\t\t\tswitch (enumValue) {\n"
+        for enum_value, translations in node.items():
+            TRANSLATION_NODES += 1
+            generate += f"\t\t\t\tcase {DEFAULT_ENUM_NAMESPACE}.{enum_name}.{enum_value}:\n"
+            generate += "\t\t\t\t\tswitch (preferredLanguage) {\n"
+            for lang, translation in translations.items():
+                if lang.lower() in ["description", "var_types"]:
+                    continue
+                t = translation.replace('\n', '\\n')
+                TRANSLATION_STATS[lang.lower()] = TRANSLATION_STATS.get(lang.lower(), 0) + 1
+                generate += f"\t\t\t\t\t\tcase Language.{lang.lower()}:\n"
+                generate += f"\t\t\t\t\t\t\treturn \"{t}\";\n"
+            generate += "\t\t\t\t\t}\n"
+            generate += "\t\t\t\t\tbreak;\n"
+            t = translations['en'].replace('\n', '\\n')
+        generate += "\t\t\t}\n"
+        generate += f"\t\t\treturn \"Unknown\";\n"
+        generate += "\t\t}\n"
+        BACKEND_STRING += generate
+
+    for key, value in BACKEND_DATA.items():
+        generate_backend_enum(value, key)
+
     BACKEND_STRING += BACKEND_TEMPLATE_END
 
     with open(BACKEND_OUTPUT_PATH, "w", encoding="utf-8") as f:

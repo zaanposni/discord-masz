@@ -6,7 +6,7 @@ using masz.Models;
 using masz.Repositories;
 using masz.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
+using masz.Enums;
 
 namespace masz.Controllers
 {

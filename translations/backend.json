@@ -32,69 +32,6 @@
         "en": "Message",
         "de": "Nachricht"
     },
-    "Enums": {
-        "Punishment": {
-            "Mute": {
-                "description": "The word 'mute'",
-                "en": "Mute",
-                "de": "Stummschaltung"
-            },
-            "Ban": {
-                "description": "The word 'ban'",
-                "en": "Ban",
-                "de": "Sperrung"
-            },
-            "Kick": {
-                "description": "The word 'kick'",
-                "en": "Kick",
-                "de": "Kick"
-            },
-            "Warn": {
-                "description": "The word 'warn'",
-                "en": "Warn",
-                "de": "Verwarnung"
-            }
-        },
-        "ViewPermission": {
-            "Self": {
-                "description": "A ressource with this permissions can only be seen by the creator. The word 'self'.",
-                "en": "Self",
-                "de": "Privat"
-            },
-            "Guild": {
-                "description": "A ressource with this permissions can only be seen by members of the guild. The word 'guild'.",
-                "en": "Guild",
-                "de": "Gilde"
-            },
-            "Global": {
-                "description": "A ressource with this permissions can be seen by everyone. The word 'global'.",
-                "en": "Global",
-                "de": "Global"
-            }
-        },
-        "AutoModActions": {
-            "None": {
-                "description": "No action is performed. The word 'none'.",
-                "en": "None",
-                "de": "Keine Aktion"
-            },
-            "ContentDeleted": {
-                "description": "The message is deleted. The word 'content deleted'.",
-                "en": "Content deleted",
-                "de": "Nachricht gelöscht"
-            },
-            "CaseCreated": {
-                "description": "A case is created. The word 'case created'.",
-                "en": "Case created",
-                "de": "Vorfall erstellt"
-            },
-            "ContentDeletedAndCaseCreated": {
-                "description": "The message is deleted and a case is created. The word 'content deleted and case created'.",
-                "en": "Content deleted and case created",
-                "de": "Nachricht gelöscht und Vorfall erstellt"
-            }
-        }
-    },
     "Notification" : {
         "Modcase": {
             "Create": {

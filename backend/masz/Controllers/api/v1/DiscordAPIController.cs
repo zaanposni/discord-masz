@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DSharpPlus.Entities;
 using masz.Dtos.UserAPIResponses;
-using masz.Exceptions;
+using masz.Enums;
 using masz.Models;
 using masz.Models.Views;
 using masz.Repositories;

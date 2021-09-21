@@ -6,6 +6,7 @@ using DSharpPlus.Entities;
 using masz.Events;
 using masz.Exceptions;
 using masz.Models;
+using masz.Enums;
 
 namespace masz.Repositories
 {

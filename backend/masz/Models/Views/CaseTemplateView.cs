@@ -1,4 +1,5 @@
 using System;
+using masz.Enums;
 
 namespace masz.Models.Views
 {

@@ -1,4 +1,4 @@
-using System;
+using masz.Enums;
 using System.Linq;
 
 namespace masz.Models

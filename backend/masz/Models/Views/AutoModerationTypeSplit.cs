@@ -1,3 +1,5 @@
+using masz.Enums;
+
 namespace masz.Models
 {
     public class AutoModerationTypeSplit
