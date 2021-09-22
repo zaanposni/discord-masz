@@ -5,6 +5,7 @@ using DSharpPlus.Entities;
 using masz.Models;
 using Microsoft.Extensions.Logging;
 using masz.Enums;
+using masz.Extensions;
 
 namespace masz.Services
 {
@@ -82,7 +83,7 @@ namespace masz.Services
             embed.Title = $"#{modCase.CaseId} {modCase.Title}";
 
             // Footer
-            embed.WithFooter($"UserId: {modCase.UserId} | ModCaseId: {modCase.CaseId}");
+            embed.WithFooter($"UserId: {modCase.UserId} | CaseId: {modCase.CaseId}");
 
             // Description
             switch(action){
@@ -113,7 +114,7 @@ namespace masz.Services
             embed.AddField($"{SCALES_EMOTE} - {_translator.T().Punishment()}", modCase.GetPunishment(_translator), true);
             if (modCase.PunishedUntil != null)
             {
-                embed.AddField($"{ALARM_CLOCK} - {_translator.T().PunishmentUntil("UTC")}", modCase.PunishedUntil.Value.ToString("dd.MMMM.yyyy HH:mm:ss"), true);
+                embed.AddField($"{ALARM_CLOCK} - {_translator.T().PunishmentUntil()}", modCase.PunishedUntil.Value.ToDiscordTS(), true);
             }
 
             // Labels
@@ -142,7 +143,7 @@ namespace masz.Services
             embed.WithThumbnail(actor.AvatarUrl);
 
             // Footer
-            embed.WithFooter($"UserId: {actor.Id} | ModCaseId: {modCase.CaseId}");
+            embed.WithFooter($"UserId: {actor.Id} | CaseId: {modCase.CaseId}");
 
             // Filename
             embed.AddField($"**{_translator.T().Filename()}**", filename.Substring(0, Math.Min(filename.Length, 1000)));
@@ -194,7 +195,7 @@ namespace masz.Services
             embed.AddField($"**{_translator.T().Message()}**", comment.Message.Substring(0, Math.Min(comment.Message.Length, 1000)));
 
             // Footer
-            embed.WithFooter($"UserId: {actor.Id} | ModCaseId: {comment.ModCase.CaseId}");
+            embed.WithFooter($"UserId: {actor.Id} | CaseId: {comment.ModCase.CaseId}");
 
             return embed;
         }
