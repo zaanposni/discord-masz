@@ -29,6 +29,34 @@
         "en": "Message",
         "de": "Nachricht"
     },
+    "UserNote": {
+        "description": "The word 'usernote'. This is a feature to share hidden guild-wide notes of a user with other moderators.",
+        "en": "UserNote",
+        "de": "Benutzernotiz"
+    },
+    "UserNotes": {
+        "description": "The plural word 'usernote'. This is a feature to share hidden guild-wide notes of a user with other moderators.",
+        "en": "UserNotes",
+        "de": "Benutzernotizen"
+    },
+    "UserMap": {
+        "description": "The word 'usermap'. This is a feature to share hidden guild-wide connections of two users with other moderators.",
+        "en": "UserMap",
+        "de": "Benutzerbeziehung"
+    },
+    "UserMaps": {
+        "description": "The plural word 'usermaps'. This is a feature to share hidden guild-wide connections of two users with other moderators.",
+        "en": "UserMaps",
+        "de": "Benutzerbeziehungen"
+    },
+    "UserMapBetween": {
+        "description": "Describes a usermap between two users.",
+        "var_types": {
+            "userMap": "masz.Models.UserMapping"
+        },
+        "en": "UserMap between {userMap.UserA} and {userMap.UserB}.",
+        "de": "Benutzerbeziehung zwischen {userMap.UserA} und {userMap.UserB}."
+    },
     "Notification" : {
         "Modcase": {
             "Create": {

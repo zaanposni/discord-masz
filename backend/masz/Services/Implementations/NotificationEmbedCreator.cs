@@ -212,7 +212,7 @@ namespace masz.Services
 
             embed.AddField($"**{_translator.T().Description()}**", userNote.Description.Substring(0, Math.Min(userNote.Description.Length, 1000)));
 
-            embed.Title = $"Usernote #{userNote.Id}";
+            embed.Title = $"{_translator.T().UserNote()} #{userNote.Id}";
 
             embed.WithFooter($"UserId: {userNote.UserId} | UserNoteId: {userNote.Id}");
 
@@ -226,8 +226,8 @@ namespace masz.Services
 
             embed.AddField($"**{_translator.T().Description()}**", userMapping.Reason.Substring(0, Math.Min(userMapping.Reason.Length, 1000)));
 
-            embed.Title = $"Usermap #{userMapping.Id}";
-            embed.Description = $"Usermap between <@{userMapping.UserA}> and <@{userMapping.UserB}>.";
+            embed.Title = $"{_translator.T().UserMap()} #{userMapping.Id}";
+            embed.Description = _translator.T().UserMapBetween(userMapping);
 
             embed.WithFooter($"UserA: {userMapping.UserA} | UserB: {userMapping.UserB} | UserMapId: {userMapping.Id}");
 

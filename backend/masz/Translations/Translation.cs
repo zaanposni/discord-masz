@@ -67,6 +67,51 @@ namespace masz.Translations
             }
             return "Message";
         }
+        public string UserNote() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "UserNote";
+                case Language.de:
+                    return "Benutzernotiz";
+            }
+            return "UserNote";
+        }
+        public string UserNotes() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "UserNotes";
+                case Language.de:
+                    return "Benutzernotizen";
+            }
+            return "UserNotes";
+        }
+        public string UserMap() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "UserMap";
+                case Language.de:
+                    return "Benutzerbeziehung";
+            }
+            return "UserMap";
+        }
+        public string UserMaps() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "UserMaps";
+                case Language.de:
+                    return "Benutzerbeziehungen";
+            }
+            return "UserMaps";
+        }
+        public string UserMapBetween(masz.Models.UserMapping userMap) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"UserMap between {userMap.UserA} and {userMap.UserB}.";
+                case Language.de:
+                    return $"Benutzerbeziehung zwischen {userMap.UserA} und {userMap.UserB}.";
+            }
+            return $"UserMap between {userMap.UserA} and {userMap.UserB}.";
+        }
         public string NotificationModcaseCreatePublic(masz.Models.ModCase modCase) {
             switch (preferredLanguage) {
                 case Language.en:
