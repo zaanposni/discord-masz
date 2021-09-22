@@ -29,10 +29,6 @@ namespace masz.Services
             _serviceProvider = serviceProvider;
         }
 
-        // https://codereview.stackexchange.com/a/257121
-        private static string GetEnvironmentVariable(string name, string defaultValue)
-            => System.Environment.GetEnvironmentVariable(name) is string v && v.Length > 0 ? v : defaultValue;
-
         public async Task AnnounceModCase(ModCase modCase, RestAction action, DiscordUser actor, bool announcePublic, bool announceDm)
         {
             _logger.LogInformation($"Announcing modcase {modCase.Id} in guild {modCase.GuildId}.");
@@ -45,28 +41,27 @@ namespace masz.Services
                 _logger.LogInformation($"Sending dm notification");
 
                 DiscordGuild guild = await _discordAPI.FetchGuildInfo(modCase.GuildId, CacheBehavior.Default);
-                string prefix = GetEnvironmentVariable("DISCORD_PREFIX", "$");
                 string message = string.Empty;
                 switch (modCase.PunishmentType) {
                     case (PunishmentType.Mute):
                         if (modCase.PunishedUntil.HasValue) {
-                            message = _translator.T().NotificationModcaseDMMuteTemp(modCase, guild, prefix, _config.GetBaseUrl());
+                            message = _translator.T().NotificationModcaseDMMuteTemp(modCase, guild, _config.GetBaseUrl());
                         } else {
-                            message = _translator.T().NotificationModcaseDMMutePerm(modCase, guild, prefix, _config.GetBaseUrl());
+                            message = _translator.T().NotificationModcaseDMMutePerm(modCase, guild, _config.GetBaseUrl());
                         }
                         break;
                     case (PunishmentType.Kick):
-                        message = _translator.T().NotificationModcaseDMKick(modCase, guild, prefix, _config.GetBaseUrl());
+                        message = _translator.T().NotificationModcaseDMKick(modCase, guild, _config.GetBaseUrl());
                         break;
                     case (PunishmentType.Ban):
                         if (modCase.PunishedUntil.HasValue) {
-                            message = _translator.T().NotificationModcaseDMBanTemp(modCase, guild, prefix, _config.GetBaseUrl());
+                            message = _translator.T().NotificationModcaseDMBanTemp(modCase, guild, _config.GetBaseUrl());
                         } else {
-                            message = _translator.T().NotificationModcaseDMBanPerm(modCase, guild, prefix, _config.GetBaseUrl());
+                            message = _translator.T().NotificationModcaseDMBanPerm(modCase, guild, _config.GetBaseUrl());
                         }
                         break;
                     default:
-                        message = _translator.T().NotificationModcaseDMWarn(modCase, guild, prefix, _config.GetBaseUrl());
+                        message = _translator.T().NotificationModcaseDMWarn(modCase, guild, _config.GetBaseUrl());
                         break;
                 }
                 await _discordAPI.SendDmMessage(modCase.UserId, message);

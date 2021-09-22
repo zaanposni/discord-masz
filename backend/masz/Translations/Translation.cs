@@ -1,4 +1,5 @@
-using System;
+using masz.Extensions;
+using masz.Enums;
 
 namespace masz.Translations
 {
@@ -11,9 +12,6 @@ namespace masz.Translations
         }
         public static Translation Ctx(Language preferredLanguage = Language.en) {
             return new Translation(preferredLanguage);
-        }
-        private string ToDiscordTimeStamp(DateTime dateTime) {
-            return $"<t:{((DateTimeOffset)dateTime).ToUnixTimeSeconds()}>";
         }
         public string Punishment() {
             switch (preferredLanguage) {
@@ -204,59 +202,59 @@ namespace masz.Translations
             }
             return $"A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
         }
-        public string NotificationModcaseDMWarn(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl) {
+        public string NotificationModcaseDMWarn(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string serviceBaseUrl) {
             switch (preferredLanguage) {
                 case Language.en:
-                    return $"The moderators of guild `{guild.Name}` have warned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
+                    return $"The moderators of guild `{guild.Name}` have warned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
-                    return $"Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}";
+                    return $"Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen besuche: {serviceBaseUrl}";
             }
-            return $"The moderators of guild `{guild.Name}` have warned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
+            return $"The moderators of guild `{guild.Name}` have warned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
-        public string NotificationModcaseDMMuteTemp(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl) {
+        public string NotificationModcaseDMMuteTemp(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string serviceBaseUrl) {
             switch (preferredLanguage) {
                 case Language.en:
-                    return $"The moderators of guild `{guild.Name}` have temporarily muted you until {ToDiscordTimeStamp(modCase.PunishedUntil.Value)}.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
+                    return $"The moderators of guild `{guild.Name}` have temporarily muted you until {modCase.PunishedUntil.Value.GetDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
-                    return $"Die Moderatoren von `{guild.Name}` haben dich temporär stummgeschalten bis {ToDiscordTimeStamp(modCase.PunishedUntil.Value)}.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}";
+                    return $"Die Moderatoren von `{guild.Name}` haben dich temporär stummgeschalten bis {modCase.PunishedUntil.Value.GetDiscordTS()}.\n\nFür weitere Informationen besuche: {serviceBaseUrl}";
             }
-            return $"The moderators of guild `{guild.Name}` have temporarily muted you until {ToDiscordTimeStamp(modCase.PunishedUntil.Value)}.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
+            return $"The moderators of guild `{guild.Name}` have temporarily muted you until {modCase.PunishedUntil.Value.GetDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
-        public string NotificationModcaseDMMutePerm(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl) {
+        public string NotificationModcaseDMMutePerm(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string serviceBaseUrl) {
             switch (preferredLanguage) {
                 case Language.en:
-                    return $"The moderators of guild `{guild.Name}` have muted you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
+                    return $"The moderators of guild `{guild.Name}` have muted you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
-                    return $"Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}";
+                    return $"Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nFür weitere Informationen besuche: {serviceBaseUrl}";
             }
-            return $"The moderators of guild `{guild.Name}` have muted you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
+            return $"The moderators of guild `{guild.Name}` have muted you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
-        public string NotificationModcaseDMBanTemp(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl) {
+        public string NotificationModcaseDMBanTemp(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string serviceBaseUrl) {
             switch (preferredLanguage) {
                 case Language.en:
-                    return $"The moderators of guild `{guild.Name}` have temporarily banned you until {ToDiscordTimeStamp(modCase.PunishedUntil.Value)}.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
+                    return $"The moderators of guild `{guild.Name}` have temporarily banned you until {modCase.PunishedUntil.Value.GetDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
-                    return $"Die Moderatoren von `{guild.Name}` haben dich temporär gebannt bis {ToDiscordTimeStamp(modCase.PunishedUntil.Value)}.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}";
+                    return $"Die Moderatoren von `{guild.Name}` haben dich temporär gebannt bis {modCase.PunishedUntil.Value.GetDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}";
             }
-            return $"The moderators of guild `{guild.Name}` have temporarily banned you until {ToDiscordTimeStamp(modCase.PunishedUntil.Value)}.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
+            return $"The moderators of guild `{guild.Name}` have temporarily banned you until {modCase.PunishedUntil.Value.GetDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
-        public string NotificationModcaseDMBanPerm(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl) {
+        public string NotificationModcaseDMBanPerm(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string serviceBaseUrl) {
             switch (preferredLanguage) {
                 case Language.en:
-                    return $"The moderators of guild `{guild.Name}` have banned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
+                    return $"The moderators of guild `{guild.Name}` have banned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
-                    return $"Die Moderatoren von `{guild.Name}` haben dich gebannt.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}";
+                    return $"Die Moderatoren von `{guild.Name}` haben dich gebannt.\nFür weitere Informationen besuche: {serviceBaseUrl}";
             }
-            return $"The moderators of guild `{guild.Name}` have banned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
+            return $"The moderators of guild `{guild.Name}` have banned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
-        public string NotificationModcaseDMKick(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string botPrefix, string serviceBaseUrl) {
+        public string NotificationModcaseDMKick(masz.Models.ModCase modCase, DSharpPlus.Entities.DiscordGuild guild, string serviceBaseUrl) {
             switch (preferredLanguage) {
                 case Language.en:
-                    return $"The moderators of guild `{guild.Name}` have kicked you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
+                    return $"The moderators of guild `{guild.Name}` have kicked you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
-                    return $"Die Moderatoren von `{guild.Name}` haben dich kickt.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}";
+                    return $"Die Moderatoren von `{guild.Name}` haben dich kickt.\nFür weitere Informationen besuche: {serviceBaseUrl}";
             }
-            return $"The moderators of guild `{guild.Name}` have kicked you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
+            return $"The moderators of guild `{guild.Name}` have kicked you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
         public string NotificationFilesCreate() {
             switch (preferredLanguage) {

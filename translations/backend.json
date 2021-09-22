@@ -166,11 +166,10 @@
                     "var_types": {
                         "modCase": "masz.Models.ModCase",
                         "guild": "DSharpPlus.Entities.DiscordGuild",
-                        "botPrefix": "string",
                         "serviceBaseUrl": "string"
                     },
-                    "en" : "The moderators of guild `{guild.Name}` have warned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                    "de" : "Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                    "en" : "The moderators of guild `{guild.Name}` have warned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                    "de" : "Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen besuche: {serviceBaseUrl}"
                 },
                 "Mute": {
                     "Temp": {
@@ -178,22 +177,20 @@
                         "var_types": {
                             "modCase": "masz.Models.ModCase",
                             "guild": "DSharpPlus.Entities.DiscordGuild",
-                            "botPrefix": "string",
                             "serviceBaseUrl": "string"
                         },
-                        "en" : "The moderators of guild `{guild.Name}` have temporarily muted you until {ToDiscordTimeStamp(modCase.PunishedUntil.Value)}.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                        "de" : "Die Moderatoren von `{guild.Name}` haben dich temporär stummgeschalten bis {ToDiscordTimeStamp(modCase.PunishedUntil.Value)}.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                        "en" : "The moderators of guild `{guild.Name}` have temporarily muted you until {modCase.PunishedUntil.Value.GetDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich temporär stummgeschalten bis {modCase.PunishedUntil.Value.GetDiscordTS()}.\n\nFür weitere Informationen besuche: {serviceBaseUrl}"
                     },
                     "Perm": {
                         "description": "DM notification for perm mute modcase. This does not disclose information about the moderator.",
                         "var_types": {
                             "modCase": "masz.Models.ModCase",
                             "guild": "DSharpPlus.Entities.DiscordGuild",
-                            "botPrefix": "string",
                             "serviceBaseUrl": "string"
                         },
-                        "en" : "The moderators of guild `{guild.Name}` have muted you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                        "de" : "Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                        "en" : "The moderators of guild `{guild.Name}` have muted you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nFür weitere Informationen besuche: {serviceBaseUrl}"
                     }
                 },
                 "Ban": {
@@ -202,22 +199,20 @@
                         "var_types": {
                             "modCase": "masz.Models.ModCase",
                             "guild": "DSharpPlus.Entities.DiscordGuild",
-                            "botPrefix": "string",
                             "serviceBaseUrl": "string"
                         },
-                        "en" : "The moderators of guild `{guild.Name}` have temporarily banned you until {ToDiscordTimeStamp(modCase.PunishedUntil.Value)}.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                        "de" : "Die Moderatoren von `{guild.Name}` haben dich temporär gebannt bis {ToDiscordTimeStamp(modCase.PunishedUntil.Value)}.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                        "en" : "The moderators of guild `{guild.Name}` have temporarily banned you until {modCase.PunishedUntil.Value.GetDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich temporär gebannt bis {modCase.PunishedUntil.Value.GetDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}"
                     },
                     "Perm": {
                         "description": "DM notification for perm ban modcase. This does not disclose information about the moderator.",
                         "var_types": {
                             "modCase": "masz.Models.ModCase",
                             "guild": "DSharpPlus.Entities.DiscordGuild",
-                            "botPrefix": "string",
                             "serviceBaseUrl": "string"
                         },
-                        "en" : "The moderators of guild `{guild.Name}` have banned you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                        "de" : "Die Moderatoren von `{guild.Name}` haben dich gebannt.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                        "en" : "The moderators of guild `{guild.Name}` have banned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich gebannt.\nFür weitere Informationen besuche: {serviceBaseUrl}"
                     }
                 },
                 "Kick": {
@@ -225,11 +220,10 @@
                     "var_types": {
                         "modCase": "masz.Models.ModCase",
                         "guild": "DSharpPlus.Entities.DiscordGuild",
-                        "botPrefix": "string",
                         "serviceBaseUrl": "string"
                     },
-                    "en" : "The moderators of guild `{guild.Name}` have kicked you.\nUse `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` to view more details about this case.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                    "de" : "Die Moderatoren von `{guild.Name}` haben dich kickt.\nBenutze `{botPrefix}viewg {modCase.GuildId} {modCase.CaseId}` um mehr Details über diesen Vorfall zu sehen.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                    "en" : "The moderators of guild `{guild.Name}` have kicked you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                    "de" : "Die Moderatoren von `{guild.Name}` haben dich kickt.\nFür weitere Informationen besuche: {serviceBaseUrl}"
                 }
             }
         },
