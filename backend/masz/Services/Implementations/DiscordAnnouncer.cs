@@ -50,7 +50,7 @@ namespace masz.Services
                 switch (modCase.PunishmentType) {
                     case (PunishmentType.Mute):
                         if (modCase.PunishedUntil.HasValue) {
-                            message = _translator.T().NotificationModcaseDMMuteTemp(modCase, guild, prefix, _config.GetBaseUrl(), "UTC");
+                            message = _translator.T().NotificationModcaseDMMuteTemp(modCase, guild, prefix, _config.GetBaseUrl());
                         } else {
                             message = _translator.T().NotificationModcaseDMMutePerm(modCase, guild, prefix, _config.GetBaseUrl());
                         }
@@ -60,7 +60,7 @@ namespace masz.Services
                         break;
                     case (PunishmentType.Ban):
                         if (modCase.PunishedUntil.HasValue) {
-                            message = _translator.T().NotificationModcaseDMBanTemp(modCase, guild, prefix, _config.GetBaseUrl(), "UTC");
+                            message = _translator.T().NotificationModcaseDMBanTemp(modCase, guild, prefix, _config.GetBaseUrl());
                         } else {
                             message = _translator.T().NotificationModcaseDMBanPerm(modCase, guild, prefix, _config.GetBaseUrl());
                         }
