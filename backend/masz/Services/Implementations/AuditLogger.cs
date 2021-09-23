@@ -26,7 +26,7 @@ namespace masz.Services
             _currentMessage = new StringBuilder();
         }
 
-        private void QueueLog(string message)
+        private async void QueueLog(string message)
         {
             if(! string.IsNullOrEmpty(_config.GetAuditLogWebhook()))
             {
@@ -35,10 +35,7 @@ namespace masz.Services
                     _currentMessage.AppendLine(message);
                 } else
                 {
-                    Task task = new Task(() => {
-                        _discordAPI.ExecuteWebhook(_config.GetAuditLogWebhook(), null, _currentMessage.ToString());
-                    });
-                    task.Start();
+                    await _discordAPI.ExecuteWebhook(_config.GetAuditLogWebhook(), null, _currentMessage.ToString());
                     _currentMessage.Clear();
                     _currentMessage.AppendLine(message);
                 }
@@ -55,24 +52,33 @@ namespace masz.Services
 
         private Task OnTokenDeleted(TokenDeletedEventArgs e)
         {
-            QueueLog($"**Token** `{e.GetToken().Name}` (`#{e.GetToken().Id}`) has been deleted.");
+            Task task = new Task(() => {
+                QueueLog($"**Token** `{e.GetToken().Name}` (`#{e.GetToken().Id}`) has been deleted.");
+            });
+            task.Start();
             return Task.CompletedTask;
         }
 
         private Task OnTokenCreated(TokenCreatedEventArgs e)
         {
-            QueueLog($"**Token** `{e.GetToken().Name}` (`#{e.GetToken().Id}`) has been created and expires {e.GetToken().ValidUntil.ToDiscordTS(DiscordTimestampFormat.RelativeTime)}.");
+            Task task = new Task(() => {
+                QueueLog($"**Token** `{e.GetToken().Name}` (`#{e.GetToken().Id}`) has been created and expires {e.GetToken().ValidUntil.ToDiscordTS(DiscordTimestampFormat.RelativeTime)}.");
+            });
+            task.Start();
             return Task.CompletedTask;
         }
 
         private Task OnIdentityRegistered(IdentityRegisteredEventArgs e)
         {
-            if (e.IsOAuthIdentity())
-            {
-                DiscordUser currentUser = e.GetIdentity().GetCurrentUser();
-                string userDefinition = $"`{currentUser.Username}#{currentUser.Discriminator}` (`{currentUser.Id}`)";
-                QueueLog($"{userDefinition} **logged in** using OAuth.");
-            }
+            Task task = new Task(() => {
+                if (e.IsOAuthIdentity())
+                {
+                    DiscordUser currentUser = e.GetIdentity().GetCurrentUser();
+                    string userDefinition = $"`{currentUser.Username}#{currentUser.Discriminator}` (`{currentUser.Id}`)";
+                    QueueLog($"{userDefinition} **logged in** using OAuth.");
+                }
+            });
+            task.Start();
             return Task.CompletedTask;
         }
     }
