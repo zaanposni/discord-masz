@@ -45,8 +45,6 @@ ENV_FILE["DISCORD_BOT_TOKEN"] = Prompt.ask(":question_mark: Enter your Discord b
 ENV_FILE["DISCORD_OAUTH_CLIENT_ID"] = Prompt.ask(":question_mark: Enter your Discord OAuth client ID")
 ENV_FILE["DISCORD_OAUTH_CLIENT_SECRET"] = Prompt.ask(":question_mark: Enter your Discord OAuth client secret")
 
-ENV_FILE["BOT_PREFIX"] = Prompt.ask(":question_mark: Enter your bot prefix", default="$")
-
 print(":question_mark: Enter the discord id of users that should be site admins.\n[bright_black]It is recommended to be just one. You can enter as many as you want.[/bright_black]")
 admins = []
 while True:
@@ -78,6 +76,8 @@ for code, lang in SUPPORTED_LANGUAGES.items():
 console = Console()
 console.print(table)
 ENV_FILE["DEFAULT_LANGUAGE"] = Prompt.ask(":question_mark: Enter the default language MASZ should use", choices=SUPPORTED_LANGUAGES.keys(), default="en")
+
+ENV_FILE["AUDIT_LOG_WEBHOOK_URL"] = Prompt.ask(":question_mark: Enter a discord webhook url for the audit log")
 
 ENV_FILE["ENABLE_DEMO_MODE"] = "false"
 ENV_FILE["ENABLE_CUSTOM_PLUGINS"] = "false"
