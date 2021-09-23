@@ -26,7 +26,7 @@ namespace masz.Services
             _currentMessage = new StringBuilder();
         }
 
-        private async Task QueueLog(string message)
+        private void QueueLog(string message)
         {
             if(! string.IsNullOrEmpty(_config.GetAuditLogWebhook()))
             {
@@ -35,7 +35,10 @@ namespace masz.Services
                     _currentMessage.AppendLine(message);
                 } else
                 {
-                    await _discordAPI.ExecuteWebhook(_config.GetAuditLogWebhook(), null, _currentMessage.ToString());
+                    Task task = new Task(() => {
+                        _discordAPI.ExecuteWebhook(_config.GetAuditLogWebhook(), null, _currentMessage.ToString());
+                    });
+                    task.Start();
                     _currentMessage.Clear();
                     _currentMessage.AppendLine(message);
                 }
@@ -50,24 +53,27 @@ namespace masz.Services
             _logger.LogInformation("Registered events for audit logger.");
         }
 
-        private async Task OnTokenDeleted(TokenDeletedEventArgs e)
+        private Task OnTokenDeleted(TokenDeletedEventArgs e)
         {
-            await QueueLog($"**Token** `{e.GetToken().Name}` (`#{e.GetToken().Id}`) has been deleted.");
+            QueueLog($"**Token** `{e.GetToken().Name}` (`#{e.GetToken().Id}`) has been deleted.");
+            return Task.CompletedTask;
         }
 
-        private async Task OnTokenCreated(TokenCreatedEventArgs e)
+        private Task OnTokenCreated(TokenCreatedEventArgs e)
         {
-            await QueueLog($"**Token** `{e.GetToken().Name}` (`#{e.GetToken().Id}`) has been created and expires {e.GetToken().ValidUntil.ToDiscordTS(DiscordTimestampFormat.RelativeTime)}.");
+            QueueLog($"**Token** `{e.GetToken().Name}` (`#{e.GetToken().Id}`) has been created and expires {e.GetToken().ValidUntil.ToDiscordTS(DiscordTimestampFormat.RelativeTime)}.");
+            return Task.CompletedTask;
         }
 
-        private async Task OnIdentityRegistered(IdentityRegisteredEventArgs e)
+        private Task OnIdentityRegistered(IdentityRegisteredEventArgs e)
         {
             if (e.IsOAuthIdentity())
             {
                 DiscordUser currentUser = e.GetIdentity().GetCurrentUser();
                 string userDefinition = $"`{currentUser.Username}#{currentUser.Discriminator}` (`{currentUser.Id}`)";
-                await QueueLog($"{userDefinition} **logged in** using OAuth.");
+                QueueLog($"{userDefinition} **logged in** using OAuth.");
             }
+            return Task.CompletedTask;
         }
     }
 }
