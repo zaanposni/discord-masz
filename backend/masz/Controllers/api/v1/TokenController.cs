@@ -3,15 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using System.Security.Cryptography;
 using masz.Models;
 using masz.Dtos.Tokens;
-using masz.Services;
 using masz.Exceptions;
 using masz.Enums;
 using masz.Repositories;
@@ -33,14 +26,19 @@ namespace masz.Controllers
         public async Task<IActionResult> CreateToken([FromBody] TokenForCreateDto tokenDto)
         {
             await RequireSiteAdmin();
-            if (await GetIdentity() is TokenIdentity) {
+            if (await GetIdentity() is TokenIdentity)
+            {
                 throw new BaseAPIException("Tokens cannot manage this resource.", APIError.TokenCannotManageThisResource);
             }
 
             var repo = TokenRepository.CreateDefault(_serviceProvider);
-            if (await repo.GetToken() != null) {
-                throw new BaseAPIException("There already is a token.", APIError.TokenAlreadyRegistered);
-            }
+            try
+            {
+                if (await repo.GetToken() != null)
+                {
+                    throw new BaseAPIException("There already is a token.", APIError.TokenAlreadyRegistered);
+                }
+            } catch (ResourceNotFoundException) { }
 
             _identityManager.ClearTokenIdentities();
 
