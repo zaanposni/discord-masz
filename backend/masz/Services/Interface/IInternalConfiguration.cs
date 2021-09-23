@@ -15,5 +15,6 @@ namespace masz.Services
         string GetBaseUrl();
         List<ulong> GetSiteAdmins();
         Language GetDefaultLanguage();
+        string GetAuditLogWebhook();
     }
 }

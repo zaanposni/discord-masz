@@ -58,6 +58,7 @@ namespace masz
             services.AddSingleton<IPunishmentHandler, PunishmentHandler>();
             services.AddSingleton<IEventHandler, Services.EventHandler>();
             services.AddSingleton<IScheduler, Scheduler>();
+            services.AddSingleton<IAuditLogger, AuditLogger>();
 
             // Plugin
             // ######################################################################################################
@@ -201,6 +202,7 @@ namespace masz
                 {
                     scope.ServiceProvider.GetServices<IBasePlugin>().ToList().ForEach(x => x.Init());
                 }
+                scope.ServiceProvider.GetService<IAuditLogger>().RegisterEvents();
             }
 
             app.UseHttpsRedirection();

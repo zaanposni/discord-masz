@@ -20,6 +20,7 @@ namespace masz.Services
         private string _serviceBaseUrl;
         private List<ulong> _siteAdmins;
         private Language _defaultLanguage;
+        private string _auditLogWebhookUrl;
         public InternalConfiguration(ILogger<InternalConfiguration> logger)
         {
             _logger = logger;
@@ -53,6 +54,7 @@ namespace masz.Services
                     _defaultLanguage = Language.en;
                     break;
             }
+            _auditLogWebhookUrl = Environment.GetEnvironmentVariable("AUDIT_LOG_WEBHOOK_URL");
         }
 
         public string GetBaseUrl()
@@ -98,6 +100,11 @@ namespace masz.Services
         public List<ulong> GetSiteAdmins()
         {
             return _siteAdmins;
+        }
+
+        public string GetAuditLogWebhook()
+        {
+            return _auditLogWebhookUrl;
         }
     }
 }

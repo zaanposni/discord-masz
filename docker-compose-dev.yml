@@ -53,6 +53,7 @@ services:
       - ENABLE_CUSTOM_PLUGINS=${ENABLE_CUSTOM_PLUGINS}
       - ABSOLUTE_PATH_TO_FILE_UPLOAD=/filehost/
       - ENABLE_CORS=true
+      - AUDIT_LOG_WEBHOOK_URL=${AUDIT_LOG_WEBHOOK_URL}
     networks:
       - appnetwork
     volumes:

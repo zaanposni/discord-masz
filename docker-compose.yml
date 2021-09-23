@@ -51,6 +51,7 @@ services:
       - ENABLE_DEMO_MODE=${ENABLE_DEMO_MODE}
       - ENABLE_CUSTOM_PLUGINS=${ENABLE_CUSTOM_PLUGINS}
       - ABSOLUTE_PATH_TO_FILE_UPLOAD=/filehost/
+      - AUDIT_LOG_WEBHOOK_URL=${AUDIT_LOG_WEBHOOK_URL}
     networks:
       - appnetwork
     volumes:
