@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using System.Threading.Tasks;
 using DSharpPlus.Entities;
@@ -28,6 +29,7 @@ namespace masz.Services
 
         private async void QueueLog(string message)
         {
+            message = message.Substring(0, Math.Min(message.Length, 1998));
             if(! string.IsNullOrEmpty(_config.GetAuditLogWebhook()))
             {
                 if(_currentMessage.Length + message.Length <= 1998)  // +2 for newline?
@@ -53,7 +55,7 @@ namespace masz.Services
         private Task OnTokenDeleted(TokenDeletedEventArgs e)
         {
             Task task = new Task(() => {
-                QueueLog($"**Token** `{e.GetToken().Name}` (`#{e.GetToken().Id}`) has been deleted.");
+                QueueLog($"**Token** `{e.GetToken().Name.Truncate(1500)}` (`#{e.GetToken().Id}`) has been deleted.");
             });
             task.Start();
             return Task.CompletedTask;
@@ -62,7 +64,7 @@ namespace masz.Services
         private Task OnTokenCreated(TokenCreatedEventArgs e)
         {
             Task task = new Task(() => {
-                QueueLog($"**Token** `{e.GetToken().Name}` (`#{e.GetToken().Id}`) has been created and expires {e.GetToken().ValidUntil.ToDiscordTS(DiscordTimestampFormat.RelativeTime)}.");
+                QueueLog($"**Token** `{e.GetToken().Name.Truncate(1500)}` (`#{e.GetToken().Id}`) has been created and expires {e.GetToken().ValidUntil.ToDiscordTS(DiscordTimestampFormat.RelativeTime)}.");
             });
             task.Start();
             return Task.CompletedTask;
