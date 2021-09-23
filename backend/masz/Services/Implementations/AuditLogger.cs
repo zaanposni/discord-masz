@@ -28,7 +28,7 @@ namespace masz.Services
 
         private async Task QueueLog(string message)
         {
-            if(_config.GetAuditLogWebhook() != null)
+            if(! string.IsNullOrEmpty(_config.GetAuditLogWebhook()))
             {
                 if(_currentMessage.Length + message.Length <= 1998)  // +2 for newline?
                 {
