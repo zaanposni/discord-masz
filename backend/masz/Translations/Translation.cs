@@ -378,7 +378,7 @@ namespace masz.Translations
                 case Language.en:
                     return "Thanks for registering your guild.\nIn the following you will learn some useful tips for setting up and using **MASZ**.";
                 case Language.de:
-                    return "Vielen Dank für deine Registrierung.\nIn den folgenden Tipps wirst du einige nützliche Tipps zum Einrichten und Verwenden von **MASZ** erhalten.";
+                    return "Vielen Dank für deine Registrierung.\nIm Folgenden wirst du einige nützliche Tipps zum Einrichten und Verwenden von **MASZ** erhalten.";
             }
             return "Thanks for registering your guild.\nIn the following you will learn some useful tips for setting up and using **MASZ**.";
         }
@@ -394,11 +394,11 @@ namespace masz.Translations
         public string NotificationRegisterDefaultLanguageUsed(string language) {
             switch (preferredLanguage) {
                 case Language.en:
-                    return $"MASZ will use `{language}` as default language for this guild.";
+                    return $"MASZ will use `{language}` as default language for this guild whenever possible.";
                 case Language.de:
-                    return $"MASZ wird `{language}` als Standard-Sprache für diese Gilde verwenden.";
+                    return $"MASZ wird `{language}` als Standard-Sprache für diese Gilde verwenden, wenn möglich.";
             }
-            return $"MASZ will use `{language}` as default language for this guild.";
+            return $"MASZ will use `{language}` as default language for this guild whenever possible.";
         }
         public string NotificationRegisterConfusingTimestamps() {
             switch (preferredLanguage) {

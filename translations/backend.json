@@ -298,7 +298,7 @@
             "DescriptionThanks": {
                 "description": "Thanks for registering.",
                 "en": "Thanks for registering your guild.\nIn the following you will learn some useful tips for setting up and using **MASZ**.",
-                "de": "Vielen Dank für deine Registrierung.\nIn den folgenden Tipps wirst du einige nützliche Tipps zum Einrichten und Verwenden von **MASZ** erhalten."
+                "de": "Vielen Dank für deine Registrierung.\nIm Folgenden wirst du einige nützliche Tipps zum Einrichten und Verwenden von **MASZ** erhalten."
             },
             "UseFeaturesCommand": {
                 "description": "Use the `features` command to see the features of MASZ.",
@@ -310,8 +310,8 @@
                 "var_types": {
                     "language": "string"
                 },
-                "en": "MASZ will use `{language}` as default language for this guild.",
-                "de": "MASZ wird `{language}` als Standard-Sprache für diese Gilde verwenden."
+                "en": "MASZ will use `{language}` as default language for this guild whenever possible.",
+                "de": "MASZ wird `{language}` als Standard-Sprache für diese Gilde verwenden, wenn möglich."
             },
             "ConfusingTimestamps": {
                 "description": "The timestamps are confusing.",
