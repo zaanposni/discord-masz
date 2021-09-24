@@ -29,6 +29,19 @@ namespace masz.Services
             _serviceProvider = serviceProvider;
         }
 
+        public async Task AnnounceTipsInNewGuild(GuildConfig guildConfig)
+        {
+            if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+            {
+                _logger.LogInformation($"Sending internal tips webhook to {guildConfig.ModInternalNotificationWebhook}.");
+
+                DiscordEmbedBuilder embed = _notificationEmbedCreator.CreateTipsEmbedForNewGuilds(guildConfig);
+
+                await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build(), null);
+                _logger.LogInformation("Sent internal webhook.");
+            }
+        }
+
         public async Task AnnounceModCase(ModCase modCase, RestAction action, DiscordUser actor, bool announcePublic, bool announceDm)
         {
             _logger.LogInformation($"Announcing modcase {modCase.Id} in guild {modCase.GuildId}.");

@@ -78,6 +78,11 @@ namespace masz.Repositories
             await _database.SaveGuildConfig(guildConfig);
             await _database.SaveChangesAsync();
 
+            if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+            {
+                await _discordAnnouncer.AnnounceTipsInNewGuild(guildConfig);
+            }
+
             await _eventHandler.InvokeGuildRegistered(new GuildRegisteredEventArgs(guildConfig));
 
             return guildConfig;

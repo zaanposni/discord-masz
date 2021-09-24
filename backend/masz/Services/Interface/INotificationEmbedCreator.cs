@@ -12,5 +12,6 @@ namespace masz.Services
         Task<DiscordEmbedBuilder> CreateCommentEmbed(ModCaseComment comment, RestAction action, DiscordUser actor);
         Task<DiscordEmbedBuilder> CreateUserNoteEmbed(UserNote userNote, RestAction action, DiscordUser actor, DiscordUser target);
         Task<DiscordEmbedBuilder> CreateUserMapEmbed(UserMapping userMapping, RestAction action, DiscordUser actor);
+        DiscordEmbedBuilder CreateTipsEmbedForNewGuilds(GuildConfig guildConfig);
     }
 }

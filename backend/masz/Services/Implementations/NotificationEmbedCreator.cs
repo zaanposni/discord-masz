@@ -17,6 +17,10 @@ namespace masz.Services
         private readonly string SCALES_EMOTE = "\u2696";
         private readonly string SCROLL_EMOTE = "\uD83C\uDFF7";
         private readonly string ALARM_CLOCK = "\u23F0";
+        private readonly string STAR = "\u2B50";
+        private readonly string GLOBE = "\uD83C\uDF0D";
+        private readonly string CLOCK = "\uD83D\uDD50";
+        private readonly string HAND_SHAKE = "\uD83E\uDD1D";
 
         public NotificationEmbedCreator(ILogger<Scheduler> logger, IInternalConfiguration config, ITranslator translator)
         {
@@ -230,6 +234,43 @@ namespace masz.Services
             embed.Description = _translator.T().UserMapBetween(userMapping);
 
             embed.WithFooter($"UserA: {userMapping.UserA} | UserB: {userMapping.UserB} | UserMapId: {userMapping.Id}");
+
+            return embed;
+        }
+
+        public DiscordEmbedBuilder CreateTipsEmbedForNewGuilds(GuildConfig guildConfig)
+        {
+            _translator.SetContext(guildConfig);
+            DiscordEmbedBuilder embed = CreateBasicEmbed(RestAction.Created, null);
+
+            embed.Title = _translator.T().NotificationRegisterWelcomeToMASZ();
+            embed.Description = _translator.T().NotificationRegisterDescriptionThanks();
+
+            embed.AddField(
+                $"{STAR} {_translator.T().Features()}",
+                _translator.T().NotificationRegisterUseFeaturesCommand(),
+                false
+            );
+
+            embed.AddField(
+                $"{GLOBE} {_translator.T().LanguageWord()}",
+                _translator.T().NotificationRegisterDefaultLanguageUsed(guildConfig.PreferredLanguage.ToString()),
+                false
+            );
+
+            embed.AddField(
+                $"{CLOCK} {_translator.T().Timestamps()}",
+                _translator.T().NotificationRegisterConfusingTimestamps(),
+                false
+            );
+
+            embed.AddField(
+                $"{HAND_SHAKE} {_translator.T().Support()}",
+                _translator.T().NotificationRegisterSupport(),
+                false
+            );
+
+            embed.WithFooter($"GuildId: {guildConfig.GuildId}");
 
             return embed;
         }
