@@ -1,6 +1,6 @@
 namespace masz.Extensions
 {
-    public static class StringLimit
+    public static class StringTruncate
     {
         public static string Truncate(this string currentString, int max=2000)
         {
