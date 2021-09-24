@@ -1,4 +1,24 @@
 {
+    "Features": {
+        "description": "The word 'features'",
+        "en": "Features",
+        "de": "Features"
+    },
+    "LanguageWord": {
+        "description": "The word 'language'",
+        "en": "Language",
+        "de": "Sprache"
+    },
+    "Timestamps": {
+        "description": "The word 'timestamps'",
+        "en": "Timestamps",
+        "de": "Zeitstempel"
+    },
+    "Support": {
+        "description": "The word 'support'",
+        "en": "Support",
+        "de": "Support"
+    },
     "Punishment": {
         "description": "The word 'punishment'",
         "en": "Punishment",
@@ -267,6 +287,41 @@
                 "description": "A file has been updated.",
                 "en": "File updated",
                 "de": "Datei aktualisiert"
+            }
+        },
+        "Register": {
+            "WelcomeToMASZ": {
+                "description": "Welcome to MASZ",
+                "en": "Welcome to MASZ!",
+                "de": "Willkommen bei MASZ!"
+            },
+            "DescriptionThanks": {
+                "description": "Thanks for registering.",
+                "en": "Thanks for registering your guild.\nIn the following you will learn some useful tips for setting up and using **MASZ**.",
+                "de": "Vielen Dank für deine Registrierung.\nIn den folgenden Tipps wirst du einige nützliche Tipps zum Einrichten und Verwenden von **MASZ** erhalten."
+            },
+            "UseFeaturesCommand": {
+                "description": "Use the `features` command to see the features of MASZ.",
+                "en": "Use the `/features` command to test if your current guild setup supports all features of **MASZ**.",
+                "de": "Benutze den `/features` Befehl um zu sehen welche Features von **MASZ** dein aktuelles Setup unterstützt."
+            },
+            "DefaultLanguageUsed": {
+                "description": "The default language is used for the guild.",
+                "var_types": {
+                    "language": "string"
+                },
+                "en": "MASZ will use `{language}` as default language for this guild.",
+                "de": "MASZ wird `{language}` als Standard-Sprache für diese Gilde verwenden."
+            },
+            "ConfusingTimestamps": {
+                "description": "The timestamps are confusing.",
+                "en": "Timezones can be confusing.\nMASZ uses a Discord feature to display timestamps in the local timezone of your computer/phone.",
+                "de": "Zeitzonen können kompliziert sein.\nMASZ benutzt ein Discord-Feature um Zeitstempel in der lokalen Zeitzone deines Computers/Handys anzuzeigen."
+            },
+            "Support": {
+                "description": "Support for MASZ is provided by the [MASZ Support Server](https://discord.gg/5zjpzw6h3S).",
+                "en": "Please refer to the [MASZ Support Server](https://discord.gg/5zjpzw6h3S) for further questions.",
+                "de": "Bitte wende dich an den [MASZ Support Server](https://discord.gg/5zjpzw6h3S) für weitere Fragen."
             }
         }
     }

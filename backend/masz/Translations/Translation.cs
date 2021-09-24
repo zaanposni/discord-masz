@@ -13,6 +13,42 @@ namespace masz.Translations
         public static Translation Ctx(Language preferredLanguage = Language.en) {
             return new Translation(preferredLanguage);
         }
+        public string Features() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Features";
+                case Language.de:
+                    return "Features";
+            }
+            return "Features";
+        }
+        public string LanguageWord() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Language";
+                case Language.de:
+                    return "Sprache";
+            }
+            return "Language";
+        }
+        public string Timestamps() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Timestamps";
+                case Language.de:
+                    return "Zeitstempel";
+            }
+            return "Timestamps";
+        }
+        public string Support() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Support";
+                case Language.de:
+                    return "Support";
+            }
+            return "Support";
+        }
         public string Punishment() {
             switch (preferredLanguage) {
                 case Language.en:
@@ -327,6 +363,60 @@ namespace masz.Translations
                     return "Datei aktualisiert";
             }
             return "File updated";
+        }
+        public string NotificationRegisterWelcomeToMASZ() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Welcome to MASZ!";
+                case Language.de:
+                    return "Willkommen bei MASZ!";
+            }
+            return "Welcome to MASZ!";
+        }
+        public string NotificationRegisterDescriptionThanks() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Thanks for registering your guild.\nIn the following you will learn some useful tips for setting up and using **MASZ**.";
+                case Language.de:
+                    return "Vielen Dank für deine Registrierung.\nIn den folgenden Tipps wirst du einige nützliche Tipps zum Einrichten und Verwenden von **MASZ** erhalten.";
+            }
+            return "Thanks for registering your guild.\nIn the following you will learn some useful tips for setting up and using **MASZ**.";
+        }
+        public string NotificationRegisterUseFeaturesCommand() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Use the `/features` command to test if your current guild setup supports all features of **MASZ**.";
+                case Language.de:
+                    return "Benutze den `/features` Befehl um zu sehen welche Features von **MASZ** dein aktuelles Setup unterstützt.";
+            }
+            return "Use the `/features` command to test if your current guild setup supports all features of **MASZ**.";
+        }
+        public string NotificationRegisterDefaultLanguageUsed(string language) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"MASZ will use `{language}` as default language for this guild.";
+                case Language.de:
+                    return $"MASZ wird `{language}` als Standard-Sprache für diese Gilde verwenden.";
+            }
+            return $"MASZ will use `{language}` as default language for this guild.";
+        }
+        public string NotificationRegisterConfusingTimestamps() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Timezones can be confusing.\nMASZ uses a Discord feature to display timestamps in the local timezone of your computer/phone.";
+                case Language.de:
+                    return "Zeitzonen können kompliziert sein.\nMASZ benutzt ein Discord-Feature um Zeitstempel in der lokalen Zeitzone deines Computers/Handys anzuzeigen.";
+            }
+            return "Timezones can be confusing.\nMASZ uses a Discord feature to display timestamps in the local timezone of your computer/phone.";
+        }
+        public string NotificationRegisterSupport() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Please refer to the [MASZ Support Server](https://discord.gg/5zjpzw6h3S) for further questions.";
+                case Language.de:
+                    return "Bitte wende dich an den [MASZ Support Server](https://discord.gg/5zjpzw6h3S) für weitere Fragen.";
+            }
+            return "Please refer to the [MASZ Support Server](https://discord.gg/5zjpzw6h3S) for further questions.";
         }
         public string Enum(masz.Enums.PunishmentType enumValue) {
             switch (enumValue) {
