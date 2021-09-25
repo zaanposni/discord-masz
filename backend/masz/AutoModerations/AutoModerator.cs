@@ -200,7 +200,6 @@ namespace masz.AutoModerations
         {
             // internal notification
             // dm notification
-            // delete content if needed
             // notification in current channel if content deleted
             AutoModerationEvent modEvent = new AutoModerationEvent();
 
@@ -212,6 +211,17 @@ namespace masz.AutoModerations
             modEvent.MessageContent = message.Content;
 
             await AutoModerationEventRepository.CreateDefault(_serviceProvider).RegisterEvent(modEvent);
+
+            if (modEvent.AutoModerationAction == AutoModerationAction.ContentDeleted || modEvent.AutoModerationAction == AutoModerationAction.ContentDeletedAndCaseCreated)
+            {
+                try
+                {
+                    await message.DeleteAsync();
+                } catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error deleting message {message.Id}.");
+                }
+            }
         }
 
     }
