@@ -59,6 +59,16 @@ namespace masz.AutoModerations
                 return;
             }
 
+            // spam check
+            if (! onEdit)
+            {
+                if (await CheckAutoMod(
+                       AutoModerationType.TooManyMessages,
+                        message,
+                        SpamCheck.Check
+                    )) return;
+            }
+
             // invites
             if (await CheckAutoMod(
                     AutoModerationType.InvitePosted,
@@ -102,16 +112,6 @@ namespace masz.AutoModerations
                     message,
                     CustomWordCheck.Check
                 )) return;
-
-            // spam check
-            if (! onEdit)
-            {
-                if (await CheckAutoMod(
-                       AutoModerationType.TooManyMessages,
-                        message,
-                        SpamCheck.Check
-                    )) return;
-            }
         }
 
         private async Task<bool> CheckAutoMod(AutoModerationType autoModerationType, DiscordMessage message, Func<DiscordMessage, AutoModerationConfig, bool> predicate)
