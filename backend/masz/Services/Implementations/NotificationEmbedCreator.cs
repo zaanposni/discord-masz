@@ -296,6 +296,12 @@ namespace masz.Services
             );
 
             embed.AddField(
+                _translator.T().Type(),
+                _translator.T().Enum(autoModerationEvent.AutoModerationType),
+                false
+            );
+
+            embed.AddField(
                 _translator.T().MessageContent(),
                 autoModerationEvent.MessageContent,
                 false
