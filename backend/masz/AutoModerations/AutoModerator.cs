@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using DSharpPlus;
 using DSharpPlus.Entities;
 using masz.Enums;
-using masz.Exceptions;
 using masz.Models;
 using masz.Repositories;
 using masz.Services;
@@ -125,7 +124,32 @@ namespace masz.AutoModerations
                     {
                         _logger.LogInformation($"U: {message.Author.Id} | C: {message.Channel.Id} | G: {message.Channel.Guild.Id} triggered {autoModerationConfig.AutoModerationType.ToString()}.");
                         await ExecutePunishment(message, autoModerationConfig, _guildConfig);
-                        await CheckMultipleEvents(message,  _autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.TooManyAutoModerations));
+                        if (autoModerationConfig.AutoModerationType != AutoModerationType.TooManyAutoModerations)
+                        {
+                            await CheckAutoMod(AutoModerationType.TooManyAutoModerations, message, CheckMultipleEvents);
+                        }
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private async Task<bool> CheckAutoMod(AutoModerationType autoModerationType, DiscordMessage message, Func<DiscordMessage, AutoModerationConfig, Task<bool>> predicate)
+        {
+            AutoModerationConfig autoModerationConfig = _autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == autoModerationType);
+            if (autoModerationConfig != null)
+            {
+                if (await predicate(message, autoModerationConfig))
+                {
+                    if (! await IsProtectedByFilter(message, autoModerationConfig))
+                    {
+                        _logger.LogInformation($"U: {message.Author.Id} | C: {message.Channel.Id} | G: {message.Channel.Guild.Id} triggered {autoModerationConfig.AutoModerationType.ToString()}.");
+                        await ExecutePunishment(message, autoModerationConfig, _guildConfig);
+                        if (autoModerationConfig.AutoModerationType != AutoModerationType.TooManyAutoModerations)
+                        {
+                            await CheckAutoMod(AutoModerationType.TooManyAutoModerations, message, CheckMultipleEvents);
+                        }
                         return true;
                     }
                 }
@@ -158,17 +182,36 @@ namespace masz.AutoModerations
             return autoModerationConfig.IgnoreChannels.Contains(message.Channel.Id);
         }
 
-        private async Task CheckMultipleEvents(DiscordMessage message, AutoModerationConfig? autoModerationConfig)
+        private async Task<bool> CheckMultipleEvents(DiscordMessage message, AutoModerationConfig config)
         {
+            if (config.Limit == null)
+            {
+                return false;
+            }
+            if (config.TimeLimitMinutes == null)
+            {
+                return false;
+            }
+            var existing = await AutoModerationEventRepository.CreateDefault(_serviceProvider).GetAllEventsForUserSinceMinutes(message.Author.Id, config.TimeLimitMinutes.Value);
+            return existing.Count > config.Limit.Value;
         }
 
         private async Task ExecutePunishment(DiscordMessage message, AutoModerationConfig autoModerationConfig, GuildConfig guildConfig)
         {
             // internal notification
             // dm notification
-            // register event
             // delete content if needed
             // notification in current channel if content deleted
+            AutoModerationEvent modEvent = new AutoModerationEvent();
+
+            modEvent.GuildId = message.Channel.Guild.Id;
+            modEvent.AutoModerationType = autoModerationConfig.AutoModerationType;
+            modEvent.AutoModerationAction = autoModerationConfig.AutoModerationAction;
+            modEvent.UserId = message.Author.Id;
+            modEvent.MessageId = message.Id;
+            modEvent.MessageContent = message.Content;
+
+            await AutoModerationEventRepository.CreateDefault(_serviceProvider).RegisterEvent(modEvent);
         }
 
     }

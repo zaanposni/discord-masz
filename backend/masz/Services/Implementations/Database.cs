@@ -298,6 +298,11 @@ namespace masz.Services
         {
             return await context.AutoModerationEvents.AsQueryable().Where(x => x.UserId == userId).ToListAsync();
         }
+        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUser(ulong userId, int minutes)
+        {
+            var since = DateTime.UtcNow.AddMinutes(-minutes);
+            return await context.AutoModerationEvents.AsQueryable().Where(x => x.UserId == userId && x.CreatedAt > since).ToListAsync();
+        }
         public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(ulong guildId)
         {
             return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CreatedAt).ToListAsync();

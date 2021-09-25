@@ -96,6 +96,10 @@ namespace masz.Repositories
         {
             return await _database.SelectAllModerationEventsForSpecificUser(userId);
         }
+        public async Task<List<AutoModerationEvent>> GetAllEventsForUserSinceMinutes(ulong userId, int minutes)
+        {
+            return await _database.SelectAllModerationEventsForSpecificUser(userId, minutes);
+        }
         public async Task<List<DbCount>> GetCounts(ulong guildId, DateTime since)
         {
             return await _database.GetModerationCountGraph(guildId, since);

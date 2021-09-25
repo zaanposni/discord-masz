@@ -57,6 +57,7 @@ namespace masz.Services
         Task<int> CountAllModerationEventsForSpecificUserOnGuild(ulong guildId, ulong userId);
         Task<List<AutoModerationEvent>> SelectAllModerationEvents();
         Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUser(ulong userId);
+        Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUser(ulong userId, int minutes);
         Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(ulong guildId);
         Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(ulong guildId, int startPage, int pageSize);
         Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUserOnGuild(ulong guildId, ulong userId, int startPage, int pageSize);

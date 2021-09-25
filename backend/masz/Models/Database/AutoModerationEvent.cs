@@ -19,5 +19,7 @@ namespace masz.Models
         public string MessageContent { get; set; }
         public DateTime CreatedAt { get; set; }
         public int? AssociatedCaseId { get; set; }
+
+        public AutoModerationEvent() { }
     }
 }
