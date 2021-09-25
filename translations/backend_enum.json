@@ -59,5 +59,47 @@
             "en": "Content deleted and case created",
             "de": "Nachricht gelöscht und Vorfall erstellt"
         }
+    },
+    "AutoModerationType": {
+        "InvitePosted": {
+            "description": "A message with an invite link is posted. The word 'invite posted'.",
+            "en": "Invite posted",
+            "de": "Einladung gesendet"
+        },
+        "TooManyEmotes": {
+            "description": "A message with too many emotes is posted. The word 'too many emotes'.",
+            "en": "Too many emotes used",
+            "de": "Zu viele Emojis verwendet"
+        },
+        "TooManyMentions": {
+            "description": "A message with too many mentions is posted. The word 'too many mentions'.",
+            "en": "Too many users mentioned",
+            "de": "Zu viele Benutzer erwähnt"
+        },
+        "TooManyAttachments": {
+            "description": "A message with too many attachments is posted. The word 'too many attachments'.",
+            "en": "Too many attachments used",
+            "de": "Zu viele Anhänge verwendet"
+        },
+        "TooManyEmbeds": {
+            "description": "A message with too many embeds is posted. The word 'too many embeds'.",
+            "en": "Too many embeds used",
+            "de": "Zu viele Einbettungen verwendet"
+        },
+        "TooManyAutoModerations": {
+            "description": "A user triggered too many automoderations. The word 'too many auto-moderations'.",
+            "en": "Too many auto-moderations",
+            "de": "Zu viele automatische Moderationen"
+        },
+        "CustomWordFilter": {
+            "description": "A message with a custom word is posted. The word 'custom word'.",
+            "en": "Custom wordfilter triggered",
+            "de": "Benutzerdefinierter Wortfilter ausgelöst"
+        },
+        "TooManyMessages": {
+            "description": "A user posted too many messages. The word 'too many messages'.",
+            "en": "Too many messages",
+            "de": "Zu viele Nachrichten"
+        }
     }
 }

@@ -86,8 +86,10 @@ with console.status("[bold green]Generating backend...") as status:
                 TRANSLATION_STATS[lang.lower()] = TRANSLATION_STATS.get(lang.lower(), 0) + 1
                 generate += f"\t\t\t\t\t\tcase Language.{lang.lower()}:\n"
                 generate += f"\t\t\t\t\t\t\treturn \"{t}\";\n"
+            t = translations["en"].replace('\n', '\\n')
+            generate += f"\t\t\t\t\t\tdefault:\n"
+            generate += f"\t\t\t\t\t\t\treturn \"{t}\";\n"
             generate += "\t\t\t\t\t}\n"
-            generate += "\t\t\t\t\tbreak;\n"
             t = translations['en'].replace('\n', '\\n')
         generate += "\t\t\t}\n"
         generate += f"\t\t\treturn \"Unknown\";\n"

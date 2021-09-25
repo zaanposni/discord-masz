@@ -426,32 +426,36 @@ namespace masz.Translations
                             return "Mute";
                         case Language.de:
                             return "Stummschaltung";
+                        default:
+                            return "Mute";
                     }
-                    break;
                 case masz.Enums.PunishmentType.Ban:
                     switch (preferredLanguage) {
                         case Language.en:
                             return "Ban";
                         case Language.de:
                             return "Sperrung";
+                        default:
+                            return "Ban";
                     }
-                    break;
                 case masz.Enums.PunishmentType.Kick:
                     switch (preferredLanguage) {
                         case Language.en:
                             return "Kick";
                         case Language.de:
                             return "Kick";
+                        default:
+                            return "Kick";
                     }
-                    break;
                 case masz.Enums.PunishmentType.None:
                     switch (preferredLanguage) {
                         case Language.en:
                             return "Warn";
                         case Language.de:
                             return "Verwarnung";
+                        default:
+                            return "Warn";
                     }
-                    break;
             }
             return "Unknown";
         }
@@ -463,24 +467,27 @@ namespace masz.Translations
                             return "Self";
                         case Language.de:
                             return "Privat";
+                        default:
+                            return "Self";
                     }
-                    break;
                 case masz.Enums.ViewPermission.Guild:
                     switch (preferredLanguage) {
                         case Language.en:
                             return "Guild";
                         case Language.de:
                             return "Gilde";
+                        default:
+                            return "Guild";
                     }
-                    break;
                 case masz.Enums.ViewPermission.Global:
                     switch (preferredLanguage) {
                         case Language.en:
                             return "Global";
                         case Language.de:
                             return "Global";
+                        default:
+                            return "Global";
                     }
-                    break;
             }
             return "Unknown";
         }
@@ -492,32 +499,113 @@ namespace masz.Translations
                             return "None";
                         case Language.de:
                             return "Keine Aktion";
+                        default:
+                            return "None";
                     }
-                    break;
                 case masz.Enums.AutoModerationAction.ContentDeleted:
                     switch (preferredLanguage) {
                         case Language.en:
                             return "Content deleted";
                         case Language.de:
                             return "Nachricht gelöscht";
+                        default:
+                            return "Content deleted";
                     }
-                    break;
                 case masz.Enums.AutoModerationAction.CaseCreated:
                     switch (preferredLanguage) {
                         case Language.en:
                             return "Case created";
                         case Language.de:
                             return "Vorfall erstellt";
+                        default:
+                            return "Case created";
                     }
-                    break;
                 case masz.Enums.AutoModerationAction.ContentDeletedAndCaseCreated:
                     switch (preferredLanguage) {
                         case Language.en:
                             return "Content deleted and case created";
                         case Language.de:
                             return "Nachricht gelöscht und Vorfall erstellt";
+                        default:
+                            return "Content deleted and case created";
                     }
-                    break;
+            }
+            return "Unknown";
+        }
+        public string Enum(masz.Enums.AutoModerationType enumValue) {
+            switch (enumValue) {
+                case masz.Enums.AutoModerationType.InvitePosted:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Invite posted";
+                        case Language.de:
+                            return "Einladung gesendet";
+                        default:
+                            return "Invite posted";
+                    }
+                case masz.Enums.AutoModerationType.TooManyEmotes:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Too many emotes used";
+                        case Language.de:
+                            return "Zu viele Emojis verwendet";
+                        default:
+                            return "Too many emotes used";
+                    }
+                case masz.Enums.AutoModerationType.TooManyMentions:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Too many users mentioned";
+                        case Language.de:
+                            return "Zu viele Benutzer erwähnt";
+                        default:
+                            return "Too many users mentioned";
+                    }
+                case masz.Enums.AutoModerationType.TooManyAttachments:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Too many attachments used";
+                        case Language.de:
+                            return "Zu viele Anhänge verwendet";
+                        default:
+                            return "Too many attachments used";
+                    }
+                case masz.Enums.AutoModerationType.TooManyEmbeds:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Too many embeds used";
+                        case Language.de:
+                            return "Zu viele Einbettungen verwendet";
+                        default:
+                            return "Too many embeds used";
+                    }
+                case masz.Enums.AutoModerationType.TooManyAutoModerations:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Too many auto-moderations";
+                        case Language.de:
+                            return "Zu viele automatische Moderationen";
+                        default:
+                            return "Too many auto-moderations";
+                    }
+                case masz.Enums.AutoModerationType.CustomWordFilter:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Custom wordfilter triggered";
+                        case Language.de:
+                            return "Benutzerdefinierter Wortfilter ausgelöst";
+                        default:
+                            return "Custom wordfilter triggered";
+                    }
+                case masz.Enums.AutoModerationType.TooManyMessages:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Too many messages";
+                        case Language.de:
+                            return "Zu viele Nachrichten";
+                        default:
+                            return "Too many messages";
+                    }
             }
             return "Unknown";
         }
