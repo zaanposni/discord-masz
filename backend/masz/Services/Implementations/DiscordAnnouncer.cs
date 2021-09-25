@@ -209,9 +209,25 @@ namespace masz.Services
             }
         }
 
-        public async Task AnnounceAutomoderation(AutoModerationEvent modEvent, AutoModerationConfig moderationConfig, GuildConfig guildConfig, DiscordChannel channel)
+        public async Task AnnounceAutomoderation(AutoModerationEvent modEvent, AutoModerationConfig moderationConfig, GuildConfig guildConfig, DiscordChannel channel, DiscordUser author)
         {
             // if webhook, announce internal
+            if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+            {
+                _logger.LogInformation($"Sending internal automod event webhook to {guildConfig.ModInternalNotificationWebhook}.");
+
+                try
+                {
+                    DiscordEmbedBuilder embed = _notificationEmbedCreator.CreateInternalAutomodEmbed(modEvent, guildConfig, author, channel, moderationConfig.PunishmentType);
+                    await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
+                } catch (Exception e)
+                {
+                    _logger.LogError(e, "Error while announcing automod event.");
+                }
+
+                _logger.LogInformation("Sent internal webhook.");
+
+            }
 
             // announce dm
 

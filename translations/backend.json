@@ -4,6 +4,39 @@
         "en": "Features",
         "de": "Features"
     },
+    "Automoderation": {
+        "description": "The word 'Automoderation'",
+        "en": "Automoderation",
+        "de": "Automoderation"
+    },
+    "Action": {
+        "description": "The word 'Action'",
+        "en": "Action",
+        "de": "Aktion"
+    },
+    "Author": {
+        "description": "The word 'Author'",
+        "en": "Author",
+        "de": "Autor"
+    },
+    "MessageContent": {
+        "description": "The word 'message content'",
+        "en": "Message content",
+        "de": "Nachrichteninhalt"
+    },
+    "ViewDetailsOn": {
+        "description": "you can view details on url",
+        "var_types": {
+            "url": "string"
+        },
+        "en": "View details on: {url}",
+        "de": "Details anzeigen auf: {url}"
+    },
+    "Channel": {
+        "description": "The word 'channel'",
+        "en": "Channel",
+        "de": "Kanal"
+    },
     "LanguageWord": {
         "description": "The word 'language'",
         "en": "Language",
@@ -76,6 +109,11 @@
         },
         "en": "UserMap between {userMap.UserA} and {userMap.UserB}.",
         "de": "Benutzerbeziehung zwischen {userMap.UserA} und {userMap.UserB}."
+    },
+    "Type": {
+        "description": "The word 'type'",
+        "en": "Type",
+        "de": "Typ"
     },
     "Notification" : {
         "Modcase": {
@@ -322,6 +360,24 @@
                 "description": "Support for MASZ is provided by the [MASZ Support Server](https://discord.gg/5zjpzw6h3S).",
                 "en": "Please refer to the [MASZ Support Server](https://discord.gg/5zjpzw6h3S) for further questions.",
                 "de": "Bitte wende dich an den [MASZ Support Server](https://discord.gg/5zjpzw6h3S) für weitere Fragen."
+            }
+        },
+        "Automoderation": {
+            "Internal": {
+                "description": "Internal notification for automod event",
+                "var_types": {
+                    "user": "DSharpPlus.Entities.DiscordUser"
+                },
+                "en": "{user.Mention} triggered automoderation.",
+                "de": "{user.Mention} hat die Automoderation ausgelöst."
+            },
+            "Case": {
+                "description": "case description for automod event",
+                "var_types": {
+                    "user": "DSharpPlus.Entities.DiscordUser"
+                },
+                "en": "{user.Username}#{user.Discriminator} triggered automoderation.",
+                "de": "{user.Username}#{user.Discriminator} hat die Automoderation ausgelöst."
             }
         }
     }

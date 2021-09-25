@@ -220,7 +220,7 @@ namespace masz.AutoModerations
                 }
             }
 
-            await _announcer.AnnounceAutomoderation(modEvent, autoModerationConfig, guildConfig, message.Channel);
+            await _announcer.AnnounceAutomoderation(modEvent, autoModerationConfig, guildConfig, message.Channel, message.Author);
         }
 
     }

@@ -6,6 +6,7 @@ using masz.Events;
 using masz.Models;
 using Microsoft.Extensions.Logging;
 using masz.Enums;
+using System.Text;
 
 namespace masz.Repositories
 {
@@ -30,6 +31,7 @@ namespace masz.Repositories
         }
         public async Task<AutoModerationEvent> RegisterEvent(AutoModerationEvent modEvent)
         {
+            await _translator.SetContext(modEvent.GuildId);
             AutoModerationConfig modConfig = await AutoModerationConfigRepository.CreateDefault(_serviceProvider).GetConfigsByGuildAndType(modEvent.GuildId, modEvent.AutoModerationType);
 
             DiscordUser user = await _discordAPI.FetchUserInfo(modEvent.UserId, CacheBehavior.Default);
@@ -41,11 +43,20 @@ namespace masz.Repositories
 
             modEvent.CreatedAt = DateTime.UtcNow;
 
-            if (modConfig.AutoModerationAction == AutoModerationAction.CaseCreated || modConfig.AutoModerationAction == AutoModerationAction.CaseCreated)
+            if (modConfig.AutoModerationAction == AutoModerationAction.CaseCreated || modConfig.AutoModerationAction == AutoModerationAction.ContentDeletedAndCaseCreated)
             {
                 ModCase modCase = new ModCase();
                 modCase.Title = $"AutoModeration: {modEvent.AutoModerationType.ToString()}";
-                modCase.Description = $"User triggered AutoModeration\nEvent: {modEvent.AutoModerationType.ToString()}\nAction: {modConfig.AutoModerationAction.ToString()}\nMessageId: {modEvent.MessageId}\nMessage content: {modEvent.MessageContent}";
+
+                StringBuilder description = new StringBuilder();
+                description.AppendLine(_translator.T().NotificationAutomoderationCase(user));
+                description.AppendLine(_translator.T().Type() + ": " + _translator.T().Enum(modEvent.AutoModerationType));
+                description.AppendLine(_translator.T().Action() + ": " + _translator.T().Enum(modEvent.AutoModerationAction));
+                description.AppendLine(_translator.T().Message() + ": " + modEvent.MessageId.ToString());
+                description.AppendLine(_translator.T().MessageContent() + ": " + modEvent.MessageContent);
+
+                modCase.Description = description.ToString();
+
                 modCase.Labels = new List<string>() { "automoderation", modEvent.AutoModerationType.ToString() }.ToArray();
                 modCase.CreationType = CaseCreationType.AutoModeration;
                 modCase.PunishmentType = PunishmentType.None;

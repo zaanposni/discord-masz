@@ -22,6 +22,60 @@ namespace masz.Translations
             }
             return "Features";
         }
+        public string Automoderation() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Automoderation";
+                case Language.de:
+                    return "Automoderation";
+            }
+            return "Automoderation";
+        }
+        public string Action() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Action";
+                case Language.de:
+                    return "Aktion";
+            }
+            return "Action";
+        }
+        public string Author() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Author";
+                case Language.de:
+                    return "Autor";
+            }
+            return "Author";
+        }
+        public string MessageContent() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Message content";
+                case Language.de:
+                    return "Nachrichteninhalt";
+            }
+            return "Message content";
+        }
+        public string ViewDetailsOn(string url) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"View details on: {url}";
+                case Language.de:
+                    return $"Details anzeigen auf: {url}";
+            }
+            return $"View details on: {url}";
+        }
+        public string Channel() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Channel";
+                case Language.de:
+                    return "Kanal";
+            }
+            return "Channel";
+        }
         public string LanguageWord() {
             switch (preferredLanguage) {
                 case Language.en:
@@ -147,6 +201,15 @@ namespace masz.Translations
                     return $"Benutzerbeziehung zwischen {userMap.UserA} und {userMap.UserB}.";
             }
             return $"UserMap between {userMap.UserA} and {userMap.UserB}.";
+        }
+        public string Type() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Type";
+                case Language.de:
+                    return "Typ";
+            }
+            return "Type";
         }
         public string NotificationModcaseCreatePublic(masz.Models.ModCase modCase) {
             switch (preferredLanguage) {
@@ -417,6 +480,24 @@ namespace masz.Translations
                     return "Bitte wende dich an den [MASZ Support Server](https://discord.gg/5zjpzw6h3S) für weitere Fragen.";
             }
             return "Please refer to the [MASZ Support Server](https://discord.gg/5zjpzw6h3S) for further questions.";
+        }
+        public string NotificationAutomoderationInternal(DSharpPlus.Entities.DiscordUser user) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"{user.Mention} triggered automoderation.";
+                case Language.de:
+                    return $"{user.Mention} hat die Automoderation ausgelöst.";
+            }
+            return $"{user.Mention} triggered automoderation.";
+        }
+        public string NotificationAutomoderationCase(DSharpPlus.Entities.DiscordUser user) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"{user.Username}#{user.Discriminator} triggered automoderation.";
+                case Language.de:
+                    return $"{user.Username}#{user.Discriminator} hat die Automoderation ausgelöst.";
+            }
+            return $"{user.Username}#{user.Discriminator} triggered automoderation.";
         }
         public string Enum(masz.Enums.PunishmentType enumValue) {
             switch (enumValue) {

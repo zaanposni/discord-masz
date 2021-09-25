@@ -274,5 +274,53 @@ namespace masz.Services
 
             return embed;
         }
+
+        public DiscordEmbedBuilder CreateInternalAutomodEmbed(AutoModerationEvent autoModerationEvent, GuildConfig guildConfig, DiscordUser user, DiscordChannel channel, PunishmentType? punishmentType = null)
+        {
+            _translator.SetContext(guildConfig);
+            DiscordEmbedBuilder embed = CreateBasicEmbed(RestAction.Created, null);
+
+            embed.Title = _translator.T().Automoderation();
+            embed.Description = _translator.T().NotificationAutomoderationInternal(user);
+
+            embed.AddField(
+                _translator.T().Channel(),
+                channel.Mention,
+                true
+            );
+
+            embed.AddField(
+                _translator.T().Message(),
+                autoModerationEvent.MessageId.ToString(),
+                true
+            );
+
+            embed.AddField(
+                _translator.T().MessageContent(),
+                autoModerationEvent.MessageContent,
+                false
+            );
+
+            embed.AddField(
+                _translator.T().Action(),
+                _translator.T().Enum(autoModerationEvent.AutoModerationAction),
+                false
+            );
+
+            if ((autoModerationEvent.AutoModerationAction == AutoModerationAction.CaseCreated ||
+                 autoModerationEvent.AutoModerationAction == AutoModerationAction.ContentDeletedAndCaseCreated) &&
+                punishmentType != null)
+            {
+                embed.AddField(
+                    _translator.T().Punishment(),
+                    _translator.T().Enum(punishmentType.Value),
+                    false
+                );
+            }
+
+            embed.WithFooter($"GuildId: {guildConfig.GuildId}");
+
+            return embed;
+        }
     }
 }
