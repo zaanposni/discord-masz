@@ -27,19 +27,19 @@ namespace masz.Repositories
         protected readonly IServiceProvider _serviceProvider;
         public BaseRepository(IServiceProvider serviceProvider)
         {
-            this._logger = (ILogger<T>) serviceProvider.GetService(typeof(ILogger<T>));
-            this._database = (IDatabase) serviceProvider.GetService(typeof(IDatabase));
-            this._discordAPI = (IDiscordAPIInterface) serviceProvider.GetService(typeof(IDiscordAPIInterface));
-            this._config = (IInternalConfiguration) serviceProvider.GetService(typeof(IInternalConfiguration));
-            this._identityManager = (IIdentityManager) serviceProvider.GetService(typeof(IIdentityManager));
-            this._discordAnnouncer = (IDiscordAnnouncer) serviceProvider.GetService(typeof(IDiscordAnnouncer));
-            this._filesHandler = (IFilesHandler) serviceProvider.GetService(typeof(IFilesHandler));
-            this._punishmentHandler = (IPunishmentHandler) serviceProvider.GetService(typeof(IPunishmentHandler));
-            this._scheduler = (IScheduler) serviceProvider.GetService(typeof(IScheduler));
-            this._translator = (ITranslator) serviceProvider.GetService(typeof(ITranslator));
-            this._discordBot = (IDiscordBot) serviceProvider.GetService(typeof(IDiscordBot));
-            this._eventHandler = (IEventHandler) serviceProvider.GetService(typeof(IEventHandler));
-            this._serviceProvider = serviceProvider;
+            _logger = (ILogger<T>) serviceProvider.GetService(typeof(ILogger<T>));
+            _database = (IDatabase) serviceProvider.GetService(typeof(IDatabase));
+            _discordAPI = (IDiscordAPIInterface) serviceProvider.GetService(typeof(IDiscordAPIInterface));
+            _config = (IInternalConfiguration) serviceProvider.GetService(typeof(IInternalConfiguration));
+            _identityManager = (IIdentityManager) serviceProvider.GetService(typeof(IIdentityManager));
+            _discordAnnouncer = (IDiscordAnnouncer) serviceProvider.GetService(typeof(IDiscordAnnouncer));
+            _filesHandler = (IFilesHandler) serviceProvider.GetService(typeof(IFilesHandler));
+            _punishmentHandler = (IPunishmentHandler) serviceProvider.GetService(typeof(IPunishmentHandler));
+            _scheduler = (IScheduler) serviceProvider.GetService(typeof(IScheduler));
+            _translator = (ITranslator) serviceProvider.GetService(typeof(ITranslator));
+            _discordBot = (IDiscordBot) serviceProvider.GetService(typeof(IDiscordBot));
+            _eventHandler = (IEventHandler) serviceProvider.GetService(typeof(IEventHandler));
+            _serviceProvider = serviceProvider;
         }
 
         protected bool contains(ModCaseTableEntry obj, string search)
