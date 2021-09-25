@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using masz.Repositories;
 using masz.Logger;
+using masz.AutoModerations;
 
 namespace masz.Services
 {
@@ -26,16 +27,18 @@ namespace masz.Services
         private readonly ITranslator _translator;
         private readonly DiscordClient _client;
         private DiscordConfiguration _discordConfiguration;
-        private IServiceProvider _serviceProvider;
+        private readonly IServiceProvider _serviceProvider;
+        private readonly IServiceScopeFactory _serviceScopeFactory;
         private bool _isRunning = false;
         private DateTime? _lastDisconnect = null;
 
-        public DiscordBot(ILogger<DiscordBot> logger, IInternalConfiguration config, ITranslator translator, IServiceProvider serviceProvider)
+        public DiscordBot(ILogger<DiscordBot> logger, IInternalConfiguration config, ITranslator translator, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
         {
             _logger = logger;
             _config = config;
             _translator = translator;
             _serviceProvider = serviceProvider;
+            _serviceScopeFactory = serviceScopeFactory;
 
             var loggerFactory = new LoggerFactory();
             loggerFactory.AddProvider(new CustomLoggerProvider());
@@ -127,16 +130,20 @@ namespace masz.Services
             return Task.CompletedTask;
         }
 
-        private Task MessageCreatedHandler(DiscordClient client, MessageCreateEventArgs e)
+        private async Task MessageCreatedHandler(DiscordClient client, MessageCreateEventArgs e)
         {
-            // TODO: automod
-            return Task.CompletedTask;
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                await AutoModerator.CreateDefault(client, scope.ServiceProvider).HandleAutomoderation(e.Message);
+            }
         }
 
-        private Task MessageUpdatedHandler(DiscordClient client, MessageUpdateEventArgs e)
+        private async Task MessageUpdatedHandler(DiscordClient client, MessageUpdateEventArgs e)
         {
-            // TODO: automod
-            return Task.CompletedTask;
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                await AutoModerator.CreateDefault(client, scope.ServiceProvider).HandleAutomoderation(e.Message, true);
+            }
         }
 
         private async Task<List<TrackedInvite>> FetchInvites(DiscordGuild guild)
@@ -172,66 +179,69 @@ namespace masz.Services
 
         private async Task GuildMemberAddedHandler(DiscordClient client, GuildMemberAddEventArgs e)
         {
-            try
+            using (var scope = _serviceScopeFactory.CreateScope())
             {
-                IPunishmentHandler handler = _serviceProvider.GetService<IPunishmentHandler>();
-                await handler.HandleMemberJoin(client, e);
-            } catch (Exception ex)
-            {
-                _logger.LogError(ex, "Failed to handle punishment on member join.");
-            }
-
-            GuildConfig guildConfig;
-            try
-            {
-                guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(e.Guild.Id);
-            } catch (ResourceNotFoundException)
-            {
-                return;
-            }
-
-            List<TrackedInvite> newInvites = await FetchInvites(e.Guild);
-            TrackedInvite usedInvite = null;
-            try
-            {
-                usedInvite = InviteTracker.GetUsedInvite(e.Guild.Id, newInvites);
-            } catch (Exception ex)
-            {
-                _logger.LogError(ex, "Failed to get used invite.");
-            }
-            InviteTracker.AddInvites(e.Guild.Id, newInvites);
-
-            if (usedInvite != null)
-            {
-                UserInvite invite = new UserInvite();
-                invite.GuildId = e.Guild.Id;
-                invite.JoinedUserId = e.Member.Id;
-                invite.JoinedAt = DateTime.UtcNow;
-                invite.InviteIssuerId = usedInvite.CreatorId;
-                invite.InviteCreatedAt = usedInvite.CreatedAt;
-                invite.TargetChannelId = usedInvite.TargetChannelId;
-                invite.UsedInvite = $"https://discord.gg/{usedInvite.Code}";
-
-                _logger.LogInformation($"User {e.Member.Username}#{e.Member.Discriminator} joined guild {e.Guild.Name} with ID: {e.Guild.Id} using invite {usedInvite.Code}");
-
-                if (guildConfig.ExecuteWhoisOnJoin && ! String.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+                try
                 {
-                    string message;
-                    string registeredTime = e.Member.CreationTimestamp.ToString("yyyy-MM-dd HH:mm:ss");
-                    if (invite.InviteIssuerId != 0 && invite.InviteCreatedAt != null)
-                    {
-                        string createdTime = invite.InviteCreatedAt.Value.ToString("yyyy-MM-dd HH:mm:ss");
-                        message = $"{e.Member.Mention} (registered `{registeredTime}`) joined with invite <{invite.UsedInvite}> (created `{createdTime}`) by <@{invite.InviteIssuerId}>.";
-                    } else
-                    {
-                        message = $"{e.Member.Mention} (registered `{registeredTime}`) joined with invite <{invite.UsedInvite}>.";
-                    }
-
-                    IDiscordAPIInterface discordAPI = _serviceProvider.GetService<IDiscordAPIInterface>();
-                    await discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, null, message);
+                    IPunishmentHandler handler = scope.ServiceProvider.GetService<IPunishmentHandler>();
+                    await handler.HandleMemberJoin(client, e);
+                } catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Failed to handle punishment on member join.");
                 }
 
-                await InviteRepository.CreateDefault(_serviceProvider).CreateInvite(invite);
+                GuildConfig guildConfig;
+                try
+                {
+                    guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(e.Guild.Id);
+                } catch (ResourceNotFoundException)
+                {
+                    return;
+                }
+
+                List<TrackedInvite> newInvites = await FetchInvites(e.Guild);
+                TrackedInvite usedInvite = null;
+                try
+                {
+                    usedInvite = InviteTracker.GetUsedInvite(e.Guild.Id, newInvites);
+                } catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Failed to get used invite.");
+                }
+                InviteTracker.AddInvites(e.Guild.Id, newInvites);
+
+                if (usedInvite != null)
+                {
+                    UserInvite invite = new UserInvite();
+                    invite.GuildId = e.Guild.Id;
+                    invite.JoinedUserId = e.Member.Id;
+                    invite.JoinedAt = DateTime.UtcNow;
+                    invite.InviteIssuerId = usedInvite.CreatorId;
+                    invite.InviteCreatedAt = usedInvite.CreatedAt;
+                    invite.TargetChannelId = usedInvite.TargetChannelId;
+                    invite.UsedInvite = $"https://discord.gg/{usedInvite.Code}";
+
+                    _logger.LogInformation($"User {e.Member.Username}#{e.Member.Discriminator} joined guild {e.Guild.Name} with ID: {e.Guild.Id} using invite {usedInvite.Code}");
+
+                    if (guildConfig.ExecuteWhoisOnJoin && ! String.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+                    {
+                        string message;
+                        string registeredTime = e.Member.CreationTimestamp.ToString("yyyy-MM-dd HH:mm:ss");
+                        if (invite.InviteIssuerId != 0 && invite.InviteCreatedAt != null)
+                        {
+                            string createdTime = invite.InviteCreatedAt.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                            message = $"{e.Member.Mention} (registered `{registeredTime}`) joined with invite <{invite.UsedInvite}> (created `{createdTime}`) by <@{invite.InviteIssuerId}>.";
+                        } else
+                        {
+                            message = $"{e.Member.Mention} (registered `{registeredTime}`) joined with invite <{invite.UsedInvite}>.";
+                        }
+
+                        IDiscordAPIInterface discordAPI = scope.ServiceProvider.GetService<IDiscordAPIInterface>();
+                        await discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, null, message);
+                    }
+
+                    await InviteRepository.CreateDefault(scope.ServiceProvider).CreateInvite(invite);
+                }
             }
         }
 
