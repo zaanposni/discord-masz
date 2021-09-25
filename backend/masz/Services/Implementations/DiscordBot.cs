@@ -134,7 +134,14 @@ namespace masz.Services
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                var autoModerator = await AutoModerator.CreateDefault(client, e.Guild.Id, scope.ServiceProvider);
+                AutoModerator autoModerator = null;
+                try
+                {
+                    autoModerator = await AutoModerator.CreateDefault(client, e.Guild.Id, scope.ServiceProvider);
+                } catch (ResourceNotFoundException)
+                {
+                    return;
+                }
                 await autoModerator.HandleAutomoderation(e.Message);
             }
         }
@@ -143,7 +150,14 @@ namespace masz.Services
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                var autoModerator = await AutoModerator.CreateDefault(client, e.Guild.Id, scope.ServiceProvider);
+                AutoModerator autoModerator = null;
+                try
+                {
+                    autoModerator = await AutoModerator.CreateDefault(client, e.Guild.Id, scope.ServiceProvider);
+                } catch (ResourceNotFoundException)
+                {
+                    return;
+                }
                 await autoModerator.HandleAutomoderation(e.Message, true);
             }
         }
