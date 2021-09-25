@@ -20,17 +20,29 @@ namespace masz.AutoModerations
         private readonly IServiceProvider _serviceProvider;
         private readonly IInternalConfiguration _config;
         private readonly IDiscordAnnouncer _announcer;
+        private readonly IDatabase _database;
+        private readonly GuildConfig _guildConfig;
+        private readonly List<AutoModerationConfig> _autoModerationConfigs;
 
-        private AutoModerator(DiscordClient client, IServiceProvider serviceProvider)
+        private AutoModerator(DiscordClient client, IServiceProvider serviceProvider, GuildConfig guildConfig, List<AutoModerationConfig> autoModerationConfigs)
         {
             _client = client;
             _serviceProvider = serviceProvider;
             _logger = (ILogger<AutoModerator>) _serviceProvider.GetService(typeof(ILogger<AutoModerator>));
+            _database = (IDatabase) _serviceProvider.GetService(typeof(IDatabase));
             _config = (IInternalConfiguration) _serviceProvider.GetService(typeof(IInternalConfiguration));
             _announcer = (IDiscordAnnouncer) _serviceProvider.GetService(typeof(IDiscordAnnouncer));
+
+            _guildConfig = guildConfig;
+            _autoModerationConfigs = autoModerationConfigs;
         }
 
-        public static AutoModerator CreateDefault(DiscordClient client, IServiceProvider serviceProvider) => new AutoModerator(client, serviceProvider);
+        public static async Task<AutoModerator> CreateDefault(DiscordClient client, ulong guildId, IServiceProvider serviceProvider)
+        {
+            var guildConfig = await GuildConfigRepository.CreateDefault(serviceProvider).GetGuildConfig(guildId);
+            var autoModerationConfigs = await AutoModerationConfigRepository.CreateDefault(serviceProvider).GetConfigsByGuild(guildId);
+            return new AutoModerator(client, serviceProvider, guildConfig, autoModerationConfigs);
+        }
 
         public async Task HandleAutomoderation(DiscordMessage message, bool onEdit = false)
         {
@@ -47,54 +59,38 @@ namespace masz.AutoModerations
                 return;
             }
 
-            GuildConfig guildConfig = null;
-            List<AutoModerationConfig> autoModerationConfigs = null;
-            try
-            {
-                guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(message.Channel.Guild.Id);
-                autoModerationConfigs = await AutoModerationConfigRepository.CreateDefault(_serviceProvider).GetConfigsByGuild(message.Channel.Guild.Id);
-            } catch (ResourceNotFoundException)
-            {
-                return;
-            }
-
             // invites
             if (await CheckAutoMod(
-                    autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.InvitePosted),
+                    AutoModerationType.InvitePosted,
                     message,
-                    guildConfig,
                     InviteChecker.Check
                 )) return;
 
             // emotes
             if (await CheckAutoMod(
-                    autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.TooManyEmotes),
+                    AutoModerationType.TooManyEmotes,
                     message,
-                    guildConfig,
                     EmoteCheck.Check
                 )) return;
 
             // mentions
             if (await CheckAutoMod(
-                    autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.TooManyMentions),
+                    AutoModerationType.TooManyMentions,
                     message,
-                    guildConfig,
                     MentionCheck.Check
                 )) return;
 
             // attachments
             if (await CheckAutoMod(
-                    autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.TooManyAttachments),
+                    AutoModerationType.TooManyAttachments,
                     message,
-                    guildConfig,
                     AttachmentCheck.Check
                 )) return;
 
             // attachments
             if (await CheckAutoMod(
-                    autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.TooManyEmbeds),
+                    AutoModerationType.TooManyEmbeds,
                     message,
-                    guildConfig,
                     EmbedCheck.Check
                 )) return;
 
@@ -102,9 +98,8 @@ namespace masz.AutoModerations
 
             // custom
             if (await CheckAutoMod(
-                    autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.CustomWordFilter),
+                    AutoModerationType.CustomWordFilter,
                     message,
-                    guildConfig,
                     CustomWordCheck.Check
                 )) return;
 
@@ -112,25 +107,25 @@ namespace masz.AutoModerations
             if (! onEdit)
             {
                 if (await CheckAutoMod(
-                        autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.TooManyMessages),
+                       AutoModerationType.TooManyMessages,
                         message,
-                        guildConfig,
                         SpamCheck.Check
                     )) return;
             }
         }
 
-        private async Task<bool> CheckAutoMod(AutoModerationConfig? autoModerationConfig, DiscordMessage message, GuildConfig guildConfig, Func<DiscordMessage, AutoModerationConfig, bool> predicate)
+        private async Task<bool> CheckAutoMod(AutoModerationType autoModerationType, DiscordMessage message, Func<DiscordMessage, AutoModerationConfig, bool> predicate)
         {
+            AutoModerationConfig autoModerationConfig = _autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == autoModerationType);
             if (autoModerationConfig != null)
             {
                 if (predicate(message, autoModerationConfig))
                 {
-                    if (! await IsProtectedByFilter(message, guildConfig, autoModerationConfig))
+                    if (! await IsProtectedByFilter(message, autoModerationConfig))
                     {
                         _logger.LogInformation($"U: {message.Author.Id} | C: {message.Channel.Id} | G: {message.Channel.Guild.Id} triggered {autoModerationConfig.AutoModerationType.ToString()}.");
-                        await ExecutePunishment(message, autoModerationConfig, guildConfig);
-                        await CheckMultipleEvents(message, autoModerationConfig, guildConfig);
+                        await ExecutePunishment(message, autoModerationConfig, _guildConfig);
+                        await CheckMultipleEvents(message,  _autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.TooManyAutoModerations));
                         return true;
                     }
                 }
@@ -138,7 +133,7 @@ namespace masz.AutoModerations
             return false;
         }
 
-        private async Task<bool> IsProtectedByFilter(DiscordMessage message, GuildConfig guildConfig, AutoModerationConfig autoModerationConfig)
+        private async Task<bool> IsProtectedByFilter(DiscordMessage message, AutoModerationConfig autoModerationConfig)
         {
             if (_config.GetSiteAdmins().Contains(message.Author.Id))
             {
@@ -153,8 +148,8 @@ namespace masz.AutoModerations
                 return false;
             }
 
-            if (member.Roles.Any(x => guildConfig.ModRoles.Contains(x.Id) ||
-                                      guildConfig.AdminRoles.Contains(x.Id) ||
+            if (member.Roles.Any(x => _guildConfig.ModRoles.Contains(x.Id) ||
+                                      _guildConfig.AdminRoles.Contains(x.Id) ||
                                       autoModerationConfig.IgnoreRoles.Contains(x.Id)))
             {
                 return true;
@@ -163,9 +158,8 @@ namespace masz.AutoModerations
             return autoModerationConfig.IgnoreChannels.Contains(message.Channel.Id);
         }
 
-        private async Task CheckMultipleEvents(DiscordMessage message, AutoModerationConfig autoModerationConfig, GuildConfig guildConfig)
+        private async Task CheckMultipleEvents(DiscordMessage message, AutoModerationConfig? autoModerationConfig)
         {
-
         }
 
         private async Task ExecutePunishment(DiscordMessage message, AutoModerationConfig autoModerationConfig, GuildConfig guildConfig)

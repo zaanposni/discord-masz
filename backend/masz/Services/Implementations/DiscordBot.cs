@@ -134,7 +134,8 @@ namespace masz.Services
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                await AutoModerator.CreateDefault(client, scope.ServiceProvider).HandleAutomoderation(e.Message);
+                var autoModerator = await AutoModerator.CreateDefault(client, e.Guild.Id, scope.ServiceProvider);
+                await autoModerator.HandleAutomoderation(e.Message);
             }
         }
 
@@ -142,7 +143,8 @@ namespace masz.Services
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                await AutoModerator.CreateDefault(client, scope.ServiceProvider).HandleAutomoderation(e.Message, true);
+                var autoModerator = await AutoModerator.CreateDefault(client, e.Guild.Id, scope.ServiceProvider);
+                await autoModerator.HandleAutomoderation(e.Message, true);
             }
         }
 
