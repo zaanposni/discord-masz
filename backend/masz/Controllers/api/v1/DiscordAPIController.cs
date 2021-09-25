@@ -117,7 +117,7 @@ namespace masz.Controllers.api.v1
             var channels = await _discordAPI.FetchGuildChannels(guildid, CacheBehavior.Default);
             if (channels != null)
             {
-                return Ok(channels);
+                return Ok(channels.Select(x => new DiscordChannelView(x)));
             }
             return NotFound();
         }
@@ -130,7 +130,7 @@ namespace masz.Controllers.api.v1
             var members = await _discordAPI.FetchGuildMembers(guildId, CacheBehavior.OnlyCache);
             if (members != null)
             {
-                return Ok(members.Select(x => DiscordUserView.CreateOrDefault(x)).ToList());
+                return Ok(members.Select(x => DiscordUserView.CreateOrDefault(x)));
             }
             return NotFound();
         }
@@ -139,7 +139,7 @@ namespace masz.Controllers.api.v1
         public async Task<IActionResult> GetAllGuilds()
         {
             Identity identity = await this.GetIdentity();
-            return Ok(identity.GetCurrentUserGuilds().Select(x => new DiscordGuildView(x)).ToList());
+            return Ok(identity.GetCurrentUserGuilds().Select(x => new DiscordGuildView(x)));
         }
     }
 }

@@ -100,7 +100,7 @@ export class AutomodConfigComponent implements OnInit {
       this.toastr.error("Failed to load guild info.");
     });
     this.api.getSimpleData(`/discord/guilds/${this.guildId}/channels`).subscribe((data: GuildChannel[]) => {
-      this.guildChannels = data.filter(x => x.type === "0");
+      this.guildChannels = data.filter(x => x.type === 0);
     }, () => {
       this.toastr.error("Failed to load guildchannel info.");
     });
