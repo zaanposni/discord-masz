@@ -58,18 +58,84 @@ namespace masz.AutoModerations
                 return;
             }
 
-            AutoModerationConfig inviteConfig = autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.InvitePosted);
-            if (inviteConfig != null)
+            // invites
+            if (await CheckAutoMod(
+                    autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.InvitePosted),
+                    message,
+                    guildConfig,
+                    InviteChecker.Check
+                )) return;
+
+            // emotes
+            if (await CheckAutoMod(
+                    autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.TooManyEmotes),
+                    message,
+                    guildConfig,
+                    EmoteCheck.Check
+                )) return;
+
+            // mentions
+            if (await CheckAutoMod(
+                    autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.TooManyMentions),
+                    message,
+                    guildConfig,
+                    MentionCheck.Check
+                )) return;
+
+            // attachments
+            if (await CheckAutoMod(
+                    autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.TooManyAttachments),
+                    message,
+                    guildConfig,
+                    AttachmentCheck.Check
+                )) return;
+
+            // attachments
+            if (await CheckAutoMod(
+                    autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.TooManyEmbeds),
+                    message,
+                    guildConfig,
+                    EmbedCheck.Check
+                )) return;
+
+            // too many automods
+
+            // custom
+            if (await CheckAutoMod(
+                    autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.CustomWordFilter),
+                    message,
+                    guildConfig,
+                    CustomWordCheck.Check
+                )) return;
+
+            // spam check
+            if (! onEdit)
             {
-                if (InviteChecker.Check(message))
+                if (await CheckAutoMod(
+                        autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == AutoModerationType.TooManyMessages),
+                        message,
+                        guildConfig,
+                        SpamCheck.Check
+                    )) return;
+            }
+        }
+
+        private async Task<bool> CheckAutoMod(AutoModerationConfig? autoModerationConfig, DiscordMessage message, GuildConfig guildConfig, Func<DiscordMessage, AutoModerationConfig, bool> predicate)
+        {
+            if (autoModerationConfig != null)
+            {
+                if (predicate(message, autoModerationConfig))
                 {
-                    _logger.LogWarning("invite found!");
-                    if (! await IsProtectedByFilter(message, guildConfig, inviteConfig))
+                    if (! await IsProtectedByFilter(message, guildConfig, autoModerationConfig))
                     {
-                        _logger.LogWarning("invite not protected by filter!");
+                        _logger.LogInformation($"U: {message.Author.Id} | C: {message.Channel.Id} | G: {message.Channel.Guild.Id} triggered {autoModerationConfig.AutoModerationType.ToString()}.");
+                        await ExecutePunishment(message, autoModerationConfig, guildConfig);
+                        await CheckMultipleEvents(message, autoModerationConfig, guildConfig);
+                        return true;
                     }
                 }
             }
+            return false;
         }
 
         private async Task<bool> IsProtectedByFilter(DiscordMessage message, GuildConfig guildConfig, AutoModerationConfig autoModerationConfig)
@@ -97,12 +163,12 @@ namespace masz.AutoModerations
             return autoModerationConfig.IgnoreChannels.Contains(message.Channel.Id);
         }
 
-        private async Task CheckMultipleEvents(DiscordMessage message, GuildConfig guildConfig, AutoModerationConfig autoModerationConfig)
+        private async Task CheckMultipleEvents(DiscordMessage message, AutoModerationConfig autoModerationConfig, GuildConfig guildConfig)
         {
 
         }
 
-        private async Task ExecutePunishment(DiscordMessage message, AutoModerationConfig autoModerationConfig, GuildConfig guildConfig, AutoModerationType autoModerationType)
+        private async Task ExecutePunishment(DiscordMessage message, AutoModerationConfig autoModerationConfig, GuildConfig guildConfig)
         {
             // internal notification
             // dm notification
