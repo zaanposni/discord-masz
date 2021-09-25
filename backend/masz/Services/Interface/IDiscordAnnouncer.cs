@@ -13,5 +13,6 @@ namespace masz.Services
         Task AnnounceFile(string filename, ModCase modCase, DiscordUser actor, RestAction action);
         Task AnnounceUserNote(UserNote userNote, DiscordUser actor, RestAction action);
         Task AnnounceUserMapping(UserMapping userMapping, DiscordUser actor, RestAction action);
+        Task AnnounceAutomoderation(AutoModerationEvent modEvent, AutoModerationConfig moderationConfig, GuildConfig guildConfig, DiscordChannel channel);
     }
 }

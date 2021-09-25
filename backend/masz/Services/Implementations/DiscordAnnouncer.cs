@@ -208,5 +208,14 @@ namespace masz.Services
                 _logger.LogInformation("Sent internal webhook.");
             }
         }
+
+        public async Task AnnounceAutomoderation(AutoModerationEvent modEvent, AutoModerationConfig moderationConfig, GuildConfig guildConfig, DiscordChannel channel)
+        {
+            // if webhook, announce internal
+
+            // announce dm
+
+            // announce channel if deleted
+        }
     }
 }

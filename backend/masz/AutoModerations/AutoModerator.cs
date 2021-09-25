@@ -198,9 +198,6 @@ namespace masz.AutoModerations
 
         private async Task ExecutePunishment(DiscordMessage message, AutoModerationConfig autoModerationConfig, GuildConfig guildConfig)
         {
-            // internal notification
-            // dm notification
-            // notification in current channel if content deleted
             AutoModerationEvent modEvent = new AutoModerationEvent();
 
             modEvent.GuildId = message.Channel.Guild.Id;
@@ -222,6 +219,8 @@ namespace masz.AutoModerations
                     _logger.LogError(ex, $"Error deleting message {message.Id}.");
                 }
             }
+
+            await _announcer.AnnounceAutomoderation(modEvent, autoModerationConfig, guildConfig, message.Channel);
         }
 
     }
