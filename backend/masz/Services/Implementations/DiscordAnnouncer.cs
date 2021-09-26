@@ -39,12 +39,11 @@ namespace masz.Services
                 {
                     DiscordEmbedBuilder embed = _notificationEmbedCreator.CreateTipsEmbedForNewGuilds(guildConfig);
                     await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build(), null);
+                    _logger.LogInformation("Sent internal webhook.");
                 } catch (Exception e)
                 {
                     _logger.LogError(e, "Error while announcing tips.");
                 }
-
-                _logger.LogInformation("Sent internal webhook.");
             }
         }
 
@@ -86,32 +85,42 @@ namespace masz.Services
                             break;
                     }
                     await _discordAPI.SendDmMessage(modCase.UserId, message);
+                    _logger.LogInformation($"Sent dm notification");
                 }  catch (Exception e)
                 {
                     _logger.LogError(e, "Error while announcing modcase.");
                 }
 
-                _logger.LogInformation($"Sent dm notification");
             }
 
             if (! string.IsNullOrEmpty(guildConfig.ModPublicNotificationWebhook) && announcePublic)
             {
                 _logger.LogInformation($"Sending public webhook to {guildConfig.ModPublicNotificationWebhook}.");
 
-                DiscordEmbedBuilder embed = await _notificationEmbedCreator.CreateModcaseEmbed(modCase, action, actor, caseUser, false);
-
-                await _discordAPI.ExecuteWebhook(guildConfig.ModPublicNotificationWebhook, embed.Build(), $"<@{modCase.UserId}>");
-                _logger.LogInformation("Sent public webhook.");
+                try
+                {
+                    DiscordEmbedBuilder embed = await _notificationEmbedCreator.CreateModcaseEmbed(modCase, action, actor, caseUser, false);
+                    await _discordAPI.ExecuteWebhook(guildConfig.ModPublicNotificationWebhook, embed.Build(), $"<@{modCase.UserId}>");
+                    _logger.LogInformation("Sent public webhook .");
+                } catch (Exception e)
+                {
+                    _logger.LogError(e, $"Error while announcing modcase public to {guildConfig.ModPublicNotificationWebhook}.");
+                }
             }
 
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
                 _logger.LogInformation($"Sending internal webhook to {guildConfig.ModInternalNotificationWebhook}.");
 
-                DiscordEmbedBuilder embed = await _notificationEmbedCreator.CreateModcaseEmbed(modCase, action, actor, caseUser, true);
-
-                await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build(), $"<@{modCase.UserId}>");
-                _logger.LogInformation("Sent internal webhook.");
+                try
+                {
+                    DiscordEmbedBuilder embed = await _notificationEmbedCreator.CreateModcaseEmbed(modCase, action, actor, caseUser, true);
+                    await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build(), $"<@{modCase.UserId}>");
+                    _logger.LogInformation("Sent internal webhook.");
+                } catch (Exception e)
+                {
+                    _logger.LogError(e, $"Error while announcing modcase internal to {guildConfig.ModInternalNotificationWebhook}.");
+                }
             }
         }
 
@@ -130,12 +139,11 @@ namespace masz.Services
                     DiscordUser discordUser = await _discordAPI.FetchUserInfo(comment.UserId, CacheBehavior.Default);
                     DiscordEmbedBuilder embed = await _notificationEmbedCreator.CreateCommentEmbed(comment, action, actor);
                     await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
+                    _logger.LogInformation("Sent internal webhook.");
                 } catch (Exception e)
                 {
                     _logger.LogError(e, "Error while announcing comment.");
                 }
-
-                _logger.LogInformation("Sent internal webhook.");
             }
         }
 
@@ -153,12 +161,11 @@ namespace masz.Services
                 {
                     DiscordEmbedBuilder embed = await _notificationEmbedCreator.CreateFileEmbed(filename, modCase, action, actor);
                     await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
+                    _logger.LogInformation("Sent internal webhook.");
                 } catch (Exception e)
                 {
                     _logger.LogError(e, "Error while announcing file.");
                 }
-
-                _logger.LogInformation("Sent internal webhook.");
             }
         }
 
@@ -177,12 +184,11 @@ namespace masz.Services
                     DiscordUser DiscordUser = await _discordAPI.FetchUserInfo(userNote.UserId, CacheBehavior.Default);
                     DiscordEmbedBuilder embed = await _notificationEmbedCreator.CreateUserNoteEmbed(userNote, action, actor, DiscordUser);
                     await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
+                    _logger.LogInformation("Sent internal webhook.");
                 } catch (Exception e)
                 {
                     _logger.LogError(e, "Error while announcing usernote.");
                 }
-
-                _logger.LogInformation("Sent internal webhook.");
             }
         }
 
@@ -200,19 +206,17 @@ namespace masz.Services
                 {
                     DiscordEmbedBuilder embed = await _notificationEmbedCreator.CreateUserMapEmbed(userMapping, action, actor);
                     await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
+                    _logger.LogInformation("Sent internal webhook.");
                 } catch (Exception e)
                 {
                     _logger.LogError(e, "Error while announcing usermap.");
                 }
-
-                _logger.LogInformation("Sent internal webhook.");
             }
         }
 
         public async Task AnnounceAutomoderation(AutoModerationEvent modEvent, AutoModerationConfig moderationConfig, GuildConfig guildConfig, DiscordChannel channel, DiscordUser author)
         {
             _translator.SetContext(guildConfig);
-            // if webhook, announce internal
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
                 _logger.LogInformation($"Sending internal automod event webhook to {guildConfig.ModInternalNotificationWebhook}.");
@@ -221,13 +225,11 @@ namespace masz.Services
                 {
                     DiscordEmbedBuilder embed = _notificationEmbedCreator.CreateInternalAutomodEmbed(modEvent, guildConfig, author, channel, moderationConfig.PunishmentType);
                     await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
+                    _logger.LogInformation("Sent dm notification.");
                 } catch (Exception e)
                 {
                     _logger.LogError(e, "Error while announcing automod event.");
                 }
-
-                _logger.LogInformation("Sent internal webhook.");
-
             }
 
             if (moderationConfig.SendDmNotification)
@@ -239,15 +241,27 @@ namespace masz.Services
                     string reason = _translator.T().Enum(modEvent.AutoModerationType);
                     string action = _translator.T().Enum(modEvent.AutoModerationAction);
                     await _discordAPI.SendDmMessage(author.Id, _translator.T().NotificationAutomoderationDM(author, channel, reason, action));
+                    _logger.LogInformation("Sent dm notification.");
                 } catch (Exception e)
                 {
                     _logger.LogError(e, $"Error while announcing automod event in dm to {author.Id}.");
                 }
-
-                _logger.LogInformation("Sent dm notification.");
             }
 
-            // announce channel if deleted
+            if (modEvent.AutoModerationAction == AutoModerationAction.ContentDeleted || modEvent.AutoModerationAction == AutoModerationAction.ContentDeletedAndCaseCreated)
+            {
+                _logger.LogInformation($"Sending channel automod event notification to {channel.Id}.");
+
+                try
+                {
+                    string reason = _translator.T().Enum(modEvent.AutoModerationType);
+                    await channel.SendMessageAsync(_translator.T().NotificationAutomoderationChannel(author, reason));
+                    _logger.LogInformation("Sent channel notification.");
+                } catch (Exception e)
+                {
+                    _logger.LogError(e, $"Error while announcing automod event in channel {channel.Id}.");
+                }
+            }
         }
     }
 }

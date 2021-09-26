@@ -616,6 +616,15 @@ namespace masz.Translations
             }
             return $"Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}";
         }
+        public string NotificationAutomoderationChannel(DSharpPlus.Entities.DiscordUser user, string reason) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"{user.Mention} you triggered automoderation. Reason: {reason}. Your message has been deleted.";
+                case Language.de:
+                    return $"{user.Mention} du hast die Automoderation ausgelöst. Grund: {reason}. Dein Nachricht wurde gelöscht.";
+            }
+            return $"{user.Mention} you triggered automoderation. Reason: {reason}. Your message has been deleted.";
+        }
         public string Enum(masz.Enums.PunishmentType enumValue) {
             switch (enumValue) {
                 case masz.Enums.PunishmentType.Mute:

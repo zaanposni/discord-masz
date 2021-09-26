@@ -448,6 +448,15 @@
                 },
                 "en": "Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}",
                 "de": "Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}"
+            },
+            "Channel": {
+                "description": "channel notification for automod event if message was deleted, should be oneline",
+                "var_types": {
+                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "reason": "string"
+                },
+                "en": "{user.Mention} you triggered automoderation. Reason: {reason}. Your message has been deleted.",
+                "de": "{user.Mention} du hast die Automoderation ausgelöst. Grund: {reason}. Dein Nachricht wurde gelöscht."
             }
         }
     }
