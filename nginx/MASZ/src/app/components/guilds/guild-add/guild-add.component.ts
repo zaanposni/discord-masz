@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { Guild } from 'src/app/models/Guild';
 import { GuildRole } from 'src/app/models/GuildRole';
-import { MetaClientId } from 'src/app/models/MetaClientId';
+import { IApplicationInfo } from 'src/app/models/IApplicationInfo';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -51,8 +51,8 @@ export class GuildAddComponent implements OnInit {
     });
     
     this.reloadGuilds();
-    this.api.getSimpleData('/meta/clientid').subscribe((data: MetaClientId) => {
-      this.clientId = data.clientid;
+    this.api.getSimpleData('/meta/application').subscribe((data: IApplicationInfo) => {
+      this.clientId = data.id;
     });
   }
 

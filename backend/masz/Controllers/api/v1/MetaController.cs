@@ -1,6 +1,8 @@
 using System;
 using System.Threading.Tasks;
+using masz.Enums;
 using masz.Models;
+using masz.Models.Views;
 using masz.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,32 +14,25 @@ namespace masz.Controllers
 {
     [ApiController]
     [Route("api/v1/meta/")]
-    [Authorize]
-    public class MetaController : ControllerBase
+    public class MetaController : SimpleController
     {
         private readonly ILogger<MetaController> _logger;
-        private readonly IInternalConfiguration _config;
 
-        public MetaController(ILogger<MetaController> logger, IInternalConfiguration config)
+        public MetaController(ILogger<MetaController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
             _logger = logger;
-            _config = config;
         }
 
-        [HttpGet("clientid")]
-        public IActionResult GetClientId() {
-            return Ok(new { clientid = _config.GetClientId() });
+        [HttpGet("user")]
+        public IActionResult GetBotUser()
+        {
+            return Ok(DiscordUserView.CreateOrDefault(_discordAPI.GetCurrentBotInfo(CacheBehavior.Default)));
         }
 
-        [HttpGet("githubreleases")]
-        public async Task<IActionResult> GetReleases() {
-            var restClient = new RestClient("https://api.github.com/");
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/repos/zaanposni/discord-masz/releases";
-
-            var response = await restClient.ExecuteAsync(request);
-
-            return Ok(response.Content);
+        [HttpGet("application")]
+        public IActionResult GetApplication()
+        {
+            return Ok(DiscordApplicationView.CreateOrDefault(_discordAPI.GetCurrentApplicationInfo()));
         }
     }
 }
