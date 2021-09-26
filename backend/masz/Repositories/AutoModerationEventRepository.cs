@@ -46,7 +46,7 @@ namespace masz.Repositories
             if (modConfig.AutoModerationAction == AutoModerationAction.CaseCreated || modConfig.AutoModerationAction == AutoModerationAction.ContentDeletedAndCaseCreated)
             {
                 ModCase modCase = new ModCase();
-                modCase.Title = $"AutoModeration: {modEvent.AutoModerationType.ToString()}";
+                modCase.Title = $"{_translator.T().Automoderation()}: {_translator.T().Enum(modEvent.AutoModerationType)}";
 
                 StringBuilder description = new StringBuilder();
                 description.AppendLine(_translator.T().NotificationAutomoderationCase(user));
