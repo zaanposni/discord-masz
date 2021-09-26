@@ -120,5 +120,147 @@
             "de": "Zu viele Nachrichten",
             "at": "Zu vü Nochrichtn"
         }
+    },
+    "APIError": {
+        "Unknown": {
+            "description": "An unknown error occured.",
+            "en": "Unknown error",
+            "de": "Unbekannter Fehler"
+        },
+        "InvalidDiscordUser": {
+            "description": "The user is not a valid discord user.",
+            "en": "Invalid discord user",
+            "de": "Ungültiger Discordbenutzer"
+        },
+        "ProtectedModCaseSuspect": {
+            "description": "This user is protected. Modcases cannot be created.",
+            "en": "User is protected",
+            "de": "Benutzer ist geschützt"
+        },
+        "ProtectedModCaseSuspectIsBot": {
+            "description": "This user is protected. Modcases cannot be created.",
+            "en": "User is protected. He is a bot.",
+            "de": "Benutzer ist geschützt. Er ist ein Bot."
+        },
+        "ProtectedModCaseSuspectIsSiteAdmin": {
+            "description": "This user is protected. Modcases cannot be created.",
+            "en": "User is protected. He is a site admin.",
+            "de": "Benutzer ist geschützt. Er ist ein Seitenadministrator."
+        },
+        "ProtectedModCaseSuspectIsTeam": {
+            "description": "This user is protected. Modcases cannot be created.",
+            "en": "User is protected. He is a team member.",
+            "de": "Benutzer ist geschützt. Er ist ein Teammitglied."
+        },
+        "ResourceNotFound": {
+            "description": "The resource could not be found.",
+            "en": "Resource not found",
+            "de": "Ressource nicht gefunden"
+        },
+        "InvalidIdentity": {
+            "description": "The identity is not valid.",
+            "en": "Invalid identity",
+            "de": "Ungültige Identität"
+        },
+        "GuildUnregistered": {
+            "description": "The guild is not registered.",
+            "en": "Guild is not registered",
+            "de": "Gilde ist nicht registriert"
+        },
+        "Unauthorized": {
+            "description": "The user is not authorized.",
+            "en": "Unauthorized",
+            "de": "Nicht berechtigt"
+        },
+        "GuildUndefinedMutedRoles": {
+            "description": "The guild is not defined muted roles.",
+            "en": "Guild has no roles for mute punishment defined.",
+            "de": "Gilde hat keine Rollen für Stummschaltungen definiert."
+        },
+        "ModCaseIsMarkedToBeDeleted": {
+            "description": "The modcase is marked to be deleted.",
+            "en": "Modcase is marked to be deleted",
+            "de": "Modcase ist zum Löschen markiert"
+        },
+        "ModCaseIsNotMarkedToBeDeleted": {
+            "description": "The modcase is not marked to be deleted.",
+            "en": "Modcase is not marked to be deleted",
+            "de": "Modcase ist nicht zum Löschen markiert"
+        },
+        "GuildAlreadyRegistered": {
+            "description": "The guild is already registered.",
+            "en": "Guild is already registered",
+            "de": "Gilde ist bereits registriert"
+        },
+        "NotAllowedInDemoMode": {
+            "description": "This action is not allowed in demo mode.",
+            "en": "This action is not allowed in demo mode",
+            "de": "Diese Aktion ist in der Demo-Version nicht erlaubt"
+        },
+        "RoleNotFound": {
+            "description": "The role could not be found.",
+            "en": "Role not found",
+            "de": "Rolle nicht gefunden"
+        },
+        "TokenCannotManageThisResource": {
+            "description": "The token cannot manage this resource.",
+            "en": "Tokens cannot manage this resource",
+            "de": "Tokens können diese Ressource nicht verwalten"
+        },
+        "TokenAlreadyRegistered": {
+            "description": "The token is already registered.",
+            "en": "Token is already registered",
+            "de": "Token ist bereits registriert"
+        },
+        "CannotBeSameUser": {
+            "description": "The user cannot be the same user.",
+            "en": "Both users are the same.",
+            "de": "Beide Benutzer sind gleich."
+        },
+        "ResourceAlreadyExists": {
+            "description": "The resource already exists.",
+            "en": "Resource already exists",
+            "de": "Ressource existiert bereits"
+        },
+        "ModCaseDoesNotAllowComments": {
+            "description": "The modcase does not allow comments.",
+            "en": "Comments are locked for this modcase",
+            "de": "Kommentare sind für diesen Vorfall gesperrt"
+        },
+        "LastCommentAlreadyFromSuspect": {
+            "description": "The last comment was already from the suspect.",
+            "en": "The last comment was already from the suspect.",
+            "de": "Der letzte Kommentar war schon von dem Beschuldigten."
+        },
+        "InvalidAutomoderationAction": {
+            "description": "The automoderation action is not valid.",
+            "en": "Invalid automoderation action",
+            "de": "Ungültige automoderationsaktion"
+        },
+        "InvalidAutomoderationType": {
+            "description": "The automoderation type is not valid.",
+            "en": "Invalid automoderation type",
+            "de": "Ungültiger automoderationstyp"
+        },
+        "TooManyTemplates": {
+            "description": "The user has reached the max limit of templates.",
+            "en": "User has reached the max limit of templates",
+            "de": "Benutzer hat die maximale Anzahl an Templates erreicht"
+        },
+        "InvalidFilePath": {
+            "description": "The file path is not valid.",
+            "en": "Invalid file path",
+            "de": "Ungültiger Dateipfad"
+        },
+        "NoGuildsRegistered": {
+            "description": "There are no guilds registered.",
+            "en": "There are no guilds registered",
+            "de": "Es sind keine Gilden registriert"
+        },
+        "OnlyUsableInAGuild": {
+            "description": "This action is only usable in a guild.",
+            "en": "This action is only usable in a guild",
+            "de": "Diese Aktion ist nur in einer Gilde nutzbar"
+        }
     }
 }

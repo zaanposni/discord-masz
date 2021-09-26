@@ -48,9 +48,9 @@ namespace masz
 
             services.AddScoped<IDatabase, Database>();
             services.AddScoped<ITranslator, Translator>();
-            services.AddSingleton<IDiscordAnnouncer, DiscordAnnouncer>();
+            services.AddScoped<INotificationEmbedCreator, NotificationEmbedCreator>();
+            services.AddScoped<IDiscordAnnouncer, DiscordAnnouncer>();
             services.AddSingleton<IFilesHandler, FilesHandler>();
-            services.AddSingleton<INotificationEmbedCreator, NotificationEmbedCreator>();
             services.AddSingleton<IInternalConfiguration, InternalConfiguration>();
             services.AddSingleton<IDiscordBot, DiscordBot>();
             services.AddSingleton<IDiscordAPIInterface, DiscordAPIInterface>();

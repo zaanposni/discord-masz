@@ -17,6 +17,7 @@ using System.Linq;
 using masz.Repositories;
 using masz.Logger;
 using masz.AutoModerations;
+using System.Text;
 
 namespace masz.Services
 {
@@ -24,7 +25,6 @@ namespace masz.Services
     {
         private readonly ILogger<DiscordBot> _logger;
         private readonly IInternalConfiguration _config;
-        private readonly ITranslator _translator;
         private readonly DiscordClient _client;
         private DiscordConfiguration _discordConfiguration;
         private readonly IServiceProvider _serviceProvider;
@@ -32,11 +32,10 @@ namespace masz.Services
         private bool _isRunning = false;
         private DateTime? _lastDisconnect = null;
 
-        public DiscordBot(ILogger<DiscordBot> logger, IInternalConfiguration config, ITranslator translator, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
+        public DiscordBot(ILogger<DiscordBot> logger, IInternalConfiguration config, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
         {
             _logger = logger;
             _config = config;
-            _translator = translator;
             _serviceProvider = serviceProvider;
             _serviceScopeFactory = serviceScopeFactory;
 
@@ -69,7 +68,6 @@ namespace masz.Services
                 Services = serviceProvider
             });
 
-            // TODO: remove
             ulong? debugGuild = null;  // set your guild id here to enable fast syncing debug commands
 
             slash.RegisterCommands<ReportCommand>(debugGuild);
@@ -324,17 +322,27 @@ namespace masz.Services
             {
                 _logger.LogError($"Command '{e.Context.CommandName}' invoked by '{e.Context.User.Username}#{e.Context.User.Discriminator}' failed: {(e.Exception as BaseAPIException).error}");
 
-                string errorCode = "0#" + ((int) ((e.Exception as BaseAPIException).error)).ToString("D7");
-                try
+                using (var scope = _serviceScopeFactory.CreateScope())
                 {
-                    await e.Context.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().AsEphemeral(true).WithContent(
-                        $"Something went wrong.\n`{(e.Exception as BaseAPIException).Message}`\n**Code** `{errorCode}`"
-                    ));
-                } catch (DSharpPlus.Exceptions.NotFoundException)
-                {
-                    await e.Context.EditResponseAsync(new DiscordWebhookBuilder().WithContent(
-                        $"Something went wrong.\n`{(e.Exception as BaseAPIException).Message}`\n**Code** `{errorCode}`"
-                    ));
+                    ITranslator translator = scope.ServiceProvider.GetService<ITranslator>();
+                    if (e.Context.Guild != null)
+                    {
+                        await translator.SetContext(e.Context.Guild.Id);
+                    }
+
+                    string errorCode = "0#" + ((int) ((e.Exception as BaseAPIException).error)).ToString("D7");
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine(translator.T().SomethingWentWrong());
+                    sb.AppendLine($"`{translator.T().Enum((e.Exception as BaseAPIException).error)}`");
+                    sb.Append($"**{translator.T().Code()}** ");
+                    sb.Append($"`{errorCode}`");
+                    try
+                    {
+                        await e.Context.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent(sb.ToString()));
+                    } catch (DSharpPlus.Exceptions.NotFoundException)
+                    {
+                        await e.Context.EditResponseAsync(new DiscordWebhookBuilder().WithContent(sb.ToString()));
+                    }
                 }
             } else
             {

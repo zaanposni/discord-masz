@@ -90,6 +90,24 @@ namespace masz.Translations
             }
             return "Channel";
         }
+        public string SomethingWentWrong() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Something went wrong.";
+                case Language.de:
+                    return "Etwas ist schief gelaufen.";
+            }
+            return "Something went wrong.";
+        }
+        public string Code() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Code";
+                case Language.de:
+                    return "Code";
+            }
+            return "Code";
+        }
         public string LanguageWord() {
             switch (preferredLanguage) {
                 case Language.en:
@@ -850,6 +868,263 @@ namespace masz.Translations
                             return "Zu vü Nochrichtn";
                         default:
                             return "Too many messages";
+                    }
+            }
+            return "Unknown";
+        }
+        public string Enum(masz.Enums.APIError enumValue) {
+            switch (enumValue) {
+                case masz.Enums.APIError.Unknown:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Unknown error";
+                        case Language.de:
+                            return "Unbekannter Fehler";
+                        default:
+                            return "Unknown error";
+                    }
+                case masz.Enums.APIError.InvalidDiscordUser:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Invalid discord user";
+                        case Language.de:
+                            return "Ungültiger Discordbenutzer";
+                        default:
+                            return "Invalid discord user";
+                    }
+                case masz.Enums.APIError.ProtectedModCaseSuspect:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "User is protected";
+                        case Language.de:
+                            return "Benutzer ist geschützt";
+                        default:
+                            return "User is protected";
+                    }
+                case masz.Enums.APIError.ProtectedModCaseSuspectIsBot:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "User is protected. He is a bot.";
+                        case Language.de:
+                            return "Benutzer ist geschützt. Er ist ein Bot.";
+                        default:
+                            return "User is protected. He is a bot.";
+                    }
+                case masz.Enums.APIError.ProtectedModCaseSuspectIsSiteAdmin:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "User is protected. He is a site admin.";
+                        case Language.de:
+                            return "Benutzer ist geschützt. Er ist ein Seitenadministrator.";
+                        default:
+                            return "User is protected. He is a site admin.";
+                    }
+                case masz.Enums.APIError.ProtectedModCaseSuspectIsTeam:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "User is protected. He is a team member.";
+                        case Language.de:
+                            return "Benutzer ist geschützt. Er ist ein Teammitglied.";
+                        default:
+                            return "User is protected. He is a team member.";
+                    }
+                case masz.Enums.APIError.ResourceNotFound:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Resource not found";
+                        case Language.de:
+                            return "Ressource nicht gefunden";
+                        default:
+                            return "Resource not found";
+                    }
+                case masz.Enums.APIError.InvalidIdentity:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Invalid identity";
+                        case Language.de:
+                            return "Ungültige Identität";
+                        default:
+                            return "Invalid identity";
+                    }
+                case masz.Enums.APIError.GuildUnregistered:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Guild is not registered";
+                        case Language.de:
+                            return "Gilde ist nicht registriert";
+                        default:
+                            return "Guild is not registered";
+                    }
+                case masz.Enums.APIError.Unauthorized:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Unauthorized";
+                        case Language.de:
+                            return "Nicht berechtigt";
+                        default:
+                            return "Unauthorized";
+                    }
+                case masz.Enums.APIError.GuildUndefinedMutedRoles:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Guild has no roles for mute punishment defined.";
+                        case Language.de:
+                            return "Gilde hat keine Rollen für Stummschaltungen definiert.";
+                        default:
+                            return "Guild has no roles for mute punishment defined.";
+                    }
+                case masz.Enums.APIError.ModCaseIsMarkedToBeDeleted:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Modcase is marked to be deleted";
+                        case Language.de:
+                            return "Modcase ist zum Löschen markiert";
+                        default:
+                            return "Modcase is marked to be deleted";
+                    }
+                case masz.Enums.APIError.ModCaseIsNotMarkedToBeDeleted:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Modcase is not marked to be deleted";
+                        case Language.de:
+                            return "Modcase ist nicht zum Löschen markiert";
+                        default:
+                            return "Modcase is not marked to be deleted";
+                    }
+                case masz.Enums.APIError.GuildAlreadyRegistered:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Guild is already registered";
+                        case Language.de:
+                            return "Gilde ist bereits registriert";
+                        default:
+                            return "Guild is already registered";
+                    }
+                case masz.Enums.APIError.NotAllowedInDemoMode:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "This action is not allowed in demo mode";
+                        case Language.de:
+                            return "Diese Aktion ist in der Demo-Version nicht erlaubt";
+                        default:
+                            return "This action is not allowed in demo mode";
+                    }
+                case masz.Enums.APIError.RoleNotFound:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Role not found";
+                        case Language.de:
+                            return "Rolle nicht gefunden";
+                        default:
+                            return "Role not found";
+                    }
+                case masz.Enums.APIError.TokenCannotManageThisResource:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Tokens cannot manage this resource";
+                        case Language.de:
+                            return "Tokens können diese Ressource nicht verwalten";
+                        default:
+                            return "Tokens cannot manage this resource";
+                    }
+                case masz.Enums.APIError.TokenAlreadyRegistered:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Token is already registered";
+                        case Language.de:
+                            return "Token ist bereits registriert";
+                        default:
+                            return "Token is already registered";
+                    }
+                case masz.Enums.APIError.CannotBeSameUser:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Both users are the same.";
+                        case Language.de:
+                            return "Beide Benutzer sind gleich.";
+                        default:
+                            return "Both users are the same.";
+                    }
+                case masz.Enums.APIError.ResourceAlreadyExists:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Resource already exists";
+                        case Language.de:
+                            return "Ressource existiert bereits";
+                        default:
+                            return "Resource already exists";
+                    }
+                case masz.Enums.APIError.ModCaseDoesNotAllowComments:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Comments are locked for this modcase";
+                        case Language.de:
+                            return "Kommentare sind für diesen Vorfall gesperrt";
+                        default:
+                            return "Comments are locked for this modcase";
+                    }
+                case masz.Enums.APIError.LastCommentAlreadyFromSuspect:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "The last comment was already from the suspect.";
+                        case Language.de:
+                            return "Der letzte Kommentar war schon von dem Beschuldigten.";
+                        default:
+                            return "The last comment was already from the suspect.";
+                    }
+                case masz.Enums.APIError.InvalidAutomoderationAction:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Invalid automoderation action";
+                        case Language.de:
+                            return "Ungültige automoderationsaktion";
+                        default:
+                            return "Invalid automoderation action";
+                    }
+                case masz.Enums.APIError.InvalidAutomoderationType:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Invalid automoderation type";
+                        case Language.de:
+                            return "Ungültiger automoderationstyp";
+                        default:
+                            return "Invalid automoderation type";
+                    }
+                case masz.Enums.APIError.TooManyTemplates:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "User has reached the max limit of templates";
+                        case Language.de:
+                            return "Benutzer hat die maximale Anzahl an Templates erreicht";
+                        default:
+                            return "User has reached the max limit of templates";
+                    }
+                case masz.Enums.APIError.InvalidFilePath:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Invalid file path";
+                        case Language.de:
+                            return "Ungültiger Dateipfad";
+                        default:
+                            return "Invalid file path";
+                    }
+                case masz.Enums.APIError.NoGuildsRegistered:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "There are no guilds registered";
+                        case Language.de:
+                            return "Es sind keine Gilden registriert";
+                        default:
+                            return "There are no guilds registered";
+                    }
+                case masz.Enums.APIError.OnlyUsableInAGuild:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "This action is only usable in a guild";
+                        case Language.de:
+                            return "Diese Aktion ist nur in einer Gilde nutzbar";
+                        default:
+                            return "This action is only usable in a guild";
                     }
             }
             return "Unknown";

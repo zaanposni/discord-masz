@@ -44,6 +44,16 @@
         "de": "Kanal",
         "at": "Kanoi"
     },
+    "SomethingWentWrong": {
+        "description": "The word 'something went wrong.'",
+        "en": "Something went wrong.",
+        "de": "Etwas ist schief gelaufen."
+    },
+    "Code": {
+        "description": "The word 'code'. like in 'the error code'",
+        "en": "Code",
+        "de": "Code"
+    },
     "LanguageWord": {
         "description": "The word 'language'",
         "en": "Language",
