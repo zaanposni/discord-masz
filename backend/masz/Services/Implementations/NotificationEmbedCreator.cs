@@ -81,7 +81,7 @@ namespace masz.Services
             }
 
             // Description
-            embed.AddField($"**{_translator.T().Description()}**", modCase.Description.Substring(0, Math.Min(modCase.Description.Length, 1000)));
+            embed.AddField($"**{_translator.T().Description()}**", modCase.Description.Truncate(1000));
 
             // Title
             embed.Title = $"#{modCase.CaseId} {modCase.Title}";
@@ -150,7 +150,7 @@ namespace masz.Services
             embed.WithFooter($"UserId: {actor.Id} | CaseId: {modCase.CaseId}");
 
             // Filename
-            embed.AddField($"**{_translator.T().Filename()}**", filename.Substring(0, Math.Min(filename.Length, 1000)));
+            embed.AddField($"**{_translator.T().Filename()}**", filename.Truncate(1000));
 
             switch(action){
                 case RestAction.Edited:
@@ -196,7 +196,7 @@ namespace masz.Services
             }
 
             // Message
-            embed.AddField($"**{_translator.T().Message()}**", comment.Message.Substring(0, Math.Min(comment.Message.Length, 1000)));
+            embed.AddField($"**{_translator.T().Message()}**", comment.Message.Truncate(1000));
 
             // Footer
             embed.WithFooter($"UserId: {actor.Id} | CaseId: {comment.ModCase.CaseId}");
@@ -214,7 +214,7 @@ namespace masz.Services
                 embed.WithThumbnail(target.AvatarUrl);
             }
 
-            embed.AddField($"**{_translator.T().Description()}**", userNote.Description.Substring(0, Math.Min(userNote.Description.Length, 1000)));
+            embed.AddField($"**{_translator.T().Description()}**", userNote.Description.Truncate(1000));
 
             embed.Title = $"{_translator.T().UserNote()} #{userNote.Id}";
 
@@ -228,7 +228,7 @@ namespace masz.Services
             await _translator.SetContext(userMapping.GuildId);
             DiscordEmbedBuilder embed = CreateBasicEmbed(action, actor);
 
-            embed.AddField($"**{_translator.T().Description()}**", userMapping.Reason.Substring(0, Math.Min(userMapping.Reason.Length, 1000)));
+            embed.AddField($"**{_translator.T().Description()}**", userMapping.Reason.Truncate(1000));
 
             embed.Title = $"{_translator.T().UserMap()} #{userMapping.Id}";
             embed.Description = _translator.T().UserMapBetween(userMapping);
