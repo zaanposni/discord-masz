@@ -130,36 +130,68 @@ namespace masz.Services
             return Task.CompletedTask;
         }
 
-        private async Task MessageCreatedHandler(DiscordClient client, MessageCreateEventArgs e)
+        private Task MessageCreatedHandler(DiscordClient client, MessageCreateEventArgs e)
         {
-            using (var scope = _serviceScopeFactory.CreateScope())
+            if (e.Message.MessageType != MessageType.Default && e.Message.MessageType != MessageType.Reply)
             {
-                AutoModerator autoModerator = null;
-                try
-                {
-                    autoModerator = await AutoModerator.CreateDefault(client, e.Guild.Id, scope.ServiceProvider);
-                } catch (ResourceNotFoundException)
-                {
-                    return;
-                }
-                await autoModerator.HandleAutomoderation(e.Message);
+                return Task.CompletedTask;
             }
+            if (e.Message.Author.IsBot)
+            {
+                return Task.CompletedTask;
+            }
+            if (e.Message.Channel.Guild == null)
+            {
+                return Task.CompletedTask;
+            }
+
+            Task.Run(async () => {
+                using (var scope = _serviceScopeFactory.CreateScope())
+                {
+                    AutoModerator autoModerator = null;
+                    try
+                    {
+                        autoModerator = await AutoModerator.CreateDefault(client, e.Guild.Id, scope.ServiceProvider);
+                    } catch (ResourceNotFoundException)
+                    {
+                        return;
+                    }
+                    await autoModerator.HandleAutomoderation(e.Message);
+                }
+            });
+            return Task.CompletedTask;
         }
 
-        private async Task MessageUpdatedHandler(DiscordClient client, MessageUpdateEventArgs e)
+        private Task MessageUpdatedHandler(DiscordClient client, MessageUpdateEventArgs e)
         {
-            using (var scope = _serviceScopeFactory.CreateScope())
+            if (e.Message.MessageType != MessageType.Default && e.Message.MessageType != MessageType.Reply)
             {
-                AutoModerator autoModerator = null;
-                try
-                {
-                    autoModerator = await AutoModerator.CreateDefault(client, e.Guild.Id, scope.ServiceProvider);
-                } catch (ResourceNotFoundException)
-                {
-                    return;
-                }
-                await autoModerator.HandleAutomoderation(e.Message, true);
+                return Task.CompletedTask;
             }
+            if (e.Message.Author.IsBot)
+            {
+                return Task.CompletedTask;
+            }
+            if (e.Message.Channel.Guild == null)
+            {
+                return Task.CompletedTask;
+            }
+
+            Task.Run(async () => {
+                using (var scope = _serviceScopeFactory.CreateScope())
+                {
+                    AutoModerator autoModerator = null;
+                    try
+                    {
+                        autoModerator = await AutoModerator.CreateDefault(client, e.Guild.Id, scope.ServiceProvider);
+                    } catch (ResourceNotFoundException)
+                    {
+                        return;
+                    }
+                    await autoModerator.HandleAutomoderation(e.Message, true);
+                }
+            });
+            return Task.CompletedTask;
         }
 
         private async Task<List<TrackedInvite>> FetchInvites(DiscordGuild guild)
