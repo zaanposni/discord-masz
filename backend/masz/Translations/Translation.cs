@@ -904,6 +904,15 @@ namespace masz.Translations
             }
             return $"Case `#{caseId}` created: {caseLink}";
         }
+        public string CmdRegister(string url) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"A siteadmin can register a guild at: {url}";
+                case Language.de:
+                    return $"Ein Siteadmin kann eine Gilde registrieren unter: {url}";
+            }
+            return $"A siteadmin can register a guild at: {url}";
+        }
         public string Enum(masz.Enums.PunishmentType enumValue) {
             switch (enumValue) {
                 case masz.Enums.PunishmentType.Mute:

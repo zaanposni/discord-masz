@@ -639,6 +639,14 @@
             },
             "en": "Case `#{caseId}` created: {caseLink}",
             "de": "Fall `#{caseId}` erstellt: {caseLink}"
+        },
+        "Register": {
+            "description": "Register a new guild",
+            "var_types": {
+                "url": "string"
+            },
+            "en": "A siteadmin can register a guild at: {url}",
+            "de": "Ein Siteadmin kann eine Gilde registrieren unter: {url}"
         }
     }
 }
