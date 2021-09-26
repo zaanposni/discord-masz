@@ -17,6 +17,11 @@
         "de": "Aktion",
         "at": "Aktio"
     },
+    "NotFound": {
+        "description": "The word 'NotFound'",
+        "en": "Not found.",
+        "de": "Nicht gefunden."
+    },
     "Author": {
         "description": "The word 'Author'",
         "en": "Author",
@@ -755,6 +760,18 @@
                 },
                 "en": "Used by [{count}]",
                 "de": "Benutzt von [{count}]"
+            }
+        },
+        "View": {
+            "InvalidGuildId": {
+                "description": "Invalid guild id",
+                "en": "Please specify a valid guildid.",
+                "de": "Bitte gib eine gültige Gilden-ID an."
+            },
+            "NotAllowedToView": {
+                "description": "Not allowed to view",
+                "en": "You are not allowed to view this case.",
+                "de": "Du darfst diesen Fall nicht ansehen."
             }
         }
     }

@@ -6,6 +6,7 @@ using DSharpPlus.Entities;
 using DSharpPlus.SlashCommands;
 using masz.Enums;
 using masz.Exceptions;
+using masz.Extensions;
 using masz.Models;
 using masz.Repositories;
 using masz.Services;
@@ -30,7 +31,7 @@ namespace masz.Commands
             {
                 if (! ulong.TryParse(guildId, out parsedGuildId))
                 {
-                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent($"Please specify a valid guildid."));
+                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdViewInvalidGuildId()));
                     return;
                 }
             } else if (String.IsNullOrEmpty(guildId))
@@ -43,7 +44,7 @@ namespace masz.Commands
                     parsedGuildId = ulong.Parse(guildId);
                 } catch (Exception)
                 {
-                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent($"Please specify a valid guildid."));
+                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdViewInvalidGuildId()));
                     return;
                 }
             }
@@ -55,13 +56,13 @@ namespace masz.Commands
                 modCase = await ModCaseRepository.CreateDefault(_serviceProvider, _currentIdentity).GetModCase(parsedGuildId, (int) caseId);
             } catch (ResourceNotFoundException)
             {
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent($"Not found."));
+                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().NotFound()));
                 return;
             }
 
             if (! await _currentIdentity.IsAllowedTo(APIActionPermission.View, modCase))
             {
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent($"You are not allowed to view this case."));
+                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().CmdViewNotAllowedToView()));
                 return;
             }
 
@@ -75,20 +76,15 @@ namespace masz.Commands
                 embed.WithThumbnail(suspect.AvatarUrl);
             }
 
-            string modCaseSubStringTitle = modCase.Title.Substring(0, Math.Min(modCase.Title.Length, 200));
-            if (modCase.Title.Length > 200)
-            {
-                modCaseSubStringTitle += " [...]";
-            }
-            embed.WithTitle($"#{modCase.CaseId} {modCaseSubStringTitle}");
+            embed.WithTitle($"#{modCase.CaseId} {modCase.Title.Truncate(200)}");
 
-            embed.WithDescription(modCase.Description.Substring(0, Math.Min(modCase.Description.Length, 2000)));
+            embed.WithDescription(modCase.Description.Truncate(2000));
 
-            embed.AddField($"{SCALES_EMOTE} - Punishment", modCase.GetPunishment(_translator), true);
+            embed.AddField($"{SCALES_EMOTE} - {_translator.T().Punishment()}", _translator.T().Enum(modCase.PunishmentType), true);
 
             if (modCase.PunishedUntil != null)
             {
-                embed.AddField($"{ALARM_CLOCK} - Punished Until (UTC)", modCase.PunishedUntil.Value.ToString("dd.MM.yyyy HH:mm:ss"), true);
+                embed.AddField($"{ALARM_CLOCK} - {_translator.T().PunishmentUntil()}", modCase.PunishedUntil.Value.ToDiscordTS(), true);
             }
 
             if (modCase.Labels.Length > 0)
@@ -102,7 +98,7 @@ namespace masz.Commands
                     }
                     labels.Append($"`{label}` ");
                 }
-                embed.AddField($"{SCROLL_EMOTE} - Labels", labels.ToString(), false);
+                embed.AddField($"{SCROLL_EMOTE} - {_translator.T().Labels()}", labels.ToString(), false);
             }
 
             await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));

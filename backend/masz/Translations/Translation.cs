@@ -47,6 +47,15 @@ namespace masz.Translations
             }
             return "Action";
         }
+        public string NotFound() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Not found.";
+                case Language.de:
+                    return "Nicht gefunden.";
+            }
+            return "Not found.";
+        }
         public string Author() {
             switch (preferredLanguage) {
                 case Language.en:
@@ -1057,6 +1066,24 @@ namespace masz.Translations
                     return $"Benutzt von [{count}]";
             }
             return $"Used by [{count}]";
+        }
+        public string CmdViewInvalidGuildId() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Please specify a valid guildid.";
+                case Language.de:
+                    return "Bitte gib eine gültige Gilden-ID an.";
+            }
+            return "Please specify a valid guildid.";
+        }
+        public string CmdViewNotAllowedToView() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "You are not allowed to view this case.";
+                case Language.de:
+                    return "Du darfst diesen Fall nicht ansehen.";
+            }
+            return "You are not allowed to view this case.";
         }
         public string Enum(masz.Enums.PunishmentType enumValue) {
             switch (enumValue) {
