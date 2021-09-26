@@ -211,6 +211,7 @@ namespace masz.Services
 
         public async Task AnnounceAutomoderation(AutoModerationEvent modEvent, AutoModerationConfig moderationConfig, GuildConfig guildConfig, DiscordChannel channel, DiscordUser author)
         {
+            _translator.SetContext(guildConfig);
             // if webhook, announce internal
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
@@ -229,7 +230,22 @@ namespace masz.Services
 
             }
 
-            // announce dm
+            if (moderationConfig.SendDmNotification)
+            {
+                _logger.LogInformation($"Sending dm automod event notification to {author.Id}.");
+
+                try
+                {
+                    string reason = _translator.T().Enum(modEvent.AutoModerationType);
+                    string action = _translator.T().Enum(modEvent.AutoModerationAction);
+                    await _discordAPI.SendDmMessage(author.Id, _translator.T().NotificationAutomoderationDM(author, channel, reason, action));
+                } catch (Exception e)
+                {
+                    _logger.LogError(e, $"Error while announcing automod event in dm to {author.Id}.");
+                }
+
+                _logger.LogInformation("Sent dm notification.");
+            }
 
             // announce channel if deleted
         }

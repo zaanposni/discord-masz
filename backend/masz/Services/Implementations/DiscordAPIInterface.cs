@@ -497,14 +497,25 @@ namespace masz.Services
             return channel;
         }
 
-        public async Task<bool> SendMessage(ulong channelId, string content = null)
+        public async Task<bool> SendMessage(ulong channelId, string content = null, DiscordEmbed embed = null)
         {
             // request ---------------------------
             try
             {
                 DiscordChannel channel = await  _discordBot.GetClient().GetChannelAsync(channelId);
                 if (channel == null) return false;
-                await channel.SendMessageAsync(content);
+
+                DiscordMessageBuilder builder = new DiscordMessageBuilder();
+                if (content != null)
+                {
+                    builder.WithContent(content);
+                }
+                if (embed != null)
+                {
+                    builder.WithEmbed(embed);
+                }
+
+                await channel.SendMessageAsync(builder);
             } catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to send message to channel '{channelId}'.");
@@ -520,7 +531,17 @@ namespace masz.Services
                 return false;
             }
 
-            return await SendMessage(channel.Id, content);
+            return await SendMessage(channel.Id, content, null);
+        }
+
+        public async Task<bool> SendDmMessage(ulong userId, DiscordEmbed embed)
+        {
+            DiscordChannel channel = await CreateDmChannel(userId);
+            if (channel == null) {
+                return false;
+            }
+
+            return await SendMessage(channel.Id, null, embed);
         }
 
         public async Task<bool> ExecuteWebhook(string url, DiscordEmbed embed = null, string content = null)

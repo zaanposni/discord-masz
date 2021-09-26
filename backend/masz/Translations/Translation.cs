@@ -607,6 +607,15 @@ namespace masz.Translations
             }
             return $"{user.Username}#{user.Discriminator} triggered automoderation.";
         }
+        public string NotificationAutomoderationDM(DSharpPlus.Entities.DiscordUser user, DSharpPlus.Entities.DiscordChannel channel, string reason, string action) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}";
+                case Language.de:
+                    return $"Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}";
+            }
+            return $"Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}";
+        }
         public string Enum(masz.Enums.PunishmentType enumValue) {
             switch (enumValue) {
                 case masz.Enums.PunishmentType.Mute:

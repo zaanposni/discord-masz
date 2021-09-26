@@ -437,6 +437,17 @@
                 "en": "{user.Username}#{user.Discriminator} triggered automoderation.",
                 "de": "{user.Username}#{user.Discriminator} hat die Automoderation ausgelöst.",
                 "at": "{user.Username}#{user.Discriminator} hot de Automodaration ausglest."
+            },
+            "DM": {
+                "description": "DM description for automod event",
+                "var_types": {
+                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "channel": "DSharpPlus.Entities.DiscordChannel",
+                    "reason": "string",
+                    "action": "string"
+                },
+                "en": "Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}",
+                "de": "Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}"
             }
         }
     }
