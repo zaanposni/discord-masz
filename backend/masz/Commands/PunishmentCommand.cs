@@ -59,7 +59,8 @@ namespace masz.Commands
             DiscordInteractionResponseBuilder response =  new DiscordInteractionResponseBuilder();
             response.IsEphemeral = !sendPublicNotification;
 
-            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, response.WithContent($"Case `#{created.CaseId}` created: {_config.GetBaseUrl()}/guilds/{created.GuildId}/cases/{created.CaseId}"));
+            string url = $"{_config.GetBaseUrl()}/guilds/{created.GuildId}/cases/{created.CaseId}";
+            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, response.WithContent(_translator.T().CmdPunish(created.CaseId, url)));
         }
     }
 }

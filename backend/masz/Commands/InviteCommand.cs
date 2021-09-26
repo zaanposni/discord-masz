@@ -14,7 +14,7 @@ namespace masz.Commands
         [SlashCommand("invite", "How to invite this bot.")]
         public async Task Invite(InteractionContext ctx)
         {
-            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent("You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-masz#hosting"));
+            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdInvite()));
         }
     }
 }

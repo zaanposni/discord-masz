@@ -643,6 +643,267 @@ namespace masz.Translations
             }
             return $"{user.Mention} you triggered automoderation. Reason: {reason}. Your message has been deleted.";
         }
+        public string CmdOnlyTextChannel() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Only text channels are allowed.";
+                case Language.de:
+                    return "Nur Textkanäle sind erlaubt.";
+            }
+            return "Only text channels are allowed.";
+        }
+        public string CmdCannotViewOrDeleteInChannel() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "I'm not allowed to view or delete messages in this channel!";
+                case Language.de:
+                    return "Ich darf keine Nachrichten in diesem Kanal sehen oder löschen!";
+            }
+            return "I'm not allowed to view or delete messages in this channel!";
+        }
+        public string CmdCannotFindChannel() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Cannot find channel.";
+                case Language.de:
+                    return "Kanal konnte nicht gefunden werden.";
+            }
+            return "Cannot find channel.";
+        }
+        public string CmdCleanup(int count, DSharpPlus.Entities.DiscordChannel channel) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"Deleted {count} messages in {channel.Mention}.";
+                case Language.de:
+                    return $"{count} Nachrichten in {channel.Mention} gelöscht.";
+            }
+            return $"Deleted {count} messages in {channel.Mention}.";
+        }
+        public string CmdFeaturesKickPermissionGranted() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Kick permission granted.";
+                case Language.de:
+                    return "Kick-Berechtigung erteilt.";
+            }
+            return "Kick permission granted.";
+        }
+        public string CmdFeaturesKickPermissionNotGranted() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Kick permission not granted.";
+                case Language.de:
+                    return "Kick-Berechtigung nicht erteilt.";
+            }
+            return "Kick permission not granted.";
+        }
+        public string CmdFeaturesBanPermissionGranted() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Ban permission granted.";
+                case Language.de:
+                    return "Ban-Berechtigung erteilt.";
+            }
+            return "Ban permission granted.";
+        }
+        public string CmdFeaturesBanPermissionNotGranted() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Ban permission not granted.";
+                case Language.de:
+                    return "Ban-Berechtigung nicht erteilt.";
+            }
+            return "Ban permission not granted.";
+        }
+        public string CmdFeaturesManageRolePermissionGranted() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Manage role permission granted.";
+                case Language.de:
+                    return "Manage-Rolle-Berechtigung erteilt.";
+            }
+            return "Manage role permission granted.";
+        }
+        public string CmdFeaturesManageRolePermissionNotGranted() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Manage role permission not granted.";
+                case Language.de:
+                    return "Manage-Rolle-Berechtigung nicht erteilt.";
+            }
+            return "Manage role permission not granted.";
+        }
+        public string CmdFeaturesMutedRoleDefined() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Muted role defined.";
+                case Language.de:
+                    return "Stummrolle definiert.";
+            }
+            return "Muted role defined.";
+        }
+        public string CmdFeaturesMutedRoleDefinedButTooHigh() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Muted role defined but too high in role hierarchy.";
+                case Language.de:
+                    return "Stummrolle definiert, aber zu hoch in der Rollenhierarchie.";
+            }
+            return "Muted role defined but too high in role hierarchy.";
+        }
+        public string CmdFeaturesMutedRoleDefinedButInvalid() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Muted role defined but invalid.";
+                case Language.de:
+                    return "Stummrolle definiert, aber ungültig.";
+            }
+            return "Muted role defined but invalid.";
+        }
+        public string CmdFeaturesMutedRoleUndefined() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Muted role undefined.";
+                case Language.de:
+                    return "Stummrolle nicht definiert.";
+            }
+            return "Muted role undefined.";
+        }
+        public string CmdFeaturesPunishmentExecution() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Punishment execution";
+                case Language.de:
+                    return "Bestrafungsverwaltung";
+            }
+            return "Punishment execution";
+        }
+        public string CmdFeaturesPunishmentExecutionDescription() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Let MASZ handle punishments (e.g. tempbans, mutes, etc.).";
+                case Language.de:
+                    return "Lass MASZ die Bestrafungen verwalten (z.B. temporäre Banns, Stummschaltungen, etc.).";
+            }
+            return "Let MASZ handle punishments (e.g. tempbans, mutes, etc.).";
+        }
+        public string CmdFeaturesUnbanRequests() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Unban requests";
+                case Language.de:
+                    return "Entbannungs-Anfragen";
+            }
+            return "Unban requests";
+        }
+        public string CmdFeaturesUnbanRequestsDescriptionGranted() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Allows banned members to see their cases and comment on it for unban requests.";
+                case Language.de:
+                    return "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.";
+            }
+            return "Allows banned members to see their cases and comment on it for unban requests.";
+        }
+        public string CmdFeaturesUnbanRequestsDescriptionNotGranted() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Allows banned members to see their cases and comment on it for unban requests.\nGrant this bot the ban permission to use this feature.";
+                case Language.de:
+                    return "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.\nErteile diesem Bot die Ban-Berechtigung, um diese Funktion zu nutzen.";
+            }
+            return "Allows banned members to see their cases and comment on it for unban requests.\nGrant this bot the ban permission to use this feature.";
+        }
+        public string CmdFeaturesReportCommand() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Report command";
+                case Language.de:
+                    return "Melde-Befehl";
+            }
+            return "Report command";
+        }
+        public string CmdFeaturesReportCommandDescriptionGranted() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Allows members to report messages.";
+                case Language.de:
+                    return "Erlaubt Mitgliedern, Nachrichten zu melden.";
+            }
+            return "Allows members to report messages.";
+        }
+        public string CmdFeaturesReportCommandDescriptionNotGranted() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Allows members to report messages.\nDefine a internal staff webhook to use this feature.";
+                case Language.de:
+                    return "Erlaubt Mitgliedern, Nachrichten zu melden.\nDefiniere einen internen Webhook, um diese Funktion zu nutzen.";
+            }
+            return "Allows members to report messages.\nDefine a internal staff webhook to use this feature.";
+        }
+        public string CmdFeaturesInviteTracking() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Invite tracking";
+                case Language.de:
+                    return "Einladungsverfolgung";
+            }
+            return "Invite tracking";
+        }
+        public string CmdFeaturesInviteTrackingDescriptionGranted() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Allows MASZ to track the invites new members are using.";
+                case Language.de:
+                    return "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.";
+            }
+            return "Allows MASZ to track the invites new members are using.";
+        }
+        public string CmdFeaturesInviteTrackingDescriptionNotGranted() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Allows MASZ to track the invites new members are using.\nGrant this bot the manage guild permission to use this feature.";
+                case Language.de:
+                    return "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.\nErteile diesem Bot die Verwalten-Gilden-Berechtigung, um diese Funktion zu nutzen.";
+            }
+            return "Allows MASZ to track the invites new members are using.\nGrant this bot the manage guild permission to use this feature.";
+        }
+        public string CmdFeaturesSupportAllFeatures() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Your bot on this guild is configured correctly. All features of MASZ can be used.";
+                case Language.de:
+                    return "Dein Bot auf diesem Server ist richtig konfiguriert. Alle Funktionen von MASZ können genutzt werden.";
+            }
+            return "Your bot on this guild is configured correctly. All features of MASZ can be used.";
+        }
+        public string CmdFeaturesMissingFeatures() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "There are features of MASZ that you cannot use right now.";
+                case Language.de:
+                    return "Es gibt Funktionen von MASZ, die du jetzt nicht nutzen kannst.";
+            }
+            return "There are features of MASZ that you cannot use right now.";
+        }
+        public string CmdInvite() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-masz#hosting";
+                case Language.de:
+                    return "Du musst deine eigene Instanz von MASZ auf deinem Server oder PC hosten.\nSchau dir https://github.com/zaanposni/discord-masz#hosting an";
+            }
+            return "You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-masz#hosting";
+        }
+        public string CmdPunish(int caseId, string caseLink) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"Case `#{caseId}` created: {caseLink}";
+                case Language.de:
+                    return $"Fall `#{caseId}` erstellt: {caseLink}";
+            }
+            return $"Case `#{caseId}` created: {caseLink}";
+        }
         public string Enum(masz.Enums.PunishmentType enumValue) {
             switch (enumValue) {
                 case masz.Enums.PunishmentType.Mute:

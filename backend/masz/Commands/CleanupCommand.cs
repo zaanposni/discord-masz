@@ -110,7 +110,7 @@ namespace masz.Commands
             if (channel.Type != ChannelType.Text)
             {
                 await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                        new DiscordInteractionResponseBuilder().WithContent("I can only send messages in text channels."));
+                        new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdOnlyTextChannel()));
                 return;
             }
             await ctx.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource, new DiscordInteractionResponseBuilder().AsEphemeral(true));
@@ -136,14 +136,14 @@ namespace masz.Commands
                 deleted = await IterateAndDeleteChannels(channel, (int)count, func, ctx.User, filterUser);
             } catch (DSharpPlus.Exceptions.UnauthorizedException)
             {
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("I'm not allowed to view or delete messages in this channel!"));
+                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().CmdCannotViewOrDeleteInChannel()));
                 return;
             } catch (DSharpPlus.Exceptions.NotFoundException)
             {
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Failed to find channel."));
+                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().CmdCannotFindChannel()));
                 return;
             }
-            await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent($"Deleted {deleted} messages in {channel.Mention}."));
+            await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().CmdCleanup(deleted, channel)));
         }
     }
 }

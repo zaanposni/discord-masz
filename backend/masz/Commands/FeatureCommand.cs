@@ -18,17 +18,6 @@ namespace masz.Commands
     {
         private readonly string CHECK = "\u2705";
         private readonly string X_CHECK = "\u274C";
-
-        private string ChooseEmote(bool evaluate)
-        {
-            if (evaluate)
-            {
-                return CHECK;
-            } else
-            {
-                return X_CHECK;
-            }
-        }
         public FeatureCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [SlashCommand("features", "Checks if further configuration is needed to use MASZ features.")]
@@ -46,35 +35,47 @@ namespace masz.Commands
             StringBuilder missingBasicPermissions = new StringBuilder();
 
             // kick
-            missingBasicPermissions.Append($"\n- {ChooseEmote(featureTest.HasKickPermission(ctx))} Kick permission ");
-            if (! featureTest.HasKickPermission(ctx)) missingBasicPermissions.Append($"**not** ");
-            missingBasicPermissions.Append("granted.");
+            if (featureTest.HasKickPermission(ctx))
+            {
+                missingBasicPermissions.Append($"\n- {CHECK} {_translator.T().CmdFeaturesKickPermissionGranted()}");
+            } else
+            {
+                missingBasicPermissions.Append($"\n- {X_CHECK} {_translator.T().CmdFeaturesKickPermissionNotGranted()}");
+            }
 
             // ban
-            missingBasicPermissions.Append($"\n- {ChooseEmote(featureTest.HasBanPermission(ctx))} Ban permission ");
-            if (! featureTest.HasBanPermission(ctx)) missingBasicPermissions.Append($"**not** ");
-            missingBasicPermissions.Append("granted.");
+            if (featureTest.HasBanPermission(ctx))
+            {
+                missingBasicPermissions.Append($"\n- {CHECK} {_translator.T().CmdFeaturesBanPermissionGranted()}");
+            } else
+            {
+                missingBasicPermissions.Append($"\n- {X_CHECK} {_translator.T().CmdFeaturesBanPermissionNotGranted()}");
+            }
 
             // mute
-            missingBasicPermissions.Append($"\n- {ChooseEmote(featureTest.HasManagedRolePermission(ctx))} Manage role permission ");
-            if (! featureTest.HasManagedRolePermission(ctx)) missingBasicPermissions.Append($"**not** ");
-            missingBasicPermissions.Append("granted.");
+            if (featureTest.HasManagedRolePermission(ctx))
+            {
+                missingBasicPermissions.Append($"\n- {CHECK} {_translator.T().CmdFeaturesManageRolePermissionGranted()}");
+            } else
+            {
+                missingBasicPermissions.Append($"\n- {X_CHECK} {_translator.T().CmdFeaturesManageRolePermissionNotGranted()}");
+            }
 
             // muted role
             if (! featureTest.HasMutedRolesDefined())
             {
-                missingBasicPermissions.Append($"\n- {X_CHECK} Muted role **not** defined.");
+                missingBasicPermissions.Append($"\n- {X_CHECK} {_translator.T().CmdFeaturesMutedRoleUndefined()}");
             } else
             {
                 switch (featureTest.HasManagableMutedRoles(ctx)) {
                     case GuildFeatureTestResult.OK:
-                        missingBasicPermissions.Append($"\n- {CHECK} Muted role defined.");
+                        missingBasicPermissions.Append($"\n- {CHECK} {_translator.T().CmdFeaturesMutedRoleDefined()}");
                         break;
                     case GuildFeatureTestResult.ROLE_TOO_HIGH:
-                        missingBasicPermissions.Append($"\n- {X_CHECK} Muted role defined but **too high in role hierarchy**.");
+                        missingBasicPermissions.Append($"\n- {X_CHECK} {_translator.T().CmdFeaturesMutedRoleDefinedButTooHigh()}");
                         break;
                     default:
-                        missingBasicPermissions.Append($"\n- {X_CHECK} Muted role defined but **invalid**.");
+                        missingBasicPermissions.Append($"\n- {X_CHECK} {_translator.T().CmdFeaturesMutedRoleDefinedButInvalid()}");
                         break;
                 }
             }
@@ -83,46 +84,46 @@ namespace masz.Commands
             // basic punishment feature
             if (featureTest.FeaturePunishmentExecution(ctx))
             {
-                embed.AddField($"{CHECK} Punishment execution", "Let MASZ handle punishments (e.g. tempbans, mutes, etc.).", false);
+                embed.AddField($"{CHECK} {_translator.T().CmdFeaturesPunishmentExecution()}", _translator.T().CmdFeaturesPunishmentExecutionDescription(), false);
             } else
             {
-                embed.AddField($"{X_CHECK} Punishment execution", "Let MASZ handle punishments (e.g. tempbans, mutes, etc.)." + missingBasicPermissions.ToString(), false);
+                embed.AddField($"{X_CHECK} {_translator.T().CmdFeaturesPunishmentExecution()}", _translator.T().CmdFeaturesPunishmentExecutionDescription() + missingBasicPermissions.ToString(), false);
             }
 
             // unban feature
             if (featureTest.HasBanPermission(ctx))
             {
-                embed.AddField($"{CHECK} Unban requests", "Allows banned members to see their cases and comment on it for unban requests.", false);
+                embed.AddField($"{CHECK} {_translator.T().CmdFeaturesUnbanRequests()}", _translator.T().CmdFeaturesUnbanRequestsDescriptionGranted(), false);
             } else
             {
-                embed.AddField($"{X_CHECK} Unban requests", "Allows banned members to see their cases and comment on it for unban requests.\nGrant this bot the ban permission to use this feature.", false);
+                embed.AddField($"{X_CHECK} {_translator.T().CmdFeaturesUnbanRequests()}", _translator.T().CmdFeaturesUnbanRequestsDescriptionNotGranted(), false);
             }
 
             // report command
             if (featureTest.HasInternalWebhookDefined())
             {
-                embed.AddField($"{CHECK} Report command", "Allows members to report messages.", false);
+                embed.AddField($"{CHECK} {_translator.T().CmdFeaturesReportCommand()}", _translator.T().CmdFeaturesReportCommandDescriptionGranted(), false);
             } else
             {
-                embed.AddField($"{X_CHECK} Report command", "Allows members to report messages.\nDefine a internal staff webhook to use this feature.", false);
+                embed.AddField($"{X_CHECK} {_translator.T().CmdFeaturesReportCommand()}", _translator.T().CmdFeaturesReportCommandDescriptionNotGranted(), false);
             }
 
             // invite tracking
             if (featureTest.HasManagedGuildPermission(ctx))
             {
-                embed.AddField($"{CHECK} Invite tracking", "Allows MASZ to track the invites new members are using.", false);
+                embed.AddField($"{CHECK} {_translator.T().CmdFeaturesInviteTracking()}", _translator.T().CmdFeaturesInviteTrackingDescriptionGranted(), false);
             } else
             {
-                embed.AddField($"{X_CHECK} Invite tracking", "Allows MASZ to track the invites new members are using.\nGrant this bot the manage guild permission to use this feature.", false);
+                embed.AddField($"{X_CHECK} {_translator.T().CmdFeaturesInviteTracking()}", _translator.T().CmdFeaturesInviteTrackingDescriptionNotGranted(), false);
             }
 
             if (featureTest.SupportsAllFeatures(ctx))
             {
-                embed.WithDescription($"{CHECK} Your bot on this guild is configured correctly. All features of MASZ can be used.");
+                embed.WithDescription($"{CHECK} {_translator.T().CmdFeaturesSupportAllFeatures()}");
                 embed.WithColor(DiscordColor.Green);
             } else
             {
-                embed.WithDescription($"{X_CHECK} There are features of MASZ that you cannot use right now.");
+                embed.WithDescription($"{X_CHECK} {_translator.T().CmdFeaturesMissingFeatures()}");
                 embed.WithColor(DiscordColor.Red);
             }
 

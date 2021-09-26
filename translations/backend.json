@@ -469,5 +469,176 @@
                 "de": "{user.Mention} du hast die Automoderation ausgelöst. Grund: {reason}. Dein Nachricht wurde gelöscht."
             }
         }
+    },
+    "Cmd": {
+        "OnlyTextChannel": {
+            "description": "Only text channels are allowed.",
+            "en": "Only text channels are allowed.",
+            "de": "Nur Textkanäle sind erlaubt."
+        },
+        "CannotViewOrDeleteInChannel": {
+            "description": "Bot cannot view or delete messages in this channel.",
+            "en": "I'm not allowed to view or delete messages in this channel!",
+            "de": "Ich darf keine Nachrichten in diesem Kanal sehen oder löschen!"
+        },
+        "CannotFindChannel": {
+            "description": "Cannot find channel.",
+            "en": "Cannot find channel.",
+            "de": "Kanal konnte nicht gefunden werden."
+        },
+        "Cleanup": {
+            "description": "Cleanup response",
+            "var_types": {
+                "count": "int",
+                "channel": "DSharpPlus.Entities.DiscordChannel"
+            },
+            "en": "Deleted {count} messages in {channel.Mention}.",
+            "de": "{count} Nachrichten in {channel.Mention} gelöscht."
+        },
+        "Features": {
+            "KickPermission": {
+                "Granted": {
+                    "description": "Kick permission granted.",
+                    "en": "Kick permission granted.",
+                    "de": "Kick-Berechtigung erteilt."
+                },
+                "NotGranted": {
+                    "description": "Kick permission not granted.",
+                    "en": "Kick permission not granted.",
+                    "de": "Kick-Berechtigung nicht erteilt."
+                }
+            },
+            "BanPermission": {
+                "Granted": {
+                    "description": "Ban permission granted.",
+                    "en": "Ban permission granted.",
+                    "de": "Ban-Berechtigung erteilt."
+                },
+                "NotGranted": {
+                    "description": "Ban permission not granted.",
+                    "en": "Ban permission not granted.",
+                    "de": "Ban-Berechtigung nicht erteilt."
+                }
+            },
+            "ManageRolePermission": {
+                "Granted": {
+                    "description": "Manage role permission granted.",
+                    "en": "Manage role permission granted.",
+                    "de": "Manage-Rolle-Berechtigung erteilt."
+                },
+                "NotGranted": {
+                    "description": "Manage role permission not granted.",
+                    "en": "Manage role permission not granted.",
+                    "de": "Manage-Rolle-Berechtigung nicht erteilt."
+                }
+            },
+            "MutedRole": {
+                "Defined": {
+                    "description": "Muted role defined.",
+                    "en": "Muted role defined.",
+                    "de": "Stummrolle definiert."
+                },
+                "DefinedButTooHigh": {
+                    "description": "Muted role defined but too high in role hierarchy.",
+                    "en": "Muted role defined but too high in role hierarchy.",
+                    "de": "Stummrolle definiert, aber zu hoch in der Rollenhierarchie."
+                },
+                "DefinedButInvalid": {
+                    "description": "Muted role defined but invalid.",
+                    "en": "Muted role defined but invalid.",
+                    "de": "Stummrolle definiert, aber ungültig."
+                },
+                "Undefined": {
+                    "description": "Muted role undefined.",
+                    "en": "Muted role undefined.",
+                    "de": "Stummrolle nicht definiert."
+                }
+            },
+            "PunishmentExecution": {
+                "description": "Punishment execution response",
+                "en": "Punishment execution",
+                "de": "Bestrafungsverwaltung"
+            },
+            "PunishmentExecutionDescription": {
+                "description": "Punishment execution description",
+                "en": "Let MASZ handle punishments (e.g. tempbans, mutes, etc.).",
+                "de": "Lass MASZ die Bestrafungen verwalten (z.B. temporäre Banns, Stummschaltungen, etc.)."
+            },
+            "UnbanRequests": {
+                "description": "Unban requests",
+                "en": "Unban requests",
+                "de": "Entbannungs-Anfragen"
+            },
+            "UnbanRequestsDescription": {
+                "Granted": {
+                    "description": "Unban requests description",
+                    "en": "Allows banned members to see their cases and comment on it for unban requests.",
+                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren."
+                },
+                "NotGranted": {
+                    "description": "Unban requests description",
+                    "en": "Allows banned members to see their cases and comment on it for unban requests.\nGrant this bot the ban permission to use this feature.",
+                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.\nErteile diesem Bot die Ban-Berechtigung, um diese Funktion zu nutzen."
+                }
+            },
+            "ReportCommand": {
+                "description": "Report command",
+                "en": "Report command",
+                "de": "Melde-Befehl"
+            },
+            "ReportCommandDescription": {
+                "Granted": {
+                    "description": "Report command",
+                    "en": "Allows members to report messages.",
+                    "de": "Erlaubt Mitgliedern, Nachrichten zu melden."
+                },
+                "NotGranted": {
+                    "description": "Unban requests description",
+                    "en": "Allows members to report messages.\nDefine a internal staff webhook to use this feature.",
+                    "de": "Erlaubt Mitgliedern, Nachrichten zu melden.\nDefiniere einen internen Webhook, um diese Funktion zu nutzen."
+                }
+            },
+            "InviteTracking": {
+                "description": "Invite tracking",
+                "en": "Invite tracking",
+                "de": "Einladungsverfolgung"
+            },
+            "InviteTrackingDescription": {
+                "Granted": {
+                    "description": "invite tracking",
+                    "en": "Allows MASZ to track the invites new members are using.",
+                    "de": "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen."
+                },
+                "NotGranted": {
+                    "description": "Unban requests description",
+                    "en": "Allows MASZ to track the invites new members are using.\nGrant this bot the manage guild permission to use this feature.",
+                    "de": "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.\nErteile diesem Bot die Verwalten-Gilden-Berechtigung, um diese Funktion zu nutzen."
+                }
+            },
+            "SupportAllFeatures": {
+                "description": "Support all features",
+                "en": "Your bot on this guild is configured correctly. All features of MASZ can be used.",
+                "de": "Dein Bot auf diesem Server ist richtig konfiguriert. Alle Funktionen von MASZ können genutzt werden."
+            },
+            "MissingFeatures": {
+                "description": "Missing features",
+                "en": "There are features of MASZ that you cannot use right now.",
+                "de": "Es gibt Funktionen von MASZ, die du jetzt nicht nutzen kannst."
+            }
+        },
+        "Invite": {
+            "description": "Host your own instance of MASZ",
+            "en": "You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-masz#hosting",
+            "de": "Du musst deine eigene Instanz von MASZ auf deinem Server oder PC hosten.\nSchau dir https://github.com/zaanposni/discord-masz#hosting an"
+        },
+        "Punish": {
+            "description": "Case created with link",
+            "var_types": {
+                "caseId": "int",
+                "caseLink": "string"
+            },
+            "en": "Case `#{caseId}` created: {caseLink}",
+            "de": "Fall `#{caseId}` erstellt: {caseLink}"
+        }
     }
 }
