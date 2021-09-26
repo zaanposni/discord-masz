@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IApplicationInfo } from 'src/app/models/IApplicationInfo';
+import { ApplicationInfoService } from 'src/app/services/application-info.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,8 +12,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class IndexComponent implements OnInit {
 
   public attemptingLogin: boolean = false;
+  applicationInfo?: IApplicationInfo = undefined;
 
-  constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router, private applicationInfoService: ApplicationInfoService) { }
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
@@ -27,6 +30,9 @@ export class IndexComponent implements OnInit {
         this.attemptingLogin = false;
       });
     }
+    this.applicationInfoService.currentApplicationInfo.subscribe((data) => {
+      this.applicationInfo = data;
+    });
   }
 
   redirectToApiLogin() {

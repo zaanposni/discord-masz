@@ -200,19 +200,32 @@
             <span>Community</span>
           </div>
         </a>
-        <a class="d-flex" (click)="open('guidelines')">
-          <div [class.activatedNav]="activatedNav[1] === 'guidelines'" class="rounded navitem">
-            <mat-icon aria-hidden="false" aria-label="tune icon">policy</mat-icon>
-            <span>Terms</span>
-          </div>
-        </a>
+
+        <ng-container *ngIf="applicationInfo?.termsOfServiceUrl; else elseTemplateToS">
+          <a class="d-flex" href="{{ applicationInfo?.termsOfServiceUrl }}" target="_blank">
+            <div [class.activatedNav]="activatedNav[1] === 'guidelines'" class="rounded navitem">
+              <mat-icon aria-hidden="false" aria-label="tune icon">policy</mat-icon>
+              <span>Terms</span>
+            </div>
+          </a>
+
+        </ng-container>
+        <ng-template #elseTemplateToS>
+          <a class="d-flex" (click)="open('guidelines')">
+            <div [class.activatedNav]="activatedNav[1] === 'guidelines'" class="rounded navitem">
+              <mat-icon aria-hidden="false" aria-label="tune icon">policy</mat-icon>
+              <span>Terms</span>
+            </div>
+          </a>
+        </ng-template>
+
         <a class="d-flex" href="https://github.com/zaanposni/discord-masz" target="_blank" rel="noreferrer">
           <div class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="github link" svgIcon="githublogo"></mat-icon>
             <span>GitHub</span>
           </div>
         </a>
-        <a class="d-flex" href="legal.html" target="_blank">
+        <a class="d-flex" target="_blank" [attr.href]="applicationInfo?.privacyPolicyUrl ?? 'legal.html'">
           <div class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="legal notes">gavel</mat-icon>
             <span>Legal</span>
