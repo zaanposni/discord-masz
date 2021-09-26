@@ -14,7 +14,7 @@ namespace masz.Commands
         [SlashCommand("url", "Displays the URL MASZ is deployed on.")]
         public async Task Url(InteractionContext ctx)
         {
-            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent($"MASZ is deployed on {_config.GetBaseUrl()}"));
+            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent(_config.GetBaseUrl()));
         }
     }
 }
