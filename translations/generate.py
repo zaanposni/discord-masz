@@ -12,7 +12,7 @@ DEFAULT_ENUM_NAMESPACE = "masz.Enums"
 TRANSLATION_NODES = 0
 TRANSLATION_STATS = dict()
 
-BACKEND_STRING = """using masz.Extensions;\nusing masz.Enums;\n\nnamespace masz.Translations
+BACKEND_STRING = """using System;\nusing masz.Extensions;\nusing masz.Enums;\n\nnamespace masz.Translations
 {
     public class Translation
     {

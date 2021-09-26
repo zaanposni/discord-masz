@@ -7,6 +7,7 @@ using DSharpPlus;
 using DSharpPlus.Entities;
 using DSharpPlus.SlashCommands;
 using masz.Enums;
+using masz.Extensions;
 using masz.Models;
 using masz.Repositories;
 
@@ -64,7 +65,7 @@ namespace masz.Commands
                     DiscordInvite fetchedInvite = await ctx.Client.GetInviteByCodeAsync(code, true, false);
                     if (fetchedInvite.Guild.Id != ctx.Guild.Id)
                     {
-                        await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Invite is not from this guild."));
+                        await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().CmdTrackInviteNotFromThisGuild()));
                         return;
                     }
                     try
@@ -75,11 +76,11 @@ namespace masz.Commands
                     } catch (NullReferenceException) { }  // vanity url
                 } catch (DSharpPlus.Exceptions.NotFoundException)
                 {
-                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Could not find invite in database or in this guild."));
+                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().CmdTrackCannotFindInvite()));
                     return;
                 } catch (Exception)
                 {
-                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Failed to fetch invite."));
+                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().CmdTrackFailedToFetchInvite()));
                     return;
                 }
             }
@@ -91,16 +92,14 @@ namespace masz.Commands
                 embed.WithAuthor($"{creator.Username}#{creator.Discriminator}", creator.AvatarUrl, creator.AvatarUrl);
                 if (createdAt == null)
                 {
-                    embed.WithDescription($"{inviteCode} was created by {creator.Mention}.");
+                    embed.WithDescription(_translator.T().CmdTrackCreatedBy(inviteCode, creator));
                 } else
                 {
-                    string inviteCreatedAt = createdAt.Value.ToString("dd.MM.yyyy HH:mm:ss");
-                    embed.WithDescription($"{inviteCode} was created by {creator.Mention} at `{inviteCreatedAt} (UTC)`.");
+                    embed.WithDescription(_translator.T().CmdTrackCreatedByAt(inviteCode, creator, createdAt.Value));
                 }
             } else if (createdAt != null)
             {
-                string inviteCreatedAt = createdAt.Value.ToString("dd.MM.yyyy HH:mm:ss");
-                embed.WithDescription($"{inviteCode} was created at `{inviteCreatedAt} (UTC)`.");
+                embed.WithDescription(_translator.T().CmdTrackCreatedAt(inviteCode, createdAt.Value));
             }
 
             StringBuilder usedBy = new StringBuilder();
@@ -117,18 +116,15 @@ namespace masz.Commands
                     DiscordUser user = invitees[invite.JoinedUserId];
                     usedBy.Append($"`{user.Username}#{user.Discriminator}` ");
                 }
-                usedBy.Append($"`{invite.JoinedUserId}` ");
-                string joinedAt = invite.JoinedAt.ToString("dd MMM yyyy HH:mm:ss");
-                usedBy.Append($"- `{joinedAt} (UTC)`");
-                usedBy.AppendLine();
+                usedBy.AppendLine($"`{invite.JoinedUserId}` - {invite.JoinedAt.ToDiscordTS()}");
             }
             if (invites.Count == 0)
             {
                 usedBy.Clear();
-                usedBy.Append("This invite has not been tracked by MASZ yet.");
+                usedBy.Append(_translator.T().CmdTrackNotTrackedYet());
             }
 
-            embed.AddField($"Used by [{usages}]", usedBy.ToString(), false);
+            embed.AddField(_translator.T().CmdTrackUsedBy(usages), usedBy.ToString(), false);
             embed.WithFooter($"Invite: {inviteCode}");
             embed.WithTimestamp(DateTime.UtcNow);
 

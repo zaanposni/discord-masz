@@ -698,6 +698,64 @@
                 "en": "Message sent.",
                 "de": "Nachricht gesendet."
             }
+        },
+        "Track": {
+            "InviteNotFromThisGuild": {
+                "description": "Invite not from this guild",
+                "en": "The invite is not from this guild.",
+                "de": "Die Einladung ist nicht von dieser Gilde."
+            },
+            "CannotFindInvite": {
+                "description": "Cannot find invite",
+                "en": "Could not find invite in database or in this guild.",
+                "de": "Konnte die Einladung nicht in der Datenbank oder in dieser Gilde finden."
+            },
+            "FailedToFetchInvite": {
+                "description": "Failed to fetch invite",
+                "en": "Failed to fetch invite.",
+                "de": "Konnte die Einladung nicht abrufen."
+            },
+            "CreatedAt": {
+                "description": "Created at",
+                "var_types": {
+                    "inviteCode": "string",
+                    "createdAt": "DateTime"
+                },
+                "en": "`{inviteCode}` created at {createdAt.ToDiscordTS()}.",
+                "de": "`{inviteCode}` erstellt am {createdAt.ToDiscordTS()}."
+            },
+            "CreatedBy": {
+                "description": "Created by",
+                "var_types": {
+                    "inviteCode": "string",
+                    "createdBy": "DSharpPlus.Entities.DiscordUser"
+                },
+                "en": "`{inviteCode}` created by {createdBy.Mention}.",
+                "de": "`{inviteCode}` erstellt von {createdBy.Mention}."
+            },
+            "CreatedByAt": {
+                "description": "Created by",
+                "var_types": {
+                    "inviteCode": "string",
+                    "createdBy": "DSharpPlus.Entities.DiscordUser",
+                    "createdAt": "DateTime"
+                },
+                "en": "`{inviteCode}` created by {createdBy.Mention} at {createdAt.ToDiscordTS()}.",
+                "de": "`{inviteCode}` erstellt von {createdBy.Mention} am {createdAt.ToDiscordTS()}."
+            },
+            "NotTrackedYet": {
+                "description": "Not tracked yet",
+                "en": "This invite has not been tracked by MASZ yet.",
+                "de": "Diese Einladung wurde noch nicht von MASZ gespeichert."
+            },
+            "UsedBy": {
+                "description": "Used by",
+                "var_types": {
+                    "count": "int"
+                },
+                "en": "Used by [{count}]",
+                "de": "Benutzt von [{count}]"
+            }
         }
     }
 }

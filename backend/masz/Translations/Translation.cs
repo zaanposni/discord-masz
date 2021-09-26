@@ -1,3 +1,4 @@
+using System;
 using masz.Extensions;
 using masz.Enums;
 
@@ -984,6 +985,78 @@ namespace masz.Translations
                     return "Nachricht gesendet.";
             }
             return "Message sent.";
+        }
+        public string CmdTrackInviteNotFromThisGuild() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "The invite is not from this guild.";
+                case Language.de:
+                    return "Die Einladung ist nicht von dieser Gilde.";
+            }
+            return "The invite is not from this guild.";
+        }
+        public string CmdTrackCannotFindInvite() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Could not find invite in database or in this guild.";
+                case Language.de:
+                    return "Konnte die Einladung nicht in der Datenbank oder in dieser Gilde finden.";
+            }
+            return "Could not find invite in database or in this guild.";
+        }
+        public string CmdTrackFailedToFetchInvite() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Failed to fetch invite.";
+                case Language.de:
+                    return "Konnte die Einladung nicht abrufen.";
+            }
+            return "Failed to fetch invite.";
+        }
+        public string CmdTrackCreatedAt(string inviteCode, DateTime createdAt) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"`{inviteCode}` created at {createdAt.ToDiscordTS()}.";
+                case Language.de:
+                    return $"`{inviteCode}` erstellt am {createdAt.ToDiscordTS()}.";
+            }
+            return $"`{inviteCode}` created at {createdAt.ToDiscordTS()}.";
+        }
+        public string CmdTrackCreatedBy(string inviteCode, DSharpPlus.Entities.DiscordUser createdBy) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"`{inviteCode}` created by {createdBy.Mention}.";
+                case Language.de:
+                    return $"`{inviteCode}` erstellt von {createdBy.Mention}.";
+            }
+            return $"`{inviteCode}` created by {createdBy.Mention}.";
+        }
+        public string CmdTrackCreatedByAt(string inviteCode, DSharpPlus.Entities.DiscordUser createdBy, DateTime createdAt) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"`{inviteCode}` created by {createdBy.Mention} at {createdAt.ToDiscordTS()}.";
+                case Language.de:
+                    return $"`{inviteCode}` erstellt von {createdBy.Mention} am {createdAt.ToDiscordTS()}.";
+            }
+            return $"`{inviteCode}` created by {createdBy.Mention} at {createdAt.ToDiscordTS()}.";
+        }
+        public string CmdTrackNotTrackedYet() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "This invite has not been tracked by MASZ yet.";
+                case Language.de:
+                    return "Diese Einladung wurde noch nicht von MASZ gespeichert.";
+            }
+            return "This invite has not been tracked by MASZ yet.";
+        }
+        public string CmdTrackUsedBy(int count) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"Used by [{count}]";
+                case Language.de:
+                    return $"Benutzt von [{count}]";
+            }
+            return $"Used by [{count}]";
         }
         public string Enum(masz.Enums.PunishmentType enumValue) {
             switch (enumValue) {
