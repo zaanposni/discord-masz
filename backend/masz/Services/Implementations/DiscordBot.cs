@@ -227,15 +227,6 @@ namespace masz.Services
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                try
-                {
-                    IPunishmentHandler handler = scope.ServiceProvider.GetService<IPunishmentHandler>();
-                    await handler.HandleMemberJoin(client, e);
-                } catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Failed to handle punishment on member join.");
-                }
-
                 GuildConfig guildConfig;
                 try
                 {
@@ -243,6 +234,15 @@ namespace masz.Services
                 } catch (ResourceNotFoundException)
                 {
                     return;
+                }
+
+                try
+                {
+                    IPunishmentHandler handler = scope.ServiceProvider.GetService<IPunishmentHandler>();
+                    await handler.HandleMemberJoin(client, e);
+                } catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Failed to handle punishment on member join.");
                 }
 
                 List<TrackedInvite> newInvites = await FetchInvites(e.Guild);
