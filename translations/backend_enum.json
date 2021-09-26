@@ -3,103 +3,122 @@
         "Mute": {
             "description": "The word 'mute'",
             "en": "Mute",
-            "de": "Stummschaltung"
+            "de": "Stummschaltung",
+            "at": "Stummschoitung"
         },
         "Ban": {
             "description": "The word 'ban'",
             "en": "Ban",
-            "de": "Sperrung"
+            "de": "Sperrung",
+            "at": "Rauswuaf"
         },
         "Kick": {
             "description": "The word 'kick'",
             "en": "Kick",
-            "de": "Kick"
+            "de": "Kick",
+            "at": "Tritt"
         },
         "None": {
             "description": "The word 'warn'",
             "en": "Warn",
-            "de": "Verwarnung"
+            "de": "Verwarnung",
+            "at": "Verwoarnt"
         }
     },
     "ViewPermission": {
         "Self": {
             "description": "A ressource with this permissions can only be seen by the creator. The word 'self'.",
             "en": "Self",
-            "de": "Privat"
+            "de": "Privat",
+            "at": "Privot"
         },
         "Guild": {
             "description": "A ressource with this permissions can only be seen by members of the guild. The word 'guild'.",
             "en": "Guild",
-            "de": "Gilde"
+            "de": "Gilde",
+            "at": "Güde"
         },
         "Global": {
             "description": "A ressource with this permissions can be seen by everyone. The word 'global'.",
             "en": "Global",
-            "de": "Global"
+            "de": "Global",
+            "at": "Globoi"
         }
     },
     "AutoModerationAction": {
         "None": {
             "description": "No action is performed. The word 'none'.",
             "en": "None",
-            "de": "Keine Aktion"
+            "de": "Keine Aktion",
+            "at": "Nix tuan"
         },
         "ContentDeleted": {
             "description": "The message is deleted. The word 'content deleted'.",
             "en": "Content deleted",
-            "de": "Nachricht gelöscht"
+            "de": "Nachricht gelöscht",
+            "at": "Nochricht glescht"
         },
         "CaseCreated": {
             "description": "A case is created. The word 'case created'.",
             "en": "Case created",
-            "de": "Vorfall erstellt"
+            "de": "Vorfall erstellt",
+            "at": "Vorfoi erstöt"
         },
         "ContentDeletedAndCaseCreated": {
             "description": "The message is deleted and a case is created. The word 'content deleted and case created'.",
             "en": "Content deleted and case created",
-            "de": "Nachricht gelöscht und Vorfall erstellt"
+            "de": "Nachricht gelöscht und Vorfall erstellt",
+            "at": "Nochricht glescht und Vorfoi erstöt"
         }
     },
     "AutoModerationType": {
         "InvitePosted": {
             "description": "A message with an invite link is posted. The word 'invite posted'.",
             "en": "Invite posted",
-            "de": "Einladung gesendet"
+            "de": "Einladung gesendet",
+            "at": "Eiladung gsendet"
         },
         "TooManyEmotes": {
             "description": "A message with too many emotes is posted. The word 'too many emotes'.",
             "en": "Too many emotes used",
-            "de": "Zu viele Emojis verwendet"
+            "de": "Zu viele Emojis verwendet",
+            "at": "Zu vü Emojis san vawendt woan"
         },
         "TooManyMentions": {
             "description": "A message with too many mentions is posted. The word 'too many mentions'.",
             "en": "Too many users mentioned",
-            "de": "Zu viele Benutzer erwähnt"
+            "de": "Zu viele Benutzer erwähnt",
+            "at": "Zu vü Nutza san erwähnt woan"
         },
         "TooManyAttachments": {
             "description": "A message with too many attachments is posted. The word 'too many attachments'.",
             "en": "Too many attachments used",
-            "de": "Zu viele Anhänge verwendet"
+            "de": "Zu viele Anhänge verwendet",
+            "at": "Zu vü Ohäng san verwendt woan"
         },
         "TooManyEmbeds": {
             "description": "A message with too many embeds is posted. The word 'too many embeds'.",
             "en": "Too many embeds used",
-            "de": "Zu viele Einbettungen verwendet"
+            "de": "Zu viele Einbettungen verwendet",
+            "at": "Zu vü Eibettungen san vawendt woan"
         },
         "TooManyAutoModerations": {
             "description": "A user triggered too many automoderations. The word 'too many auto-moderations'.",
             "en": "Too many auto-moderations",
-            "de": "Zu viele automatische Moderationen"
+            "de": "Zu viele automatische Moderationen",
+            "at": "Zu vü automatische Modarationen"
         },
         "CustomWordFilter": {
             "description": "A message with a custom word is posted. The word 'custom word'.",
             "en": "Custom wordfilter triggered",
-            "de": "Benutzerdefinierter Wortfilter ausgelöst"
+            "de": "Benutzerdefinierter Wortfilter ausgelöst",
+            "at": "Eigena Wortfüta is ausglest woan"
         },
         "TooManyMessages": {
             "description": "A user posted too many messages. The word 'too many messages'.",
             "en": "Too many messages",
-            "de": "Zu viele Nachrichten"
+            "de": "Zu viele Nachrichten",
+            "at": "Zu vü Nochrichtn"
         }
     }
 }

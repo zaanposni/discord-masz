@@ -2,27 +2,32 @@
     "Features": {
         "description": "The word 'features'",
         "en": "Features",
-        "de": "Features"
+        "de": "Features",
+        "at": "Features"
     },
     "Automoderation": {
         "description": "The word 'Automoderation'",
         "en": "Automoderation",
-        "de": "Automoderation"
+        "de": "Automoderation",
+        "at": "Automodaration"
     },
     "Action": {
         "description": "The word 'Action'",
         "en": "Action",
-        "de": "Aktion"
+        "de": "Aktion",
+        "at": "Aktio"
     },
     "Author": {
         "description": "The word 'Author'",
         "en": "Author",
-        "de": "Autor"
+        "de": "Autor",
+        "at": "Autoa"
     },
     "MessageContent": {
         "description": "The word 'message content'",
         "en": "Message content",
-        "de": "Nachrichteninhalt"
+        "de": "Nachrichteninhalt",
+        "at": "Nochrichtninhoit"
     },
     "ViewDetailsOn": {
         "description": "you can view details on url",
@@ -30,77 +35,92 @@
             "url": "string"
         },
         "en": "View details on: {url}",
-        "de": "Details anzeigen auf: {url}"
+        "de": "Details anzeigen auf: {url}",
+        "at": "Details ozeign auf: {url}"
     },
     "Channel": {
         "description": "The word 'channel'",
         "en": "Channel",
-        "de": "Kanal"
+        "de": "Kanal",
+        "at": "Kanoi"
     },
     "LanguageWord": {
         "description": "The word 'language'",
         "en": "Language",
-        "de": "Sprache"
+        "de": "Sprache",
+        "at": "Sproch"
     },
     "Timestamps": {
         "description": "The word 'timestamps'",
         "en": "Timestamps",
-        "de": "Zeitstempel"
+        "de": "Zeitstempel",
+        "at": "Zeitstempl"
     },
     "Support": {
         "description": "The word 'support'",
         "en": "Support",
-        "de": "Support"
+        "de": "Support",
+        "at": "Supoat"
     },
     "Punishment": {
         "description": "The word 'punishment'",
         "en": "Punishment",
-        "de": "Bestrafung"
+        "de": "Bestrafung",
+        "at": "Bestrofung"
     },
     "PunishmentUntil": {
         "description": "headline for a temporary punishment stating the timezone",
         "en": "Punished until",
-        "de": "Bestrafung bis"
+        "de": "Bestrafung bis",
+        "at": "Bestroft bis"
     },
     "Description": {
         "description": "The word 'description'",
         "en": "Description",
-        "de": "Beschreibung"
+        "de": "Beschreibung",
+        "at": "Beschreibung"
     },
     "Labels": {
         "description": "The word 'labels'",
         "en": "Labels",
-        "de": "Labels"
+        "de": "Labels",
+        "at": "Labl"
     },
     "Filename": {
         "description": "The word 'filename'. The name of a file",
         "en": "Filename",
-        "de": "Dateiname"
+        "de": "Dateiname",
+        "at": "Dateinom"
     },
     "Message": {
         "description": "The word 'message'",
         "en": "Message",
-        "de": "Nachricht"
+        "de": "Nachricht",
+        "at": "Nochricht"
     },
     "UserNote": {
         "description": "The word 'usernote'. This is a feature to share hidden guild-wide notes of a user with other moderators.",
         "en": "UserNote",
-        "de": "Benutzernotiz"
+        "de": "Benutzernotiz",
+        "at": "Benutzanotiz"
     },
     "UserNotes": {
         "description": "The plural word 'usernote'. This is a feature to share hidden guild-wide notes of a user with other moderators.",
         "en": "UserNotes",
-        "de": "Benutzernotizen"
+        "de": "Benutzernotizen",
+        "at": "Benutzanotizn"
     },
     "UserMap": {
         "description": "The word 'usermap'. This is a feature to share hidden guild-wide connections of two users with other moderators.",
         "en": "UserMap",
-        "de": "Benutzerbeziehung"
+        "de": "Benutzerbeziehung",
+        "at": "Benutzabeziehung"
     },
     "UserMaps": {
         "description": "The plural word 'usermaps'. This is a feature to share hidden guild-wide connections of two users with other moderators.",
         "en": "UserMaps",
-        "de": "Benutzerbeziehungen"
+        "de": "Benutzerbeziehungen",
+        "at": "Benutzabeziehungen"
     },
     "UserMapBetween": {
         "description": "Describes a usermap between two users.",
@@ -108,12 +128,14 @@
             "userMap": "masz.Models.UserMapping"
         },
         "en": "UserMap between {userMap.UserA} and {userMap.UserB}.",
-        "de": "Benutzerbeziehung zwischen {userMap.UserA} und {userMap.UserB}."
+        "de": "Benutzerbeziehung zwischen {userMap.UserA} und {userMap.UserB}.",
+        "at": "Benutzabeziehung zwischa {userMap.UserA} und {userMap.UserB}."
     },
     "Type": {
         "description": "The word 'type'",
         "en": "Type",
-        "de": "Typ"
+        "de": "Typ",
+        "at": "Typ"
     },
     "Notification" : {
         "Modcase": {
@@ -124,7 +146,8 @@
                         "modCase": "masz.Models.ModCase"
                     },
                     "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.",
-                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde erstellt."
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde erstellt.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is erstöt woan."
                 },
                 "Internal": {
                     "description": "Webhook notification for modcase creation. This does disclose information about the moderator.",
@@ -133,7 +156,8 @@
                         "moderator": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstellt."
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstellt.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) woad fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstöt."
                 }
             },
             "Update": {
@@ -143,7 +167,8 @@
                         "modCase": "masz.Models.ModCase"
                     },
                     "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated.",
-                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde aktualisiert."
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde aktualisiert.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is aktualisiert woan."
                 },
                 "Internal": {
                     "description": "Webhook notification for modcase update. This does disclose information about the moderator.",
@@ -152,7 +177,9 @@
                         "moderator": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert."
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert woan."
+
                 }
             },
             "Delete": {
@@ -162,7 +189,8 @@
                         "modCase": "masz.Models.ModCase"
                     },
                     "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted.",
-                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde gelöscht."
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde gelöscht.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is glescht woan"
                 },
                 "Internal": {
                     "description": "Webhook notification for modcase deletion. This does disclose information about the moderator.",
@@ -171,7 +199,9 @@
                         "moderator": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) gelöscht."
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) gelöscht.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is vo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) glescht woan."
+
                 }
             },
             "Comments": {
@@ -179,17 +209,20 @@
                     "Create": {
                         "description": "A modcase comment has been created.",
                         "en": "Comment created",
-                        "de": "Kommentar erstellt"
+                        "de": "Kommentar erstellt",
+                        "at": "Kommentoa erstöt"
                     },
                     "Update": {
                         "description": "A modcase comment has been updated.",
                         "en": "Comment updated",
-                        "de": "Kommentar aktualisiert"
+                        "de": "Kommentar aktualisiert",
+                        "at": "kommentoa aktualisiert"
                     },
                     "Delete": {
                         "description": "A modcase comment has been deleted.",
                         "en": "Comment deleted",
-                        "de": "Kommentar gelöscht"
+                        "de": "Kommentar gelöscht",
+                        "at": "kommentoa glescht"
                     }
                 },
                 "Create": {
@@ -198,7 +231,8 @@
                         "actor": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **comment** has been created by <@{actor.Id}>.",
-                    "de": "Ein **Kommentar** wurde von <@{actor.Id}> erstellt."
+                    "de": "Ein **Kommentar** wurde von <@{actor.Id}> erstellt.",
+                    "at": "A **Kommentoa** wuad vo <@{actor.Id}> erstöt."
                 },
                 "Update": {
                     "description": "A modcase comment has been updated.",
@@ -206,7 +240,8 @@
                         "actor": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **comment** has been updated by <@{actor.Id}>.",
-                    "de": "Ein **Kommentar** wurde von <@{actor.Id}> aktualisiert."
+                    "de": "Ein **Kommentar** wurde von <@{actor.Id}> aktualisiert.",
+                    "at": "A **Kommentoa** is vo <@{actor.Id}> aktualisiert woan."
                 },
                 "Delete": {
                     "description": "A modcase comment has been deleted.",
@@ -214,7 +249,8 @@
                         "actor": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **comment** has been deleted by <@{actor.Id}>.",
-                    "de": "Ein **Kommentar** wurde von <@{actor.Id}> gelöscht."
+                    "de": "Ein **Kommentar** wurde von <@{actor.Id}> gelöscht.",
+                    "at": "A **Kommentoa** wuad vo <@{actor.Id}> glescht."
                 }
             },
             "File": {
@@ -224,7 +260,8 @@
                         "actor": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **file** has been uploaded by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochgeladen."
+                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochgeladen.",
+                    "at": "A **Datei** woad vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochglodn."
                 },
                 "Delete": {
                     "description": "Webhook notification for modcase file deletion.",
@@ -232,7 +269,8 @@
                         "actor": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **file** has been deleted by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) gelöscht."
+                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) gelöscht.",
+                    "at": "A **Datei** is vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) glescht woan."
                 },
                 "Update": {
                     "description": "Webhook notification for modcase file update.",
@@ -240,7 +278,8 @@
                         "actor": "DSharpPlus.Entities.DiscordUser"
                     },
                     "en" : "A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert."
+                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert.",
+                    "at": "A **Datei** is vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert woan."
                 }
             },
             "DM": {
@@ -252,7 +291,8 @@
                         "serviceBaseUrl": "string"
                     },
                     "en" : "The moderators of guild `{guild.Name}` have warned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                    "de" : "Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                    "de" : "Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                    "at" : "Die Moderatoan vo `{guild.Name}` hom di verwoarnt.\nFia weitere Infos schau bei {serviceBaseUrl} noch."
                 },
                 "Mute": {
                     "Temp": {
@@ -263,7 +303,9 @@
                             "serviceBaseUrl": "string"
                         },
                         "en" : "The moderators of guild `{guild.Name}` have temporarily muted you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                        "de" : "Die Moderatoren von `{guild.Name}` haben dich temporär stummgeschalten bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich temporär stummgeschalten bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                        "at" : "Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch"
+
                     },
                     "Perm": {
                         "description": "DM notification for perm mute modcase. This does not disclose information about the moderator.",
@@ -273,7 +315,8 @@
                             "serviceBaseUrl": "string"
                         },
                         "en" : "The moderators of guild `{guild.Name}` have muted you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                        "de" : "Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                        "at" : "Die Moderatoan vo `{guild.Name}` hom di stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch."
                     }
                 },
                 "Ban": {
@@ -285,7 +328,8 @@
                             "serviceBaseUrl": "string"
                         },
                         "en" : "The moderators of guild `{guild.Name}` have temporarily banned you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                        "de" : "Die Moderatoren von `{guild.Name}` haben dich temporär gebannt bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich temporär gebannt bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                        "at" : "Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch."
                     },
                     "Perm": {
                         "description": "DM notification for perm ban modcase. This does not disclose information about the moderator.",
@@ -295,7 +339,8 @@
                             "serviceBaseUrl": "string"
                         },
                         "en" : "The moderators of guild `{guild.Name}` have banned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                        "de" : "Die Moderatoren von `{guild.Name}` haben dich gebannt.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich gebannt.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                        "at" : "Die Moderatoan vo `{guild.Name}` hom di vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch"
                     }
                 },
                 "Kick": {
@@ -306,7 +351,8 @@
                         "serviceBaseUrl": "string"
                     },
                     "en" : "The moderators of guild `{guild.Name}` have kicked you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                    "de" : "Die Moderatoren von `{guild.Name}` haben dich kickt.\nFür weitere Informationen besuche: {serviceBaseUrl}"
+                    "de" : "Die Moderatoren von `{guild.Name}` haben dich kickt.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                    "at" : "Die Moderatoan vo `{guild.Name}` hom di rausgschmissn.\nFia weitere Infos schau bei {serviceBaseUrl} noch."
                 }
             }
         },
@@ -314,34 +360,42 @@
             "Create": {
                 "description": "A file has been uploaded.",
                 "en": "File uploaded",
-                "de": "Datei hochgeladen"
+                "de": "Datei hochgeladen",
+                "at": "Datei hochglodn"
             },
             "Delete": {
                 "description": "A file has been deleted.",
                 "en": "File deleted",
-                "de": "Datei gelöscht"
+                "de": "Datei gelöscht",
+                "at": "Datei glescht"
             },
             "Update": {
                 "description": "A file has been updated.",
                 "en": "File updated",
-                "de": "Datei aktualisiert"
+                "de": "Datei aktualisiert",
+                "at": "Datei aktualisiert"
             }
         },
         "Register": {
             "WelcomeToMASZ": {
                 "description": "Welcome to MASZ",
                 "en": "Welcome to MASZ!",
-                "de": "Willkommen bei MASZ!"
+                "de": "Willkommen bei MASZ!",
+                "at": "Servus bei MASZ!"
+
             },
             "DescriptionThanks": {
                 "description": "Thanks for registering.",
                 "en": "Thanks for registering your guild.\nIn the following you will learn some useful tips for setting up and using **MASZ**.",
-                "de": "Vielen Dank für deine Registrierung.\nIm Folgenden wirst du einige nützliche Tipps zum Einrichten und Verwenden von **MASZ** erhalten."
+                "de": "Vielen Dank für deine Registrierung.\nIm Folgenden wirst du einige nützliche Tipps zum Einrichten und Verwenden von **MASZ** erhalten.",
+                "at": "Donksche fia dei Registrierung.\nDu siachst glei ei poar nützliche Tipps zum Eirichtn und Vawendn vo **MASZ**."
+
             },
             "UseFeaturesCommand": {
                 "description": "Use the `features` command to see the features of MASZ.",
                 "en": "Use the `/features` command to test if your current guild setup supports all features of **MASZ**.",
-                "de": "Benutze den `/features` Befehl um zu sehen welche Features von **MASZ** dein aktuelles Setup unterstützt."
+                "de": "Benutze den `/features` Befehl um zu sehen welche Features von **MASZ** dein aktuelles Setup unterstützt.",
+                "at": "Nutz den `/features` Beföhl um nochzumschauen wöchane Features dei aktuelles **MASZ**  Setup untastützn tuad."
             },
             "DefaultLanguageUsed": {
                 "description": "The default language is used for the guild.",
@@ -349,17 +403,20 @@
                     "language": "string"
                 },
                 "en": "MASZ will use `{language}` as default language for this guild whenever possible.",
-                "de": "MASZ wird `{language}` als Standard-Sprache für diese Gilde verwenden, wenn möglich."
+                "de": "MASZ wird `{language}` als Standard-Sprache für diese Gilde verwenden, wenn möglich.",
+                "at": "Dei MASZ wiad `{language}` ois Standard-Sproch fia die Güde nehma, wenns geht."
             },
             "ConfusingTimestamps": {
                 "description": "The timestamps are confusing.",
                 "en": "Timezones can be confusing.\nMASZ uses a Discord feature to display timestamps in the local timezone of your computer/phone.",
-                "de": "Zeitzonen können kompliziert sein.\nMASZ benutzt ein Discord-Feature um Zeitstempel in der lokalen Zeitzone deines Computers/Handys anzuzeigen."
+                "de": "Zeitzonen können kompliziert sein.\nMASZ benutzt ein Discord-Feature um Zeitstempel in der lokalen Zeitzone deines Computers/Handys anzuzeigen.",
+                "at": "De Zeitzonen kennan a weng schwer san.\nMASZ nutzt a Discord-Feature um Zeitstempl in da lokalen Zeitzon vo deim PC/Handy ozumzeign."
             },
             "Support": {
                 "description": "Support for MASZ is provided by the [MASZ Support Server](https://discord.gg/5zjpzw6h3S).",
                 "en": "Please refer to the [MASZ Support Server](https://discord.gg/5zjpzw6h3S) for further questions.",
-                "de": "Bitte wende dich an den [MASZ Support Server](https://discord.gg/5zjpzw6h3S) für weitere Fragen."
+                "de": "Bitte wende dich an den [MASZ Support Server](https://discord.gg/5zjpzw6h3S) für weitere Fragen.",
+                "at": "Bitte wend di on den [MASZ Support Server](https://discord.gg/5zjpzw6h3S) fia weitare Frogn."
             }
         },
         "Automoderation": {
@@ -369,7 +426,8 @@
                     "user": "DSharpPlus.Entities.DiscordUser"
                 },
                 "en": "{user.Mention} triggered automoderation.",
-                "de": "{user.Mention} hat die Automoderation ausgelöst."
+                "de": "{user.Mention} hat die Automoderation ausgelöst.",
+                "at": "{user.Mention} hot de Automodaration ausglest."
             },
             "Case": {
                 "description": "case description for automod event",
@@ -377,7 +435,8 @@
                     "user": "DSharpPlus.Entities.DiscordUser"
                 },
                 "en": "{user.Username}#{user.Discriminator} triggered automoderation.",
-                "de": "{user.Username}#{user.Discriminator} hat die Automoderation ausgelöst."
+                "de": "{user.Username}#{user.Discriminator} hat die Automoderation ausgelöst.",
+                "at": "{user.Username}#{user.Discriminator} hot de Automodaration ausglest."
             }
         }
     }

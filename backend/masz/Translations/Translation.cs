@@ -19,6 +19,8 @@ namespace masz.Translations
                     return "Features";
                 case Language.de:
                     return "Features";
+                case Language.at:
+                    return "Features";
             }
             return "Features";
         }
@@ -28,6 +30,8 @@ namespace masz.Translations
                     return "Automoderation";
                 case Language.de:
                     return "Automoderation";
+                case Language.at:
+                    return "Automodaration";
             }
             return "Automoderation";
         }
@@ -37,6 +41,8 @@ namespace masz.Translations
                     return "Action";
                 case Language.de:
                     return "Aktion";
+                case Language.at:
+                    return "Aktio";
             }
             return "Action";
         }
@@ -46,6 +52,8 @@ namespace masz.Translations
                     return "Author";
                 case Language.de:
                     return "Autor";
+                case Language.at:
+                    return "Autoa";
             }
             return "Author";
         }
@@ -55,6 +63,8 @@ namespace masz.Translations
                     return "Message content";
                 case Language.de:
                     return "Nachrichteninhalt";
+                case Language.at:
+                    return "Nochrichtninhoit";
             }
             return "Message content";
         }
@@ -64,6 +74,8 @@ namespace masz.Translations
                     return $"View details on: {url}";
                 case Language.de:
                     return $"Details anzeigen auf: {url}";
+                case Language.at:
+                    return $"Details ozeign auf: {url}";
             }
             return $"View details on: {url}";
         }
@@ -73,6 +85,8 @@ namespace masz.Translations
                     return "Channel";
                 case Language.de:
                     return "Kanal";
+                case Language.at:
+                    return "Kanoi";
             }
             return "Channel";
         }
@@ -82,6 +96,8 @@ namespace masz.Translations
                     return "Language";
                 case Language.de:
                     return "Sprache";
+                case Language.at:
+                    return "Sproch";
             }
             return "Language";
         }
@@ -91,6 +107,8 @@ namespace masz.Translations
                     return "Timestamps";
                 case Language.de:
                     return "Zeitstempel";
+                case Language.at:
+                    return "Zeitstempl";
             }
             return "Timestamps";
         }
@@ -100,6 +118,8 @@ namespace masz.Translations
                     return "Support";
                 case Language.de:
                     return "Support";
+                case Language.at:
+                    return "Supoat";
             }
             return "Support";
         }
@@ -109,6 +129,8 @@ namespace masz.Translations
                     return "Punishment";
                 case Language.de:
                     return "Bestrafung";
+                case Language.at:
+                    return "Bestrofung";
             }
             return "Punishment";
         }
@@ -118,6 +140,8 @@ namespace masz.Translations
                     return "Punished until";
                 case Language.de:
                     return "Bestrafung bis";
+                case Language.at:
+                    return "Bestroft bis";
             }
             return "Punished until";
         }
@@ -126,6 +150,8 @@ namespace masz.Translations
                 case Language.en:
                     return "Description";
                 case Language.de:
+                    return "Beschreibung";
+                case Language.at:
                     return "Beschreibung";
             }
             return "Description";
@@ -136,6 +162,8 @@ namespace masz.Translations
                     return "Labels";
                 case Language.de:
                     return "Labels";
+                case Language.at:
+                    return "Labl";
             }
             return "Labels";
         }
@@ -145,6 +173,8 @@ namespace masz.Translations
                     return "Filename";
                 case Language.de:
                     return "Dateiname";
+                case Language.at:
+                    return "Dateinom";
             }
             return "Filename";
         }
@@ -154,6 +184,8 @@ namespace masz.Translations
                     return "Message";
                 case Language.de:
                     return "Nachricht";
+                case Language.at:
+                    return "Nochricht";
             }
             return "Message";
         }
@@ -163,6 +195,8 @@ namespace masz.Translations
                     return "UserNote";
                 case Language.de:
                     return "Benutzernotiz";
+                case Language.at:
+                    return "Benutzanotiz";
             }
             return "UserNote";
         }
@@ -172,6 +206,8 @@ namespace masz.Translations
                     return "UserNotes";
                 case Language.de:
                     return "Benutzernotizen";
+                case Language.at:
+                    return "Benutzanotizn";
             }
             return "UserNotes";
         }
@@ -181,6 +217,8 @@ namespace masz.Translations
                     return "UserMap";
                 case Language.de:
                     return "Benutzerbeziehung";
+                case Language.at:
+                    return "Benutzabeziehung";
             }
             return "UserMap";
         }
@@ -190,6 +228,8 @@ namespace masz.Translations
                     return "UserMaps";
                 case Language.de:
                     return "Benutzerbeziehungen";
+                case Language.at:
+                    return "Benutzabeziehungen";
             }
             return "UserMaps";
         }
@@ -199,6 +239,8 @@ namespace masz.Translations
                     return $"UserMap between {userMap.UserA} and {userMap.UserB}.";
                 case Language.de:
                     return $"Benutzerbeziehung zwischen {userMap.UserA} und {userMap.UserB}.";
+                case Language.at:
+                    return $"Benutzabeziehung zwischa {userMap.UserA} und {userMap.UserB}.";
             }
             return $"UserMap between {userMap.UserA} and {userMap.UserB}.";
         }
@@ -207,6 +249,8 @@ namespace masz.Translations
                 case Language.en:
                     return "Type";
                 case Language.de:
+                    return "Typ";
+                case Language.at:
                     return "Typ";
             }
             return "Type";
@@ -217,6 +261,8 @@ namespace masz.Translations
                     return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.";
                 case Language.de:
                     return $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde erstellt.";
+                case Language.at:
+                    return $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is erstöt woan.";
             }
             return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.";
         }
@@ -226,6 +272,8 @@ namespace masz.Translations
                     return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
                 case Language.de:
                     return $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstellt.";
+                case Language.at:
+                    return $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) woad fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstöt.";
             }
             return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
         }
@@ -235,6 +283,8 @@ namespace masz.Translations
                     return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated.";
                 case Language.de:
                     return $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde aktualisiert.";
+                case Language.at:
+                    return $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is aktualisiert woan.";
             }
             return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated.";
         }
@@ -244,6 +294,8 @@ namespace masz.Translations
                     return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
                 case Language.de:
                     return $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert.";
+                case Language.at:
+                    return $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert woan.";
             }
             return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
         }
@@ -253,6 +305,8 @@ namespace masz.Translations
                     return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted.";
                 case Language.de:
                     return $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde gelöscht.";
+                case Language.at:
+                    return $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is glescht woan";
             }
             return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted.";
         }
@@ -262,6 +316,8 @@ namespace masz.Translations
                     return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
                 case Language.de:
                     return $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) gelöscht.";
+                case Language.at:
+                    return $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is vo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) glescht woan.";
             }
             return $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
         }
@@ -271,6 +327,8 @@ namespace masz.Translations
                     return "Comment created";
                 case Language.de:
                     return "Kommentar erstellt";
+                case Language.at:
+                    return "Kommentoa erstöt";
             }
             return "Comment created";
         }
@@ -280,6 +338,8 @@ namespace masz.Translations
                     return "Comment updated";
                 case Language.de:
                     return "Kommentar aktualisiert";
+                case Language.at:
+                    return "kommentoa aktualisiert";
             }
             return "Comment updated";
         }
@@ -289,6 +349,8 @@ namespace masz.Translations
                     return "Comment deleted";
                 case Language.de:
                     return "Kommentar gelöscht";
+                case Language.at:
+                    return "kommentoa glescht";
             }
             return "Comment deleted";
         }
@@ -298,6 +360,8 @@ namespace masz.Translations
                     return $"A **comment** has been created by <@{actor.Id}>.";
                 case Language.de:
                     return $"Ein **Kommentar** wurde von <@{actor.Id}> erstellt.";
+                case Language.at:
+                    return $"A **Kommentoa** wuad vo <@{actor.Id}> erstöt.";
             }
             return $"A **comment** has been created by <@{actor.Id}>.";
         }
@@ -307,6 +371,8 @@ namespace masz.Translations
                     return $"A **comment** has been updated by <@{actor.Id}>.";
                 case Language.de:
                     return $"Ein **Kommentar** wurde von <@{actor.Id}> aktualisiert.";
+                case Language.at:
+                    return $"A **Kommentoa** is vo <@{actor.Id}> aktualisiert woan.";
             }
             return $"A **comment** has been updated by <@{actor.Id}>.";
         }
@@ -316,6 +382,8 @@ namespace masz.Translations
                     return $"A **comment** has been deleted by <@{actor.Id}>.";
                 case Language.de:
                     return $"Ein **Kommentar** wurde von <@{actor.Id}> gelöscht.";
+                case Language.at:
+                    return $"A **Kommentoa** wuad vo <@{actor.Id}> glescht.";
             }
             return $"A **comment** has been deleted by <@{actor.Id}>.";
         }
@@ -325,6 +393,8 @@ namespace masz.Translations
                     return $"A **file** has been uploaded by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
                 case Language.de:
                     return $"Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochgeladen.";
+                case Language.at:
+                    return $"A **Datei** woad vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochglodn.";
             }
             return $"A **file** has been uploaded by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
         }
@@ -334,6 +404,8 @@ namespace masz.Translations
                     return $"A **file** has been deleted by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
                 case Language.de:
                     return $"Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) gelöscht.";
+                case Language.at:
+                    return $"A **Datei** is vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) glescht woan.";
             }
             return $"A **file** has been deleted by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
         }
@@ -343,6 +415,8 @@ namespace masz.Translations
                     return $"A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
                 case Language.de:
                     return $"Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert.";
+                case Language.at:
+                    return $"A **Datei** is vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert woan.";
             }
             return $"A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
         }
@@ -352,6 +426,8 @@ namespace masz.Translations
                     return $"The moderators of guild `{guild.Name}` have warned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
                     return $"Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen besuche: {serviceBaseUrl}";
+                case Language.at:
+                    return $"Die Moderatoan vo `{guild.Name}` hom di verwoarnt.\nFia weitere Infos schau bei {serviceBaseUrl} noch.";
             }
             return $"The moderators of guild `{guild.Name}` have warned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
@@ -361,6 +437,8 @@ namespace masz.Translations
                     return $"The moderators of guild `{guild.Name}` have temporarily muted you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
                     return $"Die Moderatoren von `{guild.Name}` haben dich temporär stummgeschalten bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}";
+                case Language.at:
+                    return $"Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch";
             }
             return $"The moderators of guild `{guild.Name}` have temporarily muted you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
@@ -370,6 +448,8 @@ namespace masz.Translations
                     return $"The moderators of guild `{guild.Name}` have muted you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
                     return $"Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nFür weitere Informationen besuche: {serviceBaseUrl}";
+                case Language.at:
+                    return $"Die Moderatoan vo `{guild.Name}` hom di stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch.";
             }
             return $"The moderators of guild `{guild.Name}` have muted you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
@@ -379,6 +459,8 @@ namespace masz.Translations
                     return $"The moderators of guild `{guild.Name}` have temporarily banned you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
                     return $"Die Moderatoren von `{guild.Name}` haben dich temporär gebannt bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}";
+                case Language.at:
+                    return $"Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch.";
             }
             return $"The moderators of guild `{guild.Name}` have temporarily banned you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
@@ -388,6 +470,8 @@ namespace masz.Translations
                     return $"The moderators of guild `{guild.Name}` have banned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
                     return $"Die Moderatoren von `{guild.Name}` haben dich gebannt.\nFür weitere Informationen besuche: {serviceBaseUrl}";
+                case Language.at:
+                    return $"Die Moderatoan vo `{guild.Name}` hom di vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch";
             }
             return $"The moderators of guild `{guild.Name}` have banned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
@@ -397,6 +481,8 @@ namespace masz.Translations
                     return $"The moderators of guild `{guild.Name}` have kicked you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
                 case Language.de:
                     return $"Die Moderatoren von `{guild.Name}` haben dich kickt.\nFür weitere Informationen besuche: {serviceBaseUrl}";
+                case Language.at:
+                    return $"Die Moderatoan vo `{guild.Name}` hom di rausgschmissn.\nFia weitere Infos schau bei {serviceBaseUrl} noch.";
             }
             return $"The moderators of guild `{guild.Name}` have kicked you.\nFor more information or rehabilitation visit: {serviceBaseUrl}";
         }
@@ -406,6 +492,8 @@ namespace masz.Translations
                     return "File uploaded";
                 case Language.de:
                     return "Datei hochgeladen";
+                case Language.at:
+                    return "Datei hochglodn";
             }
             return "File uploaded";
         }
@@ -415,6 +503,8 @@ namespace masz.Translations
                     return "File deleted";
                 case Language.de:
                     return "Datei gelöscht";
+                case Language.at:
+                    return "Datei glescht";
             }
             return "File deleted";
         }
@@ -423,6 +513,8 @@ namespace masz.Translations
                 case Language.en:
                     return "File updated";
                 case Language.de:
+                    return "Datei aktualisiert";
+                case Language.at:
                     return "Datei aktualisiert";
             }
             return "File updated";
@@ -433,6 +525,8 @@ namespace masz.Translations
                     return "Welcome to MASZ!";
                 case Language.de:
                     return "Willkommen bei MASZ!";
+                case Language.at:
+                    return "Servus bei MASZ!";
             }
             return "Welcome to MASZ!";
         }
@@ -442,6 +536,8 @@ namespace masz.Translations
                     return "Thanks for registering your guild.\nIn the following you will learn some useful tips for setting up and using **MASZ**.";
                 case Language.de:
                     return "Vielen Dank für deine Registrierung.\nIm Folgenden wirst du einige nützliche Tipps zum Einrichten und Verwenden von **MASZ** erhalten.";
+                case Language.at:
+                    return "Donksche fia dei Registrierung.\nDu siachst glei ei poar nützliche Tipps zum Eirichtn und Vawendn vo **MASZ**.";
             }
             return "Thanks for registering your guild.\nIn the following you will learn some useful tips for setting up and using **MASZ**.";
         }
@@ -451,6 +547,8 @@ namespace masz.Translations
                     return "Use the `/features` command to test if your current guild setup supports all features of **MASZ**.";
                 case Language.de:
                     return "Benutze den `/features` Befehl um zu sehen welche Features von **MASZ** dein aktuelles Setup unterstützt.";
+                case Language.at:
+                    return "Nutz den `/features` Beföhl um nochzumschauen wöchane Features dei aktuelles **MASZ**  Setup untastützn tuad.";
             }
             return "Use the `/features` command to test if your current guild setup supports all features of **MASZ**.";
         }
@@ -460,6 +558,8 @@ namespace masz.Translations
                     return $"MASZ will use `{language}` as default language for this guild whenever possible.";
                 case Language.de:
                     return $"MASZ wird `{language}` als Standard-Sprache für diese Gilde verwenden, wenn möglich.";
+                case Language.at:
+                    return $"Dei MASZ wiad `{language}` ois Standard-Sproch fia die Güde nehma, wenns geht.";
             }
             return $"MASZ will use `{language}` as default language for this guild whenever possible.";
         }
@@ -469,6 +569,8 @@ namespace masz.Translations
                     return "Timezones can be confusing.\nMASZ uses a Discord feature to display timestamps in the local timezone of your computer/phone.";
                 case Language.de:
                     return "Zeitzonen können kompliziert sein.\nMASZ benutzt ein Discord-Feature um Zeitstempel in der lokalen Zeitzone deines Computers/Handys anzuzeigen.";
+                case Language.at:
+                    return "De Zeitzonen kennan a weng schwer san.\nMASZ nutzt a Discord-Feature um Zeitstempl in da lokalen Zeitzon vo deim PC/Handy ozumzeign.";
             }
             return "Timezones can be confusing.\nMASZ uses a Discord feature to display timestamps in the local timezone of your computer/phone.";
         }
@@ -478,6 +580,8 @@ namespace masz.Translations
                     return "Please refer to the [MASZ Support Server](https://discord.gg/5zjpzw6h3S) for further questions.";
                 case Language.de:
                     return "Bitte wende dich an den [MASZ Support Server](https://discord.gg/5zjpzw6h3S) für weitere Fragen.";
+                case Language.at:
+                    return "Bitte wend di on den [MASZ Support Server](https://discord.gg/5zjpzw6h3S) fia weitare Frogn.";
             }
             return "Please refer to the [MASZ Support Server](https://discord.gg/5zjpzw6h3S) for further questions.";
         }
@@ -487,6 +591,8 @@ namespace masz.Translations
                     return $"{user.Mention} triggered automoderation.";
                 case Language.de:
                     return $"{user.Mention} hat die Automoderation ausgelöst.";
+                case Language.at:
+                    return $"{user.Mention} hot de Automodaration ausglest.";
             }
             return $"{user.Mention} triggered automoderation.";
         }
@@ -496,6 +602,8 @@ namespace masz.Translations
                     return $"{user.Username}#{user.Discriminator} triggered automoderation.";
                 case Language.de:
                     return $"{user.Username}#{user.Discriminator} hat die Automoderation ausgelöst.";
+                case Language.at:
+                    return $"{user.Username}#{user.Discriminator} hot de Automodaration ausglest.";
             }
             return $"{user.Username}#{user.Discriminator} triggered automoderation.";
         }
@@ -507,6 +615,8 @@ namespace masz.Translations
                             return "Mute";
                         case Language.de:
                             return "Stummschaltung";
+                        case Language.at:
+                            return "Stummschoitung";
                         default:
                             return "Mute";
                     }
@@ -516,6 +626,8 @@ namespace masz.Translations
                             return "Ban";
                         case Language.de:
                             return "Sperrung";
+                        case Language.at:
+                            return "Rauswuaf";
                         default:
                             return "Ban";
                     }
@@ -525,6 +637,8 @@ namespace masz.Translations
                             return "Kick";
                         case Language.de:
                             return "Kick";
+                        case Language.at:
+                            return "Tritt";
                         default:
                             return "Kick";
                     }
@@ -534,6 +648,8 @@ namespace masz.Translations
                             return "Warn";
                         case Language.de:
                             return "Verwarnung";
+                        case Language.at:
+                            return "Verwoarnt";
                         default:
                             return "Warn";
                     }
@@ -548,6 +664,8 @@ namespace masz.Translations
                             return "Self";
                         case Language.de:
                             return "Privat";
+                        case Language.at:
+                            return "Privot";
                         default:
                             return "Self";
                     }
@@ -557,6 +675,8 @@ namespace masz.Translations
                             return "Guild";
                         case Language.de:
                             return "Gilde";
+                        case Language.at:
+                            return "Güde";
                         default:
                             return "Guild";
                     }
@@ -566,6 +686,8 @@ namespace masz.Translations
                             return "Global";
                         case Language.de:
                             return "Global";
+                        case Language.at:
+                            return "Globoi";
                         default:
                             return "Global";
                     }
@@ -580,6 +702,8 @@ namespace masz.Translations
                             return "None";
                         case Language.de:
                             return "Keine Aktion";
+                        case Language.at:
+                            return "Nix tuan";
                         default:
                             return "None";
                     }
@@ -589,6 +713,8 @@ namespace masz.Translations
                             return "Content deleted";
                         case Language.de:
                             return "Nachricht gelöscht";
+                        case Language.at:
+                            return "Nochricht glescht";
                         default:
                             return "Content deleted";
                     }
@@ -598,6 +724,8 @@ namespace masz.Translations
                             return "Case created";
                         case Language.de:
                             return "Vorfall erstellt";
+                        case Language.at:
+                            return "Vorfoi erstöt";
                         default:
                             return "Case created";
                     }
@@ -607,6 +735,8 @@ namespace masz.Translations
                             return "Content deleted and case created";
                         case Language.de:
                             return "Nachricht gelöscht und Vorfall erstellt";
+                        case Language.at:
+                            return "Nochricht glescht und Vorfoi erstöt";
                         default:
                             return "Content deleted and case created";
                     }
@@ -621,6 +751,8 @@ namespace masz.Translations
                             return "Invite posted";
                         case Language.de:
                             return "Einladung gesendet";
+                        case Language.at:
+                            return "Eiladung gsendet";
                         default:
                             return "Invite posted";
                     }
@@ -630,6 +762,8 @@ namespace masz.Translations
                             return "Too many emotes used";
                         case Language.de:
                             return "Zu viele Emojis verwendet";
+                        case Language.at:
+                            return "Zu vü Emojis san vawendt woan";
                         default:
                             return "Too many emotes used";
                     }
@@ -639,6 +773,8 @@ namespace masz.Translations
                             return "Too many users mentioned";
                         case Language.de:
                             return "Zu viele Benutzer erwähnt";
+                        case Language.at:
+                            return "Zu vü Nutza san erwähnt woan";
                         default:
                             return "Too many users mentioned";
                     }
@@ -648,6 +784,8 @@ namespace masz.Translations
                             return "Too many attachments used";
                         case Language.de:
                             return "Zu viele Anhänge verwendet";
+                        case Language.at:
+                            return "Zu vü Ohäng san verwendt woan";
                         default:
                             return "Too many attachments used";
                     }
@@ -657,6 +795,8 @@ namespace masz.Translations
                             return "Too many embeds used";
                         case Language.de:
                             return "Zu viele Einbettungen verwendet";
+                        case Language.at:
+                            return "Zu vü Eibettungen san vawendt woan";
                         default:
                             return "Too many embeds used";
                     }
@@ -666,6 +806,8 @@ namespace masz.Translations
                             return "Too many auto-moderations";
                         case Language.de:
                             return "Zu viele automatische Moderationen";
+                        case Language.at:
+                            return "Zu vü automatische Modarationen";
                         default:
                             return "Too many auto-moderations";
                     }
@@ -675,6 +817,8 @@ namespace masz.Translations
                             return "Custom wordfilter triggered";
                         case Language.de:
                             return "Benutzerdefinierter Wortfilter ausgelöst";
+                        case Language.at:
+                            return "Eigena Wortfüta is ausglest woan";
                         default:
                             return "Custom wordfilter triggered";
                     }
@@ -684,6 +828,8 @@ namespace masz.Translations
                             return "Too many messages";
                         case Language.de:
                             return "Zu viele Nachrichten";
+                        case Language.at:
+                            return "Zu vü Nochrichtn";
                         default:
                             return "Too many messages";
                     }

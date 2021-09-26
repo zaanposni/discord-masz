@@ -50,6 +50,9 @@ namespace masz.Services
                 case "es":
                     _defaultLanguage = Language.es;
                     break;
+                case "at":
+                    _defaultLanguage = Language.at;
+                    break;
                 default:
                     _defaultLanguage = Language.en;
                     break;

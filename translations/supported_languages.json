@@ -23,5 +23,10 @@
         "name": "Italian",
         "nativeName": "Italiano",
         "supported": 0
+    },
+    "at": {
+        "name": "Austrian German",
+        "nativeName": "Österreichisches Deutsch",
+        "supported": 100
     }
 }

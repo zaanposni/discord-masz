@@ -6,6 +6,7 @@ namespace masz.Translations
         de,
         fr,
         es,
-        it
+        it,
+        at
     }
 }
