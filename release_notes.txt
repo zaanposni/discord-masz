@@ -16,3 +16,4 @@
 - version command is no longer supported
 - cases command is no longer supported
 - cleanup no longer supports invite and reaction clear
+- added welcome embed with tips on guild register
