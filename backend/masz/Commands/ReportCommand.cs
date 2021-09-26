@@ -6,6 +6,7 @@ using DSharpPlus;
 using DSharpPlus.Entities;
 using DSharpPlus.SlashCommands;
 using masz.Enums;
+using masz.Extensions;
 using masz.Models;
 using masz.Repositories;
 using Microsoft.Extensions.Logging;
@@ -28,31 +29,30 @@ namespace masz.Commands
 
             if (String.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
-                await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, response.WithContent("This guild has no webhook for internal notifications configured."));
+                await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, response.WithContent(_translator.T().CmdNoWebhookConfigured()));
                 return;
             }
 
             StringBuilder sb = new StringBuilder();
-            sb.Append($"<@{ctx.User.Id}> reported a message from <@{ctx.TargetMessage.Author.Id}> in <#{ctx.TargetMessage.ChannelId}>.\n{ctx.TargetMessage.JumpLink}");
-            sb.Append("\n");
+            sb.AppendLine(_translator.T().CmdReportContent(ctx.User, ctx.TargetMessage));
 
             if (! String.IsNullOrEmpty(ctx.TargetMessage.Content))
             {
                 sb.Append("```\n");
-                sb.Append(ctx.TargetMessage.Content.Substring(0, Math.Min(ctx.TargetMessage.Content.Length, 1024)));
+                sb.Append(ctx.TargetMessage.Content.Truncate(1024));
                 sb.Append("\n``` ");
             }
 
             if (ctx.TargetMessage.Attachments.Count > 0)
             {
-                sb.Append("Attachments:\n");
+                sb.AppendLine(_translator.T().Attachments());
                 foreach (DiscordAttachment attachment in ctx.TargetMessage.Attachments.Take(5))
                 {
                     sb.Append($"- <{attachment.Url}>\n");
                 }
                 if (ctx.TargetMessage.Attachments.Count > 5)
                 {
-                    sb.Append($"and {ctx.TargetMessage.Attachments.Count - 5} more...\n");
+                    sb.AppendLine(_translator.T().AndXMore(ctx.TargetMessage.Attachments.Count - 5));
                 }
             }
 
@@ -62,11 +62,11 @@ namespace masz.Commands
             } catch (Exception e)
             {
                 _logger.LogError(e, "Failed to send internal notification to moderators for report command.");
-                await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, response.WithContent("Failed to send report."));
+                await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, response.WithContent(_translator.T().CmdReportFailed()));
                 return;
             }
 
-            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, response.WithContent("Report sent."));
+            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, response.WithContent(_translator.T().CmdReportSent()));
         }
     }
 }

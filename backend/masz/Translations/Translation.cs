@@ -79,6 +79,24 @@ namespace masz.Translations
             }
             return $"View details on: {url}";
         }
+        public string Attachments() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Attachments";
+                case Language.de:
+                    return "Anhänge";
+            }
+            return "Attachments";
+        }
+        public string AndXMore(int count) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"and {count} more...";
+                case Language.de:
+                    return $"und {count} weitere...";
+            }
+            return $"and {count} more...";
+        }
         public string Channel() {
             switch (preferredLanguage) {
                 case Language.en:
@@ -670,6 +688,15 @@ namespace masz.Translations
             }
             return "Cannot find channel.";
         }
+        public string CmdNoWebhookConfigured() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "This guild has no webhook for internal notifications configured.";
+                case Language.de:
+                    return "Dieser Server hat keinen internen Webhook für Benachrichtigungen konfiguriert.";
+            }
+            return "This guild has no webhook for internal notifications configured.";
+        }
         public string CmdCleanup(int count, DSharpPlus.Entities.DiscordChannel channel) {
             switch (preferredLanguage) {
                 case Language.en:
@@ -912,6 +939,33 @@ namespace masz.Translations
                     return $"Ein Siteadmin kann eine Gilde registrieren unter: {url}";
             }
             return $"A siteadmin can register a guild at: {url}";
+        }
+        public string CmdReportFailed() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Failed to send internal notification to moderators for report command.";
+                case Language.de:
+                    return "Interner Benachrichtigungsversand an Moderatoren für Meldebefehl fehlgeschlagen.";
+            }
+            return "Failed to send internal notification to moderators for report command.";
+        }
+        public string CmdReportSent() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Report sent.";
+                case Language.de:
+                    return "Meldung gesendet.";
+            }
+            return "Report sent.";
+        }
+        public string CmdReportContent(DSharpPlus.Entities.DiscordUser user, DSharpPlus.Entities.DiscordMessage message) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}";
+                case Language.de:
+                    return $"{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}";
+            }
+            return $"{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}";
         }
         public string Enum(masz.Enums.PunishmentType enumValue) {
             switch (enumValue) {

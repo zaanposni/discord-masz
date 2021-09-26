@@ -38,6 +38,19 @@
         "de": "Details anzeigen auf: {url}",
         "at": "Details ozeign auf: {url}"
     },
+    "Attachments": {
+        "description": "The word 'attachments'",
+        "en": "Attachments",
+        "de": "Anhänge"
+    },
+    "AndXMore": {
+        "description": "The word 'and x more'",
+        "var_types": {
+            "count": "int"
+        },
+        "en": "and {count} more...",
+        "de": "und {count} weitere..."
+    },
     "Channel": {
         "description": "The word 'channel'",
         "en": "Channel",
@@ -486,6 +499,11 @@
             "en": "Cannot find channel.",
             "de": "Kanal konnte nicht gefunden werden."
         },
+        "NoWebhookConfigured": {
+            "description": "No webhook configured.",
+            "en": "This guild has no webhook for internal notifications configured.",
+            "de": "Dieser Server hat keinen internen Webhook für Benachrichtigungen konfiguriert."
+        },
         "Cleanup": {
             "description": "Cleanup response",
             "var_types": {
@@ -647,6 +665,27 @@
             },
             "en": "A siteadmin can register a guild at: {url}",
             "de": "Ein Siteadmin kann eine Gilde registrieren unter: {url}"
+        },
+        "Report": {
+            "Failed": {
+                "description": "Report failed",
+                "en": "Failed to send internal notification to moderators for report command.",
+                "de": "Interner Benachrichtigungsversand an Moderatoren für Meldebefehl fehlgeschlagen."
+            },
+            "Sent": {
+                "description": "Report sent",
+                "en": "Report sent.",
+                "de": "Meldung gesendet."
+            },
+            "Content": {
+                "description": "Report content",
+                "var_types": {
+                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "message": "DSharpPlus.Entities.DiscordMessage"
+                },
+                "en": "{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}",
+                "de": "{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}"
+            }
         }
     }
 }
