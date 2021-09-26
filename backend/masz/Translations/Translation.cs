@@ -967,6 +967,24 @@ namespace masz.Translations
             }
             return $"{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}";
         }
+        public string CmdSayFailed() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Failed to send message";
+                case Language.de:
+                    return "Senden der Nachricht fehlgeschlagen";
+            }
+            return "Failed to send message";
+        }
+        public string CmdSaySent() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Message sent.";
+                case Language.de:
+                    return "Nachricht gesendet.";
+            }
+            return "Message sent.";
+        }
         public string Enum(masz.Enums.PunishmentType enumValue) {
             switch (enumValue) {
                 case masz.Enums.PunishmentType.Mute:

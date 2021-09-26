@@ -686,6 +686,18 @@
                 "en": "{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}",
                 "de": "{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}"
             }
+        },
+        "Say": {
+            "Failed": {
+                "description": "Say failed",
+                "en": "Failed to send message",
+                "de": "Senden der Nachricht fehlgeschlagen"
+            },
+            "Sent": {
+                "description": "Send message",
+                "en": "Message sent.",
+                "de": "Nachricht gesendet."
+            }
         }
     }
 }

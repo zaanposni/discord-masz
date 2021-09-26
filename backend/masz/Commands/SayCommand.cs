@@ -31,7 +31,7 @@ namespace masz.Commands
             if (channel.Type != ChannelType.Text)
             {
                 await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                        new DiscordInteractionResponseBuilder().WithContent("I can only send messages in text channels.").AsEphemeral(true));
+                        new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdOnlyTextChannel()).AsEphemeral(true));
                 return;
             }
 
@@ -41,18 +41,18 @@ namespace masz.Commands
             } catch (DSharpPlus.Exceptions.UnauthorizedException)
             {
                 await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                        new DiscordInteractionResponseBuilder().WithContent("I'm not allowed to send messages in this channel!").AsEphemeral(true));
+                        new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdCannotViewOrDeleteInChannel()).AsEphemeral(true));
                 return;
             } catch (Exception e)
             {
                 _logger.LogError(e, $"Error while writing message in channel {channel.Id}");
                 await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                        new DiscordInteractionResponseBuilder().WithContent("Failed to send say message").AsEphemeral(true));
+                        new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdSayFailed()).AsEphemeral(true));
                 return;
             }
 
             await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                    new DiscordInteractionResponseBuilder().WithContent("Message sent.").AsEphemeral(true));
+                    new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdSaySent()).AsEphemeral(true));
         }
     }
 }
