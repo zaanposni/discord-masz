@@ -180,6 +180,15 @@ namespace masz.Translations
             }
             return "Punishment";
         }
+        public string Until() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "until";
+                case Language.de:
+                    return "bis";
+            }
+            return "until";
+        }
         public string PunishmentUntil() {
             switch (preferredLanguage) {
                 case Language.en:
@@ -257,6 +266,24 @@ namespace masz.Translations
             }
             return "UserNotes";
         }
+        public string Cases() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Cases";
+                case Language.de:
+                    return "Vorfälle";
+            }
+            return "Cases";
+        }
+        public string ActivePunishments() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Active punishments";
+                case Language.de:
+                    return "Aktive Bestrafungen";
+            }
+            return "Active punishments";
+        }
         public string UserMap() {
             switch (preferredLanguage) {
                 case Language.en:
@@ -300,6 +327,24 @@ namespace masz.Translations
                     return "Typ";
             }
             return "Type";
+        }
+        public string Joined() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Joined";
+                case Language.de:
+                    return "Beigetreten";
+            }
+            return "Joined";
+        }
+        public string Registered() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Registered";
+                case Language.de:
+                    return "Registriert";
+            }
+            return "Registered";
         }
         public string NotificationModcaseCreatePublic(masz.Models.ModCase modCase) {
             switch (preferredLanguage) {
@@ -1084,6 +1129,33 @@ namespace masz.Translations
                     return "Du darfst diesen Fall nicht ansehen.";
             }
             return "You are not allowed to view this case.";
+        }
+        public string CmdWhoisUsedInvite(string inviteCode) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"Used invite `{inviteCode}`.";
+                case Language.de:
+                    return $"Benutzte Einladung `{inviteCode}`.";
+            }
+            return $"Used invite `{inviteCode}`.";
+        }
+        public string CmdWhoisInviteBy(ulong user) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"By <@{user}>.";
+                case Language.de:
+                    return $"Von <@{user}>.";
+            }
+            return $"By <@{user}>.";
+        }
+        public string CmdWhoisNoCases() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "There are no cases for this user.";
+                case Language.de:
+                    return "Es gibt keine Fälle für diesen Benutzer.";
+            }
+            return "There are no cases for this user.";
         }
         public string Enum(masz.Enums.PunishmentType enumValue) {
             switch (enumValue) {

@@ -8,6 +8,7 @@ using DSharpPlus.Entities;
 using DSharpPlus.SlashCommands;
 using masz.Enums;
 using masz.Exceptions;
+using masz.Extensions;
 using masz.Models;
 using masz.Repositories;
 
@@ -40,22 +41,22 @@ namespace masz.Commands
             StringBuilder joinedInfo = new StringBuilder();
             if (member != null)
             {
-                joinedInfo.Append($"{member.JoinedAt.ToString("dd.MM.yyyy HH:mm:ss")}\n");
+                joinedInfo.AppendLine(member.JoinedAt.DateTime.ToDiscordTS());
             }
             if (filteredInvites.Count > 0)
             {
                 UserInvite usedInvite = filteredInvites.First();
-                joinedInfo.Append($"Used invite: {usedInvite.UsedInvite}\n");
+                joinedInfo.AppendLine(_translator.T().CmdWhoisUsedInvite(usedInvite.UsedInvite));
                 if (usedInvite.InviteIssuerId != 0)
                 {
-                    joinedInfo.Append($"By: <@{usedInvite.InviteIssuerId}>\n");
+                    joinedInfo.AppendLine(_translator.T().CmdWhoisInviteBy(usedInvite.InviteIssuerId));
                 }
             }
             if (! string.IsNullOrEmpty(joinedInfo.ToString()))
             {
-                embed.AddField("Joined", joinedInfo.ToString(), true);
+                embed.AddField(_translator.T().Joined(), joinedInfo.ToString(), true);
             }
-            embed.AddField("Registered", user.CreationTimestamp.DateTime.ToString("dd.MM.yyyy HH:mm:ss"), true);
+            embed.AddField(_translator.T().Registered(), user.CreationTimestamp.DateTime.ToDiscordTS(), true);
 
             embed.WithAuthor(user.Username, user.AvatarUrl, user.AvatarUrl);
             embed.WithThumbnail(user.AvatarUrl);
@@ -63,7 +64,7 @@ namespace masz.Commands
             try
             {
                 UserNote userNote = await UserNoteRepository.CreateDefault(_serviceProvider, _currentIdentity).GetUserNote(ctx.Guild.Id, user.Id);
-                embed.AddField("Usernote", userNote.Description.Substring(0, Math.Min(userNote.Description.Length, 1000)), false);
+                embed.AddField(_translator.T().UserNote(), userNote.Description.Truncate(1000), false);
             } catch (ResourceNotFoundException) { }
 
             List<ModCase> cases = await ModCaseRepository.CreateWithBotIdentity(_serviceProvider).GetCasesForGuildAndUser(ctx.Guild.Id, user.Id);
@@ -81,7 +82,7 @@ namespace masz.Commands
                 {
                     caseInfo.Append("[...]");
                 }
-                embed.AddField($"Cases [{cases.Count}]", caseInfo.ToString(), false);
+                embed.AddField($"{_translator.T().Cases()} [{cases.Count}]", caseInfo.ToString(), false);
 
                 if (activeCases.Count > 0)
                 {
@@ -91,8 +92,7 @@ namespace masz.Commands
                         activeInfo.Append($"{modCase.GetPunishment(_translator)} ");
                         if (modCase.PunishedUntil != null)
                         {
-                            string until = modCase.PunishedUntil.Value.ToString("dd MMM yyyy");
-                            activeInfo.Append($"(until {until}) ");
+                            activeInfo.Append($"({_translator.T().Until()} {modCase.PunishedUntil.Value.ToDiscordTS()}) ");
                         }
                         activeInfo.Append($"[{modCase.CaseId} - {modCase.Title}]");
                         activeInfo.Append($"({_config.GetBaseUrl()}/guilds/{modCase.GuildId}/cases/{modCase.CaseId})\n");
@@ -101,11 +101,11 @@ namespace masz.Commands
                     {
                         activeInfo.Append("[...]");
                     }
-                    embed.AddField($"Active Punishments [{activeCases.Count}]", activeInfo.ToString(), false);
+                    embed.AddField($"{_translator.T().ActivePunishments()} [{activeCases.Count}]", activeInfo.ToString(), false);
                 }
             } else
             {
-                embed.AddField("Cases [0]", "There are no cases for this user.", false);
+                embed.AddField($"{_translator.T().Cases()} [0]", _translator.T().CmdWhoisNoCases(), false);
             }
 
             await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));

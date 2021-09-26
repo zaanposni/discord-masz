@@ -96,6 +96,11 @@
         "de": "Bestrafung",
         "at": "Bestrofung"
     },
+    "Until": {
+        "description": "The word 'until'",
+        "en": "until",
+        "de": "bis"
+    },
     "PunishmentUntil": {
         "description": "headline for a temporary punishment stating the timezone",
         "en": "Punished until",
@@ -138,6 +143,16 @@
         "de": "Benutzernotizen",
         "at": "Benutzanotizn"
     },
+    "Cases": {
+        "description": "The word 'cases'",
+        "en": "Cases",
+        "de": "Vorfälle"
+    },
+    "ActivePunishments": {
+        "description": "The word 'active punishments'",
+        "en": "Active punishments",
+        "de": "Aktive Bestrafungen"
+    },
     "UserMap": {
         "description": "The word 'usermap'. This is a feature to share hidden guild-wide connections of two users with other moderators.",
         "en": "UserMap",
@@ -164,6 +179,16 @@
         "en": "Type",
         "de": "Typ",
         "at": "Typ"
+    },
+    "Joined": {
+        "description": "The word 'joined'",
+        "en": "Joined",
+        "de": "Beigetreten"
+    },
+    "Registered": {
+        "description": "The word 'registered'",
+        "en": "Registered",
+        "de": "Registriert"
     },
     "Notification" : {
         "Modcase": {
@@ -772,6 +797,29 @@
                 "description": "Not allowed to view",
                 "en": "You are not allowed to view this case.",
                 "de": "Du darfst diesen Fall nicht ansehen."
+            }
+        },
+        "Whois": {
+            "UsedInvite": {
+                "description": "Used invite",
+                "var_types": {
+                    "inviteCode": "string"
+                },
+                "en": "Used invite `{inviteCode}`.",
+                "de": "Benutzte Einladung `{inviteCode}`."
+            },
+            "InviteBy": {
+                "description": "Invite by",
+                "var_types": {
+                    "user": "ulong"
+                },
+                "en": "By <@{user}>.",
+                "de": "Von <@{user}>."
+            },
+            "NoCases": {
+                "description": "No cases",
+                "en": "There are no cases for this user.",
+                "de": "Es gibt keine Fälle für diesen Benutzer."
             }
         }
     }
