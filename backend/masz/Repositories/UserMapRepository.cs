@@ -29,7 +29,6 @@ namespace masz.Repositories
             UserMapping userMapping = await _database.GetUserMappingByUserIdsAndGuildId(userA, userB, guildId);
             if (userMapping == null)
             {
-                _logger.LogWarning($"UserMap for guild {guildId} and users {userA}/{userB} not found.");
                 throw new ResourceNotFoundException($"UserMap for guild {guildId} and users {userA}/{userB} not found.");
             }
             return userMapping;
@@ -39,7 +38,6 @@ namespace masz.Repositories
             UserMapping userMapping = await _database.GetUserMappingById(id);
             if (userMapping == null)
             {
-                _logger.LogWarning($"UserMap for id {id} not found.");
                 throw new ResourceNotFoundException($"UserMap for id {id} not found.");
             }
             return userMapping;

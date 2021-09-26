@@ -25,7 +25,6 @@ namespace masz.Repositories
             APIToken apiToken = await _database.GetAPIToken();
             if (apiToken == null)
             {
-                _logger.LogWarning($"Token not found.");
                 throw new ResourceNotFoundException($"Token does not exist.");
             }
             return apiToken;

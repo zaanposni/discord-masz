@@ -225,7 +225,7 @@ namespace masz.Services
                 {
                     DiscordEmbedBuilder embed = _notificationEmbedCreator.CreateInternalAutomodEmbed(modEvent, guildConfig, author, channel, moderationConfig.PunishmentType);
                     await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
-                    _logger.LogInformation("Sent dm notification.");
+                    _logger.LogInformation("Sent internal automod event webhook.");
                 } catch (Exception e)
                 {
                     _logger.LogError(e, "Error while announcing automod event.");

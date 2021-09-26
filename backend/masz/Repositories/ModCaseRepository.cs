@@ -120,7 +120,6 @@ namespace masz.Repositories
             ModCase modCase = await _database.SelectSpecificModCase(guildId, caseId);
             if (modCase == null)
             {
-                _logger.LogWarning($"ModCase with id {caseId} not found.");
                 throw new ResourceNotFoundException($"ModCase with id {caseId} does not exist.");
             }
             return modCase;

@@ -23,7 +23,6 @@ namespace masz.Repositories
             GuildConfig guildConfig = await _database.SelectSpecificGuildConfig(guildId);
             if (guildConfig == null)
             {
-                _logger.LogWarning($"GuildConfig with id {guildId} not found.");
                 throw new ResourceNotFoundException($"GuildConfig with id {guildId} not found.");
             }
             return guildConfig;
