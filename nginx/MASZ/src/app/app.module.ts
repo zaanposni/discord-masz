@@ -33,7 +33,7 @@ import { IndexComponent } from './components/basic/index/index.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { AuthService } from './services/auth.service';
 import { ApiInterceptor } from './services/ApiInterceptor';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiService } from './services/api.service';
 import { AuthGuard } from './guards/auth.guard';
 import { GuildCardComponent } from './components/guilds/guild-card/guild-card.component';
@@ -98,6 +98,13 @@ import { GuildIconComponent } from './components/basic/guild-icon/guild-icon.com
 import { OauthFailedComponent } from './components/errors/oauth-failed/oauth-failed.component';
 import { EnumManagerService } from './services/enum-manager.service';
 import { ApplicationInfoService } from './services/application-info.service';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { DEFAULT_LANGUAGE } from './config/config';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -200,7 +207,16 @@ import { ApplicationInfoService } from './services/application-info.service';
 
     BrowserModule,
     AppRoutingModule,
-    ChartsModule
+    ChartsModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      },
+      defaultLanguage: DEFAULT_LANGUAGE,
+      useDefaultLang: true
+  })
   ],
   providers: [
     ToastrService,
