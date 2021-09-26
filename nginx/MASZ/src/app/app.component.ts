@@ -13,6 +13,8 @@ import { HttpParams } from '@angular/common/http';
 import { ApiService } from './services/api.service';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { IApplicationInfo } from './models/IApplicationInfo';
+import { ApplicationInfoService } from './services/application-info.service';
 
 
 @Component({
@@ -28,11 +30,12 @@ export class AppComponent implements OnInit{
   currentUser!: AppUser;
   guildDeleteDialogData!: GuildDeleteDialogData;
   @ViewChild('snav') snav: any;
+  applicationInfo?: IApplicationInfo = undefined;
 
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, public route: ActivatedRoute,
-              private auth: AuthService, private toastr: ToastrService, private dialog: MatDialog, private api: ApiService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+              private auth: AuthService, private toastr: ToastrService, private dialog: MatDialog, private api: ApiService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private applicationInfoService: ApplicationInfoService) {
     this.mobileQuery = media.matchMedia('(max-width: 1000px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -52,6 +55,14 @@ export class AppComponent implements OnInit{
     if (this.auth.isLoggedIn()) {
       this.login();
     }
+
+    this.applicationInfoService.currentApplicationInfo.subscribe(data => {
+      this.applicationInfo = data;
+    });
+
+    this.api.getSimpleData('/meta/application').subscribe((data: IApplicationInfo) => {
+      this.applicationInfoService.infoChanged(data);
+    });
   }
 
   login() {

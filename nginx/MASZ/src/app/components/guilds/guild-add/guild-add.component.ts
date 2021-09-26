@@ -7,6 +7,7 @@ import { Guild } from 'src/app/models/Guild';
 import { GuildRole } from 'src/app/models/GuildRole';
 import { IApplicationInfo } from 'src/app/models/IApplicationInfo';
 import { ApiService } from 'src/app/services/api.service';
+import { ApplicationInfoService } from 'src/app/services/application-info.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -29,7 +30,7 @@ export class GuildAddComponent implements OnInit {
   public selectedGuild: Guild|undefined;
   public selectedGuildDetails!: ContentLoading<Guild>;
 
-  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router) { }
+  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private applicationInfoService: ApplicationInfoService) { }
 
   ngOnInit(): void {
 
@@ -49,11 +50,12 @@ export class GuildAddComponent implements OnInit {
       executeWhoisOnJoin: [''],
       publishModeratorInfo: ['']
     });
-    
-    this.reloadGuilds();
-    this.api.getSimpleData('/meta/application').subscribe((data: IApplicationInfo) => {
+
+    this.applicationInfoService.currentApplicationInfo.subscribe((data: IApplicationInfo) => {
       this.clientId = data.id;
     });
+
+    this.reloadGuilds();
   }
 
   reloadGuilds() {
@@ -87,7 +89,7 @@ export class GuildAddComponent implements OnInit {
   }
 
   selectGuild(id: string) {
-    this.searchGuilds = ''; 
+    this.searchGuilds = '';
     this.selectedGuild = this.guilds.content?.find(x => x.id === id) as Guild;
     this.selectedGuildDetails = { loading: true, content: undefined };
     this.api.getSimpleData(`/discord/guilds/${id}`).subscribe((data) => {
@@ -100,7 +102,7 @@ export class GuildAddComponent implements OnInit {
   invite() {
     this.selectedGuildDetails = { loading: true, content: undefined };
     var win = window.open(
-      `https://discord.com/oauth2/authorize?client_id=${this.clientId}&permissions=8&scope=bot%20applications.commands&guild_id=${this.selectedGuild?.id}`, 
+      `https://discord.com/oauth2/authorize?client_id=${this.clientId}&permissions=8&scope=bot%20applications.commands&guild_id=${this.selectedGuild?.id}`,
       "Secure Payment", "status=yes;width=150,height=400");
     if (win === null) {
       this.toastr.error("Failed to open invite window.");

@@ -97,6 +97,7 @@ import { StatcardComponent } from './components/api/adminstats/statcard/statcard
 import { GuildIconComponent } from './components/basic/guild-icon/guild-icon.component';
 import { OauthFailedComponent } from './components/errors/oauth-failed/oauth-failed.component';
 import { EnumManagerService } from './services/enum-manager.service';
+import { ApplicationInfoService } from './services/application-info.service';
 
 @NgModule({
   declarations: [
@@ -210,7 +211,8 @@ import { EnumManagerService } from './services/enum-manager.service';
     },
     AuthGuard,
     EnumManagerService,
-    ApiService
+    ApiService,
+    ApplicationInfoService
   ],
   bootstrap: [AppComponent]
 })

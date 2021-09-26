@@ -3,14 +3,14 @@
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <h1 class="example-app-name">{{ title }}</h1>
   </mat-toolbar>
-  
+
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0" autosize>
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
         <a class="d-flex crs-ptr" (click)="open('guilds')">
           <div class="rounded navitem nohover">
-            <img width="24px" height="24px" src="favicon.ico" alt="icon"/>
-            <span>{{ title }}</span>
+            <img class="rounded-circle" width="24px" height="24px" alt="icon" [attr.src]="applicationInfo?.iconUrl ?? 'favicon.ico'"/>
+            <span>{{ applicationInfo?.name ?? 'MASZ' }}</span>
           </div>
         </a>
 
@@ -79,7 +79,7 @@
             </div>
           </a>
         </mat-expansion-panel>
-        
+
         <!-- Mod Guild -->
         <!-- #################################################################################################################################################### -->
         <mat-expansion-panel *ngIf="this.currentUser && loggedIn && this.currentUser?.modGuilds?.length">
@@ -163,9 +163,9 @@
             </div>
           </a>
         </mat-expansion-panel>
-        
+
         <mat-divider></mat-divider>
-        
+
         <a class="d-flex" (click)="open('scanning')"
          *ngIf="this.currentUser?.modGuilds?.length || this.currentUser?.adminGuilds?.length || this.currentUser?.isAdmin">
           <div [class.activatedNav]="activatedNav[1] === 'userscan' || activatedNav[1] === 'scanning'" class="rounded navitem">
