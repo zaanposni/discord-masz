@@ -99,8 +99,8 @@ namespace masz.Controllers
             {
                 var entry = new ModCaseTableEntry(
                     c,
-                    await _discordAPI.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache),
-                    await _discordAPI.FetchUserInfo(c.ModId, CacheBehavior.OnlyCache)
+                    await _discordAPI.FetchUserInfo(c.ModId, CacheBehavior.OnlyCache),
+                    await _discordAPI.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache)
                 );
                 if (!publishMod) {
                     entry.RemoveModeratorInfo();
