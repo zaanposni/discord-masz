@@ -11,7 +11,7 @@
         </span>
         <div class="flex-grow-1"></div>
         <a routerLink="/guilds/{{ this.guild?.content?.id }}/cases/new" class="p-2" mat-raised-button color="accent">
-            Create new case
+            {{ 'GuildInfoCard.CreateNewCase' | translate }}
         </a>
         <!-- Not loaded -->
         <span *ngIf="!this.guild?.loading && !this.guild?.content">Failed to load guild info.</span>

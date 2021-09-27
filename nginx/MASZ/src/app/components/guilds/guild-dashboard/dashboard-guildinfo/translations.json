@@ -1,0 +1,13 @@
+{
+    "namespace": "GuildInfoCard",
+    "CreateNewCase": {
+        "description": "Create New Case button",
+        "en": "Create new case",
+        "de": "Neuen Vorfall erstellen"
+    },
+    "FailedToLoad": {
+        "description": "Failed to load",
+        "en": "Failed to load guild info.",
+        "de": "Gildeninfo konnte nicht geladen werden."
+    }
+}

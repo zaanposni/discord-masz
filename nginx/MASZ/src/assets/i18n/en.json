@@ -23,6 +23,10 @@
         "Member": "Guilds",
         "Banned": "Banned from guilds"
     },
+    "GuildInfoCard": {
+        "CreateNewCase": "Create new case",
+        "FailedToLoad": "Failed to load guild info."
+    },
     "GuildList": {
         "LoadingGuilds": "Loading guilds...",
         "NoGuild": "Please join a guild or get banned so I can work with you :(",

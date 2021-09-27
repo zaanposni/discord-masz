@@ -23,6 +23,10 @@
         "Member": "Gilden",
         "Banned": "Gesperrt von Gilden"
     },
+    "GuildInfoCard": {
+        "CreateNewCase": "Neuen Vorfall erstellen",
+        "FailedToLoad": "Gildeninfo konnte nicht geladen werden."
+    },
     "GuildList": {
         "LoadingGuilds": "Lade Gilden...",
         "NoGuild": "Bitte betrete eine Gilde oder werde gebannt, damit ich dir etwas anzeigen kann :(",
