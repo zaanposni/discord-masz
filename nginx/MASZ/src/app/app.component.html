@@ -53,7 +53,7 @@
         <a class="d-flex" (click)="open('guilds')" *ngIf="this.currentUser && loggedIn">
           <div [class.activatedNav]="activatedNav[1] === 'guilds' && (activatedNav[2] === 'new' || activatedNav[2] === undefined)" class="rounded navitem pr-1">
             <mat-icon aria-hidden="false" aria-label="group icon">group</mat-icon>
-            <span>{{ 'Toolbar.Guilds.All' | translate }}</span>
+            <span>{{ 'Guilds.All' | translate }}</span>
             <div class="flex-grow-1"></div>
             <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon"
              (click)="open('guilds', 'new'); $event.stopPropagation()" *ngIf="this.currentUser.isAdmin">
@@ -69,7 +69,7 @@
             <a class="d-flex">
               <div class="rounded navitem nohover">
                 <mat-icon aria-hidden="false" aria-label="group icon">security</mat-icon>
-                <span>{{ 'Toolbar.Guilds.Admin' | translate }}</span>
+                <span>{{ 'Guilds.Admin' | translate }}</span>
               </div>
             </a>
           </mat-expansion-panel-header>
@@ -96,7 +96,7 @@
             <a class="d-flex">
               <div class="rounded navitem nohover">
                 <mat-icon aria-hidden="false" aria-label="group icon">verified_user</mat-icon>
-                <span>{{ 'Toolbar.Guilds.Moderator' | translate }}</span>
+                <span>{{ 'Guilds.Moderator' | translate }}</span>
               </div>
             </a>
           </mat-expansion-panel-header>
@@ -124,7 +124,7 @@
             <a class="d-flex">
               <div class="rounded navitem nohover">
                 <mat-icon aria-hidden="false" aria-label="group icon">account_circle</mat-icon>
-                <span>{{ 'Toolbar.Guilds.Member' | translate }}</span>
+                <span>{{ 'Guilds.Member' | translate }}</span>
               </div>
             </a>
           </mat-expansion-panel-header>
@@ -152,7 +152,7 @@
             <a class="d-flex">
               <div class="rounded navitem nohover">
                 <mat-icon aria-hidden="false" aria-label="group icon">block</mat-icon>
-                <span>{{ 'Toolbar.Guilds.Banned' | translate }}</span>
+                <span>{{ 'Guilds.Banned' | translate }}</span>
               </div>
             </a>
           </mat-expansion-panel-header>

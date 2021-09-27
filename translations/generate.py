@@ -143,8 +143,12 @@ with console.status("[bold green]Generating frontend...") as status:
         if 'translations.json' in files:
             console.log("Scanning " + str(os.path.join(root, 'translations.json')).replace("\\", "/"))
             with open(os.path.join(root, 'translations.json'), "r", encoding="utf-8") as f:
-                for key, value in json.load(f).items():
-                    generate_frontend_node(value, [key])
+                data = json.load(f)
+                namespace = str(data["namespace"])
+                namespace = namespace[0].upper() + namespace[1:]
+                del(data["namespace"])
+                for key, value in data.items():
+                    generate_frontend_node(value, [namespace, key])
 
     for lang, value in NEW_SPLITTED_DATA.items():
         console.log(f"Saving {lang}.json")

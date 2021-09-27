@@ -14,14 +14,18 @@
         "Legal": "Rechtliches",
         "API": "API",
         "Insights": "Statistiken",
-        "Scanning": "Untersuchung",
-        "Guilds": {
-            "All": "Alle Gilden",
-            "Admin": "Admingilden",
-            "Moderator": "Moderatorengilden",
-            "Member": "Gilden",
-            "Banned": "Gesperrt von Gilden"
-        }
+        "Scanning": "Untersuchung"
     },
-    "AdminGuilds": "Admingilden"
+    "Guilds": {
+        "All": "Alle Gilden",
+        "Admin": "Admingilden",
+        "Moderator": "Moderatorengilden",
+        "Member": "Gilden",
+        "Banned": "Gesperrt von Gilden"
+    },
+    "GuildList": {
+        "LoadingGuilds": "Lade Gilden...",
+        "NoGuild": "Bitte betrete eine Gilde oder werde gebannt, damit ich dir etwas anzeigen kann :(",
+        "AddGuild": "Gilde hinzufügen"
+    }
 }

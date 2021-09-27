@@ -1,7 +1,18 @@
 {
-    "AdminGuilds": {
-        "description": "AdminGuilds",
-        "en": "Admin guilds",
-        "de": "Admingilden"
+    "namespace": "GuildList",
+    "LoadingGuilds": {
+        "description": "Loading message",
+        "en": "Loading guilds...",
+        "de": "Lade Gilden..."
+    },
+    "NoGuild": {
+        "description": "No guilds registered or intersection with current user.",
+        "en": "Please join a guild or get banned so I can work with you :(",
+        "de": "Bitte betrete eine Gilde oder werde gebannt, damit ich dir etwas anzeigen kann :("
+    },
+    "AddGuild": {
+        "description": "Add guild button",
+        "en": "Add guild",
+        "de": "Gilde hinzufügen"
     }
 }

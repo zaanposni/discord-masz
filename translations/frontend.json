@@ -66,33 +66,33 @@
             "description": "Scanning",
             "en": "Scanning",
             "de": "Untersuchung"
+        }
+    },
+    "Guilds": {
+        "All": {
+            "description": "All guilds",
+            "en": "All guilds",
+            "de": "Alle Gilden"
         },
-        "Guilds": {
-            "All": {
-                "description": "All guilds",
-                "en": "All guilds",
-                "de": "Alle Gilden"
-            },
-            "Admin": {
-                "description": "Admin guilds",
-                "en": "Admin guilds",
-                "de": "Admingilden"
-            },
-            "Moderator": {
-                "description": "Moderator guilds",
-                "en": "Moderator guilds",
-                "de": "Moderatorengilden"
-            },
-            "Member": {
-                "description": "Member guilds",
-                "en": "Guilds",
-                "de": "Gilden"
-            },
-            "Banned": {
-                "description": "Banned guilds",
-                "en": "Banned from guilds",
-                "de": "Gesperrt von Gilden"
-            }
+        "Admin": {
+            "description": "Admin guilds",
+            "en": "Admin guilds",
+            "de": "Admingilden"
+        },
+        "Moderator": {
+            "description": "Moderator guilds",
+            "en": "Moderator guilds",
+            "de": "Moderatorengilden"
+        },
+        "Member": {
+            "description": "Member guilds",
+            "en": "Guilds",
+            "de": "Gilden"
+        },
+        "Banned": {
+            "description": "Banned guilds",
+            "en": "Banned from guilds",
+            "de": "Gesperrt von Gilden"
         }
     }
 }
