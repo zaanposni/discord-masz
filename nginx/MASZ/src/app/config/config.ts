@@ -8,11 +8,11 @@ export const ENABLE_CORS = false;
 export const DEFAULT_LANGUAGE = 'en';
 export const LANGUAGES: ILanguageSelect[] = [
     {
-        language: 'de',
-        displayName: 'Deutsch'
-    },
-    {
         language: 'en',
         displayName: 'English'
+    },
+    {
+        language: 'de',
+        displayName: 'Deutsch'
     }
 ];
