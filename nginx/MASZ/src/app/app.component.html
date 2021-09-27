@@ -14,6 +14,15 @@
           </div>
         </a>
 
+        <a>
+          <div class="rounded navitem w-100">
+            <mat-icon aria-hidden="false" aria-label="tune icon">language</mat-icon>
+            <mat-select [value]="currentLanguage" #langSelect (selectionChange)="changeLanguage(langSelect.value)">
+              <mat-option *ngFor="let lang of languages" [value]="lang.language">{{ lang.displayName }}</mat-option>
+            </mat-select>
+          </div>
+        </a>
+
         <mat-expansion-panel *ngIf="this.currentUser && loggedIn">
           <mat-expansion-panel-header>
             <a class="d-flex">

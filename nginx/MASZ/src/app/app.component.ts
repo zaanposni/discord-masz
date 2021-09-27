@@ -15,6 +15,8 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IApplicationInfo } from './models/IApplicationInfo';
 import { ApplicationInfoService } from './services/application-info.service';
+import { TranslateService } from '@ngx-translate/core';
+import { DEFAULT_LANGUAGE, LANGUAGES } from './config/config';
 
 
 @Component({
@@ -31,11 +33,17 @@ export class AppComponent implements OnInit{
   guildDeleteDialogData!: GuildDeleteDialogData;
   @ViewChild('snav') snav: any;
   applicationInfo?: IApplicationInfo = undefined;
+  languages = LANGUAGES;
+  currentLanguage: string = DEFAULT_LANGUAGE;
+
+  public changeLanguage(lang: string) {
+    this.translator.use(lang);
+  }
 
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, public route: ActivatedRoute,
-              private auth: AuthService, private toastr: ToastrService, private dialog: MatDialog, private api: ApiService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private applicationInfoService: ApplicationInfoService) {
+              private auth: AuthService, private toastr: ToastrService, private dialog: MatDialog, private api: ApiService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private applicationInfoService: ApplicationInfoService, private translator: TranslateService) {
     this.mobileQuery = media.matchMedia('(max-width: 1000px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -62,6 +70,10 @@ export class AppComponent implements OnInit{
 
     this.api.getSimpleData('/meta/application').subscribe((data: IApplicationInfo) => {
       this.applicationInfoService.infoChanged(data);
+    });
+
+    this.translator.onLangChange.subscribe(() => {
+      this.currentLanguage = this.translator.currentLang;
     });
   }
 
