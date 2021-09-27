@@ -1,0 +1,12 @@
+{
+    "LoginWithDiscord": {
+        "description": "Login button",
+        "en": "Login with Discord",
+        "de": "Mit Discord anmelden"
+    },
+    "AcceptTermsOnLogin": {
+        "description": "Accept terms on login",
+        "en": "By logging in you accept our Terms and Guidelines.",
+        "de": "Beim Anmelden stimmen Sie unseren Nutzungsbedingungen und Richtlinien zu."
+    }
+}

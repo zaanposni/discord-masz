@@ -3,21 +3,20 @@
     <img src="assets/img/masz.png" alt="icon" height="200px" width="296px" class="mb-4" *ngIf="!this.attemptingLogin"/>
     <mat-spinner class="mb-4" *ngIf="this.attemptingLogin"></mat-spinner>
     <button mat-raised-button color="primary" class="big-button mat-display-1 mb-1" *ngIf="!this.attemptingLogin" (click)="redirectToApiLogin()">
-      Login with Discord
+      {{ 'LoginWithDiscord' | translate }}
     </button>
     <button mat-raised-button color="primary" class="big-button mat-display-1 mb-1" *ngIf="this.attemptingLogin" [disabled]="true">
       Logging you in with Discord
     </button>
     <span>
-      By logging in you accept our
       <ng-container *ngIf="applicationInfo?.termsOfServiceUrl; else elseTemplateToSIndex">
         <a href="{{ applicationInfo?.termsOfServiceUrl }}" style="color: inherit; text-decoration: none" target="_blank">
-          Terms and Guidelines.
+          {{ 'AcceptTermsOnLogin' | translate }}
         </a>
       </ng-container>
       <ng-template #elseTemplateToSIndex>
         <a routerLink="/guidelines" style="color: inherit; text-decoration: none">
-          Terms and Guidelines.
+          {{ 'AcceptTermsOnLogin' | translate }}
         </a>
       </ng-template>
     </span>
