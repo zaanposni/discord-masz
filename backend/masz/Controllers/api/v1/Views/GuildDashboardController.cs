@@ -119,8 +119,14 @@ namespace masz.Controllers
 
             foreach (ModCase item in await ModCaseRepository.CreateDefault(_serviceProvider, identity).SearchCases(guildId, search))
             {
-                entries.Add(new QuickSearchEntry<CaseView> {
-                    Entry = new CaseView(item),
+                entries.Add(new QuickSearchEntry<CaseExpandedView> {
+                    Entry = new CaseExpandedView(
+                        item,
+                        await _discordAPI.FetchUserInfo(item.ModId, CacheBehavior.OnlyCache),
+                        await _discordAPI.FetchUserInfo(item.LastEditedByModId, CacheBehavior.OnlyCache),
+                        await _discordAPI.FetchUserInfo(item.UserId, CacheBehavior.OnlyCache),
+                        new List<CommentExpandedView>()
+                    ),
                     CreatedAt = item.CreatedAt,
                     QuickSearchEntryType = QuickSearchEntryType.ModCase
                 });
@@ -128,8 +134,11 @@ namespace masz.Controllers
 
             foreach (AutoModerationEvent item in await AutoModerationEventRepository.CreateDefault(_serviceProvider).SearchInGuild(guildId, search))
             {
-                entries.Add(new QuickSearchEntry<AutoModerationEventView> {
-                    Entry = new AutoModerationEventView(item),
+                entries.Add(new QuickSearchEntry<AutoModerationEventExpandedView> {
+                    Entry = new AutoModerationEventExpandedView(
+                        item,
+                        await _discordAPI.FetchUserInfo(item.UserId, CacheBehavior.OnlyCache)
+                    ),
                     CreatedAt = item.CreatedAt,
                     QuickSearchEntryType = QuickSearchEntryType.AutoModeration
                 });
@@ -147,6 +156,9 @@ namespace masz.Controllers
                     await _discordAPI.FetchUserInfo(note.CreatorId, CacheBehavior.OnlyCache)
                 );
             } catch (ResourceNotFoundException) { }
+              catch (FormatException) { }
+              catch (ArgumentException) { }
+              catch (OverflowException) { }
 
             List<UserMappingExpandedView> userMappingViews = new List<UserMappingExpandedView>();
             try
@@ -163,6 +175,9 @@ namespace masz.Controllers
                 ));
             }
             } catch (ResourceNotFoundException) { }
+              catch (FormatException) { }
+              catch (ArgumentException) { }
+              catch (OverflowException) { }
 
             return Ok(new {
                 searchEntries = entries.OrderByDescending(x => x.CreatedAt).ToList(),
