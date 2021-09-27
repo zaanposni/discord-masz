@@ -170,4 +170,6 @@ with console.status("[bold green]Generating language stats...") as status:
     with open("supported_languages.json", "w", encoding="utf-8") as f:
         json.dump(SUPPORTED_LANGUAGES, f, indent=4, ensure_ascii=False)
 
+console.log(f"[bright_green]Handled [/bright_green]{TRANSLATION_NODES}[bright_green] translation nodes[/bright_green].")
+console.log(f"[bright_green]Handled [/bright_green]{len(TRANSLATION_STATS.keys())}[bright_green] languages[/bright_green].")
 console.log("[bright_green]Generated language stats[/bright_green].")
