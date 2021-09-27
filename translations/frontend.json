@@ -11,6 +11,11 @@
             "de": "Du wirst angemeldet..."
         }
     },
+    "Loading": {
+        "description": "loading",
+        "en": "Loading...",
+        "de": "Lädt..."
+    },
     "AcceptTermsOnLogin": {
         "description": "Accept terms on login",
         "en": "By logging in you accept our Terms and Guidelines.",

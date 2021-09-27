@@ -3,6 +3,7 @@
         "Button": "Mit Discord anmelden",
         "Loading": "Du wirst angemeldet..."
     },
+    "Loading": "Lädt...",
     "AcceptTermsOnLogin": "Beim Anmelden stimmen Sie unseren Nutzungsbedingungen und Richtlinien zu.",
     "Toolbar": {
         "Login": "Anmelden",
@@ -26,6 +27,11 @@
     "GuildInfoCard": {
         "CreateNewCase": "Neuen Vorfall erstellen",
         "FailedToLoad": "Gildeninfo konnte nicht geladen werden."
+    },
+    "Quicksearch": {
+        "Placeholder": "Schnellsuche Benutzer, Vorfälle, Bestrafungen, Automoderationen, ...",
+        "NoMatches": "Keine Einträge zur Suche gefunden :(",
+        "SearchFailed": "Suche fehlgeschlagen."
     },
     "GuildList": {
         "LoadingGuilds": "Lade Gilden...",

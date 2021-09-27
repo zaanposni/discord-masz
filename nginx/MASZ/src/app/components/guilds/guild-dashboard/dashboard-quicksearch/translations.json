@@ -1,0 +1,18 @@
+{
+    "namespace": "Quicksearch",
+    "Placeholder": {
+        "description": "Placeholder for the search field",
+        "en": "Quicksearch users, modcases, punishments, automoderations, ...",
+        "de": "Schnellsuche Benutzer, Vorfälle, Bestrafungen, Automoderationen, ..."
+    },
+    "NoMatches": {
+        "description": "No matches found",
+        "en": "Nothing matches your search :(",
+        "de": "Keine Einträge zur Suche gefunden :("
+    },
+    "SearchFailed": {
+        "description": "Search failed",
+        "en": "Search failed.",
+        "de": "Suche fehlgeschlagen."
+    }
+}

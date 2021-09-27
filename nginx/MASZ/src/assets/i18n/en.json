@@ -3,6 +3,7 @@
         "Button": "Login with Discord",
         "Loading": "Logging you in with Discord..."
     },
+    "Loading": "Loading...",
     "AcceptTermsOnLogin": "By logging in you accept our Terms and Guidelines.",
     "Toolbar": {
         "Login": "Login",
@@ -26,6 +27,11 @@
     "GuildInfoCard": {
         "CreateNewCase": "Create new case",
         "FailedToLoad": "Failed to load guild info."
+    },
+    "Quicksearch": {
+        "Placeholder": "Quicksearch users, modcases, punishments, automoderations, ...",
+        "NoMatches": "Nothing matches your search :(",
+        "SearchFailed": "Search failed."
     },
     "GuildList": {
         "LoadingGuilds": "Loading guilds...",
