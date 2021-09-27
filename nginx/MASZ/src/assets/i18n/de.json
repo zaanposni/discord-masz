@@ -27,5 +27,16 @@
         "LoadingGuilds": "Lade Gilden...",
         "NoGuild": "Bitte betrete eine Gilde oder werde gebannt, damit ich dir etwas anzeigen kann :(",
         "AddGuild": "Gilde hinzufügen"
+    },
+    "GuildOverview": {
+        "Tabs": {
+            "Dashboard": "Dashboard",
+            "Case": "Vorfälle",
+            "Automoderation": "Automoderationen",
+            "Bin": "Papierkorb",
+            "Usernote": "Benutzernotizen",
+            "Usermap": "Benutzerbeziehungen",
+            "Config": "Konfiguration"
+        }
     }
 }

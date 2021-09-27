@@ -7,7 +7,13 @@
             <mat-tab *ngFor="let tab of this.tabs">
                 <ng-template mat-tab-label>
                     <mat-icon class="mr-1">{{ tab.icon }}</mat-icon>
-                    {{ tab.label }}
+                    <span *ngIf="tab.component == 'dashboard'">{{ 'GuildOverview.Tabs.Dashboard' | translate }}</span>
+                    <span *ngIf="tab.component == 'cases'">{{ 'GuildOverview.Tabs.Case' | translate }}</span>
+                    <span *ngIf="tab.component == 'bin'">{{ 'GuildOverview.Tabs.Bin' | translate }}</span>
+                    <span *ngIf="tab.component == 'automods'">{{ 'GuildOverview.Tabs.Automoderation' | translate }}</span>
+                    <span *ngIf="tab.component == 'config'">{{ 'GuildOverview.Tabs.Config' | translate }}</span>
+                    <span *ngIf="tab.component == 'usermap'">{{ 'GuildOverview.Tabs.Usermap' | translate }}</span>
+                    <span *ngIf="tab.component == 'usernote'">{{ 'GuildOverview.Tabs.Usernote' | translate }}</span>
                 </ng-template>
                 <ng-template matTabContent>
                     <app-guild-dashboard *ngIf="tab.component == 'dashboard'"></app-guild-dashboard>

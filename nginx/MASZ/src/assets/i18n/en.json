@@ -27,5 +27,16 @@
         "LoadingGuilds": "Loading guilds...",
         "NoGuild": "Please join a guild or get banned so I can work with you :(",
         "AddGuild": "Add guild"
+    },
+    "GuildOverview": {
+        "Tabs": {
+            "Dashboard": "Dashboard",
+            "Case": "Cases",
+            "Automoderation": "Automoderations",
+            "Bin": "Bin",
+            "Usernote": "Usernotes",
+            "Usermap": "Usermaps",
+            "Config": "Config"
+        }
     }
 }

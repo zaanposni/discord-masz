@@ -1,0 +1,40 @@
+{
+    "namespace": "GuildOverview",
+    "Tabs": {
+        "Dashboard": {
+            "description": "Dashboard",
+            "en": "Dashboard",
+            "de": "Dashboard"
+        },
+        "Case": {
+            "description": "Modcases",
+            "en": "Cases",
+            "de": "Vorfälle"
+        },
+        "Automoderation": {
+            "description": "Automoderations",
+            "en": "Automoderations",
+            "de": "Automoderationen"
+        },
+        "Bin": {
+            "description": "Bin",
+            "en": "Bin",
+            "de": "Papierkorb"
+        },
+        "Usernote": {
+            "description": "Usernote",
+            "en": "Usernotes",
+            "de": "Benutzernotizen"
+        },
+        "Usermap": {
+            "description": "Usermaps",
+            "en": "Usermaps",
+            "de": "Benutzerbeziehungen"
+        },
+        "Config": {
+            "description": "Config",
+            "en": "Config",
+            "de": "Konfiguration"
+        }
+    }
+}

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { IDashboardTabs } from 'src/app/models/IDashboardTabs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,14 +12,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class GuildOverviewComponent implements OnInit {
 
-  public tabs = [
+  public tabs: IDashboardTabs[] = [
     {
-      "label": "Cases",
       "icon": "list",
       "component": "cases"
     },
     {
-      "label": "Automoderations",
       "icon": "bolt",
       "component": "automods"
     }
@@ -26,7 +26,7 @@ export class GuildOverviewComponent implements OnInit {
   public isAdminOrHigher: boolean = false;
   selectedTab = new FormControl(0);
 
-  constructor(private auth: AuthService, private route: ActivatedRoute) { }
+  constructor(private auth: AuthService, private route: ActivatedRoute, private translator: TranslateService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((data) => {
@@ -35,14 +35,12 @@ export class GuildOverviewComponent implements OnInit {
   }
 
   initialize(guildId: string) {
-    this.tabs = [      
+    this.tabs = [
       {
-        "label": "Cases",
         "icon": "list",
         "component": "cases"
       },
       {
-        "label": "Automoderations",
         "icon": "bolt",
         "component": "automods"
       }
@@ -50,17 +48,17 @@ export class GuildOverviewComponent implements OnInit {
     this.auth.isModInGuild(guildId).subscribe((data) => {
       this.isModOrHigher = data;
       if (data) {
-        this.tabs.unshift({ component: 'dashboard', icon: 'dashboard', label: 'Dashboard' });
-        this.tabs.push({ component: 'usernote', icon: 'badge', label: 'Usernote' });
-        this.tabs.push({ component: 'usermap', icon: 'people', label: 'Usermap' });
-        this.tabs.push({ component: 'bin', icon: 'delete_forever', label: 'Bin' });
+        this.tabs.unshift({ component: 'dashboard', icon: 'dashboard' });
+        this.tabs.push({ component: 'usernote', icon: 'badge' });
+        this.tabs.push({ component: 'usermap', icon: 'people' });
+        this.tabs.push({ component: 'bin', icon: 'delete_forever' });
         this.selectedTab.setValue(0);
       }
     });
     this.auth.isAdminInGuild(guildId).subscribe((data) => {
       this.isAdminOrHigher = data;
       if (data) {
-        this.tabs.push({ component: 'config', icon: 'settings', label: 'Configuration' });
+        this.tabs.push({ component: 'config', icon: 'settings' });
       }
     });
   }
