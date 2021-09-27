@@ -9,6 +9,7 @@ try:
     from rich.console import Console
 except ImportError:
     print("Please install the rich module.\npip install rich")
+    exit(1)
 
 
 print(Panel("\nWelcome to [red]MASZ[/red] :eyes: \nBe sure that you are in the root directory of this project when executing this script.\n", title="MASZ"))
