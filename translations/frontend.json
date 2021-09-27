@@ -15,5 +15,84 @@
         "description": "Accept terms on login",
         "en": "By logging in you accept our Terms and Guidelines.",
         "de": "Beim Anmelden stimmen Sie unseren Nutzungsbedingungen und Richtlinien zu."
+    },
+    "Toolbar": {
+        "Login": {
+            "description": "Login button",
+            "en": "Login",
+            "de": "Anmelden"
+        },
+        "Logout": {
+            "description": "Logout button",
+            "en": "Logout",
+            "de": "Abmelden"
+        },
+        "Patchnotes": {
+            "description": "Patchnotes",
+            "en": "Patchnotes",
+            "de": "Patchnotizen"
+        },
+        "Community": {
+            "description": "Community",
+            "en": "Community",
+            "de": "Community"
+        },
+        "Terms": {
+            "description": "Terms",
+            "en": "Terms",
+            "de": "Nutzungsbedingungen"
+        },
+        "GitHub": {
+            "description": "GitHub",
+            "en": "GitHub",
+            "de": "GitHub"
+        },
+        "Legal": {
+            "description": "Legal",
+            "en": "Legal",
+            "de": "Rechtliches"
+        },
+        "API": {
+            "description": "API",
+            "en": "API",
+            "de": "API"
+        },
+        "Insights": {
+            "description": "Insights",
+            "en": "Insights",
+            "de": "Statistiken"
+        },
+        "Scanning": {
+            "description": "Scanning",
+            "en": "Scanning",
+            "de": "Untersuchung"
+        },
+        "Guilds": {
+            "All": {
+                "description": "All guilds",
+                "en": "All guilds",
+                "de": "Alle Gilden"
+            },
+            "Admin": {
+                "description": "Admin guilds",
+                "en": "Admin guilds",
+                "de": "Admingilden"
+            },
+            "Moderator": {
+                "description": "Moderator guilds",
+                "en": "Moderator guilds",
+                "de": "Moderatorengilden"
+            },
+            "Member": {
+                "description": "Member guilds",
+                "en": "Guilds",
+                "de": "Gilden"
+            },
+            "Banned": {
+                "description": "Banned guilds",
+                "en": "Banned from guilds",
+                "de": "Gesperrt von Gilden"
+            }
+        }
     }
 }

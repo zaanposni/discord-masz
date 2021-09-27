@@ -3,5 +3,24 @@
         "Button": "Login with Discord",
         "Loading": "Logging you in with Discord..."
     },
-    "AcceptTermsOnLogin": "By logging in you accept our Terms and Guidelines."
+    "AcceptTermsOnLogin": "By logging in you accept our Terms and Guidelines.",
+    "Toolbar": {
+        "Login": "Login",
+        "Logout": "Logout",
+        "Patchnotes": "Patchnotes",
+        "Community": "Community",
+        "Terms": "Terms",
+        "GitHub": "GitHub",
+        "Legal": "Legal",
+        "API": "API",
+        "Insights": "Insights",
+        "Scanning": "Scanning",
+        "Guilds": {
+            "All": "All guilds",
+            "Admin": "Admin guilds",
+            "Moderator": "Moderator guilds",
+            "Member": "Guilds",
+            "Banned": "Banned from guilds"
+        }
+    }
 }

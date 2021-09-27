@@ -3,5 +3,24 @@
         "Button": "Mit Discord anmelden",
         "Loading": "Du wirst angemeldet..."
     },
-    "AcceptTermsOnLogin": "Beim Anmelden stimmen Sie unseren Nutzungsbedingungen und Richtlinien zu."
+    "AcceptTermsOnLogin": "Beim Anmelden stimmen Sie unseren Nutzungsbedingungen und Richtlinien zu.",
+    "Toolbar": {
+        "Login": "Anmelden",
+        "Logout": "Abmelden",
+        "Patchnotes": "Patchnotizen",
+        "Community": "Community",
+        "Terms": "Nutzungsbedingungen",
+        "GitHub": "GitHub",
+        "Legal": "Rechtliches",
+        "API": "API",
+        "Insights": "Statistiken",
+        "Scanning": "Untersuchung",
+        "Guilds": {
+            "All": "Alle Gilden",
+            "Admin": "Admingilden",
+            "Moderator": "Moderatorengilden",
+            "Member": "Gilden",
+            "Banned": "Gesperrt von Gilden"
+        }
+    }
 }
