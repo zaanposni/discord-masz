@@ -1,8 +1,15 @@
 {
     "LoginWithDiscord": {
-        "description": "Login button",
-        "en": "Login with Discord",
-        "de": "Mit Discord anmelden"
+        "Button": {
+            "description": "Login button",
+            "en": "Login with Discord",
+            "de": "Mit Discord anmelden"
+        },
+        "Loading": {
+            "description": "log in loading",
+            "en": "Logging you in with Discord...",
+            "de": "Du wirst angemeldet..."
+        }
     },
     "AcceptTermsOnLogin": {
         "description": "Accept terms on login",

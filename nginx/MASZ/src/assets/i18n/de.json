@@ -1,4 +1,7 @@
 {
-    "LoginWithDiscord": "Mit Discord anmelden",
+    "LoginWithDiscord": {
+        "Button": "Mit Discord anmelden",
+        "Loading": "Du wirst angemeldet..."
+    },
     "AcceptTermsOnLogin": "Beim Anmelden stimmen Sie unseren Nutzungsbedingungen und Richtlinien zu."
 }

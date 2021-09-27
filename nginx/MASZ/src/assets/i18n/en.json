@@ -1,4 +1,7 @@
 {
-    "LoginWithDiscord": "Login with Discord",
+    "LoginWithDiscord": {
+        "Button": "Login with Discord",
+        "Loading": "Logging you in with Discord..."
+    },
     "AcceptTermsOnLogin": "By logging in you accept our Terms and Guidelines."
 }
