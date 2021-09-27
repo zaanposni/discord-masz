@@ -125,7 +125,7 @@ with console.status("[bold green]Generating frontend...") as status:
             for key, value in node.items():
                 generate_frontend_node(value, prevKeys + [key])
         else:
-            console.log(f"Generating {','.join(prevKeys)}...")
+            console.log(f"Generating {'.'.join(prevKeys)}...")
             TRANSLATION_NODES += 1
             for lang, translation in node.items():
                 if lang.lower() in ["description"]:
