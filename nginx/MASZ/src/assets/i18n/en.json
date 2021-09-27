@@ -22,5 +22,6 @@
             "Member": "Guilds",
             "Banned": "Banned from guilds"
         }
-    }
+    },
+    "AdminGuilds": "Admin guilds"
 }

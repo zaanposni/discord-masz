@@ -22,5 +22,6 @@
             "Member": "Gilden",
             "Banned": "Gesperrt von Gilden"
         }
-    }
+    },
+    "AdminGuilds": "Admingilden"
 }

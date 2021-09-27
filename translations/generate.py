@@ -1,4 +1,5 @@
 import json
+import os
 
 from rich.console import Console
 
@@ -7,6 +8,7 @@ console = Console()
 
 BACKEND_OUTPUT_PATH = "../backend/masz/Translations/Translation.cs"
 FRONTEND_OUTPUT_PATH = "../nginx/MASZ/src/assets/i18n/"
+FRONTEND_SCAN_PATH = "../nginx/MASZ/src/app/"
 
 DEFAULT_ENUM_NAMESPACE = "masz.Enums"
 
@@ -136,6 +138,13 @@ with console.status("[bold green]Generating frontend...") as status:
 
     for key, value in FRONTEND_DATA.items():
         generate_frontend_node(value, [key])
+
+    for root, subdirs, files in os.walk(FRONTEND_SCAN_PATH):
+        if 'translations.json' in files:
+            console.log("Scanning " + str(os.path.join(root, 'translations.json')).replace("\\", "/"))
+            with open(os.path.join(root, 'translations.json'), "r", encoding="utf-8") as f:
+                for key, value in json.load(f).items():
+                    generate_frontend_node(value, [key])
 
     for lang, value in NEW_SPLITTED_DATA.items():
         console.log(f"Saving {lang}.json")
