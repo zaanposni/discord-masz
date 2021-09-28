@@ -17,7 +17,7 @@ export class DashboardCaseListComponent implements OnInit {
   public cases: ModCaseTable[] = [];
   public loading: boolean = true;
 
-  constructor(private route: ActivatedRoute, private api: ApiService, private toastr: ToastrService) { }
+  constructor(private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -30,7 +30,10 @@ export class DashboardCaseListComponent implements OnInit {
     this.api.getSimpleData(`/guilds/${this.guildId}/${this.resource}`).subscribe((data: ModCaseTable[]) => {
       this.cases = data.slice(0, 5);
       this.loading = false;
-    }, () => { this.loading = false; });
+    }, error => {
+      console.error(error);
+      this.loading = false;
+    });
   }
 
 }

@@ -36,6 +36,11 @@
     "AutomodSplit": {
         "FailedToLoad": "Konnte Automoderationaufteilungsdaten nicht laden."
     },
+    "DashboardCaseList": {
+        "NewestCases": "Neuste Vorfälle",
+        "ExpiringPunishments": "Auslaufende Bestrafungen",
+        "NoCasesFound": "Keine Vorfälle gefunden"
+    },
     "DashboardCharts": {
         "Overview": "Übersicht",
         "Cases": "Vorfälle",

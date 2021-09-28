@@ -36,6 +36,11 @@
     "AutomodSplit": {
         "FailedToLoad": "Failed to load guild autmod split chart."
     },
+    "DashboardCaseList": {
+        "NewestCases": "Newest cases",
+        "ExpiringPunishments": "Expiring punishments",
+        "NoCasesFound": "No cases found"
+    },
     "DashboardCharts": {
         "Overview": "Overview",
         "Cases": "Cases",
