@@ -24,6 +24,14 @@
         "Member": "Guilds",
         "Banned": "Banned from guilds"
     },
+    "DashboardCharts": {
+        "Overview": "Overview",
+        "Cases": "Cases",
+        "Punishments": "Punishments",
+        "Automoderations": "Automoderations",
+        "ChooseADate": "Choose a date",
+        "Reset": "Reset"
+    },
     "GuildInfoCard": {
         "CreateNewCase": "Create new case",
         "FailedToLoad": "Failed to load guild info."

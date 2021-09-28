@@ -1,0 +1,33 @@
+{
+    "namespace": "DashboardCharts",
+    "Overview": {
+        "description": "Overview",
+        "en": "Overview",
+        "de": "Übersicht"
+    },
+    "Cases": {
+        "description": "Cases",
+        "en": "Cases",
+        "de": "Vorfälle"
+    },
+    "Punishments": {
+        "description": "Punishments",
+        "en": "Punishments",
+        "de": "Bestrafungen"
+    },
+    "Automoderations": {
+        "description": "Automoderations",
+        "en": "Automoderations",
+        "de": "Automoderationen"
+    },
+    "ChooseADate": {
+        "description": "Choose a date",
+        "en": "Choose a date",
+        "de": "Wähle ein Datum"
+    },
+    "Reset": {
+        "description": "Reset",
+        "en": "Reset",
+        "de": "Zurücksetzen"
+    }
+}

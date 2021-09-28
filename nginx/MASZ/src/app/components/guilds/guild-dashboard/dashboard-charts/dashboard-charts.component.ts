@@ -43,17 +43,17 @@ export class DashboardChartsComponent implements OnInit {
       return new Date(e.getFullYear(), e.getMonth(), 1, 0, 0, 0, 0).toDateString();
     } else {
       return new Date(e.year, e.month-1, 1, 0, 0, 0, 0).toDateString();
-    }    
+    }
   }
 
   public reload() {
     this.loading = true;
-    
+
     let params = new HttpParams()
       .set('since', Math.floor(new Date(this.since).getTime() / 1000).toString());
-    
+
     this.api.getSimpleData(`/guilds/${this.guildId}/dashboard/chart`, true, params).subscribe((data: DashboardCharts) => {
-      
+
       const sinceInsert = this.convertTime(this.since);
 
       if (data.modCases.map(x => this.convertTime(x)).includes(sinceInsert)) {

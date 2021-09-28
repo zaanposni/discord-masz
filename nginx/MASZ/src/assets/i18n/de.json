@@ -24,6 +24,14 @@
         "Member": "Gilden",
         "Banned": "Gesperrt von Gilden"
     },
+    "DashboardCharts": {
+        "Overview": "Übersicht",
+        "Cases": "Vorfälle",
+        "Punishments": "Bestrafungen",
+        "Automoderations": "Automoderationen",
+        "ChooseADate": "Wähle ein Datum",
+        "Reset": "Zurücksetzen"
+    },
     "GuildInfoCard": {
         "CreateNewCase": "Neuen Vorfall erstellen",
         "FailedToLoad": "Gildeninfo konnte nicht geladen werden."
