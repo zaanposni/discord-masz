@@ -29,7 +29,7 @@ namespace masz.Services
 
         private async void QueueLog(string message)
         {
-            message = message.Substring(0, Math.Min(message.Length, 1998));
+            message = DateTime.UtcNow.ToDiscordTS() + " " + message.Substring(0, Math.Min(message.Length, 1950));
             if(! string.IsNullOrEmpty(_config.GetAuditLogWebhook()))
             {
                 if(_currentMessage.Length + message.Length <= 1998)  // +2 for newline?
