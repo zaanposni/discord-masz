@@ -49,6 +49,11 @@
         "ChooseADate": "Choose a date",
         "Reset": "Reset"
     },
+    "DashboardComments": {
+        "Newestcomments": "Newest comments",
+        "NothingFound": "No comments found.",
+        "FailedToLoad": "Failed to load comments."
+    },
     "GuildStats": {
         "GuildStats": "Guildstats",
         "FailedToLoad": "Failed to load guild stats."

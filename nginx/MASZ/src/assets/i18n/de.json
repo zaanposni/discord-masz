@@ -49,6 +49,11 @@
         "ChooseADate": "Wähle ein Datum",
         "Reset": "Zurücksetzen"
     },
+    "DashboardComments": {
+        "Newestcomments": "Neueste Kommentare",
+        "NothingFound": "Keine Kommentare gefunden.",
+        "FailedToLoad": "Kommentare konnten nicht geladen werden."
+    },
     "GuildStats": {
         "GuildStats": "Gildenstatistiken",
         "FailedToLoad": "Gildenstatistiken konnten nicht geladen werden."

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { CommentListViewEntry } from 'src/app/models/CommentListViewEntry';
 import { ContentLoading } from 'src/app/models/ContentLoading';
@@ -14,7 +15,7 @@ export class DashboardCommentListComponent implements OnInit {
 
   public guildId!: string;
   public comments: ContentLoading<CommentListViewEntry[]> = { loading: true, content: [] };
-  constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute) { }
+  constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute, private translator: TranslateService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -26,9 +27,10 @@ export class DashboardCommentListComponent implements OnInit {
     this.api.getSimpleData(`/guilds/${this.guildId}/dashboard/latestcomments`).subscribe((data) => {
       this.comments.content = data.slice(0, 5);
       this.comments.loading = false;
-    }, () => {
+    }, error => {
+      console.error(error);
       this.comments.loading = false;
-      this.toastr.error("Failed to load latest comments.");
+      this.toastr.error(this.translator.instant('DashboardComments.FailedToLoad'));
     });
   }
 
