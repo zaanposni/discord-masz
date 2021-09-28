@@ -9,10 +9,12 @@ export const DEFAULT_LANGUAGE = 'en';
 export const LANGUAGES: ILanguageSelect[] = [
     {
         language: 'en',
-        displayName: 'English'
+        displayName: 'English',
+        apiValue: 0
     },
     {
         language: 'de',
-        displayName: 'Deutsch'
+        displayName: 'Deutsch',
+        apiValue: 1
     }
 ];
