@@ -33,6 +33,9 @@
         "Member": "Guilds",
         "Banned": "Banned from guilds"
     },
+    "AutomodSplit": {
+        "FailedToLoad": "Failed to load guild autmod split chart."
+    },
     "DashboardCharts": {
         "Overview": "Overview",
         "Cases": "Cases",

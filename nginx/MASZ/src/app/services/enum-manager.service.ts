@@ -14,7 +14,11 @@ export class EnumManagerService {
 
   private cachedEnums: { [key: string]: ReplaySubject<APIEnum[]> } = {};
 
-  constructor(private api: ApiService, private translator: TranslateService) { }
+  constructor(private api: ApiService, private translator: TranslateService) {
+    this.translator.onLangChange.subscribe(() => {
+      this.renewAllEnums();
+    });
+  }
 
   private getCurrentLanguage(): number {
     return LANGUAGES.find(x => x.language === this.translator.currentLang)?.apiValue ?? 0;

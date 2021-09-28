@@ -33,6 +33,9 @@
         "Member": "Gilden",
         "Banned": "Gesperrt von Gilden"
     },
+    "AutomodSplit": {
+        "FailedToLoad": "Konnte Automoderationaufteilungsdaten nicht laden."
+    },
     "DashboardCharts": {
         "Overview": "Übersicht",
         "Cases": "Vorfälle",
