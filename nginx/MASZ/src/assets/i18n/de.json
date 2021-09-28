@@ -3,6 +3,15 @@
         "Button": "Mit Discord anmelden",
         "Loading": "Du wirst angemeldet..."
     },
+    "Cases": "Vorfälle",
+    "Punishments": "Bestrafungen",
+    "Bans": "Banns",
+    "Mutes": "Stummschaltungen",
+    "Automoderations": "Automoderationen",
+    "Invites": "Einladungen",
+    "Usernotes": "Nutzernotizen",
+    "Usermaps": "Benutzerbeziehungen",
+    "Comments": "Kommentare",
     "Loading": "Lädt...",
     "AcceptTermsOnLogin": "Beim Anmelden stimmen Sie unseren Nutzungsbedingungen und Richtlinien zu.",
     "Toolbar": {
@@ -31,6 +40,10 @@
         "Automoderations": "Automoderationen",
         "ChooseADate": "Wähle ein Datum",
         "Reset": "Zurücksetzen"
+    },
+    "GuildStats": {
+        "GuildStats": "Gildenstatistiken",
+        "FailedToLoad": "Gildenstatistiken konnten nicht geladen werden."
     },
     "GuildInfoCard": {
         "CreateNewCase": "Neuen Vorfall erstellen",

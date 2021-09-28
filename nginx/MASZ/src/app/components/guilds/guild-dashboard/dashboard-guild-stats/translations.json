@@ -1,0 +1,13 @@
+{
+    "namespace": "GuildStats",
+    "GuildStats": {
+        "description": "Guild Stats",
+        "en": "Guildstats",
+        "de": "Gildenstatistiken"
+    },
+    "FailedToLoad": {
+        "description": "Failed to load",
+        "en": "Failed to load guild stats.",
+        "de": "Gildenstatistiken konnten nicht geladen werden."
+    }
+}

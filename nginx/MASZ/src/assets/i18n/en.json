@@ -3,6 +3,15 @@
         "Button": "Login with Discord",
         "Loading": "Logging you in with Discord..."
     },
+    "Cases": "Cases",
+    "Punishments": "Punishments",
+    "Bans": "Bans",
+    "Mutes": "Mutes",
+    "Automoderations": "Automoderations",
+    "Invites": "Invites",
+    "Usernotes": "Usernotes",
+    "Usermaps": "Usermaps",
+    "Comments": "Comments",
     "Loading": "Loading...",
     "AcceptTermsOnLogin": "By logging in you accept our Terms and Guidelines.",
     "Toolbar": {
@@ -31,6 +40,10 @@
         "Automoderations": "Automoderations",
         "ChooseADate": "Choose a date",
         "Reset": "Reset"
+    },
+    "GuildStats": {
+        "GuildStats": "Guildstats",
+        "FailedToLoad": "Failed to load guild stats."
     },
     "GuildInfoCard": {
         "CreateNewCase": "Create new case",

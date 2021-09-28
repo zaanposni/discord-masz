@@ -11,6 +11,51 @@
             "de": "Du wirst angemeldet..."
         }
     },
+    "Cases": {
+        "description": "cases",
+        "en": "Cases",
+        "de": "Vorfälle"
+    },
+    "Punishments": {
+        "description": "punishments",
+        "en": "Punishments",
+        "de": "Bestrafungen"
+    },
+    "Bans": {
+        "description": "bans",
+        "en": "Bans",
+        "de": "Banns"
+    },
+    "Mutes": {
+        "description": "mutes",
+        "en": "Mutes",
+        "de": "Stummschaltungen"
+    },
+    "Automoderations": {
+        "description": "automoderations",
+        "en": "Automoderations",
+        "de": "Automoderationen"
+    },
+    "Invites": {
+        "description": "invites",
+        "en": "Invites",
+        "de": "Einladungen"
+    },
+    "Usernotes": {
+        "description": "usernotes",
+        "en": "Usernotes",
+        "de": "Nutzernotizen"
+    },
+    "Usermaps": {
+        "description": "usermaps",
+        "en": "Usermaps",
+        "de": "Benutzerbeziehungen"
+    },
+    "Comments": {
+        "description": "comments",
+        "en": "Comments",
+        "de": "Kommentare"
+    },
     "Loading": {
         "description": "loading",
         "en": "Loading...",
