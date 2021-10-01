@@ -12,7 +12,7 @@ except ImportError:
     exit(1)
 
 
-print(Panel("\nWelcome to [red]MASZ[/red] :eyes: \nBe sure that you are in the root directory of this project when executing this script.\n", title="MASZ"))
+print(Panel("\nWelcome to [red]MASZ[/red] :eyes: \nBe sure that you are in the root directory of this project when executing this script.\nSupport discord: https://discord.gg/5zjpzw6h3S\n", title="MASZ"))
 
 with open("./translations/supported_languages.json", "r", encoding="utf-8") as f:
     SUPPORTED_LANGUAGES = json.load(f)
