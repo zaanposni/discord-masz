@@ -13,6 +13,7 @@
     "Usermaps": "Usermaps",
     "Comments": "Comments",
     "Loading": "Loading...",
+    "NothingHere": "Nothing here.",
     "AcceptTermsOnLogin": "By logging in you accept our Terms and Guidelines.",
     "Toolbar": {
         "Login": "Login",
@@ -36,6 +37,11 @@
     "AutoModCard": {
         "ViewCase": "View case",
         "Message": "Message"
+    },
+    "AutoModTable": {
+        "FailedToLoad": "Failed to load automoderations.",
+        "NoMatches": "There are no moderated events.",
+        "LoadMoreEvents": "Load more entries"
     },
     "AutomodSplit": {
         "FailedToLoad": "Failed to load guild autmod split chart."
@@ -94,7 +100,6 @@
         "CreateNewCase": "Create new case",
         "Search": "Search (user, id, description...)",
         "FailedToLoad": "Failed to load cases.",
-        "NothingHere": "Nothing here.",
         "NoMatches": "No case matches your search."
     },
     "ModCaseCard": {

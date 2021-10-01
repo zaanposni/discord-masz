@@ -13,6 +13,7 @@
     "Usermaps": "Benutzerbeziehungen",
     "Comments": "Kommentare",
     "Loading": "Lädt...",
+    "NothingHere": "Nichts gefunden.",
     "AcceptTermsOnLogin": "Beim Anmelden stimmen Sie unseren Nutzungsbedingungen und Richtlinien zu.",
     "Toolbar": {
         "Login": "Anmelden",
@@ -36,6 +37,11 @@
     "AutoModCard": {
         "ViewCase": "Vorfall anzeigen",
         "Message": "Nachricht"
+    },
+    "AutoModTable": {
+        "FailedToLoad": "Automoderationen konnten nicht geladen werden.",
+        "NoMatches": "Es gibt keine moderierten Ereignisse.",
+        "LoadMoreEvents": "Mehr Einträge laden"
     },
     "AutomodSplit": {
         "FailedToLoad": "Konnte Automoderationaufteilungsdaten nicht laden."
@@ -94,7 +100,6 @@
         "CreateNewCase": "Neuen Vorfall erstellen",
         "Search": "Suche (Benutzer, ID, Beschreibung...)",
         "FailedToLoad": "Vorfälle konnten nicht geladen werden.",
-        "NothingHere": "Nichts gefunden.",
         "NoMatches": "Keine Vorfälle passen zu deiner Suche."
     },
     "ModCaseCard": {

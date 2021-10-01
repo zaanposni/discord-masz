@@ -67,7 +67,7 @@ export class ModcaseTableComponent implements OnInit {
     this.currentPage = 0;
     this.api.getSimpleData(`/guilds/${this.guildId}/${this.apiUrl}`).subscribe(data => {
       this.loading = false;
-      this.casesTable = data;
+      // this.casesTable = data;
       this.applyCurrentFilters();
     }, error => {
       console.error(error);

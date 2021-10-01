@@ -61,6 +61,11 @@
         "en": "Loading...",
         "de": "Lädt..."
     },
+    "NothingHere": {
+        "description": "Nothing here.",
+        "en": "Nothing here.",
+        "de": "Nichts gefunden."
+    },
     "AcceptTermsOnLogin": {
         "description": "Accept terms on login",
         "en": "By logging in you accept our Terms and Guidelines.",

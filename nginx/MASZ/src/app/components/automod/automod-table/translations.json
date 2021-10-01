@@ -1,0 +1,18 @@
+{
+    "namespace": "AutoModTable",
+    "FailedToLoad": {
+        "description": "Failed to load automods",
+        "en": "Failed to load automoderations.",
+        "de": "Automoderationen konnten nicht geladen werden."
+    },
+    "NoMatches": {
+        "description": "There are no moderated events.",
+        "en": "There are no moderated events.",
+        "de": "Es gibt keine moderierten Ereignisse."
+    },
+    "LoadMoreEvents": {
+        "description": "Load more events",
+        "en": "Load more entries",
+        "de": "Mehr Einträge laden"
+    }
+}

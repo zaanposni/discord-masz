@@ -30,11 +30,6 @@
         "en": "Failed to load cases.",
         "de": "Vorfälle konnten nicht geladen werden."
     },
-    "NothingHere": {
-        "description": "Nothing here.",
-        "en": "Nothing here.",
-        "de": "Nichts gefunden."
-    },
     "NoMatches": {
         "description": "No matches for search string found.",
         "en": "No case matches your search.",
