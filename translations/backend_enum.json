@@ -48,7 +48,7 @@
     "AutoModerationAction": {
         "None": {
             "description": "No action is performed. The word 'none'.",
-            "en": "None",
+            "en": "No action",
             "de": "Keine Aktion",
             "at": "Nix tuan"
         },

@@ -1249,13 +1249,13 @@ namespace masz.Translations
                 case masz.Enums.AutoModerationAction.None:
                     switch (preferredLanguage) {
                         case Language.en:
-                            return "None";
+                            return "No action";
                         case Language.de:
                             return "Keine Aktion";
                         case Language.at:
                             return "Nix tuan";
                         default:
-                            return "None";
+                            return "No action";
                     }
                 case masz.Enums.AutoModerationAction.ContentDeleted:
                     switch (preferredLanguage) {
