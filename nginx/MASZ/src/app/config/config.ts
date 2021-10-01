@@ -10,11 +10,13 @@ export const LANGUAGES: ILanguageSelect[] = [
     {
         language: 'en',
         displayName: 'English',
-        apiValue: 0
+        apiValue: 0,
+        dateFormat: 'MMM d Y'
     },
     {
         language: 'de',
         displayName: 'Deutsch',
-        apiValue: 1
+        apiValue: 1,
+        dateFormat: 'd MMM Y'
     }
 ];

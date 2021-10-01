@@ -101,6 +101,7 @@ import { ApplicationInfoService } from './services/application-info.service';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DEFAULT_LANGUAGE } from './config/config';
+import { DateDisplayComponent } from './components/basic/date-display/date-display.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -164,7 +165,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminlistComponent,
     StatcardComponent,
     GuildIconComponent,
-    OauthFailedComponent
+    OauthFailedComponent,
+    DateDisplayComponent
   ],
   imports: [
     CommonModule,
