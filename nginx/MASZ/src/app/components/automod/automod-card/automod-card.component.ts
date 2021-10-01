@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
 import { AutoModerationEvent } from 'src/app/models/AutoModerationEvent';
+import { EnumManagerService } from 'src/app/services/enum-manager.service';
 
 @Component({
   selector: 'app-automod-card',
@@ -21,26 +23,18 @@ export class AutomodCardComponent implements OnInit {
     6: 'do_not_disturb',
     7: 'manage_search'
   };
-  eventsMap: { [key: number]: string} = {
-    0: 'posted an invite',
-    1: 'used too many emotes',
-    2: 'mentioned too many users',
-    3: 'posted too many attachments',
-    4: 'posted too many embeds',
-    5: 'triggered too many automoderations',
-    6: 'used too many unallowed words',
-    7: 'sent too many messages'
-  };
-  actionsMap: { [key: number]: string} = {
-    0: 'No action was taken',
-    1: 'Content deleted',
-    2: 'Case created',
-    3: 'Content deleted and case created'
-  }
+  action: string = "Unknown";
+  event: string = "Unknown";
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, private enumManager: EnumManagerService) { }
 
   ngOnInit(): void {
+    this.enumManager.getEnum(APIEnumTypes.AUTOMODACTION).subscribe(data => {
+      this.action = data?.find(x => x.key == this.moderation.autoModerationAction)?.value ?? "Unknown";
+    });
+    this.enumManager.getEnum(APIEnumTypes.AUTOMODTYPE).subscribe(data => {
+      this.event = data?.find(x => x.key == this.moderation.autoModerationType)?.value ?? "Unknown";
+    });
   }
 
 }

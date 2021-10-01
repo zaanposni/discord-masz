@@ -3,4 +3,5 @@ export interface ILanguageSelect {
     displayName: string;
     apiValue: number;
     dateFormat: string;
+    dateTimeFormat: string;
 }

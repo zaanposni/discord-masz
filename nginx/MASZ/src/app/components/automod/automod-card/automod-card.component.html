@@ -2,14 +2,14 @@
     <div class="d-flex flex-row" style="align-items: center">
         <mat-icon class="mr-2">{{ iconsMap[moderation.autoModerationType] }}</mat-icon>
         <span>{{ moderation.username }}#{{ moderation.discriminator }}
-            <span class="text-black-50">({{ moderation.userId }})</span>
-            <span class="accent-color"> {{ eventsMap[moderation.autoModerationType] }}. </span>
-            <span>{{ actionsMap[moderation.autoModerationAction] }}.</span>
+            <span class="text-black-50">({{ moderation.userId }}) </span>
+            <span class="accent-color">{{ event }}.</span>
+            <span> {{ action }}.</span>
         </span>
         <div class="flex-grow-1"></div>
         <a routerLink="/guilds/{{ moderation.guildId }}/cases/{{ moderation.associatedCaseId }}"  *ngIf="moderation.associatedCaseId">
             <button mat-raised-button color="accent">
-                VIEW CASE
+                {{ 'AutoModCard.ViewCase' | translate}}
             </button>
         </a>
     </div>
@@ -18,9 +18,11 @@
             <mat-icon>format_quote</mat-icon> <span> {{ moderation.messageContent }}</span>
             <hr/>
             <div class="d-flex flex-row">
-                <div class="text-black-50">MessageId: {{ moderation.messageId }}</div>
+                <div class="text-black-50">{{ 'AutoModCard.Message' | translate}}: {{ moderation.messageId }}</div>
                 <div class="flex-grow-1"></div>
-                <div class="text-black-50">Timestamp (UTC): {{ moderation.createdAt | date:'dd MMMM Y HH:mm:ss' }}</div>
+                <div class="text-black-50">
+                    <app-date-display [showTime]="true" [date]="moderation.createdAt"></app-date-display>
+                </div>
             </div>
         </div>
     </div>

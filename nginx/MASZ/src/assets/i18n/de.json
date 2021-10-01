@@ -33,6 +33,10 @@
         "Member": "Gilden",
         "Banned": "Gesperrt von Gilden"
     },
+    "AutoModCard": {
+        "ViewCase": "Vorfall anzeigen",
+        "Message": "Nachricht"
+    },
     "AutomodSplit": {
         "FailedToLoad": "Konnte Automoderationaufteilungsdaten nicht laden."
     },

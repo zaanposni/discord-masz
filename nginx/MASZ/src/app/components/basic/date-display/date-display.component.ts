@@ -12,14 +12,13 @@ export class DateDisplayComponent implements OnInit {
   @Input() prefixKey?: string = undefined;
   @Input() date?: Date;
   @Input() customFormat?: string = undefined;
+  @Input() showTime: boolean = false;
 
   format: string = "d MMMM Y";
 
   constructor(private translator: TranslateService) { }
 
   ngOnInit(): void {
-    console.log(this.prefixKey);
-    
     if (this.customFormat !== undefined) {
       this.format = this.customFormat;
     } else {
@@ -32,6 +31,15 @@ export class DateDisplayComponent implements OnInit {
 
   private adjustFormat() {
     let currentLang = this.translator.currentLang !== undefined ? this.translator.currentLang : this.translator.defaultLang;
-    this.format = LANGUAGES.find(x => x.language === currentLang)?.dateFormat ?? "d MMMM Y";
+    let currentConfig = LANGUAGES.find(x => x.language === currentLang);
+    if (currentConfig !== undefined) {
+      if (this.showTime) {
+        this.format = currentConfig.dateTimeFormat;
+      } else {
+        this.format = currentConfig.dateFormat;
+      }
+    } else {
+      this.format = "d MMMM Y";
+    }
   }
 }

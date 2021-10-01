@@ -1,0 +1,13 @@
+{
+    "namespace": "AutoModCard",
+    "ViewCase": {
+        "description": "View case button",
+        "en": "View case",
+        "de": "Vorfall anzeigen"
+    },
+    "Message": {
+        "description": "Message id",
+        "en": "Message",
+        "de": "Nachricht"
+    }
+}

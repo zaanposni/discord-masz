@@ -33,6 +33,10 @@
         "Member": "Guilds",
         "Banned": "Banned from guilds"
     },
+    "AutoModCard": {
+        "ViewCase": "View case",
+        "Message": "Message"
+    },
     "AutomodSplit": {
         "FailedToLoad": "Failed to load guild autmod split chart."
     },
