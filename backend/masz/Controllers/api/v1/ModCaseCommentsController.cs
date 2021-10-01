@@ -68,8 +68,15 @@ namespace masz.Controllers
             Identity currentIdentity = await GetIdentity();
             DiscordUser currentUser = currentIdentity.GetCurrentUser();
 
-            ModCaseComment createdComment = await ModCaseCommentRepository.CreateDefault(_serviceProvider, currentIdentity)
-                                                                          .UpdateComment(guildId, caseId, commentId, newValue.Message);
+            var repo = ModCaseCommentRepository.CreateDefault(_serviceProvider, currentIdentity);
+
+            ModCaseComment comment = await repo.GetSpecificComment(commentId);
+            if (comment.UserId != currentUser.Id && ! currentIdentity.IsSiteAdmin())
+            {
+                throw new UnauthorizedException();
+            }
+
+            ModCaseComment createdComment = await repo.UpdateComment(guildId, caseId, commentId, newValue.Message);
 
             try
             {
@@ -91,7 +98,15 @@ namespace masz.Controllers
             Identity currentIdentity = await GetIdentity();
             DiscordUser currentUser = currentIdentity.GetCurrentUser();
 
-            ModCaseComment deletedComment = await ModCaseCommentRepository.CreateDefault(_serviceProvider, currentIdentity).DeleteComment(guildId, caseId, commentId);
+            var repo = ModCaseCommentRepository.CreateDefault(_serviceProvider, currentIdentity);
+
+            ModCaseComment comment = await repo.GetSpecificComment(commentId);
+            if (comment.UserId != currentUser.Id && ! currentIdentity.IsSiteAdmin())
+            {
+                throw new UnauthorizedException();
+            }
+
+            ModCaseComment deletedComment = await repo.DeleteComment(guildId, caseId, commentId);
 
             try
             {
