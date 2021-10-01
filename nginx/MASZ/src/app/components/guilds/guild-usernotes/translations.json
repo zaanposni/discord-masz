@@ -33,7 +33,7 @@
     "FailedToLoadMember": {
         "description": "failed to load member",
         "en": "Failed to load memberlist.",
-        "de": "Mitglieder konnte nicht geladen werden."
+        "de": "Mitgliederliste konnte nicht geladen werden."
     },
     "FailedToCreate": {
         "description": "failed to create usernote",
