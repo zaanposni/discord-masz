@@ -16,7 +16,7 @@ export const LANGUAGES: ILanguageSelect[] = [
     },
     {
         language: 'de',
-        displayName: 'Deutsch',
+        displayName: 'German (deutsch)',
         apiValue: 1,
         dateFormat: 'd MMM Y',
         dateTimeFormat: 'd MMM Y HH:mm:ss'
