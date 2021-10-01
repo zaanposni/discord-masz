@@ -93,6 +93,26 @@
             "Config": "Konfiguration"
         }
     },
+    "UsernoteTable": {
+        "Member": "Mitglied",
+        "Description": "Beschreibung",
+        "CreateNewNote": "Neue Benutzernotiz erstellen",
+        "Search": "Suchen (Benutzer, ID, Beschreibung...)",
+        "NoMatches": "Keine Benutzernotiz passen zu deiner Suche.",
+        "FailedToLoad": "Benutzernotizen konnten nicht geladen werden.",
+        "FailedToLoadMember": "Mitglieder konnte nicht geladen werden.",
+        "FailedToCreate": "Benutzernotiz konnte nicht erstellt werden.",
+        "Created": "Benutzernotiz erstellt."
+    },
+    "UsernoteCard": {
+        "UpdatedPrefix": "Aktualisiert:",
+        "Edit": "Bearbeiten",
+        "Delete": "Löschen",
+        "FailedToUpdate": "Fehler beim Speichern der Benutzernotiz.",
+        "Updated": "Benutzernotiz gespeichert.",
+        "FailedToDelete": "Fehler beim Löschen der Benutzernotiz.",
+        "Deleted": "Benutzernotiz gelöscht."
+    },
     "ModCaseTable": {
         "ExcludeAutoMod": "Automoderationen verstecken",
         "ExcludePermanent": "Permanente Verwarnungen verstecken",

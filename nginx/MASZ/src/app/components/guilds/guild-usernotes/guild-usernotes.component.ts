@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, ReplaySubject } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -32,7 +33,7 @@ export class GuildUsernotesComponent implements OnInit {
   private $showUserNotes: ReplaySubject<UserNoteView[]> = new ReplaySubject<UserNoteView[]>(1);
   public showUserNotes: Observable<UserNoteView[]> = this.$showUserNotes.asObservable();
   public allUserNotes: UserNoteView[] = [];
-  constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute, private _formBuilder: FormBuilder) { }
+  constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute, private _formBuilder: FormBuilder, private translator: TranslateService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -79,18 +80,20 @@ export class GuildUsernotesComponent implements OnInit {
       this.allUserNotes = data;
       this.loading = false;
       this.search();
-    }, () => {
+    }, error => {
+      console.error(error);
       this.loading = false;
-      this.toastr.error("Failed to load usernotes.");
+      this.toastr.error(this.translator.instant('UsernoteTable.FailedToLoad'));
     });
 
     const params = new HttpParams()
           .set('partial', 'true');
-    this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`, true, params).subscribe((data) => {
-      this.members.content = data;      
+    this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`, true, params).subscribe(data => {
+      this.members.content = data;
       this.members.loading = false;
-    }, () => {
-      this.toastr.error("Failed to load member list.");
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('UsernoteTable.FailedToLoadMember'));
     });
   }
 
@@ -134,12 +137,13 @@ export class GuildUsernotesComponent implements OnInit {
       'description': this.newNoteFormGroup.value.description
     };
 
-    this.api.putSimpleData(`/guilds/${this.guildId}/usernote`, data).subscribe((data) => {
+    this.api.putSimpleData(`/guilds/${this.guildId}/usernote`, data).subscribe(() => {
       this.reloadData();
-      this.toastr.success('Usernote created.');
       this.resetForm();
-    }, () => {
-      this.toastr.error('Failed to create usernote.');
+      this.toastr.success(this.translator.instant('UsernoteTable.Created'));
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('UsernoteTable.FailedToCreate'));
     });
   }
 }

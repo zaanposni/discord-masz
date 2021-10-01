@@ -1,0 +1,48 @@
+{
+    "namespace": "UsernoteTable",
+    "Member": {
+        "description": "member field",
+        "en": "Member",
+        "de": "Mitglied"
+    },
+    "Description": {
+        "description": "description field",
+        "en": "Description",
+        "de": "Beschreibung"
+    },
+    "CreateNewNote": {
+        "description": "create new usernote button",
+        "en": "Create new usernote",
+        "de": "Neue Benutzernotiz erstellen"
+    },
+    "Search": {
+        "description": "search field",
+        "en": "Search (user, id, description...)",
+        "de": "Suchen (Benutzer, ID, Beschreibung...)"
+    },
+    "NoMatches": {
+        "description": "no matches found",
+        "en": "No usernote matches your search.",
+        "de": "Keine Benutzernotiz passen zu deiner Suche."
+    },
+    "FailedToLoad": {
+        "description": "failed to load usernotes",
+        "en": "Failed to load usernotes.",
+        "de": "Benutzernotizen konnten nicht geladen werden."
+    },
+    "FailedToLoadMember": {
+        "description": "failed to load member",
+        "en": "Failed to load memberlist.",
+        "de": "Mitglieder konnte nicht geladen werden."
+    },
+    "FailedToCreate": {
+        "description": "failed to create usernote",
+        "en": "Failed to create usernote.",
+        "de": "Benutzernotiz konnte nicht erstellt werden."
+    },
+    "Created": {
+        "description": "usernote created",
+        "en": "Usernote created.",
+        "de": "Benutzernotiz erstellt."
+    }
+}

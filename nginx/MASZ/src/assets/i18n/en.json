@@ -93,6 +93,26 @@
             "Config": "Config"
         }
     },
+    "UsernoteTable": {
+        "Member": "Member",
+        "Description": "Description",
+        "CreateNewNote": "Create new usernote",
+        "Search": "Search (user, id, description...)",
+        "NoMatches": "No usernote matches your search.",
+        "FailedToLoad": "Failed to load usernotes.",
+        "FailedToLoadMember": "Failed to load memberlist.",
+        "FailedToCreate": "Failed to create usernote.",
+        "Created": "Usernote created."
+    },
+    "UsernoteCard": {
+        "UpdatedPrefix": "Updated:",
+        "Edit": "Edit",
+        "Delete": "Delete",
+        "FailedToUpdate": "Failed to update usernote.",
+        "Updated": "Usernote updated.",
+        "FailedToDelete": "Failed to delete usernote.",
+        "Deleted": "Usernote deleted."
+    },
     "ModCaseTable": {
         "ExcludeAutoMod": "Exclude automoderations",
         "ExcludePermanent": "Exclude permanent punishments",
