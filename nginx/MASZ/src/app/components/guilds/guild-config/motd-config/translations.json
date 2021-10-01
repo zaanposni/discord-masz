@@ -1,0 +1,33 @@
+{
+    "namespace": "GuildMotd",
+    "Enable": {
+        "description": "Enable motd checkbox",
+        "en": "Enable MotD",
+        "de": "Aktiviere MotD"
+    },
+    "Message": {
+        "description": "Message field",
+        "en": "Message",
+        "de": "Nachricht"
+    },
+    "FailedToLoad": {
+        "description": "Failed to load message",
+        "en": "Failed to load motd.",
+        "de": "MotD konnte nicht geladen werden."
+    },
+    "FailedToSave": {
+        "description": "Failed to save message",
+        "en": "Failed to save motd.",
+        "de": "MotD konnte nicht gespeichert werden."
+    },
+    "Saved": {
+        "description": "Saved message",
+        "en": "Saved motd.",
+        "de": "MotD gespeichert."
+    },
+    "Explanation": {
+        "description": "Explanation",
+        "en": "This message will be displayed to your administrators and moderators on the dashboard.",
+        "de": "Diese Nachricht wird an deine Administratoren und Moderatoren auf dem Dashboard angezeigt."
+    }
+}

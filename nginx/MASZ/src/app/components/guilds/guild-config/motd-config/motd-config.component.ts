@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { GuildMotd, GuildMotdView } from 'src/app/models/GuildMotd';
@@ -15,7 +16,7 @@ export class MotdConfigComponent implements OnInit {
   timeout: any = null;
   private guildId!: string;
   public motd: ContentLoading<GuildMotdView> = { loading: true, content: undefined };
-  constructor(private route: ActivatedRoute, private api: ApiService, private toastr: ToastrService) { }
+  constructor(private route: ActivatedRoute, private api: ApiService, private toastr: ToastrService, private translator: TranslateService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -24,12 +25,13 @@ export class MotdConfigComponent implements OnInit {
 
   private reload() {
     this.motd = { loading: true, content: undefined };
-    this.api.getSimpleData(`/guilds/${this.guildId}/motd`).subscribe((data) => {
+    this.api.getSimpleData(`/guilds/${this.guildId}/motd`).subscribe(data => {
       this.motd.content = data;
       this.motd.loading = false;
-    }, () => {
+    }, error => {
+      console.error(error);
       this.motd.loading = false;
-      this.toastr.error("Failed to load current motd.");
+      this.toastr.error(this.translator.instant('GuildMotd.FailedToLoad'));
     });
   }
 
@@ -43,7 +45,7 @@ export class MotdConfigComponent implements OnInit {
     }, 500);
   }
 
-  onToggle(event: any) { 
+  onToggle(event: any) {
     var $this = this;
     setTimeout(function () { $this.updateMotd() }, 100);  // wait a bit because angular sux
   }
@@ -55,11 +57,12 @@ export class MotdConfigComponent implements OnInit {
     };
 
     this.api.putSimpleData(`/guilds/${this.guildId}/motd`, data).subscribe(
-      (success) => {
-        this.toastr.success('MotD updated.');
+      () => {
+        this.toastr.success(this.translator.instant('GuildMotd.Saved'));
         this.reload();
-      }, (error) => {
-        this.toastr.error('Failed to update motD.');
+      }, error => {
+        console.error(error);
+        this.toastr.error(this.translator.instant('GuildMotd.FailedToSave'));
     });
   }
 

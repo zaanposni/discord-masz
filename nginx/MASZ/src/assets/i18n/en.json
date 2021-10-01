@@ -43,6 +43,14 @@
         "NoMatches": "There are no moderated events.",
         "LoadMoreEvents": "Load more entries"
     },
+    "GuildMotd": {
+        "Enable": "Enable MotD",
+        "Message": "Message",
+        "FailedToLoad": "Failed to load motd.",
+        "FailedToSave": "Failed to save motd.",
+        "Saved": "Saved motd.",
+        "Explanation": "This message will be displayed to your administrators and moderators on the dashboard."
+    },
     "AutomodSplit": {
         "FailedToLoad": "Failed to load guild autmod split chart."
     },

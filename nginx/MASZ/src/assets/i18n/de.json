@@ -43,6 +43,14 @@
         "NoMatches": "Es gibt keine moderierten Ereignisse.",
         "LoadMoreEvents": "Mehr Einträge laden"
     },
+    "GuildMotd": {
+        "Enable": "Aktiviere MotD",
+        "Message": "Nachricht",
+        "FailedToLoad": "MotD konnte nicht geladen werden.",
+        "FailedToSave": "MotD konnte nicht gespeichert werden.",
+        "Saved": "MotD gespeichert.",
+        "Explanation": "Diese Nachricht wird an deine Administratoren und Moderatoren auf dem Dashboard angezeigt."
+    },
     "AutomodSplit": {
         "FailedToLoad": "Konnte Automoderationaufteilungsdaten nicht laden."
     },
