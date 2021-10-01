@@ -195,6 +195,7 @@ namespace masz
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 scope.ServiceProvider.GetService<IInternalConfiguration>().Init();
+                scope.ServiceProvider.GetService<IAuditLogger>().Startup();
                 scope.ServiceProvider.GetService<IPunishmentHandler>().StartTimer();
                 scope.ServiceProvider.GetService<IScheduler>().StartTimers();
                 scope.ServiceProvider.GetService<IDiscordBot>().Start();

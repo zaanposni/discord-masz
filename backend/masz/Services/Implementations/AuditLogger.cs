@@ -27,7 +27,7 @@ namespace masz.Services
             _currentMessage = new StringBuilder();
         }
 
-        private async void QueueLog(string message)
+        public async void QueueLog(string message)
         {
             message = DateTime.UtcNow.ToDiscordTS() + " " + message.Substring(0, Math.Min(message.Length, 1950));
             if(! string.IsNullOrEmpty(_config.GetAuditLogWebhook()))
@@ -37,11 +37,17 @@ namespace masz.Services
                     _currentMessage.AppendLine(message);
                 } else
                 {
-                    await _discordAPI.ExecuteWebhook(_config.GetAuditLogWebhook(), null, _currentMessage.ToString());
-                    _currentMessage.Clear();
+                    await ExecuteWebhook();
                     _currentMessage.AppendLine(message);
                 }
             }
+        }
+
+        public async Task ExecuteWebhook()
+        {
+            _logger.LogInformation("Executing auditlog webhook.");
+            await _discordAPI.ExecuteWebhook(_config.GetAuditLogWebhook(), null, _currentMessage.ToString());
+            _currentMessage.Clear();
         }
 
         public void RegisterEvents()
@@ -82,6 +88,47 @@ namespace masz.Services
             });
             task.Start();
             return Task.CompletedTask;
+        }
+
+        public void Startup()
+        {
+            Task task = new Task(async () => {
+                QueueLog($"============== STARTUP ==============");
+                QueueLog("`MASZ` started!");
+                QueueLog("System time: " + DateTime.Now.ToString());
+                QueueLog("System time (UTC): " + DateTime.UtcNow.ToString());
+                QueueLog($"Language: `{_config.GetDefaultLanguage()}`");
+                QueueLog($"Hostname: `{_config.GetHostName()}`");
+                QueueLog($"URL: `{_config.GetBaseUrl()}`");
+                QueueLog($"Domain: `{_config.GetServiceDomain()}`");
+                QueueLog($"ClientID: `{_config.GetClientId()}`");
+
+                if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CORS")))
+                {
+                    QueueLog("CORS support: \u26A0 `ENABLED`");
+                } else {
+                    QueueLog("CORS support: `DISABLED`");
+                }
+
+                if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
+                {
+                    QueueLog("Plugin support: \u26A0 `ENABLED`");
+                } else {
+                    QueueLog("Plugin support: `DISABLED`");
+                }
+
+                if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_DEMO_MODE")))
+                {
+                    QueueLog("Demo mode: \u26A0 `ENABLED`");
+                } else {
+                    QueueLog("Demo mode: `DISABLED`");
+                }
+
+                QueueLog($"============== /STARTUP =============");
+
+                await ExecuteWebhook();
+            });
+            task.Start();
         }
     }
 }
