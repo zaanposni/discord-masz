@@ -2,6 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, ReplaySubject } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -29,7 +30,7 @@ export class GuildUsermappingComponent implements OnInit {
   private $showUserMappings: ReplaySubject<UserMappingView[]> = new ReplaySubject<UserMappingView[]>(1);
   public showUserMappings: Observable<UserMappingView[]> = this.$showUserMappings.asObservable();
   public allUserMappings: UserMappingView[] = [];
-  constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute, private _formBuilder: FormBuilder) { }
+  constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute, private _formBuilder: FormBuilder, private translator: TranslateService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -82,18 +83,20 @@ export class GuildUsermappingComponent implements OnInit {
       this.allUserMappings = data;
       this.loading = false;
       this.search();
-    }, () => {
+    }, error => {
+      console.error(error);
       this.loading = false;
-      this.toastr.error("Failed to load usermappings.");
+      this.toastr.error(this.translator.instant('UsermapTable.FailedToLoad'));
     });
 
     const params = new HttpParams()
           .set('partial', 'true');
-    this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`, true, params).subscribe((data) => {
-      this.members.content = data;      
+    this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`, true, params).subscribe(data => {
+      this.members.content = data;
       this.members.loading = false;
-    }, () => {
-      this.toastr.error("Failed to load member list.");
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('UsermapTable.FailedToLoadMember'));
     });
   }
 
@@ -140,12 +143,13 @@ export class GuildUsermappingComponent implements OnInit {
       'reason': this.newMapFormGroup.value.reason
     };
 
-    this.api.postSimpleData(`/guilds/${this.guildId}/usermap`, data).subscribe((data) => {
+    this.api.postSimpleData(`/guilds/${this.guildId}/usermap`, data).subscribe(() => {
       this.reloadData();
-      this.toastr.success('Usermap created.');
+      this.toastr.success(this.translator.instant('UsermapTable.Created'));
       this.resetForm();
-    }, () => {
-      this.toastr.error('Failed to create usermap.');
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('UsermapTable.FailedToCreate'));
     });
   }
 

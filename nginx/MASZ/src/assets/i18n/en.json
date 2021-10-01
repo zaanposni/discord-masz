@@ -93,6 +93,26 @@
             "Config": "Config"
         }
     },
+    "UsermapTable": {
+        "Member": "Member",
+        "Description": "Description",
+        "CreateNewMap": "Create new usermap",
+        "Search": "Search (user, id, description...)",
+        "NoMatches": "No usermap matches your search.",
+        "FailedToLoad": "Failed to load usermaps.",
+        "FailedToLoadMember": "Failed to load memberlist.",
+        "FailedToCreate": "Failed to create usermap.",
+        "Created": "Usermap created."
+    },
+    "UsermapCard": {
+        "UpdatedPrefix": "Updated:",
+        "Edit": "Edit",
+        "Delete": "Delete",
+        "FailedToUpdate": "Failed to update usermap.",
+        "Updated": "Usermap updated.",
+        "FailedToDelete": "Failed to delete usermap.",
+        "Deleted": "Usermap deleted."
+    },
     "UsernoteTable": {
         "Member": "Member",
         "Description": "Description",

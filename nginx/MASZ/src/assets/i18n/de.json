@@ -93,6 +93,26 @@
             "Config": "Konfiguration"
         }
     },
+    "UsermapTable": {
+        "Member": "Mitglied",
+        "Description": "Beschreibung",
+        "CreateNewMap": "Neue Benutzerbeziehung erstellen",
+        "Search": "Suchen (Benutzer, ID, Beschreibung...)",
+        "NoMatches": "Keine Benutzerbeziehung passen zu deiner Suche.",
+        "FailedToLoad": "Benutzerbeziehungen konnten nicht geladen werden.",
+        "FailedToLoadMember": "Mitgliederliste konnte nicht geladen werden.",
+        "FailedToCreate": "Benutzerbeziehung konnte nicht erstellt werden.",
+        "Created": "Benutzerbeziehung erstellt."
+    },
+    "UsermapCard": {
+        "UpdatedPrefix": "Aktualisiert:",
+        "Edit": "Bearbeiten",
+        "Delete": "Löschen",
+        "FailedToUpdate": "Fehler beim Speichern der Benutzerbeziehung.",
+        "Updated": "Benutzerbeziehung gespeichert.",
+        "FailedToDelete": "Fehler beim Löschen der Benutzerbeziehung.",
+        "Deleted": "Benutzerbeziehung gelöscht."
+    },
     "UsernoteTable": {
         "Member": "Mitglied",
         "Description": "Beschreibung",
@@ -100,7 +120,7 @@
         "Search": "Suchen (Benutzer, ID, Beschreibung...)",
         "NoMatches": "Keine Benutzernotiz passen zu deiner Suche.",
         "FailedToLoad": "Benutzernotizen konnten nicht geladen werden.",
-        "FailedToLoadMember": "Mitglieder konnte nicht geladen werden.",
+        "FailedToLoadMember": "Mitgliederliste konnte nicht geladen werden.",
         "FailedToCreate": "Benutzernotiz konnte nicht erstellt werden.",
         "Created": "Benutzernotiz erstellt."
     },

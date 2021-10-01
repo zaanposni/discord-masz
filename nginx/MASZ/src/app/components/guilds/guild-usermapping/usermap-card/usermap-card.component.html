@@ -37,7 +37,7 @@
                     <span *ngIf="!userMap.userA">
                         {{ userMap.userMapping.userB }}
                     </span>
-                     - 
+                     -
                     <span *ngIf="userMap.userB">
                         {{ userMap.userB?.username }}#{{ userMap.userB?.discriminator }}
                     </span>
@@ -55,12 +55,16 @@
         <div class="flex-grow-1"></div>
         <div class="d-flex flex-column align-content-center">
             <span class="text-black-50" style="text-align: right;">
-                Updated: {{ userMap.userMapping.createdAt | date:'d MMMM Y'  }}
+                <app-date-display [date]="userMap.userMapping.createdAt" [prefixKey]="'UsermapCard.UpdatedPrefix'"></app-date-display>
             </span>
             <div class="flex-grow-1"></div>
             <!-- Button -->
-            <button mat-raised-button color="accent" class="mt-2" (click)="editMap()">EDIT</button>
-            <button mat-raised-button color="primary" class="mt-2" (click)="deleteMap()" *ngIf="this.showDeleteButton">DELETE</button>
+            <button mat-raised-button color="accent" class="mt-2" (click)="editMap()">
+                {{ 'UsermapCard.Edit' | translate }}
+            </button>
+            <button mat-raised-button color="primary" class="mt-2" (click)="deleteMap()" *ngIf="this.showDeleteButton">
+                {{ 'UsermapCard.Delete' | translate }}
+            </button>
         </div>
     </div>
 </div>

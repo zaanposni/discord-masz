@@ -1,0 +1,48 @@
+{
+    "namespace": "UsermapTable",
+    "Member": {
+        "description": "member field",
+        "en": "Member",
+        "de": "Mitglied"
+    },
+    "Description": {
+        "description": "description field",
+        "en": "Description",
+        "de": "Beschreibung"
+    },
+    "CreateNewMap": {
+        "description": "create new usermap button",
+        "en": "Create new usermap",
+        "de": "Neue Benutzerbeziehung erstellen"
+    },
+    "Search": {
+        "description": "search field",
+        "en": "Search (user, id, description...)",
+        "de": "Suchen (Benutzer, ID, Beschreibung...)"
+    },
+    "NoMatches": {
+        "description": "no matches found",
+        "en": "No usermap matches your search.",
+        "de": "Keine Benutzerbeziehung passen zu deiner Suche."
+    },
+    "FailedToLoad": {
+        "description": "failed to load usermaps",
+        "en": "Failed to load usermaps.",
+        "de": "Benutzerbeziehungen konnten nicht geladen werden."
+    },
+    "FailedToLoadMember": {
+        "description": "failed to load member",
+        "en": "Failed to load memberlist.",
+        "de": "Mitgliederliste konnte nicht geladen werden."
+    },
+    "FailedToCreate": {
+        "description": "failed to create usermap",
+        "en": "Failed to create usermap.",
+        "de": "Benutzerbeziehung konnte nicht erstellt werden."
+    },
+    "Created": {
+        "description": "usermap created",
+        "en": "Usermap created.",
+        "de": "Benutzerbeziehung erstellt."
+    }
+}

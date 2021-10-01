@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationDialogComponent } from 'src/app/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { UsermapEditDialogComponent } from 'src/app/components/dialogs/usermap-edit-dialog/usermap-edit-dialog.component';
@@ -17,7 +18,7 @@ export class UsermapCardComponent implements OnInit {
   @Output() deleteEvent = new EventEmitter<number>();
   @Input() userMap!: UserMappingView;
   @Input() showDeleteButton: boolean = true;
-  constructor(private dialog: MatDialog, private api: ApiService, private toastr: ToastrService) { }
+  constructor(private dialog: MatDialog, private api: ApiService, private toastr: ToastrService, private translator: TranslateService) { }
 
   ngOnInit(): void {
   }
@@ -26,11 +27,12 @@ export class UsermapCardComponent implements OnInit {
     const confirmDialogRef = this.dialog.open(ConfirmationDialogComponent);
     confirmDialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
-        this.api.deleteData(`/guilds/${this.userMap.userMapping.guildId}/usermap/${this.userMap.userMapping.id}`).subscribe((data) => {
+        this.api.deleteData(`/guilds/${this.userMap.userMapping.guildId}/usermap/${this.userMap.userMapping.id}`).subscribe(() => {
           this.deleteEvent.emit(this.userMap.userMapping.id);
-          this.toastr.success('Usermap deleted.');
-        }, () => {
-          this.toastr.error('Failed to delete usermap.');
+          this.toastr.success(this.translator.instant('UsermapCard.Deleted'));
+        }, error => {
+          console.error(error);
+          this.toastr.error(this.translator.instant('UsermapCard.FailedToDelete'));
         })
       }
     });
@@ -46,12 +48,13 @@ export class UsermapCardComponent implements OnInit {
     });
     editDialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
-        this.api.putSimpleData(`/guilds/${this.userMap.userMapping.guildId}/usermap/${this.userMap.userMapping.id}`, userMapDto).subscribe((data) => {
-          this.toastr.success('Usermap updated.');
+        this.api.putSimpleData(`/guilds/${this.userMap.userMapping.guildId}/usermap/${this.userMap.userMapping.id}`, userMapDto).subscribe(() => {
+          this.toastr.success(this.translator.instant('UsermapCard.Updated'));
           this.userMap.userMapping.reason = userMapDto.reason.trim();
           this.updateEvent.emit(0);
-        }, () => {
-          this.toastr.error('Failed to update usermap.');
+        }, error => {
+          console.error(error);
+          this.toastr.error(this.translator.instant('UsermapCard.FailedToUpdate'));
         });
       }
     });

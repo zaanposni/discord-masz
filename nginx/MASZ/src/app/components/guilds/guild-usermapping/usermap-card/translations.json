@@ -1,0 +1,38 @@
+{
+    "namespace": "UsermapCard",
+    "UpdatedPrefix": {
+        "description": "updated ",
+        "en": "Updated:",
+        "de": "Aktualisiert:"
+    },
+    "Edit": {
+        "description": "edit button",
+        "en": "Edit",
+        "de": "Bearbeiten"
+    },
+    "Delete": {
+        "description": "delete button",
+        "en": "Delete",
+        "de": "Löschen"
+    },
+    "FailedToUpdate": {
+        "description": "Failed to update usermap",
+        "en": "Failed to update usermap.",
+        "de": "Fehler beim Speichern der Benutzerbeziehung."
+    },
+    "Updated": {
+        "description": "updated usermap",
+        "en": "Usermap updated.",
+        "de": "Benutzerbeziehung gespeichert."
+    },
+    "FailedToDelete": {
+        "description": "Failed to delete usermap",
+        "en": "Failed to delete usermap.",
+        "de": "Fehler beim Löschen der Benutzerbeziehung."
+    },
+    "Deleted": {
+        "description": "deleted usermap",
+        "en": "Usermap deleted.",
+        "de": "Benutzerbeziehung gelöscht."
+    }
+}
