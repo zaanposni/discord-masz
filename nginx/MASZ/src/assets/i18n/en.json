@@ -83,6 +83,16 @@
             "Config": "Config"
         }
     },
+    "ModCaseTable": {
+        "ExcludeAutoMod": "Exclude automoderations",
+        "ExcludePermanent": "Exclude permanent punishments",
+        "ExcludeInactive": "Exclude inactive cases",
+        "CreateNewCase": "Create new case",
+        "Search": "Search (user, id, description...)",
+        "FailedToLoad": "Failed to load cases.",
+        "NothingHere": "Nothing here.",
+        "NoMatches": "No case matches your search."
+    },
     "ModCaseCard": {
         "ViewDetailsButton": "View Details",
         "Created": "Created:",

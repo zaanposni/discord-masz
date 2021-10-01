@@ -1,0 +1,43 @@
+{
+    "namespace": "ModCaseTable",
+    "ExcludeAutoMod": {
+        "description": "Exclude automoderations from current table selection",
+        "en": "Exclude automoderations",
+        "de": "Automoderationen verstecken"
+    },
+    "ExcludePermanent": {
+        "description": "Exclude permanent punishments from current table selection",
+        "en": "Exclude permanent punishments",
+        "de": "Permanente Verwarnungen verstecken"
+    },
+    "ExcludeInactive": {
+        "description": "Exclude cases users from current table selection",
+        "en": "Exclude inactive cases",
+        "de": "Inaktive Vorfälle verstecken"
+    },
+    "CreateNewCase": {
+        "description": "Create a new case button",
+        "en": "Create new case",
+        "de": "Neuen Vorfall erstellen"
+    },
+    "Search": {
+        "description": "Search button",
+        "en": "Search (user, id, description...)",
+        "de": "Suche (Benutzer, ID, Beschreibung...)"
+    },
+    "FailedToLoad": {
+        "description": "Failed to load case table",
+        "en": "Failed to load cases.",
+        "de": "Vorfälle konnten nicht geladen werden."
+    },
+    "NothingHere": {
+        "description": "Nothing here.",
+        "en": "Nothing here.",
+        "de": "Nichts gefunden."
+    },
+    "NoMatches": {
+        "description": "No matches for search string found.",
+        "en": "No case matches your search.",
+        "de": "Keine Vorfälle passen zu deiner Suche."
+    }
+}

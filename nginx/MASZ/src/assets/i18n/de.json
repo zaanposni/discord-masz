@@ -83,6 +83,16 @@
             "Config": "Konfiguration"
         }
     },
+    "ModCaseTable": {
+        "ExcludeAutoMod": "Automoderationen verstecken",
+        "ExcludePermanent": "Permanente Verwarnungen verstecken",
+        "ExcludeInactive": "Inaktive Vorfälle verstecken",
+        "CreateNewCase": "Neuen Vorfall erstellen",
+        "Search": "Suche (Benutzer, ID, Beschreibung...)",
+        "FailedToLoad": "Vorfälle konnten nicht geladen werden.",
+        "NothingHere": "Nichts gefunden.",
+        "NoMatches": "Keine Vorfälle passen zu deiner Suche."
+    },
     "ModCaseCard": {
         "ViewDetailsButton": "Details anzeigen",
         "Created": "Erstellt:",

@@ -6,30 +6,30 @@
                     <mat-slide-toggle
                         color="accent"
                         [(ngModel)]="excludeAutoModeration" (ngModelChange)="applyCurrentFilters()">
-                        Exclude AutoModerations
+                        {{ 'ModCaseTable.ExcludeAutoMod' | translate }}
                     </mat-slide-toggle>
                 </div>
                 <div class="custom-control custom-switch">
                     <mat-slide-toggle
                         color="accent"
                         [(ngModel)]="excludePermaPunishments" (ngModelChange)="applyCurrentFilters()">
-                        Exclude permanent punishments
+                        {{ 'ModCaseTable.ExcludePermanent' | translate }}
                     </mat-slide-toggle>
                 </div>
                 <div class="custom-control custom-switch">
                     <mat-slide-toggle
                         color="accent"
                         [(ngModel)]="onlyShowActivePunishments" (ngModelChange)="applyCurrentFilters()">
-                        Only show active punishments
+                        {{ 'ModCaseTable.ExcludeInactive' | translate }}
                     </mat-slide-toggle>
                 </div>
             </div>
             <div class="flex-grow-1"></div>
             <button mat-raised-button color="accent" routerLink="/guilds/{{this.guildId}}/cases/new" *ngIf="this.isModOrHigher | async" class="mr-2">
-                Create new Case
+                {{ 'ModCaseTable.CreateNewCase' | translate }}
             </button>
             <mat-form-field>
-                <mat-label>Search</mat-label>
+                <mat-label>{{ 'ModCaseTable.Search' | translate }}</mat-label>
                 <input matInput type="text" autocomplete="off" [attr.disabled]="this.loading ? '' : null"
                 [(ngModel)]="this.search" (ngModelChange)="searchChanged($event)">
             </mat-form-field>
@@ -46,8 +46,8 @@
             </div>
             <div class="card-container rounded m-2 mb-3" *ngIf="this.showTable.length === 0">
                 <div class="card-container-body">
-                    <span class="mat-h1">Nothing here.</span>
-                    <p class="card-text">No case matches your search.</p>
+                    <span class="mat-h1">{{ 'ModCaseTable.NothingHere' | translate }}</span>
+                    <p class="card-text">{{ 'ModCaseTable.NoMatches' | translate }}</p>
                 </div>
             </div>
         </div>
