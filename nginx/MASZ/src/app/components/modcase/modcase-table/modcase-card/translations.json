@@ -1,0 +1,23 @@
+{
+    "namespace": "ModCaseCard",
+    "ViewDetailsButton": {
+        "description": "View Details Button",
+        "en": "View Details",
+        "de": "Details anzeigen"
+    },
+    "Created": {
+        "description": "Created prefix for card",
+        "en": "Created:",
+        "de": "Erstellt:"
+    },
+    "Until": {
+        "description": "Until prefix for card",
+        "en": "Until:",
+        "de": "Bis:"
+    },
+    "Delete": {
+        "description": "Delete prefix for card",
+        "en": "Delete:",
+        "de": "Löschen:"
+    }
+}

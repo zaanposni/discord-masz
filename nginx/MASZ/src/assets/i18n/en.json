@@ -82,5 +82,11 @@
             "Usermap": "Usermaps",
             "Config": "Config"
         }
+    },
+    "ModCaseCard": {
+        "ViewDetailsButton": "View Details",
+        "Created": "Created:",
+        "Until": "Until:",
+        "Delete": "Delete:"
     }
 }

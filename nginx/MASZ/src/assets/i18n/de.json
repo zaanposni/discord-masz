@@ -82,5 +82,11 @@
             "Usermap": "Benutzerbeziehungen",
             "Config": "Konfiguration"
         }
+    },
+    "ModCaseCard": {
+        "ViewDetailsButton": "Details anzeigen",
+        "Created": "Erstellt:",
+        "Until": "Bis:",
+        "Delete": "Löschen:"
     }
 }
