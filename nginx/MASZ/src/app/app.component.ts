@@ -16,7 +16,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { IApplicationInfo } from './models/IApplicationInfo';
 import { ApplicationInfoService } from './services/application-info.service';
 import { TranslateService } from '@ngx-translate/core';
-import { DEFAULT_LANGUAGE, LANGUAGES } from './config/config';
+import { DEFAULT_LANGUAGE, DEFAULT_TIMEZONE, LANGUAGES, TIMEZONES } from './config/config';
+import { TimezoneService } from './services/timezone.service';
 
 
 @Component({
@@ -35,15 +36,21 @@ export class AppComponent implements OnInit{
   applicationInfo?: IApplicationInfo = undefined;
   languages = LANGUAGES;
   currentLanguage: string = DEFAULT_LANGUAGE;
+  timezones = TIMEZONES;
+  currentTimezone: string = DEFAULT_TIMEZONE;
 
   public changeLanguage(lang: string) {
     this.translator.use(lang);
   }
 
+  public changeTimezone(zone: string) {
+    this.timezoneService.timezoneChanged(zone);
+  }
+
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, public route: ActivatedRoute,
-              private auth: AuthService, private toastr: ToastrService, private dialog: MatDialog, private api: ApiService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private applicationInfoService: ApplicationInfoService, private translator: TranslateService) {
+              private auth: AuthService, private toastr: ToastrService, private dialog: MatDialog, private api: ApiService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private applicationInfoService: ApplicationInfoService, private translator: TranslateService, private timezoneService: TimezoneService) {
     this.mobileQuery = media.matchMedia('(max-width: 1000px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -66,6 +73,10 @@ export class AppComponent implements OnInit{
 
     this.applicationInfoService.currentApplicationInfo.subscribe(data => {
       this.applicationInfo = data;
+    });
+
+    this.timezoneService.selectedTimezone.subscribe(data => {
+      this.currentTimezone = data;
     });
 
     this.api.getSimpleData('/meta/application').subscribe((data: IApplicationInfo) => {

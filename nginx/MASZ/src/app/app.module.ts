@@ -104,6 +104,7 @@ import { DEFAULT_LANGUAGE } from './config/config';
 import { DateDisplayComponent } from './components/basic/date-display/date-display.component';
 import { FloorPipePipe } from './pipes/floor-pipe.pipe';
 import { DateFormatPipe } from './pipes/date-format.pipe';
+import { TimezoneService } from './services/timezone.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -234,7 +235,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthGuard,
     EnumManagerService,
     ApiService,
-    ApplicationInfoService
+    ApplicationInfoService,
+    TimezoneService
   ],
   bootstrap: [AppComponent]
 })

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LANGUAGES } from 'src/app/config/config';
 import * as moment from 'moment';
+import { TimezoneService } from 'src/app/services/timezone.service';
 
 @Component({
   selector: 'app-date-display',
@@ -19,7 +20,7 @@ export class DateDisplayComponent implements OnInit {
   timezone: string = 'UTC';
   format: string = "DD MMMM Y";
 
-  constructor(private translator: TranslateService) { }
+  constructor(private translator: TranslateService, private timezoneService: TimezoneService) { }
 
   ngOnInit(): void {
     this.momentDate = moment(this.date).utc(true);
@@ -31,6 +32,9 @@ export class DateDisplayComponent implements OnInit {
         this.adjustFormat();
       });
     }
+    this.timezoneService.selectedTimezone.subscribe(timezone => {
+      this.timezone = timezone;
+    });
   }
 
   private adjustFormat() {

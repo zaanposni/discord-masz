@@ -23,6 +23,15 @@
           </div>
         </a>
 
+        <a>
+          <div class="rounded navitem w-100">
+            <mat-icon aria-hidden="false" aria-label="tune icon">more_time</mat-icon>
+            <mat-select [value]="currentTimezone" #zoneSelect (selectionChange)="changeTimezone(zoneSelect.value)">
+              <mat-option *ngFor="let zone of timezones" [value]="zone">{{ zone }}</mat-option>
+            </mat-select>
+          </div>
+        </a>
+
         <mat-expansion-panel *ngIf="this.currentUser && loggedIn">
           <mat-expansion-panel-header>
             <a class="d-flex">
