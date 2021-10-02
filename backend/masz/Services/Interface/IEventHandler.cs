@@ -31,6 +31,7 @@ namespace masz.Services
         event AsyncEventHandler<UserMapDeletedEventArgs> OnUserMapDeleted;
         event AsyncEventHandler<UserNoteUpdatedEventArgs> OnUserNoteUpdated;
         event AsyncEventHandler<UserNoteDeletedEventArgs> OnUserNoteDeleted;
+        event AsyncEventHandler<InternalCachingDoneEventArgs> OnInternalCachingDone;
 
         Task InvokeIdentityRegistered(IdentityRegisteredEventArgs eventArgs);
         Task InvokeTokenCreated(TokenCreatedEventArgs eventArgs);
@@ -58,5 +59,6 @@ namespace masz.Services
         Task InvokeUserMapDeleted(UserMapDeletedEventArgs eventArgs);
         Task InvokeUserNoteUpdated(UserNoteUpdatedEventArgs eventArgs);
         Task InvokeUserNoteDeleted(UserNoteDeletedEventArgs eventArgs);
+        Task InvokeInternalCachingDone(InternalCachingDoneEventArgs eventArgs);
     }
 }
