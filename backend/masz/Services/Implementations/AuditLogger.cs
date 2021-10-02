@@ -1,7 +1,9 @@
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using DSharpPlus;
 using DSharpPlus.Entities;
+using DSharpPlus.EventArgs;
 using masz.Enums;
 using masz.Events;
 using masz.Extensions;
@@ -14,16 +16,18 @@ namespace masz.Services
         private readonly ILogger<AuditLogger> _logger;
         private readonly IInternalConfiguration _config;
         private readonly IDiscordAPIInterface _discordAPI;
+        private readonly IDiscordBot _discordBot;
         private readonly IEventHandler _eventHandler;
         private StringBuilder _currentMessage;
         public AuditLogger() { }
 
-        public AuditLogger(ILogger<AuditLogger> logger, IInternalConfiguration config, IDiscordAPIInterface discordAPI, IEventHandler eventHandler)
+        public AuditLogger(ILogger<AuditLogger> logger, IInternalConfiguration config, IDiscordAPIInterface discordAPI, IEventHandler eventHandler, IDiscordBot discordBot)
         {
             _logger = logger;
             _config = config;
             _discordAPI = discordAPI;
             _eventHandler = eventHandler;
+            _discordBot = discordBot;
             _currentMessage = new StringBuilder();
         }
 
@@ -52,10 +56,40 @@ namespace masz.Services
 
         public void RegisterEvents()
         {
+            _discordBot.GetClient().Resumed += OnBotResume;
+            _discordBot.GetClient().SocketErrored += OnSocketError;
             _eventHandler.OnIdentityRegistered += OnIdentityRegistered;
             _eventHandler.OnTokenCreated += OnTokenCreated;
             _eventHandler.OnTokenDeleted += OnTokenDeleted;
+            _eventHandler.OnInternalCachingDone += OnInternalCachingDone;
             _logger.LogInformation("Registered events for audit logger.");
+        }
+
+        private Task OnInternalCachingDone(InternalCachingDoneEventArgs e)
+        {
+            Task task = new Task(() => {
+                QueueLog($"Internal cache refreshed with `{e.GetEntriesCount()}` entries. Next cache refresh {e.GetNextCache().ToDiscordTS(DiscordTimestampFormat.RelativeTime)}.");
+            });
+            task.Start();
+            return Task.CompletedTask;
+        }
+
+        private Task OnSocketError(DiscordClient sender, SocketErrorEventArgs e)
+        {
+            Task task = new Task(() => {
+                QueueLog($"Bot disconnected from discord socket.");
+            });
+            task.Start();
+            return Task.CompletedTask;
+        }
+
+        private Task OnBotResume(DiscordClient sender, ReadyEventArgs e)
+        {
+            Task task = new Task(() => {
+                QueueLog($"Bot (re)connected to discord.");
+            });
+            task.Start();
+            return Task.CompletedTask;
         }
 
         private Task OnTokenDeleted(TokenDeletedEventArgs e)
