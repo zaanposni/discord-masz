@@ -64,7 +64,7 @@ export class AdminstatsComponent implements OnInit {
           this.stats = { loading: true, content: undefined };
           this.toastr.success("Cache cleared.");
           setTimeout(() => {
-            this.reload();                
+            this.reload();
           }, 2000);
         }, (error) => {
           this.toastr.error("Something went wrong.");

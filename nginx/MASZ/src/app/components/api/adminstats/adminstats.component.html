@@ -2,32 +2,26 @@
 <div class="d-flex flex-column justify-content-center align-items-center">
     <div class="d-flex flex-column justify-content-center align-items-left cw-50-75">
         <div class="mat-display-2 font-weight-bold mb-0">Insights</div>
-        <div class="d-flex flex-row justify-content-end align-items-center mr-2"
-            *ngIf="!stats.loading && stats.content != undefined">
-            <div class="dot" title="Last ping to discord"
-                [class.dot-green]="stats.content.lastPing < 300"
-                [class.dot-orange]="stats.content.lastPing > 300 && stats.content.lastPing < 500"
-                [class.dot-red]="stats.content.lastPing > 500">
-            </div>
-            <span class="mat-headline mb-0" style="font-weight: 500;" title="Server ping to discord"
-                
-                [style.color]="stats.content.lastPing > 300 ? stats.content.lastPing > 500 ? 'red' : 'orange' : '#3bd671'">
-                {{ stats.content?.lastPing }}ms
-            </span>
-        </div>
         <div class="d-flex flex-row justify-content-end m-2 align-items-center">
             <button mat-raised-button color="primary" aria-label="create token" class="flex-shrink-1" (click)="triggerCache()"
                 [disabled]="stats.loading">
                 Clear Cache
             </button>
         </div>
+
+        <div class="d-flex flex-row flex-wrap statcards" *ngIf="!stats.loading && stats.content != undefined">
+            <app-statcard [emote]="'smart_toy'" [renderPing]="stats.content?.botStatus" [title]="'Bot'"></app-statcard>
+            <app-statcard [emote]="'dns'" [renderPing]="stats.content?.dbStatus" [title]="'Database'"></app-statcard>
+            <app-statcard [emote]="'cached'" [renderPing]="stats.content?.cacheStatus" [title]="'Internal cache'"></app-statcard>
+        </div>
+
         <app-adminlist class="flex-grow-1"
             [title]="'Currently logged in'"
             [showList]="stats.content?.loginsInLast15Minutes"
             [loading]="stats.loading">
         </app-adminlist>
-        
-        <div class="d-flex flex-row flex-wrap" *ngIf="!stats.loading && stats.content != undefined" id="statcards">
+
+        <div class="d-flex flex-row flex-wrap statcards" *ngIf="!stats.loading && stats.content != undefined">
             <app-statcard [emote]="'dns'" [text]="stats.content?.guilds" [title]="'Guilds'"></app-statcard>
             <app-statcard [emote]="'description'" [text]="stats.content?.modCases" [title]="'Modcases'"></app-statcard>
             <app-statcard [emote]="'bolt'" [text]="stats.content?.automodEvents" [title]="'Automods'"></app-statcard>

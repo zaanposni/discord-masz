@@ -1,6 +1,11 @@
+import { IServiceStatus } from "./IServiceStatus";
+
 export interface Adminstats {
-    lastPing: number;
+    botStatus: IServiceStatus;
+    dbStatus: IServiceStatus;
+    cacheStatus: IServiceStatus;
     loginsInLast15Minutes: string[];
+    defaultLanguage: number;
     trackedInvites: number;
     modCases: number;
     guilds: number;
@@ -8,6 +13,6 @@ export interface Adminstats {
     userNotes: number;
     userMappings: number;
     apiTokens: number;
-    nextCache?: Date;
+    nextCache: Date;
     cachedDataFromDiscord: string[];
 }

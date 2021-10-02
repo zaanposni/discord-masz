@@ -102,6 +102,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DEFAULT_LANGUAGE } from './config/config';
 import { DateDisplayComponent } from './components/basic/date-display/date-display.component';
+import { FloorPipePipe } from './pipes/floor-pipe.pipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -166,7 +167,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     StatcardComponent,
     GuildIconComponent,
     OauthFailedComponent,
-    DateDisplayComponent
+    DateDisplayComponent,
+    FloorPipePipe
   ],
   imports: [
     CommonModule,
