@@ -43,7 +43,7 @@
             <div class="card-container rounded m-2 mb-3" *ngIf="(this.showUserNotes | async)?.length == 0">
                 <div class="card-container-body">
                     <span class="mat-h1">{{ 'NothingHere' | translate }}</span>
-                    <p class="card-text">No usernotes created yet.</p>
+                    <p class="card-text">{{ 'UsernoteTable.NoMatches' | translate }}</p>
                 </div>
             </div>
         </div>

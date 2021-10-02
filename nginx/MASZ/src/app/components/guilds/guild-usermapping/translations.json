@@ -23,7 +23,7 @@
     "NoMatches": {
         "description": "no matches found",
         "en": "No usermap matches your search.",
-        "de": "Keine Benutzerbeziehung passen zu deiner Suche."
+        "de": "Keine Benutzerbeziehung passt zu deiner Suche."
     },
     "FailedToLoad": {
         "description": "failed to load usermaps",

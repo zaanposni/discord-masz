@@ -23,7 +23,7 @@
     "NoMatches": {
         "description": "no matches found",
         "en": "No usernote matches your search.",
-        "de": "Keine Benutzernotiz passen zu deiner Suche."
+        "de": "Keine Benutzernotiz passt zu deiner Suche."
     },
     "FailedToLoad": {
         "description": "failed to load usernotes",
