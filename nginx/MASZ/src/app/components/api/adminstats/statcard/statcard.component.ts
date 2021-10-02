@@ -12,6 +12,8 @@ export class StatcardComponent implements OnInit {
   @Input() text?: string | number | undefined;
   @Input() emote?: string;
   @Input() renderPing?: IServiceStatus = undefined;
+  @Input() warningPingLimit: number = 200;
+  @Input() errorPingLimit: number = 400;
 
   constructor() { }
 

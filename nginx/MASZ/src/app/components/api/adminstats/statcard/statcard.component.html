@@ -21,13 +21,13 @@
                         error_outline
                     </mat-icon>
                     <div class="dot-scaffold dot" title="Last ping to discord" *ngIf="renderPing.responseTime && renderPing.online"
-                        [class.dot-green]="renderPing.responseTime < 300"
-                        [class.dot-orange]="renderPing.responseTime > 300 && renderPing.responseTime < 500"
-                        [class.dot-red]="renderPing.responseTime > 500">
+                        [class.dot-green]="renderPing.responseTime < warningPingLimit"
+                        [class.dot-orange]="renderPing.responseTime >= warningPingLimit && renderPing.responseTime < errorPingLimit"
+                        [class.dot-red]="renderPing.responseTime >= errorPingLimit">
                     </div>
                     <ng-container *ngIf="renderPing.responseTime && renderPing.online; else elseJustOnlineStatus">
                         <span class="mat-h1 mb-0" style="font-weight: 500;"
-                            [style.color]="renderPing.responseTime > 300 ? renderPing.responseTime > 500 ? 'red' : 'orange' : '#3bd671'">
+                            [style.color]="renderPing.responseTime >= warningPingLimit ? renderPing.responseTime >= errorPingLimit ? 'red' : 'orange' : '#3bd671'">
                             {{ renderPing.responseTime | floor }}ms
                         </span>
                     </ng-container>
