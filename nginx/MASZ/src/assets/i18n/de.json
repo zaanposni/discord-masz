@@ -7,6 +7,7 @@
     "Punishments": "Bestrafungen",
     "Bans": "Banns",
     "Mutes": "Stummschaltungen",
+    "Automods": "Automods",
     "Automoderations": "Automoderationen",
     "Invites": "Einladungen",
     "Usernotes": "Nutzernotizen",
@@ -28,11 +29,29 @@
         "Scanning": "Untersuchung"
     },
     "Guilds": {
+        "Guilds": "Gilden",
         "All": "Alle Gilden",
         "Admin": "Admingilden",
         "Moderator": "Moderatorengilden",
         "Member": "Gilden",
         "Banned": "Gesperrt von Gilden"
+    },
+    "Adminstats": {
+        "Bot": "Bot",
+        "Database": "Datenbank",
+        "InternalCache": "Interner Speicher",
+        "NextCache": "Speicherentleerung",
+        "Tokens": "Schlüssel",
+        "CurrentlyLoggedIn": "Moment eingeloggt",
+        "DiscordCache": "Discordspeicher",
+        "ClearCache": "Speicher leeren",
+        "FailedToLoad": "Statistiken konnten nicht geladen werden.",
+        "FailedToClear": "Speicher konnte nicht geleert werden.",
+        "Cleared": "Speicher geleert.",
+        "Insights": "Statistiken"
+    },
+    "AdminstatsList": {
+        "ShowMore": "Mehr anzeigen"
     },
     "TokenOverview": {
         "Description": "Als Seitenadministrator können Sie die MASZ API nutzen, um ihre eigene Skripte und Automatisierungen in MASZ zu implementieren. Erstellen Sie einen API-Schlüssel, um sich gegenüber der API zu authentifizieren, während Sie Web-Anfragen tätigen.",

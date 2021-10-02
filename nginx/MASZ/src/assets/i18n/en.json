@@ -7,6 +7,7 @@
     "Punishments": "Punishments",
     "Bans": "Bans",
     "Mutes": "Mutes",
+    "Automods": "Automods",
     "Automoderations": "Automoderations",
     "Invites": "Invites",
     "Usernotes": "Usernotes",
@@ -28,11 +29,29 @@
         "Scanning": "Scanning"
     },
     "Guilds": {
+        "Guilds": "Guilds",
         "All": "All guilds",
         "Admin": "Admin guilds",
         "Moderator": "Moderator guilds",
         "Member": "Guilds",
         "Banned": "Banned from guilds"
+    },
+    "Adminstats": {
+        "Bot": "Bot",
+        "Database": "Database",
+        "InternalCache": "Internal cache",
+        "NextCache": "Next cache",
+        "Tokens": "Tokens",
+        "CurrentlyLoggedIn": "Currently logged in",
+        "DiscordCache": "Discord cache",
+        "ClearCache": "Clear cache",
+        "FailedToLoad": "Failed to load adminstats.",
+        "FailedToClear": "Failed to clear cache.",
+        "Cleared": "Cache cleared.",
+        "Insights": "Insights"
+    },
+    "AdminstatsList": {
+        "ShowMore": "Show more"
     },
     "TokenOverview": {
         "Description": "As a siteadmin you can use the MASZ API to implement your own custom scripts and automate stuff on MASZ. Create an API key below to authorize yourself against the API while making web requests.",

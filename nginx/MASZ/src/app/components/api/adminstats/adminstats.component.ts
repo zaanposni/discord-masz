@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { interval } from 'rxjs';
 import { Adminstats } from 'src/app/models/Adminstats';
@@ -20,7 +21,7 @@ export class AdminstatsComponent implements OnInit {
   public minutesToNewCache?: string = '--';
   public stats: ContentLoading<Adminstats> = { loading: true, content: undefined };
 
-  constructor(private api: ApiService, private toastr: ToastrService, private dialog: MatDialog) { }
+  constructor(private api: ApiService, private toastr: ToastrService, private dialog: MatDialog, private translator: TranslateService) { }
 
   ngOnInit(): void {
     this.reload();
@@ -33,9 +34,10 @@ export class AdminstatsComponent implements OnInit {
       this.stats = { loading: false, content: data };
       this.subscription = interval(1000)
            .subscribe(x => { this.getTimeDifference(); });
-    }, () => {
+    }, error => {
+      console.error(error);
       this.stats.loading = false;
-      this.toastr.error("Failed to load adminstats.");
+      this.toastr.error(this.translator.instant('Adminstats.FailedToLoad'));
     });
   }
 
@@ -60,15 +62,15 @@ export class AdminstatsComponent implements OnInit {
     const confirmDialogRef = this.dialog.open(ConfirmationDialogComponent);
     confirmDialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
-        this.api.postSimpleData(`/meta/cache`, {}).subscribe((data) => {
+        this.api.postSimpleData(`/meta/cache`, {}).subscribe(() => {
           this.stats = { loading: true, content: undefined };
-          this.toastr.success("Cache cleared.");
+          this.toastr.success(this.translator.instant('Adminstats.Cleared'));
           setTimeout(() => {
             this.reload();
           }, 2000);
         }, (error) => {
-          this.toastr.error("Something went wrong.");
           console.error(error);
+          this.toastr.error(this.translator.instant('Adminstats.FailedClear'));
         });
       }
     });

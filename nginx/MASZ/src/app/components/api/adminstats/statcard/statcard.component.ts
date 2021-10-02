@@ -8,7 +8,7 @@ import { IServiceStatus } from 'src/app/models/IServiceStatus';
 })
 export class StatcardComponent implements OnInit {
 
-  @Input() title?: string;
+  @Input() titleKey: string = "";
   @Input() text?: string | number | undefined;
   @Input() emote?: string;
   @Input() renderPing?: IServiceStatus = undefined;

@@ -1,0 +1,8 @@
+{
+    "namespace": "AdminstatsList",
+    "ShowMore": {
+        "description": "Show more button",
+        "en": "Show more",
+        "de": "Mehr anzeigen"
+    }
+}

@@ -31,6 +31,11 @@
         "en": "Mutes",
         "de": "Stummschaltungen"
     },
+    "Automods": {
+        "description": "automoderations",
+        "en": "Automods",
+        "de": "Automods"
+    },
     "Automoderations": {
         "description": "automoderations",
         "en": "Automoderations",
@@ -124,6 +129,11 @@
         }
     },
     "Guilds": {
+        "Guilds": {
+            "description": "Guilds",
+            "en": "Guilds",
+            "de": "Gilden"
+        },
         "All": {
             "description": "All guilds",
             "en": "All guilds",

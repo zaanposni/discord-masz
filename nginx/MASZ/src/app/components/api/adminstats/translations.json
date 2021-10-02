@@ -1,0 +1,63 @@
+{
+    "namespace": "Adminstats",
+    "Bot": {
+        "description": "the discord bot",
+        "en": "Bot",
+        "de": "Bot"
+    },
+    "Database": {
+        "description": "the database",
+        "en": "Database",
+        "de": "Datenbank"
+    },
+    "InternalCache": {
+        "description": "the internal cache",
+        "en": "Internal cache",
+        "de": "Interner Speicher"
+    },
+    "NextCache": {
+        "description": "next cache clear",
+        "en": "Next cache",
+        "de": "Speicherentleerung"
+    },
+    "Tokens": {
+        "description": "Tokens",
+        "en": "Tokens",
+        "de": "Schlüssel"
+    },
+    "CurrentlyLoggedIn": {
+        "description": "currently logged in users headline",
+        "en": "Currently logged in",
+        "de": "Moment eingeloggt"
+    },
+    "DiscordCache": {
+        "description": "headline for cache list",
+        "en": "Discord cache",
+        "de": "Discordspeicher"
+    },
+    "ClearCache": {
+        "description": "Clear cache button",
+        "en": "Clear cache",
+        "de": "Speicher leeren"
+    },
+    "FailedToLoad": {
+        "description": "Failed to load adminstats",
+        "en": "Failed to load adminstats.",
+        "de": "Statistiken konnten nicht geladen werden."
+    },
+    "FailedToClear": {
+        "description": "Failed to clear cache",
+        "en": "Failed to clear cache.",
+        "de": "Speicher konnte nicht geleert werden."
+    },
+    "Cleared": {
+        "description": " clear cache",
+        "en": "Cache cleared.",
+        "de": "Speicher geleert."
+    },
+    "Insights": {
+        "description": "headline",
+        "en": "Insights",
+        "de": "Statistiken"
+    }
+}
