@@ -34,6 +34,26 @@
         "Member": "Gilden",
         "Banned": "Gesperrt von Gilden"
     },
+    "TokenOverview": {
+        "Description": "Als Seitenadministrator können Sie die MASZ API nutzen, um ihre eigene Skripte und Automatisierungen in MASZ zu implementieren. Erstellen Sie einen API-Schlüssel, um sich gegenüber der API zu authentifizieren, während Sie Web-Anfragen tätigen.",
+        "Documentation": "Sie finden die vollständige Dokumentation im /docs-Verzeichnis.",
+        "Postman": "Installieren Sie Postman und importieren Sie die JSON-Datei.",
+        "TokenHeader": "Fügen Sie Tokens in den \"Authorization\"-Header mit einem \"Bearer \"-Präfix ein.",
+        "PythonAPIWrapper": "Probieren Sie den offiziellen Python-API-Wrapper aus.",
+        "Warning": "Warnung",
+        "TokenIsPowerful": "Ein API-Schlüssel ist sehr mächtig und kann alles auf MASZ steuern!",
+        "CreateToken": "Schlüssel erstellen",
+        "SaveSecurely": "Sichern Sie diesen Schlüssel.",
+        "Tokens": "Schlüssel",
+        "NoTokensFound": "Keine Schlüssel gefunden",
+        "ValidUntil": "Gültig bis:",
+        "CopiedClipboard": "In Zwischenablage kopiert.",
+        "Deleted": "Schlüssel gelöscht.",
+        "FailedToDelete": "Schlüssel konnte nicht gelöscht werden.",
+        "Created": "Schlüssel erstellt.",
+        "FailedToCreate": "Schlüssel konnte nicht erstellt werden.",
+        "FailedToLoad": "Schlüssel konnten nicht geladen werden."
+    },
     "AutoModCard": {
         "ViewCase": "Vorfall anzeigen",
         "Message": "Nachricht"

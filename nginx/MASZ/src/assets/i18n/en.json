@@ -34,6 +34,26 @@
         "Member": "Guilds",
         "Banned": "Banned from guilds"
     },
+    "TokenOverview": {
+        "Description": "As a siteadmin you can use the MASZ API to implement your own custom scripts and automate stuff on MASZ. Create an API key below to authorize yourself against the API while making web requests.",
+        "Documentation": "You can find a full documentation in the /docs directory.",
+        "Postman": "Just install postman and import the json file.",
+        "TokenHeader": "Include tokens in the \"Authorization\" header with a \"Bearer \" prefix.",
+        "PythonAPIWrapper": "Try out the official python API wrapper.",
+        "Warning": "Warning",
+        "TokenIsPowerful": "An API key is very powerful and can control everything on MASZ!",
+        "CreateToken": "Create token",
+        "SaveSecurely": "Save this token securely.",
+        "Tokens": "Tokens",
+        "NoTokensFound": "No tokens found",
+        "ValidUntil": "Valid until:",
+        "CopiedClipboard": "Copied to clipboard.",
+        "Deleted": "Token deleted.",
+        "FailedToDelete": "Failed to delete token..",
+        "Created": "Token created.",
+        "FailedToCreate": "Failed to create token..",
+        "FailedToLoad": "Failed to load current token.."
+    },
     "AutoModCard": {
         "ViewCase": "View case",
         "Message": "Message"

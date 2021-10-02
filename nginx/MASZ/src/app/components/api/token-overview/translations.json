@@ -1,0 +1,93 @@
+{
+    "namespace": "TokenOverview",
+    "Description": {
+        "description": "description of token stuff.",
+        "en": "As a siteadmin you can use the MASZ API to implement your own custom scripts and automate stuff on MASZ. Create an API key below to authorize yourself against the API while making web requests.",
+        "de": "Als Seitenadministrator können Sie die MASZ API nutzen, um ihre eigene Skripte und Automatisierungen in MASZ zu implementieren. Erstellen Sie einen API-Schlüssel, um sich gegenüber der API zu authentifizieren, während Sie Web-Anfragen tätigen."
+    },
+    "Documentation": {
+        "description": "find documentation at",
+        "en": "You can find a full documentation in the /docs directory.",
+        "de": "Sie finden die vollständige Dokumentation im /docs-Verzeichnis."
+    },
+    "Postman": {
+        "description": "Use postman to import the json file",
+        "en": "Just install postman and import the json file.",
+        "de": "Installieren Sie Postman und importieren Sie die JSON-Datei."
+    },
+    "TokenHeader": {
+        "description": "Insert token in authorization header",
+        "en": "Include tokens in the \"Authorization\" header with a \"Bearer \" prefix.",
+        "de": "Fügen Sie Tokens in den \"Authorization\"-Header mit einem \"Bearer \"-Präfix ein."
+    },
+    "PythonAPIWrapper": {
+        "description": "try out the official api wrapper written in python",
+        "en": "Try out the official python API wrapper.",
+        "de": "Probieren Sie den offiziellen Python-API-Wrapper aus."
+    },
+    "Warning": {
+        "description": "the word 'warning'",
+        "en": "Warning",
+        "de": "Warnung"
+    },
+    "TokenIsPowerful": {
+        "description": "a token is very powerful",
+        "en": "An API key is very powerful and can control everything on MASZ!",
+        "de": "Ein API-Schlüssel ist sehr mächtig und kann alles auf MASZ steuern!"
+    },
+    "CreateToken": {
+        "description": "Create token button",
+        "en": "Create token",
+        "de": "Schlüssel erstellen"
+    },
+    "SaveSecurely": {
+        "description": "Save this token securely",
+        "en": "Save this token securely.",
+        "de": "Sichern Sie diesen Schlüssel."
+    },
+    "Tokens": {
+        "description": "Headline for list of tokens",
+        "en": "Tokens",
+        "de": "Schlüssel"
+    },
+    "NoTokensFound": {
+        "description": "No tokens registered",
+        "en": "No tokens found",
+        "de": "Keine Schlüssel gefunden"
+    },
+    "ValidUntil": {
+        "description": "token is valid until..",
+        "en": "Valid until:",
+        "de": "Gültig bis:"
+    },
+    "CopiedClipboard": {
+        "description": "token copied to clipboard",
+        "en": "Copied to clipboard.",
+        "de": "In Zwischenablage kopiert."
+    },
+    "Deleted": {
+        "description": "token deleted",
+        "en": "Token deleted.",
+        "de": "Schlüssel gelöscht."
+    },
+    "FailedToDelete": {
+        "description": "failed to delete token",
+        "en": "Failed to delete token..",
+        "de": "Schlüssel konnte nicht gelöscht werden."
+    },
+    "Created": {
+        "description": "token created",
+        "en": "Token created.",
+        "de": "Schlüssel erstellt."
+    },
+    "FailedToCreate": {
+        "description": "failed to create token",
+        "en": "Failed to create token..",
+        "de": "Schlüssel konnte nicht erstellt werden."
+    },
+    "FailedToLoad": {
+        "description": "failed to load token",
+        "en": "Failed to load current token..",
+        "de": "Schlüssel konnten nicht geladen werden."
+    }
+}
