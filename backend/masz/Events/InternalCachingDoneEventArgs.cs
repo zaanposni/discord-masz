@@ -13,7 +13,7 @@ namespace masz.Events
              _nextCache = nextCache;
         }
 
-        public int GetEntriesCount()
+        public int GetUserEntriesCount()
         {
             return _count;
         }

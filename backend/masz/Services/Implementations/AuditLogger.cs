@@ -49,14 +49,23 @@ namespace masz.Services
 
         public async Task ExecuteWebhook()
         {
-            _logger.LogInformation("Executing auditlog webhook.");
-            await _discordAPI.ExecuteWebhook(_config.GetAuditLogWebhook(), null, _currentMessage.ToString());
-            _currentMessage.Clear();
+            if (_currentMessage.Length > 0) {
+                _logger.LogInformation("Executing auditlog webhook.");
+                try
+                {
+                    await _discordAPI.ExecuteWebhook(_config.GetAuditLogWebhook(), null, _currentMessage.ToString());
+                } catch(Exception e)
+                {
+                    _logger.LogError(e, "Error executing auditlog webhook. ");
+                }
+                _currentMessage.Clear();
+            }
         }
 
         public void RegisterEvents()
         {
             _discordBot.GetClient().Resumed += OnBotResume;
+            _discordBot.GetClient().Ready += OnBotReady;
             _discordBot.GetClient().SocketErrored += OnSocketError;
             _eventHandler.OnIdentityRegistered += OnIdentityRegistered;
             _eventHandler.OnTokenCreated += OnTokenCreated;
@@ -67,8 +76,9 @@ namespace masz.Services
 
         private Task OnInternalCachingDone(InternalCachingDoneEventArgs e)
         {
-            Task task = new Task(() => {
-                QueueLog($"Internal cache refreshed with `{e.GetEntriesCount()}` entries. Next cache refresh {e.GetNextCache().ToDiscordTS(DiscordTimestampFormat.RelativeTime)}.");
+            Task task = new Task(async () => {
+                QueueLog($"Internal cache refreshed with `{_discordAPI.GetCache().Keys.Count}` entries. Next cache refresh {e.GetNextCache().ToDiscordTS(DiscordTimestampFormat.RelativeTime)}.");
+                await ExecuteWebhook();
             });
             task.Start();
             return Task.CompletedTask;
@@ -76,8 +86,9 @@ namespace masz.Services
 
         private Task OnSocketError(DiscordClient sender, SocketErrorEventArgs e)
         {
-            Task task = new Task(() => {
-                QueueLog($"Bot disconnected from discord socket.");
+            Task task = new Task(async () => {
+                QueueLog($"Bot **disconnected** from discord sockets.");
+                await ExecuteWebhook();
             });
             task.Start();
             return Task.CompletedTask;
@@ -85,8 +96,19 @@ namespace masz.Services
 
         private Task OnBotResume(DiscordClient sender, ReadyEventArgs e)
         {
-            Task task = new Task(() => {
-                QueueLog($"Bot (re)connected to discord.");
+            Task task = new Task(async () => {
+                QueueLog($"Bot **reconnected** to `{sender.Guilds.Count} guild(s)` with `{sender.Ping}ms` latency.");
+                await ExecuteWebhook();
+            });
+            task.Start();
+            return Task.CompletedTask;
+        }
+
+        private Task OnBotReady(DiscordClient sender, ReadyEventArgs e)
+        {
+            Task task = new Task(async () => {
+                QueueLog($"Bot **connected** to `{sender.Guilds.Count} guild(s)` with `{sender.Ping}ms` latency.");
+                await ExecuteWebhook();
             });
             task.Start();
             return Task.CompletedTask;
