@@ -54,13 +54,11 @@ namespace masz.Controllers
             StatusDetail botDetails = repo.GetBotStatus();
             StatusDetail dbDetails = await repo.GetDbStatus();
             StatusDetail cacheDetails = repo.GetCacheStatus();
-            StatusDetail discordAPIDetails = await repo.GetDiscordAPIStatus();
 
             return Ok(new {
                 botStatus = botDetails,
                 dbStatus = dbDetails,
                 cacheStatus = cacheDetails,
-                discordStatus = discordAPIDetails,
                 loginsInLast15Minutes = currentLogins,
                 defaultLanguage = _config.GetDefaultLanguage(),
                 trackedInvites = await InviteRepository.CreateDefault(_serviceProvider).CountInvites(),

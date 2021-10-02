@@ -10,5 +10,6 @@ namespace masz.Services
         DiscordClient GetClient();
         bool IsRunning();
         DateTime? GetLastDisconnectTime();
+        int GetPing();
     }
 }

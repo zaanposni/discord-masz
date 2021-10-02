@@ -354,5 +354,10 @@ namespace masz.Services
         {
             return _client;
         }
+
+        public int GetPing()
+        {
+            return _client.Ping;
+        }
     }
 }

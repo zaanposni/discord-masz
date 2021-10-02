@@ -43,6 +43,7 @@ namespace masz.Repositories
                     botStatus.Online = false;
                     botStatus.LastDisconnect = _discordBot.GetLastDisconnectTime();
                 }
+                botStatus.ResponseTime = _discordBot.GetPing();
             } catch (Exception)
             {
                 botStatus.Online = false;
@@ -70,27 +71,6 @@ namespace masz.Repositories
                 cacheStatus.Online = false;
             }
             return cacheStatus;
-        }
-        public async Task<StatusDetail> GetDiscordAPIStatus()
-        {
-            StatusDetail dbStatus = new StatusDetail();
-            try
-            {
-                Stopwatch timer = new Stopwatch();
-                timer.Start();
-                DiscordUser user = await _discordAPI.FetchCurrentBotInfo();
-                timer.Stop();
-                dbStatus.ResponseTime = timer.Elapsed.TotalMilliseconds;
-                if (user == null)
-                {
-                    dbStatus.Online = false;
-                    dbStatus.Message = "Failed to fetch from discord API.";
-                }
-            } catch (Exception)
-            {
-                dbStatus.Online = false;
-            }
-            return dbStatus;
         }
     }
 }
