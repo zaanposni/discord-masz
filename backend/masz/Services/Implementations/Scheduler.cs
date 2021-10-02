@@ -22,6 +22,7 @@ namespace masz.Services
         private readonly IIdentityManager _identityManager;
         private readonly IEventHandler _eventHandler;
         private DateTime _nextCacheSchedule;
+        private int _cacheIntervalMinutes = 15;
 
         public Scheduler() { }
 
@@ -45,8 +46,8 @@ namespace masz.Services
                         CheckDeletedCases();
                         CacheAll();
                         _identityManager.ClearOldIdentities();
-                        _nextCacheSchedule = DateTime.UtcNow.AddMinutes(15);
-                        Thread.Sleep(1000 * 60 * 15);  // 15 minutes
+                        _nextCacheSchedule = DateTime.UtcNow.AddMinutes(_cacheIntervalMinutes);
+                        Thread.Sleep(1000 * 60 * _cacheIntervalMinutes);
                     }
                 });
                 task.Start();
@@ -82,7 +83,7 @@ namespace masz.Services
             handledUsers = await CacheAllGuildMembers(handledUsers);
             handledUsers = await CacheAllKnownUsers(handledUsers);
             _logger.LogInformation($"Cacher | Done with {handledUsers.Count} entries.");
-            await _eventHandler.InvokeInternalCachingDone(new InternalCachingDoneEventArgs(handledUsers.Count));
+            await _eventHandler.InvokeInternalCachingDone(new InternalCachingDoneEventArgs(handledUsers.Count, DateTime.UtcNow.AddMinutes(_cacheIntervalMinutes)));
         }
 
         public async Task CacheAllKnownGuilds()
