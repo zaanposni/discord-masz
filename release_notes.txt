@@ -19,3 +19,4 @@
 - added welcome embed with tips on guild register
 - using discord application icon and name for top left corner in masz
 - default legal notes have been adjusted, now using link in discord application settings
+- backend will no longer completely restart if caching fails

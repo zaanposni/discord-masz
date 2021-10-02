@@ -26,7 +26,7 @@ namespace masz.Services
 
         public Scheduler() { }
 
-        public Scheduler(ILogger<Scheduler> logger, IInternalConfiguration config, IDiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory, IFilesHandler filesHandler, IIdentityManager identityManager)
+        public Scheduler(ILogger<Scheduler> logger, IInternalConfiguration config, IDiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory, IFilesHandler filesHandler, IIdentityManager identityManager, IEventHandler eventHandler)
         {
             _logger = logger;
             _config = config;
@@ -34,6 +34,7 @@ namespace masz.Services
             _serviceScopeFactory = serviceScopeFactory;
             _filesHandler = filesHandler;
             _identityManager = identityManager;
+            _eventHandler = eventHandler;
         }
 
         public void StartTimers()
@@ -43,9 +44,13 @@ namespace masz.Services
                 {
                     while (true)
                     {
-                        CheckDeletedCases();
-                        CacheAll();
-                        _identityManager.ClearOldIdentities();
+                        try {
+                            CheckDeletedCases();
+                            CacheAll();
+                            _identityManager.ClearOldIdentities();
+                        } catch (Exception e) {
+                            _logger.LogError(e, "Error in caching.");
+                        }
                         _nextCacheSchedule = DateTime.UtcNow.AddMinutes(_cacheIntervalMinutes);
                         Thread.Sleep(1000 * 60 * _cacheIntervalMinutes);
                     }
