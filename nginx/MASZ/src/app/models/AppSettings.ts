@@ -1,5 +1,4 @@
 export interface AppSettings {
-    darkMode: boolean;
-    showSuggestions: boolean;
-  }
-  
+  timezone: string;
+  language: string;
+}

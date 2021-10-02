@@ -18,6 +18,8 @@ import { ApplicationInfoService } from './services/application-info.service';
 import { TranslateService } from '@ngx-translate/core';
 import { DEFAULT_LANGUAGE, DEFAULT_TIMEZONE, LANGUAGES, TIMEZONES } from './config/config';
 import { TimezoneService } from './services/timezone.service';
+import { CookieTrackerService } from './services/cookie-tracker.service';
+import { AppSettings } from './models/AppSettings';
 
 
 @Component({
@@ -35,22 +37,28 @@ export class AppComponent implements OnInit{
   @ViewChild('snav') snav: any;
   applicationInfo?: IApplicationInfo = undefined;
   languages = LANGUAGES;
-  currentLanguage: string = DEFAULT_LANGUAGE;
   timezones = TIMEZONES;
-  currentTimezone: string = DEFAULT_TIMEZONE;
+  currentAppSettings: AppSettings = {
+    language: DEFAULT_LANGUAGE,
+    timezone: DEFAULT_TIMEZONE
+  };
 
   public changeLanguage(lang: string) {
     this.translator.use(lang);
+    this.currentAppSettings.language = lang;
+    this.cookieTracker.updateSettings(this.currentAppSettings);
   }
 
   public changeTimezone(zone: string) {
     this.timezoneService.timezoneChanged(zone);
+    this.currentAppSettings.timezone = zone;
+    this.cookieTracker.updateSettings(this.currentAppSettings);
   }
 
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, public route: ActivatedRoute,
-              private auth: AuthService, private toastr: ToastrService, private dialog: MatDialog, private api: ApiService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private applicationInfoService: ApplicationInfoService, private translator: TranslateService, private timezoneService: TimezoneService) {
+              private auth: AuthService, private toastr: ToastrService, private dialog: MatDialog, private api: ApiService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private applicationInfoService: ApplicationInfoService, private translator: TranslateService, private timezoneService: TimezoneService, private cookieTracker: CookieTrackerService) {
     this.mobileQuery = media.matchMedia('(max-width: 1000px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -76,7 +84,7 @@ export class AppComponent implements OnInit{
     });
 
     this.timezoneService.selectedTimezone.subscribe(data => {
-      this.currentTimezone = data;
+      this.currentAppSettings.timezone = data;
     });
 
     this.api.getSimpleData('/meta/application').subscribe((data: IApplicationInfo) => {
@@ -84,7 +92,18 @@ export class AppComponent implements OnInit{
     });
 
     this.translator.onLangChange.subscribe(() => {
-      this.currentLanguage = this.translator.currentLang;
+      this.currentAppSettings.language = this.translator.currentLang;
+    });
+
+    this.cookieTracker.settings.subscribe((data: AppSettings) => {
+      if (TIMEZONES.includes(data.timezone)) {  // user might enter random stuff
+        this.currentAppSettings.timezone = data.timezone;
+        this.timezoneService.timezoneChanged(data.timezone);
+      }
+      if (LANGUAGES.filter(x => x.language === data.language).length > 0) {  // user might enter random stuff
+        this.currentAppSettings.language = data.language;
+        this.translator.use(data.language);
+      }
     });
   }
 
@@ -99,7 +118,7 @@ export class AppComponent implements OnInit{
     });
   }
 
-  ngAfterViewInit(): void {    
+  ngAfterViewInit(): void {
     if (! this.mobileQuery.matches) {
       this.snav?.open();
     }

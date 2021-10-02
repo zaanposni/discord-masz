@@ -105,6 +105,7 @@ import { DateDisplayComponent } from './components/basic/date-display/date-displ
 import { FloorPipePipe } from './pipes/floor-pipe.pipe';
 import { DateFormatPipe } from './pipes/date-format.pipe';
 import { TimezoneService } from './services/timezone.service';
+import { CookieTrackerService } from './services/cookie-tracker.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -236,7 +237,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     EnumManagerService,
     ApiService,
     ApplicationInfoService,
-    TimezoneService
+    TimezoneService,
+    CookieTrackerService
   ],
   bootstrap: [AppComponent]
 })
