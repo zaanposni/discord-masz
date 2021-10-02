@@ -1,6 +1,7 @@
-  import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LANGUAGES } from 'src/app/config/config';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-date-display',
@@ -10,15 +11,18 @@ import { LANGUAGES } from 'src/app/config/config';
 export class DateDisplayComponent implements OnInit {
 
   @Input() prefixKey?: string = undefined;
-  @Input() date?: Date;
+  @Input() date: Date = new Date();
   @Input() customFormat?: string = undefined;
   @Input() showTime: boolean = false;
 
-  format: string = "d MMMM Y";
+  momentDate: moment.Moment = moment();
+  timezone: string = 'UTC';
+  format: string = "DD MMMM Y";
 
   constructor(private translator: TranslateService) { }
 
   ngOnInit(): void {
+    this.momentDate = moment(this.date).utc(true);
     if (this.customFormat !== undefined) {
       this.format = this.customFormat;
     } else {

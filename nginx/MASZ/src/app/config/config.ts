@@ -11,14 +11,14 @@ export const LANGUAGES: ILanguageSelect[] = [
         language: 'en',
         displayName: 'English',
         apiValue: 0,
-        dateFormat: 'MMM d Y',
-        dateTimeFormat: 'MMM d Y HH:mm:ss'
+        dateFormat: 'MMM DD Y',
+        dateTimeFormat: 'MMM DD Y HH:mm:ss'
     },
     {
         language: 'de',
         displayName: 'German (deutsch)',
         apiValue: 1,
-        dateFormat: 'd MMM Y',
-        dateTimeFormat: 'd MMM Y HH:mm:ss'
+        dateFormat: 'DD MMM Y',
+        dateTimeFormat: 'DD MMM Y HH:mm:ss'
     }
 ];

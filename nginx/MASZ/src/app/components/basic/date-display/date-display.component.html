@@ -1,1 +1,1 @@
-<ng-container *ngIf="prefixKey !== undefined">{{ prefixKey | translate }}</ng-container> {{ date | date:format }}
+<ng-container *ngIf="prefixKey !== undefined">{{ prefixKey | translate }}</ng-container> {{ momentDate | dateFormat:format:timezone }}
