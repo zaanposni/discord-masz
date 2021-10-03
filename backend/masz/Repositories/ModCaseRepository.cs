@@ -95,7 +95,7 @@ namespace masz.Repositories
                 modCase.PunishmentActive = false;
             } else
             {
-                modCase.PunishmentActive = modCase.PunishedUntil == null || modCase.PunishedUntil > modCase.CreatedAt;
+                modCase.PunishmentActive = modCase.PunishedUntil == null || modCase.PunishedUntil > DateTime.UtcNow;
             }
 
             await _database.SaveModCase(modCase);
@@ -230,7 +230,7 @@ namespace masz.Repositories
                 modCase.PunishmentActive = false;
             } else
             {
-                modCase.PunishmentActive = modCase.PunishedUntil == null || modCase.PunishedUntil > modCase.CreatedAt;
+                modCase.PunishmentActive = modCase.PunishedUntil == null || modCase.PunishedUntil > DateTime.UtcNow;
             }
 
             _database.UpdateModCase(modCase);
