@@ -219,6 +219,13 @@
           </div>
         </a>
 
+        <a class="d-flex" href="https://github.com/zaanposni/discord-masz" target="_blank" rel="noreferrer">
+          <div class="rounded navitem">
+            <mat-icon aria-hidden="false" aria-label="github link" svgIcon="githublogo"></mat-icon>
+            <span>{{ 'Toolbar.GitHub' | translate }}</span>
+          </div>
+        </a>
+
         <ng-container *ngIf="applicationInfo?.termsOfServiceUrl; else elseTemplateToS">
           <a class="d-flex" href="{{ applicationInfo?.termsOfServiceUrl }}" target="_blank">
             <div [class.activatedNav]="activatedNav[1] === 'guidelines'" class="rounded navitem">
@@ -237,12 +244,6 @@
           </a>
         </ng-template>
 
-        <a class="d-flex" href="https://github.com/zaanposni/discord-masz" target="_blank" rel="noreferrer">
-          <div class="rounded navitem">
-            <mat-icon aria-hidden="false" aria-label="github link" svgIcon="githublogo"></mat-icon>
-            <span>{{ 'Toolbar.GitHub' | translate }}</span>
-          </div>
-        </a>
         <a class="d-flex" target="_blank" [attr.href]="applicationInfo?.privacyPolicyUrl ?? 'legal.html'">
           <div class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="legal notes">gavel</mat-icon>
