@@ -5,7 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { CaseTemplate } from 'src/app/models/CaseTemplate';
 import { ContentLoading } from 'src/app/models/ContentLoading';
@@ -21,6 +21,8 @@ import { PunishmentType } from 'src/app/models/PunishmentType';
 import { APIEnum } from 'src/app/models/APIEnum';
 import { EnumManagerService } from 'src/app/services/enum-manager.service';
 import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
+import * as moment from 'moment';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-modcase-add',
@@ -28,6 +30,9 @@ import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
   styleUrls: ['./modcase-add.component.css']
 })
 export class ModcaseAddComponent implements OnInit {
+
+  public punishedUntilChangeForPicker: ReplaySubject<Date> = new ReplaySubject<Date>(1);
+  public punishedUntil?: moment.Moment;
 
   public templateFormGroup!: FormGroup;
   public memberFormGroup!: FormGroup;
@@ -55,7 +60,7 @@ export class ModcaseAddComponent implements OnInit {
   public allTemplates: TemplateView[] = [];
   public punishmentOptions: ContentLoading<APIEnum[]> = { loading: true, content: [] };
   public currentUser!: AppUser;
-  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog, private enumManager: EnumManagerService) { }
+  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog, private enumManager: EnumManagerService, private translator: TranslateService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -70,8 +75,7 @@ export class ModcaseAddComponent implements OnInit {
     this.punishmentFormGroup = this._formBuilder.group({
       punishmentType: ['', Validators.required],
       dmNotification: [false],
-      handlePunishment: [false],
-      punishedUntil: ['']
+      handlePunishment: [false]
     });
     this.filesFormGroup = this._formBuilder.group({
       files: ['']
@@ -84,8 +88,7 @@ export class ModcaseAddComponent implements OnInit {
 
     this.punishmentFormGroup.get('punishmentType')?.valueChanges.subscribe((val: PunishmentType) => {
       if (val !== PunishmentType.Ban && val !== PunishmentType.Mute) {
-        this.punishmentFormGroup.controls['punishedUntil'].setValue(null);
-        this.punishmentFormGroup.controls['punishedUntil'].updateValueAndValidity();
+        this.punishedUntil = undefined;
       }
       if (val === PunishmentType.None) {
         this.punishmentFormGroup.controls['handlePunishment'].setValue(false);
@@ -154,20 +157,22 @@ export class ModcaseAddComponent implements OnInit {
 
     const params = new HttpParams()
           .set('partial', 'true');
-    this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`, true, params).subscribe((data) => {
+    this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`, true, params).subscribe(data => {
       this.members.content = data;
       this.members.loading = false;
-    }, () => {
+    }, error => {
+      console.error(error);
       this.members.loading = false;
-      this.toastr.error("Failed to load member list.");
+      this.toastr.error(this.translator.instant('ModCaseDialog.FailedToLoad.MemberList'));
     });
 
-    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe((data) => {
+    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe(data => {
       this.punishmentOptions.content = data;
       this.punishmentOptions.loading = false;
-    }, () => {
+    }, error => {
+      console.error(error);
       this.punishmentOptions.loading = false;
-      this.toastr.error("Failed to load punishment enum.");
+      this.toastr.error(this.translator.instant('ModCaseDialog.FailedToLoad.PunishmentEnum'));
     });
 
     this.reloadTemplates();
@@ -180,11 +185,12 @@ export class ModcaseAddComponent implements OnInit {
   reloadTemplates() {
     const params = new HttpParams()
           .set('guildid', this.guildId)
-    this.api.getSimpleData(`/templatesview`, true, params).subscribe((data) => {
+    this.api.getSimpleData(`/templatesview`, true, params).subscribe(data => {
       this.allTemplates = data;
       this.searchTemplate();
-    }, () => {
-      this.toastr.error("Failed to load case templates.");
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('ModCaseDialog.FailedToLoad.CaseTemplates'));
       this.searchTemplate();
     });
   }
@@ -199,13 +205,19 @@ export class ModcaseAddComponent implements OnInit {
     this.punishmentFormGroup.setValue({
       punishmentType: template.casePunishmentType,
       dmNotification: template.announceDm,
-      handlePunishment: template.handlePunishment,
-      punishedUntil: template.casePunishedUntil
+      handlePunishment: template.handlePunishment
     });
     this.optionsFormGroup.setValue({
       sendNotification: template.sendPublicNotification
     });
-    this.toastr.success(`Applied template ${template.templateName}.`);
+    if (template.casePunishedUntil) {
+      this.punishedUntilChangeForPicker.next(template.casePunishedUntil);
+    }
+    this.toastr.success(this.translator.instant('ModCaseDialog.AppliedTemplate'));
+  }
+
+  punishedUntilChanged(date: moment.Moment) {
+    this.punishedUntil = date;
   }
 
   createCase() {
@@ -216,28 +228,33 @@ export class ModcaseAddComponent implements OnInit {
       userid: this.memberFormGroup.value.member?.trim(),
       labels: this.caseLabels,
       punishmentType: this.punishmentFormGroup.value.punishmentType,
-      punishedUntil: (typeof this.punishmentFormGroup.value.punishedUntil === 'string') ? this.punishmentFormGroup.value.punishedUntil : this.punishmentFormGroup.value.punishedUntil?.toISOString() ?? null,
+      punishedUntil: this.punishedUntil?.toISOString() ?? null,
     }
+
     const params = new HttpParams()
       .set('sendnotification', this.optionsFormGroup.value.sendNotification ? 'true' : 'false')
       .set('handlePunishment', this.punishmentFormGroup.value.handlePunishment ? 'true' : 'false')
       .set('sendDmNotification', this.punishmentFormGroup.value.dmNotification ? 'true' : 'false');
 
-    this.api.postSimpleData(`/guilds/${this.guildId}/cases`, data, params, true, true).subscribe((data) => {
+    this.api.postSimpleData(`/guilds/${this.guildId}/cases`, data, params, true, true).subscribe(data => {
       const caseId = data.caseId;
       this.router.navigate(['guilds', this.guildId, 'cases', caseId], { queryParams: { 'reloadfiles': this.filesToUpload.length ?? '0' } });
       this.savingCase = false;
-      this.toastr.success(`Case ${caseId} created.`);
+      this.toastr.success(this.translator.instant('ModCaseDialog.CaseCreated'));
       this.filesToUpload.forEach(element => this.uploadFile(element.data, caseId));
-    }, () => { this.savingCase = false; });
+    }, error => {
+      console.error(error);
+      this.savingCase = false;
+    });
   }
 
   deleteTemplate(templateId: number) {
     this.api.deleteData(`/templates/${templateId}`).subscribe(() => {
       this.reloadTemplates();
-      this.toastr.success("Template deleted.");
-    }, () => {
-      this.toastr.error("Failed to delete template.");
+      this.toastr.success(this.translator.instant('ModCaseDialog.TemplateDeleted'));
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('ModCaseDialog.FailedToDeleteTemplate'));
     })
   }
 
@@ -259,7 +276,7 @@ export class ModcaseAddComponent implements OnInit {
           description: this.infoFormGroup.value.description,
           labels: this.caseLabels,
           punishmentType: this.punishmentFormGroup.value.punishmentType,
-          punishedUntil: (typeof this.punishmentFormGroup.value.punishedUntil === 'string') ? this.punishmentFormGroup.value.punishedUntil : this.punishmentFormGroup.value.punishedUntil?.toISOString() ?? null,
+          punishedUntil: this.punishedUntil?.toISOString(),
           sendPublicNotification: this.optionsFormGroup.value.sendNotification ?? false,
           handlePunishment: this.punishmentFormGroup.value.handlePunishment ?? false,
           announceDm: this.punishmentFormGroup.value.dmNotification ?? false
@@ -268,10 +285,14 @@ export class ModcaseAddComponent implements OnInit {
         const params = new HttpParams()
           .set('guildid', this.guildId);
 
-        this.api.postSimpleData(`/templates`, data, params, true, true).subscribe((data) => {
-          this.toastr.success("Template saved.");
+        this.api.postSimpleData(`/templates`, data, params, true, true).subscribe(() => {
+          this.toastr.success(this.translator.instant('ModCaseDialog.TemplateSaved'));
           this.savingCase = false;
-        }, () => { this.savingCase = false; });
+        }, error => {
+          console.error(error);
+          this.toastr.error(this.translator.instant('ModCaseDialog.FailedToSaveTemplate'));
+          this.savingCase = false;
+        });
       } else {
         this.savingCase = false;
       }
@@ -279,10 +300,11 @@ export class ModcaseAddComponent implements OnInit {
   }
 
   uploadFile(file: any, caseId: string) {
-    this.api.postFile(`/guilds/${this.guildId}/cases/${caseId}/files`, file).subscribe((data) => {
-      this.toastr.success(`File ${file.data.name} uploaded.`);
+    this.api.postFile(`/guilds/${this.guildId}/cases/${caseId}/files`, file).subscribe(() => {
+      this.toastr.success(this.translator.instant('ModCaseDialog.FileUploaded'));
     }, (error) => {
-      this.toastr.error('Failed to upload file.');
+      console.error(error);
+      this.toastr.error(this.translator.instant('ModCaseDialog.FailedToUploadFile'));
     });
   }
 

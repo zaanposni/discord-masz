@@ -1,0 +1,200 @@
+{
+    "namespace": "ModCaseDialog",
+    "SelectATemplate": {
+        "description": "Select a template step of dialog",
+        "en": "Select a template",
+        "de": "Vorlagenauswahl"
+    },
+    "BackToGuild": {
+        "description": "Back to guild button",
+        "en": "Back to guild.",
+        "de": "Zurück zur Gilde."
+    },
+    "BackToCase": {
+        "description": "Back to case button",
+        "en": "Back to modcase.",
+        "de": "Zurück zum Vorfall."
+    },
+    "SearchTemplate": {
+        "description": "Search a template",
+        "en": "Search template",
+        "de": "Vorlage suchen"
+    },
+    "Back": {
+        "description": "back button",
+        "en": "Back",
+        "de": "Zurück"
+    },
+    "Next": {
+        "description": "Nexc button",
+        "en": "Next",
+        "de": "Nächster Schritt"
+    },
+    "ChooseAMember": {
+        "description": "choose a member step of dialog",
+        "en": "Choose a member",
+        "de": "Nutzerauswahl"
+    },
+    "Member": {
+        "description": "member field",
+        "en": "Member",
+        "de": "Mitglied"
+    },
+    "PickOne": {
+        "description": "pick one member",
+        "en": "Pick one",
+        "de": "Wähle einen"
+    },
+    "DescribeCase": {
+        "description": "describe the case step of dialog",
+        "en": "Describe the case",
+        "de": "Vorfallsbeschreibung"
+    },
+    "Title": {
+        "description": "title of the case",
+        "en": "Title",
+        "de": "Titel"
+    },
+    "Description": {
+        "description": "description of the case",
+        "en": "Description",
+        "de": "Beschreibung"
+    },
+    "Labels": {
+        "description": "Labels field of case",
+        "en": "Labels",
+        "de": "Labels"
+    },
+    "NewLabel": {
+        "description": "placeholder for label field",
+        "en": "New label...",
+        "de": "Neuer Label..."
+    },
+    "ChoosePunishment": {
+        "description": "choose a punishment step of dialog",
+        "en": "Choose a punishment",
+        "de": "Bestrafungsauswahl"
+    },
+    "Punishment": {
+        "description": "punishment field for case",
+        "en": "Punishment",
+        "de": "Bestrafung"
+    },
+    "SendDmNotification": {
+        "description": "Send dm notification checkbox",
+        "en":" Send dm notification",
+        "de": "Direktnachrichtbenachrichtigung"
+    },
+    "HandlePunishment": {
+        "description": "Execute punishment or just register it?",
+        "en": "Execute this punishment",
+        "de": "Bestrafung exekutieren"
+    },
+    "UploadFiles": {
+        "description": "Upload files step of dialog",
+        "en": "Upload files",
+        "de": "Dateienupload"
+    },
+    "Upload": {
+        "description": "button to upload files",
+        "en": "Upload",
+        "de": "Upload"
+    },
+    "CreateCase": {
+        "description": "Create case step of dialog",
+        "en": "Create case",
+        "de": "Vorfallserstellung"
+    },
+    "UpdateCase": {
+        "description": "update case step of dialog",
+        "en": "Update case",
+        "de": "Vorfallsaktualisierung"
+    },
+    "PublicNotification": {
+        "description": "public notification checkbox",
+        "en": "Send public notification",
+        "de": "Öffentliche Benachrichtigung"
+    },
+    "SaveAsTemplate": {
+        "description": "Save as template button",
+        "en": "Save as template",
+        "de": "Als Vorlage speichern"
+    },
+    "CreateCaseButton": {
+        "description": "Create case button",
+        "en": "Create case",
+        "de": "Vorfall erstellen"
+    },
+    "UpdateCaseButton": {
+        "description": "Update case button",
+        "en": "Update case",
+        "de": "Vorfall aktualisieren"
+    },
+    "FailedToLoad": {
+        "MemberList": {
+            "description": "Failed to load member list.",
+            "en": "Failed to load member list.",
+            "de": "Mitgliederliste konnte nicht geladen werden."
+        },
+        "PunishmentEnum": {
+            "description": "Failed to load punishment enum.",
+            "en": "Failed to load available punishments.",
+            "de": "Verfügbare Bestrafungen konnten nicht geladen werden."
+        },
+        "CaseTemplates": {
+            "description": "Failed to load case templates.",
+            "en": "Failed to load case templates.",
+            "de": "Vorlagen konnte nicht geladen werden."
+        },
+        "CurrentCase": {
+            "description": "Failed to load current case.",
+            "en": "Failed to load current case.",
+            "de": "Vorfall konnte nicht geladen werden."
+        }
+    },
+    "AppliedTemplate": {
+        "description": "Applied template",
+        "en": "Applied template.",
+        "de": "Vorlage angewendet."
+    },
+    "TemplateDeleted": {
+        "description": "Template deleted",
+        "en": "Template deleted.",
+        "de": "Vorlage gelöscht."
+    },
+    "FailedToDeleteTemplate": {
+        "description": "failed to template deleted",
+        "en": "Failed to delete template.",
+        "de": "Vorlage konnte nicht gelöscht werden."
+    },
+    "TemplateSaved": {
+        "description": "Template saved",
+        "en": "Template saved.",
+        "de": "Vorlage gespeichert."
+    },
+    "FailedToSaveTemplate": {
+        "description": "failed to template save",
+        "en": "Failed to save template.",
+        "de": "Vorlage konnte nicht gespeichert werden."
+    },
+    "FileUploaded": {
+        "description": "File saved",
+        "en": "File uploaded.",
+        "de": "Datei hochgeladen."
+    },
+    "FailedToUploadFile": {
+        "description": "failed to upload file",
+        "en": "Failed to upload file.",
+        "de": "Datei konnte nicht hochgeladen werden."
+    },
+    "CaseCreated": {
+        "description": "Case created",
+        "en": "Case created.",
+        "de": "Vorfall erstellt."
+    },
+    "CaseUpdated": {
+        "description": "Case updated",
+        "en": "Case updated.",
+        "de": "Vorfall aktualisiert."
+    }
+}

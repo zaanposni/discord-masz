@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -45,7 +46,7 @@ export class ModcaseEditComponent implements OnInit {
   public oldCase: ContentLoading<ModCase> = { loading: true, content: undefined };
   public punishmentOptions: ContentLoading<APIEnum[]> = { loading: true, content: [] };
 
-  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog, private enumManager: EnumManagerService) { }
+  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private translator: TranslateService, private router: Router, private route: ActivatedRoute, private enumManager: EnumManagerService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -94,21 +95,23 @@ export class ModcaseEditComponent implements OnInit {
     this.members = { loading: true, content: [] };
     this.oldCase = { loading: true, content: undefined };
 
-    this.api.getSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}`).subscribe((data) => {
+    this.api.getSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}`).subscribe(data => {
       this.oldCase.content = data;
       this.applyOldCase(data);
       this.oldCase.loading = false;
-    }, () => {
-      this.toastr.error("Failed to load current case.");
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('ModCaseDialog.FailedToLoad.CurrentCase'));
       this.oldCase.loading = false;
     });
 
-    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe((data) => {
+    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe(data => {
       this.punishmentOptions.content = data;
       this.punishmentOptions.loading = false;
-    }, () => {
+    }, error => {
+      console.error(error);
       this.punishmentOptions.loading = false;
-      this.toastr.error("Failed to load punishment enum.");
+      this.toastr.error(this.translator.instant('ModCaseDialog.FailedToLoad.PunishmentEnum'));
     });
 
     let params = new HttpParams()
@@ -117,7 +120,7 @@ export class ModcaseEditComponent implements OnInit {
       this.members.content = data;
       this.members.loading = false;
     }, () => {
-      this.toastr.error("Failed to load member list.");
+      this.toastr.error(this.translator.instant('ModCaseDialog.FailedToLoad.MemberList'));
     });
   }
 
@@ -171,8 +174,11 @@ export class ModcaseEditComponent implements OnInit {
         const caseId = data.caseId;
         this.router.navigate(['guilds', this.guildId, 'cases', caseId]);
         this.savingCase = false;
-        this.toastr.success(`Case ${caseId} updated.`);
-      }, () => { this.savingCase = false; });
+        this.toastr.success(this.translator.instant('ModCaseDialog.CaseUpdated'));
+      }, error => {
+        console.error(error);
+        this.savingCase = false;
+      });
   }
 
   add(event: MatChipInputEvent): void {
