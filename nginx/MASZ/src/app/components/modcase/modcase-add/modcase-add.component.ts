@@ -228,7 +228,7 @@ export class ModcaseAddComponent implements OnInit {
       userid: this.memberFormGroup.value.member?.trim(),
       labels: this.caseLabels,
       punishmentType: this.punishmentFormGroup.value.punishmentType,
-      punishedUntil: this.punishedUntil?.toISOString() ?? null,
+      punishedUntil: this.punishedUntil?.toISOString(),
     }
 
     const params = new HttpParams()

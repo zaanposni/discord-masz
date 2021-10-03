@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
 import { APIEnum } from 'src/app/models/APIEnum';
@@ -25,6 +25,9 @@ import { EnumManagerService } from 'src/app/services/enum-manager.service';
   styleUrls: ['./modcase-edit.component.css']
 })
 export class ModcaseEditComponent implements OnInit {
+
+  public punishedUntilChangeForPicker: ReplaySubject<Date> = new ReplaySubject<Date>(1);
+  public punishedUntil?: moment.Moment;
 
   public memberFormGroup!: FormGroup;
   public infoFormGroup!: FormGroup;
@@ -62,8 +65,7 @@ export class ModcaseEditComponent implements OnInit {
     this.punishmentFormGroup = this._formBuilder.group({
       punishmentType: ['', Validators.required],
       dmNotification: [''],
-      handlePunishment: [''],
-      punishedUntil: ['']
+      handlePunishment: ['']
     });
     this.optionsFormGroup = this._formBuilder.group({
       sendNotification: ['']
@@ -73,8 +75,7 @@ export class ModcaseEditComponent implements OnInit {
 
     this.punishmentFormGroup.get('punishmentType')?.valueChanges.subscribe((val: PunishmentType) => {
       if (val !== PunishmentType.Ban && val !== PunishmentType.Mute) {
-        this.punishmentFormGroup.controls['punishedUntil'].setValue(null);
-        this.punishmentFormGroup.controls['punishedUntil'].updateValueAndValidity();
+        this.punishedUntil = undefined;
       }
       if (val === PunishmentType.None) {
         this.punishmentFormGroup.controls['handlePunishment'].setValue(false);
@@ -147,9 +148,11 @@ export class ModcaseEditComponent implements OnInit {
     this.punishmentFormGroup.setValue({
       punishmentType: modCase.punishmentType,
       dmNotification: false,
-      handlePunishment: false,
-      punishedUntil: modCase.punishedUntil
+      handlePunishment: false
     });
+    if (modCase.punishedUntil) {
+      this.punishedUntilChangeForPicker.next(modCase.punishedUntil);
+    }
     this.optionsFormGroup.setValue({
       sendNotification: false
     });
@@ -163,7 +166,7 @@ export class ModcaseEditComponent implements OnInit {
       userid: this.memberFormGroup.value.member?.trim(),
       labels: this.caseLabels,
       punishmentType: this.punishmentFormGroup.value.punishmentType,
-      punishedUntil: (typeof this.punishmentFormGroup.value.punishedUntil === 'string') ? this.punishmentFormGroup.value.punishedUntil : this.punishmentFormGroup.value.punishedUntil?.toISOString() ?? null,
+      punishedUntil: this.punishedUntil?.toISOString(),
     };
     const params = new HttpParams()
       .set('sendnotification', this.optionsFormGroup.value.sendNotification ? 'true' : 'false')
@@ -179,6 +182,10 @@ export class ModcaseEditComponent implements OnInit {
         console.error(error);
         this.savingCase = false;
       });
+  }
+
+  punishedUntilChanged(date: moment.Moment) {
+    this.punishedUntil = date;
   }
 
   add(event: MatChipInputEvent): void {

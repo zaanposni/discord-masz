@@ -78,17 +78,9 @@
                         [labelPosition]="'after'">
                         {{ 'ModCaseDialog.HandlePunishment' | translate }}
                     </mat-checkbox><br/>
-                    <mat-form-field *ngIf="this.punishmentFormGroup.value.punishmentType === 1 || this.punishmentFormGroup.value.punishmentType === 3">
-                        <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" formControlName="punishedUntil">
-                        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
-                        <ngx-mat-datetime-picker #picker [color]="'accent'">
-                          <!-- Custom icon or text of Apply icon -->
-                          <ng-template>
-                            <mat-icon>done</mat-icon>
-                            <span>OK</span>
-                          </ng-template>
-                        </ngx-mat-datetime-picker>
-                      </mat-form-field>
+                    <app-date-picker *ngIf="this.punishmentFormGroup.value.punishmentType === 1 || this.punishmentFormGroup.value.punishmentType === 3"
+                       (dateChanged)="punishedUntilChanged($event)" [dateChangedInParent]="punishedUntilChangeForPicker" >
+                    </app-date-picker>
                 </form>
                 <div class="stepper-actions">
                     <button mat-raised-button matStepperPrevious class="mr-2 mb-2" color="accent">{{ 'ModCaseDialog.Back' | translate }}</button>
