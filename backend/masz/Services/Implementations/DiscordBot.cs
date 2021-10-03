@@ -245,6 +245,11 @@ namespace masz.Services
                     _logger.LogError(ex, "Failed to handle punishment on member join.");
                 }
 
+                if (e.Member.IsBot)  // bots dont join via invite link so invitetracking is useless
+                {
+                    return;
+                }
+
                 List<TrackedInvite> newInvites = await FetchInvites(e.Guild);
                 TrackedInvite usedInvite = null;
                 try
