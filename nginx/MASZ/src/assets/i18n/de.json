@@ -82,6 +82,10 @@
         "NoMatches": "Es gibt keine moderierten Ereignisse.",
         "LoadMoreEvents": "Mehr Einträge laden"
     },
+    "DTPicker": {
+        "ChooseADate": "Wähle ein Datum",
+        "OK": "OK"
+    },
     "GuildMotd": {
         "Enable": "Aktiviere MotD",
         "Message": "Nachricht",

@@ -1,0 +1,13 @@
+{
+    "namespace": "DTPicker",
+    "ChooseADate": {
+        "description": "Choose a date",
+        "en": "Choose a date",
+        "de": "Wähle ein Datum"
+    },
+    "OK": {
+        "description": "ok button for close of datepicker",
+        "en": "OK",
+        "de": "OK"
+    }
+}
