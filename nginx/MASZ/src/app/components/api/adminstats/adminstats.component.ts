@@ -70,7 +70,7 @@ export class AdminstatsComponent implements OnInit {
           }, 2000);
         }, (error) => {
           console.error(error);
-          this.toastr.error(this.translator.instant('Adminstats.FailedClear'));
+          this.toastr.error(this.translator.instant('Adminstats.FailedToClear'));
         });
       }
     });
