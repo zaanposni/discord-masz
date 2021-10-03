@@ -18,6 +18,7 @@ using masz.Repositories;
 using masz.Logger;
 using masz.AutoModerations;
 using System.Text;
+using masz.Extensions;
 
 namespace masz.Services
 {
@@ -277,14 +278,12 @@ namespace masz.Services
                     if (guildConfig.ExecuteWhoisOnJoin && ! String.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
                     {
                         string message;
-                        string registeredTime = e.Member.CreationTimestamp.ToString("yyyy-MM-dd HH:mm:ss");
                         if (invite.InviteIssuerId != 0 && invite.InviteCreatedAt != null)
                         {
-                            string createdTime = invite.InviteCreatedAt.Value.ToString("yyyy-MM-dd HH:mm:ss");
-                            message = $"{e.Member.Mention} (registered `{registeredTime}`) joined with invite <{invite.UsedInvite}> (created `{createdTime}`) by <@{invite.InviteIssuerId}>.";
+                            message = $"{e.Member.Mention} (registered `{e.Member.CreationTimestamp.DateTime.ToDiscordTS()}`) joined with invite <{invite.UsedInvite}> (created `{invite.InviteCreatedAt.Value.ToDiscordTS()}`) by <@{invite.InviteIssuerId}>.";
                         } else
                         {
-                            message = $"{e.Member.Mention} (registered `{registeredTime}`) joined with invite <{invite.UsedInvite}>.";
+                            message = $"{e.Member.Mention} (registered `{e.Member.CreationTimestamp.DateTime.ToDiscordTS()}`) joined with invite <{invite.UsedInvite}>.";
                         }
 
                         IDiscordAPIInterface discordAPI = scope.ServiceProvider.GetService<IDiscordAPIInterface>();
