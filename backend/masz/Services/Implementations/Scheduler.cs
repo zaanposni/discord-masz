@@ -45,13 +45,13 @@ namespace masz.Services
                     while (true)
                     {
                         try {
+                            _nextCacheSchedule = DateTime.UtcNow.AddMinutes(_cacheIntervalMinutes);
                             CheckDeletedCases();
                             CacheAll();
                             _identityManager.ClearOldIdentities();
                         } catch (Exception e) {
                             _logger.LogError(e, "Error in caching.");
                         }
-                        _nextCacheSchedule = DateTime.UtcNow.AddMinutes(_cacheIntervalMinutes);
                         Thread.Sleep(1000 * 60 * _cacheIntervalMinutes);
                     }
                 });
@@ -88,7 +88,7 @@ namespace masz.Services
             handledUsers = await CacheAllGuildMembers(handledUsers);
             handledUsers = await CacheAllKnownUsers(handledUsers);
             _logger.LogInformation($"Cacher | Done with {handledUsers.Count} entries.");
-            await _eventHandler.InvokeInternalCachingDone(new InternalCachingDoneEventArgs(handledUsers.Count, DateTime.UtcNow.AddMinutes(_cacheIntervalMinutes)));
+            await _eventHandler.InvokeInternalCachingDone(new InternalCachingDoneEventArgs(handledUsers.Count, GetNextCacheSchedule()));
         }
 
         public async Task CacheAllKnownGuilds()
