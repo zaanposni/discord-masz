@@ -36,6 +36,11 @@
         "Member": "Gilden",
         "Banned": "Gesperrt von Gilden"
     },
+    "MASZ": {
+        "GuildDeleted": "Gilde gelöscht.",
+        "FailedToDeleteGuild": "Gilde konnte nicht gelöscht werden.",
+        "PleaseLoginFirst": "Bitte melde dich zuerst an."
+    },
     "Adminstats": {
         "Bot": "Bot",
         "Database": "Datenbank",

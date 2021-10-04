@@ -36,6 +36,11 @@
         "Member": "Guilds",
         "Banned": "Banned from guilds"
     },
+    "MASZ": {
+        "GuildDeleted": "Guild deleted.",
+        "FailedToDeleteGuild": "Failed to delete guild.",
+        "PleaseLoginFirst": "Please login first."
+    },
     "Adminstats": {
         "Bot": "Bot",
         "Database": "Database",

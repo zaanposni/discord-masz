@@ -1,0 +1,18 @@
+{
+    "namespace": "MASZ",
+    "GuildDeleted": {
+        "description": "guild deleted",
+        "en": "Guild deleted.",
+        "de": "Gilde gelöscht."
+    },
+    "FailedToDeleteGuild": {
+        "description": "Failed to delete guild",
+        "en": "Failed to delete guild.",
+        "de": "Gilde konnte nicht gelöscht werden."
+    },
+    "PleaseLoginFirst": {
+        "description": "please login first ",
+        "en": "Please login first.",
+        "de": "Bitte melde dich zuerst an."
+    }
+}

@@ -144,11 +144,11 @@ export class AppComponent implements OnInit{
             let params = new HttpParams()
               .set('deletedata', this.guildDeleteDialogData.deleteData ? 'true' : 'false');
             this.api.deleteData(`/guilds/${this.guildDeleteDialogData.guild.id}`, params).subscribe((data) => {
-              this.toastr.success('Guild deleted.');
+              this.toastr.success(this.translator.instant('MASZ.GuildDeleted'));
               this.auth.resetCache();
               this.login();
             }, (error) => {
-              this.toastr.error('Cannot delete guild.', 'Something went wrong.');
+              this.toastr.error(this.translator.instant('MASZ.FailedToDeleteGuild'));
             });
           }
         });
@@ -159,7 +159,7 @@ export class AppComponent implements OnInit{
   open(...target: any[]) {
     const url = target.join('/');
     if (url === 'guilds' && !this.loggedIn) {
-      this.toastr.warning('Please login first.')
+      this.toastr.warning(this.translator.instant('MASZ.PleaseLoginFirst'))
     } else {
       this.router.navigateByUrl(url);
     }
