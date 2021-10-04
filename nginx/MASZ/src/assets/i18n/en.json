@@ -169,7 +169,7 @@
     },
     "GuildList": {
         "LoadingGuilds": "Loading guilds...",
-        "NoGuild": "Please join a guild or get banned so I can work with you :(",
+        "NoGuild": "Please join a guild or get banned so I can display something :(",
         "AddGuild": "Add guild"
     },
     "GuildOverview": {

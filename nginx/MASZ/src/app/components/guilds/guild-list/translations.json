@@ -7,7 +7,7 @@
     },
     "NoGuild": {
         "description": "No guilds registered or intersection with current user.",
-        "en": "Please join a guild or get banned so I can work with you :(",
+        "en": "Please join a guild or get banned so I can display something :(",
         "de": "Bitte betrete eine Gilde oder werde gebannt, damit ich dir etwas anzeigen kann :("
     },
     "AddGuild": {
