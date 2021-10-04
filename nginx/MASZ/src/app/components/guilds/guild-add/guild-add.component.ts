@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { Guild } from 'src/app/models/Guild';
@@ -30,7 +31,7 @@ export class GuildAddComponent implements OnInit {
   public selectedGuild: Guild|undefined;
   public selectedGuildDetails!: ContentLoading<Guild>;
 
-  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private applicationInfoService: ApplicationInfoService) { }
+  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private applicationInfoService: ApplicationInfoService, private translator: TranslateService) { }
 
   ngOnInit(): void {
 
@@ -63,12 +64,13 @@ export class GuildAddComponent implements OnInit {
     this.guilds = { loading: true, content: [] };
     this.showGuilds = [];
 
-    this.api.getSimpleData('/discord/guilds').subscribe((data) => {
+    this.api.getSimpleData('/discord/guilds').subscribe(data => {
       this.guilds = { loading: false, content: data };
       this.showGuilds = data;
-    }, () => {
+    }, error => {
+      console.error(error);
       this.guilds.loading = false;
-      this.toastr.error('Failed to load guilds.');
+      this.toastr.error(this.translator.instant('GuildDialog.FailedToLoadGuilds'));
     });
   }
 
@@ -92,9 +94,11 @@ export class GuildAddComponent implements OnInit {
     this.searchGuilds = '';
     this.selectedGuild = this.guilds.content?.find(x => x.id === id) as Guild;
     this.selectedGuildDetails = { loading: true, content: undefined };
-    this.api.getSimpleData(`/discord/guilds/${id}`).subscribe((data) => {
+    this.api.getSimpleData(`/discord/guilds/${id}`).subscribe((data: Guild) => {
+      data.roles = data.roles.sort((a, b) => (a.position < b.position) ? 1 : -1);
       this.selectedGuildDetails = { loading: false, content: data };
-    }, () => {
+    }, error => {
+      console.error(error);
       this.selectedGuildDetails.loading = false;
     });
   }
@@ -105,7 +109,7 @@ export class GuildAddComponent implements OnInit {
       `https://discord.com/oauth2/authorize?client_id=${this.clientId}&permissions=8&scope=bot%20applications.commands&guild_id=${this.selectedGuild?.id}`,
       "Secure Payment", "status=yes;width=150,height=400");
     if (win === null) {
-      this.toastr.error("Failed to open invite window.");
+      this.toastr.error(this.translator.instant('GuildDialog.FailedInviteWindow'));
       return;
     }
     var timer = setInterval(function(callback: any, id: string, context: any) {
@@ -129,12 +133,13 @@ export class GuildAddComponent implements OnInit {
       publishModeratorInfo: (this.configGroup.value?.publishModeratorInfo !== '' ? this.configGroup.value?.publishModeratorInfo : false) ?? false
     }
 
-    this.api.postSimpleData('/guilds/', data).subscribe((data) => {
-      this.toastr.success('Guild created');
+    this.api.postSimpleData('/guilds/', data).subscribe(() => {
+      this.toastr.success(this.translator.instant('GuildDialog.GuildCreated'));
       this.authService.resetCache();
       this.router.navigate(['guilds']);
-    }, (error) => {
-      this.toastr.error('Cannot register guild.', 'Something went wrong.');
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('GuildDialog.FailedToRegisterGuild'));
     })
   }
 

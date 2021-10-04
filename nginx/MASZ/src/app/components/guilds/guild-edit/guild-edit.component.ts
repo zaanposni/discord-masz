@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { Guild } from 'src/app/models/Guild';
@@ -19,10 +20,10 @@ export class GuildEditComponent implements OnInit {
   public modRolesGroup!: FormGroup;
   public muteRolesGroup!: FormGroup;
   public configGroup!: FormGroup;
-  
+
   public currentGuild: ContentLoading<Guild> = { loading: true, content: {} as Guild }
   public currentGuildConfig: ContentLoading<GuildConfig> = { loading: true, content: {} as GuildConfig }
-  constructor(private api: ApiService, private route: ActivatedRoute, private router: Router, private toastr: ToastrService, private _formBuilder: FormBuilder) { }
+  constructor(private api: ApiService, private route: ActivatedRoute, private router: Router, private toastr: ToastrService, private _formBuilder: FormBuilder, private translator: TranslateService) { }
 
   ngOnInit(): void {
     this.adminRolesGroup = this._formBuilder.group({
@@ -41,26 +42,28 @@ export class GuildEditComponent implements OnInit {
       executeWhoisOnJoin: [''],
       publishModeratorInfo: ['']
     });
-    
+
     const guildId = this.route.snapshot.paramMap.get('guildid');
     this.loadGuild(guildId);
     this.loadConfig(guildId);
   }
-  
+
   generateRoleColor(role: GuildRole): string {
     return '#' + role.color.toString(16);
   }
-  
+
   loadGuild(id: string|null) {
     this.currentGuild = { loading: true, content: {} as Guild };
-    this.api.getSimpleData(`/discord/guilds/${id}`).subscribe((data) => {
+    this.api.getSimpleData(`/discord/guilds/${id}`).subscribe((data: Guild) => {
+      data.roles = data.roles.sort((a, b) => (a.position < b.position) ? 1 : -1);
       this.currentGuild = { loading: false, content: data };
-    }, () => { 
+    }, error => {
+      console.error(error);
       this.currentGuild.loading = false;
-      this.toastr.error('Failed to load current guild info.');
+      this.toastr.error(this.translator.instant('GuildDialog.FailedToLoadCurrentGuild'));
     });
   }
-  
+
   loadConfig(id: string|null) {
     this.currentGuildConfig = { loading: true, content: {} as GuildConfig };
     this.api.getSimpleData(`/guilds/${id}`).subscribe((data: GuildConfig) => {
@@ -75,9 +78,10 @@ export class GuildEditComponent implements OnInit {
         publishModeratorInfo: data.publishModeratorInfo
       });
       this.currentGuildConfig = { loading: false, content: data };
-    }, () => {
+    }, error => {
+      console.error(error);
       this.currentGuildConfig.loading = false;
-      this.toastr.error('Failed to load current guild config.');
+      this.toastr.error(this.translator.instant('GuildDialog.FailedToLoadCurrentGuild'));
     });
   }
 
@@ -93,11 +97,12 @@ export class GuildEditComponent implements OnInit {
       publishModeratorInfo: (this.configGroup.value?.publishModeratorInfo !== '' ? this.configGroup.value?.publishModeratorInfo : false) ?? false
     }
 
-    this.api.putSimpleData(`/guilds/${this.currentGuild?.content?.id}`, data).subscribe((data) => {
-      this.toastr.success('Guild updated.');
+    this.api.putSimpleData(`/guilds/${this.currentGuild?.content?.id}`, data).subscribe(() => {
+      this.toastr.success(this.translator.instant('GuildDialog.GuildUpdated'));
       this.router.navigate(['guilds']);
-    }, (error) => {
-      this.toastr.error('Cannot update guild.', 'Something went wrong.');
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('GuildDialog.FailedToUpdateGuild'));
     })
   }
 }

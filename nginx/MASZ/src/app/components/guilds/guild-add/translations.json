@@ -1,0 +1,163 @@
+{
+    "namespace": "GuildDialog",
+    "AddAGuild": {
+        "description": "Add a guild",
+        "en": "Add a guild",
+        "de": "Gilde hinzufügen"
+    },
+    "SearchAGuild": {
+        "description": "Search a guild",
+        "en": "Search a guild",
+        "de": "Gilde suchen"
+    },
+    "SelectAnotherGuild": {
+        "description":" Select a guild",
+        "en": "Select a guild",
+        "de": "Wähle eine andere Gilde"
+    },
+    "InviteFirst": {
+        "description": "you need to invite the bot to this guild first",
+        "en": "You need to invite the bot first!",
+        "de": "Du musst den Bot zuerst einladen!"
+    },
+    "Invite": {
+        "description": "invite button",
+        "en": "Invite",
+        "de": "Einladen"
+    },
+    "Back": {
+        "description": "Back button",
+        "en": "Back",
+        "de": "Zurück"
+    },
+    "Next": {
+        "description": "Next button",
+        "en": "Next",
+        "de": "Nächster Schritt"
+    },
+    "StepAdminRoles": {
+        "description": "Select admin roles step of dialog",
+        "en": "Select admin roles",
+        "de": "Auswahl der Adminrollen"
+    },
+    "AdminRoles": {
+        "description": "Admin roles select",
+        "en": "Admin roles",
+        "de": "Adminrollen"
+    },
+    "StepModeratorRoles": {
+        "description": "Select moderator roles step of dialog",
+        "en": "Select moderator roles",
+        "de": "Auswahl der Moderatorrollen"
+    },
+    "ModeratorRoles": {
+        "description": "Moderator roles select",
+        "en": "Moderator roles",
+        "de": "Moderatorrollen"
+    },
+    "StepMutedRoles": {
+        "description": "Select muted roles step of dialog",
+        "en": "Select muted roles",
+        "de": "Auswahl der Stummrollen"
+    },
+    "MutedRoles": {
+        "description": "Muted roles select",
+        "en": "Muted roles",
+        "de": "Stummschaltungsrollen"
+    },
+    "StepFurtherConfiguration": {
+        "description": "Select further configuration step of dialog",
+        "en": "Select further configuration",
+        "de": "Weitere Konfiguration"
+    },
+    "InternalStaffWebhook": {
+        "description": "field to add internal notification webhook",
+        "en": "Internal staff notification webhook",
+        "de": "Internen Notifikations-Webhook"
+    },
+    "PublicWebhook": {
+        "description": "field to add public notification webhook",
+        "en": "Public member notification webhook",
+        "de": "Öffentlicher Notifikations-Webhook"
+    },
+    "StrictPermissionCheckbox": {
+        "description": "Checkbox to enable strict permission mode",
+        "en": "Strict permission check",
+        "de": "Genaue Berechtigungskontrolle"
+    },
+    "StrictPermissionDetails": {
+        "description": "details of strict permission mode",
+        "en": "A moderator needs kick/ban permissions on discord to create kick/ban modcases",
+        "de": "Ein Moderator benötigt Kick/Ban Rechte auf Discord um Kick/Ban-Modkäufe zu erstellen"
+    },
+    "ExecuteWhois": {
+        "description": "Execute whois checkbox",
+        "en": "Execute whois on member join",
+        "de": "Whois automatisch ausführen bei neuen Mitgliedern"
+    },
+    "WhoisDetails": {
+        "description": "details of whois mode",
+        "en": "Automatically sends information about the joined user to your internal webhook.",
+        "de": "Sendet automatisch Informationen über den neuen Benutzer an deinen internen Webhook."
+    },
+    "PublishModerator": {
+        "description": "publish moderator info checkbox",
+        "en": "Publish moderator information",
+        "de": "Veröffentliche Moderatorinformationen"
+    },
+    "PublishModeratorDetails": {
+        "description": "details of publish moderator mode",
+        "en": "A suspect will be able to see which moderator punished him.",
+        "de": "Ein Verdächtiger wird in der Lage sein, zu sehen, welcher Moderator ihn verurteilt hat."
+    },
+    "Done": {
+        "description": "Done",
+        "en": "Done",
+        "de": "Fertig"
+    },
+    "RegisterGuild": {
+        "description": "button to reigster guild",
+        "en": "Register guild",
+        "de": "Gilde registrieren"
+    },
+    "UpdateGuild": {
+        "description": "button to update guild",
+        "en": "Update guild",
+        "de": "Gilde aktualisieren"
+    },
+    "FailedToLoadGuilds": {
+        "description": "Failed to load guilds",
+        "en": "Failed to load guilds.",
+        "de": "Gilden konnten nicht geladen werden."
+    },
+    "FailedToLoadCurrentGuild": {
+        "description": "Failed to load current guild",
+        "en": "Failed to load current guild info.",
+        "de": "Gildeninformation konnte nicht geladen werden."
+    },
+    "FailedInviteWindow": {
+        "description": "failed to open invite window",
+        "en": "Failed to open invite window.",
+        "de": "Einladung konnte nicht gestartet werden."
+    },
+    "FailedToRegisterGuild": {
+        "description": "failed to register guild",
+        "en": "Failed to register guild.",
+        "de": "Gilde konnte nicht registriert werden."
+    },
+    "FailedToUpdateGuild": {
+        "description": "failed to update guild",
+        "en": "Failed to update guild.",
+        "de": "Gilde konnte nicht aktualisiert werden."
+    },
+    "GuildCreated": {
+        "description": "Guild created",
+        "en": "Guild created",
+        "de": "Gilde registriert"
+    },
+    "GuildUpdated": {
+        "description": "Guild updated",
+        "en": "Guild updated",
+        "de": "Gilde aktualisiert"
+    }
+}
