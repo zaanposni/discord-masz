@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CommentListViewEntry } from 'src/app/models/CommentListViewEntry';
+import { ICommentListTableViewEntry } from 'src/app/models/ICommentListTableViewEntry';
 
 @Component({
   selector: 'app-comments-card-compact',
@@ -8,7 +8,7 @@ import { CommentListViewEntry } from 'src/app/models/CommentListViewEntry';
 })
 export class CommentsCardCompactComponent implements OnInit {
 
-  @Input() entry!: CommentListViewEntry;
+  @Input() entry!: ICommentListTableViewEntry;
   constructor() { }
 
   ngOnInit(): void {

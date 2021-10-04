@@ -1,4 +1,4 @@
-<a class="font-weight-bold" routerLink="/guilds/{{entry.comment.modCase?.guildId }}/cases/{{ entry.comment.modCase?.caseId }}">
+<a class="font-weight-bold" routerLink="/guilds/{{entry.guildId }}/cases/{{ entry.caseId }}">
     <div class="card-container">
         <div class="card-container-body d-flex flex-column flex-wrap">
             <div class="d-flex flex-row flex-wrap">
@@ -17,8 +17,10 @@
                     <!-- Title -->
                     <div>
                         <span title="{{ entry.comment.modCase?.title }}" class="mat-h2 mb-0">
-                            <ng-container *ngIf="entry.commentor">{{ entry.commentor?.username }}#{{ entry.commentor?.discriminator }} in case </ng-container>#{{ entry.comment.modCase?.caseId }}<br/>
+                            #{{ entry.caseId }}
+                            <ng-container *ngIf="entry.commentor">{{ entry.commentor?.username }}#{{ entry.commentor?.discriminator }} </ng-container>
                         </span>
+                        <br/>
                         <span title="{{ entry.comment.message }}" class="mat-h4 mb-0">
                             {{ entry.comment.message.length > 40 ? entry.comment.message.slice(0, 40) + ' [...]' : entry.comment.message }}
                         </span>

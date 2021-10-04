@@ -99,7 +99,12 @@ namespace masz.Controllers
 
             List<CommentExpandedView> view = new List<CommentExpandedView>();
             foreach (ModCaseComment comment in await ModCaseCommentRepository.CreateDefault(_serviceProvider, identity).GetLastCommentsByGuild(guildId)) {
-                view.Add(new CommentExpandedView(comment, await _discordAPI.FetchUserInfo(comment.UserId, CacheBehavior.OnlyCache)));
+                view.Add(new CommentExpandedTableView(
+                    comment,
+                    await _discordAPI.FetchUserInfo(comment.UserId, CacheBehavior.OnlyCache),
+                    guildId,
+                    comment.ModCase.CaseId
+                ));
             }
 
             return Ok(view);
