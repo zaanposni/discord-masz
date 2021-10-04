@@ -12,7 +12,7 @@ import { NgxMatDateAdapter } from '@angular-material-components/datetime-picker'
 })
 export class DatePickerComponent implements OnInit {
 
-  date: Date = new Date();
+  date?: Date = undefined;
   currentTimezone: string = DEFAULT_TIMEZONE;
   invertedCurrentTimezone: string = DEFAULT_TIMEZONE;
 
