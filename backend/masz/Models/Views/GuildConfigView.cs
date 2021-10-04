@@ -1,5 +1,5 @@
 using System.Linq;
-using masz.Translations;
+using masz.Enums;
 
 namespace masz.Models.Views
 {

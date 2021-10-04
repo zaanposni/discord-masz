@@ -2,12 +2,8 @@ using System;
 using System.Collections.Generic;
 using masz.Dtos.Enum;
 using masz.Enums;
-using masz.Models;
-using masz.Services;
-using masz.Translations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace masz.Controllers
 {

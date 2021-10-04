@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using masz.Models;
+using masz.Enums;
 using masz.Translations;
 
 namespace masz.Services

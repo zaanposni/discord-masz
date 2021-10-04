@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using masz.Models;
+using masz.Enums;
 using masz.Repositories;
 using masz.Translations;
 using Microsoft.Extensions.Logging;

@@ -1643,6 +1643,106 @@ namespace masz.Translations
             }
             return "Unknown";
         }
+        public string Enum(masz.Enums.CaseCreationType enumValue) {
+            switch (enumValue) {
+                case masz.Enums.CaseCreationType.Default:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Default";
+                        case Language.de:
+                            return "Default";
+                        default:
+                            return "Default";
+                    }
+                case masz.Enums.CaseCreationType.AutoModeration:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Case is automoderated.";
+                        case Language.de:
+                            return "Vorfall wurde durch Automoderation erstellt.";
+                        default:
+                            return "Case is automoderated.";
+                    }
+                case masz.Enums.CaseCreationType.Imported:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Case is imported.";
+                        case Language.de:
+                            return "Vorfall wurde importiert.";
+                        default:
+                            return "Case is imported.";
+                    }
+                case masz.Enums.CaseCreationType.ByCommand:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Case created by command.";
+                        case Language.de:
+                            return "Vorfall durch Befehl erstellt.";
+                        default:
+                            return "Case created by command.";
+                    }
+            }
+            return "Unknown";
+        }
+        public string Enum(masz.Enums.Language enumValue) {
+            switch (enumValue) {
+                case masz.Enums.Language.en:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "English";
+                        case Language.de:
+                            return "Englisch";
+                        default:
+                            return "English";
+                    }
+                case masz.Enums.Language.de:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "German";
+                        case Language.de:
+                            return "Deutsch";
+                        default:
+                            return "German";
+                    }
+                case masz.Enums.Language.fr:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "French";
+                        case Language.de:
+                            return "Französisch";
+                        default:
+                            return "French";
+                    }
+                case masz.Enums.Language.es:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Spanish";
+                        case Language.de:
+                            return "Spanisch";
+                        default:
+                            return "Spanish";
+                    }
+                case masz.Enums.Language.it:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Italian";
+                        case Language.de:
+                            return "Italienisch";
+                        default:
+                            return "Italian";
+                    }
+                case masz.Enums.Language.at:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Austrian";
+                        case Language.de:
+                            return "Österreich";
+                        default:
+                            return "Austrian";
+                    }
+            }
+            return "Unknown";
+        }
 
     }
 }

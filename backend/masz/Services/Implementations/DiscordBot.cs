@@ -69,7 +69,7 @@ namespace masz.Services
                 Services = serviceProvider
             });
 
-            ulong? debugGuild = null;  // set your guild id here to enable fast syncing debug commands
+            ulong? debugGuild = 748943581523345639;  // set your guild id here to enable fast syncing debug commands
 
             slash.RegisterCommands<ReportCommand>(debugGuild);
             slash.RegisterCommands<PunishmentCommand>(debugGuild);

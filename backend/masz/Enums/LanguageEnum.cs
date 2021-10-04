@@ -1,4 +1,4 @@
-namespace masz.Translations
+namespace masz.Enums
 {
     public enum Language
     {

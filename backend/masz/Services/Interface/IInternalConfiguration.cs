@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using masz.Translations;
+using masz.Enums;
 
 namespace masz.Services
 {
