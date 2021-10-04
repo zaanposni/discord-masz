@@ -272,17 +272,17 @@
         "AutoModeration": {
             "description": "Case is automoderated.",
             "en": "Case is automoderated.",
-            "de": "Vorfall wurde durch Automoderation erstellt."
+            "de": "Automoderiert."
         },
         "Imported": {
             "description": "Case is imported.",
             "en": "Case is imported.",
-            "de": "Vorfall wurde importiert."
+            "de": "Importiert."
         },
         "ByCommand": {
             "description": "Case created by command.",
             "en": "Case created by command.",
-            "de": "Vorfall durch Befehl erstellt."
+            "de": "Durch Befehl erstellt."
         }
     },
     "Language": {

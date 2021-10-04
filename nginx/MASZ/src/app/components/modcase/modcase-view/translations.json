@@ -1,0 +1,263 @@
+{
+    "namespace": "ModCaseView",
+    "Suspect": {
+        "description": "The suspect",
+        "en": "Suspect",
+        "de": "Verdächtiger"
+    },
+    "ID": {
+        "description": "the ID (identifier) of an object",
+        "en": "ID",
+        "de": "ID"
+    },
+    "Moderator": {
+        "description": "The moderator",
+        "en": "Moderator",
+        "de": "Moderator"
+    },
+    "Punishment": {
+        "description": "The punishment",
+        "en": "Punishment",
+        "de": "Bestrafung"
+    },
+    "Guild": {
+        "description": "The guild",
+        "en": "Guild",
+        "de": "Gilde"
+    },
+    "PunishedUntil": {
+        "description": "punished until {date}",
+        "en": "Punished until:",
+        "de": "Bestraft bis:"
+    },
+    "PunishedForever": {
+        "description": "punished forever",
+        "en": "Punished forever",
+        "de": "Bestraft für immer"
+    },
+    "PunishmentExpired": {
+        "description": "punishment expired",
+        "en": "Punishment is expired.",
+        "de": "Bestrafung ist ausgelaufen"
+    },
+    "CreatedAt": {
+        "description": "created at",
+        "en": "Created at",
+        "de": "Erstellt am"
+    },
+    "EditedAt": {
+        "description": "edited at",
+        "en": "Edited at",
+        "de": "Aktualisiert"
+    },
+    "LastEditModerator": {
+        "description": "last edit by moderator x",
+        "en": "Last edit by moderator",
+        "de": "Aktualisiert von"
+    },
+    "Description": {
+        "description": "description",
+        "en": "Description",
+        "de": "Beschreibung"
+    },
+    "UploadedFiles": {
+        "description": "uploaded files",
+        "en": "Uploaded files",
+        "de": "Hochgeladene Dateien"
+    },
+    "Upload": {
+        "description": "upload button",
+        "en": "Upload",
+        "de": "Upload"
+    },
+    "Comments": {
+        "description": "Comments",
+        "en": "Comments",
+        "de": "Kommentare"
+    },
+    "NewComment": {
+        "description": "New comment field",
+        "en": "New comment",
+        "de": "Neue Kommentare"
+    },
+    "LockComments": {
+        "description": "lock comments",
+        "en": "Lock comments",
+        "de": "Kommentare sperren"
+    },
+    "UnlockComments": {
+        "description": "unlock comments",
+        "en": "Unlock comments",
+        "de": "Kommentare freigeben"
+    },
+    "PostComment": {
+        "description": "post comment",
+        "en": "Post comment",
+        "de": "Kommentar absenden"
+    },
+    "CaseMarkedToDelete": {
+        "description": "case marked to be deleted by user y at x date",
+        "en": "Marked to be deleted - {{user}}",
+        "de": "Zum Löschen markiert - {{user}}"
+    },
+    "CommentsLocked": {
+        "description": "case comments locked by user y",
+        "en": "Comments locked - {{user}}",
+        "de": "Kommentare gesperrt - {{user}}"
+    },
+    "Restore": {
+        "description": "restore button",
+        "en": "Restore",
+        "de": "Wiederherstellen"
+    },
+    "View": {
+        "description": "View file",
+        "en": "View",
+        "de": "Einsehen"
+    },
+    "Delete": {
+        "description": "delete button",
+        "en": "Delete",
+        "de": "Löschen"
+    },
+    "Moderators": {
+        "description": "moderators",
+        "en": "Moderators",
+        "de": "Moderatoren"
+    },
+    "FailedToLoad": {
+        "Punishments": {
+            "description": "punishments",
+            "en": "Failed to load available punishments.",
+            "de": "Verfügbare Bestrafungen konnten nicht geladen werden."
+        },
+        "Files": {
+            "description": "files",
+            "en": "Failed to load files.",
+            "de": "Dateien konnten nicht geladen werden."
+        },
+        "Guild": {
+            "description": "Guild info",
+            "en": "Failed to load guild info.",
+            "de": "Gildeninformationen konnten nicht geladen werden."
+        },
+        "Case": {
+            "description": "Case",
+            "en": "Failed to load case.",
+            "de": "Vorfall konnte nicht geladen werden."
+        }
+    },
+    "DeleteCase": {
+        "Deleted": {
+            "description": "deleted",
+            "en": "Case marked to be deleted.",
+            "de": "Vorfall zum Löschen vormarkiert."
+        },
+        "ForceDeleted": {
+            "description": "force deleted",
+            "en": "Case deleted.",
+            "de": "Vorfall gelöscht."
+        },
+        "Failed": {
+            "description": "failed delete",
+            "en": "Failed to delete case.",
+            "de": "Vorfall konnte nicht gelöscht werden."
+        }
+    },
+    "RestoreCase": {
+        "Restored": {
+            "description": "restored",
+            "en": "Restored case.",
+            "de": "Vorfall wiederhergestellt."
+        },
+        "Failed": {
+            "description": "failed restore",
+            "en": "Failed to restore case.",
+            "de": "Vorfall konnte nicht wiederhergestellt werden."
+        }
+    },
+    "FileUpload": {
+        "Uploaded": {
+            "description": "file uploaded",
+            "en": "File uploaded.",
+            "de": "Datei hochgeladen"
+        },
+        "Failed": {
+            "description": "failed upload",
+            "en": "Failed to upload ffile.",
+            "de": "Datei konnte nicht hochgeladen werden."
+        }
+    },
+    "FileDelete": {
+        "Deleted": {
+            "description": "File deleted",
+            "en": "File deleted.",
+            "de": "Datei gelöscht."
+        },
+        "Failed": {
+            "description": "Failed to file delete",
+            "en": "Failed to delete file",
+            "de": "Datei konnte nicht gelöscht werden."
+        }
+    },
+    "CommentDelete": {
+        "Deleted": {
+            "description": "comment deleted",
+            "en": "Comment deleted.",
+            "de": "Kommentar gelöscht."
+        },
+        "Failed": {
+            "description": "Failed to comment delete",
+            "en": "Failed to delete comment",
+            "de": "Kommentar konnte nicht gelöscht werden."
+        }
+    },
+    "CommentLock": {
+        "Locked": {
+            "description": "comment locked",
+            "en": "Comments locked.",
+            "de": "Kommentare gesperrt."
+        },
+        "Failed": {
+            "description": "Failed to comment lock",
+            "en": "Failed to lock comments",
+            "de": "Kommentare konnte nicht gesperrt werden."
+        }
+    },
+    "CommentUnlock": {
+        "Unlocked": {
+            "description": "comment unlocked",
+            "en": "Comments unlocked.",
+            "de": "Kommentare freigegeben."
+        },
+        "Failed": {
+            "description": "Failed to comment unlock",
+            "en": "Failed to unlock comments",
+            "de": "Kommentare konnte nicht freigegeben werden."
+        }
+    },
+    "CommentPost": {
+        "Posted": {
+            "description": "comment posted",
+            "en": "Comment posted.",
+            "de": "Kommentar gespeichert."
+        },
+        "Failed": {
+            "description": "Failed to comment post",
+            "en": "Failed to post comment",
+            "de": "Kommentar konnte nicht gespeichert werden."
+        }
+    },
+    "CommentUpdate": {
+        "Updated": {
+            "description": "comment updated",
+            "en": "Comment updated.",
+            "de": "Kommentar aktualisiert."
+        },
+        "Failed": {
+            "description": "Failed to comment update",
+            "en": "Failed to update comment",
+            "de": "Kommentar konnte nicht aktualisiert werden."
+        }
+    }
+}

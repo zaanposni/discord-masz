@@ -1,4 +1,4 @@
-import { CommentView } from "./CommentView";
+import { CommentListViewEntry } from "./CommentListViewEntry";
 import { DiscordUser } from "./DiscordUser";
 import { ModCase } from "./ModCase";
 
@@ -9,6 +9,6 @@ export interface CaseView {
     suspect?: DiscordUser;
     lockedBy?: DiscordUser;
     deletedBy?: DiscordUser;
-    comments: CommentView[];
+    comments: CommentListViewEntry[];
     punishmentProgress?: number;
 }

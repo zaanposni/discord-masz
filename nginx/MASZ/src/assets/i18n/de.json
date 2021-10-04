@@ -241,5 +241,75 @@
         "Created": "Erstellt:",
         "Until": "Bis:",
         "Delete": "Löschen:"
+    },
+    "ModCaseView": {
+        "Suspect": "Verdächtiger",
+        "ID": "ID",
+        "Moderator": "Moderator",
+        "Punishment": "Bestrafung",
+        "Guild": "Gilde",
+        "PunishedUntil": "Bestraft bis:",
+        "PunishedForever": "Bestraft für immer",
+        "PunishmentExpired": "Bestrafung ist ausgelaufen",
+        "CreatedAt": "Erstellt am",
+        "EditedAt": "Aktualisiert",
+        "LastEditModerator": "Aktualisiert von",
+        "Description": "Beschreibung",
+        "UploadedFiles": "Hochgeladene Dateien",
+        "Upload": "Upload",
+        "Comments": "Kommentare",
+        "NewComment": "Neue Kommentare",
+        "LockComments": "Kommentare sperren",
+        "UnlockComments": "Kommentare freigeben",
+        "PostComment": "Kommentar absenden",
+        "CaseMarkedToDelete": "Zum Löschen markiert - {{user}}",
+        "CommentsLocked": "Kommentare gesperrt - {{user}}",
+        "Restore": "Wiederherstellen",
+        "View": "Einsehen",
+        "Delete": "Löschen",
+        "Moderators": "Moderatoren",
+        "FailedToLoad": {
+            "Punishments": "Verfügbare Bestrafungen konnten nicht geladen werden.",
+            "Files": "Dateien konnten nicht geladen werden.",
+            "Guild": "Gildeninformationen konnten nicht geladen werden.",
+            "Case": "Vorfall konnte nicht geladen werden."
+        },
+        "DeleteCase": {
+            "Deleted": "Vorfall zum Löschen vormarkiert.",
+            "ForceDeleted": "Vorfall gelöscht.",
+            "Failed": "Vorfall konnte nicht gelöscht werden."
+        },
+        "RestoreCase": {
+            "Restored": "Vorfall wiederhergestellt.",
+            "Failed": "Vorfall konnte nicht wiederhergestellt werden."
+        },
+        "FileUpload": {
+            "Uploaded": "Datei hochgeladen",
+            "Failed": "Datei konnte nicht hochgeladen werden."
+        },
+        "FileDelete": {
+            "Deleted": "Datei gelöscht.",
+            "Failed": "Datei konnte nicht gelöscht werden."
+        },
+        "CommentDelete": {
+            "Deleted": "Kommentar gelöscht.",
+            "Failed": "Kommentar konnte nicht gelöscht werden."
+        },
+        "CommentLock": {
+            "Locked": "Kommentare gesperrt.",
+            "Failed": "Kommentare konnte nicht gesperrt werden."
+        },
+        "CommentUnlock": {
+            "Unlocked": "Kommentare freigegeben.",
+            "Failed": "Kommentare konnte nicht freigegeben werden."
+        },
+        "CommentPost": {
+            "Posted": "Kommentar gespeichert.",
+            "Failed": "Kommentar konnte nicht gespeichert werden."
+        },
+        "CommentUpdate": {
+            "Updated": "Kommentar aktualisiert.",
+            "Failed": "Kommentar konnte nicht aktualisiert werden."
+        }
     }
 }

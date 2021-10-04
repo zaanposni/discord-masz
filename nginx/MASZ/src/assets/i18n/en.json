@@ -241,5 +241,75 @@
         "Created": "Created:",
         "Until": "Until:",
         "Delete": "Delete:"
+    },
+    "ModCaseView": {
+        "Suspect": "Suspect",
+        "ID": "ID",
+        "Moderator": "Moderator",
+        "Punishment": "Punishment",
+        "Guild": "Guild",
+        "PunishedUntil": "Punished until:",
+        "PunishedForever": "Punished forever",
+        "PunishmentExpired": "Punishment is expired.",
+        "CreatedAt": "Created at",
+        "EditedAt": "Edited at",
+        "LastEditModerator": "Last edit by moderator",
+        "Description": "Description",
+        "UploadedFiles": "Uploaded files",
+        "Upload": "Upload",
+        "Comments": "Comments",
+        "NewComment": "New comment",
+        "LockComments": "Lock comments",
+        "UnlockComments": "Unlock comments",
+        "PostComment": "Post comment",
+        "CaseMarkedToDelete": "Marked to be deleted - {{user}}",
+        "CommentsLocked": "Comments locked - {{user}}",
+        "Restore": "Restore",
+        "View": "View",
+        "Delete": "Delete",
+        "Moderators": "Moderators",
+        "FailedToLoad": {
+            "Punishments": "Failed to load available punishments.",
+            "Files": "Failed to load files.",
+            "Guild": "Failed to load guild info.",
+            "Case": "Failed to load case."
+        },
+        "DeleteCase": {
+            "Deleted": "Case marked to be deleted.",
+            "ForceDeleted": "Case deleted.",
+            "Failed": "Failed to delete case."
+        },
+        "RestoreCase": {
+            "Restored": "Restored case.",
+            "Failed": "Failed to restore case."
+        },
+        "FileUpload": {
+            "Uploaded": "File uploaded.",
+            "Failed": "Failed to upload ffile."
+        },
+        "FileDelete": {
+            "Deleted": "File deleted.",
+            "Failed": "Failed to delete file"
+        },
+        "CommentDelete": {
+            "Deleted": "Comment deleted.",
+            "Failed": "Failed to delete comment"
+        },
+        "CommentLock": {
+            "Locked": "Comments locked.",
+            "Failed": "Failed to lock comments"
+        },
+        "CommentUnlock": {
+            "Unlocked": "Comments unlocked.",
+            "Failed": "Failed to unlock comments"
+        },
+        "CommentPost": {
+            "Posted": "Comment posted.",
+            "Failed": "Failed to post comment"
+        },
+        "CommentUpdate": {
+            "Updated": "Comment updated.",
+            "Failed": "Failed to update comment"
+        }
     }
 }

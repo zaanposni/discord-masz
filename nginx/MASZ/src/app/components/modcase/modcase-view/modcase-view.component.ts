@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
@@ -47,7 +48,18 @@ export class ModcaseViewComponent implements OnInit {
   public modCase: ContentLoading<CaseView> = { loading: true, content: undefined };
   public punishments: ContentLoading<APIEnum[]> = { loading: true, content: [] };
   public punishment: string = "Unknown";
-  constructor(private route: ActivatedRoute, private auth: AuthService, private toastr: ToastrService, private api: ApiService, public router: Router, private _formBuilder: FormBuilder, private dialog: MatDialog, private enumManager: EnumManagerService) { }
+
+  public creationTypes: APIEnum[] = [];
+  public creationType = "";
+
+  public markedDeleteParams = {
+    user: ""
+  };
+  public lockedCommentsParams = {
+    user: ""
+  };
+
+  constructor(private route: ActivatedRoute, private auth: AuthService, private toastr: ToastrService, private api: ApiService, public router: Router, private _formBuilder: FormBuilder, private dialog: MatDialog, private enumManager: EnumManagerService, private translator: TranslateService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -75,28 +87,40 @@ export class ModcaseViewComponent implements OnInit {
     this.reloadGuild();
     this.reloadPunishmentEnum();
     this.reloadFiles();
+    this.reloadCreationTypes();
+  }
+
+  private reloadCreationTypes() {
+    this.enumManager.getEnum(APIEnumTypes.CASECREATIONTYPE).subscribe((data) => {
+      this.creationTypes = data;
+      this.creationType = data?.find(x => x.key == this.modCase.content?.modCase?.creationType)?.value ?? '';
+    }, error => {
+      console.error(error);
+    });
   }
 
   private reloadPunishmentEnum() {
     this.punishments = { loading: true, content: [] };
-    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe((data) => {
+    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe(data => {
       this.punishments.loading = false;
       this.punishments.content = data;
       this.punishment = convertModcaseToPunishmentString(this.modCase.content?.modCase, this.punishments?.content);
-    }, () => {
+    }, error => {
+      console.error(error);
       this.punishments.loading = false;
-      this.toastr.error("Failed to load punishments.");
+      this.toastr.error(this.translator.instant('ModCaseView.FailedToLoad.Punishments'));
     });
   }
 
   private reloadFiles() {
     this.files.loading = true;
-    this.api.getSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/files`).subscribe((data) => {
+    this.api.getSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/files`).subscribe(data => {
       this.filesSubject$.next(data);
       this.files.loading = false;
-    }, () => {
+    }, error => {
+      console.error(error);
       this.files.loading = false;
-      this.toastr.error("Failed to load files.");
+      this.toastr.error(this.translator.instant('ModCaseView.FailedToLoad.Files'));
     });
   }
 
@@ -116,20 +140,27 @@ export class ModcaseViewComponent implements OnInit {
       this.currentGuild.loading = false;
     }, () => {
       this.currentGuild.loading = false;
-      this.toastr.error("Failed to load guild info.");
+      this.toastr.error(this.translator.instant('ModCaseView.FailedToLoad.Guild'));
     });
   }
 
   private reloadCase() {
     this.modCase = { loading: true, content: undefined };
-    this.api.getSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/view`).subscribe((data) => {
+    this.api.getSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/view`).subscribe((data: CaseView) => {
       this.modCase.content = data;
       this.renderedDescription = this.renderDescription(data.modCase.description, this.guildId)
       this.punishment = convertModcaseToPunishmentString(this.modCase.content?.modCase, this.punishments?.content);
+      this.markedDeleteParams = {
+        user: data.deletedBy ? `${data.deletedBy.username}#${data.deletedBy.discriminator}` : this.translator.instant('ModCaseView.Moderators')
+      };
+      this.lockedCommentsParams = {
+        user: data.lockedBy ? `${data.lockedBy.username}#${data.lockedBy.discriminator}` : this.translator.instant('ModCaseView.Moderators')
+      }
       this.modCase.loading = false;
-    }, () => {
+    }, error => {
+      console.error(error);
       this.modCase.loading = false;
-      this.toastr.error("Failed to load case.");
+      this.toastr.error(this.translator.instant('ModCaseView.FailedToLoad.Case'));
     });
   }
 
@@ -151,14 +182,15 @@ export class ModcaseViewComponent implements OnInit {
 
         this.api.deleteData(`/guilds/${this.guildId}/cases/${this.caseId}`, params).subscribe(() => {
           if (caseDeleteConfig.forceDelete) {
-            this.toastr.success("Case deleted.");
+            this.toastr.success(this.translator.instant('ModCaseView.DeleteCase.ForceDeleted'));
             this.router.navigate(['guilds', this.guildId]);
           } else {
-            this.toastr.success("Case marked to be deleted.");
+            this.toastr.success(this.translator.instant('ModCaseView.DeleteCase.Deleted'));
             this.reloadCase();
           }
-        }, () => {
-          this.toastr.error("Failed to delete case.");
+        }, error => {
+          console.error(error);
+          this.toastr.error(this.translator.instant('ModCaseView.DeleteCase.Failed'));
         });
       }
     });
@@ -180,53 +212,58 @@ export class ModcaseViewComponent implements OnInit {
 
   restoreCase() {
     this.restoringCase = true;
-    this.api.deleteData(`/guilds/${this.guildId}/bin/${this.caseId}/restore`).subscribe((data) => {
-      this.toastr.success("Restored case.");
+    this.api.deleteData(`/guilds/${this.guildId}/bin/${this.caseId}/restore`).subscribe(() => {
+      this.toastr.success(this.translator.instant('ModCaseView.RestoreCase.Restored'));
       this.reloadCase();
       this.restoringCase = false;
-    }, () => {
-      this.toastr.error("Failed to restore case.");
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('ModCaseView.RestoreCase.Failed'));
       this.restoringCase = false;
     });
   }
 
   deleteCaseFromBin() {
     this.restoringCase = true;
-    this.api.deleteData(`/guilds/${this.guildId}/bin/${this.caseId}/delete`).subscribe((data) => {
-      this.toastr.success("Case deleted.");
+    this.api.deleteData(`/guilds/${this.guildId}/bin/${this.caseId}/delete`).subscribe(() => {
+      this.toastr.success(this.translator.instant('ModCaseView.DeleteCase.ForceDeleted'));
       this.router.navigate(['guilds', this.guildId]);
-    }, () => {
-      this.toastr.error("Failed to delete case.");
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('ModCaseView.DeleteCase.Failed'));
       this.restoringCase = false;
     });
   }
 
   uploadFiles() {
     for (let file of this.filesToUpload.map(x => x.data)) {
-      this.api.postFile(`/guilds/${this.guildId}/cases/${this.caseId}/files`, file).subscribe((data) => {
-        this.toastr.success('File uploaded.');
+      this.api.postFile(`/guilds/${this.guildId}/cases/${this.caseId}/files`, file).subscribe(() => {
+        this.toastr.success(this.translator.instant('ModCaseView.FileUpload.Uploaded'));
         this.reloadFiles();
-      }, (error) => {
-        this.toastr.error('Failed to upload file.');
+      }, error => {
+        console.error(error);
+        this.toastr.error(this.translator.instant('ModCaseView.FileUpload.Failed'));
       });
     }
   }
 
   deleteFile(filename: string) {
-    this.api.deleteData(`/guilds/${this.guildId}/cases/${this.caseId}/files/${filename}`).subscribe((data) => {
-      this.toastr.success("File deleted.");
+    this.api.deleteData(`/guilds/${this.guildId}/cases/${this.caseId}/files/${filename}`).subscribe(() => {
+      this.toastr.success(this.translator.instant('ModCaseView.FileDelete.Deleted'));
       this.reloadFiles();
-    }, () => {
-      this.toastr.error("Failed to delete file.");
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('ModCaseView.FileDeleted.Failed'));
     });
   }
 
   deleteComment(commentId: number) {
     this.api.deleteData(`/guilds/${this.guildId}/cases/${this.caseId}/comments/${commentId}`).subscribe(() => {
-      this.toastr.success("Comment deleted");
+      this.toastr.success(this.translator.instant('ModCaseView.CommentDelete.Deleted'));
       this.reloadCase();
-    }, () => {
-      this.toastr.error("Failed to delete comment.");
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('ModCaseView.CommentDelete.Failed'));
     });
   }
 
@@ -243,10 +280,11 @@ export class ModcaseViewComponent implements OnInit {
           "message": commentDialog.message
         }
         this.api.putSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/comments/${comment.id}`, data).subscribe(() => {
-          this.toastr.success("Comment updated.");
+          this.toastr.success(this.translator.instant('ModCaseView.CommentUpdate.Updated'));
           this.reloadCase();
-        }, () => {
-          this.toastr.error("Failed to update comment.");
+        }, error => {
+          console.error(error);
+          this.toastr.error(this.translator.instant('ModCaseView.CommentUpdate.Failed'));
         });
       }
     });
@@ -260,28 +298,31 @@ export class ModcaseViewComponent implements OnInit {
 
     this.api.postSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/comments`, data).subscribe(() => {
       this.newComment = "";
-      this.toastr.success("Comment posted.");
+      this.toastr.success(this.translator.instant('ModCaseView.CommentPost.Posted'));
       this.reloadCase();
-    }, () => {
-      this.toastr.error("Failed to post comment.");
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('ModCaseView.CommentPost.Failed'));
     });
   }
 
   lockCaseComments() {
     this.api.postSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/lock`, null).subscribe(() => {
-      this.toastr.success("Locked comments.");
+      this.toastr.success(this.translator.instant('ModCaseView.CommentLock.Locked'));
       this.reloadCase();
-    }, () => {
-      this.toastr.error("Failed to lock comments.");
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('ModCaseView.CommentLock.Failed'));
     });
   }
 
   unlockCaseComments() {
     this.api.deleteData(`/guilds/${this.guildId}/cases/${this.caseId}/lock`).subscribe(() => {
-      this.toastr.success("Unlocked comments.");
+      this.toastr.success(this.translator.instant('ModCaseView.CommentUnlock.Unlocked'));
       this.reloadCase();
-    }, () => {
-      this.toastr.error("Failed to unlock comments.");
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('ModCaseView.CommentUnlock.Failed'));
     });
   }
 

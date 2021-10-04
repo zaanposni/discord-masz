@@ -41,21 +41,18 @@
                         alt="avatar"
                         height="40"
                         onerror="this.src='/assets/img/default_profile.png';" />
-                    <span *ngIf="this.modCase.content?.deletedBy">
-                        {{ this.modCase.content?.deletedBy?.username }}#{{ this.modCase.content?.deletedBy?.discriminator }}
+                    <span>
+                        {{ 'ModCaseView.CaseMarkedToDelete' | translate:markedDeleteParams }}
+                        <app-date-display [date]="this.modCase.content?.modCase?.markedToDeleteAt"></app-date-display>
                     </span>
-                    <span *ngIf="! this.modCase.content?.deletedBy">
-                        Moderators
-                    </span>
-                    marked this case to be deleted at {{ this.modCase.content?.modCase?.markedToDeleteAt | date:'dd MMMM Y' }}.
                 </span>
                 <div class="d-flex flex-row mt-1" *ngIf="isModOrHigher">
                     <div class="flex-grow-1"></div>
                     <button mat-raised-button class="align-self-end" style="background-color: green;" (click)="restoreCase()" *ngIf="!this.restoringCase">
-                        Restore
+                        {{ 'ModCaseView.Restore' | translate }}
                     </button>
                     <button mat-raised-button class="align-self-end ml-2" color="accent" (click)="deleteCaseFromBin()" *ngIf="!this.restoringCase && this.currentUser.content?.isAdmin">
-                        Delete
+                        {{ 'ModCaseView.Delete' | translate }}
                     </button>
                     <mat-spinner id="custom-green-spinner" class="align-self-end" *ngIf="this.restoringCase"></mat-spinner>
                 </div>
@@ -73,7 +70,7 @@
                     <div class="infobox bg-g-green">
                         <div class="infobox-body d-flex flex-row flex-wrap">
                             <div class="flex-grow-1 d-flex flex-column">
-                                <span class="mat-h2 mb-0 font-weight-bold">Suspect</span>
+                                <span class="mat-h2 mb-0 font-weight-bold">{{ 'ModCaseView.Suspect' | translate }}</span>
                                 <ng-container *ngIf="this.modCase.loading">
                                     <div class="waiting-for-text mb-2" style="width: 10rem"></div>
                                     <div class="waiting-for-text mb-2" style="width: 8rem"></div>
@@ -83,10 +80,10 @@
                                         {{ this.modCase.content?.suspect?.username || this.modCase.content?.modCase?.username }}#{{ this.modCase.content?.suspect?.discriminator || this.modCase.content?.modCase?.discriminator }}
                                     </span>
                                     <span class="mat-h3 mb-0" style="word-break: break-all;" *ngIf="this.modCase.content?.modCase?.nickname"
-                                    title="Users cached nickname during case creation">
-                                    {{this.modCase.content?.modCase?.nickname }}
+                                            title="Users cached nickname during case creation">
+                                        {{this.modCase.content?.modCase?.nickname }}
                                     </span>
-                                    <span class="mat-h3 mb-0 text-white-50">ID: {{this.modCase.content?.modCase?.userId }}</span>
+                                    <span class="mat-h3 mb-0 text-white-50">{{ 'ModCaseView.ID' | translate }}: {{this.modCase.content?.modCase?.userId }}</span>
                                 </ng-container>
                             </div>
                             <div class="infobox-icon">
@@ -106,14 +103,14 @@
                     <div class="infobox bg-g-orange">
                         <div class="infobox-body d-flex flex-row flex-wrap">
                             <div class="flex-grow-1 d-flex flex-column">
-                                <span class="mat-h2 mb-0 font-weight-bold">Guild</span>
+                                <span class="mat-h2 mb-0 font-weight-bold">{{ 'ModCaseView.Guild' | translate }}</span>
                                 <ng-container *ngIf="this.modCase.loading">
                                     <div class="waiting-for-text mb-2" style="width: 10rem"></div>
                                     <div class="waiting-for-text mb-2" style="width: 8rem"></div>
                                 </ng-container>
                                 <ng-container *ngIf="!this.modCase.loading">
                                     <span class="mat-h3 mb-0" style="word-break: break-all;">{{ this.currentGuild.content?.name }}</span>
-                                    <span class="mat-h3 mb-0 text-white-50">ID: {{this.modCase.content?.modCase?.guildId }}</span>
+                                    <span class="mat-h3 mb-0 text-white-50">{{ 'ModCaseView.ID' | translate }}: {{this.modCase.content?.modCase?.guildId }}</span>
                                 </ng-container>
                             </div>
                             <div class="infobox-icon">
@@ -127,7 +124,7 @@
                     <div class="infobox bg-g-red">
                         <div class="infobox-body d-flex flex-row flex-wrap">
                             <div class="flex-grow-1 d-flex flex-column">
-                                <span class="mat-h2 mb-0 font-weight-bold">Moderator</span>
+                                <span class="mat-h2 mb-0 font-weight-bold">{{ 'ModCaseView.Moderator' | translate }}</span>
                                 <ng-container *ngIf="this.modCase.loading">
                                     <div class="waiting-for-text mb-2" style="width: 10rem"></div>
                                     <div class="waiting-for-text mb-2" style="width: 8rem"></div>
@@ -136,11 +133,9 @@
                                     <span class="mat-h3 mb-0" style="word-break: break-all;">{{ this.modCase.content?.moderator?.username }}#{{ this.modCase.content?.moderator?.discriminator }}</span>
                                     <span style="font-size: medium;" class="mat-h3 mb-0 text-white-50">ID: {{this.modCase.content?.modCase?.modId }}</span>
                                     <span style="word-break: break-all; font-size: medium;" class="mat-h3 mb-0 text-white-50"
-                                    *ngIf="this.modCase.content?.modCase?.creationType === 1">Case is automoderated.</span>
-                                    <span style="word-break: break-all; font-size: medium;" class="mat-h3 mb-0 text-white-50"
-                                    *ngIf="this.modCase.content?.modCase?.creationType === 2">Case is imported.</span>
-                                    <span style="word-break: break-all; font-size: medium;" class="mat-h3 mb-0 text-white-50"
-                                    *ngIf="this.modCase.content?.modCase?.creationType === 3">Case created by command.</span>
+                                        *ngIf="this.modCase.content?.modCase?.creationType !== 0">
+                                        {{ creationType }}
+                                    </span>
                                 </ng-container>
                             </div>
                             <div class="infobox-icon">
@@ -161,17 +156,17 @@
                         <div class="infobox-body d-flex flex-row flex-wrap">
                             <div class="flex-grow-1 d-flex flex-column">
                                 <ng-container *ngIf="this.modCase.loading">
-                                    <span class="mat-h2 mb-0 font-weight-bold">Punishment</span>
+                                    <span class="mat-h2 mb-0 font-weight-bold">{{ 'ModCaseView.Punishment' | translate }}</span>
                                     <div class="waiting-for-text mb-2" style="width: 10rem"></div>
                                     <div class="waiting-for-text mb-2" style="width: 8rem"></div>
                                 </ng-container>
                                 <ng-container *ngIf="!this.modCase.loading">
                                     <div class="d-flex flex-row">
-                                        <span class="mat-h2 mb-0 font-weight-bold">Punishment</span>
+                                        <span class="mat-h2 mb-0 font-weight-bold">{{ 'ModCaseView.Punishment' | translate }}</span>
                                         <h5 *ngIf="this.modCase.content?.modCase?.punishmentType != 0 && this.modCase.content?.modCase?.punishmentType != 2 && !this.modCase.loading">
                                             <span class="badge mat-h4 mb-0 ml-2" style="padding: .1rem .4rem"
                                                 [ngClass]="(this.modCase.content?.modCase?.punishmentType === 0 || this.modCase.content?.modCase?.punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
-                                                [attr.title]="(this.modCase.content?.modCase?.punishmentType === 0 || this.modCase.content?.modCase?.punishmentActive === true) ? '' : 'This punishment is expired.'">
+                                                [attr.title]="(this.modCase.content?.modCase?.punishmentType === 0 || this.modCase.content?.modCase?.punishmentActive === true) ? '' :  'ModCaseView.Punishment' | translate">
                                                 {{ punishment }}
                                             </span>
                                         </h5>
@@ -179,14 +174,19 @@
                                     <h3 *ngIf="this.modCase.content?.modCase?.punishmentType == 0 || this.modCase.content?.modCase?.punishmentType == 2">
                                         <span class="badge mat-h4 mb-0 ml-2" style="padding: .1rem .4rem"
                                             [ngClass]="(this.modCase.content?.modCase?.punishmentType === 0 || this.modCase.content?.modCase?.punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
-                                            [attr.title]="(this.modCase.content?.modCase?.punishmentType === 0 || this.modCase.content?.modCase?.punishmentActive === true) ? '' : 'This punishment is expired.'">
+                                            [attr.title]="(this.modCase.content?.modCase?.punishmentType === 0 || this.modCase.content?.modCase?.punishmentActive === true) ? '' : 'ModCaseView.Punishment' | translate">
                                             {{ punishment }}
                                         </span>
                                     </h3>
                                     <ng-container *ngIf="this.modCase.content?.modCase?.punishmentType != 0 && this.modCase.content?.modCase?.punishmentType != 2">
                                         <span class="mat-h3 mb-0" *ngIf="this.modCase.content?.modCase?.punishedUntil else punishedForever">
-                                            Until: {{ this.modCase.content?.modCase?.punishedUntil | date:'dd MMMM Y HH:mm:ss' }} (UTC)
-                                            <span *ngIf="this.modCase.content?.modCase?.punishmentActive === false"><br/>Punishment inactive.</span>
+                                            <app-date-display [showTime]="true"
+                                                [date]="this.modCase.content!.modCase.punishedUntil"
+                                                [prefixKey]="'ModCaseView.PunishedUntil'">
+                                            </app-date-display><br/>
+                                            <span *ngIf="this.modCase.content?.modCase?.punishmentActive === false">
+                                                {{ 'ModCaseView.PunishmentExpired' | translate }}
+                                            </span>
                                         </span>
                                         <ng-template #punishedForever>Punished until: Forever.</ng-template>
                                         <div class="w-100 mt-2" *ngIf="this.modCase.content?.modCase?.punishmentActive === true && this.modCase.content?.punishmentProgress">
@@ -209,16 +209,18 @@
                     <div class="infobox bg-g-pink">
                         <div class="infobox-body d-flex flex-row flex-wrap">
                             <div class="flex-grow-1 d-flex flex-column">
-                                <span class="mat-h2 mb-0 font-weight-bold">Created At</span>
+                                <span class="mat-h2 mb-0 font-weight-bold">{{ 'ModCaseView.CreatedAt' | translate }}</span>
                                 <ng-container *ngIf="this.modCase.loading">
                                     <div class="waiting-for-text mb-2" style="width: 10rem"></div>
                                     <div class="waiting-for-text mb-2" style="width: 8rem"></div>
                                 </ng-container>
                                 <ng-container *ngIf="!this.modCase.loading">
-                                    <span class="mat-h3 mb-0">{{ this.modCase.content?.modCase?.createdAt | date:'dd MMMM Y HH:mm:ss' }} (UTC)</span>
-                                    <span class="mat-h3 mb-0 font-weight-bold" *ngIf="this.modCase.content?.modCase?.lastEditedAt != this.modCase.content?.modCase?.createdAt">Last Edited At</span>
+                                    <app-date-display [showTime]="true" [date]="this.modCase.content!.modCase.createdAt"></app-date-display>
+                                    <span class="mat-h3 mb-0 font-weight-bold" *ngIf="this.modCase.content?.modCase?.lastEditedAt != this.modCase.content?.modCase?.createdAt">
+                                        {{ 'ModCaseView.EditedAt' | translate }}
+                                    </span>
                                     <span class="mat-h3 mb-0" *ngIf="this.modCase.content?.modCase?.lastEditedAt != this.modCase.content?.modCase?.createdAt">
-                                        {{ this.modCase.content?.modCase?.lastEditedAt | date:'dd MMMM Y HH:mm:ss' }} (UTC)
+                                        <app-date-display [showTime]="true" [date]="this.modCase.content!.modCase.lastEditedAt"></app-date-display>
                                     </span>
                                 </ng-container>
                             </div>
@@ -230,13 +232,19 @@
                 </div>
                 <!-- Last moderator information -->
                 <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2"
-                 *ngIf="(this.modCase.loading || this.modCase.content?.modCase?.lastEditedByModId) && (this.modCase.content?.modCase?.lastEditedAt != this.modCase.content?.modCase?.createdAt)">
+                 *ngIf="this.modCase.content?.modCase?.lastEditedByModId">
                     <div class="infobox bg-g-red">
                         <div class="infobox-body d-flex flex-row flex-wrap">
                             <div class="flex-grow-1 d-flex flex-column">
-                                <span class="mat-h2 mb-0 font-weight-bold">Last Edit by Moderator</span>
-                                <span class="mat-h3 mb-0" style="word-break: break-all;">{{ this.modCase.content?.lastModerator?.username }}#{{ this.modCase.content?.lastModerator?.discriminator }}</span>
-                                <span class="mat-h3 mb-0 text-white-50">ID: {{this.modCase.content?.modCase?.lastEditedByModId }}</span>
+                                <span class="mat-h2 mb-0 font-weight-bold">
+                                    {{ 'ModCaseView.LastEditModerator' | translate }}
+                                </span>
+                                <span class="mat-h3 mb-0" style="word-break: break-all;">
+                                    {{ this.modCase.content?.lastModerator?.username }}#{{ this.modCase.content?.lastModerator?.discriminator }}
+                                </span>
+                                <span class="mat-h3 mb-0 text-white-50">
+                                    {{ 'ModCaseView.ID' | translate }}: {{this.modCase.content?.modCase?.lastEditedByModId }}
+                                </span>
                             </div>
                             <div class="infobox-icon">
                                 <img
@@ -254,7 +262,7 @@
 
             <!-- Description -->
             <div class="mb-3">
-                <div class="mat-h2 font-weight-bold">Description</div>
+                <div class="mat-h2 font-weight-bold">{{ 'ModCaseView.Description' | translate }}</div>
                 <mat-divider class="mb-2"></mat-divider>
                 <ng-container *ngIf="this.modCase.loading">
                     <div class="waiting-for-text mb-2" style="width: 10rem"></div>
@@ -270,12 +278,12 @@
             <!-- Files -->
             <div class="mb-3" *ngIf="this.isModOrHigher || (this.files.content | async)?.names?.length != 0">
                 <div class="d-flex flex-row align-items-baseline">
-                    <div class="mat-h2 font-weight-bold">Uploaded files ({{ (this.files.content | async)?.names?.length || 0 }})</div>
+                    <div class="mat-h2 font-weight-bold">{{ 'ModCaseView.UploadedFiles' | translate }} ({{ (this.files.content | async)?.names?.length || 0 }})</div>
                     <div class="flex-grow-1"></div>
                     <div *ngIf="this.isModOrHigher">
                         <button mat-raised-button color="accent" (click)="uploadInit()" [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined">
                             <mat-icon>file_upload</mat-icon>
-                            Upload
+                            {{ 'ModCaseView.Upload' | translate }}
                         </button>
                         <input type="file" #fileInput id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" />
                     </div>
@@ -292,11 +300,11 @@
                             <div mat-line>{{file}}</div>
                             <div class="d-flex flex-row">
                                 <a mat-raised-button href="/api/v1/guilds/{{ this.guildId }}/cases/{{ this.caseId }}/files/{{ file }}" color="accent" target="_blank">
-                                    View
+                                    {{ 'ModCaseView.View' | translate }}
                                 </a>
                                 <button mat-raised-button color="primary" *ngIf="this.isModOrHigher" class="ml-2"
                                  [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined" (click)="deleteFile(file)">
-                                    Delete
+                                    {{ 'ModCaseView.Delete' | translate }}
                                 </button>
                             </div>
                         </mat-list-item>
@@ -306,7 +314,7 @@
 
             <!-- Comments -->
             <div>
-                <div class="mat-h2 font-weight-bold">Comments ({{ this.modCase.content?.comments?.length || 0 }})</div>
+                <div class="mat-h2 font-weight-bold">{{ 'ModCaseView.Comments' | translate }} ({{ this.modCase.content?.comments?.length || 0 }})</div>
                 <mat-divider class="mb-2"></mat-divider>
                 <div class="d-flex flex-column flex-wrap justify-content-between">
                     <ng-container *ngIf="this.modCase.loading">
@@ -317,9 +325,9 @@
                         <div class="card-container mb-3" *ngFor="let comment of this.modCase.content?.comments">
                             <div class="card-container-body d-flex flex-column">
                                 <div class="d-flex flex-row flex-grow-1 w-100 align-self-start align-items-center">
-                                    <ng-container *ngIf="comment?.userId">
+                                    <ng-container *ngIf="comment?.comment?.userId">
                                         <img
-                                            [attr.src]="comment?.user?.imageUrl"
+                                            [attr.src]="comment?.commentor?.imageUrl"
                                             class="card-img rounded-circle z-depth-0 mr-1"
                                             alt="avatar icon"
                                             height="32"
@@ -327,7 +335,7 @@
                                             onerror="this.src='/assets/img/default_profile.png';"
                                         />
                                     </ng-container>
-                                    <ng-container *ngIf="!comment?.userId">
+                                    <ng-container *ngIf="!comment?.comment?.userId">
                                         <app-guild-icon class="mr-1" [guild]="currentGuild?.content"
                                             [width]="'32px'" [height]="'32px'" [darkBorder]="true">
                                         </app-guild-icon>
@@ -336,30 +344,32 @@
 
                                     <!-- Title -->
                                     <span>
-                                        <div class="mat-h3" style="display: inline;" *ngIf="comment?.userId">
-                                            {{ comment?.user?.username || comment?.user?.id }}#{{ comment?.user?.discriminator || comment?.user?.id }}
+                                        <div class="mat-h3" style="display: inline;" *ngIf="comment?.comment?.userId">
+                                            {{ comment?.commentor?.username || comment?.commentor?.id }}#{{ comment?.commentor?.discriminator || comment?.commentor?.id }}
                                         </div>
-                                        <div class="mat-h3" style="display: inline;" *ngIf="! comment?.userId">
-                                            Moderators
+                                        <div class="mat-h3" style="display: inline;" *ngIf="! comment?.comment?.userId">
+                                            {{ 'ModCaseView.Moderators' | translate }}
                                         </div>
-                                        <span class="mat-h3 text-black-50">  {{ comment.createdAt | date:'dd MMMM Y HH:mm:ss'  }}</span>
+                                        <span class="mat-h3 text-black-50">
+                                            <app-date-display [date]="comment.comment.createdAt" [showTime]="true"></app-date-display>
+                                        </span>
                                     </span>
 
                                     <div class="flex-grow-1"></div>
 
                                     <!-- Icons -->
-                                    <div class="d-flex flex-row flex-wrap align-self-end flex-grow-0 flex-shrink-0" *ngIf="this.currentUser.content?.discordUser?.id === comment.userId || this.currentUser.content?.isAdmin">
+                                    <div class="d-flex flex-row flex-wrap align-self-end flex-grow-0 flex-shrink-0" *ngIf="this.currentUser.content?.discordUser?.id === comment.comment?.userId || this.currentUser.content?.isAdmin">
                                         <button mat-mini-fab color="accent" aria-label="edit comment" class="flex-shrink-0 mr-2" [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined"
-                                         (click)="updateComment(comment)" *ngIf="this.modCase.content?.modCase?.allowComments">
+                                         (click)="updateComment(comment.comment)" *ngIf="this.modCase.content?.modCase?.allowComments">
                                             <mat-icon>edit</mat-icon>
                                         </button>
                                         <button mat-mini-fab color="primary" aria-label="delete comment" class="flex-shrink-0" [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined"
-                                         (click)="deleteComment(comment.id)">
+                                         (click)="deleteComment(comment.comment.id)">
                                             <mat-icon>delete</mat-icon>
                                         </button>
                                     </div>
                                 </div>
-                                <span style="white-space: pre-wrap; word-wrap: anywhere;" class="mat-h3 mb-0 text-monospace casecomment">{{ comment.message }}</span>
+                                <span style="white-space: pre-wrap; word-wrap: anywhere;" class="mat-h3 mb-0 text-monospace casecomment">{{ comment.comment.message }}</span>
                             </div>
                         </div>
                     </ng-container>
@@ -377,16 +387,10 @@
                             onerror="this.src='/assets/img/default_profile.png';"
                         />
                         <div class="mat-h3 mb-0 warn-color" style="display: inline" *ngIf="this.modCase.content?.lockedBy">
-                            {{ this.modCase.content?.lockedBy?.username }}#{{ this.modCase.content?.lockedBy?.discriminator }} locked comments at {{ this.modCase.content?.modCase?.lockedAt | date:'dd MMMM Y' }}
-                        </div>
-                        <div class="mat-h3 mb-0 warn-color" style="display: inline" *ngIf="! this.modCase.content?.lockedBy">
-                            Moderators locked comments at {{ this.modCase.content?.modCase?.lockedAt | date:'dd MMMM Y' }}
+                            {{ 'ModCaseView.CommentsLocked' | translate:lockedCommentsParams }}
+                            <app-date-display [date]="this.modCase.content?.modCase?.lockedAt"></app-date-display>
                         </div>
                         <div class="flex-grow-1"></div>
-                        <button mat-raised-button color="accent" (click)="unlockCaseComments()"
-                            *ngIf="this.isModOrHigher" [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined">
-                            Unlock case comments
-                        </button>
                     </div>
                 </div>
                 <div class="d-flex flex-row">
@@ -395,13 +399,25 @@
                         <textarea matInput [(ngModel)]="newComment" [disabled]="!this.modCase.content?.modCase?.allowComments"></textarea>
                     </mat-form-field>
                     <div class="d-flex flex-column">
-                        <button mat-raised-button color="accent" class="flex-shrink-1 mb-2" [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined"
-                        (click)="lockCaseComments()" *ngIf="this.isModOrHigher && this.modCase?.content?.modCase?.allowComments">
-                            Lock comments
+                        <button mat-raised-button color="accent"
+                            class="flex-shrink-1 mb-2"
+                            [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined"
+                            (click)="lockCaseComments()"
+                            *ngIf="this.isModOrHigher && this.modCase?.content?.modCase?.allowComments">
+                            {{ 'ModCaseView.LockComments' | translate }}
                         </button>
-                        <button mat-raised-button color="accent" class="flex-shrink-1"
-                        (click)="postComment()"  [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined || this.newComment?.trim() == '' || !this.modCase.content?.modCase?.allowComments">
-                            Post comment
+                        <button mat-raised-button color="accent"
+                            class="flex-shrink-1 mb-2"
+                            (click)="unlockCaseComments()"
+                            *ngIf="this.isModOrHigher && ! this.modCase?.content?.modCase?.allowComments"
+                            [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined">
+                            {{ 'ModCaseView.UnlockComments' | translate }}
+                        </button>
+                        <button mat-raised-button color="accent"
+                            class="flex-shrink-1"
+                            (click)="postComment()"
+                            [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != undefined || this.newComment?.trim() == '' || !this.modCase.content?.modCase?.allowComments">
+                            {{ 'ModCaseView.PostComment' | translate }}
                         </button>
                     </div>
                 </div>

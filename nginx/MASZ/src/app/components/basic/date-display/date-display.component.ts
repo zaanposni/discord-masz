@@ -12,7 +12,7 @@ import { TimezoneService } from 'src/app/services/timezone.service';
 export class DateDisplayComponent implements OnInit {
 
   @Input() prefixKey?: string = undefined;
-  @Input() date: Date = new Date();
+  @Input() date?: Date = new Date();
   @Input() customFormat?: string = undefined;
   @Input() showTime: boolean = false;
 

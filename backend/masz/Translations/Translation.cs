@@ -1659,7 +1659,7 @@ namespace masz.Translations
                         case Language.en:
                             return "Case is automoderated.";
                         case Language.de:
-                            return "Vorfall wurde durch Automoderation erstellt.";
+                            return "Automoderiert.";
                         default:
                             return "Case is automoderated.";
                     }
@@ -1668,7 +1668,7 @@ namespace masz.Translations
                         case Language.en:
                             return "Case is imported.";
                         case Language.de:
-                            return "Vorfall wurde importiert.";
+                            return "Importiert.";
                         default:
                             return "Case is imported.";
                     }
@@ -1677,7 +1677,7 @@ namespace masz.Translations
                         case Language.en:
                             return "Case created by command.";
                         case Language.de:
-                            return "Vorfall durch Befehl erstellt.";
+                            return "Durch Befehl erstellt.";
                         default:
                             return "Case created by command.";
                     }
