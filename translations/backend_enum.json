@@ -262,5 +262,59 @@
             "en": "This action is only usable in a guild",
             "de": "Diese Aktion ist nur in einer Gilde nutzbar"
         }
+    },
+    "CaseCreationType": {
+        "Default": {
+            "description": "Default",
+            "en": "Default",
+            "de": "Default"
+        },
+        "AutoModeration": {
+            "description": "Case is automoderated.",
+            "en": "Case is automoderated.",
+            "de": "Vorfall wurde durch Automoderation erstellt."
+        },
+        "Imported": {
+            "description": "Case is imported.",
+            "en": "Case is imported.",
+            "de": "Vorfall wurde importiert."
+        },
+        "ByCommand": {
+            "description": "Case created by command.",
+            "en": "Case created by command.",
+            "de": "Vorfall durch Befehl erstellt."
+        }
+    },
+    "Language": {
+        "en": {
+            "description": "the english language.",
+            "en": "English",
+            "de": "Englisch"
+        },
+        "de": {
+            "description": "the german language.",
+            "en": "German",
+            "de": "Deutsch"
+        },
+        "fr": {
+            "description": "the french language.",
+            "en": "French",
+            "de": "Französisch"
+        },
+        "es": {
+            "description": "the spanish language.",
+            "en": "Spanish",
+            "de": "Spanisch"
+        },
+        "it": {
+            "description": "the italian language.",
+            "en": "Italian",
+            "de": "Italienisch"
+        },
+        "at": {
+            "description": "the austrian language.",
+            "en": "Austrian",
+            "de": "Österreich"
+        }
     }
 }

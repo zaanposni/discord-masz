@@ -3,4 +3,6 @@ export enum APIEnumTypes {
     VIEWPERMISSION = "viewpermission",
     AUTOMODACTION = "automodaction",
     AUTOMODTYPE = "automodtype",
+    CASECREATIONTYPE = "casecreationtype",
+    LANGUAGE = "language"
 }
