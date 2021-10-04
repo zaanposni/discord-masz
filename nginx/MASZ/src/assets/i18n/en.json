@@ -91,6 +91,12 @@
         "ChooseADate": "Choose a date",
         "OK": "OK"
     },
+    "CaseDeleteDialog": {
+        "SendPublicNotification": "Send public notification",
+        "ForceDelete": "Force delete",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm"
+    },
     "GuildDialog": {
         "AddAGuild": "Add a guild",
         "SearchAGuild": "Search a guild",

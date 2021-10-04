@@ -91,6 +91,12 @@
         "ChooseADate": "Wähle ein Datum",
         "OK": "OK"
     },
+    "CaseDeleteDialog": {
+        "SendPublicNotification": "Sende öffentliche Benachrichtigung",
+        "ForceDelete": "Permanent löschen",
+        "Cancel": "Abbrechen",
+        "Confirm": "Bestätigen"
+    },
     "GuildDialog": {
         "AddAGuild": "Gilde hinzufügen",
         "SearchAGuild": "Gilde suchen",
