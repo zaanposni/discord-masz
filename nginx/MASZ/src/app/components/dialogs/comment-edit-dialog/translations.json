@@ -1,0 +1,23 @@
+{
+    "namespace": "CommentEditDialog",
+    "EditComment": {
+        "description": "edit comment",
+        "en": "Edit comment",
+        "de": "Kommentar aktualisieren"
+    },
+    "Comment": {
+        "description": "Comment field",
+        "en": "Comment",
+        "de": "Kommentar"
+    },
+    "Cancel": {
+        "description": "cancel button",
+        "en": "Cancel",
+        "de": "Abbrechen"
+    },
+    "Confirm": {
+        "description": "confirm button",
+        "en": "Confirm",
+        "de": "Bestätigen"
+    }
+}
