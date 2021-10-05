@@ -131,6 +131,12 @@
         "Cancel": "Abbrechen",
         "Confirm": "Bestätigen"
     },
+    "UsernoteEditDialog": {
+        "EditUsernote": "Benutzernotiz aktualisieren",
+        "Description": "Beschreibung",
+        "Cancel": "Abbrechen",
+        "Confirm": "Bestätigen"
+    },
     "GuildDialog": {
         "AddAGuild": "Gilde hinzufügen",
         "SearchAGuild": "Gilde suchen",

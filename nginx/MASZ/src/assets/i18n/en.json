@@ -131,6 +131,12 @@
         "Cancel": "Cancel",
         "Confirm": "Confirm"
     },
+    "UsernoteEditDialog": {
+        "EditUsernote": "Edit usernote",
+        "Description": "Description",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm"
+    },
     "GuildDialog": {
         "AddAGuild": "Add a guild",
         "SearchAGuild": "Search a guild",
