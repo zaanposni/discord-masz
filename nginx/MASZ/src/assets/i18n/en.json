@@ -3,12 +3,15 @@
         "Button": "Login with Discord",
         "Loading": "Logging you in with Discord..."
     },
+    "Case": "Case",
     "Cases": "Cases",
+    "Punishment": "Punishment",
     "Punishments": "Punishments",
     "Bans": "Bans",
     "Mutes": "Mutes",
     "Automods": "Automods",
     "Automoderations": "Automoderations",
+    "Invite": "Invite",
     "Invites": "Invites",
     "Usernotes": "Usernotes",
     "Usermaps": "Usermaps",
@@ -356,5 +359,20 @@
             "Updated": "Comment updated.",
             "Failed": "Failed to update comment"
         }
+    },
+    "Scanning": {
+        "EnterUserOrInvite": "Enter a users id or invite code",
+        "Userscan": "Userscan",
+        "Invitescan": "Invitescan",
+        "UserscanDescription": "Enter a users id to get a quick overview of a member or relations to other members. This also tracks invites a new member uses so you can quickly spot alt accounts. Use a double click to view other ressources such as a modcase.",
+        "InvitescanDescription": "Enter an invite code or link to get a quick overview of an invite or relations to other members. Use a double click to view other ressources such as another user.",
+        "FailedToLoad": {
+            "Scan": "Failed to load scan information.",
+            "Invite": "Failed to load scan information.",
+            "InvalidInvite": "No information for this invite found."
+        },
+        "JoinedAt": "Joined at",
+        "OccuredAt": "Occured at",
+        "CreatedAt": "Created at"
     }
 }

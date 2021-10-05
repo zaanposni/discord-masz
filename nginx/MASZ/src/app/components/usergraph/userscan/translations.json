@@ -1,0 +1,60 @@
+{
+    "namespace": "Scanning",
+    "EnterUserOrInvite": {
+        "description": "field to enter userid or code",
+        "en": "Enter a users id or invite code",
+        "de": "Gib die ID eines Nutzers oder einen Einladungslink an"
+    },
+    "Userscan": {
+        "description": "userscan headline",
+        "en": "Userscan",
+        "de": "Benutzeruntersuchung"
+    },
+    "Invitescan": {
+        "description": "invitescan headline",
+        "en": "Invitescan",
+        "de": "Einladungsuntersuchung"
+    },
+    "UserscanDescription": {
+        "description": "explanation of the userscan feature",
+        "en": "Enter a users id to get a quick overview of a member or relations to other members. This also tracks invites a new member uses so you can quickly spot alt accounts. Use a double click to view other ressources such as a modcase.",
+        "de": "Gib die ID eines Nutzers ein um eine schnelle Übersicht über einen Nutzer oder seine Beziehungen zu anderen Nutzern zu erhalten. Diese Funktion wird auch bei Einladungen verwendet um zu erkennen welche Accounts ein neuer Nutzer verwendet. Mit einem Doppelklick auf den Nutzer kannst du auch andere Ressourcen wie einen Vorfall ansehen."
+    },
+    "InvitescanDescription": {
+        "description": "explanation of the invitescan feature",
+        "en": "Enter an invite code or link to get a quick overview of an invite or relations to other members. Use a double click to view other ressources such as another user.",
+        "de": "Gib einen Einladungslink ein um eine schnelle Übersicht über eine Einladung oder Beziehungen zu anderen Nutzern zu erhalten. Mit einem Doppelklick kannst du auch andere Ressourcen wie einen anderen Benutzer ansehen."
+    },
+    "FailedToLoad": {
+        "Scan": {
+            "description": "Failed to laod scan information",
+            "en": "Failed to load scan information.",
+            "de": "Untersuchungsinformationen konnten nicht geladen werden."
+        },
+        "Invite": {
+            "description": "Failed to laod scan information",
+            "en": "Failed to load scan information.",
+            "de": "Einladungsinformationen konnten nicht geladen werden."
+        },
+        "InvalidInvite": {
+            "description": "Failed to laod scan information",
+            "en": "No information for this invite found.",
+            "de": "Zu dieser Einladung wurden keine Informationen gefunden."
+        }
+    },
+    "JoinedAt": {
+        "description": "User joined guild at date x",
+        "en": "Joined at",
+        "de": "Beigetreten am"
+    },
+    "OccuredAt": {
+        "description": "event occured at date x",
+        "en": "Occured at",
+        "de": "Am"
+    },
+    "CreatedAt": {
+        "description": "resource created at date x",
+        "en": "Created at",
+        "de": "Erstellt am"
+    }
+}

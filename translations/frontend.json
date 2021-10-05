@@ -11,10 +11,20 @@
             "de": "Du wirst angemeldet..."
         }
     },
+    "Case": {
+        "description": "case",
+        "en": "Case",
+        "de": "Vorfall"
+    },
     "Cases": {
         "description": "cases",
         "en": "Cases",
         "de": "Vorfälle"
+    },
+    "Punishment": {
+        "description": "punishment",
+        "en": "Punishment",
+        "de": "Bestrafung"
     },
     "Punishments": {
         "description": "punishments",
@@ -40,6 +50,11 @@
         "description": "automoderations",
         "en": "Automoderations",
         "de": "Automoderationen"
+    },
+    "Invite": {
+        "description": "invite",
+        "en": "Invite",
+        "de": "Einladung"
     },
     "Invites": {
         "description": "invites",

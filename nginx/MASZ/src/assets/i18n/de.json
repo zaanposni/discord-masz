@@ -3,12 +3,15 @@
         "Button": "Mit Discord anmelden",
         "Loading": "Du wirst angemeldet..."
     },
+    "Case": "Vorfall",
     "Cases": "Vorfälle",
+    "Punishment": "Bestrafung",
     "Punishments": "Bestrafungen",
     "Bans": "Banns",
     "Mutes": "Stummschaltungen",
     "Automods": "Automods",
     "Automoderations": "Automoderationen",
+    "Invite": "Einladung",
     "Invites": "Einladungen",
     "Usernotes": "Nutzernotizen",
     "Usermaps": "Benutzerbeziehungen",
@@ -356,5 +359,20 @@
             "Updated": "Kommentar aktualisiert.",
             "Failed": "Kommentar konnte nicht aktualisiert werden."
         }
+    },
+    "Scanning": {
+        "EnterUserOrInvite": "Gib die ID eines Nutzers oder einen Einladungslink an",
+        "Userscan": "Benutzeruntersuchung",
+        "Invitescan": "Einladungsuntersuchung",
+        "UserscanDescription": "Gib die ID eines Nutzers ein um eine schnelle Übersicht über einen Nutzer oder seine Beziehungen zu anderen Nutzern zu erhalten. Diese Funktion wird auch bei Einladungen verwendet um zu erkennen welche Accounts ein neuer Nutzer verwendet. Mit einem Doppelklick auf den Nutzer kannst du auch andere Ressourcen wie einen Vorfall ansehen.",
+        "InvitescanDescription": "Gib einen Einladungslink ein um eine schnelle Übersicht über eine Einladung oder Beziehungen zu anderen Nutzern zu erhalten. Mit einem Doppelklick kannst du auch andere Ressourcen wie einen anderen Benutzer ansehen.",
+        "FailedToLoad": {
+            "Scan": "Untersuchungsinformationen konnten nicht geladen werden.",
+            "Invite": "Einladungsinformationen konnten nicht geladen werden.",
+            "InvalidInvite": "Zu dieser Einladung wurden keine Informationen gefunden."
+        },
+        "JoinedAt": "Beigetreten am",
+        "OccuredAt": "Am",
+        "CreatedAt": "Erstellt am"
     }
 }
