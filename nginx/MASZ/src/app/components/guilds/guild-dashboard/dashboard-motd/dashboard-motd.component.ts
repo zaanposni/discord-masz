@@ -25,9 +25,12 @@ export class DashboardMotdComponent implements OnInit {
     this.motd = { loading: true, content: undefined };
     this.api.getSimpleData(`/guilds/${guildId}/motd`).subscribe((data) => {
       this.motd  = { loading: false, content: data };
-    }, () => {
+    }, error => {
       this.motd.loading = false;
-      this.toastr.error('Failed to load motd.');
+      if (error?.error?.status !== 404) {
+        console.error(error);
+        this.toastr.error('Failed to load motd.');
+      }
     });
   }
 }

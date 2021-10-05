@@ -25,13 +25,24 @@ export class MotdConfigComponent implements OnInit {
 
   private reload() {
     this.motd = { loading: true, content: undefined };
-    this.api.getSimpleData(`/guilds/${this.guildId}/motd`).subscribe(data => {
+    this.api.getSimpleData(`/guilds/${this.guildId}/motd`).subscribe((data: GuildMotdView) => {
       this.motd.content = data;
       this.motd.loading = false;
     }, error => {
-      console.error(error);
       this.motd.loading = false;
-      this.toastr.error(this.translator.instant('GuildMotd.FailedToLoad'));
+      if (error?.status === 404) {
+        this.motd.content = {
+          motd: {
+            guildId: this.guildId,
+            message: "Example message",
+            showMotd: false
+          } as any,
+          creator: undefined
+        };
+      } else {
+        console.error(error);
+        this.toastr.error(this.translator.instant('GuildMotd.FailedToLoad'));
+      }
     });
   }
 
@@ -56,8 +67,11 @@ export class MotdConfigComponent implements OnInit {
       "showMotd": this.motd.content?.motd.showMotd
     };
 
-    this.api.putSimpleData(`/guilds/${this.guildId}/motd`, data).subscribe(
-      () => {
+    if (data.message?.trim()?.length == 0) {
+      data.message = "Placeholder";
+    }
+
+    this.api.putSimpleData(`/guilds/${this.guildId}/motd`, data).subscribe(() => {
         this.toastr.success(this.translator.instant('GuildMotd.Saved'));
         this.reload();
       }, error => {
