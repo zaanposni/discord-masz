@@ -130,7 +130,8 @@ namespace masz.Controllers
                         await _discordAPI.FetchUserInfo(item.ModId, CacheBehavior.OnlyCache),
                         await _discordAPI.FetchUserInfo(item.LastEditedByModId, CacheBehavior.OnlyCache),
                         await _discordAPI.FetchUserInfo(item.UserId, CacheBehavior.OnlyCache),
-                        new List<CommentExpandedView>()
+                        new List<CommentExpandedView>(),
+                        null
                     ),
                     CreatedAt = item.CreatedAt,
                     QuickSearchEntryType = QuickSearchEntryType.ModCase

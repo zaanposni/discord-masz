@@ -58,9 +58,14 @@
                 </div>
             </mat-card>
 
+            <app-usernote-card class="mt-3"
+                *ngIf="this.modCase.content?.userNote"
+                [userNote]="this.modCase.content!.userNote!"
+                (deleteEvent)="userNoteDeleted()">
+            </app-usernote-card>
 
             <!-- Labels -->
-            <mat-chip-list aria-label="case labels" class="caselabels row mt-3 ml-2" title="The case labels">
+            <mat-chip-list aria-label="case labels" class="caselabels row mt-3 ml-2" title="The case labels" *ngIf="this.modCase.content?.modCase?.labels?.length">
                 <mat-chip class="mat-h1" selected *ngFor="let label of this.modCase.content?.modCase?.labels">{{ label }}</mat-chip>
             </mat-chip-list>
             <!-- cards -->

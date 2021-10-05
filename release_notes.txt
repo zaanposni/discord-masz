@@ -21,3 +21,4 @@
 - default legal notes have been adjusted, now using link in discord application settings
 - backend will no longer completely restart if caching fails
 - added detailed status information and pings for each service in insights
+- no showing usernote in caseview if defined

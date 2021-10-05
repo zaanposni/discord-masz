@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using DSharpPlus.Entities;
 using masz.Models.Views;
 
@@ -8,13 +7,14 @@ namespace masz.Models
 {
     public class CaseExpandedView
     {
-        public CaseExpandedView(ModCase modCase, DiscordUser moderator, DiscordUser lastModerator, DiscordUser suspect, List<CommentExpandedView> comments)
+        public CaseExpandedView(ModCase modCase, DiscordUser moderator, DiscordUser lastModerator, DiscordUser suspect, List<CommentExpandedView> comments, UserNoteExpandedView userNoteView)
         {
             ModCase = new CaseView(modCase);
             Moderator = DiscordUserView.CreateOrDefault(moderator);
             LastModerator = DiscordUserView.CreateOrDefault(lastModerator);
             Suspect = DiscordUserView.CreateOrDefault(suspect);
             Comments = comments;
+            UserNote = userNoteView;
 
             if (modCase.PunishedUntil != null) {
                 if (modCase.PunishedUntil > modCase.CreatedAt) {
@@ -36,6 +36,7 @@ namespace masz.Models
         public DiscordUserView LockedBy { get; set; }
         public DiscordUserView DeletedBy { get; set; }
         public List<CommentExpandedView> Comments { get; set; }
+        public UserNoteExpandedView UserNote { get; set; }
         public double? PunishmentProgress { get; set; }
 
         public void RemoveModeratorInfo()

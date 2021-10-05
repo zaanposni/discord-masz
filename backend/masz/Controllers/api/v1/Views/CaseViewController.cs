@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using masz.Enums;
+using masz.Exceptions;
+using DSharpPlus.Entities;
 
 namespace masz.Controllers
 {
@@ -32,6 +34,8 @@ namespace masz.Controllers
 
             ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, identity).GetModCase(guildId, caseId);
 
+            DiscordUser suspect = await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.OnlyCache);
+
             List<CommentExpandedView> comments = new List<CommentExpandedView>();
             foreach (ModCaseComment comment in modCase.Comments)
             {
@@ -41,12 +45,27 @@ namespace masz.Controllers
                 ));
             }
 
+            UserNoteExpandedView userNote = null;
+            if (await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
+            {
+                try
+                {
+                    var note = await UserNoteRepository.CreateDefault(_serviceProvider, identity).GetUserNote(guildId, modCase.UserId);
+                    userNote = new UserNoteExpandedView(
+                        note,
+                        suspect,
+                        await _discordAPI.FetchUserInfo(note.CreatorId, CacheBehavior.OnlyCache)
+                    );
+                } catch (ResourceNotFoundException) { }
+            }
+
             CaseExpandedView caseView = new CaseExpandedView(
                 modCase,
                 await _discordAPI.FetchUserInfo(modCase.ModId, CacheBehavior.OnlyCache),
                 await _discordAPI.FetchUserInfo(modCase.LastEditedByModId, CacheBehavior.OnlyCache),
-                await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.OnlyCache),
-                comments
+                suspect,
+                comments,
+                userNote
             );
 
             if (modCase.LockedByUserId != 0) {

@@ -210,6 +210,12 @@ export class ModcaseViewComponent implements OnInit {
     fileInput.click();
   }
 
+  userNoteDeleted() {
+    if (this.modCase.content) {
+      this.modCase.content.userNote = undefined;
+    }
+  }
+
   restoreCase() {
     this.restoringCase = true;
     this.api.deleteData(`/guilds/${this.guildId}/bin/${this.caseId}/restore`).subscribe(() => {

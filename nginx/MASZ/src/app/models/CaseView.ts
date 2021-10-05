@@ -1,6 +1,7 @@
 import { CommentListViewEntry } from "./CommentListViewEntry";
 import { DiscordUser } from "./DiscordUser";
 import { ModCase } from "./ModCase";
+import { UserNoteView } from "./UserNoteView";
 
 export interface CaseView {
     modCase: ModCase;
@@ -11,4 +12,5 @@ export interface CaseView {
     deletedBy?: DiscordUser;
     comments: CommentListViewEntry[];
     punishmentProgress?: number;
+    userNote?: UserNoteView;
 }
