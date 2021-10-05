@@ -117,6 +117,14 @@
         "Cancel": "Cancel",
         "Confirm": "Confirm"
     },
+    "TemplateCreateDialog": {
+        "CreateTemplate": "Name your token.",
+        "Name": "Name",
+        "Visibility": "Visibility",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm",
+        "FailedToLoadPermissions": "Failed to load visibility options."
+    },
     "GuildDialog": {
         "AddAGuild": "Add a guild",
         "SearchAGuild": "Search a guild",

@@ -117,6 +117,14 @@
         "Cancel": "Abbrechen",
         "Confirm": "Bestätigen"
     },
+    "TemplateCreateDialog": {
+        "CreateTemplate": "Benenne deinen Schlüssel.",
+        "Name": "Name",
+        "Visibility": "Sichtbarkeit",
+        "Cancel": "Abbrechen",
+        "Confirm": "Bestätigen",
+        "FailedToLoadPermissions": "Sichtbarkeitseinstellungen konnten nicht geladen werden."
+    },
     "GuildDialog": {
         "AddAGuild": "Gilde hinzufügen",
         "SearchAGuild": "Gilde suchen",

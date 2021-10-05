@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
 import { APIEnum } from 'src/app/models/APIEnum';
@@ -14,7 +15,7 @@ import { EnumManagerService } from 'src/app/services/enum-manager.service';
 })
 export class TemplateCreateDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public settings: TemplateSettings, private enumManager: EnumManagerService, private toastr: ToastrService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public settings: TemplateSettings, private enumManager: EnumManagerService, private toastr: ToastrService, private translator: TranslateService) { }
 
   templateViewPermissionOptions: ContentLoading<APIEnum[]> = { loading: true, content: [] };
 
@@ -25,7 +26,7 @@ export class TemplateCreateDialogComponent implements OnInit {
     }, error => {
       console.error(error);
       this.templateViewPermissionOptions.loading = false;
-      this.toastr.error("Failed to load permission options.");
+      this.toastr.error(this.translator.instant('TemplateCreateDialog.FailedToLoadPermissions'));
     })
   }
 
