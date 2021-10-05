@@ -236,7 +236,7 @@ namespace masz.Repositories
             _database.UpdateModCase(modCase);
             await _database.SaveChangesAsync();
 
-            await _eventHandler.InvokeModCaseDeleted(new ModCaseDeletedEventArgs(modCase));
+            await _eventHandler.InvokeModCaseUpdated(new ModCaseUpdatedEventArgs(modCase));
 
             await _discordAnnouncer.AnnounceModCase(modCase, RestAction.Edited, _currentUser, sendPublicNotification, false);
 
@@ -333,6 +333,8 @@ namespace masz.Repositories
             _database.UpdateModCase(modCase);
             await _database.SaveChangesAsync();
 
+            await _eventHandler.InvokeModCaseUpdated(new ModCaseUpdatedEventArgs(modCase));
+
             return modCase;
         }
         public async Task<ModCase> UnlockCaseComments(ulong guildId, int caseId)
@@ -344,6 +346,8 @@ namespace masz.Repositories
 
             _database.UpdateModCase(modCase);
             await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeModCaseUpdated(new ModCaseUpdatedEventArgs(modCase));
 
             return modCase;
         }
