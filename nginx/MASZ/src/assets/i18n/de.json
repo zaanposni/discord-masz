@@ -106,6 +106,11 @@
         "Cancel": "Abbrechen",
         "Confirm": "Bestätigen"
     },
+    "ConfirmDialog": {
+        "AreYouSure": "Bist du dir sicher?",
+        "Cancel": "Abbrechen",
+        "Confirm": "Bestätigen"
+    },
     "GuildDialog": {
         "AddAGuild": "Gilde hinzufügen",
         "SearchAGuild": "Gilde suchen",

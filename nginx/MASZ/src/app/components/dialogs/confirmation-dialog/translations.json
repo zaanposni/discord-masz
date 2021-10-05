@@ -1,0 +1,18 @@
+{
+    "namespace": "ConfirmDialog",
+    "AreYouSure": {
+        "description": "are you sure",
+        "en": "Are you sure?",
+        "de": "Bist du dir sicher?"
+    },
+    "Cancel": {
+        "description": "cancel button",
+        "en": "Cancel",
+        "de": "Abbrechen"
+    },
+    "Confirm": {
+        "description": "confirm button",
+        "en": "Confirm",
+        "de": "Bestätigen"
+    }
+}
