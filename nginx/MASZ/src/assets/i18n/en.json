@@ -111,6 +111,12 @@
         "Cancel": "Cancel",
         "Confirm": "Confirm"
     },
+    "NewTokenDialog": {
+        "NameToken": "Name your token.",
+        "Name": "Name",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm"
+    },
     "GuildDialog": {
         "AddAGuild": "Add a guild",
         "SearchAGuild": "Search a guild",

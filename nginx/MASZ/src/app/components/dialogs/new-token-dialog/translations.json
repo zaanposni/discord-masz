@@ -1,0 +1,23 @@
+{
+    "namespace": "NewTokenDialog",
+    "NameToken": {
+        "description": "name your token",
+        "en": "Name your token.",
+        "de": "Benenne deinen Schlüssel."
+    },
+    "Name": {
+        "description": "name field",
+        "en": "Name",
+        "de": "Name"
+    },
+    "Cancel": {
+        "description": "cancel button",
+        "en": "Cancel",
+        "de": "Abbrechen"
+    },
+    "Confirm": {
+        "description": "confirm button",
+        "en": "Confirm",
+        "de": "Bestätigen"
+    }
+}

@@ -111,6 +111,12 @@
         "Cancel": "Abbrechen",
         "Confirm": "Bestätigen"
     },
+    "NewTokenDialog": {
+        "NameToken": "Benenne deinen Schlüssel.",
+        "Name": "Name",
+        "Cancel": "Abbrechen",
+        "Confirm": "Bestätigen"
+    },
     "GuildDialog": {
         "AddAGuild": "Gilde hinzufügen",
         "SearchAGuild": "Gilde suchen",
