@@ -146,7 +146,7 @@
                 </form>
                 <div *ngIf="!this.savingCase" class="stepper-actions">
                     <button mat-raised-button matStepperPrevious class="mr-2 mb-2" color="accent">{{ 'ModCaseDialog.Back' | translate }}</button>
-                    <button mat-raised-button class="mr-2 mb-2" (click)="saveTemplate()" color="accent">{{ 'ModCaseDialog.SaveAsTemplate' | translate }}e</button>
+                    <button mat-raised-button class="mr-2 mb-2" (click)="saveTemplate()" color="accent">{{ 'ModCaseDialog.SaveAsTemplate' | translate }}</button>
                     <button mat-raised-button color="accent" (click)="createCase()">{{ 'ModCaseDialog.CreateCaseButton' | translate }}</button>
                 </div>
                 <mat-spinner *ngIf="this.savingCase"></mat-spinner>
