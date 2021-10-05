@@ -70,8 +70,118 @@ namespace masz.Services
             _eventHandler.OnIdentityRegistered += OnIdentityRegistered;
             _eventHandler.OnTokenCreated += OnTokenCreated;
             _eventHandler.OnTokenDeleted += OnTokenDeleted;
+            _eventHandler.OnGuildRegistered += OnGuildRegistered;
+            _eventHandler.OnGuildUpdated += OnGuildUpdated;
+            _eventHandler.OnGuildDeleted += OnGuildDeleted;
+            _eventHandler.OnModCaseCreated += OnModCaseCreated;
+            _eventHandler.OnModCaseUpdated += OnModCaseUpdated;
+            _eventHandler.OnModCaseDeleted += OnModCaseDeleted;
+            _eventHandler.OnModCaseCommentCreated += OnModCaseCommentCreated;
+            _eventHandler.OnModCaseCommentUpdated += OnModCaseCommentUpdated;
+            _eventHandler.OnModCaseCommentDeleted += OnModCaseCommentDeleted;
+            _eventHandler.OnGuildMotdUpdated += OnGuildMotdUpdated;
+            _eventHandler.OnFileUploaded += OnFileUploaded;
             _eventHandler.OnInternalCachingDone += OnInternalCachingDone;
             _logger.LogInformation("Registered events for audit logger.");
+        }
+
+        private Task OnFileUploaded(FileUploadedEventArgs e)
+        {
+            Task task = new Task(() => {
+                QueueLog($"**File** `{e.GetFileInfo().Name}` uploaded.");
+            });
+            task.Start();
+            return Task.CompletedTask;
+        }
+
+        private Task OnGuildMotdUpdated(GuildMotdUpdatedEventArgs e)
+        {
+            Task task = new Task(() => {
+                QueueLog($"**Motd** for guild `{e.GetGuildMotd().GuildId}` updated.");
+            });
+            task.Start();
+            return Task.CompletedTask;
+        }
+
+        private Task OnModCaseCommentDeleted(ModCaseCommentDeletedEventArgs e)
+        {
+            Task task = new Task(() => {
+                QueueLog($"**Comment** `{e.GetModCaseComment().ModCase.GuildId}/{e.GetModCaseComment().ModCase.CaseId}/{e.GetModCaseComment().Id}` by <@{e.GetModCaseComment().UserId}> deleted.");
+            });
+            task.Start();
+            return Task.CompletedTask;
+        }
+
+        private Task OnModCaseCommentUpdated(ModCaseCommentUpdatedEventArgs e)
+        {
+            Task task = new Task(() => {
+                QueueLog($"**Comment** `{e.GetModCaseComment().ModCase.GuildId}/{e.GetModCaseComment().ModCase.CaseId}/{e.GetModCaseComment().Id}` by <@{e.GetModCaseComment().UserId}> updated.");
+            });
+            task.Start();
+            return Task.CompletedTask;
+        }
+
+        private Task OnModCaseCommentCreated(ModCaseCommentCreatedEventArgs e)
+        {
+            Task task = new Task(() => {
+                QueueLog($"**Comment** `{e.GetModCaseComment().ModCase.GuildId}/{e.GetModCaseComment().ModCase.CaseId}/{e.GetModCaseComment().Id}` by <@{e.GetModCaseComment().UserId}> created.");
+            });
+            task.Start();
+            return Task.CompletedTask;
+        }
+
+        private Task OnModCaseDeleted(ModCaseDeletedEventArgs e)
+        {
+            Task task = new Task(() => {
+                QueueLog($"**Modcase** `{e.GetModCase().GuildId}/{e.GetModCase().CaseId}` for <@{e.GetModCase().UserId}> deleted.");
+            });
+            task.Start();
+            return Task.CompletedTask;
+        }
+
+        private Task OnModCaseUpdated(ModCaseUpdatedEventArgs e)
+        {
+            Task task = new Task(() => {
+                QueueLog($"**Modcase** `{e.GetModCase().GuildId}/{e.GetModCase().CaseId}` for <@{e.GetModCase().UserId}> by <@{e.GetModCase().LastEditedByModId}> updated.");
+            });
+            task.Start();
+            return Task.CompletedTask;
+        }
+
+        private Task OnModCaseCreated(ModCaseCreatedEventArgs e)
+        {
+            Task task = new Task(() => {
+                QueueLog($"**Modcase** `{e.GetModCase().GuildId}/{e.GetModCase().CaseId}` for <@{e.GetModCase().UserId}> by <@{e.GetModCase().ModId}> created.");
+            });
+            task.Start();
+            return Task.CompletedTask;
+        }
+
+        private Task OnGuildDeleted(GuildDeletedEventArgs e)
+        {
+            Task task = new Task(() => {
+                QueueLog($"**Guild** `{e.GetGuildConfig().GuildId}` deleted.");
+            });
+            task.Start();
+            return Task.CompletedTask;
+        }
+
+        private Task OnGuildUpdated(GuildUpdatedEventArgs e)
+        {
+            Task task = new Task(() => {
+                QueueLog($"**Guild** `{e.GetGuildConfig().GuildId}` updated.");
+            });
+            task.Start();
+            return Task.CompletedTask;
+        }
+
+        private Task OnGuildRegistered(GuildRegisteredEventArgs e)
+        {
+            Task task = new Task(() => {
+                QueueLog($"**Guild** `{e.GetGuildConfig().GuildId}` registered.");
+            });
+            task.Start();
+            return Task.CompletedTask;
         }
 
         private Task OnInternalCachingDone(InternalCachingDoneEventArgs e)
