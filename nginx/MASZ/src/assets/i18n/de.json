@@ -118,12 +118,18 @@
         "Confirm": "Bestätigen"
     },
     "TemplateCreateDialog": {
-        "CreateTemplate": "Benenne deinen Schlüssel.",
+        "CreateTemplate": "Benenne deine Vorlage.",
         "Name": "Name",
         "Visibility": "Sichtbarkeit",
         "Cancel": "Abbrechen",
         "Confirm": "Bestätigen",
         "FailedToLoadPermissions": "Sichtbarkeitseinstellungen konnten nicht geladen werden."
+    },
+    "UsermapEditDialog": {
+        "EditUsermap": "Benutzerbeziehung aktualisieren",
+        "Description": "Beschreibung",
+        "Cancel": "Abbrechen",
+        "Confirm": "Bestätigen"
     },
     "GuildDialog": {
         "AddAGuild": "Gilde hinzufügen",

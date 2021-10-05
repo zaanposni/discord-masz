@@ -118,12 +118,18 @@
         "Confirm": "Confirm"
     },
     "TemplateCreateDialog": {
-        "CreateTemplate": "Name your token.",
+        "CreateTemplate": "Name your template.",
         "Name": "Name",
         "Visibility": "Visibility",
         "Cancel": "Cancel",
         "Confirm": "Confirm",
         "FailedToLoadPermissions": "Failed to load visibility options."
+    },
+    "UsermapEditDialog": {
+        "EditUsermap": "Edit usermap",
+        "Description": "Description",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm"
     },
     "GuildDialog": {
         "AddAGuild": "Add a guild",
