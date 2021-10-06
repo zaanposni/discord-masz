@@ -276,6 +276,9 @@
         "CreateNewCase": "Neuen Vorfall erstellen",
         "FailedToLoad": "Gildeninfo konnte nicht geladen werden."
     },
+    "DashboardMotd": {
+        "FailedToLoad": "Motd konnte nicht geladen werden."
+    },
     "Quicksearch": {
         "Placeholder": "Schnellsuche Benutzer, Vorfälle, Bestrafungen, Automoderationen, ...",
         "NoMatches": "Keine Einträge zur Suche gefunden :(",

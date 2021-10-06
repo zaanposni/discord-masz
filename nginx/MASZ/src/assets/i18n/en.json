@@ -276,6 +276,9 @@
         "CreateNewCase": "Create new case",
         "FailedToLoad": "Failed to load guild info."
     },
+    "DashboardMotd": {
+        "FailedToLoad": "Failed to load motd."
+    },
     "Quicksearch": {
         "Placeholder": "Quicksearch users, modcases, punishments, automoderations, ...",
         "NoMatches": "Nothing matches your search :(",
