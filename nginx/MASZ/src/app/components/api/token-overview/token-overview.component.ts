@@ -33,7 +33,7 @@ export class TokenOverviewComponent implements OnInit {
       this.tokens.loading = false;
     }, error => {
       this.tokens.loading = false;
-      if (error?.status === 404) return;
+      if (error?.error?.status === 404) return;
       console.error(error);
       this.toastr.error(this.translator.instant('TokenOverview.FailedToLoad'));
     })
