@@ -154,6 +154,7 @@
         "StepFurtherConfiguration": "Select further configuration",
         "InternalStaffWebhook": "Internal staff notification webhook",
         "PublicWebhook": "Public member notification webhook",
+        "Language": "Language",
         "StrictPermissionCheckbox": "Strict permission check",
         "StrictPermissionDetails": "A moderator needs kick/ban permissions on discord to create kick/ban modcases",
         "ExecuteWhois": "Execute whois on member join",

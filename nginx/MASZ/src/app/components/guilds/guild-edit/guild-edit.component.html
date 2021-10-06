@@ -32,8 +32,8 @@
                         <mat-form-field appearance="fill">
                             <mat-label>{{ 'GuildDialog.ModeratorRoles' | translate }}s</mat-label>
                             <mat-select formControlName="modRoles" multiple>
-                            <mat-option *ngFor="let role of currentGuild.content?.roles"
-                            [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
+                                <mat-option *ngFor="let role of currentGuild.content?.roles"
+                                [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <div class="stepper-actions">
@@ -48,8 +48,8 @@
                         <mat-form-field appearance="fill">
                             <mat-label>{{ 'GuildDialog.MutedRoles' | translate }}</mat-label>
                             <mat-select formControlName="muteRoles" multiple>
-                            <mat-option *ngFor="let role of currentGuild.content?.roles"
-                            [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
+                                <mat-option *ngFor="let role of currentGuild.content?.roles"
+                                [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <div class="stepper-actions">
@@ -68,6 +68,13 @@
                         <mat-form-field class="w-100">
                             <mat-label>{{ 'GuildDialog.PublicWebhook' | translate }}</mat-label>
                             <input type="email" matInput formControlName="public" placeholder="https://discord.com/...">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>{{ 'GuildDialog.Language' | translate }}</mat-label>
+                            <mat-select formControlName="preferredLanguage">
+                                <mat-option *ngFor="let language of allLanguages"
+                                [value]="language.key">{{ language.value }}</mat-option>
+                            </mat-select>
                         </mat-form-field>
                         <div class="d-flex flex-row">
                             <mat-checkbox

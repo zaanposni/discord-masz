@@ -10,4 +10,5 @@ export interface GuildConfig {
     modPublicNotificationWebhook: string;
     modInternalNotificationWebhook: string;
     publishModeratorInfo: boolean;
+    preferredLanguage: number;
 }

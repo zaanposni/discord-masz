@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
+import { APIEnum } from 'src/app/models/APIEnum';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { Guild } from 'src/app/models/Guild';
 import { GuildRole } from 'src/app/models/GuildRole';
@@ -10,6 +12,7 @@ import { IApplicationInfo } from 'src/app/models/IApplicationInfo';
 import { ApiService } from 'src/app/services/api.service';
 import { ApplicationInfoService } from 'src/app/services/application-info.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { EnumManagerService } from 'src/app/services/enum-manager.service';
 
 @Component({
   selector: 'app-guild-add',
@@ -31,7 +34,9 @@ export class GuildAddComponent implements OnInit {
   public selectedGuild: Guild|undefined;
   public selectedGuildDetails!: ContentLoading<Guild>;
 
-  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private applicationInfoService: ApplicationInfoService, private translator: TranslateService) { }
+  public allLanguages: APIEnum[] = [];
+
+  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private applicationInfoService: ApplicationInfoService, private translator: TranslateService, private enumManager: EnumManagerService) { }
 
   ngOnInit(): void {
 
@@ -49,13 +54,15 @@ export class GuildAddComponent implements OnInit {
       public: ['', Validators.pattern("^https://discord(app)?\.com/api/webhooks/.+$")],
       strictPermissionCheck: [''],
       executeWhoisOnJoin: [''],
-      publishModeratorInfo: ['']
+      publishModeratorInfo: [''],
+      preferredLanguage: [''],
     });
 
     this.applicationInfoService.currentApplicationInfo.subscribe((data: IApplicationInfo) => {
       this.clientId = data.id;
     });
 
+    this.loadLanguages();
     this.reloadGuilds();
   }
 
@@ -71,6 +78,12 @@ export class GuildAddComponent implements OnInit {
       console.error(error);
       this.guilds.loading = false;
       this.toastr.error(this.translator.instant('GuildDialog.FailedToLoadGuilds'));
+    });
+  }
+
+  loadLanguages() {
+    this.enumManager.getEnum(APIEnumTypes.LANGUAGE).subscribe((data: APIEnum[]) => {
+      this.allLanguages = data;
     });
   }
 
@@ -130,7 +143,8 @@ export class GuildAddComponent implements OnInit {
       modPublicNotificationWebhook: this.configGroup.value?.public?.trim() != '' ? this.configGroup?.value?.public : null,
       strictModPermissionCheck: (this.configGroup.value?.strictPermissionCheck !== '' ? this.configGroup.value?.strictPermissionCheck : false) ?? false,
       executeWhoisOnJoin: (this.configGroup.value?.executeWhoisOnJoin !== '' ? this.configGroup.value?.executeWhoisOnJoin : false) ?? false,
-      publishModeratorInfo: (this.configGroup.value?.publishModeratorInfo !== '' ? this.configGroup.value?.publishModeratorInfo : false) ?? false
+      publishModeratorInfo: (this.configGroup.value?.publishModeratorInfo !== '' ? this.configGroup.value?.publishModeratorInfo : false) ?? false,
+      preferredLanguage: this.configGroup.value?.preferredLanguage ?? 0,
     }
 
     this.api.postSimpleData('/guilds/', data).subscribe(() => {

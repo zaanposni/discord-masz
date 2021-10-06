@@ -154,6 +154,7 @@
         "StepFurtherConfiguration": "Weitere Konfiguration",
         "InternalStaffWebhook": "Internen Notifikations-Webhook",
         "PublicWebhook": "Öffentlicher Notifikations-Webhook",
+        "Language": "Sprache",
         "StrictPermissionCheckbox": "Genaue Berechtigungskontrolle",
         "StrictPermissionDetails": "Ein Moderator benötigt Kick/Ban Rechte auf Discord um Kick/Ban-Modkäufe zu erstellen",
         "ExecuteWhois": "Whois automatisch ausführen bei neuen Mitgliedern",

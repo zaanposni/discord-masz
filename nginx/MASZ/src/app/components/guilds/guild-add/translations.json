@@ -80,6 +80,11 @@
         "en": "Public member notification webhook",
         "de": "Öffentlicher Notifikations-Webhook"
     },
+    "Language": {
+        "description": "language select",
+        "en": "Language",
+        "de": "Sprache"
+    },
     "StrictPermissionCheckbox": {
         "description": "Checkbox to enable strict permission mode",
         "en": "Strict permission check",
