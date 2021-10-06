@@ -20,7 +20,8 @@ As you can see there is a `description` that tells you what this translation nod
 To add your translation - lets say for french - simply add `'fr': 'Sourdine'`.
 
 Backend translation (used for notifications) are located in the `./translations` directory while translations for the website are located in every subfolder of `./nginx/MASZ/src/app`.<br/>
-To quickly find your translation node either search for a known english translation or the existing translation you want to adjust. You can use tools like `Visual Studio Code` to search through the entire codebase.
+To quickly find your translation node either search for a known english translation or the existing translation you want to adjust.<br/>
+You can use tools like `Visual Studio Code` to search through the entire codebase.
 
 ## How to publish my changes
 
