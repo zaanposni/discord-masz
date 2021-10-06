@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using masz.Enums;
 
 namespace masz.Dtos.GuildConfig
 {
@@ -25,5 +26,6 @@ namespace masz.Dtos.GuildConfig
         public bool StrictModPermissionCheck { get; set; }
         [Required(ErrorMessage = "PublishModeratorInfo field is required")]
         public bool PublishModeratorInfo { get; set; }
+        public Language PreferredLanguage { get; set; } = Language.en;
     }
 }

@@ -73,6 +73,7 @@ namespace masz.Controllers
             guildConfig.StrictModPermissionCheck = guildConfigForCreateDto.StrictModPermissionCheck;
             guildConfig.ExecuteWhoisOnJoin = guildConfigForCreateDto.ExecuteWhoisOnJoin;
             guildConfig.PublishModeratorInfo = guildConfigForCreateDto.PublishModeratorInfo;
+            guildConfig.PreferredLanguage = guildConfigForCreateDto.PreferredLanguage;
 
             await GuildConfigRepository.CreateDefault(_serviceProvider).CreateGuildConfig(guildConfig);
 
@@ -111,6 +112,7 @@ namespace masz.Controllers
             guildConfig.StrictModPermissionCheck = newValue.StrictModPermissionCheck;
             guildConfig.ExecuteWhoisOnJoin = newValue.ExecuteWhoisOnJoin;
             guildConfig.PublishModeratorInfo = newValue.PublishModeratorInfo;
+            guildConfig.PreferredLanguage = newValue.PreferredLanguage;
 
             return Ok(await GuildConfigRepository.CreateDefault(_serviceProvider).UpdateGuildConfig(guildConfig));
         }
