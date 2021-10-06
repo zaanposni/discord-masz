@@ -15,6 +15,7 @@
 ⭐ **Infractions and managed (temporary) punishments** - to moderate your server<br/>
 ⭐ **Userscan** - quickly spot relations between users with a included visualization<br/>
 ⭐ **Quicksearch** - to reliably search for any infractions or notes a user has<br/>
+⭐ **Localization** - timezones and languages are fully customizable<br/>
 ⭐ **Automoderation** - to give trolls no chance<br/>
 ⭐ **Ban appeals and webhook notifications** - to moderate your server transparently<br/>
 ⭐ **A website and a discord bot** - to use MASZ<br/>
