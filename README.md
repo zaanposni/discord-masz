@@ -143,6 +143,13 @@ There are backup example scripts in the `scripts` directory to backup uploaded f
 As a siteadmin you can create a token to authenticate yourself while making API requests.<br/>
 You can also use my [python library](https://github.com/zaanposni/masz-api-wrapper) to integrate the MASZ API into your project.
 
+# 🤝 Contribute
+
+Contributions are welcome. <br/>
+You can find our contributions guidelines [here](CONTRIBUTING.md).<br/>
+If you are new to open source, checkout [this tutorial](https://github.com/firstcontributions/first-contributions). <br/>
+Feel free to get in touch with me via our support server https://discord.gg/5zjpzw6h3S or via friend request on discord: **zaanposni#9295**.
+
 # Development
 
 ```bash
@@ -160,10 +167,3 @@ If you are using a local deployed backend you have to define `https://127.0.0.1:
 ## Angular
 
 If you want to develop on the angular frontend, set the env var `ENABLE_CORS=true` for the backend container.
-
-# 🤝 Contribute
-
-Contributions are welcome. <br/>
-You can find our contributions guidelines [here](CONTRIBUTING.md).<br/>
-If you are new to open source, checkout [this tutorial](https://github.com/firstcontributions/first-contributions). <br/>
-Feel free to get in touch with me via our support server https://discord.gg/5zjpzw6h3S or via friend request on discord: **zaanposni#9295**.
