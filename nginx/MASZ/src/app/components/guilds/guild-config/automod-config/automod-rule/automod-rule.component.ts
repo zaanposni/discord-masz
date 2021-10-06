@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
 import { APIEnum } from 'src/app/models/APIEnum';
@@ -35,7 +36,7 @@ export class AutomodRuleComponent implements OnInit {
 
   public initRowsCustomWords = 1;
 
-  constructor(private route: ActivatedRoute, private api: ApiService, private toastr: ToastrService, private _formBuilder: FormBuilder, private enumManager: EnumManagerService) { }
+  constructor(private route: ActivatedRoute, private api: ApiService, private toastr: ToastrService, private _formBuilder: FormBuilder, private enumManager: EnumManagerService, private translator: TranslateService) { }
 
   ngOnInit(): void {
     this.eventForm = this._formBuilder.group({
@@ -140,11 +141,14 @@ export class AutomodRuleComponent implements OnInit {
   }
 
   deleteConfig() {
-    this.api.deleteData(`/guilds/${this.guildId}/automoderationconfig/${this.definition.type}`).subscribe((data) => {
-      this.toastr.success("Config deleted.");
+    this.api.deleteData(`/guilds/${this.guildId}/automoderationconfig/${this.definition.type}`).subscribe(() => {
+      this.toastr.success(this.translator.instant('AutomodConfig.ConfigDeleted'));
       this.reload();
-    }, (error) => {
-      this.toastr.error('Failed to delete config.');
+    }, error => {
+      console.error(error);
+      if (error?.error?.status !== 404) {
+        this.toastr.error(this.translator.instant('AutomodConfig.FailedToDeleteConfig'));
+      }
       this.reload();
     });
   }
@@ -165,13 +169,14 @@ export class AutomodRuleComponent implements OnInit {
       "SendPublicNotification": this.actionForm.value.publicNotification !== "" ? this.actionForm.value.publicNotification : false
     }
 
-    this.api.putSimpleData(`/guilds/${this.guildId}/automoderationconfig`, data).subscribe((data) => {
+    this.api.putSimpleData(`/guilds/${this.guildId}/automoderationconfig`, data).subscribe(() => {
       this.tryingToSaveConfig = false;
-      this.toastr.success("Saved config.");
+      this.toastr.success(this.translator.instant('AutomodConfig.SavedConfig'));
       this.reload();
-    }, (error) => {
+    }, error => {
+      console.error(error);
       this.tryingToSaveConfig = false;
-      this.toastr.error('Failed to update config.')
+      this.toastr.error(this.translator.instant('AutomodConfig.FailedToSaveConfig'))
     });
 
   }

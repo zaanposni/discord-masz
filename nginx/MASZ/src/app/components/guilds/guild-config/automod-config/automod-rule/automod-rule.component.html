@@ -4,95 +4,99 @@
           [(ngModel)]="this.enableConfig"
           (ngModelChange)="onRuleToggle($event)"
           [labelPosition]="'after'">
-          {{ definition.title }}
+          {{ 'AutomodConfig.' + definition.key + ".title" | translate }}
         </mat-checkbox>
     </span>
     <mat-horizontal-stepper linear #stepper *ngIf="this.enableConfig" color="accent">
         <!-- Event ####################################################################################################### -->
         <mat-step [stepControl]="eventForm">
           <form [formGroup]="eventForm">
-            <ng-template matStepLabel>Event</ng-template>
+            <ng-template matStepLabel>{{ 'AutomodConfig.Steps.Event' | translate }}</ng-template>
             <div>
               <div class="d-flex flex-row align-items-center">
-                <span>{{ this.definition.description }}  </span>
-                <mat-icon matTooltip="{{ this.definition.tooltip }}" *ngIf="this.definition.tooltip">
+                {{ 'AutomodConfig.' + definition.key + ".details" | translate }}
+                <mat-icon matTooltip="{{ 'AutomodConfig.' + definition.key + '.tooltip' | translate }}" *ngIf="this.definition.tooltip">
                     help_outline
                 </mat-icon>
               </div>
               <a href="{{ this.definition.link }}" target="_blank" *ngIf="this.definition.link"
                  rel="noopener" class="p-2" mat-raised-button color="accent">
-                {{ this.definition.linkText }}
+                 {{ 'AutomodConfig.' + definition.key + ".linkText" | translate }}
               </a>
             </div>
 
             <mat-form-field *ngIf="this.definition.showLimitField">
-              <mat-label>Upper limit</mat-label>
+              <mat-label>{{ 'AutomodConfig.UpperLimit' | translate }}</mat-label>
               <input type="number" matInput formControlName="limit" required>
             </mat-form-field><br/>
             <mat-form-field *ngIf="this.definition.showTimeLimitField">
-              <mat-label *ngIf="this.definition.timeLimitFieldMessage">{{ this.definition.timeLimitFieldMessage }}</mat-label>
-              <mat-label *ngIf="!this.definition.timeLimitFieldMessage">Time limit (minutes)</mat-label>
+              <mat-label *ngIf="this.definition.timeLimitFieldMessage">
+                {{ 'AutomodConfig.' + definition.key + ".TimeLimitMessage" | translate }}
+              </mat-label>
+              <mat-label *ngIf="!this.definition.timeLimitFieldMessage">{{ 'AutomodConfig.TimeLimitMinutes' | translate }}</mat-label>
               <input type="number" matInput formControlName="timeLimit" required>
             </mat-form-field>
             <mat-form-field *ngIf="this.definition.showCustomField">
-              <mat-label>Custom words (divide by newline)</mat-label>
+              <mat-label>{{ 'AutomodConfig.CustomWordField' | translate }}</mat-label>
               <textarea matInput type="text" formControlName="customWord" [attr.rows]="this.initRowsCustomWords" required></textarea>
             </mat-form-field>
             <div>
-              <button mat-raised-button matStepperNext color="accent">Next</button>
+              <button mat-raised-button matStepperNext color="accent">
+                {{ 'AutomodConfig.Next' | translate }}
+              </button>
             </div>
           </form>
         </mat-step>
         <!-- Filter #########################################t############################################################## -->
         <mat-step [stepControl]="filterForm" [optional]='true'>
           <form [formGroup]="filterForm">
-            <ng-template matStepLabel>Filter</ng-template>
-            <span>Note: team members are always excluded.</span><br/>
+            <ng-template matStepLabel>{{ 'AutomodConfig.Steps.Filter' | translate }}</ng-template>
+            <span>{{ 'AutomodConfig.TeamMembersExcluded' | translate }}</span><br/>
             <mat-form-field appearance="fill">
-                <mat-label>Exclude roles</mat-label>
+                <mat-label>{{ 'AutomodConfig.ExcludeRoles' | translate }}</mat-label>
                 <mat-select formControlName="excludeRoles" multiple>
                 <mat-option *ngFor="let role of this.guild?.roles"
                 [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
                 </mat-select>
             </mat-form-field><br/>
             <mat-form-field appearance="fill">
-                <mat-label>Exclude channels</mat-label>
+                <mat-label>{{ 'AutomodConfig.ExcludeChannels' | translate }}</mat-label>
                 <mat-select formControlName="excludeChannels" multiple>
                 <mat-option *ngFor="let channel of this.guildChannels"
                 [value]="channel.id" >#{{channel.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <div>
-              <button mat-raised-button matStepperPrevious color="accent">Back</button>
-              <button mat-raised-button matStepperNext color="accent">Next</button>
+              <button mat-raised-button matStepperPrevious color="accent">{{ 'AutomodConfig.Back' | translate }}</button>
+              <button mat-raised-button matStepperNext color="accent">{{ 'AutomodConfig.Next' | translate }}</button>
             </div>
           </form>
         </mat-step>
         <!-- Action ####################################################################################################### -->
         <mat-step [stepControl]="actionForm">
           <form [formGroup]="actionForm">
-            <ng-template matStepLabel>Action</ng-template>
+            <ng-template matStepLabel>{{ 'AutomodConfig.Steps.Action' | translate }}</ng-template>
               <mat-checkbox
                 [labelPosition]="'after'"
-                title="A internal notification is always sent."
+                title="{{ 'AutomodConfig.SendInternalNotificationHover' | translate }}"
                 [checked]="true"
                 [disabled]="'true'">
-                Send internal notification
+                {{ 'AutomodConfig.SendInternalNotification' | translate }}
               </mat-checkbox><br/>
               <mat-checkbox
                 [labelPosition]="'after'"
-                title="A log entry is always generated."
+                title="{{ 'AutomodConfig.LogEntryHover' | translate }}"
                 [checked]="true"
                 [disabled]="'true'">
-                Log entry
+                {{ 'AutomodConfig.LogEntry' | translate }}
               </mat-checkbox><br/>
               <mat-checkbox
                 formControlName="dmNotification"
                 [labelPosition]="'after'">
-                Send dm notification
+                {{ 'AutomodConfig.SendDMNotification' | translate }}
               </mat-checkbox><br/>
               <mat-form-field appearance="fill">
-                <mat-label>Action</mat-label>
+                <mat-label>{{ 'AutomodConfig.Action' | translate }}</mat-label>
                 <mat-select formControlName="automodAction">
                 <mat-option *ngFor="let enum of automodActionOptions.content" [value]="enum.key">{{ enum.value }}</mat-option>
                 </mat-select>
@@ -100,33 +104,33 @@
               <mat-checkbox *ngIf="this.actionForm.value.automodAction >= 2"
                 formControlName="publicNotification"
                 [labelPosition]="'after'">
-                Send public notification
+                {{ 'AutomodConfig.SendPublicNotification' | translate }}
               </mat-checkbox><br/>
               <mat-form-field appearance="fill" *ngIf="this.actionForm.value.automodAction >= 2">
-                <mat-label>Punishment</mat-label>
+                <mat-label>{{ 'Punishment' | translate }}</mat-label>
                 <mat-select formControlName="punishmentType">
                 <mat-option *ngFor="let enum of punishmentTypes.content" [value]="enum.key">{{ enum.value }}</mat-option>
                 </mat-select>
               </mat-form-field><br/>
               <mat-form-field *ngIf="this.actionForm.value.automodAction >= 2 && (this.actionForm.value.punishmentType === 1 || this.actionForm.value.punishmentType === 3)">
-                <mat-label>Duration in minutes</mat-label>
+                <mat-label>{{ 'AutomodConfig.DurationInMinutes' | translate }}</mat-label>
                 <input type="number" matInput formControlName="punishmentDuration">
               </mat-form-field>
             <div>
-              <button mat-raised-button matStepperPrevious color="accent">Back</button>
-              <button mat-raised-button matStepperNext color="accent">Next</button>
+              <button mat-raised-button matStepperPrevious color="accent">{{ 'AutomodConfig.Back' | translate }}</button>
+              <button mat-raised-button matStepperNext color="accent">{{ 'AutomodConfig.Next' | translate }}</button>
             </div>
           </form>
         </mat-step>
         <!-- Done ####################################################################################################### -->
         <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
+          <ng-template matStepLabel>{{ 'AutomodConfig.Steps.Done' | translate }}</ng-template>
           <div class="d-flex flex-row">
             <div class="d-flex flex-column">
-              <p>You are now done.</p>
+              <p>{{ 'AutomodConfig.YouAreDone' | translate }}</p>
               <div class="d-flex flex-row">
-                <button mat-raised-button matStepperPrevious color="accent" [disabled]="tryingToSaveConfig">Back</button>
-                <button mat-raised-button color="accent" (click)="saveConfig()" [disabled]="tryingToSaveConfig">Save</button>
+                <button mat-raised-button matStepperPrevious color="accent" [disabled]="tryingToSaveConfig">{{ 'AutomodConfig.Back' | translate }}</button>
+                <button mat-raised-button color="accent" (click)="saveConfig()" [disabled]="tryingToSaveConfig">{{ 'AutomodConfig.Save' | translate }}</button>
               </div>
             </div>
             <mat-spinner *ngIf="tryingToSaveConfig"></mat-spinner>

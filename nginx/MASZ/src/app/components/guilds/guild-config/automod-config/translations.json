@@ -1,0 +1,261 @@
+{
+    "namespace": "AutomodConfig",
+    "Automoderation": {
+        "description": "title of page",
+        "en": "Automoderation",
+        "de": "Automoderation"
+    },
+    "Invites": {
+        "title": {
+            "description": "title of automod invite",
+            "en": "Invites",
+            "de": "Einladungen"
+        },
+        "details": {
+            "description": "details of automod invite",
+            "en": "A message on your guild matches the invite pattern.",
+            "de": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster."
+        }
+    },
+    "Emotes": {
+        "title": {
+            "description": "title of automod emote",
+            "en": "Emotes",
+            "de": "Emoticons"
+        },
+        "details": {
+            "description": "details of automod emote",
+            "en": "A message on your guild contains too many emotes.",
+            "de": "Eine Nachricht auf deinem Server enthält zu viele Emoticons."
+        }
+    },
+    "Mentions": {
+        "title": {
+            "description": "title of automod mention",
+            "en": "Mentions",
+            "de": "Erwähnungen"
+        },
+        "details": {
+            "description": "details of automod mention",
+            "en": "A message on your guild contains too many mentions.",
+            "de": "Eine Nachricht auf deinem Server enthält zu viele Erwähnungen."
+        }
+    },
+    "Attachments": {
+        "title": {
+            "description": "title of automod Attachments",
+            "en": "Attachments",
+            "de": "Anhänge"
+        },
+        "details": {
+            "description": "details of automod Attachments",
+            "en": "A message on your guild contains too many attachments.",
+            "de": "Eine Nachricht auf deinem Server enthält zu viele Anhänge."
+        }
+    },
+    "Embeds": {
+        "title": {
+            "description": "title of automod Embeds",
+            "en": "Embeds",
+            "de": "Einbettungen"
+        },
+        "details": {
+            "description": "details of automod Embeds",
+            "en": "A message on your guild contains too many embeds.",
+            "de": "Eine Nachricht auf deinem Server enthält zu viele Einbettungen."
+        }
+    },
+    "Automoderations": {
+        "title": {
+            "description": "too many automoderations",
+            "en": "Automoderations",
+            "de": "Automoderationen"
+        },
+        "details": {
+            "description": "details of automod automods",
+            "en": "A user triggers too many automoderations in a defined timespan.",
+            "de": "Ein Benutzer löst zu viele Automoderationen in einem definierten Zeitraum aus."
+        }
+    },
+    "CustomFilter": {
+        "title": {
+            "description": "title of automod custom filter",
+            "en": "Custom filter",
+            "de": "Benutzerdefinierter Filter"
+        },
+        "details": {
+            "description": "details of automod custom filter",
+            "en": "A user uses too many words defined in your list.",
+            "de": "Ein Benutzer benutzt zu viele Wörter aus deiner Liste."
+        },
+        "tooltip": {
+            "description": "a tooltip with extra tips. Words are checked line by line case insensitive.",
+            "en": "Words are checked line by line case insensitive.",
+            "de": "Wörter werden zeilenweise ohne Beachtung der Groß- und Kleinschreibung überprüft."
+        },
+        "linkText": {
+            "description": "Example",
+            "en": "Example",
+            "de": "Beispiel"
+        }
+    },
+    "Spam": {
+        "title": {
+            "description": "too many spam",
+            "en": "Spam",
+            "de": "Spam"
+        },
+        "details": {
+            "description": "details of automod spam",
+            "en": "A user on your guild sends too many messages in a timespan.",
+            "de": "Ein Benutzer auf deinem Server sendet zu viele Nachrichten in einem definierten Zeitraum."
+        },
+        "TimeLimitMessage": {
+            "description": "custom field label for time limit. Time limit (seconds)",
+            "en": "Time limit (seconds)",
+            "de": "Zeitlimit (Sekunden)"
+        }
+    },
+    "Next": {
+        "description": "Next button",
+        "en": "Next",
+        "de": "Nächster Schritt"
+    },
+    "Back": {
+        "description": "Back button",
+        "en": "Back",
+        "de": "Zurück"
+    },
+    "Save": {
+        "description": "Save button",
+        "en": "Save",
+        "de": "Speichern"
+    },
+    "CustomWordField": {
+        "description": "",
+        "en": "Custom words (divide by newline)",
+        "de": "Eigene Wörter (getrennt durch Zeilenumbruch)"
+    },
+    "TimeLimitMinutes": {
+        "description": "field label for time limit. Time limit (minutes)",
+        "en": "Time limit (minutes)",
+        "de": "Zeitlimit (Minuten)"
+    },
+    "Steps": {
+        "Event": {
+            "description": "Event step",
+            "en": "Event",
+            "de": "Ereignis"
+        },
+        "Filter": {
+            "description": "Filter step",
+            "en": "Filter",
+            "de": "Filter"
+        },
+        "Action": {
+            "description": "Action step",
+            "en": "Action",
+            "de": "Aktion"
+        },
+        "Done": {
+            "description": "Done step",
+            "en": "Done",
+            "de": "Abschluss"
+        }
+    },
+    "UpperLimit": {
+        "description": "upper limit of automod execution",
+        "en": "Upper limit",
+        "de": "Oberes Limit"
+    },
+    "TeamMembersExcluded": {
+        "description": "team members are not automoderated",
+        "en": "Note: team members are always excluded.",
+        "de": "Hinweis: Teammitglieder werden immer gefiltert."
+    },
+    "ExcludeRoles": {
+        "description": "Select to exclude certain roles",
+        "en": "Exclude roles",
+        "de": "Exkludiere Rollen"
+    },
+    "ExcludeChannels": {
+        "description": "Select to exclude certain channels",
+        "en": "Exclude channels",
+        "de": "Exkludiere Kanäle"
+    },
+    "SendInternalNotification": {
+        "description": "checkbox send internal notification",
+        "en": "Send internal notification",
+        "de": "Sende interne Benachrichtigung"
+    },
+    "SendInternalNotificationHover": {
+        "description": "checkbox send internal notification",
+        "en": "A internal notification is always sent.",
+        "de": "Eine interne Benachrichtigung wird immer gesendet."
+    },
+    "LogEntry": {
+        "description": "checkbox log entry",
+        "en": "Log entry",
+        "de": "Eintrag erstellen"
+    },
+    "LogEntryHover": {
+        "description": "checkbox log entry",
+        "en": "A log entry is always generated.",
+        "de": "Ein Eintrag wird immer erstellt."
+    },
+    "SendDMNotification": {
+        "description": "Send dm notification",
+        "en": "Send dm notification",
+        "de": "Sende DM Benachrichtigung"
+    },
+    "Action": {
+        "description": "action",
+        "en": "Action",
+        "de": "Aktion"
+    },
+    "SendPublicNotification": {
+        "description": "Send public notification",
+        "en": "Send public notification",
+        "de": "Sende öffentliche Benachrichtigung"
+    },
+    "DurationInMinutes": {
+        "description": "duration of punishment in minutes ",
+        "en": "Duration in minutes",
+        "de": "Dauer in Minuten"
+    },
+    "YouAreDone": {
+        "description": "you are now done step",
+        "en": "You are now done.",
+        "de": "Du bist nun fertig."
+    },
+    "ConfigDeleted": {
+        "description": "config deleted notification",
+        "en": "Config deleted",
+        "de": "Konfiguration gelöscht."
+    },
+    "FailedToDeleteConfig": {
+        "description": "failed to delete config notification",
+        "en": "Failed to delete config.",
+        "de": "Konfiguration konnte nicht gelöscht werden."
+    },
+    "SavedConfig": {
+        "description": "config saved notification",
+        "en": "Config saved",
+        "de": "Konfiguration gespeichert."
+    },
+    "FailedToSaveConfig": {
+        "description": "failed to save config notification",
+        "en": "Failed to save config.",
+        "de": "Konfiguration konnte nicht gespeichert werden."
+    },
+    "FailedToLoadGuild": {
+        "description": "failed to load guild info",
+        "en": "Failed to load guild info.",
+        "de": "Gildeninformationen konnten nicht geladen werden."
+    },
+    "FailedToLoadChannels": {
+        "description": "Failed to load guildchannel info.",
+        "en": "Failed to load guildchannel info.",
+        "de": "Gildenkanalinformationen konnten nicht geladen werden."
+    }
+}

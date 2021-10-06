@@ -171,6 +171,74 @@
         "GuildCreated": "Gilde registriert",
         "GuildUpdated": "Gilde aktualisiert"
     },
+    "AutomodConfig": {
+        "Automoderation": "Automoderation",
+        "Invites": {
+            "title": "Einladungen",
+            "details": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster."
+        },
+        "Emotes": {
+            "title": "Emoticons",
+            "details": "Eine Nachricht auf deinem Server enthält zu viele Emoticons."
+        },
+        "Mentions": {
+            "title": "Erwähnungen",
+            "details": "Eine Nachricht auf deinem Server enthält zu viele Erwähnungen."
+        },
+        "Attachments": {
+            "title": "Anhänge",
+            "details": "Eine Nachricht auf deinem Server enthält zu viele Anhänge."
+        },
+        "Embeds": {
+            "title": "Einbettungen",
+            "details": "Eine Nachricht auf deinem Server enthält zu viele Einbettungen."
+        },
+        "Automoderations": {
+            "title": "Automoderationen",
+            "details": "Ein Benutzer löst zu viele Automoderationen in einem definierten Zeitraum aus."
+        },
+        "CustomFilter": {
+            "title": "Benutzerdefinierter Filter",
+            "details": "Ein Benutzer benutzt zu viele Wörter aus deiner Liste.",
+            "tooltip": "Wörter werden zeilenweise ohne Beachtung der Groß- und Kleinschreibung überprüft.",
+            "linkText": "Beispiel"
+        },
+        "Spam": {
+            "title": "Spam",
+            "details": "Ein Benutzer auf deinem Server sendet zu viele Nachrichten in einem definierten Zeitraum.",
+            "TimeLimitMessage": "Zeitlimit (Sekunden)"
+        },
+        "Next": "Nächster Schritt",
+        "Back": "Zurück",
+        "Save": "Speichern",
+        "CustomWordField": "Eigene Wörter (getrennt durch Zeilenumbruch)",
+        "TimeLimitMinutes": "Zeitlimit (Minuten)",
+        "Steps": {
+            "Event": "Ereignis",
+            "Filter": "Filter",
+            "Action": "Aktion",
+            "Done": "Abschluss"
+        },
+        "UpperLimit": "Oberes Limit",
+        "TeamMembersExcluded": "Hinweis: Teammitglieder werden immer gefiltert.",
+        "ExcludeRoles": "Exkludiere Rollen",
+        "ExcludeChannels": "Exkludiere Kanäle",
+        "SendInternalNotification": "Sende interne Benachrichtigung",
+        "SendInternalNotificationHover": "Eine interne Benachrichtigung wird immer gesendet.",
+        "LogEntry": "Eintrag erstellen",
+        "LogEntryHover": "Ein Eintrag wird immer erstellt.",
+        "SendDMNotification": "Sende DM Benachrichtigung",
+        "Action": "Aktion",
+        "SendPublicNotification": "Sende öffentliche Benachrichtigung",
+        "DurationInMinutes": "Dauer in Minuten",
+        "YouAreDone": "Du bist nun fertig.",
+        "ConfigDeleted": "Konfiguration gelöscht.",
+        "FailedToDeleteConfig": "Konfiguration konnte nicht gelöscht werden.",
+        "SavedConfig": "Konfiguration gespeichert.",
+        "FailedToSaveConfig": "Konfiguration konnte nicht gespeichert werden.",
+        "FailedToLoadGuild": "Gildeninformationen konnten nicht geladen werden.",
+        "FailedToLoadChannels": "Gildenkanalinformationen konnten nicht geladen werden."
+    },
     "GuildMotd": {
         "Enable": "Aktiviere MotD",
         "Message": "Nachricht",

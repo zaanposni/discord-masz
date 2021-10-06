@@ -171,6 +171,74 @@
         "GuildCreated": "Guild created",
         "GuildUpdated": "Guild updated"
     },
+    "AutomodConfig": {
+        "Automoderation": "Automoderation",
+        "Invites": {
+            "title": "Invites",
+            "details": "A message on your guild matches the invite pattern."
+        },
+        "Emotes": {
+            "title": "Emotes",
+            "details": "A message on your guild contains too many emotes."
+        },
+        "Mentions": {
+            "title": "Mentions",
+            "details": "A message on your guild contains too many mentions."
+        },
+        "Attachments": {
+            "title": "Attachments",
+            "details": "A message on your guild contains too many attachments."
+        },
+        "Embeds": {
+            "title": "Embeds",
+            "details": "A message on your guild contains too many embeds."
+        },
+        "Automoderations": {
+            "title": "Automoderations",
+            "details": "A user triggers too many automoderations in a defined timespan."
+        },
+        "CustomFilter": {
+            "title": "Custom filter",
+            "details": "A user uses too many words defined in your list.",
+            "tooltip": "Words are checked line by line case insensitive.",
+            "linkText": "Example"
+        },
+        "Spam": {
+            "title": "Spam",
+            "details": "A user on your guild sends too many messages in a timespan.",
+            "TimeLimitMessage": "Time limit (seconds)"
+        },
+        "Next": "Next",
+        "Back": "Back",
+        "Save": "Save",
+        "CustomWordField": "Custom words (divide by newline)",
+        "TimeLimitMinutes": "Time limit (minutes)",
+        "Steps": {
+            "Event": "Event",
+            "Filter": "Filter",
+            "Action": "Action",
+            "Done": "Done"
+        },
+        "UpperLimit": "Upper limit",
+        "TeamMembersExcluded": "Note: team members are always excluded.",
+        "ExcludeRoles": "Exclude roles",
+        "ExcludeChannels": "Exclude channels",
+        "SendInternalNotification": "Send internal notification",
+        "SendInternalNotificationHover": "A internal notification is always sent.",
+        "LogEntry": "Log entry",
+        "LogEntryHover": "A log entry is always generated.",
+        "SendDMNotification": "Send dm notification",
+        "Action": "Action",
+        "SendPublicNotification": "Send public notification",
+        "DurationInMinutes": "Duration in minutes",
+        "YouAreDone": "You are now done.",
+        "ConfigDeleted": "Config deleted",
+        "FailedToDeleteConfig": "Failed to delete config.",
+        "SavedConfig": "Config saved",
+        "FailedToSaveConfig": "Failed to save config.",
+        "FailedToLoadGuild": "Failed to load guild info.",
+        "FailedToLoadChannels": "Failed to load guildchannel info."
+    },
     "GuildMotd": {
         "Enable": "Enable MotD",
         "Message": "Message",
