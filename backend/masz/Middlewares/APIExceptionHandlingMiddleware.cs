@@ -39,7 +39,7 @@ namespace masz.Middlewares
                 }
                 _logger.LogWarning($"Encountered API error type {ex.error.ToString()}, message: " + message);
                 context.Response.ContentType = "application/json";
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(new {code = ex.error, message = message}));
+                await context.Response.WriteAsync(JsonConvert.SerializeObject(new {customMASZError = ex.error, message = message}));
             }
         }
     }

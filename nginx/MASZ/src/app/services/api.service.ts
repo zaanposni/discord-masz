@@ -1,16 +1,29 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { API_URL, APP_BASE_URL } from '../config/config';
+import { APIEnumTypes } from '../models/APIEmumTypes';
+import { APIEnum } from '../models/APIEnum';
+import { EnumManagerService } from './enum-manager.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient, private toastr: ToastrService) { }
+  private enumManager?: EnumManagerService = undefined;
+  private apiErrors: APIEnum[] = [];
+
+  constructor(private http: HttpClient, private toastr: ToastrService, private injector: Injector) {
+    setTimeout(() => {
+      this.enumManager = this.injector.get(EnumManagerService);
+      this.enumManager.getEnum(APIEnumTypes.APIERRORS).subscribe((apiErrors: APIEnum[]) => {
+        this.apiErrors = apiErrors;
+      });
+    });
+  }
 
   public getSimpleData(path: string, includeBasePath: boolean = true, httpParams: HttpParams = new HttpParams(), handleApiError: boolean = false): Observable<any> {
     if (includeBasePath) {
@@ -102,10 +115,17 @@ export class ApiService {
           for (let key in error.error['errors']) {
             toastr.error(error.error['errors'][key].join(' '), key);
           }
-        } else 
+        } else
         if ('title' in error.error) {
           toastr.error(error.error.title, `${error.status}: ${error.statusText}`);  // if title field from asp net standard responses is included
-        } else {
+        } else if ('customMASZError' in error.error) {
+          if (this.apiErrors.find(x => x.key === error.error.customMASZError)) {
+            toastr.error(this.apiErrors?.find(x => x.key === error.error.customMASZError)?.value ?? error.error?.message ?? 'Unknown');
+          } else {
+            toastr.error(error.message, `${error.status}: ${error.statusText}`);
+          }
+        }
+        else {
           toastr.error(error.message, `${error.status}: ${error.statusText}`);
         }
       } else if (error.error !== null) {

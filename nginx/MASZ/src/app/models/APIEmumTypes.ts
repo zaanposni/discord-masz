@@ -4,5 +4,6 @@ export enum APIEnumTypes {
     AUTOMODACTION = "automodaction",
     AUTOMODTYPE = "automodtype",
     CASECREATIONTYPE = "casecreationtype",
-    LANGUAGE = "language"
+    LANGUAGE = "language",
+    APIERRORS = "apierror"
 }
