@@ -127,7 +127,7 @@ export class UserscanComponent implements OnInit {
         }, error => {
           this.reset();
           this.loading = false;
-          if (error?.error?.status === 404) {
+          if (error?.status === 404) {
             this.toastr.error(this.translator.instant('Scanning.FailedToLoad.InvalidInvite'));
           } else {
             console.error(error);

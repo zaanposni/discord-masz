@@ -146,7 +146,7 @@ export class AutomodRuleComponent implements OnInit {
       this.reload();
     }, error => {
       console.error(error);
-      if (error?.error?.status !== 404) {
+      if (error?.status !== 404) {
         this.toastr.error(this.translator.instant('AutomodConfig.FailedToDeleteConfig'));
       }
       this.reload();
