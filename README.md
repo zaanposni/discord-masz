@@ -163,5 +163,6 @@ If you want to develop on the angular frontend, set the env var `ENABLE_CORS=tru
 # 🤝 Contribute
 
 Contributions are welcome. <br/>
+You can find our contributions guidelines [here](contributing.md).<br/>
 If you are new to open source, checkout [this tutorial](https://github.com/firstcontributions/first-contributions). <br/>
 Feel free to get in touch with me via our support server https://discord.gg/5zjpzw6h3S or via friend request on discord: **zaanposni#9295**.
