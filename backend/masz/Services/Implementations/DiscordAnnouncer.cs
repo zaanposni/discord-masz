@@ -53,6 +53,7 @@ namespace masz.Services
 
             DiscordUser caseUser = await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.Default);
             GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(modCase.GuildId);
+            _translator.SetContext(guildConfig);
 
             if (announceDm && action != RestAction.Deleted)
             {
@@ -129,6 +130,7 @@ namespace masz.Services
             _logger.LogInformation($"Announcing comment {comment.Id} in case {comment.ModCase.CaseId} in guild {comment.ModCase.GuildId}.");
 
             GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(comment.ModCase.GuildId);
+            _translator.SetContext(guildConfig);
 
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
@@ -152,6 +154,7 @@ namespace masz.Services
             _logger.LogInformation($"Announcing file {filename} in case {modCase.CaseId} in guild {modCase.GuildId}.");
 
             GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(modCase.GuildId);
+            _translator.SetContext(guildConfig);
 
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
@@ -174,6 +177,7 @@ namespace masz.Services
             _logger.LogInformation($"Announcing usernote {userNote.Id} in guild {userNote.GuildId}.");
 
             GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(userNote.GuildId);
+            _translator.SetContext(guildConfig);
 
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
@@ -197,6 +201,7 @@ namespace masz.Services
             _logger.LogInformation($"Announcing usermap {userMapping.Id} in guild {userMapping.GuildId}.");
 
             GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(userMapping.GuildId);
+            _translator.SetContext(guildConfig);
 
             if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
