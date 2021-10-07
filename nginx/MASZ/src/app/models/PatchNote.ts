@@ -7,6 +7,7 @@ export interface PatchNote {
     fixes: PatchNoteDetail[];
     breaking: PatchNoteDetail[];
     technical: PatchNoteDetail[];
+    gist_feature_link?: string;
     version: string;
 }
 

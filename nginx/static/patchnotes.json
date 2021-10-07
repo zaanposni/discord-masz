@@ -1,5 +1,11 @@
 [
   {
+    "title": "Version 2",
+    "version": "v2.0.0",
+    "released_at": "2021-10-16",
+    "gist_feature_link": "https://gist.github.com/zaanposni/340d7f3d313867cda877f3147ff04a53"
+  },
+  {
     "title": "Version 1.13.1",
     "version": "v1.13.1",
     "released_at": "2021-08-29",
