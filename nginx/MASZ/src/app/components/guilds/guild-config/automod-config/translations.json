@@ -3,259 +3,307 @@
     "Automoderation": {
         "description": "title of page",
         "en": "Automoderation",
-        "de": "Automoderation"
+        "de": "Automoderation",
+        "at": "Automodaration"
     },
     "Invites": {
         "title": {
             "description": "title of automod invite",
             "en": "Invites",
-            "de": "Einladungen"
+            "de": "Einladungen",
+            "at": "Eiladungen"
         },
         "details": {
             "description": "details of automod invite",
             "en": "A message on your guild matches the invite pattern.",
-            "de": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster."
+            "de": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster.",
+            "at": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta."
         }
     },
     "Emotes": {
         "title": {
             "description": "title of automod emote",
             "en": "Emotes",
-            "de": "Emoticons"
+            "de": "Emoticons",
+            "at": "Emoji"
         },
         "details": {
             "description": "details of automod emote",
             "en": "A message on your guild contains too many emotes.",
-            "de": "Eine Nachricht auf deinem Server enthält zu viele Emoticons."
+            "de": "Eine Nachricht auf deinem Server enthält zu viele Emoticons.",
+            "at": "A Nochricht aufm Serva hot zvü Emojis"
         }
     },
     "Mentions": {
         "title": {
             "description": "title of automod mention",
             "en": "Mentions",
-            "de": "Erwähnungen"
+            "de": "Erwähnungen",
+            "at": "Erwähnungen"
         },
         "details": {
             "description": "details of automod mention",
             "en": "A message on your guild contains too many mentions.",
-            "de": "Eine Nachricht auf deinem Server enthält zu viele Erwähnungen."
+            "de": "Eine Nachricht auf deinem Server enthält zu viele Erwähnungen.",
+            "at": "A Nochricht aufm Serva hot zvü Erwähnungen."
         }
     },
     "Attachments": {
         "title": {
             "description": "title of automod Attachments",
             "en": "Attachments",
-            "de": "Anhänge"
+            "de": "Anhänge",
+            "at": "Ohäng"
         },
         "details": {
             "description": "details of automod Attachments",
             "en": "A message on your guild contains too many attachments.",
-            "de": "Eine Nachricht auf deinem Server enthält zu viele Anhänge."
+            "de": "Eine Nachricht auf deinem Server enthält zu viele Anhänge.",
+            "at": "A Nochricht aufm Serva hot zvü Ohäng"
         }
     },
     "Embeds": {
         "title": {
             "description": "title of automod Embeds",
             "en": "Embeds",
-            "de": "Einbettungen"
+            "de": "Einbettungen",
+            "at": "Eibettungen"
         },
         "details": {
             "description": "details of automod Embeds",
             "en": "A message on your guild contains too many embeds.",
-            "de": "Eine Nachricht auf deinem Server enthält zu viele Einbettungen."
+            "de": "Eine Nachricht auf deinem Server enthält zu viele Einbettungen.",
+            "at": "A Nochricht aufm Serva hot zvü Eibettungen. "
         }
     },
     "Automoderations": {
         "title": {
             "description": "too many automoderations",
             "en": "Automoderations",
-            "de": "Automoderationen"
+            "de": "Automoderationen",
+            "at": "Automodarationen"
         },
         "details": {
             "description": "details of automod automods",
             "en": "A user triggers too many automoderations in a defined timespan.",
-            "de": "Ein Benutzer löst zu viele Automoderationen in einem definierten Zeitraum aus."
+            "de": "Ein Benutzer löst zu viele Automoderationen in einem definierten Zeitraum aus.",
+            "at": "A Benutza hot zvü Automodarationen in am bestimmtn Zeitraum ausglest."
         }
     },
     "CustomFilter": {
         "title": {
             "description": "title of automod custom filter",
             "en": "Custom filter",
-            "de": "Benutzerdefinierter Filter"
+            "de": "Benutzerdefinierter Filter",
+            "at": "Benutzadefinirta Füta"
         },
         "details": {
             "description": "details of automod custom filter",
             "en": "A user uses too many words defined in your list.",
-            "de": "Ein Benutzer benutzt zu viele Wörter aus deiner Liste."
+            "de": "Ein Benutzer benutzt zu viele Wörter aus deiner Liste.",
+            "at": "A Nutza nutzt zvü Wörta aus dana Listn."
         },
         "tooltip": {
             "description": "a tooltip with extra tips. Words are checked line by line case insensitive.",
             "en": "Words are checked line by line case insensitive.",
-            "de": "Wörter werden zeilenweise ohne Beachtung der Groß- und Kleinschreibung überprüft."
+            "de": "Wörter werden zeilenweise ohne Beachtung der Groß- und Kleinschreibung überprüft.",
+            "at": "Wörta wean zeitweis ohne da Beachtung vo da Groß- und Kleischreibung prüft."
         },
         "linkText": {
             "description": "Example",
             "en": "Example",
-            "de": "Beispiel"
+            "de": "Beispiel",
+            "at": "Beispü"
         }
     },
     "Spam": {
         "title": {
             "description": "too many spam",
             "en": "Spam",
-            "de": "Spam"
+            "de": "Spam",
+            "at": "Spem"
         },
         "details": {
             "description": "details of automod spam",
             "en": "A user on your guild sends too many messages in a timespan.",
-            "de": "Ein Benutzer auf deinem Server sendet zu viele Nachrichten in einem definierten Zeitraum."
+            "de": "Ein Benutzer auf deinem Server sendet zu viele Nachrichten in einem definierten Zeitraum.",
+            "at": "A Nutze aufm Serva send zvü Nochricht in am bestimmt Zeitraum."
         },
         "TimeLimitMessage": {
             "description": "custom field label for time limit. Time limit (seconds)",
             "en": "Time limit (seconds)",
-            "de": "Zeitlimit (Sekunden)"
+            "de": "Zeitlimit (Sekunden)",
+            "at": "Zeitlimit (Sekundn)"
         }
     },
     "Next": {
         "description": "Next button",
         "en": "Next",
-        "de": "Nächster Schritt"
+        "de": "Nächster Schritt",
+        "at": "Nächsta Schritt"
     },
     "Back": {
         "description": "Back button",
         "en": "Back",
-        "de": "Zurück"
+        "de": "Zurück",
+        "at": "Zruck"
     },
     "Save": {
         "description": "Save button",
         "en": "Save",
-        "de": "Speichern"
+        "de": "Speichern",
+        "at": "Speicha"
     },
     "CustomWordField": {
         "description": "",
         "en": "Custom words (divide by newline)",
-        "de": "Eigene Wörter (getrennt durch Zeilenumbruch)"
+        "de": "Eigene Wörter (getrennt durch Zeilenumbruch)",
+        "at": "Eigene Wörta (trennt durch an Zeilnumbruch)"
     },
     "TimeLimitMinutes": {
         "description": "field label for time limit. Time limit (minutes)",
         "en": "Time limit (minutes)",
-        "de": "Zeitlimit (Minuten)"
+        "de": "Zeitlimit (Minuten)",
+        "at": "Zeitlimit (Minutn)"
     },
     "Steps": {
         "Event": {
             "description": "Event step",
             "en": "Event",
-            "de": "Ereignis"
+            "de": "Ereignis",
+            "at": "Ereignis"
         },
         "Filter": {
             "description": "Filter step",
             "en": "Filter",
-            "de": "Filter"
+            "de": "Filter",
+            "at": "Füta"
         },
         "Action": {
             "description": "Action step",
             "en": "Action",
-            "de": "Aktion"
+            "de": "Aktion",
+            "at": "Aktion"
         },
         "Done": {
             "description": "Done step",
             "en": "Done",
-            "de": "Abschluss"
+            "de": "Abschluss",
+            "at": "Fertig"
         }
     },
     "UpperLimit": {
         "description": "upper limit of automod execution",
         "en": "Upper limit",
-        "de": "Oberes Limit"
+        "de": "Oberes Limit",
+        "at": "Obarares Limit"
     },
     "TeamMembersExcluded": {
         "description": "team members are not automoderated",
         "en": "Note: team members are always excluded.",
-        "de": "Hinweis: Teammitglieder werden immer gefiltert."
+        "de": "Hinweis: Teammitglieder werden immer gefiltert.",
+        "at": "Hinweis: Teammitglieda wean imma gfütat."
     },
     "ExcludeRoles": {
         "description": "Select to exclude certain roles",
         "en": "Exclude roles",
-        "de": "Exkludiere Rollen"
+        "de": "Exkludiere Rollen",
+        "at": "Ausgnommene Roin"
     },
     "ExcludeChannels": {
         "description": "Select to exclude certain channels",
         "en": "Exclude channels",
-        "de": "Exkludiere Kanäle"
+        "de": "Exkludiere Kanäle",
+        "at": "Ausgnommene Kanäle"
     },
     "SendInternalNotification": {
         "description": "checkbox send internal notification",
         "en": "Send internal notification",
-        "de": "Sende interne Benachrichtigung"
+        "de": "Sende interne Benachrichtigung",
+        "at": "Send a interne Benochrichtigung"
     },
     "SendInternalNotificationHover": {
         "description": "checkbox send internal notification",
         "en": "A internal notification is always sent.",
-        "de": "Eine interne Benachrichtigung wird immer gesendet."
+        "de": "Eine interne Benachrichtigung wird immer gesendet.",
+        "at": "A interne Benochrichtigung wird imma gschickt."
     },
     "LogEntry": {
         "description": "checkbox log entry",
         "en": "Log entry",
-        "de": "Eintrag erstellen"
+        "de": "Eintrag erstellen",
+        "at": "Eitrag erstön"
     },
     "LogEntryHover": {
         "description": "checkbox log entry",
         "en": "A log entry is always generated.",
-        "de": "Ein Eintrag wird immer erstellt."
+        "de": "Ein Eintrag wird immer erstellt.",
+        "at": "A Eitrog wird imma erstöt."
     },
     "SendDMNotification": {
         "description": "Send dm notification",
         "en": "Send dm notification",
-        "de": "Sende DM Benachrichtigung"
+        "de": "Sende DM Benachrichtigung",
+        "at": "Schick a DM Benochrichtigung"
     },
     "Action": {
         "description": "action",
         "en": "Action",
-        "de": "Aktion"
+        "de": "Aktion",
+        "at": "Aktion"
     },
     "SendPublicNotification": {
         "description": "Send public notification",
         "en": "Send public notification",
-        "de": "Sende öffentliche Benachrichtigung"
+        "de": "Sende öffentliche Benachrichtigung",
+        "at": "Send a öffentliche Benochrichtigung"
     },
     "DurationInMinutes": {
         "description": "duration of punishment in minutes ",
         "en": "Duration in minutes",
-        "de": "Dauer in Minuten"
+        "de": "Dauer in Minuten",
+        "at": "Daua in Minutn"
     },
     "YouAreDone": {
         "description": "you are now done step",
         "en": "You are now done.",
-        "de": "Du bist nun fertig."
+        "de": "Du bist nun fertig.",
+        "at": "Du bist jetzt fertig."
     },
     "ConfigDeleted": {
         "description": "config deleted notification",
         "en": "Config deleted",
-        "de": "Konfiguration gelöscht."
+        "de": "Konfiguration gelöscht.",
+        "at": "Konfiguration glescht."
     },
     "FailedToDeleteConfig": {
         "description": "failed to delete config notification",
         "en": "Failed to delete config.",
-        "de": "Konfiguration konnte nicht gelöscht werden."
+        "de": "Konfiguration konnte nicht gelöscht werden.",
+        "at": "Konfiguration konnte ned glodn wean."
     },
     "SavedConfig": {
         "description": "config saved notification",
         "en": "Config saved",
-        "de": "Konfiguration gespeichert."
+        "de": "Konfiguration gespeichert.",
+        "at": "Konfiguration gspeichat."
     },
     "FailedToSaveConfig": {
         "description": "failed to save config notification",
         "en": "Failed to save config.",
-        "de": "Konfiguration konnte nicht gespeichert werden."
+        "de": "Konfiguration konnte nicht gespeichert werden.",
+        "at": "Konfiguration konnte ned gspeichat wean."
     },
     "FailedToLoadGuild": {
         "description": "failed to load guild info",
         "en": "Failed to load guild info.",
-        "de": "Gildeninformationen konnten nicht geladen werden."
+        "de": "Gildeninformationen konnten nicht geladen werden.",
+        "at": "Güdeninfos konnten ned glodn wean."
     },
     "FailedToLoadChannels": {
         "description": "Failed to load guildchannel info.",
         "en": "Failed to load guildchannel info.",
-        "de": "Gildenkanalinformationen konnten nicht geladen werden."
+        "de": "Gildenkanalinformationen konnten nicht geladen werden.",
+        "at": "Küdnkanoiinformationen konntn ned glodn wean."
     }
 }

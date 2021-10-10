@@ -3,16 +3,19 @@
     "NewestCases": {
         "description": "newest cases",
         "en": "Newest cases",
-        "de": "Neuste Vorfälle"
+        "de": "Neuste Vorfälle",
+        "at": "Neiaste Vorfälle"
     },
     "ExpiringPunishments": {
         "description": "expiring punishments",
         "en": "Expiring punishments",
-        "de": "Auslaufende Bestrafungen"
+        "de": "Auslaufende Bestrafungen",
+        "at": "Auslafende Bestrofungen"
     },
     "NoCasesFound": {
         "description": "no cases found",
         "en": "No cases found",
-        "de": "Keine Vorfälle gefunden"
+        "de": "Keine Vorfälle gefunden",
+        "at": "Kane Vorfälle gfundn"
     }
 }
