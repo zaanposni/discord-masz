@@ -3,16 +3,19 @@
     "GuildDeleted": {
         "description": "guild deleted",
         "en": "Guild deleted.",
-        "de": "Gilde gelöscht."
+        "de": "Gilde gelöscht.",
+        "at": "Güde glescht."
     },
     "FailedToDeleteGuild": {
         "description": "Failed to delete guild",
         "en": "Failed to delete guild.",
-        "de": "Gilde konnte nicht gelöscht werden."
+        "de": "Gilde konnte nicht gelöscht werden.",
+        "at": "Güde konnt ned glescht wean."
     },
     "PleaseLoginFirst": {
         "description": "please login first ",
         "en": "Please login first.",
-        "de": "Bitte melde dich zuerst an."
+        "de": "Bitte melde dich zuerst an.",
+        "at": "Bitte möd di zerst o."
     }
 }

@@ -3,36 +3,43 @@
     "UpdatedPrefix": {
         "description": "updated ",
         "en": "Updated:",
-        "de": "Aktualisiert:"
+        "de": "Aktualisiert:",
+        "at": "Aktualisiat:"
     },
     "Edit": {
         "description": "edit button",
         "en": "Edit",
-        "de": "Bearbeiten"
+        "de": "Bearbeiten",
+        "at": "Beoarbeitn"
     },
     "Delete": {
         "description": "delete button",
         "en": "Delete",
-        "de": "Löschen"
+        "de": "Löschen",
+        "at": "Löschn"
     },
     "FailedToUpdate": {
         "description": "Failed to update usermap",
         "en": "Failed to update usermap.",
-        "de": "Fehler beim Speichern der Benutzerbeziehung."
+        "de": "Fehler beim Speichern der Benutzerbeziehung.",
+        "at": "Fehla beim Speichan vo da Benutzabeziehung."
     },
     "Updated": {
         "description": "updated usermap",
         "en": "Usermap updated.",
-        "de": "Benutzerbeziehung gespeichert."
+        "de": "Benutzerbeziehung gespeichert.",
+        "at": "Benutzabeziehung gspeichat."
     },
     "FailedToDelete": {
         "description": "Failed to delete usermap",
         "en": "Failed to delete usermap.",
-        "de": "Fehler beim Löschen der Benutzerbeziehung."
+        "de": "Fehler beim Löschen der Benutzerbeziehung.",
+        "at": "Fehler beim Löschn vo da Benutzabeziehung."
     },
     "Deleted": {
         "description": "deleted usermap",
         "en": "Usermap deleted.",
-        "de": "Benutzerbeziehung gelöscht."
+        "de": "Benutzerbeziehung gelöscht.",
+        "at": "Benutzabeziehung glescht."
     }
 }

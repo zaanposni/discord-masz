@@ -3,198 +3,237 @@
     "SelectATemplate": {
         "description": "Select a template step of dialog",
         "en": "Select a template",
-        "de": "Vorlagenauswahl"
+        "de": "Vorlagenauswahl",
+        "at": "Vorlognauswoi"
     },
     "BackToGuild": {
         "description": "Back to guild button",
         "en": "Back to guild.",
-        "de": "Zurück zur Gilde."
+        "de": "Zurück zur Gilde.",
+        "at": "Zruck zua Güde"
     },
     "BackToCase": {
         "description": "Back to case button",
         "en": "Back to modcase.",
-        "de": "Zurück zum Vorfall."
+        "de": "Zurück zum Vorfall.",
+        "at": "Zruck zum Vorfoi"
     },
     "SearchTemplate": {
         "description": "Search a template",
         "en": "Search template",
-        "de": "Vorlage suchen"
+        "de": "Vorlage suchen",
+        "at": "Vorlog suacha"
     },
     "Back": {
         "description": "back button",
         "en": "Back",
-        "de": "Zurück"
+        "de": "Zurück",
+        "at": "Zruck"
     },
     "Next": {
         "description": "Nexc button",
         "en": "Next",
-        "de": "Nächster Schritt"
+        "de": "Nächster Schritt",
+        "at": "Weita"
     },
     "ChooseAMember": {
         "description": "choose a member step of dialog",
         "en": "Choose a member",
-        "de": "Nutzerauswahl"
+        "de": "Nutzerauswahl",
+        "at": "Nutzaauswoi"
     },
     "Member": {
         "description": "member field",
         "en": "Member",
-        "de": "Mitglied"
+        "de": "Mitglied",
+        "at": "Nutza"
     },
     "PickOne": {
         "description": "pick one member",
         "en": "Pick one",
-        "de": "Wähle einen"
+        "de": "Wähle einen",
+        "at": "Wöhn an"
     },
     "DescribeCase": {
         "description": "describe the case step of dialog",
         "en": "Describe the case",
-        "de": "Vorfallsbeschreibung"
+        "de": "Vorfallsbeschreibung",
+        "at": "Vorfoibeschreibung"
     },
     "Title": {
         "description": "title of the case",
         "en": "Title",
-        "de": "Titel"
+        "de": "Titel",
+        "at": "Titl"
     },
     "Description": {
         "description": "description of the case",
         "en": "Description",
-        "de": "Beschreibung"
+        "de": "Beschreibung",
+        "at": "Beschreibung"
     },
     "Labels": {
         "description": "Labels field of case",
         "en": "Labels",
-        "de": "Labels"
+        "de": "Labels",
+        "at": "Labls"
     },
     "NewLabel": {
         "description": "placeholder for label field",
         "en": "New label...",
-        "de": "Neuer Label..."
+        "de": "Neuer Label...",
+        "at": "Neichs Labl..."
     },
     "ChoosePunishment": {
         "description": "choose a punishment step of dialog",
         "en": "Choose a punishment",
-        "de": "Bestrafungsauswahl"
+        "de": "Bestrafungsauswahl",
+        "at": "Bestrofungsauswoi"
     },
     "Punishment": {
         "description": "punishment field for case",
         "en": "Punishment",
-        "de": "Bestrafung"
+        "de": "Bestrafung",
+        "at": "Bestrofung"
     },
     "SendDmNotification": {
         "description": "Send dm notification checkbox",
         "en":" Send dm notification",
-        "de": "Direktnachrichtbenachrichtigung"
+        "de": "Direktnachrichtbenachrichtigung",
+        "at": "Direktnochrichtnbenochrichtigung"
     },
     "HandlePunishment": {
         "description": "Execute punishment or just register it?",
         "en": "Execute this punishment",
-        "de": "Bestrafung exekutieren"
+        "de": "Bestrafung exekutieren",
+        "at": "Bestrofung ausfian"
     },
     "UploadFiles": {
         "description": "Upload files step of dialog",
         "en": "Upload files",
-        "de": "Dateienupload"
+        "de": "Dateienupload",
+        "at": "Dateinupload"
     },
     "Upload": {
         "description": "button to upload files",
         "en": "Upload",
-        "de": "Upload"
+        "de": "Upload",
+        "at": "Upload"
     },
     "CreateCase": {
         "description": "Create case step of dialog",
         "en": "Create case",
-        "de": "Vorfallserstellung"
+        "de": "Vorfallserstellung",
+        "at": "Vorfoi erstön"
     },
     "UpdateCase": {
         "description": "update case step of dialog",
         "en": "Update case",
-        "de": "Vorfallsaktualisierung"
+        "de": "Vorfallsaktualisierung",
+        "at": "Vorfoi aktualisian"
     },
     "PublicNotification": {
         "description": "public notification checkbox",
         "en": "Send public notification",
-        "de": "Öffentliche Benachrichtigung"
+        "de": "Öffentliche Benachrichtigung",
+        "at": "Öffentliche Benochrichtigung"
     },
     "SaveAsTemplate": {
         "description": "Save as template button",
         "en": "Save as template",
-        "de": "Als Vorlage speichern"
+        "de": "Als Vorlage speichern",
+        "at": "Ois Vorlog speichan"
     },
     "CreateCaseButton": {
         "description": "Create case button",
         "en": "Create case",
-        "de": "Vorfall erstellen"
+        "de": "Vorfall erstellen",
+        "at": "Vorfoi erstön"
     },
     "UpdateCaseButton": {
         "description": "Update case button",
         "en": "Update case",
-        "de": "Vorfall aktualisieren"
+        "de": "Vorfall aktualisieren",
+        "at": "Vorfoi aktualisian"
     },
     "FailedToLoad": {
         "MemberList": {
             "description": "Failed to load member list.",
             "en": "Failed to load member list.",
-            "de": "Mitgliederliste konnte nicht geladen werden."
+            "de": "Mitgliederliste konnte nicht geladen werden.",
+            "at": "Mitgliederlisn konnt ned glodn wean."
         },
         "PunishmentEnum": {
             "description": "Failed to load punishment enum.",
             "en": "Failed to load available punishments.",
-            "de": "Verfügbare Bestrafungen konnten nicht geladen werden."
+            "de": "Verfügbare Bestrafungen konnten nicht geladen werden.",
+            "at": "Verfügbare Bestrofungen konntn ned glodn wean."
         },
         "CaseTemplates": {
             "description": "Failed to load case templates.",
             "en": "Failed to load case templates.",
-            "de": "Vorlagen konnte nicht geladen werden."
+            "de": "Vorlagen konnte nicht geladen werden.",
+            "at": "Vorlog konnt ned glodn wean."
         },
         "CurrentCase": {
             "description": "Failed to load current case.",
             "en": "Failed to load current case.",
-            "de": "Vorfall konnte nicht geladen werden."
+            "de": "Vorfall konnte nicht geladen werden.",
+            "at": "Vorfoi konnt ned erstöt wean."
         }
     },
     "AppliedTemplate": {
         "description": "Applied template",
         "en": "Applied template.",
-        "de": "Vorlage angewendet."
+        "de": "Vorlage angewendet.",
+        "at": "Vorlog ogwendt."
     },
     "TemplateDeleted": {
         "description": "Template deleted",
         "en": "Template deleted.",
-        "de": "Vorlage gelöscht."
+        "de": "Vorlage gelöscht.",
+        "at": "Vorlog glescht."
     },
     "FailedToDeleteTemplate": {
         "description": "failed to template deleted",
         "en": "Failed to delete template.",
-        "de": "Vorlage konnte nicht gelöscht werden."
+        "de": "Vorlage konnte nicht gelöscht werden.",
+        "at": "Vorlog konnt ned glescht wean."
     },
     "TemplateSaved": {
         "description": "Template saved",
         "en": "Template saved.",
-        "de": "Vorlage gespeichert."
+        "de": "Vorlage gespeichert.",
+        "at": "Vorlog gspeichat."
     },
     "FailedToSaveTemplate": {
         "description": "failed to template save",
         "en": "Failed to save template.",
-        "de": "Vorlage konnte nicht gespeichert werden."
+        "de": "Vorlage konnte nicht gespeichert werden.",
+        "at": "Vorlog konnt ned gspeichat wean."
     },
     "FileUploaded": {
         "description": "File saved",
         "en": "File uploaded.",
-        "de": "Datei hochgeladen."
+        "de": "Datei hochgeladen.",
+        "at": "Datei hochglodn."
     },
     "FailedToUploadFile": {
         "description": "failed to upload file",
         "en": "Failed to upload file.",
-        "de": "Datei konnte nicht hochgeladen werden."
+        "de": "Datei konnte nicht hochgeladen werden.",
+        "at": "Datei konnt ned hochglodn wean."
     },
     "CaseCreated": {
         "description": "Case created",
         "en": "Case created.",
-        "de": "Vorfall erstellt."
+        "de": "Vorfall erstellt.",
+        "at": "Vorfoi erstöt."
     },
     "CaseUpdated": {
         "description": "Case updated",
         "en": "Case updated.",
-        "de": "Vorfall aktualisiert."
+        "de": "Vorfall aktualisiert.",
+        "at": "Vorfoi aktualisiat."
     }
 }
