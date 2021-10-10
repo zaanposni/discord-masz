@@ -3,11 +3,13 @@
     "ViewCase": {
         "description": "View case button",
         "en": "View case",
-        "de": "Vorfall anzeigen"
+        "de": "Vorfall anzeigen",
+        "at": "Vorfoi ozeign"
     },
     "Message": {
         "description": "Message id",
         "en": "Message",
-        "de": "Nachricht"
+        "de": "Nachricht",
+        "at": "Nochricht"
     }
 }

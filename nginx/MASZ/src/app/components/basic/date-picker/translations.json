@@ -3,11 +3,13 @@
     "ChooseADate": {
         "description": "Choose a date",
         "en": "Choose a date",
-        "de": "Wähle ein Datum"
+        "de": "Wähle ein Datum",
+        "at": "Tu a Datum auswöhn"
     },
     "OK": {
         "description": "ok button for close of datepicker",
         "en": "OK",
-        "de": "OK"
+        "de": "OK",
+        "at": "Basst"
     }
 }
