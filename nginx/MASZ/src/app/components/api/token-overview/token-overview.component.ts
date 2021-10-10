@@ -33,9 +33,10 @@ export class TokenOverviewComponent implements OnInit {
       this.tokens.loading = false;
     }, error => {
       this.tokens.loading = false;
-      if (error?.status === 404) return;
-      console.error(error);
-      this.toastr.error(this.translator.instant('TokenOverview.FailedToLoad'));
+      if (error?.error?.status !== 404 && error?.status !== 404) {
+        console.error(error);
+        this.toastr.error(this.translator.instant('TokenOverview.FailedToLoad'));
+      }
     })
   }
 

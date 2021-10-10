@@ -28,7 +28,7 @@ export class DashboardMotdComponent implements OnInit {
       this.motd  = { loading: false, content: data };
     }, error => {
       this.motd.loading = false;
-      if (error?.status !== 404) {
+      if (error?.error?.status !== 404 && error?.status !== 404) {
         console.error(error);
         this.toastr.error(this.translator.instant('DashboardMotd.FailedToLoad'));
       }

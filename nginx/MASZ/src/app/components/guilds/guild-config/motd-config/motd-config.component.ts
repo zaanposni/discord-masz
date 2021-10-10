@@ -30,7 +30,7 @@ export class MotdConfigComponent implements OnInit {
       this.motd.loading = false;
     }, error => {
       this.motd.loading = false;
-      if (error?.status === 404) {
+      if (error?.error?.status === 404 || error?.status === 404) {
         this.motd.content = {
           motd: {
             guildId: this.guildId,
