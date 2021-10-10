@@ -400,7 +400,7 @@
                 </div>
                 <div class="d-flex flex-row">
                     <mat-form-field class="flex-grow-1 mr-2">
-                        <mat-label>New comment</mat-label>
+                        <mat-label>{{ 'ModCaseView.NewComment' | translate }}</mat-label>
                         <textarea matInput [(ngModel)]="newComment" [disabled]="!this.modCase.content?.modCase?.allowComments"></textarea>
                     </mat-form-field>
                     <div class="d-flex flex-column">

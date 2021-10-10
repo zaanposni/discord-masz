@@ -78,7 +78,7 @@
     "NewComment": {
         "description": "New comment field",
         "en": "New comment",
-        "de": "Neue Kommentare"
+        "de": "Neuer Kommentar"
     },
     "LockComments": {
         "description": "lock comments",
