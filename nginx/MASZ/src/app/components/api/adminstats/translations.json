@@ -3,61 +3,73 @@
     "Bot": {
         "description": "the discord bot",
         "en": "Bot",
-        "de": "Bot"
+        "de": "Bot",
+        "at": "Bot"
     },
     "Database": {
         "description": "the database",
         "en": "Database",
-        "de": "Datenbank"
+        "de": "Datenbank",
+        "at": "Datnbonk"
     },
     "InternalCache": {
         "description": "the internal cache",
         "en": "Internal cache",
-        "de": "Interner Speicher"
+        "de": "Interner Speicher",
+        "at": "Interna Speicha"
     },
     "NextCache": {
         "description": "next cache clear",
         "en": "Next cache",
-        "de": "Speicherentleerung"
+        "de": "Speicherentleerung",
+        "at": "Speichaentleerung"
     },
     "Tokens": {
         "description": "Tokens",
         "en": "Tokens",
-        "de": "Schlüssel"
+        "de": "Schlüssel",
+        "at": "Schlüssl"
     },
     "CurrentlyLoggedIn": {
         "description": "currently logged in users headline",
         "en": "Currently logged in",
-        "de": "Moment eingeloggt"
+        "de": "Moment eingeloggt",
+        "at": "Momenton eigloggt"
     },
     "DiscordCache": {
         "description": "headline for cache list",
         "en": "Discord cache",
-        "de": "Discordspeicher"
+        "de": "Discordspeicher",
+        "at": "Discordspeicha"
     },
     "ClearCache": {
         "description": "Clear cache button",
         "en": "Clear cache",
-        "de": "Speicher leeren"
+        "de": "Speicher leeren",
+        "at": "Speicha lean"
     },
     "FailedToLoad": {
         "description": "Failed to load adminstats",
         "en": "Failed to load adminstats.",
-        "de": "Statistiken konnten nicht geladen werden."
+        "de": "Statistiken konnten nicht geladen werden.",
+        "at": "Statistikn kenna ned glodn wean."
     },
     "FailedToClear": {
         "description": "Failed to clear cache",
         "en": "Failed to clear cache.",
-        "de": "Speicher konnte nicht geleert werden."
+        "de": "Speicher konnte nicht geleert werden.",
+        "at": "Speicha konnte ned gleat wean."
     },
     "Cleared": {
         "description": " clear cache",
         "en": "Cache cleared.",
-        "de": "Speicher geleert."
+        "de": "Speicher geleert.",
+        "at": "Speicha gleat."
     },
     "Insights": {
         "description": "headline",
         "en": "Insights",
-        "de": "Statistiken"
+        "de": "Statistiken",
+        "at": "Statistikn"
     }
 }
