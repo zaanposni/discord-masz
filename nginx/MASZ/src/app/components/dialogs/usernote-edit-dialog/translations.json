@@ -3,21 +3,25 @@
     "EditUsernote": {
         "description": "Edit usernote",
         "en": "Edit usernote",
-        "de": "Benutzernotiz aktualisieren"
+        "de": "Benutzernotiz aktualisieren",
+        "at": "Benutzanotiz aktualisian"
     },
     "Description": {
         "description": "description field",
         "en": "Description",
-        "de": "Beschreibung"
+        "de": "Beschreibung",
+        "at": "Beschreibung"
     },
     "Cancel": {
         "description": "cancel button",
         "en": "Cancel",
-        "de": "Abbrechen"
+        "de": "Abbrechen",
+        "at": "Obrechn"
     },
     "Confirm": {
         "description": "confirm button",
         "en": "Confirm",
-        "de": "Bestätigen"
+        "de": "Bestätigen",
+        "at": "Zustima"
     }
 }

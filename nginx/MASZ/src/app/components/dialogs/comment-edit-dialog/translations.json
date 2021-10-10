@@ -3,21 +3,25 @@
     "EditComment": {
         "description": "edit comment",
         "en": "Edit comment",
-        "de": "Kommentar aktualisieren"
+        "de": "Kommentar aktualisieren",
+        "at": "Kommentoa aktualisiat"
     },
     "Comment": {
         "description": "Comment field",
         "en": "Comment",
-        "de": "Kommentar"
+        "de": "Kommentar",
+        "at": "Kommentoa"
     },
     "Cancel": {
         "description": "cancel button",
         "en": "Cancel",
-        "de": "Abbrechen"
+        "de": "Abbrechen",
+        "at": "Obrechn"
     },
     "Confirm": {
         "description": "confirm button",
         "en": "Confirm",
-        "de": "Bestätigen"
+        "de": "Bestätigen",
+        "at": "Zuastima"
     }
 }

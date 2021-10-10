@@ -3,21 +3,25 @@
     "NameToken": {
         "description": "name your token",
         "en": "Name your token.",
-        "de": "Benenne deinen Schlüssel."
+        "de": "Benenne deinen Schlüssel.",
+        "at": "Gib dam Schlüssl an Nom."
     },
     "Name": {
         "description": "name field",
         "en": "Name",
-        "de": "Name"
+        "de": "Name",
+        "at": "Nom"
     },
     "Cancel": {
         "description": "cancel button",
         "en": "Cancel",
-        "de": "Abbrechen"
+        "de": "Abbrechen",
+        "at": "Obrechn"
     },
     "Confirm": {
         "description": "confirm button",
         "en": "Confirm",
-        "de": "Bestätigen"
+        "de": "Bestätigen",
+        "at": "Zuastima"
     }
 }
