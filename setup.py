@@ -1,5 +1,4 @@
 import json
-from shutil import rmtree
 
 try:
     from rich import print
