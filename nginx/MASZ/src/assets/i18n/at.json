@@ -321,6 +321,17 @@
         "FailedToDelete": "Fehler beim Löschn vo da Benutzabeziehung.",
         "Deleted": "Benutzabeziehung glescht."
     },
+    "UsernoteTable": {
+        "Member": "Mitglied",
+        "Description": "Beschreibung",
+        "CreateNewNote": "Neie Benutzanotiz erstöt",
+        "Search": "Such (Benutza, ID, Beschreibung ...)",
+        "NoMatches": "Kane Benutzanotiz passt zu dana Suach.",
+        "FailedToLoad": "Benutzanotizn kenna ned glodn wean.",
+        "FailedToLoadMember": "Mitgliedalistn konnte ned glodn wean.",
+        "FailedToCreate": "Benutzanotiz konnte ned erstöt wean.",
+        "Created": "Benutzanotiz erstöt."
+    },
     "UsernoteCard": {
         "UpdatedPrefix": "Aktualisiat:",
         "Edit": "Beoarbeitn",
@@ -381,6 +392,12 @@
         "Search": "Suach (Benutza, ID, Beschreibung ...)",
         "FailedToLoad": "Vorfälle konntn ned glodn wean.",
         "NoMatches": "Kane Vorfälle passn zu deina Suach."
+    },
+    "ModCaseCard": {
+        "ViewDetailsButton": "Details ozeign",
+        "Created": "Erstöt:",
+        "Until": "Bis:",
+        "Delete": "Leschn:"
     },
     "ModCaseView": {
         "Suspect": "Verdächtiga",
