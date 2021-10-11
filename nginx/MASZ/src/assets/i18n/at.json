@@ -1,4 +1,44 @@
 {
+    "LoginWithDiscord": {
+        "Button": "Mit Discord omödn",
+        "Loading": "Du wiast ogmödt..."
+    },
+    "Case": "Vorfoi",
+    "Cases": "Vorfälle",
+    "Punishment": "Bestrofung",
+    "Punishments": "Bestrofungen",
+    "Bans": "Banns",
+    "Mutes": "Stummschoitungen",
+    "Automods": "Automods",
+    "Automoderations": "Automodarationen",
+    "Invite": "Eiladung",
+    "Invites": "Eiladungen",
+    "Usernotes": "Nutzanotizn",
+    "Usermaps": "Benutzanotizn",
+    "Comments": "Kommentare",
+    "Loading": "Lodt...",
+    "NothingHere": "Nix gfundn",
+    "AcceptTermsOnLogin": "Beim omödn stimmens de Nutzungsbedinungen und de Richtlinien zua.",
+    "Toolbar": {
+        "Login": "Omödn",
+        "Logout": "Obmödn",
+        "Patchnotes": "Patchnotizn",
+        "Community": "Community",
+        "Terms": "Nutzungsbedingungen",
+        "GitHub": "GitHab",
+        "Legal": "Rechtlichs",
+        "API": "API",
+        "Insights": "Statistikn",
+        "Scanning": "Untasuchung"
+    },
+    "Guilds": {
+        "Guilds": "Güdn",
+        "All": "Olle Güdn",
+        "Admin": "Admingüdn",
+        "Moderator": "Modaratorengüdn",
+        "Member": "Güdn",
+        "Banned": "Gsperrt vo Güden"
+    },
     "MASZ": {
         "GuildDeleted": "Güde glescht.",
         "FailedToDeleteGuild": "Güde konnt ned glescht wean.",
