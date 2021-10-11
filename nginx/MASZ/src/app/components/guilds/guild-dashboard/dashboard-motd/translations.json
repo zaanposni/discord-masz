@@ -3,6 +3,7 @@
     "FailedToLoad": {
         "description": "Failed to laod motd",
         "en": "Failed to load motd.",
-        "de": "Motd konnte nicht geladen werden."
+        "de": "Motd konnte nicht geladen werden.",
+        "at": "Motd konnt ned glodn wean."
     }
 }

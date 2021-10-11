@@ -3,16 +3,19 @@
     "FailedToLoad": {
         "description": "Failed to load automods",
         "en": "Failed to load automoderations.",
-        "de": "Automoderationen konnten nicht geladen werden."
+        "de": "Automoderationen konnten nicht geladen werden.",
+        "at": "Automodaration konnt ned glodn wean."
     },
     "NoMatches": {
         "description": "There are no moderated events.",
         "en": "There are no moderated events.",
-        "de": "Es gibt keine moderierten Ereignisse."
+        "de": "Es gibt keine moderierten Ereignisse.",
+        "at": "Es gibt kane modariaten Sochn."
     },
     "LoadMoreEvents": {
         "description": "Load more events",
         "en": "Load more entries",
-        "de": "Mehr Einträge laden"
+        "de": "Mehr Einträge laden",
+        "at": "Mehr Eiträge lodn"
     }
 }

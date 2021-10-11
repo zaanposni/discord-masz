@@ -3,46 +3,55 @@
     "Member": {
         "description": "member field",
         "en": "Member",
-        "de": "Mitglied"
+        "de": "Mitglied",
+        "at": "Mitglied"
     },
     "Description": {
         "description": "description field",
         "en": "Description",
-        "de": "Beschreibung"
+        "de": "Beschreibung",
+        "at": "Beschreibung"
     },
     "CreateNewMap": {
         "description": "create new usermap button",
         "en": "Create new usermap",
-        "de": "Neue Benutzerbeziehung erstellen"
+        "de": "Neue Benutzerbeziehung erstellen",
+        "at": "Neue Benutzabeziehung erstön"
     },
     "Search": {
         "description": "search field",
         "en": "Search (user, id, description...)",
-        "de": "Suchen (Benutzer, ID, Beschreibung...)"
+        "de": "Suchen (Benutzer, ID, Beschreibung...)",
+        "at": "Such (Benutza ID, Beschreibung ...)"
     },
     "NoMatches": {
         "description": "no matches found",
         "en": "No usermap matches your search.",
-        "de": "Keine Benutzerbeziehung passt zu deiner Suche."
+        "de": "Keine Benutzerbeziehung passt zu deiner Suche.",
+        "at": "Kane Benutzabeziehung passt zu deina Suach."
     },
     "FailedToLoad": {
         "description": "failed to load usermaps",
         "en": "Failed to load usermaps.",
-        "de": "Benutzerbeziehungen konnten nicht geladen werden."
+        "de": "Benutzerbeziehungen konnten nicht geladen werden.",
+        "at": "Benutzabeziehungen konntn ned glodn wean."
     },
     "FailedToLoadMember": {
         "description": "failed to load member",
         "en": "Failed to load memberlist.",
-        "de": "Mitgliederliste konnte nicht geladen werden."
+        "de": "Mitgliederliste konnte nicht geladen werden.",
+        "at": "Mitgliedalistn konnte ned glodn wean"
     },
     "FailedToCreate": {
         "description": "failed to create usermap",
         "en": "Failed to create usermap.",
-        "de": "Benutzerbeziehung konnte nicht erstellt werden."
+        "de": "Benutzerbeziehung konnte nicht erstellt werden.",
+        "at": "Benutzabeziehung konnte ned erstöt wean."
     },
     "Created": {
         "description": "usermap created",
         "en": "Usermap created.",
-        "de": "Benutzerbeziehung erstellt."
+        "de": "Benutzerbeziehung erstellt.",
+        "at": "Benutzabeziehung erstöt."
     }
 }

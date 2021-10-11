@@ -3,166 +3,199 @@
     "AddAGuild": {
         "description": "Add a guild",
         "en": "Add a guild",
-        "de": "Gilde hinzufügen"
+        "de": "Gilde hinzufügen",
+        "at": "Güde hinzufügn"
     },
     "SearchAGuild": {
         "description": "Search a guild",
         "en": "Search a guild",
-        "de": "Gilde suchen"
+        "de": "Gilde suchen",
+        "at": "Güde suchn"
     },
     "SelectAnotherGuild": {
         "description":" Select a guild",
         "en": "Select a guild",
-        "de": "Wähle eine andere Gilde"
+        "de": "Wähle eine andere Gilde",
+        "at": "Tu a ondera Güde wöhn"
     },
     "InviteFirst": {
         "description": "you need to invite the bot to this guild first",
         "en": "You need to invite the bot first!",
-        "de": "Du musst den Bot zuerst einladen!"
+        "de": "Du musst den Bot zuerst einladen!",
+        "at": "Du muast den Bot zerst eilodn!"
     },
     "Invite": {
         "description": "invite button",
         "en": "Invite",
-        "de": "Einladen"
+        "de": "Einladen",
+        "at": "Eilodn"
     },
     "Back": {
         "description": "Back button",
         "en": "Back",
-        "de": "Zurück"
+        "de": "Zurück",
+        "at": "Zrück"
     },
     "Next": {
         "description": "Next button",
         "en": "Next",
-        "de": "Nächster Schritt"
+        "de": "Nächster Schritt",
+        "at": "Nächsta Schritt"
     },
     "StepAdminRoles": {
         "description": "Select admin roles step of dialog",
         "en": "Select admin roles",
-        "de": "Auswahl der Adminrollen"
+        "de": "Auswahl der Adminrollen",
+        "at": "Adminroin auswöhn"
     },
     "AdminRoles": {
         "description": "Admin roles select",
         "en": "Admin roles",
-        "de": "Adminrollen"
+        "de": "Adminrollen",
+        "at": "Adminroin"
     },
     "StepModeratorRoles": {
         "description": "Select moderator roles step of dialog",
         "en": "Select moderator roles",
-        "de": "Auswahl der Moderatorrollen"
+        "de": "Auswahl der Moderatorrollen",
+        "at": "Modroin auswöhn"
     },
     "ModeratorRoles": {
         "description": "Moderator roles select",
         "en": "Moderator roles",
-        "de": "Moderatorrollen"
+        "de": "Moderatorrollen",
+        "at": "Modroin"
     },
     "StepMutedRoles": {
         "description": "Select muted roles step of dialog",
         "en": "Select muted roles",
-        "de": "Auswahl der Stummrollen"
+        "de": "Auswahl der Stummrollen",
+        "at": "Stummroin auswöhn"
     },
     "MutedRoles": {
         "description": "Muted roles select",
         "en": "Muted roles",
-        "de": "Stummschaltungsrollen"
+        "de": "Stummschaltungsrollen",
+        "at": "Stummroin"
     },
     "StepFurtherConfiguration": {
         "description": "Select further configuration step of dialog",
         "en": "Select further configuration",
-        "de": "Weitere Konfiguration"
+        "de": "Weitere Konfiguration",
+        "at": "Weitare Konfiguration"
     },
     "InternalStaffWebhook": {
         "description": "field to add internal notification webhook",
         "en": "Internal staff notification webhook",
-        "de": "Internen Notifikations-Webhook"
+        "de": "Internen Notifikations-Webhook",
+        "at": "Internaner Notifikations-Webhook"
     },
     "PublicWebhook": {
         "description": "field to add public notification webhook",
         "en": "Public member notification webhook",
-        "de": "Öffentlicher Notifikations-Webhook"
+        "de": "Öffentlicher Notifikations-Webhook",
+        "at": "Öffentlicha Notifikations-Webhook"
     },
     "Language": {
         "description": "language select",
         "en": "Language",
-        "de": "Sprache"
+        "de": "Sprache",
+        "at": "Sproch"
     },
     "StrictPermissionCheckbox": {
         "description": "Checkbox to enable strict permission mode",
         "en": "Strict permission check",
-        "de": "Genaue Berechtigungskontrolle"
+        "de": "Genaue Berechtigungskontrolle",
+        "at": "Genaue Berechnigungskontroi"
     },
     "StrictPermissionDetails": {
         "description": "details of strict permission mode",
         "en": "A moderator needs kick/ban permissions on discord to create kick/ban modcases",
-        "de": "Ein Moderator benötigt Kick/Ban Rechte auf Discord um Kick/Ban-Modkäufe zu erstellen"
+        "de": "Ein Moderator benötigt Kick/Ban Rechte auf Discord um Kick/Ban-Modkäufe zu erstellen",
+        "at": "Da Modaration braucht Rausschmiss/Aussperrn Rechte aufm Discord um de Rausschmiss/Aussperrn-Berichte zum erstön."
     },
     "ExecuteWhois": {
         "description": "Execute whois checkbox",
         "en": "Execute whois on member join",
-        "de": "Whois automatisch ausführen bei neuen Mitgliedern"
+        "de": "Whois automatisch ausführen bei neuen Mitgliedern",
+        "at": "Den Whois automatisch ausfüan bei am neichn Nutza"
     },
     "WhoisDetails": {
         "description": "details of whois mode",
         "en": "Automatically sends information about the joined user to your internal webhook.",
-        "de": "Sendet automatisch Informationen über den neuen Benutzer an deinen internen Webhook."
+        "de": "Sendet automatisch Informationen über den neuen Benutzer an deinen internen Webhook.",
+        "at": "Tua automatisch Infos üba an neichn Nutza on dein internan Webhook schickn."
     },
     "PublishModerator": {
         "description": "publish moderator info checkbox",
         "en": "Publish moderator information",
-        "de": "Veröffentliche Moderatorinformationen"
+        "de": "Veröffentliche Moderatorinformationen",
+        "at": "Veröfftnlich Modarationsinfos"
     },
     "PublishModeratorDetails": {
         "description": "details of publish moderator mode",
         "en": "A suspect will be able to see which moderator punished him.",
-        "de": "Ein Verdächtiger wird in der Lage sein, zu sehen, welcher Moderator ihn verurteilt hat."
+        "de": "Ein Verdächtiger wird in der Lage sein, zu sehen, welcher Moderator ihn verurteilt hat.",
+        "at": "A Verdächtiga wird de Meglichkeit hom, zum schaun, wöchana Modarator erm verurtoit hot."
     },
     "Done": {
         "description": "Done",
         "en": "Done",
-        "de": "Fertig"
+        "de": "Fertig",
+        "at": "Fertig"
     },
     "RegisterGuild": {
         "description": "button to reigster guild",
         "en": "Register guild",
-        "de": "Gilde registrieren"
+        "de": "Gilde registrieren",
+        "at": "Güde registrian"
     },
     "UpdateGuild": {
         "description": "button to update guild",
         "en": "Update guild",
-        "de": "Gilde aktualisieren"
+        "de": "Gilde aktualisieren",
+        "at": "Güde aktualisian"
     },
     "FailedToLoadGuilds": {
         "description": "Failed to load guilds",
         "en": "Failed to load guilds.",
-        "de": "Gilden konnten nicht geladen werden."
+        "de": "Gilden konnten nicht geladen werden.",
+        "at": "Güde konnt ned glodn wean."
     },
     "FailedToLoadCurrentGuild": {
         "description": "Failed to load current guild",
         "en": "Failed to load current guild info.",
-        "de": "Gildeninformation konnte nicht geladen werden."
+        "de": "Gildeninformation konnte nicht geladen werden.",
+        "at": "Güdeninfos konnt ned glodn wean."
     },
     "FailedInviteWindow": {
         "description": "failed to open invite window",
         "en": "Failed to open invite window.",
-        "de": "Einladung konnte nicht gestartet werden."
+        "de": "Einladung konnte nicht gestartet werden.",
+        "at": "Eiladung konnt ned gstartet wean."
     },
     "FailedToRegisterGuild": {
         "description": "failed to register guild",
         "en": "Failed to register guild.",
-        "de": "Gilde konnte nicht registriert werden."
+        "de": "Gilde konnte nicht registriert werden.",
+        "at": "Güde konnt ned registriat wean."
     },
     "FailedToUpdateGuild": {
         "description": "failed to update guild",
         "en": "Failed to update guild.",
-        "de": "Gilde konnte nicht aktualisiert werden."
+        "de": "Gilde konnte nicht aktualisiert werden.",
+        "at": "Güde konnt ned aktualisiat wean."
     },
     "GuildCreated": {
         "description": "Guild created",
         "en": "Guild created",
-        "de": "Gilde registriert"
+        "de": "Gilde registriert",
+        "at": "Güde registriat"
     },
     "GuildUpdated": {
         "description": "Guild updated",
         "en": "Guild updated",
-        "de": "Gilde aktualisiert"
+        "de": "Gilde aktualisiert",
+        "at": "Güde aktualisiat"
     }
 }

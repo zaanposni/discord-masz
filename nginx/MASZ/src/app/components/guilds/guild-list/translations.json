@@ -3,16 +3,19 @@
     "LoadingGuilds": {
         "description": "Loading message",
         "en": "Loading guilds...",
-        "de": "Lade Gilden..."
+        "de": "Lade Gilden...",
+        "at": "Lod Güdn..."
     },
     "NoGuild": {
         "description": "No guilds registered or intersection with current user.",
         "en": "Please join a guild or get banned so I can display something :(",
-        "de": "Bitte betrete eine Gilde oder werde gebannt, damit ich dir etwas anzeigen kann :("
+        "de": "Bitte betrete eine Gilde oder werde gebannt, damit ich dir etwas anzeigen kann :(",
+        "at": "Bitte tua a Güdn betrent oda wead ausgsperrt, damit i dia wos zeign ko :("
     },
     "AddGuild": {
         "description": "Add guild button",
         "en": "Add guild",
-        "de": "Gilde hinzufügen"
+        "de": "Gilde hinzufügen",
+        "at": "Güde hinzuafügn"
     }
 }

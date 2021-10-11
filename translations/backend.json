@@ -20,7 +20,8 @@
     "NotFound": {
         "description": "The word 'NotFound'",
         "en": "Not found.",
-        "de": "Nicht gefunden."
+        "de": "Nicht gefunden.",
+        "at": "Ned gfundn."
     },
     "Author": {
         "description": "The word 'Author'",
@@ -46,7 +47,8 @@
     "Attachments": {
         "description": "The word 'attachments'",
         "en": "Attachments",
-        "de": "Anhänge"
+        "de": "Anhänge",
+        "at": "Ohäng"
     },
     "AndXMore": {
         "description": "The word 'and x more'",
@@ -54,7 +56,8 @@
             "count": "int"
         },
         "en": "and {count} more...",
-        "de": "und {count} weitere..."
+        "de": "und {count} weitere...",
+        "at": "und {count} weitare..."
     },
     "Channel": {
         "description": "The word 'channel'",
@@ -65,12 +68,14 @@
     "SomethingWentWrong": {
         "description": "The word 'something went wrong.'",
         "en": "Something went wrong.",
-        "de": "Etwas ist schief gelaufen."
+        "de": "Etwas ist schief gelaufen.",
+        "at": "Etwos hot ned funktioniat."
     },
     "Code": {
         "description": "The word 'code'. like in 'the error code'",
         "en": "Code",
-        "de": "Code"
+        "de": "Code",
+        "at": "Code"
     },
     "LanguageWord": {
         "description": "The word 'language'",
@@ -99,7 +104,8 @@
     "Until": {
         "description": "The word 'until'",
         "en": "until",
-        "de": "bis"
+        "de": "bis",
+        "at": "bis"
     },
     "PunishmentUntil": {
         "description": "headline for a temporary punishment stating the timezone",
@@ -146,12 +152,14 @@
     "Cases": {
         "description": "The word 'cases'",
         "en": "Cases",
-        "de": "Vorfälle"
+        "de": "Vorfälle",
+        "at": "Vorfälle"
     },
     "ActivePunishments": {
         "description": "The word 'active punishments'",
         "en": "Active punishments",
-        "de": "Aktive Bestrafungen"
+        "de": "Aktive Bestrafungen",
+        "at": "Aktive Bestrofungen"
     },
     "UserMap": {
         "description": "The word 'usermap'. This is a feature to share hidden guild-wide connections of two users with other moderators.",
@@ -183,12 +191,14 @@
     "Joined": {
         "description": "The word 'joined'",
         "en": "Joined",
-        "de": "Beigetreten"
+        "de": "Beigetreten",
+        "at": "Beigetretn"
     },
     "Registered": {
         "description": "The word 'registered'",
         "en": "Registered",
-        "de": "Registriert"
+        "de": "Registriert",
+        "at": "Registriat"
     },
     "Notification" : {
         "Modcase": {
@@ -500,7 +510,8 @@
                     "action": "string"
                 },
                 "en": "Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}",
-                "de": "Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}"
+                "de": "Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}",
+                "at": "Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention} ausglest. Grund: {reason}\nAktion: {action}"
             },
             "Channel": {
                 "description": "channel notification for automod event if message was deleted, should be oneline",
@@ -509,7 +520,8 @@
                     "reason": "string"
                 },
                 "en": "{user.Mention} you triggered automoderation. Reason: {reason}. Your message has been deleted.",
-                "de": "{user.Mention} du hast die Automoderation ausgelöst. Grund: {reason}. Dein Nachricht wurde gelöscht."
+                "de": "{user.Mention} du hast die Automoderation ausgelöst. Grund: {reason}. Dein Nachricht wurde gelöscht.",
+                "at": "{user.Mention} du host de Automodaration ausglest. Grund: {reason}. Dei Nochricht wuad glescht."
             }
         }
     },
@@ -517,22 +529,26 @@
         "OnlyTextChannel": {
             "description": "Only text channels are allowed.",
             "en": "Only text channels are allowed.",
-            "de": "Nur Textkanäle sind erlaubt."
+            "de": "Nur Textkanäle sind erlaubt.",
+            "at": "Nua Textkanö san guat."
         },
         "CannotViewOrDeleteInChannel": {
             "description": "Bot cannot view or delete messages in this channel.",
             "en": "I'm not allowed to view or delete messages in this channel!",
-            "de": "Ich darf keine Nachrichten in diesem Kanal sehen oder löschen!"
+            "de": "Ich darf keine Nachrichten in diesem Kanal sehen oder löschen!",
+            "at": "I derf kane Nochrichtn in dem Kanoi sehn oda leschn!"
         },
         "CannotFindChannel": {
             "description": "Cannot find channel.",
             "en": "Cannot find channel.",
-            "de": "Kanal konnte nicht gefunden werden."
+            "de": "Kanal konnte nicht gefunden werden.",
+            "at": "Kanoi konnt ned gfundn wan."
         },
         "NoWebhookConfigured": {
             "description": "No webhook configured.",
             "en": "This guild has no webhook for internal notifications configured.",
-            "de": "Dieser Server hat keinen internen Webhook für Benachrichtigungen konfiguriert."
+            "de": "Dieser Server hat keinen internen Webhook für Benachrichtigungen konfiguriert.",
+            "at": "Da Serva hot kan internan Webhook fia Benochrichtigungen konfiguriat."
         },
         "Cleanup": {
             "description": "Cleanup response",
@@ -541,143 +557,170 @@
                 "channel": "DSharpPlus.Entities.DiscordChannel"
             },
             "en": "Deleted {count} messages in {channel.Mention}.",
-            "de": "{count} Nachrichten in {channel.Mention} gelöscht."
+            "de": "{count} Nachrichten in {channel.Mention} gelöscht.",
+            "at": "{count} Nochrichtn in {channel.Mention} glescht."
+
         },
         "Features": {
             "KickPermission": {
                 "Granted": {
                     "description": "Kick permission granted.",
                     "en": "Kick permission granted.",
-                    "de": "Kick-Berechtigung erteilt."
+                    "de": "Kick-Berechtigung erteilt.",
+                    "at": "Kick-Berechtigung erteit."
                 },
                 "NotGranted": {
                     "description": "Kick permission not granted.",
                     "en": "Kick permission not granted.",
-                    "de": "Kick-Berechtigung nicht erteilt."
+                    "de": "Kick-Berechtigung nicht erteilt.",
+                    "at": "Kick-Berechtigung ned erteit."
                 }
             },
             "BanPermission": {
                 "Granted": {
                     "description": "Ban permission granted.",
                     "en": "Ban permission granted.",
-                    "de": "Ban-Berechtigung erteilt."
+                    "de": "Ban-Berechtigung erteilt.",
+                    "at": "Ban-Berechtigung erteit."
                 },
                 "NotGranted": {
                     "description": "Ban permission not granted.",
                     "en": "Ban permission not granted.",
-                    "de": "Ban-Berechtigung nicht erteilt."
+                    "de": "Ban-Berechtigung nicht erteilt.",
+                    "at": "Ban-Berechtigung ned erteit."
                 }
             },
             "ManageRolePermission": {
                 "Granted": {
                     "description": "Manage role permission granted.",
                     "en": "Manage role permission granted.",
-                    "de": "Manage-Rolle-Berechtigung erteilt."
+                    "de": "Manage-Rolle-Berechtigung erteilt.",
+                    "at": "Manage-Rolle-Berechtigung ereit."
                 },
                 "NotGranted": {
                     "description": "Manage role permission not granted.",
                     "en": "Manage role permission not granted.",
-                    "de": "Manage-Rolle-Berechtigung nicht erteilt."
+                    "de": "Manage-Rolle-Berechtigung nicht erteilt.",
+                    "at": "Manage-Rolle-Berechtigung ned erteit."
                 }
             },
             "MutedRole": {
                 "Defined": {
                     "description": "Muted role defined.",
                     "en": "Muted role defined.",
-                    "de": "Stummrolle definiert."
+                    "de": "Stummrolle definiert.",
+                    "at": "Stummroi definiat."
                 },
                 "DefinedButTooHigh": {
                     "description": "Muted role defined but too high in role hierarchy.",
                     "en": "Muted role defined but too high in role hierarchy.",
-                    "de": "Stummrolle definiert, aber zu hoch in der Rollenhierarchie."
+                    "de": "Stummrolle definiert, aber zu hoch in der Rollenhierarchie.",
+                    "at": "Stummroi definiat, oba zu hoch in da Roinhierarchie."
                 },
                 "DefinedButInvalid": {
                     "description": "Muted role defined but invalid.",
                     "en": "Muted role defined but invalid.",
-                    "de": "Stummrolle definiert, aber ungültig."
+                    "de": "Stummrolle definiert, aber ungültig.",
+                    "at": "Stummroi definiat, oba ned gütig."
                 },
                 "Undefined": {
                     "description": "Muted role undefined.",
                     "en": "Muted role undefined.",
-                    "de": "Stummrolle nicht definiert."
+                    "de": "Stummrolle nicht definiert.",
+                    "at": "Stummroi ned definiat."
                 }
             },
             "PunishmentExecution": {
                 "description": "Punishment execution response",
                 "en": "Punishment execution",
-                "de": "Bestrafungsverwaltung"
+                "de": "Bestrafungsverwaltung",
+                "at": "Bestrofungsverwoitung"
             },
             "PunishmentExecutionDescription": {
                 "description": "Punishment execution description",
                 "en": "Let MASZ handle punishments (e.g. tempbans, mutes, etc.).",
-                "de": "Lass MASZ die Bestrafungen verwalten (z.B. temporäre Banns, Stummschaltungen, etc.)."
+                "de": "Lass MASZ die Bestrafungen verwalten (z.B. temporäre Banns, Stummschaltungen, etc.).",
+                "at": "Loss MASZ de Bestrofungen verwoitn (z.B. temporäre Banns, Stummschoitungen, etc.)."
             },
             "UnbanRequests": {
                 "description": "Unban requests",
                 "en": "Unban requests",
-                "de": "Entbannungs-Anfragen"
+                "de": "Entbannungs-Anfragen",
+                "at": "Entbannungs-Ofrogn"
             },
             "UnbanRequestsDescription": {
                 "Granted": {
                     "description": "Unban requests description",
                     "en": "Allows banned members to see their cases and comment on it for unban requests.",
-                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren."
+                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.",
+                    "at": "Erlaubt ausgsperrtn MASZ aufzuruafa, sich ernane Fälle ozumschaun und de zum kommentian."
                 },
                 "NotGranted": {
                     "description": "Unban requests description",
                     "en": "Allows banned members to see their cases and comment on it for unban requests.\nGrant this bot the ban permission to use this feature.",
-                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.\nErteile diesem Bot die Ban-Berechtigung, um diese Funktion zu nutzen."
+                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.\nErteile diesem Bot die Ban-Berechtigung, um diese Funktion zu nutzen.",
+                    "at": "Erlaubt ausgsperrtn MASZ aufzurufa, sich ernane Fälle ozumschaun und de zum kommentian. \nErteil dem Bot die Ban-Berechtigung, um de Funktion nutza zu kenna."
                 }
             },
             "ReportCommand": {
                 "description": "Report command",
                 "en": "Report command",
-                "de": "Melde-Befehl"
+                "de": "Melde-Befehl",
+                "at": "Möde-Befehl"
             },
             "ReportCommandDescription": {
                 "Granted": {
                     "description": "Report command",
                     "en": "Allows members to report messages.",
-                    "de": "Erlaubt Mitgliedern, Nachrichten zu melden."
+                    "de": "Erlaubt Mitgliedern, Nachrichten zu melden.",
+                    "at": "Erlaubt Mitglieda, Nochrichtn zu mödn."
                 },
                 "NotGranted": {
                     "description": "Unban requests description",
                     "en": "Allows members to report messages.\nDefine a internal staff webhook to use this feature.",
-                    "de": "Erlaubt Mitgliedern, Nachrichten zu melden.\nDefiniere einen internen Webhook, um diese Funktion zu nutzen."
+                    "de": "Erlaubt Mitgliedern, Nachrichten zu melden.\nDefiniere einen internen Webhook, um diese Funktion zu nutzen.",
+                    "at": "Erlaub Mitglieda, Nochrichtn zum mödn. \nDefinia an internen Webook, um de Funktion nutzn zum kennan."
                 }
             },
             "InviteTracking": {
                 "description": "Invite tracking",
                 "en": "Invite tracking",
-                "de": "Einladungsverfolgung"
+                "de": "Einladungsverfolgung",
+                "at": "Eiladungsverfoigung"
             },
             "InviteTrackingDescription": {
                 "Granted": {
                     "description": "invite tracking",
                     "en": "Allows MASZ to track the invites new members are using.",
-                    "de": "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen."
+                    "de": "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.",
+                    "at": "Erlaubt MASZ, de Eiladungen vo neichn Mitglieda zu verfoign."
                 },
                 "NotGranted": {
                     "description": "Unban requests description",
                     "en": "Allows MASZ to track the invites new members are using.\nGrant this bot the manage guild permission to use this feature.",
-                    "de": "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.\nErteile diesem Bot die Verwalten-Gilden-Berechtigung, um diese Funktion zu nutzen."
+                    "de": "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.\nErteile diesem Bot die Verwalten-Gilden-Berechtigung, um diese Funktion zu nutzen.",
+                    "at": "Erlaubt MASZ, de Eiladungen vo neichn Mitglieda zu verfoign.\nErteil dem Bot die Verwoitn-Gilden-Berechtigung, um de Funktion nutzn zu kenna."
+
                 }
             },
             "SupportAllFeatures": {
                 "description": "Support all features",
                 "en": "Your bot on this guild is configured correctly. All features of MASZ can be used.",
-                "de": "Dein Bot auf diesem Server ist richtig konfiguriert. Alle Funktionen von MASZ können genutzt werden."
+                "de": "Dein Bot auf diesem Server ist richtig konfiguriert. Alle Funktionen von MASZ können genutzt werden.",
+                "at": "Dei Bot auf dem Serva is richtig konfiguriat. Olle Funktionen vo MASZ kennen gnutzt wean."
             },
             "MissingFeatures": {
                 "description": "Missing features",
                 "en": "There are features of MASZ that you cannot use right now.",
-                "de": "Es gibt Funktionen von MASZ, die du jetzt nicht nutzen kannst."
+                "de": "Es gibt Funktionen von MASZ, die du jetzt nicht nutzen kannst.",
+                "at": "Es gibt Funktionen vo MASZ, die du jetzt ned nutzn konnst."
             }
         },
         "Invite": {
             "description": "Host your own instance of MASZ",
             "en": "You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-masz#hosting",
-            "de": "Du musst deine eigene Instanz von MASZ auf deinem Server oder PC hosten.\nSchau dir https://github.com/zaanposni/discord-masz#hosting an"
+            "de": "Du musst deine eigene Instanz von MASZ auf deinem Server oder PC hosten.\nSchau dir https://github.com/zaanposni/discord-masz#hosting an",
+            "at": "Du muast dei eignane Inszanz vo MASZ auf deim Serva oda PC hosn.\nSchau da https://github.com/zaanposni/discord-masz#hosting o"
         },
         "Punish": {
             "description": "Case created with link",
@@ -686,7 +729,8 @@
                 "caseLink": "string"
             },
             "en": "Case `#{caseId}` created: {caseLink}",
-            "de": "Fall `#{caseId}` erstellt: {caseLink}"
+            "de": "Fall `#{caseId}` erstellt: {caseLink}",
+            "at": "Foi `#{caseId}` erstöt: {caseLink}"
         },
         "Register": {
             "description": "Register a new guild",
@@ -694,18 +738,21 @@
                 "url": "string"
             },
             "en": "A siteadmin can register a guild at: {url}",
-            "de": "Ein Siteadmin kann eine Gilde registrieren unter: {url}"
+            "de": "Ein Siteadmin kann eine Gilde registrieren unter: {url}",
+            "at": "A Seitnadmin ko a Güde unta {url} registrian."
         },
         "Report": {
             "Failed": {
                 "description": "Report failed",
                 "en": "Failed to send internal notification to moderators for report command.",
-                "de": "Interner Benachrichtigungsversand an Moderatoren für Meldebefehl fehlgeschlagen."
+                "de": "Interner Benachrichtigungsversand an Moderatoren für Meldebefehl fehlgeschlagen.",
+                "at": "Interna Benochrichtigungsvasond on de Modaratoan fian Mödebefehl fehlgschlogn."
             },
             "Sent": {
                 "description": "Report sent",
                 "en": "Report sent.",
-                "de": "Meldung gesendet."
+                "de": "Meldung gesendet.",
+                "at": "Mödung gsendt."
             },
             "Content": {
                 "description": "Report content",
@@ -714,36 +761,42 @@
                     "message": "DSharpPlus.Entities.DiscordMessage"
                 },
                 "en": "{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}",
-                "de": "{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}"
+                "de": "{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}",
+                "at": "{user.Mention} mödet a Nochricht vo {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}"
             }
         },
         "Say": {
             "Failed": {
                 "description": "Say failed",
                 "en": "Failed to send message",
-                "de": "Senden der Nachricht fehlgeschlagen"
+                "de": "Senden der Nachricht fehlgeschlagen",
+                "at": "Sendn vo da Nachricht fehlgschlogn."
             },
             "Sent": {
                 "description": "Send message",
                 "en": "Message sent.",
-                "de": "Nachricht gesendet."
+                "de": "Nachricht gesendet.",
+                "at": "Nochricht gsendet."
             }
         },
         "Track": {
             "InviteNotFromThisGuild": {
                 "description": "Invite not from this guild",
                 "en": "The invite is not from this guild.",
-                "de": "Die Einladung ist nicht von dieser Gilde."
+                "de": "Die Einladung ist nicht von dieser Gilde.",
+                "at": "Die Eiladung is ned vo dera Güde."
             },
             "CannotFindInvite": {
                 "description": "Cannot find invite",
                 "en": "Could not find invite in database or in this guild.",
-                "de": "Konnte die Einladung nicht in der Datenbank oder in dieser Gilde finden."
+                "de": "Konnte die Einladung nicht in der Datenbank oder in dieser Gilde finden.",
+                "at": "Konnt de Eiladung ned in da Datnbank vo da Güde findn."
             },
             "FailedToFetchInvite": {
                 "description": "Failed to fetch invite",
                 "en": "Failed to fetch invite.",
-                "de": "Konnte die Einladung nicht abrufen."
+                "de": "Konnte die Einladung nicht abrufen.",
+                "at": "Konnt die Eiladung ned orufn."
             },
             "CreatedAt": {
                 "description": "Created at",
@@ -752,7 +805,8 @@
                     "createdAt": "DateTime"
                 },
                 "en": "`{inviteCode}` created at {createdAt.ToDiscordTS()}.",
-                "de": "`{inviteCode}` erstellt am {createdAt.ToDiscordTS()}."
+                "de": "`{inviteCode}` erstellt am {createdAt.ToDiscordTS()}.",
+                "at": "`{inviteCode}` erstöt vo {createdAt.ToDiscordTS()}."
             },
             "CreatedBy": {
                 "description": "Created by",
@@ -761,7 +815,8 @@
                     "createdBy": "DSharpPlus.Entities.DiscordUser"
                 },
                 "en": "`{inviteCode}` created by {createdBy.Mention}.",
-                "de": "`{inviteCode}` erstellt von {createdBy.Mention}."
+                "de": "`{inviteCode}` erstellt von {createdBy.Mention}.",
+                "at": "`{inviteCode}` erstöt vo {createdBy.Mention}."
             },
             "CreatedByAt": {
                 "description": "Created by",
@@ -771,12 +826,14 @@
                     "createdAt": "DateTime"
                 },
                 "en": "`{inviteCode}` created by {createdBy.Mention} at {createdAt.ToDiscordTS()}.",
-                "de": "`{inviteCode}` erstellt von {createdBy.Mention} am {createdAt.ToDiscordTS()}."
+                "de": "`{inviteCode}` erstellt von {createdBy.Mention} am {createdAt.ToDiscordTS()}.",
+                "at": "`{inviteCode}` erstöt vo {createdBy.Mention} om {createdAt.ToDiscordTS()}."
             },
             "NotTrackedYet": {
                 "description": "Not tracked yet",
                 "en": "This invite has not been tracked by MASZ yet.",
-                "de": "Diese Einladung wurde noch nicht von MASZ gespeichert."
+                "de": "Diese Einladung wurde noch nicht von MASZ gespeichert.",
+                "at": "Die Eiladung wuad no ned vo MASZ gspeichat."
             },
             "UsedBy": {
                 "description": "Used by",
@@ -784,19 +841,22 @@
                     "count": "int"
                 },
                 "en": "Used by [{count}]",
-                "de": "Benutzt von [{count}]"
+                "de": "Benutzt von [{count}]",
+                "at": "Benutzt vo [{count}]"
             }
         },
         "View": {
             "InvalidGuildId": {
                 "description": "Invalid guild id",
                 "en": "Please specify a valid guildid.",
-                "de": "Bitte gib eine gültige Gilden-ID an."
+                "de": "Bitte gib eine gültige Gilden-ID an.",
+                "at": "Bitte gib a gütige Güdn-ID o."
             },
             "NotAllowedToView": {
                 "description": "Not allowed to view",
                 "en": "You are not allowed to view this case.",
-                "de": "Du darfst diesen Fall nicht ansehen."
+                "de": "Du darfst diesen Fall nicht ansehen.",
+                "at": "Du derfst da den Foi ned oschaun."
             }
         },
         "Whois": {
@@ -806,7 +866,8 @@
                     "inviteCode": "string"
                 },
                 "en": "Used invite `{inviteCode}`.",
-                "de": "Benutzte Einladung `{inviteCode}`."
+                "de": "Benutzte Einladung `{inviteCode}`.",
+                "at": "Benutze Eilodung `{inviteCode}`."
             },
             "InviteBy": {
                 "description": "Invite by",
@@ -814,12 +875,14 @@
                     "user": "ulong"
                 },
                 "en": "By <@{user}>.",
-                "de": "Von <@{user}>."
+                "de": "Von <@{user}>.",
+                "at": "Vo <@{user}>"
             },
             "NoCases": {
                 "description": "No cases",
                 "en": "There are no cases for this user.",
-                "de": "Es gibt keine Fälle für diesen Benutzer."
+                "de": "Es gibt keine Fälle für diesen Benutzer.",
+                "at": "Es gibt kane Fälle fia diesn Benutza."
             }
         }
     }

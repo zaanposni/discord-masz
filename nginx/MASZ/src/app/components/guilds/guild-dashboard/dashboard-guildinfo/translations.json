@@ -3,11 +3,13 @@
     "CreateNewCase": {
         "description": "Create New Case button",
         "en": "Create new case",
-        "de": "Neuen Vorfall erstellen"
+        "de": "Neuen Vorfall erstellen",
+        "at": "Neichn Vorfoi erstön"
     },
     "FailedToLoad": {
         "description": "Failed to load",
         "en": "Failed to load guild info.",
-        "de": "Gildeninfo konnte nicht geladen werden."
+        "de": "Gildeninfo konnte nicht geladen werden.",
+        "at": "Güdnnifo konnt ned glodn wean."
     }
 }

@@ -53,6 +53,8 @@ namespace masz.Translations
                     return "Not found.";
                 case Language.de:
                     return "Nicht gefunden.";
+                case Language.at:
+                    return "Ned gfundn.";
             }
             return "Not found.";
         }
@@ -95,6 +97,8 @@ namespace masz.Translations
                     return "Attachments";
                 case Language.de:
                     return "Anhänge";
+                case Language.at:
+                    return "Ohäng";
             }
             return "Attachments";
         }
@@ -104,6 +108,8 @@ namespace masz.Translations
                     return $"and {count} more...";
                 case Language.de:
                     return $"und {count} weitere...";
+                case Language.at:
+                    return $"und {count} weitare...";
             }
             return $"and {count} more...";
         }
@@ -124,6 +130,8 @@ namespace masz.Translations
                     return "Something went wrong.";
                 case Language.de:
                     return "Etwas ist schief gelaufen.";
+                case Language.at:
+                    return "Etwos hot ned funktioniat.";
             }
             return "Something went wrong.";
         }
@@ -132,6 +140,8 @@ namespace masz.Translations
                 case Language.en:
                     return "Code";
                 case Language.de:
+                    return "Code";
+                case Language.at:
                     return "Code";
             }
             return "Code";
@@ -185,6 +195,8 @@ namespace masz.Translations
                 case Language.en:
                     return "until";
                 case Language.de:
+                    return "bis";
+                case Language.at:
                     return "bis";
             }
             return "until";
@@ -272,6 +284,8 @@ namespace masz.Translations
                     return "Cases";
                 case Language.de:
                     return "Vorfälle";
+                case Language.at:
+                    return "Vorfälle";
             }
             return "Cases";
         }
@@ -281,6 +295,8 @@ namespace masz.Translations
                     return "Active punishments";
                 case Language.de:
                     return "Aktive Bestrafungen";
+                case Language.at:
+                    return "Aktive Bestrofungen";
             }
             return "Active punishments";
         }
@@ -334,6 +350,8 @@ namespace masz.Translations
                     return "Joined";
                 case Language.de:
                     return "Beigetreten";
+                case Language.at:
+                    return "Beigetretn";
             }
             return "Joined";
         }
@@ -343,6 +361,8 @@ namespace masz.Translations
                     return "Registered";
                 case Language.de:
                     return "Registriert";
+                case Language.at:
+                    return "Registriat";
             }
             return "Registered";
         }
@@ -704,6 +724,8 @@ namespace masz.Translations
                     return $"Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}";
                 case Language.de:
                     return $"Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}";
+                case Language.at:
+                    return $"Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention} ausglest. Grund: {reason}\nAktion: {action}";
             }
             return $"Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}";
         }
@@ -713,6 +735,8 @@ namespace masz.Translations
                     return $"{user.Mention} you triggered automoderation. Reason: {reason}. Your message has been deleted.";
                 case Language.de:
                     return $"{user.Mention} du hast die Automoderation ausgelöst. Grund: {reason}. Dein Nachricht wurde gelöscht.";
+                case Language.at:
+                    return $"{user.Mention} du host de Automodaration ausglest. Grund: {reason}. Dei Nochricht wuad glescht.";
             }
             return $"{user.Mention} you triggered automoderation. Reason: {reason}. Your message has been deleted.";
         }
@@ -722,6 +746,8 @@ namespace masz.Translations
                     return "Only text channels are allowed.";
                 case Language.de:
                     return "Nur Textkanäle sind erlaubt.";
+                case Language.at:
+                    return "Nua Textkanö san guat.";
             }
             return "Only text channels are allowed.";
         }
@@ -731,6 +757,8 @@ namespace masz.Translations
                     return "I'm not allowed to view or delete messages in this channel!";
                 case Language.de:
                     return "Ich darf keine Nachrichten in diesem Kanal sehen oder löschen!";
+                case Language.at:
+                    return "I derf kane Nochrichtn in dem Kanoi sehn oda leschn!";
             }
             return "I'm not allowed to view or delete messages in this channel!";
         }
@@ -740,6 +768,8 @@ namespace masz.Translations
                     return "Cannot find channel.";
                 case Language.de:
                     return "Kanal konnte nicht gefunden werden.";
+                case Language.at:
+                    return "Kanoi konnt ned gfundn wan.";
             }
             return "Cannot find channel.";
         }
@@ -749,6 +779,8 @@ namespace masz.Translations
                     return "This guild has no webhook for internal notifications configured.";
                 case Language.de:
                     return "Dieser Server hat keinen internen Webhook für Benachrichtigungen konfiguriert.";
+                case Language.at:
+                    return "Da Serva hot kan internan Webhook fia Benochrichtigungen konfiguriat.";
             }
             return "This guild has no webhook for internal notifications configured.";
         }
@@ -758,6 +790,8 @@ namespace masz.Translations
                     return $"Deleted {count} messages in {channel.Mention}.";
                 case Language.de:
                     return $"{count} Nachrichten in {channel.Mention} gelöscht.";
+                case Language.at:
+                    return $"{count} Nochrichtn in {channel.Mention} glescht.";
             }
             return $"Deleted {count} messages in {channel.Mention}.";
         }
@@ -767,6 +801,8 @@ namespace masz.Translations
                     return "Kick permission granted.";
                 case Language.de:
                     return "Kick-Berechtigung erteilt.";
+                case Language.at:
+                    return "Kick-Berechtigung erteit.";
             }
             return "Kick permission granted.";
         }
@@ -776,6 +812,8 @@ namespace masz.Translations
                     return "Kick permission not granted.";
                 case Language.de:
                     return "Kick-Berechtigung nicht erteilt.";
+                case Language.at:
+                    return "Kick-Berechtigung ned erteit.";
             }
             return "Kick permission not granted.";
         }
@@ -785,6 +823,8 @@ namespace masz.Translations
                     return "Ban permission granted.";
                 case Language.de:
                     return "Ban-Berechtigung erteilt.";
+                case Language.at:
+                    return "Ban-Berechtigung erteit.";
             }
             return "Ban permission granted.";
         }
@@ -794,6 +834,8 @@ namespace masz.Translations
                     return "Ban permission not granted.";
                 case Language.de:
                     return "Ban-Berechtigung nicht erteilt.";
+                case Language.at:
+                    return "Ban-Berechtigung ned erteit.";
             }
             return "Ban permission not granted.";
         }
@@ -803,6 +845,8 @@ namespace masz.Translations
                     return "Manage role permission granted.";
                 case Language.de:
                     return "Manage-Rolle-Berechtigung erteilt.";
+                case Language.at:
+                    return "Manage-Rolle-Berechtigung ereit.";
             }
             return "Manage role permission granted.";
         }
@@ -812,6 +856,8 @@ namespace masz.Translations
                     return "Manage role permission not granted.";
                 case Language.de:
                     return "Manage-Rolle-Berechtigung nicht erteilt.";
+                case Language.at:
+                    return "Manage-Rolle-Berechtigung ned erteit.";
             }
             return "Manage role permission not granted.";
         }
@@ -821,6 +867,8 @@ namespace masz.Translations
                     return "Muted role defined.";
                 case Language.de:
                     return "Stummrolle definiert.";
+                case Language.at:
+                    return "Stummroi definiat.";
             }
             return "Muted role defined.";
         }
@@ -830,6 +878,8 @@ namespace masz.Translations
                     return "Muted role defined but too high in role hierarchy.";
                 case Language.de:
                     return "Stummrolle definiert, aber zu hoch in der Rollenhierarchie.";
+                case Language.at:
+                    return "Stummroi definiat, oba zu hoch in da Roinhierarchie.";
             }
             return "Muted role defined but too high in role hierarchy.";
         }
@@ -839,6 +889,8 @@ namespace masz.Translations
                     return "Muted role defined but invalid.";
                 case Language.de:
                     return "Stummrolle definiert, aber ungültig.";
+                case Language.at:
+                    return "Stummroi definiat, oba ned gütig.";
             }
             return "Muted role defined but invalid.";
         }
@@ -848,6 +900,8 @@ namespace masz.Translations
                     return "Muted role undefined.";
                 case Language.de:
                     return "Stummrolle nicht definiert.";
+                case Language.at:
+                    return "Stummroi ned definiat.";
             }
             return "Muted role undefined.";
         }
@@ -857,6 +911,8 @@ namespace masz.Translations
                     return "Punishment execution";
                 case Language.de:
                     return "Bestrafungsverwaltung";
+                case Language.at:
+                    return "Bestrofungsverwoitung";
             }
             return "Punishment execution";
         }
@@ -866,6 +922,8 @@ namespace masz.Translations
                     return "Let MASZ handle punishments (e.g. tempbans, mutes, etc.).";
                 case Language.de:
                     return "Lass MASZ die Bestrafungen verwalten (z.B. temporäre Banns, Stummschaltungen, etc.).";
+                case Language.at:
+                    return "Loss MASZ de Bestrofungen verwoitn (z.B. temporäre Banns, Stummschoitungen, etc.).";
             }
             return "Let MASZ handle punishments (e.g. tempbans, mutes, etc.).";
         }
@@ -875,6 +933,8 @@ namespace masz.Translations
                     return "Unban requests";
                 case Language.de:
                     return "Entbannungs-Anfragen";
+                case Language.at:
+                    return "Entbannungs-Ofrogn";
             }
             return "Unban requests";
         }
@@ -884,6 +944,8 @@ namespace masz.Translations
                     return "Allows banned members to see their cases and comment on it for unban requests.";
                 case Language.de:
                     return "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.";
+                case Language.at:
+                    return "Erlaubt ausgsperrtn MASZ aufzuruafa, sich ernane Fälle ozumschaun und de zum kommentian.";
             }
             return "Allows banned members to see their cases and comment on it for unban requests.";
         }
@@ -893,6 +955,8 @@ namespace masz.Translations
                     return "Allows banned members to see their cases and comment on it for unban requests.\nGrant this bot the ban permission to use this feature.";
                 case Language.de:
                     return "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.\nErteile diesem Bot die Ban-Berechtigung, um diese Funktion zu nutzen.";
+                case Language.at:
+                    return "Erlaubt ausgsperrtn MASZ aufzurufa, sich ernane Fälle ozumschaun und de zum kommentian. \nErteil dem Bot die Ban-Berechtigung, um de Funktion nutza zu kenna.";
             }
             return "Allows banned members to see their cases and comment on it for unban requests.\nGrant this bot the ban permission to use this feature.";
         }
@@ -902,6 +966,8 @@ namespace masz.Translations
                     return "Report command";
                 case Language.de:
                     return "Melde-Befehl";
+                case Language.at:
+                    return "Möde-Befehl";
             }
             return "Report command";
         }
@@ -911,6 +977,8 @@ namespace masz.Translations
                     return "Allows members to report messages.";
                 case Language.de:
                     return "Erlaubt Mitgliedern, Nachrichten zu melden.";
+                case Language.at:
+                    return "Erlaubt Mitglieda, Nochrichtn zu mödn.";
             }
             return "Allows members to report messages.";
         }
@@ -920,6 +988,8 @@ namespace masz.Translations
                     return "Allows members to report messages.\nDefine a internal staff webhook to use this feature.";
                 case Language.de:
                     return "Erlaubt Mitgliedern, Nachrichten zu melden.\nDefiniere einen internen Webhook, um diese Funktion zu nutzen.";
+                case Language.at:
+                    return "Erlaub Mitglieda, Nochrichtn zum mödn. \nDefinia an internen Webook, um de Funktion nutzn zum kennan.";
             }
             return "Allows members to report messages.\nDefine a internal staff webhook to use this feature.";
         }
@@ -929,6 +999,8 @@ namespace masz.Translations
                     return "Invite tracking";
                 case Language.de:
                     return "Einladungsverfolgung";
+                case Language.at:
+                    return "Eiladungsverfoigung";
             }
             return "Invite tracking";
         }
@@ -938,6 +1010,8 @@ namespace masz.Translations
                     return "Allows MASZ to track the invites new members are using.";
                 case Language.de:
                     return "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.";
+                case Language.at:
+                    return "Erlaubt MASZ, de Eiladungen vo neichn Mitglieda zu verfoign.";
             }
             return "Allows MASZ to track the invites new members are using.";
         }
@@ -947,6 +1021,8 @@ namespace masz.Translations
                     return "Allows MASZ to track the invites new members are using.\nGrant this bot the manage guild permission to use this feature.";
                 case Language.de:
                     return "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.\nErteile diesem Bot die Verwalten-Gilden-Berechtigung, um diese Funktion zu nutzen.";
+                case Language.at:
+                    return "Erlaubt MASZ, de Eiladungen vo neichn Mitglieda zu verfoign.\nErteil dem Bot die Verwoitn-Gilden-Berechtigung, um de Funktion nutzn zu kenna.";
             }
             return "Allows MASZ to track the invites new members are using.\nGrant this bot the manage guild permission to use this feature.";
         }
@@ -956,6 +1032,8 @@ namespace masz.Translations
                     return "Your bot on this guild is configured correctly. All features of MASZ can be used.";
                 case Language.de:
                     return "Dein Bot auf diesem Server ist richtig konfiguriert. Alle Funktionen von MASZ können genutzt werden.";
+                case Language.at:
+                    return "Dei Bot auf dem Serva is richtig konfiguriat. Olle Funktionen vo MASZ kennen gnutzt wean.";
             }
             return "Your bot on this guild is configured correctly. All features of MASZ can be used.";
         }
@@ -965,6 +1043,8 @@ namespace masz.Translations
                     return "There are features of MASZ that you cannot use right now.";
                 case Language.de:
                     return "Es gibt Funktionen von MASZ, die du jetzt nicht nutzen kannst.";
+                case Language.at:
+                    return "Es gibt Funktionen vo MASZ, die du jetzt ned nutzn konnst.";
             }
             return "There are features of MASZ that you cannot use right now.";
         }
@@ -974,6 +1054,8 @@ namespace masz.Translations
                     return "You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-masz#hosting";
                 case Language.de:
                     return "Du musst deine eigene Instanz von MASZ auf deinem Server oder PC hosten.\nSchau dir https://github.com/zaanposni/discord-masz#hosting an";
+                case Language.at:
+                    return "Du muast dei eignane Inszanz vo MASZ auf deim Serva oda PC hosn.\nSchau da https://github.com/zaanposni/discord-masz#hosting o";
             }
             return "You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-masz#hosting";
         }
@@ -983,6 +1065,8 @@ namespace masz.Translations
                     return $"Case `#{caseId}` created: {caseLink}";
                 case Language.de:
                     return $"Fall `#{caseId}` erstellt: {caseLink}";
+                case Language.at:
+                    return $"Foi `#{caseId}` erstöt: {caseLink}";
             }
             return $"Case `#{caseId}` created: {caseLink}";
         }
@@ -992,6 +1076,8 @@ namespace masz.Translations
                     return $"A siteadmin can register a guild at: {url}";
                 case Language.de:
                     return $"Ein Siteadmin kann eine Gilde registrieren unter: {url}";
+                case Language.at:
+                    return $"A Seitnadmin ko a Güde unta {url} registrian.";
             }
             return $"A siteadmin can register a guild at: {url}";
         }
@@ -1001,6 +1087,8 @@ namespace masz.Translations
                     return "Failed to send internal notification to moderators for report command.";
                 case Language.de:
                     return "Interner Benachrichtigungsversand an Moderatoren für Meldebefehl fehlgeschlagen.";
+                case Language.at:
+                    return "Interna Benochrichtigungsvasond on de Modaratoan fian Mödebefehl fehlgschlogn.";
             }
             return "Failed to send internal notification to moderators for report command.";
         }
@@ -1010,6 +1098,8 @@ namespace masz.Translations
                     return "Report sent.";
                 case Language.de:
                     return "Meldung gesendet.";
+                case Language.at:
+                    return "Mödung gsendt.";
             }
             return "Report sent.";
         }
@@ -1019,6 +1109,8 @@ namespace masz.Translations
                     return $"{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}";
                 case Language.de:
                     return $"{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}";
+                case Language.at:
+                    return $"{user.Mention} mödet a Nochricht vo {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}";
             }
             return $"{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}";
         }
@@ -1028,6 +1120,8 @@ namespace masz.Translations
                     return "Failed to send message";
                 case Language.de:
                     return "Senden der Nachricht fehlgeschlagen";
+                case Language.at:
+                    return "Sendn vo da Nachricht fehlgschlogn.";
             }
             return "Failed to send message";
         }
@@ -1037,6 +1131,8 @@ namespace masz.Translations
                     return "Message sent.";
                 case Language.de:
                     return "Nachricht gesendet.";
+                case Language.at:
+                    return "Nochricht gsendet.";
             }
             return "Message sent.";
         }
@@ -1046,6 +1142,8 @@ namespace masz.Translations
                     return "The invite is not from this guild.";
                 case Language.de:
                     return "Die Einladung ist nicht von dieser Gilde.";
+                case Language.at:
+                    return "Die Eiladung is ned vo dera Güde.";
             }
             return "The invite is not from this guild.";
         }
@@ -1055,6 +1153,8 @@ namespace masz.Translations
                     return "Could not find invite in database or in this guild.";
                 case Language.de:
                     return "Konnte die Einladung nicht in der Datenbank oder in dieser Gilde finden.";
+                case Language.at:
+                    return "Konnt de Eiladung ned in da Datnbank vo da Güde findn.";
             }
             return "Could not find invite in database or in this guild.";
         }
@@ -1064,6 +1164,8 @@ namespace masz.Translations
                     return "Failed to fetch invite.";
                 case Language.de:
                     return "Konnte die Einladung nicht abrufen.";
+                case Language.at:
+                    return "Konnt die Eiladung ned orufn.";
             }
             return "Failed to fetch invite.";
         }
@@ -1073,6 +1175,8 @@ namespace masz.Translations
                     return $"`{inviteCode}` created at {createdAt.ToDiscordTS()}.";
                 case Language.de:
                     return $"`{inviteCode}` erstellt am {createdAt.ToDiscordTS()}.";
+                case Language.at:
+                    return $"`{inviteCode}` erstöt vo {createdAt.ToDiscordTS()}.";
             }
             return $"`{inviteCode}` created at {createdAt.ToDiscordTS()}.";
         }
@@ -1082,6 +1186,8 @@ namespace masz.Translations
                     return $"`{inviteCode}` created by {createdBy.Mention}.";
                 case Language.de:
                     return $"`{inviteCode}` erstellt von {createdBy.Mention}.";
+                case Language.at:
+                    return $"`{inviteCode}` erstöt vo {createdBy.Mention}.";
             }
             return $"`{inviteCode}` created by {createdBy.Mention}.";
         }
@@ -1091,6 +1197,8 @@ namespace masz.Translations
                     return $"`{inviteCode}` created by {createdBy.Mention} at {createdAt.ToDiscordTS()}.";
                 case Language.de:
                     return $"`{inviteCode}` erstellt von {createdBy.Mention} am {createdAt.ToDiscordTS()}.";
+                case Language.at:
+                    return $"`{inviteCode}` erstöt vo {createdBy.Mention} om {createdAt.ToDiscordTS()}.";
             }
             return $"`{inviteCode}` created by {createdBy.Mention} at {createdAt.ToDiscordTS()}.";
         }
@@ -1100,6 +1208,8 @@ namespace masz.Translations
                     return "This invite has not been tracked by MASZ yet.";
                 case Language.de:
                     return "Diese Einladung wurde noch nicht von MASZ gespeichert.";
+                case Language.at:
+                    return "Die Eiladung wuad no ned vo MASZ gspeichat.";
             }
             return "This invite has not been tracked by MASZ yet.";
         }
@@ -1109,6 +1219,8 @@ namespace masz.Translations
                     return $"Used by [{count}]";
                 case Language.de:
                     return $"Benutzt von [{count}]";
+                case Language.at:
+                    return $"Benutzt vo [{count}]";
             }
             return $"Used by [{count}]";
         }
@@ -1118,6 +1230,8 @@ namespace masz.Translations
                     return "Please specify a valid guildid.";
                 case Language.de:
                     return "Bitte gib eine gültige Gilden-ID an.";
+                case Language.at:
+                    return "Bitte gib a gütige Güdn-ID o.";
             }
             return "Please specify a valid guildid.";
         }
@@ -1127,6 +1241,8 @@ namespace masz.Translations
                     return "You are not allowed to view this case.";
                 case Language.de:
                     return "Du darfst diesen Fall nicht ansehen.";
+                case Language.at:
+                    return "Du derfst da den Foi ned oschaun.";
             }
             return "You are not allowed to view this case.";
         }
@@ -1136,6 +1252,8 @@ namespace masz.Translations
                     return $"Used invite `{inviteCode}`.";
                 case Language.de:
                     return $"Benutzte Einladung `{inviteCode}`.";
+                case Language.at:
+                    return $"Benutze Eilodung `{inviteCode}`.";
             }
             return $"Used invite `{inviteCode}`.";
         }
@@ -1145,6 +1263,8 @@ namespace masz.Translations
                     return $"By <@{user}>.";
                 case Language.de:
                     return $"Von <@{user}>.";
+                case Language.at:
+                    return $"Vo <@{user}>";
             }
             return $"By <@{user}>.";
         }
@@ -1154,6 +1274,8 @@ namespace masz.Translations
                     return "There are no cases for this user.";
                 case Language.de:
                     return "Es gibt keine Fälle für diesen Benutzer.";
+                case Language.at:
+                    return "Es gibt kane Fälle fia diesn Benutza.";
             }
             return "There are no cases for this user.";
         }
@@ -1394,6 +1516,8 @@ namespace masz.Translations
                             return "Unknown error";
                         case Language.de:
                             return "Unbekannter Fehler";
+                        case Language.at:
+                            return "Unbekonnta Föhla";
                         default:
                             return "Unknown error";
                     }
@@ -1403,6 +1527,8 @@ namespace masz.Translations
                             return "Invalid discord user";
                         case Language.de:
                             return "Ungültiger Discordbenutzer";
+                        case Language.at:
+                            return "Ungütiga Discordbenutza";
                         default:
                             return "Invalid discord user";
                     }
@@ -1412,6 +1538,8 @@ namespace masz.Translations
                             return "User is protected";
                         case Language.de:
                             return "Benutzer ist geschützt";
+                        case Language.at:
+                            return "Benutza is gschützt";
                         default:
                             return "User is protected";
                     }
@@ -1421,6 +1549,8 @@ namespace masz.Translations
                             return "User is protected. He is a bot.";
                         case Language.de:
                             return "Benutzer ist geschützt. Er ist ein Bot.";
+                        case Language.at:
+                            return "Benutza is gschützt, es is a Bot.";
                         default:
                             return "User is protected. He is a bot.";
                     }
@@ -1430,6 +1560,8 @@ namespace masz.Translations
                             return "User is protected. He is a site admin.";
                         case Language.de:
                             return "Benutzer ist geschützt. Er ist ein Seitenadministrator.";
+                        case Language.at:
+                            return "Benutza is gschützt, er is a Seitenadministraotr.";
                         default:
                             return "User is protected. He is a site admin.";
                     }
@@ -1439,6 +1571,8 @@ namespace masz.Translations
                             return "User is protected. He is a team member.";
                         case Language.de:
                             return "Benutzer ist geschützt. Er ist ein Teammitglied.";
+                        case Language.at:
+                            return "Benutza is gschützt, er is a Teammitglied.";
                         default:
                             return "User is protected. He is a team member.";
                     }
@@ -1448,6 +1582,8 @@ namespace masz.Translations
                             return "Resource not found";
                         case Language.de:
                             return "Ressource nicht gefunden";
+                        case Language.at:
+                            return "Ressource ned gfundn.";
                         default:
                             return "Resource not found";
                     }
@@ -1456,6 +1592,8 @@ namespace masz.Translations
                         case Language.en:
                             return "Invalid identity";
                         case Language.de:
+                            return "Ungültige Identität";
+                        case Language.at:
                             return "Ungültige Identität";
                         default:
                             return "Invalid identity";
@@ -1466,6 +1604,8 @@ namespace masz.Translations
                             return "Guild is not registered";
                         case Language.de:
                             return "Gilde ist nicht registriert";
+                        case Language.at:
+                            return "Güde is ned registriat";
                         default:
                             return "Guild is not registered";
                     }
@@ -1475,6 +1615,8 @@ namespace masz.Translations
                             return "Unauthorized";
                         case Language.de:
                             return "Nicht berechtigt";
+                        case Language.at:
+                            return "Ned berechtigt";
                         default:
                             return "Unauthorized";
                     }
@@ -1484,6 +1626,8 @@ namespace masz.Translations
                             return "Guild has no roles for mute punishment defined.";
                         case Language.de:
                             return "Gilde hat keine Rollen für Stummschaltungen definiert.";
+                        case Language.at:
+                            return "Güde hot kane Roin fia de Stummschoitung definiat.";
                         default:
                             return "Guild has no roles for mute punishment defined.";
                     }
@@ -1493,6 +1637,8 @@ namespace masz.Translations
                             return "Modcase is marked to be deleted";
                         case Language.de:
                             return "Modcase ist zum Löschen markiert";
+                        case Language.at:
+                            return "Modcase is zum Löscha markiat";
                         default:
                             return "Modcase is marked to be deleted";
                     }
@@ -1502,6 +1648,8 @@ namespace masz.Translations
                             return "Modcase is not marked to be deleted";
                         case Language.de:
                             return "Modcase ist nicht zum Löschen markiert";
+                        case Language.at:
+                            return "Modcase is ned zum Lösche markiat";
                         default:
                             return "Modcase is not marked to be deleted";
                     }
@@ -1511,6 +1659,8 @@ namespace masz.Translations
                             return "Guild is already registered";
                         case Language.de:
                             return "Gilde ist bereits registriert";
+                        case Language.at:
+                            return "Güde is bereits registriat";
                         default:
                             return "Guild is already registered";
                     }
@@ -1520,6 +1670,8 @@ namespace masz.Translations
                             return "This action is not allowed in demo mode";
                         case Language.de:
                             return "Diese Aktion ist in der Demo-Version nicht erlaubt";
+                        case Language.at:
+                            return "De Aktion is in da Demo-Version ned erlaubt";
                         default:
                             return "This action is not allowed in demo mode";
                     }
@@ -1529,6 +1681,8 @@ namespace masz.Translations
                             return "Role not found";
                         case Language.de:
                             return "Rolle nicht gefunden";
+                        case Language.at:
+                            return "Rolle ned gfundn";
                         default:
                             return "Role not found";
                     }
@@ -1538,6 +1692,8 @@ namespace masz.Translations
                             return "Tokens cannot manage this resource";
                         case Language.de:
                             return "Tokens können diese Ressource nicht verwalten";
+                        case Language.at:
+                            return "Tokns kennan de Ressourcen ned vawoitn";
                         default:
                             return "Tokens cannot manage this resource";
                     }
@@ -1547,6 +1703,8 @@ namespace masz.Translations
                             return "Token is already registered";
                         case Language.de:
                             return "Token ist bereits registriert";
+                        case Language.at:
+                            return "Tokn is bereits registriat";
                         default:
                             return "Token is already registered";
                     }
@@ -1556,6 +1714,8 @@ namespace masz.Translations
                             return "Both users are the same.";
                         case Language.de:
                             return "Beide Benutzer sind gleich.";
+                        case Language.at:
+                            return "Beide Benutza san gleich.";
                         default:
                             return "Both users are the same.";
                     }
@@ -1565,6 +1725,8 @@ namespace masz.Translations
                             return "Resource already exists";
                         case Language.de:
                             return "Ressource existiert bereits";
+                        case Language.at:
+                            return "De Ressource gibts bereits";
                         default:
                             return "Resource already exists";
                     }
@@ -1574,6 +1736,8 @@ namespace masz.Translations
                             return "Comments are locked for this modcase";
                         case Language.de:
                             return "Kommentare sind für diesen Vorfall gesperrt";
+                        case Language.at:
+                            return "Kommentare san fia den Vorfoi gsperrt";
                         default:
                             return "Comments are locked for this modcase";
                     }
@@ -1583,6 +1747,8 @@ namespace masz.Translations
                             return "The last comment was already from the suspect.";
                         case Language.de:
                             return "Der letzte Kommentar war schon von dem Beschuldigten.";
+                        case Language.at:
+                            return "Da letzte Kommentar woa scho vom Beschuldigten.";
                         default:
                             return "The last comment was already from the suspect.";
                     }
@@ -1592,6 +1758,8 @@ namespace masz.Translations
                             return "Invalid automoderation action";
                         case Language.de:
                             return "Ungültige automoderationsaktion";
+                        case Language.at:
+                            return "Ned gütige automodarationsaktion";
                         default:
                             return "Invalid automoderation action";
                     }
@@ -1601,6 +1769,8 @@ namespace masz.Translations
                             return "Invalid automoderation type";
                         case Language.de:
                             return "Ungültiger automoderationstyp";
+                        case Language.at:
+                            return "Ungütiga automodarationstyp";
                         default:
                             return "Invalid automoderation type";
                     }
@@ -1610,6 +1780,8 @@ namespace masz.Translations
                             return "User has reached the max limit of templates";
                         case Language.de:
                             return "Benutzer hat die maximale Anzahl an Templates erreicht";
+                        case Language.at:
+                            return "Benutza hod de maximale Onzoi vo de Templates erreicht";
                         default:
                             return "User has reached the max limit of templates";
                     }
@@ -1619,6 +1791,8 @@ namespace masz.Translations
                             return "Invalid file path";
                         case Language.de:
                             return "Ungültiger Dateipfad";
+                        case Language.at:
+                            return "Ungütiga Dateipfad";
                         default:
                             return "Invalid file path";
                     }
@@ -1628,6 +1802,8 @@ namespace masz.Translations
                             return "There are no guilds registered";
                         case Language.de:
                             return "Es sind keine Gilden registriert";
+                        case Language.at:
+                            return "Es san kane Güdn registriat";
                         default:
                             return "There are no guilds registered";
                     }
@@ -1637,6 +1813,8 @@ namespace masz.Translations
                             return "This action is only usable in a guild";
                         case Language.de:
                             return "Diese Aktion ist nur in einer Gilde nutzbar";
+                        case Language.at:
+                            return "De Aktion is nua in ana Güdn nutzboa";
                         default:
                             return "This action is only usable in a guild";
                     }
@@ -1651,6 +1829,8 @@ namespace masz.Translations
                             return "Default";
                         case Language.de:
                             return "Default";
+                        case Language.at:
+                            return "Default";
                         default:
                             return "Default";
                     }
@@ -1660,6 +1840,8 @@ namespace masz.Translations
                             return "Case is automoderated.";
                         case Language.de:
                             return "Automoderiert.";
+                        case Language.at:
+                            return "Automodariat.";
                         default:
                             return "Case is automoderated.";
                     }
@@ -1669,6 +1851,8 @@ namespace masz.Translations
                             return "Case is imported.";
                         case Language.de:
                             return "Importiert.";
+                        case Language.at:
+                            return "Importiat";
                         default:
                             return "Case is imported.";
                     }
@@ -1678,6 +1862,8 @@ namespace masz.Translations
                             return "Case created by command.";
                         case Language.de:
                             return "Durch Befehl erstellt.";
+                        case Language.at:
+                            return "Durch an Beföh erstöt.";
                         default:
                             return "Case created by command.";
                     }
@@ -1692,6 +1878,8 @@ namespace masz.Translations
                             return "English";
                         case Language.de:
                             return "Englisch";
+                        case Language.at:
+                            return "Englisch";
                         default:
                             return "English";
                     }
@@ -1701,6 +1889,8 @@ namespace masz.Translations
                             return "German";
                         case Language.de:
                             return "Deutsch";
+                        case Language.at:
+                            return "Piefchinesisch";
                         default:
                             return "German";
                     }
@@ -1710,6 +1900,8 @@ namespace masz.Translations
                             return "French";
                         case Language.de:
                             return "Französisch";
+                        case Language.at:
+                            return "Franzesisch";
                         default:
                             return "French";
                     }
@@ -1718,6 +1910,8 @@ namespace masz.Translations
                         case Language.en:
                             return "Spanish";
                         case Language.de:
+                            return "Spanisch";
+                        case Language.at:
                             return "Spanisch";
                         default:
                             return "Spanish";
@@ -1728,6 +1922,8 @@ namespace masz.Translations
                             return "Italian";
                         case Language.de:
                             return "Italienisch";
+                        case Language.at:
+                            return "Italienisch";
                         default:
                             return "Italian";
                     }
@@ -1737,6 +1933,8 @@ namespace masz.Translations
                             return "Austrian";
                         case Language.de:
                             return "Österreich";
+                        case Language.at:
+                            return "Esterreichisch";
                         default:
                             return "Austrian";
                     }

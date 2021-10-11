@@ -3,21 +3,25 @@
     "EditUsermap": {
         "description": "Edit usermap",
         "en": "Edit usermap",
-        "de": "Benutzerbeziehung aktualisieren"
+        "de": "Benutzerbeziehung aktualisieren",
+        "at": "Benutzabeziehungen aktualisian"
     },
     "Description": {
         "description": "description field",
         "en": "Description",
-        "de": "Beschreibung"
+        "de": "Beschreibung",
+        "at": "Beschreibung"
     },
     "Cancel": {
         "description": "cancel button",
         "en": "Cancel",
-        "de": "Abbrechen"
+        "de": "Abbrechen",
+        "at": "Obrechn"
     },
     "Confirm": {
         "description": "confirm button",
         "en": "Confirm",
-        "de": "Bestätigen"
+        "de": "Bestätigen",
+        "at": "Zustima"
     }
 }

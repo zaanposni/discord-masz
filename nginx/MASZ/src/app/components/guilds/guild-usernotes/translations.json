@@ -3,46 +3,55 @@
     "Member": {
         "description": "member field",
         "en": "Member",
-        "de": "Mitglied"
+        "de": "Mitglied",
+        "at": "Mitglied"
     },
     "Description": {
         "description": "description field",
         "en": "Description",
-        "de": "Beschreibung"
+        "de": "Beschreibung",
+        "at": "Beschreibung"
     },
     "CreateNewNote": {
         "description": "create new usernote button",
         "en": "Create new usernote",
-        "de": "Neue Benutzernotiz erstellen"
+        "de": "Neue Benutzernotiz erstellen",
+        "at": "Neie Benutzanotiz erstöt"
     },
     "Search": {
         "description": "search field",
         "en": "Search (user, id, description...)",
-        "de": "Suchen (Benutzer, ID, Beschreibung...)"
+        "de": "Suchen (Benutzer, ID, Beschreibung...)",
+        "at": "Such (Benutza, ID, Beschreibung ...)"
     },
     "NoMatches": {
         "description": "no matches found",
         "en": "No usernote matches your search.",
-        "de": "Keine Benutzernotiz passt zu deiner Suche."
+        "de": "Keine Benutzernotiz passt zu deiner Suche.",
+        "at": "Kane Benutzanotiz passt zu dana Suach."
     },
     "FailedToLoad": {
         "description": "failed to load usernotes",
         "en": "Failed to load usernotes.",
-        "de": "Benutzernotizen konnten nicht geladen werden."
+        "de": "Benutzernotizen konnten nicht geladen werden.",
+        "at": "Benutzanotizn kenna ned glodn wean."
     },
     "FailedToLoadMember": {
         "description": "failed to load member",
         "en": "Failed to load memberlist.",
-        "de": "Mitgliederliste konnte nicht geladen werden."
+        "de": "Mitgliederliste konnte nicht geladen werden.",
+        "at": "Mitgliedalistn konnte ned glodn wean."
     },
     "FailedToCreate": {
         "description": "failed to create usernote",
         "en": "Failed to create usernote.",
-        "de": "Benutzernotiz konnte nicht erstellt werden."
+        "de": "Benutzernotiz konnte nicht erstellt werden.",
+        "at": "Benutzanotiz konnte ned erstöt wean."
     },
     "Created": {
         "description": "usernote created",
         "en": "Usernote created.",
-        "de": "Benutzernotiz erstellt."
+        "de": "Benutzernotiz erstellt.",
+        "at": "Benutzanotiz erstöt."
     }
 }

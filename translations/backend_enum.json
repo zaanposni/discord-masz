@@ -125,196 +125,234 @@
         "Unknown": {
             "description": "An unknown error occured.",
             "en": "Unknown error",
-            "de": "Unbekannter Fehler"
+            "de": "Unbekannter Fehler",
+            "at": "Unbekonnta Föhla"
         },
         "InvalidDiscordUser": {
             "description": "The user is not a valid discord user.",
             "en": "Invalid discord user",
-            "de": "Ungültiger Discordbenutzer"
+            "de": "Ungültiger Discordbenutzer",
+            "at": "Ungütiga Discordbenutza"
         },
         "ProtectedModCaseSuspect": {
             "description": "This user is protected. Modcases cannot be created.",
             "en": "User is protected",
-            "de": "Benutzer ist geschützt"
+            "de": "Benutzer ist geschützt",
+            "at": "Benutza is gschützt"
         },
         "ProtectedModCaseSuspectIsBot": {
             "description": "This user is protected. Modcases cannot be created.",
             "en": "User is protected. He is a bot.",
-            "de": "Benutzer ist geschützt. Er ist ein Bot."
+            "de": "Benutzer ist geschützt. Er ist ein Bot.",
+            "at": "Benutza is gschützt, es is a Bot."
         },
         "ProtectedModCaseSuspectIsSiteAdmin": {
             "description": "This user is protected. Modcases cannot be created.",
             "en": "User is protected. He is a site admin.",
-            "de": "Benutzer ist geschützt. Er ist ein Seitenadministrator."
+            "de": "Benutzer ist geschützt. Er ist ein Seitenadministrator.",
+            "at": "Benutza is gschützt, er is a Seitenadministraotr."
         },
         "ProtectedModCaseSuspectIsTeam": {
             "description": "This user is protected. Modcases cannot be created.",
             "en": "User is protected. He is a team member.",
-            "de": "Benutzer ist geschützt. Er ist ein Teammitglied."
+            "de": "Benutzer ist geschützt. Er ist ein Teammitglied.",
+            "at": "Benutza is gschützt, er is a Teammitglied."
         },
         "ResourceNotFound": {
             "description": "The resource could not be found.",
             "en": "Resource not found",
-            "de": "Ressource nicht gefunden"
+            "de": "Ressource nicht gefunden",
+            "at": "Ressource ned gfundn."
         },
         "InvalidIdentity": {
             "description": "The identity is not valid.",
             "en": "Invalid identity",
-            "de": "Ungültige Identität"
+            "de": "Ungültige Identität",
+            "at": "Ungültige Identität"
         },
         "GuildUnregistered": {
             "description": "The guild is not registered.",
             "en": "Guild is not registered",
-            "de": "Gilde ist nicht registriert"
+            "de": "Gilde ist nicht registriert",
+            "at": "Güde is ned registriat"
         },
         "Unauthorized": {
             "description": "The user is not authorized.",
             "en": "Unauthorized",
-            "de": "Nicht berechtigt"
+            "de": "Nicht berechtigt",
+            "at": "Ned berechtigt"
         },
         "GuildUndefinedMutedRoles": {
             "description": "The guild is not defined muted roles.",
             "en": "Guild has no roles for mute punishment defined.",
-            "de": "Gilde hat keine Rollen für Stummschaltungen definiert."
+            "de": "Gilde hat keine Rollen für Stummschaltungen definiert.",
+            "at": "Güde hot kane Roin fia de Stummschoitung definiat."
         },
         "ModCaseIsMarkedToBeDeleted": {
             "description": "The modcase is marked to be deleted.",
             "en": "Modcase is marked to be deleted",
-            "de": "Modcase ist zum Löschen markiert"
+            "de": "Modcase ist zum Löschen markiert",
+            "at": "Modcase is zum Löscha markiat"
         },
         "ModCaseIsNotMarkedToBeDeleted": {
             "description": "The modcase is not marked to be deleted.",
             "en": "Modcase is not marked to be deleted",
-            "de": "Modcase ist nicht zum Löschen markiert"
+            "de": "Modcase ist nicht zum Löschen markiert",
+            "at": "Modcase is ned zum Lösche markiat"
         },
         "GuildAlreadyRegistered": {
             "description": "The guild is already registered.",
             "en": "Guild is already registered",
-            "de": "Gilde ist bereits registriert"
+            "de": "Gilde ist bereits registriert",
+            "at": "Güde is bereits registriat"
         },
         "NotAllowedInDemoMode": {
             "description": "This action is not allowed in demo mode.",
             "en": "This action is not allowed in demo mode",
-            "de": "Diese Aktion ist in der Demo-Version nicht erlaubt"
+            "de": "Diese Aktion ist in der Demo-Version nicht erlaubt",
+            "at": "De Aktion is in da Demo-Version ned erlaubt"
         },
         "RoleNotFound": {
             "description": "The role could not be found.",
             "en": "Role not found",
-            "de": "Rolle nicht gefunden"
+            "de": "Rolle nicht gefunden",
+            "at": "Rolle ned gfundn"
         },
         "TokenCannotManageThisResource": {
             "description": "The token cannot manage this resource.",
             "en": "Tokens cannot manage this resource",
-            "de": "Tokens können diese Ressource nicht verwalten"
+            "de": "Tokens können diese Ressource nicht verwalten",
+            "at": "Tokns kennan de Ressourcen ned vawoitn"
         },
         "TokenAlreadyRegistered": {
             "description": "The token is already registered.",
             "en": "Token is already registered",
-            "de": "Token ist bereits registriert"
+            "de": "Token ist bereits registriert",
+            "at": "Tokn is bereits registriat"
         },
         "CannotBeSameUser": {
             "description": "The user cannot be the same user.",
             "en": "Both users are the same.",
-            "de": "Beide Benutzer sind gleich."
+            "de": "Beide Benutzer sind gleich.",
+            "at": "Beide Benutza san gleich."
         },
         "ResourceAlreadyExists": {
             "description": "The resource already exists.",
             "en": "Resource already exists",
-            "de": "Ressource existiert bereits"
+            "de": "Ressource existiert bereits",
+            "at": "De Ressource gibts bereits"
         },
         "ModCaseDoesNotAllowComments": {
             "description": "The modcase does not allow comments.",
             "en": "Comments are locked for this modcase",
-            "de": "Kommentare sind für diesen Vorfall gesperrt"
+            "de": "Kommentare sind für diesen Vorfall gesperrt",
+            "at": "Kommentare san fia den Vorfoi gsperrt"
         },
         "LastCommentAlreadyFromSuspect": {
             "description": "The last comment was already from the suspect.",
             "en": "The last comment was already from the suspect.",
-            "de": "Der letzte Kommentar war schon von dem Beschuldigten."
+            "de": "Der letzte Kommentar war schon von dem Beschuldigten.",
+            "at": "Da letzte Kommentar woa scho vom Beschuldigten."
         },
         "InvalidAutomoderationAction": {
             "description": "The automoderation action is not valid.",
             "en": "Invalid automoderation action",
-            "de": "Ungültige automoderationsaktion"
+            "de": "Ungültige automoderationsaktion",
+            "at": "Ned gütige automodarationsaktion"
         },
         "InvalidAutomoderationType": {
             "description": "The automoderation type is not valid.",
             "en": "Invalid automoderation type",
-            "de": "Ungültiger automoderationstyp"
+            "de": "Ungültiger automoderationstyp",
+            "at": "Ungütiga automodarationstyp"
         },
         "TooManyTemplates": {
             "description": "The user has reached the max limit of templates.",
             "en": "User has reached the max limit of templates",
-            "de": "Benutzer hat die maximale Anzahl an Templates erreicht"
+            "de": "Benutzer hat die maximale Anzahl an Templates erreicht",
+            "at": "Benutza hod de maximale Onzoi vo de Templates erreicht"
         },
         "InvalidFilePath": {
             "description": "The file path is not valid.",
             "en": "Invalid file path",
-            "de": "Ungültiger Dateipfad"
+            "de": "Ungültiger Dateipfad",
+            "at": "Ungütiga Dateipfad"
         },
         "NoGuildsRegistered": {
             "description": "There are no guilds registered.",
             "en": "There are no guilds registered",
-            "de": "Es sind keine Gilden registriert"
+            "de": "Es sind keine Gilden registriert",
+            "at": "Es san kane Güdn registriat"
         },
         "OnlyUsableInAGuild": {
             "description": "This action is only usable in a guild.",
             "en": "This action is only usable in a guild",
-            "de": "Diese Aktion ist nur in einer Gilde nutzbar"
+            "de": "Diese Aktion ist nur in einer Gilde nutzbar",
+            "at": "De Aktion is nua in ana Güdn nutzboa"
         }
     },
     "CaseCreationType": {
         "Default": {
             "description": "Default",
             "en": "Default",
-            "de": "Default"
+            "de": "Default",
+            "at": "Default"
         },
         "AutoModeration": {
             "description": "Case is automoderated.",
             "en": "Case is automoderated.",
-            "de": "Automoderiert."
+            "de": "Automoderiert.",
+            "at": "Automodariat."
         },
         "Imported": {
             "description": "Case is imported.",
             "en": "Case is imported.",
-            "de": "Importiert."
+            "de": "Importiert.",
+            "at": "Importiat"
         },
         "ByCommand": {
             "description": "Case created by command.",
             "en": "Case created by command.",
-            "de": "Durch Befehl erstellt."
+            "de": "Durch Befehl erstellt.",
+            "at": "Durch an Beföh erstöt."
         }
     },
     "Language": {
         "en": {
             "description": "the english language.",
             "en": "English",
-            "de": "Englisch"
+            "de": "Englisch",
+            "at": "Englisch"
         },
         "de": {
             "description": "the german language.",
             "en": "German",
-            "de": "Deutsch"
+            "de": "Deutsch",
+            "at": "Piefchinesisch"
         },
         "fr": {
             "description": "the french language.",
             "en": "French",
-            "de": "Französisch"
+            "de": "Französisch",
+            "at": "Franzesisch"
         },
         "es": {
             "description": "the spanish language.",
             "en": "Spanish",
-            "de": "Spanisch"
+            "de": "Spanisch",
+            "at": "Spanisch"
         },
         "it": {
             "description": "the italian language.",
             "en": "Italian",
-            "de": "Italienisch"
+            "de": "Italienisch",
+            "at": "Italienisch"
         },
         "at": {
             "description": "the austrian language.",
             "en": "Austrian",
-            "de": "Österreich"
+            "de": "Österreich",
+            "at": "Esterreichisch"
         }
     }
 }

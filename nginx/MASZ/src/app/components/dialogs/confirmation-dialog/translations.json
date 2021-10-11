@@ -3,16 +3,19 @@
     "AreYouSure": {
         "description": "are you sure",
         "en": "Are you sure?",
-        "de": "Bist du dir sicher?"
+        "de": "Bist du dir sicher?",
+        "at": "Bist da sicha?"
     },
     "Cancel": {
         "description": "cancel button",
         "en": "Cancel",
-        "de": "Abbrechen"
+        "de": "Abbrechen",
+        "at": "Obrechn"
     },
     "Confirm": {
         "description": "confirm button",
         "en": "Confirm",
-        "de": "Bestätigen"
+        "de": "Bestätigen",
+        "at": "Zuastima"
     }
 }
