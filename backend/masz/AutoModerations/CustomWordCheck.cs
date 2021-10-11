@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using DSharpPlus;
 using DSharpPlus.Entities;
 using masz.Models;
 
@@ -6,7 +7,7 @@ namespace masz.AutoModerations
 {
     public static class CustomWordCheck
     {
-        public static bool Check(DiscordMessage message, AutoModerationConfig config)
+        public static bool Check(DiscordMessage message, AutoModerationConfig config, DiscordClient client)
         {
             if (config.Limit == null)
             {

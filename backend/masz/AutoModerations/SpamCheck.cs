@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DSharpPlus;
 using DSharpPlus.Entities;
 using masz.Models;
 
@@ -10,7 +11,7 @@ namespace masz.AutoModerations
     {
         // { guildid -> { userid -> [ timestamps ] } }
         private static Dictionary<ulong, Dictionary<ulong, List<long>>> msgBoard = new Dictionary<ulong, Dictionary<ulong, List<long>>>();
-        public static bool Check(DiscordMessage message, AutoModerationConfig config)
+        public static bool Check(DiscordMessage message, AutoModerationConfig config, DiscordClient client)
         {
             if (config.Limit == null)
             {

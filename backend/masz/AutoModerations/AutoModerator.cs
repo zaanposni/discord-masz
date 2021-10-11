@@ -113,12 +113,34 @@ namespace masz.AutoModerations
                 )) return;
         }
 
-        private async Task<bool> CheckAutoMod(AutoModerationType autoModerationType, DiscordMessage message, Func<DiscordMessage, AutoModerationConfig, bool> predicate)
+        private async Task<bool> CheckAutoMod(AutoModerationType autoModerationType, DiscordMessage message, Func<DiscordMessage, AutoModerationConfig, DiscordClient, Task<bool>> predicate)
         {
             AutoModerationConfig autoModerationConfig = _autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == autoModerationType);
             if (autoModerationConfig != null)
             {
-                if (predicate(message, autoModerationConfig))
+                if (await predicate(message, autoModerationConfig, _client))
+                {
+                    if (! await IsProtectedByFilter(message, autoModerationConfig))
+                    {
+                        _logger.LogInformation($"U: {message.Author.Id} | C: {message.Channel.Id} | G: {message.Channel.Guild.Id} triggered {autoModerationConfig.AutoModerationType.ToString()}.");
+                        await ExecutePunishment(message, autoModerationConfig, _guildConfig);
+                        if (autoModerationConfig.AutoModerationType != AutoModerationType.TooManyAutoModerations)
+                        {
+                            await CheckAutoMod(AutoModerationType.TooManyAutoModerations, message, CheckMultipleEvents);
+                        }
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private async Task<bool> CheckAutoMod(AutoModerationType autoModerationType, DiscordMessage message, Func<DiscordMessage, AutoModerationConfig, DiscordClient, bool> predicate)
+        {
+            AutoModerationConfig autoModerationConfig = _autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == autoModerationType);
+            if (autoModerationConfig != null)
+            {
+                if (predicate(message, autoModerationConfig, _client))
                 {
                     if (! await IsProtectedByFilter(message, autoModerationConfig))
                     {
