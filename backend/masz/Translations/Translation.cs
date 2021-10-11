@@ -108,6 +108,8 @@ namespace masz.Translations
                     return $"and {count} more...";
                 case Language.de:
                     return $"und {count} weitere...";
+                case Language.at:
+                    return $"und {count} weitare...";
             }
             return $"and {count} more...";
         }
