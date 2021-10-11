@@ -29,7 +29,7 @@
 
     <!-- member guilds -->
     <div class="mat-display-1 mb-2 mt-4 font-weight-bold" *ngIf="this.currentUser?.content?.memberGuilds?.length">
-      {{ 'Guilds.Members' | translate }}
+      {{ 'Guilds.Member' | translate }}
     </div>
     <div class="row w-100 justify-content-center" *ngIf="!this.currentUser.loading">
       <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.memberGuilds" routerLink="/guilds/{{ guild.id }}">
