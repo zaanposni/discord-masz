@@ -20,6 +20,13 @@ export const LANGUAGES: ILanguageSelect[] = [
         apiValue: 1,
         dateFormat: 'DD MMM Y',
         dateTimeFormat: 'DD MMM Y HH:mm:ss'
+    },
+    {
+        language: 'at',
+        displayName: 'Austrian (Österreichisch)',
+        apiValue: 5,
+        dateFormat: 'DD MMM Y',
+        dateTimeFormat: 'DD MMM Y HH:mm:ss'
     }
 ];
 export const DEFAULT_TIMEZONE = 'UTC';
