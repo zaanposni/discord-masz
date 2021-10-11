@@ -56,7 +56,8 @@
             "count": "int"
         },
         "en": "and {count} more...",
-        "de": "und {count} weitere..."
+        "de": "und {count} weitere...",
+        "at": "und {count} weitare..."
     },
     "Channel": {
         "description": "The word 'channel'",
