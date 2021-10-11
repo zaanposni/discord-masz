@@ -5,5 +5,11 @@
         "en": "Failed to load motd.",
         "de": "Motd konnte nicht geladen werden.",
         "at": "Motd konnt ned glodn wean."
+    },
+    "MessageFrom": {
+        "description": "Failed to laod motd",
+        "en": "Message from {{name}}",
+        "de": "Nachricht von {{name}}",
+        "at": "Nochricht vo {{name}}"
     }
 }

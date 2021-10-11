@@ -278,7 +278,8 @@
         "FailedToLoad": "Güdnnifo konnt ned glodn wean."
     },
     "DashboardMotd": {
-        "FailedToLoad": "Motd konnt ned glodn wean."
+        "FailedToLoad": "Motd konnt ned glodn wean.",
+        "MessageFrom": "Nochricht vo {{name}}"
     },
     "Quicksearch": {
         "Placeholder": "Schnösuche Benutza, Vorfälle, Bestrofungen, Automodaration, ...",

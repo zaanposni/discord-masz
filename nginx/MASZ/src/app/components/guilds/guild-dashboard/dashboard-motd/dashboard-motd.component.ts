@@ -15,6 +15,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class DashboardMotdComponent implements OnInit {
 
   public motd: ContentLoading<GuildMotdView> = { loading: true, content: undefined };
+  public motdParams = { name: '' };
+
   constructor(private route: ActivatedRoute, private api: ApiService, public auth: AuthService, private toastr: ToastrService, private translator: TranslateService) { }
 
   ngOnInit(): void {
@@ -24,8 +26,9 @@ export class DashboardMotdComponent implements OnInit {
 
   reload(guildId: string) {
     this.motd = { loading: true, content: undefined };
-    this.api.getSimpleData(`/guilds/${guildId}/motd`).subscribe((data) => {
+    this.api.getSimpleData(`/guilds/${guildId}/motd`).subscribe((data: GuildMotdView) => {
       this.motd  = { loading: false, content: data };
+      this.motdParams.name = `${data.creator?.username}#${data.creator?.discriminator}`;
     }, error => {
       this.motd.loading = false;
       if (error?.error?.status !== 404 && error?.status !== 404) {

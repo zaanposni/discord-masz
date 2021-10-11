@@ -278,7 +278,8 @@
         "FailedToLoad": "Gildeninfo konnte nicht geladen werden."
     },
     "DashboardMotd": {
-        "FailedToLoad": "Motd konnte nicht geladen werden."
+        "FailedToLoad": "Motd konnte nicht geladen werden.",
+        "MessageFrom": "Nachricht von {{name}}"
     },
     "Quicksearch": {
         "Placeholder": "Schnellsuche Benutzer, Vorfälle, Bestrafungen, Automoderationen, ...",

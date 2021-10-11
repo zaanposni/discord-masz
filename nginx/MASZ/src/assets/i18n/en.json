@@ -278,7 +278,8 @@
         "FailedToLoad": "Failed to load guild info."
     },
     "DashboardMotd": {
-        "FailedToLoad": "Failed to load motd."
+        "FailedToLoad": "Failed to load motd.",
+        "MessageFrom": "Message from {{name}}"
     },
     "Quicksearch": {
         "Placeholder": "Quicksearch users, modcases, punishments, automoderations, ...",
