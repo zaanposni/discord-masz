@@ -11,7 +11,7 @@
 
         <div class="d-flex flex-row flex-wrap statcards" *ngIf="!stats.loading && stats.content != undefined">
             <app-statcard [emote]="'smart_toy'" [renderPing]="stats.content?.botStatus" [titleKey]="'Adminstats.Bot'"></app-statcard>
-            <app-statcard [emote]="'dns'" [renderPing]="stats.content?.dbStatus" [errorPingLimit]="30" [warningPingLimit]="15" [titleKey]="'Adminstats.Database'"></app-statcard>
+            <app-statcard [emote]="'dns'" [renderPing]="stats.content?.dbStatus" [errorPingLimit]="60" [warningPingLimit]="30" [titleKey]="'Adminstats.Database'"></app-statcard>
             <app-statcard [emote]="'cached'" [renderPing]="stats.content?.cacheStatus" [errorPingLimit]="5" [warningPingLimit]="1" [titleKey]="'Adminstats.InternalCache'"></app-statcard>
         </div>
 
