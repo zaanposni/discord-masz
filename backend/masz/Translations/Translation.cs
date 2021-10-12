@@ -740,6 +740,24 @@ namespace masz.Translations
             }
             return $"{user.Mention} you triggered automoderation. Reason: {reason}. Your message has been deleted.";
         }
+        public string NotificationAutoWhoisJoinWith(DSharpPlus.Entities.DiscordUser user, DateTime registered, string invite) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}`.";
+                case Language.de:
+                    return $"{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` beigetreten.";
+            }
+            return $"{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}`.";
+        }
+        public string NotificationAutoWhoisJoinWithAndFrom(DSharpPlus.Entities.DiscordUser user, ulong by, DateTime createdAt, DateTime registered, string invite) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}` (created {createdAt.ToDiscordTS()}) by <@{by}>.";
+                case Language.de:
+                    return $"{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` von <@{by}> (am {createdAt.ToDiscordTS()}) beigetreten.";
+            }
+            return $"{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}` (created {createdAt.ToDiscordTS()}) by <@{by}>.";
+        }
         public string CmdOnlyTextChannel() {
             switch (preferredLanguage) {
                 case Language.en:

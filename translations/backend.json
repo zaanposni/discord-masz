@@ -523,6 +523,30 @@
                 "de": "{user.Mention} du hast die Automoderation ausgelöst. Grund: {reason}. Dein Nachricht wurde gelöscht.",
                 "at": "{user.Mention} du host de Automodaration ausglest. Grund: {reason}. Dei Nochricht wuad glescht."
             }
+        },
+        "AutoWhois": {
+            "JoinWith": {
+                "description": "A user joined with invite x",
+                "var_types": {
+                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "registered": "DateTime",
+                    "invite": "string"
+                },
+                "en": "{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}`.",
+                "de": "{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` beigetreten."
+            },
+            "JoinWithAndFrom": {
+                "description": "A user joined with invite x",
+                "var_types": {
+                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "by": "ulong",
+                    "createdAt": "DateTime",
+                    "registered": "DateTime",
+                    "invite": "string"
+                },
+                "en": "{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}` (created {createdAt.ToDiscordTS()}) by <@{by}>.",
+                "de": "{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` von <@{by}> (am {createdAt.ToDiscordTS()}) beigetreten."
+            }
         }
     },
     "Cmd": {

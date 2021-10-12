@@ -277,13 +277,15 @@ namespace masz.Services
 
                     if (guildConfig.ExecuteWhoisOnJoin && ! String.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
                     {
+                        ITranslator translator = scope.ServiceProvider.GetService<ITranslator>();
+                        translator.SetContext(guildConfig);
                         string message;
                         if (invite.InviteIssuerId != 0 && invite.InviteCreatedAt != null)
                         {
-                            message = $"{e.Member.Mention} (registered `{e.Member.CreationTimestamp.DateTime.ToDiscordTS()}`) joined with invite <{invite.UsedInvite}> (created `{invite.InviteCreatedAt.Value.ToDiscordTS()}`) by <@{invite.InviteIssuerId}>.";
+                            message = translator.T().NotificationAutoWhoisJoinWithAndFrom(e.Member, invite.InviteIssuerId, invite.InviteCreatedAt.Value, e.Member.CreationTimestamp.DateTime, invite.UsedInvite);
                         } else
                         {
-                            message = $"{e.Member.Mention} (registered `{e.Member.CreationTimestamp.DateTime.ToDiscordTS()}`) joined with invite <{invite.UsedInvite}>.";
+                            message = translator.T().NotificationAutoWhoisJoinWith(e.Member, e.Member.CreationTimestamp.DateTime, invite.UsedInvite);
                         }
 
                         IDiscordAPIInterface discordAPI = scope.ServiceProvider.GetService<IDiscordAPIInterface>();
