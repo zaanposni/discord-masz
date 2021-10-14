@@ -90,14 +90,14 @@ namespace masz.Commands
             if (creator != null)
             {
                 embed.WithAuthor($"{creator.Username}#{creator.Discriminator}", creator.AvatarUrl, creator.AvatarUrl);
-                if (createdAt == null)
-                {
-                    embed.WithDescription(_translator.T().CmdTrackCreatedBy(inviteCode, creator));
-                } else
+                if (createdAt.HasValue && createdAt.Value != null)
                 {
                     embed.WithDescription(_translator.T().CmdTrackCreatedByAt(inviteCode, creator, createdAt.Value));
+                } else
+                {
+                    embed.WithDescription(_translator.T().CmdTrackCreatedBy(inviteCode, creator));
                 }
-            } else if (createdAt != null)
+            } else if (createdAt.HasValue && createdAt.Value != null)
             {
                 embed.WithDescription(_translator.T().CmdTrackCreatedAt(inviteCode, createdAt.Value));
             }
