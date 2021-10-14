@@ -71,7 +71,6 @@ namespace masz.Commands
                     try
                     {
                         usages = fetchedInvite.Uses;
-                        createdAt = fetchedInvite.CreatedAt.DateTime;
                         creator = await _discordAPI.FetchUserInfo(fetchedInvite.Inviter.Id, CacheBehavior.Default);
                     } catch (NullReferenceException) { }  // vanity url
                 } catch (DSharpPlus.Exceptions.NotFoundException)
