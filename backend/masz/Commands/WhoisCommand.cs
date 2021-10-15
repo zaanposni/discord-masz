@@ -25,7 +25,11 @@ namespace masz.Commands
             await Require(ctx, RequireCheckEnum.GuildModerator);
             await ctx.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
 
-            DiscordMember member = await ctx.Guild.GetMemberAsync(user.Id);
+            DiscordMember member = null;
+            try
+            {
+                member = await ctx.Guild.GetMemberAsync(user.Id);
+            } catch (Exception) { }
 
             DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
             embed.WithFooter($"UserId: {user.Id}");
@@ -67,6 +71,22 @@ namespace masz.Commands
                 embed.AddField(_translator.T().UserNote(), userNote.Description.Truncate(1000), false);
             } catch (ResourceNotFoundException) { }
 
+            List<UserMapping> userMappings = await UserMapRepository.CreateDefault(_serviceProvider, _currentIdentity).GetUserMapsByGuildAndUser(ctx.Guild.Id, user.Id);
+            if (userMappings.Count > 0)
+            {
+                StringBuilder userMappingsInfo = new StringBuilder();
+                foreach (UserMapping userMapping in userMappings.Take(5))
+                {
+                    ulong otherUser = userMapping.UserA == user.Id ? userMapping.UserB : userMapping.UserA;
+                    userMappingsInfo.AppendLine($"<@{otherUser}> - {userMapping.Reason.Truncate(80)}");
+                }
+                if (userMappings.Count > 5)
+                {
+                    userMappingsInfo.Append("[...]");
+                }
+                embed.AddField($"{_translator.T().UserMaps()} [{userMappings.Count}]", userMappingsInfo.ToString(), false);
+            }
+
             List<ModCase> cases = await ModCaseRepository.CreateWithBotIdentity(_serviceProvider).GetCasesForGuildAndUser(ctx.Guild.Id, user.Id);
             List<ModCase> activeCases = cases.FindAll(c => c.PunishmentActive);
 
@@ -75,7 +95,7 @@ namespace masz.Commands
                 StringBuilder caseInfo = new StringBuilder();
                 foreach (ModCase modCase in cases.Take(5))
                 {
-                    caseInfo.Append($"[{modCase.CaseId} - {modCase.Title}]");
+                    caseInfo.Append($"[{modCase.CaseId} - {modCase.Title.Truncate(50)}]");
                     caseInfo.Append($"({_config.GetBaseUrl()}/guilds/{modCase.GuildId}/cases/{modCase.CaseId})\n");
                 }
                 if (cases.Count > 5)
@@ -94,7 +114,7 @@ namespace masz.Commands
                         {
                             activeInfo.Append($"({_translator.T().Until()} {modCase.PunishedUntil.Value.ToDiscordTS()}) ");
                         }
-                        activeInfo.Append($"[{modCase.CaseId} - {modCase.Title}]");
+                        activeInfo.Append($"[{modCase.CaseId} - {modCase.Title.Truncate(50)}]");
                         activeInfo.Append($"({_config.GetBaseUrl()}/guilds/{modCase.GuildId}/cases/{modCase.CaseId})\n");
                     }
                     if (activeCases.Count > 5)
