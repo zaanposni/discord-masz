@@ -77,7 +77,8 @@ console = Console()
 console.print(table)
 ENV_FILE["DEFAULT_LANGUAGE"] = Prompt.ask(":question_mark: Enter the default language MASZ should use", choices=SUPPORTED_LANGUAGES.keys(), default="en")
 
-ENV_FILE["AUDIT_LOG_WEBHOOK_URL"] = Prompt.ask(":question_mark: Enter a discord webhook url for the audit log")
+print(":question_mark: Please specify a discord webhook url for auditlogs.\n[bright_black]This should be a private channel for siteadmins only since it may log sensitive information.\nYou can also leave this empty to disable audit logs.[/bright_black]")
+ENV_FILE["AUDIT_LOG_WEBHOOK_URL"] = Prompt.ask("URL")
 
 ENV_FILE["ENABLE_DEMO_MODE"] = "false"
 ENV_FILE["ENABLE_CUSTOM_PLUGINS"] = "false"
