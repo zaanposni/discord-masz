@@ -2,7 +2,7 @@
     <div class="card-container-body d-flex flex-column flex-wrap flex-shrink-0 flex-grow-1">
         <div class="d-flex flex-row flex-wrap">
             <span class="mat-h1 font-weight-bold mb-2" *ngIf="this.motd?.content?.creator">
-                Message from {{ this.motd?.content?.creator?.username }}#{{ this.motd?.content?.creator?.discriminator }}
+                {{ 'DashboardMotd.MessageFrom' | translate:motdParams }}
             </span>
             <span class="mat-h1 font-weight-bold mb-2" *ngIf="!this.motd?.content?.creator">
                 Motd

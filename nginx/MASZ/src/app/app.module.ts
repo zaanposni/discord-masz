@@ -33,7 +33,7 @@ import { IndexComponent } from './components/basic/index/index.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { AuthService } from './services/auth.service';
 import { ApiInterceptor } from './services/ApiInterceptor';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiService } from './services/api.service';
 import { AuthGuard } from './guards/auth.guard';
 import { GuildCardComponent } from './components/guilds/guild-card/guild-card.component';
@@ -96,6 +96,21 @@ import { AdminlistComponent } from './components/api/adminstats/adminlist/adminl
 import { StatcardComponent } from './components/api/adminstats/statcard/statcard.component';
 import { GuildIconComponent } from './components/basic/guild-icon/guild-icon.component';
 import { OauthFailedComponent } from './components/errors/oauth-failed/oauth-failed.component';
+import { EnumManagerService } from './services/enum-manager.service';
+import { ApplicationInfoService } from './services/application-info.service';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { DEFAULT_LANGUAGE } from './config/config';
+import { DateDisplayComponent } from './components/basic/date-display/date-display.component';
+import { FloorPipePipe } from './pipes/floor-pipe.pipe';
+import { DateFormatPipe } from './pipes/date-format.pipe';
+import { TimezoneService } from './services/timezone.service';
+import { CookieTrackerService } from './services/cookie-tracker.service';
+import { DatePickerComponent } from './components/basic/date-picker/date-picker.component';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -155,7 +170,11 @@ import { OauthFailedComponent } from './components/errors/oauth-failed/oauth-fai
     AdminlistComponent,
     StatcardComponent,
     GuildIconComponent,
-    OauthFailedComponent
+    OauthFailedComponent,
+    DateDisplayComponent,
+    FloorPipePipe,
+    DateFormatPipe,
+    DatePickerComponent
   ],
   imports: [
     CommonModule,
@@ -198,7 +217,16 @@ import { OauthFailedComponent } from './components/errors/oauth-failed/oauth-fai
 
     BrowserModule,
     AppRoutingModule,
-    ChartsModule
+    ChartsModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      },
+      defaultLanguage: DEFAULT_LANGUAGE,
+      useDefaultLang: true
+  })
   ],
   providers: [
     ToastrService,
@@ -208,7 +236,11 @@ import { OauthFailedComponent } from './components/errors/oauth-failed/oauth-fai
       multi: true
     },
     AuthGuard,
-    ApiService
+    EnumManagerService,
+    ApiService,
+    ApplicationInfoService,
+    TimezoneService,
+    CookieTrackerService
   ],
   bootstrap: [AppComponent]
 })

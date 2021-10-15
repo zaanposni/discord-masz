@@ -1,15 +1,18 @@
 using System.Threading.Tasks;
-using masz.Dtos.DiscordAPIResponses;
+using DSharpPlus.Entities;
+using masz.Enums;
 using masz.Models;
 
 namespace masz.Services
 {
     public interface IDiscordAnnouncer
     {
-        Task AnnounceModCase(ModCase modCase, RestAction action, User actor, bool announcePublic, bool announceDm);
-        Task AnnounceComment(ModCaseComment comment, User actor, RestAction action);
-        Task AnnounceFile(string filename, ModCase modCase, User actor, RestAction action);
-        Task AnnounceUserNote(UserNote userNote, User actor, RestAction action);
-        Task AnnounceUserMapping(UserMapping userMapping, User actor, RestAction action);
+        Task AnnounceTipsInNewGuild(GuildConfig guildConfig);
+        Task AnnounceModCase(ModCase modCase, RestAction action, DiscordUser actor, bool announcePublic, bool announceDm);
+        Task AnnounceComment(ModCaseComment comment, DiscordUser actor, RestAction action);
+        Task AnnounceFile(string filename, ModCase modCase, DiscordUser actor, RestAction action);
+        Task AnnounceUserNote(UserNote userNote, DiscordUser actor, RestAction action);
+        Task AnnounceUserMapping(UserMapping userMapping, DiscordUser actor, RestAction action);
+        Task AnnounceAutomoderation(AutoModerationEvent modEvent, AutoModerationConfig moderationConfig, GuildConfig guildConfig, DiscordChannel channel, DiscordUser author);
     }
 }

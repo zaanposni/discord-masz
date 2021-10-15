@@ -1,0 +1,913 @@
+{
+    "Features": {
+        "description": "The word 'features'",
+        "en": "Features",
+        "de": "Features",
+        "at": "Features"
+    },
+    "Automoderation": {
+        "description": "The word 'Automoderation'",
+        "en": "Automoderation",
+        "de": "Automoderation",
+        "at": "Automodaration"
+    },
+    "Action": {
+        "description": "The word 'Action'",
+        "en": "Action",
+        "de": "Aktion",
+        "at": "Aktio"
+    },
+    "NotFound": {
+        "description": "The word 'NotFound'",
+        "en": "Not found.",
+        "de": "Nicht gefunden.",
+        "at": "Ned gfundn."
+    },
+    "Author": {
+        "description": "The word 'Author'",
+        "en": "Author",
+        "de": "Autor",
+        "at": "Autoa"
+    },
+    "MessageContent": {
+        "description": "The word 'message content'",
+        "en": "Message content",
+        "de": "Nachrichteninhalt",
+        "at": "Nochrichtninhoit"
+    },
+    "ViewDetailsOn": {
+        "description": "you can view details on url",
+        "var_types": {
+            "url": "string"
+        },
+        "en": "View details on: {url}",
+        "de": "Details anzeigen auf: {url}",
+        "at": "Details ozeign auf: {url}"
+    },
+    "Attachments": {
+        "description": "The word 'attachments'",
+        "en": "Attachments",
+        "de": "Anhänge",
+        "at": "Ohäng"
+    },
+    "AndXMore": {
+        "description": "The word 'and x more'",
+        "var_types": {
+            "count": "int"
+        },
+        "en": "and {count} more...",
+        "de": "und {count} weitere...",
+        "at": "und {count} weitare..."
+    },
+    "Channel": {
+        "description": "The word 'channel'",
+        "en": "Channel",
+        "de": "Kanal",
+        "at": "Kanoi"
+    },
+    "SomethingWentWrong": {
+        "description": "The word 'something went wrong.'",
+        "en": "Something went wrong.",
+        "de": "Etwas ist schief gelaufen.",
+        "at": "Etwos hot ned funktioniat."
+    },
+    "Code": {
+        "description": "The word 'code'. like in 'the error code'",
+        "en": "Code",
+        "de": "Code",
+        "at": "Code"
+    },
+    "LanguageWord": {
+        "description": "The word 'language'",
+        "en": "Language",
+        "de": "Sprache",
+        "at": "Sproch"
+    },
+    "Timestamps": {
+        "description": "The word 'timestamps'",
+        "en": "Timestamps",
+        "de": "Zeitstempel",
+        "at": "Zeitstempl"
+    },
+    "Support": {
+        "description": "The word 'support'",
+        "en": "Support",
+        "de": "Support",
+        "at": "Supoat"
+    },
+    "Punishment": {
+        "description": "The word 'punishment'",
+        "en": "Punishment",
+        "de": "Bestrafung",
+        "at": "Bestrofung"
+    },
+    "Until": {
+        "description": "The word 'until'",
+        "en": "until",
+        "de": "bis",
+        "at": "bis"
+    },
+    "PunishmentUntil": {
+        "description": "headline for a temporary punishment stating the timezone",
+        "en": "Punished until",
+        "de": "Bestrafung bis",
+        "at": "Bestroft bis"
+    },
+    "Description": {
+        "description": "The word 'description'",
+        "en": "Description",
+        "de": "Beschreibung",
+        "at": "Beschreibung"
+    },
+    "Labels": {
+        "description": "The word 'labels'",
+        "en": "Labels",
+        "de": "Labels",
+        "at": "Labl"
+    },
+    "Filename": {
+        "description": "The word 'filename'. The name of a file",
+        "en": "Filename",
+        "de": "Dateiname",
+        "at": "Dateinom"
+    },
+    "Message": {
+        "description": "The word 'message'",
+        "en": "Message",
+        "de": "Nachricht",
+        "at": "Nochricht"
+    },
+    "UserNote": {
+        "description": "The word 'usernote'. This is a feature to share hidden guild-wide notes of a user with other moderators.",
+        "en": "UserNote",
+        "de": "Benutzernotiz",
+        "at": "Benutzanotiz"
+    },
+    "UserNotes": {
+        "description": "The plural word 'usernote'. This is a feature to share hidden guild-wide notes of a user with other moderators.",
+        "en": "UserNotes",
+        "de": "Benutzernotizen",
+        "at": "Benutzanotizn"
+    },
+    "Cases": {
+        "description": "The word 'cases'",
+        "en": "Cases",
+        "de": "Vorfälle",
+        "at": "Vorfälle"
+    },
+    "ActivePunishments": {
+        "description": "The word 'active punishments'",
+        "en": "Active punishments",
+        "de": "Aktive Bestrafungen",
+        "at": "Aktive Bestrofungen"
+    },
+    "UserMap": {
+        "description": "The word 'usermap'. This is a feature to share hidden guild-wide connections of two users with other moderators.",
+        "en": "UserMap",
+        "de": "Benutzerbeziehung",
+        "at": "Benutzabeziehung"
+    },
+    "UserMaps": {
+        "description": "The plural word 'usermaps'. This is a feature to share hidden guild-wide connections of two users with other moderators.",
+        "en": "UserMaps",
+        "de": "Benutzerbeziehungen",
+        "at": "Benutzabeziehungen"
+    },
+    "UserMapBetween": {
+        "description": "Describes a usermap between two users.",
+        "var_types": {
+            "userMap": "masz.Models.UserMapping"
+        },
+        "en": "UserMap between {userMap.UserA} and {userMap.UserB}.",
+        "de": "Benutzerbeziehung zwischen {userMap.UserA} und {userMap.UserB}.",
+        "at": "Benutzabeziehung zwischa {userMap.UserA} und {userMap.UserB}."
+    },
+    "Type": {
+        "description": "The word 'type'",
+        "en": "Type",
+        "de": "Typ",
+        "at": "Typ"
+    },
+    "Joined": {
+        "description": "The word 'joined'",
+        "en": "Joined",
+        "de": "Beigetreten",
+        "at": "Beigetretn"
+    },
+    "Registered": {
+        "description": "The word 'registered'",
+        "en": "Registered",
+        "de": "Registriert",
+        "at": "Registriat"
+    },
+    "Notification" : {
+        "Modcase": {
+            "Create": {
+                "Public": {
+                    "description": "Webhook notification for modcase creation. This does not disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase"
+                    },
+                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde erstellt.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is erstöt woan."
+                },
+                "Internal": {
+                    "description": "Webhook notification for modcase creation. This does disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase",
+                        "moderator": "DSharpPlus.Entities.DiscordUser"
+                    },
+                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstellt.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) woad fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstöt."
+                }
+            },
+            "Update": {
+                "Public": {
+                    "description": "Webhook notification for modcase update. This does not disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase"
+                    },
+                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated.",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde aktualisiert.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is aktualisiert woan."
+                },
+                "Internal": {
+                    "description": "Webhook notification for modcase update. This does disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase",
+                        "moderator": "DSharpPlus.Entities.DiscordUser"
+                    },
+                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert woan."
+
+                }
+            },
+            "Delete": {
+                "Public": {
+                    "description": "Webhook notification for modcase deletion. This does not disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase"
+                    },
+                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted.",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde gelöscht.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is glescht woan"
+                },
+                "Internal": {
+                    "description": "Webhook notification for modcase deletion. This does disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase",
+                        "moderator": "DSharpPlus.Entities.DiscordUser"
+                    },
+                    "en" : "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) gelöscht.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is vo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) glescht woan."
+
+                }
+            },
+            "Comments": {
+                "Short": {
+                    "Create": {
+                        "description": "A modcase comment has been created.",
+                        "en": "Comment created",
+                        "de": "Kommentar erstellt",
+                        "at": "Kommentoa erstöt"
+                    },
+                    "Update": {
+                        "description": "A modcase comment has been updated.",
+                        "en": "Comment updated",
+                        "de": "Kommentar aktualisiert",
+                        "at": "kommentoa aktualisiert"
+                    },
+                    "Delete": {
+                        "description": "A modcase comment has been deleted.",
+                        "en": "Comment deleted",
+                        "de": "Kommentar gelöscht",
+                        "at": "kommentoa glescht"
+                    }
+                },
+                "Create": {
+                    "description": "A modcase comment has been created.",
+                    "var_types": {
+                        "actor": "DSharpPlus.Entities.DiscordUser"
+                    },
+                    "en" : "A **comment** has been created by <@{actor.Id}>.",
+                    "de": "Ein **Kommentar** wurde von <@{actor.Id}> erstellt.",
+                    "at": "A **Kommentoa** wuad vo <@{actor.Id}> erstöt."
+                },
+                "Update": {
+                    "description": "A modcase comment has been updated.",
+                    "var_types": {
+                        "actor": "DSharpPlus.Entities.DiscordUser"
+                    },
+                    "en" : "A **comment** has been updated by <@{actor.Id}>.",
+                    "de": "Ein **Kommentar** wurde von <@{actor.Id}> aktualisiert.",
+                    "at": "A **Kommentoa** is vo <@{actor.Id}> aktualisiert woan."
+                },
+                "Delete": {
+                    "description": "A modcase comment has been deleted.",
+                    "var_types": {
+                        "actor": "DSharpPlus.Entities.DiscordUser"
+                    },
+                    "en" : "A **comment** has been deleted by <@{actor.Id}>.",
+                    "de": "Ein **Kommentar** wurde von <@{actor.Id}> gelöscht.",
+                    "at": "A **Kommentoa** wuad vo <@{actor.Id}> glescht."
+                }
+            },
+            "File": {
+                "Create": {
+                    "description": "Webhook notification for modcase file creation.",
+                    "var_types": {
+                        "actor": "DSharpPlus.Entities.DiscordUser"
+                    },
+                    "en" : "A **file** has been uploaded by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
+                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochgeladen.",
+                    "at": "A **Datei** woad vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochglodn."
+                },
+                "Delete": {
+                    "description": "Webhook notification for modcase file deletion.",
+                    "var_types": {
+                        "actor": "DSharpPlus.Entities.DiscordUser"
+                    },
+                    "en" : "A **file** has been deleted by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
+                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) gelöscht.",
+                    "at": "A **Datei** is vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) glescht woan."
+                },
+                "Update": {
+                    "description": "Webhook notification for modcase file update.",
+                    "var_types": {
+                        "actor": "DSharpPlus.Entities.DiscordUser"
+                    },
+                    "en" : "A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
+                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert.",
+                    "at": "A **Datei** is vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert woan."
+                }
+            },
+            "DM": {
+                "Warn": {
+                    "description": "DM notification for warn modcase. This does not disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase",
+                        "guild": "DSharpPlus.Entities.DiscordGuild",
+                        "serviceBaseUrl": "string"
+                    },
+                    "en" : "The moderators of guild `{guild.Name}` have warned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                    "de" : "Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                    "at" : "Die Moderatoan vo `{guild.Name}` hom di verwoarnt.\nFia weitere Infos schau bei {serviceBaseUrl} noch."
+                },
+                "Mute": {
+                    "Temp": {
+                        "description": "DM notification for temp mute modcase. This does not disclose information about the moderator.",
+                        "var_types": {
+                            "modCase": "masz.Models.ModCase",
+                            "guild": "DSharpPlus.Entities.DiscordGuild",
+                            "serviceBaseUrl": "string"
+                        },
+                        "en" : "The moderators of guild `{guild.Name}` have temporarily muted you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich temporär stummgeschalten bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                        "at" : "Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch"
+
+                    },
+                    "Perm": {
+                        "description": "DM notification for perm mute modcase. This does not disclose information about the moderator.",
+                        "var_types": {
+                            "modCase": "masz.Models.ModCase",
+                            "guild": "DSharpPlus.Entities.DiscordGuild",
+                            "serviceBaseUrl": "string"
+                        },
+                        "en" : "The moderators of guild `{guild.Name}` have muted you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                        "at" : "Die Moderatoan vo `{guild.Name}` hom di stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch."
+                    }
+                },
+                "Ban": {
+                    "Temp": {
+                        "description": "DM notification for temp ban modcase. This does not disclose information about the moderator.",
+                        "var_types": {
+                            "modCase": "masz.Models.ModCase",
+                            "guild": "DSharpPlus.Entities.DiscordGuild",
+                            "serviceBaseUrl": "string"
+                        },
+                        "en" : "The moderators of guild `{guild.Name}` have temporarily banned you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich temporär gebannt bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                        "at" : "Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch."
+                    },
+                    "Perm": {
+                        "description": "DM notification for perm ban modcase. This does not disclose information about the moderator.",
+                        "var_types": {
+                            "modCase": "masz.Models.ModCase",
+                            "guild": "DSharpPlus.Entities.DiscordGuild",
+                            "serviceBaseUrl": "string"
+                        },
+                        "en" : "The moderators of guild `{guild.Name}` have banned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                        "de" : "Die Moderatoren von `{guild.Name}` haben dich gebannt.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                        "at" : "Die Moderatoan vo `{guild.Name}` hom di vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch"
+                    }
+                },
+                "Kick": {
+                    "description": "DM notification for kick modcase. This does not disclose information about the moderator.",
+                    "var_types": {
+                        "modCase": "masz.Models.ModCase",
+                        "guild": "DSharpPlus.Entities.DiscordGuild",
+                        "serviceBaseUrl": "string"
+                    },
+                    "en" : "The moderators of guild `{guild.Name}` have kicked you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
+                    "de" : "Die Moderatoren von `{guild.Name}` haben dich kickt.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                    "at" : "Die Moderatoan vo `{guild.Name}` hom di rausgschmissn.\nFia weitere Infos schau bei {serviceBaseUrl} noch."
+                }
+            }
+        },
+        "Files": {
+            "Create": {
+                "description": "A file has been uploaded.",
+                "en": "File uploaded",
+                "de": "Datei hochgeladen",
+                "at": "Datei hochglodn"
+            },
+            "Delete": {
+                "description": "A file has been deleted.",
+                "en": "File deleted",
+                "de": "Datei gelöscht",
+                "at": "Datei glescht"
+            },
+            "Update": {
+                "description": "A file has been updated.",
+                "en": "File updated",
+                "de": "Datei aktualisiert",
+                "at": "Datei aktualisiert"
+            }
+        },
+        "Register": {
+            "WelcomeToMASZ": {
+                "description": "Welcome to MASZ",
+                "en": "Welcome to MASZ!",
+                "de": "Willkommen bei MASZ!",
+                "at": "Servus bei MASZ!"
+
+            },
+            "DescriptionThanks": {
+                "description": "Thanks for registering.",
+                "en": "Thanks for registering your guild.\nIn the following you will learn some useful tips for setting up and using **MASZ**.",
+                "de": "Vielen Dank für deine Registrierung.\nIm Folgenden wirst du einige nützliche Tipps zum Einrichten und Verwenden von **MASZ** erhalten.",
+                "at": "Donksche fia dei Registrierung.\nDu siachst glei ei poar nützliche Tipps zum Eirichtn und Vawendn vo **MASZ**."
+
+            },
+            "UseFeaturesCommand": {
+                "description": "Use the `features` command to see the features of MASZ.",
+                "en": "Use the `/features` command to test if your current guild setup supports all features of **MASZ**.",
+                "de": "Benutze den `/features` Befehl um zu sehen welche Features von **MASZ** dein aktuelles Setup unterstützt.",
+                "at": "Nutz den `/features` Beföhl um nochzumschauen wöchane Features dei aktuelles **MASZ**  Setup untastützn tuad."
+            },
+            "DefaultLanguageUsed": {
+                "description": "The default language is used for the guild.",
+                "var_types": {
+                    "language": "string"
+                },
+                "en": "MASZ will use `{language}` as default language for this guild whenever possible.",
+                "de": "MASZ wird `{language}` als Standard-Sprache für diese Gilde verwenden, wenn möglich.",
+                "at": "Dei MASZ wiad `{language}` ois Standard-Sproch fia die Güde nehma, wenns geht."
+            },
+            "ConfusingTimestamps": {
+                "description": "The timestamps are confusing.",
+                "en": "Timezones can be confusing.\nMASZ uses a Discord feature to display timestamps in the local timezone of your computer/phone.",
+                "de": "Zeitzonen können kompliziert sein.\nMASZ benutzt ein Discord-Feature um Zeitstempel in der lokalen Zeitzone deines Computers/Handys anzuzeigen.",
+                "at": "De Zeitzonen kennan a weng schwer san.\nMASZ nutzt a Discord-Feature um Zeitstempl in da lokalen Zeitzon vo deim PC/Handy ozumzeign."
+            },
+            "Support": {
+                "description": "Support for MASZ is provided by the [MASZ Support Server](https://discord.gg/5zjpzw6h3S).",
+                "en": "Please refer to the [MASZ Support Server](https://discord.gg/5zjpzw6h3S) for further questions.",
+                "de": "Bitte wende dich an den [MASZ Support Server](https://discord.gg/5zjpzw6h3S) für weitere Fragen.",
+                "at": "Bitte wend di on den [MASZ Support Server](https://discord.gg/5zjpzw6h3S) fia weitare Frogn."
+            }
+        },
+        "Automoderation": {
+            "Internal": {
+                "description": "Internal notification for automod event",
+                "var_types": {
+                    "user": "DSharpPlus.Entities.DiscordUser"
+                },
+                "en": "{user.Mention} triggered automoderation.",
+                "de": "{user.Mention} hat die Automoderation ausgelöst.",
+                "at": "{user.Mention} hot de Automodaration ausglest."
+            },
+            "Case": {
+                "description": "case description for automod event",
+                "var_types": {
+                    "user": "DSharpPlus.Entities.DiscordUser"
+                },
+                "en": "{user.Username}#{user.Discriminator} triggered automoderation.",
+                "de": "{user.Username}#{user.Discriminator} hat die Automoderation ausgelöst.",
+                "at": "{user.Username}#{user.Discriminator} hot de Automodaration ausglest."
+            },
+            "DM": {
+                "description": "DM description for automod event",
+                "var_types": {
+                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "channel": "DSharpPlus.Entities.DiscordChannel",
+                    "reason": "string",
+                    "action": "string"
+                },
+                "en": "Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}",
+                "de": "Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}",
+                "at": "Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention} ausglest. Grund: {reason}\nAktion: {action}"
+            },
+            "Channel": {
+                "description": "channel notification for automod event if message was deleted, should be oneline",
+                "var_types": {
+                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "reason": "string"
+                },
+                "en": "{user.Mention} you triggered automoderation. Reason: {reason}. Your message has been deleted.",
+                "de": "{user.Mention} du hast die Automoderation ausgelöst. Grund: {reason}. Dein Nachricht wurde gelöscht.",
+                "at": "{user.Mention} du host de Automodaration ausglest. Grund: {reason}. Dei Nochricht wuad glescht."
+            }
+        },
+        "AutoWhois": {
+            "JoinWith": {
+                "description": "A user joined with invite x",
+                "var_types": {
+                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "registered": "DateTime",
+                    "invite": "string"
+                },
+                "en": "{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}`.",
+                "de": "{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` beigetreten."
+            },
+            "JoinWithAndFrom": {
+                "description": "A user joined with invite x",
+                "var_types": {
+                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "by": "ulong",
+                    "createdAt": "DateTime",
+                    "registered": "DateTime",
+                    "invite": "string"
+                },
+                "en": "{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}` (created {createdAt.ToDiscordTS()}) by <@{by}>.",
+                "de": "{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` von <@{by}> (am {createdAt.ToDiscordTS()}) beigetreten."
+            }
+        }
+    },
+    "Cmd": {
+        "OnlyTextChannel": {
+            "description": "Only text channels are allowed.",
+            "en": "Only text channels are allowed.",
+            "de": "Nur Textkanäle sind erlaubt.",
+            "at": "Nua Textkanö san guat."
+        },
+        "CannotViewOrDeleteInChannel": {
+            "description": "Bot cannot view or delete messages in this channel.",
+            "en": "I'm not allowed to view or delete messages in this channel!",
+            "de": "Ich darf keine Nachrichten in diesem Kanal sehen oder löschen!",
+            "at": "I derf kane Nochrichtn in dem Kanoi sehn oda leschn!"
+        },
+        "CannotFindChannel": {
+            "description": "Cannot find channel.",
+            "en": "Cannot find channel.",
+            "de": "Kanal konnte nicht gefunden werden.",
+            "at": "Kanoi konnt ned gfundn wan."
+        },
+        "NoWebhookConfigured": {
+            "description": "No webhook configured.",
+            "en": "This guild has no webhook for internal notifications configured.",
+            "de": "Dieser Server hat keinen internen Webhook für Benachrichtigungen konfiguriert.",
+            "at": "Da Serva hot kan internan Webhook fia Benochrichtigungen konfiguriat."
+        },
+        "Cleanup": {
+            "description": "Cleanup response",
+            "var_types": {
+                "count": "int",
+                "channel": "DSharpPlus.Entities.DiscordChannel"
+            },
+            "en": "Deleted {count} messages in {channel.Mention}.",
+            "de": "{count} Nachrichten in {channel.Mention} gelöscht.",
+            "at": "{count} Nochrichtn in {channel.Mention} glescht."
+
+        },
+        "Features": {
+            "KickPermission": {
+                "Granted": {
+                    "description": "Kick permission granted.",
+                    "en": "Kick permission granted.",
+                    "de": "Kick-Berechtigung erteilt.",
+                    "at": "Kick-Berechtigung erteit."
+                },
+                "NotGranted": {
+                    "description": "Kick permission not granted.",
+                    "en": "Kick permission not granted.",
+                    "de": "Kick-Berechtigung nicht erteilt.",
+                    "at": "Kick-Berechtigung ned erteit."
+                }
+            },
+            "BanPermission": {
+                "Granted": {
+                    "description": "Ban permission granted.",
+                    "en": "Ban permission granted.",
+                    "de": "Ban-Berechtigung erteilt.",
+                    "at": "Ban-Berechtigung erteit."
+                },
+                "NotGranted": {
+                    "description": "Ban permission not granted.",
+                    "en": "Ban permission not granted.",
+                    "de": "Ban-Berechtigung nicht erteilt.",
+                    "at": "Ban-Berechtigung ned erteit."
+                }
+            },
+            "ManageRolePermission": {
+                "Granted": {
+                    "description": "Manage role permission granted.",
+                    "en": "Manage role permission granted.",
+                    "de": "Manage-Rolle-Berechtigung erteilt.",
+                    "at": "Manage-Rolle-Berechtigung ereit."
+                },
+                "NotGranted": {
+                    "description": "Manage role permission not granted.",
+                    "en": "Manage role permission not granted.",
+                    "de": "Manage-Rolle-Berechtigung nicht erteilt.",
+                    "at": "Manage-Rolle-Berechtigung ned erteit."
+                }
+            },
+            "MutedRole": {
+                "Defined": {
+                    "description": "Muted role defined.",
+                    "en": "Muted role defined.",
+                    "de": "Stummrolle definiert.",
+                    "at": "Stummroi definiat."
+                },
+                "DefinedButTooHigh": {
+                    "description": "Muted role defined but too high in role hierarchy.",
+                    "en": "Muted role defined but too high in role hierarchy.",
+                    "de": "Stummrolle definiert, aber zu hoch in der Rollenhierarchie.",
+                    "at": "Stummroi definiat, oba zu hoch in da Roinhierarchie."
+                },
+                "DefinedButInvalid": {
+                    "description": "Muted role defined but invalid.",
+                    "en": "Muted role defined but invalid.",
+                    "de": "Stummrolle definiert, aber ungültig.",
+                    "at": "Stummroi definiat, oba ned gütig."
+                },
+                "Undefined": {
+                    "description": "Muted role undefined.",
+                    "en": "Muted role undefined.",
+                    "de": "Stummrolle nicht definiert.",
+                    "at": "Stummroi ned definiat."
+                }
+            },
+            "PunishmentExecution": {
+                "description": "Punishment execution response",
+                "en": "Punishment execution",
+                "de": "Bestrafungsverwaltung",
+                "at": "Bestrofungsverwoitung"
+            },
+            "PunishmentExecutionDescription": {
+                "description": "Punishment execution description",
+                "en": "Let MASZ handle punishments (e.g. tempbans, mutes, etc.).",
+                "de": "Lass MASZ die Bestrafungen verwalten (z.B. temporäre Banns, Stummschaltungen, etc.).",
+                "at": "Loss MASZ de Bestrofungen verwoitn (z.B. temporäre Banns, Stummschoitungen, etc.)."
+            },
+            "UnbanRequests": {
+                "description": "Unban requests",
+                "en": "Unban requests",
+                "de": "Entbannungs-Anfragen",
+                "at": "Entbannungs-Ofrogn"
+            },
+            "UnbanRequestsDescription": {
+                "Granted": {
+                    "description": "Unban requests description",
+                    "en": "Allows banned members to see their cases and comment on it for unban requests.",
+                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.",
+                    "at": "Erlaubt ausgsperrtn MASZ aufzuruafa, sich ernane Fälle ozumschaun und de zum kommentian."
+                },
+                "NotGranted": {
+                    "description": "Unban requests description",
+                    "en": "Allows banned members to see their cases and comment on it for unban requests.\nGrant this bot the ban permission to use this feature.",
+                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.\nErteile diesem Bot die Ban-Berechtigung, um diese Funktion zu nutzen.",
+                    "at": "Erlaubt ausgsperrtn MASZ aufzurufa, sich ernane Fälle ozumschaun und de zum kommentian. \nErteil dem Bot die Ban-Berechtigung, um de Funktion nutza zu kenna."
+                }
+            },
+            "ReportCommand": {
+                "description": "Report command",
+                "en": "Report command",
+                "de": "Melde-Befehl",
+                "at": "Möde-Befehl"
+            },
+            "ReportCommandDescription": {
+                "Granted": {
+                    "description": "Report command",
+                    "en": "Allows members to report messages.",
+                    "de": "Erlaubt Mitgliedern, Nachrichten zu melden.",
+                    "at": "Erlaubt Mitglieda, Nochrichtn zu mödn."
+                },
+                "NotGranted": {
+                    "description": "Unban requests description",
+                    "en": "Allows members to report messages.\nDefine a internal staff webhook to use this feature.",
+                    "de": "Erlaubt Mitgliedern, Nachrichten zu melden.\nDefiniere einen internen Webhook, um diese Funktion zu nutzen.",
+                    "at": "Erlaub Mitglieda, Nochrichtn zum mödn. \nDefinia an internen Webook, um de Funktion nutzn zum kennan."
+                }
+            },
+            "InviteTracking": {
+                "description": "Invite tracking",
+                "en": "Invite tracking",
+                "de": "Einladungsverfolgung",
+                "at": "Eiladungsverfoigung"
+            },
+            "InviteTrackingDescription": {
+                "Granted": {
+                    "description": "invite tracking",
+                    "en": "Allows MASZ to track the invites new members are using.",
+                    "de": "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.",
+                    "at": "Erlaubt MASZ, de Eiladungen vo neichn Mitglieda zu verfoign."
+                },
+                "NotGranted": {
+                    "description": "Unban requests description",
+                    "en": "Allows MASZ to track the invites new members are using.\nGrant this bot the manage guild permission to use this feature.",
+                    "de": "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.\nErteile diesem Bot die Verwalten-Gilden-Berechtigung, um diese Funktion zu nutzen.",
+                    "at": "Erlaubt MASZ, de Eiladungen vo neichn Mitglieda zu verfoign.\nErteil dem Bot die Verwoitn-Gilden-Berechtigung, um de Funktion nutzn zu kenna."
+
+                }
+            },
+            "SupportAllFeatures": {
+                "description": "Support all features",
+                "en": "Your bot on this guild is configured correctly. All features of MASZ can be used.",
+                "de": "Dein Bot auf diesem Server ist richtig konfiguriert. Alle Funktionen von MASZ können genutzt werden.",
+                "at": "Dei Bot auf dem Serva is richtig konfiguriat. Olle Funktionen vo MASZ kennen gnutzt wean."
+            },
+            "MissingFeatures": {
+                "description": "Missing features",
+                "en": "There are features of MASZ that you cannot use right now.",
+                "de": "Es gibt Funktionen von MASZ, die du jetzt nicht nutzen kannst.",
+                "at": "Es gibt Funktionen vo MASZ, die du jetzt ned nutzn konnst."
+            }
+        },
+        "Invite": {
+            "description": "Host your own instance of MASZ",
+            "en": "You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-masz#hosting",
+            "de": "Du musst deine eigene Instanz von MASZ auf deinem Server oder PC hosten.\nSchau dir https://github.com/zaanposni/discord-masz#hosting an",
+            "at": "Du muast dei eignane Inszanz vo MASZ auf deim Serva oda PC hosn.\nSchau da https://github.com/zaanposni/discord-masz#hosting o"
+        },
+        "Punish": {
+            "description": "Case created with link",
+            "var_types": {
+                "caseId": "int",
+                "caseLink": "string"
+            },
+            "en": "Case `#{caseId}` created: {caseLink}",
+            "de": "Fall `#{caseId}` erstellt: {caseLink}",
+            "at": "Foi `#{caseId}` erstöt: {caseLink}"
+        },
+        "Register": {
+            "description": "Register a new guild",
+            "var_types": {
+                "url": "string"
+            },
+            "en": "A siteadmin can register a guild at: {url}",
+            "de": "Ein Siteadmin kann eine Gilde registrieren unter: {url}",
+            "at": "A Seitnadmin ko a Güde unta {url} registrian."
+        },
+        "Report": {
+            "Failed": {
+                "description": "Report failed",
+                "en": "Failed to send internal notification to moderators for report command.",
+                "de": "Interner Benachrichtigungsversand an Moderatoren für Meldebefehl fehlgeschlagen.",
+                "at": "Interna Benochrichtigungsvasond on de Modaratoan fian Mödebefehl fehlgschlogn."
+            },
+            "Sent": {
+                "description": "Report sent",
+                "en": "Report sent.",
+                "de": "Meldung gesendet.",
+                "at": "Mödung gsendt."
+            },
+            "Content": {
+                "description": "Report content",
+                "var_types": {
+                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "message": "DSharpPlus.Entities.DiscordMessage"
+                },
+                "en": "{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}",
+                "de": "{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}",
+                "at": "{user.Mention} mödet a Nochricht vo {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}"
+            }
+        },
+        "Say": {
+            "Failed": {
+                "description": "Say failed",
+                "en": "Failed to send message",
+                "de": "Senden der Nachricht fehlgeschlagen",
+                "at": "Sendn vo da Nachricht fehlgschlogn."
+            },
+            "Sent": {
+                "description": "Send message",
+                "en": "Message sent.",
+                "de": "Nachricht gesendet.",
+                "at": "Nochricht gsendet."
+            }
+        },
+        "Track": {
+            "InviteNotFromThisGuild": {
+                "description": "Invite not from this guild",
+                "en": "The invite is not from this guild.",
+                "de": "Die Einladung ist nicht von dieser Gilde.",
+                "at": "Die Eiladung is ned vo dera Güde."
+            },
+            "CannotFindInvite": {
+                "description": "Cannot find invite",
+                "en": "Could not find invite in database or in this guild.",
+                "de": "Konnte die Einladung nicht in der Datenbank oder in dieser Gilde finden.",
+                "at": "Konnt de Eiladung ned in da Datnbank vo da Güde findn."
+            },
+            "FailedToFetchInvite": {
+                "description": "Failed to fetch invite",
+                "en": "Failed to fetch invite.",
+                "de": "Konnte die Einladung nicht abrufen.",
+                "at": "Konnt die Eiladung ned orufn."
+            },
+            "CreatedAt": {
+                "description": "Created at",
+                "var_types": {
+                    "inviteCode": "string",
+                    "createdAt": "DateTime"
+                },
+                "en": "`{inviteCode}` created at {createdAt.ToDiscordTS()}.",
+                "de": "`{inviteCode}` erstellt am {createdAt.ToDiscordTS()}.",
+                "at": "`{inviteCode}` erstöt vo {createdAt.ToDiscordTS()}."
+            },
+            "CreatedBy": {
+                "description": "Created by",
+                "var_types": {
+                    "inviteCode": "string",
+                    "createdBy": "DSharpPlus.Entities.DiscordUser"
+                },
+                "en": "`{inviteCode}` created by {createdBy.Mention}.",
+                "de": "`{inviteCode}` erstellt von {createdBy.Mention}.",
+                "at": "`{inviteCode}` erstöt vo {createdBy.Mention}."
+            },
+            "CreatedByAt": {
+                "description": "Created by",
+                "var_types": {
+                    "inviteCode": "string",
+                    "createdBy": "DSharpPlus.Entities.DiscordUser",
+                    "createdAt": "DateTime"
+                },
+                "en": "`{inviteCode}` created by {createdBy.Mention} at {createdAt.ToDiscordTS()}.",
+                "de": "`{inviteCode}` erstellt von {createdBy.Mention} am {createdAt.ToDiscordTS()}.",
+                "at": "`{inviteCode}` erstöt vo {createdBy.Mention} om {createdAt.ToDiscordTS()}."
+            },
+            "NotTrackedYet": {
+                "description": "Not tracked yet",
+                "en": "This invite has not been tracked by MASZ yet.",
+                "de": "Diese Einladung wurde noch nicht von MASZ gespeichert.",
+                "at": "Die Eiladung wuad no ned vo MASZ gspeichat."
+            },
+            "UsedBy": {
+                "description": "Used by",
+                "var_types": {
+                    "count": "int"
+                },
+                "en": "Used by [{count}]",
+                "de": "Benutzt von [{count}]",
+                "at": "Benutzt vo [{count}]"
+            }
+        },
+        "View": {
+            "InvalidGuildId": {
+                "description": "Invalid guild id",
+                "en": "Please specify a valid guildid.",
+                "de": "Bitte gib eine gültige Gilden-ID an.",
+                "at": "Bitte gib a gütige Güdn-ID o."
+            },
+            "NotAllowedToView": {
+                "description": "Not allowed to view",
+                "en": "You are not allowed to view this case.",
+                "de": "Du darfst diesen Fall nicht ansehen.",
+                "at": "Du derfst da den Foi ned oschaun."
+            }
+        },
+        "Whois": {
+            "UsedInvite": {
+                "description": "Used invite",
+                "var_types": {
+                    "inviteCode": "string"
+                },
+                "en": "Used invite `{inviteCode}`.",
+                "de": "Benutzte Einladung `{inviteCode}`.",
+                "at": "Benutze Eilodung `{inviteCode}`."
+            },
+            "InviteBy": {
+                "description": "Invite by",
+                "var_types": {
+                    "user": "ulong"
+                },
+                "en": "By <@{user}>.",
+                "de": "Von <@{user}>.",
+                "at": "Vo <@{user}>"
+            },
+            "NoCases": {
+                "description": "No cases",
+                "en": "There are no cases for this user.",
+                "de": "Es gibt keine Fälle für diesen Benutzer.",
+                "at": "Es gibt kane Fälle fia diesn Benutza."
+            }
+        }
+    }
+}

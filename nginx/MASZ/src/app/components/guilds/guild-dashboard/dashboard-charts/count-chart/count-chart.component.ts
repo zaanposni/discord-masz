@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
+import { BaseChartDirective, Color, Label } from 'ng2-charts';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,7 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class CountChartComponent implements OnInit {
 
-  @Input() title: string = '';
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  @Input() titleKey: string = '';
   @Input() max!: Observable<number>;
   @Input() chartLoading: boolean = true;
   @Input() public chartData: ChartDataSets[] = [];
@@ -63,14 +65,17 @@ export class CountChartComponent implements OnInit {
   public chartType: ChartType = 'bar';
   public chartPlugins: any = [];
 
-  constructor() { }
+  constructor(private translator: TranslateService) { }
 
   ngOnInit(): void {
-    this.chartOptions['title']['text'] = this.title;
+    this.chartOptions['title']['text'] = this.translator.instant(this.titleKey);
+    this.translator.onLangChange.subscribe(() => {
+      this.chartOptions['title']['text'] = this.translator.instant(this.titleKey);
+      this.chart?.ngOnInit();
+    });
 
     this.max?.subscribe((data) => {
       this.chartOptions['scales']['yAxes'][0]['ticks']['max'] = data;
     });
   }
-
 }

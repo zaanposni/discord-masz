@@ -1,79 +1,84 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using masz.data;
-using masz.Dtos.DiscordAPIResponses;
-using masz.Dtos.ModCase;
 using masz.Models;
-using masz.Services;
+using masz.Models.Views;
+using masz.Repositories;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
+using masz.Enums;
+using masz.Exceptions;
+using DSharpPlus.Entities;
 
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("api/v1/guilds/{guildid}/modcases/{caseid}/view")]
+    [Route("api/v1/guilds/{guildId}/cases/{caseId}/view")]
     [Authorize]
     public class CaseViewController : SimpleCaseController
     {
-        private readonly ILogger<CaseViewController> logger;
+        private readonly ILogger<CaseViewController> _logger;
 
         public CaseViewController(ILogger<CaseViewController> logger, IServiceProvider serviceProvider) : base(serviceProvider, logger)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetModCaseView([FromRoute] string guildid, [FromRoute] string caseid) 
+        public async Task<IActionResult> GetModCaseView([FromRoute] ulong guildId, [FromRoute] int caseId)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            IActionResult result = await this.HandleRequest(guildid, caseid, APIActionPermission.View);
-            if (result != null) {
-                return result;
-            }
+            await RequirePermission(guildId, caseId, APIActionPermission.View);
+            GuildConfig guildConfig = await GetRegisteredGuild(guildId);
+            Identity identity = await GetIdentity();
 
-            ModCase modCase = await this.database.SelectSpecificModCase(guildid, caseid);
-            List<CommentsView> comments = new List<CommentsView>();
+            ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, identity).GetModCase(guildId, caseId);
+
+            DiscordUser suspect = await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.OnlyCache);
+
+            List<CommentExpandedView> comments = new List<CommentExpandedView>();
             foreach (ModCaseComment comment in modCase.Comments)
             {
-                comments.Add(new CommentsView() {
-                    Id = comment.Id,
-                    Message = comment.Message,
-                    CreatedAt = comment.CreatedAt,
-                    UserId = comment.UserId,
-                    User = await discord.FetchUserInfo(comment.UserId, CacheBehavior.OnlyCache),
-                });
+                comments.Add(new CommentExpandedView(
+                    comment,
+                    await _discordAPI.FetchUserInfo(comment.UserId, CacheBehavior.OnlyCache)
+                ));
             }
 
-            CaseView caseView = new CaseView(
+            UserNoteExpandedView userNote = null;
+            if (await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
+            {
+                try
+                {
+                    var note = await UserNoteRepository.CreateDefault(_serviceProvider, identity).GetUserNote(guildId, modCase.UserId);
+                    userNote = new UserNoteExpandedView(
+                        note,
+                        suspect,
+                        await _discordAPI.FetchUserInfo(note.CreatorId, CacheBehavior.OnlyCache)
+                    );
+                } catch (ResourceNotFoundException) { }
+            }
+
+            CaseExpandedView caseView = new CaseExpandedView(
                 modCase,
-                await discord.FetchUserInfo(modCase.ModId, CacheBehavior.OnlyCache),
-                await discord.FetchUserInfo(modCase.LastEditedByModId, CacheBehavior.OnlyCache),
-                await discord.FetchUserInfo(modCase.UserId, CacheBehavior.OnlyCache),
-                comments
+                await _discordAPI.FetchUserInfo(modCase.ModId, CacheBehavior.OnlyCache),
+                await _discordAPI.FetchUserInfo(modCase.LastEditedByModId, CacheBehavior.OnlyCache),
+                suspect,
+                comments,
+                userNote
             );
 
-            if (modCase.LockedByUserId != null) {
-                caseView.LockedBy = await discord.FetchUserInfo(modCase.LockedByUserId, CacheBehavior.OnlyCache);
+            if (modCase.LockedByUserId != 0) {
+                caseView.LockedBy = DiscordUserView.CreateOrDefault(await _discordAPI.FetchUserInfo(modCase.LockedByUserId, CacheBehavior.OnlyCache));
             }
-            if (modCase.MarkedToDeleteAt != null) {
-                caseView.DeletedBy = await discord.FetchUserInfo(modCase.DeletedByUserId, CacheBehavior.OnlyCache);
+            if (modCase.DeletedByUserId != 0) {
+                caseView.DeletedBy = DiscordUserView.CreateOrDefault(await _discordAPI.FetchUserInfo(modCase.DeletedByUserId, CacheBehavior.OnlyCache));
             }
 
-            if (!(await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid) || (await this.GuildIsRegistered(guildid)).PublishModeratorInfo)) {
+            if (! (await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId) || guildConfig.PublishModeratorInfo)) {
                 caseView.RemoveModeratorInfo();
             }
 
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning ModCase.");
             return Ok(caseView);
         }
     }

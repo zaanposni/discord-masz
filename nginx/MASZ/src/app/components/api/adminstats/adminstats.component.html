@@ -1,49 +1,42 @@
 <div style="height: 100px;"></div>
 <div class="d-flex flex-column justify-content-center align-items-center">
     <div class="d-flex flex-column justify-content-center align-items-left cw-50-75">
-        <div class="mat-display-2 font-weight-bold mb-0">Insights</div>
-        <div class="d-flex flex-row justify-content-end align-items-center mr-2"
-            *ngIf="!stats.loading && stats.content != undefined">
-            <div class="dot" title="Last ping to discord"
-                [class.dot-green]="stats.content.lastPing < 300"
-                [class.dot-orange]="stats.content.lastPing > 300 && stats.content.lastPing < 500"
-                [class.dot-red]="stats.content.lastPing > 500">
-            </div>
-            <span class="mat-headline mb-0" style="font-weight: 500;" title="Server ping to discord"
-                
-                [style.color]="stats.content.lastPing > 300 ? stats.content.lastPing > 500 ? 'red' : 'orange' : '#3bd671'">
-                {{ stats.content?.lastPing }}ms
-            </span>
-        </div>
+        <div class="mat-display-2 font-weight-bold mb-0">{{ 'Adminstats.Insights' | translate }}</div>
         <div class="d-flex flex-row justify-content-end m-2 align-items-center">
-            <button mat-raised-button color="primary" aria-label="create token" class="flex-shrink-1" (click)="triggerCache()"
-                [disabled]="stats.loading">
-                Clear Cache
+            <button mat-raised-button color="primary" aria-label="create token" class="flex-shrink-1"
+                (click)="triggerCache()" [disabled]="stats.loading">
+                {{ 'Adminstats.ClearCache' | translate }}
             </button>
         </div>
-        <app-adminlist class="flex-grow-1"
-            [title]="'Currently logged in'"
-            [showList]="stats.content?.loginsInLast15Minutes"
-            [loading]="stats.loading">
-        </app-adminlist>
-        
-        <div class="d-flex flex-row flex-wrap" *ngIf="!stats.loading && stats.content != undefined" id="statcards">
-            <app-statcard [emote]="'dns'" [text]="stats.content?.guilds" [title]="'Guilds'"></app-statcard>
-            <app-statcard [emote]="'description'" [text]="stats.content?.modCases" [title]="'Modcases'"></app-statcard>
-            <app-statcard [emote]="'bolt'" [text]="stats.content?.automodEvents" [title]="'Automods'"></app-statcard>
-            <app-statcard [emote]="'badge'" [text]="stats.content?.userNotes" [title]="'Usernotes'"></app-statcard>
-            <app-statcard [emote]="'people'" [text]="stats.content?.userMappings" [title]="'Usermaps'"></app-statcard>
-            <app-statcard [emote]="'link'" [text]="stats.content?.trackedInvites" [title]="'Invites'"></app-statcard>
-            <app-statcard [emote]="'api'" [text]="stats.content?.apiTokens" [title]="'API tokens'"></app-statcard>
-            <app-statcard [emote]="'schedule'" [text]="minutesToNewCache + ':' + secondsToNewCache" [title]="'Next cache'"></app-statcard>
+
+        <div class="d-flex flex-row flex-wrap statcards" *ngIf="!stats.loading && stats.content != undefined">
+            <app-statcard [emote]="'smart_toy'" [renderPing]="stats.content?.botStatus" [titleKey]="'Adminstats.Bot'"></app-statcard>
+            <app-statcard [emote]="'dns'" [renderPing]="stats.content?.dbStatus" [errorPingLimit]="60" [warningPingLimit]="30" [titleKey]="'Adminstats.Database'"></app-statcard>
+            <app-statcard [emote]="'cached'" [renderPing]="stats.content?.cacheStatus" [errorPingLimit]="5" [warningPingLimit]="1" [titleKey]="'Adminstats.InternalCache'"></app-statcard>
         </div>
 
         <app-adminlist class="flex-grow-1"
-            [title]="'Discord cache'"
+            [titleKey]="'Adminstats.CurrentlyLoggedIn'"
+            [showList]="stats.content?.loginsInLast15Minutes"
+            [loading]="stats.loading">
+        </app-adminlist>
+
+        <div class="d-flex flex-row flex-wrap statcards" *ngIf="!stats.loading && stats.content != undefined">
+            <app-statcard [emote]="'dns'" [text]="stats.content?.guilds" [titleKey]="'Guilds.Guilds'"></app-statcard>
+            <app-statcard [emote]="'description'" [text]="stats.content?.modCases" [titleKey]="'Cases'"></app-statcard>
+            <app-statcard [emote]="'bolt'" [text]="stats.content?.automodEvents" [titleKey]="'Automods'"></app-statcard>
+            <app-statcard [emote]="'badge'" [text]="stats.content?.userNotes" [titleKey]="'Usernotes'"></app-statcard>
+            <app-statcard [emote]="'people'" [text]="stats.content?.userMappings" [titleKey]="'Usermaps'"></app-statcard>
+            <app-statcard [emote]="'link'" [text]="stats.content?.trackedInvites" [titleKey]="'Invites'"></app-statcard>
+            <app-statcard [emote]="'api'" [text]="stats.content?.apiTokens" [titleKey]="'Adminstats.Tokens'"></app-statcard>
+            <app-statcard [emote]="'schedule'" [text]="minutesToNewCache + ':' + secondsToNewCache" [titleKey]="'Adminstats.NextCache'"></app-statcard>
+        </div>
+
+        <app-adminlist class="flex-grow-1"
+            [titleKey]="'Adminstats.DiscordCache'"
             [showList]="stats.content?.cachedDataFromDiscord"
             [loading]="stats.loading"
-            [emote]="'save'"
-            [errorMessage]="'No cached data found.'">
+            [emote]="'save'">
         </app-adminlist>
     </div>
 </div>

@@ -1,11 +1,11 @@
-<h1 mat-dialog-title>Edit usernote</h1>
-<div mat-dialog-content class="w-100">
+<h1 mat-dialog-title>{{ 'UsernoteEditDialog.EditUsernote' | translate }}</h1>
+<div mat-dialog-content>
     <mat-form-field class="w-100">
-        <mat-label>Description</mat-label>
+        <mat-label>{{ 'UsernoteEditDialog.Description' | translate }}</mat-label>
         <textarea matInput type="text" [(ngModel)]="settings.description" [attr.rows]="this.initRows" class="w-100"></textarea>
     </mat-form-field>
 </div>
-<div mat-dialog-actions>
-    <button mat-raised-button color="accent" [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
-    <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="!settings.description?.trim()">Confirm</button>
+<div mat-dialog-actions class="w-100 d-flex flex-row justify-content-center">
+    <button mat-raised-button color="accent" [mat-dialog-close]="false" cdkFocusInitial>{{ 'UsernoteEditDialog.Cancel' | translate }}</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="!settings.description?.trim()">{{ 'UsernoteEditDialog.Confirm' | translate }}</button>
 </div>

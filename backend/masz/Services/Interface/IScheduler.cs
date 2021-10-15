@@ -10,9 +10,9 @@ namespace masz.Services
         DateTime GetNextCacheSchedule();
         void StartTimers();
         void CacheAll();
-        Task<List<string>> CacheAllGuildBans(List<string> handledUsers);
-        Task<List<string>> CacheAllGuildMembers(List<string> handledUser);
-        Task<List<string>> CacheAllKnownUsers(List<string> handledUser);
+        Task<List<ulong>> CacheAllGuildBans(List<ulong> handledUsers);
+        Task<List<ulong>> CacheAllGuildMembers(List<ulong> handledUser);
+        Task<List<ulong>> CacheAllKnownUsers(List<ulong> handledUser);
         Task CacheAllKnownGuilds();
         void CheckDeletedCases();
     }

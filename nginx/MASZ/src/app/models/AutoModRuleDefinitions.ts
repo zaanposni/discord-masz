@@ -1,12 +1,10 @@
 export interface AutoModRuleDefinition {
     type: number;
-    title: string;
-    description: string;
+    key: string;
     showLimitField: boolean;
     showTimeLimitField: boolean;
-    timeLimitFieldMessage?: string;
+    timeLimitFieldMessage?: boolean;
     showCustomField?: boolean;
-    tooltip?: string;
+    tooltip?: boolean;
     link?: string;
-    linkText?: string;
 }

@@ -1,18 +1,23 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
+import { APIEnum } from 'src/app/models/APIEnum';
 import { AutoModerationEvent } from 'src/app/models/AutoModerationEvent';
-import { AutoModerationType } from 'src/app/models/AutoModerationType';
+import { ContentLoading } from 'src/app/models/ContentLoading';
 import { DiscordUser } from 'src/app/models/DiscordUser';
 import { Guild } from 'src/app/models/Guild';
 import { InviteNetwork } from 'src/app/models/InviteNetwork';
-import { ModCase } from 'src/app/models/ModCase';
+import { convertModcaseToPunishmentString, ModCase } from 'src/app/models/ModCase';
 import { UserInvite } from 'src/app/models/UserInvite';
 import { UserNetwork } from 'src/app/models/UserNetwork';
 import { UserNote } from 'src/app/models/UserNote';
 import { ApiService } from 'src/app/services/api.service';
+import { EnumManagerService } from 'src/app/services/enum-manager.service';
+import { TimezoneService } from 'src/app/services/timezone.service';
 import { Network, DataSet, Node, Edge, Data, IdType } from 'vis';
 
 @Component({
@@ -53,11 +58,35 @@ export class UserscanComponent implements OnInit {
     }
   };
   private data: {'nodes': Node[], 'edges': Edge[]} = { 'nodes': [], 'edges': [] };
+  private punishments: ContentLoading<APIEnum[]> = { loading: true, content: [] };
+  private automodtypes: ContentLoading<APIEnum[]> = { loading: true, content: [] };
 
-  constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute) { }
+  constructor(private api: ApiService, private toastr: ToastrService, private route: ActivatedRoute, private enumManager: EnumManagerService, private translator: TranslateService, private timezoneService: TimezoneService) { }
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+    this.reloadPunishmentEnum();
+    this.reloadAutomodTypeEnum();
+  }
+
+  reloadPunishmentEnum() {
+    this.punishments.loading = true;
+    this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe((data: APIEnum[]) => {
+      this.punishments.loading = false;
+      this.punishments.content = data;
+    }, () => {
+      this.punishments.loading = false;
+    });
+  }
+
+  reloadAutomodTypeEnum() {
+    this.automodtypes.loading = true;
+    this.enumManager.getEnum(APIEnumTypes.AUTOMODTYPE).subscribe((data: APIEnum[]) => {
+      this.automodtypes.loading = false;
+      this.automodtypes.content = data;
+    }, () => {
+      this.automodtypes.loading = false;
+    });
   }
 
   onSearch(event: any) {
@@ -83,10 +112,11 @@ export class UserscanComponent implements OnInit {
         this.loadDataForUserId(searchString).subscribe((data: UserNetwork) => {
           this.calculateNewUserNetwork(data, this.search?.trim());
           this.loading = false;
-        }, () => {
+        }, error => {
+          console.error(error);
           this.reset();
           this.loading = false;
-          this.toastr.error("Failed to load scan information.");
+          this.toastr.error(this.translator.instant('Scanning.FailedToLoad.Scan'));
         });
 
       } else {
@@ -94,13 +124,14 @@ export class UserscanComponent implements OnInit {
         this.loadDataForInvite(`https://discord.gg/${searchString}`).subscribe((data: InviteNetwork) => {
           this.calculateNewInviteNetwork(data, this.search?.trim());
           this.loading = false;
-        }, (error) => {
+        }, error => {
           this.reset();
           this.loading = false;
-          if (error?.error?.status === 404) {
-            this.toastr.error("No information for this invite found.");
+          if (error?.error?.status === 404 || error?.status === 404) {
+            this.toastr.error(this.translator.instant('Scanning.FailedToLoad.InvalidInvite'));
           } else {
-            this.toastr.error("Failed to load scan information.");
+            console.error(error);
+            this.toastr.error(this.translator.instant('Scanning.FailedToLoad.Invite'));
           }
         });
       }
@@ -160,10 +191,13 @@ export class UserscanComponent implements OnInit {
       if (invite.userInvite.guildId !== guild.id) continue;
       let inviteNode = this.addNewNode(this.newInviteNode, [invite.userInvite]) as Node;
       this.addNewEdge(baseNode, inviteNode, '', false, 'no');
-      let inviterUserNode = this.addNewNode(this.newUserNode, [invite?.invitedBy, invite?.userInvite?.inviteIssuerId, 50]) as Node;
-      this.addNewEdge(inviteNode, inviterUserNode, `Created at: ${new Date(invite.userInvite.inviteCreatedAt).toLocaleString()}`, false, 'from');
+      if (invite?.userInvite?.inviteIssuerId !== "0")
+      {
+        let inviterUserNode = this.addNewNode(this.newUserNode, [invite?.invitedBy, invite?.userInvite?.inviteIssuerId, 50]) as Node;
+        this.addNewEdge(inviteNode, inviterUserNode, `${this.translator.instant('Scanning.CreatedAt')}: ${this.timezoneService.convertNearlyAnyDateToLocaleString(invite.userInvite.inviteCreatedAt)}`, false, 'from');
+      }
       let invitedUserNode = this.addNewNode(this.newUserNode, [invite?.invitedUser, invite?.userInvite?.joinedUserId]) as Node;
-      this.addNewEdge(inviteNode, invitedUserNode, `Joined at: ${new Date(invite.userInvite.joinedAt).toLocaleString()}`, true, 'to');
+      this.addNewEdge(inviteNode, invitedUserNode, `${this.translator.instant('Scanning.JoinedAt')}: ${this.timezoneService.convertNearlyAnyDateToLocaleString(invite.userInvite.joinedAt)}`, true, 'to');
     }
 
     this.redraw();
@@ -177,17 +211,20 @@ export class UserscanComponent implements OnInit {
       for (let invite of network.invitedBy) {
         if (invite.userInvite.guildId !== guild.id) continue;
         let inviteNode = this.addNewNode(this.newInviteNode, [invite.userInvite]) as Node;
-        this.addNewEdge(guildNode, inviteNode, `Joined at: ${new Date(invite.userInvite.joinedAt).toLocaleString()}`, true, 'from');
-        let invitedUserNode = this.addNewNode(this.newUserNode, [invite?.invitedBy, invite?.userInvite?.inviteIssuerId]) as Node;
-        this.addNewEdge(inviteNode, invitedUserNode, `Created at: ${new Date(invite.userInvite.inviteCreatedAt).toLocaleString()}`, false, 'from');
+        this.addNewEdge(guildNode, inviteNode, `${this.translator.instant('Scanning.JoinedAt')}: ${this.timezoneService.convertNearlyAnyDateToLocaleString(invite.userInvite.joinedAt)}`, true, 'from');
+        if (invite?.userInvite?.inviteIssuerId !== "0")
+        {
+          let invitedUserNode = this.addNewNode(this.newUserNode, [invite?.invitedBy, invite?.userInvite?.inviteIssuerId]) as Node;
+          this.addNewEdge(inviteNode, invitedUserNode, `${this.translator.instant('Scanning.CreatedAt')}: ${this.timezoneService.convertNearlyAnyDateToLocaleString(invite.userInvite.inviteCreatedAt)}`, false, 'from');
+        }
       }
       for (let invite of network.invited) {
         if (invite.userInvite.guildId !== guild.id) continue;
         let inviteNode = this.addNewNode(this.newInviteNode, [invite.userInvite]) as Node;
-        this.addNewEdge(guildNode, inviteNode, `Created at: ${new Date(invite.userInvite.inviteCreatedAt).toLocaleString()}`, false, 'to');
+        this.addNewEdge(guildNode, inviteNode, `${this.translator.instant('Scanning.CreatedAt')}: ${this.timezoneService.convertNearlyAnyDateToLocaleString(invite.userInvite.inviteCreatedAt)}`, false, 'to');
         if ( invite.userInvite.joinedUserId !== invite.userInvite.inviteIssuerId ) {
           let invitedUserNode = this.addNewNode(this.newUserNode, [invite?.invitedUser, invite?.userInvite?.joinedUserId]) as Node;
-          this.addNewEdge(inviteNode, invitedUserNode, `Joined at: ${new Date(invite.userInvite.joinedAt).toLocaleString()}`, true, 'to');
+          this.addNewEdge(inviteNode, invitedUserNode, `${this.translator.instant('Scanning.JoinedAt')}: ${this.timezoneService.convertNearlyAnyDateToLocaleString(invite.userInvite.joinedAt)}`, true, 'to');
         }
       }
       for (let modCase of network.modCases) {
@@ -195,14 +232,14 @@ export class UserscanComponent implements OnInit {
         let caseBaseNode = this.addNewNode(this.newBasicCasesNode, [userId, guild.id]) as Node;
         this.addNewEdge(guildNode, caseBaseNode);
         let caseNode = this.addNewNode(this.newCaseNode, [modCase]) as Node;
-        this.addNewEdge(caseBaseNode, caseNode, `Created at: ${new Date(modCase.createdAt).toLocaleString()}`);
+        this.addNewEdge(caseBaseNode, caseNode, `${this.translator.instant('Scanning.CreatedAt')}: ${this.timezoneService.convertNearlyAnyDateToLocaleString(modCase.createdAt)}`);
       }
       for (let modEvent of network.modEvents) {
         if (modEvent.guildId !== guild.id) continue;
         let eventBaseNode = this.addNewNode(this.newBasicAutomodsNode, [userId, guild.id]) as Node;
         this.addNewEdge(guildNode, eventBaseNode);
         let eventNode = this.addNewNode(this.newEventNode, [modEvent, 5]) as Node;
-        this.addNewEdge(eventBaseNode, eventNode, `Occured at: ${new Date(modEvent.createdAt).toLocaleString()}`);
+        this.addNewEdge(eventBaseNode, eventNode, `${this.translator.instant('Scanning.OccuredAt')}: ${this.timezoneService.convertNearlyAnyDateToLocaleString(modEvent.createdAt)}`);
       }
       for (let note of network.userNotes) {
         if (note.guildId !== guild.id) continue;
@@ -233,7 +270,7 @@ export class UserscanComponent implements OnInit {
   }
 
   addNewNode(func: CallableFunction, params: any[]): Node|Node[] {
-    let newNode = func(...params);
+    let newNode = func.bind(this)(...params);
     if (Array.isArray(newNode)) {
       newNode.forEach(element => {
         if (this.data.nodes.filter(x => x.id === element?.id)?.length === 0) {
@@ -311,14 +348,14 @@ export class UserscanComponent implements OnInit {
   }
 
   newCaseNode(modCase: ModCase, size: number = 20): Node {
-    let punishmentString = '';
+    let punishmentString = convertModcaseToPunishmentString(modCase, this.punishments.content);
     if (modCase.punishedUntil != null) {
-      punishmentString = `, Until: ${new Date(modCase.punishedUntil).toLocaleString()}`;
+      punishmentString += `, Until: ${this.timezoneService.convertNearlyAnyDateToLocaleString(modCase.punishedUntil)}`;
     }
     return {
       id: `${modCase.guildId}/case/${modCase.caseId}`,
-      label: `Case #${modCase.caseId}\n${modCase.title.substr(0, 50)}`,
-      title: `Punishment: ${modCase.punishment}${punishmentString}${modCase.description.substr(0, 200)}`,
+      label: `${this.translator.instant('Case')} #${modCase.caseId}\n${modCase.title.substr(0, 50)}`,
+      title: `${this.translator.instant('Punishment')}: ${punishmentString} ${modCase.description.substr(0, 200)}`,
       group: `${modCase.guildId}/cases`,
       size: size,
       redirectTo: `/guilds/${modCase.guildId}/cases/${modCase.caseId}`
@@ -329,18 +366,18 @@ export class UserscanComponent implements OnInit {
     return {
       id: `${modEvent.guildId}/automod/${modEvent.id}`,
       group: `${modEvent.guildId}/automods`,
-      title: `${AutoModerationType[modEvent.autoModerationType] ?? modEvent.autoModerationType} ${modEvent.messageContent}`,
+      title: `${this.automodtypes.content?.find(x => x.key === modEvent.autoModerationType)?.value ?? 'Unknown'} ${modEvent.messageContent}`,
       size: size
     }
   }
 
   newInviteNode(invite: UserInvite): Node {
     return {
-      id: `${invite.guildId}/${invite.usedInvite}/${new Date(invite.inviteCreatedAt).getTime()}`,
+      id: `${invite.guildId}/${invite.usedInvite}/${this.timezoneService.convertNearlyAnyDateToLocaleString(invite.inviteCreatedAt)}`,
       label: invite.usedInvite.substr(invite.usedInvite.lastIndexOf("/") + 1),
       group: `${invite.guildId}/invites`,
       shape: 'diamond',
-      title: `Invite: ${invite?.usedInvite}`,
+      title: `${this.translator.instant('Invite')}: ${invite?.usedInvite}`,
       searchFor: invite?.usedInvite,
       size: 15
     } as Node
@@ -349,7 +386,7 @@ export class UserscanComponent implements OnInit {
   newBasicCasesNode(userId: string, guildId: string): Node {
     return {
       id: `${userId}/${guildId}/cases`,
-      label: 'Cases',
+      label: this.translator.instant('Cases'),
       group: `basics/sub`,
       shape: 'triangle',
       size: 15
@@ -359,7 +396,7 @@ export class UserscanComponent implements OnInit {
   newBasicAutomodsNode(userId: string, guildId: string): Node {
     return {
       id: `${userId}/${guildId}/automods`,
-      label: 'Automoderations',
+      label: this.translator.instant('Automoderations'),
       group: `basics/sub`,
       shape: 'triangle',
       size: 15
@@ -369,7 +406,7 @@ export class UserscanComponent implements OnInit {
   newBasicMapNode(userId: string, guildId: string): Node {
     return {
       id: `${userId}/${guildId}/usermaps`,
-      label: 'Mappings',
+      label: this.translator.instant('Usermaps'),
       group: `basics/sub`,
       shape: 'triangle',
       size: 15

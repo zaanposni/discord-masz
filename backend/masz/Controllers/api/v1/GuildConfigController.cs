@@ -1,19 +1,19 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
-using masz.data;
-using masz.Dtos.DiscordAPIResponses;
+using DSharpPlus.Entities;
 using masz.Dtos.GuildConfig;
+using masz.Enums;
+using masz.Exceptions;
 using masz.Models;
-using masz.Services;
+using masz.Models.Views;
+using masz.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 
 namespace masz.Controllers
 {
@@ -22,114 +22,46 @@ namespace masz.Controllers
     [Authorize]
     public class GuildConfigController : SimpleController
     {
-        private readonly ILogger<GuildConfigController> logger;
+        private readonly ILogger<GuildConfigController> _logger;
 
         public GuildConfigController(ILogger<GuildConfigController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
-        [HttpGet("{guildid}")]
-        public async Task<IActionResult> GetSpecificItem([FromRoute] string guildid) 
+        [HttpGet("{guildId}")]
+        public async Task<IActionResult> GetSpecificItem([FromRoute] ulong guildId)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
-            if (guildConfig == null) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Resource not found.");
-                return NotFound();
-            }
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Admin, guildid)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            await RequirePermission(guildId, DiscordPermission.Admin);
 
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning GuildConfig.");
-            return Ok(guildConfig);
+            return Ok(new GuildConfigView(await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(guildId)));
         }
 
-        [HttpDelete("{guildid}")]
-        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromQuery] bool deleteData = false) 
+        [HttpDelete("{guildId}")]
+        public async Task<IActionResult> DeleteSpecificItem([FromRoute] ulong guildId, [FromQuery] bool deleteData = false)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
-            if (guildConfig == null) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Resource not found.");
-                return NotFound();
-            }
-            if (! await this.IsSiteAdmin()) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            await RequireSiteAdmin();
+            await GetRegisteredGuild(guildId);
 
-            if (deleteData) {
-                await database.DeleteAllModCasesForGuild(guildid);
-                try {
-                    filesHandler.DeleteDirectory(Path.Combine(config.Value.AbsolutePathToFileUpload, guildid));
-                } catch (Exception e) {
-                    logger.LogError(e, "Failed to delete files directory for guilds.");
-                }
-                await database.DeleteAllModerationConfigsForGuild(guildid);
-                await database.DeleteAllModerationEventsForGuild(guildid);
-                await database.DeleteAllTemplatesForGuild(guildid);
-                await database.DeleteMotdForGuild(guildid);
-                await database.DeleteInviteHistoryByGuild(guildid);
-                await database.DeleteUserNoteByGuild(guildid);
-                await database.DeleteUserMappingByGuild(guildid);
-            }
+            await GuildConfigRepository.CreateDefault(_serviceProvider).DeleteGuildConfig(guildId, deleteData);
 
-            database.DeleteSpecificGuildConfig(guildConfig);
-            await database.SaveChangesAsync();
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource deleted.");
             return Ok();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateItem([FromBody] GuildConfigForCreateDto guildConfigForCreateDto) 
+        public async Task<IActionResult> CreateItem([FromBody] GuildConfigForCreateDto guildConfigForCreateDto)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            GuildConfig alreadyExists = await database.SelectSpecificGuildConfig(guildConfigForCreateDto.GuildId);
-            if (alreadyExists != null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild is already registered.");
-                return BadRequest("Guild is already registered.");
-            }
-            if (! await this.IsSiteAdmin()) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            await RequireSiteAdmin();
 
-            Guild guild = await discord.FetchGuildInfo(guildConfigForCreateDto.GuildId, CacheBehavior.IgnoreCache);
-            if (guild == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not found.");
-                return BadRequest("Guild not found.");
-            }
-            foreach (string role in guildConfigForCreateDto.modRoles)
-            {
-                if (guild.Roles.FindIndex(x => x.Id == role) < 0)
+            try {
+                GuildConfig alreadyRegistered = await GetRegisteredGuild(guildConfigForCreateDto.GuildId);
+                if (alreadyRegistered != null)
                 {
-                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Roles not found.");
-                    return BadRequest($"Role {role} not found.");
+                    throw new GuildAlreadyRegisteredException(guildConfigForCreateDto.GuildId);
                 }
-            }
-            foreach (string role in guildConfigForCreateDto.adminRoles)
-            {
-                if (guild.Roles.FindIndex(x => x.Id == role) < 0)
-                {
-                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Roles not found.");
-                    return BadRequest($"Role {role} not found.");
-                }
-            }
-            foreach (string role in guildConfigForCreateDto.mutedRoles)
-            {
-                if (guild.Roles.FindIndex(x => x.Id == role) < 0)
-                {
-                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Roles not found.");
-                    return BadRequest($"Role {role} not found.");
-                }
-            }
-            
+            } catch (ResourceNotFoundException) { }
+              catch (UnregisteredGuildException) { }
+
             GuildConfig guildConfig = new GuildConfig();
             guildConfig.GuildId = guildConfigForCreateDto.GuildId;
             guildConfig.ModRoles = guildConfigForCreateDto.modRoles;
@@ -137,53 +69,38 @@ namespace masz.Controllers
             guildConfig.ModNotificationDM = guildConfigForCreateDto.ModNotificationDM;
             guildConfig.MutedRoles = guildConfigForCreateDto.mutedRoles;
             guildConfig.ModPublicNotificationWebhook = guildConfigForCreateDto.ModPublicNotificationWebhook;
-            if (guildConfig.ModPublicNotificationWebhook != null) {
-                guildConfig.ModPublicNotificationWebhook = guildConfig.ModPublicNotificationWebhook.Replace("discord.com", "discordapp.com");
-            }
             guildConfig.ModInternalNotificationWebhook = guildConfigForCreateDto.ModInternalNotificationWebhook;
-            if (guildConfig.ModInternalNotificationWebhook != null) {
-                guildConfig.ModInternalNotificationWebhook = guildConfig.ModInternalNotificationWebhook.Replace("discord.com", "discordapp.com");
-            }
             guildConfig.StrictModPermissionCheck = guildConfigForCreateDto.StrictModPermissionCheck;
             guildConfig.ExecuteWhoisOnJoin = guildConfigForCreateDto.ExecuteWhoisOnJoin;
             guildConfig.PublishModeratorInfo = guildConfigForCreateDto.PublishModeratorInfo;
+            guildConfig.PreferredLanguage = guildConfigForCreateDto.PreferredLanguage;
 
-            await database.SaveGuildConfig(guildConfig);
-            await database.SaveChangesAsync();
+            await GuildConfigRepository.CreateDefault(_serviceProvider).CreateGuildConfig(guildConfig);
 
             Task task = new Task(() => {
-                this.cacher.CacheAll();
+                _scheduler.CacheAll();
             });
             task.Start();
 
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 201 Resource created.");
             return StatusCode(201, guildConfig);
         }
 
-        [HttpPut("{guildid}")]
-        public async Task<IActionResult> UpdateSpecificItem([FromRoute] string guildid, [FromBody] GuildConfigForPutDto newValue) 
+        [HttpPut("{guildId}")]
+        public async Task<IActionResult> UpdateSpecificItem([FromRoute] ulong guildId, [FromBody] GuildConfigForPutDto newValue)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            await RequirePermission(guildId, DiscordPermission.Admin);
             if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_DEMO_MODE"))) {
-                if (! await this.IsSiteAdmin()) {  // siteadmins can overwrite in demo mode
-                    logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Not allowed in demo mode.");
-                    return BadRequest("This is not allowed in demo mode.");
+                if (! (await GetIdentity()).IsSiteAdmin()) {  // siteadmins can overwrite in demo mode
+                    throw new BaseAPIException("Demo mode is enabled. Only site admins can edit guild configs.", APIError.NotAllowedInDemoMode);
                 }
             }
-            GuildConfig guildConfig = await database.SelectSpecificGuildConfig(guildid);
-            if (guildConfig == null) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Resource not found.");
-                return NotFound();
-            }
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Admin, guildid)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
 
-            guildConfig.ModRoles = newValue.modRoles;
+            GuildConfig guildConfig = await GetRegisteredGuild(guildId);
+
+            guildConfig.ModRoles = newValue.ModRoles;
             guildConfig.AdminRoles = newValue.AdminRoles;
-            guildConfig.MutedRoles = newValue.mutedRoles;
             guildConfig.ModNotificationDM = newValue.ModNotificationDM;
+            guildConfig.MutedRoles = newValue.MutedRoles;
             guildConfig.ModInternalNotificationWebhook = newValue.ModInternalNotificationWebhook;
             if (guildConfig.ModInternalNotificationWebhook != null) {
                 guildConfig.ModInternalNotificationWebhook = guildConfig.ModInternalNotificationWebhook.Replace("discord.com", "discordapp.com");
@@ -195,12 +112,9 @@ namespace masz.Controllers
             guildConfig.StrictModPermissionCheck = newValue.StrictModPermissionCheck;
             guildConfig.ExecuteWhoisOnJoin = newValue.ExecuteWhoisOnJoin;
             guildConfig.PublishModeratorInfo = newValue.PublishModeratorInfo;
+            guildConfig.PreferredLanguage = newValue.PreferredLanguage;
 
-            database.UpdateGuildConfig(guildConfig);
-            await database.SaveChangesAsync();
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource updated.");
-            return Ok(guildConfig);
+            return Ok(await GuildConfigRepository.CreateDefault(_serviceProvider).UpdateGuildConfig(guildConfig));
         }
     }
 }

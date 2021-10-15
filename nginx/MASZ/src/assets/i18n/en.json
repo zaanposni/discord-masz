@@ -1,0 +1,488 @@
+{
+    "LoginWithDiscord": {
+        "Button": "Login with Discord",
+        "Loading": "Logging you in with Discord..."
+    },
+    "Case": "Case",
+    "Cases": "Cases",
+    "Punishment": "Punishment",
+    "Punishments": "Punishments",
+    "Bans": "Bans",
+    "Mutes": "Mutes",
+    "Automods": "Automods",
+    "Automoderations": "Automoderations",
+    "Invite": "Invite",
+    "Invites": "Invites",
+    "Usernotes": "Usernotes",
+    "Usermaps": "Usermaps",
+    "Comments": "Comments",
+    "Loading": "Loading...",
+    "NothingHere": "Nothing here.",
+    "AcceptTermsOnLogin": "By logging in you accept our Terms and Guidelines.",
+    "Toolbar": {
+        "Login": "Login",
+        "Logout": "Logout",
+        "Patchnotes": "Patchnotes",
+        "Community": "Community",
+        "Terms": "Terms",
+        "GitHub": "GitHub",
+        "Legal": "Legal",
+        "API": "API",
+        "Insights": "Insights",
+        "Scanning": "Scanning"
+    },
+    "Guilds": {
+        "Guilds": "Guilds",
+        "All": "All guilds",
+        "Admin": "Admin guilds",
+        "Moderator": "Moderator guilds",
+        "Member": "Guilds",
+        "Banned": "Banned from guilds"
+    },
+    "MASZ": {
+        "GuildDeleted": "Guild deleted.",
+        "FailedToDeleteGuild": "Failed to delete guild.",
+        "PleaseLoginFirst": "Please login first."
+    },
+    "Adminstats": {
+        "Bot": "Bot",
+        "Database": "Database",
+        "InternalCache": "Internal cache",
+        "NextCache": "Next cache",
+        "Tokens": "Tokens",
+        "CurrentlyLoggedIn": "Currently logged in",
+        "DiscordCache": "Discord cache",
+        "ClearCache": "Clear cache",
+        "FailedToLoad": "Failed to load adminstats.",
+        "FailedToClear": "Failed to clear cache.",
+        "Cleared": "Cache cleared.",
+        "Insights": "Insights"
+    },
+    "AdminstatsList": {
+        "ShowMore": "Show more"
+    },
+    "TokenOverview": {
+        "Description": "As a siteadmin you can use the MASZ API to implement your own custom scripts and automate stuff on MASZ. Create an API key below to authorize yourself against the API while making web requests.",
+        "Documentation": "You can find a full documentation in the /docs directory.",
+        "Postman": "Just install postman and import the json file.",
+        "TokenHeader": "Include tokens in the \"Authorization\" header with a \"Bearer \" prefix.",
+        "PythonAPIWrapper": "Try out the official python API wrapper.",
+        "Warning": "Warning",
+        "TokenIsPowerful": "An API key is very powerful and can control everything on MASZ!",
+        "CreateToken": "Create token",
+        "SaveSecurely": "Save this token securely.",
+        "Tokens": "Tokens",
+        "NoTokensFound": "No tokens found",
+        "ValidUntil": "Valid until:",
+        "CopiedClipboard": "Copied to clipboard.",
+        "Deleted": "Token deleted.",
+        "FailedToDelete": "Failed to delete token..",
+        "Created": "Token created.",
+        "FailedToCreate": "Failed to create token..",
+        "FailedToLoad": "Failed to load current token.."
+    },
+    "AutoModCard": {
+        "ViewCase": "View case",
+        "Message": "Message"
+    },
+    "AutoModTable": {
+        "FailedToLoad": "Failed to load automoderations.",
+        "NoMatches": "There are no moderated events.",
+        "LoadMoreEvents": "Load more entries"
+    },
+    "DTPicker": {
+        "ChooseADate": "Choose a date",
+        "OK": "OK"
+    },
+    "CaseDeleteDialog": {
+        "SendPublicNotification": "Send public notification",
+        "ForceDelete": "Force delete",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm"
+    },
+    "CommentEditDialog": {
+        "EditComment": "Edit comment",
+        "Comment": "Comment",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm"
+    },
+    "ConfirmDialog": {
+        "AreYouSure": "Are you sure?",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm"
+    },
+    "NewTokenDialog": {
+        "NameToken": "Name your token.",
+        "Name": "Name",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm"
+    },
+    "TemplateCreateDialog": {
+        "CreateTemplate": "Name your template.",
+        "Name": "Name",
+        "Visibility": "Visibility",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm",
+        "FailedToLoadPermissions": "Failed to load visibility options."
+    },
+    "UsermapEditDialog": {
+        "EditUsermap": "Edit usermap",
+        "Description": "Description",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm"
+    },
+    "UsernoteEditDialog": {
+        "EditUsernote": "Edit usernote",
+        "Description": "Description",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm"
+    },
+    "GuildDialog": {
+        "AddAGuild": "Add a guild",
+        "SearchAGuild": "Search a guild",
+        "SelectAnotherGuild": "Select a guild",
+        "InviteFirst": "You need to invite the bot first!",
+        "Invite": "Invite",
+        "Back": "Back",
+        "Next": "Next",
+        "StepAdminRoles": "Select admin roles",
+        "AdminRoles": "Admin roles",
+        "StepModeratorRoles": "Select moderator roles",
+        "ModeratorRoles": "Moderator roles",
+        "StepMutedRoles": "Select muted roles",
+        "MutedRoles": "Muted roles",
+        "StepFurtherConfiguration": "Select further configuration",
+        "InternalStaffWebhook": "Internal staff notification webhook",
+        "PublicWebhook": "Public member notification webhook",
+        "Language": "Language",
+        "StrictPermissionCheckbox": "Strict permission check",
+        "StrictPermissionDetails": "A moderator needs kick/ban permissions on discord to create kick/ban modcases",
+        "ExecuteWhois": "Execute whois on member join",
+        "WhoisDetails": "Automatically sends information about the joined user to your internal webhook.",
+        "PublishModerator": "Publish moderator information",
+        "PublishModeratorDetails": "A suspect will be able to see which moderator punished him.",
+        "Done": "Done",
+        "RegisterGuild": "Register guild",
+        "UpdateGuild": "Update guild",
+        "FailedToLoadGuilds": "Failed to load guilds.",
+        "FailedToLoadCurrentGuild": "Failed to load current guild info.",
+        "FailedInviteWindow": "Failed to open invite window.",
+        "FailedToRegisterGuild": "Failed to register guild.",
+        "FailedToUpdateGuild": "Failed to update guild.",
+        "GuildCreated": "Guild created",
+        "GuildUpdated": "Guild updated"
+    },
+    "AutomodConfig": {
+        "Automoderation": "Automoderation",
+        "Invites": {
+            "title": "Invites",
+            "details": "A message on your guild matches the invite pattern."
+        },
+        "Emotes": {
+            "title": "Emotes",
+            "details": "A message on your guild contains too many emotes."
+        },
+        "Mentions": {
+            "title": "Mentions",
+            "details": "A message on your guild contains too many mentions."
+        },
+        "Attachments": {
+            "title": "Attachments",
+            "details": "A message on your guild contains too many attachments."
+        },
+        "Embeds": {
+            "title": "Embeds",
+            "details": "A message on your guild contains too many embeds."
+        },
+        "Automoderations": {
+            "title": "Automoderations",
+            "details": "A user triggers too many automoderations in a defined timespan."
+        },
+        "CustomFilter": {
+            "title": "Custom filter",
+            "details": "A user uses too many words defined in your list.",
+            "tooltip": "Words are checked line by line case insensitive.",
+            "linkText": "Example"
+        },
+        "Spam": {
+            "title": "Spam",
+            "details": "A user on your guild sends too many messages in a timespan.",
+            "TimeLimitMessage": "Time limit (seconds)"
+        },
+        "Next": "Next",
+        "Back": "Back",
+        "Save": "Save",
+        "CustomWordField": "Custom words (divide by newline)",
+        "TimeLimitMinutes": "Time limit (minutes)",
+        "Steps": {
+            "Event": "Event",
+            "Filter": "Filter",
+            "Action": "Action",
+            "Done": "Done"
+        },
+        "UpperLimit": "Upper limit",
+        "TeamMembersExcluded": "Note: team members are always excluded.",
+        "ExcludeRoles": "Exclude roles",
+        "ExcludeChannels": "Exclude channels",
+        "SendInternalNotification": "Send internal notification",
+        "SendInternalNotificationHover": "A internal notification is always sent.",
+        "LogEntry": "Log entry",
+        "LogEntryHover": "A log entry is always generated.",
+        "SendDMNotification": "Send dm notification",
+        "Action": "Action",
+        "SendPublicNotification": "Send public notification",
+        "DurationInMinutes": "Duration in minutes",
+        "YouAreDone": "You are now done.",
+        "ConfigDeleted": "Config deleted",
+        "FailedToDeleteConfig": "Failed to delete config.",
+        "SavedConfig": "Config saved",
+        "FailedToSaveConfig": "Failed to save config.",
+        "FailedToLoadGuild": "Failed to load guild info.",
+        "FailedToLoadChannels": "Failed to load guildchannel info."
+    },
+    "GuildMotd": {
+        "Enable": "Enable MotD",
+        "Message": "Message",
+        "FailedToLoad": "Failed to load motd.",
+        "FailedToSave": "Failed to save motd.",
+        "Saved": "Saved motd.",
+        "Explanation": "This message will be displayed to your administrators and moderators on the dashboard."
+    },
+    "AutomodSplit": {
+        "FailedToLoad": "Failed to load guild autmod split chart."
+    },
+    "DashboardCaseList": {
+        "NewestCases": "Newest cases",
+        "ExpiringPunishments": "Expiring punishments",
+        "NoCasesFound": "No cases found"
+    },
+    "DashboardCharts": {
+        "Overview": "Overview",
+        "Cases": "Cases",
+        "Punishments": "Punishments",
+        "Automoderations": "Automoderations",
+        "ChooseADate": "Choose a date",
+        "Reset": "Reset"
+    },
+    "DashboardComments": {
+        "Newestcomments": "Newest comments",
+        "NothingFound": "No comments found.",
+        "FailedToLoad": "Failed to load comments."
+    },
+    "GuildStats": {
+        "GuildStats": "Guildstats",
+        "FailedToLoad": "Failed to load guild stats."
+    },
+    "GuildInfoCard": {
+        "CreateNewCase": "Create new case",
+        "FailedToLoad": "Failed to load guild info."
+    },
+    "DashboardMotd": {
+        "FailedToLoad": "Failed to load motd.",
+        "MessageFrom": "Message from {{name}}"
+    },
+    "Quicksearch": {
+        "Placeholder": "Quicksearch users, modcases, punishments, automoderations, ...",
+        "NoMatches": "Nothing matches your search :(",
+        "SearchFailed": "Search failed."
+    },
+    "GuildList": {
+        "LoadingGuilds": "Loading guilds...",
+        "NoGuild": "Please join a guild or get banned so I can display something :(",
+        "AddGuild": "Add guild"
+    },
+    "GuildOverview": {
+        "Tabs": {
+            "Dashboard": "Dashboard",
+            "Case": "Cases",
+            "Automoderation": "Automoderations",
+            "Bin": "Bin",
+            "Usernote": "Usernotes",
+            "Usermap": "Usermaps",
+            "Config": "Config"
+        }
+    },
+    "UsermapTable": {
+        "Member": "Member",
+        "Description": "Description",
+        "CreateNewMap": "Create new usermap",
+        "Search": "Search (user, id, description...)",
+        "NoMatches": "No usermap matches your search.",
+        "FailedToLoad": "Failed to load usermaps.",
+        "FailedToLoadMember": "Failed to load memberlist.",
+        "FailedToCreate": "Failed to create usermap.",
+        "Created": "Usermap created."
+    },
+    "UsermapCard": {
+        "UpdatedPrefix": "Updated:",
+        "Edit": "Edit",
+        "Delete": "Delete",
+        "FailedToUpdate": "Failed to update usermap.",
+        "Updated": "Usermap updated.",
+        "FailedToDelete": "Failed to delete usermap.",
+        "Deleted": "Usermap deleted."
+    },
+    "UsernoteTable": {
+        "Member": "Member",
+        "Description": "Description",
+        "CreateNewNote": "Create new usernote",
+        "Search": "Search (user, id, description...)",
+        "NoMatches": "No usernote matches your search.",
+        "FailedToLoad": "Failed to load usernotes.",
+        "FailedToLoadMember": "Failed to load memberlist.",
+        "FailedToCreate": "Failed to create usernote.",
+        "Created": "Usernote created."
+    },
+    "UsernoteCard": {
+        "UpdatedPrefix": "Updated:",
+        "Edit": "Edit",
+        "Delete": "Delete",
+        "FailedToUpdate": "Failed to update usernote.",
+        "Updated": "Usernote updated.",
+        "FailedToDelete": "Failed to delete usernote.",
+        "Deleted": "Usernote deleted."
+    },
+    "ModCaseDialog": {
+        "SelectATemplate": "Select a template",
+        "BackToGuild": "Back to guild.",
+        "BackToCase": "Back to modcase.",
+        "SearchTemplate": "Search template",
+        "Back": "Back",
+        "Next": "Next",
+        "ChooseAMember": "Choose a member",
+        "Member": "Member",
+        "PickOne": "Pick one",
+        "DescribeCase": "Describe the case",
+        "Title": "Title",
+        "Description": "Description",
+        "Labels": "Labels",
+        "NewLabel": "New label...",
+        "ChoosePunishment": "Choose a punishment",
+        "Punishment": "Punishment",
+        "SendDmNotification": " Send dm notification",
+        "HandlePunishment": "Execute this punishment",
+        "UploadFiles": "Upload files",
+        "Upload": "Upload",
+        "CreateCase": "Create case",
+        "UpdateCase": "Update case",
+        "PublicNotification": "Send public notification",
+        "SaveAsTemplate": "Save as template",
+        "CreateCaseButton": "Create case",
+        "UpdateCaseButton": "Update case",
+        "FailedToLoad": {
+            "MemberList": "Failed to load member list.",
+            "PunishmentEnum": "Failed to load available punishments.",
+            "CaseTemplates": "Failed to load case templates.",
+            "CurrentCase": "Failed to load current case."
+        },
+        "AppliedTemplate": "Applied template.",
+        "TemplateDeleted": "Template deleted.",
+        "FailedToDeleteTemplate": "Failed to delete template.",
+        "TemplateSaved": "Template saved.",
+        "FailedToSaveTemplate": "Failed to save template.",
+        "FileUploaded": "File uploaded.",
+        "FailedToUploadFile": "Failed to upload file.",
+        "CaseCreated": "Case created.",
+        "CaseUpdated": "Case updated."
+    },
+    "ModCaseTable": {
+        "ExcludeAutoMod": "Exclude automoderations",
+        "ExcludePermanent": "Exclude permanent punishments",
+        "ExcludeInactive": "Exclude inactive cases",
+        "CreateNewCase": "Create new case",
+        "Search": "Search (user, id, description...)",
+        "FailedToLoad": "Failed to load cases.",
+        "NoMatches": "No case matches your search."
+    },
+    "ModCaseCard": {
+        "ViewDetailsButton": "View Details",
+        "Created": "Created:",
+        "Until": "Until:",
+        "Delete": "Delete:"
+    },
+    "ModCaseView": {
+        "Suspect": "Suspect",
+        "ID": "ID",
+        "Moderator": "Moderator",
+        "Punishment": "Punishment",
+        "Guild": "Guild",
+        "PunishedUntil": "Punished until:",
+        "PunishedForever": "Punished forever",
+        "PunishmentExpired": "Punishment is expired.",
+        "CreatedAt": "Created at",
+        "EditedAt": "Edited at",
+        "LastEditModerator": "Last edit by moderator",
+        "Description": "Description",
+        "UploadedFiles": "Uploaded files",
+        "Upload": "Upload",
+        "Comments": "Comments",
+        "NewComment": "New comment",
+        "LockComments": "Lock comments",
+        "UnlockComments": "Unlock comments",
+        "PostComment": "Post comment",
+        "CaseMarkedToDelete": "Marked to be deleted - {{user}}",
+        "CommentsLocked": "Comments locked - {{user}}",
+        "Restore": "Restore",
+        "View": "View",
+        "Delete": "Delete",
+        "Moderators": "Moderators",
+        "FailedToLoad": {
+            "Punishments": "Failed to load available punishments.",
+            "Files": "Failed to load files.",
+            "Guild": "Failed to load guild info.",
+            "Case": "Failed to load case."
+        },
+        "DeleteCase": {
+            "Deleted": "Case marked to be deleted.",
+            "ForceDeleted": "Case deleted.",
+            "Failed": "Failed to delete case."
+        },
+        "RestoreCase": {
+            "Restored": "Restored case.",
+            "Failed": "Failed to restore case."
+        },
+        "FileUpload": {
+            "Uploaded": "File uploaded.",
+            "Failed": "Failed to upload ffile."
+        },
+        "FileDelete": {
+            "Deleted": "File deleted.",
+            "Failed": "Failed to delete file"
+        },
+        "CommentDelete": {
+            "Deleted": "Comment deleted.",
+            "Failed": "Failed to delete comment"
+        },
+        "CommentLock": {
+            "Locked": "Comments locked.",
+            "Failed": "Failed to lock comments"
+        },
+        "CommentUnlock": {
+            "Unlocked": "Comments unlocked.",
+            "Failed": "Failed to unlock comments"
+        },
+        "CommentPost": {
+            "Posted": "Comment posted.",
+            "Failed": "Failed to post comment"
+        },
+        "CommentUpdate": {
+            "Updated": "Comment updated.",
+            "Failed": "Failed to update comment"
+        }
+    },
+    "Scanning": {
+        "EnterUserOrInvite": "Enter a users id or invite code",
+        "Userscan": "Userscan",
+        "Invitescan": "Invitescan",
+        "UserscanDescription": "Enter a users id to get a quick overview of a member or relations to other members. This also tracks invites a new member uses so you can quickly spot alt accounts. Use a double click to view other ressources such as a modcase.",
+        "InvitescanDescription": "Enter an invite code or link to get a quick overview of an invite or relations to other members. Use a double click to view other ressources such as another user.",
+        "FailedToLoad": {
+            "Scan": "Failed to load scan information.",
+            "Invite": "Failed to load scan information.",
+            "InvalidInvite": "No information for this invite found."
+        },
+        "JoinedAt": "Joined at",
+        "OccuredAt": "Occured at",
+        "CreatedAt": "Created at"
+    }
+}

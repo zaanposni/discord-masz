@@ -1,0 +1,32 @@
+{
+    "en": {
+        "name": "English",
+        "nativeName": "English",
+        "supported": 100
+    },
+    "fr": {
+        "name": "French",
+        "nativeName": "Français",
+        "supported": 0
+    },
+    "de": {
+        "name": "German",
+        "nativeName": "Deutsch",
+        "supported": 100
+    },
+    "es": {
+        "name": "Spanish",
+        "nativeName": "Español",
+        "supported": 0
+    },
+    "it": {
+        "name": "Italian",
+        "nativeName": "Italiano",
+        "supported": 0
+    },
+    "at": {
+        "name": "Austrian German",
+        "nativeName": "Österreichisches Deutsch",
+        "supported": 99
+    }
+}

@@ -1,60 +1,45 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using masz.data;
-using masz.Dtos.DiscordAPIResponses;
-using masz.Dtos.ModCase;
 using masz.Models;
-using masz.Services;
+using masz.Repositories;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
+using masz.Enums;
 
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("api/v1/guilds/{guildid}/usermapview")]
+    [Route("api/v1/guilds/{guildId}/usermapview")]
     [Authorize]
     public class UserMappingViewController : SimpleController
     {
-        private readonly ILogger<UserMappingViewController> logger;
+        private readonly ILogger<UserMappingViewController> _logger;
 
         public UserMappingViewController(ILogger<UserMappingViewController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetGuildUserNoteView([FromRoute] string guildid)
+        public async Task<IActionResult> GetGuildUserNoteView([FromRoute] ulong guildId)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            List<UserMapping> userMappings = await this.database.GetUserMappingsByGuildId(guildid);
-            List<UserMappingView> userMappingViews = new List<UserMappingView>();
+            UserMapRepository repository = UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity());
+            List<UserMapping> userMappings = await repository.GetUserMapsByGuild(guildId);
+            List<UserMappingExpandedView> userMappingViews = new List<UserMappingExpandedView>();
             foreach (UserMapping userMapping in userMappings)
             {
-                userMappingViews.Add(new UserMappingView() {
-                    UserMapping = userMapping,
-                    Moderator = await discord.FetchUserInfo(userMapping.CreatorUserId, CacheBehavior.OnlyCache),
-                    UserA = await discord.FetchUserInfo(userMapping.UserA, CacheBehavior.OnlyCache),
-                    UserB = await discord.FetchUserInfo(userMapping.UserB, CacheBehavior.OnlyCache)
-                });
+                userMappingViews.Add(new UserMappingExpandedView(
+                    userMapping,
+                    await _discordAPI.FetchUserInfo(userMapping.UserA, CacheBehavior.OnlyCache),
+                    await _discordAPI.FetchUserInfo(userMapping.UserB, CacheBehavior.OnlyCache),
+                    await _discordAPI.FetchUserInfo(userMapping.CreatorUserId, CacheBehavior.OnlyCache)
+                ));
             }
 
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning list.");
             return Ok(userMappingViews);
         }
     }

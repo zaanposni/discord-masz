@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using masz.Models;
+using masz.Enums;
 
 namespace masz.Dtos.ModCase
 {
@@ -21,9 +20,6 @@ namespace masz.Dtos.ModCase
         public string UserId { get; set; }
         [DataType(DataType.Date)]
         public DateTime? OccuredAt { get; set; }
-        [Required(ErrorMessage = "Punishment field is required")]
-        [MaxLength(100)]
-        public string Punishment { get; set; }
         public string[] Labels { get; set; } = new string[0];
         public string Others { get; set; }
         [Required(ErrorMessage = "PunishmentType field is required")]

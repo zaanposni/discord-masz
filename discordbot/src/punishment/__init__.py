@@ -1,1 +1,0 @@
-from .punishment_handling import handle_member_join

@@ -4,5 +4,7 @@ export enum AutoModerationType {
   TooManyMentions,
   TooManyAttachments,
   TooManyEmbeds,
-  TooManyAutoModerations
+  TooManyAutoModerations,
+  CustomWordFilter,
+  TooManyMessages
 }

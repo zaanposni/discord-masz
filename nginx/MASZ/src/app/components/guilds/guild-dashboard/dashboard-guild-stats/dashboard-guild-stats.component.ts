@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { GuildStats } from 'src/app/models/GuildStats';
@@ -14,7 +15,7 @@ export class DashboardGuildStatsComponent implements OnInit {
 
   public stats: ContentLoading<GuildStats> = { loading: true, content: undefined };
 
-  constructor(private route: ActivatedRoute, private api: ApiService, private toastr: ToastrService) { }
+  constructor(private route: ActivatedRoute, private api: ApiService, private toastr: ToastrService, private translator: TranslateService) { }
 
   ngOnInit(): void {
     const guildId = this.route.snapshot.paramMap.get('guildid');
@@ -23,12 +24,13 @@ export class DashboardGuildStatsComponent implements OnInit {
 
   initialize(guildId: string) {
     this.stats = { loading: true, content: undefined };
-      this.api.getSimpleData(`/guilds/${guildId}/dashboard/stats`).subscribe((data) => {
+      this.api.getSimpleData(`/guilds/${guildId}/dashboard/stats`).subscribe(data => {
         this.stats.content = data;
         this.stats.loading = false;
-      }, () => {
+      }, error => {
+        console.error(error);
         this.stats.loading = false;
-        this.toastr.error("Failed to load guild stats.");
+        this.toastr.error(this.translator.instant('GuildStats.FailedToLoad'));
       });
   }
 }

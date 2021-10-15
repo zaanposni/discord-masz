@@ -2,14 +2,14 @@
     <div class="card-container-body d-flex flex-row flex-wrap flex-shrink-0 flex-grow-1 align-items-center">
         <mat-icon class="mr-2">search</mat-icon>
         <mat-form-field class="flex-grow-1 m-0">
-            <mat-label>Quicksearch users, modcases, punishments, automoderations, ...</mat-label>
+            <mat-label>{{ 'Quicksearch.Placeholder' | translate }}</mat-label>
             <input matInput type="text" autocomplete="off" [(ngModel)]="search" (ngModelChange)="onSearch($event)">
         </mat-form-field>
     </div>
 </div>
 <div class="card-container" [class.mb-2]="this.showOverlay" *ngIf="this.showOverlay">
     <div class="card-container-body d-flex flex-column flex-shrink-0 flex-grow-1">
-        <span class="mat-h1 font-weight-bold mb-2" *ngIf="this.loading">Loading</span>
+        <span class="mat-h1 font-weight-bold mb-2" *ngIf="this.loading">{{ 'Loading' | translate }}</span>
 
         <mat-spinner *ngIf="this.loading"></mat-spinner>
 
@@ -37,7 +37,7 @@
                 </div>
                 <div class="d-flex flex-row">
                     <div class="flex-grow-1"></div>
-                    <span style="font-size: x-large;">Nothing matches your search :(</span>
+                    <span style="font-size: x-large;">{{ 'Quicksearch.NoMatches' | translate }}</span>
                     <div class="flex-grow-1"></div>
                 </div>
             </div>

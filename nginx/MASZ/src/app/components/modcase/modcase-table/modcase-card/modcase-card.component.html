@@ -26,7 +26,7 @@
                     <span class="badge mat-h4 mb-0 mr-1" style="padding: .1rem .4rem"
                         [ngClass]="(entry.modCase.punishmentType === 0 || entry.modCase.punishmentActive === true) ? 'badge-danger' : 'badge-dark'"
                         [attr.title]="(entry.modCase.punishmentType === 0 || entry.modCase.punishmentActive === true) ? '' : 'This punishment is expired.'">
-                        {{ entry.modCase.punishment }}
+                        {{ punishment }}
                     </span>
                     <span title="{{ entry.modCase.title }}" class="mat-h2 mb-0">
                         {{ entry.suspect?.username || entry.modCase.username }}<ng-container *ngIf="entry.modCase.discriminator || entry.suspect">#{{ entry.suspect?.discriminator || entry.modCase.discriminator }}</ng-container><br/>
@@ -40,24 +40,28 @@
                 </mat-chip-list>
 
                 <!-- Text -->
-                <span title="{{ entry.modCase.description }}" style="word-wrap: break-word;">{{ entry.modCase.description.length > 50 ? entry.modCase.description.slice(0, 50) + ' [...]' : entry.modCase.description }}</span>
+                <span title="{{ entry.modCase.description }}" style="word-wrap: break-word;">
+                    {{ entry.modCase.description.length > 50 ? entry.modCase.description.slice(0, 50) + ' [...]' : entry.modCase.description }}
+                </span>
             </div>
             <div class="flex-grow-1"></div>
             <div class="d-flex flex-column align-content-center">
                 <ng-container>
                     <span class="text-black-50" style="text-align: right;">
-                        Created: {{ entry.modCase.createdAt | date:'d MMMM Y'  }}
+                        <app-date-display [date]="entry.modCase.createdAt" [prefixKey]="'ModCaseCard.Created'"></app-date-display>
                     </span>
                     <span class="text-black-50" style="text-align: right;" *ngIf="entry.modCase.punishmentActive && entry.modCase.punishedUntil">
-                        Until: {{ entry.modCase.punishedUntil | date:'d MMMM Y'  }}
+                        <app-date-display [date]="entry.modCase.punishedUntil" [prefixKey]="'ModCaseCard.Until'"></app-date-display>
                     </span>
                     <span class="text-black-50" style="text-align: right;" *ngIf="entry.modCase.markedToDeleteAt">
-                        Delete: {{ entry.modCase.markedToDeleteAt | date:'d MMMM Y'  }}
+                        <app-date-display [date]="entry.modCase.markedToDeleteAt" [prefixKey]="'ModCaseCard.Delete'"></app-date-display>
                     </span>
                 </ng-container>
                 <div class="flex-grow-1"></div>
                 <!-- Button -->
-                <button mat-raised-button color="accent">VIEW DETAILS</button>
+                <button mat-raised-button color="accent">
+                    {{ 'ModCaseCard.ViewDetailsButton' | translate }}
+                </button>
             </div>
         </div>
     </div>

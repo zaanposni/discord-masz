@@ -1,0 +1,12 @@
+<mat-form-field>
+    <input matInput [(ngModel)]="date" [ngxMatDatetimePicker]="picker" placeholder="{{ 'DTPicker.ChooseADate' | translate }}" (dateChange)="dateChange($event)">
+    <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker [color]="'accent'">
+    <!-- Custom icon or text of Apply icon -->
+    <ng-template>
+        <mat-icon>done</mat-icon>
+        <span>{{ 'DTPicker.OK' | translate }}</span>
+    </ng-template>
+    </ngx-mat-datetime-picker>
+</mat-form-field>
+

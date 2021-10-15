@@ -28,38 +28,38 @@ services:
       - appnetwork
 
   backend:
-    build: 
-      context: backend
-      args: 
-        - MYSQL_DATABASE=${MYSQL_DATABASE}
-        - MYSQL_USER=${MYSQL_USER}
-        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-        - MYSQL_PORT=${MYSQL_PORT}
-        - MYSQL_HOST=db
-        - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
-        - DISCORD_OAUTH_CLIENT_ID=${DISCORD_OAUTH_CLIENT_ID}
-        - DISCORD_OAUTH_CLIENT_SECRET=${DISCORD_OAUTH_CLIENT_SECRET}
-        - DISCORD_SITE_ADMINS=${DISCORD_SITE_ADMINS}
-        - META_SERVICE_BASE_URL=${META_SERVICE_BASE_URL}
     container_name: masz_backend
+    image: ghcr.io/zaanposni/masz_backend:latest
     depends_on:
         db:
           condition: service_healthy
     restart: unless-stopped
     environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_PORT=${MYSQL_PORT}
+      - MYSQL_HOST=db
+      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
+      - DISCORD_OAUTH_CLIENT_ID=${DISCORD_OAUTH_CLIENT_ID}
+      - DISCORD_OAUTH_CLIENT_SECRET=${DISCORD_OAUTH_CLIENT_SECRET}
+      - DISCORD_SITE_ADMINS=${DISCORD_SITE_ADMINS}
+      - META_SERVICE_BASE_URL=${META_SERVICE_BASE_URL}
+      - META_SERVICE_NAME=${META_SERVICE_NAME}
+      - META_SERVICE_DOMAIN=${META_SERVICE_DOMAIN}
+      - DEFAULT_LANGUAGE=${DEFAULT_LANGUAGE}
       - ENABLE_DEMO_MODE=${ENABLE_DEMO_MODE}
-      - BOT_PREFIX=${BOT_PREFIX}
+      - ENABLE_CUSTOM_PLUGINS=${ENABLE_CUSTOM_PLUGINS}
+      - ABSOLUTE_PATH_TO_FILE_UPLOAD=/filehost/
+      - AUDIT_LOG_WEBHOOK_URL=${AUDIT_LOG_WEBHOOK_URL}
     networks:
       - appnetwork
     volumes:
       - filehost:/filehost
 
   nginx:
-    build: 
-      context: nginx
-      args:
-        - DEPLOY_DOMAIN=${DEPLOY_DOMAIN}
     container_name: masz_nginx
+    image: ghcr.io/zaanposni/masz_nginx:latest
     restart: unless-stopped
     depends_on:
         - db
@@ -69,43 +69,6 @@ services:
       - "127.0.0.1:5565:80"
     networks:
     - appnetwork
-
-  discordbot:
-    build: discordbot
-    container_name: masz_discordbot
-    restart: unless-stopped
-    depends_on:
-      db:
-        condition: service_healthy
-    networks:
-      - appnetwork
-    environment:
-      - BOT_PREFIX=${BOT_PREFIX}
-      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
-      - META_SERVICE_BASE_URL=${META_SERVICE_BASE_URL}
-      - MYSQL_HOST=db
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_PORT=${MYSQL_PORT}
-      - DISCORD_SITE_ADMINS=${DISCORD_SITE_ADMINS}
-
-  invitationtracker:
-    build: invitationtracker
-    container_name: masz_invitationtracker
-    restart: unless-stopped
-    depends_on:
-      db:
-        condition: service_healthy
-    networks:
-      - appnetwork
-    environment:
-      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
-      - MYSQL_HOST=db
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_PORT=${MYSQL_PORT}
 
 networks:
   appnetwork:

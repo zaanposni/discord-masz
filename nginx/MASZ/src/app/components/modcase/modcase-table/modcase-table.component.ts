@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { ModCaseTable } from 'src/app/models/ModCaseTable';
@@ -30,7 +31,7 @@ export class ModcaseTableComponent implements OnInit {
   excludeAutoModeration: boolean = false;
   onlyShowActivePunishments: boolean = false;
 
-  constructor(public router: Router, private api: ApiService, private auth: AuthService, private route: ActivatedRoute, private toastr: ToastrService) { }
+  constructor(public router: Router, private api: ApiService, private auth: AuthService, private route: ActivatedRoute, private toastr: ToastrService, private translator: TranslateService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -64,26 +65,28 @@ export class ModcaseTableComponent implements OnInit {
   loadFirstCases() {
     this.loading = true;
     this.currentPage = 0;
-    this.api.getSimpleData(`/guilds/${this.guildId}/${this.apiUrl}`).subscribe((data) => {
+    this.api.getSimpleData(`/guilds/${this.guildId}/${this.apiUrl}`).subscribe(data => {
       this.loading = false;
       this.casesTable = data;
       this.applyCurrentFilters();
-    }, () => {
-      this.toastr.error("Failed to load cases.");
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('ModCaseTable.FailedToLoad'));
     });
   }
 
   loadNextPage() {
     this.loading = true;
     this.currentPage++;
-    this.api.getSimpleData(`/guilds/${this.guildId}/${this.apiUrl}?startPage=${this.currentPage}`).subscribe((data) => {
+    this.api.getSimpleData(`/guilds/${this.guildId}/${this.apiUrl}?startPage=${this.currentPage}`).subscribe(data => {
       this.loading = false;
       data.forEach((element: ModCaseTable ) => {
         this.casesTable.push(element);
       });
       this.applyCurrentFilters();
-    }, () => {
-      this.toastr.error("Failed to load cases.");
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('ModCaseTable.FailedToLoad'));
     });
   }
 

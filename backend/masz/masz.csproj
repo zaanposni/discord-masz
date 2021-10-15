@@ -7,7 +7,11 @@
   <ItemGroup>
     <PackageReference Include="AspNet.Security.OAuth.Discord" Version="3.1.3" />
     <PackageReference Include="AspNetCoreRateLimit" Version="3.0.5" />
-    <PackageReference Include="Discord.Net" Version="2.2.0" />
+    <PackageReference Include="DSharpPlus" Version="4.2.0-nightly-01024" />
+    <PackageReference Include="DSharpPlus.CommandsNext" Version="4.2.0-nightly-01024" />
+    <PackageReference Include="DSharpPlus.Interactivity" Version="4.2.0-nightly-01024" />
+    <PackageReference Include="DSharpPlus.Rest" Version="4.2.0-nightly-01024" />
+    <PackageReference Include="DSharpPlus.SlashCommands" Version="4.2.0-nightly-01024" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.18" />
     <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="3.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.7" />
@@ -19,6 +23,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.8" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.2" />
     <PackageReference Include="RestSharp" Version="106.12.0" />
+    <PackageReference Include="Scrutor" Version="3.3.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.9.0" />
   </ItemGroup>
 

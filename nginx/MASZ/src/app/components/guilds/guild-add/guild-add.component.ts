@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
+import { APIEnum } from 'src/app/models/APIEnum';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { Guild } from 'src/app/models/Guild';
 import { GuildRole } from 'src/app/models/GuildRole';
-import { MetaClientId } from 'src/app/models/MetaClientId';
+import { IApplicationInfo } from 'src/app/models/IApplicationInfo';
 import { ApiService } from 'src/app/services/api.service';
+import { ApplicationInfoService } from 'src/app/services/application-info.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { EnumManagerService } from 'src/app/services/enum-manager.service';
 
 @Component({
   selector: 'app-guild-add',
@@ -29,7 +34,9 @@ export class GuildAddComponent implements OnInit {
   public selectedGuild: Guild|undefined;
   public selectedGuildDetails!: ContentLoading<Guild>;
 
-  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router) { }
+  public allLanguages: APIEnum[] = [];
+
+  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private applicationInfoService: ApplicationInfoService, private translator: TranslateService, private enumManager: EnumManagerService) { }
 
   ngOnInit(): void {
 
@@ -47,13 +54,16 @@ export class GuildAddComponent implements OnInit {
       public: ['', Validators.pattern("^https://discord(app)?\.com/api/webhooks/.+$")],
       strictPermissionCheck: [''],
       executeWhoisOnJoin: [''],
-      publishModeratorInfo: ['']
+      publishModeratorInfo: [''],
+      preferredLanguage: [''],
     });
-    
+
+    this.applicationInfoService.currentApplicationInfo.subscribe((data: IApplicationInfo) => {
+      this.clientId = data.id;
+    });
+
+    this.loadLanguages();
     this.reloadGuilds();
-    this.api.getSimpleData('/meta/clientid').subscribe((data: MetaClientId) => {
-      this.clientId = data.clientid;
-    });
   }
 
   reloadGuilds() {
@@ -61,12 +71,19 @@ export class GuildAddComponent implements OnInit {
     this.guilds = { loading: true, content: [] };
     this.showGuilds = [];
 
-    this.api.getSimpleData('/discord/guilds').subscribe((data) => {
+    this.api.getSimpleData('/discord/guilds').subscribe(data => {
       this.guilds = { loading: false, content: data };
       this.showGuilds = data;
-    }, () => {
+    }, error => {
+      console.error(error);
       this.guilds.loading = false;
-      this.toastr.error('Failed to load guilds.');
+      this.toastr.error(this.translator.instant('GuildDialog.FailedToLoadGuilds'));
+    });
+  }
+
+  loadLanguages() {
+    this.enumManager.getEnum(APIEnumTypes.LANGUAGE).subscribe((data: APIEnum[]) => {
+      this.allLanguages = data;
     });
   }
 
@@ -87,12 +104,14 @@ export class GuildAddComponent implements OnInit {
   }
 
   selectGuild(id: string) {
-    this.searchGuilds = ''; 
+    this.searchGuilds = '';
     this.selectedGuild = this.guilds.content?.find(x => x.id === id) as Guild;
     this.selectedGuildDetails = { loading: true, content: undefined };
-    this.api.getSimpleData(`/discord/guilds/${id}`).subscribe((data) => {
+    this.api.getSimpleData(`/discord/guilds/${id}`).subscribe((data: Guild) => {
+      data.roles = data.roles.sort((a, b) => (a.position < b.position) ? 1 : -1);
       this.selectedGuildDetails = { loading: false, content: data };
-    }, () => {
+    }, error => {
+      console.error(error);
       this.selectedGuildDetails.loading = false;
     });
   }
@@ -100,10 +119,10 @@ export class GuildAddComponent implements OnInit {
   invite() {
     this.selectedGuildDetails = { loading: true, content: undefined };
     var win = window.open(
-      `https://discord.com/oauth2/authorize?client_id=${this.clientId}&permissions=8&scope=bot%20applications.commands&guild_id=${this.selectedGuild?.id}`, 
+      `https://discord.com/oauth2/authorize?client_id=${this.clientId}&permissions=8&scope=bot%20applications.commands&guild_id=${this.selectedGuild?.id}`,
       "Secure Payment", "status=yes;width=150,height=400");
     if (win === null) {
-      this.toastr.error("Failed to open invite window.");
+      this.toastr.error(this.translator.instant('GuildDialog.FailedInviteWindow'));
       return;
     }
     var timer = setInterval(function(callback: any, id: string, context: any) {
@@ -119,20 +138,22 @@ export class GuildAddComponent implements OnInit {
       guildid: this.selectedGuild?.id,
       modRoles: this.modRolesGroup.value.modRoles,
       adminRoles: this.adminRolesGroup.value.adminRoles,
-      mutedRoles: this.muteRolesGroup.value.muteRoles !== '' ? this.muteRolesGroup.value.muteRoles : [],
+      mutedRoles: this.muteRolesGroup.value.muteRoles != '' ? this.muteRolesGroup.value.muteRoles : [],
       modInternalNotificationWebhook: this.configGroup.value?.internal?.trim() != '' ? this.configGroup?.value?.internal : null,
       modPublicNotificationWebhook: this.configGroup.value?.public?.trim() != '' ? this.configGroup?.value?.public : null,
-      strictModPermissionCheck: (this.configGroup.value?.strictPermissionCheck !== '' ? this.configGroup.value?.strictPermissionCheck : false) ?? false,
-      executeWhoisOnJoin: (this.configGroup.value?.executeWhoisOnJoin !== '' ? this.configGroup.value?.executeWhoisOnJoin : false) ?? false,
-      publishModeratorInfo: (this.configGroup.value?.publishModeratorInfo !== '' ? this.configGroup.value?.publishModeratorInfo : false) ?? false
+      strictModPermissionCheck: (this.configGroup.value?.strictPermissionCheck != '' ? this.configGroup.value?.strictPermissionCheck : false) ?? false,
+      executeWhoisOnJoin: (this.configGroup.value?.executeWhoisOnJoin != '' ? this.configGroup.value?.executeWhoisOnJoin : false) ?? false,
+      publishModeratorInfo: (this.configGroup.value?.publishModeratorInfo !=='' ? this.configGroup.value?.publishModeratorInfo : false) ?? false,
+      preferredLanguage: this.configGroup.value?.preferredLanguage != '' ? this.configGroup.value?.preferredLanguage : 0
     }
 
-    this.api.postSimpleData('/guilds/', data).subscribe((data) => {
-      this.toastr.success('Guild created');
+    this.api.postSimpleData('/guilds/', data).subscribe(() => {
+      this.toastr.success(this.translator.instant('GuildDialog.GuildCreated'));
       this.authService.resetCache();
       this.router.navigate(['guilds']);
-    }, (error) => {
-      this.toastr.error('Cannot register guild.', 'Something went wrong.');
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('GuildDialog.FailedToRegisterGuild'));
     })
   }
 

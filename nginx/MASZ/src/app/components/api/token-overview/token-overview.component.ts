@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { APIToken } from 'src/app/models/APIToken';
 import { ContentLoading } from 'src/app/models/ContentLoading';
@@ -19,7 +20,7 @@ export class TokenOverviewComponent implements OnInit {
   public generatingNewToken: boolean = false;
   public newToken: string = '';
 
-  constructor(private api: ApiService, private toastr: ToastrService, private dialog: MatDialog) { }
+  constructor(private api: ApiService, private toastr: ToastrService, private dialog: MatDialog, private translator: TranslateService) { }
 
   ngOnInit(): void {
     this.reloadToken();
@@ -27,13 +28,15 @@ export class TokenOverviewComponent implements OnInit {
 
   reloadToken() {
     this.tokens = { loading: true, content: [] };
-    this.api.getSimpleData(`/token`).subscribe((data) => {
+    this.api.getSimpleData(`/token`).subscribe(data => {
       this.tokens.content?.push(data);
       this.tokens.loading = false;
-    }, (error) => {
+    }, error => {
       this.tokens.loading = false;
-      if (error?.status === 404) return; 
-      this.toastr.error("Failed to load current tokens.");
+      if (error?.error?.status !== 404 && error?.status !== 404) {
+        console.error(error);
+        this.toastr.error(this.translator.instant('TokenOverview.FailedToLoad'));
+      }
     })
   }
 
@@ -47,12 +50,14 @@ export class TokenOverviewComponent implements OnInit {
     confirmDialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
         this.generatingNewToken = true;
-        this.api.postSimpleData(`/token`, tokenDialogData).subscribe((data) => {
+        this.api.postSimpleData(`/token`, tokenDialogData).subscribe(data => {
           this.generatingNewToken = false;
-          this.newToken = data.generatedToken;
+          this.newToken = data.token;
+          this.toastr.success(this.translator.instant('TokenOverview.Created'))
           this.reloadToken();
-        }, () => {
-          this.toastr.error("Failed to generate token.");
+        }, error => {
+          console.error(error);
+          this.toastr.error(this.translator.instant('TokenOverview.FailedToCreate'));
           this.generatingNewToken = false;
         });
       }
@@ -61,16 +66,17 @@ export class TokenOverviewComponent implements OnInit {
 
   copyTokenToClipboard() {
     navigator.clipboard.writeText(this.newToken).then(() => {
-      this.toastr.success("Copied to clipboard.");
-    }).catch(e => console.error(e));    
+      this.toastr.success(this.translator.instant('TokenOverview.CopiedClipboard'));
+    }).catch(e => console.error(e));
   }
 
   deleteToken(id: number) {
-    this.api.deleteData(`/token`).subscribe((data) => {
+    this.api.deleteData(`/token`).subscribe(() => {
       this.reloadToken();
-      this.toastr.success("Token deleted.");
-    }, () => {
-      this.toastr.error("Failed to delete token.");
+      this.toastr.success(this.translator.instant('TokenOverview.Deleted'));
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('TokenOverview.FailedToDelete'));
     });
   }
 }

@@ -1,18 +1,50 @@
 <div class="card-container">
     <div class="card-container-body d-flex flex-row justify-content-center">
         <div class="d-flex justify-content-center align-content-start">
-            <mat-icon aria-hidden="false" aria-label="stat icon" style="text-align: start;">
+            <mat-icon class="big-icon" aria-hidden="false" aria-label="stat icon" style="text-align: start;">
                 {{ emote }}
             </mat-icon>
         </div>
         <div class="flex-grow-1 "></div>
         <div class="d-flex flex-column align-self-end">
             <div class="mat-h4 mb-0 text-black-50" style="text-align: end">
-                {{ title }}
+                {{ titleKey | translate }}
             </div>
-            <div class="mat-display-1 mb-0" style="text-align: end">
-                {{ text }}
-            </div>
+            <ng-container *ngIf="text !== undefined">
+                <div class="mat-display-1 mb-0" style="text-align: end">
+                    {{ text }}
+                </div>
+            </ng-container>
+            <ng-container *ngIf="renderPing">
+                <div class="d-flex flex-row align-items-center mb-0" style="text-align: end">
+                    <mat-icon class="mr-2" matTooltip="{{ renderPing.message }}" *ngIf="renderPing.message">
+                        error_outline
+                    </mat-icon>
+                    <div class="dot-scaffold dot" title="Last ping to discord" *ngIf="renderPing.responseTime && renderPing.online"
+                        [class.dot-green]="renderPing.responseTime < warningPingLimit"
+                        [class.dot-orange]="renderPing.responseTime >= warningPingLimit && renderPing.responseTime < errorPingLimit"
+                        [class.dot-red]="renderPing.responseTime >= errorPingLimit">
+                    </div>
+                    <ng-container *ngIf="renderPing.responseTime && renderPing.online; else elseJustOnlineStatus">
+                        <span class="mat-h1 mb-0" style="font-weight: 500;"
+                            [style.color]="renderPing.responseTime >= warningPingLimit ? renderPing.responseTime >= errorPingLimit ? 'red' : 'orange' : '#3bd671'">
+                            {{ renderPing.responseTime | floor }}ms
+                        </span>
+                    </ng-container>
+                    <ng-template #elseJustOnlineStatus>
+                        <ng-container *ngIf="renderPing.online; else elseTemplate">
+                            <span class="mat-h1 mb-0" style="font-weight: 500; color: #3bd671">
+                                Online
+                            </span>
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                            <span class="mat-h1 mb-0" style="font-weight: 500; color: red">
+                                Offline
+                            </span>
+                        </ng-template>
+                    </ng-template>
+                </div>
+            </ng-container>
         </div>
     </div>
 </div>

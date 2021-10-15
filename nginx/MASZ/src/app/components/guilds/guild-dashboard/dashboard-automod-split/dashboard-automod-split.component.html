@@ -1,7 +1,7 @@
 <div class="card-container" *ngIf="this.loading || this.foundContent">
     <div class="card-container-body d-flex flex-column flex-wrap flex-shrink-0 flex-grow-1">
         <span class="mat-h1 font-weight-bold mb-2">
-            Automoderation
+            {{ 'Automoderations' | translate }}
         </span>
         <div class="w-100 d-flex flex-row flex-wrap" *ngIf="!loading">
             <canvas baseChart

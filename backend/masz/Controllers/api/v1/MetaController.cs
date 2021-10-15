@@ -1,6 +1,9 @@
 using System;
 using System.Threading.Tasks;
+using masz.Enums;
 using masz.Models;
+using masz.Models.Views;
+using masz.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,36 +14,25 @@ namespace masz.Controllers
 {
     [ApiController]
     [Route("api/v1/meta/")]
-    [Authorize]
-    public class MetaController : ControllerBase
+    public class MetaController : SimpleController
     {
-        private readonly ILogger<MetaController> logger;
-        private readonly IOptions<InternalConfig> config;
+        private readonly ILogger<MetaController> _logger;
 
-        public MetaController(ILogger<MetaController> logger, IOptions<InternalConfig> config)
+        public MetaController(ILogger<MetaController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.logger = logger;
-            this.config = config;
+            _logger = logger;
         }
 
-        [HttpGet("clientid")]
-        public IActionResult GetClientId() {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-
-            return Ok(new { clientid = config.Value.DiscordClientId });
+        [HttpGet("user")]
+        public IActionResult GetBotUser()
+        {
+            return Ok(DiscordUserView.CreateOrDefault(_discordAPI.GetCurrentBotInfo(CacheBehavior.Default)));
         }
 
-        [HttpGet("githubreleases")]
-        public async Task<IActionResult> GetReleases() {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-
-            var restClient = new RestClient("https://api.github.com/");
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/repos/zaanposni/discord-masz/releases";
-
-            var response = await restClient.ExecuteAsync(request);
-
-            return Ok(response.Content);
+        [HttpGet("application")]
+        public IActionResult GetApplication()
+        {
+            return Ok(DiscordApplicationView.CreateOrDefault(_discordAPI.GetCurrentApplicationInfo()));
         }
     }
 }

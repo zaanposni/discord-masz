@@ -1,8 +1,8 @@
 <div class="card-container">
     <div class="card-container-body d-flex flex-column flex-shrink-0 flex-grow-1">
         <mat-list>
-            <div mat-subheader>{{ title }} ({{ showList?.length ?? 0 }})</div>
-            <ng-container *ngIf="!loading">                        
+            <div mat-subheader>{{ titleKey | translate }} ({{ showList?.length ?? 0 }})</div>
+            <ng-container *ngIf="!loading">
                 <mat-list-item *ngFor="let user of showList?.slice(0, 5)">
                     <mat-icon mat-list-icon>{{ emote }}</mat-icon>
                     <div mat-line>{{user}}</div>
@@ -31,13 +31,13 @@
             </ng-container>
             <mat-list-item *ngIf="!loading && (showList == undefined || showList?.length == 0)">
                 <mat-icon mat-list-icon>error_outline</mat-icon>
-                <div mat-line>{{ errorMessage }}</div>
+                <div mat-line>{{ 'NothingHere' | translate }}</div>
             </mat-list-item>
         </mat-list>
         <button mat-raised-button color="accent"
             *ngIf="!this.showAll && showList?.slice(5)?.length != 0 && !loading && showList"
             (click)="this.showAll = true">
-                Show more
+                {{ 'AdminstatsList.ShowMore' | translate }}
         </button>
     </div>
 </div>

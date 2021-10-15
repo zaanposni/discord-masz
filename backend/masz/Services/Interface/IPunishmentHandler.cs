@@ -1,4 +1,6 @@
 using System.Threading.Tasks;
+using DSharpPlus;
+using DSharpPlus.EventArgs;
 using masz.Models;
 
 namespace masz.Services
@@ -9,5 +11,6 @@ namespace masz.Services
         void CheckAllCurrentPunishments();
         Task ExecutePunishment(ModCase modCase);
         Task UndoPunishment(ModCase modCase);
+        Task HandleMemberJoin(DiscordClient client, GuildMemberAddEventArgs e);
     }
 }

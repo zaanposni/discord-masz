@@ -12,11 +12,11 @@ namespace masz.Controllers
     [Route("api/v1")]
     public class AuthenticationController : ControllerBase
     {
-        private readonly ILogger<AuthenticationController> logger;
+        private readonly ILogger<AuthenticationController> _logger;
 
         public AuthenticationController(ILogger<AuthenticationController> logger)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
         [HttpGet("login")]

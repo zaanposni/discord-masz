@@ -1,0 +1,27 @@
+{
+    "namespace": "CaseDeleteDialog",
+    "SendPublicNotification": {
+        "description": "send public notification",
+        "en": "Send public notification",
+        "de": "Sende öffentliche Benachrichtigung",
+        "at": "Tua a öffentliche Benochrichtigung sendn"
+    },
+    "ForceDelete": {
+        "description": "Force delete",
+        "en": "Force delete",
+        "de": "Permanent löschen",
+        "at": "Fix fia imma leschn"
+    },
+    "Cancel": {
+        "description": "cancel button",
+        "en": "Cancel",
+        "de": "Abbrechen",
+        "at": "Obrechn"
+    },
+    "Confirm": {
+        "description": "confirm button",
+        "en": "Confirm",
+        "de": "Bestätigen",
+        "at": "Zuastimma"
+    }
+}

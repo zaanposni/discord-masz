@@ -1,83 +1,49 @@
 using System;
 using System.Threading.Tasks;
-using masz.Dtos.DiscordAPIResponses;
+using DSharpPlus.Entities;
+using masz.Dtos.GuildMotd;
 using masz.Models;
+using masz.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using masz.Enums;
 
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("api/v1/guilds/{guildid}/motd")]
+    [Route("api/v1/guilds/{guildId}/motd")]
     [Authorize]
     public class GuildMotdController : SimpleController
     {
-        private readonly ILogger<GuildMotdController> logger;
+        private readonly ILogger<GuildMotdController> _logger;
 
         public GuildMotdController(ILogger<GuildMotdController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetMotd([FromRoute] string guildid)
+        public async Task<IActionResult> GetMotd([FromRoute] ulong guildId)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            await RequirePermission(guildId, DiscordPermission.Moderator);
+            Identity identity = await GetIdentity();
 
-            GuildMotd motd = await this.database.GetMotdForGuild(guildid);
-            if (motd == null) {
-                motd = new GuildMotd() {
-                    Id = 0,
-                    UserId = this.config.Value.DiscordClientId,
-                    Message = "Default message. An administrator of this guild can set a custom message.",
-                    ShowMotd = false,
-                    CreatedAt = DateTime.UtcNow,
-                    GuildId = guildid
-                };
-            }
+            GuildMotd motd = await GuildMotdRepository.CreateDefault(_serviceProvider, identity).GetMotd(guildId);
 
-            User creator = await this.discord.FetchUserInfo(motd.UserId, CacheBehavior.Default);
+            DiscordUser creator = await _discordAPI.FetchUserInfo(motd.UserId, CacheBehavior.Default);
 
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning motd.");
-            return Ok(new { creator=creator, motd=motd });
+            return Ok(new GuildMotdExpandedView(motd, creator));
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateMotd([FromRoute] string guildid, [FromBody] GuildMotd motd)
+        public async Task<IActionResult> UpdateMotd([FromRoute] ulong guildId, [FromBody] MotdForCreateDto motd)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Admin, guildid)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            await RequirePermission(guildId, DiscordPermission.Admin);
 
-            if (string.IsNullOrWhiteSpace(motd.Message)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Empty message.");
-                return BadRequest("Please provide a message.");
-            }
+            Identity currentIdentity = await GetIdentity();
 
-            User currentUser = await this.IsValidUser();
-            GuildMotd current = await this.database.GetMotdForGuild(guildid);
-            if (current == null) {
-                current = new GuildMotd();
-            }
-
-            current.GuildId = guildid;
-            current.UserId = currentUser.Id;
-            current.Message = motd.Message;
-            current.ShowMotd = motd.ShowMotd;
-            current.CreatedAt = DateTime.UtcNow;
-
-            this.database.SaveMotd(current);
-            await this.database.SaveChangesAsync();
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Motd saved.");
-            return Ok(current);
+            return Ok(await GuildMotdRepository.CreateDefault(_serviceProvider, currentIdentity).CreateOrUpdateMotd(guildId, motd.Message, motd.ShowMotd));
         }
     }
 }

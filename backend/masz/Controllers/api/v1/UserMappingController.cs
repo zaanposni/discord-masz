@@ -1,8 +1,12 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using masz.Dtos.DiscordAPIResponses;
 using masz.Dtos.UserMapping;
+using masz.Enums;
+using masz.Exceptions;
 using masz.Models;
+using masz.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,134 +15,87 @@ using Microsoft.Extensions.Logging;
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("api/v1/guilds/{guildid}/usermap")]
+    [Route("api/v1/guilds/{guildId}/usermap")]
     [Authorize]
     public class UserMappingController : SimpleController
     {
-        private readonly ILogger<UserMappingController> logger;
+        private readonly ILogger<UserMappingController> _logger;
 
         public UserMappingController(ILogger<UserMappingController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUserMap([FromRoute] string guildid)
+        public async Task<IActionResult> GetUserMap([FromRoute] ulong guildId)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning list.");
-            return Ok(await this.database.GetUserMappingsByGuildId(guildid));
+            List<UserMapping> userMappings = await UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetUserMapsByGuild(guildId);
+            return Ok(userMappings.Select(x => new UserMappingView(x)));
         }
 
-        [HttpGet("{userid}")]
-        public async Task<IActionResult> GetUserMap([FromRoute] string guildid, [FromRoute] string userid)
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetUserMaps([FromRoute] ulong guildId, [FromRoute] ulong userId)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning list.");
-            return Ok(await this.database.GetUserMappingsByUserIdAndGuildId(userid, guildid));
+            List<UserMapping> userMappings = await UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetUserMapsByGuildAndUser(guildId, userId);
+            return Ok(userMappings.Select(x => new UserMappingView(x)));
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUserMap([FromRoute] string guildid, [FromBody] UserMappingForCreateDto userMapDto)
+        public async Task<IActionResult> CreateUserMap([FromRoute] ulong guildId, [FromBody] UserMappingForCreateDto userMapDto)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            if (await this.database.GetUserMappingByUserIdsAndGuildId(userMapDto.UserA, userMapDto.UserB, guildid) != null) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Mapping already exists.");
-                return BadRequest("Mapping already exists.");
-            }
+            var repo = UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity());
+            try
+            {
+                await repo.GetUserMap(guildId, userMapDto.UserA, userMapDto.UserB);
+                throw new ResourceAlreadyExists();
+            } catch (ResourceNotFoundException) { }
 
-            User validUserA = await discord.FetchUserInfo(userMapDto.UserA, CacheBehavior.Default);
-            User validUserB = await discord.FetchUserInfo(userMapDto.UserB, CacheBehavior.Default);
-            if (validUserA == null || validUserB == null) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 User invalid.");
-                return BadRequest("Invalid user.");
-            }
-            if (userMapDto.UserA == userMapDto.UserB) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Same users.");
-                return BadRequest("Cannot be same user.");
-            }
+            UserMapping userMap = await repo.CreateOrUpdateUserMap(guildId, userMapDto.UserA, userMapDto.UserB, userMapDto.Reason);
 
-            UserMapping userMapping = new UserMapping();
-            userMapping.GuildId = guildid;
-            userMapping.CreatedAt = DateTime.UtcNow;
-            userMapping.CreatorUserId = (await this.IsValidUser()).Id;
-            userMapping.UserA = userMapDto.UserA;
-            userMapping.UserB = userMapDto.UserB;
-            userMapping.Reason = userMapDto.Reason.Trim();
-            
-            this.database.SaveUserMapping(userMapping);
-            await this.database.SaveChangesAsync();
-
-            await this.discordAnnouncer.AnnounceUserMapping(userMapping, await this.IsValidUser(), RestAction.Created);
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 201 Ressource created.");
-            return StatusCode(201, userMapping);
+            return StatusCode(201, new UserMappingView(userMap));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> CreateUserMap([FromRoute] string guildid, [FromRoute] string id, [FromBody] UserMappingForUpdateDto userMapDto)
+        public async Task<IActionResult> UpdateUserMap([FromRoute] ulong guildId, [FromRoute] int id, [FromBody] UserMappingForUpdateDto userMapDto)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
+            await RequirePermission(guildId, DiscordPermission.Moderator);
+
+            var repo = UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity());
+
+            UserMapping userMap = await repo.GetUserMap(id);
+            if (userMap.GuildId != guildId)
+            {
+                throw new ResourceNotFoundException();
             }
 
-            UserMapping existing = await this.database.GetUserMappingById(id);
-            if (existing == null || existing.GuildId != guildid) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Not found.");
-                return NotFound();
-            }
+            UserMapping result = await repo.CreateOrUpdateUserMap(guildId, userMap.UserA, userMap.UserB, userMapDto.Reason);
 
-            existing.Reason = userMapDto.Reason.Trim();
-            
-            this.database.SaveUserMapping(existing);
-            await this.database.SaveChangesAsync();
-            
-            await this.discordAnnouncer.AnnounceUserMapping(existing, await this.IsValidUser(), RestAction.Edited);
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Ressource updated.");
-            return Ok(existing);
+            return Ok(new UserMappingView(result));
         }
 
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUserMap([FromRoute] string guildid, [FromRoute] string id)
+        public async Task<IActionResult> DeleteUserMap([FromRoute] ulong guildId, [FromRoute] int id)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
+            await RequirePermission(guildId, DiscordPermission.Moderator);
+
+            var repo = UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity());
+
+            UserMapping userMap = await repo.GetUserMap(id);
+            if (userMap.GuildId != guildId)
+            {
+                throw new ResourceNotFoundException();
             }
 
-            UserMapping existing = await this.database.GetUserMappingById(id);
-            if (existing == null) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Not Found.");
-                return NotFound();
-            }
+            await UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity()).DeleteUserMap(id);
 
-            this.database.DeleteUserMapping(existing);
-            await this.database.SaveChangesAsync();
-            
-            await this.discordAnnouncer.AnnounceUserMapping(existing, await this.IsValidUser(), RestAction.Deleted);
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Ressource deleted.");
-            return Ok(existing);
+            return Ok();
         }
     }
 }

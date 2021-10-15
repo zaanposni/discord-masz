@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using masz.Dtos.DiscordAPIResponses;
+using masz.Enums;
+using masz.Exceptions;
 using masz.Models;
+using masz.Models.Views;
+using masz.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -17,81 +19,98 @@ namespace masz.Controllers
     [Authorize]
     public class UserNetworkController : SimpleController
     {
-        private readonly ILogger<UserNetworkController> logger;
+        private readonly ILogger<UserNetworkController> _logger;
         private static readonly DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         public UserNetworkController(ILogger<UserNetworkController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
         [HttpGet("user")]
-        public async Task<IActionResult> GetUserNetwork([FromQuery][Required] string userId)
+        public async Task<IActionResult> GetUserNetwork([FromQuery][Required] ulong userId)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
+            Identity currentIdentity = await GetIdentity();
             List<string> modGuilds = new List<string>();
-            List<Guild> guildViews = new List<Guild>();
+            List<DiscordGuildView> guildViews = new List<DiscordGuildView>();
 
-            List<GuildConfig> guildConfigs = await database.SelectAllGuildConfigs();
-            if (guildConfigs.Count == 0) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 No guilds registered.");
-                return BadRequest("No guilds registered.");
+            List<GuildConfig> guildConfigs = await GuildConfigRepository.CreateDefault(_serviceProvider).GetAllGuildConfigs();
+            if (guildConfigs.Count == 0)
+            {
+                throw new BaseAPIException("No guilds registered");
             }
-            foreach (GuildConfig guildConfig in guildConfigs) {
-                if (await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildConfig.GuildId)) {
-                    modGuilds.Add(guildConfig.GuildId);
-                    guildViews.Add(await discord.FetchGuildInfo(guildConfig.GuildId, CacheBehavior.Default));
+            foreach (GuildConfig guildConfig in guildConfigs)
+            {
+                if (await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildConfig.GuildId))
+                {
+                    modGuilds.Add(guildConfig.GuildId.ToString());
+                    guildViews.Add(new DiscordGuildView(await _discordAPI.FetchGuildInfo(guildConfig.GuildId, CacheBehavior.Default)));
                 }
             }
             if (modGuilds.Count == 0) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
                 return Unauthorized();
             }
 
-            User searchedUser = await discord.FetchUserInfo(userId, CacheBehavior.IgnoreButCacheOnError);
-            List<UserInviteView> invited = new List<UserInviteView>();
-            foreach(UserInvite invite in await database.GetInvitedUsersByUserId(userId)) 
+            DiscordUserView searchedUser = DiscordUserView.CreateOrDefault(await _discordAPI.FetchUserInfo(userId, CacheBehavior.IgnoreButCacheOnError));
+
+            // invites
+            // ===============================================================================================
+            InviteRepository inviteRepository = InviteRepository.CreateDefault(_serviceProvider);
+
+            List<UserInviteExpandedView> invited = new List<UserInviteExpandedView>();
+            foreach(UserInvite invite in await inviteRepository.GetInvitedForUser(userId))
             {
-                if (!modGuilds.Contains(invite.GuildId)) {
+                if (!modGuilds.Contains(invite.GuildId.ToString()))
+                {
                     continue;
                 }
-                invited.Add(new UserInviteView(
+                invited.Add(new UserInviteExpandedView(
                     invite,
-                    await discord.FetchUserInfo(invite.JoinedUserId, CacheBehavior.OnlyCache),
-                    await discord.FetchUserInfo(invite.InviteIssuerId, CacheBehavior.OnlyCache)
+                    await _discordAPI.FetchUserInfo(invite.JoinedUserId, CacheBehavior.OnlyCache),
+                    await _discordAPI.FetchUserInfo(invite.InviteIssuerId, CacheBehavior.OnlyCache)
                 ));
             }
-            List<UserInviteView> invitedBy = new List<UserInviteView>();
-            foreach(UserInvite invite in await database.GetUsedInvitesByUserId(userId)) 
+
+            List<UserInviteExpandedView> invitedBy = new List<UserInviteExpandedView>();
+            foreach(UserInvite invite in await inviteRepository.GetusedInvitesForUser(userId))
             {
-                if (!modGuilds.Contains(invite.GuildId)) {
+                if (!modGuilds.Contains(invite.GuildId.ToString()))
+                {
                     continue;
                 }
-                invitedBy.Add(new UserInviteView(
+                invitedBy.Add(new UserInviteExpandedView(
                     invite,
-                    await discord.FetchUserInfo(invite.JoinedUserId, CacheBehavior.OnlyCache),
-                    await discord.FetchUserInfo(invite.InviteIssuerId, CacheBehavior.OnlyCache)
+                    await _discordAPI.FetchUserInfo(invite.JoinedUserId, CacheBehavior.OnlyCache),
+                    await _discordAPI.FetchUserInfo(invite.InviteIssuerId, CacheBehavior.OnlyCache)
                 ));
             }
-            List<UserMappingView> userMappings = new List<UserMappingView>();
-            foreach(UserMapping userMapping in await database.GetUserMappingsByUserId(userId))
+
+            // mappings
+            // ===============================================================================================
+            UserMapRepository userMapRepository = UserMapRepository.CreateDefault(_serviceProvider, currentIdentity);
+            List<UserMappingExpandedView> userMappings = new List<UserMappingExpandedView>();
+            foreach(UserMapping userMapping in await userMapRepository.GetUserMapsByUser(userId))
             {
-                if (!modGuilds.Contains(userMapping.GuildId)) {
+                if (!modGuilds.Contains(userMapping.GuildId.ToString()))
+                 {
                     continue;
                 }
-                userMappings.Add(new UserMappingView() {
-                    UserMapping = userMapping,
-                    Moderator = await discord.FetchUserInfo(userMapping.CreatorUserId, CacheBehavior.OnlyCache),
-                    UserA = await discord.FetchUserInfo(userMapping.UserA, CacheBehavior.OnlyCache),
-                    UserB = await discord.FetchUserInfo(userMapping.UserB, CacheBehavior.OnlyCache)
-                });
+                userMappings.Add(new UserMappingExpandedView(
+                    userMapping,
+                    await _discordAPI.FetchUserInfo(userMapping.UserA, CacheBehavior.OnlyCache),
+                    await _discordAPI.FetchUserInfo(userMapping.UserB, CacheBehavior.OnlyCache),
+                    await _discordAPI.FetchUserInfo(userMapping.CreatorUserId, CacheBehavior.OnlyCache)
+                ));
             }
 
-            List<ModCase> modCases = (await database.SelectAllModCasesForSpecificUser(userId)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
-            List<AutoModerationEvent> modEvents = (await database.SelectAllModerationEventsForSpecificUser(userId)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
-            List<UserNote> userNotes = (await database.GetUserNotesByUserId(userId)).Where(x => modGuilds.Contains(x.GuildId)).ToList();
+            ModCaseRepository modCaseRepository = ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity);
+            AutoModerationEventRepository autoModerationEventRepository = AutoModerationEventRepository.CreateDefault(_serviceProvider);
+            UserNoteRepository userNoteRepository = UserNoteRepository.CreateDefault(_serviceProvider, currentIdentity);
 
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning network.");
+            List<CaseView> modCases = (await modCaseRepository.GetCasesForUser(userId)).Where(x => modGuilds.Contains(x.GuildId.ToString())).Select(x => new CaseView(x)).ToList();
+            List<AutoModerationEventView> modEvents = (await autoModerationEventRepository.GetAllEventsForUser(userId)).Where(x => modGuilds.Contains(x.GuildId.ToString())).Select(x => new AutoModerationEventView(x)).ToList();
+            List<UserNoteView> userNotes = (await userNoteRepository.GetUserNotesByUser(userId)).Where(x => modGuilds.Contains(x.GuildId.ToString())).Select(x => new UserNoteView(x)).ToList();
+
             return Ok(new {
                 guilds = guildViews,
                 user = searchedUser,
@@ -107,28 +126,26 @@ namespace masz.Controllers
         [HttpGet("invite")]
         public async Task<IActionResult> GetInviteNetwork([FromQuery][Required] string inviteUrl)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            
-            List<UserInvite> invites = await database.GetInvitesByCode(inviteUrl);
-            if (invites == null || invites.Count == 0) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Invite not found.");
+            Identity currentIdentity = await GetIdentity();
+            InviteRepository inviteRepository = InviteRepository.CreateDefault(_serviceProvider);
+
+            List<UserInvite> invites = await inviteRepository.GetInvitesByCode(inviteUrl);
+            if (invites == null || invites.Count == 0)
+            {
                 return NotFound();
             }
 
-            if (!await this.HasPermissionOnGuild(DiscordPermission.Moderator, invites[0].GuildId)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            await RequirePermission(invites[0].GuildId, DiscordPermission.Moderator);
 
-            Guild guild = await discord.FetchGuildInfo(invites[0].GuildId, CacheBehavior.Default);
+            DiscordGuildView guild = new DiscordGuildView(await _discordAPI.FetchGuildInfo(invites[0].GuildId, CacheBehavior.Default));
 
-            List<UserInviteView> inviteViews = new List<UserInviteView>();
+            List<UserInviteExpandedView> inviteViews = new List<UserInviteExpandedView>();
             foreach(UserInvite invite in invites)
             {
-                inviteViews.Add(new UserInviteView(
+                inviteViews.Add(new UserInviteExpandedView(
                     invite,
-                    await discord.FetchUserInfo(invite.JoinedUserId, CacheBehavior.OnlyCache),
-                    await discord.FetchUserInfo(invite.InviteIssuerId, CacheBehavior.OnlyCache)
+                    await _discordAPI.FetchUserInfo(invite.JoinedUserId, CacheBehavior.OnlyCache),
+                    await _discordAPI.FetchUserInfo(invite.InviteIssuerId, CacheBehavior.OnlyCache)
                 ));
             }
 

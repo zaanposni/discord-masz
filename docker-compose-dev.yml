@@ -1,0 +1,78 @@
+version: '2.2'
+
+volumes:
+  mysql:
+  filehost:
+
+services:
+  db:
+    container_name: masz_db
+    image: mysql:8.0
+    volumes:
+        - mysql:/var/lib/mysql
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_PORT=${MYSQL_PORT}
+      - MYSQL_ROOT_HOST=%
+    expose:
+      - "3306"
+    healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            timeout: 20s
+            retries: 10
+    networks:
+      - appnetwork
+
+  backend:
+    build:
+      context: backend
+    container_name: masz_backend
+    depends_on:
+        db:
+          condition: service_healthy
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_PORT=${MYSQL_PORT}
+      - MYSQL_HOST=db
+      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
+      - DISCORD_OAUTH_CLIENT_ID=${DISCORD_OAUTH_CLIENT_ID}
+      - DISCORD_OAUTH_CLIENT_SECRET=${DISCORD_OAUTH_CLIENT_SECRET}
+      - DISCORD_SITE_ADMINS=${DISCORD_SITE_ADMINS}
+      - META_SERVICE_BASE_URL=${META_SERVICE_BASE_URL}
+      - META_SERVICE_NAME=${META_SERVICE_NAME}
+      - META_SERVICE_DOMAIN=${META_SERVICE_DOMAIN}
+      - DEFAULT_LANGUAGE=${DEFAULT_LANGUAGE}
+      - ENABLE_DEMO_MODE=${ENABLE_DEMO_MODE}
+      - ENABLE_CUSTOM_PLUGINS=${ENABLE_CUSTOM_PLUGINS}
+      - ABSOLUTE_PATH_TO_FILE_UPLOAD=/filehost/
+      - ENABLE_CORS=${ENABLE_CORS}
+      - AUDIT_LOG_WEBHOOK_URL=${AUDIT_LOG_WEBHOOK_URL}
+    networks:
+      - appnetwork
+    volumes:
+      - filehost:/filehost
+
+  nginx:
+    build:
+      context: nginx
+    container_name: masz_nginx
+    restart: unless-stopped
+    depends_on:
+        - db
+        - backend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5565:80"
+    networks:
+    - appnetwork
+
+networks:
+  appnetwork:
+    driver: bridge

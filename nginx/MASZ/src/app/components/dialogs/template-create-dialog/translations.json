@@ -1,0 +1,39 @@
+{
+    "namespace": "TemplateCreateDialog",
+    "CreateTemplate": {
+        "description": "name your token",
+        "en": "Name your template.",
+        "de": "Benenne deine Vorlage.",
+        "at": "Tu dei Vorlog benenna."
+    },
+    "Name": {
+        "description": "name field",
+        "en": "Name",
+        "de": "Name",
+        "at": "Nom"
+    },
+    "Visibility": {
+        "description": "visibility field",
+        "en": "Visibility",
+        "de": "Sichtbarkeit",
+        "at": "Sichtboarkeit"
+    },
+    "Cancel": {
+        "description": "cancel button",
+        "en": "Cancel",
+        "de": "Abbrechen",
+        "at": "Obrechn"
+    },
+    "Confirm": {
+        "description": "confirm button",
+        "en": "Confirm",
+        "de": "Bestätigen",
+        "at": "Zuastima"
+    },
+    "FailedToLoadPermissions": {
+        "description": "failed to load",
+        "en": "Failed to load visibility options.",
+        "de": "Sichtbarkeitseinstellungen konnten nicht geladen werden.",
+        "at": "De Sichtboarkeitseistellungen konntn ned glodn wean."
+    }
+}

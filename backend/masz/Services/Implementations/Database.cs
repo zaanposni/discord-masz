@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using masz.Enums;
 using System.Threading.Tasks;
 
 namespace masz.Services
@@ -27,12 +28,17 @@ namespace masz.Services
             await context.SaveChangesAsync();
         }
 
+        public async Task<bool> CanConnectAsync()
+        {
+            return await context.Database.CanConnectAsync();
+        }
+
         // ==================================================================================
-        // 
+        //
         // Guildconfig
         //
         // ==================================================================================
-        public async Task<GuildConfig> SelectSpecificGuildConfig(string guildId)
+        public async Task<GuildConfig> SelectSpecificGuildConfig(ulong guildId)
         {
             return await context.GuildConfigs.AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId);
         }
@@ -62,7 +68,7 @@ namespace masz.Services
         }
 
         // ==================================================================================
-        // 
+        //
         // ModCase
         //
         // ==================================================================================
@@ -71,17 +77,17 @@ namespace masz.Services
         {
             return await context.ModCases.AsQueryable().Where(x => x.MarkedToDeleteAt < DateTime.UtcNow).ToListAsync();
         }
-        public async Task<ModCase> SelectSpecificModCase(string guildId, string modCaseId)
+        public async Task<ModCase> SelectSpecificModCase(ulong guildId, int modCaseId)
         {
-            return await context.ModCases.Include(c => c.Comments).AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.CaseId.ToString() == modCaseId);
+            return await context.ModCases.Include(c => c.Comments).AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.CaseId == modCaseId);
         }
 
-        public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId)
+        public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(ulong guildId, ulong userId)
         {
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.CaseId).ToListAsync();
         }
 
-        public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, ModcaseTableType tableType)
+        public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(ulong guildId, ulong userId, ModcaseTableType tableType)
         {
             switch(tableType) {
                 case ModcaseTableType.OnlyPunishments:
@@ -93,12 +99,12 @@ namespace masz.Services
             }
         }
 
-        public async Task<List<ModCase>> SelectAllModCasesForGuild(string guildId)
+        public async Task<List<ModCase>> SelectAllModCasesForGuild(ulong guildId)
         {
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CaseId).ToListAsync();
         }
 
-        public async Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, ModcaseTableType tableType)
+        public async Task<List<ModCase>> SelectAllModCasesForGuild(ulong guildId, ModcaseTableType tableType)
         {
             switch(tableType) {
                 case ModcaseTableType.OnlyPunishments:
@@ -110,12 +116,12 @@ namespace masz.Services
             }
         }
 
-        public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize)
+        public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(ulong guildId, ulong userId, int startPage, int pageSize)
         {
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.CaseId).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
         }
 
-        public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize, ModcaseTableType tableType)
+        public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(ulong guildId, ulong userId, int startPage, int pageSize, ModcaseTableType tableType)
         {
             switch(tableType) {
                 case ModcaseTableType.OnlyPunishments:
@@ -127,12 +133,12 @@ namespace masz.Services
             }
         }
 
-        public async Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize)
+        public async Task<List<ModCase>> SelectAllModCasesForGuild(ulong guildId, int startPage, int pageSize)
         {
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CaseId).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
         }
 
-        public async Task<List<ModCase>> SelectAllModCasesForGuild(string guildId, int startPage, int pageSize, ModcaseTableType tableType)
+        public async Task<List<ModCase>> SelectAllModCasesForGuild(ulong guildId, int startPage, int pageSize, ModcaseTableType tableType)
         {
             switch(tableType) {
                 case ModcaseTableType.OnlyPunishments:
@@ -144,9 +150,14 @@ namespace masz.Services
             }
         }
 
-        public async Task<List<ModCase>> SelectAllModCasesWithActivePunishmentForGuild(string guildId)
+        public async Task<List<ModCase>> SelectAllModCasesWithActivePunishmentForGuild(ulong guildId)
         {
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.PunishmentActive == true).ToListAsync();
+        }
+
+        public async Task<List<ModCase>> SelectAllModCasesWithActiveMuteForGuildAndUser(ulong guildId, ulong userId)
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId && x.PunishmentActive == true && x.PunishmentType == PunishmentType.Mute && x.MarkedToDeleteAt == null).ToListAsync();
         }
 
         public async Task<List<ModCase>> SelectAllModCasesThatHaveParallelPunishment(ModCase modCase)
@@ -155,13 +166,13 @@ namespace masz.Services
                 x =>
                   x.GuildId == modCase.GuildId &&
                   x.UserId == modCase.UserId &&
-                  x.CaseId != modCase.CaseId && 
+                  x.CaseId != modCase.CaseId &&
                   x.MarkedToDeleteAt == null &&
                   x.PunishmentType == modCase.PunishmentType &&
                   x.PunishmentActive == true &&
                   (
                       x.PunishedUntil == null ||
-                      x.PunishedUntil > DateTime.UtcNow  
+                      x.PunishedUntil > DateTime.UtcNow
                   )).ToListAsync();
         }
 
@@ -175,7 +186,7 @@ namespace masz.Services
             return await context.ModCases.AsQueryable().ToListAsync();
         }
 
-        public async Task<List<ModCase>> SelectAllModCasesForSpecificUser(string userId)
+        public async Task<List<ModCase>> SelectAllModCasesForSpecificUser(ulong userId)
         {
             return await context.ModCases.AsQueryable().Where(x => x.UserId == userId).ToListAsync();
         }
@@ -190,36 +201,36 @@ namespace masz.Services
             return await context.ModCases.AsQueryable().CountAsync();
         }
 
-        public async Task<int> CountAllModCasesForGuild(string guildId)
+        public async Task<int> CountAllModCasesForGuild(ulong guildId)
         {
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
         }
 
-        public async Task<int> CountAllActivePunishmentsForGuild(string guildId)
+        public async Task<int> CountAllActivePunishmentsForGuild(ulong guildId)
         {
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.PunishmentActive == true).CountAsync();
         }
 
-        public async Task<int> CountAllActivePunishmentsForGuild(string guildId, PunishmentType type)
+        public async Task<int> CountAllActivePunishmentsForGuild(ulong guildId, PunishmentType type)
         {
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.PunishmentActive == true && x.PunishmentType == type).CountAsync();
         }
-        
-        public async Task<List<DbCount>> GetCaseCountGraph(string guildId, DateTime since)
+
+        public async Task<List<DbCount>> GetCaseCountGraph(ulong guildId, DateTime since)
         {
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.OccuredAt > since)
             .GroupBy(x => new { Month = x.OccuredAt.Month, Year = x.OccuredAt.Year }).Select(x => new DbCount { Year = x.Key.Year, Month = x.Key.Month, Count = x.Count() }).OrderByDescending(x => x.Year).ThenByDescending(x => x.Month).ToListAsync();
         }
 
-        public async Task<List<DbCount>> GetPunishmentCountGraph(string guildId, DateTime since)
+        public async Task<List<DbCount>> GetPunishmentCountGraph(ulong guildId, DateTime since)
         {
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.OccuredAt > since && x.PunishmentType != PunishmentType.None)
             .GroupBy(x => new { Month = x.OccuredAt.Month, Year = x.OccuredAt.Year }).Select(x => new DbCount { Year = x.Key.Year, Month = x.Key.Month, Count = x.Count() }).OrderByDescending(x => x.Year).ThenByDescending(x => x.Month).ToListAsync();
         }
 
-        public async Task DeleteAllModCasesForGuild(string guildid)
+        public async Task DeleteAllModCasesForGuild(ulong guildId)
         {
-            var cases = await context.ModCases.AsQueryable().Where(x => x.GuildId == guildid).ToListAsync();
+            var cases = await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
             context.ModCases.RemoveRange(cases);
         }
 
@@ -238,7 +249,7 @@ namespace masz.Services
             await context.ModCases.AddAsync(modCase);
         }
 
-        public async Task<int> GetHighestCaseIdForGuild(string guildId)
+        public async Task<int> GetHighestCaseIdForGuild(ulong guildId)
         {
             var query = context.ModCases.AsQueryable().Where(x => x.GuildId == guildId);
             if(await query.CountAsync() == 0) {
@@ -248,7 +259,7 @@ namespace masz.Services
         }
 
         // ==================================================================================
-        // 
+        //
         // AutoModerationEvents
         //
         // ==================================================================================
@@ -257,24 +268,24 @@ namespace masz.Services
         {
             return await context.AutoModerationEvents.AsQueryable().CountAsync();
         }
-        
-        public async Task<List<DbCount>> GetModerationCountGraph(string guildId, DateTime since)
+
+        public async Task<List<DbCount>> GetModerationCountGraph(ulong guildId, DateTime since)
         {
             return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId && x.CreatedAt > since)
                 .GroupBy(x => new { Month = x.CreatedAt.Month, Year = x.CreatedAt.Year }).Select(x => new DbCount { Year = x.Key.Year, Month = x.Key.Month, Count = x.Count() }).OrderByDescending(x => x.Year).ThenByDescending(x => x.Month).ToListAsync();
         }
-        public async Task<List<AutoModerationTypeSplit>> GetModerationSplitGraph(string guildId, DateTime since)
+        public async Task<List<AutoModerationTypeSplit>> GetModerationSplitGraph(ulong guildId, DateTime since)
         {
             return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId && x.CreatedAt > since)
                 .GroupBy(x => new { Type = x.AutoModerationType }).Select(x => new AutoModerationTypeSplit { Type = x.Key.Type, Count = x.Count() }).ToListAsync();
         }
 
-        public async Task<int> CountAllModerationEventsForGuild(string guildId)
+        public async Task<int> CountAllModerationEventsForGuild(ulong guildId)
         {
             return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
         }
 
-        public async Task<int> CountAllModerationEventsForSpecificUserOnGuild(string guildId, string userId)
+        public async Task<int> CountAllModerationEventsForSpecificUserOnGuild(ulong guildId, ulong userId)
         {
             return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).CountAsync();
         }
@@ -283,45 +294,50 @@ namespace masz.Services
         {
             return await context.AutoModerationEvents.AsQueryable().ToListAsync();
         }
-        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUser(string userId)
+        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUser(ulong userId)
         {
             return await context.AutoModerationEvents.AsQueryable().Where(x => x.UserId == userId).ToListAsync();
         }
-        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(string guildId)
+        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUser(ulong userId, int minutes)
+        {
+            var since = DateTime.UtcNow.AddMinutes(-minutes);
+            return await context.AutoModerationEvents.AsQueryable().Where(x => x.UserId == userId && x.CreatedAt > since).ToListAsync();
+        }
+        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(ulong guildId)
         {
             return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
-        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(string guildId, int startPage, int pageSize)
+        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForGuild(ulong guildId, int startPage, int pageSize)
         {
             return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CreatedAt).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
         }
-        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUserOnGuild(string guildId, string userId, int startPage, int pageSize)
+        public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUserOnGuild(ulong guildId, ulong userId, int startPage, int pageSize)
         {
             return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.CreatedAt).Skip(startPage*pageSize).Take(pageSize).ToListAsync();
         }
 
-        public async Task DeleteAllModerationEventsForGuild(string guildid)
+        public async Task DeleteAllModerationEventsForGuild(ulong guildId)
         {
-            var events = await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildid).ToListAsync();
+            var events = await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
             context.AutoModerationEvents.RemoveRange(events);
         }
-        
+
         public async Task SaveModerationEvent(AutoModerationEvent modEvent)
         {
             await context.AutoModerationEvents.AddAsync(modEvent);
         }
 
         // ==================================================================================
-        // 
+        //
         // AutoModerationConfig
         //
         // ==================================================================================
 
-        public async Task<List<AutoModerationConfig>> SelectAllModerationConfigsForGuild(string guildId)
+        public async Task<List<AutoModerationConfig>> SelectAllModerationConfigsForGuild(ulong guildId)
         {
             return await context.AutoModerationConfigs.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
         }
-        public async Task<AutoModerationConfig> SelectModerationConfigForGuildAndType(string guildId, AutoModerationType type)
+        public async Task<AutoModerationConfig> SelectModerationConfigForGuildAndType(ulong guildId, AutoModerationType type)
         {
             return await context.AutoModerationConfigs.AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.AutoModerationType == type);
         }
@@ -333,14 +349,14 @@ namespace masz.Services
         {
             context.AutoModerationConfigs.Remove(modConfig);
         }
-        public async Task DeleteAllModerationConfigsForGuild(string guildId)
+        public async Task DeleteAllModerationConfigsForGuild(ulong guildId)
         {
             var events = await context.AutoModerationConfigs.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
             context.AutoModerationConfigs.RemoveRange(events);
         }
 
         // ==================================================================================
-        // 
+        //
         // Comments
         //
         // ==================================================================================
@@ -365,18 +381,18 @@ namespace masz.Services
             return await context.ModCaseComments.AsQueryable().FirstOrDefaultAsync(c => c.Id == commentId);
         }
 
-        public async Task<List<ModCaseComment>> SelectLastModCaseCommentsByGuild(string guildId)
+        public async Task<List<ModCaseComment>> SelectLastModCaseCommentsByGuild(ulong guildId)
         {
             return await context.ModCaseComments.Include(x => x.ModCase).AsQueryable().Where(x => x.ModCase.GuildId == guildId).OrderByDescending(x => x.CreatedAt).Take(10).ToListAsync();
         }
 
-        public async Task<int> CountCommentsForGuild(string guildId)
+        public async Task<int> CountCommentsForGuild(ulong guildId)
         {
             return await context.ModCaseComments.Include(x => x.ModCase).AsQueryable().Where(x => x.ModCase.GuildId == guildId).CountAsync();
         }
 
         // ==================================================================================
-        // 
+        //
         // CaseTemplates
         //
         // ==================================================================================
@@ -391,9 +407,9 @@ namespace masz.Services
             context.CaseTemplates.Remove(template);
         }
 
-        public async Task<CaseTemplate> GetSpecificCaseTemplate(string templateId)
+        public async Task<CaseTemplate> GetSpecificCaseTemplate(int templateId)
         {
-            return await context.CaseTemplates.AsQueryable().FirstOrDefaultAsync(x => x.Id.ToString() == templateId);
+            return await context.CaseTemplates.AsQueryable().FirstOrDefaultAsync(x => x.Id == templateId);
         }
 
         public async Task<List<CaseTemplate>> GetAllCaseTemplates()
@@ -401,24 +417,29 @@ namespace masz.Services
             return await context.CaseTemplates.AsQueryable().OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
 
-        public async Task<List<CaseTemplate>> GetAllTemplatesFromUser(string userId)
+        public async Task<List<CaseTemplate>> GetAllTemplatesFromUser(ulong userId)
         {
             return await context.CaseTemplates.AsQueryable().Where(x => x.UserId == userId).OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
 
-        public async Task DeleteAllTemplatesForGuild(string guildId)
+        public async Task DeleteAllTemplatesForGuild(ulong guildId)
         {
             var templates = await context.CaseTemplates.AsQueryable().Where(x => x.CreatedForGuildId == guildId).ToListAsync();
             context.CaseTemplates.RemoveRange(templates);
         }
 
+        public async Task<int> CountAllCaseTemplates()
+        {
+            return await context.CaseTemplates.AsQueryable().CountAsync();
+        }
+
         // ==================================================================================
-        // 
+        //
         // Motd
         //
         // ==================================================================================
 
-        public async Task<GuildMotd> GetMotdForGuild(string guildId)
+        public async Task<GuildMotd> GetMotdForGuild(ulong guildId)
         {
             return await context.GuildMotds.AsQueryable().Where(x => x.GuildId == guildId).FirstOrDefaultAsync();
         }
@@ -426,14 +447,14 @@ namespace masz.Services
         {
             context.GuildMotds.Update(motd);
         }
-        public async Task DeleteMotdForGuild(string guildId)
+        public async Task DeleteMotdForGuild(ulong guildId)
         {
             var motd = await context.GuildMotds.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
             context.GuildMotds.RemoveRange(motd);
         }
 
         // ==================================================================================
-        // 
+        //
         // Tokens
         //
         // ==================================================================================
@@ -469,19 +490,29 @@ namespace masz.Services
         }
 
         // ==================================================================================
-        // 
+        //
         // UserInvites
         //
         // ==================================================================================
 
-        public async Task<List<UserInvite>> GetInvitedUsersByUserId(string userId)
+        public async Task<List<UserInvite>> GetInvitedUsersByUser(ulong userId)
         {
             return await context.UserInvites.AsQueryable().Where(x => x.InviteIssuerId == userId).ToListAsync();
         }
 
-        public async Task<List<UserInvite>> GetUsedInvitesByUserId(string userId)
+        public async Task<List<UserInvite>> GetInvitedUsersByUserAndGuild(ulong userId, ulong guildId)
+        {
+            return await context.UserInvites.AsQueryable().Where(x => x.InviteIssuerId == userId && x.GuildId == guildId).ToListAsync();
+        }
+
+        public async Task<List<UserInvite>> GetUsedInvitesByUser(ulong userId)
         {
             return await context.UserInvites.AsQueryable().Where(x => x.JoinedUserId == userId).ToListAsync();
+        }
+
+        public async Task<List<UserInvite>> GetUsedInvitesByUserAndGuild(ulong userId, ulong guildId)
+        {
+            return await context.UserInvites.AsQueryable().Where(x => x.JoinedUserId == userId && x.GuildId == guildId).ToListAsync();
         }
 
         public async Task<int> CountTrackedInvites()
@@ -489,12 +520,12 @@ namespace masz.Services
             return await context.UserInvites.AsQueryable().CountAsync();
         }
 
-        public async Task<int> CountTrackedInvitesForGuild(string guildId)
+        public async Task<int> CountTrackedInvitesForGuild(ulong guildId)
         {
             return await context.UserInvites.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
         }
 
-        public async Task DeleteInviteHistoryByGuild(string guildId)
+        public async Task DeleteInviteHistoryByGuild(ulong guildId)
         {
             var userinvites = await context.UserInvites.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
             context.UserInvites.RemoveRange(userinvites);
@@ -505,8 +536,13 @@ namespace masz.Services
             return await context.UserInvites.AsQueryable().Where(x => x.UsedInvite == code).ToListAsync();
         }
 
+        public async Task SaveInvite(UserInvite userInvite)
+        {
+            await context.UserInvites.AddAsync(userInvite);
+        }
+
         // ==================================================================================
-        // 
+        //
         // UserMapping
         //
         // ==================================================================================
@@ -515,27 +551,27 @@ namespace masz.Services
         {
             return await context.UserMappings.AsQueryable().Where(x => x.CreatedAt > timeLimit).OrderByDescending(x => x.CreatedAt).Take(limit).ToListAsync();
         }
-        public async Task<UserMapping> GetUserMappingById(string id)
+        public async Task<UserMapping> GetUserMappingById(int id)
         {
-            return await context.UserMappings.AsQueryable().Where(x => x.Id.ToString() == id).FirstOrDefaultAsync();
+            return await context.UserMappings.AsQueryable().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<List<UserMapping>> GetUserMappingsByUserId(string userId)
+        public async Task<List<UserMapping>> GetUserMappingsByUserId(ulong userId)
         {
             return await context.UserMappings.AsQueryable().Where(x => x.UserA == userId || x.UserB == userId).OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
 
-        public async Task<List<UserMapping>> GetUserMappingsByUserIdAndGuildId(string userId, string guildId)
+        public async Task<List<UserMapping>> GetUserMappingsByUserIdAndGuildId(ulong userId, ulong guildId)
         {
             return await context.UserMappings.AsQueryable().Where(x => (x.UserA == userId || x.UserB == userId) && x.GuildId == guildId).OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
-        
-        public async Task<UserMapping> GetUserMappingByUserIdsAndGuildId(string userAId, string userBId, string guildId)
+
+        public async Task<UserMapping> GetUserMappingByUserIdsAndGuildId(ulong userAId, ulong userBId, ulong guildId)
         {
             return await context.UserMappings.AsQueryable().Where(x => ((x.UserA == userAId || x.UserB == userAId) && (x.UserA == userBId || x.UserB == userBId)) && x.GuildId == guildId).FirstOrDefaultAsync();
         }
 
-        public async Task<List<UserMapping>> GetUserMappingsByGuildId(string guildId)
+        public async Task<List<UserMapping>> GetUserMappingsByGuildId(ulong guildId)
         {
             return await context.UserMappings.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
@@ -544,7 +580,7 @@ namespace masz.Services
         {
             return await context.UserMappings.AsQueryable().CountAsync();
         }
-        public async Task<int> CountUserMappingsForGuild(string guildId)
+        public async Task<int> CountUserMappingsForGuild(ulong guildId)
         {
             return await context.UserMappings.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
         }
@@ -559,14 +595,14 @@ namespace masz.Services
             context.UserMappings.Update(userMapping);
         }
 
-        public async Task DeleteUserMappingByGuild(string guildId)
+        public async Task DeleteUserMappingByGuild(ulong guildId)
         {
             var userMappings = await context.UserMappings.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
             context.UserMappings.RemoveRange(userMappings);
         }
 
         // ==================================================================================
-        // 
+        //
         // UserNotes
         //
         // ==================================================================================
@@ -576,22 +612,22 @@ namespace masz.Services
             return await context.UserNotes.AsQueryable().Where(x => x.UpdatedAt > timeLimit).OrderByDescending(x => x.UpdatedAt).Take(limit).ToListAsync();
         }
 
-        public async Task<UserNote> GetUserNoteById(string id)
+        public async Task<UserNote> GetUserNoteById(int id)
         {
-            return await context.UserNotes.AsQueryable().Where(x => x.Id.ToString() == id).FirstOrDefaultAsync();
+            return await context.UserNotes.AsQueryable().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
-        
-        public async Task<List<UserNote>> GetUserNotesByUserId(string userId)
+
+        public async Task<List<UserNote>> GetUserNotesByUserId(ulong userId)
         {
             return await context.UserNotes.AsQueryable().Where(x => x.UserId == userId).OrderByDescending(x => x.UpdatedAt).ToListAsync();
         }
 
-        public async Task<List<UserNote>> GetUserNotesByGuildId(string guildId)
+        public async Task<List<UserNote>> GetUserNotesByGuildId(ulong guildId)
         {
             return await context.UserNotes.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.UpdatedAt).ToListAsync();
         }
 
-        public async Task<UserNote> GetUserNoteByUserIdAndGuildId(string userId, string guildId)
+        public async Task<UserNote> GetUserNoteByUserIdAndGuildId(ulong userId, ulong guildId)
         {
             return await context.UserNotes.AsQueryable().Where(x => x.UserId == userId && x.GuildId == guildId).FirstOrDefaultAsync();
         }
@@ -601,7 +637,7 @@ namespace masz.Services
             return await context.UserNotes.AsQueryable().CountAsync();
         }
 
-        public async Task<int> CountUserNotesForGuild(string guildId)
+        public async Task<int> CountUserNotesForGuild(ulong guildId)
         {
             return await context.UserNotes.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
         }
@@ -616,7 +652,7 @@ namespace masz.Services
             context.UserNotes.Update(userNote);
         }
 
-        public async Task DeleteUserNoteByGuild(string guildId)
+        public async Task DeleteUserNoteByGuild(ulong guildId)
         {
             var userNotes = await context.UserNotes.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
             context.UserNotes.RemoveRange(userNotes);

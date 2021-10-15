@@ -1,0 +1,311 @@
+{
+    "namespace": "ModCaseView",
+    "Suspect": {
+        "description": "The suspect",
+        "en": "Suspect",
+        "de": "Verdächtiger",
+        "at": "Verdächtiga"
+    },
+    "ID": {
+        "description": "the ID (identifier) of an object",
+        "en": "ID",
+        "de": "ID",
+        "at": "ID"
+    },
+    "Moderator": {
+        "description": "The moderator",
+        "en": "Moderator",
+        "de": "Moderator",
+        "at": "Modarator"
+    },
+    "Punishment": {
+        "description": "The punishment",
+        "en": "Punishment",
+        "de": "Bestrafung",
+        "at": "Bestrofung"
+    },
+    "Guild": {
+        "description": "The guild",
+        "en": "Guild",
+        "de": "Gilde",
+        "at": "Güde"
+    },
+    "PunishedUntil": {
+        "description": "punished until {date}",
+        "en": "Punished until:",
+        "de": "Bestraft bis:",
+        "at": "Bestroft bis:"
+    },
+    "PunishedForever": {
+        "description": "punished forever",
+        "en": "Punished forever",
+        "de": "Bestraft für immer",
+        "at": "Bestroft fia imma"
+    },
+    "PunishmentExpired": {
+        "description": "punishment expired",
+        "en": "Punishment is expired.",
+        "de": "Bestrafung ist ausgelaufen",
+        "at": "Bestrofung is ausglaufn"
+    },
+    "CreatedAt": {
+        "description": "created at",
+        "en": "Created at",
+        "de": "Erstellt am",
+        "at": "Erstöt am"
+    },
+    "EditedAt": {
+        "description": "edited at",
+        "en": "Edited at",
+        "de": "Aktualisiert",
+        "at": "Aktualisiat"
+    },
+    "LastEditModerator": {
+        "description": "last edit by moderator x",
+        "en": "Last edit by moderator",
+        "de": "Aktualisiert von",
+        "at": "Aktualisiat vo"
+    },
+    "Description": {
+        "description": "description",
+        "en": "Description",
+        "de": "Beschreibung",
+        "at": "Beschreibung"
+    },
+    "UploadedFiles": {
+        "description": "uploaded files",
+        "en": "Uploaded files",
+        "de": "Hochgeladene Dateien",
+        "at": "Hochglodnene Datein"
+    },
+    "Upload": {
+        "description": "upload button",
+        "en": "Upload",
+        "de": "Upload",
+        "at": "Upload"
+    },
+    "Comments": {
+        "description": "Comments",
+        "en": "Comments",
+        "de": "Kommentare",
+        "at": "Kommentare"
+    },
+    "NewComment": {
+        "description": "New comment field",
+        "en": "New comment",
+        "de": "Neuer Kommentar",
+        "at": "Neua Kommentar"
+    },
+    "LockComments": {
+        "description": "lock comments",
+        "en": "Lock comments",
+        "de": "Kommentare sperren",
+        "at": "Kommentare spean"
+    },
+    "UnlockComments": {
+        "description": "unlock comments",
+        "en": "Unlock comments",
+        "de": "Kommentare freigeben",
+        "at": "Komentare freigebn"
+    },
+    "PostComment": {
+        "description": "post comment",
+        "en": "Post comment",
+        "de": "Kommentar absenden",
+        "at": "Kommentar obsendn"
+    },
+    "CaseMarkedToDelete": {
+        "description": "case marked to be deleted by user y at x date",
+        "en": "Marked to be deleted - {{user}}",
+        "de": "Zum Löschen markiert - {{user}}",
+        "at": "Zum Leschn markiat - {{user}}"
+    },
+    "CommentsLocked": {
+        "description": "case comments locked by user y",
+        "en": "Comments locked - {{user}}",
+        "de": "Kommentare gesperrt - {{user}}",
+        "at": "Kommentare gsperrt - {{user}}"
+    },
+    "Restore": {
+        "description": "restore button",
+        "en": "Restore",
+        "de": "Wiederherstellen",
+        "at": "Wiedaherstön"
+    },
+    "View": {
+        "description": "View file",
+        "en": "View",
+        "de": "Einsehen",
+        "at": "Eisehn"
+    },
+    "Delete": {
+        "description": "delete button",
+        "en": "Delete",
+        "de": "Löschen",
+        "at": "Leschn"
+    },
+    "Moderators": {
+        "description": "moderators",
+        "en": "Moderators",
+        "de": "Moderatoren",
+        "at": "Modaratorn"
+    },
+    "FailedToLoad": {
+        "Punishments": {
+            "description": "punishments",
+            "en": "Failed to load available punishments.",
+            "de": "Verfügbare Bestrafungen konnten nicht geladen werden.",
+            "at": "Verfügbare Bestrofungen konntn ned glodn wean."
+        },
+        "Files": {
+            "description": "files",
+            "en": "Failed to load files.",
+            "de": "Dateien konnten nicht geladen werden.",
+            "at": "Datein konntn ned glodn wean."
+        },
+        "Guild": {
+            "description": "Guild info",
+            "en": "Failed to load guild info.",
+            "de": "Gildeninformationen konnten nicht geladen werden.",
+            "at": "Güdninformationen konntn ned glodn wean."
+        },
+        "Case": {
+            "description": "Case",
+            "en": "Failed to load case.",
+            "de": "Vorfall konnte nicht geladen werden.",
+            "at": "Vorfoi konnte ned glodn wean."
+        }
+    },
+    "DeleteCase": {
+        "Deleted": {
+            "description": "deleted",
+            "en": "Case marked to be deleted.",
+            "de": "Vorfall zum Löschen vormarkiert.",
+            "at": "Vorfoi zum Leschn markiat."
+        },
+        "ForceDeleted": {
+            "description": "force deleted",
+            "en": "Case deleted.",
+            "de": "Vorfall gelöscht.",
+            "at": "Vorfoi glescht."
+        },
+        "Failed": {
+            "description": "failed delete",
+            "en": "Failed to delete case.",
+            "de": "Vorfall konnte nicht gelöscht werden.",
+            "at": "Vorfoi konnt ned glescht wean."
+        }
+    },
+    "RestoreCase": {
+        "Restored": {
+            "description": "restored",
+            "en": "Restored case.",
+            "de": "Vorfall wiederhergestellt.",
+            "at": "Vorfoi wiedahergstöt."
+        },
+        "Failed": {
+            "description": "failed restore",
+            "en": "Failed to restore case.",
+            "de": "Vorfall konnte nicht wiederhergestellt werden.",
+            "at": "Vorfoi konnt ned wiederhergstöt wean."
+        }
+    },
+    "FileUpload": {
+        "Uploaded": {
+            "description": "file uploaded",
+            "en": "File uploaded.",
+            "de": "Datei hochgeladen",
+            "at": "Datei hochglodn"
+        },
+        "Failed": {
+            "description": "failed upload",
+            "en": "Failed to upload ffile.",
+            "de": "Datei konnte nicht hochgeladen werden.",
+            "at": "Datei konnt ned hochglodn wean."
+        }
+    },
+    "FileDelete": {
+        "Deleted": {
+            "description": "File deleted",
+            "en": "File deleted.",
+            "de": "Datei gelöscht.",
+            "at": "Datei glescht."
+        },
+        "Failed": {
+            "description": "Failed to file delete",
+            "en": "Failed to delete file",
+            "de": "Datei konnte nicht gelöscht werden.",
+            "at": "Datei konnt ned glescht wean."
+        }
+    },
+    "CommentDelete": {
+        "Deleted": {
+            "description": "comment deleted",
+            "en": "Comment deleted.",
+            "de": "Kommentar gelöscht.",
+            "at": "Kommentar glescht."
+        },
+        "Failed": {
+            "description": "Failed to comment delete",
+            "en": "Failed to delete comment",
+            "de": "Kommentar konnte nicht gelöscht werden.",
+            "at": "Kommentar konnt ned glescht wean."
+        }
+    },
+    "CommentLock": {
+        "Locked": {
+            "description": "comment locked",
+            "en": "Comments locked.",
+            "de": "Kommentare gesperrt.",
+            "at": "Kommentare gsperrt."
+        },
+        "Failed": {
+            "description": "Failed to comment lock",
+            "en": "Failed to lock comments",
+            "de": "Kommentare konnte nicht gesperrt werden.",
+            "at": "Kommentare konntn ned gsperrt wean."
+        }
+    },
+    "CommentUnlock": {
+        "Unlocked": {
+            "description": "comment unlocked",
+            "en": "Comments unlocked.",
+            "de": "Kommentare freigegeben.",
+            "at": "Kommentare freigebn."
+        },
+        "Failed": {
+            "description": "Failed to comment unlock",
+            "en": "Failed to unlock comments",
+            "de": "Kommentare konnte nicht freigegeben werden.",
+            "at": "Kommentare konntn ned freigebn wean."
+        }
+    },
+    "CommentPost": {
+        "Posted": {
+            "description": "comment posted",
+            "en": "Comment posted.",
+            "de": "Kommentar gespeichert.",
+            "at": "Kommentar gspeichat."
+        },
+        "Failed": {
+            "description": "Failed to comment post",
+            "en": "Failed to post comment",
+            "de": "Kommentar konnte nicht gespeichert werden.",
+            "at": "Kommentar konnt ned gspeichat wean."
+        }
+    },
+    "CommentUpdate": {
+        "Updated": {
+            "description": "comment updated",
+            "en": "Comment updated.",
+            "de": "Kommentar aktualisiert.",
+            "at": "Kommentar aktualisiat."
+        },
+        "Failed": {
+            "description": "Failed to comment update",
+            "en": "Failed to update comment",
+            "de": "Kommentar konnte nicht aktualisiert werden.",
+            "at": "Kommentar konnt ned aktualisiat wean."
+        }
+    }
+}

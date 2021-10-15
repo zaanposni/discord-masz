@@ -58,8 +58,8 @@ namespace masz.Migrations
                     b.Property<string>("CustomWordFilter")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("GuildId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("GuildId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<string>("IgnoreChannels")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -111,20 +111,20 @@ namespace masz.Migrations
                     b.Property<string>("Discriminator")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("GuildId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("GuildId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<string>("MessageContent")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("MessageId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("MessageId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<string>("Nickname")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("UserId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<string>("Username")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -149,9 +149,6 @@ namespace masz.Migrations
                     b.Property<DateTime?>("CasePunishedUntil")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("CasePunishment")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<int>("CasePunishmentType")
                         .HasColumnType("int");
 
@@ -161,14 +158,14 @@ namespace masz.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("CreatedForGuildId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("CreatedForGuildId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<string>("TemplateName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("UserId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<int>("ViewPermission")
                         .HasColumnType("int");
@@ -199,8 +196,8 @@ namespace masz.Migrations
                     b.Property<bool>("ExecuteWhoisOnJoin")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("GuildId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("GuildId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<string>("ModInternalNotificationWebhook")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -216,6 +213,9 @@ namespace masz.Migrations
 
                     b.Property<string>("MutedRoles")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("PreferredLanguage")
+                        .HasColumnType("int");
 
                     b.Property<bool>("PublishModeratorInfo")
                         .ValueGeneratedOnAdd()
@@ -239,8 +239,8 @@ namespace masz.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("GuildId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("GuildId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<string>("Message")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -248,8 +248,8 @@ namespace masz.Migrations
                     b.Property<bool>("ShowMotd")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("UserId")
+                        .HasColumnType("bigint unsigned");
 
                     b.HasKey("Id");
 
@@ -276,8 +276,8 @@ namespace masz.Migrations
                     b.Property<int>("CreationType")
                         .HasColumnType("int");
 
-                    b.Property<string>("DeletedByUserId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("DeletedByUserId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<string>("Description")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -285,9 +285,8 @@ namespace masz.Migrations
                     b.Property<string>("Discriminator")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("GuildId")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("GuildId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<string>("Labels")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -295,20 +294,20 @@ namespace masz.Migrations
                     b.Property<DateTime>("LastEditedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("LastEditedByModId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("LastEditedByModId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<DateTime?>("LockedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("LockedByUserId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("LockedByUserId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<DateTime?>("MarkedToDeleteAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("ModId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("ModId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<string>("Nickname")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -322,9 +321,6 @@ namespace masz.Migrations
                     b.Property<DateTime?>("PunishedUntil")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Punishment")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<bool>("PunishmentActive")
                         .HasColumnType("tinyint(1)");
 
@@ -334,8 +330,8 @@ namespace masz.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("UserId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<string>("Username")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -363,8 +359,8 @@ namespace masz.Migrations
                     b.Property<int>("ModCaseId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("UserId")
+                        .HasColumnType("bigint unsigned");
 
                     b.HasKey("Id");
 
@@ -379,23 +375,23 @@ namespace masz.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("GuildId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("GuildId")
+                        .HasColumnType("bigint unsigned");
 
-                    b.Property<DateTime>("InviteCreatedAt")
+                    b.Property<DateTime?>("InviteCreatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("InviteIssuerId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("InviteIssuerId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<DateTime>("JoinedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("JoinedUserId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("JoinedUserId")
+                        .HasColumnType("bigint unsigned");
 
-                    b.Property<string>("TargetChannelId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("TargetChannelId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<string>("UsedInvite")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -414,20 +410,20 @@ namespace masz.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("CreatorUserId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("CreatorUserId")
+                        .HasColumnType("bigint unsigned");
 
-                    b.Property<string>("GuildId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("GuildId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<string>("Reason")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("UserA")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("UserA")
+                        .HasColumnType("bigint unsigned");
 
-                    b.Property<string>("UserB")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("UserB")
+                        .HasColumnType("bigint unsigned");
 
                     b.HasKey("Id");
 
@@ -440,20 +436,20 @@ namespace masz.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("CreatorId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<string>("Description")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("GuildId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("GuildId")
+                        .HasColumnType("bigint unsigned");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<ulong>("UserId")
+                        .HasColumnType("bigint unsigned");
 
                     b.HasKey("Id");
 

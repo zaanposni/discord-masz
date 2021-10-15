@@ -3,14 +3,32 @@
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <h1 class="example-app-name">{{ title }}</h1>
   </mat-toolbar>
-  
+
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0" autosize>
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
         <a class="d-flex crs-ptr" (click)="open('guilds')">
           <div class="rounded navitem nohover">
-            <img width="24px" height="24px" src="favicon.ico" alt="icon"/>
-            <span>{{ title }}</span>
+            <img class="rounded-circle" width="24px" height="24px" alt="icon" [attr.src]="applicationInfo?.iconUrl ?? 'favicon.ico'"/>
+            <span>{{ applicationInfo?.name ?? 'MASZ' }}</span>
+          </div>
+        </a>
+
+        <a>
+          <div class="rounded navitem w-100">
+            <mat-icon aria-hidden="false" aria-label="tune icon">language</mat-icon>
+            <mat-select [value]="currentAppSettings.language" #langSelect (selectionChange)="changeLanguage(langSelect.value)">
+              <mat-option *ngFor="let lang of languages" [value]="lang.language">{{ lang.displayName }}</mat-option>
+            </mat-select>
+          </div>
+        </a>
+
+        <a>
+          <div class="rounded navitem w-100">
+            <mat-icon aria-hidden="false" aria-label="tune icon">more_time</mat-icon>
+            <mat-select [value]="currentAppSettings.timezone" #zoneSelect (selectionChange)="changeTimezone(zoneSelect.value)">
+              <mat-option *ngFor="let zone of timezones" [value]="zone">{{ zone }}</mat-option>
+            </mat-select>
           </div>
         </a>
 
@@ -27,7 +45,7 @@
           <a class="d-flex" href="/api/v1/logout">
             <div class="rounded navitem">
               <mat-icon aria-hidden="false" aria-label="tune icon">logout</mat-icon>
-              <span>Logout</span>
+              <span>{{ 'Toolbar.Logout' | translate }}</span>
             </div>
           </a>
         </mat-expansion-panel>
@@ -35,7 +53,7 @@
         <a class="d-flex" (click)="open('login')" *ngIf="!loggedIn">
           <div [class.activatedNav]="activatedNav[1].startsWith('login') || activatedNav[1] === ''" class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="tune icon">login</mat-icon>
-            <span>Login</span>
+            <span>{{ 'Toolbar.Login' | translate }}</span>
           </div>
         </a>
 
@@ -44,7 +62,7 @@
         <a class="d-flex" (click)="open('guilds')" *ngIf="this.currentUser && loggedIn">
           <div [class.activatedNav]="activatedNav[1] === 'guilds' && (activatedNav[2] === 'new' || activatedNav[2] === undefined)" class="rounded navitem pr-1">
             <mat-icon aria-hidden="false" aria-label="group icon">group</mat-icon>
-            <span>All Guilds</span>
+            <span>{{ 'Guilds.All' | translate }}</span>
             <div class="flex-grow-1"></div>
             <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon"
              (click)="open('guilds', 'new'); $event.stopPropagation()" *ngIf="this.currentUser.isAdmin">
@@ -60,7 +78,7 @@
             <a class="d-flex">
               <div class="rounded navitem nohover">
                 <mat-icon aria-hidden="false" aria-label="group icon">security</mat-icon>
-                <span>Admin guilds</span>
+                <span>{{ 'Guilds.Admin' | translate }}</span>
               </div>
             </a>
           </mat-expansion-panel-header>
@@ -79,7 +97,7 @@
             </div>
           </a>
         </mat-expansion-panel>
-        
+
         <!-- Mod Guild -->
         <!-- #################################################################################################################################################### -->
         <mat-expansion-panel *ngIf="this.currentUser && loggedIn && this.currentUser?.modGuilds?.length">
@@ -87,7 +105,7 @@
             <a class="d-flex">
               <div class="rounded navitem nohover">
                 <mat-icon aria-hidden="false" aria-label="group icon">verified_user</mat-icon>
-                <span>Moderator guilds</span>
+                <span>{{ 'Guilds.Moderator' | translate }}</span>
               </div>
             </a>
           </mat-expansion-panel-header>
@@ -115,7 +133,7 @@
             <a class="d-flex">
               <div class="rounded navitem nohover">
                 <mat-icon aria-hidden="false" aria-label="group icon">account_circle</mat-icon>
-                <span>Guilds</span>
+                <span>{{ 'Guilds.Member' | translate }}</span>
               </div>
             </a>
           </mat-expansion-panel-header>
@@ -143,7 +161,7 @@
             <a class="d-flex">
               <div class="rounded navitem nohover">
                 <mat-icon aria-hidden="false" aria-label="group icon">block</mat-icon>
-                <span>Banned from guilds</span>
+                <span>{{ 'Guilds.Banned' | translate }}</span>
               </div>
             </a>
           </mat-expansion-panel-header>
@@ -163,14 +181,14 @@
             </div>
           </a>
         </mat-expansion-panel>
-        
+
         <mat-divider></mat-divider>
-        
+
         <a class="d-flex" (click)="open('scanning')"
          *ngIf="this.currentUser?.modGuilds?.length || this.currentUser?.adminGuilds?.length || this.currentUser?.isAdmin">
           <div [class.activatedNav]="activatedNav[1] === 'userscan' || activatedNav[1] === 'scanning'" class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="tune icon">person_search</mat-icon>
-            <span>Scanning</span>
+            <span>{{ 'Toolbar.Scanning' | translate }}</span>
           </div>
         </a>
 
@@ -179,43 +197,57 @@
         <a class="d-flex" (click)="open('tokens')" *ngIf="this.currentUser?.isAdmin">
           <div [class.activatedNav]="activatedNav[1] === 'tokens'" class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="tune icon">api</mat-icon>
-            <span>API</span>
+            <span>{{ 'Toolbar.API' | translate }}</span>
           </div>
         </a>
         <a class="d-flex" (click)="open('adminstats')" *ngIf="this.currentUser?.isAdmin">
           <div [class.activatedNav]="activatedNav[1] === 'adminstats'" class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="tune icon">insights</mat-icon>
-            <span>Insights</span>
+            <span>{{ 'Toolbar.Insights' | translate }}</span>
           </div>
         </a>
         <a class="d-flex" (click)="open('patchnotes')">
           <div [class.activatedNav]="activatedNav[1] === 'patchnotes'" class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="tune icon">update</mat-icon>
-            <span>Patchnotes</span>
+            <span>{{ 'Toolbar.Patchnotes' | translate }}</span>
           </div>
         </a>
         <a class="d-flex" (click)="open('donate')">
           <div [class.activatedNav]="activatedNav[1] === 'donate'" class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="tune icon">forum</mat-icon>
-            <span>Community</span>
+            <span>{{ 'Toolbar.Community' | translate }}</span>
           </div>
         </a>
-        <a class="d-flex" (click)="open('guidelines')">
-          <div [class.activatedNav]="activatedNav[1] === 'guidelines'" class="rounded navitem">
-            <mat-icon aria-hidden="false" aria-label="tune icon">policy</mat-icon>
-            <span>Terms</span>
-          </div>
-        </a>
+
         <a class="d-flex" href="https://github.com/zaanposni/discord-masz" target="_blank" rel="noreferrer">
           <div class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="github link" svgIcon="githublogo"></mat-icon>
-            <span>GitHub</span>
+            <span>{{ 'Toolbar.GitHub' | translate }}</span>
           </div>
         </a>
-        <a class="d-flex" href="legal.html" target="_blank">
+
+        <ng-container *ngIf="applicationInfo?.termsOfServiceUrl; else elseTemplateToS">
+          <a class="d-flex" href="{{ applicationInfo?.termsOfServiceUrl }}" target="_blank">
+            <div [class.activatedNav]="activatedNav[1] === 'guidelines'" class="rounded navitem">
+              <mat-icon aria-hidden="false" aria-label="tune icon">policy</mat-icon>
+              <span>{{ 'Toolbar.Terms' | translate }}</span>
+            </div>
+          </a>
+
+        </ng-container>
+        <ng-template #elseTemplateToS>
+          <a class="d-flex" (click)="open('guidelines')">
+            <div [class.activatedNav]="activatedNav[1] === 'guidelines'" class="rounded navitem">
+              <mat-icon aria-hidden="false" aria-label="tune icon">policy</mat-icon>
+              <span>{{ 'Toolbar.Terms' | translate }}</span>
+            </div>
+          </a>
+        </ng-template>
+
+        <a class="d-flex" target="_blank" [attr.href]="applicationInfo?.privacyPolicyUrl ?? 'legal.html'">
           <div class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="legal notes">gavel</mat-icon>
-            <span>Legal</span>
+            <span>{{ 'Toolbar.Legal' | translate }}</span>
           </div>
         </a>
       </mat-nav-list>

@@ -1,22 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using masz.data;
-using masz.Dtos.DiscordAPIResponses;
-using masz.Dtos.ModCase;
 using masz.Models;
-using masz.Services;
+using masz.Models.Views;
+using masz.Repositories;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
+using masz.Enums;
 
 namespace masz.Controllers
 {
@@ -25,67 +17,35 @@ namespace masz.Controllers
     [Authorize]
     public class TemplateViewController : SimpleController
     {
-        private readonly ILogger<TemplateViewController> logger;
+        private readonly ILogger<TemplateViewController> _logger;
 
 
         public TemplateViewController(ILogger<TemplateViewController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.logger = logger;
-        }
-
-        private async Task<bool> allowedToView(CaseTemplate template) {
-            var currentUser = await this.IsValidUser();
-            if (currentUser == null) {
-                return false;
-            }
-            if (config.Value.SiteAdminDiscordUserIds.Contains(currentUser.Id)) {
-                return true;
-            }
-            if (template.UserId == currentUser.Id) {
-                return true;
-            }
-
-            if (template.ViewPermission == ViewPermission.Self) {
-                return false;
-            }
-
-            if (template.ViewPermission == ViewPermission.Global) {
-                return true;
-            }
-
-            return await this.HasPermissionOnGuild(DiscordPermission.Moderator, template.CreatedForGuildId);
+            _logger = logger;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetTemplatesView([FromQuery] string userId) 
+        public async Task<IActionResult> GetTemplatesView([FromQuery] ulong userId = 0)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (await this.IsValidUser() == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            // ========================================================
+            Identity currentIdentity = await GetIdentity();
 
-            List<CaseTemplate> templates;
-            if (String.IsNullOrWhiteSpace(userId)) {
-                templates = await database.GetAllCaseTemplates();
-            } else {
-                templates = await database.GetAllTemplatesFromUser(userId);
+            CaseTemplateRepository repository = CaseTemplateRepository.CreateDefault(_serviceProvider, currentIdentity);
+            List<CaseTemplate> templates = await repository.GetTemplatesBasedOnPermissions();
+            if (userId != 0)
+            {
+                templates.Where(x => x.UserId == userId).ToList();
             }
-            List<TemplateView> templatesView = new List<TemplateView>();
+            List<CaseTemplateExpandedView> templatesView = new List<CaseTemplateExpandedView>();
             foreach (var template in templates)
             {
-                if (await allowedToView(template)) {
-                    templatesView.Add( new TemplateView() {
-                        CaseTemplate = template,
-                        Creator = await discord.FetchUserInfo(template.UserId, CacheBehavior.OnlyCache),
-                        Guild = await discord.FetchGuildInfo(template.CreatedForGuildId, CacheBehavior.Default)
-                    });
-                }
+                templatesView.Add( new CaseTemplateExpandedView(
+                    template,
+                    await _discordAPI.FetchUserInfo(template.UserId, CacheBehavior.OnlyCache),
+                    await _discordAPI.FetchGuildInfo(template.CreatedForGuildId, CacheBehavior.Default)
+                ));
             }
 
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning Templates.");
             return Ok(templatesView);
         }
     }

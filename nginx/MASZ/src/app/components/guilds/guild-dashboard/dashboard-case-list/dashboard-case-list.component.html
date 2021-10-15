@@ -1,7 +1,7 @@
 <div class="card-container">
     <div class="card-container-body d-flex flex-column flex-wrap flex-shrink-0 flex-grow-1">
         <span class="mat-h1 font-weight-bold mb-2">
-            {{ title }}
+            {{ 'DashboardCaseList.' + title | translate }}
         </span>
         <mat-spinner *ngIf="this.loading"></mat-spinner>
         <div *ngIf="!this.loading && cases" class="w-100 d-flex flex-column">
@@ -10,7 +10,7 @@
             </app-modcase-card-compact>
         </div>
         <div *ngIf="!this.loading && cases.length === 0">
-            <span>Nothing to see here.</span>
+            <span>{{ 'DashboardCaseList.NoCasesFound' | translate }}</span>
         </div>
     </div>
 </div>

@@ -1,0 +1,27 @@
+{
+    "namespace": "UsermapEditDialog",
+    "EditUsermap": {
+        "description": "Edit usermap",
+        "en": "Edit usermap",
+        "de": "Benutzerbeziehung aktualisieren",
+        "at": "Benutzabeziehungen aktualisian"
+    },
+    "Description": {
+        "description": "description field",
+        "en": "Description",
+        "de": "Beschreibung",
+        "at": "Beschreibung"
+    },
+    "Cancel": {
+        "description": "cancel button",
+        "en": "Cancel",
+        "de": "Abbrechen",
+        "at": "Obrechn"
+    },
+    "Confirm": {
+        "description": "confirm button",
+        "en": "Confirm",
+        "de": "Bestätigen",
+        "at": "Zustima"
+    }
+}

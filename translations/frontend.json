@@ -1,0 +1,212 @@
+{
+    "LoginWithDiscord": {
+        "Button": {
+            "description": "Login button",
+            "en": "Login with Discord",
+            "de": "Mit Discord anmelden",
+            "at": "Mit Discord omödn"
+        },
+        "Loading": {
+            "description": "log in loading",
+            "en": "Logging you in with Discord...",
+            "de": "Du wirst angemeldet...",
+            "at": "Du wiast ogmödt..."
+        }
+    },
+    "Case": {
+        "description": "case",
+        "en": "Case",
+        "de": "Vorfall",
+        "at": "Vorfoi"
+    },
+    "Cases": {
+        "description": "cases",
+        "en": "Cases",
+        "de": "Vorfälle",
+        "at": "Vorfälle"
+    },
+    "Punishment": {
+        "description": "punishment",
+        "en": "Punishment",
+        "de": "Bestrafung",
+        "at": "Bestrofung"
+    },
+    "Punishments": {
+        "description": "punishments",
+        "en": "Punishments",
+        "de": "Bestrafungen",
+        "at": "Bestrofungen"
+    },
+    "Bans": {
+        "description": "bans",
+        "en": "Bans",
+        "de": "Banns",
+        "at": "Banns"
+    },
+    "Mutes": {
+        "description": "mutes",
+        "en": "Mutes",
+        "de": "Stummschaltungen",
+        "at": "Stummschoitungen"
+    },
+    "Automods": {
+        "description": "automoderations",
+        "en": "Automods",
+        "de": "Automods",
+        "at": "Automods"
+    },
+    "Automoderations": {
+        "description": "automoderations",
+        "en": "Automoderations",
+        "de": "Automoderationen",
+        "at": "Automodarationen"
+    },
+    "Invite": {
+        "description": "invite",
+        "en": "Invite",
+        "de": "Einladung",
+        "at": "Eiladung"
+    },
+    "Invites": {
+        "description": "invites",
+        "en": "Invites",
+        "de": "Einladungen",
+        "at": "Eiladungen"
+    },
+    "Usernotes": {
+        "description": "usernotes",
+        "en": "Usernotes",
+        "de": "Nutzernotizen",
+        "at": "Nutzanotizn"
+    },
+    "Usermaps": {
+        "description": "usermaps",
+        "en": "Usermaps",
+        "de": "Benutzerbeziehungen",
+        "at": "Benutzanotizn"
+    },
+    "Comments": {
+        "description": "comments",
+        "en": "Comments",
+        "de": "Kommentare",
+        "at": "Kommentare"
+    },
+    "Loading": {
+        "description": "loading",
+        "en": "Loading...",
+        "de": "Lädt...",
+        "at": "Lodt..."
+    },
+    "NothingHere": {
+        "description": "Nothing here.",
+        "en": "Nothing here.",
+        "de": "Nichts gefunden.",
+        "at": "Nix gfundn"
+    },
+    "AcceptTermsOnLogin": {
+        "description": "Accept terms on login",
+        "en": "By logging in you accept our Terms and Guidelines.",
+        "de": "Beim Anmelden stimmen Sie unseren Nutzungsbedingungen und Richtlinien zu.",
+        "at": "Beim omödn stimmens de Nutzungsbedinungen und de Richtlinien zua."
+    },
+    "Toolbar": {
+        "Login": {
+            "description": "Login button",
+            "en": "Login",
+            "de": "Anmelden",
+            "at": "Omödn"
+        },
+        "Logout": {
+            "description": "Logout button",
+            "en": "Logout",
+            "de": "Abmelden",
+            "at": "Obmödn"
+        },
+        "Patchnotes": {
+            "description": "Patchnotes",
+            "en": "Patchnotes",
+            "de": "Patchnotizen",
+            "at": "Patchnotizn"
+        },
+        "Community": {
+            "description": "Community",
+            "en": "Community",
+            "de": "Community",
+            "at": "Community"
+        },
+        "Terms": {
+            "description": "Terms",
+            "en": "Terms",
+            "de": "Nutzungsbedingungen",
+            "at": "Nutzungsbedingungen"
+        },
+        "GitHub": {
+            "description": "GitHub",
+            "en": "GitHub",
+            "de": "GitHub",
+            "at": "GitHab"
+        },
+        "Legal": {
+            "description": "Legal",
+            "en": "Legal",
+            "de": "Rechtliches",
+            "at": "Rechtlichs"
+        },
+        "API": {
+            "description": "API",
+            "en": "API",
+            "de": "API",
+            "at": "API"
+        },
+        "Insights": {
+            "description": "Insights",
+            "en": "Insights",
+            "de": "Statistiken",
+            "at": "Statistikn"
+        },
+        "Scanning": {
+            "description": "Scanning",
+            "en": "Scanning",
+            "de": "Untersuchung",
+            "at": "Untasuchung"
+        }
+    },
+    "Guilds": {
+        "Guilds": {
+            "description": "Guilds",
+            "en": "Guilds",
+            "de": "Gilden",
+            "at": "Güdn"
+        },
+        "All": {
+            "description": "All guilds",
+            "en": "All guilds",
+            "de": "Alle Gilden",
+            "at": "Olle Güdn"
+        },
+        "Admin": {
+            "description": "Admin guilds",
+            "en": "Admin guilds",
+            "de": "Admingilden",
+            "at": "Admingüdn"
+        },
+        "Moderator": {
+            "description": "Moderator guilds",
+            "en": "Moderator guilds",
+            "de": "Moderatorengilden",
+            "at": "Modaratorengüdn"
+        },
+        "Member": {
+            "description": "Member guilds",
+            "en": "Guilds",
+            "de": "Gilden",
+            "at": "Güdn"
+        },
+        "Banned": {
+            "description": "Banned guilds",
+            "en": "Banned from guilds",
+            "de": "Gesperrt von Gilden",
+            "at": "Gsperrt vo Güden"
+        }
+    }
+}

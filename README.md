@@ -15,6 +15,7 @@
 ⭐ **Infractions and managed (temporary) punishments** - to moderate your server<br/>
 ⭐ **Userscan** - quickly spot relations between users with a included visualization<br/>
 ⭐ **Quicksearch** - to reliably search for any infractions or notes a user has<br/>
+⭐ **Localization** - timezones and languages are fully customizable<br/>
 ⭐ **Automoderation** - to give trolls no chance<br/>
 ⭐ **Ban appeals and webhook notifications** - to moderate your server transparently<br/>
 ⭐ **A website and a discord bot** - to use MASZ<br/>
@@ -50,11 +51,11 @@ If you have any questions, feel free to contact me. <br/>
 
 - Create a discord application at https://discord.com/developers/applications
 - Set redirect urls on your discord application [as defined](https://github.com/zaanposni/discord-masz#discord-oauth).
-- Enable **Server Members Intent** in your bot settings. 
-- Execute the `setup.py` script to configure your app and `start.sh` (or `start.ps1` on windows) to start it.
+- Enable **Server Members Intent** in your bot settings.
+- Execute the `setup.py` script to configure your app and `docker-compose up -d` to start it.
 - App will be hosted on `127.0.0.1:5565`, if you are hosting the app on a domain, redirect your reverse proxy to this local port!
 
-## Requirements 
+## Requirements
 
 - [docker](https://docs.docker.com/engine/install/ubuntu/) & [docker-compose](https://docs.docker.com/compose/) (`docker-compose -v` > 1.25)
 - [python3](https://www.python.org/) for setup
@@ -81,7 +82,7 @@ Enable **Server Members Intent** in your bot settings.
 
 - Download this repository `git clone https://github.com/zaanposni/discord-masz` ([zip link](https://codeload.github.com/zaanposni/discord-masz/zip/master))
 - Use `python3 setup.py` (`python setup.py` on windows) to setup the configuration.
-- Start the application with `./start.sh` (`start.ps1` on windows).
+- Start the application with `docker-compose up -d`.
 - App will be hosted on `127.0.0.1:5565`, if you are hosting the app on a domain, redirect your reverse proxy to this local port!
 
 ## First steps
@@ -127,9 +128,10 @@ If you do not enable this mode, moderators can create any modcase.
 ## 🛰️ Update
 
 To install a new update of MASZ just use:
-```
-git pull
-./start.sh
+
+```bash
+docker-compose pull
+docker-compose up -d
 ```
 
 ## 🗃️ Backup
@@ -141,7 +143,18 @@ There are backup example scripts in the `scripts` directory to backup uploaded f
 As a siteadmin you can create a token to authenticate yourself while making API requests.<br/>
 You can also use my [python library](https://github.com/zaanposni/masz-api-wrapper) to integrate the MASZ API into your project.
 
+# 🤝 Contribute
+
+Contributions are welcome. <br/>
+You can find our contributions guidelines [here](CONTRIBUTING.md).<br/>
+If you are new to open source, checkout [this tutorial](https://github.com/firstcontributions/first-contributions). <br/>
+Feel free to get in touch with me via our support server https://discord.gg/5zjpzw6h3S or via friend request on discord: **zaanposni#9295**.
+
 # Development
+
+```bash
+docker-compose -f docker-compose-dev.yml up --force-recreate --build
+```
 
 ## Config
 
@@ -153,10 +166,4 @@ If you are using a local deployed backend you have to define `https://127.0.0.1:
 
 ## Angular
 
-If you want to develop on the angular frontend, it would be best if you deploy the backend via `./start.sh` and enable cors in the `Startup.cs` then use the `config.ts` to redirect all requests to `127.0.0.1:5565`.
-
-# 🤝 Contribute
-
-Contributions are welcome. <br/>
-If you are new to open source, checkout [this tutorial](https://github.com/firstcontributions/first-contributions). <br/>
-Feel free to get in touch with me via our support server https://discord.gg/5zjpzw6h3S or via friend request on discord: **zaanposni#9295**.
+If you want to develop on the angular frontend, set the env var `ENABLE_CORS=true` for the backend container.

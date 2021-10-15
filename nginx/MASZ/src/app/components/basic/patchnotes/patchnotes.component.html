@@ -5,131 +5,142 @@
     </div>
     <div class="row justify-content-center align-items-left cw-75-100">
         <ng-container *ngIf="!this.patchnotes.loading">
-            <div *ngFor="let note of this.patchnotes.content" class="col-sm-6 flex-grow-1 d-flex p-2">
-                <mat-card class="flex-grow-1">
-                    <mat-card-title class="mb-0">
-                        <div class="mat-h1 mb-0 font-weight-bold">
-                            {{ note.version }}
+            <ng-container *ngFor="let note of this.patchnotes.content" >
+                <div class="flex-grow-1 d-flex p-2" [ngClass]="note?.gist_feature_link ? 'col-sm-12' : 'col-sm-6'">
+                    <mat-card class="d-flex flex-row flex-grow-1">
+                        <div *ngIf="note?.gist_feature_link" class="mr-4 align-self-center">
+                            <mat-icon title="Featured release">star</mat-icon>
                         </div>
-                    </mat-card-title>
-                    <mat-card-content>
-                        <div *ngIf="note.released_at" class="mat-caption mb-2" style="color: grey; line-height: 12px" title="release date">
-                            {{ note.released_at | date:'d MMMM Y' }}
-                        </div>
-                        <div *ngIf="!note.released_at" class="mat-caption mb-2" style="color: grey; line-height: 12px">
-                            Unknown release date
-                        </div>
-                        <div *ngIf="note?.contributors">
-                            <div class="d-flex flex-row align-items-center mb-2">
-                                <span class="mat-h2 mb-0 font-weight-bold" style="color: #fc22a8">CONTRIBUTORS</span>
-                                <div class="flex-grow-1 mx-4" style="background-color: #fc22a8; height: 3px"></div>
-                            </div>
-                            <div class="d-flex flex-row flex-wrap mb-2 pl-4">
-                                <div class="pr-1 pb-1" *ngFor="let contributor of note?.contributors">
-                                    <a href="{{ contributor.link }}" target="_blank">
-                                        <img
-                                            width="32"
-                                            height="32"
-                                            src="{{ contributor.icon }}"
-                                            title="Contributor {{ contributor.name }}"
-                                            alt="Contributor {{ contributor.name }}"
-                                            class="rounded-circle"
-                                            onerror="this.src='/assets/img/default_profile.png';" />
+                        <div>
+                            <mat-card-title class="mb-0">
+                                <div class="mat-h1 mb-0 font-weight-bold">
+                                    {{ note.version }}
+                                </div>
+                            </mat-card-title>
+                            <mat-card-content>
+                                <div *ngIf="note.released_at" class="mat-caption mb-2" style="color: grey; line-height: 12px" title="release date">
+                                    {{ note.released_at | date:'d MMMM Y' }}
+                                </div>
+                                <div *ngIf="!note.released_at" class="mat-caption mb-2" style="color: grey; line-height: 12px">
+                                    Unknown release date
+                                </div>
+                                <div *ngIf="note?.gist_feature_link">
+                                    <a class="mat-h2 mb-0 font-weight-bold" href="{{ note?.gist_feature_link }}" target="_blank" style="text-decoration: underline;">
+                                        Patchnotes on GitHub
                                     </a>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div *ngIf="note.breaking">
-                            <div class="d-flex flex-row align-items-center mb-2">
-                                <span class="mat-h2 mb-0 font-weight-bold" style="color: #d81b0e">BREAKING</span>
-                                <div class="flex-grow-1 mx-4" style="background-color: #d81b0e; height: 3px"></div>
-                            </div>
-                            <ul class="mat-4 mb-2 pl-4" *ngFor="let change of note.breaking">
-                                <li class="pn-details">
-                                    <div class="d-flex flex-row">
-                                        <div class="pn-details-text">
-                                            <b>{{ change.title }} </b>
-                                            {{ change.description }}
-                                        </div>
-                                        <a href="{{ change.link }}" target="_blank" *ngIf="change.icon">
-                                            <mat-icon aria-hidden="false" aria-label="tune icon">{{ change.icon }}</mat-icon>
-                                        </a>
+                                <div *ngIf="note?.contributors">
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                        <span class="mat-h2 mb-0 font-weight-bold" style="color: #fc22a8">CONTRIBUTORS</span>
+                                        <div class="flex-grow-1 mx-4" style="background-color: #fc22a8; height: 3px"></div>
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div *ngIf="note.features">
-                            <div class="d-flex flex-row align-items-center mb-2">
-                                <span class="mat-h2 mb-0 font-weight-bold" style="color: #43b581">FEATURES</span>
-                                <div class="flex-grow-1 mx-4" style="background-color: #43b581; height: 3px"></div>
-                            </div>
-                            <ul class="mat-h4 mb-2 pl-4" *ngFor="let change of note.features">
-                                <li class="pn-details">
-                                    <div class="d-flex flex-row">
-                                        <div class="pn-details-text">
-                                            <b>{{ change.title }} </b>
-                                            {{ change.description }}
+                                    <div class="d-flex flex-row flex-wrap mb-2 pl-4">
+                                        <div class="pr-1 pb-1" *ngFor="let contributor of note?.contributors">
+                                            <a href="{{ contributor.link }}" target="_blank">
+                                                <img
+                                                    width="32"
+                                                    height="32"
+                                                    src="{{ contributor.icon }}"
+                                                    title="Contributor {{ contributor.name }}"
+                                                    alt="Contributor {{ contributor.name }}"
+                                                    class="rounded-circle"
+                                                    onerror="this.src='/assets/img/default_profile.png';" />
+                                            </a>
                                         </div>
-                                        <a href="{{ change.link }}" target="_blank" *ngIf="change.icon">
-                                            <mat-icon aria-hidden="false" aria-label="tune icon">{{ change.icon }}</mat-icon>
-                                        </a>
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div *ngIf="note.fixes">
-                            <div class="d-flex flex-row align-items-center mb-2">
-                                <span class="mat-h2 mb-0 font-weight-bold" style="color: #faa61a">FIXES</span>
-                                <div class="flex-grow-1 mx-4" style="background-color: #faa61a; height: 3px"></div>
-                            </div>
-                            <ul class="mat-h4 mb-2 pl-4" *ngFor="let change of note.fixes">
-                                <li class="pn-details">
-                                    <div class="d-flex flex-row">
-                                        <div class="pn-details-text">
-                                            <b>{{ change.title }} </b>
-                                            {{ change.description }}
-                                        </div>
-                                        <a href="{{ change.link }}" target="_blank" *ngIf="change.icon">
-                                            <mat-icon aria-hidden="false" aria-label="tune icon">{{ change.icon }}</mat-icon>
-                                        </a>
+                                </div>
+                                <div *ngIf="note.breaking">
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                        <span class="mat-h2 mb-0 font-weight-bold" style="color: #d81b0e">BREAKING</span>
+                                        <div class="flex-grow-1 mx-4" style="background-color: #d81b0e; height: 3px"></div>
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div *ngIf="note.technical">
-                            <div class="d-flex flex-row align-items-center mb-2">
-                                <span class="mat-h2 mb-0 font-weight-bold" style="color: #00acc8">TECHNICAL</span>
-                                <div class="flex-grow-1 mx-4" style="background-color: #00acc8; height: 3px"></div>
-                            </div>
-                            <ul class="mat-h4 mb-2 pl-4" *ngFor="let change of note.technical">
-                                <li class="pn-details">
-                                    <div class="d-flex flex-row">
-                                        <div class="pn-details-text">
-                                            <b>{{ change.title }} </b>
-                                            {{ change.description }}
-                                        </div>
-                                        <a href="{{ change.link }}" target="_blank" *ngIf="change.icon">
-                                            <mat-icon aria-hidden="false" aria-label="tune icon">{{ change.icon }}</mat-icon>
-                                        </a>
+                                    <ul class="mat-4 mb-2 pl-4" *ngFor="let change of note.breaking">
+                                        <li class="pn-details">
+                                            <div class="d-flex flex-row">
+                                                <div class="pn-details-text">
+                                                    <b>{{ change.title }} </b>
+                                                    {{ change.description }}
+                                                </div>
+                                                <a href="{{ change.link }}" target="_blank" *ngIf="change.icon">
+                                                    <mat-icon aria-hidden="false" aria-label="tune icon">{{ change.icon }}</mat-icon>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div *ngIf="note.features">
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                        <span class="mat-h2 mb-0 font-weight-bold" style="color: #43b581">FEATURES</span>
+                                        <div class="flex-grow-1 mx-4" style="background-color: #43b581; height: 3px"></div>
                                     </div>
-                                </li>
-                            </ul>
+                                    <ul class="mat-h4 mb-2 pl-4" *ngFor="let change of note.features">
+                                        <li class="pn-details">
+                                            <div class="d-flex flex-row">
+                                                <div class="pn-details-text">
+                                                    <b>{{ change.title }} </b>
+                                                    {{ change.description }}
+                                                </div>
+                                                <a href="{{ change.link }}" target="_blank" *ngIf="change.icon">
+                                                    <mat-icon aria-hidden="false" aria-label="tune icon">{{ change.icon }}</mat-icon>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div *ngIf="note.fixes">
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                        <span class="mat-h2 mb-0 font-weight-bold" style="color: #faa61a">FIXES</span>
+                                        <div class="flex-grow-1 mx-4" style="background-color: #faa61a; height: 3px"></div>
+                                    </div>
+                                    <ul class="mat-h4 mb-2 pl-4" *ngFor="let change of note.fixes">
+                                        <li class="pn-details">
+                                            <div class="d-flex flex-row">
+                                                <div class="pn-details-text">
+                                                    <b>{{ change.title }} </b>
+                                                    {{ change.description }}
+                                                </div>
+                                                <a href="{{ change.link }}" target="_blank" *ngIf="change.icon">
+                                                    <mat-icon aria-hidden="false" aria-label="tune icon">{{ change.icon }}</mat-icon>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div *ngIf="note.technical">
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                        <span class="mat-h2 mb-0 font-weight-bold" style="color: #00acc8">TECHNICAL</span>
+                                        <div class="flex-grow-1 mx-4" style="background-color: #00acc8; height: 3px"></div>
+                                    </div>
+                                    <ul class="mat-h4 mb-2 pl-4" *ngFor="let change of note.technical">
+                                        <li class="pn-details">
+                                            <div class="d-flex flex-row">
+                                                <div class="pn-details-text">
+                                                    <b>{{ change.title }} </b>
+                                                    {{ change.description }}
+                                                </div>
+                                                <a href="{{ change.link }}" target="_blank" *ngIf="change.icon">
+                                                    <mat-icon aria-hidden="false" aria-label="tune icon">{{ change.icon }}</mat-icon>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div *ngIf="note.changes">
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                        <span class="mat-h2 mb-0">CHANGES</span>
+                                        <div class="flex-grow-1 mx-4" style="background-color: white; height: 3px"></div>
+                                    </div>
+                                    <ul class="mat-h4 mb-2 pl-4" *ngFor="let change of note.changes">
+                                        <li class="pn-details">
+                                            {{ change }}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </mat-card-content>
                         </div>
-                        <div *ngIf="note.changes">
-                            <div class="d-flex flex-row align-items-center mb-2">
-                                <span class="mat-h2 mb-0">CHANGES</span>
-                                <div class="flex-grow-1 mx-4" style="background-color: white; height: 3px"></div>
-                            </div>
-                            <ul class="mat-h4 mb-2 pl-4" *ngFor="let change of note.changes">
-                                <li class="pn-details">
-                                    {{ change }}
-                                </li>
-                            </ul>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
-            </div>
+                    </mat-card>
+                </div>
+            </ng-container>
         </ng-container>
         <ng-container *ngIf="!this.patchnotes.loading && this.patchnotes.content?.length === 0">
             <img src="/assets/img/notfound.svg" class="w-50 align-self-center"/>

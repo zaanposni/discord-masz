@@ -1,191 +1,123 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using masz.data;
-using masz.Dtos.DiscordAPIResponses;
-using masz.Dtos.ModCase;
+using DSharpPlus.Entities;
 using masz.Dtos.ModCaseComments;
+using masz.Enums;
+using masz.Exceptions;
 using masz.Models;
-using masz.Services;
+using masz.Repositories;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("api/v1/modcases/{guildid}/{caseid}/comments")]
+    [Route("api/v1/guilds/{guildId}/cases/{caseId}/comments")]
     [Authorize]
     public class ModCaseCommentsController : SimpleCaseController
     {
-        private readonly ILogger<ModCaseCommentsController> logger;
+        private readonly ILogger<ModCaseCommentsController> _logger;
         public ModCaseCommentsController(ILogger<ModCaseCommentsController> logger, IServiceProvider serviceProvider) : base(serviceProvider, logger)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateItem([FromRoute] string guildid, [FromRoute] string caseid, [FromBody] ModCaseCommentForCreateDto comment) 
+        public async Task<IActionResult> CreateItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromBody] ModCaseCommentForCreateDto comment)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (await database.SelectSpecificGuildConfig(guildid) == null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
-                return BadRequest("Guild not registered.");
-            }
-            User currentUser = await this.IsValidUser();
-            ModCase modCase = await this.database.SelectSpecificModCase(guildid, caseid);
-            if(! await this.IsAllowedTo(APIActionPermission.View, modCase)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            if (!modCase.AllowComments) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Comments are locked.");
-                return BadRequest("Comments are locked.");
-            }
-            if (modCase.MarkedToDeleteAt != null)
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Case is marked to be deleted.");
-                return BadRequest("Case is marked to be deleted.");
-            }
+            await RequirePermission(guildId, caseId, APIActionPermission.View);
 
-            // normal user can only comment if no comments are there yet or last comment was not by him.
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid))
+            Identity currentIdentity = await GetIdentity();
+            DiscordUser currentUser = currentIdentity.GetCurrentUser();
+
+            ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetModCase(guildId, caseId);
+
+            // suspects can only comment if last comment was not by him.
+            if (! await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
             {
                 if (modCase.Comments.Any())
                 {
-                    if (modCase.Comments.Last().UserId == currentUser.Id) {
-                        logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Already commented.");
-                        return BadRequest("Already commented. Please wait for a response.");
+                    if (modCase.Comments.Last().UserId == currentUser.Id)
+                    {
+                        throw new BaseAPIException("Already commented", APIError.LastCommentAlreadyFromSuspect);
                     }
                 }
             }
 
-            ModCaseComment commentToCreate = new ModCaseComment();
-            commentToCreate.ModCase = modCase;
-            commentToCreate.UserId = currentUser.Id;
-            commentToCreate.Message = comment.Message.Trim();
-            commentToCreate.CreatedAt = DateTime.UtcNow;
+            ModCaseComment createdComment = await ModCaseCommentRepository.CreateDefault(_serviceProvider, currentIdentity).CreateComment(guildId, caseId, comment.Message);
 
-            await database.SaveModCaseComment(commentToCreate);
-            await database.SaveChangesAsync();
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
-            try {
-                await discordAnnouncer.AnnounceComment(commentToCreate, currentUser, RestAction.Created);
+            try
+            {
+                await _discordAnnouncer.AnnounceComment(createdComment, currentUser, RestAction.Created);
             }
-            catch(Exception e){
-                logger.LogError(e, "Failed to announce comment.");
+            catch(Exception e)
+            {
+                _logger.LogError(e, "Failed to announce comment.");
             }
 
-            logger.LogInformation(HttpContext.Request.Method + " " + HttpContext.Request.Path + " | 201 Resource created.");
-            return StatusCode(201, commentToCreate);
+            return StatusCode(201, new CommentsView(createdComment));
         }
 
-        [HttpPut("{commentid}")]
-        public async Task<IActionResult> UpdateSpecificItem([FromRoute] string guildid, [FromRoute] string caseid, [FromRoute] int commentid, [FromBody] ModCaseCommentForPutDto newValue)
+        [HttpPut("{commentId}")]
+        public async Task<IActionResult> UpdateSpecificItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromRoute] int commentId, [FromBody] ModCaseCommentForPutDto newValue)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (await database.SelectSpecificGuildConfig(guildid) == null)
+            await RequirePermission(guildId, caseId, APIActionPermission.View);
+
+            Identity currentIdentity = await GetIdentity();
+            DiscordUser currentUser = currentIdentity.GetCurrentUser();
+
+            var repo = ModCaseCommentRepository.CreateDefault(_serviceProvider, currentIdentity);
+
+            ModCaseComment comment = await repo.GetSpecificComment(commentId);
+            if (comment.UserId != currentUser.Id && ! currentIdentity.IsSiteAdmin())
             {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
-                return BadRequest("Guild not registered.");
+                throw new UnauthorizedException();
             }
-            User currentUser = await this.IsValidUser();
-            ModCase modCase = await this.database.SelectSpecificModCase(guildid, caseid);
-            if(! await this.IsAllowedTo(APIActionPermission.View, modCase)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
-            if (!modCase.AllowComments) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Comments are locked.");
-                return BadRequest("Comments are locked.");
-            }
-            if (modCase.MarkedToDeleteAt != null)
+
+            ModCaseComment createdComment = await repo.UpdateComment(guildId, caseId, commentId, newValue.Message);
+
+            try
             {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Case is marked to be deleted.");
-                return BadRequest("Case is marked to be deleted.");
+                await _discordAnnouncer.AnnounceComment(createdComment, currentUser, RestAction.Edited);
             }
-
-            ModCaseComment comment = modCase.Comments.FirstOrDefault(x => x.Id == commentid);
-            if (comment == null) 
+            catch(Exception e)
             {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Comment not found.");
-                return NotFound();
-            }
-            // only commentor or site admin should be able to edit comment
-            if (comment.UserId != currentUser.Id && ! await this.IsSiteAdmin())
-            {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
+                _logger.LogError(e, "Failed to announce comment.");
             }
 
-            comment.Message = newValue.Message.Trim();
-
-            database.UpdateModCaseComment(comment);
-            await database.SaveChangesAsync();
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
-            try {
-                await discordAnnouncer.AnnounceComment(comment, currentUser, RestAction.Edited);
-            }
-            catch(Exception e){
-                logger.LogError(e, "Failed to announce comment.");
-            }
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource updated.");
-            return Ok(comment);
+            return Ok(new CommentsView(createdComment));
         }
 
-        [HttpDelete("{commentid}")]
-        public async Task<IActionResult> DeleteSpecificItem([FromRoute] string guildid, [FromRoute] string caseid, [FromRoute] int commentid)
+        [HttpDelete("{commentId}")]
+        public async Task<IActionResult> DeleteSpecificItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromRoute] int commentId)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (await database.SelectSpecificGuildConfig(guildid) == null)
+            await RequirePermission(guildId, caseId, APIActionPermission.View);
+
+            Identity currentIdentity = await GetIdentity();
+            DiscordUser currentUser = currentIdentity.GetCurrentUser();
+
+            var repo = ModCaseCommentRepository.CreateDefault(_serviceProvider, currentIdentity);
+
+            ModCaseComment comment = await repo.GetSpecificComment(commentId);
+            if (comment.UserId != currentUser.Id && ! currentIdentity.IsSiteAdmin())
             {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 Guild not registered.");
-                return BadRequest("Guild not registered.");
-            }
-            User currentUser = await this.IsValidUser();
-            ModCase modCase = await this.database.SelectSpecificModCase(guildid, caseid);
-            if(! await this.IsAllowedTo(APIActionPermission.View, modCase)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
+                throw new UnauthorizedException();
             }
 
-            ModCaseComment comment = modCase.Comments.FirstOrDefault(x => x.Id == commentid);
-            if (comment == null) 
+            ModCaseComment deletedComment = await repo.DeleteComment(guildId, caseId, commentId);
+
+            try
             {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Comment not found.");
-                return NotFound();
+                await _discordAnnouncer.AnnounceComment(deletedComment, currentUser, RestAction.Deleted);
             }
-            if (comment.UserId != currentUser.Id && ! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid))
+            catch(Exception e)
             {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
+                _logger.LogError(e, "Failed to announce comment.");
             }
 
-            database.DeleteSpecificModCaseComment(comment);
-            await database.SaveChangesAsync();
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Sending notification.");
-            try {
-                await discordAnnouncer.AnnounceComment(comment, currentUser, RestAction.Deleted);
-            }
-            catch(Exception e){
-                logger.LogError(e, "Failed to announce comment.");
-            }
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Resource deleted.");
-            return Ok(comment);
+            return Ok();
         }
     }
 }

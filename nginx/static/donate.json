@@ -1,5 +1,4 @@
 [
-    
     {
         "imageSrc": "assets/img/masz.png",
         "imageAlt": "MASZ",
@@ -17,23 +16,5 @@
         "buttonText": "Donate",
         "buttonHref": "https://www.buymeacoffee.com/zaanposni",
         "buttonIcon": "fas fa-donate"
-    },
-    {
-        "imageSrc": "assets/img/bundestag.jpg",
-        "imageAlt": "How it all started",
-        "title": "How it all started",
-        "description": "I am an administrator of a fairly big german community. The guild is focused on german politics and the german parliament. As you can guess there are many trolls and weird people on those servers. As my moderation team was struggling with keeping track of everything, I started MASZ.",
-        "buttonText": "",
-        "buttonHref": "",
-        "buttonIcon": ""
-    },
-    {
-        "imageSrc": "assets/img/masz.png",
-        "imageAlt": "MASZ",
-        "title": "MASZ",
-        "description": "Nowadays MASZ is a feature rich moderation tool that helps not only my moderation team but also other guilds to keep up with those filthy trolls.",
-        "buttonText": "",
-        "buttonHref": "",
-        "buttonIcon": ""
     }
 ]

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IServiceStatus } from 'src/app/models/IServiceStatus';
 
 @Component({
   selector: 'app-statcard',
@@ -7,9 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class StatcardComponent implements OnInit {
 
-  @Input() title?: string;
+  @Input() titleKey: string = "";
   @Input() text?: string | number | undefined;
-  @Input() emote?: string ;
+  @Input() emote?: string;
+  @Input() renderPing?: IServiceStatus = undefined;
+  @Input() warningPingLimit: number = 200;
+  @Input() errorPingLimit: number = 400;
+
   constructor() { }
 
   ngOnInit(): void {

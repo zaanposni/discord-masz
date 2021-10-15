@@ -1,20 +1,17 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AspNet.Security.OAuth.Discord;
 using AspNetCoreRateLimit;
 using masz.data;
 using masz.Models;
 using masz.Services;
+using masz.Logger;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +19,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using masz.Middlewares;
+using masz.Plugins;
+using System.Linq;
+using Scrutor;
 
 namespace masz
 {
@@ -37,17 +38,46 @@ namespace masz
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(x => x.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DataContext>(x => x.UseMySql($"Server=" + System.Environment.GetEnvironmentVariable("MYSQL_HOST") + ";" +
+                                                               $"Port=" + System.Environment.GetEnvironmentVariable("MYSQL_PORT") + ";" +
+                                                               $"Database=" + System.Environment.GetEnvironmentVariable("MYSQL_DATABASE") + ";" +
+                                                               $"Uid=" + System.Environment.GetEnvironmentVariable("MYSQL_USER") + ";" +
+                                                               $"Pwd=" + System.Environment.GetEnvironmentVariable("MYSQL_PASSWORD") + ";"));
             services.AddControllers()
                 .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddScoped<IDatabase, Database>();
+            services.AddScoped<ITranslator, Translator>();
+            services.AddScoped<INotificationEmbedCreator, NotificationEmbedCreator>();
             services.AddScoped<IDiscordAnnouncer, DiscordAnnouncer>();
-            services.AddScoped<IFilesHandler, FilesHandler>();
+            services.AddSingleton<IFilesHandler, FilesHandler>();
+            services.AddSingleton<IInternalConfiguration, InternalConfiguration>();
+            services.AddSingleton<IDiscordBot, DiscordBot>();
             services.AddSingleton<IDiscordAPIInterface, DiscordAPIInterface>();
             services.AddSingleton<IIdentityManager, IdentityManager>();
             services.AddSingleton<IPunishmentHandler, PunishmentHandler>();
+            services.AddSingleton<IEventHandler, Services.EventHandler>();
             services.AddSingleton<IScheduler, Scheduler>();
+            services.AddSingleton<IAuditLogger, AuditLogger>();
+
+            // Plugin
+            // ######################################################################################################
+            if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
+            {
+                Console.WriteLine("########################################################################################################");
+                Console.WriteLine("ENABLED CUSTOM PLUGINS!");
+                Console.WriteLine("This might impact the performance or security of your masz instance!");
+                Console.WriteLine("Use this only if you know what you are doing!");
+                Console.WriteLine("For support and more information, refer to the creator or community of your plugin!");
+                Console.WriteLine("########################################################################################################");
+
+                services.Scan(scan => scan
+                    .FromAssemblyOf<IBasePlugin>()
+                    .AddClasses(classes => classes.InNamespaces("masz.Plugins"))
+                    .AsImplementedInterfaces()
+                    .WithSingletonLifetime());
+            }
+            // ######################################################################################################
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie("Cookies", options =>
@@ -67,8 +97,8 @@ namespace masz
                 })
                 .AddDiscord(options =>
                 {
-                    options.ClientId = Configuration.GetSection("InternalConfig").GetValue<string>("DiscordClientId");
-                    options.ClientSecret = Configuration.GetSection("InternalConfig").GetValue<string>("DiscordClientSecret");
+                    options.ClientId = System.Environment.GetEnvironmentVariable("DISCORD_OAUTH_CLIENT_ID");
+                    options.ClientSecret = System.Environment.GetEnvironmentVariable("DISCORD_OAUTH_CLIENT_SECRET");
                     options.Scope.Add("guilds");
                     options.Scope.Add("identify");
                     options.SaveTokens = true;
@@ -79,14 +109,16 @@ namespace masz
                     options.CorrelationCookie.HttpOnly = false;
                 });
 
-            
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer("Tokens", x =>
                 {
                     x.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("InternalConfig").GetValue<string>("DiscordBotToken"))),
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(
+                                System.Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN"))),
                         ValidateIssuer = false,
                         ValidateAudience = false
                     };
@@ -99,15 +131,16 @@ namespace masz
                         .Build();
                 });
 
-            // services.AddCors(o => o.AddPolicy("AngularDevCors", builder =>
-            // {
-            //     builder.WithOrigins("http://127.0.0.1:4200")
-            //         .AllowAnyMethod()
-            //         .AllowAnyHeader()
-            //         .AllowCredentials();
-            // }));
-
-            services.Configure<InternalConfig>(Configuration.GetSection("InternalConfig"));
+            if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CORS")))
+            {
+                services.AddCors(o => o.AddPolicy("AngularDevCors", builder =>
+                {
+                    builder.WithOrigins("http://127.0.0.1:4200")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                }));
+            }
 
             // needed to store rate limit counters and ip rules
             services.AddMemoryCache();
@@ -134,16 +167,25 @@ namespace masz
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddProvider(new CustomLoggerProvider());
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            // app.UseCors("AngularDevCors");
+            app.UseMiddleware<HeaderMiddleware>();
+            app.UseMiddleware<RequestLoggingMiddleware>();
+            app.UseMiddleware<APIExceptionHandlingMiddleware>();
 
-            app.UseIpRateLimiting();           
+            if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CORS")))
+            {
+                app.UseCors("AngularDevCors");
+            }
+
+            app.UseIpRateLimiting();
 
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
@@ -152,8 +194,16 @@ namespace masz
 
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
+                scope.ServiceProvider.GetService<IInternalConfiguration>().Init();
+                scope.ServiceProvider.GetService<IAuditLogger>().Startup();
                 scope.ServiceProvider.GetService<IPunishmentHandler>().StartTimer();
                 scope.ServiceProvider.GetService<IScheduler>().StartTimers();
+                scope.ServiceProvider.GetService<IDiscordBot>().Start();
+                if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
+                {
+                    scope.ServiceProvider.GetServices<IBasePlugin>().ToList().ForEach(x => x.Init());
+                }
+                scope.ServiceProvider.GetService<IAuditLogger>().RegisterEvents();
             }
 
             app.UseHttpsRedirection();

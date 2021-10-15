@@ -1,17 +1,17 @@
-<h1 mat-dialog-title>Create template</h1>
-<div mat-dialog-content>
+<h1 mat-dialog-title>{{ 'TemplateCreateDialog.CreateTemplate' | translate }}</h1>
+<div mat-dialog-content class="w-100 d-flex flex-column justify-content-center">
     <mat-form-field class="mb-2">
-        <mat-label>Name</mat-label>
+        <mat-label>{{ 'TemplateCreateDialog.Name' | translate }}</mat-label>
         <input matInput type="text" [(ngModel)]="settings.name">
-    </mat-form-field><br/>
+    </mat-form-field>
     <mat-form-field class="mb-2">
-        <mat-label>Visibility</mat-label>
+        <mat-label>{{ 'TemplateCreateDialog.Visibility' | translate }}</mat-label>
         <mat-select [(ngModel)]="settings.viewPermission">
-            <mat-option *ngFor="let o of templateViewPermissionOptions(); let i = index" [value]="i">{{o}}</mat-option>
+            <mat-option *ngFor="let o of templateViewPermissionOptions.content" [value]="o.key">{{ o.value }}</mat-option>
         </mat-select>
     </mat-form-field>
 </div>
-<div mat-dialog-actions>
-    <button mat-raised-button color="accent" [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
-    <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="!settings.name?.trim() || !settings.viewPermission == null">Confirm</button>
+<div mat-dialog-actions class="w-100 d-flex flex-row justify-content-center">
+    <button mat-raised-button color="accent" [mat-dialog-close]="false" cdkFocusInitial>{{ 'TemplateCreateDialog.Cancel' | translate }}</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="!settings.name?.trim() || !settings.viewPermission == null">{{ 'TemplateCreateDialog.Confirm' | translate }}</button>
 </div>

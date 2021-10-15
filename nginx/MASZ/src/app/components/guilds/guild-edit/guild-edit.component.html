@@ -1,7 +1,7 @@
 <div style="height: 100px;"></div>
 <div class="d-flex flex-column align-items-center container">
     <div class="d-flex flex-row conditional-fc justify-content-center align-self-center">
-        
+
         <div class="d-flex flex-column align-items-center p-4">
             <app-guild-icon [guild]="currentGuild?.content" [width]="'128px'" [height]="'128px'"></app-guild-icon>
             <div class="mat-h3 mb-0 font-weight-bold">{{ currentGuild?.content?.name }}</div>
@@ -13,70 +13,77 @@
             <mat-vertical-stepper [linear]="true" #stepper color="accent" *ngIf="!this.currentGuildConfig?.loading && this.currentGuildConfig?.content && !this.currentGuild?.loading && this.currentGuild?.content">
                 <mat-step [stepControl]="adminRolesGroup">
                     <form [formGroup]="adminRolesGroup">
-                        <ng-template matStepLabel>Select roles with admin permission</ng-template>
+                        <ng-template matStepLabel>{{ 'GuildDialog.StepAdminRoles' | translate }}</ng-template>
                         <mat-form-field appearance="fill">
-                            <mat-label>Admin roles</mat-label>
+                            <mat-label>{{ 'GuildDialog.AdminRoles' | translate }}</mat-label>
                             <mat-select formControlName="adminRoles" multiple>
                             <mat-option *ngFor="let role of currentGuild.content?.roles"
                             [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <div class="stepper-actions">
-                            <button mat-raised-button matStepperNext color="accent">Next</button>
+                            <button mat-raised-button matStepperNext color="accent">{{ 'GuildDialog.Next' | translate }}</button>
                         </div>
                     </form>
                 </mat-step>
                 <mat-step [stepControl]="modRolesGroup">
                     <form [formGroup]="modRolesGroup">
-                        <ng-template matStepLabel>Select roles with moderator permission</ng-template>
+                        <ng-template matStepLabel>{{ 'GuildDialog.StepModeratorRoles' | translate }}</ng-template>
                         <mat-form-field appearance="fill">
-                            <mat-label>Moderator roles</mat-label>
+                            <mat-label>{{ 'GuildDialog.ModeratorRoles' | translate }}s</mat-label>
                             <mat-select formControlName="modRoles" multiple>
-                            <mat-option *ngFor="let role of currentGuild.content?.roles"
-                            [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
+                                <mat-option *ngFor="let role of currentGuild.content?.roles"
+                                [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <div class="stepper-actions">
-                            <button mat-raised-button matStepperPrevious class="mr-2" color="accent">Back</button>
-                            <button mat-raised-button matStepperNext color="accent">Next</button>
+                            <button mat-raised-button matStepperPrevious class="mr-2" color="accent">{{ 'GuildDialog.Back' | translate }}</button>
+                            <button mat-raised-button matStepperNext color="accent">{{ 'GuildDialog.Next' | translate }}</button>
                         </div>
                     </form>
                 </mat-step>
                 <mat-step [stepControl]="muteRolesGroup" [optional]='true'>
                     <form [formGroup]="muteRolesGroup">
-                        <ng-template matStepLabel>Select roles to apply on mute punishment</ng-template>
+                        <ng-template matStepLabel>{{ 'GuildDialog.StepMutedRoles' | translate }}</ng-template>
                         <mat-form-field appearance="fill">
-                            <mat-label>Muted roles</mat-label>
+                            <mat-label>{{ 'GuildDialog.MutedRoles' | translate }}</mat-label>
                             <mat-select formControlName="muteRoles" multiple>
-                            <mat-option *ngFor="let role of currentGuild.content?.roles"
-                            [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
+                                <mat-option *ngFor="let role of currentGuild.content?.roles"
+                                [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <div class="stepper-actions">
-                            <button mat-raised-button matStepperPrevious class="mr-2" color="accent">Back</button>
-                            <button mat-raised-button matStepperNext color="accent">Next</button>
+                            <button mat-raised-button matStepperPrevious class="mr-2" color="accent">{{ 'GuildDialog.Back' | translate }}</button>
+                            <button mat-raised-button matStepperNext color="accent">{{ 'GuildDialog.Next' | translate }}</button>
                         </div>
                     </form>
                 </mat-step>
                 <mat-step [stepControl]="configGroup" [optional]='true'>
                     <form [formGroup]="configGroup">
-                        <ng-template matStepLabel>Further configuration</ng-template>
+                        <ng-template matStepLabel>{{ 'GuildDialog.StepFurtherConfiguration' | translate }}</ng-template>
                         <mat-form-field class="w-100">
-                            <mat-label>Internal staff notification webhook</mat-label>
+                            <mat-label>{{ 'GuildDialog.InternalStaffWebhook' | translate }}</mat-label>
                             <input type="email" matInput formControlName="internal" placeholder="https://discord.com/...">
                         </mat-form-field>
                         <mat-form-field class="w-100">
-                            <mat-label>Public member notification webhook</mat-label>
+                            <mat-label>{{ 'GuildDialog.PublicWebhook' | translate }}</mat-label>
                             <input type="email" matInput formControlName="public" placeholder="https://discord.com/...">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>{{ 'GuildDialog.Language' | translate }}</mat-label>
+                            <mat-select formControlName="preferredLanguage">
+                                <mat-option *ngFor="let language of allLanguages"
+                                [value]="language.key">{{ language.value }}</mat-option>
+                            </mat-select>
                         </mat-form-field>
                         <div class="d-flex flex-row">
                             <mat-checkbox
                                 class="mr-2"
                                 formControlName="strictPermissionCheck"
                                 [labelPosition]="'after'">
-                                Strict permission check
+                                {{ 'GuildDialog.StrictPermissionCheckbox' | translate }}
                             </mat-checkbox>
-                            <mat-icon matTooltip="A moderator needs kick/ban permissions on discord to create kick/ban modcases.">
+                            <mat-icon matTooltip="{{ 'GuildDialog.StrictPermissionDetails' | translate }}">
                                 help_outline
                             </mat-icon>
                         </div>
@@ -85,9 +92,9 @@
                                 class="mr-2"
                                 formControlName="executeWhoisOnJoin"
                                 [labelPosition]="'after'">
-                                Execute whois on member join
+                                {{ 'GuildDialog.ExecuteWhois' | translate }}
                             </mat-checkbox>
-                            <mat-icon matTooltip="Automatically sends information about the joined user to your internal webhook if defined.">
+                            <mat-icon matTooltip="{{ 'GuildDialog.WhoisDetails' | translate }}">
                                 help_outline
                             </mat-icon>
                         </div>
@@ -96,23 +103,23 @@
                                 class="mr-2"
                                 formControlName="publishModeratorInfo"
                                 [labelPosition]="'after'">
-                                Publish moderator information
+                                {{ 'GuildDialog.PublishModerator' | translate }}
                             </mat-checkbox>
-                            <mat-icon matTooltip="A suspect will be able to see which moderator punished him.">
+                            <mat-icon matTooltip="{{ 'GuildDialog.PublishModeratorDetails' | translate }}">
                                 help_outline
                             </mat-icon>
                         </div>
                         <div class="stepper-actions">
-                            <button mat-raised-button matStepperPrevious class="mr-2" color="accent">Back</button>
-                            <button mat-raised-button matStepperNext color="accent">Next</button>
+                            <button mat-raised-button matStepperPrevious class="mr-2" color="accent">{{ 'GuildDialog.Back' | translate }}</button>
+                            <button mat-raised-button matStepperNext color="accent">{{ 'GuildDialog.Next' | translate }}</button>
                         </div>
                     </form>
                 </mat-step>
                 <mat-step>
-                    <ng-template matStepLabel>Done</ng-template>
+                    <ng-template matStepLabel>{{ 'GuildDialog.Done' | translate }}</ng-template>
                     <div class="d-flex flex-row mt-2 stepper-actions">
-                        <button mat-raised-button matStepperPrevious class="mr-2" color="accent">Back</button>
-                        <button mat-raised-button color="accent" (click)="updateGuild()">Update guild</button>
+                        <button mat-raised-button matStepperPrevious class="mr-2" color="accent">{{ 'GuildDialog.Back' | translate }}</button>
+                        <button mat-raised-button color="accent" (click)="updateGuild()">{{ 'GuildDialog.UpdateGuild' | translate }}</button>
                     </div>
                 </mat-step>
             </mat-vertical-stepper>

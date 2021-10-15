@@ -1,0 +1,21 @@
+{
+    "namespace": "DashboardComments",
+    "Newestcomments": {
+        "description": "Newest comments",
+        "en": "Newest comments",
+        "de": "Neueste Kommentare",
+        "at": "Neiaste Kommentare"
+    },
+    "NothingFound": {
+        "description": "Nothing found",
+        "en": "No comments found.",
+        "de": "Keine Kommentare gefunden.",
+        "at": "Kane Kommentare gfundn."
+    },
+    "FailedToLoad": {
+        "description": "Failed to load",
+        "en": "Failed to load comments.",
+        "de": "Kommentare konnten nicht geladen werden.",
+        "at": "Kommentare konntn ned glodn wean."
+    }
+}

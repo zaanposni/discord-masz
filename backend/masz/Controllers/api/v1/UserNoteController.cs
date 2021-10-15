@@ -1,116 +1,65 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using masz.Dtos.DiscordAPIResponses;
 using masz.Dtos.UserNote;
 using masz.Models;
+using masz.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using masz.Enums;
 
 
 namespace masz.Controllers
 {
     [ApiController]
-    [Route("api/v1/guilds/{guildid}/usernote")]
+    [Route("api/v1/guilds/{guildId}/usernote")]
     [Authorize]
     public class UserNoteController : SimpleController
     {
-        private readonly ILogger<UserNoteController> logger;
+        private readonly ILogger<UserNoteController> _logger;
 
         public UserNoteController(ILogger<UserNoteController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUserNote([FromRoute] string guildid)
+        public async Task<IActionResult> GetUserNote([FromRoute] ulong guildId)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning list.");
-            return Ok(await this.database.GetUserNotesByGuildId(guildid));
+            List<UserNote> userNotes = await UserNoteRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetUserNotesByGuild(guildId);
+            return Ok(userNotes.Select(x => new UserNoteView(x)));
         }
 
-        [HttpGet("{userid}")]
-        public async Task<IActionResult> GetUserNote([FromRoute] string guildid, [FromRoute] string userid)
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetUserNote([FromRoute] ulong guildId, [FromRoute] ulong userId)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            UserNote userNote = await this.database.GetUserNoteByUserIdAndGuildId(userid, guildid);
-            if (userNote == null) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Not found.");
-                return NotFound();
-            }
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Returning usernote.");
-            return Ok(userNote);
+            return Ok(new UserNoteView(await UserNoteRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetUserNote(guildId, userId)));
         }
 
         [HttpPut]
-        public async Task<IActionResult> CreateUserNote([FromRoute] string guildid, [FromBody] UserNoteForUpdateDto userNote)
+        public async Task<IActionResult> CreateUserNote([FromRoute] ulong guildId, [FromBody] UserNoteForUpdateDto userNote)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            User validUser = await discord.FetchUserInfo(userNote.UserId, CacheBehavior.Default);
-            if (validUser == null) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 400 User invalid.");
-                return BadRequest("Invalid user.");
-            }
+            UserNote createdUserNote = await UserNoteRepository.CreateDefault(_serviceProvider, await GetIdentity()).CreateOrUpdateUserNote(guildId, userNote.UserId, userNote.Description);
 
-            UserNote existing = await this.database.GetUserNoteByUserIdAndGuildId(userNote.UserId, guildid);
-            if (existing == null) {
-                existing = new UserNote();
-            }
-            existing.UpdatedAt = DateTime.UtcNow;
-            existing.CreatorId = (await this.IsValidUser()).Id;
-            existing.UserId = userNote.UserId;
-            existing.GuildId = guildid;
-            existing.Description = userNote.Description.Trim();
-
-            this.database.SaveUserNote(existing);
-            await this.database.SaveChangesAsync();
-
-            await this.discordAnnouncer.AnnounceUserNote(existing, await this.IsValidUser(), RestAction.Created);
-            
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 201 Ressource updated.");
-            return StatusCode(201, existing);
+            return StatusCode(201, new UserNoteView(createdUserNote));
         }
 
-        [HttpDelete("{userid}")]
-        public async Task<IActionResult> DeleteUserNote([FromRoute] string guildid, [FromRoute] string userid)
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteUserNote([FromRoute] ulong guildId, [FromRoute] ulong userId)
         {
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | Incoming request.");
-            if (! await this.HasPermissionOnGuild(DiscordPermission.Moderator, guildid)) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 401 Unauthorized.");
-                return Unauthorized();
-            }
+            await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            UserNote existing = await this.database.GetUserNoteByUserIdAndGuildId(userid, guildid);
-            if (existing == null) {
-                logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 404 Not Found.");
-                return NotFound();
-            }
+            await UserNoteRepository.CreateDefault(_serviceProvider, await GetIdentity()).DeleteUserNote(guildId, userId);
 
-            this.database.DeleteUserNote(existing);
-            await this.database.SaveChangesAsync();
-            
-            await this.discordAnnouncer.AnnounceUserNote(existing, await this.IsValidUser(), RestAction.Deleted);
-
-            logger.LogInformation($"{HttpContext.Request.Method} {HttpContext.Request.Path} | 200 Ressource deleted.");
-            return Ok(existing);
+            return Ok();
         }
     }
 }

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace masz.Dtos.GuildConfig
+namespace masz.Dtos.GuildMotd
 {
     public class MotdForCreateDto
     {

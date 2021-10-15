@@ -1,0 +1,45 @@
+{
+    "namespace": "UsernoteCard",
+    "UpdatedPrefix": {
+        "description": "updated ",
+        "en": "Updated:",
+        "de": "Aktualisiert:",
+        "at": "Aktualisiat:"
+    },
+    "Edit": {
+        "description": "edit button",
+        "en": "Edit",
+        "de": "Bearbeiten",
+        "at": "Beoarbeitn"
+    },
+    "Delete": {
+        "description": "delete button",
+        "en": "Delete",
+        "de": "Löschen",
+        "at": "Löschn"
+    },
+    "FailedToUpdate": {
+        "description": "Failed to update usernote",
+        "en": "Failed to update usernote.",
+        "de": "Fehler beim Speichern der Benutzernotiz.",
+        "at": "Fehla beim Speichan vo da Benutzanotiz."
+    },
+    "Updated": {
+        "description": "updated usernote",
+        "en": "Usernote updated.",
+        "de": "Benutzernotiz gespeichert.",
+        "at": "Benutzanotiz gspeichat."
+    },
+    "FailedToDelete": {
+        "description": "Failed to delete usernote",
+        "en": "Failed to delete usernote.",
+        "de": "Fehler beim Löschen der Benutzernotiz.",
+        "at": "Fehler beim Löscha vo da Benutzanotiz."
+    },
+    "Deleted": {
+        "description": "deleted usernote",
+        "en": "Usernote deleted.",
+        "de": "Benutzernotiz gelöscht.",
+        "at": "Benutzanotiz glescht."
+    }
+}

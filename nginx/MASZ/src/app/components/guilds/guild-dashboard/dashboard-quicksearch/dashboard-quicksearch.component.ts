@@ -1,6 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { QuickSearchResult } from 'src/app/models/QuickSearchResult';
 import { ApiService } from 'src/app/services/api.service';
@@ -19,7 +20,7 @@ export class DashboardQuicksearchComponent implements OnInit {
   public loading: boolean = true;
   timeout: any = null;
 
-  constructor(private api: ApiService, private route: ActivatedRoute, private toastr: ToastrService) { }
+  constructor(private api: ApiService, private route: ActivatedRoute, private toastr: ToastrService, private translator: TranslateService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -40,17 +41,20 @@ export class DashboardQuicksearchComponent implements OnInit {
       this.loading = true;
       this.showOverlay = true;
       this.searchResults = undefined;
-      
+
       let params = new HttpParams()
         .set('search', value.trim());
-      this.api.getSimpleData(`/guilds/${this.guildId}/dashboard/search`, true, params).subscribe((data) => {
+      this.api.getSimpleData(`/guilds/${this.guildId}/dashboard/search`, true, params).subscribe(data => {
         this.searchResults = data;
         this.loading = false;
-      }, () => { this.toastr.error('Search failed.'); this.loading = false; });
+      }, error => {
+        console.error(error);
+        this.toastr.error(this.translator.instant('Quicksearch.SearchFailed'));
+        this.loading = false;
+      });
     } else {
       this.loading = false;
       this.showOverlay = false;
     }
   }
-
 }

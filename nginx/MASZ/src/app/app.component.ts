@@ -13,6 +13,13 @@ import { HttpParams } from '@angular/common/http';
 import { ApiService } from './services/api.service';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { IApplicationInfo } from './models/IApplicationInfo';
+import { ApplicationInfoService } from './services/application-info.service';
+import { TranslateService } from '@ngx-translate/core';
+import { DEFAULT_LANGUAGE, DEFAULT_TIMEZONE, LANGUAGES, TIMEZONES } from './config/config';
+import { TimezoneService } from './services/timezone.service';
+import { CookieTrackerService } from './services/cookie-tracker.service';
+import { AppSettings } from './models/AppSettings';
 
 
 @Component({
@@ -28,11 +35,30 @@ export class AppComponent implements OnInit{
   currentUser!: AppUser;
   guildDeleteDialogData!: GuildDeleteDialogData;
   @ViewChild('snav') snav: any;
+  applicationInfo?: IApplicationInfo = undefined;
+  languages = LANGUAGES;
+  timezones = TIMEZONES;
+  currentAppSettings: AppSettings = {
+    language: DEFAULT_LANGUAGE,
+    timezone: DEFAULT_TIMEZONE
+  };
+
+  public changeLanguage(lang: string) {
+    this.translator.use(lang);
+    this.currentAppSettings.language = lang;
+    this.cookieTracker.updateSettings(this.currentAppSettings);
+  }
+
+  public changeTimezone(zone: string) {
+    this.timezoneService.timezoneChanged(zone);
+    this.currentAppSettings.timezone = zone;
+    this.cookieTracker.updateSettings(this.currentAppSettings);
+  }
 
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, public route: ActivatedRoute,
-              private auth: AuthService, private toastr: ToastrService, private dialog: MatDialog, private api: ApiService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+              private auth: AuthService, private toastr: ToastrService, private dialog: MatDialog, private api: ApiService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private applicationInfoService: ApplicationInfoService, private translator: TranslateService, private timezoneService: TimezoneService, private cookieTracker: CookieTrackerService) {
     this.mobileQuery = media.matchMedia('(max-width: 1000px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -52,6 +78,33 @@ export class AppComponent implements OnInit{
     if (this.auth.isLoggedIn()) {
       this.login();
     }
+
+    this.applicationInfoService.currentApplicationInfo.subscribe(data => {
+      this.applicationInfo = data;
+    });
+
+    this.timezoneService.selectedTimezone.subscribe(data => {
+      this.currentAppSettings.timezone = data;
+    });
+
+    this.api.getSimpleData('/meta/application').subscribe((data: IApplicationInfo) => {
+      this.applicationInfoService.infoChanged(data);
+    });
+
+    this.translator.onLangChange.subscribe(() => {
+      this.currentAppSettings.language = this.translator.currentLang;
+    });
+
+    this.cookieTracker.settings.subscribe((data: AppSettings) => {
+      if (TIMEZONES.includes(data.timezone)) {  // user might enter random stuff
+        this.currentAppSettings.timezone = data.timezone;
+        this.timezoneService.timezoneChanged(data.timezone);
+      }
+      if (LANGUAGES.filter(x => x.language === data.language).length > 0) {  // user might enter random stuff
+        this.currentAppSettings.language = data.language;
+        this.translator.use(data.language);
+      }
+    });
   }
 
   login() {
@@ -65,7 +118,7 @@ export class AppComponent implements OnInit{
     });
   }
 
-  ngAfterViewInit(): void {    
+  ngAfterViewInit(): void {
     if (! this.mobileQuery.matches) {
       this.snav?.open();
     }
@@ -91,11 +144,11 @@ export class AppComponent implements OnInit{
             let params = new HttpParams()
               .set('deletedata', this.guildDeleteDialogData.deleteData ? 'true' : 'false');
             this.api.deleteData(`/guilds/${this.guildDeleteDialogData.guild.id}`, params).subscribe((data) => {
-              this.toastr.success('Guild deleted.');
+              this.toastr.success(this.translator.instant('MASZ.GuildDeleted'));
               this.auth.resetCache();
               this.login();
             }, (error) => {
-              this.toastr.error('Cannot delete guild.', 'Something went wrong.');
+              this.toastr.error(this.translator.instant('MASZ.FailedToDeleteGuild'));
             });
           }
         });
@@ -106,7 +159,7 @@ export class AppComponent implements OnInit{
   open(...target: any[]) {
     const url = target.join('/');
     if (url === 'guilds' && !this.loggedIn) {
-      this.toastr.warning('Please login first.')
+      this.toastr.warning(this.translator.instant('MASZ.PleaseLoginFirst'))
     } else {
       this.router.navigateByUrl(url);
     }
