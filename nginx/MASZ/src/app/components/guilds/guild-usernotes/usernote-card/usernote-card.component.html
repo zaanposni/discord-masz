@@ -1,5 +1,5 @@
 <div class="card-container">
-    <div class="card-container-body d-flex flex-wrap">
+    <div class="card-container-body d-flex conditional-fc">
         <!-- Profile picture -->
         <div class="pictures-parent mr-3">
             <img
@@ -19,7 +19,7 @@
                 onerror="this.src='/assets/img/default_profile.png';"
             />
         </div>
-        <div class="flex-shrink-1 d-flex flex-column flex-wrap">
+        <div class="flex-shrink-1 d-flex flex-column flex-wrap pr-2">
             <!-- Title -->
             <div>
                 <span title="{{ userNote.userNote.userId }}" class="mat-h2 mb-0" *ngIf="userNote.user">
@@ -31,12 +31,12 @@
             </div>
 
             <!-- Text -->
-            <span title="{{ userNote.userNote.description }}" style="white-space: pre-wrap; word-wrap: break-word">
+            <span title="{{ userNote.userNote.description }}" style="white-space: pre-wrap; word-wrap: anywhere">
                 {{ userNote.userNote.description }}
             </span>
         </div>
         <div class="flex-grow-1"></div>
-        <div class="d-flex flex-column align-content-center">
+        <div class="d-flex flex-column align-content-center flex-shrink-0">
             <span class="text-black-50" style="text-align: right;">
                 <app-date-display [date]="userNote.userNote.updatedAt" [prefixKey]="'UsernoteCard.UpdatedPrefix'"></app-date-display>
             </span>
