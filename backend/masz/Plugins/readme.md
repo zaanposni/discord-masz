@@ -43,3 +43,9 @@ Your service is registered as a singleton.
 
 You can find all subscribable events in the _eventHandler property.\
 For example `_eventHandler.OnIdentityRegistered`.
+
+# Deployment
+
+You have to rebuild your backend image when using custom plugins.\
+Either overwrite the image tag or use `docker-compose -f docker-compose-dev.yml up --force-recreate --build` to locally build images.\
+Be sure to set `ENABLE_CUSTOM_PLUGINS=true` in your `.env` file.
