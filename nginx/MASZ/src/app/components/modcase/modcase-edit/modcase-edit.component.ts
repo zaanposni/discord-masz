@@ -169,7 +169,7 @@ export class ModcaseEditComponent implements OnInit {
       punishedUntil: this.punishedUntil?.toISOString(),
     };
     const params = new HttpParams()
-      .set('sendnotification', this.optionsFormGroup.value.sendNotification ? 'true' : 'false')
+      .set('sendNotification', this.optionsFormGroup.value.sendNotification ? 'true' : 'false')
       .set('handlePunishment', this.punishmentFormGroup.value.handlePunishment ? 'true' : 'false')
       .set('sendDmNotification', this.punishmentFormGroup.value.dmNotification ? 'true' : 'false');
 
