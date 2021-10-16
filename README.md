@@ -91,7 +91,6 @@ Enable **Server Members Intent** in your bot settings.
 - After authorizing your service to use your Discord account you will see your profile picture in the toolbar.
 - If you are logged in as a siteadmin, you can use the "register guild" (+) button to register your guilds and to get started.
 - Based on wanted features and functionalities you might have to grant your bot advanced permissions, read below for more info.
-- Checkout the bot commands using the `help` command. Default prefix is $.
 
 ## ⭐ Unban request feature
 
