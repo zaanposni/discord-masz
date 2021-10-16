@@ -232,7 +232,7 @@ export class ModcaseAddComponent implements OnInit {
     }
 
     const params = new HttpParams()
-      .set('sendnotification', this.optionsFormGroup.value.sendNotification ? 'true' : 'false')
+      .set('sendPublicNotification', this.optionsFormGroup.value.sendNotification ? 'true' : 'false')
       .set('handlePunishment', this.punishmentFormGroup.value.handlePunishment ? 'true' : 'false')
       .set('sendDmNotification', this.punishmentFormGroup.value.dmNotification ? 'true' : 'false');
 
