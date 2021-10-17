@@ -69,9 +69,9 @@ namespace masz.Services
             await _translator.SetContext(modCase.GuildId);
             DiscordEmbedBuilder embed;
             if (isInternal) {
-                embed = CreateBasicEmbed(action);
-            } else {
                 embed = CreateBasicEmbed(action, actor);
+            } else {
+                embed = CreateBasicEmbed(action);
             }
 
             // Thumbnail
