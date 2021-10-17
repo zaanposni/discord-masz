@@ -1,9 +1,0 @@
-{
-    "namespace": "AutomodSplit",
-    "FailedToLoad": {
-        "description": "Failed to load guild autmod split chart.",
-        "en": "Failed to load guild autmod split chart.",
-        "de": "Konnte Automoderationaufteilungsdaten nicht laden.",
-        "at": "Konnte de Automodarationsaufteilungsdotn ned lodn."
-    }
-}
