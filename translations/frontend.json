@@ -208,5 +208,2101 @@
             "de": "Gesperrt von Gilden",
             "at": "Gsperrt vo Güden"
         }
+    },
+    "MASZ": {
+        "GuildDeleted": {
+            "description": "guild deleted",
+            "en": "Guild deleted.",
+            "de": "Gilde gelöscht.",
+            "at": "Güde glescht."
+        },
+        "FailedToDeleteGuild": {
+            "description": "Failed to delete guild",
+            "en": "Failed to delete guild.",
+            "de": "Gilde konnte nicht gelöscht werden.",
+            "at": "Güde konnt ned glescht wean."
+        },
+        "PleaseLoginFirst": {
+            "description": "please login first ",
+            "en": "Please login first.",
+            "de": "Bitte melde dich zuerst an.",
+            "at": "Bitte möd di zerst o."
+        }
+    },
+    "Adminstats": {
+        "Bot": {
+            "description": "the discord bot",
+            "en": "Bot",
+            "de": "Bot",
+            "at": "Bot"
+        },
+        "Database": {
+            "description": "the database",
+            "en": "Database",
+            "de": "Datenbank",
+            "at": "Datnbonk"
+        },
+        "InternalCache": {
+            "description": "the internal cache",
+            "en": "Internal cache",
+            "de": "Interner Speicher",
+            "at": "Interna Speicha"
+        },
+        "NextCache": {
+            "description": "next cache clear",
+            "en": "Next cache",
+            "de": "Speicherentleerung",
+            "at": "Speichaentleerung"
+        },
+        "Tokens": {
+            "description": "Tokens",
+            "en": "Tokens",
+            "de": "Schlüssel",
+            "at": "Schlüssl"
+        },
+        "CurrentlyLoggedIn": {
+            "description": "currently logged in users headline",
+            "en": "Currently logged in",
+            "de": "Moment eingeloggt",
+            "at": "Momenton eigloggt"
+        },
+        "DiscordCache": {
+            "description": "headline for cache list",
+            "en": "Discord cache",
+            "de": "Discordspeicher",
+            "at": "Discordspeicha"
+        },
+        "ClearCache": {
+            "description": "Clear cache button",
+            "en": "Clear cache",
+            "de": "Speicher leeren",
+            "at": "Speicha lean"
+        },
+        "FailedToLoad": {
+            "description": "Failed to load adminstats",
+            "en": "Failed to load adminstats.",
+            "de": "Statistiken konnten nicht geladen werden.",
+            "at": "Statistikn kenna ned glodn wean."
+        },
+        "FailedToClear": {
+            "description": "Failed to clear cache",
+            "en": "Failed to clear cache.",
+            "de": "Speicher konnte nicht geleert werden.",
+            "at": "Speicha konnte ned gleat wean."
+        },
+        "Cleared": {
+            "description": " clear cache",
+            "en": "Cache cleared.",
+            "de": "Speicher geleert.",
+            "at": "Speicha gleat."
+        },
+        "Insights": {
+            "description": "headline",
+            "en": "Insights",
+            "de": "Statistiken",
+            "at": "Statistikn"
+        }
+    },
+    "AdminstatsList": {
+        "ShowMore": {
+            "description": "Show more button",
+            "en": "Show more",
+            "de": "Mehr anzeigen",
+            "at": "Mehr ozeign"
+        }
+    },
+    "TokenOverview": {
+        "Description": {
+            "description": "description of token stuff.",
+            "en": "As a siteadmin you can use the MASZ API to implement your own custom scripts and automate stuff on MASZ. Create an API key below to authorize yourself against the API while making web requests.",
+            "de": "Als Seitenadministrator können Sie die MASZ API nutzen, um ihre eigene Skripte und Automatisierungen in MASZ zu implementieren. Erstellen Sie einen API-Schlüssel, um sich gegenüber der API zu authentifizieren, während Sie Web-Anfragen tätigen.",
+            "at": "Oit Seitnadmin hom se de meglischkeit, de MASZ API zua nutznm um ernane eiganan Skripte und Automatisiarungen in MASZ einezumgeba. Erstöns bitte an API-Schlüssl, damits erna gegenüba da API authentifizian kenna, wenns Web-Ofrogn tätign tan."
+        },
+        "Documentation": {
+            "description": "find documentation at",
+            "en": "You can find a full documentation in the /docs directory.",
+            "de": "Sie finden die vollständige Dokumentation im /docs-Verzeichnis.",
+            "at": "De voiständige Dokumentations findens im /docs-Vazeichnis."
+        },
+        "Postman": {
+            "description": "Use postman to import the json file",
+            "en": "Just install postman and import the json file.",
+            "de": "Installieren Sie Postman und importieren Sie die JSON-Datei.",
+            "at": "Instalians bittsche den Postman und tuans de JSON-Datei importian."
+        },
+        "TokenHeader": {
+            "description": "Insert token in authorization header",
+            "en": "Include tokens in the \"Authorization\" header with a \"Bearer \" prefix.",
+            "de": "Fügen Sie Tokens in den \"Authorization\"-Header mit einem \"Bearer \"-Präfix ein.",
+            "at": "Tuan bitte den Tokn in den \"Authorization\"-Header mit am \"Bearer \"-Präfix eifügn."
+        },
+        "PythonAPIWrapper": {
+            "description": "try out the official api wrapper written in python",
+            "en": "Try out the official python API wrapper.",
+            "de": "Probieren Sie den offiziellen Python-API-Wrapper aus.",
+            "at": "Provians den offiziön Python-API-Wrapper aus."
+        },
+        "Warning": {
+            "description": "the word 'warning'",
+            "en": "Warning",
+            "de": "Warnung",
+            "at": "Ochtung"
+        },
+        "TokenIsPowerful": {
+            "description": "a token is very powerful",
+            "en": "An API key is very powerful and can control everything on MASZ!",
+            "de": "Ein API-Schlüssel ist sehr mächtig und kann alles auf MASZ steuern!",
+            "at": "Da API-Schlüssl is ned ohne und ko ois am MASZ steian!"
+        },
+        "CreateToken": {
+            "description": "Create token button",
+            "en": "Create token",
+            "de": "Schlüssel erstellen",
+            "at": "Schlüssl erstön"
+        },
+        "SaveSecurely": {
+            "description": "Save this token securely",
+            "en": "Save this token securely.",
+            "de": "Sichern Sie diesen Schlüssel.",
+            "at": "Tuans den Schlüssl speichan."
+        },
+        "Tokens": {
+            "description": "Headline for list of tokens",
+            "en": "Tokens",
+            "de": "Schlüssel",
+            "at": "Schlüssl"
+        },
+        "NoTokensFound": {
+            "description": "No tokens registered",
+            "en": "No tokens found",
+            "de": "Keine Schlüssel gefunden",
+            "at": "Ka Schlüssl gfundn."
+        },
+        "ValidUntil": {
+            "description": "token is valid until..",
+            "en": "Valid until:",
+            "de": "Gültig bis:",
+            "at": "Güt bis:"
+        },
+        "CopiedClipboard": {
+            "description": "token copied to clipboard",
+            "en": "Copied to clipboard.",
+            "de": "In Zwischenablage kopiert.",
+            "at": "In de Zwischnoblog kopiat."
+        },
+        "Deleted": {
+            "description": "token deleted",
+            "en": "Token deleted.",
+            "de": "Schlüssel gelöscht.",
+            "at": "Schlüssl glescht"
+        },
+        "FailedToDelete": {
+            "description": "failed to delete token",
+            "en": "Failed to delete token..",
+            "de": "Schlüssel konnte nicht gelöscht werden.",
+            "at": "Schlüssl konnt ned glescht wean."
+        },
+        "Created": {
+            "description": "token created",
+            "en": "Token created.",
+            "de": "Schlüssel erstellt.",
+            "at": "Schlüssl erstöt."
+        },
+        "FailedToCreate": {
+            "description": "failed to create token",
+            "en": "Failed to create token..",
+            "de": "Schlüssel konnte nicht erstellt werden.",
+            "at": "Schlüssl konnt ned erstöt wean."
+        },
+        "FailedToLoad": {
+            "description": "failed to load token",
+            "en": "Failed to load current token..",
+            "de": "Schlüssel konnten nicht geladen werden.",
+            "at": "Schlüssl konnt ned glodn wean."
+        }
+    },
+    "AutoModCard": {
+        "ViewCase": {
+            "description": "View case button",
+            "en": "View case",
+            "de": "Vorfall anzeigen",
+            "at": "Vorfoi ozeign"
+        },
+        "Message": {
+            "description": "Message id",
+            "en": "Message",
+            "de": "Nachricht",
+            "at": "Nochricht"
+        }
+    },
+    "AutoModTable": {
+        "FailedToLoad": {
+            "description": "Failed to load automods",
+            "en": "Failed to load automoderations.",
+            "de": "Automoderationen konnten nicht geladen werden.",
+            "at": "Automodaration konnt ned glodn wean."
+        },
+        "NoMatches": {
+            "description": "There are no moderated events.",
+            "en": "There are no moderated events.",
+            "de": "Es gibt keine moderierten Ereignisse.",
+            "at": "Es gibt kane modariaten Sochn."
+        },
+        "LoadMoreEvents": {
+            "description": "Load more events",
+            "en": "Load more entries",
+            "de": "Mehr Einträge laden",
+            "at": "Mehr Eiträge lodn"
+        }
+    },
+    "DTPicker": {
+        "ChooseADate": {
+            "description": "Choose a date",
+            "en": "Choose a date",
+            "de": "Wähle ein Datum",
+            "at": "Tu a Datum auswöhn"
+        },
+        "OK": {
+            "description": "ok button for close of datepicker",
+            "en": "OK",
+            "de": "OK",
+            "at": "Basst"
+        }
+    },
+    "CaseDeleteDialog": {
+        "SendPublicNotification": {
+            "description": "send public notification",
+            "en": "Send public notification",
+            "de": "Sende öffentliche Benachrichtigung",
+            "at": "Tua a öffentliche Benochrichtigung sendn"
+        },
+        "ForceDelete": {
+            "description": "Force delete",
+            "en": "Force delete",
+            "de": "Permanent löschen",
+            "at": "Fix fia imma leschn"
+        },
+        "Cancel": {
+            "description": "cancel button",
+            "en": "Cancel",
+            "de": "Abbrechen",
+            "at": "Obrechn"
+        },
+        "Confirm": {
+            "description": "confirm button",
+            "en": "Confirm",
+            "de": "Bestätigen",
+            "at": "Zuastimma"
+        }
+    },
+    "CommentEditDialog": {
+        "EditComment": {
+            "description": "edit comment",
+            "en": "Edit comment",
+            "de": "Kommentar aktualisieren",
+            "at": "Kommentoa aktualisiat"
+        },
+        "Comment": {
+            "description": "Comment field",
+            "en": "Comment",
+            "de": "Kommentar",
+            "at": "Kommentoa"
+        },
+        "Cancel": {
+            "description": "cancel button",
+            "en": "Cancel",
+            "de": "Abbrechen",
+            "at": "Obrechn"
+        },
+        "Confirm": {
+            "description": "confirm button",
+            "en": "Confirm",
+            "de": "Bestätigen",
+            "at": "Zuastima"
+        }
+    },
+    "ConfirmDialog": {
+        "AreYouSure": {
+            "description": "are you sure",
+            "en": "Are you sure?",
+            "de": "Bist du dir sicher?",
+            "at": "Bist da sicha?"
+        },
+        "Cancel": {
+            "description": "cancel button",
+            "en": "Cancel",
+            "de": "Abbrechen",
+            "at": "Obrechn"
+        },
+        "Confirm": {
+            "description": "confirm button",
+            "en": "Confirm",
+            "de": "Bestätigen",
+            "at": "Zuastima"
+        }
+    },
+    "NewTokenDialog": {
+        "NameToken": {
+            "description": "name your token",
+            "en": "Name your token.",
+            "de": "Benenne deinen Schlüssel.",
+            "at": "Gib dam Schlüssl an Nom."
+        },
+        "Name": {
+            "description": "name field",
+            "en": "Name",
+            "de": "Name",
+            "at": "Nom"
+        },
+        "Cancel": {
+            "description": "cancel button",
+            "en": "Cancel",
+            "de": "Abbrechen",
+            "at": "Obrechn"
+        },
+        "Confirm": {
+            "description": "confirm button",
+            "en": "Confirm",
+            "de": "Bestätigen",
+            "at": "Zuastima"
+        }
+    },
+    "TemplateCreateDialog": {
+        "CreateTemplate": {
+            "description": "name your token",
+            "en": "Name your template.",
+            "de": "Benenne deine Vorlage.",
+            "at": "Tu dei Vorlog benenna."
+        },
+        "Name": {
+            "description": "name field",
+            "en": "Name",
+            "de": "Name",
+            "at": "Nom"
+        },
+        "Visibility": {
+            "description": "visibility field",
+            "en": "Visibility",
+            "de": "Sichtbarkeit",
+            "at": "Sichtboarkeit"
+        },
+        "Cancel": {
+            "description": "cancel button",
+            "en": "Cancel",
+            "de": "Abbrechen",
+            "at": "Obrechn"
+        },
+        "Confirm": {
+            "description": "confirm button",
+            "en": "Confirm",
+            "de": "Bestätigen",
+            "at": "Zuastima"
+        },
+        "FailedToLoadPermissions": {
+            "description": "failed to load",
+            "en": "Failed to load visibility options.",
+            "de": "Sichtbarkeitseinstellungen konnten nicht geladen werden.",
+            "at": "De Sichtboarkeitseistellungen konntn ned glodn wean."
+        }
+    },
+    "UsermapEditDialog": {
+        "EditUsermap": {
+            "description": "Edit usermap",
+            "en": "Edit usermap",
+            "de": "Benutzerbeziehung aktualisieren",
+            "at": "Benutzabeziehungen aktualisian"
+        },
+        "Description": {
+            "description": "description field",
+            "en": "Description",
+            "de": "Beschreibung",
+            "at": "Beschreibung"
+        },
+        "Cancel": {
+            "description": "cancel button",
+            "en": "Cancel",
+            "de": "Abbrechen",
+            "at": "Obrechn"
+        },
+        "Confirm": {
+            "description": "confirm button",
+            "en": "Confirm",
+            "de": "Bestätigen",
+            "at": "Zustima"
+        }
+    },
+    "UsernoteEditDialog": {
+        "EditUsernote": {
+            "description": "Edit usernote",
+            "en": "Edit usernote",
+            "de": "Benutzernotiz aktualisieren",
+            "at": "Benutzanotiz aktualisian"
+        },
+        "Description": {
+            "description": "description field",
+            "en": "Description",
+            "de": "Beschreibung",
+            "at": "Beschreibung"
+        },
+        "Cancel": {
+            "description": "cancel button",
+            "en": "Cancel",
+            "de": "Abbrechen",
+            "at": "Obrechn"
+        },
+        "Confirm": {
+            "description": "confirm button",
+            "en": "Confirm",
+            "de": "Bestätigen",
+            "at": "Zustima"
+        }
+    },
+    "GuildDialog": {
+        "AddAGuild": {
+            "description": "Add a guild",
+            "en": "Add a guild",
+            "de": "Gilde hinzufügen",
+            "at": "Güde hinzufügn"
+        },
+        "SearchAGuild": {
+            "description": "Search a guild",
+            "en": "Search a guild",
+            "de": "Gilde suchen",
+            "at": "Güde suchn"
+        },
+        "SelectAnotherGuild": {
+            "description": " Select a guild",
+            "en": "Select a guild",
+            "de": "Wähle eine andere Gilde",
+            "at": "Tu a ondera Güde wöhn"
+        },
+        "InviteFirst": {
+            "description": "you need to invite the bot to this guild first",
+            "en": "You need to invite the bot first!",
+            "de": "Du musst den Bot zuerst einladen!",
+            "at": "Du muast den Bot zerst eilodn!"
+        },
+        "Invite": {
+            "description": "invite button",
+            "en": "Invite",
+            "de": "Einladen",
+            "at": "Eilodn"
+        },
+        "Back": {
+            "description": "Back button",
+            "en": "Back",
+            "de": "Zurück",
+            "at": "Zrück"
+        },
+        "Next": {
+            "description": "Next button",
+            "en": "Next",
+            "de": "Nächster Schritt",
+            "at": "Nächsta Schritt"
+        },
+        "StepAdminRoles": {
+            "description": "Select admin roles step of dialog",
+            "en": "Select admin roles",
+            "de": "Auswahl der Adminrollen",
+            "at": "Adminroin auswöhn"
+        },
+        "AdminRoles": {
+            "description": "Admin roles select",
+            "en": "Admin roles",
+            "de": "Adminrollen",
+            "at": "Adminroin"
+        },
+        "StepModeratorRoles": {
+            "description": "Select moderator roles step of dialog",
+            "en": "Select moderator roles",
+            "de": "Auswahl der Moderatorrollen",
+            "at": "Modroin auswöhn"
+        },
+        "ModeratorRoles": {
+            "description": "Moderator roles select",
+            "en": "Moderator roles",
+            "de": "Moderatorrollen",
+            "at": "Modroin"
+        },
+        "StepMutedRoles": {
+            "description": "Select muted roles step of dialog",
+            "en": "Select muted roles",
+            "de": "Auswahl der Stummrollen",
+            "at": "Stummroin auswöhn"
+        },
+        "MutedRoles": {
+            "description": "Muted roles select",
+            "en": "Muted roles",
+            "de": "Stummschaltungsrollen",
+            "at": "Stummroin"
+        },
+        "StepFurtherConfiguration": {
+            "description": "Select further configuration step of dialog",
+            "en": "Select further configuration",
+            "de": "Weitere Konfiguration",
+            "at": "Weitare Konfiguration"
+        },
+        "InternalStaffWebhook": {
+            "description": "field to add internal notification webhook",
+            "en": "Internal staff notification webhook",
+            "de": "Internen Notifikations-Webhook",
+            "at": "Internaner Notifikations-Webhook"
+        },
+        "PublicWebhook": {
+            "description": "field to add public notification webhook",
+            "en": "Public member notification webhook",
+            "de": "Öffentlicher Notifikations-Webhook",
+            "at": "Öffentlicha Notifikations-Webhook"
+        },
+        "Language": {
+            "description": "language select",
+            "en": "Language",
+            "de": "Sprache",
+            "at": "Sproch"
+        },
+        "StrictPermissionCheckbox": {
+            "description": "Checkbox to enable strict permission mode",
+            "en": "Strict permission check",
+            "de": "Genaue Berechtigungskontrolle",
+            "at": "Genaue Berechnigungskontroi"
+        },
+        "StrictPermissionDetails": {
+            "description": "details of strict permission mode",
+            "en": "A moderator needs kick/ban permissions on discord to create kick/ban modcases",
+            "de": "Ein Moderator benötigt Kick/Ban Rechte auf Discord um Kick/Ban-Modkäufe zu erstellen",
+            "at": "Da Modaration braucht Rausschmiss/Aussperrn Rechte aufm Discord um de Rausschmiss/Aussperrn-Berichte zum erstön."
+        },
+        "ExecuteWhois": {
+            "description": "Execute whois checkbox",
+            "en": "Execute whois on member join",
+            "de": "Whois automatisch ausführen bei neuen Mitgliedern",
+            "at": "Den Whois automatisch ausfüan bei am neichn Nutza"
+        },
+        "WhoisDetails": {
+            "description": "details of whois mode",
+            "en": "Automatically sends information about the joined user to your internal webhook.",
+            "de": "Sendet automatisch Informationen über den neuen Benutzer an deinen internen Webhook.",
+            "at": "Tua automatisch Infos üba an neichn Nutza on dein internan Webhook schickn."
+        },
+        "PublishModerator": {
+            "description": "publish moderator info checkbox",
+            "en": "Publish moderator information",
+            "de": "Veröffentliche Moderatorinformationen",
+            "at": "Veröfftnlich Modarationsinfos"
+        },
+        "PublishModeratorDetails": {
+            "description": "details of publish moderator mode",
+            "en": "A suspect will be able to see which moderator punished him.",
+            "de": "Ein Verdächtiger wird in der Lage sein, zu sehen, welcher Moderator ihn verurteilt hat.",
+            "at": "A Verdächtiga wird de Meglichkeit hom, zum schaun, wöchana Modarator erm verurtoit hot."
+        },
+        "Done": {
+            "description": "Done",
+            "en": "Done",
+            "de": "Fertig",
+            "at": "Fertig"
+        },
+        "RegisterGuild": {
+            "description": "button to reigster guild",
+            "en": "Register guild",
+            "de": "Gilde registrieren",
+            "at": "Güde registrian"
+        },
+        "UpdateGuild": {
+            "description": "button to update guild",
+            "en": "Update guild",
+            "de": "Gilde aktualisieren",
+            "at": "Güde aktualisian"
+        },
+        "FailedToLoadGuilds": {
+            "description": "Failed to load guilds",
+            "en": "Failed to load guilds.",
+            "de": "Gilden konnten nicht geladen werden.",
+            "at": "Güde konnt ned glodn wean."
+        },
+        "FailedToLoadCurrentGuild": {
+            "description": "Failed to load current guild",
+            "en": "Failed to load current guild info.",
+            "de": "Gildeninformation konnte nicht geladen werden.",
+            "at": "Güdeninfos konnt ned glodn wean."
+        },
+        "FailedInviteWindow": {
+            "description": "failed to open invite window",
+            "en": "Failed to open invite window.",
+            "de": "Einladung konnte nicht gestartet werden.",
+            "at": "Eiladung konnt ned gstartet wean."
+        },
+        "FailedToRegisterGuild": {
+            "description": "failed to register guild",
+            "en": "Failed to register guild.",
+            "de": "Gilde konnte nicht registriert werden.",
+            "at": "Güde konnt ned registriat wean."
+        },
+        "FailedToUpdateGuild": {
+            "description": "failed to update guild",
+            "en": "Failed to update guild.",
+            "de": "Gilde konnte nicht aktualisiert werden.",
+            "at": "Güde konnt ned aktualisiat wean."
+        },
+        "GuildCreated": {
+            "description": "Guild created",
+            "en": "Guild created",
+            "de": "Gilde registriert",
+            "at": "Güde registriat"
+        },
+        "GuildUpdated": {
+            "description": "Guild updated",
+            "en": "Guild updated",
+            "de": "Gilde aktualisiert",
+            "at": "Güde aktualisiat"
+        }
+    },
+    "AutomodConfig": {
+        "Automoderation": {
+            "description": "title of page",
+            "en": "Automoderation",
+            "de": "Automoderation",
+            "at": "Automodaration"
+        },
+        "Invites": {
+            "title": {
+                "description": "title of automod invite",
+                "en": "Invites",
+                "de": "Einladungen",
+                "at": "Eiladungen"
+            },
+            "details": {
+                "description": "details of automod invite",
+                "en": "A message on your guild matches the invite pattern.",
+                "de": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster.",
+                "at": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta."
+            }
+        },
+        "Emotes": {
+            "title": {
+                "description": "title of automod emote",
+                "en": "Emotes",
+                "de": "Emoticons",
+                "at": "Emoji"
+            },
+            "details": {
+                "description": "details of automod emote",
+                "en": "A message on your guild contains too many emotes.",
+                "de": "Eine Nachricht auf deinem Server enthält zu viele Emoticons.",
+                "at": "A Nochricht aufm Serva hot zvü Emojis"
+            }
+        },
+        "Mentions": {
+            "title": {
+                "description": "title of automod mention",
+                "en": "Mentions",
+                "de": "Erwähnungen",
+                "at": "Erwähnungen"
+            },
+            "details": {
+                "description": "details of automod mention",
+                "en": "A message on your guild contains too many mentions.",
+                "de": "Eine Nachricht auf deinem Server enthält zu viele Erwähnungen.",
+                "at": "A Nochricht aufm Serva hot zvü Erwähnungen."
+            }
+        },
+        "Attachments": {
+            "title": {
+                "description": "title of automod Attachments",
+                "en": "Attachments",
+                "de": "Anhänge",
+                "at": "Ohäng"
+            },
+            "details": {
+                "description": "details of automod Attachments",
+                "en": "A message on your guild contains too many attachments.",
+                "de": "Eine Nachricht auf deinem Server enthält zu viele Anhänge.",
+                "at": "A Nochricht aufm Serva hot zvü Ohäng"
+            }
+        },
+        "Embeds": {
+            "title": {
+                "description": "title of automod Embeds",
+                "en": "Embeds",
+                "de": "Einbettungen",
+                "at": "Eibettungen"
+            },
+            "details": {
+                "description": "details of automod Embeds",
+                "en": "A message on your guild contains too many embeds.",
+                "de": "Eine Nachricht auf deinem Server enthält zu viele Einbettungen.",
+                "at": "A Nochricht aufm Serva hot zvü Eibettungen. "
+            }
+        },
+        "Automoderations": {
+            "title": {
+                "description": "too many automoderations",
+                "en": "Automoderations",
+                "de": "Automoderationen",
+                "at": "Automodarationen"
+            },
+            "details": {
+                "description": "details of automod automods",
+                "en": "A user triggers too many automoderations in a defined timespan.",
+                "de": "Ein Benutzer löst zu viele Automoderationen in einem definierten Zeitraum aus.",
+                "at": "A Benutza hot zvü Automodarationen in am bestimmtn Zeitraum ausglest."
+            }
+        },
+        "CustomFilter": {
+            "title": {
+                "description": "title of automod custom filter",
+                "en": "Custom filter",
+                "de": "Benutzerdefinierter Filter",
+                "at": "Benutzadefinirta Füta"
+            },
+            "details": {
+                "description": "details of automod custom filter",
+                "en": "A user uses too many words defined in your list.",
+                "de": "Ein Benutzer benutzt zu viele Wörter aus deiner Liste.",
+                "at": "A Nutza nutzt zvü Wörta aus dana Listn."
+            },
+            "tooltip": {
+                "description": "a tooltip with extra tips. Words are checked line by line case insensitive.",
+                "en": "Words are checked line by line case insensitive.",
+                "de": "Wörter werden zeilenweise ohne Beachtung der Groß- und Kleinschreibung überprüft.",
+                "at": "Wörta wean zeitweis ohne da Beachtung vo da Groß- und Kleischreibung prüft."
+            },
+            "linkText": {
+                "description": "Example",
+                "en": "Example",
+                "de": "Beispiel",
+                "at": "Beispü"
+            }
+        },
+        "Spam": {
+            "title": {
+                "description": "too many spam",
+                "en": "Spam",
+                "de": "Spam",
+                "at": "Spem"
+            },
+            "details": {
+                "description": "details of automod spam",
+                "en": "A user on your guild sends too many messages in a timespan.",
+                "de": "Ein Benutzer auf deinem Server sendet zu viele Nachrichten in einem definierten Zeitraum.",
+                "at": "A Nutze aufm Serva send zvü Nochricht in am bestimmt Zeitraum."
+            },
+            "TimeLimitMessage": {
+                "description": "custom field label for time limit. Time limit (seconds)",
+                "en": "Time limit (seconds)",
+                "de": "Zeitlimit (Sekunden)",
+                "at": "Zeitlimit (Sekundn)"
+            }
+        },
+        "Next": {
+            "description": "Next button",
+            "en": "Next",
+            "de": "Nächster Schritt",
+            "at": "Nächsta Schritt"
+        },
+        "Back": {
+            "description": "Back button",
+            "en": "Back",
+            "de": "Zurück",
+            "at": "Zruck"
+        },
+        "Save": {
+            "description": "Save button",
+            "en": "Save",
+            "de": "Speichern",
+            "at": "Speicha"
+        },
+        "CustomWordField": {
+            "description": "",
+            "en": "Custom words (divide by newline)",
+            "de": "Eigene Wörter (getrennt durch Zeilenumbruch)",
+            "at": "Eigene Wörta (trennt durch an Zeilnumbruch)"
+        },
+        "TimeLimitMinutes": {
+            "description": "field label for time limit. Time limit (minutes)",
+            "en": "Time limit (minutes)",
+            "de": "Zeitlimit (Minuten)",
+            "at": "Zeitlimit (Minutn)"
+        },
+        "Steps": {
+            "Event": {
+                "description": "Event step",
+                "en": "Event",
+                "de": "Ereignis",
+                "at": "Ereignis"
+            },
+            "Filter": {
+                "description": "Filter step",
+                "en": "Filter",
+                "de": "Filter",
+                "at": "Füta"
+            },
+            "Action": {
+                "description": "Action step",
+                "en": "Action",
+                "de": "Aktion",
+                "at": "Aktion"
+            },
+            "Done": {
+                "description": "Done step",
+                "en": "Done",
+                "de": "Abschluss",
+                "at": "Fertig"
+            }
+        },
+        "UpperLimit": {
+            "description": "upper limit of automod execution",
+            "en": "Upper limit",
+            "de": "Oberes Limit",
+            "at": "Obarares Limit"
+        },
+        "TeamMembersExcluded": {
+            "description": "team members are not automoderated",
+            "en": "Note: team members are always excluded.",
+            "de": "Hinweis: Teammitglieder werden immer gefiltert.",
+            "at": "Hinweis: Teammitglieda wean imma gfütat."
+        },
+        "ExcludeRoles": {
+            "description": "Select to exclude certain roles",
+            "en": "Exclude roles",
+            "de": "Exkludiere Rollen",
+            "at": "Ausgnommene Roin"
+        },
+        "ExcludeChannels": {
+            "description": "Select to exclude certain channels",
+            "en": "Exclude channels",
+            "de": "Exkludiere Kanäle",
+            "at": "Ausgnommene Kanäle"
+        },
+        "SendInternalNotification": {
+            "description": "checkbox send internal notification",
+            "en": "Send internal notification",
+            "de": "Sende interne Benachrichtigung",
+            "at": "Send a interne Benochrichtigung"
+        },
+        "SendInternalNotificationHover": {
+            "description": "checkbox send internal notification",
+            "en": "A internal notification is always sent.",
+            "de": "Eine interne Benachrichtigung wird immer gesendet.",
+            "at": "A interne Benochrichtigung wird imma gschickt."
+        },
+        "LogEntry": {
+            "description": "checkbox log entry",
+            "en": "Log entry",
+            "de": "Eintrag erstellen",
+            "at": "Eitrag erstön"
+        },
+        "LogEntryHover": {
+            "description": "checkbox log entry",
+            "en": "A log entry is always generated.",
+            "de": "Ein Eintrag wird immer erstellt.",
+            "at": "A Eitrog wird imma erstöt."
+        },
+        "SendDMNotification": {
+            "description": "Send dm notification",
+            "en": "Send dm notification",
+            "de": "Sende DM Benachrichtigung",
+            "at": "Schick a DM Benochrichtigung"
+        },
+        "Action": {
+            "description": "action",
+            "en": "Action",
+            "de": "Aktion",
+            "at": "Aktion"
+        },
+        "SendPublicNotification": {
+            "description": "Send public notification",
+            "en": "Send public notification",
+            "de": "Sende öffentliche Benachrichtigung",
+            "at": "Send a öffentliche Benochrichtigung"
+        },
+        "DurationInMinutes": {
+            "description": "duration of punishment in minutes ",
+            "en": "Duration in minutes",
+            "de": "Dauer in Minuten",
+            "at": "Daua in Minutn"
+        },
+        "YouAreDone": {
+            "description": "you are now done step",
+            "en": "You are now done.",
+            "de": "Du bist nun fertig.",
+            "at": "Du bist jetzt fertig."
+        },
+        "ConfigDeleted": {
+            "description": "config deleted notification",
+            "en": "Config deleted",
+            "de": "Konfiguration gelöscht.",
+            "at": "Konfiguration glescht."
+        },
+        "FailedToDeleteConfig": {
+            "description": "failed to delete config notification",
+            "en": "Failed to delete config.",
+            "de": "Konfiguration konnte nicht gelöscht werden.",
+            "at": "Konfiguration konnte ned glodn wean."
+        },
+        "SavedConfig": {
+            "description": "config saved notification",
+            "en": "Config saved",
+            "de": "Konfiguration gespeichert.",
+            "at": "Konfiguration gspeichat."
+        },
+        "FailedToSaveConfig": {
+            "description": "failed to save config notification",
+            "en": "Failed to save config.",
+            "de": "Konfiguration konnte nicht gespeichert werden.",
+            "at": "Konfiguration konnte ned gspeichat wean."
+        },
+        "FailedToLoadGuild": {
+            "description": "failed to load guild info",
+            "en": "Failed to load guild info.",
+            "de": "Gildeninformationen konnten nicht geladen werden.",
+            "at": "Güdeninfos konnten ned glodn wean."
+        },
+        "FailedToLoadChannels": {
+            "description": "Failed to load guildchannel info.",
+            "en": "Failed to load guildchannel info.",
+            "de": "Gildenkanalinformationen konnten nicht geladen werden.",
+            "at": "Küdnkanoiinformationen konntn ned glodn wean."
+        }
+    },
+    "GuildMotd": {
+        "Enable": {
+            "description": "Enable motd checkbox",
+            "en": "Enable MotD",
+            "de": "Aktiviere MotD",
+            "at": "Schoit MotD ei"
+        },
+        "Message": {
+            "description": "Message field",
+            "en": "Message",
+            "de": "Nachricht",
+            "at": "Nochricht"
+        },
+        "FailedToLoad": {
+            "description": "Failed to load message",
+            "en": "Failed to load motd.",
+            "de": "MotD konnte nicht geladen werden.",
+            "at": "MotD konnt ned glodn wean."
+        },
+        "FailedToSave": {
+            "description": "Failed to save message",
+            "en": "Failed to save motd.",
+            "de": "MotD konnte nicht gespeichert werden.",
+            "at": "MotD konnt ned gspeichat wean."
+        },
+        "Saved": {
+            "description": "Saved message",
+            "en": "Saved motd.",
+            "de": "MotD gespeichert.",
+            "at": "MotD gspeichat."
+        },
+        "Explanation": {
+            "description": "Explanation",
+            "en": "This message will be displayed to your administrators and moderators on the dashboard.",
+            "de": "Diese Nachricht wird an deine Administratoren und Moderatoren auf dem Dashboard angezeigt.",
+            "at": "De Nochricht wird am Administratoa oda am Modaratoa aufm Dashboard ozeigt."
+        }
+    },
+    "AutomodSplit": {
+        "FailedToLoad": {
+            "description": "Failed to load guild autmod split chart.",
+            "en": "Failed to load guild autmod split chart.",
+            "de": "Konnte Automoderationaufteilungsdaten nicht laden.",
+            "at": "Konnte de Automodarationsaufteilungsdotn ned lodn."
+        }
+    },
+    "DashboardCaseList": {
+        "NewestCases": {
+            "description": "newest cases",
+            "en": "Newest cases",
+            "de": "Neuste Vorfälle",
+            "at": "Neiaste Vorfälle"
+        },
+        "ExpiringPunishments": {
+            "description": "expiring punishments",
+            "en": "Expiring punishments",
+            "de": "Auslaufende Bestrafungen",
+            "at": "Auslafende Bestrofungen"
+        },
+        "NoCasesFound": {
+            "description": "no cases found",
+            "en": "No cases found",
+            "de": "Keine Vorfälle gefunden",
+            "at": "Kane Vorfälle gfundn"
+        }
+    },
+    "DashboardCharts": {
+        "Overview": {
+            "description": "Overview",
+            "en": "Overview",
+            "de": "Übersicht",
+            "at": "Übasicht"
+        },
+        "Cases": {
+            "description": "Cases",
+            "en": "Cases",
+            "de": "Vorfälle",
+            "at": "Vorfälle"
+        },
+        "Punishments": {
+            "description": "Punishments",
+            "en": "Punishments",
+            "de": "Bestrafungen",
+            "at": "Bestrofungen"
+        },
+        "Automoderations": {
+            "description": "Automoderations",
+            "en": "Automoderations",
+            "de": "Automoderationen",
+            "at": "Automodaratonen"
+        },
+        "ChooseADate": {
+            "description": "Choose a date",
+            "en": "Choose a date",
+            "de": "Wähle ein Datum",
+            "at": "Tua a Datum auswöhn"
+        },
+        "Reset": {
+            "description": "Reset",
+            "en": "Reset",
+            "de": "Zurücksetzen",
+            "at": "Zrucksetzn"
+        }
+    },
+    "DashboardComments": {
+        "Newestcomments": {
+            "description": "Newest comments",
+            "en": "Newest comments",
+            "de": "Neueste Kommentare",
+            "at": "Neiaste Kommentare"
+        },
+        "NothingFound": {
+            "description": "Nothing found",
+            "en": "No comments found.",
+            "de": "Keine Kommentare gefunden.",
+            "at": "Kane Kommentare gfundn."
+        },
+        "FailedToLoad": {
+            "description": "Failed to load",
+            "en": "Failed to load comments.",
+            "de": "Kommentare konnten nicht geladen werden.",
+            "at": "Kommentare konntn ned glodn wean."
+        }
+    },
+    "GuildStats": {
+        "GuildStats": {
+            "description": "Guild Stats",
+            "en": "Guildstats",
+            "de": "Gildenstatistiken",
+            "at": "Güdnstatistikn"
+        },
+        "FailedToLoad": {
+            "description": "Failed to load",
+            "en": "Failed to load guild stats.",
+            "de": "Gildenstatistiken konnten nicht geladen werden.",
+            "at": "Güdnstatistikn konntn ned glodn wean."
+        }
+    },
+    "GuildInfoCard": {
+        "CreateNewCase": {
+            "description": "Create New Case button",
+            "en": "Create new case",
+            "de": "Neuen Vorfall erstellen",
+            "at": "Neichn Vorfoi erstön"
+        },
+        "FailedToLoad": {
+            "description": "Failed to load",
+            "en": "Failed to load guild info.",
+            "de": "Gildeninfo konnte nicht geladen werden.",
+            "at": "Güdnnifo konnt ned glodn wean."
+        }
+    },
+    "DashboardMotd": {
+        "FailedToLoad": {
+            "description": "Failed to laod motd",
+            "en": "Failed to load motd.",
+            "de": "Motd konnte nicht geladen werden.",
+            "at": "Motd konnt ned glodn wean."
+        },
+        "MessageFrom": {
+            "description": "Failed to laod motd",
+            "en": "Message from {{name}}",
+            "de": "Nachricht von {{name}}",
+            "at": "Nochricht vo {{name}}"
+        }
+    },
+    "Quicksearch": {
+        "Placeholder": {
+            "description": "Placeholder for the search field",
+            "en": "Quicksearch users, modcases, punishments, automoderations, ...",
+            "de": "Schnellsuche Benutzer, Vorfälle, Bestrafungen, Automoderationen, ...",
+            "at": "Schnösuche Benutza, Vorfälle, Bestrofungen, Automodaration, ..."
+        },
+        "NoMatches": {
+            "description": "No matches found",
+            "en": "Nothing matches your search :(",
+            "de": "Keine Einträge zur Suche gefunden :(",
+            "at": "Kane Eiträg zua Suche gfundn :("
+        },
+        "SearchFailed": {
+            "description": "Search failed",
+            "en": "Search failed.",
+            "de": "Suche fehlgeschlagen.",
+            "at": "Suche hod ned funktioniat."
+        }
+    },
+    "GuildList": {
+        "LoadingGuilds": {
+            "description": "Loading message",
+            "en": "Loading guilds...",
+            "de": "Lade Gilden...",
+            "at": "Lod Güdn..."
+        },
+        "NoGuild": {
+            "description": "No guilds registered or intersection with current user.",
+            "en": "Please join a guild or get banned so I can display something :(",
+            "de": "Bitte betrete eine Gilde oder werde gebannt, damit ich dir etwas anzeigen kann :(",
+            "at": "Bitte tua a Güdn betrent oda wead ausgsperrt, damit i dia wos zeign ko :("
+        },
+        "AddGuild": {
+            "description": "Add guild button",
+            "en": "Add guild",
+            "de": "Gilde hinzufügen",
+            "at": "Güde hinzuafügn"
+        }
+    },
+    "GuildOverview": {
+        "Tabs": {
+            "Dashboard": {
+                "description": "Dashboard",
+                "en": "Dashboard",
+                "de": "Dashboard",
+                "at": "Dashboard"
+            },
+            "Case": {
+                "description": "Modcases",
+                "en": "Cases",
+                "de": "Vorfälle",
+                "at": "Vorfälle"
+            },
+            "Automoderation": {
+                "description": "Automoderations",
+                "en": "Automoderations",
+                "de": "Automoderationen",
+                "at": "Automodarationen"
+            },
+            "Bin": {
+                "description": "Bin",
+                "en": "Bin",
+                "de": "Papierkorb",
+                "at": "Mistkübl"
+            },
+            "Usernote": {
+                "description": "Usernote",
+                "en": "Usernotes",
+                "de": "Benutzernotizen",
+                "at": "Benutzanotizn"
+            },
+            "Usermap": {
+                "description": "Usermaps",
+                "en": "Usermaps",
+                "de": "Benutzerbeziehungen",
+                "at": "Benutzabeziehungen"
+            },
+            "Config": {
+                "description": "Config",
+                "en": "Config",
+                "de": "Konfiguration",
+                "at": "Konfiguration"
+            }
+        }
+    },
+    "UsermapTable": {
+        "Member": {
+            "description": "member field",
+            "en": "Member",
+            "de": "Mitglied",
+            "at": "Mitglied"
+        },
+        "Description": {
+            "description": "description field",
+            "en": "Description",
+            "de": "Beschreibung",
+            "at": "Beschreibung"
+        },
+        "CreateNewMap": {
+            "description": "create new usermap button",
+            "en": "Create new usermap",
+            "de": "Neue Benutzerbeziehung erstellen",
+            "at": "Neue Benutzabeziehung erstön"
+        },
+        "Search": {
+            "description": "search field",
+            "en": "Search (user, id, description...)",
+            "de": "Suchen (Benutzer, ID, Beschreibung...)",
+            "at": "Such (Benutza ID, Beschreibung ...)"
+        },
+        "NoMatches": {
+            "description": "no matches found",
+            "en": "No usermap matches your search.",
+            "de": "Keine Benutzerbeziehung passt zu deiner Suche.",
+            "at": "Kane Benutzabeziehung passt zu deina Suach."
+        },
+        "FailedToLoad": {
+            "description": "failed to load usermaps",
+            "en": "Failed to load usermaps.",
+            "de": "Benutzerbeziehungen konnten nicht geladen werden.",
+            "at": "Benutzabeziehungen konntn ned glodn wean."
+        },
+        "FailedToLoadMember": {
+            "description": "failed to load member",
+            "en": "Failed to load memberlist.",
+            "de": "Mitgliederliste konnte nicht geladen werden.",
+            "at": "Mitgliedalistn konnte ned glodn wean"
+        },
+        "FailedToCreate": {
+            "description": "failed to create usermap",
+            "en": "Failed to create usermap.",
+            "de": "Benutzerbeziehung konnte nicht erstellt werden.",
+            "at": "Benutzabeziehung konnte ned erstöt wean."
+        },
+        "Created": {
+            "description": "usermap created",
+            "en": "Usermap created.",
+            "de": "Benutzerbeziehung erstellt.",
+            "at": "Benutzabeziehung erstöt."
+        }
+    },
+    "UsermapCard": {
+        "UpdatedPrefix": {
+            "description": "updated ",
+            "en": "Updated:",
+            "de": "Aktualisiert:",
+            "at": "Aktualisiat:"
+        },
+        "Edit": {
+            "description": "edit button",
+            "en": "Edit",
+            "de": "Bearbeiten",
+            "at": "Beoarbeitn"
+        },
+        "Delete": {
+            "description": "delete button",
+            "en": "Delete",
+            "de": "Löschen",
+            "at": "Löschn"
+        },
+        "FailedToUpdate": {
+            "description": "Failed to update usermap",
+            "en": "Failed to update usermap.",
+            "de": "Fehler beim Speichern der Benutzerbeziehung.",
+            "at": "Fehla beim Speichan vo da Benutzabeziehung."
+        },
+        "Updated": {
+            "description": "updated usermap",
+            "en": "Usermap updated.",
+            "de": "Benutzerbeziehung gespeichert.",
+            "at": "Benutzabeziehung gspeichat."
+        },
+        "FailedToDelete": {
+            "description": "Failed to delete usermap",
+            "en": "Failed to delete usermap.",
+            "de": "Fehler beim Löschen der Benutzerbeziehung.",
+            "at": "Fehler beim Löschn vo da Benutzabeziehung."
+        },
+        "Deleted": {
+            "description": "deleted usermap",
+            "en": "Usermap deleted.",
+            "de": "Benutzerbeziehung gelöscht.",
+            "at": "Benutzabeziehung glescht."
+        }
+    },
+    "UsernoteTable": {
+        "Member": {
+            "description": "member field",
+            "en": "Member",
+            "de": "Mitglied",
+            "at": "Mitglied"
+        },
+        "Description": {
+            "description": "description field",
+            "en": "Description",
+            "de": "Beschreibung",
+            "at": "Beschreibung"
+        },
+        "CreateNewNote": {
+            "description": "create new usernote button",
+            "en": "Create new usernote",
+            "de": "Neue Benutzernotiz erstellen",
+            "at": "Neie Benutzanotiz erstöt"
+        },
+        "Search": {
+            "description": "search field",
+            "en": "Search (user, id, description...)",
+            "de": "Suchen (Benutzer, ID, Beschreibung...)",
+            "at": "Such (Benutza, ID, Beschreibung ...)"
+        },
+        "NoMatches": {
+            "description": "no matches found",
+            "en": "No usernote matches your search.",
+            "de": "Keine Benutzernotiz passt zu deiner Suche.",
+            "at": "Kane Benutzanotiz passt zu dana Suach."
+        },
+        "FailedToLoad": {
+            "description": "failed to load usernotes",
+            "en": "Failed to load usernotes.",
+            "de": "Benutzernotizen konnten nicht geladen werden.",
+            "at": "Benutzanotizn kenna ned glodn wean."
+        },
+        "FailedToLoadMember": {
+            "description": "failed to load member",
+            "en": "Failed to load memberlist.",
+            "de": "Mitgliederliste konnte nicht geladen werden.",
+            "at": "Mitgliedalistn konnte ned glodn wean."
+        },
+        "FailedToCreate": {
+            "description": "failed to create usernote",
+            "en": "Failed to create usernote.",
+            "de": "Benutzernotiz konnte nicht erstellt werden.",
+            "at": "Benutzanotiz konnte ned erstöt wean."
+        },
+        "Created": {
+            "description": "usernote created",
+            "en": "Usernote created.",
+            "de": "Benutzernotiz erstellt.",
+            "at": "Benutzanotiz erstöt."
+        }
+    },
+    "UsernoteCard": {
+        "UpdatedPrefix": {
+            "description": "updated ",
+            "en": "Updated:",
+            "de": "Aktualisiert:",
+            "at": "Aktualisiat:"
+        },
+        "Edit": {
+            "description": "edit button",
+            "en": "Edit",
+            "de": "Bearbeiten",
+            "at": "Beoarbeitn"
+        },
+        "Delete": {
+            "description": "delete button",
+            "en": "Delete",
+            "de": "Löschen",
+            "at": "Löschn"
+        },
+        "FailedToUpdate": {
+            "description": "Failed to update usernote",
+            "en": "Failed to update usernote.",
+            "de": "Fehler beim Speichern der Benutzernotiz.",
+            "at": "Fehla beim Speichan vo da Benutzanotiz."
+        },
+        "Updated": {
+            "description": "updated usernote",
+            "en": "Usernote updated.",
+            "de": "Benutzernotiz gespeichert.",
+            "at": "Benutzanotiz gspeichat."
+        },
+        "FailedToDelete": {
+            "description": "Failed to delete usernote",
+            "en": "Failed to delete usernote.",
+            "de": "Fehler beim Löschen der Benutzernotiz.",
+            "at": "Fehler beim Löscha vo da Benutzanotiz."
+        },
+        "Deleted": {
+            "description": "deleted usernote",
+            "en": "Usernote deleted.",
+            "de": "Benutzernotiz gelöscht.",
+            "at": "Benutzanotiz glescht."
+        }
+    },
+    "ModCaseDialog": {
+        "SelectATemplate": {
+            "description": "Select a template step of dialog",
+            "en": "Select a template",
+            "de": "Vorlagenauswahl",
+            "at": "Vorlognauswoi"
+        },
+        "BackToGuild": {
+            "description": "Back to guild button",
+            "en": "Back to guild.",
+            "de": "Zurück zur Gilde.",
+            "at": "Zruck zua Güde"
+        },
+        "BackToCase": {
+            "description": "Back to case button",
+            "en": "Back to modcase.",
+            "de": "Zurück zum Vorfall.",
+            "at": "Zruck zum Vorfoi"
+        },
+        "SearchTemplate": {
+            "description": "Search a template",
+            "en": "Search template",
+            "de": "Vorlage suchen",
+            "at": "Vorlog suacha"
+        },
+        "Back": {
+            "description": "back button",
+            "en": "Back",
+            "de": "Zurück",
+            "at": "Zruck"
+        },
+        "Next": {
+            "description": "Nexc button",
+            "en": "Next",
+            "de": "Nächster Schritt",
+            "at": "Weita"
+        },
+        "ChooseAMember": {
+            "description": "choose a member step of dialog",
+            "en": "Choose a member",
+            "de": "Nutzerauswahl",
+            "at": "Nutzaauswoi"
+        },
+        "Member": {
+            "description": "member field",
+            "en": "Member",
+            "de": "Mitglied",
+            "at": "Nutza"
+        },
+        "PickOne": {
+            "description": "pick one member",
+            "en": "Pick one",
+            "de": "Wähle einen",
+            "at": "Wöhn an"
+        },
+        "DescribeCase": {
+            "description": "describe the case step of dialog",
+            "en": "Describe the case",
+            "de": "Vorfallsbeschreibung",
+            "at": "Vorfoibeschreibung"
+        },
+        "Title": {
+            "description": "title of the case",
+            "en": "Title",
+            "de": "Titel",
+            "at": "Titl"
+        },
+        "Description": {
+            "description": "description of the case",
+            "en": "Description",
+            "de": "Beschreibung",
+            "at": "Beschreibung"
+        },
+        "Labels": {
+            "description": "Labels field of case",
+            "en": "Labels",
+            "de": "Labels",
+            "at": "Labls"
+        },
+        "NewLabel": {
+            "description": "placeholder for label field",
+            "en": "New label...",
+            "de": "Neuer Label...",
+            "at": "Neichs Labl..."
+        },
+        "ChoosePunishment": {
+            "description": "choose a punishment step of dialog",
+            "en": "Choose a punishment",
+            "de": "Bestrafungsauswahl",
+            "at": "Bestrofungsauswoi"
+        },
+        "Punishment": {
+            "description": "punishment field for case",
+            "en": "Punishment",
+            "de": "Bestrafung",
+            "at": "Bestrofung"
+        },
+        "SendDmNotification": {
+            "description": "Send dm notification checkbox",
+            "en": " Send dm notification",
+            "de": "Direktnachrichtbenachrichtigung",
+            "at": "Direktnochrichtnbenochrichtigung"
+        },
+        "HandlePunishment": {
+            "description": "Execute punishment or just register it?",
+            "en": "Execute this punishment",
+            "de": "Bestrafung exekutieren",
+            "at": "Bestrofung ausfian"
+        },
+        "UploadFiles": {
+            "description": "Upload files step of dialog",
+            "en": "Upload files",
+            "de": "Dateienupload",
+            "at": "Dateinupload"
+        },
+        "Upload": {
+            "description": "button to upload files",
+            "en": "Upload",
+            "de": "Upload",
+            "at": "Upload"
+        },
+        "CreateCase": {
+            "description": "Create case step of dialog",
+            "en": "Create case",
+            "de": "Vorfallserstellung",
+            "at": "Vorfoi erstön"
+        },
+        "UpdateCase": {
+            "description": "update case step of dialog",
+            "en": "Update case",
+            "de": "Vorfallsaktualisierung",
+            "at": "Vorfoi aktualisian"
+        },
+        "PublicNotification": {
+            "description": "public notification checkbox",
+            "en": "Send public notification",
+            "de": "Öffentliche Benachrichtigung",
+            "at": "Öffentliche Benochrichtigung"
+        },
+        "SaveAsTemplate": {
+            "description": "Save as template button",
+            "en": "Save as template",
+            "de": "Als Vorlage speichern",
+            "at": "Ois Vorlog speichan"
+        },
+        "CreateCaseButton": {
+            "description": "Create case button",
+            "en": "Create case",
+            "de": "Vorfall erstellen",
+            "at": "Vorfoi erstön"
+        },
+        "UpdateCaseButton": {
+            "description": "Update case button",
+            "en": "Update case",
+            "de": "Vorfall aktualisieren",
+            "at": "Vorfoi aktualisian"
+        },
+        "FailedToLoad": {
+            "MemberList": {
+                "description": "Failed to load member list.",
+                "en": "Failed to load member list.",
+                "de": "Mitgliederliste konnte nicht geladen werden.",
+                "at": "Mitgliederlisn konnt ned glodn wean."
+            },
+            "PunishmentEnum": {
+                "description": "Failed to load punishment enum.",
+                "en": "Failed to load available punishments.",
+                "de": "Verfügbare Bestrafungen konnten nicht geladen werden.",
+                "at": "Verfügbare Bestrofungen konntn ned glodn wean."
+            },
+            "CaseTemplates": {
+                "description": "Failed to load case templates.",
+                "en": "Failed to load case templates.",
+                "de": "Vorlagen konnte nicht geladen werden.",
+                "at": "Vorlog konnt ned glodn wean."
+            },
+            "CurrentCase": {
+                "description": "Failed to load current case.",
+                "en": "Failed to load current case.",
+                "de": "Vorfall konnte nicht geladen werden.",
+                "at": "Vorfoi konnt ned erstöt wean."
+            }
+        },
+        "AppliedTemplate": {
+            "description": "Applied template",
+            "en": "Applied template.",
+            "de": "Vorlage angewendet.",
+            "at": "Vorlog ogwendt."
+        },
+        "TemplateDeleted": {
+            "description": "Template deleted",
+            "en": "Template deleted.",
+            "de": "Vorlage gelöscht.",
+            "at": "Vorlog glescht."
+        },
+        "FailedToDeleteTemplate": {
+            "description": "failed to template deleted",
+            "en": "Failed to delete template.",
+            "de": "Vorlage konnte nicht gelöscht werden.",
+            "at": "Vorlog konnt ned glescht wean."
+        },
+        "TemplateSaved": {
+            "description": "Template saved",
+            "en": "Template saved.",
+            "de": "Vorlage gespeichert.",
+            "at": "Vorlog gspeichat."
+        },
+        "FailedToSaveTemplate": {
+            "description": "failed to template save",
+            "en": "Failed to save template.",
+            "de": "Vorlage konnte nicht gespeichert werden.",
+            "at": "Vorlog konnt ned gspeichat wean."
+        },
+        "FileUploaded": {
+            "description": "File saved",
+            "en": "File uploaded.",
+            "de": "Datei hochgeladen.",
+            "at": "Datei hochglodn."
+        },
+        "FailedToUploadFile": {
+            "description": "failed to upload file",
+            "en": "Failed to upload file.",
+            "de": "Datei konnte nicht hochgeladen werden.",
+            "at": "Datei konnt ned hochglodn wean."
+        },
+        "CaseCreated": {
+            "description": "Case created",
+            "en": "Case created.",
+            "de": "Vorfall erstellt.",
+            "at": "Vorfoi erstöt."
+        },
+        "CaseUpdated": {
+            "description": "Case updated",
+            "en": "Case updated.",
+            "de": "Vorfall aktualisiert.",
+            "at": "Vorfoi aktualisiat."
+        }
+    },
+    "ModCaseTable": {
+        "ExcludeAutoMod": {
+            "description": "Exclude automoderations from current table selection",
+            "en": "Exclude automoderations",
+            "de": "Automoderationen verstecken",
+            "at": "Automodaration vasteckn"
+        },
+        "ExcludePermanent": {
+            "description": "Exclude permanent punishments from current table selection",
+            "en": "Exclude permanent punishments",
+            "de": "Permanente Verwarnungen verstecken",
+            "at": "Permanente Verwarnungen vasteckn"
+        },
+        "ExcludeInactive": {
+            "description": "Exclude cases users from current table selection",
+            "en": "Exclude inactive cases",
+            "de": "Inaktive Vorfälle verstecken",
+            "at": "Inaktive Vorfälle vasteckn"
+        },
+        "CreateNewCase": {
+            "description": "Create a new case button",
+            "en": "Create new case",
+            "de": "Neuen Vorfall erstellen",
+            "at": "Neichn Vorfoi erstön"
+        },
+        "Search": {
+            "description": "Search button",
+            "en": "Search (user, id, description...)",
+            "de": "Suche (Benutzer, ID, Beschreibung...)",
+            "at": "Suach (Benutza, ID, Beschreibung ...)"
+        },
+        "FailedToLoad": {
+            "description": "Failed to load case table",
+            "en": "Failed to load cases.",
+            "de": "Vorfälle konnten nicht geladen werden.",
+            "at": "Vorfälle konntn ned glodn wean."
+        },
+        "NoMatches": {
+            "description": "No matches for search string found.",
+            "en": "No case matches your search.",
+            "de": "Keine Vorfälle passen zu deiner Suche.",
+            "at": "Kane Vorfälle passn zu deina Suach."
+        }
+    },
+    "ModCaseCard": {
+        "ViewDetailsButton": {
+            "description": "View Details Button",
+            "en": "View Details",
+            "de": "Details anzeigen",
+            "at": "Details ozeign"
+        },
+        "Created": {
+            "description": "Created prefix for card",
+            "en": "Created:",
+            "de": "Erstellt:",
+            "at": "Erstöt:"
+        },
+        "Until": {
+            "description": "Until prefix for card",
+            "en": "Until:",
+            "de": "Bis:",
+            "at": "Bis:"
+        },
+        "Delete": {
+            "description": "Delete prefix for card",
+            "en": "Delete:",
+            "de": "Löschen:",
+            "at": "Leschn:"
+        }
+    },
+    "ModCaseView": {
+        "Suspect": {
+            "description": "The suspect",
+            "en": "Suspect",
+            "de": "Verdächtiger",
+            "at": "Verdächtiga"
+        },
+        "ID": {
+            "description": "the ID (identifier) of an object",
+            "en": "ID",
+            "de": "ID",
+            "at": "ID"
+        },
+        "Moderator": {
+            "description": "The moderator",
+            "en": "Moderator",
+            "de": "Moderator",
+            "at": "Modarator"
+        },
+        "Punishment": {
+            "description": "The punishment",
+            "en": "Punishment",
+            "de": "Bestrafung",
+            "at": "Bestrofung"
+        },
+        "Guild": {
+            "description": "The guild",
+            "en": "Guild",
+            "de": "Gilde",
+            "at": "Güde"
+        },
+        "PunishedUntil": {
+            "description": "punished until {date}",
+            "en": "Punished until:",
+            "de": "Bestraft bis:",
+            "at": "Bestroft bis:"
+        },
+        "PunishedForever": {
+            "description": "punished forever",
+            "en": "Punished forever",
+            "de": "Bestraft für immer",
+            "at": "Bestroft fia imma"
+        },
+        "PunishmentExpired": {
+            "description": "punishment expired",
+            "en": "Punishment is expired.",
+            "de": "Bestrafung ist ausgelaufen",
+            "at": "Bestrofung is ausglaufn"
+        },
+        "CreatedAt": {
+            "description": "created at",
+            "en": "Created at",
+            "de": "Erstellt am",
+            "at": "Erstöt am"
+        },
+        "EditedAt": {
+            "description": "edited at",
+            "en": "Edited at",
+            "de": "Aktualisiert",
+            "at": "Aktualisiat"
+        },
+        "LastEditModerator": {
+            "description": "last edit by moderator x",
+            "en": "Last edit by moderator",
+            "de": "Aktualisiert von",
+            "at": "Aktualisiat vo"
+        },
+        "Description": {
+            "description": "description",
+            "en": "Description",
+            "de": "Beschreibung",
+            "at": "Beschreibung"
+        },
+        "UploadedFiles": {
+            "description": "uploaded files",
+            "en": "Uploaded files",
+            "de": "Hochgeladene Dateien",
+            "at": "Hochglodnene Datein"
+        },
+        "Upload": {
+            "description": "upload button",
+            "en": "Upload",
+            "de": "Upload",
+            "at": "Upload"
+        },
+        "Comments": {
+            "description": "Comments",
+            "en": "Comments",
+            "de": "Kommentare",
+            "at": "Kommentare"
+        },
+        "NewComment": {
+            "description": "New comment field",
+            "en": "New comment",
+            "de": "Neuer Kommentar",
+            "at": "Neua Kommentar"
+        },
+        "LockComments": {
+            "description": "lock comments",
+            "en": "Lock comments",
+            "de": "Kommentare sperren",
+            "at": "Kommentare spean"
+        },
+        "UnlockComments": {
+            "description": "unlock comments",
+            "en": "Unlock comments",
+            "de": "Kommentare freigeben",
+            "at": "Komentare freigebn"
+        },
+        "PostComment": {
+            "description": "post comment",
+            "en": "Post comment",
+            "de": "Kommentar absenden",
+            "at": "Kommentar obsendn"
+        },
+        "CaseMarkedToDelete": {
+            "description": "case marked to be deleted by user y at x date",
+            "en": "Marked to be deleted - {{user}}",
+            "de": "Zum Löschen markiert - {{user}}",
+            "at": "Zum Leschn markiat - {{user}}"
+        },
+        "CommentsLocked": {
+            "description": "case comments locked by user y",
+            "en": "Comments locked - {{user}}",
+            "de": "Kommentare gesperrt - {{user}}",
+            "at": "Kommentare gsperrt - {{user}}"
+        },
+        "Restore": {
+            "description": "restore button",
+            "en": "Restore",
+            "de": "Wiederherstellen",
+            "at": "Wiedaherstön"
+        },
+        "View": {
+            "description": "View file",
+            "en": "View",
+            "de": "Einsehen",
+            "at": "Eisehn"
+        },
+        "Delete": {
+            "description": "delete button",
+            "en": "Delete",
+            "de": "Löschen",
+            "at": "Leschn"
+        },
+        "Moderators": {
+            "description": "moderators",
+            "en": "Moderators",
+            "de": "Moderatoren",
+            "at": "Modaratorn"
+        },
+        "FailedToLoad": {
+            "Punishments": {
+                "description": "punishments",
+                "en": "Failed to load available punishments.",
+                "de": "Verfügbare Bestrafungen konnten nicht geladen werden.",
+                "at": "Verfügbare Bestrofungen konntn ned glodn wean."
+            },
+            "Files": {
+                "description": "files",
+                "en": "Failed to load files.",
+                "de": "Dateien konnten nicht geladen werden.",
+                "at": "Datein konntn ned glodn wean."
+            },
+            "Guild": {
+                "description": "Guild info",
+                "en": "Failed to load guild info.",
+                "de": "Gildeninformationen konnten nicht geladen werden.",
+                "at": "Güdninformationen konntn ned glodn wean."
+            },
+            "Case": {
+                "description": "Case",
+                "en": "Failed to load case.",
+                "de": "Vorfall konnte nicht geladen werden.",
+                "at": "Vorfoi konnte ned glodn wean."
+            }
+        },
+        "DeleteCase": {
+            "Deleted": {
+                "description": "deleted",
+                "en": "Case marked to be deleted.",
+                "de": "Vorfall zum Löschen vormarkiert.",
+                "at": "Vorfoi zum Leschn markiat."
+            },
+            "ForceDeleted": {
+                "description": "force deleted",
+                "en": "Case deleted.",
+                "de": "Vorfall gelöscht.",
+                "at": "Vorfoi glescht."
+            },
+            "Failed": {
+                "description": "failed delete",
+                "en": "Failed to delete case.",
+                "de": "Vorfall konnte nicht gelöscht werden.",
+                "at": "Vorfoi konnt ned glescht wean."
+            }
+        },
+        "RestoreCase": {
+            "Restored": {
+                "description": "restored",
+                "en": "Restored case.",
+                "de": "Vorfall wiederhergestellt.",
+                "at": "Vorfoi wiedahergstöt."
+            },
+            "Failed": {
+                "description": "failed restore",
+                "en": "Failed to restore case.",
+                "de": "Vorfall konnte nicht wiederhergestellt werden.",
+                "at": "Vorfoi konnt ned wiederhergstöt wean."
+            }
+        },
+        "FileUpload": {
+            "Uploaded": {
+                "description": "file uploaded",
+                "en": "File uploaded.",
+                "de": "Datei hochgeladen",
+                "at": "Datei hochglodn"
+            },
+            "Failed": {
+                "description": "failed upload",
+                "en": "Failed to upload ffile.",
+                "de": "Datei konnte nicht hochgeladen werden.",
+                "at": "Datei konnt ned hochglodn wean."
+            }
+        },
+        "FileDelete": {
+            "Deleted": {
+                "description": "File deleted",
+                "en": "File deleted.",
+                "de": "Datei gelöscht.",
+                "at": "Datei glescht."
+            },
+            "Failed": {
+                "description": "Failed to file delete",
+                "en": "Failed to delete file",
+                "de": "Datei konnte nicht gelöscht werden.",
+                "at": "Datei konnt ned glescht wean."
+            }
+        },
+        "CommentDelete": {
+            "Deleted": {
+                "description": "comment deleted",
+                "en": "Comment deleted.",
+                "de": "Kommentar gelöscht.",
+                "at": "Kommentar glescht."
+            },
+            "Failed": {
+                "description": "Failed to comment delete",
+                "en": "Failed to delete comment",
+                "de": "Kommentar konnte nicht gelöscht werden.",
+                "at": "Kommentar konnt ned glescht wean."
+            }
+        },
+        "CommentLock": {
+            "Locked": {
+                "description": "comment locked",
+                "en": "Comments locked.",
+                "de": "Kommentare gesperrt.",
+                "at": "Kommentare gsperrt."
+            },
+            "Failed": {
+                "description": "Failed to comment lock",
+                "en": "Failed to lock comments",
+                "de": "Kommentare konnte nicht gesperrt werden.",
+                "at": "Kommentare konntn ned gsperrt wean."
+            }
+        },
+        "CommentUnlock": {
+            "Unlocked": {
+                "description": "comment unlocked",
+                "en": "Comments unlocked.",
+                "de": "Kommentare freigegeben.",
+                "at": "Kommentare freigebn."
+            },
+            "Failed": {
+                "description": "Failed to comment unlock",
+                "en": "Failed to unlock comments",
+                "de": "Kommentare konnte nicht freigegeben werden.",
+                "at": "Kommentare konntn ned freigebn wean."
+            }
+        },
+        "CommentPost": {
+            "Posted": {
+                "description": "comment posted",
+                "en": "Comment posted.",
+                "de": "Kommentar gespeichert.",
+                "at": "Kommentar gspeichat."
+            },
+            "Failed": {
+                "description": "Failed to comment post",
+                "en": "Failed to post comment",
+                "de": "Kommentar konnte nicht gespeichert werden.",
+                "at": "Kommentar konnt ned gspeichat wean."
+            }
+        },
+        "CommentUpdate": {
+            "Updated": {
+                "description": "comment updated",
+                "en": "Comment updated.",
+                "de": "Kommentar aktualisiert.",
+                "at": "Kommentar aktualisiat."
+            },
+            "Failed": {
+                "description": "Failed to comment update",
+                "en": "Failed to update comment",
+                "de": "Kommentar konnte nicht aktualisiert werden.",
+                "at": "Kommentar konnt ned aktualisiat wean."
+            }
+        }
+    },
+    "Scanning": {
+        "EnterUserOrInvite": {
+            "description": "field to enter userid or code",
+            "en": "Enter a users id or invite code",
+            "de": "Gib die ID eines Nutzers oder einen Einladungslink an",
+            "at": "Gib de ID vom Nutza oda vom Eiladungslink ei"
+        },
+        "Userscan": {
+            "description": "userscan headline",
+            "en": "Userscan",
+            "de": "Benutzeruntersuchung",
+            "at": "Benutzauntasuchung"
+        },
+        "Invitescan": {
+            "description": "invitescan headline",
+            "en": "Invitescan",
+            "de": "Einladungsuntersuchung",
+            "at": "Eiladungsuntasuchung"
+        },
+        "UserscanDescription": {
+            "description": "explanation of the userscan feature",
+            "en": "Enter a users id to get a quick overview of a member or relations to other members. This also tracks invites a new member uses so you can quickly spot alt accounts. Use a double click to view other ressources such as a modcase.",
+            "de": "Gib die ID eines Nutzers ein um eine schnelle Übersicht über einen Nutzer oder seine Beziehungen zu anderen Nutzern zu erhalten. Diese Funktion wird auch bei Einladungen verwendet um zu erkennen welche Accounts ein neuer Nutzer verwendet. Mit einem Doppelklick auf den Nutzer kannst du auch andere Ressourcen wie einen Vorfall ansehen.",
+            "at": "Gib de ID vo am Nutza ei um a schnölle Übasicht üba an Nutza oda sane Beziehungen zu ondaren Nutza zu erhoitn. De Funktion wiad a bei Eiladungen vawendt, um zua erkenna, wöchane Accounts a neicha Nutza vawendt. Mit am Dopplklick auf den Nutza konnt du a ondare Ressuacn wia an Vorfoi oschaun."
+        },
+        "InvitescanDescription": {
+            "description": "explanation of the invitescan feature",
+            "en": "Enter an invite code or link to get a quick overview of an invite or relations to other members. Use a double click to view other ressources such as another user.",
+            "de": "Gib einen Einladungslink ein um eine schnelle Übersicht über eine Einladung oder Beziehungen zu anderen Nutzern zu erhalten. Mit einem Doppelklick kannst du auch andere Ressourcen wie einen anderen Benutzer ansehen.",
+            "at": "Gib an Eiladungslink ei um a schnölle Übasicht üba a Eiladung oda Bezihung zu am ondan Nutza zu erhoitn. Mit am Dopplklick konnt du a ondare Ressourcn wia an ondaren Benutza oschaun."
+        },
+        "FailedToLoad": {
+            "Scan": {
+                "description": "Failed to laod scan information",
+                "en": "Failed to load scan information.",
+                "de": "Untersuchungsinformationen konnten nicht geladen werden.",
+                "at": "Untasuchungsinformationen konntn ned glodn wean."
+            },
+            "Invite": {
+                "description": "Failed to laod scan information",
+                "en": "Failed to load scan information.",
+                "de": "Einladungsinformationen konnten nicht geladen werden.",
+                "at": "Eiladungsinformationen konntn ned glodn wean."
+            },
+            "InvalidInvite": {
+                "description": "Failed to laod scan information",
+                "en": "No information for this invite found.",
+                "de": "Zu dieser Einladung wurden keine Informationen gefunden.",
+                "at": "Zu dea Eiladung konnt ka Information gfundn wean."
+            }
+        },
+        "JoinedAt": {
+            "description": "User joined guild at date x",
+            "en": "Joined at",
+            "de": "Beigetreten am",
+            "at": "Beitretn om"
+        },
+        "OccuredAt": {
+            "description": "event occured at date x",
+            "en": "Occured at",
+            "de": "Am",
+            "at": "Om"
+        },
+        "CreatedAt": {
+            "description": "resource created at date x",
+            "en": "Created at",
+            "de": "Erstellt am",
+            "at": "Erstöt om"
+        }
     }
 }
