@@ -11,7 +11,7 @@ Feel free to comment existing issues/discussions or create a new one if you have
 
 Contributions to add new translations/languages or correcting existing ones are welcome!\
 Tranlating in MASZ is fairly simple and done via i18n (on the website).\
-The Backend uses custom generated code but this does not concerns you as a translator.\
+The backend uses custom generated code but this does not concerns you as a translator.
 
 There are json files that include translation nodes and look like this:\
 ![example](/docs/translation_example.png)
@@ -24,7 +24,7 @@ To quickly find your translation node either search for a known english translat
 You can use tools like `Visual Studio Code` to search through these files.
 
 If you want to adjust notifications, commands or DM messages -> `backend.json` or `backend_enum.json`.\
-If you want to adjust texts or notifications on the website -> `frontend.json`.\
+If you want to adjust texts or notifications on the website -> `frontend.json`.
 
 To migrate your changes from these "base" files into the "compiled" ones, you have to execute the script `generate.py`.\
 If you are not sure how to do this, no worries, just skip this step!
@@ -32,7 +32,7 @@ If you are not sure how to do this, no worries, just skip this step!
 ## How to publish my changes
 
 You have to follow the process of `branch -> commit -> pull request`.\
-If you are not sure what that means, check out [this tutorial](https://github.com/firstcontributions/first-contributions). \
+If you are not sure what that means, check out [this tutorial](https://github.com/firstcontributions/first-contributions).
 
 ## Issues and Discussions
 
