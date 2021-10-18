@@ -1065,13 +1065,13 @@
         "ExcludeRoles": {
             "description": "Select to exclude certain roles",
             "en": "Exclude roles",
-            "de": "Exkludiere Rollen",
+            "de": "Ausgenommene Rollen",
             "at": "Ausgnommene Roin"
         },
         "ExcludeChannels": {
             "description": "Select to exclude certain channels",
             "en": "Exclude channels",
-            "de": "Exkludiere Kanäle",
+            "de": "Ausgenommene Kanäle",
             "at": "Ausgnommene Kanäle"
         },
         "SendInternalNotification": {
