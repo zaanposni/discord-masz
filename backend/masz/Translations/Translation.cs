@@ -1315,7 +1315,7 @@ namespace masz.Translations
                         case Language.en:
                             return "Ban";
                         case Language.de:
-                            return "Sperrung";
+                            return "Bann";
                         case Language.at:
                             return "Rauswuaf";
                         default:
