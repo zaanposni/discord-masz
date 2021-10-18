@@ -1199,7 +1199,7 @@
         "Explanation": {
             "description": "Explanation",
             "en": "This message will be displayed to your administrators and moderators on the dashboard.",
-            "de": "Diese Nachricht wird an deine Administratoren und Moderatoren auf dem Dashboard angezeigt.",
+            "de": "Diese Nachricht wird deinen Administratoren und Moderatoren auf dem Dashboard angezeigt.",
             "at": "De Nochricht wird am Administratoa oda am Modaratoa aufm Dashboard ozeigt."
         }
     },
