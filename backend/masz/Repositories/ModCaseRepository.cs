@@ -221,7 +221,7 @@ namespace masz.Repositories
                 modCase.Nickname = currentReportedMember.Nickname;
             }
 
-            modCase.LastEditedAt = modCase.CreatedAt;
+            modCase.LastEditedAt = DateTime.UtcNow;
             modCase.LastEditedByModId = _currentUser.Id;
             modCase.Valid = true;
             if (modCase.PunishmentType == PunishmentType.None || modCase.PunishmentType == PunishmentType.Kick)
