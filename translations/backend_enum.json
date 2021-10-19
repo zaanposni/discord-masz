@@ -9,7 +9,7 @@
         "Ban": {
             "description": "The word 'ban'",
             "en": "Ban",
-            "de": "Sperrung",
+            "de": "Bann",
             "at": "Rauswuaf"
         },
         "Kick": {

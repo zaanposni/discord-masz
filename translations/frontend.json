@@ -1077,13 +1077,13 @@
         "ExcludeRoles": {
             "description": "Select to exclude certain roles",
             "en": "Exclude roles",
-            "de": "Exkludiere Rollen",
+            "de": "Ausgenommene Rollen",
             "at": "Ausgnommene Roin"
         },
         "ExcludeChannels": {
             "description": "Select to exclude certain channels",
             "en": "Exclude channels",
-            "de": "Exkludiere Kanäle",
+            "de": "Ausgenommene Kanäle",
             "at": "Ausgnommene Kanäle"
         },
         "SendInternalNotification": {
@@ -1211,7 +1211,7 @@
         "Explanation": {
             "description": "Explanation",
             "en": "This message will be displayed to your administrators and moderators on the dashboard.",
-            "de": "Diese Nachricht wird an deine Administratoren und Moderatoren auf dem Dashboard angezeigt.",
+            "de": "Diese Nachricht wird deinen Administratoren und Moderatoren auf dem Dashboard angezeigt.",
             "at": "De Nochricht wird am Administratoa oda am Modaratoa aufm Dashboard ozeigt."
         }
     },
@@ -1735,7 +1735,7 @@
         "HandlePunishment": {
             "description": "Execute punishment or just register it?",
             "en": "Execute this punishment",
-            "de": "Bestrafung exekutieren",
+            "de": "Bestrafung ausführen",
             "at": "Bestrofung ausfian"
         },
         "UploadFiles": {
