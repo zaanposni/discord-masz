@@ -111,6 +111,13 @@ namespace masz.AutoModerations
                     message,
                     CustomWordCheck.Check
                 )) return;
+
+            // duplicated chars
+            if (await CheckAutoMod(
+                    AutoModerationType.TooManyDuplicatedCharacters,
+                    message,
+                    DuplicatedCharacterCheck.Check
+                )) return;
         }
 
         private async Task<bool> CheckAutoMod(AutoModerationType autoModerationType, DiscordMessage message, Func<DiscordMessage, AutoModerationConfig, DiscordClient, Task<bool>> predicate)

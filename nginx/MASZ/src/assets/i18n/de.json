@@ -209,6 +209,10 @@
             "details": "Ein Benutzer auf deinem Server sendet zu viele Nachrichten in einem definierten Zeitraum.",
             "TimeLimitMessage": "Zeitlimit (Sekunden)"
         },
+        "DuplicatedChars": {
+            "title": "Wiederholende Buchstaben",
+            "details": "Eine Nachricht auf deinem Server enthält zu viele wiederholende Buchstaben."
+        },
         "Next": "Nächster Schritt",
         "Back": "Zurück",
         "Save": "Speichern",

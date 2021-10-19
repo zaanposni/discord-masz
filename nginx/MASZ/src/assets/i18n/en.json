@@ -209,6 +209,10 @@
             "details": "A user on your guild sends too many messages in a timespan.",
             "TimeLimitMessage": "Time limit (seconds)"
         },
+        "DuplicatedChars": {
+            "title": "Duplicated Characters",
+            "details": "A message on your guild contains too many duplicated characters."
+        },
         "Next": "Next",
         "Back": "Back",
         "Save": "Save",

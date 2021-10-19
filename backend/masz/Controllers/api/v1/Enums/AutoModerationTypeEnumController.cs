@@ -30,7 +30,8 @@ namespace masz.Controllers
                 EnumDto.Create((int) AutoModerationType.TooManyEmbeds, _translator.T().Enum(AutoModerationType.TooManyEmbeds)),
                 EnumDto.Create((int) AutoModerationType.TooManyAutoModerations, _translator.T().Enum(AutoModerationType.TooManyAutoModerations)),
                 EnumDto.Create((int) AutoModerationType.CustomWordFilter, _translator.T().Enum(AutoModerationType.CustomWordFilter)),
-                EnumDto.Create((int) AutoModerationType.TooManyMessages, _translator.T().Enum(AutoModerationType.TooManyMessages))
+                EnumDto.Create((int) AutoModerationType.TooManyMessages, _translator.T().Enum(AutoModerationType.TooManyMessages)),
+                EnumDto.Create((int) AutoModerationType.TooManyDuplicatedCharacters, _translator.T().Enum(AutoModerationType.TooManyDuplicatedCharacters))
             });
         }
     }

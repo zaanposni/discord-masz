@@ -1523,6 +1523,15 @@ namespace masz.Translations
                         default:
                             return "Too many messages";
                     }
+                case masz.Enums.AutoModerationType.TooManyDuplicatedCharacters:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Too many duplicated characters used";
+                        case Language.de:
+                            return "Zu viele wiederholende Buchstaben verwendet";
+                        default:
+                            return "Too many duplicated characters used";
+                    }
             }
             return "Unknown";
         }

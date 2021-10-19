@@ -119,6 +119,11 @@
             "en": "Too many messages",
             "de": "Zu viele Nachrichten",
             "at": "Zu vü Nochrichtn"
+        },
+        "TooManyDuplicatedCharacters": {
+            "description": "A user posted a message with too many duplicated characters.",
+            "en": "Too many duplicated characters used",
+            "de": "Zu viele wiederholende Buchstaben verwendet"
         }
     },
     "APIError": {

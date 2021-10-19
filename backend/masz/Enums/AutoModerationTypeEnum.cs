@@ -9,6 +9,7 @@ namespace masz.Enums
         TooManyEmbeds,
         TooManyAutoModerations,
         CustomWordFilter,
-        TooManyMessages
+        TooManyMessages,
+        TooManyDuplicatedCharacters
     }
 }

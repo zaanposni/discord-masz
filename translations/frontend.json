@@ -994,6 +994,18 @@
                 "at": "Zeitlimit (Sekundn)"
             }
         },
+        "DuplicatedChars": {
+            "title": {
+                "description": "title of automod DuplicatedChars",
+                "en": "Duplicated Characters",
+                "de": "Wiederholende Buchstaben"
+            },
+            "details": {
+                "description": "details of automod DuplicatedChars",
+                "en": "A message on your guild contains too many duplicated characters.",
+                "de": "Eine Nachricht auf deinem Server enthält zu viele wiederholende Buchstaben."
+            }
+        },
         "Next": {
             "description": "Next button",
             "en": "Next",

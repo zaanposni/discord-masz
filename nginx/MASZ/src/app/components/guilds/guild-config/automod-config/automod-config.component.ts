@@ -67,6 +67,12 @@ export class AutomodConfigComponent implements OnInit {
       showTimeLimitField: true,
       timeLimitFieldMessage: true
     },
+    {
+      type: 8,
+      key: 'DuplicatedChars',
+      showLimitField: true,
+      showTimeLimitField: false
+    }
   ];
 
   public guildId!: string;
