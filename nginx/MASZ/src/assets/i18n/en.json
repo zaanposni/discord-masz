@@ -176,7 +176,8 @@
         "Automoderation": "Automoderation",
         "Invites": {
             "title": "Invites",
-            "details": "A message on your guild matches the invite pattern."
+            "details": "A message on your guild matches the invite pattern. Invites to this guild will be ignored.",
+            "customWordField": "Ignore guilds (enter ids divided by newlines)"
         },
         "Emotes": {
             "title": "Emotes",
@@ -202,7 +203,8 @@
             "title": "Custom filter",
             "details": "A user uses too many words defined in your list.",
             "tooltip": "Words are checked line by line case insensitive.",
-            "linkText": "Example"
+            "linkText": "Example",
+            "customWordField": "Custom words (divide by newline)"
         },
         "Spam": {
             "title": "Spam",
@@ -216,7 +218,6 @@
         "Next": "Next",
         "Back": "Back",
         "Save": "Save",
-        "CustomWordField": "Custom words (divide by newline)",
         "TimeLimitMinutes": "Time limit (minutes)",
         "Steps": {
             "Event": "Event",

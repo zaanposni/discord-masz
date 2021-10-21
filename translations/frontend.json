@@ -873,9 +873,14 @@
             },
             "details": {
                 "description": "details of automod invite",
-                "en": "A message on your guild matches the invite pattern.",
-                "de": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster.",
-                "at": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta."
+                "en": "A message on your guild matches the invite pattern. Invites to this guild will be ignored.",
+                "de": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster. Einladungen zu dieser Gilde werden ignoriert.",
+                "at": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta. Eiladunga zu dem Serva wera ignohriert."
+            },
+            "customWordField": {
+                "description": "",
+                "en": "Ignore guilds (enter ids divided by newlines)",
+                "de": "Ignorierte Gilden (getrennt durch Zeilenumbruch)"
             }
         },
         "Emotes": {
@@ -972,6 +977,12 @@
                 "en": "Example",
                 "de": "Beispiel",
                 "at": "Beispü"
+            },
+            "customWordField": {
+                "description": "",
+                "en": "Custom words (divide by newline)",
+                "de": "Eigene Wörter (getrennt durch Zeilenumbruch)",
+                "at": "Eigene Wörta (trennt durch an Zeilnumbruch)"
             }
         },
         "Spam": {
@@ -1023,12 +1034,6 @@
             "en": "Save",
             "de": "Speichern",
             "at": "Speicha"
-        },
-        "CustomWordField": {
-            "description": "",
-            "en": "Custom words (divide by newline)",
-            "de": "Eigene Wörter (getrennt durch Zeilenumbruch)",
-            "at": "Eigene Wörta (trennt durch an Zeilnumbruch)"
         },
         "TimeLimitMinutes": {
             "description": "field label for time limit. Time limit (minutes)",

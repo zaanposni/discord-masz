@@ -37,8 +37,8 @@
               <input type="number" matInput formControlName="timeLimit" required>
             </mat-form-field>
             <mat-form-field *ngIf="this.definition.showCustomField">
-              <mat-label>{{ 'AutomodConfig.CustomWordField' | translate }}</mat-label>
-              <textarea matInput type="text" formControlName="customWord" [attr.rows]="this.initRowsCustomWords" required></textarea>
+              <mat-label>{{ 'AutomodConfig.' + definition.key + '.customWordField' | translate }}</mat-label>
+              <textarea matInput type="text" formControlName="customWord" [attr.rows]="this.initRowsCustomWords" [attr.required]="this.definition?.requireCustomField || null"></textarea>
             </mat-form-field>
             <div>
               <button mat-raised-button matStepperNext color="accent">

@@ -19,7 +19,9 @@ export class AutomodConfigComponent implements OnInit {
       type: 0,
       key: 'Invites',
       showLimitField: false,
-      showTimeLimitField: false
+      showTimeLimitField: false,
+      showCustomField: true,
+      requireCustomField: false,
     },
     {
       type: 1,
@@ -58,7 +60,8 @@ export class AutomodConfigComponent implements OnInit {
       showTimeLimitField: false,
       showCustomField: true,
       tooltip: true,
-      link: 'https://gist.github.com/zaanposni/4f3aa7b29d54005d34eb78f6acfe93eb'
+      link: 'https://gist.github.com/zaanposni/4f3aa7b29d54005d34eb78f6acfe93eb',
+      requireCustomField: true
     },
     {
       type: 7,

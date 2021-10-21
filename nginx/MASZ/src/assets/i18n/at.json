@@ -176,7 +176,7 @@
         "Automoderation": "Automodaration",
         "Invites": {
             "title": "Eiladungen",
-            "details": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta."
+            "details": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta. Eiladunga zu dem Serva wera ignohriert."
         },
         "Emotes": {
             "title": "Emoji",
@@ -202,7 +202,8 @@
             "title": "Benutzadefinirta Füta",
             "details": "A Nutza nutzt zvü Wörta aus dana Listn.",
             "tooltip": "Wörta wean zeitweis ohne da Beachtung vo da Groß- und Kleischreibung prüft.",
-            "linkText": "Beispü"
+            "linkText": "Beispü",
+            "customWordField": "Eigene Wörta (trennt durch an Zeilnumbruch)"
         },
         "Spam": {
             "title": "Spem",
@@ -212,7 +213,6 @@
         "Next": "Nächsta Schritt",
         "Back": "Zruck",
         "Save": "Speicha",
-        "CustomWordField": "Eigene Wörta (trennt durch an Zeilnumbruch)",
         "TimeLimitMinutes": "Zeitlimit (Minutn)",
         "Steps": {
             "Event": "Ereignis",

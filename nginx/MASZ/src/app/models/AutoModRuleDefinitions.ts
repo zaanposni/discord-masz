@@ -7,4 +7,5 @@ export interface AutoModRuleDefinition {
     showCustomField?: boolean;
     tooltip?: boolean;
     link?: string;
+    requireCustomField?: boolean;
 }
