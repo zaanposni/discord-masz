@@ -26,7 +26,7 @@
                         </span>
                     </div>
                     <span class="text-black-50">
-                        Created: {{ entry.comment.createdAt | date:'d MMMM Y HH:mm:ss'  }}
+                        <app-date-display [date]="entry.comment.createdAt" [showTime]="true"></app-date-display>
                     </span>
                 </div>
             </div>

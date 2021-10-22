@@ -3,7 +3,7 @@
     <div class="d-flex flex-column justify-content-center align-items-center w-50">
         <div class="mat-display-2 font-weight-bold">Patchnotes</div>
     </div>
-    <div class="row justify-content-center align-items-left cw-75-100">
+    <div class="row align-items-left cw-75-100">
         <ng-container *ngIf="!this.patchnotes.loading">
             <ng-container *ngFor="let note of this.patchnotes.content" >
                 <div class="flex-grow-1 d-flex p-2" [ngClass]="note?.gist_feature_link ? 'col-sm-12' : 'col-sm-6'">
@@ -19,7 +19,7 @@
                             </mat-card-title>
                             <mat-card-content>
                                 <div *ngIf="note.released_at" class="mat-caption mb-2" style="color: grey; line-height: 12px" title="release date">
-                                    {{ note.released_at | date:'d MMMM Y' }}
+                                    <app-date-display [date]="note.released_at"></app-date-display>
                                 </div>
                                 <div *ngIf="!note.released_at" class="mat-caption mb-2" style="color: grey; line-height: 12px">
                                     Unknown release date
