@@ -118,6 +118,13 @@ namespace masz.AutoModerations
                     message,
                     DuplicatedCharacterCheck.Check
                 )) return;
+
+            // links
+            if (await CheckAutoMod(
+                    AutoModerationType.TooManyLinks,
+                    message,
+                    LinkCheck.Check
+                )) return;
         }
 
         private async Task<bool> CheckAutoMod(AutoModerationType autoModerationType, DiscordMessage message, Func<DiscordMessage, AutoModerationConfig, DiscordClient, Task<bool>> predicate)

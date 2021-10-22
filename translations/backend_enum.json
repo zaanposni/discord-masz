@@ -124,6 +124,11 @@
             "description": "A user posted a message with too many duplicated characters.",
             "en": "Too many duplicated characters used",
             "de": "Zu viele wiederholende Buchstaben verwendet"
+        },
+        "TooManyLinks": {
+            "description": "A user posted a message with too many links.",
+            "en": "Too many links used",
+            "de": "Zu viele Links verwendet"
         }
     },
     "APIError": {

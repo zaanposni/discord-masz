@@ -1532,6 +1532,15 @@ namespace masz.Translations
                         default:
                             return "Too many duplicated characters used";
                     }
+                case masz.Enums.AutoModerationType.TooManyLinks:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Too many links used";
+                        case Language.de:
+                            return "Zu viele Links verwendet";
+                        default:
+                            return "Too many links used";
+                    }
             }
             return "Unknown";
         }

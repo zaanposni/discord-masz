@@ -215,6 +215,12 @@
             "title": "Duplicated Characters",
             "details": "A message on your guild contains too many duplicated characters."
         },
+        "Link": {
+            "title": "Links",
+            "details": "A message on your guild contains too many links.",
+            "customWordField": "Ignore links (enter regex patterns divided by newlines)",
+            "linkText": "Example"
+        },
         "Next": "Next",
         "Back": "Back",
         "Save": "Save",

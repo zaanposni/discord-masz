@@ -22,7 +22,8 @@ export class AutomodCardComponent implements OnInit {
     5: 'history',
     6: 'do_not_disturb',
     7: 'manage_search',
-    8: 'text_fields'
+    8: 'text_fields',
+    9: 'link'
   };
   action: string = "Unknown";
   event: string = "Unknown";

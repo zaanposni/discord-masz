@@ -75,6 +75,15 @@ export class AutomodConfigComponent implements OnInit {
       key: 'DuplicatedChars',
       showLimitField: true,
       showTimeLimitField: false
+    },
+    {
+      type: 9,
+      key: 'Link',
+      showLimitField: true,
+      showTimeLimitField: false,
+      showCustomField: true,
+      requireCustomField: false,
+      link: 'https://gist.github.com/zaanposni/5808c07c26ba04f81a9ef31c6dfa3a7e'
     }
   ];
 

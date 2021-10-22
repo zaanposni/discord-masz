@@ -10,6 +10,7 @@ namespace masz.Enums
         TooManyAutoModerations,
         CustomWordFilter,
         TooManyMessages,
-        TooManyDuplicatedCharacters
+        TooManyDuplicatedCharacters,
+        TooManyLinks
     }
 }

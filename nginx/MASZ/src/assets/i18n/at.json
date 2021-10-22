@@ -210,6 +210,9 @@
             "details": "A Nutze aufm Serva send zvü Nochricht in am bestimmt Zeitraum.",
             "TimeLimitMessage": "Zeitlimit (Sekundn)"
         },
+        "Link": {
+            "linkText": "Beispü"
+        },
         "Next": "Nächsta Schritt",
         "Back": "Zruck",
         "Save": "Speicha",

@@ -215,6 +215,12 @@
             "title": "Wiederholende Buchstaben",
             "details": "Eine Nachricht auf deinem Server enthält zu viele wiederholende Buchstaben."
         },
+        "Link": {
+            "title": "Links",
+            "details": "Eine Nachricht auf deinem Server enthält zu viele Verlinkungen.",
+            "customWordField": "Ignorierte Links (getrennte Regexpatterns durch Zeilenumbruch)",
+            "linkText": "Beispiel"
+        },
         "Next": "Nächster Schritt",
         "Back": "Zurück",
         "Save": "Speichern",

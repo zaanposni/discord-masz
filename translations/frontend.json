@@ -1017,6 +1017,29 @@
                 "de": "Eine Nachricht auf deinem Server enthält zu viele wiederholende Buchstaben."
             }
         },
+        "Link": {
+            "title": {
+                "description": "title of automod Link",
+                "en": "Links",
+                "de": "Links"
+            },
+            "details": {
+                "description": "details of automod Link",
+                "en": "A message on your guild contains too many links.",
+                "de": "Eine Nachricht auf deinem Server enthält zu viele Verlinkungen."
+            },
+            "customWordField": {
+                "description": "",
+                "en": "Ignore links (enter regex patterns divided by newlines)",
+                "de": "Ignorierte Links (getrennte Regexpatterns durch Zeilenumbruch)"
+            },
+            "linkText": {
+                "description": "Example",
+                "en": "Example",
+                "de": "Beispiel",
+                "at": "Beispü"
+            }
+        },
         "Next": {
             "description": "Next button",
             "en": "Next",
