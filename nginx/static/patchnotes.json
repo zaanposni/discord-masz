@@ -51,6 +51,10 @@
       {
         "title": "Time display",
         "description": "Adjusted some places on the website where the configured timezone was not used."
+      },
+      {
+        "title": "Improved punish slashcommand",
+        "description": "Renamed warn option from \"None\" to \"Warn\"."
       }
     ]
   },
