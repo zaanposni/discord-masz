@@ -26,7 +26,7 @@ namespace masz.AutoModerations
             foreach (string word in config.CustomWordFilter.Split('\n'))
             {
                 if (string.IsNullOrWhiteSpace(word)) continue;
-                matches += Regex.Matches(message.Content, word).Count;
+                matches += Regex.Matches(message.Content, word, RegexOptions.IgnoreCase).Count;
                 if (matches > config.Limit)
                 {
                     break;
