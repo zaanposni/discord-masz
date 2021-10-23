@@ -19,6 +19,12 @@ namespace masz.AutoModerations
                 return false;
             }
 
+            List<string> ignoreGuilds = new List<string>();
+            if (!string.IsNullOrEmpty(config.CustomWordFilter))
+            {
+                ignoreGuilds = config.CustomWordFilter.Split('\n').ToList();
+            }
+
             var matches = _inviteRegex.Matches(message.Content);
 
             if (matches.Count != 0)
@@ -35,7 +41,7 @@ namespace masz.AutoModerations
                         }
                         alreadyChecked.Append(inviteCode);
                         DiscordInvite fetchedInvite = await client.GetInviteByCodeAsync(inviteCode);
-                        if (fetchedInvite.Guild.Id != message.Channel.GuildId)
+                        if (fetchedInvite.Guild.Id != message.Channel.GuildId && !ignoreGuilds.Contains(fetchedInvite.Guild.Id.ToString()))
                         {
                             return true;
                         }

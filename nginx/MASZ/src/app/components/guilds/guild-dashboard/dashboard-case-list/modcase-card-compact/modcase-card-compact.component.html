@@ -35,10 +35,10 @@
                         </span>
                     </div>
                     <span class="text-black-50" *ngIf="this.showCreated">
-                        Created: {{ entry.modCase.createdAt | date:'d MMMM Y'  }}
+                        <app-date-display [date]="entry.modCase.createdAt"></app-date-display>
                     </span>
                     <span class="text-black-50" *ngIf="entry.modCase.punishmentActive && entry.modCase.punishedUntil && this.showExpiring">
-                        Until: {{ entry.modCase.punishedUntil | date:'d MMMM Y HH:mm:ss'  }}
+                        <app-date-display [date]="entry.modCase.punishedUntil" [showTime]="true"></app-date-display>
                     </span>
                 </div>
             </div>

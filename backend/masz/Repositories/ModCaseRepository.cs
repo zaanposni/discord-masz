@@ -71,10 +71,7 @@ namespace masz.Repositories
 
             modCase.CaseId = await _database.GetHighestCaseIdForGuild(modCase.GuildId) + 1;
             modCase.CreatedAt = DateTime.UtcNow;
-            if (modCase.OccuredAt == null)
-            {
-                modCase.OccuredAt = modCase.CreatedAt;
-            } else
+            if (modCase.OccuredAt == null || modCase.OccuredAt == DateTime.MinValue)
             {
                 modCase.OccuredAt = modCase.CreatedAt;
             }
@@ -221,7 +218,7 @@ namespace masz.Repositories
                 modCase.Nickname = currentReportedMember.Nickname;
             }
 
-            modCase.LastEditedAt = modCase.CreatedAt;
+            modCase.LastEditedAt = DateTime.UtcNow;
             modCase.LastEditedByModId = _currentUser.Id;
             modCase.Valid = true;
             if (modCase.PunishmentType == PunishmentType.None || modCase.PunishmentType == PunishmentType.Kick)

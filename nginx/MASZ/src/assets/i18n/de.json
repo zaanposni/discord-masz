@@ -176,7 +176,8 @@
         "Automoderation": "Automoderation",
         "Invites": {
             "title": "Einladungen",
-            "details": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster."
+            "details": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster. Einladungen zu dieser Gilde werden ignoriert.",
+            "customWordField": "Ignorierte Gilden (getrennt durch Zeilenumbruch)"
         },
         "Emotes": {
             "title": "Emoticons",
@@ -202,17 +203,27 @@
             "title": "Benutzerdefinierter Filter",
             "details": "Ein Benutzer benutzt zu viele Wörter aus deiner Liste.",
             "tooltip": "Wörter werden zeilenweise ohne Beachtung der Groß- und Kleinschreibung überprüft.",
-            "linkText": "Beispiel"
+            "linkText": "Beispiel",
+            "customWordField": "Eigene Wörter (getrennt durch Zeilenumbruch)"
         },
         "Spam": {
             "title": "Spam",
             "details": "Ein Benutzer auf deinem Server sendet zu viele Nachrichten in einem definierten Zeitraum.",
             "TimeLimitMessage": "Zeitlimit (Sekunden)"
         },
+        "DuplicatedChars": {
+            "title": "Wiederholende Buchstaben",
+            "details": "Eine Nachricht auf deinem Server enthält zu viele wiederholende Buchstaben."
+        },
+        "Link": {
+            "title": "Links",
+            "details": "Eine Nachricht auf deinem Server enthält zu viele Verlinkungen.",
+            "customWordField": "Ignorierte Links (getrennte Regexpatterns durch Zeilenumbruch)",
+            "linkText": "Beispiel"
+        },
         "Next": "Nächster Schritt",
         "Back": "Zurück",
         "Save": "Speichern",
-        "CustomWordField": "Eigene Wörter (getrennt durch Zeilenumbruch)",
         "TimeLimitMinutes": "Zeitlimit (Minuten)",
         "Steps": {
             "Event": "Ereignis",

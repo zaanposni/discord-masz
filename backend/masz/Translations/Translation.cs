@@ -1523,6 +1523,24 @@ namespace masz.Translations
                         default:
                             return "Too many messages";
                     }
+                case masz.Enums.AutoModerationType.TooManyDuplicatedCharacters:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Too many duplicated characters used";
+                        case Language.de:
+                            return "Zu viele wiederholende Buchstaben verwendet";
+                        default:
+                            return "Too many duplicated characters used";
+                    }
+                case masz.Enums.AutoModerationType.TooManyLinks:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Too many links used";
+                        case Language.de:
+                            return "Zu viele Links verwendet";
+                        default:
+                            return "Too many links used";
+                    }
             }
             return "Unknown";
         }

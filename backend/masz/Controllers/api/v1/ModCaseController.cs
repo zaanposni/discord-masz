@@ -99,6 +99,10 @@ namespace masz.Controllers
             newModCase.UserId = modCaseDto.UserId;
             newModCase.Labels = modCaseDto.Labels.Distinct().ToArray();
             newModCase.Others = modCaseDto.Others;
+            if (modCaseDto.OccuredAt.HasValue)
+            {
+                newModCase.OccuredAt = modCaseDto.OccuredAt.Value;
+            }
             newModCase.CreationType = CaseCreationType.Default;
             newModCase.PunishmentType = modCaseDto.PunishmentType;
             newModCase.PunishedUntil = modCaseDto.PunishedUntil;

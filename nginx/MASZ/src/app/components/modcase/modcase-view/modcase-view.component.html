@@ -237,7 +237,7 @@
                 </div>
                 <!-- Last moderator information -->
                 <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2"
-                 *ngIf="this.modCase.content?.modCase?.lastEditedByModId">
+                 *ngIf="this.modCase.content?.modCase?.lastEditedByModId && this.modCase.content?.modCase?.lastEditedAt != this.modCase.content?.modCase?.createdAt">
                     <div class="infobox bg-g-red">
                         <div class="infobox-body d-flex flex-row flex-wrap">
                             <div class="flex-grow-1 d-flex flex-column">

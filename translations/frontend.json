@@ -873,9 +873,14 @@
             },
             "details": {
                 "description": "details of automod invite",
-                "en": "A message on your guild matches the invite pattern.",
-                "de": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster.",
-                "at": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta."
+                "en": "A message on your guild matches the invite pattern. Invites to this guild will be ignored.",
+                "de": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster. Einladungen zu dieser Gilde werden ignoriert.",
+                "at": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta. Eiladunga zu dem Serva wera ignohriert."
+            },
+            "customWordField": {
+                "description": "",
+                "en": "Ignore guilds (enter ids divided by newlines)",
+                "de": "Ignorierte Gilden (getrennt durch Zeilenumbruch)"
             }
         },
         "Emotes": {
@@ -972,6 +977,12 @@
                 "en": "Example",
                 "de": "Beispiel",
                 "at": "Beispü"
+            },
+            "customWordField": {
+                "description": "",
+                "en": "Custom words (divide by newline)",
+                "de": "Eigene Wörter (getrennt durch Zeilenumbruch)",
+                "at": "Eigene Wörta (trennt durch an Zeilnumbruch)"
             }
         },
         "Spam": {
@@ -994,6 +1005,41 @@
                 "at": "Zeitlimit (Sekundn)"
             }
         },
+        "DuplicatedChars": {
+            "title": {
+                "description": "title of automod DuplicatedChars",
+                "en": "Duplicated Characters",
+                "de": "Wiederholende Buchstaben"
+            },
+            "details": {
+                "description": "details of automod DuplicatedChars",
+                "en": "A message on your guild contains too many duplicated characters.",
+                "de": "Eine Nachricht auf deinem Server enthält zu viele wiederholende Buchstaben."
+            }
+        },
+        "Link": {
+            "title": {
+                "description": "title of automod Link",
+                "en": "Links",
+                "de": "Links"
+            },
+            "details": {
+                "description": "details of automod Link",
+                "en": "A message on your guild contains too many links.",
+                "de": "Eine Nachricht auf deinem Server enthält zu viele Verlinkungen."
+            },
+            "customWordField": {
+                "description": "",
+                "en": "Ignore links (enter regex patterns divided by newlines)",
+                "de": "Ignorierte Links (getrennte Regexpatterns durch Zeilenumbruch)"
+            },
+            "linkText": {
+                "description": "Example",
+                "en": "Example",
+                "de": "Beispiel",
+                "at": "Beispü"
+            }
+        },
         "Next": {
             "description": "Next button",
             "en": "Next",
@@ -1011,12 +1057,6 @@
             "en": "Save",
             "de": "Speichern",
             "at": "Speicha"
-        },
-        "CustomWordField": {
-            "description": "",
-            "en": "Custom words (divide by newline)",
-            "de": "Eigene Wörter (getrennt durch Zeilenumbruch)",
-            "at": "Eigene Wörta (trennt durch an Zeilnumbruch)"
         },
         "TimeLimitMinutes": {
             "description": "field label for time limit. Time limit (minutes)",

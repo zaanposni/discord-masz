@@ -1,5 +1,56 @@
 [
   {
+    "title": "Version 2.1.0",
+    "version": "v2.1.0",
+    "released_at": "2021-10-23",
+    "features": [
+      {
+        "title": "Link Automod.",
+        "description": "Added a link automod that triggers on http/https links. You can also allow certain links.",
+        "icon": "code",
+        "link": "https://github.com/zaanposni/discord-masz/issues/417"
+      },
+      {
+        "title": "Duplicated characters Automod.",
+        "description": "Added a automod that triggers on duplicated characters even with linebreaks. This also recognizes \"empty\" messages.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/417"
+      },
+      {
+        "title": "Invite Automod filter.",
+        "description": "Added a filter to the invite automod to allow certain guilds.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/417"
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Improved UX.",
+        "description": "The custom filter field in automod configuration is now bigger so everything is readable."
+      },
+      {
+        "title": "Error on modcase ban create.",
+        "description": "Fixed a bug that caused api calls for ban modcases to fail.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/428"
+      },
+      {
+        "title": "Display of last moderator.",
+        "description": "Fixed a bug where the \"Last edit by moderator...\" field was visible even though there were no edit at all.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/427"
+      },
+      {
+        "title": "Time display",
+        "description": "Adjusted some places on the website where the configured timezone was not used."
+      },
+      {
+        "title": "Improved punish slashcommand",
+        "description": "Renamed warn option from \"None\" to \"Warn\"."
+      }
+    ]
+  },
+  {
     "title": "Version 2",
     "version": "v2.0.0",
     "released_at": "2021-10-16",

@@ -42,7 +42,7 @@ export class AutomodRuleComponent implements OnInit {
     this.eventForm = this._formBuilder.group({
       limit: ['', this.definition.showLimitField ? Validators.min(-1) : null],
       timeLimit: ['', this.definition.showTimeLimitField ? Validators.min(-1) : null],
-      customWord: ['', this.definition.showCustomField ? Validators.required : null]
+      customWord: ['', this.definition.requireCustomField ? Validators.required : null]
     });
     this.filterForm = this._formBuilder.group({
       excludeRoles: [''],
