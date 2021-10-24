@@ -112,13 +112,11 @@ export class AutomodRuleComponent implements OnInit {
   }
 
   applyConfig(config: AutoModerationConfig) {
-    if (this.definition.showLimitField) {
-      this.eventForm.setValue({
-        limit: config.limit,
-        timeLimit: this.definition.showTimeLimitField ? config.timeLimitMinutes : '',
-        customWord: this.definition.showCustomField ? config.customWordFilter : ''
-      });
-    }
+    this.eventForm.setValue({
+      limit: this.definition.showLimitField ? config.limit : '',
+      timeLimit: this.definition.showTimeLimitField ? config.timeLimitMinutes : '',
+      customWord: this.definition.showCustomField ? config.customWordFilter : ''
+    });
     if (config.customWordFilter) {
       this.initRowsCustomWords = Math.min(config.customWordFilter.split(/\r\n|\r|\n/).length, 15);
     }
