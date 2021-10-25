@@ -177,7 +177,7 @@
         "Invites": {
             "title": "Einladungen",
             "details": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster. Einladungen zu dieser Gilde werden ignoriert.",
-            "customWordField": "Ignorierte Gilden (getrennt durch Zeilenumbruch)"
+            "customWordField": "Ignorierte Gilden-IDs (getrennt durch Zeilenumbruch)"
         },
         "Emotes": {
             "title": "Emoticons",
