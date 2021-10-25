@@ -879,8 +879,8 @@
             },
             "customWordField": {
                 "description": "",
-                "en": "Ignore guilds (enter ids divided by newlines)",
-                "de": "Ignorierte Gilden (getrennt durch Zeilenumbruch)"
+                "en": "Ignore guilds (enter IDs divided by newlines)",
+                "de": "Ignorierte Gilden-IDs (getrennt durch Zeilenumbruch)"
             }
         },
         "Emotes": {

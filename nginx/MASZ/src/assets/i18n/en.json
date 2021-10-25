@@ -177,7 +177,7 @@
         "Invites": {
             "title": "Invites",
             "details": "A message on your guild matches the invite pattern. Invites to this guild will be ignored.",
-            "customWordField": "Ignore guilds (enter ids divided by newlines)"
+            "customWordField": "Ignore guilds (enter IDs divided by newlines)"
         },
         "Emotes": {
             "title": "Emotes",

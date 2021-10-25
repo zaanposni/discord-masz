@@ -25,7 +25,7 @@ namespace masz.Commands
                 [Choice("1 Day", 24)]
                 [Choice("1 Week", 168)]
                 [Choice("1 Month", 672)]
-            [Option("hours", "Number of days of message history to delete")] long punishedForHours = 0,
+            [Option("hours", "How long the punishment should be")] long punishedForHours = 0,
             [Option("description", "The description of the modcase")] string description = "",
             [Option("dm-notification", "Whether to send a dm notification")] bool sendDmNotification = true,
             [Option("public-notification", "Whether to send a public webhook notification")] bool sendPublicNotification = true,
