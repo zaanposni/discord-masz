@@ -24,7 +24,7 @@ namespace masz.Commands
         {
             return m.Author.IsBot;
         }
-        private async Task<int> IterateAndDeleteChannels(DiscordChannel channel, int limit, Func<DiscordMessage, bool> predicate, DiscordUser currentActor, DiscordUser fitlerUser = null)
+        private async Task<int> IterateAndDeleteChannels(DiscordChannel channel, int limit, Func<DiscordMessage, bool> predicate, DiscordUser currentActor, DiscordUser filterUser = null)
         {
             ulong lastId = 0;
             int deleted = 0;
@@ -38,7 +38,7 @@ namespace masz.Commands
             {
                 lastId = message.Id;
                 limit--;
-                if (fitlerUser != null && message.Author.Id != fitlerUser.Id)
+                if (filterUser != null && message.Author.Id != filterUser.Id)
                 {
                     continue;
                 }
@@ -79,7 +79,7 @@ namespace masz.Commands
                 {
                     lastId = message.Id;
                     limit--;
-                    if (fitlerUser != null && message.Author.Id != fitlerUser.Id)
+                    if (filterUser != null && message.Author.Id != filterUser.Id)
                     {
                         continue;
                     }
