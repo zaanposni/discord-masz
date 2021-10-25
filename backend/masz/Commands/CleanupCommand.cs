@@ -29,7 +29,12 @@ namespace masz.Commands
             ulong lastId = 0;
             int deleted = 0;
             List<DiscordMessage> toDelete = new List<DiscordMessage>();
-            foreach (DiscordMessage message in await channel.GetMessagesAsync(Math.Min(limit, 100)))
+            var messages = await channel.GetMessagesAsync(Math.Min(limit, 100));
+            if (messages.Count < Math.Min(limit, 100))
+            {
+                limit = 0;  // ignore while loop since channel will be empty soon
+            }
+            foreach (DiscordMessage message in messages)
             {
                 lastId = message.Id;
                 limit--;
@@ -60,7 +65,17 @@ namespace masz.Commands
                     await toDelete[0].DeleteAsync();
                     toDelete.Clear();
                 }
-                foreach (DiscordMessage message in await channel.GetMessagesAfterAsync(lastId, Math.Min(limit, 100)))
+                messages = await channel.GetMessagesBeforeAsync(lastId, Math.Min(limit, 100));
+                bool breakAfterDeleteIteration = false;
+                if (messages.Count == 0)
+                {
+                    break;
+                }
+                if (messages.Count < Math.Min(limit, 100))
+                {
+                    breakAfterDeleteIteration = true;
+                }
+                foreach (DiscordMessage message in messages)
                 {
                     lastId = message.Id;
                     limit--;
@@ -79,6 +94,10 @@ namespace masz.Commands
                             await message.DeleteAsync();
                         }
                     }
+                }
+                if (breakAfterDeleteIteration)
+                {
+                    break;
                 }
             }
             if (toDelete.Count >= 2)
