@@ -32,7 +32,7 @@ namespace masz.Logger
 
             private bool IsBlocked(string message, LogLevel logLevel)
             {
-                if (_categoryName == "DSharpPlus.BaseDiscordClient")
+                if (_categoryName == "DSharpPlus.BaseDiscordClient" || _categoryName == "D#.BaseDiscordClient")
                 {
                     // this is really annoying... and not even a real warning...
                     if (message.Contains("Pre-emptive ratelimit triggered - waiting until") && logLevel == LogLevel.Warning)
@@ -112,7 +112,7 @@ namespace masz.Logger
 
             public bool IsEnabled(LogLevel logLevel)
             {
-                return  logLevel >= _level;
+                return logLevel >= _level;
             }
 
             public IDisposable BeginScope<TState>(TState state)
