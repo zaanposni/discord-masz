@@ -204,7 +204,7 @@
             "details": "Ein Benutzer benutzt zu viele Wörter aus deiner Liste.",
             "tooltip": "Wörter werden zeilenweise ohne Beachtung der Groß- und Kleinschreibung überprüft.",
             "linkText": "Beispiel",
-            "customWordField": "Eigene Wörter (getrennt durch Zeilenumbruch)"
+            "customWordField": "Eigene Wörter (Regexpattern getrennt durch Zeilenumbruch)"
         },
         "Spam": {
             "title": "Spam",

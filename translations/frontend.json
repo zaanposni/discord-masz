@@ -980,9 +980,9 @@
             },
             "customWordField": {
                 "description": "",
-                "en": "Custom words (divide by newline)",
-                "de": "Eigene Wörter (getrennt durch Zeilenumbruch)",
-                "at": "Eigene Wörta (trennt durch an Zeilnumbruch)"
+                "en": "Custom words (regex pattern divided by newline)",
+                "de": "Eigene Wörter (Regexpattern getrennt durch Zeilenumbruch)",
+                "at": "Eigene Wörta (Regepxpattern getrennt durch an Zeilnumbruch)"
             }
         },
         "Spam": {

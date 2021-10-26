@@ -203,7 +203,7 @@
             "details": "A Nutza nutzt zvü Wörta aus dana Listn.",
             "tooltip": "Wörta wean zeitweis ohne da Beachtung vo da Groß- und Kleischreibung prüft.",
             "linkText": "Beispü",
-            "customWordField": "Eigene Wörta (trennt durch an Zeilnumbruch)"
+            "customWordField": "Eigene Wörta (Regepxpattern getrennt durch an Zeilnumbruch)"
         },
         "Spam": {
             "title": "Spem",

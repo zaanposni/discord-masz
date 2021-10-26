@@ -204,7 +204,7 @@
             "details": "A user uses too many words defined in your list.",
             "tooltip": "Words are checked line by line case insensitive.",
             "linkText": "Example",
-            "customWordField": "Custom words (divide by newline)"
+            "customWordField": "Custom words (regex pattern divided by newline)"
         },
         "Spam": {
             "title": "Spam",
