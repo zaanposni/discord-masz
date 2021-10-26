@@ -30,10 +30,7 @@ namespace masz.AutoModerations
                 try
                 {
                     matches += Regex.Matches(message.Content, word, RegexOptions.IgnoreCase).Count;
-                } catch (Exception)
-                {
-                    continue;
-                }
+                } catch { }
                 if (matches > config.Limit)
                 {
                     break;
