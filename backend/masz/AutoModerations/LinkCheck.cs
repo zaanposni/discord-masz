@@ -1,3 +1,4 @@
+using System;
 using System.Text.RegularExpressions;
 using DSharpPlus;
 using DSharpPlus.Entities;
@@ -28,12 +29,14 @@ namespace masz.AutoModerations
                 {
                     foreach (var filtered in config.CustomWordFilter.Split('\n'))
                     {
-                        Regex _filteredRegex = new Regex(filtered);
-                        if (_filteredRegex.IsMatch(link.Value))
+                        try
                         {
-                            count--;
-                            break;
-                        }
+                            if (Regex.Match(link.Value, filtered).Success)
+                            {
+                                count--;
+                                break;
+                            }
+                        } catch { }
                     }
                 }
             }

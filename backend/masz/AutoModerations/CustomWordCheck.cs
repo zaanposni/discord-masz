@@ -1,3 +1,4 @@
+using System;
 using System.Text.RegularExpressions;
 using DSharpPlus;
 using DSharpPlus.Entities;
@@ -26,7 +27,10 @@ namespace masz.AutoModerations
             foreach (string word in config.CustomWordFilter.Split('\n'))
             {
                 if (string.IsNullOrWhiteSpace(word)) continue;
-                matches += Regex.Matches(message.Content, word, RegexOptions.IgnoreCase).Count;
+                try
+                {
+                    matches += Regex.Matches(message.Content, word, RegexOptions.IgnoreCase).Count;
+                } catch { }
                 if (matches > config.Limit)
                 {
                     break;
