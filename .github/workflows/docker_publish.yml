@@ -62,7 +62,7 @@ jobs:
                --data-raw '{
                    "imagename": "masz_nginx",
                    "tag": "${{ env.VERSION }}",
-                   "hash": "$hash"
+                   "hash": "'"$hash"'"
                }'
 
           fullhash=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/${{ github.repository_owner }}/masz_backend:latest)
@@ -73,5 +73,5 @@ jobs:
                --data-raw '{
                    "imagename": "masz_backend",
                    "tag": "${{ env.VERSION }}",
-                   "hash": "$hash"
+                   "hash": "'"$hash"'"
                }'
