@@ -30,9 +30,9 @@ jobs:
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u zaanposni --password-stdin
           # docker push ghcr.io/${{ github.repository_owner }}/masz_backend:latest
-          # docker push ghcr.io/${{ github.repository_owner }}/masz_backend:${{ env.VERSION }}
+          docker push ghcr.io/${{ github.repository_owner }}/masz_backend:${{ env.VERSION }}
           # docker push ghcr.io/${{ github.repository_owner }}/masz_nginx:latest
-          # docker push ghcr.io/${{ github.repository_owner }}/masz_nginx:${{ env.VERSION }}
+          docker push ghcr.io/${{ github.repository_owner }}/masz_nginx:${{ env.VERSION }}
 
       - name: Calculate image sizes
         run: |
