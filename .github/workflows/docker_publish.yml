@@ -58,7 +58,7 @@ jobs:
           hash="${fullhash##*:}"
           curl --location --request POST 'https://maszindex.zaanposni.com/api/v1/versions' \
                --header 'Content-Type: application/json' \
-               --header 'X-GITHUB-TOKEN: \${{ secrets.INDEX_SERVICE_AUTH_HEADER }}' \
+               --header 'X-GITHUB-TOKEN: ${{ secrets.INDEX_SERVICE_AUTH_HEADER }}' \
                --data-raw '{
                    "imagename": "masz_nginx",
                    "tag": "${{ env.VERSION }}",
@@ -69,7 +69,7 @@ jobs:
           hash="${fullhash##*:}"
           curl --location --request POST 'https://maszindex.zaanposni.com/api/v1/versions' \
                --header 'Content-Type: application/json' \
-               --header 'X-GITHUB-TOKEN: \${{ secrets.INDEX_SERVICE_AUTH_HEADER }}' \
+               --header 'X-GITHUB-TOKEN: ${{ secrets.INDEX_SERVICE_AUTH_HEADER }}' \
                --data-raw '{
                    "imagename": "masz_backend",
                    "tag": "${{ env.VERSION }}",
