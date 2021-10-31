@@ -34,5 +34,16 @@ namespace masz.Controllers
         {
             return Ok(DiscordApplicationView.CreateOrDefault(_discordAPI.GetCurrentApplicationInfo()));
         }
+
+        [HttpGet("versions")]
+        public async Task<IActionResult> GetReleases() {
+            var restClient = new RestClient("https://maszindex.zaanposni.com/");
+            var request = new RestRequest(Method.GET);
+            request.Resource = "/api/v1/versions";
+
+            var response = await restClient.ExecuteAsync(request);
+
+            return Ok(response.Content);
+        }
     }
 }

@@ -54,9 +54,14 @@
         "DiscordCache": "Discordspeicher",
         "ClearCache": "Speicher leeren",
         "FailedToLoad": "Statistiken konnten nicht geladen werden.",
+        "FailedToLoadLocalVersion": "Lokale Versionsinfo konnten nicht geladen werden.",
+        "FailedToLoadAvailableVersions": "Verfügbare Versionen konnten nicht geladen werden.",
         "FailedToClear": "Speicher konnte nicht geleert werden.",
         "Cleared": "Speicher geleert.",
-        "Insights": "Statistiken"
+        "Insights": "Statistiken",
+        "UpdateAvailableHeadline": "Update verfügbar",
+        "Published": "Veröffentlicht:",
+        "UpdateAvailableText": "Update {{tag}} ist verfügbar. Bitte aktualisiere deinen Bot."
     },
     "AdminstatsList": {
         "ShowMore": "Mehr anzeigen"

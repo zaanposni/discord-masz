@@ -107,6 +107,7 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
 import { TimezoneService } from './services/timezone.service';
 import { CookieTrackerService } from './services/cookie-tracker.service';
 import { DatePickerComponent } from './components/basic/date-picker/date-picker.component';
+import { UpdateWarningComponent } from './components/api/adminstats/update-warning/update-warning.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -174,7 +175,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     DateDisplayComponent,
     FloorPipePipe,
     DateFormatPipe,
-    DatePickerComponent
+    DatePickerComponent,
+    UpdateWarningComponent
   ],
   imports: [
     CommonModule,

@@ -284,6 +284,18 @@
             "de": "Statistiken konnten nicht geladen werden.",
             "at": "Statistikn kenna ned glodn wean."
         },
+        "FailedToLoadLocalVersion": {
+            "description": "Failed to load installed version",
+            "en": "Failed to load installed version.",
+            "de": "Lokale Versionsinfo konnten nicht geladen werden.",
+            "at": "Lokal Versionsnfo kenna ned glodn wean."
+        },
+        "FailedToLoadAvailableVersions": {
+            "description": "Failed to load available versions",
+            "en": "Failed to load available versions.",
+            "de": "Verfügbare Versionen konnten nicht geladen werden.",
+            "at": "Ferfüghbar kenna ned glodn wean."
+        },
         "FailedToClear": {
             "description": "Failed to clear cache",
             "en": "Failed to clear cache.",
@@ -301,6 +313,24 @@
             "en": "Insights",
             "de": "Statistiken",
             "at": "Statistikn"
+        },
+        "UpdateAvailableHeadline": {
+            "description": "Update available",
+            "en": "Update available",
+            "de": "Update verfügbar",
+            "at": "Update verfügbar"
+        },
+        "Published": {
+            "description": "Published prefix for release date of update",
+            "en": "Published:",
+            "de": "Veröffentlicht:",
+            "at": "Veröffentlicht:"
+        },
+        "UpdateAvailableText": {
+            "description": "Update available text",
+            "en": "Update {{tag}} is available. Please update your instance.",
+            "de": "Update {{tag}} ist verfügbar. Bitte aktualisiere deinen Bot.",
+            "at": "Update {{tag}} is verfügbar. Bit aktualisier deinen Bot."
         }
     },
     "AdminstatsList": {

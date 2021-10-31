@@ -54,9 +54,14 @@
         "DiscordCache": "Discord cache",
         "ClearCache": "Clear cache",
         "FailedToLoad": "Failed to load adminstats.",
+        "FailedToLoadLocalVersion": "Failed to load installed version.",
+        "FailedToLoadAvailableVersions": "Failed to load available versions.",
         "FailedToClear": "Failed to clear cache.",
         "Cleared": "Cache cleared.",
-        "Insights": "Insights"
+        "Insights": "Insights",
+        "UpdateAvailableHeadline": "Update available",
+        "Published": "Published:",
+        "UpdateAvailableText": "Update {{tag}} is available. Please update your instance."
     },
     "AdminstatsList": {
         "ShowMore": "Show more"
