@@ -734,7 +734,7 @@ namespace masz.Translations
                 case Language.en:
                     return $"{user.Mention} you triggered automoderation. Reason: {reason}. Your message has been deleted.";
                 case Language.de:
-                    return $"{user.Mention} du hast die Automoderation ausgelöst. Grund: {reason}. Dein Nachricht wurde gelöscht.";
+                    return $"{user.Mention} du hast die Automoderation ausgelöst. Grund: {reason}. Deine Nachricht wurde gelöscht.";
                 case Language.at:
                     return $"{user.Mention} du host de Automodaration ausglest. Grund: {reason}. Dei Nochricht wuad glescht.";
             }
