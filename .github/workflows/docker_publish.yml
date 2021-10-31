@@ -53,7 +53,8 @@ jobs:
 
       - name: Save version in index service
         run: |
-          fullhash=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/${{ github.repository_owner }}/masz_backend:latest)
+          docker inspect ghcr.io/${{ github.repository_owner }}/masz_backend:latest
+          fullhash=$(docker inspect --format='{{.RepoDigests}}' ghcr.io/${{ github.repository_owner }}/masz_backend:latest)
           hash="${fullhash##*:}"
           curl --location --request POST 'https://maszindex.zaanposni.com/api/v1/versions' \
                --header 'Content-Type: application/json' \
@@ -64,7 +65,7 @@ jobs:
                    "hash": "$hash"
                }'
 
-          fullhash=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/${{ github.repository_owner }}/masz_backend:latest)
+          fullhash=$(docker inspect --format='{{.RepoDigests}}' ghcr.io/${{ github.repository_owner }}/masz_backend:latest)
           hash="${fullhash##*:}"
           curl --location --request POST 'https://maszindex.zaanposni.com/api/v1/versions' \
                --header 'Content-Type: application/json' \
