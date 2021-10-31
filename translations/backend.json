@@ -520,7 +520,7 @@
                     "reason": "string"
                 },
                 "en": "{user.Mention} you triggered automoderation. Reason: {reason}. Your message has been deleted.",
-                "de": "{user.Mention} du hast die Automoderation ausgelöst. Grund: {reason}. Dein Nachricht wurde gelöscht.",
+                "de": "{user.Mention} du hast die Automoderation ausgelöst. Grund: {reason}. Deine Nachricht wurde gelöscht.",
                 "at": "{user.Mention} du host de Automodaration ausglest. Grund: {reason}. Dei Nochricht wuad glescht."
             }
         },
