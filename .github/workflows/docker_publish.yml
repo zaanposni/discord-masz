@@ -12,7 +12,7 @@ jobs:
 
       - name: Determine version
         run: |
-          VERSION=$(cat nginx/static/version.json | jq -r '.version')$($(cat nginx/static/version.json | jq -r '.pre_release') && echo "a" || :)
+          VERSION=$(cat nginx/static/version.json | jq -r '.version')$($(cat nginx/static/version.json | jq -r '.pre_release') && echo "-alpha" || :)
           echo "I found version: $VERSION"
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
@@ -53,8 +53,7 @@ jobs:
 
       - name: Save version in index service
         run: |
-          docker inspect ghcr.io/${{ github.repository_owner }}/masz_backend:latest
-          fullhash=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/${{ github.repository_owner }}/masz_backend:latest)
+          fullhash=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/${{ github.repository_owner }}/masz_nginx:latest)
           hash="${fullhash##*:}"
           curl --location --request POST 'https://maszindex.zaanposni.com/api/v1/versions' \
                --header 'Content-Type: application/json' \
