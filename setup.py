@@ -83,6 +83,7 @@ ENV_FILE["AUDIT_LOG_WEBHOOK_URL"] = Prompt.ask("URL")
 ENV_FILE["ENABLE_DEMO_MODE"] = "false"
 ENV_FILE["ENABLE_CUSTOM_PLUGINS"] = "false"
 ENV_FILE["ENABLE_CORS"] = "false"
+ENV_FILE["ENABLE_PUBLIC_FILES"] = "false"
 
 env_string = ""
 for key, value in ENV_FILE.items():

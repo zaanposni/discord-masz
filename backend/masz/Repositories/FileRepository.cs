@@ -22,8 +22,12 @@ namespace masz.Repositories
         {
             _identity = identity;
         }
+        private FileRepository(IServiceProvider serviceProvider) : base(serviceProvider)
+        {
+        }
 
         public static FileRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new FileRepository(serviceProvider, identity);
+        public static FileRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new FileRepository(serviceProvider);
 
         public Models.FileInfo GetCaseFile(ulong guildId, int caseId, string fileName)
         {

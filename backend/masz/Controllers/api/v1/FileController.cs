@@ -15,7 +15,6 @@ namespace masz.Controllers
 {
     [ApiController]
     [Route("api/v1/guilds/{guildId}/cases/{caseId}/files")]
-    [Authorize]
     public class FileController : SimpleCaseController
     {
         private readonly ILogger<FileController> _logger;
@@ -26,6 +25,7 @@ namespace masz.Controllers
         }
 
         [HttpDelete("{filename}")]
+        [Authorize]
         public async Task<IActionResult> DeleteSpecificItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromRoute] string filename)
         {
             await RequirePermission(guildId, caseId, APIActionPermission.Edit);
@@ -39,10 +39,12 @@ namespace masz.Controllers
         [HttpGet("{filename}")]
         public async Task<IActionResult> GetSpecificItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromRoute] string filename)
         {
-            await RequirePermission(guildId, caseId, APIActionPermission.View);
-            Identity identity = await GetIdentity();
+            if (! _config.IsPublicFileEnabled())
+            {
+                await RequirePermission(guildId, caseId, APIActionPermission.View);
+            }
 
-            Models.FileInfo fileInfo = FileRepository.CreateDefault(_serviceProvider, identity).GetCaseFile(guildId, caseId, filename);
+            Models.FileInfo fileInfo = FileRepository.CreateWithBotIdentity(_serviceProvider).GetCaseFile(guildId, caseId, filename);
 
             HttpContext.Response.Headers.Add("Content-Disposition", fileInfo.ContentDisposition.ToString());
             HttpContext.Response.Headers.Add("Content-Type", fileInfo.ContentType);
@@ -51,6 +53,7 @@ namespace masz.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllItems([FromRoute] ulong guildId, [FromRoute] int caseId)
         {
             await RequirePermission(guildId, caseId, APIActionPermission.View);
@@ -67,6 +70,7 @@ namespace masz.Controllers
 
         [HttpPost]
         [RequestSizeLimit(10485760)]
+        [Authorize]
         public async Task<IActionResult> PostItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromForm] UploadedFile uploadedFile)
         {
             await RequirePermission(guildId, caseId, APIActionPermission.Edit);
