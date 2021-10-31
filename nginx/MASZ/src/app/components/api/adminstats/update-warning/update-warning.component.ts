@@ -18,9 +18,6 @@ export class UpdateWarningComponent implements OnInit {
     if (this.newestVersionObservable) {
       this.newestVersionObservable.subscribe(version => {
         this.newestVersion = version;
-        if (version) {
-          this.newestVersion.tag = 'v' + version.tag;
-        }
       });
     }
   }

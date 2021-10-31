@@ -54,8 +54,11 @@ export class AdminstatsComponent implements OnInit {
     localVersionObservable.subscribe((data: AppVersion) => {
       this.localVersion.loading = false;
       this.localVersion.content = {
-        version: data.version.replace('v', ''),
+        version: data.version.replace('a', '-alpha'),
         pre_release: data.pre_release,
+      }
+      if (data.pre_release && ! data.version.endsWith('-alpha')) {
+        this.localVersion.content.version += '-alpha';
       }
     }, error => {
       console.error(error);
@@ -77,7 +80,7 @@ export class AdminstatsComponent implements OnInit {
         let newestVersion = this.availableVersions.content?.find(x => x !== undefined);
         let localVersionTag = this.localVersion.content?.version;
         if (newestVersion != undefined && localVersionTag != undefined) {
-          if (compare(newestVersion.tag, localVersionTag, '>')) {
+          if (compare(newestVersion.tag.replace('a', '-alpha'), localVersionTag, '>')) {
             this.newVersionFound.next(newestVersion);
           }
         }
