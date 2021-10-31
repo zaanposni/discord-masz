@@ -76,7 +76,7 @@ namespace masz.Repositories
                 {
                     modCase = await ModCaseRepository.CreateWithBotIdentity(_serviceProvider).CreateModCase(modCase, true, modConfig.SendPublicNotification, modConfig.SendDmNotification);
 
-                    modEvent.AssociatedCaseId = modCase.Id;
+                    modEvent.AssociatedCaseId = modCase.CaseId;
                 } catch (Exception e)
                 {
                     _logger.LogError(e, $"Failed to create modcase for modevent {modEvent.GuildId}/{modEvent.UserId}/{modEvent.AutoModerationType}");
