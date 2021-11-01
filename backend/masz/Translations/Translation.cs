@@ -1854,6 +1854,17 @@ namespace masz.Translations
                         default:
                             return "This action is only usable in a guild";
                     }
+                case masz.Enums.APIError.InvalidAuditLogEvent:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Invalid auditlogevent type";
+                        case Language.de:
+                            return "Ungültiger Auditlogeventstyp";
+                        case Language.at:
+                            return "Ungütiga oduitlogeventstyp";
+                        default:
+                            return "Invalid auditlogevent type";
+                    }
             }
             return "Unknown";
         }

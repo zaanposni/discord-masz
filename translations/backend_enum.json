@@ -299,6 +299,12 @@
             "en": "This action is only usable in a guild",
             "de": "Diese Aktion ist nur in einer Gilde nutzbar",
             "at": "De Aktion is nua in ana Güdn nutzboa"
+        },
+        "InvalidAuditLogEvent": {
+            "description": "The auditlogevent type is not valid.",
+            "en": "Invalid auditlogevent type",
+            "de": "Ungültiger Auditlogeventstyp",
+            "at": "Ungütiga oduitlogeventstyp"
         }
     },
     "CaseCreationType": {
