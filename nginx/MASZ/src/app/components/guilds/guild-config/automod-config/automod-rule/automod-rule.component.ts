@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
@@ -117,8 +118,9 @@ export class AutomodRuleComponent implements OnInit {
       timeLimit: this.definition.showTimeLimitField ? config.timeLimitMinutes : '',
       customWord: this.definition.showCustomField ? config.customWordFilter : ''
     });
-    if (config.customWordFilter) {
-      this.initRowsCustomWords = Math.min(config.customWordFilter.split(/\r\n|\r|\n/).length, 15);
+    if (this.definition.showCustomField) {
+      this.initRowsCustomWords = Math.max(Math.min(config.customWordFilter?.split(/\r\n|\r|\n/)?.length ?? 0, 15), 2);
+      console.log(this.initRowsCustomWords);
     }
 
     this.filterForm.setValue({ excludeRoles: config.ignoreRoles, excludeChannels: config.ignoreChannels });
@@ -151,7 +153,7 @@ export class AutomodRuleComponent implements OnInit {
     });
   }
 
-  saveConfig() {
+  saveConfig(stepper: MatStepper) {
     this.tryingToSaveConfig = true;
     const data = {
       "AutoModerationType": this.definition.type,
@@ -167,10 +169,11 @@ export class AutomodRuleComponent implements OnInit {
       "SendPublicNotification": this.actionForm.value.publicNotification !== "" ? this.actionForm.value.publicNotification : false
     }
 
-    this.api.putSimpleData(`/guilds/${this.guildId}/automoderationconfig`, data).subscribe(() => {
+    this.api.putSimpleData(`/guilds/${this.guildId}/automoderationconfig`, data).subscribe((data) => {
       this.tryingToSaveConfig = false;
       this.toastr.success(this.translator.instant('AutomodConfig.SavedConfig'));
-      this.reload();
+      this.applyConfig(data);
+      stepper.selectedIndex = 0;
     }, error => {
       console.error(error);
       this.tryingToSaveConfig = false;
