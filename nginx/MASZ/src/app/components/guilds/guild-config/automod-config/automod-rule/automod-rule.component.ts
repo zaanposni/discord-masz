@@ -120,7 +120,6 @@ export class AutomodRuleComponent implements OnInit {
     });
     if (this.definition.showCustomField) {
       this.initRowsCustomWords = Math.max(Math.min(config.customWordFilter?.split(/\r\n|\r|\n/)?.length ?? 0, 15), 2);
-      console.log(this.initRowsCustomWords);
     }
 
     this.filterForm.setValue({ excludeRoles: config.ignoreRoles, excludeChannels: config.ignoreChannels });
@@ -179,6 +178,5 @@ export class AutomodRuleComponent implements OnInit {
       this.tryingToSaveConfig = false;
       this.toastr.error(this.translator.instant('AutomodConfig.FailedToSaveConfig'))
     });
-
   }
 }
