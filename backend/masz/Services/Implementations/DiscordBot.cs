@@ -18,7 +18,8 @@ using masz.Repositories;
 using masz.Logger;
 using masz.AutoModerations;
 using System.Text;
-using masz.Extensions;
+using masz.Enums;
+using masz.GuildAuditLog;
 
 namespace masz.Services
 {
@@ -89,6 +90,19 @@ namespace masz.Services
             slash.SlashCommandErrored += CmdErroredHandler;
         }
 
+        private async Task<GuildLevelAuditLogConfig> GetGuildAuditLogConfig(ulong guildId, GuildAuditLogEvent eventType)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                var repo = GuildLevelAuditLogConfigRepository.CreateDefault(scope.ServiceProvider);
+                try
+                {
+                    return await repo.GetConfigsByGuildAndType(guildId, eventType);
+                } catch (ResourceNotFoundException) { }
+            }
+            return null;
+        }
+
         private async Task ThreadCreatedHandler(DiscordClient sender, ThreadCreateEventArgs e)
         {
             await e.Thread.JoinThreadAsync();
@@ -138,6 +152,20 @@ namespace masz.Services
 
         private Task MessageCreatedHandler(DiscordClient client, MessageCreateEventArgs e)
         {
+            if (e.Message.Channel.Guild != null)
+            {
+                if (! e.Message.Author.IsCurrent && ! e.Message.WebhookMessage)
+                {
+                    Task.Run(async () => {
+                        GuildLevelAuditLogConfig auditLogConfig = await this.GetGuildAuditLogConfig(e.Message.Channel.Guild.Id, GuildAuditLogEvent.MessageSent);
+                        if (auditLogConfig != null)
+                        {
+                            await GuildAuditLogger.HandleEvent(client, e, MessageSentAuditLog.HandleMessageSent, auditLogConfig);
+                        }
+                    });
+                }
+            }
+
             if (e.Message.MessageType != MessageType.Default && e.Message.MessageType != MessageType.Reply)
             {
                 return Task.CompletedTask;
