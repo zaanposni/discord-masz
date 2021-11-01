@@ -60,6 +60,8 @@ namespace masz.Services
             _client.GuildUpdated += this.GuildUpdatedHandler;
             _client.GuildAvailable += this.GuildAvailableHandler;
 
+            _client.ThreadCreated += this.ThreadCreatedHandler;
+
             _client.SocketErrored += this.SocketErroredHandler;
             _client.Resumed += this.ResumedHandler;
             _client.Ready += this.ReadyHandler;
@@ -85,6 +87,11 @@ namespace masz.Services
             slash.RegisterCommands<CleanupCommand>(debugGuild);
 
             slash.SlashCommandErrored += CmdErroredHandler;
+        }
+
+        private async Task ThreadCreatedHandler(DiscordClient sender, ThreadCreateEventArgs e)
+        {
+            await e.Thread.JoinThreadAsync();
         }
 
         public async Task Start()
