@@ -1,0 +1,3 @@
+::ng-deep .auditlog-checkbox label.mat-checkbox-layout {
+    margin-bottom: 0 !important;
+}

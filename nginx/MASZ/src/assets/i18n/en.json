@@ -177,6 +177,59 @@
         "GuildCreated": "Guild created",
         "GuildUpdated": "Guild updated"
     },
+    "GuildAuditLogConfig": {
+        "TargetChannel": "Target channel",
+        "PingRoles": "Ping roles",
+        "AuditLog": "AuditLog",
+        "ConfigDeleted": "Config deleted.",
+        "FailedToDeleteConfig": "Failed to delete config.",
+        "SavedConfig": "Saved config.",
+        "FailedToSaveConfig": "Failed to save config.",
+        "FailedToLoadGuild": "Failed to load guild info.",
+        "FailedToLoadChannels": "Failed to load guildchannel info.",
+        "MessageSent": {
+            "title": "Message sent"
+        },
+        "MessageUpdated": {
+            "title": "Message updated"
+        },
+        "MessageDeleted": {
+            "title": "Message deleted"
+        },
+        "UsernameUpdated": {
+            "title": "Username updated"
+        },
+        "AvatarUpdated": {
+            "title": "Avatar updated"
+        },
+        "NicknameUpdated": {
+            "title": "Nickname updated"
+        },
+        "MemberRolesUpdated": {
+            "title": "Member roles updated"
+        },
+        "MemberJoined": {
+            "title": "Member joined"
+        },
+        "MemberRemoved": {
+            "title": "Member removed"
+        },
+        "BanAdded": {
+            "title": "Ban added"
+        },
+        "BanRemoved": {
+            "title": "Ban removed"
+        },
+        "InviteCreated": {
+            "title": "Invite created"
+        },
+        "InviteDeleted": {
+            "title": "Invite deleted"
+        },
+        "ThreadCreated": {
+            "title": "Thread created"
+        }
+    },
     "AutomodConfig": {
         "Automoderation": "Automoderation",
         "Invites": {

@@ -177,6 +177,11 @@
         "GuildCreated": "Güde registriat",
         "GuildUpdated": "Güde aktualisiat"
     },
+    "GuildAuditLogConfig": {
+        "AuditLog": "AuditLog",
+        "FailedToLoadGuild": "Güdeninfos konnten ned glodn wean.",
+        "FailedToLoadChannels": "Küdnkanoiinformationen konntn ned glodn wean."
+    },
     "AutomodConfig": {
         "Automoderation": "Automodaration",
         "Invites": {

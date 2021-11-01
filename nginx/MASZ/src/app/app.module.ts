@@ -108,6 +108,8 @@ import { TimezoneService } from './services/timezone.service';
 import { CookieTrackerService } from './services/cookie-tracker.service';
 import { DatePickerComponent } from './components/basic/date-picker/date-picker.component';
 import { UpdateWarningComponent } from './components/api/adminstats/update-warning/update-warning.component';
+import { AuditlogConfigComponent } from './components/guilds/guild-config/auditlog-config/auditlog-config.component';
+import { AuditlogConfigRuleComponent } from './components/guilds/guild-config/auditlog-config/auditlog-config-rule/auditlog-config-rule.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -176,7 +178,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     FloorPipePipe,
     DateFormatPipe,
     DatePickerComponent,
-    UpdateWarningComponent
+    UpdateWarningComponent,
+    AuditlogConfigComponent,
+    AuditlogConfigRuleComponent
   ],
   imports: [
     CommonModule,
