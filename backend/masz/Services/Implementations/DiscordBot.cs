@@ -90,19 +90,6 @@ namespace masz.Services
             slash.SlashCommandErrored += CmdErroredHandler;
         }
 
-        private async Task<GuildLevelAuditLogConfig> GetGuildAuditLogConfig(ulong guildId, GuildAuditLogEvent eventType)
-        {
-            using (var scope = _serviceScopeFactory.CreateScope())
-            {
-                var repo = GuildLevelAuditLogConfigRepository.CreateDefault(scope.ServiceProvider);
-                try
-                {
-                    return await repo.GetConfigsByGuildAndType(guildId, eventType);
-                } catch (ResourceNotFoundException) { }
-            }
-            return null;
-        }
-
         private async Task ThreadCreatedHandler(DiscordClient sender, ThreadCreateEventArgs e)
         {
             await e.Thread.JoinThreadAsync();
@@ -157,10 +144,10 @@ namespace masz.Services
                 if (! e.Message.Author.IsCurrent && ! e.Message.WebhookMessage)
                 {
                     Task.Run(async () => {
-                        GuildLevelAuditLogConfig auditLogConfig = await this.GetGuildAuditLogConfig(e.Message.Channel.Guild.Id, GuildAuditLogEvent.MessageSent);
-                        if (auditLogConfig != null)
+                        using (var scope = _serviceScopeFactory.CreateScope())
                         {
-                            await GuildAuditLogger.HandleEvent(client, e, MessageSentAuditLog.HandleMessageSent, auditLogConfig);
+                            GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+                            await auditLogger.HandleEvent(e, MessageSentAuditLog.HandleMessageSent, GuildAuditLogEvent.MessageSent);
                         }
                     });
                 }
@@ -198,6 +185,20 @@ namespace masz.Services
 
         private Task MessageUpdatedHandler(DiscordClient client, MessageUpdateEventArgs e)
         {
+            if (e.Message.Channel.Guild != null)
+            {
+                if (! e.Message.Author.IsCurrent && ! e.Message.WebhookMessage)
+                {
+                    Task.Run(async () => {
+                        using (var scope = _serviceScopeFactory.CreateScope())
+                        {
+                            GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+                            await auditLogger.HandleEvent(e, MessageUpdatedAuditLog.HandleMessageUpdated, GuildAuditLogEvent.MessageUpdated);
+                        }
+                    });
+                }
+            }
+
             if (e.Message.MessageType != MessageType.Default && e.Message.MessageType != MessageType.Reply)
             {
                 return Task.CompletedTask;
