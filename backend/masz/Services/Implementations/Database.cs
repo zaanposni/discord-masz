@@ -657,5 +657,33 @@ namespace masz.Services
             var userNotes = await context.UserNotes.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
             context.UserNotes.RemoveRange(userNotes);
         }
+
+        // ==================================================================================
+        //
+        // GuildLevelAuditLogConfig
+        //
+        // ==================================================================================
+
+        public async Task<List<GuildLevelAuditLogConfig>> SelectAllAuditLogConfigsForGuild(ulong guildId)
+        {
+            return await context.GuildLevelAuditLogConfigs.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+        }
+        public async Task<GuildLevelAuditLogConfig> SelectAuditLogConfigForGuildAndType(ulong guildId, GuildAuditLogEvent type)
+        {
+            return await context.GuildLevelAuditLogConfigs.AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.GuildAuditLogEvent == type);
+        }
+        public void PutAuditLogConfig(GuildLevelAuditLogConfig auditLogConfig)
+        {
+            context.GuildLevelAuditLogConfigs.Update(auditLogConfig);
+        }
+        public void DeleteSpecificAuditLogConfig(GuildLevelAuditLogConfig auditLogConfig)
+        {
+            context.GuildLevelAuditLogConfigs.Remove(auditLogConfig);
+        }
+        public async Task DeleteAllAuditLogConfigsForGuild(ulong guildId)
+        {
+            var events = await context.GuildLevelAuditLogConfigs.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            context.GuildLevelAuditLogConfigs.RemoveRange(events);
+        }
     }
 }

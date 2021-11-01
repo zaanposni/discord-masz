@@ -32,6 +32,8 @@ namespace masz.Services
         event AsyncEventHandler<UserNoteUpdatedEventArgs> OnUserNoteUpdated;
         event AsyncEventHandler<UserNoteDeletedEventArgs> OnUserNoteDeleted;
         event AsyncEventHandler<InternalCachingDoneEventArgs> OnInternalCachingDone;
+        event AsyncEventHandler<GuildLevelAuditLogConfigUpdatedEventArgs> OnGuildLevelAuditLogConfigUpdated;
+        event AsyncEventHandler<GuildLevelAuditLogConfigDeletedEventArgs> OnGuildLevelAuditLogConfigDeleted;
 
         Task InvokeIdentityRegistered(IdentityRegisteredEventArgs eventArgs);
         Task InvokeTokenCreated(TokenCreatedEventArgs eventArgs);
@@ -60,5 +62,7 @@ namespace masz.Services
         Task InvokeUserNoteUpdated(UserNoteUpdatedEventArgs eventArgs);
         Task InvokeUserNoteDeleted(UserNoteDeletedEventArgs eventArgs);
         Task InvokeInternalCachingDone(InternalCachingDoneEventArgs eventArgs);
+        Task InvokeGuildLevelAuditLogConfigUpdated(GuildLevelAuditLogConfigUpdatedEventArgs eventArgs);
+        Task InvokeGuildLevelAuditLogConfigDeleted(GuildLevelAuditLogConfigDeletedEventArgs eventArgs);
     }
 }

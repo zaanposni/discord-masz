@@ -1,0 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+using masz.Enums;
+
+namespace masz.Dtos.GuildLevelAuditLogConfig
+{
+    public class GuildLevelAuditLogConfigForPutDto
+    {
+        [Required]
+        public GuildAuditLogEvent GuildAuditLogEvent { get; set; }
+        public ulong ChannelId { get; set; }
+        public ulong[] PingRoles { get; set; }
+    }
+}
