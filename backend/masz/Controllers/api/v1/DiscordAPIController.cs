@@ -69,7 +69,7 @@ namespace masz.Controllers.api.v1
                     {
                         try
                         {
-                            _discordAPI.GetFromCache<DiscordBan>($"/guilds/{guild.GuildId}/bans/{currentUser.Id}");
+                            _discordAPI.GetFromCache<DiscordBan>(CacheKey.GuildBan(guild.GuildId, currentUser.Id));
                             bannedGuilds.Add(new DiscordGuildView(await _discordAPI.FetchGuildInfo(guild.GuildId, CacheBehavior.Default)));
                         } catch (NotFoundInCacheException) { }
                     }
