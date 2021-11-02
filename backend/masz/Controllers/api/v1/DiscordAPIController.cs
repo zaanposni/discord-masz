@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DSharpPlus.Entities;
 using masz.Dtos.UserAPIResponses;
 using masz.Enums;
+using masz.Exceptions;
 using masz.Models;
 using masz.Models.Views;
 using masz.Repositories;
@@ -66,10 +67,11 @@ namespace masz.Controllers.api.v1
                         }
                     } else
                     {
-                        if (await _discordAPI.GetGuildUserBan(guild.GuildId, currentUser.Id, CacheBehavior.Default) != null)
+                        try
                         {
+                            _discordAPI.GetFromCache<DiscordBan>($"/guilds/{guild.GuildId}/bans/{currentUser.Id}");
                             bannedGuilds.Add(new DiscordGuildView(await _discordAPI.FetchGuildInfo(guild.GuildId, CacheBehavior.Default)));
-                        }
+                        } catch (NotFoundInCacheException) { }
                     }
                 }
             }

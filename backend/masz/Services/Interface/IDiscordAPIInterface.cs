@@ -10,6 +10,7 @@ namespace masz.Services
     {
         Dictionary<string, CacheApiResponse> GetCache();
         void RemoveFromCache(string key);
+        T GetFromCache<T>(string key);
         /// <summary>
         /// Returns information of user by his id
         /// https://discord.com/developers/docs/resources/user#get-user

@@ -580,5 +580,14 @@ namespace masz.Services
                 _cache.Remove(key);
             }
         }
+
+        public T GetFromCache<T>(string key)
+        {
+            if (_cache.ContainsKey(key))
+            {
+                return _cache[key].GetContent<T>();
+            }
+            throw new NotFoundInCacheException();
+        }
     }
 }
