@@ -135,6 +135,16 @@ namespace masz.Services
                 {
                     GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
                     await auditLogger.HandleEvent(e, MemberRemovedAuditLog.HandleMemberRemovedUpdated, GuildAuditLogEvent.MemberRemoved);
+
+                    // refresh identity memberships
+                    IIdentityManager identityManager = scope.ServiceProvider.GetService<IIdentityManager>();
+                    foreach (Identity identity in identityManager.GetCurrentIdentities())
+                    {
+                        if (identity.GetCurrentUser().Id == e.Member.Id)
+                        {
+                            identity.RemoveGuildMembership(e.Guild.Id);
+                        }
+                    }
                 }
             });
             return Task.CompletedTask;
@@ -344,9 +354,20 @@ namespace masz.Services
                 {
                     GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
                     await auditLogger.HandleEvent(e, MemberJoinedAuditLog.HandleMemberJoined, GuildAuditLogEvent.MemberJoined);
+
+                    // refresh identity memberships
+                    IIdentityManager identityManager = scope.ServiceProvider.GetService<IIdentityManager>();
+                    foreach (Identity identity in identityManager.GetCurrentIdentities())
+                    {
+                        if (identity.GetCurrentUser().Id == e.Member.Id)
+                        {
+                            identity.AddGuildMembership(e.Member);
+                        }
+                    }
                 }
             });
             auditLogTask.Start();
+
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 GuildConfig guildConfig;

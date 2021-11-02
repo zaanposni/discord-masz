@@ -224,5 +224,15 @@ namespace masz.Models
             }
             return true;
         }
+
+        public virtual void RemoveGuildMembership(ulong guildId)
+        {
+            currentUserGuilds.RemoveAll(x => x.Id == guildId);
+        }
+
+        public virtual void AddGuildMembership(DiscordMember member)
+        {
+            currentUserGuilds.Add(member.Guild);
+        }
     }
 }
