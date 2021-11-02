@@ -45,11 +45,24 @@ namespace masz.GuildAuditLog
 
         public async Task HandleEvent<T>(T args, Func<DiscordClient, T, ITranslator, DiscordEmbedBuilder> predicate, GuildAuditLogEvent eventType) where T : DiscordEventArgs
         {
-            var repo = GuildLevelAuditLogConfigRepository.CreateDefault(_serviceProvider);
+            var guildConfigRepository = GuildConfigRepository.CreateDefault(_serviceProvider);
+            try
+            {
+                GuildConfig guildConfig = await guildConfigRepository.GetGuildConfig(_guildId);
+                if (guildConfig == null)
+                {
+                    return;
+                }
+            } catch (ResourceNotFoundException)
+            {
+                return;
+            }
+
+            var auditLogRepository = GuildLevelAuditLogConfigRepository.CreateDefault(_serviceProvider);
             GuildLevelAuditLogConfig auditLogConfig = null;
             try
             {
-                auditLogConfig = await repo.GetConfigsByGuildAndType(_guildId, eventType);
+                auditLogConfig = await auditLogRepository.GetConfigsByGuildAndType(_guildId, eventType);
                 if (auditLogConfig == null)
                 {
                     return;
