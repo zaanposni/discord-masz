@@ -934,6 +934,11 @@
             "en": "UserId",
             "de": "NutzerId"
         },
+        "User": {
+            "description": "User",
+            "en": "User",
+            "de": "Nutzer"
+        },
         "Author": {
             "description": "Author",
             "en": "Author",
@@ -1001,6 +1006,75 @@
                 "en": "Content",
                 "de": "Inhalt",
                 "at": "Inhalt"
+            }
+        },
+        "BanAdded": {
+            "Title": {
+                "description": "Ban added",
+                "en": "User banned",
+                "de": "Nutzer gebannt"
+            }
+        },
+        "BanRemoved": {
+            "Title": {
+                "description": "Ban removed",
+                "en": "User unbanned",
+                "de": "Nutzer entbannt"
+            }
+        },
+        "InviteCreated": {
+            "Title": {
+                "description": "Invite created",
+                "en": "Invite created",
+                "de": "Einladung erstellt"
+            },
+            "MaxUses": {
+                "description": "Max uses",
+                "en": "Max uses",
+                "de": "Maximale Nutzungen"
+            },
+            "Expiration": {
+                "description": "Expiration",
+                "en": "Expiration date",
+                "de": "Ablaufdatum"
+            },
+            "TargetChannel": {
+                "description": "Target channel",
+                "en": "Target channel",
+                "de": "Zielkanal"
+            }
+        },
+        "InviteDeleted": {
+            "Title": {
+                "description": "Invite deleted",
+                "en": "Invite deleted",
+                "de": "Einladung gelöscht"
+            }
+        },
+        "MemberJoined": {
+            "Title": {
+                "description": "Member joined",
+                "en": "Member joined",
+                "de": "Mitglied beigetreten"
+            },
+            "Registered": {
+                "description": "Registered",
+                "en": "Registered",
+                "de": "Registriert"
+            }
+        },
+        "MemberRemoved": {
+            "Title": {
+                "description": "Member removed",
+                "en": "Member removed",
+                "de": "Mitglied entfernt"
+            }
+        },
+        "ThreadCreated": {
+            "Title": {
+                "description": "Thread created",
+                "en": "Thread created",
+                "de": "Thread erstellt"
             }
         }
     }

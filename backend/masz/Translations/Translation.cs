@@ -1339,6 +1339,15 @@ namespace masz.Translations
             }
             return "UserId";
         }
+        public string GuildAuditLogUser() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "User";
+                case Language.de:
+                    return "Nutzer";
+            }
+            return "User";
+        }
         public string GuildAuditLogAuthor() {
             switch (preferredLanguage) {
                 case Language.en:
@@ -1453,6 +1462,105 @@ namespace masz.Translations
                     return "Inhalt";
             }
             return "Content";
+        }
+        public string GuildAuditLogBanAddedTitle() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "User banned";
+                case Language.de:
+                    return "Nutzer gebannt";
+            }
+            return "User banned";
+        }
+        public string GuildAuditLogBanRemovedTitle() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "User unbanned";
+                case Language.de:
+                    return "Nutzer entbannt";
+            }
+            return "User unbanned";
+        }
+        public string GuildAuditLogInviteCreatedTitle() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Invite created";
+                case Language.de:
+                    return "Einladung erstellt";
+            }
+            return "Invite created";
+        }
+        public string GuildAuditLogInviteCreatedMaxUses() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Max uses";
+                case Language.de:
+                    return "Maximale Nutzungen";
+            }
+            return "Max uses";
+        }
+        public string GuildAuditLogInviteCreatedExpiration() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Expiration date";
+                case Language.de:
+                    return "Ablaufdatum";
+            }
+            return "Expiration date";
+        }
+        public string GuildAuditLogInviteCreatedTargetChannel() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Target channel";
+                case Language.de:
+                    return "Zielkanal";
+            }
+            return "Target channel";
+        }
+        public string GuildAuditLogInviteDeletedTitle() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Invite deleted";
+                case Language.de:
+                    return "Einladung gelöscht";
+            }
+            return "Invite deleted";
+        }
+        public string GuildAuditLogMemberJoinedTitle() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Member joined";
+                case Language.de:
+                    return "Mitglied beigetreten";
+            }
+            return "Member joined";
+        }
+        public string GuildAuditLogMemberJoinedRegistered() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Registered";
+                case Language.de:
+                    return "Registriert";
+            }
+            return "Registered";
+        }
+        public string GuildAuditLogMemberRemovedTitle() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Member removed";
+                case Language.de:
+                    return "Mitglied entfernt";
+            }
+            return "Member removed";
+        }
+        public string GuildAuditLogThreadCreatedTitle() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Thread created";
+                case Language.de:
+                    return "Thread erstellt";
+            }
+            return "Thread created";
         }
         public string Enum(masz.Enums.PunishmentType enumValue) {
             switch (enumValue) {

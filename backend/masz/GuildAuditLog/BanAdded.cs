@@ -1,3 +1,4 @@
+using System.Text;
 using DSharpPlus;
 using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
@@ -9,7 +10,17 @@ namespace masz.GuildAuditLog
     {
         public static DiscordEmbedBuilder HandleBanAdded(DiscordClient client, GuildBanAddEventArgs e, ITranslator translator)
         {
-            return GuildAuditLogger.GenerateBaseEmbed(DiscordColor.Orange);
+            DiscordEmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(DiscordColor.Red);
+
+            StringBuilder description = new StringBuilder();
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {e.Member.Username}#{e.Member.Discriminator} - {e.Member.Mention}");
+
+            embed.WithTitle(translator.T().GuildAuditLogBanAddedTitle())
+                 .WithDescription(description.ToString())
+                 .WithAuthor(e.Member.Username, e.Member.AvatarUrl, e.Member.AvatarUrl)
+                 .WithFooter($"{translator.T().GuildAuditLogUserID()}: {e.Member.Id}");
+
+            return embed;
         }
     }
 }
