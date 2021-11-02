@@ -123,6 +123,16 @@ namespace masz.Services
                     IDiscordAPIInterface discordAPI = scope.ServiceProvider.GetService<IDiscordAPIInterface>();
                     await discordAPI.GetGuildUserBan(e.Guild.Id, e.Member.Id, CacheBehavior.IgnoreCache);
                     discordAPI.RemoveFromCache(CacheKey.GuildMember(e.Guild.Id, e.Member.Id));
+
+                    // refresh identity memberships
+                    IIdentityManager identityManager = scope.ServiceProvider.GetService<IIdentityManager>();
+                    foreach (Identity identity in identityManager.GetCurrentIdentities())
+                    {
+                        if (identity.GetCurrentUser().Id == e.Member.Id)
+                        {
+                            identity.RemoveGuildMembership(e.Guild.Id);
+                        }
+                    }
                 }
             });
             return Task.CompletedTask;
