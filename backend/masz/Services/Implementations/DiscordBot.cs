@@ -105,7 +105,7 @@ namespace masz.Services
 
                     // refresh ban cache
                     IDiscordAPIInterface discordAPI = scope.ServiceProvider.GetService<IDiscordAPIInterface>();
-                    await discordAPI.GetGuildUserBan(e.Guild.Id, e.Member.Id, CacheBehavior.IgnoreCache);
+                    discordAPI.RemoveFromCache($"/guilds/{e.Guild.Id}/bans/{e.Member.Id}");
                 }
             });
             return Task.CompletedTask;

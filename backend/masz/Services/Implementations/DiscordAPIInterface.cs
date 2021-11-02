@@ -573,6 +573,12 @@ namespace masz.Services
         {
             return _cache;
         }
-
+        public void RemoveFromCache(string key)
+        {
+            if (_cache.ContainsKey(key))
+            {
+                _cache.Remove(key);
+            }
+        }
     }
 }
