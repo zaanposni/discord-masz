@@ -23,7 +23,7 @@ namespace masz.AutoModerations
                 return false;
             }
 
-            Regex regexPattern = new Regex(@"([\S\s])(?:\s*\1){" + config.Limit.ToString() + @",}");
+            Regex regexPattern = new Regex(@"([\D\s])(?:\s*\1){" + config.Limit.ToString() + @",}");
 
             return regexPattern.Match(message.Content).Success;
         }
