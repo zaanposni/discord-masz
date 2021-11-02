@@ -2,48 +2,48 @@
 
 ## Dashboard
 
-![dashboard]("dashboard.png")
+![dashboard](dashboard.png)
 
 ## Userscan
 
-![userscan]("userscan.png")
+![userscan](userscan.png)
 
 ## Modcase overview
 
-![modcases]("modcases.png")
+![modcases](modcases.png)
 
 ## Guild audit log
 
-![guildauditlog]("guildauditlog.png")
+![guildauditlog](guildauditlog.png)
 
 ## Audit log
 
-![auditlog]("auditlog.png")
+![auditlog](auditlog.png)
 
 ## Detailed view for single modcase
 
-![modcase]("modcase.png")
+![modcase](modcase.png)
 
 ## Commands to punish in discord
 
-![mute_command]("mute_command.png")
+![mute_command](mute_command.png)
 
 ## Configuration for automoderation
 
-![automoderationconfig]("automoderationconfig.png")
+![automoderationconfig](automoderationconfig.png)
 
 ## Logs for automoderated events
 
-![automoderations]("automoderations.png")
+![automoderations](automoderations.png)
 
 ## ModCase Notification embed for your guild members and moderation team
 
-![embed]("embed.png")
+![embed](embed.png)
 
 ## Comment Notification embed for your moderation team
 
-![comments]("comments.png")
+![comments](comments.png)
 
 ## Modcase creation
 
-![modcasecreate]("modcasecreate.png")
+![modcasecreate](modcasecreate.png)
