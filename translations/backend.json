@@ -50,6 +50,12 @@
         "de": "Anhänge",
         "at": "Ohäng"
     },
+    "Attachment": {
+        "description": "The word 'attachment'",
+        "en": "Attachment",
+        "de": "Anhang",
+        "at": "Ohang"
+    },
     "AndXMore": {
         "description": "The word 'and x more'",
         "var_types": {
@@ -907,6 +913,94 @@
                 "en": "There are no cases for this user.",
                 "de": "Es gibt keine Fälle für diesen Benutzer.",
                 "at": "Es gibt kane Fälle fia diesn Benutza."
+            }
+        }
+    },
+    "GuildAuditLog": {
+        "Channel": {
+            "description": "Channel",
+            "en": "Channel",
+            "de": "Kanal",
+            "at": "Kanal"
+        },
+        "ID": {
+            "description": "ID",
+            "en": "ID",
+            "de": "ID",
+            "at": "ID"
+        },
+        "UserID": {
+            "description": "UserId",
+            "en": "UserId",
+            "de": "NutzerId"
+        },
+        "Author": {
+            "description": "Author",
+            "en": "Author",
+            "de": "Autor",
+            "at": "Autor"
+        },
+        "Created": {
+            "description": "Created",
+            "en": "Created",
+            "de": "Erstellt",
+            "at": "Erstöt"
+        },
+        "CouldNotFetch": {
+            "description": "Could not fetch",
+            "en": "Could not fetch.",
+            "de": "Information konnte nicht abgerufen werden.",
+            "at": "Info konnt ned orufn werdn."
+        },
+        "NotFoundInCache": {
+            "description": "NotFoundInCache",
+            "en": "Information not cached.",
+            "de": "Information nicht im Cache."
+        },
+        "MessageSent": {
+            "Title": {
+                "description": "Message sent",
+                "en": "Message sent",
+                "de": "Nachricht gesendet",
+                "at": "Nochricht gsendet"
+            },
+            "Content": {
+                "description": "Content",
+                "en": "Content",
+                "de": "Inhalt",
+                "at": "Inhalt"
+            }
+        },
+        "MessageUpdated": {
+            "Title": {
+                "description": "Message updated",
+                "en": "Message edited",
+                "de": "Nachricht aktualisiert",
+                "at": "Nochricht aktualisiert"
+            },
+            "ContentBefore": {
+                "description": "Content",
+                "en": "Before",
+                "de": "Zuvor"
+            },
+            "ContentNew": {
+                "description": "Content",
+                "en": "New",
+                "de": "Neu"
+            }
+        },
+        "MessageDeleted": {
+            "Title": {
+                "description": "Message deleted",
+                "en": "Message deleted",
+                "de": "Nachricht gelöscht",
+                "at": "Nochricht gelöscht"
+            },
+            "Content": {
+                "description": "Content",
+                "en": "Content",
+                "de": "Inhalt",
+                "at": "Inhalt"
             }
         }
     }

@@ -54,8 +54,11 @@ namespace masz.Services
             _client = new DiscordClient(_discordConfiguration);
             _client.MessageCreated += this.MessageCreatedHandler;
             _client.MessageUpdated += this.MessageUpdatedHandler;
+            _client.MessageDeleted += this.MessageDeletedHandler;
             _client.GuildCreated += this.GuildCreatedHandler;
             _client.GuildMemberAdded += this.GuildMemberAddedHandler;
+            _client.GuildMemberUpdated += this.GuildMemberUpdatedHandler;
+            _client.GuildMemberRemoved += this.GuildMemberRemovedHandler;
             _client.InviteCreated += this.InviteCreatedHandler;
             _client.InviteDeleted += this.InviteDeletedHandler;
             _client.GuildUpdated += this.GuildUpdatedHandler;
@@ -88,6 +91,31 @@ namespace masz.Services
             slash.RegisterCommands<CleanupCommand>(debugGuild);
 
             slash.SlashCommandErrored += CmdErroredHandler;
+        }
+
+        private Task GuildMemberRemovedHandler(DiscordClient sender, GuildMemberRemoveEventArgs e)
+        {
+            return Task.CompletedTask;
+        }
+
+        private Task GuildMemberUpdatedHandler(DiscordClient sender, GuildMemberUpdateEventArgs e)
+        {
+            return Task.CompletedTask;
+        }
+
+        private Task MessageDeletedHandler(DiscordClient client, MessageDeleteEventArgs e)
+        {
+            if (e.Channel.Guild != null)
+            {
+                Task.Run(async () => {
+                    using (var scope = _serviceScopeFactory.CreateScope())
+                    {
+                        GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+                        await auditLogger.HandleEvent(e, MessageDeletedAuditLog.HandleMessageDeleted, GuildAuditLogEvent.MessageDeleted);
+                    }
+                });
+            }
+            return Task.CompletedTask;
         }
 
         private async Task ThreadCreatedHandler(DiscordClient sender, ThreadCreateEventArgs e)
@@ -185,9 +213,9 @@ namespace masz.Services
 
         private Task MessageUpdatedHandler(DiscordClient client, MessageUpdateEventArgs e)
         {
-            if (e.Message.Channel.Guild != null)
+            if (e.Channel.Guild != null)
             {
-                if (! e.Message.Author.IsCurrent && ! e.Message.WebhookMessage)
+                if (! e.Author.IsCurrent && ! e.Message.WebhookMessage)
                 {
                     Task.Run(async () => {
                         using (var scope = _serviceScopeFactory.CreateScope())
@@ -203,11 +231,11 @@ namespace masz.Services
             {
                 return Task.CompletedTask;
             }
-            if (e.Message.Author.IsBot)
+            if (e.Author.IsBot)
             {
                 return Task.CompletedTask;
             }
-            if (e.Message.Channel.Guild == null)
+            if (e.Channel.Guild == null)
             {
                 return Task.CompletedTask;
             }

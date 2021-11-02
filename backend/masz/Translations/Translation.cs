@@ -102,6 +102,17 @@ namespace masz.Translations
             }
             return "Attachments";
         }
+        public string Attachment() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Attachment";
+                case Language.de:
+                    return "Anhang";
+                case Language.at:
+                    return "Ohang";
+            }
+            return "Attachment";
+        }
         public string AndXMore(int count) {
             switch (preferredLanguage) {
                 case Language.en:
@@ -1296,6 +1307,152 @@ namespace masz.Translations
                     return "Es gibt kane Fälle fia diesn Benutza.";
             }
             return "There are no cases for this user.";
+        }
+        public string GuildAuditLogChannel() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Channel";
+                case Language.de:
+                    return "Kanal";
+                case Language.at:
+                    return "Kanal";
+            }
+            return "Channel";
+        }
+        public string GuildAuditLogID() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "ID";
+                case Language.de:
+                    return "ID";
+                case Language.at:
+                    return "ID";
+            }
+            return "ID";
+        }
+        public string GuildAuditLogUserID() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "UserId";
+                case Language.de:
+                    return "NutzerId";
+            }
+            return "UserId";
+        }
+        public string GuildAuditLogAuthor() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Author";
+                case Language.de:
+                    return "Autor";
+                case Language.at:
+                    return "Autor";
+            }
+            return "Author";
+        }
+        public string GuildAuditLogCreated() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Created";
+                case Language.de:
+                    return "Erstellt";
+                case Language.at:
+                    return "Erstöt";
+            }
+            return "Created";
+        }
+        public string GuildAuditLogCouldNotFetch() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Could not fetch.";
+                case Language.de:
+                    return "Information konnte nicht abgerufen werden.";
+                case Language.at:
+                    return "Info konnt ned orufn werdn.";
+            }
+            return "Could not fetch.";
+        }
+        public string GuildAuditLogNotFoundInCache() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Information not cached.";
+                case Language.de:
+                    return "Information nicht im Cache.";
+            }
+            return "Information not cached.";
+        }
+        public string GuildAuditLogMessageSentTitle() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Message sent";
+                case Language.de:
+                    return "Nachricht gesendet";
+                case Language.at:
+                    return "Nochricht gsendet";
+            }
+            return "Message sent";
+        }
+        public string GuildAuditLogMessageSentContent() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Content";
+                case Language.de:
+                    return "Inhalt";
+                case Language.at:
+                    return "Inhalt";
+            }
+            return "Content";
+        }
+        public string GuildAuditLogMessageUpdatedTitle() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Message edited";
+                case Language.de:
+                    return "Nachricht aktualisiert";
+                case Language.at:
+                    return "Nochricht aktualisiert";
+            }
+            return "Message edited";
+        }
+        public string GuildAuditLogMessageUpdatedContentBefore() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Before";
+                case Language.de:
+                    return "Zuvor";
+            }
+            return "Before";
+        }
+        public string GuildAuditLogMessageUpdatedContentNew() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "New";
+                case Language.de:
+                    return "Neu";
+            }
+            return "New";
+        }
+        public string GuildAuditLogMessageDeletedTitle() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Message deleted";
+                case Language.de:
+                    return "Nachricht gelöscht";
+                case Language.at:
+                    return "Nochricht gelöscht";
+            }
+            return "Message deleted";
+        }
+        public string GuildAuditLogMessageDeletedContent() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Content";
+                case Language.de:
+                    return "Inhalt";
+                case Language.at:
+                    return "Inhalt";
+            }
+            return "Content";
         }
         public string Enum(masz.Enums.PunishmentType enumValue) {
             switch (enumValue) {

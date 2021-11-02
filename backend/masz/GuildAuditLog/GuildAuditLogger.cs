@@ -43,7 +43,7 @@ namespace masz.GuildAuditLog
             return embed;
         }
 
-        public async Task HandleEvent<T>(T args, Func<DiscordClient, T, DiscordEmbedBuilder> predicate, GuildAuditLogEvent eventType) where T : DiscordEventArgs
+        public async Task HandleEvent<T>(T args, Func<DiscordClient, T, ITranslator, DiscordEmbedBuilder> predicate, GuildAuditLogEvent eventType) where T : DiscordEventArgs
         {
             var repo = GuildLevelAuditLogConfigRepository.CreateDefault(_serviceProvider);
             GuildLevelAuditLogConfig auditLogConfig = null;
@@ -68,9 +68,17 @@ namespace masz.GuildAuditLog
                 return;
             }
 
-            DiscordEmbedBuilder embed = predicate(_client, args);
+            await _translator.SetContext(_guildId);
 
-            embed.WithFooter(embed.Footer + $" | {auditLogConfig.GuildAuditLogEvent.ToString()}");
+            DiscordEmbedBuilder embed = predicate(_client, args, _translator);
+
+            if (embed.Footer == null)
+            {
+                embed.WithFooter(auditLogConfig.GuildAuditLogEvent.ToString());
+            } else
+            {
+                embed.WithFooter(embed.Footer.Text + $" | {auditLogConfig.GuildAuditLogEvent.ToString()}");
+            }
 
             StringBuilder rolePings = new StringBuilder();
             foreach (ulong role in auditLogConfig.PingRoles)
