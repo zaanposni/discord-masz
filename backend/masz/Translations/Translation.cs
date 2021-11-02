@@ -1319,6 +1319,15 @@ namespace masz.Translations
             }
             return "Channel";
         }
+        public string GuildAuditLogChannelId() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "ChannelId";
+                case Language.de:
+                    return "KanalId";
+            }
+            return "ChannelId";
+        }
         public string GuildAuditLogID() {
             switch (preferredLanguage) {
                 case Language.en:
@@ -1490,6 +1499,15 @@ namespace masz.Translations
             }
             return "Invite created";
         }
+        public string GuildAuditLogInviteCreatedURL() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "URL";
+                case Language.de:
+                    return "URL";
+            }
+            return "URL";
+        }
         public string GuildAuditLogInviteCreatedMaxUses() {
             switch (preferredLanguage) {
                 case Language.en:
@@ -1561,6 +1579,24 @@ namespace masz.Translations
                     return "Thread erstellt";
             }
             return "Thread created";
+        }
+        public string GuildAuditLogThreadCreatedParent() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Parent";
+                case Language.de:
+                    return "Elternkanal";
+            }
+            return "Parent";
+        }
+        public string GuildAuditLogThreadCreatedCreator() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Creator";
+                case Language.de:
+                    return "Ersteller";
+            }
+            return "Creator";
         }
         public string Enum(masz.Enums.PunishmentType enumValue) {
             switch (enumValue) {

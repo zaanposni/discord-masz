@@ -923,6 +923,11 @@
             "de": "Kanal",
             "at": "Kanal"
         },
+        "ChannelId": {
+            "description": "ChannelId",
+            "en": "ChannelId",
+            "de": "KanalId"
+        },
         "ID": {
             "description": "ID",
             "en": "ID",
@@ -1028,6 +1033,11 @@
                 "en": "Invite created",
                 "de": "Einladung erstellt"
             },
+            "URL": {
+                "description": "URL",
+                "en": "URL",
+                "de": "URL"
+            },
             "MaxUses": {
                 "description": "Max uses",
                 "en": "Max uses",
@@ -1075,6 +1085,16 @@
                 "description": "Thread created",
                 "en": "Thread created",
                 "de": "Thread erstellt"
+            },
+            "Parent": {
+                "description": "Parent channel of this thread",
+                "en": "Parent",
+                "de": "Elternkanal"
+            },
+            "Creator": {
+                "description": "Creator",
+                "en": "Creator",
+                "de": "Ersteller"
             }
         }
     }
