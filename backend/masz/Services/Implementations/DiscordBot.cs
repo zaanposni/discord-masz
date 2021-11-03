@@ -166,6 +166,41 @@ namespace masz.Services
 
         private Task GuildMemberUpdatedHandler(DiscordClient client, GuildMemberUpdateEventArgs e)
         {
+            Task.Run(async () => {
+                using (var scope = _serviceScopeFactory.CreateScope())
+                {
+                    GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+
+                    if (e.NicknameBefore != e.NicknameAfter)
+                    {
+                        await auditLogger.HandleEvent(e, NicknameUpdatedAuditLog.HandleNicknameUpdated, GuildAuditLogEvent.NicknameUpdated);
+                    }
+
+                    if (e.AvatarHashBefore != e.AvatarHashAfter)
+                    {
+                        await auditLogger.HandleEvent(e, AvatarUpdatedAuditLog.HandleAvatarUpdated, GuildAuditLogEvent.AvatarUpdated);
+                    }
+
+                    if (e.RolesBefore != e.RolesAfter)
+                    {
+                        await auditLogger.HandleEvent(e, MemberRolesUpdatedAuditLog.HandleMemberRolesUpdated, GuildAuditLogEvent.MemberRolesUpdated);
+                    }
+
+                    // refresh identity memberships
+                    IIdentityManager identityManager = scope.ServiceProvider.GetService<IIdentityManager>();
+                    foreach (Identity identity in identityManager.GetCurrentIdentities())
+                    {
+                        if (identity.GetCurrentUser().Id == e.Member.Id)
+                        {
+                            identity.UpdateGuildMembership(e.Member);
+                        }
+                    }
+
+                    // refresh member cache
+                    IDiscordAPIInterface discordAPI = scope.ServiceProvider.GetService<IDiscordAPIInterface>();
+                    discordAPI.AddOrUpdateCache(CacheKey.GuildMember(e.Guild.Id, e.Member.Id), new CacheApiResponse(e.Member));
+                }
+            });
             return Task.CompletedTask;
         }
 
@@ -378,6 +413,10 @@ namespace masz.Services
                             identity.AddGuildMembership(e.Member);
                         }
                     }
+
+                    // refresh member cache
+                    IDiscordAPIInterface discordAPI = scope.ServiceProvider.GetService<IDiscordAPIInterface>();
+                    discordAPI.AddOrUpdateCache(CacheKey.GuildMember(e.Guild.Id, e.Member.Id), new CacheApiResponse(e.Member));
                 }
             });
             auditLogTask.Start();

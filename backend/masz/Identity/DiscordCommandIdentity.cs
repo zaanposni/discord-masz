@@ -149,7 +149,19 @@ namespace masz.Models
 
         public override void AddGuildMembership(DiscordMember member)
         {
-            currentUserGuilds.Add(member.Guild);
+            if (! currentUserGuilds.Any(x => x.Id == member.Guild.Id))
+            {
+                currentUserGuilds.Add(member.Guild);
+            }
+            GuildMemberships[member.Guild.Id] = member;
+        }
+
+        public override void UpdateGuildMembership(DiscordMember member)
+        {
+            if (! currentUserGuilds.Any(x => x.Id == member.Guild.Id))
+            {
+                currentUserGuilds.Add(member.Guild);
+            }
             GuildMemberships[member.Guild.Id] = member;
         }
     }

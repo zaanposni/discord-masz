@@ -592,5 +592,10 @@ namespace masz.Services
             }
             throw new NotFoundInCacheException();
         }
+
+        public void AddOrUpdateCache(CacheKey key, CacheApiResponse response)
+        {
+            _cache[key.GetValue()] = response;
+        }
     }
 }
