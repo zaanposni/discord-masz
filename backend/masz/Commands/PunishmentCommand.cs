@@ -48,7 +48,7 @@ namespace masz.Commands
             modCase.PunishmentType = punishmentType;
             modCase.PunishmentActive = executePunishment;
             modCase.PunishedUntil = DateTime.UtcNow.AddHours(punishedForHours);
-            if (punishmentType == PunishmentType.None || punishmentType == PunishmentType.Kick)
+            if (punishmentType == PunishmentType.None || punishmentType == PunishmentType.Kick || punishedForHours == 0)
             {
                 modCase.PunishedUntil = null;  // remove duration for warn and kick
             }
