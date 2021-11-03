@@ -91,6 +91,10 @@ namespace masz.Services
             slash.RegisterCommands<SayCommand>(debugGuild);
             slash.RegisterCommands<FeatureCommand>(debugGuild);
             slash.RegisterCommands<CleanupCommand>(debugGuild);
+            slash.RegisterCommands<WarnCommand>(debugGuild);
+            slash.RegisterCommands<MuteCommand>(debugGuild);
+            slash.RegisterCommands<KickCommand>(debugGuild);
+            slash.RegisterCommands<BanCommand>(debugGuild);
 
             slash.SlashCommandErrored += CmdErroredHandler;
         }
