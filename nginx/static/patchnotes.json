@@ -12,6 +12,12 @@
     ],
     "breaking": [
       {
+        "title": "New license.",
+        "description": "MASZ is now licensed under GPLv3.",
+        "icon": "link",
+        "link": "https://choosealicense.com/licenses/gpl-3.0/"
+      },
+      {
         "title": "Adjusted duplicated character handling.",
         "description": "The duplicated character automod will no longer trigger on digits and backtick quotes (code blocks)."
       }
