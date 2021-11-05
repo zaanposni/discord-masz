@@ -1,5 +1,117 @@
 [
   {
+    "title": "Version 2.2.0",
+    "version": "v2.2.0",
+    "released_at": "2021-11-06",
+    "contributors": [
+      {
+        "name": "FlixProd",
+        "link": "https://github.com/FlixProd",
+        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+      }
+    ],
+    "breaking": [
+      {
+        "title": "Adjusted duplicated character handling.",
+        "description": "The duplicated character automod will no longer trigger on digits and backtick quotes (code blocks)."
+      }
+    ],
+    "features": [
+      {
+        "title": "Thread automod support.",
+        "description": "The bot will now try to join created threads which will allow automoderation in these threads.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/345"
+      },
+      {
+        "title": "Added more punish commands.",
+        "description": "Added more special commands to punish members (warn, kick, mute, ban) in addition to the existing punish command."
+      },
+      {
+        "title": "Guild-levle AuditLog.",
+        "description": "An auditlog on guildlevel has been added for various events (more to come). Enable this in your guilds config tab.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/blob/master/docs/guildauditlog.png"
+      },
+      {
+        "title": "Public file mode.",
+        "description": "An environment variable has been added to expose the file endpoint to unauthorized access. Use \"ENABLE_PUBLIC_FILES=true\" in your .env to enable this."
+      },
+      {
+        "title": "Update warning.",
+        "description": "A warning in the insights tab will notify siteadmins of available updates.",
+        "icon": "link",
+        "link": "https://cdn.discordapp.com/attachments/779446982904905758/904643938500091954/unknown.png"
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Select dashboard on guildoverview correctly.",
+        "description": "Fixed a bug where the guild dashboard was not correctly selected on the website."
+      },
+      {
+        "title": "FIxed max count for dashboard charts.",
+        "description": "The max value on the y-Axis is now seperated for automod and modcase charts."
+      },
+      {
+        "title": "Fixed permanent modcases by punish command.",
+        "description": "Fixed a bug where modcases created by the punish command where not permanent."
+      },
+      {
+        "title": "Improved cache and identity handling.",
+        "description": "The internal cache and identities are now getting updated on discord guild events. For example an identity immediately loses permissions as soon as a member loses a moderator role."
+      },
+      {
+        "title": "Improved login/information endpoint.",
+        "description": "The /users/@me endpoint has been improved as it longer needs to check a users banned guilds everytime it is requested."
+      },
+      {
+        "title": "Fixed sorting of roles and channels in automodconfig.",
+        "description": ""
+      },
+      {
+        "title": "Fixed rerendering of automodconfig.",
+        "description": "Fixed a bug where automodconfigs have been rerendered on edits which caused the whole website to flicker."
+      },
+      {
+        "title": "Fixed automod event linked case.",
+        "description": "Fixed a bug where the case of an automoderation was incorrectly linked.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/439"
+      },
+      {
+        "title": "Fixed automod config.",
+        "description": "Fixed a bug where to automod configs custom word field would stay empty after loading the current config."
+      },
+      {
+        "title": "Adjusted wording of punish command.",
+        "description": "Description and parameters have been adjusted to be clearer."
+      },
+      {
+        "title": "Fixed cleanup command.",
+        "description": "The cleanup command will now stop if the channel is empty."
+      },
+      {
+        "title": "Regex exception handling.",
+        "description": "Invalid regex patterns in link and customword automod will no longer crash the automoderator."
+      },
+      {
+        "title": "Adjusted translations.",
+        "description": "Some german translations have been improved."
+      }
+    ],
+    "technical": [
+      {
+        "title": "Docker image tags.",
+        "description": "Image tags will now follow the semantic versioning specification."
+      },
+      {
+        "title": "Run GitHub Action on main repo only.",
+        "description": "This will stop the docker publish action to fail on other repos where it is of no use anyways."
+      }
+    ]
+  },
+  {
     "title": "Version 2.1.0",
     "version": "v2.1.0",
     "released_at": "2021-10-23",
