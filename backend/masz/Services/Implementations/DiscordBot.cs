@@ -48,7 +48,8 @@ namespace masz.Services
                 Token = _config.GetBotToken(),
                 TokenType = TokenType.Bot,
                 Intents = DiscordIntents.AllUnprivileged | DiscordIntents.GuildMembers,
-                LoggerFactory = loggerFactory
+                LoggerFactory = loggerFactory,
+                MessageCacheSize = 10240
             };
 
             _client = new DiscordClient(_discordConfiguration);
