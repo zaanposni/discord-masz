@@ -3,6 +3,7 @@ using System.Text;
 using DSharpPlus;
 using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
+using masz.Extensions;
 using masz.Services;
 
 namespace masz.GuildAuditLog
@@ -25,7 +26,7 @@ namespace masz.GuildAuditLog
 
             if (! string.IsNullOrEmpty(e.Message.Content))
             {
-                embed.AddField(translator.T().GuildAuditLogMessageSentContent(), e.Message.Content);
+                embed.AddField(translator.T().GuildAuditLogMessageSentContent(), e.Message.Content.Truncate(1024));
             }
             if (e.Message.Attachments.Count > 0)
             {

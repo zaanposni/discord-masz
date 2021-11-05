@@ -33,7 +33,7 @@ namespace masz.GuildAuditLog
 
             if (! string.IsNullOrEmpty(e.Message.Content))
             {
-                embed.AddField(translator.T().GuildAuditLogMessageDeletedContent(), e.Message.Content);
+                embed.AddField(translator.T().GuildAuditLogMessageDeletedContent(), e.Message.Content.Truncate(1024));
             }
 
             if (e.Message.Attachments.Count > 0)

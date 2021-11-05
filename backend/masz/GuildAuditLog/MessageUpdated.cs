@@ -32,13 +32,13 @@ namespace masz.GuildAuditLog
             {
                 if (! string.IsNullOrEmpty(e.MessageBefore.Content))
                 {
-                    embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentBefore(), e.MessageBefore.Content);
+                    embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentBefore(), e.MessageBefore.Content.Truncate(1024));
                 }
             }
 
             if (! string.IsNullOrEmpty(e.Message.Content))
             {
-                embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentNew(), e.Message.Content);
+                embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentNew(), e.Message.Content.Truncate(1024));
             }
 
             if (e.Message.Attachments.Count > 0)
