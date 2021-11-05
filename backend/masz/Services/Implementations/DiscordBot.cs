@@ -166,24 +166,25 @@ namespace masz.Services
 
         private Task GuildMemberUpdatedHandler(DiscordClient client, GuildMemberUpdateEventArgs e)
         {
-            Task.Run(async () => {
+            Task.Run(() => {
                 using (var scope = _serviceScopeFactory.CreateScope())
                 {
-                    GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+                    // audit logger disabled since d#+ doesn't cache correctly yet
+                    // GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
 
                     if (e.NicknameBefore != e.NicknameAfter)
                     {
-                        await auditLogger.HandleEvent(e, NicknameUpdatedAuditLog.HandleNicknameUpdated, GuildAuditLogEvent.NicknameUpdated);
+                        // await auditLogger.HandleEvent(e, NicknameUpdatedAuditLog.HandleNicknameUpdated, GuildAuditLogEvent.NicknameUpdated);
                     }
 
                     if (e.AvatarHashBefore != e.AvatarHashAfter)
                     {
-                        await auditLogger.HandleEvent(e, AvatarUpdatedAuditLog.HandleAvatarUpdated, GuildAuditLogEvent.AvatarUpdated);
+                        // await auditLogger.HandleEvent(e, AvatarUpdatedAuditLog.HandleAvatarUpdated, GuildAuditLogEvent.AvatarUpdated);
                     }
 
                     if (e.RolesBefore != e.RolesAfter)
                     {
-                        await auditLogger.HandleEvent(e, MemberRolesUpdatedAuditLog.HandleMemberRolesUpdated, GuildAuditLogEvent.MemberRolesUpdated);
+                        // await auditLogger.HandleEvent(e, MemberRolesUpdatedAuditLog.HandleMemberRolesUpdated, GuildAuditLogEvent.MemberRolesUpdated);
                     }
 
                     // refresh identity memberships

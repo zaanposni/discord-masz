@@ -30,19 +30,23 @@ export class AuditlogConfigComponent implements OnInit {
     },
     {
       type: 3,
-      key: 'UsernameUpdated'
+      key: 'UsernameUpdated',
+      comingSoon: true
     },
     {
       type: 4,
-      key: 'AvatarUpdated'
+      key: 'AvatarUpdated',
+      comingSoon: true
     },
     {
       type: 5,
-      key: 'NicknameUpdated'
+      key: 'NicknameUpdated',
+      comingSoon: true
     },
     {
       type: 6,
-      key: 'MemberRolesUpdated'
+      key: 'MemberRolesUpdated',
+      comingSoon: true
     },
     {
       type: 7,

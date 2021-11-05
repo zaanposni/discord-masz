@@ -893,6 +893,11 @@
             "en": "Target channel",
             "de": "Zielkanal"
         },
+        "ComingSoon": {
+            "description": "coming soon",
+            "en": "Coming soon",
+            "de": "Bald verfügbar"
+        },
         "PingRoles": {
             "description": "ping roles",
             "en": "Ping roles",

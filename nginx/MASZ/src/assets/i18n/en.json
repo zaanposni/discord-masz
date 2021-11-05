@@ -179,6 +179,7 @@
     },
     "GuildAuditLogConfig": {
         "TargetChannel": "Target channel",
+        "ComingSoon": "Coming soon",
         "PingRoles": "Ping roles",
         "AuditLog": "AuditLog",
         "ConfigDeleted": "Config deleted.",

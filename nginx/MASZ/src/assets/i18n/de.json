@@ -179,6 +179,7 @@
     },
     "GuildAuditLogConfig": {
         "TargetChannel": "Zielkanal",
+        "ComingSoon": "Bald verfügbar",
         "PingRoles": "Rolle pingen",
         "AuditLog": "AuditLog",
         "ConfigDeleted": "Konfiguration gelöscht.",
