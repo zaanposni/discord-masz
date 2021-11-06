@@ -30,5 +30,6 @@ namespace masz.Enums
         InvalidFilePath = 25,
         NoGuildsRegistered = 26,
         OnlyUsableInAGuild = 27,
+        InvalidAuditLogEvent = 28,
     }
 }

@@ -16,5 +16,9 @@ namespace masz.Services
         List<ulong> GetSiteAdmins();
         Language GetDefaultLanguage();
         string GetAuditLogWebhook();
+        bool IsPublicFileEnabled();
+        bool IsDemoModeEnabled();
+        bool IsCustomPluginModeEnabled();
+        bool IsCorsEnabled();
     }
 }

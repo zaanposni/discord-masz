@@ -50,6 +50,12 @@
         "de": "Anhänge",
         "at": "Ohäng"
     },
+    "Attachment": {
+        "description": "The word 'attachment'",
+        "en": "Attachment",
+        "de": "Anhang",
+        "at": "Ohang"
+    },
     "AndXMore": {
         "description": "The word 'and x more'",
         "var_types": {
@@ -907,6 +913,188 @@
                 "en": "There are no cases for this user.",
                 "de": "Es gibt keine Fälle für diesen Benutzer.",
                 "at": "Es gibt kane Fälle fia diesn Benutza."
+            }
+        }
+    },
+    "GuildAuditLog": {
+        "Channel": {
+            "description": "Channel",
+            "en": "Channel",
+            "de": "Kanal",
+            "at": "Kanal"
+        },
+        "ChannelId": {
+            "description": "ChannelId",
+            "en": "ChannelId",
+            "de": "KanalId"
+        },
+        "ID": {
+            "description": "ID",
+            "en": "ID",
+            "de": "ID",
+            "at": "ID"
+        },
+        "UserID": {
+            "description": "UserId",
+            "en": "UserId",
+            "de": "NutzerId"
+        },
+        "User": {
+            "description": "User",
+            "en": "User",
+            "de": "Nutzer"
+        },
+        "Author": {
+            "description": "Author",
+            "en": "Author",
+            "de": "Autor",
+            "at": "Autor"
+        },
+        "Created": {
+            "description": "Created",
+            "en": "Created",
+            "de": "Erstellt",
+            "at": "Erstöt"
+        },
+        "CouldNotFetch": {
+            "description": "Could not fetch",
+            "en": "Could not fetch.",
+            "de": "Information konnte nicht abgerufen werden.",
+            "at": "Info konnt ned orufn werdn."
+        },
+        "NotFoundInCache": {
+            "description": "NotFoundInCache",
+            "en": "Information not cached.",
+            "de": "Information nicht im Cache."
+        },
+        "MessageSent": {
+            "Title": {
+                "description": "Message sent",
+                "en": "Message sent",
+                "de": "Nachricht gesendet",
+                "at": "Nochricht gsendet"
+            },
+            "Content": {
+                "description": "Content",
+                "en": "Content",
+                "de": "Inhalt",
+                "at": "Inhalt"
+            }
+        },
+        "MessageUpdated": {
+            "Title": {
+                "description": "Message updated",
+                "en": "Message edited",
+                "de": "Nachricht aktualisiert",
+                "at": "Nochricht aktualisiert"
+            },
+            "ContentBefore": {
+                "description": "Content",
+                "en": "Before",
+                "de": "Zuvor"
+            },
+            "ContentNew": {
+                "description": "Content",
+                "en": "New",
+                "de": "Neu"
+            }
+        },
+        "MessageDeleted": {
+            "Title": {
+                "description": "Message deleted",
+                "en": "Message deleted",
+                "de": "Nachricht gelöscht",
+                "at": "Nochricht gelöscht"
+            },
+            "Content": {
+                "description": "Content",
+                "en": "Content",
+                "de": "Inhalt",
+                "at": "Inhalt"
+            }
+        },
+        "BanAdded": {
+            "Title": {
+                "description": "Ban added",
+                "en": "User banned",
+                "de": "Nutzer gebannt"
+            }
+        },
+        "BanRemoved": {
+            "Title": {
+                "description": "Ban removed",
+                "en": "User unbanned",
+                "de": "Nutzer entbannt"
+            }
+        },
+        "InviteCreated": {
+            "Title": {
+                "description": "Invite created",
+                "en": "Invite created",
+                "de": "Einladung erstellt"
+            },
+            "URL": {
+                "description": "URL",
+                "en": "URL",
+                "de": "URL"
+            },
+            "MaxUses": {
+                "description": "Max uses",
+                "en": "Max uses",
+                "de": "Maximale Nutzungen"
+            },
+            "Expiration": {
+                "description": "Expiration",
+                "en": "Expiration date",
+                "de": "Ablaufdatum"
+            },
+            "TargetChannel": {
+                "description": "Target channel",
+                "en": "Target channel",
+                "de": "Zielkanal"
+            }
+        },
+        "InviteDeleted": {
+            "Title": {
+                "description": "Invite deleted",
+                "en": "Invite deleted",
+                "de": "Einladung gelöscht"
+            }
+        },
+        "MemberJoined": {
+            "Title": {
+                "description": "Member joined",
+                "en": "Member joined",
+                "de": "Mitglied beigetreten"
+            },
+            "Registered": {
+                "description": "Registered",
+                "en": "Registered",
+                "de": "Registriert"
+            }
+        },
+        "MemberRemoved": {
+            "Title": {
+                "description": "Member removed",
+                "en": "Member removed",
+                "de": "Mitglied entfernt"
+            }
+        },
+        "ThreadCreated": {
+            "Title": {
+                "description": "Thread created",
+                "en": "Thread created",
+                "de": "Thread erstellt"
+            },
+            "Parent": {
+                "description": "Parent channel of this thread",
+                "en": "Parent",
+                "de": "Elternkanal"
+            },
+            "Creator": {
+                "description": "Creator",
+                "en": "Creator",
+                "de": "Ersteller"
             }
         }
     }

@@ -54,6 +54,7 @@ services:
       - ABSOLUTE_PATH_TO_FILE_UPLOAD=/filehost/
       - ENABLE_CORS=${ENABLE_CORS}
       - AUDIT_LOG_WEBHOOK_URL=${AUDIT_LOG_WEBHOOK_URL}
+      - ENABLE_PUBLIC_FILES=${ENABLE_PUBLIC_FILES}
     networks:
       - appnetwork
     volumes:

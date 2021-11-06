@@ -230,6 +230,29 @@ namespace masz.Migrations
                     b.ToTable("GuildConfigs");
                 });
 
+            modelBuilder.Entity("masz.Models.GuildLevelAuditLogConfig", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<ulong>("ChannelId")
+                        .HasColumnType("bigint unsigned");
+
+                    b.Property<int>("GuildAuditLogEvent")
+                        .HasColumnType("int");
+
+                    b.Property<ulong>("GuildId")
+                        .HasColumnType("bigint unsigned");
+
+                    b.Property<string>("PingRoles")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GuildLevelAuditLogConfigs");
+                });
+
             modelBuilder.Entity("masz.Models.GuildMotd", b =>
                 {
                     b.Property<int>("Id")

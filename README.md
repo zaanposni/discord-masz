@@ -51,7 +51,7 @@ If you have any questions, feel free to contact me. <br/>
 
 - Create a discord application at https://discord.com/developers/applications
 - Set redirect urls on your discord application [as defined](https://github.com/zaanposni/discord-masz#discord-oauth).
-- Enable **Server Members Intent** in your bot settings.
+- Enable **Server Members** and **Message Content Intent** in your bot settings.
 - Execute the `setup.py` script to configure your app and `docker-compose up -d` to start it.
 - App will be hosted on `127.0.0.1:5565`, if you are hosting the app on a domain, redirect your reverse proxy to this local port!
 
@@ -74,7 +74,7 @@ Also set the redirect paths in the tab `OAuth2`. Be sure to set the following (c
 
 ### Bot Intents
 
-Enable **Server Members Intent** in your bot settings.
+Enable **Server Members** and **Message Content Intent** in your bot settings.
 
 <img src="/docs/intents.png"/>
 

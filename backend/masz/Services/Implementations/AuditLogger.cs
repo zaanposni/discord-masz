@@ -269,25 +269,32 @@ namespace masz.Services
                 QueueLog($"Domain: `{_config.GetServiceDomain()}`");
                 QueueLog($"ClientID: `{_config.GetClientId()}`");
 
-                if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CORS")))
+                if (_config.IsCorsEnabled())
                 {
                     QueueLog("CORS support: \u26A0 `ENABLED`");
                 } else {
                     QueueLog("CORS support: `DISABLED`");
                 }
 
-                if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
+                if (_config.IsCustomPluginModeEnabled())
                 {
                     QueueLog("Plugin support: \u26A0 `ENABLED`");
                 } else {
                     QueueLog("Plugin support: `DISABLED`");
                 }
 
-                if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_DEMO_MODE")))
+                if (_config.IsDemoModeEnabled())
                 {
                     QueueLog("Demo mode: \u26A0 `ENABLED`");
                 } else {
                     QueueLog("Demo mode: `DISABLED`");
+                }
+
+                if (_config.IsPublicFileEnabled())
+                {
+                    QueueLog("Public file mode: \u26A0 `ENABLED`");
+                } else {
+                    QueueLog("Public file mode: `DISABLED`");
                 }
 
                 QueueLog($"============== /STARTUP =============");

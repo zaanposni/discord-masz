@@ -54,9 +54,14 @@
         "DiscordCache": "Discordspeicha",
         "ClearCache": "Speicha lean",
         "FailedToLoad": "Statistikn kenna ned glodn wean.",
+        "FailedToLoadLocalVersion": "Lokal Versionsnfo kenna ned glodn wean.",
+        "FailedToLoadAvailableVersions": "Ferfüghbar kenna ned glodn wean.",
         "FailedToClear": "Speicha konnte ned gleat wean.",
         "Cleared": "Speicha gleat.",
-        "Insights": "Statistikn"
+        "Insights": "Statistikn",
+        "UpdateAvailableHeadline": "Update verfügbar",
+        "Published": "Veröffentlicht:",
+        "UpdateAvailableText": "Update {{tag}} is verfügbar. Bit aktualisier deinen Bot."
     },
     "AdminstatsList": {
         "ShowMore": "Mehr ozeign"
@@ -171,6 +176,11 @@
         "FailedToUpdateGuild": "Güde konnt ned aktualisiat wean.",
         "GuildCreated": "Güde registriat",
         "GuildUpdated": "Güde aktualisiat"
+    },
+    "GuildAuditLogConfig": {
+        "AuditLog": "AuditLog",
+        "FailedToLoadGuild": "Güdeninfos konnten ned glodn wean.",
+        "FailedToLoadChannels": "Küdnkanoiinformationen konntn ned glodn wean."
     },
     "AutomodConfig": {
         "Automoderation": "Automodaration",

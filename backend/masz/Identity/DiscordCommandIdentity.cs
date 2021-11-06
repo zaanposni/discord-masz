@@ -140,5 +140,29 @@ namespace masz.Models
             }
             return _config.GetSiteAdmins().Contains(currentUser.Id);
         }
+
+        public override void RemoveGuildMembership(ulong guildId)
+        {
+            currentUserGuilds.RemoveAll(x => x.Id == guildId);
+            GuildMemberships.Remove(guildId);
+        }
+
+        public override void AddGuildMembership(DiscordMember member)
+        {
+            if (! currentUserGuilds.Any(x => x.Id == member.Guild.Id))
+            {
+                currentUserGuilds.Add(member.Guild);
+            }
+            GuildMemberships[member.Guild.Id] = member;
+        }
+
+        public override void UpdateGuildMembership(DiscordMember member)
+        {
+            if (! currentUserGuilds.Any(x => x.Id == member.Guild.Id))
+            {
+                currentUserGuilds.Add(member.Guild);
+            }
+            GuildMemberships[member.Guild.Id] = member;
+        }
     }
 }

@@ -18,7 +18,8 @@ using masz.Repositories;
 using masz.Logger;
 using masz.AutoModerations;
 using System.Text;
-using masz.Extensions;
+using masz.Enums;
+using masz.GuildAuditLog;
 
 namespace masz.Services
 {
@@ -47,18 +48,26 @@ namespace masz.Services
                 Token = _config.GetBotToken(),
                 TokenType = TokenType.Bot,
                 Intents = DiscordIntents.AllUnprivileged | DiscordIntents.GuildMembers,
-                LoggerFactory = loggerFactory
+                LoggerFactory = loggerFactory,
+                MessageCacheSize = 10240
             };
 
             _client = new DiscordClient(_discordConfiguration);
             _client.MessageCreated += this.MessageCreatedHandler;
             _client.MessageUpdated += this.MessageUpdatedHandler;
+            _client.MessageDeleted += this.MessageDeletedHandler;
             _client.GuildCreated += this.GuildCreatedHandler;
             _client.GuildMemberAdded += this.GuildMemberAddedHandler;
+            _client.GuildMemberUpdated += this.GuildMemberUpdatedHandler;
+            _client.GuildMemberRemoved += this.GuildMemberRemovedHandler;
             _client.InviteCreated += this.InviteCreatedHandler;
             _client.InviteDeleted += this.InviteDeletedHandler;
+            _client.GuildBanAdded += this.GuildBanAddedHandler;
+            _client.GuildBanRemoved += this.GuildBanRemovedHandler;
             _client.GuildUpdated += this.GuildUpdatedHandler;
             _client.GuildAvailable += this.GuildAvailableHandler;
+
+            _client.ThreadCreated += this.ThreadCreatedHandler;
 
             _client.SocketErrored += this.SocketErroredHandler;
             _client.Resumed += this.ResumedHandler;
@@ -83,8 +92,148 @@ namespace masz.Services
             slash.RegisterCommands<SayCommand>(debugGuild);
             slash.RegisterCommands<FeatureCommand>(debugGuild);
             slash.RegisterCommands<CleanupCommand>(debugGuild);
+            slash.RegisterCommands<WarnCommand>(debugGuild);
+            slash.RegisterCommands<MuteCommand>(debugGuild);
+            slash.RegisterCommands<KickCommand>(debugGuild);
+            slash.RegisterCommands<BanCommand>(debugGuild);
 
             slash.SlashCommandErrored += CmdErroredHandler;
+        }
+
+        private Task GuildBanRemovedHandler(DiscordClient client, GuildBanRemoveEventArgs e)
+        {
+            Task.Run(async () => {
+                using (var scope = _serviceScopeFactory.CreateScope())
+                {
+                    GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+                    await auditLogger.HandleEvent(e, BanRemovedAuditLog.HandleBanRemoved, GuildAuditLogEvent.BanRemoved);
+
+                    // refresh ban cache
+                    IDiscordAPIInterface discordAPI = scope.ServiceProvider.GetService<IDiscordAPIInterface>();
+                    discordAPI.RemoveFromCache(CacheKey.GuildBan(e.Guild.Id, e.Member.Id));
+                }
+            });
+            return Task.CompletedTask;
+        }
+
+        private Task GuildBanAddedHandler(DiscordClient client, GuildBanAddEventArgs e)
+        {
+            Task.Run(async () => {
+                using (var scope = _serviceScopeFactory.CreateScope())
+                {
+                    GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+                    await auditLogger.HandleEvent(e, BanAddedAuditLog.HandleBanAdded, GuildAuditLogEvent.BanAdded);
+
+                    // refresh ban cache
+                    IDiscordAPIInterface discordAPI = scope.ServiceProvider.GetService<IDiscordAPIInterface>();
+                    await discordAPI.GetGuildUserBan(e.Guild.Id, e.Member.Id, CacheBehavior.IgnoreCache);
+                    discordAPI.RemoveFromCache(CacheKey.GuildMember(e.Guild.Id, e.Member.Id));
+
+                    // refresh identity memberships
+                    IIdentityManager identityManager = scope.ServiceProvider.GetService<IIdentityManager>();
+                    foreach (Identity identity in identityManager.GetCurrentIdentities())
+                    {
+                        if (identity.GetCurrentUser().Id == e.Member.Id)
+                        {
+                            identity.RemoveGuildMembership(e.Guild.Id);
+                        }
+                    }
+                }
+            });
+            return Task.CompletedTask;
+        }
+
+        private Task GuildMemberRemovedHandler(DiscordClient client, GuildMemberRemoveEventArgs e)
+        {
+            Task.Run(async () => {
+                using (var scope = _serviceScopeFactory.CreateScope())
+                {
+                    GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+                    await auditLogger.HandleEvent(e, MemberRemovedAuditLog.HandleMemberRemovedUpdated, GuildAuditLogEvent.MemberRemoved);
+
+                    // refresh identity memberships
+                    IIdentityManager identityManager = scope.ServiceProvider.GetService<IIdentityManager>();
+                    foreach (Identity identity in identityManager.GetCurrentIdentities())
+                    {
+                        if (identity.GetCurrentUser().Id == e.Member.Id)
+                        {
+                            identity.RemoveGuildMembership(e.Guild.Id);
+                        }
+                    }
+                }
+            });
+            return Task.CompletedTask;
+        }
+
+        private Task GuildMemberUpdatedHandler(DiscordClient client, GuildMemberUpdateEventArgs e)
+        {
+            Task.Run(() => {
+                using (var scope = _serviceScopeFactory.CreateScope())
+                {
+                    // audit logger disabled since d#+ doesn't cache correctly yet
+                    // GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+
+                    if (e.NicknameBefore != e.NicknameAfter)
+                    {
+                        // await auditLogger.HandleEvent(e, NicknameUpdatedAuditLog.HandleNicknameUpdated, GuildAuditLogEvent.NicknameUpdated);
+                    }
+
+                    if (e.AvatarHashBefore != e.AvatarHashAfter)
+                    {
+                        // await auditLogger.HandleEvent(e, AvatarUpdatedAuditLog.HandleAvatarUpdated, GuildAuditLogEvent.AvatarUpdated);
+                    }
+
+                    if (e.RolesBefore != e.RolesAfter)
+                    {
+                        // await auditLogger.HandleEvent(e, MemberRolesUpdatedAuditLog.HandleMemberRolesUpdated, GuildAuditLogEvent.MemberRolesUpdated);
+                    }
+
+                    // refresh identity memberships
+                    IIdentityManager identityManager = scope.ServiceProvider.GetService<IIdentityManager>();
+                    foreach (Identity identity in identityManager.GetCurrentIdentities())
+                    {
+                        if (identity.GetCurrentUser().Id == e.Member.Id)
+                        {
+                            identity.UpdateGuildMembership(e.Member);
+                        }
+                    }
+
+                    // refresh member cache
+                    IDiscordAPIInterface discordAPI = scope.ServiceProvider.GetService<IDiscordAPIInterface>();
+                    discordAPI.AddOrUpdateCache(CacheKey.GuildMember(e.Guild.Id, e.Member.Id), new CacheApiResponse(e.Member));
+                }
+            });
+            return Task.CompletedTask;
+        }
+
+        private Task MessageDeletedHandler(DiscordClient client, MessageDeleteEventArgs e)
+        {
+            if (e.Channel.Guild != null)
+            {
+                Task.Run(async () => {
+                    using (var scope = _serviceScopeFactory.CreateScope())
+                    {
+                        GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+                        await auditLogger.HandleEvent(e, MessageDeletedAuditLog.HandleMessageDeleted, GuildAuditLogEvent.MessageDeleted);
+                    }
+                });
+            }
+            return Task.CompletedTask;
+        }
+
+        // https://discord.com/developers/docs/topics/gateway#thread-create
+        // Sent when a thread is created, relevant to the current user, or when the current user is added to a thread.
+        private async Task ThreadCreatedHandler(DiscordClient client, ThreadCreateEventArgs e)
+        {
+            Task auditLogTask = new Task(async () => {
+                using (var scope = _serviceScopeFactory.CreateScope())
+                {
+                    GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+                    await auditLogger.HandleEvent(e, ThreadCreatedAuditLog.HandleThreadCreated, GuildAuditLogEvent.ThreadCreated);
+                }
+            });
+            auditLogTask.Start();
+            await e.Thread.JoinThreadAsync();
         }
 
         public async Task Start()
@@ -131,6 +280,20 @@ namespace masz.Services
 
         private Task MessageCreatedHandler(DiscordClient client, MessageCreateEventArgs e)
         {
+            if (e.Message.Channel.Guild != null)
+            {
+                if (! e.Message.Author.IsCurrent && ! e.Message.WebhookMessage)
+                {
+                    Task.Run(async () => {
+                        using (var scope = _serviceScopeFactory.CreateScope())
+                        {
+                            GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+                            await auditLogger.HandleEvent(e, MessageSentAuditLog.HandleMessageSent, GuildAuditLogEvent.MessageSent);
+                        }
+                    });
+                }
+            }
+
             if (e.Message.MessageType != MessageType.Default && e.Message.MessageType != MessageType.Reply)
             {
                 return Task.CompletedTask;
@@ -163,15 +326,26 @@ namespace masz.Services
 
         private Task MessageUpdatedHandler(DiscordClient client, MessageUpdateEventArgs e)
         {
+            if (e.Channel.Guild != null)
+            {
+                Task.Run(async () => {
+                    using (var scope = _serviceScopeFactory.CreateScope())
+                    {
+                        GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+                        await auditLogger.HandleEvent(e, MessageUpdatedAuditLog.HandleMessageUpdated, GuildAuditLogEvent.MessageUpdated);
+                    }
+                });
+            }
+
             if (e.Message.MessageType != MessageType.Default && e.Message.MessageType != MessageType.Reply)
             {
                 return Task.CompletedTask;
             }
-            if (e.Message.Author.IsBot)
+            if (e.Author.IsBot)
             {
                 return Task.CompletedTask;
             }
-            if (e.Message.Channel.Guild == null)
+            if (e.Channel.Guild == null)
             {
                 return Task.CompletedTask;
             }
@@ -226,6 +400,29 @@ namespace masz.Services
 
         private async Task GuildMemberAddedHandler(DiscordClient client, GuildMemberAddEventArgs e)
         {
+            Task auditLogTask = new Task(async () => {
+                using (var scope = _serviceScopeFactory.CreateScope())
+                {
+                    GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+                    await auditLogger.HandleEvent(e, MemberJoinedAuditLog.HandleMemberJoined, GuildAuditLogEvent.MemberJoined);
+
+                    // refresh identity memberships
+                    IIdentityManager identityManager = scope.ServiceProvider.GetService<IIdentityManager>();
+                    foreach (Identity identity in identityManager.GetCurrentIdentities())
+                    {
+                        if (identity.GetCurrentUser().Id == e.Member.Id)
+                        {
+                            identity.AddGuildMembership(e.Member);
+                        }
+                    }
+
+                    // refresh member cache
+                    IDiscordAPIInterface discordAPI = scope.ServiceProvider.GetService<IDiscordAPIInterface>();
+                    discordAPI.AddOrUpdateCache(CacheKey.GuildMember(e.Guild.Id, e.Member.Id), new CacheApiResponse(e.Member));
+                }
+            });
+            auditLogTask.Start();
+
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 GuildConfig guildConfig;
@@ -310,15 +507,33 @@ namespace masz.Services
             }
         }
 
-        private Task InviteCreatedHandler(DiscordClient sender, InviteCreateEventArgs e)
+        private Task InviteCreatedHandler(DiscordClient client, InviteCreateEventArgs e)
         {
             InviteTracker.AddInvite(e.Guild.Id, new TrackedInvite(e.Invite, e.Guild.Id));
+
+            Task.Run(async () => {
+                using (var scope = _serviceScopeFactory.CreateScope())
+                {
+                    GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+                    await auditLogger.HandleEvent(e, InviteCreatedAuditLog.HandleInviteCreated, GuildAuditLogEvent.InviteCreated);
+                }
+            });
+
             return Task.CompletedTask;
         }
 
-        private Task InviteDeletedHandler(DiscordClient sender, InviteDeleteEventArgs e)
+        private Task InviteDeletedHandler(DiscordClient client, InviteDeleteEventArgs e)
         {
             InviteTracker.RemoveInvite(e.Guild.Id, e.Invite.Code);
+
+            Task.Run(async () => {
+                using (var scope = _serviceScopeFactory.CreateScope())
+                {
+                    GuildAuditLogger auditLogger = GuildAuditLogger.CreateDefault(client, scope.ServiceProvider, e.Guild.Id);
+                    await auditLogger.HandleEvent(e, InviteDeletedAuditLog.HandleInviteDeleted, GuildAuditLogEvent.InviteDeleted);
+                }
+            });
+
             return Task.CompletedTask;
         }
 

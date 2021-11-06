@@ -9,6 +9,9 @@ namespace masz.Services
     public interface IDiscordAPIInterface
     {
         Dictionary<string, CacheApiResponse> GetCache();
+        void RemoveFromCache(CacheKey key);
+        T GetFromCache<T>(CacheKey key);
+        void AddOrUpdateCache(CacheKey key, CacheApiResponse response);
         /// <summary>
         /// Returns information of user by his id
         /// https://discord.com/developers/docs/resources/user#get-user

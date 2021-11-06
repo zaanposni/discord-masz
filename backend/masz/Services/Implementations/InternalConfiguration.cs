@@ -19,6 +19,10 @@ namespace masz.Services
         private List<ulong> _siteAdmins;
         private Language _defaultLanguage;
         private string _auditLogWebhookUrl;
+        private bool _publicFilesEnabled;
+        private bool _demoModeEnabled;
+        private bool _customPluginsEnabled;
+        private bool _corsEnabled;
         public InternalConfiguration(ILogger<InternalConfiguration> logger)
         {
             _logger = logger;
@@ -56,6 +60,10 @@ namespace masz.Services
                     break;
             }
             _auditLogWebhookUrl = Environment.GetEnvironmentVariable("AUDIT_LOG_WEBHOOK_URL");
+            _publicFilesEnabled = String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_PUBLIC_FILES"));
+            _demoModeEnabled = String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_DEMO_MODE"));
+            _customPluginsEnabled = String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS"));
+            _corsEnabled = String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CORS"));
         }
 
         public string GetBaseUrl()
@@ -106,6 +114,26 @@ namespace masz.Services
         public string GetAuditLogWebhook()
         {
             return _auditLogWebhookUrl;
+        }
+
+        public bool IsPublicFileEnabled()
+        {
+            return _publicFilesEnabled;
+        }
+
+        public bool IsDemoModeEnabled()
+        {
+            return _demoModeEnabled;
+        }
+
+        public bool IsCustomPluginModeEnabled()
+        {
+            return _customPluginsEnabled;
+        }
+
+        public bool IsCorsEnabled()
+        {
+            return _corsEnabled;
         }
     }
 }

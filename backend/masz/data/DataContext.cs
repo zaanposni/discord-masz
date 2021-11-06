@@ -29,6 +29,7 @@ namespace masz.data
         public DbSet<UserInvite> UserInvites { get; set; }
         public DbSet<UserMapping> UserMappings { get; set; }
         public DbSet<UserNote> UserNotes { get; set; }
+        public DbSet<GuildLevelAuditLogConfig> GuildLevelAuditLogConfigs { get; set; }
 
         public void Configure(EntityTypeBuilder<ModCase> builder) {
             builder.Property(u => u.CreatedAt).IsRequired(true).HasDefaultValueSql("now()");
@@ -99,6 +100,12 @@ namespace masz.data
 
             modelBuilder.Entity<AutoModerationConfig>()
                 .Property(e => e.IgnoreRoles)
+                .HasConversion(
+                    v => string.Join(',', v),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => ulong.Parse(x)).ToArray());
+
+            modelBuilder.Entity<GuildLevelAuditLogConfig>()
+                .Property(e => e.PingRoles)
                 .HasConversion(
                     v => string.Join(',', v),
                     v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => ulong.Parse(x)).ToArray());

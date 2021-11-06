@@ -26,6 +26,7 @@
     "@ngx-translate/http-loader": "^6.0.0",
     "bootstrap": "^4.6.0",
     "chart.js": "^2.9.4",
+    "compare-versions": "^4.0.0",
     "moment": "^2.29.1",
     "ng2-charts": "^2.4.2",
     "ngx-cookie": "^5.0.2",

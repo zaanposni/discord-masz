@@ -1,13 +1,12 @@
-﻿using DSharpPlus;
-using DSharpPlus.Entities;
+﻿using DSharpPlus.Entities;
 using masz.Enums;
 using masz.Exceptions;
 using masz.Repositories;
 using masz.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace masz.Models
@@ -223,6 +222,27 @@ namespace masz.Models
                 }
             }
             return true;
+        }
+
+        public virtual void RemoveGuildMembership(ulong guildId)
+        {
+            currentUserGuilds.RemoveAll(x => x.Id == guildId);
+        }
+
+        public virtual void AddGuildMembership(DiscordMember member)
+        {
+            if (! currentUserGuilds.Any(x => x.Id == member.Guild.Id))
+            {
+                currentUserGuilds.Add(member.Guild);
+            }
+        }
+
+        public virtual void UpdateGuildMembership(DiscordMember member)
+        {
+            if (! currentUserGuilds.Any(x => x.Id == member.Guild.Id))
+            {
+                currentUserGuilds.Add(member.Guild);
+            }
         }
     }
 }

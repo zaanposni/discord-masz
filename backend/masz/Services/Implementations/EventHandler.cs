@@ -48,7 +48,11 @@ namespace masz.Services
         public async Task InvokeUserMapDeleted(UserMapDeletedEventArgs eventArgs) => await Invoke(OnUserMapDeleted, eventArgs);
         public async Task InvokeUserNoteUpdated(UserNoteUpdatedEventArgs eventArgs) => await Invoke(OnUserNoteUpdated, eventArgs);
         public async Task InvokeUserNoteDeleted(UserNoteDeletedEventArgs eventArgs) => await Invoke(OnUserNoteDeleted, eventArgs);
-        public Task InvokeInternalCachingDone(InternalCachingDoneEventArgs eventArgs) => Invoke(OnInternalCachingDone, eventArgs);
+        public async Task InvokeInternalCachingDone(InternalCachingDoneEventArgs eventArgs) => await Invoke(OnInternalCachingDone, eventArgs);
+
+        public async Task InvokeGuildLevelAuditLogConfigUpdated(GuildLevelAuditLogConfigUpdatedEventArgs eventArgs) => await Invoke(OnGuildLevelAuditLogConfigUpdated, eventArgs);
+
+        public async Task InvokeGuildLevelAuditLogConfigDeleted(GuildLevelAuditLogConfigDeletedEventArgs eventArgs) => await Invoke(OnGuildLevelAuditLogConfigDeleted, eventArgs);
 
         public event AsyncEventHandler<IdentityRegisteredEventArgs> OnIdentityRegistered;
         public event AsyncEventHandler<TokenCreatedEventArgs> OnTokenCreated;
@@ -77,5 +81,7 @@ namespace masz.Services
         public event AsyncEventHandler<UserNoteUpdatedEventArgs> OnUserNoteUpdated;
         public event AsyncEventHandler<UserNoteDeletedEventArgs> OnUserNoteDeleted;
         public event AsyncEventHandler<InternalCachingDoneEventArgs> OnInternalCachingDone;
+        public event AsyncEventHandler<GuildLevelAuditLogConfigUpdatedEventArgs> OnGuildLevelAuditLogConfigUpdated;
+        public event AsyncEventHandler<GuildLevelAuditLogConfigDeletedEventArgs> OnGuildLevelAuditLogConfigDeleted;
     }
 }

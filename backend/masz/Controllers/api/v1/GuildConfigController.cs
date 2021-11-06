@@ -89,7 +89,7 @@ namespace masz.Controllers
         public async Task<IActionResult> UpdateSpecificItem([FromRoute] ulong guildId, [FromBody] GuildConfigForPutDto newValue)
         {
             await RequirePermission(guildId, DiscordPermission.Admin);
-            if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_DEMO_MODE"))) {
+            if (_config.IsDemoModeEnabled()) {
                 if (! (await GetIdentity()).IsSiteAdmin()) {  // siteadmins can overwrite in demo mode
                     throw new BaseAPIException("Demo mode is enabled. Only site admins can edit guild configs.", APIError.NotAllowedInDemoMode);
                 }

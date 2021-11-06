@@ -100,13 +100,14 @@ export class AutomodConfigComponent implements OnInit {
   }
 
   reload() {
-    this.api.getSimpleData(`/discord/guilds/${this.guildId}`).subscribe((data) => {
+    this.api.getSimpleData(`/discord/guilds/${this.guildId}`).subscribe((data: Guild) => {
+      data.roles = data.roles.sort((a, b) => (a.position < b.position) ? 1 : -1);
       this.guildInfo = data;
     }, () => {
       this.toastr.error(this.translator.instant('AutomodConfig.FailedToLoadGuild'));
     });
     this.api.getSimpleData(`/discord/guilds/${this.guildId}/channels`).subscribe((data: GuildChannel[]) => {
-      this.guildChannels = data.filter(x => x.type === 0);
+      this.guildChannels = data.filter(x => x.type === 0).sort((a, b) => (a.position > b.position) ? 1 : -1);
     }, () => {
       this.toastr.error(this.translator.instant('AutomodConfig.FailedToLoadChannels'));
     });

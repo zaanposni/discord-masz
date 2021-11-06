@@ -54,9 +54,14 @@
         "DiscordCache": "Discordspeicher",
         "ClearCache": "Speicher leeren",
         "FailedToLoad": "Statistiken konnten nicht geladen werden.",
+        "FailedToLoadLocalVersion": "Lokale Versionsinfo konnten nicht geladen werden.",
+        "FailedToLoadAvailableVersions": "Verfügbare Versionen konnten nicht geladen werden.",
         "FailedToClear": "Speicher konnte nicht geleert werden.",
         "Cleared": "Speicher geleert.",
-        "Insights": "Statistiken"
+        "Insights": "Statistiken",
+        "UpdateAvailableHeadline": "Update verfügbar",
+        "Published": "Veröffentlicht:",
+        "UpdateAvailableText": "Update {{tag}} ist verfügbar. Bitte aktualisiere deinen Bot."
     },
     "AdminstatsList": {
         "ShowMore": "Mehr anzeigen"
@@ -171,6 +176,60 @@
         "FailedToUpdateGuild": "Gilde konnte nicht aktualisiert werden.",
         "GuildCreated": "Gilde registriert",
         "GuildUpdated": "Gilde aktualisiert"
+    },
+    "GuildAuditLogConfig": {
+        "TargetChannel": "Zielkanal",
+        "ComingSoon": "Bald verfügbar",
+        "PingRoles": "Rolle pingen",
+        "AuditLog": "AuditLog",
+        "ConfigDeleted": "Konfiguration gelöscht.",
+        "FailedToDeleteConfig": "Konfiguration konnte nicht gelöscht werden.",
+        "SavedConfig": "Konfiguration gespeichert.",
+        "FailedToSaveConfig": "Konfiguration konnte nicht gespeichert werden.",
+        "FailedToLoadGuild": "Gildeninformationen konnten nicht geladen werden.",
+        "FailedToLoadChannels": "Gildenkanalinformationen konnten nicht geladen werden.",
+        "MessageSent": {
+            "title": "Nachricht gesendet"
+        },
+        "MessageUpdated": {
+            "title": "Nachricht editiert"
+        },
+        "MessageDeleted": {
+            "title": "Nachricht gelöscht"
+        },
+        "UsernameUpdated": {
+            "title": "Benutzername editiert"
+        },
+        "AvatarUpdated": {
+            "title": "Avatar editiert"
+        },
+        "NicknameUpdated": {
+            "title": "Nickname editiert"
+        },
+        "MemberRolesUpdated": {
+            "title": "Mitgliederrollen editiert"
+        },
+        "MemberJoined": {
+            "title": "Mitglied beigetreten"
+        },
+        "MemberRemoved": {
+            "title": "Mitglied entfernt"
+        },
+        "BanAdded": {
+            "title": "Bann hinzugefügt"
+        },
+        "BanRemoved": {
+            "title": "Bann entfernt"
+        },
+        "InviteCreated": {
+            "title": "Einladung erstellt"
+        },
+        "InviteDeleted": {
+            "title": "Einladung gelöscht"
+        },
+        "ThreadCreated": {
+            "title": "Thread erstellt"
+        }
     },
     "AutomodConfig": {
         "Automoderation": "Automoderation",

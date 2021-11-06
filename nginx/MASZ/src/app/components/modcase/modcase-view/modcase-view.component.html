@@ -193,7 +193,7 @@
                                                 {{ 'ModCaseView.PunishmentExpired' | translate }}
                                             </span>
                                         </span>
-                                        <ng-template #punishedForever>Punished until: Forever.</ng-template>
+                                        <ng-template #punishedForever>{{ 'ModCaseView.PunishedForever' | translate }}</ng-template>
                                         <div class="w-100 mt-2" *ngIf="this.modCase.content?.modCase?.punishmentActive === true && this.modCase.content?.punishmentProgress">
                                             <mat-progress-bar
                                                 title="Punishment progress"

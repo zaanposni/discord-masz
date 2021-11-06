@@ -86,6 +86,10 @@ namespace masz.Services
             } else {
                 key = httpContext.Request.Cookies["masz_access_token"];
             }
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new UnauthorizedException();
+            }
             if (identities.ContainsKey(key))
             {
                 Identity identity = identities[key];

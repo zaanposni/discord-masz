@@ -284,6 +284,18 @@
             "de": "Statistiken konnten nicht geladen werden.",
             "at": "Statistikn kenna ned glodn wean."
         },
+        "FailedToLoadLocalVersion": {
+            "description": "Failed to load installed version",
+            "en": "Failed to load installed version.",
+            "de": "Lokale Versionsinfo konnten nicht geladen werden.",
+            "at": "Lokal Versionsnfo kenna ned glodn wean."
+        },
+        "FailedToLoadAvailableVersions": {
+            "description": "Failed to load available versions",
+            "en": "Failed to load available versions.",
+            "de": "Verfügbare Versionen konnten nicht geladen werden.",
+            "at": "Ferfüghbar kenna ned glodn wean."
+        },
         "FailedToClear": {
             "description": "Failed to clear cache",
             "en": "Failed to clear cache.",
@@ -301,6 +313,24 @@
             "en": "Insights",
             "de": "Statistiken",
             "at": "Statistikn"
+        },
+        "UpdateAvailableHeadline": {
+            "description": "Update available",
+            "en": "Update available",
+            "de": "Update verfügbar",
+            "at": "Update verfügbar"
+        },
+        "Published": {
+            "description": "Published prefix for release date of update",
+            "en": "Published:",
+            "de": "Veröffentlicht:",
+            "at": "Veröffentlicht:"
+        },
+        "UpdateAvailableText": {
+            "description": "Update available text",
+            "en": "Update {{tag}} is available. Please update your instance.",
+            "de": "Update {{tag}} ist verfügbar. Bitte aktualisiere deinen Bot.",
+            "at": "Update {{tag}} is verfügbar. Bit aktualisier deinen Bot."
         }
     },
     "AdminstatsList": {
@@ -855,6 +885,159 @@
             "en": "Guild updated",
             "de": "Gilde aktualisiert",
             "at": "Güde aktualisiat"
+        }
+    },
+    "GuildAuditLogConfig": {
+        "TargetChannel": {
+            "description": "target channel",
+            "en": "Target channel",
+            "de": "Zielkanal"
+        },
+        "ComingSoon": {
+            "description": "coming soon",
+            "en": "Coming soon",
+            "de": "Bald verfügbar"
+        },
+        "PingRoles": {
+            "description": "ping roles",
+            "en": "Ping roles",
+            "de": "Rolle pingen"
+        },
+        "AuditLog": {
+            "description": "audit log",
+            "en": "AuditLog",
+            "de": "AuditLog",
+            "at": "AuditLog"
+        },
+        "ConfigDeleted": {
+            "description": "config deleted",
+            "en": "Config deleted.",
+            "de": "Konfiguration gelöscht."
+        },
+        "FailedToDeleteConfig": {
+            "description": "failed to delete config",
+            "en": "Failed to delete config.",
+            "de": "Konfiguration konnte nicht gelöscht werden."
+        },
+        "SavedConfig": {
+            "description": "saved config",
+            "en": "Saved config.",
+            "de": "Konfiguration gespeichert."
+        },
+        "FailedToSaveConfig": {
+            "description": "failed to save config",
+            "en": "Failed to save config.",
+            "de": "Konfiguration konnte nicht gespeichert werden."
+        },
+        "FailedToLoadGuild": {
+            "description": "failed to load guild info",
+            "en": "Failed to load guild info.",
+            "de": "Gildeninformationen konnten nicht geladen werden.",
+            "at": "Güdeninfos konnten ned glodn wean."
+        },
+        "FailedToLoadChannels": {
+            "description": "Failed to load guildchannel info.",
+            "en": "Failed to load guildchannel info.",
+            "de": "Gildenkanalinformationen konnten nicht geladen werden.",
+            "at": "Küdnkanoiinformationen konntn ned glodn wean."
+        },
+        "MessageSent": {
+            "title": {
+                "description": "message sent",
+                "en": "Message sent",
+                "de": "Nachricht gesendet"
+            }
+        },
+        "MessageUpdated": {
+            "title": {
+                "description": "message updated",
+                "en": "Message updated",
+                "de": "Nachricht editiert"
+            }
+        },
+        "MessageDeleted": {
+            "title": {
+                "description": "message deleted",
+                "en": "Message deleted",
+                "de": "Nachricht gelöscht"
+            }
+        },
+        "UsernameUpdated": {
+            "title": {
+                "description": "username updated",
+                "en": "Username updated",
+                "de": "Benutzername editiert"
+            }
+        },
+        "AvatarUpdated": {
+            "title": {
+                "description": "avatar updated",
+                "en": "Avatar updated",
+                "de": "Avatar editiert"
+            }
+        },
+        "NicknameUpdated": {
+            "title": {
+                "description": "nickname updated",
+                "en": "Nickname updated",
+                "de": "Nickname editiert"
+            }
+        },
+        "MemberRolesUpdated": {
+            "title": {
+                "description": "member roles updated",
+                "en": "Member roles updated",
+                "de": "Mitgliederrollen editiert"
+            }
+        },
+        "MemberJoined": {
+            "title": {
+                "description": "member joined",
+                "en": "Member joined",
+                "de": "Mitglied beigetreten"
+            }
+        },
+        "MemberRemoved": {
+            "title": {
+                "description": "member removed",
+                "en": "Member removed",
+                "de": "Mitglied entfernt"
+            }
+        },
+        "BanAdded": {
+            "title": {
+                "description": "ban added",
+                "en": "Ban added",
+                "de": "Bann hinzugefügt"
+            }
+        },
+        "BanRemoved": {
+            "title": {
+                "description": "ban removed",
+                "en": "Ban removed",
+                "de": "Bann entfernt"
+            }
+        },
+        "InviteCreated": {
+            "title": {
+                "description": "invite created",
+                "en": "Invite created",
+                "de": "Einladung erstellt"
+            }
+        },
+        "InviteDeleted": {
+            "title": {
+                "description": "invite deleted",
+                "en": "Invite deleted",
+                "de": "Einladung gelöscht"
+            }
+        },
+        "ThreadCreated": {
+            "title": {
+                "description": "thread created",
+                "en": "Thread created",
+                "de": "Thread erstellt"
+            }
         }
     },
     "AutomodConfig": {

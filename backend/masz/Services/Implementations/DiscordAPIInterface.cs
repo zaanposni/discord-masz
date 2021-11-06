@@ -41,44 +41,49 @@ namespace masz.Services
             });
         }
 
-        private T TryGetFromCache<T>(string cacheKey, CacheBehavior cacheBehavior)
+        private T TryGetFromCache<T>(CacheKey cacheKey, CacheBehavior cacheBehavior)
         {
             if (cacheBehavior == CacheBehavior.OnlyCache) {
-                if (_cache.ContainsKey(cacheKey)) {
-                    return _cache[cacheKey].GetContent<T>();
+                if (_cache.ContainsKey(cacheKey.GetValue())) {
+                    return _cache[cacheKey.GetValue()].GetContent<T>();
                 } else {
-                    throw new NotFoundInCacheException(cacheKey);
+                    throw new NotFoundInCacheException(cacheKey.GetValue());
                 }
             }
-            if (_cache.ContainsKey(cacheKey) && cacheBehavior == CacheBehavior.Default) {
-                if (! _cache[cacheKey].IsExpired()) {
-                    return _cache[cacheKey].GetContent<T>();
+            if (_cache.ContainsKey(cacheKey.GetValue()) && cacheBehavior == CacheBehavior.Default) {
+                if (! _cache[cacheKey.GetValue()].IsExpired()) {
+                    return _cache[cacheKey.GetValue()].GetContent<T>();
                 }
-                _cache.Remove(cacheKey);
+                _cache.Remove(cacheKey.GetValue());
             }
             return default(T);
         }
 
-        private T FallBackToCache<T>(string cacheKey, CacheBehavior cacheBehavior)
+        private T FallBackToCache<T>(CacheKey cacheKey, CacheBehavior cacheBehavior)
         {
             if (cacheBehavior != CacheBehavior.IgnoreCache)
             {
-                if (_cache.ContainsKey(cacheKey))
+                if (_cache.ContainsKey(cacheKey.GetValue()))
                 {
-                    if (! _cache[cacheKey].IsExpired())
+                    if (! _cache[cacheKey.GetValue()].IsExpired())
                     {
-                        return _cache[cacheKey].GetContent<T>();
+                        return _cache[cacheKey.GetValue()].GetContent<T>();
                     }
-                    _cache.Remove(cacheKey);
+                    _cache.Remove(cacheKey.GetValue());
                 }
             }
             return default(T);
+        }
+
+        private void SetCacheValue(CacheKey cacheKey, CacheApiResponse cacheApiResponse)
+        {
+            _cache[cacheKey.GetValue()] = cacheApiResponse;
         }
 
         public async Task<List<DiscordBan>> GetGuildBans(ulong guildId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
-            string cacheKey = $"/guilds/{guildId}/bans";
+            CacheKey cacheKey = CacheKey.GuildBans(guildId);
             List<DiscordBan> bans = null;
             try
             {
@@ -102,11 +107,11 @@ namespace masz.Services
             }
 
             // cache -----------------------------
-            _cache[cacheKey] = new CacheApiResponse(bans);
+            SetCacheValue(cacheKey, new CacheApiResponse(bans));
             foreach (DiscordBan ban in bans)
             {
-                _cache[$"{cacheKey}/{ban.User.Id}"] = new CacheApiResponse(ban.User);
-                _cache[$"/users/{ban.User.Id}"] = new CacheApiResponse(ban.User);
+                SetCacheValue(CacheKey.User(ban.User.Id), new CacheApiResponse(ban.User));
+                SetCacheValue(CacheKey.GuildBan(guildId, ban.User.Id), new CacheApiResponse(ban));
             }
             return bans;
         }
@@ -114,7 +119,7 @@ namespace masz.Services
         public async Task<DiscordBan> GetGuildUserBan(ulong guildId, ulong userId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
-            string cacheKey = $"/guilds/{guildId}/bans/{userId}";
+            CacheKey cacheKey = CacheKey.GuildBan(guildId, userId);
             DiscordBan ban = null;
             try
             {
@@ -138,15 +143,15 @@ namespace masz.Services
             }
 
             // cache -----------------------------
-            _cache[cacheKey] = new CacheApiResponse(ban);
-            _cache[$"/users/{ban.User.Id}"] = new CacheApiResponse(ban.User);
+            SetCacheValue(cacheKey, new CacheApiResponse(ban));
+            SetCacheValue(CacheKey.User(ban.User.Id), new CacheApiResponse(ban.User));
             return ban;
         }
 
         public async Task<DiscordUser> FetchUserInfo(ulong userId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
-            string cacheKey = $"/users/{userId}";
+            CacheKey cacheKey = CacheKey.User(userId);
             DiscordUser user = null;
             try
             {
@@ -168,14 +173,14 @@ namespace masz.Services
             }
 
             // cache -----------------------------
-            _cache[cacheKey] = new CacheApiResponse(user);
+            SetCacheValue(cacheKey, new CacheApiResponse(user));
             return user;
         }
 
         public async Task<List<DiscordMember>> FetchGuildMembers(ulong guildId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
-            string cacheKey = $"/guilds/{guildId}/members";
+            CacheKey cacheKey = CacheKey.GuildMembers(guildId);
             List<DiscordMember> members = null;
             try
             {
@@ -201,17 +206,17 @@ namespace masz.Services
             // cache -----------------------------
             foreach (DiscordMember item in members)
             {
-                _cache[$"/guilds/{guildId}/members/{item.Id}"] = new CacheApiResponse(item);
-                _cache[$"/users/{item.Id}"] = new CacheApiResponse((DiscordUser) item);
+                SetCacheValue(CacheKey.User(item.Id), new CacheApiResponse((DiscordUser) item));
+                SetCacheValue(CacheKey.GuildMember(guildId, item.Id), new CacheApiResponse(item));
             }
-            _cache[cacheKey] = new CacheApiResponse(members);
+            SetCacheValue(cacheKey, new CacheApiResponse(members));
             return members;
         }
 
         public async Task<DiscordUser> FetchCurrentUserInfo(string token, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
-            string cacheKey = $"/users/{token}";
+            CacheKey cacheKey = CacheKey.TokenUser(token);
             DiscordUser user = null;
             try
             {
@@ -233,7 +238,7 @@ namespace masz.Services
             }
 
             // cache -----------------------------
-            _cache[cacheKey] = new CacheApiResponse(user);
+            SetCacheValue(cacheKey, new CacheApiResponse(user));
             return user;
         }
 
@@ -260,7 +265,7 @@ namespace masz.Services
         public async Task<List<DiscordChannel>> FetchGuildChannels(ulong guildId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
-            string cacheKey = $"/guilds/{guildId}/channels";
+            CacheKey cacheKey = CacheKey.GuildChannels(guildId);
             List<DiscordChannel> channels = null;
             try
             {
@@ -284,14 +289,14 @@ namespace masz.Services
             }
 
             // cache -----------------------------
-            _cache[cacheKey] = new CacheApiResponse(channels);
+            SetCacheValue(cacheKey, new CacheApiResponse(channels));
             return channels;
         }
 
         public async Task<DiscordGuild> FetchGuildInfo(ulong guildId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
-            string cacheKey = $"/guilds/{guildId}";
+            CacheKey cacheKey = CacheKey.Guild(guildId);
             DiscordGuild guild = null;
             try
             {
@@ -313,14 +318,14 @@ namespace masz.Services
             }
 
             // cache -----------------------------
-            _cache[cacheKey] = new CacheApiResponse(guild);
+            SetCacheValue(cacheKey, new CacheApiResponse(guild));
             return guild;
         }
 
         public async Task<List<DiscordGuild>> FetchGuildsOfCurrentUser(string token, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
-            string cacheKey = $"/users/{token}/guilds";
+            CacheKey cacheKey = CacheKey.TokenUserGuilds(token);
             List<DiscordGuild> guilds = null;
             try
             {
@@ -342,14 +347,14 @@ namespace masz.Services
             }
 
             // cache -----------------------------
-            _cache[cacheKey] = new CacheApiResponse(guilds);
+            SetCacheValue(cacheKey, new CacheApiResponse(guilds));
             return guilds;
         }
 
         public async Task<DiscordMember> FetchMemberInfo(ulong guildId, ulong userId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
-            string cacheKey = $"/guilds/{guildId}/members/{userId}";
+            CacheKey cacheKey = CacheKey.GuildMember(guildId, userId);
             DiscordMember member = null;
             try
             {
@@ -372,8 +377,8 @@ namespace masz.Services
             }
 
             // cache -----------------------------
-            _cache[cacheKey] = new CacheApiResponse(member);
-            _cache[$"/users/{member.Id}"] = new CacheApiResponse((DiscordUser) member);
+            SetCacheValue(cacheKey, new CacheApiResponse(member));
+            SetCacheValue(CacheKey.User(userId), new CacheApiResponse((DiscordUser) member));
             return member;
         }
 
@@ -384,7 +389,6 @@ namespace masz.Services
 
         public async Task<bool> BanUser(ulong guildId, ulong userId)
         {
-            // request ---------------------------
             try
             {
                 DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
@@ -400,7 +404,6 @@ namespace masz.Services
 
         public async Task<bool> UnBanUser(ulong guildId, ulong userId)
         {
-            // request ---------------------------
             try
             {
                 DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
@@ -471,7 +474,7 @@ namespace masz.Services
         public async Task<DiscordChannel> CreateDmChannel(ulong userId)
         {
             // do cache stuff --------------------
-            string cacheKey = $"/users/@me/channels/{userId}";
+            CacheKey cacheKey = CacheKey.DMChannel(userId);
             DiscordChannel channel = null;
             try
             {
@@ -493,7 +496,7 @@ namespace masz.Services
             }
 
             // cache -----------------------------
-            _cache[cacheKey] = new CacheApiResponse(channel);
+            SetCacheValue(cacheKey, new CacheApiResponse(channel));
             return channel;
         }
 
@@ -573,6 +576,26 @@ namespace masz.Services
         {
             return _cache;
         }
+        public void RemoveFromCache(CacheKey key)
+        {
+            if (_cache.ContainsKey(key.GetValue()))
+            {
+                _cache.Remove(key.GetValue());
+            }
+        }
 
+        public T GetFromCache<T>(CacheKey key)
+        {
+            if (_cache.ContainsKey(key.GetValue()))
+            {
+                return _cache[key.GetValue()].GetContent<T>();
+            }
+            throw new NotFoundInCacheException();
+        }
+
+        public void AddOrUpdateCache(CacheKey key, CacheApiResponse response)
+        {
+            _cache[key.GetValue()] = response;
+        }
     }
 }

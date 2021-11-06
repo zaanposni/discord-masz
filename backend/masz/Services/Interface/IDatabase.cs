@@ -130,5 +130,11 @@ namespace masz.Services
         void DeleteUserNote(UserNote userNote);
         void SaveUserNote(UserNote userNote);
         Task DeleteUserNoteByGuild(ulong guildId);
+
+        Task<List<GuildLevelAuditLogConfig>> SelectAllAuditLogConfigsForGuild(ulong guildId);
+        Task<GuildLevelAuditLogConfig> SelectAuditLogConfigForGuildAndType(ulong guildId, GuildAuditLogEvent type);
+        void PutAuditLogConfig(GuildLevelAuditLogConfig auditLogConfig);
+        void DeleteSpecificAuditLogConfig(GuildLevelAuditLogConfig auditLogConfig);
+        Task DeleteAllAuditLogConfigsForGuild(ulong guildId);
     }
 }

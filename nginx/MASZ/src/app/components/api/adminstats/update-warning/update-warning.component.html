@@ -1,0 +1,16 @@
+<div class="card-container">
+    <div class="card-container-body d-flex flex-row justify-content-center">
+        <div class="d-flex flex-column align-self-start">
+            <div class="mat-h2 mb-0 text-warning text-uppercase font-weight-bold">
+                {{ 'Adminstats.UpdateAvailableHeadline' | translate }}
+            </div>
+            <div *ngIf="newestVersion?.createdAt" class="mat-caption mb-2" style="color: grey; line-height: 12px" title="release date">
+                <app-date-display [date]="newestVersion?.createdAt" [showTime]="true" [prefixKey]="'Adminstats.Published'"></app-date-display>
+            </div>
+            <div class="mat-h4 mb-0" *ngIf="this.newestVersion">
+                {{ 'Adminstats.UpdateAvailableText' | translate:newestVersion}}
+            </div>
+        </div>
+        <div class="flex-grow-1 "></div>
+    </div>
+</div>
