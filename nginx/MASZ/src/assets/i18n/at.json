@@ -178,15 +178,65 @@
         "GuildUpdated": "Güde aktualisiat"
     },
     "GuildAuditLogConfig": {
+        "TargetChannel": "Zielkanal",
+        "ComingSoon": "Kimmt boid",
+        "PingRoles": "Rolle pingan",
         "AuditLog": "AuditLog",
+        "ConfigDeleted": "Konfiguration glescht.",
+        "FailedToDeleteConfig": "Konfiguration konnte ned glescht wean.",
+        "SavedConfig": "Kondiguration gspeichat.",
+        "FailedToSaveConfig": "Konfiguration konnt ned gspeichat wean.",
         "FailedToLoadGuild": "Güdeninfos konnten ned glodn wean.",
-        "FailedToLoadChannels": "Küdnkanoiinformationen konntn ned glodn wean."
+        "FailedToLoadChannels": "Küdnkanoiinformationen konntn ned glodn wean.",
+        "MessageSent": {
+            "title": "Nochricht gsendet"
+        },
+        "MessageUpdated": {
+            "title": "Nochricht editiat"
+        },
+        "MessageDeleted": {
+            "title": "Nochricht glescht"
+        },
+        "UsernameUpdated": {
+            "title": "Benutzanom umgändat"
+        },
+        "AvatarUpdated": {
+            "title": "Avatar umgändat"
+        },
+        "NicknameUpdated": {
+            "title": "Spitznom umgändat"
+        },
+        "MemberRolesUpdated": {
+            "title": "Mitgliedarollen umgändat"
+        },
+        "MemberJoined": {
+            "title": "Mitglied beigetretn"
+        },
+        "MemberRemoved": {
+            "title": "Mitglied entfernt"
+        },
+        "BanAdded": {
+            "title": "Rauschmuss hinzugfügt"
+        },
+        "BanRemoved": {
+            "title": "Rausschmiss glescht"
+        },
+        "InviteCreated": {
+            "title": "Eiladung erstöt"
+        },
+        "InviteDeleted": {
+            "title": "Eiladung glescht"
+        },
+        "ThreadCreated": {
+            "title": "Thread erstöt"
+        }
     },
     "AutomodConfig": {
         "Automoderation": "Automodaration",
         "Invites": {
             "title": "Eiladungen",
-            "details": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta. Eiladunga zu dem Serva wera ignohriert."
+            "details": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta. Eiladunga zu dem Serva wera ignohriert.",
+            "customWordField": "Ignorierte Güdn-IDs (getrennt durch an Zeilenumbruch"
         },
         "Emotes": {
             "title": "Emoji",
@@ -220,7 +270,14 @@
             "details": "A Nutze aufm Serva send zvü Nochricht in am bestimmt Zeitraum.",
             "TimeLimitMessage": "Zeitlimit (Sekundn)"
         },
+        "DuplicatedChars": {
+            "title": "Wiedaholende Buchstobn",
+            "details": "A Nochricht aufm Server enthöt zvü wiedaholende Buchstobn."
+        },
         "Link": {
+            "title": "Links",
+            "details": "A Nochricht aufm Server hod zvü Valinkungen",
+            "customWordField": "Ignorierte Links (getrennte Links mit am Zeilenumbruch)",
             "linkText": "Beispü"
         },
         "Next": "Nächsta Schritt",

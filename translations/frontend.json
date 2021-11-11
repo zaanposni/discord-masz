@@ -891,17 +891,20 @@
         "TargetChannel": {
             "description": "target channel",
             "en": "Target channel",
-            "de": "Zielkanal"
+            "de": "Zielkanal",
+            "at": "Zielkanal"
         },
         "ComingSoon": {
             "description": "coming soon",
             "en": "Coming soon",
-            "de": "Bald verfügbar"
+            "de": "Bald verfügbar",
+            "at": "Kimmt boid"
         },
         "PingRoles": {
             "description": "ping roles",
             "en": "Ping roles",
-            "de": "Rolle pingen"
+            "de": "Rolle pingen",
+            "at": "Rolle pingan"
         },
         "AuditLog": {
             "description": "audit log",
@@ -912,22 +915,26 @@
         "ConfigDeleted": {
             "description": "config deleted",
             "en": "Config deleted.",
-            "de": "Konfiguration gelöscht."
+            "de": "Konfiguration gelöscht.",
+            "at": "Konfiguration glescht."
         },
         "FailedToDeleteConfig": {
             "description": "failed to delete config",
             "en": "Failed to delete config.",
-            "de": "Konfiguration konnte nicht gelöscht werden."
+            "de": "Konfiguration konnte nicht gelöscht werden.",
+            "at": "Konfiguration konnte ned glescht wean."
         },
         "SavedConfig": {
             "description": "saved config",
             "en": "Saved config.",
-            "de": "Konfiguration gespeichert."
+            "de": "Konfiguration gespeichert.",
+            "at": "Kondiguration gspeichat."
         },
         "FailedToSaveConfig": {
             "description": "failed to save config",
             "en": "Failed to save config.",
-            "de": "Konfiguration konnte nicht gespeichert werden."
+            "de": "Konfiguration konnte nicht gespeichert werden.",
+            "at": "Konfiguration konnt ned gspeichat wean."
         },
         "FailedToLoadGuild": {
             "description": "failed to load guild info",
@@ -945,98 +952,112 @@
             "title": {
                 "description": "message sent",
                 "en": "Message sent",
-                "de": "Nachricht gesendet"
+                "de": "Nachricht gesendet",
+                "at": "Nochricht gsendet"
             }
         },
         "MessageUpdated": {
             "title": {
                 "description": "message updated",
                 "en": "Message updated",
-                "de": "Nachricht editiert"
+                "de": "Nachricht editiert",
+                "at": "Nochricht editiat"
             }
         },
         "MessageDeleted": {
             "title": {
                 "description": "message deleted",
                 "en": "Message deleted",
-                "de": "Nachricht gelöscht"
+                "de": "Nachricht gelöscht",
+                "at": "Nochricht glescht"
             }
         },
         "UsernameUpdated": {
             "title": {
                 "description": "username updated",
                 "en": "Username updated",
-                "de": "Benutzername editiert"
+                "de": "Benutzername editiert",
+                "at": "Benutzanom umgändat"
             }
         },
         "AvatarUpdated": {
             "title": {
                 "description": "avatar updated",
                 "en": "Avatar updated",
-                "de": "Avatar editiert"
+                "de": "Avatar editiert",
+                "at": "Avatar umgändat"
             }
         },
         "NicknameUpdated": {
             "title": {
                 "description": "nickname updated",
                 "en": "Nickname updated",
-                "de": "Nickname editiert"
+                "de": "Nickname editiert",
+                "at": "Spitznom umgändat"
             }
         },
         "MemberRolesUpdated": {
             "title": {
                 "description": "member roles updated",
                 "en": "Member roles updated",
-                "de": "Mitgliederrollen editiert"
+                "de": "Mitgliederrollen editiert",
+                "at": "Mitgliedarollen umgändat"
             }
         },
         "MemberJoined": {
             "title": {
                 "description": "member joined",
                 "en": "Member joined",
-                "de": "Mitglied beigetreten"
+                "de": "Mitglied beigetreten",
+                "at": "Mitglied beigetretn"
             }
         },
         "MemberRemoved": {
             "title": {
                 "description": "member removed",
                 "en": "Member removed",
-                "de": "Mitglied entfernt"
+                "de": "Mitglied entfernt",
+                "at": "Mitglied entfernt"
             }
         },
         "BanAdded": {
             "title": {
                 "description": "ban added",
                 "en": "Ban added",
-                "de": "Bann hinzugefügt"
+                "de": "Bann hinzugefügt",
+                "at": "Rauschmuss hinzugfügt"
             }
         },
         "BanRemoved": {
             "title": {
                 "description": "ban removed",
                 "en": "Ban removed",
-                "de": "Bann entfernt"
+                "de": "Bann entfernt",
+                "at": "Rausschmiss glescht"
             }
         },
         "InviteCreated": {
             "title": {
                 "description": "invite created",
                 "en": "Invite created",
-                "de": "Einladung erstellt"
+                "de": "Einladung erstellt",
+                "at": "Eiladung erstöt"
             }
         },
         "InviteDeleted": {
             "title": {
                 "description": "invite deleted",
                 "en": "Invite deleted",
-                "de": "Einladung gelöscht"
+                "de": "Einladung gelöscht",
+                "at": "Eiladung glescht"
             }
         },
         "ThreadCreated": {
             "title": {
                 "description": "thread created",
                 "en": "Thread created",
-                "de": "Thread erstellt"
+                "de": "Thread erstellt",
+                "at": "Thread erstöt"
             }
         }
     },
@@ -1063,7 +1084,8 @@
             "customWordField": {
                 "description": "",
                 "en": "Ignore guilds (enter IDs divided by newlines)",
-                "de": "Ignorierte Gilden-IDs (getrennt durch Zeilenumbruch)"
+                "de": "Ignorierte Gilden-IDs (getrennt durch Zeilenumbruch)",
+                "at": "Ignorierte Güdn-IDs (getrennt durch an Zeilenumbruch"
             }
         },
         "Emotes": {
@@ -1192,29 +1214,34 @@
             "title": {
                 "description": "title of automod DuplicatedChars",
                 "en": "Duplicated Characters",
-                "de": "Wiederholende Buchstaben"
+                "de": "Wiederholende Buchstaben",
+                "at": "Wiedaholende Buchstobn"
             },
             "details": {
                 "description": "details of automod DuplicatedChars",
                 "en": "A message on your guild contains too many duplicated characters.",
-                "de": "Eine Nachricht auf deinem Server enthält zu viele wiederholende Buchstaben."
+                "de": "Eine Nachricht auf deinem Server enthält zu viele wiederholende Buchstaben.",
+                "at": "A Nochricht aufm Server enthöt zvü wiedaholende Buchstobn."
             }
         },
         "Link": {
             "title": {
                 "description": "title of automod Link",
                 "en": "Links",
-                "de": "Links"
+                "de": "Links",
+                "at": "Links"
             },
             "details": {
                 "description": "details of automod Link",
                 "en": "A message on your guild contains too many links.",
-                "de": "Eine Nachricht auf deinem Server enthält zu viele Verlinkungen."
+                "de": "Eine Nachricht auf deinem Server enthält zu viele Verlinkungen.",
+                "at": "A Nochricht aufm Server hod zvü Valinkungen"
             },
             "customWordField": {
                 "description": "",
                 "en": "Ignore links (enter regex patterns divided by newlines)",
-                "de": "Ignorierte Links (getrennte Regexpatterns durch Zeilenumbruch)"
+                "de": "Ignorierte Links (getrennte Regexpatterns durch Zeilenumbruch)",
+                "at": "Ignorierte Links (getrennte Links mit am Zeilenumbruch)"
             },
             "linkText": {
                 "description": "Example",

@@ -757,6 +757,8 @@ namespace masz.Translations
                     return $"{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}`.";
                 case Language.de:
                     return $"{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` beigetreten.";
+                case Language.at:
+                    return $"{user.Mention} (registriat {registered.ToDiscordTS()}) is mit da Eiladung `{invite}` beigetretn.";
             }
             return $"{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}`.";
         }
@@ -766,6 +768,8 @@ namespace masz.Translations
                     return $"{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}` (created {createdAt.ToDiscordTS()}) by <@{by}>.";
                 case Language.de:
                     return $"{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` von <@{by}> (am {createdAt.ToDiscordTS()}) beigetreten.";
+                case Language.at:
+                    return $"{user.Mention} (registriert {registered.ToDiscordTS()}) is mit da Eiladung `{invite}` vo <@{by}> (am {createdAt.ToDiscordTS()}) beigetretn.";
             }
             return $"{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}` (created {createdAt.ToDiscordTS()}) by <@{by}>.";
         }
@@ -1325,6 +1329,8 @@ namespace masz.Translations
                     return "ChannelId";
                 case Language.de:
                     return "KanalId";
+                case Language.at:
+                    return "KanalId";
             }
             return "ChannelId";
         }
@@ -1345,6 +1351,8 @@ namespace masz.Translations
                     return "UserId";
                 case Language.de:
                     return "NutzerId";
+                case Language.at:
+                    return "NutzaId";
             }
             return "UserId";
         }
@@ -1354,6 +1362,8 @@ namespace masz.Translations
                     return "User";
                 case Language.de:
                     return "Nutzer";
+                case Language.at:
+                    return "Nutza";
             }
             return "User";
         }
@@ -1396,6 +1406,8 @@ namespace masz.Translations
                     return "Information not cached.";
                 case Language.de:
                     return "Information nicht im Cache.";
+                case Language.at:
+                    return "Info ned im Cache.";
             }
             return "Information not cached.";
         }
@@ -1438,6 +1450,8 @@ namespace masz.Translations
                     return "Before";
                 case Language.de:
                     return "Zuvor";
+                case Language.at:
+                    return "Davoa";
             }
             return "Before";
         }
@@ -1447,6 +1461,8 @@ namespace masz.Translations
                     return "New";
                 case Language.de:
                     return "Neu";
+                case Language.at:
+                    return "Neich";
             }
             return "New";
         }
@@ -1478,6 +1494,8 @@ namespace masz.Translations
                     return "User banned";
                 case Language.de:
                     return "Nutzer gebannt";
+                case Language.at:
+                    return "Nutza ausgsperrt";
             }
             return "User banned";
         }
@@ -1487,6 +1505,8 @@ namespace masz.Translations
                     return "User unbanned";
                 case Language.de:
                     return "Nutzer entbannt";
+                case Language.at:
+                    return "Nutza nimma ausgsperrt";
             }
             return "User unbanned";
         }
@@ -1496,6 +1516,8 @@ namespace masz.Translations
                     return "Invite created";
                 case Language.de:
                     return "Einladung erstellt";
+                case Language.at:
+                    return "Eiladung erstöt";
             }
             return "Invite created";
         }
@@ -1504,6 +1526,8 @@ namespace masz.Translations
                 case Language.en:
                     return "URL";
                 case Language.de:
+                    return "URL";
+                case Language.at:
                     return "URL";
             }
             return "URL";
@@ -1514,6 +1538,8 @@ namespace masz.Translations
                     return "Max uses";
                 case Language.de:
                     return "Maximale Nutzungen";
+                case Language.at:
+                    return "Maximale Vawednungen";
             }
             return "Max uses";
         }
@@ -1523,6 +1549,8 @@ namespace masz.Translations
                     return "Expiration date";
                 case Language.de:
                     return "Ablaufdatum";
+                case Language.at:
+                    return "Oblaufdatum";
             }
             return "Expiration date";
         }
@@ -1531,6 +1559,8 @@ namespace masz.Translations
                 case Language.en:
                     return "Target channel";
                 case Language.de:
+                    return "Zielkanal";
+                case Language.at:
                     return "Zielkanal";
             }
             return "Target channel";
@@ -1541,6 +1571,8 @@ namespace masz.Translations
                     return "Invite deleted";
                 case Language.de:
                     return "Einladung gelöscht";
+                case Language.at:
+                    return "Eiladung glescht";
             }
             return "Invite deleted";
         }
@@ -1550,6 +1582,8 @@ namespace masz.Translations
                     return "Member joined";
                 case Language.de:
                     return "Mitglied beigetreten";
+                case Language.at:
+                    return "Mitglied beitretn";
             }
             return "Member joined";
         }
@@ -1559,6 +1593,8 @@ namespace masz.Translations
                     return "Registered";
                 case Language.de:
                     return "Registriert";
+                case Language.at:
+                    return "Registriat";
             }
             return "Registered";
         }
@@ -1567,6 +1603,8 @@ namespace masz.Translations
                 case Language.en:
                     return "Member removed";
                 case Language.de:
+                    return "Mitglied entfernt";
+                case Language.at:
                     return "Mitglied entfernt";
             }
             return "Member removed";
@@ -1577,6 +1615,8 @@ namespace masz.Translations
                     return "Thread created";
                 case Language.de:
                     return "Thread erstellt";
+                case Language.at:
+                    return "Thread erstöt";
             }
             return "Thread created";
         }
@@ -1586,6 +1626,8 @@ namespace masz.Translations
                     return "Parent";
                 case Language.de:
                     return "Elternkanal";
+                case Language.at:
+                    return "Eltankanal";
             }
             return "Parent";
         }
@@ -1595,6 +1637,8 @@ namespace masz.Translations
                     return "Creator";
                 case Language.de:
                     return "Ersteller";
+                case Language.at:
+                    return "Erstölla";
             }
             return "Creator";
         }
@@ -1830,6 +1874,8 @@ namespace masz.Translations
                             return "Too many duplicated characters used";
                         case Language.de:
                             return "Zu viele wiederholende Buchstaben verwendet";
+                        case Language.at:
+                            return "Zu vü wiedaholende Buchstobn vawendet";
                         default:
                             return "Too many duplicated characters used";
                     }
@@ -1839,6 +1885,8 @@ namespace masz.Translations
                             return "Too many links used";
                         case Language.de:
                             return "Zu viele Links verwendet";
+                        case Language.at:
+                            return "Zu vü Links vawendet";
                         default:
                             return "Too many links used";
                     }
