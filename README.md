@@ -133,6 +133,11 @@ docker-compose pull
 docker-compose up -d
 ```
 
+## 📃 Request logging and ratelimit
+
+MASZ uses the `X-Forwarded-For` http header for logging and ratelimit.\
+Ensure that this header is set in your reverse proxy for best experience.
+
 ## 🗃️ Backup
 
 There are backup example scripts in the `scripts` directory to backup uploaded files and the database.
