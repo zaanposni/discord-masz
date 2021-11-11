@@ -539,7 +539,8 @@
                     "invite": "string"
                 },
                 "en": "{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}`.",
-                "de": "{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` beigetreten."
+                "de": "{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` beigetreten.",
+                "at": "{user.Mention} (registriat {registered.ToDiscordTS()}) is mit da Eiladung `{invite}` beigetretn."
             },
             "JoinWithAndFrom": {
                 "description": "A user joined with invite x",
@@ -551,7 +552,8 @@
                     "invite": "string"
                 },
                 "en": "{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}` (created {createdAt.ToDiscordTS()}) by <@{by}>.",
-                "de": "{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` von <@{by}> (am {createdAt.ToDiscordTS()}) beigetreten."
+                "de": "{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` von <@{by}> (am {createdAt.ToDiscordTS()}) beigetreten.",
+                "at": "{user.Mention} (registriert {registered.ToDiscordTS()}) is mit da Eiladung `{invite}` vo <@{by}> (am {createdAt.ToDiscordTS()}) beigetretn."
             }
         }
     },
@@ -926,7 +928,8 @@
         "ChannelId": {
             "description": "ChannelId",
             "en": "ChannelId",
-            "de": "KanalId"
+            "de": "KanalId",
+            "at": "KanalId"
         },
         "ID": {
             "description": "ID",
@@ -937,12 +940,14 @@
         "UserID": {
             "description": "UserId",
             "en": "UserId",
-            "de": "NutzerId"
+            "de": "NutzerId",
+            "at": "NutzaId"
         },
         "User": {
             "description": "User",
             "en": "User",
-            "de": "Nutzer"
+            "de": "Nutzer",
+            "at": "Nutza"
         },
         "Author": {
             "description": "Author",
@@ -965,7 +970,8 @@
         "NotFoundInCache": {
             "description": "NotFoundInCache",
             "en": "Information not cached.",
-            "de": "Information nicht im Cache."
+            "de": "Information nicht im Cache.",
+            "at": "Info ned im Cache."
         },
         "MessageSent": {
             "Title": {
@@ -991,12 +997,14 @@
             "ContentBefore": {
                 "description": "Content",
                 "en": "Before",
-                "de": "Zuvor"
+                "de": "Zuvor",
+                "at": "Davoa"
             },
             "ContentNew": {
                 "description": "Content",
                 "en": "New",
-                "de": "Neu"
+                "de": "Neu",
+                "at": "Neich"
             }
         },
         "MessageDeleted": {
@@ -1017,84 +1025,98 @@
             "Title": {
                 "description": "Ban added",
                 "en": "User banned",
-                "de": "Nutzer gebannt"
+                "de": "Nutzer gebannt",
+                "at": "Nutza ausgsperrt"
             }
         },
         "BanRemoved": {
             "Title": {
                 "description": "Ban removed",
                 "en": "User unbanned",
-                "de": "Nutzer entbannt"
+                "de": "Nutzer entbannt",
+                "at": "Nutza nimma ausgsperrt"
             }
         },
         "InviteCreated": {
             "Title": {
                 "description": "Invite created",
                 "en": "Invite created",
-                "de": "Einladung erstellt"
+                "de": "Einladung erstellt",
+                "at": "Eiladung erstöt"
             },
             "URL": {
                 "description": "URL",
                 "en": "URL",
-                "de": "URL"
+                "de": "URL",
+                "at": "URL"
             },
             "MaxUses": {
                 "description": "Max uses",
                 "en": "Max uses",
-                "de": "Maximale Nutzungen"
+                "de": "Maximale Nutzungen",
+                "at": "Maximale Vawednungen"
             },
             "Expiration": {
                 "description": "Expiration",
                 "en": "Expiration date",
-                "de": "Ablaufdatum"
+                "de": "Ablaufdatum",
+                "at": "Oblaufdatum"
             },
             "TargetChannel": {
                 "description": "Target channel",
                 "en": "Target channel",
-                "de": "Zielkanal"
+                "de": "Zielkanal",
+                "at": "Zielkanal"
             }
         },
         "InviteDeleted": {
             "Title": {
                 "description": "Invite deleted",
                 "en": "Invite deleted",
-                "de": "Einladung gelöscht"
+                "de": "Einladung gelöscht",
+                "at": "Eiladung glescht"
             }
         },
         "MemberJoined": {
             "Title": {
                 "description": "Member joined",
                 "en": "Member joined",
-                "de": "Mitglied beigetreten"
+                "de": "Mitglied beigetreten",
+                "at": "Mitglied beitretn"
             },
             "Registered": {
                 "description": "Registered",
                 "en": "Registered",
-                "de": "Registriert"
+                "de": "Registriert",
+                "at": "Registriat"
             }
         },
         "MemberRemoved": {
             "Title": {
                 "description": "Member removed",
                 "en": "Member removed",
-                "de": "Mitglied entfernt"
+                "de": "Mitglied entfernt",
+                "at": "Mitglied entfernt"
             }
         },
         "ThreadCreated": {
             "Title": {
                 "description": "Thread created",
                 "en": "Thread created",
-                "de": "Thread erstellt"
+                "de": "Thread erstellt",
+                "at": "Thread erstöt"
             },
             "Parent": {
                 "description": "Parent channel of this thread",
                 "en": "Parent",
-                "de": "Elternkanal"
+                "de": "Elternkanal",
+                "at": "Eltankanal"
             },
             "Creator": {
                 "description": "Creator",
                 "en": "Creator",
-                "de": "Ersteller"
+                "de": "Ersteller",
+                "at": "Erstölla"
             }
         }
     }
