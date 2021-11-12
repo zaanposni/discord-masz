@@ -291,7 +291,7 @@ namespace masz.Services
 
             embed.AddField(
                 _translator.T().Message(),
-                autoModerationEvent.MessageId.ToString(),
+                $"[{autoModerationEvent.MessageId.ToString()}](https://discord.com/channels/{autoModerationEvent.GuildId}/{channel.Id}/{autoModerationEvent.MessageId})",
                 true
             );
 
