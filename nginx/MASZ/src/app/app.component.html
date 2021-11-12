@@ -6,7 +6,7 @@
 
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0" autosize>
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-      <mat-nav-list>
+      <mat-nav-list class="h-100 d-flex flex-column">
         <a class="d-flex crs-ptr" (click)="open('guilds')">
           <div class="rounded navitem nohover">
             <img class="rounded-circle" width="24px" height="24px" alt="icon" [attr.src]="applicationInfo?.iconUrl ?? 'favicon.ico'"/>
@@ -219,13 +219,6 @@
           </div>
         </a>
 
-        <a class="d-flex" href="https://github.com/zaanposni/discord-masz" target="_blank" rel="noreferrer">
-          <div class="rounded navitem">
-            <mat-icon aria-hidden="false" aria-label="github link" svgIcon="githublogo"></mat-icon>
-            <span>{{ 'Toolbar.GitHub' | translate }}</span>
-          </div>
-        </a>
-
         <ng-container *ngIf="applicationInfo?.termsOfServiceUrl; else elseTemplateToS">
           <a class="d-flex" href="{{ applicationInfo?.termsOfServiceUrl }}" target="_blank">
             <div [class.activatedNav]="activatedNav[1] === 'guidelines'" class="rounded navitem">
@@ -233,7 +226,6 @@
               <span>{{ 'Toolbar.Terms' | translate }}</span>
             </div>
           </a>
-
         </ng-container>
         <ng-template #elseTemplateToS>
           <a class="d-flex" (click)="open('guidelines')">
@@ -248,6 +240,15 @@
           <div class="rounded navitem">
             <mat-icon aria-hidden="false" aria-label="legal notes">gavel</mat-icon>
             <span>{{ 'Toolbar.Legal' | translate }}</span>
+          </div>
+        </a>
+
+        <span class="flex-grow-1"></span>
+
+        <a class="d-flex align-self-end" href="https://github.com/zaanposni/discord-masz" target="_blank" rel="noreferrer">
+          <div class="rounded navitem text-black-50">
+            <mat-icon aria-hidden="false" aria-label="github link" svgIcon="githublogo"></mat-icon>
+            <span>MASZ by zaanposni</span>
           </div>
         </a>
       </mat-nav-list>
