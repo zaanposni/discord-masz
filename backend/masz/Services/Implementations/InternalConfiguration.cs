@@ -62,6 +62,9 @@ namespace masz.Services
                 case "at":
                     _defaultLanguage = Language.at;
                     break;
+                case "ru":
+                    _defaultLanguage = Language.ru;
+                    break;
                 default:
                     _defaultLanguage = Language.en;
                     break;

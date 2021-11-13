@@ -2549,7 +2549,7 @@
             "en": "Message from {{name}}",
             "de": "Nachricht von {{name}}",
             "at": "Nochricht vo {{name}}",
-            "fr": "Message de {{name}}",
+            "fr": "Message de {{nom}}",
             "es": "Mensaje de {{name}}",
             "ru": "Сообщение от {{name}}",
             "it": "Messaggio da {{name}}"
@@ -3738,7 +3738,7 @@
             "fr": "Commentaires verrouillés - {{user}}",
             "es": "Comentarios bloqueados: {{user}}",
             "ru": "Комментарии заблокированы - {{user}}",
-            "it": "Commenti bloccati - {{user}}"
+            "it": "Commenti bloccati - {{utente}}"
         },
         "Restore": {
             "description": "restore button",
