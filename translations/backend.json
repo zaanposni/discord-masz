@@ -350,8 +350,8 @@
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde erstellt.",
                     "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is erstöt woan.",
                     "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été créé.",
-                    "es": "Se ha creado un ** Modcase ** para <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}).",
-                    "ru": "** Modcase ** для <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) был создан.",
+                    "es": "Se ha creado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
+                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был создан.",
                     "it": "È stato creato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator})."
                 },
                 "Internal": {
@@ -364,8 +364,8 @@
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstellt.",
                     "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) woad fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstöt.",
                     "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été créé par <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "es": "Un ** Modcase ** para <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) ha sido creado por <@{moderator.Id}> ({moderator.Username} # {moderator.Discriminator}).",
-                    "ru": "** Modcase ** для <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) был создан <@{moderator.Id}> ({moderator.Username} # {moderator.Discriminator}).",
+                    "es": "Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido creado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был создан <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato creato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator})."
                 }
             },
@@ -379,8 +379,8 @@
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde aktualisiert.",
                     "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is aktualisiert woan.",
                     "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour.",
-                    "es": "Se ha actualizado ** Modcase ** para <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}).",
-                    "ru": "** Modcase ** для <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) был обновлен.",
+                    "es": "Se ha actualizado **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
+                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был обновлен.",
                     "it": "È stato aggiornato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator})."
                 },
                 "Internal": {
@@ -393,8 +393,8 @@
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert.",
                     "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert woan.",
                     "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).",
-                    "es": "Un ** Modcase ** para <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) ha sido actualizado por <@{moderator.Id}> ({moderator.Username} # {moderator.Discriminator}).",
-                    "ru": "** Modcase ** для <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) был обновлен <@{moderator.Id}> ({moderator.Username} # {moderator.Discriminator}).",
+                    "es": "Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido actualizado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был обновлен <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato aggiornato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator})."
                 }
             },
@@ -408,8 +408,8 @@
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde gelöscht.",
                     "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is glescht woan",
                     "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé.",
-                    "es": "Se ha eliminado un ** Modcase ** para <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}).",
-                    "ru": "** Modcase ** для <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) был удален.",
+                    "es": "Se ha eliminado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
+                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был удален.",
                     "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato."
                 },
                 "Internal": {
@@ -422,8 +422,8 @@
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) gelöscht.",
                     "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is vo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) glescht woan.",
                     "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).",
-                    "es": "Un ** Modcase ** para <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) ha sido eliminado por <@{moderator.Id}> ({moderator.Username} # {moderator.Discriminator}).",
-                    "ru": "** Modcase ** для <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) был удален <@{moderator.Id}> ({moderator.Username} # {moderator.Discriminator}).",
+                    "es": "Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido eliminado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был удален <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator})."
                 }
             },
@@ -469,8 +469,8 @@
                     "de": "Ein **Kommentar** wurde von <@{actor.Id}> erstellt.",
                     "at": "A **Kommentoa** wuad vo <@{actor.Id}> erstöt.",
                     "fr": "Un **commentaire** a été créé par <@{actor.Id}>.",
-                    "es": "<@{actor.Id}> ha creado un ** comentario **.",
-                    "ru": "** комментарий ** был создан <@{actor.Id}>.",
+                    "es": "<@{actor.Id}> ha creado un **comentario**.",
+                    "ru": "**комментарий** был создан <@{actor.Id}>.",
                     "it": "Un **commento** è stato creato da <@{actor.Id}>."
                 },
                 "Update": {
@@ -482,8 +482,8 @@
                     "de": "Ein **Kommentar** wurde von <@{actor.Id}> aktualisiert.",
                     "at": "A **Kommentoa** is vo <@{actor.Id}> aktualisiert woan.",
                     "fr": "Un **commentaire** a été mis à jour par <@{actor.Id}>.",
-                    "es": "<@{actor.Id}> ha actualizado un ** comentario **.",
-                    "ru": "** комментарий ** был обновлен пользователем <@{actor.Id}>.",
+                    "es": "<@{actor.Id}> ha actualizado un **comentario **.",
+                    "ru": "**комментарий ** был обновлен пользователем <@{actor.Id}>.",
                     "it": "Un **commento** è stato aggiornato da <@{actor.Id}>."
                 },
                 "Delete": {
@@ -495,8 +495,8 @@
                     "de": "Ein **Kommentar** wurde von <@{actor.Id}> gelöscht.",
                     "at": "A **Kommentoa** wuad vo <@{actor.Id}> glescht.",
                     "fr": "Un **commentaire** a été supprimé par <@{actor.Id}>.",
-                    "es": "<@{actor.Id}> ha eliminado un ** comentario **.",
-                    "ru": "** комментарий ** был удален <@{actor.Id}>.",
+                    "es": "<@{actor.Id}> ha eliminado un **comentario **.",
+                    "ru": "**комментарий** был удален <@{actor.Id}>.",
                     "it": "Un **commento** è stato eliminato da <@{actor.Id}>."
                 }
             },
@@ -510,8 +510,8 @@
                     "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochgeladen.",
                     "at": "A **Datei** woad vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochglodn.",
                     "fr": "Un **fichier** a été téléchargé par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "es": "<@{actor.Id}> ({actor.Username} # {actor.Discriminator} ha subido un ** archivo **).",
-                    "ru": "** файл ** был загружен пользователем <@{actor.Id}> ({actor.Username} # {actor.Discriminator}).",
+                    "es": "<@{actor.Id}> ({actor.Username}#{actor.Discriminator} ha subido un **archivo**).",
+                    "ru": "**файл** был загружен пользователем <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
                     "it": "Un **file** è stato caricato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator})."
                 },
                 "Delete": {
@@ -523,8 +523,8 @@
                     "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) gelöscht.",
                     "at": "A **Datei** is vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) glescht woan.",
                     "fr": "Un **fichier** a été supprimé par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "es": "<@{actor.Id}> ({actor.Username} # {actor.Discriminator}) ha eliminado un ** archivo **.",
-                    "ru": "** файл ** был удален <@{actor.Id}> ({actor.Username} # {actor.Discriminator}).",
+                    "es": "<@{actor.Id}> ({actor.Username}#{actor.Discriminator}) ha eliminado un **archivo**.",
+                    "ru": "**файл** был удален <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
                     "it": "Un **file** è stato eliminato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator})."
                 },
                 "Update": {
@@ -536,8 +536,8 @@
                     "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert.",
                     "at": "A **Datei** is vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert woan.",
                     "fr": "Un **fichier** a été mis à jour par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "es": "<@{actor.Id}> ({actor.Username} # {actor.Discriminator}) ha actualizado un ** archivo **.",
-                    "ru": "** файл ** был обновлен <@{actor.Id}> ({actor.Username} # {actor.Discriminator}).",
+                    "es": "<@{actor.Id}> ({actor.Username}#{actor.Discriminator}) ha actualizado un **archivo**.",
+                    "ru": "**файл** был обновлен <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
                     "it": "Un **file** è stato aggiornato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator})."
                 }
             },
@@ -687,8 +687,8 @@
                 "de": "Vielen Dank für deine Registrierung.\nIm Folgenden wirst du einige nützliche Tipps zum Einrichten und Verwenden von **MASZ** erhalten.",
                 "at": "Donksche fia dei Registrierung.\nDu siachst glei ei poar nützliche Tipps zum Eirichtn und Vawendn vo **MASZ**.",
                 "fr": "Merci d'avoir enregistré votre guilde.\\nDans ce qui suit, vous apprendrez quelques conseils utiles pour configurer et utiliser **MASZ**.",
-                "es": "Gracias por registrar tu gremio.\\nA continuación, aprenderá algunos consejos útiles para configurar y usar ** MASZ **.",
-                "ru": "Спасибо за регистрацию вашей гильдии.\\nДалее вы получите несколько полезных советов по настройке и использованию ** MASZ **.",
+                "es": "Gracias por registrar tu gremio.\\nA continuación, aprenderá algunos consejos útiles para configurar y usar **MASZ**.",
+                "ru": "Спасибо за регистрацию вашей гильдии.\\nДалее вы получите несколько полезных советов по настройке и использованию **MASZ**.",
                 "it": "Grazie per aver registrato la tua gilda.\\nDi seguito imparerai alcuni suggerimenti utili per impostare e utilizzare **MASZ**."
             },
             "UseFeaturesCommand": {
@@ -697,8 +697,8 @@
                 "de": "Benutze den `/features` Befehl um zu sehen welche Features von **MASZ** dein aktuelles Setup unterstützt.",
                 "at": "Nutz den `/features` Beföhl um nochzumschauen wöchane Features dei aktuelles **MASZ**  Setup untastützn tuad.",
                 "fr": "Utilisez la commande `/features` pour tester si votre configuration de guilde actuelle prend en charge toutes les fonctionnalités de **MASZ**.",
-                "es": "Usa el comando `/ features` para probar si la configuración de tu gremio actual es compatible con todas las características de ** MASZ **.",
-                "ru": "Используйте команду `/ features`, чтобы проверить, поддерживает ли ваша текущая настройка гильдии все функции ** MASZ **.",
+                "es": "Usa el comando `/ features` para probar si la configuración de tu gremio actual es compatible con todas las características de **MASZ**.",
+                "ru": "Используйте команду `/ features`, чтобы проверить, поддерживает ли ваша текущая настройка гильдии все функции **MASZ**.",
                 "it": "Usa il comando `/features` per verificare se l'attuale configurazione della gilda supporta tutte le funzionalità di **MASZ**."
             },
             "DefaultLanguageUsed": {
@@ -758,8 +758,8 @@
                 "de": "{user.Username}#{user.Discriminator} hat die Automoderation ausgelöst.",
                 "at": "{user.Username}#{user.Discriminator} hot de Automodaration ausglest.",
                 "fr": "{user.Username}#{user.Discriminator} a déclenché la modération automatique.",
-                "es": "{user.Username} # {user.Discriminator} desencadenó la automoderación.",
-                "ru": "{user.Username} # {user.Discriminator} запускает автомодерацию.",
+                "es": "{user.Username}#{user.Discriminator} desencadenó la automoderación.",
+                "ru": "{user.Username}#{user.Discriminator} запускает автомодерацию.",
                 "it": "{user.Username}#{user.Discriminator} ha attivato la moderazione automatica."
             },
             "DM": {

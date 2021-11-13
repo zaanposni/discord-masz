@@ -652,9 +652,9 @@ namespace masz.Translations
                 case Language.fr:
                     return $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été créé.";
                 case Language.es:
-                    return $"Se ha creado un ** Modcase ** para <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}).";
+                    return $"Se ha creado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).";
                 case Language.ru:
-                    return $"** Modcase ** для <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) был создан.";
+                    return $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был создан.";
                 case Language.it:
                     return $"È stato creato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).";
             }
@@ -671,9 +671,9 @@ namespace masz.Translations
                 case Language.fr:
                     return $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été créé par <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
                 case Language.es:
-                    return $"Un ** Modcase ** para <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) ha sido creado por <@{moderator.Id}> ({moderator.Username} # {moderator.Discriminator}).";
+                    return $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido creado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
                 case Language.ru:
-                    return $"** Modcase ** для <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) был создан <@{moderator.Id}> ({moderator.Username} # {moderator.Discriminator}).";
+                    return $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был создан <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
                 case Language.it:
                     return $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato creato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
             }
@@ -690,9 +690,9 @@ namespace masz.Translations
                 case Language.fr:
                     return $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour.";
                 case Language.es:
-                    return $"Se ha actualizado ** Modcase ** para <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}).";
+                    return $"Se ha actualizado **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).";
                 case Language.ru:
-                    return $"** Modcase ** для <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) был обновлен.";
+                    return $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был обновлен.";
                 case Language.it:
                     return $"È stato aggiornato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).";
             }
@@ -709,9 +709,9 @@ namespace masz.Translations
                 case Language.fr:
                     return $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).";
                 case Language.es:
-                    return $"Un ** Modcase ** para <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) ha sido actualizado por <@{moderator.Id}> ({moderator.Username} # {moderator.Discriminator}).";
+                    return $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido actualizado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
                 case Language.ru:
-                    return $"** Modcase ** для <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) был обновлен <@{moderator.Id}> ({moderator.Username} # {moderator.Discriminator}).";
+                    return $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был обновлен <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
                 case Language.it:
                     return $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato aggiornato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
             }
@@ -728,9 +728,9 @@ namespace masz.Translations
                 case Language.fr:
                     return $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé.";
                 case Language.es:
-                    return $"Se ha eliminado un ** Modcase ** para <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}).";
+                    return $"Se ha eliminado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).";
                 case Language.ru:
-                    return $"** Modcase ** для <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) был удален.";
+                    return $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был удален.";
                 case Language.it:
                     return $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato.";
             }
@@ -747,9 +747,9 @@ namespace masz.Translations
                 case Language.fr:
                     return $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).";
                 case Language.es:
-                    return $"Un ** Modcase ** para <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) ha sido eliminado por <@{moderator.Id}> ({moderator.Username} # {moderator.Discriminator}).";
+                    return $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido eliminado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
                 case Language.ru:
-                    return $"** Modcase ** для <@{modCase.UserId}> ({modCase.Username} # {modCase.Discriminator}) был удален <@{moderator.Id}> ({moderator.Username} # {moderator.Discriminator}).";
+                    return $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был удален <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
                 case Language.it:
                     return $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).";
             }
@@ -823,9 +823,9 @@ namespace masz.Translations
                 case Language.fr:
                     return $"Un **commentaire** a été créé par <@{actor.Id}>.";
                 case Language.es:
-                    return $"<@{actor.Id}> ha creado un ** comentario **.";
+                    return $"<@{actor.Id}> ha creado un **comentario**.";
                 case Language.ru:
-                    return $"** комментарий ** был создан <@{actor.Id}>.";
+                    return $"**комментарий** был создан <@{actor.Id}>.";
                 case Language.it:
                     return $"Un **commento** è stato creato da <@{actor.Id}>.";
             }
@@ -842,9 +842,9 @@ namespace masz.Translations
                 case Language.fr:
                     return $"Un **commentaire** a été mis à jour par <@{actor.Id}>.";
                 case Language.es:
-                    return $"<@{actor.Id}> ha actualizado un ** comentario **.";
+                    return $"<@{actor.Id}> ha actualizado un **comentario **.";
                 case Language.ru:
-                    return $"** комментарий ** был обновлен пользователем <@{actor.Id}>.";
+                    return $"**комментарий ** был обновлен пользователем <@{actor.Id}>.";
                 case Language.it:
                     return $"Un **commento** è stato aggiornato da <@{actor.Id}>.";
             }
@@ -861,9 +861,9 @@ namespace masz.Translations
                 case Language.fr:
                     return $"Un **commentaire** a été supprimé par <@{actor.Id}>.";
                 case Language.es:
-                    return $"<@{actor.Id}> ha eliminado un ** comentario **.";
+                    return $"<@{actor.Id}> ha eliminado un **comentario **.";
                 case Language.ru:
-                    return $"** комментарий ** был удален <@{actor.Id}>.";
+                    return $"**комментарий** был удален <@{actor.Id}>.";
                 case Language.it:
                     return $"Un **commento** è stato eliminato da <@{actor.Id}>.";
             }
@@ -880,9 +880,9 @@ namespace masz.Translations
                 case Language.fr:
                     return $"Un **fichier** a été téléchargé par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
                 case Language.es:
-                    return $"<@{actor.Id}> ({actor.Username} # {actor.Discriminator} ha subido un ** archivo **).";
+                    return $"<@{actor.Id}> ({actor.Username}#{actor.Discriminator} ha subido un **archivo**).";
                 case Language.ru:
-                    return $"** файл ** был загружен пользователем <@{actor.Id}> ({actor.Username} # {actor.Discriminator}).";
+                    return $"**файл** был загружен пользователем <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
                 case Language.it:
                     return $"Un **file** è stato caricato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
             }
@@ -899,9 +899,9 @@ namespace masz.Translations
                 case Language.fr:
                     return $"Un **fichier** a été supprimé par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
                 case Language.es:
-                    return $"<@{actor.Id}> ({actor.Username} # {actor.Discriminator}) ha eliminado un ** archivo **.";
+                    return $"<@{actor.Id}> ({actor.Username}#{actor.Discriminator}) ha eliminado un **archivo**.";
                 case Language.ru:
-                    return $"** файл ** был удален <@{actor.Id}> ({actor.Username} # {actor.Discriminator}).";
+                    return $"**файл** был удален <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
                 case Language.it:
                     return $"Un **file** è stato eliminato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
             }
@@ -918,9 +918,9 @@ namespace masz.Translations
                 case Language.fr:
                     return $"Un **fichier** a été mis à jour par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
                 case Language.es:
-                    return $"<@{actor.Id}> ({actor.Username} # {actor.Discriminator}) ha actualizado un ** archivo **.";
+                    return $"<@{actor.Id}> ({actor.Username}#{actor.Discriminator}) ha actualizado un **archivo**.";
                 case Language.ru:
-                    return $"** файл ** был обновлен <@{actor.Id}> ({actor.Username} # {actor.Discriminator}).";
+                    return $"**файл** был обновлен <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
                 case Language.it:
                     return $"Un **file** è stato aggiornato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).";
             }
@@ -1127,9 +1127,9 @@ namespace masz.Translations
                 case Language.fr:
                     return "Merci d'avoir enregistré votre guilde.\nDans ce qui suit, vous apprendrez quelques conseils utiles pour configurer et utiliser **MASZ**.";
                 case Language.es:
-                    return "Gracias por registrar tu gremio.\nA continuación, aprenderá algunos consejos útiles para configurar y usar ** MASZ **.";
+                    return "Gracias por registrar tu gremio.\nA continuación, aprenderá algunos consejos útiles para configurar y usar **MASZ**.";
                 case Language.ru:
-                    return "Спасибо за регистрацию вашей гильдии.\nДалее вы получите несколько полезных советов по настройке и использованию ** MASZ **.";
+                    return "Спасибо за регистрацию вашей гильдии.\nДалее вы получите несколько полезных советов по настройке и использованию **MASZ**.";
                 case Language.it:
                     return "Grazie per aver registrato la tua gilda.\nDi seguito imparerai alcuni suggerimenti utili per impostare e utilizzare **MASZ**.";
             }
@@ -1146,9 +1146,9 @@ namespace masz.Translations
                 case Language.fr:
                     return "Utilisez la commande `/features` pour tester si votre configuration de guilde actuelle prend en charge toutes les fonctionnalités de **MASZ**.";
                 case Language.es:
-                    return "Usa el comando `/ features` para probar si la configuración de tu gremio actual es compatible con todas las características de ** MASZ **.";
+                    return "Usa el comando `/ features` para probar si la configuración de tu gremio actual es compatible con todas las características de **MASZ**.";
                 case Language.ru:
-                    return "Используйте команду `/ features`, чтобы проверить, поддерживает ли ваша текущая настройка гильдии все функции ** MASZ **.";
+                    return "Используйте команду `/ features`, чтобы проверить, поддерживает ли ваша текущая настройка гильдии все функции **MASZ**.";
                 case Language.it:
                     return "Usa il comando `/features` per verificare se l'attuale configurazione della gilda supporta tutte le funzionalità di **MASZ**.";
             }
@@ -1241,9 +1241,9 @@ namespace masz.Translations
                 case Language.fr:
                     return $"{user.Username}#{user.Discriminator} a déclenché la modération automatique.";
                 case Language.es:
-                    return $"{user.Username} # {user.Discriminator} desencadenó la automoderación.";
+                    return $"{user.Username}#{user.Discriminator} desencadenó la automoderación.";
                 case Language.ru:
-                    return $"{user.Username} # {user.Discriminator} запускает автомодерацию.";
+                    return $"{user.Username}#{user.Discriminator} запускает автомодерацию.";
                 case Language.it:
                     return $"{user.Username}#{user.Discriminator} ha attivato la moderazione automatica.";
             }
