@@ -21,7 +21,7 @@ namespace masz.Middlewares
         {
             try
             {
-                string ip = context.Request.Headers["HTTP_X_FORWARDED_FOR"];
+                string ip = context.Request.Headers["X-Forwarded-For"];
 
                 if (string.IsNullOrEmpty(ip))
                 {

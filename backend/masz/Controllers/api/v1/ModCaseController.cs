@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using masz.Enums;
 using Microsoft.Extensions.Logging;
+using masz.Exceptions;
 
 namespace masz.Controllers
 {
@@ -59,8 +60,12 @@ namespace masz.Controllers
         public async Task<IActionResult> PutSpecificItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromBody] ModCaseForPutDto newValue, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true)
         {
             await RequirePermission(guildId, caseId, APIActionPermission.Edit);
-
             Identity currentIdentity = await GetIdentity();
+            if (! await currentIdentity.HasPermissionToExecutePunishment(guildId, newValue.PunishmentType))
+            {
+                throw new UnauthorizedException();
+            }
+
             var repo = ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity);
 
             ModCase modCase = await repo.GetModCase(guildId, caseId);
@@ -88,7 +93,10 @@ namespace masz.Controllers
         public async Task<IActionResult> CreateItem([FromRoute] ulong guildId, [FromBody] ModCaseForCreateDto modCaseDto, [FromQuery] bool sendPublicNotification = true, [FromQuery] bool handlePunishment = true, [FromQuery] bool sendDmNotification = true)
         {
             Identity currentIdentity = await GetIdentity();
-            if (! await currentIdentity.HasPermissionToExecutePunishment(guildId, modCaseDto.PunishmentType)) return Unauthorized();
+            if (! await currentIdentity.HasPermissionToExecutePunishment(guildId, modCaseDto.PunishmentType))
+            {
+                throw new UnauthorizedException();
+            }
 
             ModCase newModCase = new ModCase();
 

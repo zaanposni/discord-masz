@@ -203,13 +203,13 @@ namespace masz.Models
             {
                 return false;
             }
-            if (! await HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
-            {
-                return false;
-            }
             if (IsSiteAdmin())
             {
                 return true;
+            }
+            if (! await HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
+            {
+                return false;
             }
             if (guildConfig.StrictModPermissionCheck)
             {
