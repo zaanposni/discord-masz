@@ -611,6 +611,16 @@
             "es": "austriaco",
             "ru": "Австрийский",
             "it": "austriaco"
+        },
+        "ru": {
+            "description": "the russian language.",
+            "en": "Russian",
+            "de": "Russisch",
+            "at": "Rusisch",
+            "fr": "Russe",
+            "es": "Ruso",
+            "ru": "Русский",
+            "it": "Russo"
         }
     }
 }

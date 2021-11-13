@@ -3998,6 +3998,25 @@ namespace masz.Translations
                         default:
                             return "Austrian";
                     }
+                case masz.Enums.Language.ru:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Russian";
+                        case Language.de:
+                            return "Russisch";
+                        case Language.at:
+                            return "Rusisch";
+                        case Language.fr:
+                            return "Russe";
+                        case Language.es:
+                            return "Ruso";
+                        case Language.ru:
+                            return "Русский";
+                        case Language.it:
+                            return "Russo";
+                        default:
+                            return "Russian";
+                    }
             }
             return "Unknown";
         }
