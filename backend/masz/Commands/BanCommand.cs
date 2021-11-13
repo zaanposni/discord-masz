@@ -30,7 +30,7 @@ namespace masz.Commands
             [Option("public-notification", "Whether to send a public webhook notification")] bool sendPublicNotification = true,
             [Option("execute-punishment", "Whether to execute the punishment or just register it.")] bool executePunishment = true)
         {
-            await Require(ctx, RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildRegistered);
+            await Require(ctx, RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildRegistered, RequireCheckEnum.GuildStrictModeBan);
 
             ModCase modCase = new ModCase();
             modCase.Title = title;

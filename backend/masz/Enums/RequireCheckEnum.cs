@@ -8,6 +8,9 @@ namespace masz.Enums
         GuildModerator = 3,
         GuildAdmin = 4,
         GuildMuteRole = 5,
-        SiteAdmin = 6
+        SiteAdmin = 6,
+        GuildStrictModeMute = 7,
+        GuildStrictModeKick = 8,
+        GuildStrictModeBan = 9,
     }
 }

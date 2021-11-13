@@ -33,6 +33,19 @@ namespace masz.Commands
         {
             await Require(ctx, RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildRegistered);
 
+            switch (punishmentType)
+            {
+                case PunishmentType.Mute:
+                    await Require(ctx, RequireCheckEnum.GuildStrictModeMute);
+                    break;
+                case PunishmentType.Kick:
+                    await Require(ctx, RequireCheckEnum.GuildStrictModeKick);
+                    break;
+                case PunishmentType.Ban:
+                    await Require(ctx, RequireCheckEnum.GuildStrictModeBan);
+                    break;
+            }
+
             ModCase modCase = new ModCase();
             modCase.Title = title;
             modCase.GuildId = ctx.Guild.Id;
