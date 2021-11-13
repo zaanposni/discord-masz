@@ -107,6 +107,15 @@ namespace masz.Commands
                     case RequireCheckEnum.SiteAdmin:
                         await RequireSiteAdmin(ctx);
                         continue;
+                    case RequireCheckEnum.GuildStrictModeMute:
+                        await RequireStrictModeAccess(ctx, PunishmentType.Mute);
+                        continue;
+                    case RequireCheckEnum.GuildStrictModeKick:
+                        await RequireStrictModeAccess(ctx, PunishmentType.Kick);
+                        continue;
+                    case RequireCheckEnum.GuildStrictModeBan:
+                        await RequireStrictModeAccess(ctx, PunishmentType.Ban);
+                        continue;
                 }
             }
         }
@@ -168,6 +177,17 @@ namespace masz.Commands
                     if (await _currentIdentity.HasAdminRoleOnGuild(ctx.Guild.Id)) return;
                     break;
             }
+            throw new UnauthorizedException("You are not allowed to do that.");
+        }
+
+        private async Task RequireStrictModeAccess(BaseContext ctx, PunishmentType punishmentType)
+        {
+            await RequireRegisteredGuild(ctx);
+            if (_currentIdentity.IsSiteAdmin())
+            {
+                return;
+            }
+            if (await _currentIdentity.HasPermissionToExecutePunishment(ctx.Guild.Id, punishmentType)) return;
             throw new UnauthorizedException("You are not allowed to do that.");
         }
     }

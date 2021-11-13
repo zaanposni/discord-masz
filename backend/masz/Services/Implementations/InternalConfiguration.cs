@@ -38,7 +38,14 @@ namespace masz.Services
             _serviceHostName = Environment.GetEnvironmentVariable("META_SERVICE_NAME");
             _serviceDomain = Environment.GetEnvironmentVariable("META_SERVICE_DOMAIN");
             _serviceBaseUrl = Environment.GetEnvironmentVariable("META_SERVICE_BASE_URL");
-            _siteAdmins = Environment.GetEnvironmentVariable("DISCORD_SITE_ADMINS").Split(",").Select(x => ulong.Parse(x)).ToList();
+            try
+            {
+                _siteAdmins = Environment.GetEnvironmentVariable("DISCORD_SITE_ADMINS").Split(",").Select(x => ulong.Parse(x)).ToList();
+            } catch (Exception e)
+            {
+                _logger.LogError(e, "Could not parse DISCORD_SITE_ADMINS.");
+                _siteAdmins = new List<ulong>();
+            }
             switch (Environment.GetEnvironmentVariable("DEFAULT_LANGUAGE")) {
                 case "de":
                     _defaultLanguage = Language.de;

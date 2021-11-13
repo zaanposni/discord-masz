@@ -91,6 +91,10 @@ namespace masz.Models
             if (guildMember == null) {
                 return false;
             }
+            if (guildMember.IsOwner)
+            {
+                return true;
+            }
 
             // check for role
             return guildMember.Roles.Where(x => guildConfig.AdminRoles.Contains(x.Id)).Any();
@@ -117,6 +121,10 @@ namespace masz.Models
             DiscordMember guildMember = await GetGuildMembership(guildId);
             if (guildMember == null) {
                 return false;
+            }
+            if (guildMember.IsOwner)
+            {
+                return true;
             }
             return guildMember.Roles.Any(x => guildConfig.AdminRoles.Contains(x.Id) ||
                                                 guildConfig.ModRoles.Contains(x.Id));

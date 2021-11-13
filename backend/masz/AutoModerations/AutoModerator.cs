@@ -208,6 +208,11 @@ namespace masz.AutoModerations
                 return false;
             }
 
+            if (member.IsOwner)
+            {
+                return true;
+            }
+
             if (member.Roles.Any(x => _guildConfig.ModRoles.Contains(x.Id) ||
                                       _guildConfig.AdminRoles.Contains(x.Id) ||
                                       autoModerationConfig.IgnoreRoles.Contains(x.Id)))

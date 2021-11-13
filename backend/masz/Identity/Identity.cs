@@ -74,6 +74,10 @@ namespace masz.Models
             {
                 return false;
             }
+            if (member.IsOwner)
+            {
+                return true;
+            }
             int memberPermission = (int) member.Permissions;
             return (memberPermission & 1 << (int) permission) >= 1;
         }
@@ -114,6 +118,10 @@ namespace masz.Models
                         if (modCase.PunishmentType == PunishmentType.Kick) x = DiscordBitPermissionFlag.KICK_MEMBERS;
                         if (modCase.PunishmentType == PunishmentType.Ban) x = DiscordBitPermissionFlag.BAN_MEMBERS;
                         if (modCase.PunishmentType == PunishmentType.Mute) x = DiscordBitPermissionFlag.MANAGE_ROLES;
+                        if (await HasPermissionOnGuild(DiscordPermission.Admin, modCase.GuildId))
+                        {
+                            return true;
+                        }
                         return await HasPermissionOnGuild(DiscordPermission.Moderator, modCase.GuildId) &&
                             await HasRolePermissionInGuild(modCase.GuildId, x);
                     }
@@ -210,6 +218,10 @@ namespace masz.Models
             if (! await HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
             {
                 return false;
+            }
+            if (await HasPermissionOnGuild(DiscordPermission.Admin, guildId))
+            {
+                return true;
             }
             if (guildConfig.StrictModPermissionCheck)
             {
