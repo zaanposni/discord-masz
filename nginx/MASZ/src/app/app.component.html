@@ -32,7 +32,7 @@
           </div>
         </a>
 
-        <mat-expansion-panel *ngIf="this.currentUser && loggedIn">
+        <mat-expansion-panel class="flex-shrink-0" *ngIf="this.currentUser && loggedIn">
           <mat-expansion-panel-header>
             <a class="d-flex">
               <div class="rounded navitem nohover">
@@ -73,7 +73,7 @@
 
         <!-- Admin Guild -->
         <!-- #################################################################################################################################################### -->
-        <mat-expansion-panel *ngIf="this.currentUser && loggedIn && this.currentUser?.adminGuilds?.length">
+        <mat-expansion-panel class="flex-shrink-0" *ngIf="this.currentUser && loggedIn && this.currentUser?.adminGuilds?.length">
           <mat-expansion-panel-header>
             <a class="d-flex">
               <div class="rounded navitem nohover">
@@ -100,7 +100,7 @@
 
         <!-- Mod Guild -->
         <!-- #################################################################################################################################################### -->
-        <mat-expansion-panel *ngIf="this.currentUser && loggedIn && this.currentUser?.modGuilds?.length">
+        <mat-expansion-panel class="flex-shrink-0" *ngIf="this.currentUser && loggedIn && this.currentUser?.modGuilds?.length">
           <mat-expansion-panel-header>
             <a class="d-flex">
               <div class="rounded navitem nohover">
@@ -128,7 +128,7 @@
 
         <!-- User Guild -->
         <!-- #################################################################################################################################################### -->
-        <mat-expansion-panel *ngIf="this.currentUser && loggedIn && this.currentUser?.memberGuilds?.length">
+        <mat-expansion-panel class="flex-shrink-0" *ngIf="this.currentUser && loggedIn && this.currentUser?.memberGuilds?.length">
           <mat-expansion-panel-header>
             <a class="d-flex">
               <div class="rounded navitem nohover">
@@ -156,7 +156,7 @@
 
         <!-- Banned from Guild -->
         <!-- #################################################################################################################################################### -->
-        <mat-expansion-panel *ngIf="this.currentUser && loggedIn && this.currentUser?.bannedGuilds?.length">
+        <mat-expansion-panel class="flex-shrink-0" *ngIf="this.currentUser && loggedIn && this.currentUser?.bannedGuilds?.length">
           <mat-expansion-panel-header>
             <a class="d-flex">
               <div class="rounded navitem nohover">
