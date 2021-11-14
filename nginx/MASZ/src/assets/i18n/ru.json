@@ -1,0 +1,557 @@
+{
+    "LoginWithDiscord": {
+        "Button": "Войти через Discord",
+        "Loading": "Вход в систему через Discord ..."
+    },
+    "Case": "Случай",
+    "Cases": "Случаи",
+    "Punishment": "Наказание",
+    "Punishments": "Наказания",
+    "Bans": "Баны",
+    "Mutes": "Немые",
+    "Automods": "Автомоды",
+    "Automoderations": "Автомобили",
+    "Invite": "Приглашать",
+    "Invites": "Приглашает",
+    "Usernotes": "Примечания пользователя",
+    "Usermaps": "Карты пользователя",
+    "Comments": "Комментарии",
+    "Loading": "Загружается ...",
+    "NothingHere": "Здесь ничего.",
+    "AcceptTermsOnLogin": "Выполняя вход, вы принимаете наши Условия и положения.",
+    "Toolbar": {
+        "Login": "Авторизоваться",
+        "Logout": "Выйти",
+        "Patchnotes": "Patchnotes",
+        "Community": "Сообщество",
+        "Terms": "Условия",
+        "Legal": "Юридический",
+        "API": "API",
+        "Insights": "Insights",
+        "Scanning": "Сканирование"
+    },
+    "Guilds": {
+        "Guilds": "Гильдии",
+        "All": "Все гильдии",
+        "Admin": "Гильдии админов",
+        "Moderator": "Модераторы гильдий",
+        "Member": "Гильдии",
+        "Banned": "Забанен в гильдии"
+    },
+    "MASZ": {
+        "GuildDeleted": "Гильдия удалена.",
+        "FailedToDeleteGuild": "Не удалось удалить гильдию.",
+        "PleaseLoginFirst": "Пожалуйста, войдите сначала."
+    },
+    "Adminstats": {
+        "Bot": "Бот",
+        "Database": "База данных",
+        "InternalCache": "Внутренний кеш",
+        "NextCache": "Следующий кеш",
+        "Tokens": "Жетоны",
+        "CurrentlyLoggedIn": "Вы вошли в систему",
+        "DiscordCache": "Кэш Discord",
+        "ClearCache": "Очистить кэш",
+        "FailedToLoad": "Не удалось загрузить статистику администратора.",
+        "FailedToLoadLocalVersion": "Не удалось загрузить установленную версию.",
+        "FailedToLoadAvailableVersions": "Не удалось загрузить доступные версии.",
+        "FailedToClear": "Не удалось очистить кеш.",
+        "Cleared": "Кеш очищен.",
+        "Insights": "Insights",
+        "UpdateAvailableHeadline": "Доступно обновление",
+        "Published": "Опубликовано:",
+        "UpdateAvailableText": "Доступно обновление {{tag}}. Обновите свой экземпляр."
+    },
+    "AdminstatsList": {
+        "ShowMore": "Показать больше"
+    },
+    "TokenOverview": {
+        "Description": "Как администратор сайта вы можете использовать MASZ API для реализации ваших собственных сценариев и автоматизации работы на MASZ. Создайте ключ API ниже, чтобы авторизоваться с помощью API при выполнении веб-запросов.",
+        "Documentation": "Вы можете найти полную документацию в каталоге / docs.",
+        "Postman": "Просто установите почтальон и импортируйте файл json.",
+        "TokenHeader": "Включите токены в заголовок «Authorization» с префиксом «Bearer».",
+        "PythonAPIWrapper": "Попробуйте официальную оболочку API Python.",
+        "Warning": "Предупреждение",
+        "TokenIsPowerful": "Ключ API очень мощный и может контролировать все на MASZ!",
+        "CreateToken": "Создать токен",
+        "SaveSecurely": "Надежно сохраните этот токен.",
+        "Tokens": "Жетоны",
+        "NoTokensFound": "Токенов не найдено",
+        "ValidUntil": "Действительна до:",
+        "CopiedClipboard": "Скопировано в буфер обмена.",
+        "Deleted": "Токен удален.",
+        "FailedToDelete": "Не удалось удалить токен ..",
+        "Created": "Токен создан.",
+        "FailedToCreate": "Не удалось создать токен ..",
+        "FailedToLoad": "Не удалось загрузить текущий токен .."
+    },
+    "AutoModCard": {
+        "ViewCase": "Посмотреть кейс",
+        "Message": "Сообщение"
+    },
+    "AutoModTable": {
+        "FailedToLoad": "Не удалось загрузить автоматические режимы.",
+        "NoMatches": "Нет модерируемых событий.",
+        "LoadMoreEvents": "Загрузить больше записей"
+    },
+    "DTPicker": {
+        "ChooseADate": "Выберите дату",
+        "OK": "Ok"
+    },
+    "CaseDeleteDialog": {
+        "SendPublicNotification": "Отправить публичное уведомление",
+        "ForceDelete": "Принудительное удаление",
+        "Cancel": "Отмена",
+        "Confirm": "Подтверждать"
+    },
+    "CommentEditDialog": {
+        "EditComment": "Редактировать комментарий",
+        "Comment": "Комментарий",
+        "Cancel": "Отмена",
+        "Confirm": "Подтверждать"
+    },
+    "ConfirmDialog": {
+        "AreYouSure": "Вы уверены?",
+        "Cancel": "Отмена",
+        "Confirm": "Подтверждать"
+    },
+    "NewTokenDialog": {
+        "NameToken": "Назовите свой токен.",
+        "Name": "Имя",
+        "Cancel": "Отмена",
+        "Confirm": "Подтверждать"
+    },
+    "TemplateCreateDialog": {
+        "CreateTemplate": "Назовите свой шаблон.",
+        "Name": "Имя",
+        "Visibility": "Видимость",
+        "Cancel": "Отмена",
+        "Confirm": "Подтверждать",
+        "FailedToLoadPermissions": "Не удалось загрузить параметры видимости."
+    },
+    "UsermapEditDialog": {
+        "EditUsermap": "Редактировать карту пользователя",
+        "Description": "Описание",
+        "Cancel": "Отмена",
+        "Confirm": "Подтверждать"
+    },
+    "UsernoteEditDialog": {
+        "EditUsernote": "Редактировать заметку пользователя",
+        "Description": "Описание",
+        "Cancel": "Отмена",
+        "Confirm": "Подтверждать"
+    },
+    "GuildDialog": {
+        "AddAGuild": "Добавить гильдию",
+        "SearchAGuild": "Найдите гильдию",
+        "SelectAnotherGuild": "Выберите гильдию",
+        "InviteFirst": "Сначала нужно пригласить бота!",
+        "Invite": "Приглашать",
+        "Back": "Назад",
+        "Next": "Следующий",
+        "StepAdminRoles": "Выберите роли администратора",
+        "AdminRoles": "Роли администратора",
+        "StepModeratorRoles": "Выберите роли модератора",
+        "ModeratorRoles": "Роли модератора",
+        "StepMutedRoles": "Выберите роли с отключенным звуком",
+        "MutedRoles": "Приглушенные роли",
+        "StepFurtherConfiguration": "Выберите дальнейшую конфигурацию",
+        "InternalStaffWebhook": "Веб-перехватчик уведомления внутреннего персонала",
+        "PublicWebhook": "Веб-перехватчик публичных уведомлений участников",
+        "Language": "Язык",
+        "StrictPermissionCheckbox": "Строгая проверка разрешений",
+        "StrictPermissionDetails": "Модератору нужны разрешения на кик / бан на Discord, чтобы создавать модкейсы кик / бан",
+        "ExecuteWhois": "Выполнить whois при присоединении к члену",
+        "WhoisDetails": "Автоматически отправляет информацию о присоединенном пользователе на ваш внутренний веб-перехватчик.",
+        "PublishModerator": "Опубликовать информацию модератора",
+        "PublishModeratorDetails": "Подозреваемый сможет увидеть, какой модератор его наказал.",
+        "Done": "Выполнено",
+        "RegisterGuild": "Зарегистрировать гильдию",
+        "UpdateGuild": "Обновить гильдию",
+        "FailedToLoadGuilds": "Не удалось загрузить гильдии.",
+        "FailedToLoadCurrentGuild": "Не удалось загрузить текущую информацию о гильдии.",
+        "FailedInviteWindow": "Не удалось открыть окно приглашения.",
+        "FailedToRegisterGuild": "Не удалось зарегистрировать гильдию.",
+        "FailedToUpdateGuild": "Не удалось обновить гильдию.",
+        "GuildCreated": "Гильдия создана",
+        "GuildUpdated": "Гильдия обновлена"
+    },
+    "GuildAuditLogConfig": {
+        "TargetChannel": "Целевой канал",
+        "ComingSoon": "Скоро будет",
+        "PingRoles": "Роли пинга",
+        "AuditLog": "AuditLog",
+        "ConfigDeleted": "Конфиг удален.",
+        "FailedToDeleteConfig": "Не удалось удалить конфигурацию.",
+        "SavedConfig": "Сохраненный конфиг.",
+        "FailedToSaveConfig": "Не удалось сохранить конфигурацию.",
+        "FailedToLoadGuild": "Не удалось загрузить информацию о гильдии.",
+        "FailedToLoadChannels": "Не удалось загрузить информацию о канале гильдии.",
+        "MessageSent": {
+            "title": "Сообщение отправлено"
+        },
+        "MessageUpdated": {
+            "title": "Сообщение обновлено"
+        },
+        "MessageDeleted": {
+            "title": "Сообщение удалено"
+        },
+        "UsernameUpdated": {
+            "title": "Имя пользователя обновлено"
+        },
+        "AvatarUpdated": {
+            "title": "Аватар обновлен"
+        },
+        "NicknameUpdated": {
+            "title": "Псевдоним обновлен"
+        },
+        "MemberRolesUpdated": {
+            "title": "Роли участников обновлены"
+        },
+        "MemberJoined": {
+            "title": "Участник присоединился"
+        },
+        "MemberRemoved": {
+            "title": "Участник удален"
+        },
+        "BanAdded": {
+            "title": "Бан добавлен"
+        },
+        "BanRemoved": {
+            "title": "Бан снят"
+        },
+        "InviteCreated": {
+            "title": "Приглашение создано"
+        },
+        "InviteDeleted": {
+            "title": "Приглашение удалено"
+        },
+        "ThreadCreated": {
+            "title": "Тема создана"
+        }
+    },
+    "AutomodConfig": {
+        "Automoderation": "Автомобильная промышленность",
+        "Invites": {
+            "title": "Приглашает",
+            "details": "Сообщение о вашей гильдии соответствует шаблону приглашения. Приглашения в эту гильдию будут проигнорированы.",
+            "customWordField": "Игнорировать гильдии (введите идентификаторы, разделенные новой строкой)"
+        },
+        "Emotes": {
+            "title": "Эмоции",
+            "details": "Сообщение о вашей гильдии содержит слишком много эмоций."
+        },
+        "Mentions": {
+            "title": "Упоминания",
+            "details": "Сообщение о вашей гильдии содержит слишком много упоминаний."
+        },
+        "Attachments": {
+            "title": "Вложения",
+            "details": "Сообщение о вашей гильдии содержит слишком много вложений."
+        },
+        "Embeds": {
+            "title": "Встраивает",
+            "details": "Сообщение о вашей гильдии содержит слишком много вставок."
+        },
+        "Automoderations": {
+            "title": "Автомобили",
+            "details": "Пользователь запускает слишком много автоматических режимов за определенный промежуток времени."
+        },
+        "CustomFilter": {
+            "title": "Пользовательский фильтр",
+            "details": "Пользователь использует слишком много слов, определенных в вашем списке.",
+            "tooltip": "Слова проверяются построчно без учета регистра.",
+            "linkText": "Пример",
+            "customWordField": "Пользовательские слова (шаблон регулярного выражения, разделенный новой строкой)"
+        },
+        "Spam": {
+            "title": "Спам",
+            "details": "Пользователь вашей гильдии отправляет слишком много сообщений за промежуток времени.",
+            "TimeLimitMessage": "Лимит времени (секунды)"
+        },
+        "DuplicatedChars": {
+            "title": "Дублированные символы",
+            "details": "Сообщение о вашей гильдии содержит слишком много повторяющихся персонажей."
+        },
+        "Link": {
+            "title": "Ссылки",
+            "details": "Сообщение о вашей гильдии содержит слишком много ссылок.",
+            "customWordField": "Игнорировать ссылки (введите шаблоны регулярных выражений, разделенные символами новой строки)",
+            "linkText": "Пример"
+        },
+        "Next": "Следующий",
+        "Back": "Назад",
+        "Save": "Сохранить",
+        "TimeLimitMinutes": "Лимит времени (минуты)",
+        "Steps": {
+            "Event": "Мероприятие",
+            "Filter": "Фильтр",
+            "Action": "Действие",
+            "Done": "Выполнено"
+        },
+        "UpperLimit": "Верхний предел",
+        "TeamMembersExcluded": "Примечание: члены команды всегда исключаются.",
+        "ExcludeRoles": "Исключить роли",
+        "ExcludeChannels": "Исключить каналы",
+        "SendInternalNotification": "Отправить внутреннее уведомление",
+        "SendInternalNotificationHover": "Всегда отправляется внутреннее уведомление.",
+        "LogEntry": "Запись в журнале",
+        "LogEntryHover": "Запись в журнале создается всегда.",
+        "SendDMNotification": "Отправить уведомление dm",
+        "Action": "Действие",
+        "SendPublicNotification": "Отправить публичное уведомление",
+        "DurationInMinutes": "Продолжительность в минутах",
+        "YouAreDone": "Теперь все готово.",
+        "ConfigDeleted": "Конфиг удален",
+        "FailedToDeleteConfig": "Не удалось удалить конфигурацию.",
+        "SavedConfig": "Конфигурация сохранена",
+        "FailedToSaveConfig": "Не удалось сохранить конфигурацию.",
+        "FailedToLoadGuild": "Не удалось загрузить информацию о гильдии.",
+        "FailedToLoadChannels": "Не удалось загрузить информацию о канале гильдии."
+    },
+    "GuildMotd": {
+        "Enable": "Включить MotD",
+        "Message": "Сообщение",
+        "FailedToLoad": "Не удалось загрузить motd.",
+        "FailedToSave": "Не удалось сохранить motd.",
+        "Saved": "Сохранено мотд.",
+        "Explanation": "Это сообщение будет показано вашим администраторам и модераторам на панели инструментов."
+    },
+    "AutomodSplit": {
+        "FailedToLoad": "Не удалось загрузить разделенную диаграмму autmod гильдии."
+    },
+    "DashboardCaseList": {
+        "NewestCases": "Новейшие кейсы",
+        "ExpiringPunishments": "Истекающие наказания",
+        "NoCasesFound": "Случаев не найдено"
+    },
+    "DashboardCharts": {
+        "Overview": "Обзор",
+        "Cases": "Случаи",
+        "Punishments": "Наказания",
+        "Automoderations": "Автомобили",
+        "ChooseADate": "Выберите дату",
+        "Reset": "Сброс настроек"
+    },
+    "DashboardComments": {
+        "Newestcomments": "Последние комментарии",
+        "NothingFound": "Нет комментариев.",
+        "FailedToLoad": "Не удалось загрузить комментарии."
+    },
+    "GuildStats": {
+        "GuildStats": "Статистика гильдий",
+        "FailedToLoad": "Не удалось загрузить статистику гильдии."
+    },
+    "GuildInfoCard": {
+        "CreateNewCase": "Создать новое дело",
+        "FailedToLoad": "Не удалось загрузить информацию о гильдии."
+    },
+    "DashboardMotd": {
+        "FailedToLoad": "Не удалось загрузить motd.",
+        "MessageFrom": "Сообщение от {{name}}"
+    },
+    "Quicksearch": {
+        "Placeholder": "Пользователи Quicksearch, модкейсы, наказания, автоматизация, ...",
+        "NoMatches": "Ничего не найдено :(",
+        "SearchFailed": "Поиск не удался."
+    },
+    "GuildList": {
+        "LoadingGuilds": "Загрузка гильдий ...",
+        "NoGuild": "Пожалуйста, вступите в гильдию или получите бан, чтобы я мог что-нибудь показать :(",
+        "AddGuild": "Добавить гильдию"
+    },
+    "GuildOverview": {
+        "Tabs": {
+            "Dashboard": "Щиток приборов",
+            "Case": "Случаи",
+            "Automoderation": "Автомобили",
+            "Bin": "Корзина",
+            "Usernote": "Примечания пользователя",
+            "Usermap": "Карты пользователя",
+            "Config": "Конфиг"
+        }
+    },
+    "UsermapTable": {
+        "Member": "Член",
+        "Description": "Описание",
+        "CreateNewMap": "Создать новую карту пользователя",
+        "Search": "Поиск (пользователь, идентификатор, описание ...)",
+        "NoMatches": "По вашему запросу не найдено ни одной карты пользователя.",
+        "FailedToLoad": "Не удалось загрузить пользовательские карты.",
+        "FailedToLoadMember": "Не удалось загрузить список участников.",
+        "FailedToCreate": "Не удалось создать карту пользователя.",
+        "Created": "Карта пользователя создана."
+    },
+    "UsermapCard": {
+        "UpdatedPrefix": "Обновлено:",
+        "Edit": "Редактировать",
+        "Delete": "Удалить",
+        "FailedToUpdate": "Не удалось обновить карту пользователя.",
+        "Updated": "Карта пользователя обновлена.",
+        "FailedToDelete": "Не удалось удалить карту пользователя.",
+        "Deleted": "Карта пользователя удалена."
+    },
+    "UsernoteTable": {
+        "Member": "Член",
+        "Description": "Описание",
+        "CreateNewNote": "Создать новую заметку пользователя",
+        "Search": "Поиск (пользователь, идентификатор, описание ...)",
+        "NoMatches": "По вашему запросу не найдено ни одной пользовательской заметки.",
+        "FailedToLoad": "Не удалось загрузить заметки пользователя.",
+        "FailedToLoadMember": "Не удалось загрузить список участников.",
+        "FailedToCreate": "Не удалось создать заметку пользователя.",
+        "Created": "Заметка пользователя создана."
+    },
+    "UsernoteCard": {
+        "UpdatedPrefix": "Обновлено:",
+        "Edit": "Редактировать",
+        "Delete": "Удалить",
+        "FailedToUpdate": "Не удалось обновить заметку пользователя.",
+        "Updated": "Заметка пользователя обновлена.",
+        "FailedToDelete": "Не удалось удалить заметку пользователя.",
+        "Deleted": "Заметка пользователя удалена."
+    },
+    "ModCaseDialog": {
+        "SelectATemplate": "Выберите шаблон",
+        "BackToGuild": "Снова в гильдию.",
+        "BackToCase": "Вернемся к modcase.",
+        "SearchTemplate": "Шаблон поиска",
+        "Back": "Назад",
+        "Next": "Следующий",
+        "ChooseAMember": "Выберите участника",
+        "Member": "Член",
+        "PickOne": "Выбери один",
+        "DescribeCase": "Опишите случай",
+        "Title": "Заголовок",
+        "Description": "Описание",
+        "Labels": "Этикетки",
+        "NewLabel": "Новый лейбл ...",
+        "ChoosePunishment": "Выберите наказание",
+        "Punishment": "Наказание",
+        "SendDmNotification": "Отправить уведомление dm",
+        "HandlePunishment": "Выполнить это наказание",
+        "UploadFiles": "Загрузить файлы",
+        "Upload": "Загрузить",
+        "CreateCase": "Создать дело",
+        "UpdateCase": "Обновить дело",
+        "PublicNotification": "Отправить публичное уведомление",
+        "SaveAsTemplate": "Сохранить как шаблон",
+        "CreateCaseButton": "Создать дело",
+        "UpdateCaseButton": "Обновить дело",
+        "FailedToLoad": {
+            "MemberList": "Не удалось загрузить список участников.",
+            "PunishmentEnum": "Не удалось загрузить доступные наказания.",
+            "CaseTemplates": "Не удалось загрузить шаблоны дел.",
+            "CurrentCase": "Не удалось загрузить текущее дело."
+        },
+        "AppliedTemplate": "Прикладной шаблон.",
+        "TemplateDeleted": "Шаблон удален.",
+        "FailedToDeleteTemplate": "Не удалось удалить шаблон.",
+        "TemplateSaved": "Шаблон сохранен.",
+        "FailedToSaveTemplate": "Не удалось сохранить шаблон.",
+        "FileUploaded": "Файл загружен.",
+        "FailedToUploadFile": "Не удалось загрузить файл.",
+        "CaseCreated": "Дело создано.",
+        "CaseUpdated": "Дело обновлено."
+    },
+    "ModCaseTable": {
+        "ExcludeAutoMod": "Исключить автоматизацию",
+        "ExcludePermanent": "Исключить постоянные наказания",
+        "ExcludeInactive": "Исключить неактивные обращения",
+        "CreateNewCase": "Создать новое дело",
+        "Search": "Поиск (пользователь, идентификатор, описание ...)",
+        "FailedToLoad": "Не удалось загрузить кейсы.",
+        "NoMatches": "По вашему запросу не найдено ни одного случая."
+    },
+    "ModCaseCard": {
+        "ViewDetailsButton": "Посмотреть детали",
+        "Created": "Созданный:",
+        "Until": "До:",
+        "Delete": "Удалить:"
+    },
+    "ModCaseView": {
+        "Suspect": "Подозревать",
+        "ID": "Я БЫ",
+        "Moderator": "Модератор",
+        "Punishment": "Наказание",
+        "Guild": "Гильдия",
+        "PunishedUntil": "Наказан до:",
+        "PunishedForever": "Наказан навсегда",
+        "PunishmentExpired": "Срок наказания истек.",
+        "CreatedAt": "Создано в",
+        "EditedAt": "Отредактировано в",
+        "LastEditModerator": "Последнее изменение модератора",
+        "Description": "Описание",
+        "UploadedFiles": "Загруженные файлы",
+        "Upload": "Загрузить",
+        "Comments": "Комментарии",
+        "NewComment": "Новый комментарий",
+        "LockComments": "Заблокировать комментарии",
+        "UnlockComments": "Разблокировать комментарии",
+        "PostComment": "Оставьте комментарий",
+        "CaseMarkedToDelete": "Отмечено для удаления - {{user}}",
+        "CommentsLocked": "Комментарии заблокированы - {{user}}",
+        "Restore": "Восстановить",
+        "View": "Вид",
+        "Delete": "Удалить",
+        "Moderators": "Модераторы",
+        "FailedToLoad": {
+            "Punishments": "Не удалось загрузить доступные наказания.",
+            "Files": "Не удалось загрузить файлы.",
+            "Guild": "Не удалось загрузить информацию о гильдии.",
+            "Case": "Не удалось загрузить дело."
+        },
+        "DeleteCase": {
+            "Deleted": "Дело отмечено для удаления.",
+            "ForceDeleted": "Дело удалено.",
+            "Failed": "Не удалось удалить дело."
+        },
+        "RestoreCase": {
+            "Restored": "Восстановленный корпус.",
+            "Failed": "Не удалось восстановить дело."
+        },
+        "FileUpload": {
+            "Uploaded": "Файл загружен.",
+            "Failed": "Не удалось загрузить файл."
+        },
+        "FileDelete": {
+            "Deleted": "Файл удален.",
+            "Failed": "Не удалось удалить файл"
+        },
+        "CommentDelete": {
+            "Deleted": "Комментарий удален.",
+            "Failed": "Не удалось удалить комментарий"
+        },
+        "CommentLock": {
+            "Locked": "Комментарии заблокированы.",
+            "Failed": "Не удалось заблокировать комментарии"
+        },
+        "CommentUnlock": {
+            "Unlocked": "Комментарии разблокированы.",
+            "Failed": "Не удалось разблокировать комментарии"
+        },
+        "CommentPost": {
+            "Posted": "Комментарий опубликован.",
+            "Failed": "Не удалось опубликовать комментарий"
+        },
+        "CommentUpdate": {
+            "Updated": "Комментарий обновлен.",
+            "Failed": "Не удалось обновить комментарий"
+        }
+    },
+    "Scanning": {
+        "EnterUserOrInvite": "Введите идентификатор пользователя или пригласительный код",
+        "Userscan": "Пользователи",
+        "Invitescan": "Invitescan",
+        "UserscanDescription": "Введите идентификатор пользователя, чтобы получить быстрый обзор участника или отношений с другими участниками. Это также отслеживает приглашения, которые использует новый участник, чтобы вы могли быстро находить альтернативные аккаунты. Используйте двойной щелчок, чтобы просмотреть другие ресурсы, такие как modcase.",
+        "InvitescanDescription": "Введите код приглашения или ссылку, чтобы получить быстрый обзор приглашения или отношений с другими участниками. Используйте двойной щелчок, чтобы просмотреть другие ресурсы, например, другого пользователя.",
+        "FailedToLoad": {
+            "Scan": "Не удалось загрузить информацию о сканировании.",
+            "Invite": "Не удалось загрузить информацию о сканировании.",
+            "InvalidInvite": "Информации об этом приглашении не найдено."
+        },
+        "JoinedAt": "Присоединился к",
+        "OccuredAt": "Произошло в",
+        "CreatedAt": "Создано в"
+    }
+}

@@ -20,6 +20,10 @@ import { DEFAULT_LANGUAGE, DEFAULT_TIMEZONE, LANGUAGES, TIMEZONES } from './conf
 import { TimezoneService } from './services/timezone.service';
 import { CookieTrackerService } from './services/cookie-tracker.service';
 import { AppSettings } from './models/AppSettings';
+import { AppVersion } from './models/AppVersion';
+import { VersionManagerService } from './services/version-manager.service';
+import { IImageVersion } from './models/IImageVersion';
+import { ReplaySubject } from 'rxjs';
 
 
 @Component({
@@ -42,6 +46,8 @@ export class AppComponent implements OnInit{
     language: DEFAULT_LANGUAGE,
     timezone: DEFAULT_TIMEZONE
   };
+  triggerVersionLoadOnce: boolean = true;
+  newVersionFound: ReplaySubject<IImageVersion> = new ReplaySubject(1);
 
   public changeLanguage(lang: string) {
     this.translator.use(lang);
@@ -58,7 +64,7 @@ export class AppComponent implements OnInit{
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, public route: ActivatedRoute,
-              private auth: AuthService, private toastr: ToastrService, private dialog: MatDialog, private api: ApiService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private applicationInfoService: ApplicationInfoService, private translator: TranslateService, private timezoneService: TimezoneService, private cookieTracker: CookieTrackerService) {
+              private auth: AuthService, private toastr: ToastrService, private dialog: MatDialog, private api: ApiService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private applicationInfoService: ApplicationInfoService, private translator: TranslateService, private timezoneService: TimezoneService, private cookieTracker: CookieTrackerService, private versionManager: VersionManagerService) {
     this.mobileQuery = media.matchMedia('(max-width: 1000px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -105,13 +111,47 @@ export class AppComponent implements OnInit{
         this.translator.use(data.language);
       }
     });
+
+    this.versionManager.newVersionFound.subscribe(data => {
+      this.newVersionFound.next(data);
+    });
+  }
+
+  loadVersions() {
+    if (this.triggerVersionLoadOnce) {
+      this.api.getSimpleData(`/static/version.json`, false).subscribe((data: AppVersion) => {
+        let newLocalVersion: AppVersion = {
+          version: data.version.replace('a', '-alpha'),
+          pre_release: data.pre_release,
+        }
+        if (data.pre_release && ! data.version.endsWith('-alpha')) {
+          newLocalVersion.version += '-alpha';
+        }
+        this.versionManager.localVersionChanged(newLocalVersion);
+      }, error => {
+        console.error(error);
+        this.toastr.error(this.translator.instant('Adminstats.FailedToLoadLocalVersion'));
+      });
+
+      this.api.getSimpleData(`/meta/versions`).subscribe((data: IImageVersion[]) => {
+        this.versionManager.availableVersionsChanged(data);
+      }, error => {
+        console.error(error);
+        this.toastr.error(this.translator.instant('Adminstats.FailedToLoadAvailableVersions'));
+      });
+
+      this.triggerVersionLoadOnce = false;
+    }
   }
 
   login() {
     this.loggedIn = true;
-      this.auth.getUserProfile().subscribe((data) => {
+      this.auth.getUserProfile().subscribe((data: AppUser) => {
         this.loggedIn = true;
         this.currentUser = data;
+        if (data.isAdmin) {
+          this.loadVersions();
+        }
       }, () => {
         this.loggedIn = false;
         this.currentUser = { } as AppUser;

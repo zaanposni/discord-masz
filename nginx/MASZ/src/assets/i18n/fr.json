@@ -1,0 +1,557 @@
+{
+    "LoginWithDiscord": {
+        "Button": "Connectez-vous avec Discord",
+        "Loading": "Connexion avec Discord..."
+    },
+    "Case": "Cas",
+    "Cases": "Cas",
+    "Punishment": "Châtiment",
+    "Punishments": "Les sanctions",
+    "Bans": "Interdictions",
+    "Mutes": "Muet",
+    "Automods": "Automods",
+    "Automoderations": "Automodérations",
+    "Invite": "Inviter",
+    "Invites": "Invite",
+    "Usernotes": "Notes d'utilisateur",
+    "Usermaps": "Cartes utilisateur",
+    "Comments": "commentaires",
+    "Loading": "Chargement...",
+    "NothingHere": "Rien ici.",
+    "AcceptTermsOnLogin": "En vous connectant, vous acceptez nos conditions et directives.",
+    "Toolbar": {
+        "Login": "Connexion",
+        "Logout": "Se déconnecter",
+        "Patchnotes": "Notes de mise à jour",
+        "Community": "Communauté",
+        "Terms": "termes",
+        "Legal": "Légal",
+        "API": "API",
+        "Insights": "Connaissances",
+        "Scanning": "Balayage"
+    },
+    "Guilds": {
+        "Guilds": "Guildes",
+        "All": "Toutes les guildes",
+        "Admin": "Guildes d'administration",
+        "Moderator": "Guildes de modérateurs",
+        "Member": "Guildes",
+        "Banned": "Banni des guildes"
+    },
+    "MASZ": {
+        "GuildDeleted": "Guilde supprimée.",
+        "FailedToDeleteGuild": "Échec de la suppression de la guilde.",
+        "PleaseLoginFirst": "S'il vous plait Connectez-vous d'abord."
+    },
+    "Adminstats": {
+        "Bot": "Bot",
+        "Database": "Base de données",
+        "InternalCache": "Cache interne",
+        "NextCache": "Cache suivant",
+        "Tokens": "Jetons",
+        "CurrentlyLoggedIn": "Actuellement connecté",
+        "DiscordCache": "Cache Discord",
+        "ClearCache": "Vider le cache",
+        "FailedToLoad": "Échec du chargement des adminstats.",
+        "FailedToLoadLocalVersion": "Échec du chargement de la version installée.",
+        "FailedToLoadAvailableVersions": "Échec du chargement des versions disponibles.",
+        "FailedToClear": "Échec de l'effacement du cache.",
+        "Cleared": "Cache vidé.",
+        "Insights": "Connaissances",
+        "UpdateAvailableHeadline": "Mise à jour disponible",
+        "Published": "Publié :",
+        "UpdateAvailableText": "La mise à jour {{tag}} est disponible. Veuillez mettre à jour votre instance."
+    },
+    "AdminstatsList": {
+        "ShowMore": "Montre plus"
+    },
+    "TokenOverview": {
+        "Description": "En tant qu'administrateur de site, vous pouvez utiliser l'API MASZ pour implémenter vos propres scripts personnalisés et automatiser des choses sur MASZ. Créez une clé API ci-dessous pour vous autoriser par rapport à l'API lorsque vous effectuez des requêtes Web.",
+        "Documentation": "Vous pouvez trouver une documentation complète dans le répertoire /docs.",
+        "Postman": "Installez simplement postman et importez le fichier json.",
+        "TokenHeader": "Incluez des jetons dans l'en-tête « Authorization » avec un préfixe « Bearer ».",
+        "PythonAPIWrapper": "Essayez le wrapper officiel de l'API python.",
+        "Warning": "Avertissement",
+        "TokenIsPowerful": "Une clé API est très puissante et permet de tout contrôler sur MASZ !",
+        "CreateToken": "Créer un jeton",
+        "SaveSecurely": "Enregistrez ce jeton en toute sécurité.",
+        "Tokens": "Jetons",
+        "NoTokensFound": "Aucun jeton trouvé",
+        "ValidUntil": "Valable jusque:",
+        "CopiedClipboard": "Copié dans le presse-papier.",
+        "Deleted": "Jeton supprimé.",
+        "FailedToDelete": "Échec de la suppression du jeton.",
+        "Created": "Jeton créé.",
+        "FailedToCreate": "Échec de la création du jeton.",
+        "FailedToLoad": "Échec du chargement du jeton actuel."
+    },
+    "AutoModCard": {
+        "ViewCase": "Voir le cas",
+        "Message": "Un message"
+    },
+    "AutoModTable": {
+        "FailedToLoad": "Échec du chargement des modérations automatiques.",
+        "NoMatches": "Il n'y a pas d'événements modérés.",
+        "LoadMoreEvents": "Charger plus d'entrées"
+    },
+    "DTPicker": {
+        "ChooseADate": "Choisissez une date",
+        "OK": "d'accord"
+    },
+    "CaseDeleteDialog": {
+        "SendPublicNotification": "Envoyer une notification publique",
+        "ForceDelete": "Forcer la suppression",
+        "Cancel": "Annuler",
+        "Confirm": "Confirmer"
+    },
+    "CommentEditDialog": {
+        "EditComment": "Modifier le commentaire",
+        "Comment": "Commenter",
+        "Cancel": "Annuler",
+        "Confirm": "Confirmer"
+    },
+    "ConfirmDialog": {
+        "AreYouSure": "Es-tu sûr?",
+        "Cancel": "Annuler",
+        "Confirm": "Confirmer"
+    },
+    "NewTokenDialog": {
+        "NameToken": "Nommez votre jeton.",
+        "Name": "Nom",
+        "Cancel": "Annuler",
+        "Confirm": "Confirmer"
+    },
+    "TemplateCreateDialog": {
+        "CreateTemplate": "Nommez votre modèle.",
+        "Name": "Nom",
+        "Visibility": "Visibilité",
+        "Cancel": "Annuler",
+        "Confirm": "Confirmer",
+        "FailedToLoadPermissions": "Échec du chargement des options de visibilité."
+    },
+    "UsermapEditDialog": {
+        "EditUsermap": "Modifier la carte utilisateur",
+        "Description": "La description",
+        "Cancel": "Annuler",
+        "Confirm": "Confirmer"
+    },
+    "UsernoteEditDialog": {
+        "EditUsernote": "Modifier la note d'utilisateur",
+        "Description": "La description",
+        "Cancel": "Annuler",
+        "Confirm": "Confirmer"
+    },
+    "GuildDialog": {
+        "AddAGuild": "Ajouter une guilde",
+        "SearchAGuild": "Rechercher une guilde",
+        "SelectAnotherGuild": "Sélectionnez une guilde",
+        "InviteFirst": "Vous devez d'abord inviter le bot !",
+        "Invite": "Inviter",
+        "Back": "Arrière",
+        "Next": "Prochain",
+        "StepAdminRoles": "Sélectionnez les rôles d'administrateur",
+        "AdminRoles": "Rôles d'administrateur",
+        "StepModeratorRoles": "Sélectionnez les rôles de modérateur",
+        "ModeratorRoles": "Rôles de modérateur",
+        "StepMutedRoles": "Sélectionnez les rôles masqués",
+        "MutedRoles": "Rôles en sourdine",
+        "StepFurtherConfiguration": "Sélectionnez une autre configuration",
+        "InternalStaffWebhook": "Webhook de notification du personnel interne",
+        "PublicWebhook": "Webhook de notification publique des membres",
+        "Language": "Langue",
+        "StrictPermissionCheckbox": "Contrôle strict des autorisations",
+        "StrictPermissionDetails": "Un modérateur a besoin d'autorisations kick/ban sur Discord pour créer des modcases kick/ban",
+        "ExecuteWhois": "Exécuter whois lors de l'adhésion des membres",
+        "WhoisDetails": "Envoie automatiquement des informations sur l'utilisateur rejoint à votre webhook interne.",
+        "PublishModerator": "Publier les informations du modérateur",
+        "PublishModeratorDetails": "Un suspect pourra voir quel modérateur l'a puni.",
+        "Done": "Terminé",
+        "RegisterGuild": "Enregistrer la guilde",
+        "UpdateGuild": "Mettre à jour la guilde",
+        "FailedToLoadGuilds": "Échec du chargement des guildes.",
+        "FailedToLoadCurrentGuild": "Échec du chargement des informations de guilde actuelles.",
+        "FailedInviteWindow": "Échec de l'ouverture de la fenêtre d'invitation.",
+        "FailedToRegisterGuild": "Échec de l'enregistrement de la guilde.",
+        "FailedToUpdateGuild": "Échec de la mise à jour de la guilde.",
+        "GuildCreated": "Guilde créée",
+        "GuildUpdated": "Guilde mise à jour"
+    },
+    "GuildAuditLogConfig": {
+        "TargetChannel": "Canal cible",
+        "ComingSoon": "Bientôt disponible",
+        "PingRoles": "Rôles de ping",
+        "AuditLog": "Journal d'audit",
+        "ConfigDeleted": "Configuration supprimée.",
+        "FailedToDeleteConfig": "Échec de la suppression de la configuration.",
+        "SavedConfig": "Configuration enregistrée.",
+        "FailedToSaveConfig": "Échec de l'enregistrement de la configuration.",
+        "FailedToLoadGuild": "Échec du chargement des informations de guilde.",
+        "FailedToLoadChannels": "Échec du chargement des informations du canal de guilde.",
+        "MessageSent": {
+            "title": "Message envoyé"
+        },
+        "MessageUpdated": {
+            "title": "Message mis à jour"
+        },
+        "MessageDeleted": {
+            "title": "Message supprimé"
+        },
+        "UsernameUpdated": {
+            "title": "Nom d'utilisateur mis à jour"
+        },
+        "AvatarUpdated": {
+            "title": "Avatar mis à jour"
+        },
+        "NicknameUpdated": {
+            "title": "Pseudo mis à jour"
+        },
+        "MemberRolesUpdated": {
+            "title": "Rôles des membres mis à jour"
+        },
+        "MemberJoined": {
+            "title": "Membre rejoint"
+        },
+        "MemberRemoved": {
+            "title": "Membre supprimé"
+        },
+        "BanAdded": {
+            "title": "Interdiction ajoutée"
+        },
+        "BanRemoved": {
+            "title": "Interdiction supprimée"
+        },
+        "InviteCreated": {
+            "title": "Invitation créée"
+        },
+        "InviteDeleted": {
+            "title": "Invitation supprimée"
+        },
+        "ThreadCreated": {
+            "title": "Fil créé"
+        }
+    },
+    "AutomodConfig": {
+        "Automoderation": "Automodération",
+        "Invites": {
+            "title": "Invite",
+            "details": "Un message sur votre guilde correspond au modèle d'invitation. Les invitations à cette guilde seront ignorées.",
+            "customWordField": "Ignorer les guildes (entrez les identifiants divisés par des sauts de ligne)"
+        },
+        "Emotes": {
+            "title": "Émoticônes",
+            "details": "Un message sur votre guilde contient trop d'émoticônes."
+        },
+        "Mentions": {
+            "title": "Mentions",
+            "details": "Un message sur votre guilde contient trop de mentions."
+        },
+        "Attachments": {
+            "title": "Pièces jointes",
+            "details": "Un message sur votre guilde contient trop de pièces jointes."
+        },
+        "Embeds": {
+            "title": "Intégrer",
+            "details": "Un message sur votre guilde contient trop d'intégrations."
+        },
+        "Automoderations": {
+            "title": "Automodérations",
+            "details": "Un utilisateur déclenche trop d'automodérations dans un laps de temps défini."
+        },
+        "CustomFilter": {
+            "title": "Filtre personnalisé",
+            "details": "Un utilisateur utilise trop de mots définis dans votre liste.",
+            "tooltip": "Les mots sont vérifiés ligne par ligne sans tenir compte de la casse.",
+            "linkText": "Exemple",
+            "customWordField": "Mots personnalisés (modèle regex divisé par une nouvelle ligne)"
+        },
+        "Spam": {
+            "title": "Pourriel",
+            "details": "Un utilisateur de votre guilde envoie trop de messages dans un laps de temps.",
+            "TimeLimitMessage": "Limite de temps (secondes)"
+        },
+        "DuplicatedChars": {
+            "title": "Caractères dupliqués",
+            "details": "Un message sur votre guilde contient trop de caractères dupliqués."
+        },
+        "Link": {
+            "title": "Liens",
+            "details": "Un message sur votre guilde contient trop de liens.",
+            "customWordField": "Ignorer les liens (entrer les modèles regex divisés par des nouvelles lignes)",
+            "linkText": "Exemple"
+        },
+        "Next": "Prochain",
+        "Back": "Arrière",
+        "Save": "sauvegarder",
+        "TimeLimitMinutes": "Limite de temps (minutes)",
+        "Steps": {
+            "Event": "Événement",
+            "Filter": "Filtre",
+            "Action": "action",
+            "Done": "Terminé"
+        },
+        "UpperLimit": "Limite supérieure",
+        "TeamMembersExcluded": "Remarque : les membres de l'équipe sont toujours exclus.",
+        "ExcludeRoles": "Exclure les rôles",
+        "ExcludeChannels": "Exclure les chaînes",
+        "SendInternalNotification": "Envoyer une notification interne",
+        "SendInternalNotificationHover": "Une notification interne est toujours envoyée.",
+        "LogEntry": "Entrée de journal",
+        "LogEntryHover": "Une entrée de journal est toujours générée.",
+        "SendDMNotification": "Envoyer une notification dm",
+        "Action": "action",
+        "SendPublicNotification": "Envoyer une notification publique",
+        "DurationInMinutes": "Durée en minutes",
+        "YouAreDone": "Vous avez maintenant terminé.",
+        "ConfigDeleted": "Configuration supprimée",
+        "FailedToDeleteConfig": "Échec de la suppression de la configuration.",
+        "SavedConfig": "Configuration enregistrée",
+        "FailedToSaveConfig": "Échec de l'enregistrement de la configuration.",
+        "FailedToLoadGuild": "Échec du chargement des informations de guilde.",
+        "FailedToLoadChannels": "Échec du chargement des informations du canal de guilde."
+    },
+    "GuildMotd": {
+        "Enable": "Activer MotD",
+        "Message": "Un message",
+        "FailedToLoad": "Échec du chargement de motd.",
+        "FailedToSave": "Échec de l'enregistrement de motd.",
+        "Saved": "Mot enregistré.",
+        "Explanation": "Ce message sera affiché à vos administrateurs et modérateurs sur le tableau de bord."
+    },
+    "AutomodSplit": {
+        "FailedToLoad": "Échec du chargement du tableau de répartition autmod de la guilde."
+    },
+    "DashboardCaseList": {
+        "NewestCases": "Cas les plus récents",
+        "ExpiringPunishments": "Expiration des peines",
+        "NoCasesFound": "Aucun cas trouvé"
+    },
+    "DashboardCharts": {
+        "Overview": "Aperçu",
+        "Cases": "Cas",
+        "Punishments": "Les sanctions",
+        "Automoderations": "Automodérations",
+        "ChooseADate": "Choisissez une date",
+        "Reset": "Réinitialiser"
+    },
+    "DashboardComments": {
+        "Newestcomments": "Commentaires les plus récents",
+        "NothingFound": "Aucun commentaire trouvé.",
+        "FailedToLoad": "Échec du chargement des commentaires."
+    },
+    "GuildStats": {
+        "GuildStats": "Statistiques de guilde",
+        "FailedToLoad": "Échec du chargement des statistiques de guilde."
+    },
+    "GuildInfoCard": {
+        "CreateNewCase": "Créer un nouveau cas",
+        "FailedToLoad": "Échec du chargement des informations de guilde."
+    },
+    "DashboardMotd": {
+        "FailedToLoad": "Échec du chargement de motd.",
+        "MessageFrom": "Message de {{name}}"
+    },
+    "Quicksearch": {
+        "Placeholder": "Quicksearch utilisateurs, modcases, punitions, automodérations, ...",
+        "NoMatches": "Rien ne correspond à votre recherche :(",
+        "SearchFailed": "La recherche a échoué."
+    },
+    "GuildList": {
+        "LoadingGuilds": "Chargement des guildes...",
+        "NoGuild": "Veuillez rejoindre une guilde ou être banni pour que je puisse afficher quelque chose :(",
+        "AddGuild": "Ajouter une guilde"
+    },
+    "GuildOverview": {
+        "Tabs": {
+            "Dashboard": "Tableau de bord",
+            "Case": "Cas",
+            "Automoderation": "Automodérations",
+            "Bin": "Poubelle",
+            "Usernote": "Notes d'utilisateur",
+            "Usermap": "Cartes utilisateur",
+            "Config": "Configuration"
+        }
+    },
+    "UsermapTable": {
+        "Member": "Membre",
+        "Description": "La description",
+        "CreateNewMap": "Créer une nouvelle carte utilisateur",
+        "Search": "Recherche (utilisateur, identifiant, description...)",
+        "NoMatches": "Aucune usermap ne correspond à votre recherche.",
+        "FailedToLoad": "Échec du chargement des cartes utilisateur.",
+        "FailedToLoadMember": "Échec du chargement de la liste des membres.",
+        "FailedToCreate": "Échec de la création de la carte utilisateur.",
+        "Created": "Usermap créé."
+    },
+    "UsermapCard": {
+        "UpdatedPrefix": "Mis à jour:",
+        "Edit": "Éditer",
+        "Delete": "Effacer",
+        "FailedToUpdate": "Échec de la mise à jour de la carte utilisateur.",
+        "Updated": "Usermap mis à jour.",
+        "FailedToDelete": "Échec de la suppression de la carte utilisateur.",
+        "Deleted": "Carte utilisateur supprimée."
+    },
+    "UsernoteTable": {
+        "Member": "Membre",
+        "Description": "La description",
+        "CreateNewNote": "Créer une nouvelle note d'utilisateur",
+        "Search": "Recherche (utilisateur, identifiant, description...)",
+        "NoMatches": "Aucune note d'utilisateur ne correspond à votre recherche.",
+        "FailedToLoad": "Échec du chargement des notes d'utilisateur.",
+        "FailedToLoadMember": "Échec du chargement de la liste des membres.",
+        "FailedToCreate": "Échec de la création de la note utilisateur.",
+        "Created": "Note utilisateur créée."
+    },
+    "UsernoteCard": {
+        "UpdatedPrefix": "Mis à jour:",
+        "Edit": "Éditer",
+        "Delete": "Effacer",
+        "FailedToUpdate": "Échec de la mise à jour de la note utilisateur.",
+        "Updated": "Note d'utilisateur mise à jour.",
+        "FailedToDelete": "Échec de la suppression de la note utilisateur.",
+        "Deleted": "Note utilisateur supprimée."
+    },
+    "ModCaseDialog": {
+        "SelectATemplate": "Sélectionnez un modèle",
+        "BackToGuild": "Retour à la guilde.",
+        "BackToCase": "Retour à modcase.",
+        "SearchTemplate": "Modèle de recherche",
+        "Back": "Arrière",
+        "Next": "Prochain",
+        "ChooseAMember": "Choisissez un membre",
+        "Member": "Membre",
+        "PickOne": "Choisissez-en un",
+        "DescribeCase": "Décrivez le cas",
+        "Title": "Titre",
+        "Description": "La description",
+        "Labels": "Étiquettes",
+        "NewLabel": "Nouvelle étiquette...",
+        "ChoosePunishment": "Choisissez une punition",
+        "Punishment": "Châtiment",
+        "SendDmNotification": "Envoyer une notification dm",
+        "HandlePunishment": "Exécuter cette punition",
+        "UploadFiles": "Télécharger des fichiers",
+        "Upload": "Télécharger",
+        "CreateCase": "Créer un cas",
+        "UpdateCase": "Mettre à jour le cas",
+        "PublicNotification": "Envoyer une notification publique",
+        "SaveAsTemplate": "Enregistrer en tant que modèle",
+        "CreateCaseButton": "Créer un cas",
+        "UpdateCaseButton": "Mettre à jour le cas",
+        "FailedToLoad": {
+            "MemberList": "Échec du chargement de la liste des membres.",
+            "PunishmentEnum": "Échec du chargement des punitions disponibles.",
+            "CaseTemplates": "Échec du chargement des modèles de cas.",
+            "CurrentCase": "Échec du chargement du cas actuel."
+        },
+        "AppliedTemplate": "Modèle appliqué.",
+        "TemplateDeleted": "Modèle supprimé.",
+        "FailedToDeleteTemplate": "Échec de la suppression du modèle.",
+        "TemplateSaved": "Modèle enregistré.",
+        "FailedToSaveTemplate": "Échec de l'enregistrement du modèle.",
+        "FileUploaded": "Fichier téléchargé.",
+        "FailedToUploadFile": "Échec du téléchargement du fichier.",
+        "CaseCreated": "Cas créé.",
+        "CaseUpdated": "Cas mis à jour."
+    },
+    "ModCaseTable": {
+        "ExcludeAutoMod": "Exclure les automodérations",
+        "ExcludePermanent": "Exclure les peines permanentes",
+        "ExcludeInactive": "Exclure les cas inactifs",
+        "CreateNewCase": "Créer un nouveau cas",
+        "Search": "Recherche (utilisateur, identifiant, description...)",
+        "FailedToLoad": "Échec du chargement des cas.",
+        "NoMatches": "Aucun cas ne correspond à votre recherche."
+    },
+    "ModCaseCard": {
+        "ViewDetailsButton": "Voir les détails",
+        "Created": "Créé:",
+        "Until": "Jusqu'à:",
+        "Delete": "Effacer:"
+    },
+    "ModCaseView": {
+        "Suspect": "Suspect",
+        "ID": "identifiant",
+        "Moderator": "Modérateur",
+        "Punishment": "Châtiment",
+        "Guild": "Guilde",
+        "PunishedUntil": "Puni jusqu'à :",
+        "PunishedForever": "Puni à jamais",
+        "PunishmentExpired": "La peine est expirée.",
+        "CreatedAt": "Créé à",
+        "EditedAt": "Edité à",
+        "LastEditModerator": "Dernière modification par le modérateur",
+        "Description": "La description",
+        "UploadedFiles": "Fichiers téléchargés",
+        "Upload": "Télécharger",
+        "Comments": "commentaires",
+        "NewComment": "Nouveau commentaire",
+        "LockComments": "Verrouiller les commentaires",
+        "UnlockComments": "Déverrouiller les commentaires",
+        "PostComment": "Poster un commentaire",
+        "CaseMarkedToDelete": "Marqué pour être supprimé - {{user}}",
+        "CommentsLocked": "Commentaires verrouillés - {{user}}",
+        "Restore": "Restaurer",
+        "View": "Vue",
+        "Delete": "Effacer",
+        "Moderators": "Modérateurs",
+        "FailedToLoad": {
+            "Punishments": "Échec du chargement des punitions disponibles.",
+            "Files": "Échec du chargement des fichiers.",
+            "Guild": "Échec du chargement des informations de guilde.",
+            "Case": "Échec du chargement du dossier."
+        },
+        "DeleteCase": {
+            "Deleted": "Cas marqué pour être supprimé.",
+            "ForceDeleted": "Cas supprimé.",
+            "Failed": "Échec de la suppression du cas."
+        },
+        "RestoreCase": {
+            "Restored": "Boitier restauré.",
+            "Failed": "Échec de la restauration du cas."
+        },
+        "FileUpload": {
+            "Uploaded": "Fichier téléchargé.",
+            "Failed": "Échec du téléchargement du fichier."
+        },
+        "FileDelete": {
+            "Deleted": "Fichier supprimé.",
+            "Failed": "Échec de la suppression du fichier"
+        },
+        "CommentDelete": {
+            "Deleted": "Commentaire supprimé.",
+            "Failed": "Échec de la suppression du commentaire"
+        },
+        "CommentLock": {
+            "Locked": "Commentaires verrouillés.",
+            "Failed": "Échec du verrouillage des commentaires"
+        },
+        "CommentUnlock": {
+            "Unlocked": "Commentaires débloqués.",
+            "Failed": "Échec du déverrouillage des commentaires"
+        },
+        "CommentPost": {
+            "Posted": "Commentaire posté.",
+            "Failed": "Échec de la publication du commentaire"
+        },
+        "CommentUpdate": {
+            "Updated": "Commentaire mis à jour.",
+            "Failed": "Échec de la mise à jour du commentaire"
+        }
+    },
+    "Scanning": {
+        "EnterUserOrInvite": "Entrez un identifiant d'utilisateur ou un code d'invitation",
+        "Userscan": "Les utilisateurs peuvent",
+        "Invitescan": "Invitescan",
+        "UserscanDescription": "Entrez un identifiant d'utilisateur pour obtenir un aperçu rapide d'un membre ou des relations avec d'autres membres. Cela permet également de suivre les invitations utilisées par un nouveau membre afin que vous puissiez rapidement repérer les comptes alternatifs. Utilisez un double clic pour afficher d'autres ressources telles qu'un modcase.",
+        "InvitescanDescription": "Entrez un code d'invitation ou un lien pour obtenir un aperçu rapide d'une invitation ou des relations avec d'autres membres. Utilisez un double clic pour afficher d'autres ressources comme un autre utilisateur.",
+        "FailedToLoad": {
+            "Scan": "Échec du chargement des informations d'analyse.",
+            "Invite": "Échec du chargement des informations d'analyse.",
+            "InvalidInvite": "Aucune information trouvée pour cette invitation."
+        },
+        "JoinedAt": "Rejoint à",
+        "OccuredAt": "s'est produit à",
+        "CreatedAt": "Créé à"
+    }
+}

@@ -4,165 +4,273 @@
             "description": "Login button",
             "en": "Login with Discord",
             "de": "Mit Discord anmelden",
-            "at": "Mit Discord omödn"
+            "at": "Mit Discord omödn",
+            "fr": "Connectez-vous avec Discord",
+            "es": "Iniciar sesión con Discord",
+            "ru": "Войти через Discord",
+            "it": "Accedi con Discord"
         },
         "Loading": {
             "description": "log in loading",
             "en": "Logging you in with Discord...",
             "de": "Du wirst angemeldet...",
-            "at": "Du wiast ogmödt..."
+            "at": "Du wiast ogmödt...",
+            "fr": "Connexion avec Discord...",
+            "es": "Iniciando sesión con Discord ...",
+            "ru": "Вход в систему через Discord ...",
+            "it": "Accesso con Discord..."
         }
     },
     "Case": {
         "description": "case",
         "en": "Case",
         "de": "Vorfall",
-        "at": "Vorfoi"
+        "at": "Vorfoi",
+        "fr": "Cas",
+        "es": "Caso",
+        "ru": "Случай",
+        "it": "Caso"
     },
     "Cases": {
         "description": "cases",
         "en": "Cases",
         "de": "Vorfälle",
-        "at": "Vorfälle"
+        "at": "Vorfälle",
+        "fr": "Cas",
+        "es": "Casos",
+        "ru": "Случаи",
+        "it": "casi"
     },
     "Punishment": {
         "description": "punishment",
         "en": "Punishment",
         "de": "Bestrafung",
-        "at": "Bestrofung"
+        "at": "Bestrofung",
+        "fr": "Châtiment",
+        "es": "Castigo",
+        "ru": "Наказание",
+        "it": "Punizione"
     },
     "Punishments": {
         "description": "punishments",
         "en": "Punishments",
         "de": "Bestrafungen",
-        "at": "Bestrofungen"
+        "at": "Bestrofungen",
+        "fr": "Les sanctions",
+        "es": "Castigos",
+        "ru": "Наказания",
+        "it": "punizioni"
     },
     "Bans": {
         "description": "bans",
         "en": "Bans",
         "de": "Banns",
-        "at": "Banns"
+        "at": "Banns",
+        "fr": "Interdictions",
+        "es": "Prohibiciones",
+        "ru": "Баны",
+        "it": "Divieti"
     },
     "Mutes": {
         "description": "mutes",
         "en": "Mutes",
         "de": "Stummschaltungen",
-        "at": "Stummschoitungen"
+        "at": "Stummschoitungen",
+        "fr": "Muet",
+        "es": "Silencia",
+        "ru": "Немые",
+        "it": "Disattiva"
     },
     "Automods": {
         "description": "automoderations",
         "en": "Automods",
         "de": "Automods",
-        "at": "Automods"
+        "at": "Automods",
+        "fr": "Automods",
+        "es": "Automods",
+        "ru": "Автомоды",
+        "it": "Automod"
     },
     "Automoderations": {
         "description": "automoderations",
         "en": "Automoderations",
         "de": "Automoderationen",
-        "at": "Automodarationen"
+        "at": "Automodarationen",
+        "fr": "Automodérations",
+        "es": "Automoderaciones",
+        "ru": "Автомобили",
+        "it": "Automoderazione"
     },
     "Invite": {
         "description": "invite",
         "en": "Invite",
         "de": "Einladung",
-        "at": "Eiladung"
+        "at": "Eiladung",
+        "fr": "Inviter",
+        "es": "Invitación",
+        "ru": "Приглашать",
+        "it": "Invitare"
     },
     "Invites": {
         "description": "invites",
         "en": "Invites",
         "de": "Einladungen",
-        "at": "Eiladungen"
+        "at": "Eiladungen",
+        "fr": "Invite",
+        "es": "Invita",
+        "ru": "Приглашает",
+        "it": "invita"
     },
     "Usernotes": {
         "description": "usernotes",
         "en": "Usernotes",
         "de": "Nutzernotizen",
-        "at": "Nutzanotizn"
+        "at": "Nutzanotizn",
+        "fr": "Notes d'utilisateur",
+        "es": "Notas de usuario",
+        "ru": "Примечания пользователя",
+        "it": "Note utente"
     },
     "Usermaps": {
         "description": "usermaps",
         "en": "Usermaps",
         "de": "Benutzerbeziehungen",
-        "at": "Benutzanotizn"
+        "at": "Benutzanotizn",
+        "fr": "Cartes utilisateur",
+        "es": "Mapas de usuario",
+        "ru": "Карты пользователя",
+        "it": "Mappe utente"
     },
     "Comments": {
         "description": "comments",
         "en": "Comments",
         "de": "Kommentare",
-        "at": "Kommentare"
+        "at": "Kommentare",
+        "fr": "commentaires",
+        "es": "Comentarios",
+        "ru": "Комментарии",
+        "it": "Commenti"
     },
     "Loading": {
         "description": "loading",
         "en": "Loading...",
         "de": "Lädt...",
-        "at": "Lodt..."
+        "at": "Lodt...",
+        "fr": "Chargement...",
+        "es": "Cargando...",
+        "ru": "Загружается ...",
+        "it": "Caricamento in corso..."
     },
     "NothingHere": {
         "description": "Nothing here.",
         "en": "Nothing here.",
         "de": "Nichts gefunden.",
-        "at": "Nix gfundn"
+        "at": "Nix gfundn",
+        "fr": "Rien ici.",
+        "es": "Nada aquí.",
+        "ru": "Здесь ничего.",
+        "it": "Niente qui."
     },
     "AcceptTermsOnLogin": {
         "description": "Accept terms on login",
         "en": "By logging in you accept our Terms and Guidelines.",
         "de": "Beim Anmelden stimmen Sie unseren Nutzungsbedingungen und Richtlinien zu.",
-        "at": "Beim omödn stimmens de Nutzungsbedinungen und de Richtlinien zua."
+        "at": "Beim omödn stimmens de Nutzungsbedinungen und de Richtlinien zua.",
+        "fr": "En vous connectant, vous acceptez nos conditions et directives.",
+        "es": "Al iniciar sesión, acepta nuestros Términos y directrices.",
+        "ru": "Выполняя вход, вы принимаете наши Условия и положения.",
+        "it": "Effettuando l'accesso accetti i nostri Termini e Linee guida."
     },
     "Toolbar": {
         "Login": {
             "description": "Login button",
             "en": "Login",
             "de": "Anmelden",
-            "at": "Omödn"
+            "at": "Omödn",
+            "fr": "Connexion",
+            "es": "Acceso",
+            "ru": "Авторизоваться",
+            "it": "Login"
         },
         "Logout": {
             "description": "Logout button",
             "en": "Logout",
             "de": "Abmelden",
-            "at": "Obmödn"
+            "at": "Obmödn",
+            "fr": "Se déconnecter",
+            "es": "Cerrar sesión",
+            "ru": "Выйти",
+            "it": "Disconnettersi"
         },
         "Patchnotes": {
             "description": "Patchnotes",
             "en": "Patchnotes",
             "de": "Patchnotizen",
-            "at": "Patchnotizn"
+            "at": "Patchnotizn",
+            "fr": "Notes de mise à jour",
+            "es": "Notas del parche",
+            "ru": "Patchnotes",
+            "it": "Patchnote"
         },
         "Community": {
             "description": "Community",
             "en": "Community",
             "de": "Community",
-            "at": "Community"
+            "at": "Community",
+            "fr": "Communauté",
+            "es": "Comunidad",
+            "ru": "Сообщество",
+            "it": "Comunità"
         },
         "Terms": {
             "description": "Terms",
             "en": "Terms",
             "de": "Nutzungsbedingungen",
-            "at": "Nutzungsbedingungen"
+            "at": "Nutzungsbedingungen",
+            "fr": "termes",
+            "es": "Condiciones",
+            "ru": "Условия",
+            "it": "Termini"
         },
         "Legal": {
             "description": "Legal",
             "en": "Legal",
             "de": "Rechtliches",
-            "at": "Rechtlichs"
+            "at": "Rechtlichs",
+            "fr": "Légal",
+            "es": "Legal",
+            "ru": "Юридический",
+            "it": "legale"
         },
         "API": {
             "description": "API",
             "en": "API",
             "de": "API",
-            "at": "API"
+            "at": "API",
+            "fr": "API",
+            "es": "API",
+            "ru": "API",
+            "it": "API"
         },
         "Insights": {
             "description": "Insights",
             "en": "Insights",
             "de": "Statistiken",
-            "at": "Statistikn"
+            "at": "Statistikn",
+            "fr": "Connaissances",
+            "es": "Perspectivas",
+            "ru": "Insights",
+            "it": "Approfondimenti"
         },
         "Scanning": {
             "description": "Scanning",
             "en": "Scanning",
             "de": "Untersuchung",
-            "at": "Untasuchung"
+            "at": "Untasuchung",
+            "fr": "Balayage",
+            "es": "Exploración",
+            "ru": "Сканирование",
+            "it": "Scansione"
         }
     },
     "Guilds": {
@@ -170,37 +278,61 @@
             "description": "Guilds",
             "en": "Guilds",
             "de": "Gilden",
-            "at": "Güdn"
+            "at": "Güdn",
+            "fr": "Guildes",
+            "es": "Gremios",
+            "ru": "Гильдии",
+            "it": "Gilde"
         },
         "All": {
             "description": "All guilds",
             "en": "All guilds",
             "de": "Alle Gilden",
-            "at": "Olle Güdn"
+            "at": "Olle Güdn",
+            "fr": "Toutes les guildes",
+            "es": "Todos los gremios",
+            "ru": "Все гильдии",
+            "it": "Tutte le gilde"
         },
         "Admin": {
             "description": "Admin guilds",
             "en": "Admin guilds",
             "de": "Admingilden",
-            "at": "Admingüdn"
+            "at": "Admingüdn",
+            "fr": "Guildes d'administration",
+            "es": "Gremios de administradores",
+            "ru": "Гильдии админов",
+            "it": "Gilde di amministratori"
         },
         "Moderator": {
             "description": "Moderator guilds",
             "en": "Moderator guilds",
             "de": "Moderatorengilden",
-            "at": "Modaratorengüdn"
+            "at": "Modaratorengüdn",
+            "fr": "Guildes de modérateurs",
+            "es": "Gremios de moderadores",
+            "ru": "Модераторы гильдий",
+            "it": "Gilde dei moderatori"
         },
         "Member": {
             "description": "Member guilds",
             "en": "Guilds",
             "de": "Gilden",
-            "at": "Güdn"
+            "at": "Güdn",
+            "fr": "Guildes",
+            "es": "Gremios",
+            "ru": "Гильдии",
+            "it": "Gilde"
         },
         "Banned": {
             "description": "Banned guilds",
             "en": "Banned from guilds",
             "de": "Gesperrt von Gilden",
-            "at": "Gsperrt vo Güden"
+            "at": "Gsperrt vo Güden",
+            "fr": "Banni des guildes",
+            "es": "Prohibido en los gremios",
+            "ru": "Забанен в гильдии",
+            "it": "Bandito dalle gilde"
         }
     },
     "MASZ": {
@@ -208,19 +340,31 @@
             "description": "guild deleted",
             "en": "Guild deleted.",
             "de": "Gilde gelöscht.",
-            "at": "Güde glescht."
+            "at": "Güde glescht.",
+            "fr": "Guilde supprimée.",
+            "es": "Gremio eliminado.",
+            "ru": "Гильдия удалена.",
+            "it": "Gilda eliminata."
         },
         "FailedToDeleteGuild": {
             "description": "Failed to delete guild",
             "en": "Failed to delete guild.",
             "de": "Gilde konnte nicht gelöscht werden.",
-            "at": "Güde konnt ned glescht wean."
+            "at": "Güde konnt ned glescht wean.",
+            "fr": "Échec de la suppression de la guilde.",
+            "es": "No se pudo borrar el gremio.",
+            "ru": "Не удалось удалить гильдию.",
+            "it": "Impossibile eliminare la gilda."
         },
         "PleaseLoginFirst": {
             "description": "please login first ",
             "en": "Please login first.",
             "de": "Bitte melde dich zuerst an.",
-            "at": "Bitte möd di zerst o."
+            "at": "Bitte möd di zerst o.",
+            "fr": "S'il vous plait Connectez-vous d'abord.",
+            "es": "Por favor ingresa primero.",
+            "ru": "Пожалуйста, войдите сначала.",
+            "it": "Per favore fai prima il log in."
         }
     },
     "Adminstats": {
@@ -228,103 +372,171 @@
             "description": "the discord bot",
             "en": "Bot",
             "de": "Bot",
-            "at": "Bot"
+            "at": "Bot",
+            "fr": "Bot",
+            "es": "Bot",
+            "ru": "Бот",
+            "it": "bot"
         },
         "Database": {
             "description": "the database",
             "en": "Database",
             "de": "Datenbank",
-            "at": "Datnbonk"
+            "at": "Datnbonk",
+            "fr": "Base de données",
+            "es": "Base de datos",
+            "ru": "База данных",
+            "it": "Banca dati"
         },
         "InternalCache": {
             "description": "the internal cache",
             "en": "Internal cache",
             "de": "Interner Speicher",
-            "at": "Interna Speicha"
+            "at": "Interna Speicha",
+            "fr": "Cache interne",
+            "es": "Caché interno",
+            "ru": "Внутренний кеш",
+            "it": "Cache interna"
         },
         "NextCache": {
             "description": "next cache clear",
             "en": "Next cache",
             "de": "Speicherentleerung",
-            "at": "Speichaentleerung"
+            "at": "Speichaentleerung",
+            "fr": "Cache suivant",
+            "es": "Siguiente caché",
+            "ru": "Следующий кеш",
+            "it": "Cache successiva"
         },
         "Tokens": {
             "description": "Tokens",
             "en": "Tokens",
             "de": "Schlüssel",
-            "at": "Schlüssl"
+            "at": "Schlüssl",
+            "fr": "Jetons",
+            "es": "Tokens",
+            "ru": "Жетоны",
+            "it": "gettoni"
         },
         "CurrentlyLoggedIn": {
             "description": "currently logged in users headline",
             "en": "Currently logged in",
             "de": "Moment eingeloggt",
-            "at": "Momenton eigloggt"
+            "at": "Momenton eigloggt",
+            "fr": "Actuellement connecté",
+            "es": "Conectado actualmente",
+            "ru": "Вы вошли в систему",
+            "it": "Attualmente connesso"
         },
         "DiscordCache": {
             "description": "headline for cache list",
             "en": "Discord cache",
             "de": "Discordspeicher",
-            "at": "Discordspeicha"
+            "at": "Discordspeicha",
+            "fr": "Cache Discord",
+            "es": "Caché de discordia",
+            "ru": "Кэш Discord",
+            "it": "Discord cache"
         },
         "ClearCache": {
             "description": "Clear cache button",
             "en": "Clear cache",
             "de": "Speicher leeren",
-            "at": "Speicha lean"
+            "at": "Speicha lean",
+            "fr": "Vider le cache",
+            "es": "Limpiar cache",
+            "ru": "Очистить кэш",
+            "it": "Cancella cache"
         },
         "FailedToLoad": {
             "description": "Failed to load adminstats",
             "en": "Failed to load adminstats.",
             "de": "Statistiken konnten nicht geladen werden.",
-            "at": "Statistikn kenna ned glodn wean."
+            "at": "Statistikn kenna ned glodn wean.",
+            "fr": "Échec du chargement des adminstats.",
+            "es": "Error al cargar adminstats.",
+            "ru": "Не удалось загрузить статистику администратора.",
+            "it": "Impossibile caricare le statistiche di amministrazione."
         },
         "FailedToLoadLocalVersion": {
             "description": "Failed to load installed version",
             "en": "Failed to load installed version.",
             "de": "Lokale Versionsinfo konnten nicht geladen werden.",
-            "at": "Lokal Versionsnfo kenna ned glodn wean."
+            "at": "Lokal Versionsnfo kenna ned glodn wean.",
+            "fr": "Échec du chargement de la version installée.",
+            "es": "No se pudo cargar la versión instalada.",
+            "ru": "Не удалось загрузить установленную версию.",
+            "it": "Impossibile caricare la versione installata."
         },
         "FailedToLoadAvailableVersions": {
             "description": "Failed to load available versions",
             "en": "Failed to load available versions.",
             "de": "Verfügbare Versionen konnten nicht geladen werden.",
-            "at": "Ferfüghbar kenna ned glodn wean."
+            "at": "Ferfüghbar kenna ned glodn wean.",
+            "fr": "Échec du chargement des versions disponibles.",
+            "es": "No se pudieron cargar las versiones disponibles.",
+            "ru": "Не удалось загрузить доступные версии.",
+            "it": "Impossibile caricare le versioni disponibili."
         },
         "FailedToClear": {
             "description": "Failed to clear cache",
             "en": "Failed to clear cache.",
             "de": "Speicher konnte nicht geleert werden.",
-            "at": "Speicha konnte ned gleat wean."
+            "at": "Speicha konnte ned gleat wean.",
+            "fr": "Échec de l'effacement du cache.",
+            "es": "No se pudo borrar la caché.",
+            "ru": "Не удалось очистить кеш.",
+            "it": "Impossibile cancellare la cache."
         },
         "Cleared": {
             "description": " clear cache",
             "en": "Cache cleared.",
             "de": "Speicher geleert.",
-            "at": "Speicha gleat."
+            "at": "Speicha gleat.",
+            "fr": "Cache vidé.",
+            "es": "Caché borrado.",
+            "ru": "Кеш очищен.",
+            "it": "Cache cancellata."
         },
         "Insights": {
             "description": "headline",
             "en": "Insights",
             "de": "Statistiken",
-            "at": "Statistikn"
+            "at": "Statistikn",
+            "fr": "Connaissances",
+            "es": "Perspectivas",
+            "ru": "Insights",
+            "it": "Approfondimenti"
         },
         "UpdateAvailableHeadline": {
             "description": "Update available",
             "en": "Update available",
             "de": "Update verfügbar",
-            "at": "Update verfügbar"
+            "at": "Update verfügbar",
+            "fr": "Mise à jour disponible",
+            "es": "Actualización disponible",
+            "ru": "Доступно обновление",
+            "it": "Aggiornamento disponibile"
         },
         "Published": {
             "description": "Published prefix for release date of update",
             "en": "Published:",
             "de": "Veröffentlicht:",
-            "at": "Veröffentlicht:"
+            "at": "Veröffentlicht:",
+            "fr": "Publié :",
+            "es": "Publicado:",
+            "ru": "Опубликовано:",
+            "it": "Pubblicato:"
         },
         "UpdateAvailableText": {
             "description": "Update available text",
             "en": "Update {{tag}} is available. Please update your instance.",
             "de": "Update {{tag}} ist verfügbar. Bitte aktualisiere deinen Bot.",
-            "at": "Update {{tag}} is verfügbar. Bit aktualisier deinen Bot."
+            "at": "Update {{tag}} is verfügbar. Bit aktualisier deinen Bot.",
+            "fr": "La mise à jour {{tag}} est disponible. Veuillez mettre à jour votre instance.",
+            "es": "La actualización {{tag}} está disponible. Actualice su instancia.",
+            "ru": "Доступно обновление {{tag}}. Обновите свой экземпляр.",
+            "it": "L'aggiornamento {{tag}} è disponibile. Aggiorna la tua istanza."
         }
     },
     "AdminstatsList": {
@@ -332,7 +544,11 @@
             "description": "Show more button",
             "en": "Show more",
             "de": "Mehr anzeigen",
-            "at": "Mehr ozeign"
+            "at": "Mehr ozeign",
+            "fr": "Montre plus",
+            "es": "Mostrar más",
+            "ru": "Показать больше",
+            "it": "Mostra di più"
         }
     },
     "TokenOverview": {
@@ -340,109 +556,181 @@
             "description": "description of token stuff.",
             "en": "As a siteadmin you can use the MASZ API to implement your own custom scripts and automate stuff on MASZ. Create an API key below to authorize yourself against the API while making web requests.",
             "de": "Als Seitenadministrator können Sie die MASZ API nutzen, um ihre eigene Skripte und Automatisierungen in MASZ zu implementieren. Erstellen Sie einen API-Schlüssel, um sich gegenüber der API zu authentifizieren, während Sie Web-Anfragen tätigen.",
-            "at": "Oit Seitnadmin hom se de meglischkeit, de MASZ API zua nutznm um ernane eiganan Skripte und Automatisiarungen in MASZ einezumgeba. Erstöns bitte an API-Schlüssl, damits erna gegenüba da API authentifizian kenna, wenns Web-Ofrogn tätign tan."
+            "at": "Oit Seitnadmin hom se de meglischkeit, de MASZ API zua nutznm um ernane eiganan Skripte und Automatisiarungen in MASZ einezumgeba. Erstöns bitte an API-Schlüssl, damits erna gegenüba da API authentifizian kenna, wenns Web-Ofrogn tätign tan.",
+            "fr": "En tant qu'administrateur de site, vous pouvez utiliser l'API MASZ pour implémenter vos propres scripts personnalisés et automatiser des choses sur MASZ. Créez une clé API ci-dessous pour vous autoriser par rapport à l'API lorsque vous effectuez des requêtes Web.",
+            "es": "Como administrador del sitio, puede usar la API de MASZ para implementar sus propios scripts personalizados y automatizar cosas en MASZ. Cree una clave de API a continuación para autorizarse contra la API mientras realiza solicitudes web.",
+            "ru": "Как администратор сайта вы можете использовать MASZ API для реализации ваших собственных сценариев и автоматизации работы на MASZ. Создайте ключ API ниже, чтобы авторизоваться с помощью API при выполнении веб-запросов.",
+            "it": "Come amministratore del sito puoi utilizzare l'API MASZ per implementare i tuoi script personalizzati e automatizzare le cose su MASZ. Crea una chiave API di seguito per autorizzarti contro l'API mentre effettui richieste web."
         },
         "Documentation": {
             "description": "find documentation at",
             "en": "You can find a full documentation in the /docs directory.",
             "de": "Sie finden die vollständige Dokumentation im /docs-Verzeichnis.",
-            "at": "De voiständige Dokumentations findens im /docs-Vazeichnis."
+            "at": "De voiständige Dokumentations findens im /docs-Vazeichnis.",
+            "fr": "Vous pouvez trouver une documentation complète dans le répertoire /docs.",
+            "es": "Puede encontrar una documentación completa en el directorio / docs.",
+            "ru": "Вы можете найти полную документацию в каталоге / docs.",
+            "it": "Puoi trovare una documentazione completa nella directory /docs."
         },
         "Postman": {
             "description": "Use postman to import the json file",
             "en": "Just install postman and import the json file.",
             "de": "Installieren Sie Postman und importieren Sie die JSON-Datei.",
-            "at": "Instalians bittsche den Postman und tuans de JSON-Datei importian."
+            "at": "Instalians bittsche den Postman und tuans de JSON-Datei importian.",
+            "fr": "Installez simplement postman et importez le fichier json.",
+            "es": "Simplemente instale el cartero e importe el archivo json.",
+            "ru": "Просто установите почтальон и импортируйте файл json.",
+            "it": "Basta installare postino e importare il file json."
         },
         "TokenHeader": {
             "description": "Insert token in authorization header",
             "en": "Include tokens in the \"Authorization\" header with a \"Bearer \" prefix.",
             "de": "Fügen Sie Tokens in den \"Authorization\"-Header mit einem \"Bearer \"-Präfix ein.",
-            "at": "Tuan bitte den Tokn in den \"Authorization\"-Header mit am \"Bearer \"-Präfix eifügn."
+            "at": "Tuan bitte den Tokn in den \"Authorization\"-Header mit am \"Bearer \"-Präfix eifügn.",
+            "fr": "Incluez des jetons dans l'en-tête « Authorization » avec un préfixe « Bearer ».",
+            "es": "Incluya tokens en el encabezado \"Autorización\" con un prefijo \"Portador\".",
+            "ru": "Включите токены в заголовок «Authorization» с префиксом «Bearer».",
+            "it": "Includere i token nell'intestazione \"Authorization\" con un prefisso \"Bearer\"."
         },
         "PythonAPIWrapper": {
             "description": "try out the official api wrapper written in python",
             "en": "Try out the official python API wrapper.",
             "de": "Probieren Sie den offiziellen Python-API-Wrapper aus.",
-            "at": "Provians den offiziön Python-API-Wrapper aus."
+            "at": "Provians den offiziön Python-API-Wrapper aus.",
+            "fr": "Essayez le wrapper officiel de l'API python.",
+            "es": "Pruebe el contenedor oficial de la API de Python.",
+            "ru": "Попробуйте официальную оболочку API Python.",
+            "it": "Prova il wrapper API Python ufficiale."
         },
         "Warning": {
             "description": "the word 'warning'",
             "en": "Warning",
             "de": "Warnung",
-            "at": "Ochtung"
+            "at": "Ochtung",
+            "fr": "Avertissement",
+            "es": "Advertencia",
+            "ru": "Предупреждение",
+            "it": "Avvertimento"
         },
         "TokenIsPowerful": {
             "description": "a token is very powerful",
             "en": "An API key is very powerful and can control everything on MASZ!",
             "de": "Ein API-Schlüssel ist sehr mächtig und kann alles auf MASZ steuern!",
-            "at": "Da API-Schlüssl is ned ohne und ko ois am MASZ steian!"
+            "at": "Da API-Schlüssl is ned ohne und ko ois am MASZ steian!",
+            "fr": "Une clé API est très puissante et permet de tout contrôler sur MASZ !",
+            "es": "¡Una clave API es muy poderosa y puede controlar todo en MASZ!",
+            "ru": "Ключ API очень мощный и может контролировать все на MASZ!",
+            "it": "Una chiave API è molto potente e può controllare tutto su MASZ!"
         },
         "CreateToken": {
             "description": "Create token button",
             "en": "Create token",
             "de": "Schlüssel erstellen",
-            "at": "Schlüssl erstön"
+            "at": "Schlüssl erstön",
+            "fr": "Créer un jeton",
+            "es": "Crear token",
+            "ru": "Создать токен",
+            "it": "Crea token"
         },
         "SaveSecurely": {
             "description": "Save this token securely",
             "en": "Save this token securely.",
             "de": "Sichern Sie diesen Schlüssel.",
-            "at": "Tuans den Schlüssl speichan."
+            "at": "Tuans den Schlüssl speichan.",
+            "fr": "Enregistrez ce jeton en toute sécurité.",
+            "es": "Guarde este token de forma segura.",
+            "ru": "Надежно сохраните этот токен.",
+            "it": "Salva questo token in modo sicuro."
         },
         "Tokens": {
             "description": "Headline for list of tokens",
             "en": "Tokens",
             "de": "Schlüssel",
-            "at": "Schlüssl"
+            "at": "Schlüssl",
+            "fr": "Jetons",
+            "es": "Tokens",
+            "ru": "Жетоны",
+            "it": "gettoni"
         },
         "NoTokensFound": {
             "description": "No tokens registered",
             "en": "No tokens found",
             "de": "Keine Schlüssel gefunden",
-            "at": "Ka Schlüssl gfundn."
+            "at": "Ka Schlüssl gfundn.",
+            "fr": "Aucun jeton trouvé",
+            "es": "No se encontraron tokens",
+            "ru": "Токенов не найдено",
+            "it": "Nessun token trovato"
         },
         "ValidUntil": {
             "description": "token is valid until..",
             "en": "Valid until:",
             "de": "Gültig bis:",
-            "at": "Güt bis:"
+            "at": "Güt bis:",
+            "fr": "Valable jusque:",
+            "es": "Válido hasta:",
+            "ru": "Действительна до:",
+            "it": "Valido fino a:"
         },
         "CopiedClipboard": {
             "description": "token copied to clipboard",
             "en": "Copied to clipboard.",
             "de": "In Zwischenablage kopiert.",
-            "at": "In de Zwischnoblog kopiat."
+            "at": "In de Zwischnoblog kopiat.",
+            "fr": "Copié dans le presse-papier.",
+            "es": "Copiado al portapapeles.",
+            "ru": "Скопировано в буфер обмена.",
+            "it": "Copiato negli appunti."
         },
         "Deleted": {
             "description": "token deleted",
             "en": "Token deleted.",
             "de": "Schlüssel gelöscht.",
-            "at": "Schlüssl glescht"
+            "at": "Schlüssl glescht",
+            "fr": "Jeton supprimé.",
+            "es": "Token eliminado.",
+            "ru": "Токен удален.",
+            "it": "Token eliminato."
         },
         "FailedToDelete": {
             "description": "failed to delete token",
             "en": "Failed to delete token..",
             "de": "Schlüssel konnte nicht gelöscht werden.",
-            "at": "Schlüssl konnt ned glescht wean."
+            "at": "Schlüssl konnt ned glescht wean.",
+            "fr": "Échec de la suppression du jeton.",
+            "es": "No se pudo borrar el token.",
+            "ru": "Не удалось удалить токен ..",
+            "it": "Impossibile eliminare il token.."
         },
         "Created": {
             "description": "token created",
             "en": "Token created.",
             "de": "Schlüssel erstellt.",
-            "at": "Schlüssl erstöt."
+            "at": "Schlüssl erstöt.",
+            "fr": "Jeton créé.",
+            "es": "Token creado.",
+            "ru": "Токен создан.",
+            "it": "Token creato."
         },
         "FailedToCreate": {
             "description": "failed to create token",
             "en": "Failed to create token..",
             "de": "Schlüssel konnte nicht erstellt werden.",
-            "at": "Schlüssl konnt ned erstöt wean."
+            "at": "Schlüssl konnt ned erstöt wean.",
+            "fr": "Échec de la création du jeton.",
+            "es": "No se pudo crear el token.",
+            "ru": "Не удалось создать токен ..",
+            "it": "Impossibile creare il token.."
         },
         "FailedToLoad": {
             "description": "failed to load token",
             "en": "Failed to load current token..",
             "de": "Schlüssel konnten nicht geladen werden.",
-            "at": "Schlüssl konnt ned glodn wean."
+            "at": "Schlüssl konnt ned glodn wean.",
+            "fr": "Échec du chargement du jeton actuel.",
+            "es": "No se pudo cargar el token actual.",
+            "ru": "Не удалось загрузить текущий токен ..",
+            "it": "Impossibile caricare il token corrente.."
         }
     },
     "AutoModCard": {
@@ -450,13 +738,21 @@
             "description": "View case button",
             "en": "View case",
             "de": "Vorfall anzeigen",
-            "at": "Vorfoi ozeign"
+            "at": "Vorfoi ozeign",
+            "fr": "Voir le cas",
+            "es": "Ver caso",
+            "ru": "Посмотреть кейс",
+            "it": "Visualizza caso"
         },
         "Message": {
             "description": "Message id",
             "en": "Message",
             "de": "Nachricht",
-            "at": "Nochricht"
+            "at": "Nochricht",
+            "fr": "Un message",
+            "es": "Mensaje",
+            "ru": "Сообщение",
+            "it": "Messaggio"
         }
     },
     "AutoModTable": {
@@ -464,19 +760,31 @@
             "description": "Failed to load automods",
             "en": "Failed to load automoderations.",
             "de": "Automoderationen konnten nicht geladen werden.",
-            "at": "Automodaration konnt ned glodn wean."
+            "at": "Automodaration konnt ned glodn wean.",
+            "fr": "Échec du chargement des modérations automatiques.",
+            "es": "Error al cargar automoderaciones.",
+            "ru": "Не удалось загрузить автоматические режимы.",
+            "it": "Impossibile caricare le moderazioni automatiche."
         },
         "NoMatches": {
             "description": "There are no moderated events.",
             "en": "There are no moderated events.",
             "de": "Es gibt keine moderierten Ereignisse.",
-            "at": "Es gibt kane modariaten Sochn."
+            "at": "Es gibt kane modariaten Sochn.",
+            "fr": "Il n'y a pas d'événements modérés.",
+            "es": "No hay eventos moderados.",
+            "ru": "Нет модерируемых событий.",
+            "it": "Non ci sono eventi moderati."
         },
         "LoadMoreEvents": {
             "description": "Load more events",
             "en": "Load more entries",
             "de": "Mehr Einträge laden",
-            "at": "Mehr Eiträge lodn"
+            "at": "Mehr Eiträge lodn",
+            "fr": "Charger plus d'entrées",
+            "es": "Cargar más entradas",
+            "ru": "Загрузить больше записей",
+            "it": "Carica più voci"
         }
     },
     "DTPicker": {
@@ -484,13 +792,21 @@
             "description": "Choose a date",
             "en": "Choose a date",
             "de": "Wähle ein Datum",
-            "at": "Tu a Datum auswöhn"
+            "at": "Tu a Datum auswöhn",
+            "fr": "Choisissez une date",
+            "es": "Elige una fecha",
+            "ru": "Выберите дату",
+            "it": "Scegli una data"
         },
         "OK": {
             "description": "ok button for close of datepicker",
             "en": "OK",
             "de": "OK",
-            "at": "Basst"
+            "at": "Basst",
+            "fr": "d'accord",
+            "es": "OK",
+            "ru": "Ok",
+            "it": "ok"
         }
     },
     "CaseDeleteDialog": {
@@ -498,25 +814,41 @@
             "description": "send public notification",
             "en": "Send public notification",
             "de": "Sende öffentliche Benachrichtigung",
-            "at": "Tua a öffentliche Benochrichtigung sendn"
+            "at": "Tua a öffentliche Benochrichtigung sendn",
+            "fr": "Envoyer une notification publique",
+            "es": "Enviar notificación pública",
+            "ru": "Отправить публичное уведомление",
+            "it": "Invia notifica pubblica"
         },
         "ForceDelete": {
             "description": "Force delete",
             "en": "Force delete",
             "de": "Permanent löschen",
-            "at": "Fix fia imma leschn"
+            "at": "Fix fia imma leschn",
+            "fr": "Forcer la suppression",
+            "es": "Forzar eliminación",
+            "ru": "Принудительное удаление",
+            "it": "Forza l'eliminazione"
         },
         "Cancel": {
             "description": "cancel button",
             "en": "Cancel",
             "de": "Abbrechen",
-            "at": "Obrechn"
+            "at": "Obrechn",
+            "fr": "Annuler",
+            "es": "Cancelar",
+            "ru": "Отмена",
+            "it": "Annulla"
         },
         "Confirm": {
             "description": "confirm button",
             "en": "Confirm",
             "de": "Bestätigen",
-            "at": "Zuastimma"
+            "at": "Zuastimma",
+            "fr": "Confirmer",
+            "es": "Confirmar",
+            "ru": "Подтверждать",
+            "it": "Confermare"
         }
     },
     "CommentEditDialog": {
@@ -524,25 +856,41 @@
             "description": "edit comment",
             "en": "Edit comment",
             "de": "Kommentar aktualisieren",
-            "at": "Kommentoa aktualisiat"
+            "at": "Kommentoa aktualisiat",
+            "fr": "Modifier le commentaire",
+            "es": "Editar comentario",
+            "ru": "Редактировать комментарий",
+            "it": "Modifica commento"
         },
         "Comment": {
             "description": "Comment field",
             "en": "Comment",
             "de": "Kommentar",
-            "at": "Kommentoa"
+            "at": "Kommentoa",
+            "fr": "Commenter",
+            "es": "Comentario",
+            "ru": "Комментарий",
+            "it": "Commento"
         },
         "Cancel": {
             "description": "cancel button",
             "en": "Cancel",
             "de": "Abbrechen",
-            "at": "Obrechn"
+            "at": "Obrechn",
+            "fr": "Annuler",
+            "es": "Cancelar",
+            "ru": "Отмена",
+            "it": "Annulla"
         },
         "Confirm": {
             "description": "confirm button",
             "en": "Confirm",
             "de": "Bestätigen",
-            "at": "Zuastima"
+            "at": "Zuastima",
+            "fr": "Confirmer",
+            "es": "Confirmar",
+            "ru": "Подтверждать",
+            "it": "Confermare"
         }
     },
     "ConfirmDialog": {
@@ -550,19 +898,31 @@
             "description": "are you sure",
             "en": "Are you sure?",
             "de": "Bist du dir sicher?",
-            "at": "Bist da sicha?"
+            "at": "Bist da sicha?",
+            "fr": "Es-tu sûr?",
+            "es": "¿Está seguro?",
+            "ru": "Вы уверены?",
+            "it": "Sei sicuro?"
         },
         "Cancel": {
             "description": "cancel button",
             "en": "Cancel",
             "de": "Abbrechen",
-            "at": "Obrechn"
+            "at": "Obrechn",
+            "fr": "Annuler",
+            "es": "Cancelar",
+            "ru": "Отмена",
+            "it": "Annulla"
         },
         "Confirm": {
             "description": "confirm button",
             "en": "Confirm",
             "de": "Bestätigen",
-            "at": "Zuastima"
+            "at": "Zuastima",
+            "fr": "Confirmer",
+            "es": "Confirmar",
+            "ru": "Подтверждать",
+            "it": "Confermare"
         }
     },
     "NewTokenDialog": {
@@ -570,25 +930,41 @@
             "description": "name your token",
             "en": "Name your token.",
             "de": "Benenne deinen Schlüssel.",
-            "at": "Gib dam Schlüssl an Nom."
+            "at": "Gib dam Schlüssl an Nom.",
+            "fr": "Nommez votre jeton.",
+            "es": "Nombra tu token.",
+            "ru": "Назовите свой токен.",
+            "it": "Dai un nome al tuo token."
         },
         "Name": {
             "description": "name field",
             "en": "Name",
             "de": "Name",
-            "at": "Nom"
+            "at": "Nom",
+            "fr": "Nom",
+            "es": "Nombre",
+            "ru": "Имя",
+            "it": "Nome"
         },
         "Cancel": {
             "description": "cancel button",
             "en": "Cancel",
             "de": "Abbrechen",
-            "at": "Obrechn"
+            "at": "Obrechn",
+            "fr": "Annuler",
+            "es": "Cancelar",
+            "ru": "Отмена",
+            "it": "Annulla"
         },
         "Confirm": {
             "description": "confirm button",
             "en": "Confirm",
             "de": "Bestätigen",
-            "at": "Zuastima"
+            "at": "Zuastima",
+            "fr": "Confirmer",
+            "es": "Confirmar",
+            "ru": "Подтверждать",
+            "it": "Confermare"
         }
     },
     "TemplateCreateDialog": {
@@ -596,37 +972,61 @@
             "description": "name your token",
             "en": "Name your template.",
             "de": "Benenne deine Vorlage.",
-            "at": "Tu dei Vorlog benenna."
+            "at": "Tu dei Vorlog benenna.",
+            "fr": "Nommez votre modèle.",
+            "es": "Ponle un nombre a tu plantilla.",
+            "ru": "Назовите свой шаблон.",
+            "it": "Dai un nome al tuo modello."
         },
         "Name": {
             "description": "name field",
             "en": "Name",
             "de": "Name",
-            "at": "Nom"
+            "at": "Nom",
+            "fr": "Nom",
+            "es": "Nombre",
+            "ru": "Имя",
+            "it": "Nome"
         },
         "Visibility": {
             "description": "visibility field",
             "en": "Visibility",
             "de": "Sichtbarkeit",
-            "at": "Sichtboarkeit"
+            "at": "Sichtboarkeit",
+            "fr": "Visibilité",
+            "es": "Visibilidad",
+            "ru": "Видимость",
+            "it": "Visibilità"
         },
         "Cancel": {
             "description": "cancel button",
             "en": "Cancel",
             "de": "Abbrechen",
-            "at": "Obrechn"
+            "at": "Obrechn",
+            "fr": "Annuler",
+            "es": "Cancelar",
+            "ru": "Отмена",
+            "it": "Annulla"
         },
         "Confirm": {
             "description": "confirm button",
             "en": "Confirm",
             "de": "Bestätigen",
-            "at": "Zuastima"
+            "at": "Zuastima",
+            "fr": "Confirmer",
+            "es": "Confirmar",
+            "ru": "Подтверждать",
+            "it": "Confermare"
         },
         "FailedToLoadPermissions": {
             "description": "failed to load",
             "en": "Failed to load visibility options.",
             "de": "Sichtbarkeitseinstellungen konnten nicht geladen werden.",
-            "at": "De Sichtboarkeitseistellungen konntn ned glodn wean."
+            "at": "De Sichtboarkeitseistellungen konntn ned glodn wean.",
+            "fr": "Échec du chargement des options de visibilité.",
+            "es": "No se pudieron cargar las opciones de visibilidad.",
+            "ru": "Не удалось загрузить параметры видимости.",
+            "it": "Impossibile caricare le opzioni di visibilità."
         }
     },
     "UsermapEditDialog": {
@@ -634,25 +1034,41 @@
             "description": "Edit usermap",
             "en": "Edit usermap",
             "de": "Benutzerbeziehung aktualisieren",
-            "at": "Benutzabeziehungen aktualisian"
+            "at": "Benutzabeziehungen aktualisian",
+            "fr": "Modifier la carte utilisateur",
+            "es": "Editar mapa de usuario",
+            "ru": "Редактировать карту пользователя",
+            "it": "Modifica mappa utente"
         },
         "Description": {
             "description": "description field",
             "en": "Description",
             "de": "Beschreibung",
-            "at": "Beschreibung"
+            "at": "Beschreibung",
+            "fr": "La description",
+            "es": "Descripción",
+            "ru": "Описание",
+            "it": "Descrizione"
         },
         "Cancel": {
             "description": "cancel button",
             "en": "Cancel",
             "de": "Abbrechen",
-            "at": "Obrechn"
+            "at": "Obrechn",
+            "fr": "Annuler",
+            "es": "Cancelar",
+            "ru": "Отмена",
+            "it": "Annulla"
         },
         "Confirm": {
             "description": "confirm button",
             "en": "Confirm",
             "de": "Bestätigen",
-            "at": "Zustima"
+            "at": "Zustima",
+            "fr": "Confirmer",
+            "es": "Confirmar",
+            "ru": "Подтверждать",
+            "it": "Confermare"
         }
     },
     "UsernoteEditDialog": {
@@ -660,25 +1076,41 @@
             "description": "Edit usernote",
             "en": "Edit usernote",
             "de": "Benutzernotiz aktualisieren",
-            "at": "Benutzanotiz aktualisian"
+            "at": "Benutzanotiz aktualisian",
+            "fr": "Modifier la note d'utilisateur",
+            "es": "Editar nota de usuario",
+            "ru": "Редактировать заметку пользователя",
+            "it": "Modifica nota utente"
         },
         "Description": {
             "description": "description field",
             "en": "Description",
             "de": "Beschreibung",
-            "at": "Beschreibung"
+            "at": "Beschreibung",
+            "fr": "La description",
+            "es": "Descripción",
+            "ru": "Описание",
+            "it": "Descrizione"
         },
         "Cancel": {
             "description": "cancel button",
             "en": "Cancel",
             "de": "Abbrechen",
-            "at": "Obrechn"
+            "at": "Obrechn",
+            "fr": "Annuler",
+            "es": "Cancelar",
+            "ru": "Отмена",
+            "it": "Annulla"
         },
         "Confirm": {
             "description": "confirm button",
             "en": "Confirm",
             "de": "Bestätigen",
-            "at": "Zustima"
+            "at": "Zustima",
+            "fr": "Confirmer",
+            "es": "Confirmar",
+            "ru": "Подтверждать",
+            "it": "Confermare"
         }
     },
     "GuildDialog": {
@@ -686,199 +1118,331 @@
             "description": "Add a guild",
             "en": "Add a guild",
             "de": "Gilde hinzufügen",
-            "at": "Güde hinzufügn"
+            "at": "Güde hinzufügn",
+            "fr": "Ajouter une guilde",
+            "es": "Agregar un gremio",
+            "ru": "Добавить гильдию",
+            "it": "Aggiungi una gilda"
         },
         "SearchAGuild": {
             "description": "Search a guild",
             "en": "Search a guild",
             "de": "Gilde suchen",
-            "at": "Güde suchn"
+            "at": "Güde suchn",
+            "fr": "Rechercher une guilde",
+            "es": "Buscar un gremio",
+            "ru": "Найдите гильдию",
+            "it": "Cerca una gilda"
         },
         "SelectAnotherGuild": {
             "description": " Select a guild",
             "en": "Select a guild",
             "de": "Wähle eine andere Gilde",
-            "at": "Tu a ondera Güde wöhn"
+            "at": "Tu a ondera Güde wöhn",
+            "fr": "Sélectionnez une guilde",
+            "es": "Seleccionar un gremio",
+            "ru": "Выберите гильдию",
+            "it": "Seleziona una gilda"
         },
         "InviteFirst": {
             "description": "you need to invite the bot to this guild first",
             "en": "You need to invite the bot first!",
             "de": "Du musst den Bot zuerst einladen!",
-            "at": "Du muast den Bot zerst eilodn!"
+            "at": "Du muast den Bot zerst eilodn!",
+            "fr": "Vous devez d'abord inviter le bot !",
+            "es": "¡Primero debes invitar al bot!",
+            "ru": "Сначала нужно пригласить бота!",
+            "it": "Devi prima invitare il bot!"
         },
         "Invite": {
             "description": "invite button",
             "en": "Invite",
             "de": "Einladen",
-            "at": "Eilodn"
+            "at": "Eilodn",
+            "fr": "Inviter",
+            "es": "Invitación",
+            "ru": "Приглашать",
+            "it": "Invitare"
         },
         "Back": {
             "description": "Back button",
             "en": "Back",
             "de": "Zurück",
-            "at": "Zrück"
+            "at": "Zrück",
+            "fr": "Arrière",
+            "es": "atrás",
+            "ru": "Назад",
+            "it": "Di ritorno"
         },
         "Next": {
             "description": "Next button",
             "en": "Next",
             "de": "Nächster Schritt",
-            "at": "Nächsta Schritt"
+            "at": "Nächsta Schritt",
+            "fr": "Prochain",
+            "es": "próximo",
+            "ru": "Следующий",
+            "it": "Prossimo"
         },
         "StepAdminRoles": {
             "description": "Select admin roles step of dialog",
             "en": "Select admin roles",
             "de": "Auswahl der Adminrollen",
-            "at": "Adminroin auswöhn"
+            "at": "Adminroin auswöhn",
+            "fr": "Sélectionnez les rôles d'administrateur",
+            "es": "Seleccionar roles de administrador",
+            "ru": "Выберите роли администратора",
+            "it": "Seleziona i ruoli di amministratore"
         },
         "AdminRoles": {
             "description": "Admin roles select",
             "en": "Admin roles",
             "de": "Adminrollen",
-            "at": "Adminroin"
+            "at": "Adminroin",
+            "fr": "Rôles d'administrateur",
+            "es": "Roles de administrador",
+            "ru": "Роли администратора",
+            "it": "Ruoli di amministratore"
         },
         "StepModeratorRoles": {
             "description": "Select moderator roles step of dialog",
             "en": "Select moderator roles",
             "de": "Auswahl der Moderatorrollen",
-            "at": "Modroin auswöhn"
+            "at": "Modroin auswöhn",
+            "fr": "Sélectionnez les rôles de modérateur",
+            "es": "Seleccionar roles de moderador",
+            "ru": "Выберите роли модератора",
+            "it": "Seleziona i ruoli del moderatore"
         },
         "ModeratorRoles": {
             "description": "Moderator roles select",
             "en": "Moderator roles",
             "de": "Moderatorrollen",
-            "at": "Modroin"
+            "at": "Modroin",
+            "fr": "Rôles de modérateur",
+            "es": "Roles de moderador",
+            "ru": "Роли модератора",
+            "it": "Ruoli di moderatore"
         },
         "StepMutedRoles": {
             "description": "Select muted roles step of dialog",
             "en": "Select muted roles",
             "de": "Auswahl der Stummrollen",
-            "at": "Stummroin auswöhn"
+            "at": "Stummroin auswöhn",
+            "fr": "Sélectionnez les rôles masqués",
+            "es": "Seleccionar roles silenciados",
+            "ru": "Выберите роли с отключенным звуком",
+            "it": "Seleziona ruoli disattivati"
         },
         "MutedRoles": {
             "description": "Muted roles select",
             "en": "Muted roles",
             "de": "Stummschaltungsrollen",
-            "at": "Stummroin"
+            "at": "Stummroin",
+            "fr": "Rôles en sourdine",
+            "es": "Roles silenciados",
+            "ru": "Приглушенные роли",
+            "it": "Ruoli silenziati"
         },
         "StepFurtherConfiguration": {
             "description": "Select further configuration step of dialog",
             "en": "Select further configuration",
             "de": "Weitere Konfiguration",
-            "at": "Weitare Konfiguration"
+            "at": "Weitare Konfiguration",
+            "fr": "Sélectionnez une autre configuration",
+            "es": "Seleccionar configuración adicional",
+            "ru": "Выберите дальнейшую конфигурацию",
+            "it": "Seleziona un'ulteriore configurazione"
         },
         "InternalStaffWebhook": {
             "description": "field to add internal notification webhook",
             "en": "Internal staff notification webhook",
             "de": "Internen Notifikations-Webhook",
-            "at": "Internaner Notifikations-Webhook"
+            "at": "Internaner Notifikations-Webhook",
+            "fr": "Webhook de notification du personnel interne",
+            "es": "Webhook de notificación al personal interno",
+            "ru": "Веб-перехватчик уведомления внутреннего персонала",
+            "it": "Webhook di notifica del personale interno"
         },
         "PublicWebhook": {
             "description": "field to add public notification webhook",
             "en": "Public member notification webhook",
             "de": "Öffentlicher Notifikations-Webhook",
-            "at": "Öffentlicha Notifikations-Webhook"
+            "at": "Öffentlicha Notifikations-Webhook",
+            "fr": "Webhook de notification publique des membres",
+            "es": "Webhook público de notificación de miembros",
+            "ru": "Веб-перехватчик публичных уведомлений участников",
+            "it": "Webhook pubblico di notifica dei membri"
         },
         "Language": {
             "description": "language select",
             "en": "Language",
             "de": "Sprache",
-            "at": "Sproch"
+            "at": "Sproch",
+            "fr": "Langue",
+            "es": "Idioma",
+            "ru": "Язык",
+            "it": "Lingua"
         },
         "StrictPermissionCheckbox": {
             "description": "Checkbox to enable strict permission mode",
             "en": "Strict permission check",
             "de": "Genaue Berechtigungskontrolle",
-            "at": "Genaue Berechnigungskontroi"
+            "at": "Genaue Berechnigungskontroi",
+            "fr": "Contrôle strict des autorisations",
+            "es": "Verificación estricta de permisos",
+            "ru": "Строгая проверка разрешений",
+            "it": "Controllo rigoroso dei permessi"
         },
         "StrictPermissionDetails": {
             "description": "details of strict permission mode",
             "en": "A moderator needs kick/ban permissions on discord to create kick/ban modcases",
             "de": "Ein Moderator benötigt Kick/Ban Rechte auf Discord um Kick/Ban-Modkäufe zu erstellen",
-            "at": "Da Modaration braucht Rausschmiss/Aussperrn Rechte aufm Discord um de Rausschmiss/Aussperrn-Berichte zum erstön."
+            "at": "Da Modaration braucht Rausschmiss/Aussperrn Rechte aufm Discord um de Rausschmiss/Aussperrn-Berichte zum erstön.",
+            "fr": "Un modérateur a besoin d'autorisations kick/ban sur Discord pour créer des modcases kick/ban",
+            "es": "Un moderador necesita permisos de expulsión / prohibición en discordia para crear modcases de expulsión / prohibición",
+            "ru": "Модератору нужны разрешения на кик / бан на Discord, чтобы создавать модкейсы кик / бан",
+            "it": "Un moderatore ha bisogno dei permessi kick/ban su discord per creare modcase kick/ban"
         },
         "ExecuteWhois": {
             "description": "Execute whois checkbox",
             "en": "Execute whois on member join",
             "de": "Whois automatisch ausführen bei neuen Mitgliedern",
-            "at": "Den Whois automatisch ausfüan bei am neichn Nutza"
+            "at": "Den Whois automatisch ausfüan bei am neichn Nutza",
+            "fr": "Exécuter whois lors de l'adhésion des membres",
+            "es": "Ejecutar whois al unirse a miembros",
+            "ru": "Выполнить whois при присоединении к члену",
+            "it": "Esegui whois sul membro join"
         },
         "WhoisDetails": {
             "description": "details of whois mode",
             "en": "Automatically sends information about the joined user to your internal webhook.",
             "de": "Sendet automatisch Informationen über den neuen Benutzer an deinen internen Webhook.",
-            "at": "Tua automatisch Infos üba an neichn Nutza on dein internan Webhook schickn."
+            "at": "Tua automatisch Infos üba an neichn Nutza on dein internan Webhook schickn.",
+            "fr": "Envoie automatiquement des informations sur l'utilisateur rejoint à votre webhook interne.",
+            "es": "Envía automáticamente información sobre el usuario unido a su webhook interno.",
+            "ru": "Автоматически отправляет информацию о присоединенном пользователе на ваш внутренний веб-перехватчик.",
+            "it": "Invia automaticamente le informazioni sull'utente iscritto al tuo webhook interno."
         },
         "PublishModerator": {
             "description": "publish moderator info checkbox",
             "en": "Publish moderator information",
             "de": "Veröffentliche Moderatorinformationen",
-            "at": "Veröfftnlich Modarationsinfos"
+            "at": "Veröfftnlich Modarationsinfos",
+            "fr": "Publier les informations du modérateur",
+            "es": "Publicar información del moderador",
+            "ru": "Опубликовать информацию модератора",
+            "it": "Pubblica informazioni sul moderatore"
         },
         "PublishModeratorDetails": {
             "description": "details of publish moderator mode",
             "en": "A suspect will be able to see which moderator punished him.",
             "de": "Ein Verdächtiger wird in der Lage sein, zu sehen, welcher Moderator ihn verurteilt hat.",
-            "at": "A Verdächtiga wird de Meglichkeit hom, zum schaun, wöchana Modarator erm verurtoit hot."
+            "at": "A Verdächtiga wird de Meglichkeit hom, zum schaun, wöchana Modarator erm verurtoit hot.",
+            "fr": "Un suspect pourra voir quel modérateur l'a puni.",
+            "es": "Un sospechoso podrá ver qué moderador lo castigó.",
+            "ru": "Подозреваемый сможет увидеть, какой модератор его наказал.",
+            "it": "Un sospetto sarà in grado di vedere quale moderatore lo ha punito."
         },
         "Done": {
             "description": "Done",
             "en": "Done",
             "de": "Fertig",
-            "at": "Fertig"
+            "at": "Fertig",
+            "fr": "Terminé",
+            "es": "Hecho",
+            "ru": "Выполнено",
+            "it": "Fatto"
         },
         "RegisterGuild": {
             "description": "button to reigster guild",
             "en": "Register guild",
             "de": "Gilde registrieren",
-            "at": "Güde registrian"
+            "at": "Güde registrian",
+            "fr": "Enregistrer la guilde",
+            "es": "Registro del gremio",
+            "ru": "Зарегистрировать гильдию",
+            "it": "Registrati gilda"
         },
         "UpdateGuild": {
             "description": "button to update guild",
             "en": "Update guild",
             "de": "Gilde aktualisieren",
-            "at": "Güde aktualisian"
+            "at": "Güde aktualisian",
+            "fr": "Mettre à jour la guilde",
+            "es": "Actualizar gremio",
+            "ru": "Обновить гильдию",
+            "it": "Aggiorna gilda"
         },
         "FailedToLoadGuilds": {
             "description": "Failed to load guilds",
             "en": "Failed to load guilds.",
             "de": "Gilden konnten nicht geladen werden.",
-            "at": "Güde konnt ned glodn wean."
+            "at": "Güde konnt ned glodn wean.",
+            "fr": "Échec du chargement des guildes.",
+            "es": "No se pudieron cargar los gremios.",
+            "ru": "Не удалось загрузить гильдии.",
+            "it": "Impossibile caricare le gilde."
         },
         "FailedToLoadCurrentGuild": {
             "description": "Failed to load current guild",
             "en": "Failed to load current guild info.",
             "de": "Gildeninformation konnte nicht geladen werden.",
-            "at": "Güdeninfos konnt ned glodn wean."
+            "at": "Güdeninfos konnt ned glodn wean.",
+            "fr": "Échec du chargement des informations de guilde actuelles.",
+            "es": "No se pudo cargar la información actual del gremio.",
+            "ru": "Не удалось загрузить текущую информацию о гильдии.",
+            "it": "Impossibile caricare le informazioni correnti sulla gilda."
         },
         "FailedInviteWindow": {
             "description": "failed to open invite window",
             "en": "Failed to open invite window.",
             "de": "Einladung konnte nicht gestartet werden.",
-            "at": "Eiladung konnt ned gstartet wean."
+            "at": "Eiladung konnt ned gstartet wean.",
+            "fr": "Échec de l'ouverture de la fenêtre d'invitation.",
+            "es": "No se pudo abrir la ventana de invitación.",
+            "ru": "Не удалось открыть окно приглашения.",
+            "it": "Impossibile aprire la finestra di invito."
         },
         "FailedToRegisterGuild": {
             "description": "failed to register guild",
             "en": "Failed to register guild.",
             "de": "Gilde konnte nicht registriert werden.",
-            "at": "Güde konnt ned registriat wean."
+            "at": "Güde konnt ned registriat wean.",
+            "fr": "Échec de l'enregistrement de la guilde.",
+            "es": "No se pudo registrar el gremio.",
+            "ru": "Не удалось зарегистрировать гильдию.",
+            "it": "Impossibile registrare la gilda."
         },
         "FailedToUpdateGuild": {
             "description": "failed to update guild",
             "en": "Failed to update guild.",
             "de": "Gilde konnte nicht aktualisiert werden.",
-            "at": "Güde konnt ned aktualisiat wean."
+            "at": "Güde konnt ned aktualisiat wean.",
+            "fr": "Échec de la mise à jour de la guilde.",
+            "es": "No se pudo actualizar el gremio.",
+            "ru": "Не удалось обновить гильдию.",
+            "it": "Impossibile aggiornare la gilda."
         },
         "GuildCreated": {
             "description": "Guild created",
             "en": "Guild created",
             "de": "Gilde registriert",
-            "at": "Güde registriat"
+            "at": "Güde registriat",
+            "fr": "Guilde créée",
+            "es": "Gremio creado",
+            "ru": "Гильдия создана",
+            "it": "Gilda creata"
         },
         "GuildUpdated": {
             "description": "Guild updated",
             "en": "Guild updated",
             "de": "Gilde aktualisiert",
-            "at": "Güde aktualisiat"
+            "at": "Güde aktualisiat",
+            "fr": "Guilde mise à jour",
+            "es": "Gremio actualizado",
+            "ru": "Гильдия обновлена",
+            "it": "Gilda aggiornata"
         }
     },
     "GuildAuditLogConfig": {
@@ -886,68 +1450,112 @@
             "description": "target channel",
             "en": "Target channel",
             "de": "Zielkanal",
-            "at": "Zielkanal"
+            "at": "Zielkanal",
+            "fr": "Canal cible",
+            "es": "Canal objetivo",
+            "ru": "Целевой канал",
+            "it": "Canale di destinazione"
         },
         "ComingSoon": {
             "description": "coming soon",
             "en": "Coming soon",
             "de": "Bald verfügbar",
-            "at": "Kimmt boid"
+            "at": "Kimmt boid",
+            "fr": "Bientôt disponible",
+            "es": "Próximamente, en breve, pronto",
+            "ru": "Скоро будет",
+            "it": "Prossimamente"
         },
         "PingRoles": {
             "description": "ping roles",
             "en": "Ping roles",
             "de": "Rolle pingen",
-            "at": "Rolle pingan"
+            "at": "Rolle pingan",
+            "fr": "Rôles de ping",
+            "es": "Roles de ping",
+            "ru": "Роли пинга",
+            "it": "Ping ruoli"
         },
         "AuditLog": {
             "description": "audit log",
             "en": "AuditLog",
             "de": "AuditLog",
-            "at": "AuditLog"
+            "at": "AuditLog",
+            "fr": "Journal d'audit",
+            "es": "Registro de auditoría",
+            "ru": "AuditLog",
+            "it": "Registro di audizione"
         },
         "ConfigDeleted": {
             "description": "config deleted",
             "en": "Config deleted.",
             "de": "Konfiguration gelöscht.",
-            "at": "Konfiguration glescht."
+            "at": "Konfiguration glescht.",
+            "fr": "Configuration supprimée.",
+            "es": "Configuración eliminada.",
+            "ru": "Конфиг удален.",
+            "it": "Configurazione eliminata."
         },
         "FailedToDeleteConfig": {
             "description": "failed to delete config",
             "en": "Failed to delete config.",
             "de": "Konfiguration konnte nicht gelöscht werden.",
-            "at": "Konfiguration konnte ned glescht wean."
+            "at": "Konfiguration konnte ned glescht wean.",
+            "fr": "Échec de la suppression de la configuration.",
+            "es": "No se pudo borrar la configuración.",
+            "ru": "Не удалось удалить конфигурацию.",
+            "it": "Impossibile eliminare la configurazione."
         },
         "SavedConfig": {
             "description": "saved config",
             "en": "Saved config.",
             "de": "Konfiguration gespeichert.",
-            "at": "Kondiguration gspeichat."
+            "at": "Kondiguration gspeichat.",
+            "fr": "Configuration enregistrée.",
+            "es": "Configuración guardada.",
+            "ru": "Сохраненный конфиг.",
+            "it": "Configurazione salvata."
         },
         "FailedToSaveConfig": {
             "description": "failed to save config",
             "en": "Failed to save config.",
             "de": "Konfiguration konnte nicht gespeichert werden.",
-            "at": "Konfiguration konnt ned gspeichat wean."
+            "at": "Konfiguration konnt ned gspeichat wean.",
+            "fr": "Échec de l'enregistrement de la configuration.",
+            "es": "No se pudo guardar la configuración.",
+            "ru": "Не удалось сохранить конфигурацию.",
+            "it": "Impossibile salvare la configurazione."
         },
         "FailedToLoadGuild": {
             "description": "failed to load guild info",
             "en": "Failed to load guild info.",
             "de": "Gildeninformationen konnten nicht geladen werden.",
-            "at": "Güdeninfos konnten ned glodn wean."
+            "at": "Güdeninfos konnten ned glodn wean.",
+            "fr": "Échec du chargement des informations de guilde.",
+            "es": "No se pudo cargar la información del gremio.",
+            "ru": "Не удалось загрузить информацию о гильдии.",
+            "it": "Impossibile caricare le informazioni sulla gilda."
         },
         "FailedToLoadChannels": {
             "description": "Failed to load guildchannel info.",
             "en": "Failed to load guildchannel info.",
             "de": "Gildenkanalinformationen konnten nicht geladen werden.",
-            "at": "Küdnkanoiinformationen konntn ned glodn wean."
+            "at": "Küdnkanoiinformationen konntn ned glodn wean.",
+            "fr": "Échec du chargement des informations du canal de guilde.",
+            "es": "No se pudo cargar la información del canal del gremio.",
+            "ru": "Не удалось загрузить информацию о канале гильдии.",
+            "it": "Impossibile caricare le informazioni sul canale di gilda."
         },
         "MessageSent": {
             "title": {
                 "description": "message sent",
                 "en": "Message sent",
                 "de": "Nachricht gesendet",
-                "at": "Nochricht gsendet"
+                "at": "Nochricht gsendet",
+                "fr": "Message envoyé",
+                "es": "Mensaje enviado",
+                "ru": "Сообщение отправлено",
+                "it": "Messaggio inviato"
             }
         },
         "MessageUpdated": {
@@ -955,7 +1563,11 @@
                 "description": "message updated",
                 "en": "Message updated",
                 "de": "Nachricht editiert",
-                "at": "Nochricht editiat"
+                "at": "Nochricht editiat",
+                "fr": "Message mis à jour",
+                "es": "Mensaje actualizado",
+                "ru": "Сообщение обновлено",
+                "it": "Messaggio aggiornato"
             }
         },
         "MessageDeleted": {
@@ -963,7 +1575,11 @@
                 "description": "message deleted",
                 "en": "Message deleted",
                 "de": "Nachricht gelöscht",
-                "at": "Nochricht glescht"
+                "at": "Nochricht glescht",
+                "fr": "Message supprimé",
+                "es": "Mensaje borrado",
+                "ru": "Сообщение удалено",
+                "it": "Messaggio cancellato"
             }
         },
         "UsernameUpdated": {
@@ -971,7 +1587,11 @@
                 "description": "username updated",
                 "en": "Username updated",
                 "de": "Benutzername editiert",
-                "at": "Benutzanom umgändat"
+                "at": "Benutzanom umgändat",
+                "fr": "Nom d'utilisateur mis à jour",
+                "es": "Nombre de usuario actualizado",
+                "ru": "Имя пользователя обновлено",
+                "it": "Nome utente aggiornato"
             }
         },
         "AvatarUpdated": {
@@ -979,7 +1599,11 @@
                 "description": "avatar updated",
                 "en": "Avatar updated",
                 "de": "Avatar editiert",
-                "at": "Avatar umgändat"
+                "at": "Avatar umgändat",
+                "fr": "Avatar mis à jour",
+                "es": "Avatar actualizado",
+                "ru": "Аватар обновлен",
+                "it": "Avatar aggiornato"
             }
         },
         "NicknameUpdated": {
@@ -987,7 +1611,11 @@
                 "description": "nickname updated",
                 "en": "Nickname updated",
                 "de": "Nickname editiert",
-                "at": "Spitznom umgändat"
+                "at": "Spitznom umgändat",
+                "fr": "Pseudo mis à jour",
+                "es": "Se actualizó el apodo",
+                "ru": "Псевдоним обновлен",
+                "it": "Nickname aggiornato"
             }
         },
         "MemberRolesUpdated": {
@@ -995,7 +1623,11 @@
                 "description": "member roles updated",
                 "en": "Member roles updated",
                 "de": "Mitgliederrollen editiert",
-                "at": "Mitgliedarollen umgändat"
+                "at": "Mitgliedarollen umgändat",
+                "fr": "Rôles des membres mis à jour",
+                "es": "Se actualizaron las funciones de los miembros",
+                "ru": "Роли участников обновлены",
+                "it": "Ruoli dei membri aggiornati"
             }
         },
         "MemberJoined": {
@@ -1003,7 +1635,11 @@
                 "description": "member joined",
                 "en": "Member joined",
                 "de": "Mitglied beigetreten",
-                "at": "Mitglied beigetretn"
+                "at": "Mitglied beigetretn",
+                "fr": "Membre rejoint",
+                "es": "Miembro se unió",
+                "ru": "Участник присоединился",
+                "it": "Membro iscritto"
             }
         },
         "MemberRemoved": {
@@ -1011,7 +1647,11 @@
                 "description": "member removed",
                 "en": "Member removed",
                 "de": "Mitglied entfernt",
-                "at": "Mitglied entfernt"
+                "at": "Mitglied entfernt",
+                "fr": "Membre supprimé",
+                "es": "Miembro eliminado",
+                "ru": "Участник удален",
+                "it": "Membro rimosso"
             }
         },
         "BanAdded": {
@@ -1019,7 +1659,11 @@
                 "description": "ban added",
                 "en": "Ban added",
                 "de": "Bann hinzugefügt",
-                "at": "Rauschmuss hinzugfügt"
+                "at": "Rauschmuss hinzugfügt",
+                "fr": "Interdiction ajoutée",
+                "es": "Prohibición agregada",
+                "ru": "Бан добавлен",
+                "it": "Divieto aggiunto"
             }
         },
         "BanRemoved": {
@@ -1027,7 +1671,11 @@
                 "description": "ban removed",
                 "en": "Ban removed",
                 "de": "Bann entfernt",
-                "at": "Rausschmiss glescht"
+                "at": "Rausschmiss glescht",
+                "fr": "Interdiction supprimée",
+                "es": "Prohibición eliminada",
+                "ru": "Бан снят",
+                "it": "Divieto rimosso"
             }
         },
         "InviteCreated": {
@@ -1035,7 +1683,11 @@
                 "description": "invite created",
                 "en": "Invite created",
                 "de": "Einladung erstellt",
-                "at": "Eiladung erstöt"
+                "at": "Eiladung erstöt",
+                "fr": "Invitation créée",
+                "es": "Invitación creada",
+                "ru": "Приглашение создано",
+                "it": "Invito creato"
             }
         },
         "InviteDeleted": {
@@ -1043,7 +1695,11 @@
                 "description": "invite deleted",
                 "en": "Invite deleted",
                 "de": "Einladung gelöscht",
-                "at": "Eiladung glescht"
+                "at": "Eiladung glescht",
+                "fr": "Invitation supprimée",
+                "es": "Invitación eliminada",
+                "ru": "Приглашение удалено",
+                "it": "Invito cancellato"
             }
         },
         "ThreadCreated": {
@@ -1051,7 +1707,11 @@
                 "description": "thread created",
                 "en": "Thread created",
                 "de": "Thread erstellt",
-                "at": "Thread erstöt"
+                "at": "Thread erstöt",
+                "fr": "Fil créé",
+                "es": "Hilo creado",
+                "ru": "Тема создана",
+                "it": "Discussione creata"
             }
         }
     },
@@ -1060,26 +1720,42 @@
             "description": "title of page",
             "en": "Automoderation",
             "de": "Automoderation",
-            "at": "Automodaration"
+            "at": "Automodaration",
+            "fr": "Automodération",
+            "es": "Automoderación",
+            "ru": "Автомобильная промышленность",
+            "it": "Automoderazione"
         },
         "Invites": {
             "title": {
                 "description": "title of automod invite",
                 "en": "Invites",
                 "de": "Einladungen",
-                "at": "Eiladungen"
+                "at": "Eiladungen",
+                "fr": "Invite",
+                "es": "Invita",
+                "ru": "Приглашает",
+                "it": "invita"
             },
             "details": {
                 "description": "details of automod invite",
                 "en": "A message on your guild matches the invite pattern. Invites to this guild will be ignored.",
                 "de": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster. Einladungen zu dieser Gilde werden ignoriert.",
-                "at": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta. Eiladunga zu dem Serva wera ignohriert."
+                "at": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta. Eiladunga zu dem Serva wera ignohriert.",
+                "fr": "Un message sur votre guilde correspond au modèle d'invitation. Les invitations à cette guilde seront ignorées.",
+                "es": "Un mensaje en tu gremio coincide con el patrón de invitación. Se ignorarán las invitaciones a este gremio.",
+                "ru": "Сообщение о вашей гильдии соответствует шаблону приглашения. Приглашения в эту гильдию будут проигнорированы.",
+                "it": "Un messaggio sulla tua gilda corrisponde al modello di invito. Gli inviti a questa gilda verranno ignorati."
             },
             "customWordField": {
                 "description": "",
                 "en": "Ignore guilds (enter IDs divided by newlines)",
                 "de": "Ignorierte Gilden-IDs (getrennt durch Zeilenumbruch)",
-                "at": "Ignorierte Güdn-IDs (getrennt durch an Zeilenumbruch"
+                "at": "Ignorierte Güdn-IDs (getrennt durch an Zeilenumbruch",
+                "fr": "Ignorer les guildes (entrez les identifiants divisés par des sauts de ligne)",
+                "es": "Ignorar gremios (ingrese ID divididos por líneas nuevas)",
+                "ru": "Игнорировать гильдии (введите идентификаторы, разделенные новой строкой)",
+                "it": "Ignora le gilde (inserisci gli ID divisi per newline)"
             }
         },
         "Emotes": {
@@ -1087,13 +1763,21 @@
                 "description": "title of automod emote",
                 "en": "Emotes",
                 "de": "Emoticons",
-                "at": "Emoji"
+                "at": "Emoji",
+                "fr": "Émoticônes",
+                "es": "Emotes",
+                "ru": "Эмоции",
+                "it": "emote"
             },
             "details": {
                 "description": "details of automod emote",
                 "en": "A message on your guild contains too many emotes.",
                 "de": "Eine Nachricht auf deinem Server enthält zu viele Emoticons.",
-                "at": "A Nochricht aufm Serva hot zvü Emojis"
+                "at": "A Nochricht aufm Serva hot zvü Emojis",
+                "fr": "Un message sur votre guilde contient trop d'émoticônes.",
+                "es": "Un mensaje en tu gremio contiene demasiados gestos.",
+                "ru": "Сообщение о вашей гильдии содержит слишком много эмоций.",
+                "it": "Un messaggio sulla tua gilda contiene troppe emote."
             }
         },
         "Mentions": {
@@ -1101,13 +1785,21 @@
                 "description": "title of automod mention",
                 "en": "Mentions",
                 "de": "Erwähnungen",
-                "at": "Erwähnungen"
+                "at": "Erwähnungen",
+                "fr": "Mentions",
+                "es": "Menciones",
+                "ru": "Упоминания",
+                "it": "Menzioni"
             },
             "details": {
                 "description": "details of automod mention",
                 "en": "A message on your guild contains too many mentions.",
                 "de": "Eine Nachricht auf deinem Server enthält zu viele Erwähnungen.",
-                "at": "A Nochricht aufm Serva hot zvü Erwähnungen."
+                "at": "A Nochricht aufm Serva hot zvü Erwähnungen.",
+                "fr": "Un message sur votre guilde contient trop de mentions.",
+                "es": "Un mensaje en tu gremio contiene demasiadas menciones.",
+                "ru": "Сообщение о вашей гильдии содержит слишком много упоминаний.",
+                "it": "Un messaggio sulla tua gilda contiene troppe menzioni."
             }
         },
         "Attachments": {
@@ -1115,13 +1807,21 @@
                 "description": "title of automod Attachments",
                 "en": "Attachments",
                 "de": "Anhänge",
-                "at": "Ohäng"
+                "at": "Ohäng",
+                "fr": "Pièces jointes",
+                "es": "Archivos adjuntos",
+                "ru": "Вложения",
+                "it": "Allegati"
             },
             "details": {
                 "description": "details of automod Attachments",
                 "en": "A message on your guild contains too many attachments.",
                 "de": "Eine Nachricht auf deinem Server enthält zu viele Anhänge.",
-                "at": "A Nochricht aufm Serva hot zvü Ohäng"
+                "at": "A Nochricht aufm Serva hot zvü Ohäng",
+                "fr": "Un message sur votre guilde contient trop de pièces jointes.",
+                "es": "Un mensaje en tu gremio contiene demasiados archivos adjuntos.",
+                "ru": "Сообщение о вашей гильдии содержит слишком много вложений.",
+                "it": "Un messaggio sulla tua gilda contiene troppi allegati."
             }
         },
         "Embeds": {
@@ -1129,13 +1829,21 @@
                 "description": "title of automod Embeds",
                 "en": "Embeds",
                 "de": "Einbettungen",
-                "at": "Eibettungen"
+                "at": "Eibettungen",
+                "fr": "Intégrer",
+                "es": "Incrusta",
+                "ru": "Встраивает",
+                "it": "Incorpora"
             },
             "details": {
                 "description": "details of automod Embeds",
                 "en": "A message on your guild contains too many embeds.",
                 "de": "Eine Nachricht auf deinem Server enthält zu viele Einbettungen.",
-                "at": "A Nochricht aufm Serva hot zvü Eibettungen. "
+                "at": "A Nochricht aufm Serva hot zvü Eibettungen. ",
+                "fr": "Un message sur votre guilde contient trop d'intégrations.",
+                "es": "Un mensaje en tu gremio contiene demasiadas incrustaciones.",
+                "ru": "Сообщение о вашей гильдии содержит слишком много вставок.",
+                "it": "Un messaggio sulla tua gilda contiene troppi incorporamenti."
             }
         },
         "Automoderations": {
@@ -1143,13 +1851,21 @@
                 "description": "too many automoderations",
                 "en": "Automoderations",
                 "de": "Automoderationen",
-                "at": "Automodarationen"
+                "at": "Automodarationen",
+                "fr": "Automodérations",
+                "es": "Automoderaciones",
+                "ru": "Автомобили",
+                "it": "Automoderazione"
             },
             "details": {
                 "description": "details of automod automods",
                 "en": "A user triggers too many automoderations in a defined timespan.",
                 "de": "Ein Benutzer löst zu viele Automoderationen in einem definierten Zeitraum aus.",
-                "at": "A Benutza hot zvü Automodarationen in am bestimmtn Zeitraum ausglest."
+                "at": "A Benutza hot zvü Automodarationen in am bestimmtn Zeitraum ausglest.",
+                "fr": "Un utilisateur déclenche trop d'automodérations dans un laps de temps défini.",
+                "es": "Un usuario desencadena demasiadas automovilizaciones en un período de tiempo definido.",
+                "ru": "Пользователь запускает слишком много автоматических режимов за определенный промежуток времени.",
+                "it": "Un utente attiva troppe moderazioni automatiche in un intervallo di tempo definito."
             }
         },
         "CustomFilter": {
@@ -1157,31 +1873,51 @@
                 "description": "title of automod custom filter",
                 "en": "Custom filter",
                 "de": "Benutzerdefinierter Filter",
-                "at": "Benutzadefinirta Füta"
+                "at": "Benutzadefinirta Füta",
+                "fr": "Filtre personnalisé",
+                "es": "Filtro personalizado",
+                "ru": "Пользовательский фильтр",
+                "it": "Filtro personalizzato"
             },
             "details": {
                 "description": "details of automod custom filter",
                 "en": "A user uses too many words defined in your list.",
                 "de": "Ein Benutzer benutzt zu viele Wörter aus deiner Liste.",
-                "at": "A Nutza nutzt zvü Wörta aus dana Listn."
+                "at": "A Nutza nutzt zvü Wörta aus dana Listn.",
+                "fr": "Un utilisateur utilise trop de mots définis dans votre liste.",
+                "es": "Un usuario usa demasiadas palabras definidas en su lista.",
+                "ru": "Пользователь использует слишком много слов, определенных в вашем списке.",
+                "it": "Un utente utilizza troppe parole definite nell'elenco."
             },
             "tooltip": {
                 "description": "a tooltip with extra tips. Words are checked line by line case insensitive.",
                 "en": "Words are checked line by line case insensitive.",
                 "de": "Wörter werden zeilenweise ohne Beachtung der Groß- und Kleinschreibung überprüft.",
-                "at": "Wörta wean zeitweis ohne da Beachtung vo da Groß- und Kleischreibung prüft."
+                "at": "Wörta wean zeitweis ohne da Beachtung vo da Groß- und Kleischreibung prüft.",
+                "fr": "Les mots sont vérifiés ligne par ligne sans tenir compte de la casse.",
+                "es": "Las palabras se comprueban línea por línea sin distinción entre mayúsculas y minúsculas.",
+                "ru": "Слова проверяются построчно без учета регистра.",
+                "it": "Le parole vengono controllate riga per riga senza distinzione tra maiuscole e minuscole."
             },
             "linkText": {
                 "description": "Example",
                 "en": "Example",
                 "de": "Beispiel",
-                "at": "Beispü"
+                "at": "Beispü",
+                "fr": "Exemple",
+                "es": "Ejemplo",
+                "ru": "Пример",
+                "it": "Esempio"
             },
             "customWordField": {
                 "description": "",
                 "en": "Custom words (regex pattern divided by newline)",
                 "de": "Eigene Wörter (Regexpattern getrennt durch Zeilenumbruch)",
-                "at": "Eigene Wörta (Regepxpattern getrennt durch an Zeilnumbruch)"
+                "at": "Eigene Wörta (Regepxpattern getrennt durch an Zeilnumbruch)",
+                "fr": "Mots personnalisés (modèle regex divisé par une nouvelle ligne)",
+                "es": "Palabras personalizadas (patrón de expresiones regulares dividido por nueva línea)",
+                "ru": "Пользовательские слова (шаблон регулярного выражения, разделенный новой строкой)",
+                "it": "Parole personalizzate (modello regex diviso per newline)"
             }
         },
         "Spam": {
@@ -1189,19 +1925,31 @@
                 "description": "too many spam",
                 "en": "Spam",
                 "de": "Spam",
-                "at": "Spem"
+                "at": "Spem",
+                "fr": "Pourriel",
+                "es": "Correo no deseado",
+                "ru": "Спам",
+                "it": "Spam"
             },
             "details": {
                 "description": "details of automod spam",
                 "en": "A user on your guild sends too many messages in a timespan.",
                 "de": "Ein Benutzer auf deinem Server sendet zu viele Nachrichten in einem definierten Zeitraum.",
-                "at": "A Nutze aufm Serva send zvü Nochricht in am bestimmt Zeitraum."
+                "at": "A Nutze aufm Serva send zvü Nochricht in am bestimmt Zeitraum.",
+                "fr": "Un utilisateur de votre guilde envoie trop de messages dans un laps de temps.",
+                "es": "Un usuario de tu gremio envía demasiados mensajes en un lapso de tiempo.",
+                "ru": "Пользователь вашей гильдии отправляет слишком много сообщений за промежуток времени.",
+                "it": "Un utente della tua gilda invia troppi messaggi in un intervallo di tempo."
             },
             "TimeLimitMessage": {
                 "description": "custom field label for time limit. Time limit (seconds)",
                 "en": "Time limit (seconds)",
                 "de": "Zeitlimit (Sekunden)",
-                "at": "Zeitlimit (Sekundn)"
+                "at": "Zeitlimit (Sekundn)",
+                "fr": "Limite de temps (secondes)",
+                "es": "Límite de tiempo (segundos)",
+                "ru": "Лимит времени (секунды)",
+                "it": "Limite di tempo (secondi)"
             }
         },
         "DuplicatedChars": {
@@ -1209,13 +1957,21 @@
                 "description": "title of automod DuplicatedChars",
                 "en": "Duplicated Characters",
                 "de": "Wiederholende Buchstaben",
-                "at": "Wiedaholende Buchstobn"
+                "at": "Wiedaholende Buchstobn",
+                "fr": "Caractères dupliqués",
+                "es": "Caracteres duplicados",
+                "ru": "Дублированные символы",
+                "it": "Personaggi duplicati"
             },
             "details": {
                 "description": "details of automod DuplicatedChars",
                 "en": "A message on your guild contains too many duplicated characters.",
                 "de": "Eine Nachricht auf deinem Server enthält zu viele wiederholende Buchstaben.",
-                "at": "A Nochricht aufm Server enthöt zvü wiedaholende Buchstobn."
+                "at": "A Nochricht aufm Server enthöt zvü wiedaholende Buchstobn.",
+                "fr": "Un message sur votre guilde contient trop de caractères dupliqués.",
+                "es": "Un mensaje en tu gremio contiene demasiados personajes duplicados.",
+                "ru": "Сообщение о вашей гильдии содержит слишком много повторяющихся персонажей.",
+                "it": "Un messaggio sulla tua gilda contiene troppi caratteri duplicati."
             }
         },
         "Link": {
@@ -1223,190 +1979,314 @@
                 "description": "title of automod Link",
                 "en": "Links",
                 "de": "Links",
-                "at": "Links"
+                "at": "Links",
+                "fr": "Liens",
+                "es": "Enlaces",
+                "ru": "Ссылки",
+                "it": "Link"
             },
             "details": {
                 "description": "details of automod Link",
                 "en": "A message on your guild contains too many links.",
                 "de": "Eine Nachricht auf deinem Server enthält zu viele Verlinkungen.",
-                "at": "A Nochricht aufm Server hod zvü Valinkungen"
+                "at": "A Nochricht aufm Server hod zvü Valinkungen",
+                "fr": "Un message sur votre guilde contient trop de liens.",
+                "es": "Un mensaje en tu gremio contiene demasiados enlaces.",
+                "ru": "Сообщение о вашей гильдии содержит слишком много ссылок.",
+                "it": "Un messaggio sulla tua gilda contiene troppi link."
             },
             "customWordField": {
                 "description": "",
                 "en": "Ignore links (enter regex patterns divided by newlines)",
                 "de": "Ignorierte Links (getrennte Regexpatterns durch Zeilenumbruch)",
-                "at": "Ignorierte Links (getrennte Links mit am Zeilenumbruch)"
+                "at": "Ignorierte Links (getrennte Links mit am Zeilenumbruch)",
+                "fr": "Ignorer les liens (entrer les modèles regex divisés par des nouvelles lignes)",
+                "es": "Ignorar enlaces (ingresar patrones de expresiones regulares divididos por líneas nuevas)",
+                "ru": "Игнорировать ссылки (введите шаблоны регулярных выражений, разделенные символами новой строки)",
+                "it": "Ignora collegamenti (inserisci modelli regex divisi per newline)"
             },
             "linkText": {
                 "description": "Example",
                 "en": "Example",
                 "de": "Beispiel",
-                "at": "Beispü"
+                "at": "Beispü",
+                "fr": "Exemple",
+                "es": "Ejemplo",
+                "ru": "Пример",
+                "it": "Esempio"
             }
         },
         "Next": {
             "description": "Next button",
             "en": "Next",
             "de": "Nächster Schritt",
-            "at": "Nächsta Schritt"
+            "at": "Nächsta Schritt",
+            "fr": "Prochain",
+            "es": "próximo",
+            "ru": "Следующий",
+            "it": "Prossimo"
         },
         "Back": {
             "description": "Back button",
             "en": "Back",
             "de": "Zurück",
-            "at": "Zruck"
+            "at": "Zruck",
+            "fr": "Arrière",
+            "es": "atrás",
+            "ru": "Назад",
+            "it": "Di ritorno"
         },
         "Save": {
             "description": "Save button",
             "en": "Save",
             "de": "Speichern",
-            "at": "Speicha"
+            "at": "Speicha",
+            "fr": "sauvegarder",
+            "es": "Ahorrar",
+            "ru": "Сохранить",
+            "it": "Salva"
         },
         "TimeLimitMinutes": {
             "description": "field label for time limit. Time limit (minutes)",
             "en": "Time limit (minutes)",
             "de": "Zeitlimit (Minuten)",
-            "at": "Zeitlimit (Minutn)"
+            "at": "Zeitlimit (Minutn)",
+            "fr": "Limite de temps (minutes)",
+            "es": "Límite de tiempo (minutos)",
+            "ru": "Лимит времени (минуты)",
+            "it": "Limite di tempo (minuti)"
         },
         "Steps": {
             "Event": {
                 "description": "Event step",
                 "en": "Event",
                 "de": "Ereignis",
-                "at": "Ereignis"
+                "at": "Ereignis",
+                "fr": "Événement",
+                "es": "Evento",
+                "ru": "Мероприятие",
+                "it": "Evento"
             },
             "Filter": {
                 "description": "Filter step",
                 "en": "Filter",
                 "de": "Filter",
-                "at": "Füta"
+                "at": "Füta",
+                "fr": "Filtre",
+                "es": "Filtrar",
+                "ru": "Фильтр",
+                "it": "Filtro"
             },
             "Action": {
                 "description": "Action step",
                 "en": "Action",
                 "de": "Aktion",
-                "at": "Aktion"
+                "at": "Aktion",
+                "fr": "action",
+                "es": "Acción",
+                "ru": "Действие",
+                "it": "Azione"
             },
             "Done": {
                 "description": "Done step",
                 "en": "Done",
                 "de": "Abschluss",
-                "at": "Fertig"
+                "at": "Fertig",
+                "fr": "Terminé",
+                "es": "Hecho",
+                "ru": "Выполнено",
+                "it": "Fatto"
             }
         },
         "UpperLimit": {
             "description": "upper limit of automod execution",
             "en": "Upper limit",
             "de": "Oberes Limit",
-            "at": "Obarares Limit"
+            "at": "Obarares Limit",
+            "fr": "Limite supérieure",
+            "es": "Limite superior",
+            "ru": "Верхний предел",
+            "it": "Limite superiore"
         },
         "TeamMembersExcluded": {
             "description": "team members are not automoderated",
             "en": "Note: team members are always excluded.",
             "de": "Hinweis: Teammitglieder werden immer gefiltert.",
-            "at": "Hinweis: Teammitglieda wean imma gfütat."
+            "at": "Hinweis: Teammitglieda wean imma gfütat.",
+            "fr": "Remarque : les membres de l'équipe sont toujours exclus.",
+            "es": "Nota: los miembros del equipo siempre están excluidos.",
+            "ru": "Примечание: члены команды всегда исключаются.",
+            "it": "Nota: i membri del team sono sempre esclusi."
         },
         "ExcludeRoles": {
             "description": "Select to exclude certain roles",
             "en": "Exclude roles",
             "de": "Ausgenommene Rollen",
-            "at": "Ausgnommene Roin"
+            "at": "Ausgnommene Roin",
+            "fr": "Exclure les rôles",
+            "es": "Excluir roles",
+            "ru": "Исключить роли",
+            "it": "Escludi ruoli"
         },
         "ExcludeChannels": {
             "description": "Select to exclude certain channels",
             "en": "Exclude channels",
             "de": "Ausgenommene Kanäle",
-            "at": "Ausgnommene Kanäle"
+            "at": "Ausgnommene Kanäle",
+            "fr": "Exclure les chaînes",
+            "es": "Excluir canales",
+            "ru": "Исключить каналы",
+            "it": "Escludi canali"
         },
         "SendInternalNotification": {
             "description": "checkbox send internal notification",
             "en": "Send internal notification",
             "de": "Sende interne Benachrichtigung",
-            "at": "Send a interne Benochrichtigung"
+            "at": "Send a interne Benochrichtigung",
+            "fr": "Envoyer une notification interne",
+            "es": "Enviar notificación interna",
+            "ru": "Отправить внутреннее уведомление",
+            "it": "Invia notifica interna"
         },
         "SendInternalNotificationHover": {
             "description": "checkbox send internal notification",
             "en": "A internal notification is always sent.",
             "de": "Eine interne Benachrichtigung wird immer gesendet.",
-            "at": "A interne Benochrichtigung wird imma gschickt."
+            "at": "A interne Benochrichtigung wird imma gschickt.",
+            "fr": "Une notification interne est toujours envoyée.",
+            "es": "Siempre se envía una notificación interna.",
+            "ru": "Всегда отправляется внутреннее уведомление.",
+            "it": "Viene sempre inviata una notifica interna."
         },
         "LogEntry": {
             "description": "checkbox log entry",
             "en": "Log entry",
             "de": "Eintrag erstellen",
-            "at": "Eitrag erstön"
+            "at": "Eitrag erstön",
+            "fr": "Entrée de journal",
+            "es": "Entrada de registro",
+            "ru": "Запись в журнале",
+            "it": "Voce di registro"
         },
         "LogEntryHover": {
             "description": "checkbox log entry",
             "en": "A log entry is always generated.",
             "de": "Ein Eintrag wird immer erstellt.",
-            "at": "A Eitrog wird imma erstöt."
+            "at": "A Eitrog wird imma erstöt.",
+            "fr": "Une entrée de journal est toujours générée.",
+            "es": "Siempre se genera una entrada de registro.",
+            "ru": "Запись в журнале создается всегда.",
+            "it": "Viene sempre generata una voce di registro."
         },
         "SendDMNotification": {
             "description": "Send dm notification",
             "en": "Send dm notification",
             "de": "Sende DM Benachrichtigung",
-            "at": "Schick a DM Benochrichtigung"
+            "at": "Schick a DM Benochrichtigung",
+            "fr": "Envoyer une notification dm",
+            "es": "Enviar notificación dm",
+            "ru": "Отправить уведомление dm",
+            "it": "Invia notifica dm"
         },
         "Action": {
             "description": "action",
             "en": "Action",
             "de": "Aktion",
-            "at": "Aktion"
+            "at": "Aktion",
+            "fr": "action",
+            "es": "Acción",
+            "ru": "Действие",
+            "it": "Azione"
         },
         "SendPublicNotification": {
             "description": "Send public notification",
             "en": "Send public notification",
             "de": "Sende öffentliche Benachrichtigung",
-            "at": "Send a öffentliche Benochrichtigung"
+            "at": "Send a öffentliche Benochrichtigung",
+            "fr": "Envoyer une notification publique",
+            "es": "Enviar notificación pública",
+            "ru": "Отправить публичное уведомление",
+            "it": "Invia notifica pubblica"
         },
         "DurationInMinutes": {
             "description": "duration of punishment in minutes ",
             "en": "Duration in minutes",
             "de": "Dauer in Minuten",
-            "at": "Daua in Minutn"
+            "at": "Daua in Minutn",
+            "fr": "Durée en minutes",
+            "es": "Duración en minutos",
+            "ru": "Продолжительность в минутах",
+            "it": "Durata in minuti"
         },
         "YouAreDone": {
             "description": "you are now done step",
             "en": "You are now done.",
             "de": "Du bist nun fertig.",
-            "at": "Du bist jetzt fertig."
+            "at": "Du bist jetzt fertig.",
+            "fr": "Vous avez maintenant terminé.",
+            "es": "Ya ha terminado.",
+            "ru": "Теперь все готово.",
+            "it": "Ora hai finito."
         },
         "ConfigDeleted": {
             "description": "config deleted notification",
             "en": "Config deleted",
             "de": "Konfiguration gelöscht.",
-            "at": "Konfiguration glescht."
+            "at": "Konfiguration glescht.",
+            "fr": "Configuration supprimée",
+            "es": "Configuración eliminada",
+            "ru": "Конфиг удален",
+            "it": "Configurazione eliminata"
         },
         "FailedToDeleteConfig": {
             "description": "failed to delete config notification",
             "en": "Failed to delete config.",
             "de": "Konfiguration konnte nicht gelöscht werden.",
-            "at": "Konfiguration konnte ned glodn wean."
+            "at": "Konfiguration konnte ned glodn wean.",
+            "fr": "Échec de la suppression de la configuration.",
+            "es": "No se pudo borrar la configuración.",
+            "ru": "Не удалось удалить конфигурацию.",
+            "it": "Impossibile eliminare la configurazione."
         },
         "SavedConfig": {
             "description": "config saved notification",
             "en": "Config saved",
             "de": "Konfiguration gespeichert.",
-            "at": "Konfiguration gspeichat."
+            "at": "Konfiguration gspeichat.",
+            "fr": "Configuration enregistrée",
+            "es": "Configuración guardada",
+            "ru": "Конфигурация сохранена",
+            "it": "Configurazione salvata"
         },
         "FailedToSaveConfig": {
             "description": "failed to save config notification",
             "en": "Failed to save config.",
             "de": "Konfiguration konnte nicht gespeichert werden.",
-            "at": "Konfiguration konnte ned gspeichat wean."
+            "at": "Konfiguration konnte ned gspeichat wean.",
+            "fr": "Échec de l'enregistrement de la configuration.",
+            "es": "No se pudo guardar la configuración.",
+            "ru": "Не удалось сохранить конфигурацию.",
+            "it": "Impossibile salvare la configurazione."
         },
         "FailedToLoadGuild": {
             "description": "failed to load guild info",
             "en": "Failed to load guild info.",
             "de": "Gildeninformationen konnten nicht geladen werden.",
-            "at": "Güdeninfos konnten ned glodn wean."
+            "at": "Güdeninfos konnten ned glodn wean.",
+            "fr": "Échec du chargement des informations de guilde.",
+            "es": "No se pudo cargar la información del gremio.",
+            "ru": "Не удалось загрузить информацию о гильдии.",
+            "it": "Impossibile caricare le informazioni sulla gilda."
         },
         "FailedToLoadChannels": {
             "description": "Failed to load guildchannel info.",
             "en": "Failed to load guildchannel info.",
             "de": "Gildenkanalinformationen konnten nicht geladen werden.",
-            "at": "Küdnkanoiinformationen konntn ned glodn wean."
+            "at": "Küdnkanoiinformationen konntn ned glodn wean.",
+            "fr": "Échec du chargement des informations du canal de guilde.",
+            "es": "No se pudo cargar la información del canal del gremio.",
+            "ru": "Не удалось загрузить информацию о канале гильдии.",
+            "it": "Impossibile caricare le informazioni sul canale di gilda."
         }
     },
     "GuildMotd": {
@@ -1414,37 +2294,61 @@
             "description": "Enable motd checkbox",
             "en": "Enable MotD",
             "de": "Aktiviere MotD",
-            "at": "Schoit MotD ei"
+            "at": "Schoit MotD ei",
+            "fr": "Activer MotD",
+            "es": "Habilitar MotD",
+            "ru": "Включить MotD",
+            "it": "Abilita MotD"
         },
         "Message": {
             "description": "Message field",
             "en": "Message",
             "de": "Nachricht",
-            "at": "Nochricht"
+            "at": "Nochricht",
+            "fr": "Un message",
+            "es": "Mensaje",
+            "ru": "Сообщение",
+            "it": "Messaggio"
         },
         "FailedToLoad": {
             "description": "Failed to load message",
             "en": "Failed to load motd.",
             "de": "MotD konnte nicht geladen werden.",
-            "at": "MotD konnt ned glodn wean."
+            "at": "MotD konnt ned glodn wean.",
+            "fr": "Échec du chargement de motd.",
+            "es": "No se pudo cargar motd.",
+            "ru": "Не удалось загрузить motd.",
+            "it": "Impossibile caricare motd."
         },
         "FailedToSave": {
             "description": "Failed to save message",
             "en": "Failed to save motd.",
             "de": "MotD konnte nicht gespeichert werden.",
-            "at": "MotD konnt ned gspeichat wean."
+            "at": "MotD konnt ned gspeichat wean.",
+            "fr": "Échec de l'enregistrement de motd.",
+            "es": "No se pudo salvar a motd.",
+            "ru": "Не удалось сохранить motd.",
+            "it": "Impossibile salvare motd."
         },
         "Saved": {
             "description": "Saved message",
             "en": "Saved motd.",
             "de": "MotD gespeichert.",
-            "at": "MotD gspeichat."
+            "at": "MotD gspeichat.",
+            "fr": "Mot enregistré.",
+            "es": "Motd guardado.",
+            "ru": "Сохранено мотд.",
+            "it": "Modifiche salvate"
         },
         "Explanation": {
             "description": "Explanation",
             "en": "This message will be displayed to your administrators and moderators on the dashboard.",
             "de": "Diese Nachricht wird deinen Administratoren und Moderatoren auf dem Dashboard angezeigt.",
-            "at": "De Nochricht wird am Administratoa oda am Modaratoa aufm Dashboard ozeigt."
+            "at": "De Nochricht wird am Administratoa oda am Modaratoa aufm Dashboard ozeigt.",
+            "fr": "Ce message sera affiché à vos administrateurs et modérateurs sur le tableau de bord.",
+            "es": "Este mensaje se mostrará a sus administradores y moderadores en el panel de control.",
+            "ru": "Это сообщение будет показано вашим администраторам и модераторам на панели инструментов.",
+            "it": "Questo messaggio verrà mostrato ai tuoi amministratori e moderatori sulla dashboard."
         }
     },
     "AutomodSplit": {
@@ -1452,7 +2356,11 @@
             "description": "Failed to load guild autmod split chart.",
             "en": "Failed to load guild autmod split chart.",
             "de": "Konnte Automoderationaufteilungsdaten nicht laden.",
-            "at": "Konnte de Automodarationsaufteilungsdotn ned lodn."
+            "at": "Konnte de Automodarationsaufteilungsdotn ned lodn.",
+            "fr": "Échec du chargement du tableau de répartition autmod de la guilde.",
+            "es": "No se pudo cargar el gráfico dividido de modificación automática del gremio.",
+            "ru": "Не удалось загрузить разделенную диаграмму autmod гильдии.",
+            "it": "Impossibile caricare il grafico di suddivisione autmod della gilda."
         }
     },
     "DashboardCaseList": {
@@ -1460,19 +2368,31 @@
             "description": "newest cases",
             "en": "Newest cases",
             "de": "Neuste Vorfälle",
-            "at": "Neiaste Vorfälle"
+            "at": "Neiaste Vorfälle",
+            "fr": "Cas les plus récents",
+            "es": "Casos más nuevos",
+            "ru": "Новейшие кейсы",
+            "it": "Casi più recenti"
         },
         "ExpiringPunishments": {
             "description": "expiring punishments",
             "en": "Expiring punishments",
             "de": "Auslaufende Bestrafungen",
-            "at": "Auslafende Bestrofungen"
+            "at": "Auslafende Bestrofungen",
+            "fr": "Expiration des peines",
+            "es": "Castigos vencidos",
+            "ru": "Истекающие наказания",
+            "it": "Pene in scadenza"
         },
         "NoCasesFound": {
             "description": "no cases found",
             "en": "No cases found",
             "de": "Keine Vorfälle gefunden",
-            "at": "Kane Vorfälle gfundn"
+            "at": "Kane Vorfälle gfundn",
+            "fr": "Aucun cas trouvé",
+            "es": "No se encontraron casos",
+            "ru": "Случаев не найдено",
+            "it": "Nessun caso trovato"
         }
     },
     "DashboardCharts": {
@@ -1480,37 +2400,61 @@
             "description": "Overview",
             "en": "Overview",
             "de": "Übersicht",
-            "at": "Übasicht"
+            "at": "Übasicht",
+            "fr": "Aperçu",
+            "es": "Visión general",
+            "ru": "Обзор",
+            "it": "Panoramica"
         },
         "Cases": {
             "description": "Cases",
             "en": "Cases",
             "de": "Vorfälle",
-            "at": "Vorfälle"
+            "at": "Vorfälle",
+            "fr": "Cas",
+            "es": "Casos",
+            "ru": "Случаи",
+            "it": "casi"
         },
         "Punishments": {
             "description": "Punishments",
             "en": "Punishments",
             "de": "Bestrafungen",
-            "at": "Bestrofungen"
+            "at": "Bestrofungen",
+            "fr": "Les sanctions",
+            "es": "Castigos",
+            "ru": "Наказания",
+            "it": "punizioni"
         },
         "Automoderations": {
             "description": "Automoderations",
             "en": "Automoderations",
             "de": "Automoderationen",
-            "at": "Automodaratonen"
+            "at": "Automodaratonen",
+            "fr": "Automodérations",
+            "es": "Automoderaciones",
+            "ru": "Автомобили",
+            "it": "Automoderazione"
         },
         "ChooseADate": {
             "description": "Choose a date",
             "en": "Choose a date",
             "de": "Wähle ein Datum",
-            "at": "Tua a Datum auswöhn"
+            "at": "Tua a Datum auswöhn",
+            "fr": "Choisissez une date",
+            "es": "Elige una fecha",
+            "ru": "Выберите дату",
+            "it": "Scegli una data"
         },
         "Reset": {
             "description": "Reset",
             "en": "Reset",
             "de": "Zurücksetzen",
-            "at": "Zrucksetzn"
+            "at": "Zrucksetzn",
+            "fr": "Réinitialiser",
+            "es": "Reiniciar",
+            "ru": "Сброс настроек",
+            "it": "Ripristina"
         }
     },
     "DashboardComments": {
@@ -1518,19 +2462,31 @@
             "description": "Newest comments",
             "en": "Newest comments",
             "de": "Neueste Kommentare",
-            "at": "Neiaste Kommentare"
+            "at": "Neiaste Kommentare",
+            "fr": "Commentaires les plus récents",
+            "es": "Comentarios más recientes",
+            "ru": "Последние комментарии",
+            "it": "Commenti più recenti"
         },
         "NothingFound": {
             "description": "Nothing found",
             "en": "No comments found.",
             "de": "Keine Kommentare gefunden.",
-            "at": "Kane Kommentare gfundn."
+            "at": "Kane Kommentare gfundn.",
+            "fr": "Aucun commentaire trouvé.",
+            "es": "No se encontraron comentarios.",
+            "ru": "Нет комментариев.",
+            "it": "Nessun commento trovato."
         },
         "FailedToLoad": {
             "description": "Failed to load",
             "en": "Failed to load comments.",
             "de": "Kommentare konnten nicht geladen werden.",
-            "at": "Kommentare konntn ned glodn wean."
+            "at": "Kommentare konntn ned glodn wean.",
+            "fr": "Échec du chargement des commentaires.",
+            "es": "No se pudieron cargar los comentarios.",
+            "ru": "Не удалось загрузить комментарии.",
+            "it": "Impossibile caricare i commenti."
         }
     },
     "GuildStats": {
@@ -1538,13 +2494,21 @@
             "description": "Guild Stats",
             "en": "Guildstats",
             "de": "Gildenstatistiken",
-            "at": "Güdnstatistikn"
+            "at": "Güdnstatistikn",
+            "fr": "Statistiques de guilde",
+            "es": "Estadísticas del gremio",
+            "ru": "Статистика гильдий",
+            "it": "Statistiche della gilda"
         },
         "FailedToLoad": {
             "description": "Failed to load",
             "en": "Failed to load guild stats.",
             "de": "Gildenstatistiken konnten nicht geladen werden.",
-            "at": "Güdnstatistikn konntn ned glodn wean."
+            "at": "Güdnstatistikn konntn ned glodn wean.",
+            "fr": "Échec du chargement des statistiques de guilde.",
+            "es": "No se pudieron cargar las estadísticas del gremio.",
+            "ru": "Не удалось загрузить статистику гильдии.",
+            "it": "Impossibile caricare le statistiche della gilda."
         }
     },
     "GuildInfoCard": {
@@ -1552,13 +2516,21 @@
             "description": "Create New Case button",
             "en": "Create new case",
             "de": "Neuen Vorfall erstellen",
-            "at": "Neichn Vorfoi erstön"
+            "at": "Neichn Vorfoi erstön",
+            "fr": "Créer un nouveau cas",
+            "es": "Crear nuevo caso",
+            "ru": "Создать новое дело",
+            "it": "Crea nuovo caso"
         },
         "FailedToLoad": {
             "description": "Failed to load",
             "en": "Failed to load guild info.",
             "de": "Gildeninfo konnte nicht geladen werden.",
-            "at": "Güdnnifo konnt ned glodn wean."
+            "at": "Güdnnifo konnt ned glodn wean.",
+            "fr": "Échec du chargement des informations de guilde.",
+            "es": "No se pudo cargar la información del gremio.",
+            "ru": "Не удалось загрузить информацию о гильдии.",
+            "it": "Impossibile caricare le informazioni sulla gilda."
         }
     },
     "DashboardMotd": {
@@ -1566,13 +2538,21 @@
             "description": "Failed to laod motd",
             "en": "Failed to load motd.",
             "de": "Motd konnte nicht geladen werden.",
-            "at": "Motd konnt ned glodn wean."
+            "at": "Motd konnt ned glodn wean.",
+            "fr": "Échec du chargement de motd.",
+            "es": "No se pudo cargar motd.",
+            "ru": "Не удалось загрузить motd.",
+            "it": "Impossibile caricare motd."
         },
         "MessageFrom": {
             "description": "Failed to laod motd",
             "en": "Message from {{name}}",
             "de": "Nachricht von {{name}}",
-            "at": "Nochricht vo {{name}}"
+            "at": "Nochricht vo {{name}}",
+            "fr": "Message de {{name}}",
+            "es": "Mensaje de {{name}}",
+            "ru": "Сообщение от {{name}}",
+            "it": "Messaggio da {{name}}"
         }
     },
     "Quicksearch": {
@@ -1580,19 +2560,31 @@
             "description": "Placeholder for the search field",
             "en": "Quicksearch users, modcases, punishments, automoderations, ...",
             "de": "Schnellsuche Benutzer, Vorfälle, Bestrafungen, Automoderationen, ...",
-            "at": "Schnösuche Benutza, Vorfälle, Bestrofungen, Automodaration, ..."
+            "at": "Schnösuche Benutza, Vorfälle, Bestrofungen, Automodaration, ...",
+            "fr": "Quicksearch utilisateurs, modcases, punitions, automodérations, ...",
+            "es": "Usuarios de Quicksearch, modcases, castigos, automoderaciones, ...",
+            "ru": "Пользователи Quicksearch, модкейсы, наказания, автоматизация, ...",
+            "it": "Utenti Quicksearch, modcase, punizioni, automoderations, ..."
         },
         "NoMatches": {
             "description": "No matches found",
             "en": "Nothing matches your search :(",
             "de": "Keine Einträge zur Suche gefunden :(",
-            "at": "Kane Eiträg zua Suche gfundn :("
+            "at": "Kane Eiträg zua Suche gfundn :(",
+            "fr": "Rien ne correspond à votre recherche :(",
+            "es": "Nada coincide con su búsqueda :(",
+            "ru": "Ничего не найдено :(",
+            "it": "Niente corrisponde alla tua ricerca :("
         },
         "SearchFailed": {
             "description": "Search failed",
             "en": "Search failed.",
             "de": "Suche fehlgeschlagen.",
-            "at": "Suche hod ned funktioniat."
+            "at": "Suche hod ned funktioniat.",
+            "fr": "La recherche a échoué.",
+            "es": "La búsqueda falló.",
+            "ru": "Поиск не удался.",
+            "it": "Ricerca non riuscita."
         }
     },
     "GuildList": {
@@ -1600,19 +2592,31 @@
             "description": "Loading message",
             "en": "Loading guilds...",
             "de": "Lade Gilden...",
-            "at": "Lod Güdn..."
+            "at": "Lod Güdn...",
+            "fr": "Chargement des guildes...",
+            "es": "Cargando gremios ...",
+            "ru": "Загрузка гильдий ...",
+            "it": "Caricamento gilde..."
         },
         "NoGuild": {
             "description": "No guilds registered or intersection with current user.",
             "en": "Please join a guild or get banned so I can display something :(",
             "de": "Bitte betrete eine Gilde oder werde gebannt, damit ich dir etwas anzeigen kann :(",
-            "at": "Bitte tua a Güdn betrent oda wead ausgsperrt, damit i dia wos zeign ko :("
+            "at": "Bitte tua a Güdn betrent oda wead ausgsperrt, damit i dia wos zeign ko :(",
+            "fr": "Veuillez rejoindre une guilde ou être banni pour que je puisse afficher quelque chose :(",
+            "es": "Por favor únete a un gremio o haz que te expulsen para que pueda mostrar algo :(",
+            "ru": "Пожалуйста, вступите в гильдию или получите бан, чтобы я мог что-нибудь показать :(",
+            "it": "Per favore unisciti a una gilda o vieni bannato così posso mostrare qualcosa :("
         },
         "AddGuild": {
             "description": "Add guild button",
             "en": "Add guild",
             "de": "Gilde hinzufügen",
-            "at": "Güde hinzuafügn"
+            "at": "Güde hinzuafügn",
+            "fr": "Ajouter une guilde",
+            "es": "Agregar gremio",
+            "ru": "Добавить гильдию",
+            "it": "Aggiungi gilda"
         }
     },
     "GuildOverview": {
@@ -1621,43 +2625,71 @@
                 "description": "Dashboard",
                 "en": "Dashboard",
                 "de": "Dashboard",
-                "at": "Dashboard"
+                "at": "Dashboard",
+                "fr": "Tableau de bord",
+                "es": "Tablero",
+                "ru": "Щиток приборов",
+                "it": "Pannello di controllo"
             },
             "Case": {
                 "description": "Modcases",
                 "en": "Cases",
                 "de": "Vorfälle",
-                "at": "Vorfälle"
+                "at": "Vorfälle",
+                "fr": "Cas",
+                "es": "Casos",
+                "ru": "Случаи",
+                "it": "casi"
             },
             "Automoderation": {
                 "description": "Automoderations",
                 "en": "Automoderations",
                 "de": "Automoderationen",
-                "at": "Automodarationen"
+                "at": "Automodarationen",
+                "fr": "Automodérations",
+                "es": "Automoderaciones",
+                "ru": "Автомобили",
+                "it": "Automoderazione"
             },
             "Bin": {
                 "description": "Bin",
                 "en": "Bin",
                 "de": "Papierkorb",
-                "at": "Mistkübl"
+                "at": "Mistkübl",
+                "fr": "Poubelle",
+                "es": "Compartimiento",
+                "ru": "Корзина",
+                "it": "Bidone"
             },
             "Usernote": {
                 "description": "Usernote",
                 "en": "Usernotes",
                 "de": "Benutzernotizen",
-                "at": "Benutzanotizn"
+                "at": "Benutzanotizn",
+                "fr": "Notes d'utilisateur",
+                "es": "Notas de usuario",
+                "ru": "Примечания пользователя",
+                "it": "Note utente"
             },
             "Usermap": {
                 "description": "Usermaps",
                 "en": "Usermaps",
                 "de": "Benutzerbeziehungen",
-                "at": "Benutzabeziehungen"
+                "at": "Benutzabeziehungen",
+                "fr": "Cartes utilisateur",
+                "es": "Mapas de usuario",
+                "ru": "Карты пользователя",
+                "it": "Mappe utente"
             },
             "Config": {
                 "description": "Config",
                 "en": "Config",
                 "de": "Konfiguration",
-                "at": "Konfiguration"
+                "at": "Konfiguration",
+                "fr": "Configuration",
+                "es": "Config",
+                "ru": "Конфиг",
+                "it": "config"
             }
         }
     },
@@ -1666,55 +2698,91 @@
             "description": "member field",
             "en": "Member",
             "de": "Mitglied",
-            "at": "Mitglied"
+            "at": "Mitglied",
+            "fr": "Membre",
+            "es": "Miembro",
+            "ru": "Член",
+            "it": "Membro"
         },
         "Description": {
             "description": "description field",
             "en": "Description",
             "de": "Beschreibung",
-            "at": "Beschreibung"
+            "at": "Beschreibung",
+            "fr": "La description",
+            "es": "Descripción",
+            "ru": "Описание",
+            "it": "Descrizione"
         },
         "CreateNewMap": {
             "description": "create new usermap button",
             "en": "Create new usermap",
             "de": "Neue Benutzerbeziehung erstellen",
-            "at": "Neue Benutzabeziehung erstön"
+            "at": "Neue Benutzabeziehung erstön",
+            "fr": "Créer une nouvelle carte utilisateur",
+            "es": "Crear nuevo mapa de usuario",
+            "ru": "Создать новую карту пользователя",
+            "it": "Crea nuova mappa utente"
         },
         "Search": {
             "description": "search field",
             "en": "Search (user, id, description...)",
             "de": "Suchen (Benutzer, ID, Beschreibung...)",
-            "at": "Such (Benutza ID, Beschreibung ...)"
+            "at": "Such (Benutza ID, Beschreibung ...)",
+            "fr": "Recherche (utilisateur, identifiant, description...)",
+            "es": "Búsqueda (usuario, id, descripción ...)",
+            "ru": "Поиск (пользователь, идентификатор, описание ...)",
+            "it": "Cerca (utente, id, descrizione...)"
         },
         "NoMatches": {
             "description": "no matches found",
             "en": "No usermap matches your search.",
             "de": "Keine Benutzerbeziehung passt zu deiner Suche.",
-            "at": "Kane Benutzabeziehung passt zu deina Suach."
+            "at": "Kane Benutzabeziehung passt zu deina Suach.",
+            "fr": "Aucune usermap ne correspond à votre recherche.",
+            "es": "Ningún mapa de usuario coincide con su búsqueda.",
+            "ru": "По вашему запросу не найдено ни одной карты пользователя.",
+            "it": "Nessuna mappa utente corrisponde alla tua ricerca."
         },
         "FailedToLoad": {
             "description": "failed to load usermaps",
             "en": "Failed to load usermaps.",
             "de": "Benutzerbeziehungen konnten nicht geladen werden.",
-            "at": "Benutzabeziehungen konntn ned glodn wean."
+            "at": "Benutzabeziehungen konntn ned glodn wean.",
+            "fr": "Échec du chargement des cartes utilisateur.",
+            "es": "No se pudieron cargar los mapas de usuario.",
+            "ru": "Не удалось загрузить пользовательские карты.",
+            "it": "Impossibile caricare le mappe utente."
         },
         "FailedToLoadMember": {
             "description": "failed to load member",
             "en": "Failed to load memberlist.",
             "de": "Mitgliederliste konnte nicht geladen werden.",
-            "at": "Mitgliedalistn konnte ned glodn wean"
+            "at": "Mitgliedalistn konnte ned glodn wean",
+            "fr": "Échec du chargement de la liste des membres.",
+            "es": "No se pudo cargar la lista de miembros.",
+            "ru": "Не удалось загрузить список участников.",
+            "it": "Impossibile caricare l'elenco dei membri."
         },
         "FailedToCreate": {
             "description": "failed to create usermap",
             "en": "Failed to create usermap.",
             "de": "Benutzerbeziehung konnte nicht erstellt werden.",
-            "at": "Benutzabeziehung konnte ned erstöt wean."
+            "at": "Benutzabeziehung konnte ned erstöt wean.",
+            "fr": "Échec de la création de la carte utilisateur.",
+            "es": "No se pudo crear el mapa de usuario.",
+            "ru": "Не удалось создать карту пользователя.",
+            "it": "Impossibile creare la mappa utente."
         },
         "Created": {
             "description": "usermap created",
             "en": "Usermap created.",
             "de": "Benutzerbeziehung erstellt.",
-            "at": "Benutzabeziehung erstöt."
+            "at": "Benutzabeziehung erstöt.",
+            "fr": "Usermap créé.",
+            "es": "Mapa de usuario creado.",
+            "ru": "Карта пользователя создана.",
+            "it": "Mappa utente creata."
         }
     },
     "UsermapCard": {
@@ -1722,43 +2790,71 @@
             "description": "updated ",
             "en": "Updated:",
             "de": "Aktualisiert:",
-            "at": "Aktualisiat:"
+            "at": "Aktualisiat:",
+            "fr": "Mis à jour:",
+            "es": "Actualizado:",
+            "ru": "Обновлено:",
+            "it": "Aggiornato:"
         },
         "Edit": {
             "description": "edit button",
             "en": "Edit",
             "de": "Bearbeiten",
-            "at": "Beoarbeitn"
+            "at": "Beoarbeitn",
+            "fr": "Éditer",
+            "es": "Editar",
+            "ru": "Редактировать",
+            "it": "Modificare"
         },
         "Delete": {
             "description": "delete button",
             "en": "Delete",
             "de": "Löschen",
-            "at": "Löschn"
+            "at": "Löschn",
+            "fr": "Effacer",
+            "es": "Borrar",
+            "ru": "Удалить",
+            "it": "Elimina"
         },
         "FailedToUpdate": {
             "description": "Failed to update usermap",
             "en": "Failed to update usermap.",
             "de": "Fehler beim Speichern der Benutzerbeziehung.",
-            "at": "Fehla beim Speichan vo da Benutzabeziehung."
+            "at": "Fehla beim Speichan vo da Benutzabeziehung.",
+            "fr": "Échec de la mise à jour de la carte utilisateur.",
+            "es": "No se pudo actualizar el mapa de usuario.",
+            "ru": "Не удалось обновить карту пользователя.",
+            "it": "Impossibile aggiornare la mappa utente."
         },
         "Updated": {
             "description": "updated usermap",
             "en": "Usermap updated.",
             "de": "Benutzerbeziehung gespeichert.",
-            "at": "Benutzabeziehung gspeichat."
+            "at": "Benutzabeziehung gspeichat.",
+            "fr": "Usermap mis à jour.",
+            "es": "Mapa de usuario actualizado.",
+            "ru": "Карта пользователя обновлена.",
+            "it": "Mappa utente aggiornata."
         },
         "FailedToDelete": {
             "description": "Failed to delete usermap",
             "en": "Failed to delete usermap.",
             "de": "Fehler beim Löschen der Benutzerbeziehung.",
-            "at": "Fehler beim Löschn vo da Benutzabeziehung."
+            "at": "Fehler beim Löschn vo da Benutzabeziehung.",
+            "fr": "Échec de la suppression de la carte utilisateur.",
+            "es": "No se pudo borrar el mapa de usuario.",
+            "ru": "Не удалось удалить карту пользователя.",
+            "it": "Impossibile eliminare la mappa utente."
         },
         "Deleted": {
             "description": "deleted usermap",
             "en": "Usermap deleted.",
             "de": "Benutzerbeziehung gelöscht.",
-            "at": "Benutzabeziehung glescht."
+            "at": "Benutzabeziehung glescht.",
+            "fr": "Carte utilisateur supprimée.",
+            "es": "Mapa de usuario eliminado.",
+            "ru": "Карта пользователя удалена.",
+            "it": "Mappa utente eliminata."
         }
     },
     "UsernoteTable": {
@@ -1766,55 +2862,91 @@
             "description": "member field",
             "en": "Member",
             "de": "Mitglied",
-            "at": "Mitglied"
+            "at": "Mitglied",
+            "fr": "Membre",
+            "es": "Miembro",
+            "ru": "Член",
+            "it": "Membro"
         },
         "Description": {
             "description": "description field",
             "en": "Description",
             "de": "Beschreibung",
-            "at": "Beschreibung"
+            "at": "Beschreibung",
+            "fr": "La description",
+            "es": "Descripción",
+            "ru": "Описание",
+            "it": "Descrizione"
         },
         "CreateNewNote": {
             "description": "create new usernote button",
             "en": "Create new usernote",
             "de": "Neue Benutzernotiz erstellen",
-            "at": "Neie Benutzanotiz erstöt"
+            "at": "Neie Benutzanotiz erstöt",
+            "fr": "Créer une nouvelle note d'utilisateur",
+            "es": "Crear nueva nota de usuario",
+            "ru": "Создать новую заметку пользователя",
+            "it": "Crea nuova nota utente"
         },
         "Search": {
             "description": "search field",
             "en": "Search (user, id, description...)",
             "de": "Suchen (Benutzer, ID, Beschreibung...)",
-            "at": "Such (Benutza, ID, Beschreibung ...)"
+            "at": "Such (Benutza, ID, Beschreibung ...)",
+            "fr": "Recherche (utilisateur, identifiant, description...)",
+            "es": "Búsqueda (usuario, id, descripción ...)",
+            "ru": "Поиск (пользователь, идентификатор, описание ...)",
+            "it": "Cerca (utente, id, descrizione...)"
         },
         "NoMatches": {
             "description": "no matches found",
             "en": "No usernote matches your search.",
             "de": "Keine Benutzernotiz passt zu deiner Suche.",
-            "at": "Kane Benutzanotiz passt zu dana Suach."
+            "at": "Kane Benutzanotiz passt zu dana Suach.",
+            "fr": "Aucune note d'utilisateur ne correspond à votre recherche.",
+            "es": "Ninguna nota de usuario coincide con su búsqueda.",
+            "ru": "По вашему запросу не найдено ни одной пользовательской заметки.",
+            "it": "Nessuna nota utente corrisponde alla tua ricerca."
         },
         "FailedToLoad": {
             "description": "failed to load usernotes",
             "en": "Failed to load usernotes.",
             "de": "Benutzernotizen konnten nicht geladen werden.",
-            "at": "Benutzanotizn kenna ned glodn wean."
+            "at": "Benutzanotizn kenna ned glodn wean.",
+            "fr": "Échec du chargement des notes d'utilisateur.",
+            "es": "No se pudieron cargar las notas de usuario.",
+            "ru": "Не удалось загрузить заметки пользователя.",
+            "it": "Impossibile caricare le note utente."
         },
         "FailedToLoadMember": {
             "description": "failed to load member",
             "en": "Failed to load memberlist.",
             "de": "Mitgliederliste konnte nicht geladen werden.",
-            "at": "Mitgliedalistn konnte ned glodn wean."
+            "at": "Mitgliedalistn konnte ned glodn wean.",
+            "fr": "Échec du chargement de la liste des membres.",
+            "es": "No se pudo cargar la lista de miembros.",
+            "ru": "Не удалось загрузить список участников.",
+            "it": "Impossibile caricare l'elenco dei membri."
         },
         "FailedToCreate": {
             "description": "failed to create usernote",
             "en": "Failed to create usernote.",
             "de": "Benutzernotiz konnte nicht erstellt werden.",
-            "at": "Benutzanotiz konnte ned erstöt wean."
+            "at": "Benutzanotiz konnte ned erstöt wean.",
+            "fr": "Échec de la création de la note utilisateur.",
+            "es": "No se pudo crear la nota de usuario.",
+            "ru": "Не удалось создать заметку пользователя.",
+            "it": "Impossibile creare la nota utente."
         },
         "Created": {
             "description": "usernote created",
             "en": "Usernote created.",
             "de": "Benutzernotiz erstellt.",
-            "at": "Benutzanotiz erstöt."
+            "at": "Benutzanotiz erstöt.",
+            "fr": "Note utilisateur créée.",
+            "es": "Nota de usuario creada.",
+            "ru": "Заметка пользователя создана.",
+            "it": "Nota utente creata."
         }
     },
     "UsernoteCard": {
@@ -1822,43 +2954,71 @@
             "description": "updated ",
             "en": "Updated:",
             "de": "Aktualisiert:",
-            "at": "Aktualisiat:"
+            "at": "Aktualisiat:",
+            "fr": "Mis à jour:",
+            "es": "Actualizado:",
+            "ru": "Обновлено:",
+            "it": "Aggiornato:"
         },
         "Edit": {
             "description": "edit button",
             "en": "Edit",
             "de": "Bearbeiten",
-            "at": "Beoarbeitn"
+            "at": "Beoarbeitn",
+            "fr": "Éditer",
+            "es": "Editar",
+            "ru": "Редактировать",
+            "it": "Modificare"
         },
         "Delete": {
             "description": "delete button",
             "en": "Delete",
             "de": "Löschen",
-            "at": "Löschn"
+            "at": "Löschn",
+            "fr": "Effacer",
+            "es": "Borrar",
+            "ru": "Удалить",
+            "it": "Elimina"
         },
         "FailedToUpdate": {
             "description": "Failed to update usernote",
             "en": "Failed to update usernote.",
             "de": "Fehler beim Speichern der Benutzernotiz.",
-            "at": "Fehla beim Speichan vo da Benutzanotiz."
+            "at": "Fehla beim Speichan vo da Benutzanotiz.",
+            "fr": "Échec de la mise à jour de la note utilisateur.",
+            "es": "No se pudo actualizar la nota de usuario.",
+            "ru": "Не удалось обновить заметку пользователя.",
+            "it": "Impossibile aggiornare la nota utente."
         },
         "Updated": {
             "description": "updated usernote",
             "en": "Usernote updated.",
             "de": "Benutzernotiz gespeichert.",
-            "at": "Benutzanotiz gspeichat."
+            "at": "Benutzanotiz gspeichat.",
+            "fr": "Note d'utilisateur mise à jour.",
+            "es": "Nota de usuario actualizada.",
+            "ru": "Заметка пользователя обновлена.",
+            "it": "Nota utente aggiornata."
         },
         "FailedToDelete": {
             "description": "Failed to delete usernote",
             "en": "Failed to delete usernote.",
             "de": "Fehler beim Löschen der Benutzernotiz.",
-            "at": "Fehler beim Löscha vo da Benutzanotiz."
+            "at": "Fehler beim Löscha vo da Benutzanotiz.",
+            "fr": "Échec de la suppression de la note utilisateur.",
+            "es": "No se pudo borrar la nota de usuario.",
+            "ru": "Не удалось удалить заметку пользователя.",
+            "it": "Impossibile eliminare la nota utente."
         },
         "Deleted": {
             "description": "deleted usernote",
             "en": "Usernote deleted.",
             "de": "Benutzernotiz gelöscht.",
-            "at": "Benutzanotiz glescht."
+            "at": "Benutzanotiz glescht.",
+            "fr": "Note utilisateur supprimée.",
+            "es": "Nota de usuario eliminada.",
+            "ru": "Заметка пользователя удалена.",
+            "it": "Nota utente eliminata."
         }
     },
     "ModCaseDialog": {
@@ -1866,237 +3026,393 @@
             "description": "Select a template step of dialog",
             "en": "Select a template",
             "de": "Vorlagenauswahl",
-            "at": "Vorlognauswoi"
+            "at": "Vorlognauswoi",
+            "fr": "Sélectionnez un modèle",
+            "es": "Seleccionar una plantilla",
+            "ru": "Выберите шаблон",
+            "it": "Seleziona un modello"
         },
         "BackToGuild": {
             "description": "Back to guild button",
             "en": "Back to guild.",
             "de": "Zurück zur Gilde.",
-            "at": "Zruck zua Güde"
+            "at": "Zruck zua Güde",
+            "fr": "Retour à la guilde.",
+            "es": "Volver al gremio.",
+            "ru": "Снова в гильдию.",
+            "it": "Torna alla gilda."
         },
         "BackToCase": {
             "description": "Back to case button",
             "en": "Back to modcase.",
             "de": "Zurück zum Vorfall.",
-            "at": "Zruck zum Vorfoi"
+            "at": "Zruck zum Vorfoi",
+            "fr": "Retour à modcase.",
+            "es": "Volver a modcase.",
+            "ru": "Вернемся к modcase.",
+            "it": "Torna a modcase."
         },
         "SearchTemplate": {
             "description": "Search a template",
             "en": "Search template",
             "de": "Vorlage suchen",
-            "at": "Vorlog suacha"
+            "at": "Vorlog suacha",
+            "fr": "Modèle de recherche",
+            "es": "Plantilla de búsqueda",
+            "ru": "Шаблон поиска",
+            "it": "Modello di ricerca"
         },
         "Back": {
             "description": "back button",
             "en": "Back",
             "de": "Zurück",
-            "at": "Zruck"
+            "at": "Zruck",
+            "fr": "Arrière",
+            "es": "atrás",
+            "ru": "Назад",
+            "it": "Di ritorno"
         },
         "Next": {
             "description": "Nexc button",
             "en": "Next",
             "de": "Nächster Schritt",
-            "at": "Weita"
+            "at": "Weita",
+            "fr": "Prochain",
+            "es": "próximo",
+            "ru": "Следующий",
+            "it": "Prossimo"
         },
         "ChooseAMember": {
             "description": "choose a member step of dialog",
             "en": "Choose a member",
             "de": "Nutzerauswahl",
-            "at": "Nutzaauswoi"
+            "at": "Nutzaauswoi",
+            "fr": "Choisissez un membre",
+            "es": "Elige un miembro",
+            "ru": "Выберите участника",
+            "it": "Scegli un membro"
         },
         "Member": {
             "description": "member field",
             "en": "Member",
             "de": "Mitglied",
-            "at": "Nutza"
+            "at": "Nutza",
+            "fr": "Membre",
+            "es": "Miembro",
+            "ru": "Член",
+            "it": "Membro"
         },
         "PickOne": {
             "description": "pick one member",
             "en": "Pick one",
             "de": "Wähle einen",
-            "at": "Wöhn an"
+            "at": "Wöhn an",
+            "fr": "Choisissez-en un",
+            "es": "Elegir uno",
+            "ru": "Выбери один",
+            "it": "Sceglierne uno"
         },
         "DescribeCase": {
             "description": "describe the case step of dialog",
             "en": "Describe the case",
             "de": "Vorfallsbeschreibung",
-            "at": "Vorfoibeschreibung"
+            "at": "Vorfoibeschreibung",
+            "fr": "Décrivez le cas",
+            "es": "Describe el caso",
+            "ru": "Опишите случай",
+            "it": "Descrivi il caso"
         },
         "Title": {
             "description": "title of the case",
             "en": "Title",
             "de": "Titel",
-            "at": "Titl"
+            "at": "Titl",
+            "fr": "Titre",
+            "es": "Título",
+            "ru": "Заголовок",
+            "it": "Titolo"
         },
         "Description": {
             "description": "description of the case",
             "en": "Description",
             "de": "Beschreibung",
-            "at": "Beschreibung"
+            "at": "Beschreibung",
+            "fr": "La description",
+            "es": "Descripción",
+            "ru": "Описание",
+            "it": "Descrizione"
         },
         "Labels": {
             "description": "Labels field of case",
             "en": "Labels",
             "de": "Labels",
-            "at": "Labls"
+            "at": "Labls",
+            "fr": "Étiquettes",
+            "es": "Etiquetas",
+            "ru": "Этикетки",
+            "it": "etichette"
         },
         "NewLabel": {
             "description": "placeholder for label field",
             "en": "New label...",
             "de": "Neuer Label...",
-            "at": "Neichs Labl..."
+            "at": "Neichs Labl...",
+            "fr": "Nouvelle étiquette...",
+            "es": "Nueva etiqueta ...",
+            "ru": "Новый лейбл ...",
+            "it": "Nuova etichetta..."
         },
         "ChoosePunishment": {
             "description": "choose a punishment step of dialog",
             "en": "Choose a punishment",
             "de": "Bestrafungsauswahl",
-            "at": "Bestrofungsauswoi"
+            "at": "Bestrofungsauswoi",
+            "fr": "Choisissez une punition",
+            "es": "Elige un castigo",
+            "ru": "Выберите наказание",
+            "it": "Scegli una punizione"
         },
         "Punishment": {
             "description": "punishment field for case",
             "en": "Punishment",
             "de": "Bestrafung",
-            "at": "Bestrofung"
+            "at": "Bestrofung",
+            "fr": "Châtiment",
+            "es": "Castigo",
+            "ru": "Наказание",
+            "it": "Punizione"
         },
         "SendDmNotification": {
             "description": "Send dm notification checkbox",
             "en": " Send dm notification",
             "de": "Direktnachrichtbenachrichtigung",
-            "at": "Direktnochrichtnbenochrichtigung"
+            "at": "Direktnochrichtnbenochrichtigung",
+            "fr": "Envoyer une notification dm",
+            "es": "Enviar notificación dm",
+            "ru": "Отправить уведомление dm",
+            "it": "Invia notifica dm"
         },
         "HandlePunishment": {
             "description": "Execute punishment or just register it?",
             "en": "Execute this punishment",
             "de": "Bestrafung ausführen",
-            "at": "Bestrofung ausfian"
+            "at": "Bestrofung ausfian",
+            "fr": "Exécuter cette punition",
+            "es": "Ejecuta este castigo",
+            "ru": "Выполнить это наказание",
+            "it": "Esegui questa punizione"
         },
         "UploadFiles": {
             "description": "Upload files step of dialog",
             "en": "Upload files",
             "de": "Dateienupload",
-            "at": "Dateinupload"
+            "at": "Dateinupload",
+            "fr": "Télécharger des fichiers",
+            "es": "Subir archivos",
+            "ru": "Загрузить файлы",
+            "it": "Caricare files"
         },
         "Upload": {
             "description": "button to upload files",
             "en": "Upload",
             "de": "Upload",
-            "at": "Upload"
+            "at": "Upload",
+            "fr": "Télécharger",
+            "es": "Subir",
+            "ru": "Загрузить",
+            "it": "Caricamento"
         },
         "CreateCase": {
             "description": "Create case step of dialog",
             "en": "Create case",
             "de": "Vorfallserstellung",
-            "at": "Vorfoi erstön"
+            "at": "Vorfoi erstön",
+            "fr": "Créer un cas",
+            "es": "Crear caso",
+            "ru": "Создать дело",
+            "it": "Crea caso"
         },
         "UpdateCase": {
             "description": "update case step of dialog",
             "en": "Update case",
             "de": "Vorfallsaktualisierung",
-            "at": "Vorfoi aktualisian"
+            "at": "Vorfoi aktualisian",
+            "fr": "Mettre à jour le cas",
+            "es": "Actualizar caso",
+            "ru": "Обновить дело",
+            "it": "Aggiorna caso"
         },
         "PublicNotification": {
             "description": "public notification checkbox",
             "en": "Send public notification",
             "de": "Öffentliche Benachrichtigung",
-            "at": "Öffentliche Benochrichtigung"
+            "at": "Öffentliche Benochrichtigung",
+            "fr": "Envoyer une notification publique",
+            "es": "Enviar notificación pública",
+            "ru": "Отправить публичное уведомление",
+            "it": "Invia notifica pubblica"
         },
         "SaveAsTemplate": {
             "description": "Save as template button",
             "en": "Save as template",
             "de": "Als Vorlage speichern",
-            "at": "Ois Vorlog speichan"
+            "at": "Ois Vorlog speichan",
+            "fr": "Enregistrer en tant que modèle",
+            "es": "Guardar como plantilla",
+            "ru": "Сохранить как шаблон",
+            "it": "Salva come modello"
         },
         "CreateCaseButton": {
             "description": "Create case button",
             "en": "Create case",
             "de": "Vorfall erstellen",
-            "at": "Vorfoi erstön"
+            "at": "Vorfoi erstön",
+            "fr": "Créer un cas",
+            "es": "Crear caso",
+            "ru": "Создать дело",
+            "it": "Crea caso"
         },
         "UpdateCaseButton": {
             "description": "Update case button",
             "en": "Update case",
             "de": "Vorfall aktualisieren",
-            "at": "Vorfoi aktualisian"
+            "at": "Vorfoi aktualisian",
+            "fr": "Mettre à jour le cas",
+            "es": "Actualizar caso",
+            "ru": "Обновить дело",
+            "it": "Aggiorna caso"
         },
         "FailedToLoad": {
             "MemberList": {
                 "description": "Failed to load member list.",
                 "en": "Failed to load member list.",
                 "de": "Mitgliederliste konnte nicht geladen werden.",
-                "at": "Mitgliederlisn konnt ned glodn wean."
+                "at": "Mitgliederlisn konnt ned glodn wean.",
+                "fr": "Échec du chargement de la liste des membres.",
+                "es": "No se pudo cargar la lista de miembros.",
+                "ru": "Не удалось загрузить список участников.",
+                "it": "Impossibile caricare l'elenco dei membri."
             },
             "PunishmentEnum": {
                 "description": "Failed to load punishment enum.",
                 "en": "Failed to load available punishments.",
                 "de": "Verfügbare Bestrafungen konnten nicht geladen werden.",
-                "at": "Verfügbare Bestrofungen konntn ned glodn wean."
+                "at": "Verfügbare Bestrofungen konntn ned glodn wean.",
+                "fr": "Échec du chargement des punitions disponibles.",
+                "es": "No se pudieron cargar los castigos disponibles.",
+                "ru": "Не удалось загрузить доступные наказания.",
+                "it": "Impossibile caricare le punizioni disponibili."
             },
             "CaseTemplates": {
                 "description": "Failed to load case templates.",
                 "en": "Failed to load case templates.",
                 "de": "Vorlagen konnte nicht geladen werden.",
-                "at": "Vorlog konnt ned glodn wean."
+                "at": "Vorlog konnt ned glodn wean.",
+                "fr": "Échec du chargement des modèles de cas.",
+                "es": "No se pudieron cargar las plantillas de casos.",
+                "ru": "Не удалось загрузить шаблоны дел.",
+                "it": "Impossibile caricare i modelli dei casi."
             },
             "CurrentCase": {
                 "description": "Failed to load current case.",
                 "en": "Failed to load current case.",
                 "de": "Vorfall konnte nicht geladen werden.",
-                "at": "Vorfoi konnt ned erstöt wean."
+                "at": "Vorfoi konnt ned erstöt wean.",
+                "fr": "Échec du chargement du cas actuel.",
+                "es": "No se pudo cargar el caso actual.",
+                "ru": "Не удалось загрузить текущее дело.",
+                "it": "Impossibile caricare il caso corrente."
             }
         },
         "AppliedTemplate": {
             "description": "Applied template",
             "en": "Applied template.",
             "de": "Vorlage angewendet.",
-            "at": "Vorlog ogwendt."
+            "at": "Vorlog ogwendt.",
+            "fr": "Modèle appliqué.",
+            "es": "Plantilla aplicada.",
+            "ru": "Прикладной шаблон.",
+            "it": "Modello applicato."
         },
         "TemplateDeleted": {
             "description": "Template deleted",
             "en": "Template deleted.",
             "de": "Vorlage gelöscht.",
-            "at": "Vorlog glescht."
+            "at": "Vorlog glescht.",
+            "fr": "Modèle supprimé.",
+            "es": "Plantilla eliminada.",
+            "ru": "Шаблон удален.",
+            "it": "Modello eliminato."
         },
         "FailedToDeleteTemplate": {
             "description": "failed to template deleted",
             "en": "Failed to delete template.",
             "de": "Vorlage konnte nicht gelöscht werden.",
-            "at": "Vorlog konnt ned glescht wean."
+            "at": "Vorlog konnt ned glescht wean.",
+            "fr": "Échec de la suppression du modèle.",
+            "es": "No se pudo borrar la plantilla.",
+            "ru": "Не удалось удалить шаблон.",
+            "it": "Impossibile eliminare il modello."
         },
         "TemplateSaved": {
             "description": "Template saved",
             "en": "Template saved.",
             "de": "Vorlage gespeichert.",
-            "at": "Vorlog gspeichat."
+            "at": "Vorlog gspeichat.",
+            "fr": "Modèle enregistré.",
+            "es": "Plantilla guardada.",
+            "ru": "Шаблон сохранен.",
+            "it": "Modello salvato."
         },
         "FailedToSaveTemplate": {
             "description": "failed to template save",
             "en": "Failed to save template.",
             "de": "Vorlage konnte nicht gespeichert werden.",
-            "at": "Vorlog konnt ned gspeichat wean."
+            "at": "Vorlog konnt ned gspeichat wean.",
+            "fr": "Échec de l'enregistrement du modèle.",
+            "es": "No se pudo guardar la plantilla.",
+            "ru": "Не удалось сохранить шаблон.",
+            "it": "Impossibile salvare il modello."
         },
         "FileUploaded": {
             "description": "File saved",
             "en": "File uploaded.",
             "de": "Datei hochgeladen.",
-            "at": "Datei hochglodn."
+            "at": "Datei hochglodn.",
+            "fr": "Fichier téléchargé.",
+            "es": "Archivo subido.",
+            "ru": "Файл загружен.",
+            "it": "File caricato."
         },
         "FailedToUploadFile": {
             "description": "failed to upload file",
             "en": "Failed to upload file.",
             "de": "Datei konnte nicht hochgeladen werden.",
-            "at": "Datei konnt ned hochglodn wean."
+            "at": "Datei konnt ned hochglodn wean.",
+            "fr": "Échec du téléchargement du fichier.",
+            "es": "No se pudo cargar el archivo.",
+            "ru": "Не удалось загрузить файл.",
+            "it": "Impossibile caricare il file."
         },
         "CaseCreated": {
             "description": "Case created",
             "en": "Case created.",
             "de": "Vorfall erstellt.",
-            "at": "Vorfoi erstöt."
+            "at": "Vorfoi erstöt.",
+            "fr": "Cas créé.",
+            "es": "Caso creado.",
+            "ru": "Дело создано.",
+            "it": "Caso creato."
         },
         "CaseUpdated": {
             "description": "Case updated",
             "en": "Case updated.",
             "de": "Vorfall aktualisiert.",
-            "at": "Vorfoi aktualisiat."
+            "at": "Vorfoi aktualisiat.",
+            "fr": "Cas mis à jour.",
+            "es": "Caso actualizado.",
+            "ru": "Дело обновлено.",
+            "it": "Caso aggiornato."
         }
     },
     "ModCaseTable": {
@@ -2104,43 +3420,71 @@
             "description": "Exclude automoderations from current table selection",
             "en": "Exclude automoderations",
             "de": "Automoderationen verstecken",
-            "at": "Automodaration vasteckn"
+            "at": "Automodaration vasteckn",
+            "fr": "Exclure les automodérations",
+            "es": "Excluir automoderaciones",
+            "ru": "Исключить автоматизацию",
+            "it": "Escludi le moderazioni automatiche"
         },
         "ExcludePermanent": {
             "description": "Exclude permanent punishments from current table selection",
             "en": "Exclude permanent punishments",
             "de": "Permanente Verwarnungen verstecken",
-            "at": "Permanente Verwarnungen vasteckn"
+            "at": "Permanente Verwarnungen vasteckn",
+            "fr": "Exclure les peines permanentes",
+            "es": "Excluir castigos permanentes",
+            "ru": "Исключить постоянные наказания",
+            "it": "Escludi punizioni permanenti"
         },
         "ExcludeInactive": {
             "description": "Exclude cases users from current table selection",
             "en": "Exclude inactive cases",
             "de": "Inaktive Vorfälle verstecken",
-            "at": "Inaktive Vorfälle vasteckn"
+            "at": "Inaktive Vorfälle vasteckn",
+            "fr": "Exclure les cas inactifs",
+            "es": "Excluir casos inactivos",
+            "ru": "Исключить неактивные обращения",
+            "it": "Escludi casi inattivi"
         },
         "CreateNewCase": {
             "description": "Create a new case button",
             "en": "Create new case",
             "de": "Neuen Vorfall erstellen",
-            "at": "Neichn Vorfoi erstön"
+            "at": "Neichn Vorfoi erstön",
+            "fr": "Créer un nouveau cas",
+            "es": "Crear nuevo caso",
+            "ru": "Создать новое дело",
+            "it": "Crea nuovo caso"
         },
         "Search": {
             "description": "Search button",
             "en": "Search (user, id, description...)",
             "de": "Suche (Benutzer, ID, Beschreibung...)",
-            "at": "Suach (Benutza, ID, Beschreibung ...)"
+            "at": "Suach (Benutza, ID, Beschreibung ...)",
+            "fr": "Recherche (utilisateur, identifiant, description...)",
+            "es": "Búsqueda (usuario, id, descripción ...)",
+            "ru": "Поиск (пользователь, идентификатор, описание ...)",
+            "it": "Cerca (utente, id, descrizione...)"
         },
         "FailedToLoad": {
             "description": "Failed to load case table",
             "en": "Failed to load cases.",
             "de": "Vorfälle konnten nicht geladen werden.",
-            "at": "Vorfälle konntn ned glodn wean."
+            "at": "Vorfälle konntn ned glodn wean.",
+            "fr": "Échec du chargement des cas.",
+            "es": "No se pudieron cargar los casos.",
+            "ru": "Не удалось загрузить кейсы.",
+            "it": "Impossibile caricare i casi."
         },
         "NoMatches": {
             "description": "No matches for search string found.",
             "en": "No case matches your search.",
             "de": "Keine Vorfälle passen zu deiner Suche.",
-            "at": "Kane Vorfälle passn zu deina Suach."
+            "at": "Kane Vorfälle passn zu deina Suach.",
+            "fr": "Aucun cas ne correspond à votre recherche.",
+            "es": "Ningún caso coincide con su búsqueda.",
+            "ru": "По вашему запросу не найдено ни одного случая.",
+            "it": "Nessun caso corrisponde alla tua ricerca."
         }
     },
     "ModCaseCard": {
@@ -2148,25 +3492,41 @@
             "description": "View Details Button",
             "en": "View Details",
             "de": "Details anzeigen",
-            "at": "Details ozeign"
+            "at": "Details ozeign",
+            "fr": "Voir les détails",
+            "es": "Ver detalles",
+            "ru": "Посмотреть детали",
+            "it": "Visualizza dettagli"
         },
         "Created": {
             "description": "Created prefix for card",
             "en": "Created:",
             "de": "Erstellt:",
-            "at": "Erstöt:"
+            "at": "Erstöt:",
+            "fr": "Créé:",
+            "es": "Creado:",
+            "ru": "Созданный:",
+            "it": "Creato:"
         },
         "Until": {
             "description": "Until prefix for card",
             "en": "Until:",
             "de": "Bis:",
-            "at": "Bis:"
+            "at": "Bis:",
+            "fr": "Jusqu'à:",
+            "es": "Hasta que:",
+            "ru": "До:",
+            "it": "Fino a quando:"
         },
         "Delete": {
             "description": "Delete prefix for card",
             "en": "Delete:",
             "de": "Löschen:",
-            "at": "Leschn:"
+            "at": "Leschn:",
+            "fr": "Effacer:",
+            "es": "Borrar:",
+            "ru": "Удалить:",
+            "it": "Elimina:"
         }
     },
     "ModCaseView": {
@@ -2174,176 +3534,292 @@
             "description": "The suspect",
             "en": "Suspect",
             "de": "Verdächtiger",
-            "at": "Verdächtiga"
+            "at": "Verdächtiga",
+            "fr": "Suspect",
+            "es": "Sospechar",
+            "ru": "Подозревать",
+            "it": "Sospettare"
         },
         "ID": {
             "description": "the ID (identifier) of an object",
             "en": "ID",
             "de": "ID",
-            "at": "ID"
+            "at": "ID",
+            "fr": "identifiant",
+            "es": "IDENTIFICACIÓN",
+            "ru": "Я БЫ",
+            "it": "ID"
         },
         "Moderator": {
             "description": "The moderator",
             "en": "Moderator",
             "de": "Moderator",
-            "at": "Modarator"
+            "at": "Modarator",
+            "fr": "Modérateur",
+            "es": "Moderador",
+            "ru": "Модератор",
+            "it": "Moderatore"
         },
         "Punishment": {
             "description": "The punishment",
             "en": "Punishment",
             "de": "Bestrafung",
-            "at": "Bestrofung"
+            "at": "Bestrofung",
+            "fr": "Châtiment",
+            "es": "Castigo",
+            "ru": "Наказание",
+            "it": "Punizione"
         },
         "Guild": {
             "description": "The guild",
             "en": "Guild",
             "de": "Gilde",
-            "at": "Güde"
+            "at": "Güde",
+            "fr": "Guilde",
+            "es": "Gremio",
+            "ru": "Гильдия",
+            "it": "Gilda"
         },
         "PunishedUntil": {
             "description": "punished until {date}",
             "en": "Punished until:",
             "de": "Bestraft bis:",
-            "at": "Bestroft bis:"
+            "at": "Bestroft bis:",
+            "fr": "Puni jusqu'à :",
+            "es": "Castigado hasta:",
+            "ru": "Наказан до:",
+            "it": "Punito fino a:"
         },
         "PunishedForever": {
             "description": "punished forever",
             "en": "Punished forever",
             "de": "Bestraft für immer",
-            "at": "Bestroft fia imma"
+            "at": "Bestroft fia imma",
+            "fr": "Puni à jamais",
+            "es": "Castigado para siempre",
+            "ru": "Наказан навсегда",
+            "it": "Punito per sempre"
         },
         "PunishmentExpired": {
             "description": "punishment expired",
             "en": "Punishment is expired.",
             "de": "Bestrafung ist ausgelaufen",
-            "at": "Bestrofung is ausglaufn"
+            "at": "Bestrofung is ausglaufn",
+            "fr": "La peine est expirée.",
+            "es": "El castigo ha expirado.",
+            "ru": "Срок наказания истек.",
+            "it": "La pena è scaduta."
         },
         "CreatedAt": {
             "description": "created at",
             "en": "Created at",
             "de": "Erstellt am",
-            "at": "Erstöt am"
+            "at": "Erstöt am",
+            "fr": "Créé à",
+            "es": "Creado en",
+            "ru": "Создано в",
+            "it": "Creato a"
         },
         "EditedAt": {
             "description": "edited at",
             "en": "Edited at",
             "de": "Aktualisiert",
-            "at": "Aktualisiat"
+            "at": "Aktualisiat",
+            "fr": "Edité à",
+            "es": "Editado en",
+            "ru": "Отредактировано в",
+            "it": "Modificato a"
         },
         "LastEditModerator": {
             "description": "last edit by moderator x",
             "en": "Last edit by moderator",
             "de": "Aktualisiert von",
-            "at": "Aktualisiat vo"
+            "at": "Aktualisiat vo",
+            "fr": "Dernière modification par le modérateur",
+            "es": "Última edición del moderador",
+            "ru": "Последнее изменение модератора",
+            "it": "Ultima modifica del moderatore"
         },
         "Description": {
             "description": "description",
             "en": "Description",
             "de": "Beschreibung",
-            "at": "Beschreibung"
+            "at": "Beschreibung",
+            "fr": "La description",
+            "es": "Descripción",
+            "ru": "Описание",
+            "it": "Descrizione"
         },
         "UploadedFiles": {
             "description": "uploaded files",
             "en": "Uploaded files",
             "de": "Hochgeladene Dateien",
-            "at": "Hochglodnene Datein"
+            "at": "Hochglodnene Datein",
+            "fr": "Fichiers téléchargés",
+            "es": "Archivos subidos",
+            "ru": "Загруженные файлы",
+            "it": "File caricati"
         },
         "Upload": {
             "description": "upload button",
             "en": "Upload",
             "de": "Upload",
-            "at": "Upload"
+            "at": "Upload",
+            "fr": "Télécharger",
+            "es": "Subir",
+            "ru": "Загрузить",
+            "it": "Caricamento"
         },
         "Comments": {
             "description": "Comments",
             "en": "Comments",
             "de": "Kommentare",
-            "at": "Kommentare"
+            "at": "Kommentare",
+            "fr": "commentaires",
+            "es": "Comentarios",
+            "ru": "Комментарии",
+            "it": "Commenti"
         },
         "NewComment": {
             "description": "New comment field",
             "en": "New comment",
             "de": "Neuer Kommentar",
-            "at": "Neua Kommentar"
+            "at": "Neua Kommentar",
+            "fr": "Nouveau commentaire",
+            "es": "Nuevo comentario",
+            "ru": "Новый комментарий",
+            "it": "Nuovo commento"
         },
         "LockComments": {
             "description": "lock comments",
             "en": "Lock comments",
             "de": "Kommentare sperren",
-            "at": "Kommentare spean"
+            "at": "Kommentare spean",
+            "fr": "Verrouiller les commentaires",
+            "es": "Bloquear comentarios",
+            "ru": "Заблокировать комментарии",
+            "it": "Blocca i commenti"
         },
         "UnlockComments": {
             "description": "unlock comments",
             "en": "Unlock comments",
             "de": "Kommentare freigeben",
-            "at": "Komentare freigebn"
+            "at": "Komentare freigebn",
+            "fr": "Déverrouiller les commentaires",
+            "es": "Desbloquear comentarios",
+            "ru": "Разблокировать комментарии",
+            "it": "Sblocca i commenti"
         },
         "PostComment": {
             "description": "post comment",
             "en": "Post comment",
             "de": "Kommentar absenden",
-            "at": "Kommentar obsendn"
+            "at": "Kommentar obsendn",
+            "fr": "Poster un commentaire",
+            "es": "Publicar comentario",
+            "ru": "Оставьте комментарий",
+            "it": "Posta un commento"
         },
         "CaseMarkedToDelete": {
             "description": "case marked to be deleted by user y at x date",
             "en": "Marked to be deleted - {{user}}",
             "de": "Zum Löschen markiert - {{user}}",
-            "at": "Zum Leschn markiat - {{user}}"
+            "at": "Zum Leschn markiat - {{user}}",
+            "fr": "Marqué pour être supprimé - {{user}}",
+            "es": "Marcado para eliminarse: {{user}}",
+            "ru": "Отмечено для удаления - {{user}}",
+            "it": "Contrassegnato per essere eliminato - {{user}}"
         },
         "CommentsLocked": {
             "description": "case comments locked by user y",
             "en": "Comments locked - {{user}}",
             "de": "Kommentare gesperrt - {{user}}",
-            "at": "Kommentare gsperrt - {{user}}"
+            "at": "Kommentare gsperrt - {{user}}",
+            "fr": "Commentaires verrouillés - {{user}}",
+            "es": "Comentarios bloqueados: {{user}}",
+            "ru": "Комментарии заблокированы - {{user}}",
+            "it": "Commenti bloccati - {{user}}"
         },
         "Restore": {
             "description": "restore button",
             "en": "Restore",
             "de": "Wiederherstellen",
-            "at": "Wiedaherstön"
+            "at": "Wiedaherstön",
+            "fr": "Restaurer",
+            "es": "Restaurar",
+            "ru": "Восстановить",
+            "it": "Ristabilire"
         },
         "View": {
             "description": "View file",
             "en": "View",
             "de": "Einsehen",
-            "at": "Eisehn"
+            "at": "Eisehn",
+            "fr": "Vue",
+            "es": "Vista",
+            "ru": "Вид",
+            "it": "Visualizzazione"
         },
         "Delete": {
             "description": "delete button",
             "en": "Delete",
             "de": "Löschen",
-            "at": "Leschn"
+            "at": "Leschn",
+            "fr": "Effacer",
+            "es": "Borrar",
+            "ru": "Удалить",
+            "it": "Elimina"
         },
         "Moderators": {
             "description": "moderators",
             "en": "Moderators",
             "de": "Moderatoren",
-            "at": "Modaratorn"
+            "at": "Modaratorn",
+            "fr": "Modérateurs",
+            "es": "Moderadores",
+            "ru": "Модераторы",
+            "it": "Moderatori"
         },
         "FailedToLoad": {
             "Punishments": {
                 "description": "punishments",
                 "en": "Failed to load available punishments.",
                 "de": "Verfügbare Bestrafungen konnten nicht geladen werden.",
-                "at": "Verfügbare Bestrofungen konntn ned glodn wean."
+                "at": "Verfügbare Bestrofungen konntn ned glodn wean.",
+                "fr": "Échec du chargement des punitions disponibles.",
+                "es": "No se pudieron cargar los castigos disponibles.",
+                "ru": "Не удалось загрузить доступные наказания.",
+                "it": "Impossibile caricare le punizioni disponibili."
             },
             "Files": {
                 "description": "files",
                 "en": "Failed to load files.",
                 "de": "Dateien konnten nicht geladen werden.",
-                "at": "Datein konntn ned glodn wean."
+                "at": "Datein konntn ned glodn wean.",
+                "fr": "Échec du chargement des fichiers.",
+                "es": "No se pudieron cargar los archivos.",
+                "ru": "Не удалось загрузить файлы.",
+                "it": "Impossibile caricare i file."
             },
             "Guild": {
                 "description": "Guild info",
                 "en": "Failed to load guild info.",
                 "de": "Gildeninformationen konnten nicht geladen werden.",
-                "at": "Güdninformationen konntn ned glodn wean."
+                "at": "Güdninformationen konntn ned glodn wean.",
+                "fr": "Échec du chargement des informations de guilde.",
+                "es": "No se pudo cargar la información del gremio.",
+                "ru": "Не удалось загрузить информацию о гильдии.",
+                "it": "Impossibile caricare le informazioni sulla gilda."
             },
             "Case": {
                 "description": "Case",
                 "en": "Failed to load case.",
                 "de": "Vorfall konnte nicht geladen werden.",
-                "at": "Vorfoi konnte ned glodn wean."
+                "at": "Vorfoi konnte ned glodn wean.",
+                "fr": "Échec du chargement du dossier.",
+                "es": "No se pudo cargar el caso.",
+                "ru": "Не удалось загрузить дело.",
+                "it": "Impossibile caricare il caso."
             }
         },
         "DeleteCase": {
@@ -2351,19 +3827,31 @@
                 "description": "deleted",
                 "en": "Case marked to be deleted.",
                 "de": "Vorfall zum Löschen vormarkiert.",
-                "at": "Vorfoi zum Leschn markiat."
+                "at": "Vorfoi zum Leschn markiat.",
+                "fr": "Cas marqué pour être supprimé.",
+                "es": "Caso marcado para ser eliminado.",
+                "ru": "Дело отмечено для удаления.",
+                "it": "Caso contrassegnato per essere eliminato."
             },
             "ForceDeleted": {
                 "description": "force deleted",
                 "en": "Case deleted.",
                 "de": "Vorfall gelöscht.",
-                "at": "Vorfoi glescht."
+                "at": "Vorfoi glescht.",
+                "fr": "Cas supprimé.",
+                "es": "Caso eliminado.",
+                "ru": "Дело удалено.",
+                "it": "Caso eliminato."
             },
             "Failed": {
                 "description": "failed delete",
                 "en": "Failed to delete case.",
                 "de": "Vorfall konnte nicht gelöscht werden.",
-                "at": "Vorfoi konnt ned glescht wean."
+                "at": "Vorfoi konnt ned glescht wean.",
+                "fr": "Échec de la suppression du cas.",
+                "es": "No se pudo borrar el caso.",
+                "ru": "Не удалось удалить дело.",
+                "it": "Impossibile eliminare il caso."
             }
         },
         "RestoreCase": {
@@ -2371,13 +3859,21 @@
                 "description": "restored",
                 "en": "Restored case.",
                 "de": "Vorfall wiederhergestellt.",
-                "at": "Vorfoi wiedahergstöt."
+                "at": "Vorfoi wiedahergstöt.",
+                "fr": "Boitier restauré.",
+                "es": "Caso restaurado.",
+                "ru": "Восстановленный корпус.",
+                "it": "Cassa restaurata."
             },
             "Failed": {
                 "description": "failed restore",
                 "en": "Failed to restore case.",
                 "de": "Vorfall konnte nicht wiederhergestellt werden.",
-                "at": "Vorfoi konnt ned wiederhergstöt wean."
+                "at": "Vorfoi konnt ned wiederhergstöt wean.",
+                "fr": "Échec de la restauration du cas.",
+                "es": "No se pudo restaurar el caso.",
+                "ru": "Не удалось восстановить дело.",
+                "it": "Impossibile ripristinare il caso."
             }
         },
         "FileUpload": {
@@ -2385,13 +3881,21 @@
                 "description": "file uploaded",
                 "en": "File uploaded.",
                 "de": "Datei hochgeladen",
-                "at": "Datei hochglodn"
+                "at": "Datei hochglodn",
+                "fr": "Fichier téléchargé.",
+                "es": "Archivo subido.",
+                "ru": "Файл загружен.",
+                "it": "File caricato."
             },
             "Failed": {
                 "description": "failed upload",
                 "en": "Failed to upload ffile.",
                 "de": "Datei konnte nicht hochgeladen werden.",
-                "at": "Datei konnt ned hochglodn wean."
+                "at": "Datei konnt ned hochglodn wean.",
+                "fr": "Échec du téléchargement du fichier.",
+                "es": "No se pudo cargar el archivo.",
+                "ru": "Не удалось загрузить файл.",
+                "it": "Impossibile caricare il file."
             }
         },
         "FileDelete": {
@@ -2399,13 +3903,21 @@
                 "description": "File deleted",
                 "en": "File deleted.",
                 "de": "Datei gelöscht.",
-                "at": "Datei glescht."
+                "at": "Datei glescht.",
+                "fr": "Fichier supprimé.",
+                "es": "Archivo eliminado.",
+                "ru": "Файл удален.",
+                "it": "File eliminato."
             },
             "Failed": {
                 "description": "Failed to file delete",
                 "en": "Failed to delete file",
                 "de": "Datei konnte nicht gelöscht werden.",
-                "at": "Datei konnt ned glescht wean."
+                "at": "Datei konnt ned glescht wean.",
+                "fr": "Échec de la suppression du fichier",
+                "es": "No se pudo borrar el archivo",
+                "ru": "Не удалось удалить файл",
+                "it": "Impossibile eliminare il file"
             }
         },
         "CommentDelete": {
@@ -2413,13 +3925,21 @@
                 "description": "comment deleted",
                 "en": "Comment deleted.",
                 "de": "Kommentar gelöscht.",
-                "at": "Kommentar glescht."
+                "at": "Kommentar glescht.",
+                "fr": "Commentaire supprimé.",
+                "es": "Comentario borrado.",
+                "ru": "Комментарий удален.",
+                "it": "Commento cancellato."
             },
             "Failed": {
                 "description": "Failed to comment delete",
                 "en": "Failed to delete comment",
                 "de": "Kommentar konnte nicht gelöscht werden.",
-                "at": "Kommentar konnt ned glescht wean."
+                "at": "Kommentar konnt ned glescht wean.",
+                "fr": "Échec de la suppression du commentaire",
+                "es": "No se pudo borrar el comentario",
+                "ru": "Не удалось удалить комментарий",
+                "it": "Impossibile eliminare il commento"
             }
         },
         "CommentLock": {
@@ -2427,13 +3947,21 @@
                 "description": "comment locked",
                 "en": "Comments locked.",
                 "de": "Kommentare gesperrt.",
-                "at": "Kommentare gsperrt."
+                "at": "Kommentare gsperrt.",
+                "fr": "Commentaires verrouillés.",
+                "es": "Comentarios bloqueados.",
+                "ru": "Комментарии заблокированы.",
+                "it": "Commenti bloccati."
             },
             "Failed": {
                 "description": "Failed to comment lock",
                 "en": "Failed to lock comments",
                 "de": "Kommentare konnte nicht gesperrt werden.",
-                "at": "Kommentare konntn ned gsperrt wean."
+                "at": "Kommentare konntn ned gsperrt wean.",
+                "fr": "Échec du verrouillage des commentaires",
+                "es": "No se pudieron bloquear los comentarios",
+                "ru": "Не удалось заблокировать комментарии",
+                "it": "Impossibile bloccare i commenti"
             }
         },
         "CommentUnlock": {
@@ -2441,13 +3969,21 @@
                 "description": "comment unlocked",
                 "en": "Comments unlocked.",
                 "de": "Kommentare freigegeben.",
-                "at": "Kommentare freigebn."
+                "at": "Kommentare freigebn.",
+                "fr": "Commentaires débloqués.",
+                "es": "Comentarios desbloqueados.",
+                "ru": "Комментарии разблокированы.",
+                "it": "Commenti sbloccati."
             },
             "Failed": {
                 "description": "Failed to comment unlock",
                 "en": "Failed to unlock comments",
                 "de": "Kommentare konnte nicht freigegeben werden.",
-                "at": "Kommentare konntn ned freigebn wean."
+                "at": "Kommentare konntn ned freigebn wean.",
+                "fr": "Échec du déverrouillage des commentaires",
+                "es": "No se pudieron desbloquear los comentarios",
+                "ru": "Не удалось разблокировать комментарии",
+                "it": "Impossibile sbloccare i commenti"
             }
         },
         "CommentPost": {
@@ -2455,13 +3991,21 @@
                 "description": "comment posted",
                 "en": "Comment posted.",
                 "de": "Kommentar gespeichert.",
-                "at": "Kommentar gspeichat."
+                "at": "Kommentar gspeichat.",
+                "fr": "Commentaire posté.",
+                "es": "Comentario publicado.",
+                "ru": "Комментарий опубликован.",
+                "it": "Commento pubblicato."
             },
             "Failed": {
                 "description": "Failed to comment post",
                 "en": "Failed to post comment",
                 "de": "Kommentar konnte nicht gespeichert werden.",
-                "at": "Kommentar konnt ned gspeichat wean."
+                "at": "Kommentar konnt ned gspeichat wean.",
+                "fr": "Échec de la publication du commentaire",
+                "es": "No se pudo publicar el comentario",
+                "ru": "Не удалось опубликовать комментарий",
+                "it": "Impossibile pubblicare il commento"
             }
         },
         "CommentUpdate": {
@@ -2469,13 +4013,21 @@
                 "description": "comment updated",
                 "en": "Comment updated.",
                 "de": "Kommentar aktualisiert.",
-                "at": "Kommentar aktualisiat."
+                "at": "Kommentar aktualisiat.",
+                "fr": "Commentaire mis à jour.",
+                "es": "Comentario actualizado.",
+                "ru": "Комментарий обновлен.",
+                "it": "Commento aggiornato."
             },
             "Failed": {
                 "description": "Failed to comment update",
                 "en": "Failed to update comment",
                 "de": "Kommentar konnte nicht aktualisiert werden.",
-                "at": "Kommentar konnt ned aktualisiat wean."
+                "at": "Kommentar konnt ned aktualisiat wean.",
+                "fr": "Échec de la mise à jour du commentaire",
+                "es": "No se pudo actualizar el comentario.",
+                "ru": "Не удалось обновить комментарий",
+                "it": "Impossibile aggiornare il commento"
             }
         }
     },
@@ -2484,69 +4036,113 @@
             "description": "field to enter userid or code",
             "en": "Enter a users id or invite code",
             "de": "Gib die ID eines Nutzers oder einen Einladungslink an",
-            "at": "Gib de ID vom Nutza oda vom Eiladungslink ei"
+            "at": "Gib de ID vom Nutza oda vom Eiladungslink ei",
+            "fr": "Entrez un identifiant d'utilisateur ou un code d'invitation",
+            "es": "Ingrese una identificación de usuario o un código de invitación",
+            "ru": "Введите идентификатор пользователя или пригласительный код",
+            "it": "Inserisci un ID utente o un codice di invito"
         },
         "Userscan": {
             "description": "userscan headline",
             "en": "Userscan",
             "de": "Benutzeruntersuchung",
-            "at": "Benutzauntasuchung"
+            "at": "Benutzauntasuchung",
+            "fr": "Les utilisateurs peuvent",
+            "es": "Los usuarioscan",
+            "ru": "Пользователи",
+            "it": "Gli utenti possono"
         },
         "Invitescan": {
             "description": "invitescan headline",
             "en": "Invitescan",
             "de": "Einladungsuntersuchung",
-            "at": "Eiladungsuntasuchung"
+            "at": "Eiladungsuntasuchung",
+            "fr": "Invitescan",
+            "es": "Invitescan",
+            "ru": "Invitescan",
+            "it": "invitare"
         },
         "UserscanDescription": {
             "description": "explanation of the userscan feature",
             "en": "Enter a users id to get a quick overview of a member or relations to other members. This also tracks invites a new member uses so you can quickly spot alt accounts. Use a double click to view other ressources such as a modcase.",
             "de": "Gib die ID eines Nutzers ein um eine schnelle Übersicht über einen Nutzer oder seine Beziehungen zu anderen Nutzern zu erhalten. Diese Funktion wird auch bei Einladungen verwendet um zu erkennen welche Accounts ein neuer Nutzer verwendet. Mit einem Doppelklick auf den Nutzer kannst du auch andere Ressourcen wie einen Vorfall ansehen.",
-            "at": "Gib de ID vo am Nutza ei um a schnölle Übasicht üba an Nutza oda sane Beziehungen zu ondaren Nutza zu erhoitn. De Funktion wiad a bei Eiladungen vawendt, um zua erkenna, wöchane Accounts a neicha Nutza vawendt. Mit am Dopplklick auf den Nutza konnt du a ondare Ressuacn wia an Vorfoi oschaun."
+            "at": "Gib de ID vo am Nutza ei um a schnölle Übasicht üba an Nutza oda sane Beziehungen zu ondaren Nutza zu erhoitn. De Funktion wiad a bei Eiladungen vawendt, um zua erkenna, wöchane Accounts a neicha Nutza vawendt. Mit am Dopplklick auf den Nutza konnt du a ondare Ressuacn wia an Vorfoi oschaun.",
+            "fr": "Entrez un identifiant d'utilisateur pour obtenir un aperçu rapide d'un membre ou des relations avec d'autres membres. Cela permet également de suivre les invitations utilisées par un nouveau membre afin que vous puissiez rapidement repérer les comptes alternatifs. Utilisez un double clic pour afficher d'autres ressources telles qu'un modcase.",
+            "es": "Ingrese una identificación de usuario para obtener una descripción general rápida de un miembro o sus relaciones con otros miembros. Esto también rastrea las invitaciones que usa un nuevo miembro para que pueda detectar rápidamente las cuentas alternativas. Utilice un doble clic para ver otros recursos, como un modcase.",
+            "ru": "Введите идентификатор пользователя, чтобы получить быстрый обзор участника или отношений с другими участниками. Это также отслеживает приглашения, которые использует новый участник, чтобы вы могли быстро находить альтернативные аккаунты. Используйте двойной щелчок, чтобы просмотреть другие ресурсы, такие как modcase.",
+            "it": "Inserisci un ID utente per ottenere una rapida panoramica di un membro o delle relazioni con altri membri. Questo tiene traccia anche degli inviti utilizzati da un nuovo membro in modo da poter individuare rapidamente gli account alternativi. Usa un doppio clic per visualizzare altre risorse come un modcase."
         },
         "InvitescanDescription": {
             "description": "explanation of the invitescan feature",
             "en": "Enter an invite code or link to get a quick overview of an invite or relations to other members. Use a double click to view other ressources such as another user.",
             "de": "Gib einen Einladungslink ein um eine schnelle Übersicht über eine Einladung oder Beziehungen zu anderen Nutzern zu erhalten. Mit einem Doppelklick kannst du auch andere Ressourcen wie einen anderen Benutzer ansehen.",
-            "at": "Gib an Eiladungslink ei um a schnölle Übasicht üba a Eiladung oda Bezihung zu am ondan Nutza zu erhoitn. Mit am Dopplklick konnt du a ondare Ressourcn wia an ondaren Benutza oschaun."
+            "at": "Gib an Eiladungslink ei um a schnölle Übasicht üba a Eiladung oda Bezihung zu am ondan Nutza zu erhoitn. Mit am Dopplklick konnt du a ondare Ressourcn wia an ondaren Benutza oschaun.",
+            "fr": "Entrez un code d'invitation ou un lien pour obtenir un aperçu rapide d'une invitation ou des relations avec d'autres membres. Utilisez un double clic pour afficher d'autres ressources comme un autre utilisateur.",
+            "es": "Ingrese un código de invitación o un enlace para obtener una descripción general rápida de una invitación o relaciones con otros miembros. Utilice un doble clic para ver otros recursos, como otro usuario.",
+            "ru": "Введите код приглашения или ссылку, чтобы получить быстрый обзор приглашения или отношений с другими участниками. Используйте двойной щелчок, чтобы просмотреть другие ресурсы, например, другого пользователя.",
+            "it": "Inserisci un codice di invito o un link per ottenere una rapida panoramica di un invito o delle relazioni con altri membri. Utilizzare un doppio clic per visualizzare altre risorse come un altro utente."
         },
         "FailedToLoad": {
             "Scan": {
                 "description": "Failed to laod scan information",
                 "en": "Failed to load scan information.",
                 "de": "Untersuchungsinformationen konnten nicht geladen werden.",
-                "at": "Untasuchungsinformationen konntn ned glodn wean."
+                "at": "Untasuchungsinformationen konntn ned glodn wean.",
+                "fr": "Échec du chargement des informations d'analyse.",
+                "es": "No se pudo cargar la información del escaneo.",
+                "ru": "Не удалось загрузить информацию о сканировании.",
+                "it": "Impossibile caricare le informazioni di scansione."
             },
             "Invite": {
                 "description": "Failed to laod scan information",
                 "en": "Failed to load scan information.",
                 "de": "Einladungsinformationen konnten nicht geladen werden.",
-                "at": "Eiladungsinformationen konntn ned glodn wean."
+                "at": "Eiladungsinformationen konntn ned glodn wean.",
+                "fr": "Échec du chargement des informations d'analyse.",
+                "es": "No se pudo cargar la información del escaneo.",
+                "ru": "Не удалось загрузить информацию о сканировании.",
+                "it": "Impossibile caricare le informazioni di scansione."
             },
             "InvalidInvite": {
                 "description": "Failed to laod scan information",
                 "en": "No information for this invite found.",
                 "de": "Zu dieser Einladung wurden keine Informationen gefunden.",
-                "at": "Zu dea Eiladung konnt ka Information gfundn wean."
+                "at": "Zu dea Eiladung konnt ka Information gfundn wean.",
+                "fr": "Aucune information trouvée pour cette invitation.",
+                "es": "No se encontró información para esta invitación.",
+                "ru": "Информации об этом приглашении не найдено.",
+                "it": "Nessuna informazione per questo invito trovata."
             }
         },
         "JoinedAt": {
             "description": "User joined guild at date x",
             "en": "Joined at",
             "de": "Beigetreten am",
-            "at": "Beitretn om"
+            "at": "Beitretn om",
+            "fr": "Rejoint à",
+            "es": "Se unió a las",
+            "ru": "Присоединился к",
+            "it": "Iscritto a"
         },
         "OccuredAt": {
             "description": "event occured at date x",
             "en": "Occured at",
             "de": "Am",
-            "at": "Om"
+            "at": "Om",
+            "fr": "s'est produit à",
+            "es": "Ocupado en",
+            "ru": "Произошло в",
+            "it": "Si è verificato a"
         },
         "CreatedAt": {
             "description": "resource created at date x",
             "en": "Created at",
             "de": "Erstellt am",
-            "at": "Erstöt om"
+            "at": "Erstöt om",
+            "fr": "Créé à",
+            "es": "Creado en",
+            "ru": "Создано в",
+            "it": "Creato a"
         }
     }
 }

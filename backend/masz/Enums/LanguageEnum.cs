@@ -7,6 +7,7 @@ namespace masz.Enums
         fr,
         es,
         it,
-        at
+        at,
+        ru
     }
 }

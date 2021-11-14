@@ -22,9 +22,37 @@ export const LANGUAGES: ILanguageSelect[] = [
         dateTimeFormat: 'DD MMM Y HH:mm:ss'
     },
     {
+        language: 'fr',
+        displayName: 'French (français)',
+        apiValue: 2,
+        dateFormat: 'DD MMM Y',
+        dateTimeFormat: 'DD MMM Y HH:mm:ss'
+    },
+    {
+        language: 'es',
+        displayName: 'Spanish (español)',
+        apiValue: 3,
+        dateFormat: 'DD MMM Y',
+        dateTimeFormat: 'DD MMM Y HH:mm:ss'
+    },
+    {
+        language: 'it',
+        displayName: 'Italian (italiano)',
+        apiValue: 4,
+        dateFormat: 'DD MMM Y',
+        dateTimeFormat: 'DD MMM Y HH:mm:ss'
+    },
+    {
         language: 'at',
         displayName: 'Austrian (Österreichisch)',
         apiValue: 5,
+        dateFormat: 'DD MMM Y',
+        dateTimeFormat: 'DD MMM Y HH:mm:ss'
+    },
+    {
+        language: 'ru',
+        displayName: 'Russian (русский)',
+        apiValue: 6,
         dateFormat: 'DD MMM Y',
         dateTimeFormat: 'DD MMM Y HH:mm:ss'
     }

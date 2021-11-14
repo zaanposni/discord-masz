@@ -28,7 +28,8 @@ namespace masz.Controllers
                 EnumDto.Create((int) Language.fr, _translator.T().Enum(Language.fr)),
                 EnumDto.Create((int) Language.es, _translator.T().Enum(Language.es)),
                 EnumDto.Create((int) Language.it, _translator.T().Enum(Language.it)),
-                EnumDto.Create((int) Language.at, _translator.T().Enum(Language.at))
+                EnumDto.Create((int) Language.at, _translator.T().Enum(Language.at)),
+                EnumDto.Create((int) Language.ru, _translator.T().Enum(Language.ru))
             });
         }
     }
