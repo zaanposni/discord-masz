@@ -12,7 +12,7 @@
 ⭐ **Automoderation** - to give trolls no chance\
 ⭐ **Ban appeals and webhook notifications** - to moderate your server transparently\
 ⭐ **A website and a discord bot** - to use MASZ\
-⭐ **Full API support** - for custom scripts\
+⭐ **Full API support** - for custom scripts
 
 ## 🚀 Demo ![https://demomasz.zaanposni.com](https://img.shields.io/badge/demo-online-%234c1)
 
