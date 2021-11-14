@@ -3,7 +3,7 @@
 [![https://demomasz.zaanposni.com](https://img.shields.io/badge/demo-online-%234c1)](https://demomasz.zaanposni.com)
 [![https://github.com/users/zaanposni/packages/container/package/masz_backend](https://img.shields.io/badge/using-docker-blue)](https://github.com/users/zaanposni/packages/container/package/masz_backend)
 [![https://discord.gg/5zjpzw6h3S](https://img.shields.io/discord/779262870016884756?logo=discord)](https://discord.gg/5zjpzw6h3S)
-![SupportedLanguages](https://img.shields.io/badge/translated-7%20languages-brightgreen)]
+![SupportedLanguages](https://img.shields.io/badge/translated-7%20languages-brightgreen)
 
 ⭐ **Infractions and managed (temporary) punishments** - to moderate your server\
 ⭐ **Userscan** - quickly spot relations between users with a included visualization\
