@@ -1,9 +1,9 @@
 # 👮‍♂️ MASZ
 
-![https://demomasz.zaanposni.com](https://img.shields.io/badge/demo-online-%234c1)
-![https://github.com/users/zaanposni/packages/container/package/masz_backend](https://img.shields.io/badge/using-docker-blue)
-![https://discord.gg/5zjpzw6h3S](https://img.shields.io/discord/779262870016884756?logo=discord)
-![SupportedLanguages](https://img.shields.io/badge/translated-7%20languages-brightgreen)
+[![https://demomasz.zaanposni.com](https://img.shields.io/badge/demo-online-%234c1)](https://demomasz.zaanposni.com)
+[![https://github.com/users/zaanposni/packages/container/package/masz_backend](https://img.shields.io/badge/using-docker-blue)](https://github.com/users/zaanposni/packages/container/package/masz_backend)
+[![https://discord.gg/5zjpzw6h3S](https://img.shields.io/discord/779262870016884756?logo=discord)](https://discord.gg/5zjpzw6h3S)
+![SupportedLanguages](https://img.shields.io/badge/translated-7%20languages-brightgreen)]
 
 ⭐ **Infractions and managed (temporary) punishments** - to moderate your server\
 ⭐ **Userscan** - quickly spot relations between users with a included visualization\
@@ -14,7 +14,7 @@
 ⭐ **A website and a discord bot** - to use MASZ\
 ⭐ **Full API support** - for custom scripts
 
-## 🚀 Demo ![https://demomasz.zaanposni.com](https://img.shields.io/badge/demo-online-%234c1)
+## 🚀 Demo [![https://demomasz.zaanposni.com](https://img.shields.io/badge/demo-online-%234c1)](https://demomasz.zaanposni.com)
 
 Visit [https://demomasz.zaanposni.com](https://demomasz.zaanposni.com) for a demo.\
 Furthermore, join the demo guild [https://discord.gg/7ubU6aWX9c](https://discord.gg/7ubU6aWX9c) to get the required permissions.
@@ -42,7 +42,7 @@ Note that MASZ is not hosted publicly. You will have to host your own instance.\
 Furthermore, only deployments on a linux and windows server are supported. Read below for software requirements.\
 Free hosting providers like replit or heroku do not work, do not border.
 
-## 🛠️ Setup - Selfhosting ![https://github.com/users/zaanposni/packages/container/package/masz_backend](https://img.shields.io/badge/using-docker-blue)
+## 🛠️ Setup - Selfhosting [![https://github.com/users/zaanposni/packages/container/package/masz_backend](https://img.shields.io/badge/using-docker-blue)](https://github.com/users/zaanposni/packages/container/package/masz_backend)
 
 ### 🚀 TL DR
 
