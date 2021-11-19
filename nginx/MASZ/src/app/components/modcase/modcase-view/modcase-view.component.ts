@@ -23,6 +23,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { EnumManagerService } from 'src/app/services/enum-manager.service';
 import { CaseDeleteDialogComponent } from '../../dialogs/case-delete-dialog/case-delete-dialog.component';
 import { CommentEditDialogComponent } from '../../dialogs/comment-edit-dialog/comment-edit-dialog.component';
+import { ConfirmationDialogComponent } from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-modcase-view',
@@ -40,6 +42,9 @@ export class ModcaseViewComponent implements OnInit {
   public filesToUpload: any[] = [];
   public newComment!: string;
 
+  public showActivationSlider = false;
+  public activationSliderValue = false;
+  public activationSliderModeDeactivation = true;
   public punishmentDescriptionTranslationKey = "";
   public isModOrHigher: boolean = false;
   public renderedDescription!: string;
@@ -158,10 +163,14 @@ export class ModcaseViewComponent implements OnInit {
       this.lockedCommentsParams = {
         user: data.lockedBy ? `${data.lockedBy.username}#${data.lockedBy.discriminator}` : this.translator.instant('ModCaseView.Moderators')
       };
+      if (this.modCase.content.modCase?.punishedUntil === null || moment(this.modCase.content.modCase?.punishedUntil).utc(true).isAfter(moment())) {
+        this.showActivationSlider = true;
+        this.activationSliderModeDeactivation = this.modCase.content.modCase?.punishmentActive;
+      }
       if (this.modCase.content.modCase.punishmentType !== PunishmentType.None && ! this.modCase.content.modCase.punishmentActive) {
         if (this.modCase.content.modCase?.punishedUntil === null) {
           this.punishmentDescriptionTranslationKey = "CaseInactive";
-        } else if (new Date(this.modCase.content.modCase?.punishedUntil) > new Date()) {
+        } else if (moment(this.modCase.content.modCase?.punishedUntil).utc(true).isAfter(moment())) {
           this.punishmentDescriptionTranslationKey = "CaseInactive";
         } else {
           this.punishmentDescriptionTranslationKey = "PunishmentExpired";
@@ -172,6 +181,30 @@ export class ModcaseViewComponent implements OnInit {
       console.error(error);
       this.modCase.loading = false;
       this.toastr.error(this.translator.instant('ModCaseView.FailedToLoad.Case'));
+    });
+  }
+
+  public handleActivation(event: any) {
+    const confirmDialogRef = this.dialog.open(ConfirmationDialogComponent);
+    confirmDialogRef.afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        console.log(event);
+        this.modCase.content!.modCase.punishmentActive = !this.activationSliderModeDeactivation;
+        this.activationSliderValue = false;
+        this.activationSliderModeDeactivation = this.modCase.content?.modCase.punishmentActive ?? false;
+
+        if (this.modCase.content?.modCase.punishmentType !== PunishmentType.None && ! this.modCase.content?.modCase.punishmentActive) {
+          if (this.modCase.content?.modCase?.punishedUntil === null) {
+            this.punishmentDescriptionTranslationKey = "CaseInactive";
+          } else if (moment(this.modCase.content?.modCase?.punishedUntil).utc(true).isAfter(moment())) {
+            this.punishmentDescriptionTranslationKey = "CaseInactive";
+          } else {
+            this.punishmentDescriptionTranslationKey = "PunishmentExpired";
+          }
+        } else {
+          this.punishmentDescriptionTranslationKey = "";
+        }
+      }
     });
   }
 

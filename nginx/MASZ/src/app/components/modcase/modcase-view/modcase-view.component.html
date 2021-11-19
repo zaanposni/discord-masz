@@ -196,15 +196,21 @@
                                             </ng-container>
                                         </span>
                                         <ng-template #punishedForever>{{ 'ModCaseView.PunishedForever' | translate }}</ng-template>
-                                        <div class="w-100 mt-2" *ngIf="this.modCase.content?.modCase?.punishmentActive === true && this.modCase.content?.punishmentProgress">
+                                        <div class="w-100 my-1" *ngIf="this.modCase.content?.modCase?.punishmentActive === true && this.modCase.content?.punishmentProgress">
                                             <mat-progress-bar
-                                                title="Punishment progress"
+                                                title="Punishment progress {{this.modCase.content?.punishmentProgress ?? 0 | number: '1.0-1' }}%"
                                                 [color]="'accent'"
                                                 [mode]="'determinate'"
                                                 [value]="this.modCase.content?.punishmentProgress"
                                                 [bufferValue]="100">
                                             </mat-progress-bar>
                                         </div>
+                                        <ng-container *ngIf="showActivationSlider">
+                                            <mat-slide-toggle [matTooltip]="activationSliderModeDeactivation ? 'Deactivate Punishment' : 'Activate Punishment'"
+                                                (change)="handleActivation($event)" [(ngModel)]="activationSliderValue">
+                                                {{ activationSliderModeDeactivation ? 'Deactivate Punishment' : 'Activate Punishment'}}
+                                            </mat-slide-toggle>
+                                        </ng-container>
                                     </ng-container>
                                 </ng-container>
                             </div>
