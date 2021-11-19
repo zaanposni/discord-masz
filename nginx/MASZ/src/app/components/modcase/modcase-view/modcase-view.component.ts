@@ -17,6 +17,7 @@ import { ContentLoading } from 'src/app/models/ContentLoading';
 import { FileInfo } from 'src/app/models/FileInfo';
 import { Guild } from 'src/app/models/Guild';
 import { convertModcaseToPunishmentString, ModCase } from 'src/app/models/ModCase';
+import { PunishmentType } from 'src/app/models/PunishmentType';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { EnumManagerService } from 'src/app/services/enum-manager.service';
@@ -39,6 +40,7 @@ export class ModcaseViewComponent implements OnInit {
   public filesToUpload: any[] = [];
   public newComment!: string;
 
+  public punishmentDescriptionTranslationKey = "";
   public isModOrHigher: boolean = false;
   public renderedDescription!: string;
   private filesSubject$ = new ReplaySubject<FileInfo>(1);
@@ -155,6 +157,15 @@ export class ModcaseViewComponent implements OnInit {
       };
       this.lockedCommentsParams = {
         user: data.lockedBy ? `${data.lockedBy.username}#${data.lockedBy.discriminator}` : this.translator.instant('ModCaseView.Moderators')
+      };
+      if (this.modCase.content.modCase.punishmentType !== PunishmentType.None && ! this.modCase.content.modCase.punishmentActive) {
+        if (this.modCase.content.modCase?.punishedUntil === null) {
+          this.punishmentDescriptionTranslationKey = "CaseInactive";
+        } else if (new Date(this.modCase.content.modCase?.punishedUntil) > new Date()) {
+          this.punishmentDescriptionTranslationKey = "CaseInactive";
+        } else {
+          this.punishmentDescriptionTranslationKey = "PunishmentExpired";
+        }
       }
       this.modCase.loading = false;
     }, error => {

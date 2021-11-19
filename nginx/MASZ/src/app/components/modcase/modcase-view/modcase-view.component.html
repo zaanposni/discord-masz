@@ -189,9 +189,11 @@
                                                 [date]="this.modCase.content!.modCase.punishedUntil"
                                                 [prefixKey]="'ModCaseView.PunishedUntil'">
                                             </app-date-display><br/>
-                                            <span *ngIf="this.modCase.content?.modCase?.punishmentActive === false">
-                                                {{ 'ModCaseView.PunishmentExpired' | translate }}
-                                            </span>
+                                            <ng-container *ngIf="punishmentDescriptionTranslationKey">
+                                                <span>
+                                                    {{ 'ModCaseView.' + punishmentDescriptionTranslationKey | translate }}
+                                                </span>
+                                            </ng-container>
                                         </span>
                                         <ng-template #punishedForever>{{ 'ModCaseView.PunishedForever' | translate }}</ng-template>
                                         <div class="w-100 mt-2" *ngIf="this.modCase.content?.modCase?.punishmentActive === true && this.modCase.content?.punishmentProgress">

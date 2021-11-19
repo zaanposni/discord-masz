@@ -478,6 +478,7 @@
         "PunishedUntil": "Punished until:",
         "PunishedForever": "Punished forever",
         "PunishmentExpired": "Punishment is expired.",
+        "CaseInactive": "Modcase is inactive.",
         "CreatedAt": "Created at",
         "EditedAt": "Edited at",
         "LastEditModerator": "Last edit by moderator",

@@ -3610,6 +3610,11 @@
             "ru": "Срок наказания истек.",
             "it": "La pena è scaduta."
         },
+        "CaseInactive": {
+            "description": "case deactivated",
+            "en": "Modcase is inactive.",
+            "de": "Vorfall ist inaktiv."
+        },
         "CreatedAt": {
             "description": "created at",
             "en": "Created at",
