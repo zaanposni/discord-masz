@@ -41,7 +41,7 @@ If you have any questions, feel free to contact me.
 
 Note that MASZ is not hosted publicly. You will have to host your own instance.\
 Furthermore, only deployments on a linux and windows server are supported. Read below for software requirements.\
-Free hosting providers like replit or heroku do not work, do not border.
+Free hosting providers like replit or heroku do not work, do not bother.
 
 ## 🛠️ Setup - Selfhosting [![https://github.com/users/zaanposni/packages/container/package/masz_backend](https://img.shields.io/badge/using-docker-blue)](https://github.com/users/zaanposni/packages/container/package/masz_backend)
 
