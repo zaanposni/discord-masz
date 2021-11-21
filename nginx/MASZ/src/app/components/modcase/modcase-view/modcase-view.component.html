@@ -184,11 +184,12 @@
                                         </span>
                                     </h3>
                                     <ng-container *ngIf="this.modCase.content?.modCase?.punishmentType != 0 && this.modCase.content?.modCase?.punishmentType != 2">
-                                        <span class="mat-h3 mb-0" *ngIf="this.modCase.content?.modCase?.punishedUntil else punishedForever">
-                                            <app-date-display [showTime]="true"
+                                        <span class="mat-h3 mb-0" *ngIf="this.modCase.content?.modCase?.punishedUntil || ! this.modCase.content?.modCase?.punishmentActive ?? true else punishedForever">
+                                            <app-date-display [showTime]="true" *ngIf="this.modCase.content?.modCase?.punishmentActive"
                                                 [date]="this.modCase.content!.modCase.punishedUntil"
                                                 [prefixKey]="'ModCaseView.PunishedUntil'">
-                                            </app-date-display><br/>
+                                            </app-date-display>
+                                            <br *ngIf="this.modCase.content?.modCase?.punishmentActive" />
                                             <ng-container *ngIf="punishmentDescriptionTranslationKey">
                                                 <span>
                                                     {{ 'ModCaseView.' + punishmentDescriptionTranslationKey | translate }}
@@ -205,9 +206,9 @@
                                                 [bufferValue]="100">
                                             </mat-progress-bar>
                                         </div>
-                                        <ng-container *ngIf="showActivationSlider">
+                                        <ng-container *ngIf="showActivationSlider && isModOrHigher">
                                             <mat-slide-toggle [matTooltip]="activationSliderModeDeactivation ? 'Deactivate Punishment' : 'Activate Punishment'"
-                                                (change)="handleActivation($event)" [(ngModel)]="activationSliderValue">
+                                                (change)="handleActivation()" [(ngModel)]="activationSliderValue">
                                                 {{ activationSliderModeDeactivation ? 'Deactivate Punishment' : 'Activate Punishment'}}
                                             </mat-slide-toggle>
                                         </ng-container>

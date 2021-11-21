@@ -3600,6 +3600,30 @@
             "ru": "Наказан навсегда",
             "it": "Punito per sempre"
         },
+        "Deactivated": {
+            "Success": {
+                "description": "deactivate a cases punishment",
+                "en": "Case has been deactivated.",
+                "de": "Vorfall wurde deaktiviert."
+            },
+            "Failed": {
+                "description": "deactivate a cases punishment",
+                "en": "Case could not be deactivated.",
+                "de": "Vorfall konnte nicht deaktiviert werden."
+            }
+        },
+        "Activated": {
+            "Success": {
+                "description": "punished forever",
+                "en": "Case has been activated.",
+                "de": "Vorfall wurde aktiviert."
+            },
+            "Failed": {
+                "description": "failed to activate case",
+                "en": "Failed to activate case.",
+                "de": "Vorfall konnte nicht aktiviert werden."
+            }
+        },
         "PunishmentExpired": {
             "description": "punishment expired",
             "en": "Punishment is expired.",

@@ -167,8 +167,9 @@ export class ModcaseViewComponent implements OnInit {
         this.showActivationSlider = true;
         this.activationSliderModeDeactivation = this.modCase.content.modCase?.punishmentActive;
       }
-      if (this.modCase.content.modCase.punishmentType !== PunishmentType.None && ! this.modCase.content.modCase.punishmentActive) {
-        if (this.modCase.content.modCase?.punishedUntil === null) {
+      if (this.modCase.content.modCase.punishmentType !== PunishmentType.None && this.modCase.content.modCase.punishmentType !== PunishmentType.Kick && ! this.modCase.content.modCase.punishmentActive) {
+        console.log(this.modCase.content.modCase?.punishedUntil);
+        if (this.modCase.content.modCase?.punishedUntil == null) {
           this.punishmentDescriptionTranslationKey = "CaseInactive";
         } else if (moment(this.modCase.content.modCase?.punishedUntil).utc(true).isAfter(moment())) {
           this.punishmentDescriptionTranslationKey = "CaseInactive";
@@ -184,26 +185,33 @@ export class ModcaseViewComponent implements OnInit {
     });
   }
 
-  public handleActivation(event: any) {
+  public handleActivation() {
     const confirmDialogRef = this.dialog.open(ConfirmationDialogComponent);
     confirmDialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
-        console.log(event);
-        this.modCase.content!.modCase.punishmentActive = !this.activationSliderModeDeactivation;
-        this.activationSliderValue = false;
-        this.activationSliderModeDeactivation = this.modCase.content?.modCase.punishmentActive ?? false;
-
-        if (this.modCase.content?.modCase.punishmentType !== PunishmentType.None && ! this.modCase.content?.modCase.punishmentActive) {
-          if (this.modCase.content?.modCase?.punishedUntil === null) {
-            this.punishmentDescriptionTranslationKey = "CaseInactive";
-          } else if (moment(this.modCase.content?.modCase?.punishedUntil).utc(true).isAfter(moment())) {
-            this.punishmentDescriptionTranslationKey = "CaseInactive";
-          } else {
-            this.punishmentDescriptionTranslationKey = "PunishmentExpired";
-          }
+        if (this.activationSliderModeDeactivation) {
+          this.api.deleteData(`/guilds/${this.guildId}/cases/${this.caseId}/active`).subscribe(() => {
+            this.toastr.success(this.translator.instant('ModCaseView.Deactivated.Success'));
+            this.activationSliderValue = false;
+            this.reloadCase();
+          }, error => {
+            console.error(error);
+            this.activationSliderValue = false;
+            this.toastr.error(this.translator.instant('ModCaseView.Deactivated.Failed'));
+          });
         } else {
-          this.punishmentDescriptionTranslationKey = "";
+          this.api.postSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/active`, {}).subscribe(() => {
+            this.toastr.success(this.translator.instant('ModCaseView.Activated.Success'));
+            this.activationSliderValue = false;
+            this.reloadCase();
+          }, error => {
+            console.error(error);
+            this.activationSliderValue = false;
+            this.toastr.error(this.translator.instant('ModCaseView.Activated.Failed'));
+          });
         }
+      } else {
+        this.activationSliderValue = false;
       }
     });
   }
