@@ -5,6 +5,7 @@ using masz.Models;
 using masz.Repositories;
 using Microsoft.Extensions.Logging;
 using masz.Enums;
+using DSharpPlus.Exceptions;
 
 namespace masz.Services
 {
@@ -253,15 +254,33 @@ namespace masz.Services
                 }
             }
 
-            if (modEvent.AutoModerationAction == AutoModerationAction.ContentDeleted || modEvent.AutoModerationAction == AutoModerationAction.ContentDeletedAndCaseCreated)
+            if ((modEvent.AutoModerationAction == AutoModerationAction.ContentDeleted || modEvent.AutoModerationAction == AutoModerationAction.ContentDeletedAndCaseCreated) && moderationConfig.ChannelNotificationBehavior != AutoModerationChannelNotificationBehavior.NoNotification)
             {
                 _logger.LogInformation($"Sending channel automod event notification to {channel.Id}.");
 
                 try
                 {
                     string reason = _translator.T().Enum(modEvent.AutoModerationType);
-                    await channel.SendMessageAsync(_translator.T().NotificationAutomoderationChannel(author, reason));
+                    DiscordMessage msg = await channel.SendMessageAsync(_translator.T().NotificationAutomoderationChannel(author, reason));
                     _logger.LogInformation("Sent channel notification.");
+                    if (moderationConfig.ChannelNotificationBehavior == AutoModerationChannelNotificationBehavior.SendNotificationAndDelete)
+                    {
+                        Task task = new Task(async () =>
+                        {
+                            await Task.Delay(TimeSpan.FromSeconds(5));
+                            try
+                            {
+                                _logger.LogInformation($"Deleting channel automod event notification {channel.Id}/{msg.Id}.");
+                                await msg.DeleteAsync();
+                                _logger.LogInformation($"Deleted channel notification.");
+                            } catch (UnauthorizedException) { }
+                            catch (Exception e)
+                            {
+                                _logger.LogError(e, "Error while deleting automod event message.");
+                            }
+                        });
+                        task.Start();
+                    }
                 } catch (Exception e)
                 {
                     _logger.LogError(e, $"Error while announcing automod event in channel {channel.Id}.");
