@@ -66,6 +66,7 @@ namespace masz.Repositories
             autoModerationConfig.CustomWordFilter = newValue.CustomWordFilter;
             autoModerationConfig.SendDmNotification = newValue.SendDmNotification;
             autoModerationConfig.SendPublicNotification = newValue.SendPublicNotification;
+            autoModerationConfig.ChannelNotificationBehavior = newValue.ChannelNotificationBehavior;
 
             _database.PutModerationConfig(autoModerationConfig);
             await _database.SaveChangesAsync();
