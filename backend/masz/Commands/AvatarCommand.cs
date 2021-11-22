@@ -23,7 +23,7 @@ namespace masz.Commands
             DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
             embed.WithTitle("Avatar");
             embed.WithFooter($"UserId: {user.Id}");
-            if (member != null && member.AvatarHash != user.AvatarHash)
+            if (member != null && member.GuildAvatarHash != user.AvatarHash)
             {
                 embed.WithUrl(member.GuildAvatarUrl);
                 embed.WithImageUrl(member.GuildAvatarUrl);
