@@ -20,6 +20,7 @@ namespace masz.Models
         public string CustomWordFilter { get; set; }
         public bool SendDmNotification { get; set; }
         public bool SendPublicNotification { get; set; }
+        public AutoModerationChannelNotificationBehavior ChannelNotificationBehavior { get; set; }
 
         public AutoModerationConfig()
         {
@@ -39,6 +40,7 @@ namespace masz.Models
             CustomWordFilter = dto.CustomWordFilter;
             SendDmNotification = dto.SendDmNotification;
             SendPublicNotification = dto.SendPublicNotification;
+            ChannelNotificationBehavior = dto.ChannelNotificationBehavior;
         }
     }
 }

@@ -18,5 +18,6 @@ namespace masz.Dtos.AutoModerationConfig
         public string CustomWordFilter { get; set; }
         public bool SendDmNotification { get; set; }
         public bool SendPublicNotification { get; set; }
+        public AutoModerationChannelNotificationBehavior ChannelNotificationBehavior { get; set; }
     }
 }
