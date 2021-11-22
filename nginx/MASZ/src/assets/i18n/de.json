@@ -299,6 +299,7 @@
         "LogEntryHover": "Ein Eintrag wird immer erstellt.",
         "SendDMNotification": "Sende DM Benachrichtigung",
         "Action": "Aktion",
+        "ChannelNotificationBehavior": "Kanalbenachrichtigung",
         "SendPublicNotification": "Sende öffentliche Benachrichtigung",
         "DurationInMinutes": "Dauer in Minuten",
         "YouAreDone": "Du bist nun fertig.",

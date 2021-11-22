@@ -299,6 +299,7 @@
         "LogEntryHover": "A log entry is always generated.",
         "SendDMNotification": "Send dm notification",
         "Action": "Action",
+        "ChannelNotificationBehavior": "Channel notification",
         "SendPublicNotification": "Send public notification",
         "DurationInMinutes": "Duration in minutes",
         "YouAreDone": "You are now done.",

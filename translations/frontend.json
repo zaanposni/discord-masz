@@ -2198,6 +2198,11 @@
             "ru": "Действие",
             "it": "Azione"
         },
+        "ChannelNotificationBehavior": {
+            "description": "Channel notification behavior",
+            "en": "Channel notification",
+            "de": "Kanalbenachrichtigung"
+        },
         "SendPublicNotification": {
             "description": "Send public notification",
             "en": "Send public notification",
