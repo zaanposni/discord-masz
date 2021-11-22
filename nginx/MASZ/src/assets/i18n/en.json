@@ -478,7 +478,16 @@
         "Guild": "Guild",
         "PunishedUntil": "Punished until:",
         "PunishedForever": "Punished forever",
+        "Deactivated": {
+            "Success": "Case has been deactivated.",
+            "Failed": "Case could not be deactivated."
+        },
+        "Activated": {
+            "Success": "Case has been activated.",
+            "Failed": "Failed to activate case."
+        },
         "PunishmentExpired": "Punishment is expired.",
+        "CaseInactive": "Modcase is inactive.",
         "CreatedAt": "Created at",
         "EditedAt": "Edited at",
         "LastEditModerator": "Last edit by moderator",

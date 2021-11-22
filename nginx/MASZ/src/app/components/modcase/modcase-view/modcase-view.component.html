@@ -184,25 +184,34 @@
                                         </span>
                                     </h3>
                                     <ng-container *ngIf="this.modCase.content?.modCase?.punishmentType != 0 && this.modCase.content?.modCase?.punishmentType != 2">
-                                        <span class="mat-h3 mb-0" *ngIf="this.modCase.content?.modCase?.punishedUntil else punishedForever">
-                                            <app-date-display [showTime]="true"
+                                        <span class="mat-h3 mb-0" *ngIf="this.modCase.content?.modCase?.punishedUntil || ! this.modCase.content?.modCase?.punishmentActive ?? true else punishedForever">
+                                            <app-date-display [showTime]="true" *ngIf="this.modCase.content?.modCase?.punishmentActive"
                                                 [date]="this.modCase.content!.modCase.punishedUntil"
                                                 [prefixKey]="'ModCaseView.PunishedUntil'">
-                                            </app-date-display><br/>
-                                            <span *ngIf="this.modCase.content?.modCase?.punishmentActive === false">
-                                                {{ 'ModCaseView.PunishmentExpired' | translate }}
-                                            </span>
+                                            </app-date-display>
+                                            <br *ngIf="this.modCase.content?.modCase?.punishmentActive" />
+                                            <ng-container *ngIf="punishmentDescriptionTranslationKey">
+                                                <span>
+                                                    {{ 'ModCaseView.' + punishmentDescriptionTranslationKey | translate }}
+                                                </span>
+                                            </ng-container>
                                         </span>
                                         <ng-template #punishedForever>{{ 'ModCaseView.PunishedForever' | translate }}</ng-template>
-                                        <div class="w-100 mt-2" *ngIf="this.modCase.content?.modCase?.punishmentActive === true && this.modCase.content?.punishmentProgress">
+                                        <div class="w-100 my-1" *ngIf="this.modCase.content?.modCase?.punishmentActive === true && this.modCase.content?.punishmentProgress">
                                             <mat-progress-bar
-                                                title="Punishment progress"
+                                                title="Punishment progress {{this.modCase.content?.punishmentProgress ?? 0 | number: '1.0-1' }}%"
                                                 [color]="'accent'"
                                                 [mode]="'determinate'"
                                                 [value]="this.modCase.content?.punishmentProgress"
                                                 [bufferValue]="100">
                                             </mat-progress-bar>
                                         </div>
+                                        <ng-container *ngIf="showActivationSlider && isModOrHigher">
+                                            <mat-slide-toggle [matTooltip]="activationSliderModeDeactivation ? 'Deactivate Punishment' : 'Activate Punishment'"
+                                                (change)="handleActivation()" [(ngModel)]="activationSliderValue">
+                                                {{ activationSliderModeDeactivation ? 'Deactivate Punishment' : 'Activate Punishment'}}
+                                            </mat-slide-toggle>
+                                        </ng-container>
                                     </ng-container>
                                 </ng-container>
                             </div>

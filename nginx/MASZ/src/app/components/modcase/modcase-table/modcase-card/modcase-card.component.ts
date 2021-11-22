@@ -4,7 +4,9 @@ import { APIEnum } from 'src/app/models/APIEnum';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { convertModcaseToPunishmentString } from 'src/app/models/ModCase';
 import { ModCaseTable } from 'src/app/models/ModCaseTable';
+import { PunishmentType } from 'src/app/models/PunishmentType';
 import { EnumManagerService } from 'src/app/services/enum-manager.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-modcase-card',
@@ -12,12 +14,22 @@ import { EnumManagerService } from 'src/app/services/enum-manager.service';
   styleUrls: ['./modcase-card.component.css']
 })
 export class ModcaseCardComponent implements OnInit {
+  public punishmentTooltip: string = "";
   public punishment: string = "Unknown";
   public punishments: ContentLoading<APIEnum[]> = { loading: true, content: [] };
   @Input() entry!: ModCaseTable;
   constructor(private enumManager: EnumManagerService) { }
 
   ngOnInit(): void {
+    if (this.entry.modCase.punishmentType !== PunishmentType.None && ! this.entry.modCase.punishmentActive) {
+      if (this.entry.modCase.punishedUntil === null) {
+        this.punishmentTooltip = "Modcase deactivated.";
+      } else if (moment(this.entry.modCase.punishedUntil).utc(true).isAfter(moment())) {
+        this.punishmentTooltip = "Modcase deactivated.";
+      } else {
+        this.punishmentTooltip = "Modcase expired.";
+      }
+    }
     this.reloadPunishmentEnum();
   }
 
