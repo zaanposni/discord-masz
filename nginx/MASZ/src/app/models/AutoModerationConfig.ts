@@ -1,5 +1,6 @@
 import { AutoModerationAction } from "./AutoModerationAction";
 import { AutoModerationType } from "./AutoModerationType";
+import { ChannelNotificationBehavior } from "./ChannelNotificationBehavior";
 import { PunishmentType } from "./PunishmentType";
 
 export interface AutoModerationConfig {
@@ -16,5 +17,6 @@ export interface AutoModerationConfig {
     customWordFilter?: string;
     sendDmNotification: boolean;
     sendPublicNotification: boolean;
+    channelNotificationBehavior: ChannelNotificationBehavior;
 }
 

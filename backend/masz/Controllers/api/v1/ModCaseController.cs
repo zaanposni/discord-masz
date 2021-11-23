@@ -158,7 +158,7 @@ namespace masz.Controllers
             await RequirePermission(guildId, caseId, APIActionPermission.Edit);
 
             Identity currentIdentity = await GetIdentity();
-            ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).LockCaseComments(guildId, caseId, currentIdentity.GetCurrentUser());
+            ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).LockCaseComments(guildId, caseId);
 
             return Ok(modCase);
         }
@@ -170,6 +170,28 @@ namespace masz.Controllers
 
             Identity currentIdentity = await GetIdentity();
             ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).UnlockCaseComments(guildId, caseId);
+
+            return Ok(modCase);
+        }
+
+        [HttpPost("{caseId}/active")]
+        public async Task<IActionResult> ActivateCase([FromRoute] ulong guildId, [FromRoute] int caseId)
+        {
+            await RequirePermission(guildId, caseId, APIActionPermission.Edit);
+
+            Identity currentIdentity = await GetIdentity();
+            ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).ActivateModCase(guildId, caseId);
+
+            return Ok(modCase);
+        }
+
+        [HttpDelete("{caseId}/active")]
+        public async Task<IActionResult> DeactivateCase([FromRoute] ulong guildId, [FromRoute] int caseId)
+        {
+            await RequirePermission(guildId, caseId, APIActionPermission.Edit);
+
+            Identity currentIdentity = await GetIdentity();
+            ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).DeactivateModCase(guildId, caseId);
 
             return Ok(modCase);
         }

@@ -8,6 +8,7 @@ import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
 import { APIEnum } from 'src/app/models/APIEnum';
 import { AutoModerationConfig } from 'src/app/models/AutoModerationConfig';
 import { AutoModRuleDefinition } from 'src/app/models/AutoModRuleDefinitions';
+import { ChannelNotificationBehavior } from 'src/app/models/ChannelNotificationBehavior';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { Guild } from 'src/app/models/Guild';
 import { GuildChannel } from 'src/app/models/GuildChannel';
@@ -34,6 +35,7 @@ export class AutomodRuleComponent implements OnInit {
   public tryingToSaveConfig: boolean = false;
   public automodActionOptions: ContentLoading<APIEnum[]> = { loading: true, content: [] };
   public punishmentTypes: ContentLoading<APIEnum[]> = { loading: true, content: [] };
+  public automodChannelBehaviors: ContentLoading<APIEnum[]> = { loading: true, content: [] };
 
   public initRowsCustomWords = 1;
 
@@ -54,7 +56,8 @@ export class AutomodRuleComponent implements OnInit {
       automodAction: ['', Validators.required],
       publicNotification: [''],
       punishmentType: [''],
-      punishmentDuration: ['']
+      punishmentDuration: [''],
+      channelNotificationBehavior: ['']
     });
 
     this.actionForm.get('automodAction')?.valueChanges.subscribe(val => {
@@ -69,6 +72,11 @@ export class AutomodRuleComponent implements OnInit {
           this.actionForm.controls['punishmentDuration'].clearValidators();
           this.actionForm.controls['punishmentDuration'].setValue(null);
           this.actionForm.controls['punishmentDuration'].updateValueAndValidity();
+      }
+      if (val === 1 || val === 3) {
+        if (this.actionForm.value.channelNotificationBehavior == 0) {
+          this.actionForm.controls['channelNotificationBehavior'].setValue(ChannelNotificationBehavior.SendNotification);
+        }
       }
     });
 
@@ -97,6 +105,14 @@ export class AutomodRuleComponent implements OnInit {
     }, (error) => {
       console.error(error);
       this.punishmentTypes.loading = false;
+    });
+
+    this.enumManager.getEnum(APIEnumTypes.AUTOMODCHANNELNOTIFICATIONBEHAVIOR).subscribe((data) => {
+      this.automodChannelBehaviors.loading = false;
+      this.automodChannelBehaviors.content = data;
+    }, (error) => {
+      console.error(error);
+      this.automodChannelBehaviors.loading = false;
     });
   }
 
@@ -129,7 +145,8 @@ export class AutomodRuleComponent implements OnInit {
       publicNotification: config.sendPublicNotification,
       automodAction: config.autoModerationAction,
       punishmentType: config.punishmentType,
-      punishmentDuration: config.punishmentDurationMinutes
+      punishmentDuration: config.punishmentDurationMinutes,
+      channelNotificationBehavior: config.channelNotificationBehavior
     });
   }
 
@@ -165,7 +182,8 @@ export class AutomodRuleComponent implements OnInit {
       "CustomWordFilter": this.eventForm.value.customWord !== "" ? this.eventForm.value.customWord : null,
       "Limit": this.eventForm.value.limit !== "" ? this.eventForm.value.limit : null,
       "SendDmNotification": this.actionForm.value.dmNotification !== "" ? this.actionForm.value.dmNotification : false,
-      "SendPublicNotification": this.actionForm.value.publicNotification !== "" ? this.actionForm.value.publicNotification : false
+      "SendPublicNotification": this.actionForm.value.publicNotification !== "" ? this.actionForm.value.publicNotification : false,
+      "ChannelNotificationBehavior": this.actionForm.value.channelNotificationBehavior !== "" ? this.actionForm.value.channelNotificationBehavior : 0
     }
 
     this.api.putSimpleData(`/guilds/${this.guildId}/automoderationconfig`, data).subscribe((data) => {

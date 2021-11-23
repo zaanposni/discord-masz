@@ -18,6 +18,7 @@ namespace masz.Models
         public string CustomWordFilter { get; set; }
         public bool SendDmNotification { get; set; }
         public bool SendPublicNotification { get; set; }
+        public AutoModerationChannelNotificationBehavior ChannelNotificationBehavior { get; set; }
         public AutoModerationConfigView(AutoModerationConfig config)
         {
             Id = config.Id;
@@ -33,6 +34,7 @@ namespace masz.Models
             CustomWordFilter = config.CustomWordFilter;
             SendDmNotification = config.SendDmNotification;
             SendPublicNotification = config.SendPublicNotification;
+            ChannelNotificationBehavior = config.ChannelNotificationBehavior;
         }
     }
 }

@@ -4020,6 +4020,38 @@ namespace masz.Translations
             }
             return "Unknown";
         }
+        public string Enum(masz.Enums.AutoModerationChannelNotificationBehavior enumValue) {
+            switch (enumValue) {
+                case masz.Enums.AutoModerationChannelNotificationBehavior.SendNotification:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Channel notification";
+                        case Language.de:
+                            return "Kanalbenachrichtigung";
+                        default:
+                            return "Channel notification";
+                    }
+                case masz.Enums.AutoModerationChannelNotificationBehavior.SendNotificationAndDelete:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Temporary channel notification";
+                        case Language.de:
+                            return "Temporäre Kanalbenachrichtigung";
+                        default:
+                            return "Temporary channel notification";
+                    }
+                case masz.Enums.AutoModerationChannelNotificationBehavior.NoNotification:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "No channel notification";
+                        case Language.de:
+                            return "Keine Kanalbenachrichtigung";
+                        default:
+                            return "No channel notification";
+                    }
+            }
+            return "Unknown";
+        }
 
     }
 }

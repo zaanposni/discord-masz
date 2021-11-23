@@ -299,6 +299,7 @@
         "LogEntryHover": "Ein Eintrag wird immer erstellt.",
         "SendDMNotification": "Sende DM Benachrichtigung",
         "Action": "Aktion",
+        "ChannelNotificationBehavior": "Kanalbenachrichtigung",
         "SendPublicNotification": "Sende öffentliche Benachrichtigung",
         "DurationInMinutes": "Dauer in Minuten",
         "YouAreDone": "Du bist nun fertig.",
@@ -477,7 +478,16 @@
         "Guild": "Gilde",
         "PunishedUntil": "Bestraft bis:",
         "PunishedForever": "Bestraft für immer",
+        "Deactivated": {
+            "Success": "Vorfall wurde deaktiviert.",
+            "Failed": "Vorfall konnte nicht deaktiviert werden."
+        },
+        "Activated": {
+            "Success": "Vorfall wurde aktiviert.",
+            "Failed": "Vorfall konnte nicht aktiviert werden."
+        },
         "PunishmentExpired": "Bestrafung ist ausgelaufen",
+        "CaseInactive": "Vorfall ist inaktiv.",
         "CreatedAt": "Erstellt am",
         "EditedAt": "Aktualisiert",
         "LastEditModerator": "Aktualisiert von",

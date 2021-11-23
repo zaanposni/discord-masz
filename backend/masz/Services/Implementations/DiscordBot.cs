@@ -96,6 +96,7 @@ namespace masz.Services
             slash.RegisterCommands<MuteCommand>(debugGuild);
             slash.RegisterCommands<KickCommand>(debugGuild);
             slash.RegisterCommands<BanCommand>(debugGuild);
+            slash.RegisterCommands<AvatarCommand>(debugGuild);
 
             slash.SlashCommandErrored += CmdErroredHandler;
         }

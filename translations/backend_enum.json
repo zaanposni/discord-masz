@@ -622,5 +622,22 @@
             "ru": "Русский",
             "it": "Russo"
         }
+    },
+    "AutoModerationChannelNotificationBehavior": {
+        "SendNotification": {
+            "description": "A notification is send.",
+            "en": "Channel notification",
+            "de": "Kanalbenachrichtigung"
+        },
+        "SendNotificationAndDelete": {
+            "description": "A notification is send and the message is deleted shortly after.",
+            "en": "Temporary channel notification",
+            "de": "Temporäre Kanalbenachrichtigung"
+        },
+        "NoNotification": {
+            "description": "No notification is send.",
+            "en": "No channel notification",
+            "de": "Keine Kanalbenachrichtigung"
+        }
     }
 }

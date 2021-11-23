@@ -101,17 +101,25 @@
                 <mat-option *ngFor="let enum of automodActionOptions.content" [value]="enum.key">{{ enum.value }}</mat-option>
                 </mat-select>
               </mat-form-field><br/>
-              <mat-checkbox *ngIf="this.actionForm.value.automodAction >= 2"
-                formControlName="publicNotification"
-                [labelPosition]="'after'">
-                {{ 'AutomodConfig.SendPublicNotification' | translate }}
-              </mat-checkbox><br/>
+              <ng-container  *ngIf="this.actionForm.value.automodAction === 1 || this.actionForm.value.automodAction === 3">
+                <mat-form-field appearance="fill">
+                  <mat-label>{{ 'AutomodConfig.ChannelNotificationBehavior' | translate }}</mat-label>
+                  <mat-select formControlName="channelNotificationBehavior">
+                  <mat-option *ngFor="let enum of automodChannelBehaviors.content" [value]="enum.key">{{ enum.value }}</mat-option>
+                  </mat-select>
+                </mat-form-field><br/>
+              </ng-container>
               <mat-form-field appearance="fill" *ngIf="this.actionForm.value.automodAction >= 2">
                 <mat-label>{{ 'Punishment' | translate }}</mat-label>
                 <mat-select formControlName="punishmentType">
                 <mat-option *ngFor="let enum of punishmentTypes.content" [value]="enum.key">{{ enum.value }}</mat-option>
                 </mat-select>
               </mat-form-field><br/>
+              <mat-checkbox *ngIf="this.actionForm.value.automodAction >= 2"
+                formControlName="publicNotification"
+                [labelPosition]="'after'">
+                {{ 'AutomodConfig.SendPublicNotification' | translate }}
+              </mat-checkbox><br/>
               <mat-form-field *ngIf="this.actionForm.value.automodAction >= 2 && (this.actionForm.value.punishmentType === 1 || this.actionForm.value.punishmentType === 3)">
                 <mat-label>{{ 'AutomodConfig.DurationInMinutes' | translate }}</mat-label>
                 <input type="number" matInput formControlName="punishmentDuration">

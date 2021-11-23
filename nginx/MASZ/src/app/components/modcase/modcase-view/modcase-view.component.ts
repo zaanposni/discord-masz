@@ -17,11 +17,14 @@ import { ContentLoading } from 'src/app/models/ContentLoading';
 import { FileInfo } from 'src/app/models/FileInfo';
 import { Guild } from 'src/app/models/Guild';
 import { convertModcaseToPunishmentString, ModCase } from 'src/app/models/ModCase';
+import { PunishmentType } from 'src/app/models/PunishmentType';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { EnumManagerService } from 'src/app/services/enum-manager.service';
 import { CaseDeleteDialogComponent } from '../../dialogs/case-delete-dialog/case-delete-dialog.component';
 import { CommentEditDialogComponent } from '../../dialogs/comment-edit-dialog/comment-edit-dialog.component';
+import { ConfirmationDialogComponent } from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-modcase-view',
@@ -39,6 +42,10 @@ export class ModcaseViewComponent implements OnInit {
   public filesToUpload: any[] = [];
   public newComment!: string;
 
+  public showActivationSlider = false;
+  public activationSliderValue = false;
+  public activationSliderModeDeactivation = true;
+  public punishmentDescriptionTranslationKey = "";
   public isModOrHigher: boolean = false;
   public renderedDescription!: string;
   private filesSubject$ = new ReplaySubject<FileInfo>(1);
@@ -155,12 +162,57 @@ export class ModcaseViewComponent implements OnInit {
       };
       this.lockedCommentsParams = {
         user: data.lockedBy ? `${data.lockedBy.username}#${data.lockedBy.discriminator}` : this.translator.instant('ModCaseView.Moderators')
+      };
+      if (this.modCase.content.modCase?.punishedUntil === null || moment(this.modCase.content.modCase?.punishedUntil).utc(true).isAfter(moment())) {
+        this.showActivationSlider = true;
+        this.activationSliderModeDeactivation = this.modCase.content.modCase?.punishmentActive;
+      }
+      if (this.modCase.content.modCase.punishmentType !== PunishmentType.None && this.modCase.content.modCase.punishmentType !== PunishmentType.Kick && ! this.modCase.content.modCase.punishmentActive) {
+        console.log(this.modCase.content.modCase?.punishedUntil);
+        if (this.modCase.content.modCase?.punishedUntil == null) {
+          this.punishmentDescriptionTranslationKey = "CaseInactive";
+        } else if (moment(this.modCase.content.modCase?.punishedUntil).utc(true).isAfter(moment())) {
+          this.punishmentDescriptionTranslationKey = "CaseInactive";
+        } else {
+          this.punishmentDescriptionTranslationKey = "PunishmentExpired";
+        }
       }
       this.modCase.loading = false;
     }, error => {
       console.error(error);
       this.modCase.loading = false;
       this.toastr.error(this.translator.instant('ModCaseView.FailedToLoad.Case'));
+    });
+  }
+
+  public handleActivation() {
+    const confirmDialogRef = this.dialog.open(ConfirmationDialogComponent);
+    confirmDialogRef.afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        if (this.activationSliderModeDeactivation) {
+          this.api.deleteData(`/guilds/${this.guildId}/cases/${this.caseId}/active`).subscribe(() => {
+            this.toastr.success(this.translator.instant('ModCaseView.Deactivated.Success'));
+            this.activationSliderValue = false;
+            this.reloadCase();
+          }, error => {
+            console.error(error);
+            this.activationSliderValue = false;
+            this.toastr.error(this.translator.instant('ModCaseView.Deactivated.Failed'));
+          });
+        } else {
+          this.api.postSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/active`, {}).subscribe(() => {
+            this.toastr.success(this.translator.instant('ModCaseView.Activated.Success'));
+            this.activationSliderValue = false;
+            this.reloadCase();
+          }, error => {
+            console.error(error);
+            this.activationSliderValue = false;
+            this.toastr.error(this.translator.instant('ModCaseView.Activated.Failed'));
+          });
+        }
+      } else {
+        this.activationSliderValue = false;
+      }
     });
   }
 

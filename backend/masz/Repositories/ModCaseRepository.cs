@@ -320,12 +320,12 @@ namespace masz.Repositories
             }
             return filteredModCases;
         }
-        public async Task<ModCase> LockCaseComments(ulong guildId, int caseId, DiscordUser moderator)
+        public async Task<ModCase> LockCaseComments(ulong guildId, int caseId)
         {
             ModCase modCase = await GetModCase(guildId, caseId);
             modCase.AllowComments = false;
             modCase.LockedAt = DateTime.UtcNow;
-            modCase.LockedByUserId = moderator.Id;
+            modCase.LockedByUserId = _currentUser.Id;
 
             _database.UpdateModCase(modCase);
             await _database.SaveChangesAsync();
@@ -378,6 +378,54 @@ namespace masz.Repositories
         public async Task<List<DbCount>> GetPunishmentCounts(ulong guildId, DateTime since)
         {
             return await _database.GetPunishmentCountGraph(guildId, since);
+        }
+        public async Task<ModCase> ActivateModCase(ulong guildId, int caseId)
+        {
+            ModCase modCase = await GetModCase(guildId, caseId);
+            modCase.PunishmentActive = true;
+            modCase.LastEditedAt = DateTime.UtcNow;
+            modCase.LastEditedByModId = _currentUser.Id;
+
+            _database.UpdateModCase(modCase);
+            await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeModCaseUpdated(new ModCaseUpdatedEventArgs(modCase));
+
+            try
+            {
+                _logger.LogInformation($"Handling punishment for case {guildId}/{caseId}.");
+                await _punishmentHandler.ExecutePunishment(modCase);
+            }
+            catch(Exception e)
+            {
+                _logger.LogError(e, $"Failed to handle punishment for modcase {guildId}/{caseId}.");
+            }
+
+            return modCase;
+        }
+        public async Task<ModCase> DeactivateModCase(ulong guildId, int caseId)
+        {
+            ModCase modCase = await GetModCase(guildId, caseId);
+            modCase.PunishmentActive = false;
+            modCase.LastEditedAt = DateTime.UtcNow;
+            modCase.LastEditedByModId = _currentUser.Id;
+
+            _database.UpdateModCase(modCase);
+            await _database.SaveChangesAsync();
+
+            await _eventHandler.InvokeModCaseUpdated(new ModCaseUpdatedEventArgs(modCase));
+
+            try
+            {
+                _logger.LogInformation($"Handling punishment for case {guildId}/{caseId}.");
+                await _punishmentHandler.UndoPunishment(modCase);
+            }
+            catch(Exception e)
+            {
+                _logger.LogError(e, $"Failed to handle punishment for modcase {guildId}/{caseId}.");
+            }
+
+            return modCase;
         }
     }
 }

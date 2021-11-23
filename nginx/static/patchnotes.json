@@ -1,5 +1,84 @@
 [
   {
+    "title":  "Version 2.3.0",
+    "version": "v2.3.0",
+    "released_at": "2021-11-23",
+    "contributors": [
+      {
+        "name": "FlixProd",
+        "link": "https://github.com/FlixProd",
+        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+      },
+      {
+        "name": "Bricksmaster",
+        "link": "https://github.com/Bricksmaster",
+        "icon": "https://avatars.githubusercontent.com/u/47327755?v=4"
+      }
+    ],
+    "features": [
+      {
+        "title": "Added multiple translations.",
+        "description": "Added translations for spanish, italian, french and russian."
+      },
+      {
+        "title": "Copyright notice.",
+        "description": "Added copyright notice in toolbar."
+      },
+      {
+        "title": "Fixed owner permissions.",
+        "description": "An owner of a guild can now do anything."
+      },
+      {
+        "title": "Update warning.",
+        "description": "An update warning in the toolbar has been added.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/444"
+      },
+      {
+        "title": "Inactive cases.",
+        "description": "Cases can now be toggled to be active or inactive, their status is shown in the caseview.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/434"
+      },
+      {
+        "title": "Avatar command.",
+        "description": "Added avatar command, which shows the avatar of the mentioned user."
+      },
+      {
+        "title": "Configurable automod notifications.",
+        "description": "Channel notifications for automods are now configurable."
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Fixed X-Forwarded-For header.",
+        "description": "MASZ now correctly uses the X-Forwarded-For header for ip ratelimiting and logging."
+      },
+      {
+        "title": "Adjusted permissions in strict mode.",
+        "description": "Moderators without corresponding permissions can no longer edit modcases in strict mode."
+      },
+      {
+        "title": "Fixed text wrapping for long servernames in toolbar.",
+        "description": ""
+      },
+      {
+        "title": "Adjusted command permissions in strict mode.",
+        "description": "Moderators without corresponding permissions can no longer use punish commands in strict mode."
+      },
+      {
+        "title": "Fixed null value handling for site admins env var.",
+        "description": "MASZ now correctly works without any siteadmins defined."
+      }
+    ],
+    "technical": [
+      {
+        "title": "Reworked Readme.",
+        "description": "Applied current style guides to the readme file. Added a latest version badge to the readme."
+      }
+    ]
+  },
+  {
     "title": "Version 2.2.0",
     "version": "v2.2.0",
     "released_at": "2021-11-06",
