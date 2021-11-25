@@ -35,20 +35,12 @@ namespace masz.Commands
             if (modCases.Count == 0)
             {
                 await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                    new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdUnmuteNoCases()));
-                return;
-            }
-
-            if (modCases.Count == 1)
-            {
-                await repo.DeactivateModCase(modCases[0]);
-                await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                    new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdUnmuteWith1Case(modCases[0].CaseId)));
+                    new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdUndoNoCases()));
                 return;
             }
 
             StringBuilder interactionString = new StringBuilder();
-            interactionString.AppendLine(_translator.T().CmdUnmuteFoundXCases(modCases.Count));
+            interactionString.AppendLine(_translator.T().CmdUndoUnmuteFoundXCases(modCases.Count));
             foreach (ModCase modCase in modCases.Take(5))
             {
                 int truncate = 50;
@@ -74,15 +66,16 @@ namespace masz.Commands
                 .WithDescription(interactionString.ToString())
                 .WithColor(DiscordColor.Orange);
 
-            embed.AddField(_translator.T().CmdUnmuteResult(), _translator.T().CmdUnmuteWaiting());
+            embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoResultWaiting());
 
             string uniqueButtonId = "unmute_" + Guid.NewGuid().ToString();
 
-            var unmuteButton = new DiscordButtonComponent(ButtonStyle.Success, uniqueButtonId + "_unmute", _translator.T().CmdUnmuteUnmute(), false);
-            var cancelButton = new DiscordButtonComponent(ButtonStyle.Danger, uniqueButtonId+ "_cancel", _translator.T().CmdUnmuteCancel(), false);
+            var deleteButton = new DiscordButtonComponent(ButtonStyle.Primary, uniqueButtonId + "_delete", _translator.T().CmdUndoUnmuteButtonsDelete(), false);
+            var deactivateButton = new DiscordButtonComponent(ButtonStyle.Success, uniqueButtonId + "_deactivate", _translator.T().CmdUndoUnmuteButtonsDeactivate(), false);
+            var cancelButton = new DiscordButtonComponent(ButtonStyle.Danger, uniqueButtonId+ "_cancel", _translator.T().CmdUndoButtonsCancel(), false);
 
             await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                    new DiscordInteractionResponseBuilder().AddEmbed(embed.Build()).AddComponents(unmuteButton, cancelButton));
+                    new DiscordInteractionResponseBuilder().AddEmbed(embed.Build()).AddComponents(deleteButton, deactivateButton, cancelButton));
 
             DiscordMessage responseMessage = await ctx.Interaction.GetOriginalResponseAsync();
 
@@ -95,22 +88,67 @@ namespace masz.Commands
             if (response.TimedOut)
             {
                 embed.WithColor(DiscordColor.Red);
-                embed.AddField(_translator.T().CmdUnmuteResult(), _translator.T().CmdUnmuteTimedout());
+                embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoResultTimedout());
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
                 return;
             }
 
-            if (response.Result.Id == uniqueButtonId + "_unmute")
+            if (response.Result.Id == uniqueButtonId + "_delete")
+            {
+                embed.ClearFields();
+                embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoResultWaiting());
+                embed.AddField(_translator.T().CmdUndoPublicNotificationTitle(), _translator.T().CmdUndoPublicNotificationDescription());
+
+                var publicButton = new DiscordButtonComponent(ButtonStyle.Success, uniqueButtonId + "_n_public", _translator.T().CmdUndoButtonsPublicNotification(), false);
+                var privateButton = new DiscordButtonComponent(ButtonStyle.Primary, uniqueButtonId + "_n_private", _translator.T().CmdUndoButtonsNoPublicNotification(), false);
+                var cancelNotificationButton = new DiscordButtonComponent(ButtonStyle.Danger, uniqueButtonId+ "_n_cancel", _translator.T().CmdUndoButtonsCancel(), false);
+
+                await response.Result.Interaction.CreateResponseAsync(
+                    InteractionResponseType.UpdateMessage,
+                    new DiscordInteractionResponseBuilder().AddEmbed(embed.Build()).AddComponents(publicButton, privateButton, cancelNotificationButton));
+                InteractivityResult<ComponentInteractionCreateEventArgs> responseNotification = await responseMessage.WaitForButtonAsync(
+                    (ComponentInteractionCreateEventArgs args) => {
+                        return args.User.Id == ctx.User.Id && (args.Id.StartsWith(uniqueButtonId));
+                    });
+
+                embed.ClearFields();
+                if (responseNotification.TimedOut)
+                {
+                    embed.WithColor(DiscordColor.Red);
+                    embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoResultTimedout());
+                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
+                    return;
+                }
+                if (!responseNotification.Result.Id.StartsWith(uniqueButtonId + "_n_") || responseNotification.Result.Id.EndsWith("cancel"))
+                {
+                    embed.WithColor(DiscordColor.Red);
+                    embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoResultCanceled());
+                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
+                    return;
+                }
+
+                bool publicNotification = responseNotification.Result.Id.EndsWith("public");
+                foreach (ModCase modCase in modCases)
+                {
+                    await repo.DeleteModCase(modCase.GuildId, modCase.CaseId, false, true, publicNotification);
+                }
+
+                embed.WithColor(new DiscordColor("#7289da"));  // discord blurple
+                embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoUnmuteResultDeleted());
+                await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
+                return;
+            }
+            if (response.Result.Id == uniqueButtonId + "_deactivate")
             {
                 await repo.DeactivateModCase(modCases.ToArray());
 
                 embed.WithColor(DiscordColor.Green);
-                embed.AddField(_translator.T().CmdUnmuteResult(), _translator.T().CmdUnmuteDone());
+                embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoUnmuteResultDeactivated());
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
                 return;
             }
             embed.WithColor(DiscordColor.Red);
-            embed.AddField(_translator.T().CmdUnmuteResult(), _translator.T().CmdUnmuteCanceled());
+            embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoResultCanceled());
             await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
         }
     }
