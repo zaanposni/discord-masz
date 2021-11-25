@@ -427,5 +427,30 @@ namespace masz.Repositories
 
             return modCase;
         }
+
+        public async Task DeactivateModCase(params ModCase[] modCases)
+        {
+            foreach (ModCase modCase in modCases)
+            {
+                modCase.PunishmentActive = false;
+                modCase.LastEditedAt = DateTime.UtcNow;
+                modCase.LastEditedByModId = _currentUser.Id;
+
+                _database.UpdateModCase(modCase);
+                await _database.SaveChangesAsync();
+
+                await _eventHandler.InvokeModCaseUpdated(new ModCaseUpdatedEventArgs(modCase));
+
+                try
+                {
+                    _logger.LogInformation($"Handling punishment for case {modCase.GuildId}/{modCase.CaseId}.");
+                    await _punishmentHandler.UndoPunishment(modCase);
+                }
+                catch(Exception e)
+                {
+                    _logger.LogError(e, $"Failed to handle punishment for modcase {modCase.GuildId}/{modCase.CaseId}.");
+                }
+            }
+        }
     }
 }

@@ -2256,6 +2256,105 @@ namespace masz.Translations
             }
             return "There are no cases for this user.";
         }
+        public string CmdUnmuteNoCases() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "No active modcases have been found.";
+                case Language.de:
+                    return "Keine aktiven Mod-Fälle wurden gefunden.";
+            }
+            return "No active modcases have been found.";
+        }
+        public string CmdUnmuteUnmuteWith1Case(int caseId) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"Case #{caseId} has been deactivated and user unmuted.";
+                case Language.de:
+                    return $"Fall #{caseId} wurde deaktiviert und der Benutzer wurde entsperrt.";
+            }
+            return $"Case #{caseId} has been deactivated and user unmuted.";
+        }
+        public string CmdUnmuteFoundXCases(int caseCount) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"Found `{caseCount}` active cases. Do you want to deactivate all of them to unmute the user?";
+                case Language.de:
+                    return $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren, um den Benutzer entsperren zu lassen?";
+            }
+            return $"Found `{caseCount}` active cases. Do you want to deactivate all of them to unmute the user?";
+        }
+        public string CmdUnmuteCreatedAt() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Created at.";
+                case Language.de:
+                    return "Erstellt am.";
+            }
+            return "Created at.";
+        }
+        public string CmdUnmuteResult() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Result";
+                case Language.de:
+                    return "Ergebnis";
+            }
+            return "Result";
+        }
+        public string CmdUnmuteWaiting() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Waiting for approval.";
+                case Language.de:
+                    return "Warte auf Bestätigung.";
+            }
+            return "Waiting for approval.";
+        }
+        public string CmdUnmuteTimedout() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Timed out";
+                case Language.de:
+                    return "Zeitüberschreitung";
+            }
+            return "Timed out";
+        }
+        public string CmdUnmuteUnmute() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Unmute";
+                case Language.de:
+                    return "Entsperren";
+            }
+            return "Unmute";
+        }
+        public string CmdUnmuteCancel() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Cancel";
+                case Language.de:
+                    return "Abbrechen";
+            }
+            return "Cancel";
+        }
+        public string CmdUnmuteCanceled() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Canceled";
+                case Language.de:
+                    return "Abgebrochen";
+            }
+            return "Canceled";
+        }
+        public string CmdUnmuteDone() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Unmuted";
+                case Language.de:
+                    return "Entsperrt";
+            }
+            return "Unmuted";
+        }
         public string GuildAuditLogChannel() {
             switch (preferredLanguage) {
                 case Language.en:

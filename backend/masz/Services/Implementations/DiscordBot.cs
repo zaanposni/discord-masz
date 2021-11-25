@@ -20,6 +20,7 @@ using masz.AutoModerations;
 using System.Text;
 using masz.Enums;
 using masz.GuildAuditLog;
+using DSharpPlus.Interactivity.Extensions;
 
 namespace masz.Services
 {
@@ -73,6 +74,8 @@ namespace masz.Services
             _client.Resumed += this.ResumedHandler;
             _client.Ready += this.ReadyHandler;
 
+            _client.UseInteractivity();
+
             var slash = _client.UseSlashCommands(new SlashCommandsConfiguration
             {
                 Services = serviceProvider
@@ -97,6 +100,7 @@ namespace masz.Services
             slash.RegisterCommands<KickCommand>(debugGuild);
             slash.RegisterCommands<BanCommand>(debugGuild);
             slash.RegisterCommands<AvatarCommand>(debugGuild);
+            slash.RegisterCommands<UnmuteCommand>(debugGuild);
 
             slash.SlashCommandErrored += CmdErroredHandler;
         }

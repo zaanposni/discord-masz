@@ -1381,6 +1381,69 @@
                 "ru": "Для этого пользователя нет случаев.",
                 "it": "Non ci sono casi per questo utente."
             }
+        },
+        "Unmute": {
+            "NoCases": {
+                "description": "No active modcases have been found.",
+                "en": "No active modcases have been found.",
+                "de": "Keine aktiven Mod-Fälle wurden gefunden."
+            },
+            "UnmuteWith1Case": {
+                "description": "One case has been deactivated and user unmuted",
+                "var_types": {
+                    "caseId": "int"
+                },
+                "en": "Case #{caseId} has been deactivated and user unmuted.",
+                "de": "Fall #{caseId} wurde deaktiviert und der Benutzer wurde entsperrt."
+            },
+            "FoundXCases": {
+                "description": "found multiple cases, unmute has to be approved first",
+                "var_types": {
+                    "caseCount": "int"
+                },
+                "en": "Found `{caseCount}` active cases. Do you want to deactivate all of them to unmute the user?",
+                "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren, um den Benutzer entsperren zu lassen?"
+            },
+            "CreatedAt": {
+                "description": "Created at",
+                "en": "Created at.",
+                "de": "Erstellt am."
+            },
+            "Result": {
+                "description": "Result",
+                "en": "Result",
+                "de": "Ergebnis"
+            },
+            "Waiting": {
+                "description": "Waiting for approval",
+                "en": "Waiting for approval.",
+                "de": "Warte auf Bestätigung."
+            },
+            "Timedout": {
+                "description": "Timed out",
+                "en": "Timed out",
+                "de": "Zeitüberschreitung"
+            },
+            "Unmute": {
+                "description": "unmute button to approve",
+                "en": "Unmute",
+                "de": "Entsperren"
+            },
+            "Cancel": {
+                "description": "cancel button to disapprove",
+                "en": "Cancel",
+                "de": "Abbrechen"
+            },
+            "Canceled": {
+                "description": "cancel button to disapprove",
+                "en": "Canceled",
+                "de": "Abgebrochen"
+            },
+            "Done": {
+                "description": "someone approved",
+                "en": "Unmuted",
+                "de": "Entsperrt"
+            }
         }
     },
     "GuildAuditLog": {
