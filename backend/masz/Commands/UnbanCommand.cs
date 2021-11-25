@@ -18,24 +18,24 @@ using Microsoft.Extensions.Logging;
 namespace masz.Commands
 {
 
-    public class UnmuteCommand : BaseCommand<UnmuteCommand>
+    public class UnbanCommand : BaseCommand<UnbanCommand>
     {
-        public UnmuteCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
+        public UnbanCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
-        [SlashCommand("unmute", "Unmute a user by deactivating all his modcases.")]
-        public async Task Unmute(InteractionContext ctx, [Option("user", "User to unmute")] DiscordUser user)
+        [SlashCommand("unban", "Unban a user by deactivating all his modcases.")]
+        public async Task Unban(InteractionContext ctx, [Option("user", "User to unban")] DiscordUser user)
         {
             await Require(ctx, RequireCheckEnum.GuildModerator);
 
             ModCaseRepository repo = ModCaseRepository.CreateDefault(_serviceProvider, _currentIdentity);
             List<ModCase> modCases = await repo.GetCasesForGuildAndUser(ctx.Guild.Id, user.Id);
 
-            modCases = modCases.Where(x => x.PunishmentActive && x.PunishmentType == PunishmentType.Mute).ToList();
+            modCases = modCases.Where(x => x.PunishmentActive && x.PunishmentType == PunishmentType.Ban).ToList();
 
             if (modCases.Count == 0)
             {
                 await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                    new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdUnmuteNoCases()));
+                    new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdUnbanNoCases()));
                 return;
             }
 
@@ -43,12 +43,12 @@ namespace masz.Commands
             {
                 await repo.DeactivateModCase(modCases[0]);
                 await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                    new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdUnmuteWith1Case(modCases[0].CaseId)));
+                    new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdUnbanWith1Case(modCases[0].CaseId)));
                 return;
             }
 
             StringBuilder interactionString = new StringBuilder();
-            interactionString.AppendLine(_translator.T().CmdUnmuteFoundXCases(modCases.Count));
+            interactionString.AppendLine(_translator.T().CmdUnbanFoundXCases(modCases.Count));
             foreach (ModCase modCase in modCases.Take(5))
             {
                 int truncate = 50;
@@ -74,15 +74,15 @@ namespace masz.Commands
                 .WithDescription(interactionString.ToString())
                 .WithColor(DiscordColor.Orange);
 
-            embed.AddField(_translator.T().CmdUnmuteResult(), _translator.T().CmdUnmuteWaiting());
+            embed.AddField(_translator.T().CmdUnbanResult(), _translator.T().CmdUnbanWaiting());
 
-            string uniqueButtonId = "unmute_" + Guid.NewGuid().ToString();
+            string uniqueButtonId = "unban_" + Guid.NewGuid().ToString();
 
-            var unmuteButton = new DiscordButtonComponent(ButtonStyle.Success, uniqueButtonId + "_unmute", _translator.T().CmdUnmuteUnmute(), false);
-            var cancelButton = new DiscordButtonComponent(ButtonStyle.Danger, uniqueButtonId+ "_cancel", _translator.T().CmdUnmuteCancel(), false);
+            var unbanButton = new DiscordButtonComponent(ButtonStyle.Success, uniqueButtonId + "_unban", _translator.T().CmdUnbanUnban(), false);
+            var cancelButton = new DiscordButtonComponent(ButtonStyle.Danger, uniqueButtonId+ "_cancel", _translator.T().CmdUnbanCancel(), false);
 
             await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                    new DiscordInteractionResponseBuilder().AddEmbed(embed.Build()).AddComponents(unmuteButton, cancelButton));
+                    new DiscordInteractionResponseBuilder().AddEmbed(embed.Build()).AddComponents(unbanButton, cancelButton));
 
             DiscordMessage responseMessage = await ctx.Interaction.GetOriginalResponseAsync();
 
@@ -95,22 +95,22 @@ namespace masz.Commands
             if (response.TimedOut)
             {
                 embed.WithColor(DiscordColor.Red);
-                embed.AddField(_translator.T().CmdUnmuteResult(), _translator.T().CmdUnmuteTimedout());
+                embed.AddField(_translator.T().CmdUnbanResult(), _translator.T().CmdUnbanTimedout());
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
                 return;
             }
 
-            if (response.Result.Id == uniqueButtonId + "_unmute")
+            if (response.Result.Id == uniqueButtonId + "_unban")
             {
                 await repo.DeactivateModCase(modCases.ToArray());
 
                 embed.WithColor(DiscordColor.Green);
-                embed.AddField(_translator.T().CmdUnmuteResult(), _translator.T().CmdUnmuteDone());
+                embed.AddField(_translator.T().CmdUnbanResult(), _translator.T().CmdUnbanDone());
                 await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
                 return;
             }
             embed.WithColor(DiscordColor.Red);
-            embed.AddField(_translator.T().CmdUnmuteResult(), _translator.T().CmdUnmuteCanceled());
+            embed.AddField(_translator.T().CmdUnbanResult(), _translator.T().CmdUnbanCanceled());
             await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
         }
     }

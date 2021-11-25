@@ -1388,7 +1388,7 @@
                 "en": "No active modcases have been found.",
                 "de": "Keine aktiven Mod-Fälle wurden gefunden."
             },
-            "UnmuteWith1Case": {
+            "With1Case": {
                 "description": "One case has been deactivated and user unmuted",
                 "var_types": {
                     "caseId": "int"
@@ -1442,6 +1442,69 @@
             "Done": {
                 "description": "someone approved",
                 "en": "Unmuted",
+                "de": "Entsperrt"
+            }
+        },
+        "Unban": {
+            "NoCases": {
+                "description": "No active modcases have been found.",
+                "en": "No active modcases have been found.",
+                "de": "Keine aktiven Mod-Fälle wurden gefunden."
+            },
+            "With1Case": {
+                "description": "One case has been deactivated and user unbanned",
+                "var_types": {
+                    "caseId": "int"
+                },
+                "en": "Case #{caseId} has been deactivated and user unbanned.",
+                "de": "Fall #{caseId} wurde deaktiviert und der Benutzer wurde entsperrt."
+            },
+            "FoundXCases": {
+                "description": "found multiple cases, unban has to be approved first",
+                "var_types": {
+                    "caseCount": "int"
+                },
+                "en": "Found `{caseCount}` active cases. Do you want to deactivate all of them to unban the user?",
+                "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren, um den Benutzer entsperren zu lassen?"
+            },
+            "CreatedAt": {
+                "description": "Created at",
+                "en": "Created at.",
+                "de": "Erstellt am."
+            },
+            "Result": {
+                "description": "Result",
+                "en": "Result",
+                "de": "Ergebnis"
+            },
+            "Waiting": {
+                "description": "Waiting for approval",
+                "en": "Waiting for approval.",
+                "de": "Warte auf Bestätigung."
+            },
+            "Timedout": {
+                "description": "Timed out",
+                "en": "Timed out",
+                "de": "Zeitüberschreitung"
+            },
+            "Unban": {
+                "description": "Unban button to approve",
+                "en": "Unban",
+                "de": "Entsperren"
+            },
+            "Cancel": {
+                "description": "cancel button to disapprove",
+                "en": "Cancel",
+                "de": "Abbrechen"
+            },
+            "Canceled": {
+                "description": "cancel button to disapprove",
+                "en": "Canceled",
+                "de": "Abgebrochen"
+            },
+            "Done": {
+                "description": "someone approved",
+                "en": "Unbanned",
                 "de": "Entsperrt"
             }
         }

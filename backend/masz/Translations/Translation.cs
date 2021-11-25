@@ -2265,7 +2265,7 @@ namespace masz.Translations
             }
             return "No active modcases have been found.";
         }
-        public string CmdUnmuteUnmuteWith1Case(int caseId) {
+        public string CmdUnmuteWith1Case(int caseId) {
             switch (preferredLanguage) {
                 case Language.en:
                     return $"Case #{caseId} has been deactivated and user unmuted.";
@@ -2354,6 +2354,105 @@ namespace masz.Translations
                     return "Entsperrt";
             }
             return "Unmuted";
+        }
+        public string CmdUnbanNoCases() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "No active modcases have been found.";
+                case Language.de:
+                    return "Keine aktiven Mod-Fälle wurden gefunden.";
+            }
+            return "No active modcases have been found.";
+        }
+        public string CmdUnbanWith1Case(int caseId) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"Case #{caseId} has been deactivated and user unbanned.";
+                case Language.de:
+                    return $"Fall #{caseId} wurde deaktiviert und der Benutzer wurde entsperrt.";
+            }
+            return $"Case #{caseId} has been deactivated and user unbanned.";
+        }
+        public string CmdUnbanFoundXCases(int caseCount) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"Found `{caseCount}` active cases. Do you want to deactivate all of them to unban the user?";
+                case Language.de:
+                    return $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren, um den Benutzer entsperren zu lassen?";
+            }
+            return $"Found `{caseCount}` active cases. Do you want to deactivate all of them to unban the user?";
+        }
+        public string CmdUnbanCreatedAt() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Created at.";
+                case Language.de:
+                    return "Erstellt am.";
+            }
+            return "Created at.";
+        }
+        public string CmdUnbanResult() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Result";
+                case Language.de:
+                    return "Ergebnis";
+            }
+            return "Result";
+        }
+        public string CmdUnbanWaiting() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Waiting for approval.";
+                case Language.de:
+                    return "Warte auf Bestätigung.";
+            }
+            return "Waiting for approval.";
+        }
+        public string CmdUnbanTimedout() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Timed out";
+                case Language.de:
+                    return "Zeitüberschreitung";
+            }
+            return "Timed out";
+        }
+        public string CmdUnbanUnban() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Unban";
+                case Language.de:
+                    return "Entsperren";
+            }
+            return "Unban";
+        }
+        public string CmdUnbanCancel() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Cancel";
+                case Language.de:
+                    return "Abbrechen";
+            }
+            return "Cancel";
+        }
+        public string CmdUnbanCanceled() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Canceled";
+                case Language.de:
+                    return "Abgebrochen";
+            }
+            return "Canceled";
+        }
+        public string CmdUnbanDone() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Unbanned";
+                case Language.de:
+                    return "Entsperrt";
+            }
+            return "Unbanned";
         }
         public string GuildAuditLogChannel() {
             switch (preferredLanguage) {
