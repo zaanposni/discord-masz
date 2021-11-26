@@ -4,7 +4,7 @@
 [![https://github.com/users/zaanposni/packages/container/package/masz_backend](https://img.shields.io/badge/using-docker-blue)](https://github.com/users/zaanposni/packages/container/package/masz_backend)
 ![LatestVersion](https://maszindex.zaanposni.com/api/v1/views/version/current/readme)
 [![https://discord.gg/5zjpzw6h3S](https://img.shields.io/discord/779262870016884756?logo=discord)](https://discord.gg/5zjpzw6h3S)
-![SupportedLanguages](https://img.shields.io/badge/translated-7%20languages-brightgreen)
+[![SupportedLanguages](https://img.shields.io/badge/translated-7%20languages-brightgreen)](https://github.com/zaanposni/discord-masz/blob/master/translations/supported_languages.json)
 
 ⭐ **Infractions and managed (temporary) punishments** - to moderate your server\
 ⭐ **Userscan** - quickly spot relations between users with a included visualization\
