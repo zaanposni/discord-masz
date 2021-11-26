@@ -2385,20 +2385,20 @@ namespace masz.Translations
         public string CmdUndoUnmuteButtonsDelete() {
             switch (preferredLanguage) {
                 case Language.en:
-                    return "Delete Bans";
+                    return "Delete Mutes";
                 case Language.de:
                     return "Sperrungen löschen";
             }
-            return "Delete Bans";
+            return "Delete Mutes";
         }
         public string CmdUndoUnmuteButtonsDeactivate() {
             switch (preferredLanguage) {
                 case Language.en:
-                    return "Deativate Bans";
+                    return "Deativate Mutes";
                 case Language.de:
                     return "Sperrungen deaktivieren";
             }
-            return "Deativate Bans";
+            return "Deativate Mutes";
         }
         public string CmdUndoUnbanFoundXCases(int caseCount) {
             switch (preferredLanguage) {

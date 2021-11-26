@@ -1468,12 +1468,12 @@
                 "Buttons": {
                     "Delete": {
                         "description": "Unban button to approve",
-                        "en": "Delete Bans",
+                        "en": "Delete Mutes",
                         "de": "Sperrungen löschen"
                     },
                     "Deactivate": {
                         "description": "Unban button to approve",
-                        "en": "Deativate Bans",
+                        "en": "Deativate Mutes",
                         "de": "Sperrungen deaktivieren"
                     }
                 }
