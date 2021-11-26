@@ -13,7 +13,6 @@ using masz.Enums;
 using masz.Extensions;
 using masz.Models;
 using masz.Repositories;
-using Microsoft.Extensions.Logging;
 
 namespace masz.Commands
 {
@@ -25,7 +24,7 @@ namespace masz.Commands
         [SlashCommand("unmute", "Unmute a user by deactivating all his modcases.")]
         public async Task Unmute(InteractionContext ctx, [Option("user", "User to unmute")] DiscordUser user)
         {
-            await Require(ctx, RequireCheckEnum.GuildModerator);
+            await Require(ctx, RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildStrictModeMute);
 
             ModCaseRepository repo = ModCaseRepository.CreateDefault(_serviceProvider, _currentIdentity);
             List<ModCase> modCases = await repo.GetCasesForGuildAndUser(ctx.Guild.Id, user.Id);
