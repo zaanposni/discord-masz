@@ -2256,6 +2256,195 @@ namespace masz.Translations
             }
             return "There are no cases for this user.";
         }
+        public string CmdUndoResultTitle() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Result";
+                case Language.de:
+                    return "Ergebnis";
+            }
+            return "Result";
+        }
+        public string CmdUndoResultWaiting() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Waiting for approval.";
+                case Language.de:
+                    return "Warte auf Bestätigung.";
+            }
+            return "Waiting for approval.";
+        }
+        public string CmdUndoResultTimedout() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Timed out";
+                case Language.de:
+                    return "Zeitüberschreitung";
+            }
+            return "Timed out";
+        }
+        public string CmdUndoResultCanceled() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Canceled";
+                case Language.de:
+                    return "Abgebrochen";
+            }
+            return "Canceled";
+        }
+        public string CmdUndoPublicNotificationTitle() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Public notification";
+                case Language.de:
+                    return "Öffentliche Benachrichtigung";
+            }
+            return "Public notification";
+        }
+        public string CmdUndoPublicNotificationDescription() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Send a public notification?";
+                case Language.de:
+                    return "Soll eine öffentliche Benachrichtigung gesendet werden?";
+            }
+            return "Send a public notification?";
+        }
+        public string CmdUndoButtonsCancel() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Cancel";
+                case Language.de:
+                    return "Abbrechen";
+            }
+            return "Cancel";
+        }
+        public string CmdUndoButtonsPublicNotification() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Public notification";
+                case Language.de:
+                    return "Öffentliche Benachrichtigung";
+            }
+            return "Public notification";
+        }
+        public string CmdUndoButtonsNoPublicNotification() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "No public notification";
+                case Language.de:
+                    return "Keine öffentliche Benachrichtigung";
+            }
+            return "No public notification";
+        }
+        public string CmdUndoCreatedAt() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Created at.";
+                case Language.de:
+                    return "Erstellt am.";
+            }
+            return "Created at.";
+        }
+        public string CmdUndoNoCases() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "No active modcases have been found.";
+                case Language.de:
+                    return "Keine aktiven Mod-Fälle wurden gefunden.";
+            }
+            return "No active modcases have been found.";
+        }
+        public string CmdUndoUnmuteFoundXCases(int caseCount) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unmute the user?";
+                case Language.de:
+                    return $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entsperren zu lassen?";
+            }
+            return $"Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unmute the user?";
+        }
+        public string CmdUndoUnmuteResultDeleted() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Mutes deleted";
+                case Language.de:
+                    return "Sperrungen gelöscht";
+            }
+            return "Mutes deleted";
+        }
+        public string CmdUndoUnmuteResultDeactivated() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Mutes deactivated";
+                case Language.de:
+                    return "Sperrungen deaktiviert";
+            }
+            return "Mutes deactivated";
+        }
+        public string CmdUndoUnmuteButtonsDelete() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Delete Mutes";
+                case Language.de:
+                    return "Sperrungen löschen";
+            }
+            return "Delete Mutes";
+        }
+        public string CmdUndoUnmuteButtonsDeactivate() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Deativate Mutes";
+                case Language.de:
+                    return "Sperrungen deaktivieren";
+            }
+            return "Deativate Mutes";
+        }
+        public string CmdUndoUnbanFoundXCases(int caseCount) {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return $"Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unban the user?";
+                case Language.de:
+                    return $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entsperren zu lassen?";
+            }
+            return $"Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unban the user?";
+        }
+        public string CmdUndoUnbanResultDeleted() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Bans deleted";
+                case Language.de:
+                    return "Sperrungen gelöscht";
+            }
+            return "Bans deleted";
+        }
+        public string CmdUndoUnbanResultDeactivated() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Bans deactivated";
+                case Language.de:
+                    return "Sperrungen deaktiviert";
+            }
+            return "Bans deactivated";
+        }
+        public string CmdUndoUnbanButtonsDelete() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Delete Bans";
+                case Language.de:
+                    return "Sperrungen löschen";
+            }
+            return "Delete Bans";
+        }
+        public string CmdUndoUnbanButtonsDeactivate() {
+            switch (preferredLanguage) {
+                case Language.en:
+                    return "Deativate Bans";
+                case Language.de:
+                    return "Sperrungen deaktivieren";
+            }
+            return "Deativate Bans";
+        }
         public string GuildAuditLogChannel() {
             switch (preferredLanguage) {
                 case Language.en:

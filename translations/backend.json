@@ -1381,6 +1381,137 @@
                 "ru": "Для этого пользователя нет случаев.",
                 "it": "Non ci sono casi per questo utente."
             }
+        },
+        "Undo": {
+            "Result": {
+                "Title": {
+                    "description": "Result",
+                    "en": "Result",
+                    "de": "Ergebnis"
+                },
+                "Waiting": {
+                    "description": "Waiting for approval",
+                    "en": "Waiting for approval.",
+                    "de": "Warte auf Bestätigung."
+                },
+                "Timedout": {
+                    "description": "Timed out",
+                    "en": "Timed out",
+                    "de": "Zeitüberschreitung"
+                },
+                "Canceled": {
+                    "description": "cancel button to disapprove",
+                    "en": "Canceled",
+                    "de": "Abgebrochen"
+                }
+            },
+            "PublicNotification": {
+                "Title": {
+                    "description": "Public notification",
+                    "en": "Public notification",
+                    "de": "Öffentliche Benachrichtigung"
+                },
+                "Description": {
+                    "description": "Public notification description",
+                    "en": "Send a public notification?",
+                    "de": "Soll eine öffentliche Benachrichtigung gesendet werden?"
+                }
+            },
+            "Buttons": {
+                "Cancel": {
+                    "description": "cancel button to disapprove",
+                    "en": "Cancel",
+                    "de": "Abbrechen"
+                },
+                "PublicNotification": {
+                    "description": "public notification button",
+                    "en": "Public notification",
+                    "de": "Öffentliche Benachrichtigung"
+                },
+                "NoPublicNotification": {
+                    "description": "no public notification button",
+                    "en": "No public notification",
+                    "de": "Keine öffentliche Benachrichtigung"
+                }
+            },
+            "CreatedAt": {
+                "description": "Created at",
+                "en": "Created at.",
+                "de": "Erstellt am."
+            },
+            "NoCases": {
+                "description": "No active modcases have been found.",
+                "en": "No active modcases have been found.",
+                "de": "Keine aktiven Mod-Fälle wurden gefunden."
+            },
+            "Unmute": {
+                "FoundXCases": {
+                    "description": "found multiple cases, unmute has to be approved first",
+                    "var_types": {
+                        "caseCount": "int"
+                    },
+                    "en": "Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unmute the user?",
+                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entsperren zu lassen?"
+                },
+                "Result": {
+                    "Deleted": {
+                        "description": "someone approved",
+                        "en": "Mutes deleted",
+                        "de": "Sperrungen gelöscht"
+                    },
+                    "Deactivated": {
+                        "description": "someone approved",
+                        "en": "Mutes deactivated",
+                        "de": "Sperrungen deaktiviert"
+                    }
+                },
+                "Buttons": {
+                    "Delete": {
+                        "description": "Unban button to approve",
+                        "en": "Delete Mutes",
+                        "de": "Sperrungen löschen"
+                    },
+                    "Deactivate": {
+                        "description": "Unban button to approve",
+                        "en": "Deativate Mutes",
+                        "de": "Sperrungen deaktivieren"
+                    }
+                }
+            },
+            "Unban": {
+                "FoundXCases": {
+                    "description": "found multiple cases, unban has to be approved first",
+                    "var_types": {
+                        "caseCount": "int"
+                    },
+                    "en": "Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unban the user?",
+                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entsperren zu lassen?"
+                },
+                "Result": {
+                    "Deleted": {
+                        "description": "someone approved",
+                        "en": "Bans deleted",
+                        "de": "Sperrungen gelöscht"
+                    },
+                    "Deactivated": {
+                        "description": "someone approved",
+                        "en": "Bans deactivated",
+                        "de": "Sperrungen deaktiviert"
+                    }
+                },
+                "Buttons": {
+                    "Delete": {
+                        "description": "Unban button to approve",
+                        "en": "Delete Bans",
+                        "de": "Sperrungen löschen"
+                    },
+                    "Deactivate": {
+                        "description": "Unban button to approve",
+                        "en": "Deativate Bans",
+                        "de": "Sperrungen deaktivieren"
+                    }
+                }
+            }
         }
     },
     "GuildAuditLog": {
