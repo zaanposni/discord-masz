@@ -11,27 +11,33 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class IndexComponent implements OnInit {
 
+  public initLoading: boolean = true;
   public attemptingLogin: boolean = false;
-  applicationInfo?: IApplicationInfo = undefined;
+  public applicationInfo?: IApplicationInfo = undefined;
 
   constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router, private applicationInfoService: ApplicationInfoService) { }
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
       this.attemptingLogin = true;
-      this.authService.getUserProfile().subscribe((success) => {
+      this.authService.getUserProfile().subscribe(() => {
         this.attemptingLogin = false;
         if ('ReturnUrl' in this.route.snapshot.queryParams) {
           this.router.navigateByUrl(this.route.snapshot.queryParams['ReturnUrl']);
         } else {
           this.router.navigate(['guilds']);
         }
-      }, () => {
+      }, error => {
+        console.error(error);
         this.attemptingLogin = false;
       });
     }
     this.applicationInfoService.currentApplicationInfo.subscribe((data) => {
       this.applicationInfo = data;
+      this.initLoading = false;
+    }, error => {
+      console.error(error);
+      this.initLoading = false;
     });
   }
 
