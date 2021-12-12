@@ -153,6 +153,7 @@ export class ModcaseViewComponent implements OnInit {
 
   private reloadCase() {
     this.modCase = { loading: true, content: undefined };
+    this.punishmentDescriptionTranslationKey = "";
     this.api.getSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/view`).subscribe((data: CaseView) => {
       this.modCase.content = data;
       this.renderedDescription = this.renderDescription(data.modCase.description, this.guildId)
