@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using masz.Enums;
+using masz.Dtos.ModCase;
 
 namespace masz.Controllers
 {
@@ -27,30 +28,24 @@ namespace masz.Controllers
         }
 
         [HttpGet("modcasetable")]
-        public async Task<IActionResult> GetAllModCases([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null)
+        public async Task<IActionResult> GetAllModCases([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] ModCaseTableFilterDto search=null)
         {
-            return await generateTable(guildId, ModcaseTableType.Default, startPage, search, ModcaseTableSortType.Default);
-        }
-
-        [HttpGet("punishmenttable")]
-        public async Task<IActionResult> GetAllPunishments([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null)
-        {
-            return await generateTable(guildId, ModcaseTableType.OnlyPunishments, startPage, search, ModcaseTableSortType.Default);
+            return Ok(await generateTable(guildId, ModcaseTableType.Default, startPage, search, ModcaseTableSortType.Default));
         }
 
         [HttpGet("expiringpunishment")]
-        public async Task<IActionResult> GetExpiringPunishments([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null)
+        public async Task<IActionResult> GetExpiringPunishments([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] ModCaseTableFilterDto search=null)
         {
-            return await generateTable(guildId, ModcaseTableType.OnlyPunishments, startPage, search, ModcaseTableSortType.SortByExpiring);
+            return Ok(await generateTable(guildId, ModcaseTableType.OnlyPunishments, startPage, search, ModcaseTableSortType.SortByExpiring));
         }
 
         [HttpGet("casebin")]
-        public async Task<IActionResult> GetDeletedModCases([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] string search=null)
+        public async Task<IActionResult> GetDeletedModCases([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] ModCaseTableFilterDto search=null)
         {
-            return await generateTable(guildId, ModcaseTableType.OnlyBin, startPage, search, ModcaseTableSortType.SortByDeleting);
+            return Ok(await generateTable(guildId, ModcaseTableType.OnlyBin, startPage, search, ModcaseTableSortType.SortByDeleting));
         }
 
-        private async Task<IActionResult> generateTable(ulong guildId, ModcaseTableType tableType, int startPage=0, string search=null, ModcaseTableSortType sortBy = ModcaseTableSortType.Default) {
+        private async Task<List<ModCaseTableEntry>> generateTable(ulong guildId, ModcaseTableType tableType, int startPage=0, ModCaseTableFilterDto search=null, ModcaseTableSortType sortBy = ModcaseTableSortType.Default) {
             Identity identity = await GetIdentity();
             GuildConfig guildConfig = await GetRegisteredGuild(guildId);
 
@@ -88,13 +83,8 @@ namespace masz.Controllers
                     break;
             }
 
-            // LIMIT
-            if (String.IsNullOrEmpty(search)) {
-                modCases = modCases.Skip(startPage * 20).Take(20).ToList();
-            }
-
             bool publishMod = guildConfig.PublishModeratorInfo || await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId);
-            List<ModCaseTableEntry> table = new List<ModCaseTableEntry>();
+            List<ModCaseTableEntry> tmp = new List<ModCaseTableEntry>();
             foreach (var c in modCases)
             {
                 var entry = new ModCaseTableEntry(
@@ -105,33 +95,75 @@ namespace masz.Controllers
                 if (!publishMod) {
                     entry.RemoveModeratorInfo();
                 }
-                table.Add(entry);
+                tmp.Add(entry);
             }
 
-            if (!String.IsNullOrWhiteSpace(search)) {
+            IEnumerable<ModCaseTableEntry> table = tmp.AsEnumerable();
+
+            if (!String.IsNullOrWhiteSpace(search?.CustomTextFilter)) {
                 table = table.Where(t =>
-                    contains(t.ModCase.Title, search) ||
-                    contains(t.ModCase.Description, search) ||
-                    contains(t.ModCase.GetPunishment(_translator), search) ||
-                    contains(t.ModCase.Username, search) ||
-                    contains(t.ModCase.Discriminator, search) ||
-                    contains(t.ModCase.Nickname, search) ||
-                    contains(t.ModCase.UserId, search) ||
-                    contains(t.ModCase.ModId, search) ||
-                    contains(t.ModCase.LastEditedByModId, search) ||
-                    contains(t.ModCase.CreatedAt, search) ||
-                    contains(t.ModCase.OccuredAt, search) ||
-                    contains(t.ModCase.LastEditedAt, search) ||
-                    contains(t.ModCase.Labels, search) ||
-                    contains(t.ModCase.CaseId.ToString(), search) ||
-                    contains("#" + t.ModCase.CaseId.ToString(), search) ||
+                    contains(t.ModCase.Title, search.CustomTextFilter) ||
+                    contains(t.ModCase.Description, search.CustomTextFilter) ||
+                    contains(t.ModCase.GetPunishment(_translator), search.CustomTextFilter) ||
+                    contains(t.ModCase.Username, search.CustomTextFilter) ||
+                    contains(t.ModCase.Discriminator, search.CustomTextFilter) ||
+                    contains(t.ModCase.Nickname, search.CustomTextFilter) ||
+                    contains(t.ModCase.UserId, search.CustomTextFilter) ||
+                    contains(t.ModCase.ModId, search.CustomTextFilter) ||
+                    contains(t.ModCase.LastEditedByModId, search.CustomTextFilter) ||
+                    contains(t.ModCase.CreatedAt, search.CustomTextFilter) ||
+                    contains(t.ModCase.OccuredAt, search.CustomTextFilter) ||
+                    contains(t.ModCase.LastEditedAt, search.CustomTextFilter) ||
+                    contains(t.ModCase.Labels, search.CustomTextFilter) ||
+                    contains(t.ModCase.CaseId.ToString(), search.CustomTextFilter) ||
+                    contains("#" + t.ModCase.CaseId.ToString(), search.CustomTextFilter) ||
 
-                    contains(t.Moderator, search) ||
-                    contains(t.Suspect, search)
-                ).ToList();
+                    contains(t.Moderator, search.CustomTextFilter) ||
+                    contains(t.Suspect, search.CustomTextFilter)
+                );
             }
 
-            return Ok(table);
+            if (search?.UserIds != null) {
+                table = table.Where(x => search.UserIds.Contains(x.ModCase.UserId));
+            }
+            if (search?.ModeratorIds != null) {
+                table = table.Where(x =>
+                    search.ModeratorIds.Contains(x.ModCase.ModId) ||
+                    search.ModeratorIds.Contains(x.ModCase.LastEditedByModId)
+                );
+            }
+            if (search?.Since != null && search.Since != DateTime.MinValue) {
+                table = table.Where(x => x.ModCase.CreatedAt >= search.Since);
+            }
+            if (search?.Before != null && search.Before != DateTime.MinValue) {
+                table = table.Where(x => x.ModCase.CreatedAt <= search.Before);
+            }
+            if (search?.PunishedUntilMin != null && search.PunishedUntilMin != DateTime.MinValue) {
+                table = table.Where(x => x.ModCase.PunishedUntil >= search.PunishedUntilMin);
+            }
+            if (search?.PunishedUntilMax != null && search.PunishedUntilMax != DateTime.MinValue) {
+                table = table.Where(x => x.ModCase.PunishedUntil <= search.PunishedUntilMax);
+            }
+            if (search?.Edited != null) {
+                table = table.Where(x => (x.ModCase.LastEditedAt == x.ModCase.CreatedAt) != search.Edited.Value);
+            }
+            if (search?.CreationTypes != null) {
+                table = table.Where(x => search.CreationTypes.Contains(x.ModCase.CreationType));
+            }
+            if (search?.PunishmentTypes != null) {
+                table = table.Where(x => search.PunishmentTypes.Contains(x.ModCase.PunishmentType));
+            }
+            if (search?.PunishmentActive != null) {
+                table = table.Where(x => x.ModCase.PunishmentActive == search.PunishmentActive.Value);
+            }
+            if (search?.LockedComments != null) {
+                table = table.Where(x => x.ModCase.AllowComments != search.LockedComments.Value);
+            }
+            if (search?.MarkedToDelete != null) {
+                table = table.Where(x => x.ModCase.MarkedToDeleteAt.HasValue == search.MarkedToDelete.Value);
+            }
+
+            return table.Skip(startPage * 20).Take(20).ToList();;
         }
 
         private bool contains(string obj, string search) {
