@@ -5,13 +5,6 @@
                 <div class="custom-control custom-switch">
                     <mat-slide-toggle
                         color="accent"
-                        [(ngModel)]="excludeAutoModeration" (ngModelChange)="applyCurrentFilters()">
-                        {{ 'ModCaseTable.ExcludeAutoMod' | translate }}
-                    </mat-slide-toggle>
-                </div>
-                <div class="custom-control custom-switch">
-                    <mat-slide-toggle
-                        color="accent"
                         [(ngModel)]="excludePermaPunishments" (ngModelChange)="applyCurrentFilters()">
                         {{ 'ModCaseTable.ExcludePermanent' | translate }}
                     </mat-slide-toggle>
@@ -19,8 +12,8 @@
                 <div class="custom-control custom-switch">
                     <mat-slide-toggle
                         color="accent"
-                        [(ngModel)]="onlyShowActivePunishments" (ngModelChange)="applyCurrentFilters()">
-                        {{ 'ModCaseTable.ExcludeInactive' | translate }}
+                        [(ngModel)]="useAdvancedFilters">
+                        {{ 'ModCaseTable.UseAdvancedFilter' | translate }}
                     </mat-slide-toggle>
                 </div>
             </div>
@@ -28,16 +21,35 @@
             <button mat-raised-button color="accent" routerLink="/guilds/{{this.guildId}}/cases/new" *ngIf="this.isModOrHigher | async" class="mr-2">
                 {{ 'ModCaseTable.CreateNewCase' | translate }}
             </button>
-            <mat-form-field>
+        </div>
+        <!-- Filters -->
+        <div class="d-flex flex-row flex-wrap mb-2" *ngIf="useAdvancedFilters">
+            <mat-form-field class="px-2">
                 <mat-label>{{ 'ModCaseTable.Search' | translate }}</mat-label>
                 <input matInput type="text" autocomplete="off" [attr.disabled]="this.loading ? '' : null"
                 [(ngModel)]="this.search" (ngModelChange)="searchChanged($event)">
             </mat-form-field>
+            <app-multi-select class="px-2" [elements]="this.members" (selected)="selectedMemberChanged($event)"
+                              [searchPredicate]="userFilterPredicate"
+                              [displayPredicate]="userDisplayPredicate"></app-multi-select>
+            <app-multi-select class="px-2" [elements]="this.members" (selected)="selectedModChanged($event)"
+                              [searchPredicate]="userFilterPredicate"
+                              [displayPredicate]="userDisplayPredicate"></app-multi-select>
+            <app-multi-select class="px-2" [elements]="this.caseCreationTypes" (selected)="selectedCreationTypeChanged($event)"
+                              [searchPredicate]="enumFilterPredicate"
+                              [displayPredicate]="enumDisplayPredicate"></app-multi-select>
+            <app-multi-select class="px-2" [elements]="this.punishmentTypes" (selected)="selectedPunishmentTypeChanged($event)"
+                              [searchPredicate]="enumFilterPredicate"
+                              [displayPredicate]="enumDisplayPredicate"></app-multi-select>
         </div>
+        <div class="mat-h2 mb-2">
+            Count: {{ this.showTable.length }}
+        </div>
+        <!-- Table -->
         <mat-spinner *ngIf="this.loading"></mat-spinner>
         <div class="d-flex flex-column" *ngIf="!this.loading">
             <app-modcase-card *ngFor="let case of this.showTable"
-            [entry]="case" class="mb-2">
+                [entry]="case" class="mb-2">
             </app-modcase-card>
             <div class="d-flex flex-row" *ngIf="this.showTable.length !== 0 && !this.search?.trim() && this.casesTable.length % 20 === 0">
                 <div class="flex-grow-1"></div>
