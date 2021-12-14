@@ -1,4 +1,5 @@
 {
+    "Select": "Auswählen",
     "LoginWithDiscord": {
         "Button": "Mit Discord anmelden",
         "Loading": "Du wirst angemeldet..."
@@ -456,9 +457,8 @@
         "CaseUpdated": "Vorfall aktualisiert."
     },
     "ModCaseTable": {
-        "ExcludeAutoMod": "Automoderationen verstecken",
         "ExcludePermanent": "Permanente Verwarnungen verstecken",
-        "ExcludeInactive": "Inaktive Vorfälle verstecken",
+        "UseAdvancedFilter": "Erweiterter Filter verwenden",
         "CreateNewCase": "Neuen Vorfall erstellen",
         "Search": "Suche (Benutzer, ID, Beschreibung...)",
         "FailedToLoad": "Vorfälle konnten nicht geladen werden.",

@@ -1,4 +1,9 @@
 {
+    "Select": {
+        "description": "Select",
+        "en": "Select",
+        "de": "Auswählen"
+    },
     "LoginWithDiscord": {
         "Button": {
             "description": "Login button",
@@ -3421,16 +3426,6 @@
         }
     },
     "ModCaseTable": {
-        "ExcludeAutoMod": {
-            "description": "Exclude automoderations from current table selection",
-            "en": "Exclude automoderations",
-            "de": "Automoderationen verstecken",
-            "at": "Automodaration vasteckn",
-            "fr": "Exclure les automodérations",
-            "es": "Excluir automoderaciones",
-            "ru": "Исключить автоматизацию",
-            "it": "Escludi le moderazioni automatiche"
-        },
         "ExcludePermanent": {
             "description": "Exclude permanent punishments from current table selection",
             "en": "Exclude permanent punishments",
@@ -3441,15 +3436,10 @@
             "ru": "Исключить постоянные наказания",
             "it": "Escludi punizioni permanenti"
         },
-        "ExcludeInactive": {
-            "description": "Exclude cases users from current table selection",
-            "en": "Exclude inactive cases",
-            "de": "Inaktive Vorfälle verstecken",
-            "at": "Inaktive Vorfälle vasteckn",
-            "fr": "Exclure les cas inactifs",
-            "es": "Excluir casos inactivos",
-            "ru": "Исключить неактивные обращения",
-            "it": "Escludi casi inattivi"
+        "UseAdvancedFilter": {
+            "description": "use advanced filter on current table",
+            "en": "Use advanced filter",
+            "de": "Erweiterter Filter verwenden"
         },
         "CreateNewCase": {
             "description": "Create a new case button",

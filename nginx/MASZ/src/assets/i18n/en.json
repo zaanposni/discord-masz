@@ -1,4 +1,5 @@
 {
+    "Select": "Select",
     "LoginWithDiscord": {
         "Button": "Login with Discord",
         "Loading": "Logging you in with Discord..."
@@ -456,9 +457,8 @@
         "CaseUpdated": "Case updated."
     },
     "ModCaseTable": {
-        "ExcludeAutoMod": "Exclude automoderations",
         "ExcludePermanent": "Exclude permanent punishments",
-        "ExcludeInactive": "Exclude inactive cases",
+        "UseAdvancedFilter": "Use advanced filter",
         "CreateNewCase": "Create new case",
         "Search": "Search (user, id, description...)",
         "FailedToLoad": "Failed to load cases.",
