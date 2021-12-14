@@ -457,8 +457,8 @@
         "CaseUpdated": "Vorfall aktualisiert."
     },
     "ModCaseTable": {
-        "ExcludePermanent": "Permanente Verwarnungen verstecken",
-        "UseAdvancedFilter": "Erweiterter Filter verwenden",
+        "ExcludePermanent": "Permanente Vorfälle verstecken",
+        "UseAdvancedFilter": "Erweiterten Filter verwenden",
         "CreateNewCase": "Neuen Vorfall erstellen",
         "Search": "Suche (Benutzer, ID, Beschreibung...)",
         "FailedToLoad": "Vorfälle konnten nicht geladen werden.",

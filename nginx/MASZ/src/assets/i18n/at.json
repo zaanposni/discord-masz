@@ -455,7 +455,7 @@
         "CaseUpdated": "Vorfoi aktualisiat."
     },
     "ModCaseTable": {
-        "ExcludePermanent": "Permanente Verwarnungen vasteckn",
+        "ExcludePermanent": "Permanente Vorfälle vasteckn",
         "CreateNewCase": "Neichn Vorfoi erstön",
         "Search": "Suach (Benutza, ID, Beschreibung ...)",
         "FailedToLoad": "Vorfälle konntn ned glodn wean.",

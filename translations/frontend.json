@@ -3429,8 +3429,8 @@
         "ExcludePermanent": {
             "description": "Exclude permanent punishments from current table selection",
             "en": "Exclude permanent punishments",
-            "de": "Permanente Verwarnungen verstecken",
-            "at": "Permanente Verwarnungen vasteckn",
+            "de": "Permanente Vorfälle verstecken",
+            "at": "Permanente Vorfälle vasteckn",
             "fr": "Exclure les peines permanentes",
             "es": "Excluir castigos permanentes",
             "ru": "Исключить постоянные наказания",
@@ -3439,7 +3439,7 @@
         "UseAdvancedFilter": {
             "description": "use advanced filter on current table",
             "en": "Use advanced filter",
-            "de": "Erweiterter Filter verwenden"
+            "de": "Erweiterten Filter verwenden"
         },
         "CreateNewCase": {
             "description": "Create a new case button",
