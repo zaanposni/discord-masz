@@ -7,7 +7,7 @@
     "fr": {
         "name": "French",
         "nativeName": "Français",
-        "supported": 94
+        "supported": 92
     },
     "de": {
         "name": "German",
@@ -17,21 +17,21 @@
     "es": {
         "name": "Spanish",
         "nativeName": "Español",
-        "supported": 94
+        "supported": 92
     },
     "it": {
         "name": "Italian",
         "nativeName": "Italiano",
-        "supported": 94
+        "supported": 92
     },
     "at": {
         "name": "Austrian German",
         "nativeName": "Österreichisches Deutsch",
-        "supported": 94
+        "supported": 92
     },
     "ru": {
         "name": "Russian",
         "nativeName": "русский",
-        "supported": 94
+        "supported": 92
     }
 }

@@ -6,5 +6,9 @@ export enum APIEnumTypes {
     CASECREATIONTYPE = "casecreationtype",
     LANGUAGE = "language",
     APIERRORS = "apierror",
-    AUTOMODCHANNELNOTIFICATIONBEHAVIOR = "automodchannelbehavior"
+    AUTOMODCHANNELNOTIFICATIONBEHAVIOR = "automodchannelbehavior",
+    EDITSTATUS = "editstatus",
+    LOCKEDCOMMENTSTATUS = "lockedcommentstatus",
+    MARKEDTODELETESTATUS = "markedtodeletestatus",
+    PUNISHMENTACTIVESTATUS = "punishmentactivestatus"
 }
