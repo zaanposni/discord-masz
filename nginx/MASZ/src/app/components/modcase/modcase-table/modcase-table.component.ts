@@ -1,5 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
@@ -33,12 +34,20 @@ export class ModcaseTableComponent implements OnInit {
   loading: boolean = true;
 
   @Input() search!: string;
-  timeout: any = null;
 
   // filters
   public members: ReplaySubject<DiscordUser[]> = new ReplaySubject<DiscordUser[]>(1);
   public caseCreationTypes: ReplaySubject<APIEnum[]> = new ReplaySubject<APIEnum[]>(1);
   public punishmentTypes: ReplaySubject<APIEnum[]> = new ReplaySubject<APIEnum[]>(1);
+  public editedStatus: ReplaySubject<APIEnum[]> = new ReplaySubject<APIEnum[]>(1);
+  public commentLockedStatus: ReplaySubject<APIEnum[]> = new ReplaySubject<APIEnum[]>(1);
+  public markedToDeleteStatus: ReplaySubject<APIEnum[]> = new ReplaySubject<APIEnum[]>(1);
+  public punishmentActiveStatus: ReplaySubject<APIEnum[]> = new ReplaySubject<APIEnum[]>(1);
+
+  public editStatusCtrl: FormControl = new FormControl();
+  public commentLockedCtrl: FormControl = new FormControl();
+  public markDeleteCtrl: FormControl = new FormControl();
+  public punishmentActiveCtrl: FormControl = new FormControl();
 
   public userFilterPredicate = (member: DiscordUser, search: string) =>
       `${member.username.toLowerCase()}#${member.discriminator}`.indexOf(search.toLowerCase()) > -1 || member.id == search;
@@ -48,7 +57,6 @@ export class ModcaseTableComponent implements OnInit {
   public enumFilterPredicate = (enumType: APIEnum, search: string) =>
       `${enumType.value.toLowerCase()}`.indexOf(search.toLowerCase()) > -1 || enumType.key.toString() == search;
   public enumDisplayPredicate = (enumType: APIEnum) => enumType.value;
-
 
   public excludePermaPunishments: boolean = false;
   public useAdvancedFilters: boolean = true;
@@ -64,17 +72,37 @@ export class ModcaseTableComponent implements OnInit {
       this.reload();
     });
 
+    this.editStatusCtrl.valueChanges.subscribe(value => {
+      this.selectedEditedStatusChanged(value);
+    });
+    this.commentLockedCtrl.valueChanges.subscribe(value => {
+      this.selectedCommentLockedStatusChanged(value);
+    });
+    this.markDeleteCtrl.valueChanges.subscribe(value => {
+      this.selectedDeleteStatusChanged(value);
+    });
+    this.punishmentActiveCtrl.valueChanges.subscribe(value => {
+      this.selectedPunishmentActiveStatusChanged(value);
+    });
+
+
     this.enumManager.getEnum(APIEnumTypes.CASECREATIONTYPE).subscribe(data => {
       this.caseCreationTypes.next(data);
-    }, error => {
-      console.error(error);
-      // TODO: this.toastr.error(this.translator.instant('ModCaseTable.FailedToLoad'));
     });
     this.enumManager.getEnum(APIEnumTypes.PUNISHMENT).subscribe(data => {
       this.punishmentTypes.next(data);
-    }, error => {
-      console.error(error);
-      // TODO: this.toastr.error(this.translator.instant('ModCaseTable.FailedToLoad'));
+    });
+    this.enumManager.getEnum(APIEnumTypes.EDITSTATUS).subscribe(data => {
+      this.editedStatus.next(data);
+    });
+    this.enumManager.getEnum(APIEnumTypes.LOCKEDCOMMENTSTATUS).subscribe(data => {
+      this.commentLockedStatus.next(data);
+    });
+    this.enumManager.getEnum(APIEnumTypes.MARKEDTODELETESTATUS).subscribe(data => {
+      this.markedToDeleteStatus.next(data);
+    });
+    this.enumManager.getEnum(APIEnumTypes.PUNISHMENTACTIVESTATUS).subscribe(data => {
+      this.punishmentActiveStatus.next(data);
     });
   }
 
@@ -95,13 +123,7 @@ export class ModcaseTableComponent implements OnInit {
   }
 
   searchChanged(event: any) {
-    clearTimeout(this.timeout);
-    var $this = this;
-    this.timeout = setTimeout(function () {
-      if (event.keyCode != 13) {
-        $this.apiFilter.customTextFilter = event;
-      }
-    }, 500);
+    this.apiFilter.customTextFilter = event;
   }
 
   selectedMemberChanged(members: DiscordUser[]) {
@@ -120,8 +142,24 @@ export class ModcaseTableComponent implements OnInit {
     this.apiFilter.punishmentTypes = types.map(x => x.key);
   }
 
+  selectedEditedStatusChanged(type: APIEnum) {
+    this.apiFilter.edited = type.key === 0 ? undefined : type.key !== 1;
+  };
+
+  selectedCommentLockedStatusChanged(type: APIEnum) {
+    this.apiFilter.lockedComments = type.key === 0 ? undefined : type.key !== 1;
+  };
+
+  selectedDeleteStatusChanged(type: APIEnum) {
+    this.apiFilter.markedToDelete = type.key === 0 ? undefined : type.key !== 1;
+  };
+
+  selectedPunishmentActiveStatusChanged(type: APIEnum) {
+    this.apiFilter.punishmentActive = type.key === 0 ? undefined : type.key !== 1;
+  };
+
   loadFirstCases() {
-    console.log(this.apiFilter)
+    console.log(this.apiFilter); // TODO
     this.loading = true;
     this.currentPage = 0;
     this.api.postSimpleData(`/guilds/${this.guildId}/${this.apiUrl}`, this.apiFilter).subscribe((data: IModCaseTable) => {

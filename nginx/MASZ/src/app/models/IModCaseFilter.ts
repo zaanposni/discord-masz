@@ -12,6 +12,6 @@ export interface IModCaseFilter {
     creationTypes?: number[];
     punishmentTypes?: PunishmentType[];
     punishmentActive?: boolean;
-    lockedCommentes?: boolean;
+    lockedComments?: boolean;
     markedToDelete?: boolean;
 }
