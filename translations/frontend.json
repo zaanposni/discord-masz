@@ -1,8 +1,15 @@
 {
     "Select": {
-        "description": "Select",
-        "en": "Select",
-        "de": "Auswählen"
+        "Select": {
+            "description": "Select",
+            "en": "Select",
+            "de": "Auswählen"
+        },
+        "Search": {
+            "description": "Search",
+            "en": "Search",
+            "de": "Suchen"
+        }
     },
     "LoginWithDiscord": {
         "Button": {

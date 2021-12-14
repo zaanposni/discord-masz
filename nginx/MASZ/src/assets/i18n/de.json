@@ -1,5 +1,8 @@
 {
-    "Select": "Auswählen",
+    "Select": {
+        "Select": "Auswählen",
+        "Search": "Suchen"
+    },
     "LoginWithDiscord": {
         "Button": "Mit Discord anmelden",
         "Loading": "Du wirst angemeldet..."

@@ -21,7 +21,8 @@ export class MemberSelectComponent implements OnInit {
   @Input() public idPredicate: (x: any) => string = (x: any) => { return x };
   @Input() public searchPredicate: (x: any, search: string) => boolean = () => { return true; };
   @Input() public compareWithPredicate: (x: any, y: any) => boolean = (x: any, y: any) => { return x && y };
-  @Input() placeholderKey = 'Select';
+  @Input() placeholderKey = 'Select.Select';
+  @Input() placeholderSearchKey = 'Select.Search';
 
   @Output() public selected = new EventEmitter<any[]>();
 

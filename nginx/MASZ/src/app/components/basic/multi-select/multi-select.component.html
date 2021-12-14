@@ -1,7 +1,7 @@
 <mat-form-field color="accent">
     <mat-select [formControl]="multiCtrl" placeholder="{{ placeholderKey | translate }}" [multiple]="true" #multiSelect>
         <mat-option>
-            <ngx-mat-select-search [placeholderLabel]="'test'" [formControl]="multiFilterCtrl"></ngx-mat-select-search>
+            <ngx-mat-select-search [placeholderLabel]="placeholderSearchKey | translate" [formControl]="multiFilterCtrl"></ngx-mat-select-search>
         </mat-option>
         <mat-option *ngFor="let element of filteredElements | async" [value]="idPredicate(element)">
             {{ displayPredicate(element) }}
