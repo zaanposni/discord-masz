@@ -45,7 +45,7 @@ namespace masz.Controllers
             return Ok(await generateTable(guildId, ModcaseTableType.OnlyBin, startPage, search, ModcaseTableSortType.SortByDeleting));
         }
 
-        private async Task<List<ModCaseTableEntry>> generateTable(ulong guildId, ModcaseTableType tableType, int startPage=0, ModCaseTableFilterDto search=null, ModcaseTableSortType sortBy = ModcaseTableSortType.Default) {
+        private async Task<CaseTable> generateTable(ulong guildId, ModcaseTableType tableType, int startPage=0, ModCaseTableFilterDto search=null, ModcaseTableSortType sortBy = ModcaseTableSortType.Default) {
             Identity identity = await GetIdentity();
             GuildConfig guildConfig = await GetRegisteredGuild(guildId);
 
@@ -163,7 +163,7 @@ namespace masz.Controllers
                 table = table.Where(x => x.ModCase.MarkedToDeleteAt.HasValue == search.MarkedToDelete.Value);
             }
 
-            return table.Skip(startPage * 20).Take(20).ToList();;
+            return new CaseTable(table.Skip(startPage * 20).Take(20).ToList(), table.Count());
         }
 
         private bool contains(string obj, string search) {

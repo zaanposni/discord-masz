@@ -3,7 +3,7 @@ import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
 import { APIEnum } from 'src/app/models/APIEnum';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { convertModcaseToPunishmentString } from 'src/app/models/ModCase';
-import { ModCaseTable } from 'src/app/models/ModCaseTable';
+import { IModCaseTableEntry } from 'src/app/models/IModCaseTableEntry';
 import { PunishmentType } from 'src/app/models/PunishmentType';
 import { EnumManagerService } from 'src/app/services/enum-manager.service';
 import * as moment from 'moment';
@@ -17,7 +17,7 @@ export class ModcaseCardComponent implements OnInit {
   public punishmentTooltip: string = "";
   public punishment: string = "Unknown";
   public punishments: ContentLoading<APIEnum[]> = { loading: true, content: [] };
-  @Input() entry!: ModCaseTable;
+  @Input() entry!: IModCaseTableEntry;
   constructor(private enumManager: EnumManagerService) { }
 
   ngOnInit(): void {

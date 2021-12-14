@@ -3,7 +3,7 @@ import { PunishmentType } from "./PunishmentType";
 export interface IModCaseFilter {
     customTextFilter?: string;
     userIds?: string[];
-    modIds?: string[];
+    moderatorIds?: string[];
     since?: Date;
     before?: Date;
     punishedUntilMin?: Date;

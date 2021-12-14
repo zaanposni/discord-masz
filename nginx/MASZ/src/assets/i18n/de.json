@@ -460,6 +460,7 @@
         "CaseUpdated": "Vorfall aktualisiert."
     },
     "ModCaseTable": {
+        "ExecuteSearch": "Suche ausführen",
         "ExcludePermanent": "Permanente Vorfälle verstecken",
         "UseAdvancedFilter": "Erweiterten Filter verwenden",
         "CreateNewCase": "Neuen Vorfall erstellen",

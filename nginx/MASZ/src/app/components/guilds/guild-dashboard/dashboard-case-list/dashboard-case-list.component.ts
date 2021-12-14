@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ModCaseTable } from 'src/app/models/ModCaseTable';
+import { IModCaseTable } from 'src/app/models/IModCaseTable';
+import { IModCaseTableEntry } from 'src/app/models/IModCaseTableEntry';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class DashboardCaseListComponent implements OnInit {
   @Input() title!: string;
   @Input() resource!: string;
   private guildId!: string;
-  public cases: ModCaseTable[] = [];
+  public cases: IModCaseTableEntry[] = [];
   public loading: boolean = true;
 
   constructor(private route: ActivatedRoute, private api: ApiService) { }
@@ -27,8 +28,8 @@ export class DashboardCaseListComponent implements OnInit {
   private reload() {
     this.loading = true;
     this.cases = [];
-    this.api.postSimpleData(`/guilds/${this.guildId}/${this.resource}`, {}).subscribe((data: ModCaseTable[]) => {
-      this.cases = data.slice(0, 5);
+    this.api.postSimpleData(`/guilds/${this.guildId}/${this.resource}`, {}).subscribe((data: IModCaseTable) => {
+      this.cases = data.cases.slice(0, 5);
       this.loading = false;
     }, error => {
       console.error(error);

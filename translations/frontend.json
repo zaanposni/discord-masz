@@ -3433,6 +3433,11 @@
         }
     },
     "ModCaseTable": {
+        "ExecuteSearch": {
+            "description": "execute search button to use advanced filters",
+            "en": "Search",
+            "de": "Suche ausführen"
+        },
         "ExcludePermanent": {
             "description": "Exclude permanent punishments from current table selection",
             "en": "Exclude permanent punishments",

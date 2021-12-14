@@ -41,9 +41,12 @@
             <app-multi-select class="px-2" [elements]="this.punishmentTypes" (selected)="selectedPunishmentTypeChanged($event)"
                               [searchPredicate]="enumFilterPredicate"
                               [displayPredicate]="enumDisplayPredicate"></app-multi-select>
+            <button mat-raised-button color="accent" class="mr-2" (click)="loadFirstCases()">
+                {{ 'ModCaseTable.ExecuteSearch' | translate }}
+            </button>
         </div>
         <div class="mat-h2 mb-2">
-            Count: {{ this.showTable.length }}
+            Count: {{ this.casesTable.fullSize }}
         </div>
         <!-- Table -->
         <mat-spinner *ngIf="this.loading"></mat-spinner>
@@ -51,7 +54,7 @@
             <app-modcase-card *ngFor="let case of this.showTable"
                 [entry]="case" class="mb-2">
             </app-modcase-card>
-            <div class="d-flex flex-row" *ngIf="this.showTable.length !== 0 && !this.search?.trim() && this.casesTable.length % 20 === 0">
+            <div class="d-flex flex-row" *ngIf="this.showTable.length !== this.casesTable.fullSize">
                 <div class="flex-grow-1"></div>
                 <button mat-raised-button color="accent" (click)="loadNextPage()">Load more cases</button>
                 <div class="flex-grow-1"></div>

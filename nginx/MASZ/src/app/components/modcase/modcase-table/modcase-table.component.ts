@@ -9,7 +9,8 @@ import { APIEnum } from 'src/app/models/APIEnum';
 import { ContentLoading } from 'src/app/models/ContentLoading';
 import { DiscordUser } from 'src/app/models/DiscordUser';
 import { IModCaseFilter } from 'src/app/models/IModCaseFilter';
-import { ModCaseTable } from 'src/app/models/ModCaseTable';
+import { IModCaseTable } from 'src/app/models/IModCaseTable';
+import { IModCaseTableEntry } from 'src/app/models/IModCaseTableEntry';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { EnumManagerService } from 'src/app/services/enum-manager.service';
@@ -24,8 +25,8 @@ export class ModcaseTableComponent implements OnInit {
   @Input() apiUrl: string = 'modcasetable'
   currentPage: number = 0;
 
-  showTable: ModCaseTable[] = [];
-  casesTable: ModCaseTable[] = [];
+  showTable: IModCaseTableEntry[] = [];
+  casesTable!: IModCaseTable;
   isModOrHigher!: Observable<boolean>;
   guildId!: string;
   @Input() uniqueIdentifier: string = "casetable";
@@ -98,39 +99,17 @@ export class ModcaseTableComponent implements OnInit {
     var $this = this;
     this.timeout = setTimeout(function () {
       if (event.keyCode != 13) {
-        $this.executeListing(event);
+        $this.apiFilter.customTextFilter = event;
       }
     }, 500);
   }
 
-  private executeListing(value: string) {
-    if (value.trim()) {
-      this.loading = true;
-      this.api.getSimpleData(`/guilds/${this.guildId}/${this.apiUrl}?search=${encodeURIComponent(value)}`).subscribe((data) => {
-        this.loading = false;
-        this.casesTable = data;
-        this.applyCurrentFilters();
-      });
-    } else {
-      this.loadFirstCases();
-    }
-  }
-
   selectedMemberChanged(members: DiscordUser[]) {
     this.apiFilter.userIds = members.map(x => x.id);
-
-    let temp = this.apiFilter;
-    temp.customTextFilter = encodeURIComponent(temp?.customTextFilter ?? "");
-    console.log(JSON.stringify(temp));
-    const params = new HttpParams()
-          .set('filter', "test")
-          .set('search', JSON.stringify(temp));
-
-    console.log(params);
   }
 
   selectedModChanged(members: DiscordUser[]) {
-    this.apiFilter.modIds = members.map(x => x.id);
+    this.apiFilter.moderatorIds = members.map(x => x.id);
   }
 
   selectedCreationTypeChanged(types: APIEnum[]) {
@@ -142,9 +121,10 @@ export class ModcaseTableComponent implements OnInit {
   }
 
   loadFirstCases() {
+    console.log(this.apiFilter)
     this.loading = true;
     this.currentPage = 0;
-    this.api.postSimpleData(`/guilds/${this.guildId}/${this.apiUrl}`, {}).subscribe(data => {
+    this.api.postSimpleData(`/guilds/${this.guildId}/${this.apiUrl}`, this.apiFilter).subscribe((data: IModCaseTable) => {
       this.loading = false;
       this.casesTable = data;
       this.applyCurrentFilters();
@@ -159,10 +139,10 @@ export class ModcaseTableComponent implements OnInit {
     this.currentPage++;
     const params = new HttpParams()
           .set('startPage', this.currentPage.toString());
-    this.api.postSimpleData(`/guilds/${this.guildId}/${this.apiUrl}`, {}, params).subscribe(data => {
+    this.api.postSimpleData(`/guilds/${this.guildId}/${this.apiUrl}`, {}, params).subscribe((data: IModCaseTable) => {
       // this.loading = false;
-      data.forEach((element: ModCaseTable ) => {
-        this.casesTable.push(element);
+      data.cases.forEach((element: IModCaseTableEntry ) => {
+        this.casesTable.cases.push(element);
       });
       this.applyCurrentFilters();
     }, error => {
@@ -172,7 +152,7 @@ export class ModcaseTableComponent implements OnInit {
   }
 
   applyCurrentFilters() {
-    let temp = this.casesTable;
+    let temp = this.casesTable.cases.slice();
     if (this.excludePermaPunishments) {
       temp = temp.filter(x => x.modCase.punishedUntil != null || x.modCase.punishmentType === 0 || x.modCase.punishmentType === 2);
     }

@@ -460,6 +460,7 @@
         "CaseUpdated": "Case updated."
     },
     "ModCaseTable": {
+        "ExecuteSearch": "Search",
         "ExcludePermanent": "Exclude permanent punishments",
         "UseAdvancedFilter": "Use advanced filter",
         "CreateNewCase": "Create new case",
