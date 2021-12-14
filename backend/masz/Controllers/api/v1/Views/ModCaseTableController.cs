@@ -123,10 +123,10 @@ namespace masz.Controllers
                 );
             }
 
-            if (search?.UserIds != null) {
+            if (search?.UserIds != null && search.UserIds.Count > 0) {
                 table = table.Where(x => search.UserIds.Contains(x.ModCase.UserId));
             }
-            if (search?.ModeratorIds != null) {
+            if (search?.ModeratorIds != null && search.ModeratorIds.Count > 0) {
                 table = table.Where(x =>
                     search.ModeratorIds.Contains(x.ModCase.ModId) ||
                     search.ModeratorIds.Contains(x.ModCase.LastEditedByModId)
@@ -147,10 +147,10 @@ namespace masz.Controllers
             if (search?.Edited != null) {
                 table = table.Where(x => (x.ModCase.LastEditedAt == x.ModCase.CreatedAt) != search.Edited.Value);
             }
-            if (search?.CreationTypes != null) {
+            if (search?.CreationTypes != null && search.CreationTypes.Count > 0) {
                 table = table.Where(x => search.CreationTypes.Contains(x.ModCase.CreationType));
             }
-            if (search?.PunishmentTypes != null) {
+            if (search?.PunishmentTypes != null && search.PunishmentTypes.Count > 0) {
                 table = table.Where(x => search.PunishmentTypes.Contains(x.ModCase.PunishmentType));
             }
             if (search?.PunishmentActive != null) {
