@@ -1,7 +1,12 @@
 <div class="d-flex flex-column justify-content-center align-items-center h-100">
   <div class="d-flex flex-column justify-content-center align-items-center w-75">
-    <img src="assets/img/masz.png" alt="icon" height="200px" width="296px" class="mb-4" *ngIf="!this.attemptingLogin"/>
-    <mat-spinner class="mb-4" *ngIf="this.attemptingLogin"></mat-spinner>
+    <img [attr.src]="applicationInfo?.iconUrl ?? 'assets/img/masz.png'"
+          alt="icon" height="200px" width="200px"
+          class="mb-4"
+          [class.rounded-circle]="applicationInfo?.iconUrl"
+          onerror="this.src='assets/img/masz.png'"
+          *ngIf="!this.attemptingLogin && !initLoading" />
+    <mat-spinner class="mb-4" *ngIf="this.attemptingLogin || initLoading"></mat-spinner>
     <button mat-raised-button color="primary" class="big-button mat-display-1 mb-1" *ngIf="!this.attemptingLogin" (click)="redirectToApiLogin()">
       {{ 'LoginWithDiscord.Button' | translate }}
     </button>
