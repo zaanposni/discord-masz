@@ -3485,8 +3485,8 @@
         },
         "FilterPunishedSince": {
             "description": "Filter punished since",
-            "en": "Punished since",
-            "de": "Bestraft ab"
+            "en": "Punished at least until",
+            "de": "Bestraft bis mindestens"
         },
         "FilterPunishedBefore": {
             "description": "Filter punished before",
@@ -3508,10 +3508,10 @@
             "ru": "Исключить постоянные наказания",
             "it": "Escludi punizioni permanenti"
         },
-        "ShowAdvancedFilter": {
+        "UseAdvancedFilter": {
             "description": "use advanced filter on current table",
-            "en": "Show advanced filter",
-            "de": "Erweiterten Filter anzeigen"
+            "en": "Use advanced filter",
+            "de": "Erweiterten Filter nutzen"
         },
         "CreateNewCase": {
             "description": "Create a new case button",
