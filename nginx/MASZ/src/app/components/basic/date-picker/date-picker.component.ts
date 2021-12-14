@@ -17,6 +17,7 @@ export class DatePickerComponent implements OnInit {
   invertedCurrentTimezone: string = DEFAULT_TIMEZONE;
 
   @Input() dateChangedInParent?: Observable<Date|moment.Moment>;
+  @Input() placeholder: string = 'DTPicker.ChooseADate';
 
   @Output() dateChanged = new EventEmitter<moment.Moment>();
 

@@ -4,10 +4,10 @@ export interface IModCaseFilter {
     customTextFilter?: string;
     userIds?: string[];
     moderatorIds?: string[];
-    since?: Date;
-    before?: Date;
-    punishedUntilMin?: Date;
-    punishedUntilMax?: Date;
+    since?: string;
+    before?: string;
+    punishedUntilMin?: string;
+    punishedUntilMax?: string;
     edited?: boolean;
     creationTypes?: number[];
     punishmentTypes?: PunishmentType[];

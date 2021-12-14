@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Moment } from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, ReplaySubject } from 'rxjs';
 import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
@@ -158,8 +159,23 @@ export class ModcaseTableComponent implements OnInit {
     this.apiFilter.punishmentActive = type.key === 0 ? undefined : type.key !== 1;
   };
 
+  selectedSinceChanged(date: Moment) {
+    this.apiFilter.since = date?.toISOString();
+  }
+
+  selectedUntilChanged(date: Moment) {
+    this.apiFilter.before = date?.toISOString();
+  }
+
+  selectedPunishmentSinceChanged(date: Moment) {
+    this.apiFilter.punishedUntilMin = date?.toISOString();
+  }
+
+  selectedPunishmentUntilChanged(date: Moment) {
+    this.apiFilter.punishedUntilMax = date?.toISOString();
+  }
+
   loadFirstCases() {
-    console.log(this.apiFilter); // TODO
     this.loading = true;
     this.currentPage = 0;
     this.api.postSimpleData(`/guilds/${this.guildId}/${this.apiUrl}`, this.apiFilter).subscribe((data: IModCaseTable) => {
@@ -179,9 +195,8 @@ export class ModcaseTableComponent implements OnInit {
           .set('startPage', this.currentPage.toString());
     this.api.postSimpleData(`/guilds/${this.guildId}/${this.apiUrl}`, {}, params).subscribe((data: IModCaseTable) => {
       // this.loading = false;
-      data.cases.forEach((element: IModCaseTableEntry ) => {
-        this.casesTable.cases.push(element);
-      });
+      this.casesTable.cases.push(...data.cases);
+      this.casesTable.fullSize = data.fullSize;
       this.applyCurrentFilters();
     }, error => {
       console.error(error);

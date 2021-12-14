@@ -12,8 +12,9 @@
                 <div class="custom-control custom-switch">
                     <mat-slide-toggle
                         color="accent"
+                        (ngModelChange)="apiFilter = {}; search = ''"
                         [(ngModel)]="useAdvancedFilters">
-                        {{ 'ModCaseTable.UseAdvancedFilter' | translate }}
+                        {{ 'ModCaseTable.ShowAdvancedFilter' | translate }}
                     </mat-slide-toggle>
                 </div>
             </div>
@@ -23,47 +24,67 @@
             </button>
         </div>
         <!-- Filters -->
-        <div class="d-flex flex-row flex-wrap mb-2" *ngIf="useAdvancedFilters">
-            <mat-form-field class="px-2 pb-2">
-                <mat-label>{{ 'ModCaseTable.Search' | translate }}</mat-label>
-                <input matInput type="text" autocomplete="off" [attr.disabled]="this.loading ? '' : null"
-                [(ngModel)]="this.search" (ngModelChange)="searchChanged($event)">
-            </mat-form-field>
+        <div class="d-flex flex-row flex-wrap mb-2 align-items-baseline" *ngIf="useAdvancedFilters">
             <app-multi-select class="px-2 pb-2" [elements]="this.members" (selected)="selectedMemberChanged($event)"
+                              [placeholderKey]="'ModCaseTable.SelectMembers'"
                               [searchPredicate]="userFilterPredicate"
                               [displayPredicate]="userDisplayPredicate"></app-multi-select>
             <app-multi-select class="px-2 pb-2" [elements]="this.members" (selected)="selectedModChanged($event)"
+                              [placeholderKey]="'ModCaseTable.SelectModerators'"
                               [searchPredicate]="userFilterPredicate"
                               [displayPredicate]="userDisplayPredicate"></app-multi-select>
             <app-multi-select class="px-2 pb-2" [elements]="this.caseCreationTypes" (selected)="selectedCreationTypeChanged($event)"
+                              [placeholderKey]="'ModCaseTable.SelectCreationTypes'"
                               [searchPredicate]="enumFilterPredicate"
                               [displayPredicate]="enumDisplayPredicate"></app-multi-select>
             <app-multi-select class="px-2 pb-2" [elements]="this.punishmentTypes" (selected)="selectedPunishmentTypeChanged($event)"
+                              [placeholderKey]="'ModCaseTable.SelectPunishments'"
                               [searchPredicate]="enumFilterPredicate"
                               [displayPredicate]="enumDisplayPredicate"></app-multi-select>
             <mat-form-field class="px-2 pb-2">
-                <mat-label>{{ 'TODO' | translate }}</mat-label>
+                <mat-label>{{ 'ModCaseTable.SelectEdited' | translate }}</mat-label>
                 <mat-select [formControl]="editStatusCtrl">
                     <mat-option *ngFor="let enum of (editedStatus | async)" [value]="enum">{{ enum.value }}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="px-2 pb-2">
-                <mat-label>{{ 'TODO' | translate }}</mat-label>
+                <mat-label>{{ 'ModCaseTable.SelectLocked' | translate }}</mat-label>
                 <mat-select [formControl]="commentLockedCtrl">
                     <mat-option *ngFor="let enum of (commentLockedStatus | async)" [value]="enum">{{ enum.value }}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="px-2 pb-2">
-                <mat-label>{{ 'TODO' | translate }}</mat-label>
+                <mat-label>{{ 'ModCaseTable.SelectDelete' | translate }}</mat-label>
                 <mat-select [formControl]="markDeleteCtrl">
                     <mat-option *ngFor="let enum of (markedToDeleteStatus | async)" [value]="enum">{{ enum.value }}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="px-2 pb-2">
-                <mat-label>{{ 'TODO' | translate }}</mat-label>
+                <mat-label>{{ 'ModCaseTable.SelectActive' | translate }}</mat-label>
                 <mat-select [formControl]="punishmentActiveCtrl">
                     <mat-option *ngFor="let enum of (punishmentActiveStatus | async)" [value]="enum">{{ enum.value }}</mat-option>
                 </mat-select>
+            </mat-form-field>
+            <div class="px-2 pb-2">
+                <app-date-picker [placeholder]="'ModCaseTable.FilterSince'"
+                                 (dateChanged)="selectedSinceChanged($event)"></app-date-picker>
+            </div>
+            <div class="px-2 pb-2">
+                <app-date-picker [placeholder]="'ModCaseTable.FilterUntil'"
+                                 (dateChanged)="selectedUntilChanged($event)"></app-date-picker>
+            </div>
+            <div class="px-2 pb-2">
+                <app-date-picker [placeholder]="'ModCaseTable.FilterPunishedSince'"
+                                 (dateChanged)="selectedPunishmentSinceChanged($event)"></app-date-picker>
+            </div>
+            <div class="px-2 pb-2">
+                <app-date-picker [placeholder]="'ModCaseTable.FilterPunishedBefore'"
+                                 (dateChanged)="selectedPunishmentUntilChanged($event)"></app-date-picker>
+            </div>
+            <mat-form-field class="px-2 pb-2">
+                <mat-label>{{ 'ModCaseTable.Search' | translate }}</mat-label>
+                <input matInput type="text" autocomplete="off" [attr.disabled]="this.loading ? '' : null"
+                [(ngModel)]="this.search" (ngModelChange)="searchChanged($event)">
             </mat-form-field>
             <div class="px-2 pb-2">
                 <button mat-raised-button color="accent" class="" (click)="loadFirstCases()">

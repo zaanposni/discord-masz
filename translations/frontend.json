@@ -3433,6 +3433,66 @@
         }
     },
     "ModCaseTable": {
+        "SelectMembers": {
+            "description": "Select members",
+            "en": "Members",
+            "de": "Mitglieder"
+        },
+        "SelectModerators": {
+            "description": "Select moderator",
+            "en": "Moderators",
+            "de": "Moderatoren"
+        },
+        "SelectCreationTypes": {
+            "description": "Select creation types",
+            "en": "Creation types",
+            "de": "Erstellungsarten"
+        },
+        "SelectPunishments": {
+            "description": "Select punishments",
+            "en": "Punishments",
+            "de": "Bestrafungen"
+        },
+        "SelectEdited": {
+            "description": "Select edited",
+            "en": "Edit status",
+            "de": "Bearbeitet-Status"
+        },
+        "SelectLocked": {
+            "description": "Select locked",
+            "en": "Lock status",
+            "de": "Sperr-Status"
+        },
+        "SelectDelete": {
+            "description": "Select delete",
+            "en": "Delete status",
+            "de": "Lösch-Status"
+        },
+        "SelectActive": {
+            "description": "Select active",
+            "en": "Active status",
+            "de": "Aktiv-Status"
+        },
+        "FilterSince": {
+            "description": "Filter since",
+            "en": "Created since",
+            "de": "Erstellt ab"
+        },
+        "FilterUntil": {
+            "description": "Filter until",
+            "en": "Created until",
+            "de": "Erstellt bis"
+        },
+        "FilterPunishedSince": {
+            "description": "Filter punished since",
+            "en": "Punished since",
+            "de": "Bestraft ab"
+        },
+        "FilterPunishedBefore": {
+            "description": "Filter punished before",
+            "en": "Punished until",
+            "de": "Bestraft bis"
+        },
         "ExecuteSearch": {
             "description": "execute search button to use advanced filters",
             "en": "Search",
@@ -3448,10 +3508,10 @@
             "ru": "Исключить постоянные наказания",
             "it": "Escludi punizioni permanenti"
         },
-        "UseAdvancedFilter": {
+        "ShowAdvancedFilter": {
             "description": "use advanced filter on current table",
-            "en": "Use advanced filter",
-            "de": "Erweiterten Filter verwenden"
+            "en": "Show advanced filter",
+            "de": "Erweiterten Filter anzeigen"
         },
         "CreateNewCase": {
             "description": "Create a new case button",
