@@ -27,20 +27,20 @@ namespace masz.Controllers
             _logger = logger;
         }
 
-        [HttpGet("modcasetable")]
-        public async Task<IActionResult> GetAllModCases([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] ModCaseTableFilterDto search=null)
+        [HttpPost("modcasetable")]
+        public async Task<IActionResult> GetAllModCases([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromBody] ModCaseTableFilterDto search=null)
         {
             return Ok(await generateTable(guildId, ModcaseTableType.Default, startPage, search, ModcaseTableSortType.Default));
         }
 
-        [HttpGet("expiringpunishment")]
-        public async Task<IActionResult> GetExpiringPunishments([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] ModCaseTableFilterDto search=null)
+        [HttpPost("expiringpunishment")]
+        public async Task<IActionResult> GetExpiringPunishments([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromBody] ModCaseTableFilterDto search=null)
         {
             return Ok(await generateTable(guildId, ModcaseTableType.OnlyPunishments, startPage, search, ModcaseTableSortType.SortByExpiring));
         }
 
-        [HttpGet("casebin")]
-        public async Task<IActionResult> GetDeletedModCases([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromQuery] ModCaseTableFilterDto search=null)
+        [HttpPost("casebin")]
+        public async Task<IActionResult> GetDeletedModCases([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0, [FromBody] ModCaseTableFilterDto search=null)
         {
             return Ok(await generateTable(guildId, ModcaseTableType.OnlyBin, startPage, search, ModcaseTableSortType.SortByDeleting));
         }

@@ -27,7 +27,7 @@ export class DashboardCaseListComponent implements OnInit {
   private reload() {
     this.loading = true;
     this.cases = [];
-    this.api.getSimpleData(`/guilds/${this.guildId}/${this.resource}`).subscribe((data: ModCaseTable[]) => {
+    this.api.postSimpleData(`/guilds/${this.guildId}/${this.resource}`, {}).subscribe((data: ModCaseTable[]) => {
       this.cases = data.slice(0, 5);
       this.loading = false;
     }, error => {
