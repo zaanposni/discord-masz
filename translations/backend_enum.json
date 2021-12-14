@@ -639,5 +639,73 @@
             "en": "No channel notification",
             "de": "Keine Kanalbenachrichtigung"
         }
+    },
+    "EditStatus": {
+        "None": {
+            "description": "No edit status.",
+            "en": "None",
+            "de": "Unbestimmt"
+        },
+        "Unedited": {
+            "description": "The case is not edited.",
+            "en": "Not edited",
+            "de": "Nicht bearbeitet"
+        },
+        "Edited": {
+            "description": "The case is edited.",
+            "en": "Edited",
+            "de": "Bearbeitet"
+        }
+    },
+    "LockedCommentStatus": {
+        "None": {
+            "description": "No locked comment status.",
+            "en": "None",
+            "de": "Unbestimmt"
+        },
+        "Locked": {
+            "description": "The comment is locked.",
+            "en": "Locked",
+            "de": "Gesperrt"
+        },
+        "Unlocked": {
+            "description": "The comment is unlocked.",
+            "en": "Unlocked",
+            "de": "Entsperrt"
+        }
+    },
+    "MarkedToDeleteStatus": {
+        "None": {
+            "description": "No marked to delete status.",
+            "en": "None",
+            "de": "Unbestimmt"
+        },
+        "Marked": {
+            "description": "The case is marked to delete.",
+            "en": "Marked to delete",
+            "de": "Zu löschen markiert"
+        },
+        "Unmarked": {
+            "description": "The case is not marked to delete.",
+            "en": "Not marked to delete",
+            "de": "Nicht zu löschen markiert"
+        }
+    },
+    "PunishmentActiveStatus": {
+        "None": {
+            "description": "No punishment active status.",
+            "en": "None",
+            "de": "Unbestimmt"
+        },
+        "Active": {
+            "description": "The punishment is active.",
+            "en": "Active",
+            "de": "Aktiv"
+        },
+        "Inactive": {
+            "description": "The punishment is inactive.",
+            "en": "Inactive",
+            "de": "Inaktiv"
+        }
     }
 }

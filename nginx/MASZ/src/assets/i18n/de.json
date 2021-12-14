@@ -1,4 +1,8 @@
 {
+    "Select": {
+        "Select": "Auswählen",
+        "Search": "Suchen"
+    },
     "LoginWithDiscord": {
         "Button": "Mit Discord anmelden",
         "Loading": "Du wirst angemeldet..."
@@ -456,9 +460,21 @@
         "CaseUpdated": "Vorfall aktualisiert."
     },
     "ModCaseTable": {
-        "ExcludeAutoMod": "Automoderationen verstecken",
-        "ExcludePermanent": "Permanente Verwarnungen verstecken",
-        "ExcludeInactive": "Inaktive Vorfälle verstecken",
+        "SelectMembers": "Mitglieder",
+        "SelectModerators": "Moderatoren",
+        "SelectCreationTypes": "Erstellungsarten",
+        "SelectPunishments": "Bestrafungen",
+        "SelectEdited": "Bearbeitet-Status",
+        "SelectLocked": "Sperr-Status",
+        "SelectDelete": "Lösch-Status",
+        "SelectActive": "Aktiv-Status",
+        "FilterSince": "Erstellt ab",
+        "FilterUntil": "Erstellt bis",
+        "FilterPunishedSince": "Bestraft bis mindestens",
+        "FilterPunishedBefore": "Bestraft bis",
+        "ExecuteSearch": "Suche ausführen",
+        "ExcludePermanent": "Permanente Vorfälle verstecken",
+        "UseAdvancedFilter": "Erweiterten Filter nutzen",
         "CreateNewCase": "Neuen Vorfall erstellen",
         "Search": "Suche (Benutzer, ID, Beschreibung...)",
         "FailedToLoad": "Vorfälle konnten nicht geladen werden.",

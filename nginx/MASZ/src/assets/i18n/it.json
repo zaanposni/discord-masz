@@ -455,9 +455,7 @@
         "CaseUpdated": "Caso aggiornato."
     },
     "ModCaseTable": {
-        "ExcludeAutoMod": "Escludi le moderazioni automatiche",
         "ExcludePermanent": "Escludi punizioni permanenti",
-        "ExcludeInactive": "Escludi casi inattivi",
         "CreateNewCase": "Crea nuovo caso",
         "Search": "Cerca (utente, id, descrizione...)",
         "FailedToLoad": "Impossibile caricare i casi.",

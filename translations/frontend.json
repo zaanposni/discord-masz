@@ -1,4 +1,16 @@
 {
+    "Select": {
+        "Select": {
+            "description": "Select",
+            "en": "Select",
+            "de": "Auswählen"
+        },
+        "Search": {
+            "description": "Search",
+            "en": "Search",
+            "de": "Suchen"
+        }
+    },
     "LoginWithDiscord": {
         "Button": {
             "description": "Login button",
@@ -3421,35 +3433,85 @@
         }
     },
     "ModCaseTable": {
-        "ExcludeAutoMod": {
-            "description": "Exclude automoderations from current table selection",
-            "en": "Exclude automoderations",
-            "de": "Automoderationen verstecken",
-            "at": "Automodaration vasteckn",
-            "fr": "Exclure les automodérations",
-            "es": "Excluir automoderaciones",
-            "ru": "Исключить автоматизацию",
-            "it": "Escludi le moderazioni automatiche"
+        "SelectMembers": {
+            "description": "Select members",
+            "en": "Members",
+            "de": "Mitglieder"
+        },
+        "SelectModerators": {
+            "description": "Select moderator",
+            "en": "Moderators",
+            "de": "Moderatoren"
+        },
+        "SelectCreationTypes": {
+            "description": "Select creation types",
+            "en": "Creation types",
+            "de": "Erstellungsarten"
+        },
+        "SelectPunishments": {
+            "description": "Select punishments",
+            "en": "Punishments",
+            "de": "Bestrafungen"
+        },
+        "SelectEdited": {
+            "description": "Select edited",
+            "en": "Edit status",
+            "de": "Bearbeitet-Status"
+        },
+        "SelectLocked": {
+            "description": "Select locked",
+            "en": "Lock status",
+            "de": "Sperr-Status"
+        },
+        "SelectDelete": {
+            "description": "Select delete",
+            "en": "Delete status",
+            "de": "Lösch-Status"
+        },
+        "SelectActive": {
+            "description": "Select active",
+            "en": "Active status",
+            "de": "Aktiv-Status"
+        },
+        "FilterSince": {
+            "description": "Filter since",
+            "en": "Created since",
+            "de": "Erstellt ab"
+        },
+        "FilterUntil": {
+            "description": "Filter until",
+            "en": "Created until",
+            "de": "Erstellt bis"
+        },
+        "FilterPunishedSince": {
+            "description": "Filter punished since",
+            "en": "Punished at least until",
+            "de": "Bestraft bis mindestens"
+        },
+        "FilterPunishedBefore": {
+            "description": "Filter punished before",
+            "en": "Punished until",
+            "de": "Bestraft bis"
+        },
+        "ExecuteSearch": {
+            "description": "execute search button to use advanced filters",
+            "en": "Search",
+            "de": "Suche ausführen"
         },
         "ExcludePermanent": {
             "description": "Exclude permanent punishments from current table selection",
             "en": "Exclude permanent punishments",
-            "de": "Permanente Verwarnungen verstecken",
-            "at": "Permanente Verwarnungen vasteckn",
+            "de": "Permanente Vorfälle verstecken",
+            "at": "Permanente Vorfälle vasteckn",
             "fr": "Exclure les peines permanentes",
             "es": "Excluir castigos permanentes",
             "ru": "Исключить постоянные наказания",
             "it": "Escludi punizioni permanenti"
         },
-        "ExcludeInactive": {
-            "description": "Exclude cases users from current table selection",
-            "en": "Exclude inactive cases",
-            "de": "Inaktive Vorfälle verstecken",
-            "at": "Inaktive Vorfälle vasteckn",
-            "fr": "Exclure les cas inactifs",
-            "es": "Excluir casos inactivos",
-            "ru": "Исключить неактивные обращения",
-            "it": "Escludi casi inattivi"
+        "UseAdvancedFilter": {
+            "description": "use advanced filter on current table",
+            "en": "Use advanced filter",
+            "de": "Erweiterten Filter nutzen"
         },
         "CreateNewCase": {
             "description": "Create a new case button",

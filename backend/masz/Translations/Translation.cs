@@ -4241,6 +4241,134 @@ namespace masz.Translations
             }
             return "Unknown";
         }
+        public string Enum(masz.Enums.EditStatus enumValue) {
+            switch (enumValue) {
+                case masz.Enums.EditStatus.None:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "None";
+                        case Language.de:
+                            return "Unbestimmt";
+                        default:
+                            return "None";
+                    }
+                case masz.Enums.EditStatus.Unedited:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Not edited";
+                        case Language.de:
+                            return "Nicht bearbeitet";
+                        default:
+                            return "Not edited";
+                    }
+                case masz.Enums.EditStatus.Edited:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Edited";
+                        case Language.de:
+                            return "Bearbeitet";
+                        default:
+                            return "Edited";
+                    }
+            }
+            return "Unknown";
+        }
+        public string Enum(masz.Enums.LockedCommentStatus enumValue) {
+            switch (enumValue) {
+                case masz.Enums.LockedCommentStatus.None:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "None";
+                        case Language.de:
+                            return "Unbestimmt";
+                        default:
+                            return "None";
+                    }
+                case masz.Enums.LockedCommentStatus.Locked:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Locked";
+                        case Language.de:
+                            return "Gesperrt";
+                        default:
+                            return "Locked";
+                    }
+                case masz.Enums.LockedCommentStatus.Unlocked:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Unlocked";
+                        case Language.de:
+                            return "Entsperrt";
+                        default:
+                            return "Unlocked";
+                    }
+            }
+            return "Unknown";
+        }
+        public string Enum(masz.Enums.MarkedToDeleteStatus enumValue) {
+            switch (enumValue) {
+                case masz.Enums.MarkedToDeleteStatus.None:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "None";
+                        case Language.de:
+                            return "Unbestimmt";
+                        default:
+                            return "None";
+                    }
+                case masz.Enums.MarkedToDeleteStatus.Marked:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Marked to delete";
+                        case Language.de:
+                            return "Zu löschen markiert";
+                        default:
+                            return "Marked to delete";
+                    }
+                case masz.Enums.MarkedToDeleteStatus.Unmarked:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Not marked to delete";
+                        case Language.de:
+                            return "Nicht zu löschen markiert";
+                        default:
+                            return "Not marked to delete";
+                    }
+            }
+            return "Unknown";
+        }
+        public string Enum(masz.Enums.PunishmentActiveStatus enumValue) {
+            switch (enumValue) {
+                case masz.Enums.PunishmentActiveStatus.None:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "None";
+                        case Language.de:
+                            return "Unbestimmt";
+                        default:
+                            return "None";
+                    }
+                case masz.Enums.PunishmentActiveStatus.Active:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Active";
+                        case Language.de:
+                            return "Aktiv";
+                        default:
+                            return "Active";
+                    }
+                case masz.Enums.PunishmentActiveStatus.Inactive:
+                    switch (preferredLanguage) {
+                        case Language.en:
+                            return "Inactive";
+                        case Language.de:
+                            return "Inaktiv";
+                        default:
+                            return "Inactive";
+                    }
+            }
+            return "Unknown";
+        }
 
     }
 }
