@@ -31,6 +31,7 @@ export class AutomodCardComponent implements OnInit {
   constructor(public router: Router, private enumManager: EnumManagerService) { }
 
   ngOnInit(): void {
+    this.moderation.messageContent = this.moderation.messageContent.replace(/\n/g, "\\n");
     this.enumManager.getEnum(APIEnumTypes.AUTOMODACTION).subscribe(data => {
       this.action = data?.find(x => x.key == this.moderation.autoModerationAction)?.value ?? "Unknown";
     });
