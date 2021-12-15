@@ -13,5 +13,8 @@ export class ApplicationInfoService {
 
   infoChanged(data: IApplicationInfo) {
     this.currentApplicationInfo.next(data);
+    if (data?.iconUrl) {
+      document.getElementById('favicon')?.setAttribute('href', data.iconUrl);
+    }
   }
 }
