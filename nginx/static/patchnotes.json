@@ -1,5 +1,51 @@
 [
   {
+    "title":  "Version 2.4.0",
+    "version": "v2.4.0",
+    "released_at": "2021-12-15",
+    "contributors": [
+      {
+        "name": "FlixProd",
+        "link": "https://github.com/FlixProd",
+        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+      }
+    ],
+    "features": [
+      {
+        "title": "Use bot icon instead of default.",
+        "description": "Your bot icon will now also replace the image on the login page as well as the websites favicon.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/454"
+      },
+      {
+        "title": "Advanced modcase table filters.",
+        "description": "You can now filter the modcase table by users, moderators, date values and more.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/455"
+      },
+      {
+        "title": "Added unmute and unban command",
+        "description": "A unmute and unban command has been added which offers you the possibility to delete or deactivate cases of the mentioned user.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/435"
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Spaces and newlines in automoderation log.",
+        "description": "Spaces and newlines will now be displayed in the automoderation log view.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/456"
+      },
+      {
+        "title": "Modcase inactivity display.",
+        "description": "A bug was fixed that showed a modcase to be inactive after reactivating it.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/457"
+      }
+    ]
+  },
+  {
     "title":  "Version 2.3.0",
     "version": "v2.3.0",
     "released_at": "2021-11-23",
