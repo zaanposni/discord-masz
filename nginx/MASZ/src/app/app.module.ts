@@ -110,7 +110,7 @@ import { DatePickerComponent } from './components/basic/date-picker/date-picker.
 import { UpdateWarningComponent } from './components/api/adminstats/update-warning/update-warning.component';
 import { AuditlogConfigComponent } from './components/guilds/guild-config/auditlog-config/auditlog-config.component';
 import { AuditlogConfigRuleComponent } from './components/guilds/guild-config/auditlog-config/auditlog-config-rule/auditlog-config-rule.component';
-import { MemberSelectComponent } from './components/basic/multi-select/multi-select.component';
+import { MultiSelectComponent } from './components/basic/multi-select/multi-select.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -183,7 +183,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     UpdateWarningComponent,
     AuditlogConfigComponent,
     AuditlogConfigRuleComponent,
-    MemberSelectComponent
+    MultiSelectComponent
   ],
   imports: [
     CommonModule,

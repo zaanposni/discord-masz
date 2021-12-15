@@ -54,6 +54,7 @@ export class ModcaseTableComponent implements OnInit {
       `${member.username.toLowerCase()}#${member.discriminator}`.indexOf(search.toLowerCase()) > -1 || member.id == search;
   public userDisplayPredicate = (member: DiscordUser) => `${member.username.toLowerCase()}#${member.discriminator}`;
   public userIdPredicate = (member: DiscordUser) => member.id;
+  public userComparePredicate = (member: DiscordUser, member2: DiscordUser) => member?.id == member2?.id;
 
   public enumFilterPredicate = (enumType: APIEnum, search: string) =>
       `${enumType.value.toLowerCase()}`.indexOf(search.toLowerCase()) > -1 || enumType.key.toString() == search;
@@ -128,19 +129,19 @@ export class ModcaseTableComponent implements OnInit {
   }
 
   selectedMemberChanged(members: DiscordUser[]) {
-    this.apiFilter.userIds = members.map(x => x.id);
+    this.apiFilter.userIds = members?.map(x => x.id) ?? [];
   }
 
   selectedModChanged(members: DiscordUser[]) {
-    this.apiFilter.moderatorIds = members.map(x => x.id);
+    this.apiFilter.moderatorIds = members?.map(x => x.id) ?? [];
   }
 
   selectedCreationTypeChanged(types: APIEnum[]) {
-    this.apiFilter.creationTypes = types.map(x => x.key);
+    this.apiFilter.creationTypes = types?.map(x => x.key) ?? [];
   }
 
   selectedPunishmentTypeChanged(types: APIEnum[]) {
-    this.apiFilter.punishmentTypes = types.map(x => x.key);
+    this.apiFilter.punishmentTypes = types?.map(x => x.key) ?? [];
   }
 
   selectedEditedStatusChanged(type: APIEnum) {

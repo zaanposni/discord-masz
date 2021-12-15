@@ -28,10 +28,12 @@
             <app-multi-select class="px-2 pb-2" [elements]="this.members" (selected)="selectedMemberChanged($event)"
                               [placeholderKey]="'ModCaseTable.SelectMembers'"
                               [searchPredicate]="userFilterPredicate"
+                              [compareWithPredicate]="userComparePredicate"
                               [displayPredicate]="userDisplayPredicate"></app-multi-select>
             <app-multi-select class="px-2 pb-2" [elements]="this.members" (selected)="selectedModChanged($event)"
                               [placeholderKey]="'ModCaseTable.SelectModerators'"
                               [searchPredicate]="userFilterPredicate"
+                              [compareWithPredicate]="userComparePredicate"
                               [displayPredicate]="userDisplayPredicate"></app-multi-select>
             <app-multi-select class="px-2 pb-2" [elements]="this.caseCreationTypes" (selected)="selectedCreationTypeChanged($event)"
                               [placeholderKey]="'ModCaseTable.SelectCreationTypes'"
