@@ -9,7 +9,7 @@ import { take, takeUntil } from 'rxjs/operators';
   templateUrl: './multi-select.component.html',
   styleUrls: ['./multi-select.component.css']
 })
-export class MemberSelectComponent implements OnInit {
+export class MultiSelectComponent implements OnInit {
 
   @Input() public elements!: ReplaySubject<any[]>;
   public _elements: any[] = [];
@@ -99,7 +99,7 @@ export class MemberSelectComponent implements OnInit {
       search = search.toLowerCase();
     }
     // filter the banks
-    this.filteredElementsCache = this._elements.filter(x => this.searchPredicate(x, search));
+    this.filteredElementsCache = this._elements.slice().filter(x => this.searchPredicate(x, search));
     this.filteredElements.next(this.filteredElementsCache);
   }
 }
