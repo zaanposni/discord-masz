@@ -6,8 +6,6 @@ namespace MASZ.Commands
 
     public class AvatarCommand : BaseCommand<AvatarCommand>
     {
-        public AvatarCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
-
         [SlashCommand("avatar", "Get the high resolution avatar of a user.")]
         public async Task Avatar([Summary("user", "User to get the avatar from")] IUser user)
         {

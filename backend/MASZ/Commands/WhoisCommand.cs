@@ -13,8 +13,6 @@ namespace MASZ.Commands
 
     public class WhoisCommand : BaseCommand<WhoisCommand>
     {
-        public WhoisCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
-
         [Require(RequireCheckEnum.GuildModerator)]
         [SlashCommand("whois", "Whois information about a user.")]
         public async Task Whois([Summary("user", "user to scan")] IUser user)

@@ -8,7 +8,7 @@ namespace MASZ.Services
 {
     public class NotificationEmbedCreator
     {
-        private readonly ILogger<Scheduler> _logger;
+        private readonly ILogger<NotificationEmbedCreator> _logger;
         private readonly InternalConfiguration _config;
         private readonly Translator _translator;
         private readonly string SCALES_EMOTE = "\u2696";
@@ -19,7 +19,7 @@ namespace MASZ.Services
         private readonly string CLOCK = "\uD83D\uDD50";
         private readonly string HAND_SHAKE = "\uD83E\uDD1D";
 
-        public NotificationEmbedCreator(ILogger<Scheduler> logger, InternalConfiguration config, Translator translator)
+        public NotificationEmbedCreator(ILogger<NotificationEmbedCreator> logger, InternalConfiguration config, Translator translator)
         {
             _logger = logger;
             _translator = translator;

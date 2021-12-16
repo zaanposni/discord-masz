@@ -7,9 +7,9 @@ using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.GuildAuditLog;
 using MASZ.InviteTracking;
-using MASZ.Logger;
 using MASZ.Models;
 using MASZ.Repositories;
+using MASZ.Workers;
 using System.Net;
 using System.Text;
 
@@ -18,7 +18,6 @@ namespace MASZ.Services
     public class DiscordBot
     {
         private readonly ILogger<DiscordBot> _logger;
-        private readonly InternalConfiguration _config;
         private readonly DiscordSocketClient _client;
         private readonly InteractionService _interactions;
         private readonly IServiceProvider _serviceProvider;
@@ -26,15 +25,17 @@ namespace MASZ.Services
         private bool _isRunning = false;
         private DateTime? _lastDisconnect = null;
 
-        public DiscordBot(ILogger<DiscordBot> logger, DiscordSocketClient client, InteractionService interactions, InternalConfiguration config, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
+        public DiscordBot(ILogger<DiscordBot> logger, DiscordSocketClient client, InteractionService interactions, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
         {
             _logger = logger;
             _client = client;
-            _config = config;
             _interactions = interactions;
             _serviceProvider = serviceProvider;
             _serviceScopeFactory = serviceScopeFactory;
+        }
 
+        public void RegisterEvents()
+        {
             _client.MessageReceived += MessageCreatedHandler;
             _client.MessageUpdated += MessageUpdatedHandler;
             _client.MessageDeleted += MessageDeletedHandler;
@@ -53,6 +54,8 @@ namespace MASZ.Services
             _client.Disconnected += Disconnected;
             _client.Ready += ReadyHandler;
 
+            _client.InteractionCreated += HandleInteraction;
+
             _interactions.SlashCommandExecuted += CmdErroredHandler;
 
             var clientLogger = _serviceProvider.GetRequiredService<ILogger<DiscordSocketClient>>();
@@ -66,10 +69,26 @@ namespace MASZ.Services
             _interactions.Log += (logLevel) => Log(logLevel, interactionsLogger);
         }
 
-        public async Task Start()
+        private async Task HandleInteraction(SocketInteraction arg)
         {
-            await _client.LoginAsync(TokenType.Bot, _config.GetBotToken());
-            await _client.SetGameAsync(_config.GetBaseUrl(), type: ActivityType.Watching);
+            try
+            {
+                // Create an execution context that matches the generic type parameter of your InteractionModuleBase<T> modules
+                var ctx = new SocketInteractionContext(_client, arg);
+
+                using var scope = _serviceProvider.CreateScope();
+
+                await _interactions.ExecuteCommandAsync(ctx, scope.ServiceProvider);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Unable to execute {arg.Type} in channel {arg.Channel}");
+
+                // If a Slash Command execution fails it is most likely that the original interaction acknowledgement will persist. It is a good idea to delete the original
+                // response, or at least let the user know that something went wrong during the command execution.
+                if (arg.Type == InteractionType.ApplicationCommand)
+                    await arg.GetOriginalResponseAsync().ContinueWith(async (msg) => await msg.Result.DeleteAsync());
+            }
         }
 
         public bool IsRunning()
@@ -102,7 +121,7 @@ namespace MASZ.Services
             }
         }
 
-        private Task Log(LogMessage logMessage, ILogger logger)
+        private static Task Log(LogMessage logMessage, ILogger logger)
         {
             LogLevel level = logMessage.Severity switch
             {
@@ -130,7 +149,7 @@ namespace MASZ.Services
                 true
             );
 
-            Console.WriteLine($"Initializing guild commands for guild {guild.Name}.");
+            _logger.LogInformation($"Initialized guild commands for guild {guild.Name}.");
         }
 
         private async Task GuildBanRemoved(SocketUser user, SocketGuild guild)
@@ -421,7 +440,7 @@ namespace MASZ.Services
 
             try
             {
-                PunishmentHandler handler = scope.ServiceProvider.GetRequiredService<PunishmentHandler>();
+                Punishments handler = scope.ServiceProvider.GetRequiredService<Punishments>();
                 await handler.HandleMemberJoin(member);
             }
             catch (Exception ex)
@@ -563,14 +582,5 @@ namespace MASZ.Services
                     }
         }
 
-        public DiscordSocketClient GetClient()
-        {
-            return _client;
-        }
-
-        public int GetPing()
-        {
-            return _client.Latency;
-        }
     }
 }

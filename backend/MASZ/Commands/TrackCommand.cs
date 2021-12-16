@@ -14,8 +14,6 @@ namespace MASZ.Commands
 
     public class TrackCommand : BaseCommand<TrackCommand>
     {
-        public TrackCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
-
         [Require(RequireCheckEnum.GuildModerator)]
         [SlashCommand("track", "Track an invite, its creator and its users.")]
         public async Task Track([Summary("invite", "Either enter the invite code or the url")] string inviteCode)

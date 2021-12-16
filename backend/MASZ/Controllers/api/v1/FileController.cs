@@ -36,7 +36,7 @@ namespace MASZ.Controllers
                 await RequirePermission(guildId, caseId, APIActionPermission.View);
             }
 
-            Models.UploadedFile fileInfo = FileRepository.CreateWithBotIdentity(_serviceProvider).GetCaseFile(guildId, caseId, filename);
+            UploadedFile fileInfo = FileRepository.CreateWithBotIdentity(_serviceProvider).GetCaseFile(guildId, caseId, filename);
 
             HttpContext.Response.Headers.Add("Content-Disposition", fileInfo.ContentDisposition.ToString());
             HttpContext.Response.Headers.Add("Content-Type", fileInfo.ContentType);

@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Rest;
 using Discord.Webhook;
+using Discord.WebSocket;
 using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.Models;
@@ -11,16 +12,16 @@ namespace MASZ.Services
     {
         private readonly ILogger<DiscordAPIInterface> _logger;
         private readonly InternalConfiguration _config;
-        private readonly DiscordBot _discordBot;
+        private readonly DiscordSocketClient _client;
         private readonly DiscordRestClient _discordRestClient;
         private readonly Dictionary<string, CacheApiResponse> _cache = new();
 
         public DiscordAPIInterface() { }
-        public DiscordAPIInterface(ILogger<DiscordAPIInterface> logger, InternalConfiguration config, DiscordBot discordBot)
+        public DiscordAPIInterface(ILogger<DiscordAPIInterface> logger, InternalConfiguration config, DiscordSocketClient client)
         {
             _logger = logger;
             _config = config;
-            _discordBot = discordBot;
+            _client = client;
             _discordRestClient = new DiscordRestClient();
             _discordRestClient.LoginAsync(
                 TokenType.Bot,
@@ -172,7 +173,7 @@ namespace MASZ.Services
             // request ---------------------------
             try
             {
-                user = await _discordBot.GetClient().GetUserAsync(userId);
+                user = await _client.GetUserAsync(userId);
             }
             catch (Exception e)
             {
@@ -256,7 +257,7 @@ namespace MASZ.Services
 
         public IUser GetCurrentBotInfo()
         {
-            return _discordBot.GetClient().CurrentUser;
+            return _client.CurrentUser;
         }
 
         public async Task<IUser> FetchCurrentBotInfo()
@@ -319,7 +320,7 @@ namespace MASZ.Services
             // request ---------------------------
             try
             {
-                guild = _discordBot.GetClient().GetGuild(guildId);
+                guild = _client.GetGuild(guildId);
             }
             catch (Exception e)
             {
@@ -381,7 +382,7 @@ namespace MASZ.Services
             // request ---------------------------
             try
             {
-                IGuild g = _discordBot.GetClient().GetGuild(guildId);
+                IGuild g = _client.GetGuild(guildId);
                 member = await g.GetUserAsync(userId);
             }
             catch (Exception e)
@@ -528,7 +529,7 @@ namespace MASZ.Services
             // request ---------------------------
             try
             {
-                if (await _discordBot.GetClient().GetChannelAsync(channelId) is not ITextChannel channel) return false;
+                if (await _client.GetChannelAsync(channelId) is not ITextChannel channel) return false;
 
                 await channel.SendMessageAsync(content, embed: embed);
             }
@@ -590,7 +591,7 @@ namespace MASZ.Services
 
         public async Task<IApplication> GetCurrentApplicationInfo()
         {
-            return await _discordBot.GetClient().GetApplicationInfoAsync();
+            return await _client.GetApplicationInfoAsync();
         }
 
         public void AddOrUpdateCache(CacheKey key, CacheApiResponse response)

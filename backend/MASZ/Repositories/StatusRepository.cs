@@ -40,7 +40,7 @@ namespace MASZ.Repositories
                     botStatus.Online = false;
                     botStatus.LastDisconnect = _discordBot.GetLastDisconnectTime();
                 }
-                botStatus.ResponseTime = _discordBot.GetPing();
+                botStatus.ResponseTime = _client.Latency;
             }
             catch (Exception)
             {

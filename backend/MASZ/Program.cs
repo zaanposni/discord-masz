@@ -7,6 +7,7 @@ using MASZ.Logger;
 using MASZ.Middlewares;
 using MASZ.Plugins;
 using MASZ.Services;
+using MASZ.Workers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -36,6 +37,8 @@ builder.Services.AddControllers()
 
 builder.Services
 
+// SINGLETONS
+
 .AddSingleton(new DiscordSocketConfig
 {
     AlwaysDownloadUsers = true,
@@ -56,14 +59,6 @@ builder.Services
 
 .AddSingleton<InteractionService>()
 
-.AddScoped<Database>()
-
-.AddScoped<Translator>()
-
-.AddScoped<NotificationEmbedCreator>()
-
-.AddScoped<DiscordAnnouncer>()
-
 .AddSingleton<FilesHandler>()
 
 .AddSingleton<InternalConfiguration>()
@@ -74,14 +69,29 @@ builder.Services
 
 .AddSingleton<IdentityManager>()
 
-.AddSingleton<PunishmentHandler>()
+.AddSingleton<InternalEventHandler>()
 
-.AddSingleton<DiscordEventHandler>()
+.AddSingleton<AuditLogger>()
+
+// SCOPED
+
+.AddScoped<Database>()
+
+.AddScoped<Translator>()
+
+.AddScoped<NotificationEmbedCreator>()
+
+.AddScoped<DiscordAnnouncer>()
+
+// HOSTED
+.AddSingleton<BotWorker>()
+.AddHostedService(p => p.GetRequiredService<BotWorker>())
+
+.AddSingleton<Punishments>()
+.AddHostedService(p => p.GetRequiredService<Punishments>())
 
 .AddSingleton<Scheduler>()
-
-.AddSingleton<AuditLogger>();
-
+.AddHostedService(p => p.GetRequiredService<Scheduler>());
 
 // Plugin
 // ######################################################################################################
@@ -216,16 +226,11 @@ using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().Creat
 {
     scope.ServiceProvider.GetRequiredService<InternalConfiguration>().Init();
 
-    await scope.ServiceProvider.GetRequiredService<AuditLogger>().Startup();
-    await scope.ServiceProvider.GetRequiredService<PunishmentHandler>().StartTimers();
-    await scope.ServiceProvider.GetRequiredService<Scheduler>().StartTimers();
-
-    await scope.ServiceProvider.GetRequiredService<DiscordBot>().Start();
+    scope.ServiceProvider.GetRequiredService<DiscordBot>().RegisterEvents();
+    scope.ServiceProvider.GetRequiredService<AuditLogger>().RegisterEvents();
 
     if (string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
         scope.ServiceProvider.GetServices<IBasePlugin>().ToList().ForEach(x => x.Init());
-
-    scope.ServiceProvider.GetRequiredService<AuditLogger>().RegisterEvents();
 }
 
 app.UseHttpsRedirection();

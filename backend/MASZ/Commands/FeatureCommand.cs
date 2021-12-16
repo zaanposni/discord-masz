@@ -14,8 +14,6 @@ namespace MASZ.Commands
         private readonly string CHECK = "\u2705";
         private readonly string X_CHECK = "\u274C";
 
-        public FeatureCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
-
         [Require(RequireCheckEnum.GuildModerator)]
         [SlashCommand("features", "Checks if further configuration is needed to use MASZ features.")]
         public async Task Features()

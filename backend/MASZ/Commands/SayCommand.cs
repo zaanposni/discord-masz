@@ -10,8 +10,6 @@ namespace MASZ.Commands
 
     public class SayCommand : BaseCommand<SayCommand>
     {
-        public SayCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
-
         [Require(RequireCheckEnum.GuildModerator)]
         [SlashCommand("say", "Let the bot send a message.")]
         public async Task Say([Summary("message", "message content the bot shall write")] string message, [Summary("channel", "channel to write the message in, defaults to current")] ITextChannel channel = null)

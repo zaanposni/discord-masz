@@ -3,10 +3,12 @@ using MASZ.Enums;
 using MASZ.Models;
 using MASZ.Extensions;
 using Timer = System.Timers.Timer;
+using MASZ.Data;
+using MASZ.Services;
 
-namespace MASZ.Services
+namespace MASZ.Workers
 {
-    public class Scheduler
+    public class Scheduler : BackgroundService
     {
         private readonly ILogger<Scheduler> _logger;
         private readonly InternalConfiguration _config;
@@ -14,13 +16,13 @@ namespace MASZ.Services
         private readonly FilesHandler _filesHandler;
         private readonly IServiceScopeFactory _serviceScopeFactory;
         private readonly IdentityManager _identityManager;
-        private readonly DiscordEventHandler _eventHandler;
+        private readonly InternalEventHandler _eventHandler;
         private DateTime _nextCacheSchedule;
         private readonly int _cacheIntervalMinutes = 15;
 
         public Scheduler() { }
 
-        public Scheduler(ILogger<Scheduler> logger, InternalConfiguration config, DiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory, FilesHandler filesHandler, IdentityManager identityManager, DiscordEventHandler eventHandler)
+        public Scheduler(ILogger<Scheduler> logger, InternalConfiguration config, DiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory, FilesHandler filesHandler, IdentityManager identityManager, InternalEventHandler eventHandler)
         {
             _logger = logger;
             _config = config;
@@ -31,7 +33,7 @@ namespace MASZ.Services
             _eventHandler = eventHandler;
         }
 
-        public async Task StartTimers()
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             _logger.LogWarning("Starting schedule timers.");
 
@@ -43,7 +45,7 @@ namespace MASZ.Services
 
             EventTimer.Elapsed += (s, e) => LoopThroughCaches();
 
-            await Task.Run(() => EventTimer.Start());
+            await Task.Run(() => EventTimer.Start(), stoppingToken);
 
             _logger.LogWarning("Started schedule timers.");
         }
@@ -224,5 +226,6 @@ namespace MASZ.Services
         {
             return _nextCacheSchedule;
         }
+
     }
 }

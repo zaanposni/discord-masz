@@ -13,8 +13,6 @@ namespace MASZ.Commands
 
     public class UnbanCommand : BaseCommand<UnbanCommand>
     {
-        public UnbanCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
-        
         [Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildStrictModeBan)]
         [SlashCommand("unban", "Unban a user by deactivating all his modcases.")]
         public async Task Unban([Summary("user", "User to unban")] IUser user)

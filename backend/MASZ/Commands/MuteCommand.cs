@@ -10,8 +10,6 @@ namespace MASZ.Commands
 
     public class MuteCommand : BaseCommand<MuteCommand>
     {
-        public MuteCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
-
         [Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildRegistered, RequireCheckEnum.GuildStrictModeMute)]
         [SlashCommand("mute", "Mute a user and create a modcase")]
         public async Task Mute(

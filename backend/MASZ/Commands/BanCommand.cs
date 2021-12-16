@@ -10,8 +10,6 @@ namespace MASZ.Commands
 
     public class BanCommand : BaseCommand<BanCommand>
     {
-        public BanCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
-        
         [Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildRegistered, RequireCheckEnum.GuildStrictModeBan)]
         [SlashCommand("ban", "Ban a user and create a modcase")]
         public async Task Ban(

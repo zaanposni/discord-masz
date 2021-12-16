@@ -11,13 +11,13 @@ namespace MASZ.Services
     {
         private readonly Dictionary<string, Identity> identities = new();
         private readonly ILogger<IdentityManager> _logger;
-        private readonly DiscordEventHandler _eventHandler;
+        private readonly InternalEventHandler _eventHandler;
         private readonly IServiceProvider _serviceProvider;
         private readonly IServiceScopeFactory _serviceScopeFactory;
 
         public IdentityManager() { }
 
-        public IdentityManager(ILogger<IdentityManager> logger, DiscordEventHandler eventHandler, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
+        public IdentityManager(ILogger<IdentityManager> logger, InternalEventHandler eventHandler, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
         {
             _logger = logger;
             _eventHandler = eventHandler;

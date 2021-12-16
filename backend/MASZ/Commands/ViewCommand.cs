@@ -15,7 +15,6 @@ namespace MASZ.Commands
         private readonly string SCALES_EMOTE = "\u2696";
         private readonly string SCROLL_EMOTE = "\uD83C\uDFF7";
         private readonly string ALARM_CLOCK = "\u23F0";
-        public ViewCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [SlashCommand("view", "View details of a modcase.")]
         public async Task View([Summary("id", "the id of the case")] long caseId, [Summary("guildid", "the id of the guild")] string guildId = "")

@@ -10,8 +10,6 @@ namespace MASZ.Commands
 
     public class WarnCommand : BaseCommand<WarnCommand>
     {
-        public WarnCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
-
         [Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildRegistered)]
         [SlashCommand("warn", "Warn a user and create a modcase")]
         public async Task Warn(

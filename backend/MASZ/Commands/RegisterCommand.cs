@@ -5,8 +5,6 @@ namespace MASZ.Commands
 
     public class RegisterCommand : BaseCommand<RegisterCommand>
     {
-        public RegisterCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
-
         [SlashCommand("register", "Displays the URL to register the current guild.")]
         public async Task Register()
         {

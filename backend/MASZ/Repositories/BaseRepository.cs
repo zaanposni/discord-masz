@@ -1,7 +1,10 @@
 using Discord;
+using Discord.WebSocket;
+using MASZ.Data;
 using MASZ.Models;
 using MASZ.Models.Views;
 using MASZ.Services;
+using MASZ.Workers;
 
 namespace MASZ.Repositories
 {
@@ -17,26 +20,29 @@ namespace MASZ.Repositories
         protected readonly IdentityManager _identityManager;
         protected readonly DiscordAnnouncer _discordAnnouncer;
         protected readonly FilesHandler _filesHandler;
-        protected readonly PunishmentHandler _punishmentHandler;
+        protected readonly Punishments _punishmentHandler;
         protected readonly Scheduler _scheduler;
         protected readonly Translator _translator;
         protected readonly DiscordBot _discordBot;
-        protected readonly DiscordEventHandler _eventHandler;
+        protected readonly DiscordSocketClient _client;
+        protected readonly InternalEventHandler _eventHandler;
         protected readonly IServiceProvider _serviceProvider;
+
         public BaseRepository(IServiceProvider serviceProvider)
         {
-            Logger = (ILogger<T>)serviceProvider.GetRequiredService(typeof(ILogger<T>));
-            Database = (Database)serviceProvider.GetRequiredService(typeof(Database));
-            DiscordAPI = (DiscordAPIInterface)serviceProvider.GetRequiredService(typeof(DiscordAPIInterface));
-            _config = (InternalConfiguration)serviceProvider.GetRequiredService(typeof(InternalConfiguration));
-            _identityManager = (IdentityManager)serviceProvider.GetRequiredService(typeof(IdentityManager));
-            _discordAnnouncer = (DiscordAnnouncer)serviceProvider.GetRequiredService(typeof(DiscordAnnouncer));
-            _filesHandler = (FilesHandler)serviceProvider.GetRequiredService(typeof(FilesHandler));
-            _punishmentHandler = (PunishmentHandler)serviceProvider.GetRequiredService(typeof(PunishmentHandler));
-            _scheduler = (Scheduler)serviceProvider.GetRequiredService(typeof(Scheduler));
-            _translator = (Translator)serviceProvider.GetRequiredService(typeof(Translator));
-            _discordBot = (DiscordBot)serviceProvider.GetRequiredService(typeof(DiscordBot));
-            _eventHandler = (DiscordEventHandler)serviceProvider.GetRequiredService(typeof(DiscordEventHandler));
+            Logger = serviceProvider.GetRequiredService<ILogger<T>>();
+            Database = serviceProvider.GetRequiredService<Database>();
+            DiscordAPI = serviceProvider.GetRequiredService<DiscordAPIInterface>();
+            _config = serviceProvider.GetRequiredService<InternalConfiguration>();
+            _identityManager = serviceProvider.GetRequiredService<IdentityManager>();
+            _discordAnnouncer = serviceProvider.GetRequiredService<DiscordAnnouncer>();
+            _filesHandler = serviceProvider.GetRequiredService<FilesHandler>();
+            _punishmentHandler = serviceProvider.GetRequiredService<Punishments>();
+            _scheduler = serviceProvider.GetRequiredService<Scheduler>();
+            _translator = serviceProvider.GetRequiredService<Translator>();
+            _discordBot = serviceProvider.GetRequiredService<DiscordBot>();
+            _client = serviceProvider.GetRequiredService<DiscordSocketClient>();
+            _eventHandler = serviceProvider.GetRequiredService<InternalEventHandler>();
             _serviceProvider = serviceProvider;
         }
 

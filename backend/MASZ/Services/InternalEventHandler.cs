@@ -3,7 +3,7 @@ using MASZ.Utils;
 
 namespace MASZ.Services
 {
-    public class DiscordEventHandler
+    public class InternalEventHandler
     {
 
         public event Func<Identity, Task> OnIdentityRegistered

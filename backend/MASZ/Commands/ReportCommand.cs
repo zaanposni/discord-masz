@@ -12,8 +12,6 @@ namespace MASZ.Commands
 
     public class ReportCommand : BaseCommand<ReportCommand>
     {
-        public ReportCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
-
         [Require(RequireCheckEnum.GuildRegistered)]
         [MessageCommand("Report to moderators")]
         public async Task Report(IMessage msg)

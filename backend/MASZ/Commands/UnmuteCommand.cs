@@ -13,8 +13,6 @@ namespace MASZ.Commands
 
     public class UnmuteCommand : BaseCommand<UnmuteCommand>
     {
-        public UnmuteCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
-
         [Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildStrictModeMute)]
         [SlashCommand("unmute", "Unmute a user by deactivating all his modcases.")]
         public async Task Unmute([Summary("user", "User to unmute")] IUser user)

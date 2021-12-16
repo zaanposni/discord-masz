@@ -4,6 +4,7 @@ using MASZ.Exceptions;
 using MASZ.Models;
 using MASZ.Repositories;
 using MASZ.Services;
+using MASZ.Workers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MASZ.Controllers

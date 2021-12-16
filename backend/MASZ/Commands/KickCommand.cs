@@ -10,8 +10,6 @@ namespace MASZ.Commands
 
     public class KickCommand : BaseCommand<KickCommand>
     {
-        public KickCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
-
         [Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildRegistered, RequireCheckEnum.GuildStrictModeKick)]
         [SlashCommand("kick", "Kick a user and create a modcase")]
         public async Task Kick(

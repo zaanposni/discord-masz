@@ -1,4 +1,5 @@
 using Discord;
+using Discord.WebSocket;
 using MASZ.Enums;
 using MASZ.Extensions;
 using MASZ.Models;
@@ -11,24 +12,27 @@ namespace MASZ.Services
         private readonly ILogger<AuditLogger> _logger;
         private readonly InternalConfiguration _config;
         private readonly DiscordAPIInterface _discordAPI;
-        private readonly DiscordBot _discordBot;
-        private readonly DiscordEventHandler _eventHandler;
+        private readonly DiscordSocketClient _client;
+        private readonly InternalEventHandler _eventHandler;
         private readonly StringBuilder _currentMessage;
 
-        public AuditLogger(ILogger<AuditLogger> logger, InternalConfiguration config, DiscordAPIInterface discordAPI, DiscordEventHandler eventHandler, DiscordBot discordBot)
+        private bool hasStarted;
+
+        public AuditLogger(ILogger<AuditLogger> logger, InternalConfiguration config, DiscordAPIInterface discordAPI, InternalEventHandler eventHandler, DiscordSocketClient client)
         {
             _logger = logger;
             _config = config;
             _discordAPI = discordAPI;
             _eventHandler = eventHandler;
-            _discordBot = discordBot;
+            _client = client;
             _currentMessage = new StringBuilder();
+            hasStarted = false;
         }
 
         public void RegisterEvents()
         {
-            _discordBot.GetClient().Ready += OnBotReady;
-            _discordBot.GetClient().Disconnected += OnDisconnect;
+            _client.Ready += OnBotReady;
+            _client.Disconnected += OnDisconnect;
 
             _eventHandler.OnIdentityRegistered += OnIdentityRegistered;
             _eventHandler.OnTokenCreated += OnTokenCreated;
@@ -163,7 +167,13 @@ namespace MASZ.Services
 
         private async Task OnBotReady()
         {
-            QueueLog($"Bot **connected** to `{_discordBot.GetClient().Guilds.Count} guild(s)` with `{_discordBot.GetClient().Latency}ms` latency.");
+            if (!hasStarted)
+            {
+                hasStarted = true;
+                await Ready();
+            }
+
+            QueueLog($"Bot **connected** to `{_client.Guilds.Count} guild(s)` with `{_client.Latency}ms` latency.");
             await ExecuteWebhook();
         }
 
@@ -191,7 +201,7 @@ namespace MASZ.Services
             return Task.CompletedTask;
         }
 
-        public async Task Startup()
+        public async Task Ready()
         {
             QueueLog($"============== STARTUP ==============");
             QueueLog("`MASZ` started!");

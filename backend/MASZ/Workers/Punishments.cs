@@ -1,28 +1,30 @@
 using Discord.WebSocket;
+using MASZ.Data;
 using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.Models;
 using MASZ.Repositories;
+using MASZ.Services;
 using Timer = System.Timers.Timer;
 
-namespace MASZ.Services
+namespace MASZ.Workers
 {
-    public class PunishmentHandler
+    public class Punishments : BackgroundService
     {
-        private readonly ILogger<PunishmentHandler> _logger;
+        private readonly ILogger<Punishments> _logger;
         private readonly DiscordAPIInterface _discord;
         private readonly IServiceScopeFactory _serviceScopeFactory;
 
-        public PunishmentHandler() { }
+        public Punishments() { }
 
-        public PunishmentHandler(ILogger<PunishmentHandler> logger, DiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory)
+        public Punishments(ILogger<Punishments> logger, DiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory)
         {
             _logger = logger;
             _discord = discord;
             _serviceScopeFactory = serviceScopeFactory;
         }
 
-        public async Task StartTimers()
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             _logger.LogWarning("Starting action loop.");
 
@@ -34,7 +36,7 @@ namespace MASZ.Services
 
             EventTimer.Elapsed += (s, e) => CheckAllCurrentPunishments();
 
-            await Task.Run(() => EventTimer.Start());
+            await Task.Run(() => EventTimer.Start(), stoppingToken);
             
             _logger.LogWarning("Finished action loop.");
         }

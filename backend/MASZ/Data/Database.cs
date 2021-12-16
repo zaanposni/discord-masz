@@ -1,9 +1,8 @@
-﻿using MASZ.Data;
-using MASZ.Enums;
+﻿using MASZ.Enums;
 using MASZ.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace MASZ.Services
+namespace MASZ.Data
 {
     public class Database
     {

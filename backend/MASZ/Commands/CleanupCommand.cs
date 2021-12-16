@@ -10,8 +10,6 @@ namespace MASZ.Commands
 
     public class CleanupCommand : BaseCommand<CleanupCommand>
     {
-        public CleanupCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
-
         [Require(RequireCheckEnum.GuildModerator)]
         [SlashCommand("cleanup", "Cleanup specific data from the server and/or channel.")]
         public async Task Cleanup([Summary("mode", "which data you want to delete")] CleanupMode cleanupMode,
