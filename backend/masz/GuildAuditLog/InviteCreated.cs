@@ -7,7 +7,7 @@ namespace MASZ.GuildAuditLog
 {
     public static class InviteCreatedAuditLog
     {
-        public static EmbedBuilder HandleInviteCreated(IInviteMetadata invite, ITranslator translator)
+        public static EmbedBuilder HandleInviteCreated(IInviteMetadata invite, Translator translator)
         {
             EmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(Color.Green);
 

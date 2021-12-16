@@ -1,5 +1,6 @@
 using Discord;
 using Discord.Interactions;
+using MASZ.Attributes;
 using MASZ.Enums;
 using MASZ.Models;
 using MASZ.Repositories;
@@ -11,6 +12,7 @@ namespace MASZ.Commands
     {
         public WarnCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
+        [Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildRegistered)]
         [SlashCommand("warn", "Warn a user and create a modcase")]
         public async Task Warn(
             [Summary("title", "The title of the modcase")] string title,
@@ -19,8 +21,6 @@ namespace MASZ.Commands
             [Summary("dm-notification", "Whether to send a dm notification")] bool sendDmNotification = true,
             [Summary("public-notification", "Whether to send a public webhook notification")] bool sendPublicNotification = true)
         {
-            await Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildRegistered);
-
             ModCase modCase = new()
             {
                 Title = title,

@@ -57,7 +57,7 @@ namespace MASZ.Repositories
             {
                 Stopwatch timer = new();
                 timer.Start();
-                IUser user = DiscordAPI.GetCurrentBotInfo(CacheBehavior.OnlyCache);
+                IUser user = DiscordAPI.GetCurrentBotInfo();
                 timer.Stop();
                 cacheStatus.ResponseTime = timer.Elapsed.TotalMilliseconds;
                 if (user == null)

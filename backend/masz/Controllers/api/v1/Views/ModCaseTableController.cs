@@ -15,7 +15,7 @@ namespace MASZ.Controllers
     [Authorize]
     public class ModCaseTableController : SimpleCaseController
     {
-        public ModCaseTableController(ILogger<ModCaseTableController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public ModCaseTableController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
 

@@ -1,8 +1,8 @@
 using Discord;
 using MASZ.Enums;
-using MASZ.Events;
 using MASZ.Exceptions;
 using MASZ.Models;
+using MASZ.Utils;
 
 namespace MASZ.Repositories
 {
@@ -16,7 +16,7 @@ namespace MASZ.Repositories
         }
         private ModCaseCommentRepository(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _currentUser = DiscordAPI.GetCurrentBotInfo(CacheBehavior.Default);
+            _currentUser = DiscordAPI.GetCurrentBotInfo();
         }
         public static ModCaseCommentRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new(serviceProvider, identity.GetCurrentUser());
         public static ModCaseCommentRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new(serviceProvider);
@@ -61,7 +61,7 @@ namespace MASZ.Repositories
             await Database.SaveModCaseComment(newComment);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeModCaseCommentCreated(new ModCaseCommentCreatedEventArgs(newComment));
+            await _eventHandler.OnModCaseCommentCreatedEvent.InvokeAsync(newComment);
 
             return newComment;
         }
@@ -90,7 +90,7 @@ namespace MASZ.Repositories
             Database.UpdateModCaseComment(newComment);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeModCaseCommentUpdated(new ModCaseCommentUpdatedEventArgs(newComment));
+            await _eventHandler.OnModCaseCommentUpdatedEvent.InvokeAsync(newComment);
 
             return newComment;
         }
@@ -117,7 +117,7 @@ namespace MASZ.Repositories
             Database.DeleteSpecificModCaseComment(deleteComment);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeModCaseCommentDeleted(new ModCaseCommentDeletedEventArgs(deleteComment));
+            await _eventHandler.OnModCaseCommentDeletedEvent.InvokeAsync(deleteComment);
 
             return deleteComment;
         }

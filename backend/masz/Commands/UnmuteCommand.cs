@@ -1,5 +1,6 @@
 using Discord;
 using Discord.Interactions;
+using MASZ.Attributes;
 using MASZ.Enums;
 using MASZ.Extensions;
 using MASZ.Models;
@@ -14,11 +15,10 @@ namespace MASZ.Commands
     {
         public UnmuteCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
+        [Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildStrictModeMute)]
         [SlashCommand("unmute", "Unmute a user by deactivating all his modcases.")]
         public async Task Unmute([Summary("user", "User to unmute")] IUser user)
         {
-            await Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildStrictModeMute);
-
             ModCaseRepository repo = ModCaseRepository.CreateDefault(ServiceProvider, CurrentIdentity);
             List<ModCase> modCases = (await repo.GetCasesForGuildAndUser(Context.Guild.Id, user.Id))
                 .Where(x => x.PunishmentActive && x.PunishmentType == PunishmentType.Mute).ToList();

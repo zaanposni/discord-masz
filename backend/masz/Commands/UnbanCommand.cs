@@ -1,5 +1,6 @@
 using Discord;
 using Discord.Interactions;
+using MASZ.Attributes;
 using MASZ.Enums;
 using MASZ.Extensions;
 using MASZ.Models;
@@ -13,12 +14,11 @@ namespace MASZ.Commands
     public class UnbanCommand : BaseCommand<UnbanCommand>
     {
         public UnbanCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
-
+        
+        [Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildStrictModeBan)]
         [SlashCommand("unban", "Unban a user by deactivating all his modcases.")]
         public async Task Unban([Summary("user", "User to unban")] IUser user)
         {
-            await Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildStrictModeBan);
-
             ModCaseRepository repo = ModCaseRepository.CreateDefault(ServiceProvider, CurrentIdentity);
             List<ModCase> modCases = (await repo.GetCasesForGuildAndUser(Context.Guild.Id, user.Id))
                 .Where(x => x.PunishmentActive && x.PunishmentType == PunishmentType.Ban).ToList();

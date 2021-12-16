@@ -14,8 +14,7 @@ namespace MASZ.Controllers
     [Authorize]
     public class ModCaseController : SimpleCaseController
     {
-
-        public ModCaseController(IServiceProvider serviceProvider, ILogger<ModCaseController> logger) : base(serviceProvider)
+        public ModCaseController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
 

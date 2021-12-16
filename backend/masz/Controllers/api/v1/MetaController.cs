@@ -1,4 +1,3 @@
-using MASZ.Enums;
 using MASZ.Models.Views;
 using Microsoft.AspNetCore.Mvc;
 using RestSharp;
@@ -16,7 +15,7 @@ namespace MASZ.Controllers
         [HttpGet("user")]
         public IActionResult GetBotUser()
         {
-            return Ok(DiscordUserView.CreateOrDefault(_discordAPI.GetCurrentBotInfo(CacheBehavior.Default)));
+            return Ok(DiscordUserView.CreateOrDefault(_discordAPI.GetCurrentBotInfo()));
         }
 
         [HttpGet("application")]

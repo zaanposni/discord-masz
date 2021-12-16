@@ -8,13 +8,13 @@ namespace MASZ.Models
 {
     public class DiscordCommandIdentity : Identity
     {
-        protected readonly IDiscordBot _discordBot;
+        protected readonly DiscordBot _discordBot;
         private readonly Dictionary<ulong, IGuildUser> GuildMemberships = new();
 
         public async static Task<DiscordCommandIdentity> Create(IUser user, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
         {
-            IDatabase database = serviceProvider.GetService(typeof(IDatabase)) as IDatabase;
-            IDiscordAPIInterface discordAPI = serviceProvider.GetService(typeof(IDiscordAPIInterface)) as IDiscordAPIInterface;
+            Database database = serviceProvider.GetRequiredService(typeof(Database)) as Database;
+            DiscordAPIInterface discordAPI = serviceProvider.GetRequiredService(typeof(DiscordAPIInterface)) as DiscordAPIInterface;
 
             List<GuildConfig> guildConfigs = await database.SelectAllGuildConfigs();
             List<IGuild> guilds = new();
@@ -31,7 +31,7 @@ namespace MASZ.Models
         {
             this.currentUser = currentUser;
             currentUserGuilds = userGuilds;
-            _discordBot = serviceProvider.GetService(typeof(IDiscordBot)) as IDiscordBot;
+            _discordBot = serviceProvider.GetRequiredService(typeof(DiscordBot)) as DiscordBot;
         }
         public override async Task<IGuildUser> GetGuildMembership(ulong guildId)
         {

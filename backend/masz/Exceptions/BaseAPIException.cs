@@ -13,16 +13,16 @@ namespace MASZ.Exceptions
 
         public BaseAPIException(string? message, APIError error) : base(message)
         {
-            this.Error = error;
+            Error = error;
         }
 
         public BaseAPIException(APIError error) : base(null)
         {
-            this.Error = error;
+            Error = error;
         }
         public BaseException WithError(APIError error)
         {
-            this.Error = error;
+            Error = error;
             return this;
         }
     }

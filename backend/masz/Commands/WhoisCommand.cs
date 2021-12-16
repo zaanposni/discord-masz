@@ -1,5 +1,6 @@
 using Discord;
 using Discord.Interactions;
+using MASZ.Attributes;
 using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.Extensions;
@@ -14,10 +15,10 @@ namespace MASZ.Commands
     {
         public WhoisCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
+        [Require(RequireCheckEnum.GuildModerator)]
         [SlashCommand("whois", "Whois information about a user.")]
         public async Task Whois([Summary("user", "user to scan")] IUser user)
         {
-            await Require(RequireCheckEnum.GuildModerator);
             await Context.Interaction.RespondAsync("Getting WHOIS information...");
 
             IGuildUser member = null;

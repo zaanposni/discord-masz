@@ -1,5 +1,6 @@
 using Discord;
 using Discord.Interactions;
+using MASZ.Attributes;
 using MASZ.Enums;
 using MASZ.Models;
 using MASZ.Repositories;
@@ -15,11 +16,10 @@ namespace MASZ.Commands
 
         public FeatureCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
+        [Require(RequireCheckEnum.GuildModerator)]
         [SlashCommand("features", "Checks if further configuration is needed to use MASZ features.")]
         public async Task Features()
         {
-            await Require(RequireCheckEnum.GuildModerator);
-
             GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(ServiceProvider).GetGuildConfig(Context.Guild.Id);
 
             GuildFeatureTest featureTest = new(guildConfig, Context.Guild.GetUser(Context.User.Id));

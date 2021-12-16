@@ -1,8 +1,8 @@
 using Discord;
 using MASZ.Enums;
-using MASZ.Events;
 using MASZ.Exceptions;
 using MASZ.Models;
+using MASZ.Utils;
 
 namespace MASZ.Repositories
 {
@@ -78,7 +78,7 @@ namespace MASZ.Repositories
                 await _discordAnnouncer.AnnounceTipsInNewGuild(guildConfig);
             }
 
-            await _eventHandler.InvokeGuildRegistered(new GuildRegisteredEventArgs(guildConfig));
+            await _eventHandler.OnGuildRegisteredEvent.InvokeAsync(guildConfig);
 
             return guildConfig;
         }
@@ -124,7 +124,7 @@ namespace MASZ.Repositories
             Database.UpdateGuildConfig(guildConfig);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeGuildUpdated(new GuildUpdatedEventArgs(guildConfig));
+            await _eventHandler.OnGuildUpdatedEvent.InvokeAsync(guildConfig);
 
             return guildConfig;
         }
@@ -155,7 +155,7 @@ namespace MASZ.Repositories
             Database.DeleteSpecificGuildConfig(guildConfig);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeGuildDeleted(new GuildDeletedEventArgs(guildConfig));
+            await _eventHandler.OnGuildDeletedEvent.InvokeAsync(guildConfig);
 
             return guildConfig;
         }

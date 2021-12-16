@@ -1,5 +1,6 @@
 using Discord;
 using Discord.Interactions;
+using MASZ.Attributes;
 using MASZ.Enums;
 using MASZ.Models;
 using MASZ.Repositories;
@@ -11,6 +12,7 @@ namespace MASZ.Commands
     {
         public KickCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
+        [Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildRegistered, RequireCheckEnum.GuildStrictModeKick)]
         [SlashCommand("kick", "Kick a user and create a modcase")]
         public async Task Kick(
             [Summary("title", "The title of the modcase")] string title,
@@ -20,8 +22,6 @@ namespace MASZ.Commands
             [Summary("public-notification", "Whether to send a public webhook notification")] bool sendPublicNotification = true,
             [Summary("execute-punishment", "Whether to execute the punishment or just register it.")] bool executePunishment = true)
         {
-            await Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildRegistered, RequireCheckEnum.GuildStrictModeKick);
-
             ModCase modCase = new()
             {
                 Title = title,

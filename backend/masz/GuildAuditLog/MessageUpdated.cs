@@ -7,7 +7,7 @@ namespace MASZ.GuildAuditLog
 {
     public static class MessageUpdatedAuditLog
     {
-        public static async Task<EmbedBuilder> HandleMessageUpdated(Cacheable<IMessage, ulong> messageBefore, IMessage messageAfter, ITranslator translator)
+        public static async Task<EmbedBuilder> HandleMessageUpdated(Cacheable<IMessage, ulong> messageBefore, IMessage messageAfter, Translator translator)
         {
             EmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(Color.Orange);
 

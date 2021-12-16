@@ -6,7 +6,7 @@ namespace MASZ.GuildAuditLog
 {
     public static class BanRemovedAuditLog
     {
-        public static EmbedBuilder HandleBanRemoved(IUser user, ITranslator translator)
+        public static EmbedBuilder HandleBanRemoved(IUser user, Translator translator)
         {
             EmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(Color.Green);
 

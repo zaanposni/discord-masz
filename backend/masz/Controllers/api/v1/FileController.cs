@@ -13,7 +13,7 @@ namespace MASZ.Controllers
     public class FileController : SimpleCaseController
     {
 
-        public FileController(ILogger<FileController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public FileController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
 
@@ -37,7 +37,7 @@ namespace MASZ.Controllers
                 await RequirePermission(guildId, caseId, APIActionPermission.View);
             }
 
-            Models.FileInfo fileInfo = FileRepository.CreateWithBotIdentity(_serviceProvider).GetCaseFile(guildId, caseId, filename);
+            Models.UploadedFile fileInfo = FileRepository.CreateWithBotIdentity(_serviceProvider).GetCaseFile(guildId, caseId, filename);
 
             HttpContext.Response.Headers.Add("Content-Disposition", fileInfo.ContentDisposition.ToString());
             HttpContext.Response.Headers.Add("Content-Type", fileInfo.ContentType);
@@ -65,7 +65,7 @@ namespace MASZ.Controllers
         [HttpPost]
         [RequestSizeLimit(10485760)]
         [Authorize]
-        public async Task<IActionResult> PostItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromForm] UploadedFile uploadedFile)
+        public async Task<IActionResult> PostItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromForm] Dtos.ModCase.UploadedFile uploadedFile)
         {
             await RequirePermission(guildId, caseId, APIActionPermission.Edit);
             Identity identity = await GetIdentity();

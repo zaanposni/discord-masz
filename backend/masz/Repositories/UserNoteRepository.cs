@@ -1,8 +1,8 @@
 using Discord;
 using MASZ.Enums;
-using MASZ.Events;
 using MASZ.Exceptions;
 using MASZ.Models;
+using MASZ.Utils;
 
 namespace MASZ.Repositories
 {
@@ -16,7 +16,7 @@ namespace MASZ.Repositories
         }
         private UserNoteRepository(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _currentUser = DiscordAPI.GetCurrentBotInfo(CacheBehavior.Default);
+            _currentUser = DiscordAPI.GetCurrentBotInfo();
         }
         public static UserNoteRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new(serviceProvider, identity.GetCurrentUser());
         public static UserNoteRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new(serviceProvider);
@@ -68,7 +68,7 @@ namespace MASZ.Repositories
             Database.SaveUserNote(userNote);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeUserNoteUpdated(new UserNoteUpdatedEventArgs(userNote));
+            await _eventHandler.OnUserNoteUpdatedEvent.InvokeAsync(userNote);
 
             await _discordAnnouncer.AnnounceUserNote(userNote, _currentUser, action);
 
@@ -81,7 +81,7 @@ namespace MASZ.Repositories
             Database.DeleteUserNote(userNote);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeUserNoteDeleted(new UserNoteDeletedEventArgs(userNote));
+            await _eventHandler.OnUserNoteDeletedEvent.InvokeAsync(userNote);
 
             await _discordAnnouncer.AnnounceUserNote(userNote, _currentUser, RestAction.Deleted);
         }

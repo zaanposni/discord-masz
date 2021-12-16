@@ -10,24 +10,24 @@ namespace MASZ.Controllers
 {
     public class SimpleController : ControllerBase
     {
-        protected readonly IIdentityManager _identityManager;
-        protected readonly IInternalConfiguration _config;
-        protected readonly IDiscordAPIInterface _discordAPI;
-        protected readonly IDiscordBot _discordBot;
-        protected readonly IScheduler _scheduler;
-        protected readonly IDiscordAnnouncer _discordAnnouncer;
+        protected readonly IdentityManager _identityManager;
+        protected readonly InternalConfiguration _config;
+        protected readonly DiscordAPIInterface _discordAPI;
+        protected readonly DiscordBot _discordBot;
+        protected readonly Scheduler _scheduler;
+        protected readonly DiscordAnnouncer _discordAnnouncer;
         protected readonly IServiceProvider _serviceProvider;
-        protected readonly ITranslator _translator;
+        protected readonly Translator _translator;
 
         public SimpleController(IServiceProvider serviceProvider)
         {
-            _identityManager = (IIdentityManager)serviceProvider.GetService(typeof(IIdentityManager));
-            _config = (IInternalConfiguration)serviceProvider.GetService(typeof(IInternalConfiguration));
-            _discordAPI = (IDiscordAPIInterface)serviceProvider.GetService(typeof(IDiscordAPIInterface));
-            _discordBot = (IDiscordBot)serviceProvider.GetService(typeof(IDiscordBot));
-            _scheduler = (IScheduler)serviceProvider.GetService(typeof(IScheduler));
-            _discordAnnouncer = (IDiscordAnnouncer)serviceProvider.GetService(typeof(IDiscordAnnouncer));
-            _translator = (ITranslator)serviceProvider.GetService(typeof(ITranslator));
+            _identityManager = (IdentityManager)serviceProvider.GetRequiredService(typeof(IdentityManager));
+            _config = (InternalConfiguration)serviceProvider.GetRequiredService(typeof(InternalConfiguration));
+            _discordAPI = (DiscordAPIInterface)serviceProvider.GetRequiredService(typeof(DiscordAPIInterface));
+            _discordBot = (DiscordBot)serviceProvider.GetRequiredService(typeof(DiscordBot));
+            _scheduler = (Scheduler)serviceProvider.GetRequiredService(typeof(Scheduler));
+            _discordAnnouncer = (DiscordAnnouncer)serviceProvider.GetRequiredService(typeof(DiscordAnnouncer));
+            _translator = (Translator)serviceProvider.GetRequiredService(typeof(Translator));
             _serviceProvider = serviceProvider;
         }
 

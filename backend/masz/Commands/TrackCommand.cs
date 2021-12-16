@@ -1,6 +1,7 @@
 using Discord;
 using Discord.Interactions;
 using Discord.Net;
+using MASZ.Attributes;
 using MASZ.Enums;
 using MASZ.Extensions;
 using MASZ.Models;
@@ -15,11 +16,10 @@ namespace MASZ.Commands
     {
         public TrackCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
+        [Require(RequireCheckEnum.GuildModerator)]
         [SlashCommand("track", "Track an invite, its creator and its users.")]
         public async Task Track([Summary("invite", "Either enter the invite code or the url")] string inviteCode)
         {
-            await Require(RequireCheckEnum.GuildModerator);
-
             await Context.Interaction.RespondAsync("Tracking invite code...");
 
             if (!inviteCode.ToLower().Contains("https://discord.gg/"))

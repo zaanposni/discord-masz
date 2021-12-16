@@ -1,8 +1,8 @@
 using Discord;
 using MASZ.Enums;
-using MASZ.Events;
 using MASZ.Exceptions;
 using MASZ.Models;
+using MASZ.Utils;
 
 namespace MASZ.Repositories
 {
@@ -16,7 +16,7 @@ namespace MASZ.Repositories
         }
         private UserMapRepository(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _currentUser = DiscordAPI.GetCurrentBotInfo(CacheBehavior.Default);
+            _currentUser = DiscordAPI.GetCurrentBotInfo();
         }
         public static UserMapRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new(serviceProvider, identity.GetCurrentUser());
         public static UserMapRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new(serviceProvider);
@@ -80,7 +80,7 @@ namespace MASZ.Repositories
             Database.SaveUserMapping(userMapping);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeUserMapUpdated(new UserMapUpdatedEventArgs(userMapping));
+            await _eventHandler.OnUserMapUpdatedEvent.InvokeAsync(userMapping);
 
             await _discordAnnouncer.AnnounceUserMapping(userMapping, _currentUser, action);
 
@@ -93,7 +93,7 @@ namespace MASZ.Repositories
             Database.DeleteUserMapping(userMapping);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeUserMapDeleted(new UserMapDeletedEventArgs(userMapping));
+            await _eventHandler.OnUserMapDeletedEvent.InvokeAsync(userMapping);
 
             await _discordAnnouncer.AnnounceUserMapping(userMapping, _currentUser, RestAction.Deleted);
         }

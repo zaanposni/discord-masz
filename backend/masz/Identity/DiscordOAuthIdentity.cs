@@ -12,7 +12,7 @@ namespace MASZ.Models
 
         public async static Task<DiscordOAuthIdentity> Create(string token, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
         {
-            IDiscordAPIInterface api = serviceProvider.GetService(typeof(IDiscordAPIInterface)) as IDiscordAPIInterface;
+            DiscordAPIInterface api = serviceProvider.GetRequiredService(typeof(DiscordAPIInterface)) as DiscordAPIInterface;
             IUser user = await api.FetchCurrentUserInfo(token, CacheBehavior.IgnoreButCacheOnError);
             List<IGuild> guilds = await api.FetchGuildsOfCurrentUser(token, CacheBehavior.IgnoreButCacheOnError);
 
