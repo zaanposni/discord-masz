@@ -19,7 +19,7 @@ namespace MASZ.Migrations
                 .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("MASZ.Models.AutoModerationConfig", b =>
+            modelBuilder.Entity("masz.Models.AutoModerationConfig", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,7 +63,7 @@ namespace MASZ.Migrations
                     b.ToTable("AutoModerationConfigs");
                 });
 
-            modelBuilder.Entity("MASZ.Models.AutoModerationEvent", b =>
+            modelBuilder.Entity("masz.Models.AutoModerationEvent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,7 +108,7 @@ namespace MASZ.Migrations
                     b.ToTable("AutoModerationEvents");
                 });
 
-            modelBuilder.Entity("MASZ.Models.GuildConfig", b =>
+            modelBuilder.Entity("masz.Models.GuildConfig", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -140,7 +140,7 @@ namespace MASZ.Migrations
                     b.ToTable("GuildConfigs");
                 });
 
-            modelBuilder.Entity("MASZ.Models.ModCase", b =>
+            modelBuilder.Entity("masz.Models.ModCase", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -212,7 +212,7 @@ namespace MASZ.Migrations
                     b.ToTable("ModCases");
                 });
 
-            modelBuilder.Entity("MASZ.Models.ModCaseComment", b =>
+            modelBuilder.Entity("masz.Models.ModCaseComment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -237,9 +237,9 @@ namespace MASZ.Migrations
                     b.ToTable("ModCaseComments");
                 });
 
-            modelBuilder.Entity("MASZ.Models.ModCaseComment", b =>
+            modelBuilder.Entity("masz.Models.ModCaseComment", b =>
                 {
-                    b.HasOne("MASZ.Models.ModCase", "ModCase")
+                    b.HasOne("masz.Models.ModCase", "ModCase")
                         .WithMany("Comments")
                         .HasForeignKey("ModCaseId")
                         .OnDelete(DeleteBehavior.Cascade)
