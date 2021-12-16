@@ -19,7 +19,7 @@ namespace MASZ.Migrations
                 .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("masz.Models.GuildConfig", b =>
+            modelBuilder.Entity("MASZ.Models.GuildConfig", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,7 @@ namespace MASZ.Migrations
                     b.ToTable("GuildConfigs");
                 });
 
-            modelBuilder.Entity("masz.Models.ModCase", b =>
+            modelBuilder.Entity("MASZ.Models.ModCase", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -111,7 +111,7 @@ namespace MASZ.Migrations
                     b.ToTable("ModCases");
                 });
 
-            modelBuilder.Entity("masz.Models.ModCaseComment", b =>
+            modelBuilder.Entity("MASZ.Models.ModCaseComment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -136,9 +136,9 @@ namespace MASZ.Migrations
                     b.ToTable("ModCaseComments");
                 });
 
-            modelBuilder.Entity("masz.Models.ModCaseComment", b =>
+            modelBuilder.Entity("MASZ.Models.ModCaseComment", b =>
                 {
-                    b.HasOne("masz.Models.ModCase", "ModCase")
+                    b.HasOne("MASZ.Models.ModCase", "ModCase")
                         .WithMany("Comments")
                         .HasForeignKey("ModCaseId")
                         .OnDelete(DeleteBehavior.NoAction)

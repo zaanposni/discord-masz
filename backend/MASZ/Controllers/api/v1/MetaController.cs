@@ -28,7 +28,7 @@ namespace MASZ.Controllers
         public async Task<IActionResult> GetReleases()
         {
             var restClient = new RestClient("https://MASZindex.zaanposni.com/");
-            var request = new RestRequest(Method.GET)
+            var request = new RestRequest(Method.Get)
             {
                 Resource = "/api/v1/versions"
             };

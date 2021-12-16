@@ -14,7 +14,7 @@ namespace MASZ.Models
         public string ModInternalNotificationWebhook { get; set; }
         public bool StrictModPermissionCheck { get; set; }
         public bool ExecuteWhoisOnJoin { get; set; }
-        public bool PublishModeratorInfo { get; set; }
+        public bool PublishModeratorInfo { get; set; } = true;
         public Language PreferredLanguage { get; set; }
 
         public object Clone()

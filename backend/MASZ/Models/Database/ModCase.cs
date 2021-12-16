@@ -28,7 +28,7 @@ namespace MASZ.Models
         public PunishmentType PunishmentType { get; set; }
         public DateTime? PunishedUntil { get; set; }
         public bool PunishmentActive { get; set; }
-        public bool AllowComments { get; set; }
+        public bool AllowComments { get; set; } = true;
         public ulong LockedByUserId { get; set; }
         public DateTime? LockedAt { get; set; }
         public DateTime? MarkedToDeleteAt { get; set; }

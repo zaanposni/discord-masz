@@ -22,11 +22,14 @@ builder.Logging.AddProvider(new LoggerProvider());
 
 builder.WebHost.UseUrls("http://0.0.0.0:80/");
 
-builder.Services.AddDbContext<DataContext>(x => x.UseMySql($"Server=" + Environment.GetEnvironmentVariable("MYSQL_HOST") + ";" +
-                                                   $"Port=" + Environment.GetEnvironmentVariable("MYSQL_PORT") + ";" +
-                                                   $"Database=" + Environment.GetEnvironmentVariable("MYSQL_DATABASE") + ";" +
-                                                   $"Uid=" + Environment.GetEnvironmentVariable("MYSQL_USER") + ";" +
-                                                   $"Pwd=" + Environment.GetEnvironmentVariable("MYSQL_PASSWORD") + ";"));
+string connectionString =
+            $"Server={   Environment.GetEnvironmentVariable("MYSQL_HOST")};" +
+            $"Port={     Environment.GetEnvironmentVariable("MYSQL_PORT")};" +
+            $"Database={ Environment.GetEnvironmentVariable("MYSQL_DATABASE")};" +
+            $"Uid={      Environment.GetEnvironmentVariable("MYSQL_USER")};" +
+            $"Pwd={      Environment.GetEnvironmentVariable("MYSQL_PASSWORD")};";
+
+builder.Services.AddDbContext<DataContext>(x => x.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddControllers()
     .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

@@ -1,18 +1,14 @@
 using MASZ.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MASZ.Data
 {
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-
-        //static LoggerFactory object
-        public static readonly ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
-        {
-            builder.AddConsole();
-        });
 
         public DbSet<ModCase> ModCases { get; set; }
         public DbSet<GuildConfig> GuildConfigs { get; set; }
@@ -37,12 +33,34 @@ namespace MASZ.Data
         {
             if (string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_SQL_LOGGING")))
             {
-                optionsBuilder.UseLoggerFactory(loggerFactory).EnableSensitiveDataLogging();
+                optionsBuilder.UseLoggerFactory(LoggerFactory.Create(builder =>
+                {
+                    builder.AddConsole();
+                })).EnableSensitiveDataLogging();
             }
+        }
+
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        {
+            configurationBuilder.Properties<ulong[]>().HaveConversion<ULAConverter>();
+            configurationBuilder.Properties<string[]>().HaveConversion<SAConverter>();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            SAComparer stringArrayComparer = new();
+
+            ULAComparer ulongArrayComparer = new();
+
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+                foreach (var property in entityType.GetProperties())
+                {
+                    if (property.ClrType == typeof(ulong[]))
+                        property.SetValueComparer(ulongArrayComparer);
+                    else if (property.ClrType == typeof(string[]))
+                        property.SetValueComparer(stringArrayComparer);
+                }
+
             modelBuilder.Entity<ModCase>()
                 .HasKey(o => new { o.Id });
 
@@ -54,65 +72,55 @@ namespace MASZ.Data
                 .Property(p => p.GuildId)
                 .IsRequired(true);
 
-            modelBuilder.Entity<ModCase>()
-                .Property(b => b.AllowComments)
-                .HasDefaultValue(true);
-
-            modelBuilder.Entity<GuildConfig>()
-                .Property(b => b.PublishModeratorInfo)
-                .HasDefaultValue(true);
-
-            modelBuilder.Entity<GuildConfig>()
-                .Property(e => e.ModRoles)
-                .HasConversion(
-                    v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => ulong.Parse(x)).ToArray());
-            modelBuilder.Entity<GuildConfig>()
-                .Property(e => e.AdminRoles)
-                .HasConversion(
-                    v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => ulong.Parse(x)).ToArray());
-            modelBuilder.Entity<GuildConfig>()
-                .Property(e => e.MutedRoles)
-                .HasConversion(
-                    v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => ulong.Parse(x)).ToArray());
-
-            modelBuilder.Entity<ModCase>()
-                .Property(e => e.Labels)
-                .HasConversion(
-                    v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
-
-            modelBuilder.Entity<CaseTemplate>()
-                .Property(e => e.CaseLabels)
-                .HasConversion(
-                    v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
-
-            modelBuilder.Entity<AutoModerationConfig>()
-                .Property(e => e.IgnoreChannels)
-                .HasConversion(
-                    v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => ulong.Parse(x)).ToArray());
-
-            modelBuilder.Entity<AutoModerationConfig>()
-                .Property(e => e.IgnoreRoles)
-                .HasConversion(
-                    v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => ulong.Parse(x)).ToArray());
-
-            modelBuilder.Entity<GuildLevelAuditLogConfig>()
-                .Property(e => e.PingRoles)
-                .HasConversion(
-                    v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => ulong.Parse(x)).ToArray());
-
             modelBuilder.Entity<ModCaseComment>()
                 .HasOne(c => c.ModCase)
                 .WithMany(c => c.Comments)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
         }
+    }
+
+    public class ULAConverter : ValueConverter<ulong[], string>
+    {
+        public ULAConverter() :
+            base(
+                v => string.Join(',', v),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => ulong.Parse(x)).ToArray(),
+                null
+            )
+        { }
+    }
+
+    public class ULAComparer : ValueComparer<ulong[]>
+    {
+        public ULAComparer()
+            : base(
+                (c1, c2) => c1.SequenceEqual(c2),
+                c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                c => (ulong[])c.Clone()
+            )
+        { }
+    }
+
+    public class SAConverter : ValueConverter<string[], string>
+    {
+        public SAConverter() :
+            base(
+                v => string.Join(',', v),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries),
+                null
+            )
+        { }
+    }
+
+    public class SAComparer : ValueComparer<string[]>
+    {
+        public SAComparer()
+            : base(
+                (c1, c2) => c1.SequenceEqual(c2),
+                c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                c => (string[])c.Clone()
+            )
+        { }
     }
 }
