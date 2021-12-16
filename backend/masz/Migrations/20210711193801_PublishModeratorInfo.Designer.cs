@@ -19,7 +19,7 @@ namespace MASZ.Migrations
                 .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("MASZ.Models.APIToken", b =>
+            modelBuilder.Entity("masz.Models.APIToken", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace MASZ.Migrations
                     b.ToTable("APITokens");
                 });
 
-            modelBuilder.Entity("MASZ.Models.AutoModerationConfig", b =>
+            modelBuilder.Entity("masz.Models.AutoModerationConfig", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -92,7 +92,7 @@ namespace MASZ.Migrations
                     b.ToTable("AutoModerationConfigs");
                 });
 
-            modelBuilder.Entity("MASZ.Models.AutoModerationEvent", b =>
+            modelBuilder.Entity("masz.Models.AutoModerationEvent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -136,7 +136,7 @@ namespace MASZ.Migrations
                     b.ToTable("AutoModerationEvents");
                 });
 
-            modelBuilder.Entity("MASZ.Models.CaseTemplate", b =>
+            modelBuilder.Entity("masz.Models.CaseTemplate", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -189,7 +189,7 @@ namespace MASZ.Migrations
                     b.ToTable("CaseTemplates");
                 });
 
-            modelBuilder.Entity("MASZ.Models.GuildConfig", b =>
+            modelBuilder.Entity("masz.Models.GuildConfig", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -232,7 +232,7 @@ namespace MASZ.Migrations
                     b.ToTable("GuildConfigs");
                 });
 
-            modelBuilder.Entity("MASZ.Models.GuildMotd", b =>
+            modelBuilder.Entity("masz.Models.GuildMotd", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -258,7 +258,7 @@ namespace MASZ.Migrations
                     b.ToTable("GuildMotds");
                 });
 
-            modelBuilder.Entity("MASZ.Models.ModCase", b =>
+            modelBuilder.Entity("masz.Models.ModCase", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -350,7 +350,7 @@ namespace MASZ.Migrations
                     b.ToTable("ModCases");
                 });
 
-            modelBuilder.Entity("MASZ.Models.ModCaseComment", b =>
+            modelBuilder.Entity("masz.Models.ModCaseComment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -375,7 +375,7 @@ namespace MASZ.Migrations
                     b.ToTable("ModCaseComments");
                 });
 
-            modelBuilder.Entity("MASZ.Models.UserInvite", b =>
+            modelBuilder.Entity("masz.Models.UserInvite", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -407,7 +407,7 @@ namespace MASZ.Migrations
                     b.ToTable("UserInvites");
                 });
 
-            modelBuilder.Entity("MASZ.Models.UserMapping", b =>
+            modelBuilder.Entity("masz.Models.UserMapping", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -436,7 +436,7 @@ namespace MASZ.Migrations
                     b.ToTable("UserMappings");
                 });
 
-            modelBuilder.Entity("MASZ.Models.UserNote", b =>
+            modelBuilder.Entity("masz.Models.UserNote", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -462,9 +462,9 @@ namespace MASZ.Migrations
                     b.ToTable("UserNotes");
                 });
 
-            modelBuilder.Entity("MASZ.Models.ModCaseComment", b =>
+            modelBuilder.Entity("masz.Models.ModCaseComment", b =>
                 {
-                    b.HasOne("MASZ.Models.ModCase", "ModCase")
+                    b.HasOne("masz.Models.ModCase", "ModCase")
                         .WithMany("Comments")
                         .HasForeignKey("ModCaseId")
                         .OnDelete(DeleteBehavior.Cascade)
