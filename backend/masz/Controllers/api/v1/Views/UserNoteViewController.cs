@@ -1,25 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using masz.Models;
-using masz.Repositories;
+using MASZ.Enums;
+using MASZ.Models;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using masz.Enums;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/guilds/{guildId}/usernoteview")]
     [Authorize]
     public class UserNoteViewController : SimpleController
     {
-        private readonly ILogger<UserNoteViewController> _logger;
-
-        public UserNoteViewController(ILogger<UserNoteViewController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public UserNoteViewController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _logger = logger;
         }
 
         [HttpGet]
@@ -28,7 +21,7 @@ namespace masz.Controllers
             await RequirePermission(guildId, DiscordPermission.Moderator);
 
             List<UserNote> userNotes = await UserNoteRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetUserNotesByGuild(guildId);
-            List<UserNoteExpandedView> userNoteViews = new List<UserNoteExpandedView>();
+            List<UserNoteExpandedView> userNoteViews = new();
             foreach (UserNote userNote in userNotes)
             {
                 userNoteViews.Add(new UserNoteExpandedView(

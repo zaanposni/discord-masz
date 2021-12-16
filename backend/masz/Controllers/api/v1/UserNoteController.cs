@@ -1,28 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using masz.Dtos.UserNote;
-using masz.Models;
-using masz.Repositories;
+using MASZ.Dtos.UserNote;
+using MASZ.Enums;
+using MASZ.Models;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using masz.Enums;
 
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/guilds/{guildId}/usernote")]
     [Authorize]
     public class UserNoteController : SimpleController
     {
-        private readonly ILogger<UserNoteController> _logger;
 
-        public UserNoteController(ILogger<UserNoteController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public UserNoteController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _logger = logger;
         }
 
         [HttpGet]

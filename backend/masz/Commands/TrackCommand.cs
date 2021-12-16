@@ -1,17 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Discord;
+using Discord.Interactions;
+using Discord.Net;
+using MASZ.Enums;
+using MASZ.Extensions;
+using MASZ.Models;
+using MASZ.Repositories;
+using System.Net;
 using System.Text;
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.SlashCommands;
-using masz.Enums;
-using masz.Extensions;
-using masz.Models;
-using masz.Repositories;
 
-namespace masz.Commands
+namespace MASZ.Commands
 {
 
     public class TrackCommand : BaseCommand<TrackCommand>
@@ -19,30 +16,31 @@ namespace masz.Commands
         public TrackCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [SlashCommand("track", "Track an invite, its creator and its users.")]
-        public async Task Track(InteractionContext ctx,  [Option("invite", "Either enter the invite code or the url")] string inviteCode)
+        public async Task Track([Summary("invite", "Either enter the invite code or the url")] string inviteCode)
         {
-            await Require(ctx, RequireCheckEnum.GuildModerator);
-            await ctx.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
+            await Require(RequireCheckEnum.GuildModerator);
 
-            if (! inviteCode.ToLower().Contains("https://discord.gg/"))
+            await Context.Interaction.RespondAsync("Tracking invite code...");
+
+            if (!inviteCode.ToLower().Contains("https://discord.gg/"))
             {
                 inviteCode = $"https://discord.gg/{inviteCode}";
             }
 
-            List<UserInvite> invites = await InviteRepository.CreateDefault(_serviceProvider).GetInvitesByCode(inviteCode);
-            invites = invites.Where(x => x.GuildId == ctx.Guild.Id).OrderByDescending(x => x.JoinedAt).ToList();
+            List<UserInvite> invites = await InviteRepository.CreateDefault(ServiceProvider).GetInvitesByCode(inviteCode);
+            invites = invites.Where(x => x.GuildId == Context.Guild.Id).OrderByDescending(x => x.JoinedAt).ToList();
 
             DateTime? createdAt = null;
-            DiscordUser creator = null;
-            int usages = invites.Count;
-            Dictionary<ulong, DiscordUser> invitees = new Dictionary<ulong, DiscordUser>();
+            IUser creator = null;
+            int? usages = invites.Count;
+            Dictionary<ulong, IUser> invitees = new();
 
             if (invites.Count > 0)
             {
                 createdAt = invites[0].InviteCreatedAt;
                 if (invites[0].InviteIssuerId != 0)
                 {
-                    creator = await _discordAPI.FetchUserInfo(invites[0].InviteIssuerId, CacheBehavior.Default);
+                    creator = await DiscordAPI.FetchUserInfo(invites[0].InviteIssuerId, CacheBehavior.Default);
                 }
 
                 int count = 0;
@@ -52,56 +50,60 @@ namespace masz.Commands
                     {
                         break;
                     }
-                    if (! invitees.ContainsKey(invite.JoinedUserId))
+                    if (!invitees.ContainsKey(invite.JoinedUserId))
                     {
-                        invitees.Add(invite.JoinedUserId, await _discordAPI.FetchUserInfo(invite.JoinedUserId, CacheBehavior.Default));
+                        invitees.Add(invite.JoinedUserId, await DiscordAPI.FetchUserInfo(invite.JoinedUserId, CacheBehavior.Default));
                     }
                 }
-            } else
+            }
+            else
             {
                 string code = inviteCode.Split("/").Last();
                 try
                 {
-                    DiscordInvite fetchedInvite = await ctx.Client.GetInviteByCodeAsync(code, true, false);
-                    if (fetchedInvite.Guild.Id != ctx.Guild.Id)
+                    var fetchedInvite = await Context.Client.GetInviteAsync(code);
+                    if (fetchedInvite.GuildId != Context.Guild.Id)
                     {
-                        await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().CmdTrackInviteNotFromThisGuild()));
+                        await Context.Interaction.ModifyOriginalResponseAsync(message => message.Content = Translator.T().CmdTrackInviteNotFromThisGuild());
                         return;
                     }
                     try
                     {
                         usages = fetchedInvite.Uses;
-                        creator = await _discordAPI.FetchUserInfo(fetchedInvite.Inviter.Id, CacheBehavior.Default);
-                    } catch (NullReferenceException) { }  // vanity url
-                } catch (DSharpPlus.Exceptions.NotFoundException)
+                        creator = await DiscordAPI.FetchUserInfo(fetchedInvite.Inviter.Id, CacheBehavior.Default);
+                    }
+                    catch (NullReferenceException) { }
+                }
+                catch (HttpException e)
                 {
-                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().CmdTrackCannotFindInvite()));
-                    return;
-                } catch (Exception)
-                {
-                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().CmdTrackFailedToFetchInvite()));
+                    if (e.HttpCode == HttpStatusCode.NotFound)
+                        await Context.Interaction.ModifyOriginalResponseAsync(message => message.Content = Translator.T().CmdTrackCannotFindInvite());
+                    else
+                        await Context.Interaction.ModifyOriginalResponseAsync(message => message.Content = Translator.T().CmdTrackFailedToFetchInvite());
                     return;
                 }
             }
 
-            DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
+            EmbedBuilder embed = new();
             embed.WithDescription(inviteCode);
             if (creator != null)
             {
-                embed.WithAuthor($"{creator.Username}#{creator.Discriminator}", creator.AvatarUrl, creator.AvatarUrl);
-                if (createdAt.HasValue && createdAt.Value != null)
+                embed.WithAuthor(creator);
+                if (createdAt.HasValue && createdAt.Value != default)
                 {
-                    embed.WithDescription(_translator.T().CmdTrackCreatedByAt(inviteCode, creator, createdAt.Value));
-                } else
-                {
-                    embed.WithDescription(_translator.T().CmdTrackCreatedBy(inviteCode, creator));
+                    embed.WithDescription(Translator.T().CmdTrackCreatedByAt(inviteCode, creator, createdAt.Value));
                 }
-            } else if (createdAt.HasValue && createdAt.Value != null)
+                else
+                {
+                    embed.WithDescription(Translator.T().CmdTrackCreatedBy(inviteCode, creator));
+                }
+            }
+            else if (createdAt.HasValue && createdAt.Value != default)
             {
-                embed.WithDescription(_translator.T().CmdTrackCreatedAt(inviteCode, createdAt.Value));
+                embed.WithDescription(Translator.T().CmdTrackCreatedAt(inviteCode, createdAt.Value));
             }
 
-            StringBuilder usedBy = new StringBuilder();
+            StringBuilder usedBy = new();
             foreach (UserInvite invite in invites)
             {
                 if (usedBy.Length > 900)
@@ -112,7 +114,7 @@ namespace masz.Commands
                 usedBy.Append("- ");
                 if (invitees.ContainsKey(invite.JoinedUserId))
                 {
-                    DiscordUser user = invitees[invite.JoinedUserId];
+                    IUser user = invitees[invite.JoinedUserId];
                     usedBy.Append($"`{user.Username}#{user.Discriminator}` ");
                 }
                 usedBy.AppendLine($"`{invite.JoinedUserId}` - {invite.JoinedAt.ToDiscordTS()}");
@@ -120,14 +122,14 @@ namespace masz.Commands
             if (invites.Count == 0)
             {
                 usedBy.Clear();
-                usedBy.Append(_translator.T().CmdTrackNotTrackedYet());
+                usedBy.Append(Translator.T().CmdTrackNotTrackedYet());
             }
 
-            embed.AddField(_translator.T().CmdTrackUsedBy(usages), usedBy.ToString(), false);
+            embed.AddField(Translator.T().CmdTrackUsedBy(usages.GetValueOrDefault()), usedBy.ToString(), false);
             embed.WithFooter($"Invite: {inviteCode}");
             embed.WithTimestamp(DateTime.UtcNow);
 
-            await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
+            await Context.Interaction.ModifyOriginalResponseAsync(message => { message.Content = ""; message.Embed = embed.Build(); });
         }
     }
 }

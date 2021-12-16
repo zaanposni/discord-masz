@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Http;
 
-namespace masz.Dtos.ModCase
+namespace MASZ.Dtos.ModCase
 {
     public class UploadedFile
     {

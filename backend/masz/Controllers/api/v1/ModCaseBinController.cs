@@ -1,24 +1,19 @@
-using System;
-using System.Threading.Tasks;
-using masz.Enums;
-using masz.Models;
-using masz.Repositories;
+using MASZ.Enums;
+using MASZ.Models;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/guilds/{guildId}/bin")]
     [Authorize]
     public class ModCaseBinController : SimpleCaseController
     {
-        private readonly ILogger<ModCaseBinController> _logger;
 
         public ModCaseBinController(ILogger<ModCaseBinController> logger, IServiceProvider serviceProvider) : base(serviceProvider, logger)
         {
-            _logger = logger;
         }
 
         [HttpDelete("{caseId}/restore")]

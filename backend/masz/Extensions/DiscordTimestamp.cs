@@ -1,13 +1,12 @@
-using System;
-using masz.Enums;
+using MASZ.Enums;
 
-namespace masz.Extensions
+namespace MASZ.Extensions
 {
     public static class DiscordTimestamp
     {
         public static string ToDiscordTS(this DateTime dateTime, DiscordTimestampFormat format = DiscordTimestampFormat.Default)
         {
-            return $"<t:{((DateTimeOffset)dateTime).ToUnixTimeSeconds()}:{(char) format}>";
+            return $"<t:{((DateTimeOffset)dateTime).ToUnixTimeSeconds()}:{(char)format}>";
         }
     }
 }

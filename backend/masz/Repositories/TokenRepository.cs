@@ -1,28 +1,24 @@
-using System;
-using System.Collections.Generic;
+using MASZ.Dtos.Tokens;
+using MASZ.Events;
+using MASZ.Exceptions;
+using MASZ.Models;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using masz.Dtos.Tokens;
-using masz.Events;
-using masz.Exceptions;
-using masz.Models;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 
-namespace masz.Repositories
+namespace MASZ.Repositories
 {
 
     public class TokenRepository : BaseRepository<TokenRepository>
     {
         private TokenRepository(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
-        public static TokenRepository CreateDefault(IServiceProvider serviceProvider) => new TokenRepository(serviceProvider);
+        public static TokenRepository CreateDefault(IServiceProvider serviceProvider) => new(serviceProvider);
         public async Task<APIToken> GetToken()
         {
-            APIToken apiToken = await _database.GetAPIToken();
+            APIToken apiToken = await Database.GetAPIToken();
             if (apiToken == null)
             {
                 throw new ResourceNotFoundException($"Token does not exist.");
@@ -32,19 +28,19 @@ namespace masz.Repositories
 
         public async Task<List<APIToken>> GetAllTokens()
         {
-            return await _database.GetAllAPIToken();
+            return await Database.GetAllAPIToken();
         }
 
         public async Task<int> CountTokens()
         {
-            return await _database.CountAllAPITokens();
+            return await Database.CountAllAPITokens();
         }
 
         public async Task<CreatedTokenDto> RegisterToken(string name)
         {
-            string token = generateToken(name);
+            string token = GenerateToken(name);
 
-            APIToken apiToken = new APIToken();
+            APIToken apiToken = new();
             using var hmac = new HMACSHA512();
             apiToken.TokenHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(token));
             apiToken.TokenSalt = hmac.Key;
@@ -52,12 +48,13 @@ namespace masz.Repositories
             apiToken.ValidUntil = DateTime.UtcNow.AddYears(1);
             apiToken.Name = name;
 
-            await _database.SaveToken(apiToken);
-            await _database.SaveChangesAsync();
+            await Database.SaveToken(apiToken);
+            await Database.SaveChangesAsync();
 
             await _eventHandler.InvokeTokenCreated(new TokenCreatedEventArgs(apiToken));
 
-            return new CreatedTokenDto() {
+            return new CreatedTokenDto()
+            {
                 Token = token,
                 Id = apiToken.Id
             };
@@ -66,12 +63,13 @@ namespace masz.Repositories
         public async Task DeleteToken()
         {
             APIToken apiToken = await GetToken();
-            _database.DeleteToken(apiToken);
-            await _database.SaveChangesAsync();
+            Database.DeleteToken(apiToken);
+            await Database.SaveChangesAsync();
             await _eventHandler.InvokeTokenDeleted(new TokenDeletedEventArgs(apiToken));
         }
 
-        private string generateToken(string name) {
+        private string GenerateToken(string name)
+        {
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.NameId, name)

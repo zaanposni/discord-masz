@@ -1,25 +1,24 @@
+using Discord;
+using Discord.WebSocket;
+using MASZ.Services;
 using System.Text;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using masz.Services;
 
-namespace masz.GuildAuditLog
+namespace MASZ.GuildAuditLog
 {
     public static class ThreadCreatedAuditLog
     {
-        public static DiscordEmbedBuilder HandleThreadCreated(DiscordClient client, ThreadCreateEventArgs e, ITranslator translator)
+        public static EmbedBuilder HandleThreadCreated(SocketThreadChannel thread, ITranslator translator)
         {
-            DiscordEmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(DiscordColor.Green);
+            EmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(Color.Green);
 
-            StringBuilder description = new StringBuilder();
-            description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {e.Thread.Name} - {e.Thread.Mention}");
-            description.AppendLine($"> **{translator.T().GuildAuditLogThreadCreatedParent()}:** {e.Parent.Name} - {e.Parent.Mention}");
-            description.AppendLine($"> **{translator.T().GuildAuditLogThreadCreatedCreator()}:** <@{e.Thread.CreatorId}>");
+            StringBuilder description = new();
+            description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {thread.Name} - {thread.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogThreadCreatedParent()}:** {thread.ParentChannel.Name} - {thread.ParentChannel.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogThreadCreatedCreator()}:** <@{thread.Owner}>");
 
             embed.WithTitle(translator.T().GuildAuditLogThreadCreatedTitle())
                  .WithDescription(description.ToString())
-                 .WithFooter($"{translator.T().GuildAuditLogChannelId()}: {e.Thread.Id}");
+                 .WithFooter($"{translator.T().GuildAuditLogChannelId()}: {thread.Id}");
 
             return embed;
         }

@@ -1,18 +1,17 @@
-using System.Threading.Tasks;
-using DSharpPlus.Entities;
-using masz.Enums;
-using masz.Models;
+using Discord;
+using MASZ.Enums;
+using MASZ.Models;
 
-namespace masz.Services
+namespace MASZ.Services
 {
     public interface IDiscordAnnouncer
     {
         Task AnnounceTipsInNewGuild(GuildConfig guildConfig);
-        Task AnnounceModCase(ModCase modCase, RestAction action, DiscordUser actor, bool announcePublic, bool announceDm);
-        Task AnnounceComment(ModCaseComment comment, DiscordUser actor, RestAction action);
-        Task AnnounceFile(string filename, ModCase modCase, DiscordUser actor, RestAction action);
-        Task AnnounceUserNote(UserNote userNote, DiscordUser actor, RestAction action);
-        Task AnnounceUserMapping(UserMapping userMapping, DiscordUser actor, RestAction action);
-        Task AnnounceAutomoderation(AutoModerationEvent modEvent, AutoModerationConfig moderationConfig, GuildConfig guildConfig, DiscordChannel channel, DiscordUser author);
+        Task AnnounceModCase(ModCase modCase, RestAction action, IUser actor, bool announcePublic, bool announceDm);
+        Task AnnounceComment(ModCaseComment comment, IUser actor, RestAction action);
+        Task AnnounceFile(string filename, ModCase modCase, IUser actor, RestAction action);
+        Task AnnounceUserNote(UserNote userNote, IUser actor, RestAction action);
+        Task AnnounceUserMapping(UserMapping userMapping, IUser actor, RestAction action);
+        Task AnnounceAutomoderation(AutoModerationEvent modEvent, AutoModerationConfig moderationConfig, GuildConfig guildConfig, ITextChannel channel, IUser author);
     }
 }

@@ -1,7 +1,6 @@
-﻿using System;
-using masz.Enums;
+﻿using MASZ.Enums;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class GuildConfig : ICloneable
     {
@@ -20,18 +19,19 @@ namespace masz.Models
 
         public object Clone()
         {
-            return new GuildConfig {
-                Id = this.Id,
-                GuildId = this.GuildId,
-                ModRoles = this.ModRoles,
-                AdminRoles = this.AdminRoles,
-                MutedRoles = this.MutedRoles,
-                ModNotificationDM = this.ModNotificationDM,
-                ModPublicNotificationWebhook = this.ModPublicNotificationWebhook,
-                ModInternalNotificationWebhook = this.ModInternalNotificationWebhook,
-                StrictModPermissionCheck = this.StrictModPermissionCheck,
-                ExecuteWhoisOnJoin = this.ExecuteWhoisOnJoin,
-                PreferredLanguage = this.PreferredLanguage
+            return new GuildConfig
+            {
+                Id = Id,
+                GuildId = GuildId,
+                ModRoles = ModRoles,
+                AdminRoles = AdminRoles,
+                MutedRoles = MutedRoles,
+                ModNotificationDM = ModNotificationDM,
+                ModPublicNotificationWebhook = ModPublicNotificationWebhook,
+                ModInternalNotificationWebhook = ModInternalNotificationWebhook,
+                StrictModPermissionCheck = StrictModPermissionCheck,
+                ExecuteWhoisOnJoin = ExecuteWhoisOnJoin,
+                PreferredLanguage = PreferredLanguage
             };
         }
     }

@@ -1,13 +1,7 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using masz.Enums;
-using masz.Exceptions;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+using MASZ.Exceptions;
 using Newtonsoft.Json;
 
-namespace masz.Middlewares
+namespace MASZ.Middlewares
 {
     public class APIExceptionHandlingMiddleware
     {
@@ -25,7 +19,8 @@ namespace masz.Middlewares
             try
             {
                 await _next(context);
-            } catch (BaseAPIException ex)
+            }
+            catch (BaseAPIException ex)
             {
                 string message = ex.Message;
                 context.Response.StatusCode = 400;
@@ -37,9 +32,9 @@ namespace masz.Middlewares
                 {
                     context.Response.StatusCode = 404;
                 }
-                _logger.LogWarning($"Encountered API error type {ex.error.ToString()}, message: " + message);
+                _logger.LogWarning($"Encountered API error type {ex.Error}, message: " + message);
                 context.Response.ContentType = "application/json";
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(new {customMASZError = ex.error, message = message}));
+                await context.Response.WriteAsync(JsonConvert.SerializeObject(new { customMASZError = ex.Error, message }));
             }
         }
     }

@@ -1,35 +1,28 @@
-using DSharpPlus.Entities;
-using masz.Exceptions;
-using masz.Repositories;
-using masz.Services;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using masz.Enums;
+using Discord;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Repositories;
+using MASZ.Services;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class DiscordOAuthIdentity : Identity
     {
-        private readonly ILogger<DiscordOAuthIdentity> _logger;
-        private Dictionary<ulong, DiscordMember> GuildMemberships = new Dictionary<ulong, DiscordMember>();
+        private readonly Dictionary<ulong, IGuildUser> GuildMemberships = new();
+
         public async static Task<DiscordOAuthIdentity> Create(string token, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
         {
             IDiscordAPIInterface api = serviceProvider.GetService(typeof(IDiscordAPIInterface)) as IDiscordAPIInterface;
-            DiscordUser user = await api.FetchCurrentUserInfo(token, CacheBehavior.IgnoreButCacheOnError);
-            List<DiscordGuild> guilds = await api.FetchGuildsOfCurrentUser(token, CacheBehavior.IgnoreButCacheOnError);
+            IUser user = await api.FetchCurrentUserInfo(token, CacheBehavior.IgnoreButCacheOnError);
+            List<IGuild> guilds = await api.FetchGuildsOfCurrentUser(token, CacheBehavior.IgnoreButCacheOnError);
 
             return new DiscordOAuthIdentity(token, serviceProvider, user, guilds, serviceScopeFactory);
         }
 
-        private DiscordOAuthIdentity (string token, IServiceProvider serviceProvider, DiscordUser currentUser, List<DiscordGuild> userGuilds, IServiceScopeFactory serviceScopeFactory) : base(token, serviceProvider, serviceScopeFactory)
+        private DiscordOAuthIdentity(string token, IServiceProvider serviceProvider, IUser currentUser, List<IGuild> userGuilds, IServiceScopeFactory serviceScopeFactory) : base(token, serviceProvider, serviceScopeFactory)
         {
             this.currentUser = currentUser;
-            this.currentUserGuilds = userGuilds;
-            this._logger = serviceProvider.GetService(typeof(ILogger<DiscordOAuthIdentity>)) as ILogger<DiscordOAuthIdentity>;
+            currentUserGuilds = userGuilds;
         }
 
         public override bool IsAuthorized()
@@ -42,12 +35,13 @@ namespace masz.Models
             if (currentUser != null)
             {
                 return currentUserGuilds.Any(x => x.Id == guildId);
-            } else
+            }
+            else
             {
                 return false;
             }
         }
-        public override async Task<DiscordMember> GetGuildMembership(ulong guildId)
+        public override async Task<IGuildUser> GetGuildMembership(ulong guildId)
         {
             if (GuildMemberships.ContainsKey(guildId))
             {
@@ -59,7 +53,7 @@ namespace masz.Models
                 {
                     return null;
                 }
-                DiscordMember guildMember = await _discordAPI.FetchMemberInfo(guildId, currentUser.Id, CacheBehavior.Default);
+                IGuildUser guildMember = await _discordAPI.FetchMemberInfo(guildId, currentUser.Id, CacheBehavior.Default);
                 if (guildMember == null)
                 {
                     return null;
@@ -70,7 +64,7 @@ namespace masz.Models
         }
         public override async Task<bool> HasAdminRoleOnGuild(ulong guildId)
         {
-            if (! IsOnGuild(guildId))
+            if (!IsOnGuild(guildId))
             {
                 return false;
             }
@@ -78,30 +72,30 @@ namespace masz.Models
             GuildConfig guildConfig;
             try
             {
-                using (var scope = _serviceScopeFactory.CreateScope())
-                {
-                    guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guildId);
-                }
-            } catch (ResourceNotFoundException)
+                using var scope = _serviceScopeFactory.CreateScope();
+                guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guildId);
+            }
+            catch (ResourceNotFoundException)
             {
                 return false;
             }
 
-            DiscordMember guildMember = await GetGuildMembership(guildId);
-            if (guildMember == null) {
+            IGuildUser guildMember = await GetGuildMembership(guildId);
+            if (guildMember == null)
+            {
                 return false;
             }
-            if (guildMember.IsOwner)
+            if (guildMember.Guild.OwnerId == guildMember.Id)
             {
                 return true;
             }
 
             // check for role
-            return guildMember.Roles.Where(x => guildConfig.AdminRoles.Contains(x.Id)).Any();
+            return guildMember.RoleIds.Where(x => guildConfig.AdminRoles.Contains(x)).Any();
         }
         public override async Task<bool> HasModRoleOrHigherOnGuild(ulong guildId)
         {
-            if (! IsOnGuild(guildId))
+            if (!IsOnGuild(guildId))
             {
                 return false;
             }
@@ -109,29 +103,30 @@ namespace masz.Models
             GuildConfig guildConfig;
             try
             {
-                using (var scope = _serviceScopeFactory.CreateScope())
-                {
-                    guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guildId);
-                }
-            } catch (ResourceNotFoundException)
+                using var scope = _serviceScopeFactory.CreateScope();
+                guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guildId);
+            }
+            catch (ResourceNotFoundException)
             {
                 return false;
             }
 
-            DiscordMember guildMember = await GetGuildMembership(guildId);
-            if (guildMember == null) {
+            IGuildUser guildMember = await GetGuildMembership(guildId);
+            if (guildMember == null)
+            {
                 return false;
             }
-            if (guildMember.IsOwner)
+            if (guildMember.Guild.OwnerId == guildMember.Id)
             {
                 return true;
             }
-            return guildMember.Roles.Any(x => guildConfig.AdminRoles.Contains(x.Id) ||
-                                                guildConfig.ModRoles.Contains(x.Id));
+            return guildMember.RoleIds.Any(x => guildConfig.AdminRoles.Contains(x) ||
+                                                guildConfig.ModRoles.Contains(x));
         }
         public override bool IsSiteAdmin()
         {
-            if (currentUser == null) {
+            if (currentUser == null)
+            {
                 return false;
             }
             return _config.GetSiteAdmins().Contains(currentUser.Id);
@@ -143,18 +138,18 @@ namespace masz.Models
             GuildMemberships.Remove(guildId);
         }
 
-        public override void AddGuildMembership(DiscordMember member)
+        public override void AddGuildMembership(IGuildUser member)
         {
-            if (! currentUserGuilds.Any(x => x.Id == member.Guild.Id))
+            if (!currentUserGuilds.Any(x => x.Id == member.Guild.Id))
             {
                 currentUserGuilds.Add(member.Guild);
             }
             GuildMemberships[member.Guild.Id] = member;
         }
 
-        public override void UpdateGuildMembership(DiscordMember member)
+        public override void UpdateGuildMembership(IGuildUser member)
         {
-            if (! currentUserGuilds.Any(x => x.Id == member.Guild.Id))
+            if (!currentUserGuilds.Any(x => x.Id == member.Guild.Id))
             {
                 currentUserGuilds.Add(member.Guild);
             }

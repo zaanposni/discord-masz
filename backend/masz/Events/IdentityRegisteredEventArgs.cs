@@ -1,11 +1,10 @@
-using System;
-using masz.Models;
+using MASZ.Models;
 
-namespace masz.Events
+namespace MASZ.Events
 {
     public class IdentityRegisteredEventArgs : EventArgs
     {
-        private Identity _identity;
+        private readonly Identity _identity;
 
         public IdentityRegisteredEventArgs(Identity identity)
         {

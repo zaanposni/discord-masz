@@ -1,10 +1,6 @@
-using System;
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.SlashCommands;
+using Discord.Interactions;
 
-namespace masz.Commands
+namespace MASZ.Commands
 {
 
     public class InviteCommand : BaseCommand<InviteCommand>
@@ -12,9 +8,9 @@ namespace masz.Commands
         public InviteCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [SlashCommand("invite", "How to invite this bot.")]
-        public async Task Invite(InteractionContext ctx)
+        public async Task Invite()
         {
-            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdInvite()));
+            await Context.Interaction.RespondAsync(Translator.T().CmdInvite());
         }
     }
 }

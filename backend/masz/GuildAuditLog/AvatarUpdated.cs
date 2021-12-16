@@ -1,15 +1,12 @@
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using masz.Services;
+using Discord;
 
-namespace masz.GuildAuditLog
+namespace MASZ.GuildAuditLog
 {
     public static class AvatarUpdatedAuditLog
     {
-        public static DiscordEmbedBuilder HandleAvatarUpdated(DiscordClient client, GuildMemberUpdateEventArgs e, ITranslator translator)
+        public static EmbedBuilder HandleAvatarUpdated()
         {
-            return GuildAuditLogger.GenerateBaseEmbed(DiscordColor.Orange);
+            return GuildAuditLogger.GenerateBaseEmbed(Color.Orange);
         }
     }
 }

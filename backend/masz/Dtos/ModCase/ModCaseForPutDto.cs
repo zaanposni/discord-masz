@@ -1,8 +1,7 @@
-using System;
+using MASZ.Enums;
 using System.ComponentModel.DataAnnotations;
-using masz.Enums;
 
-namespace masz.Dtos.ModCase
+namespace MASZ.Dtos.ModCase
 {
     public class ModCaseForPutDto
     {
@@ -15,7 +14,7 @@ namespace masz.Dtos.ModCase
         public ulong UserId { get; set; }
         [DataType(DataType.Date)]
         public DateTime? OccuredAt { get; set; }
-        public string[] Labels { get; set; } = new string[0];
+        public string[] Labels { get; set; } = Array.Empty<string>();
         public string Others { get; set; }
         [Required(ErrorMessage = "PunishmentType field is required")]
         [EnumDataType(typeof(PunishmentType))]

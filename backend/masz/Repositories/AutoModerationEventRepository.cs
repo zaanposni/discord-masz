@@ -1,40 +1,36 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DSharpPlus.Entities;
-using masz.Events;
-using masz.Models;
-using Microsoft.Extensions.Logging;
-using masz.Enums;
+using Discord;
+using MASZ.Enums;
+using MASZ.Events;
+using MASZ.Models;
 using System.Text;
 
-namespace masz.Repositories
+namespace MASZ.Repositories
 {
 
     public class AutoModerationEventRepository : BaseRepository<AutoModerationEventRepository>
     {
         private AutoModerationEventRepository(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
-        public static AutoModerationEventRepository CreateDefault(IServiceProvider serviceProvider) => new AutoModerationEventRepository(serviceProvider);
+        public static AutoModerationEventRepository CreateDefault(IServiceProvider serviceProvider) => new(serviceProvider);
 
         public async Task<int> CountEvents()
         {
-            return await _database.CountAllModerationEvents();
+            return await Database.CountAllModerationEvents();
         }
         public async Task<int> CountEventsByGuild(ulong guildId)
         {
-            return await _database.CountAllModerationEventsForGuild(guildId);
+            return await Database.CountAllModerationEventsForGuild(guildId);
         }
         public async Task<int> CountEventsByGuildAndUser(ulong guildId, ulong userId)
         {
-            return await _database.CountAllModerationEventsForSpecificUserOnGuild(guildId, userId);
+            return await Database.CountAllModerationEventsForSpecificUserOnGuild(guildId, userId);
         }
         public async Task<AutoModerationEvent> RegisterEvent(AutoModerationEvent modEvent)
         {
             await _translator.SetContext(modEvent.GuildId);
             AutoModerationConfig modConfig = await AutoModerationConfigRepository.CreateDefault(_serviceProvider).GetConfigsByGuildAndType(modEvent.GuildId, modEvent.AutoModerationType);
 
-            DiscordUser user = await _discordAPI.FetchUserInfo(modEvent.UserId, CacheBehavior.Default);
+            IUser user = await DiscordAPI.FetchUserInfo(modEvent.UserId, CacheBehavior.Default);
             if (user != null)
             {
                 modEvent.Username = user.Username;
@@ -45,10 +41,12 @@ namespace masz.Repositories
 
             if (modConfig.AutoModerationAction == AutoModerationAction.CaseCreated || modConfig.AutoModerationAction == AutoModerationAction.ContentDeletedAndCaseCreated)
             {
-                ModCase modCase = new ModCase();
-                modCase.Title = $"{_translator.T().Automoderation()}: {_translator.T().Enum(modEvent.AutoModerationType)}";
+                ModCase modCase = new()
+                {
+                    Title = $"{_translator.T().Automoderation()}: {_translator.T().Enum(modEvent.AutoModerationType)}"
+                };
 
-                StringBuilder description = new StringBuilder();
+                StringBuilder description = new();
                 description.AppendLine(_translator.T().NotificationAutomoderationCase(user));
                 description.AppendLine(_translator.T().Type() + ": " + _translator.T().Enum(modEvent.AutoModerationType));
                 description.AppendLine(_translator.T().Action() + ": " + _translator.T().Enum(modEvent.AutoModerationAction));
@@ -59,7 +57,7 @@ namespace masz.Repositories
 
                 modCase.Labels = new List<string>() { "automoderation", modEvent.AutoModerationType.ToString() }.ToArray();
                 modCase.CreationType = CaseCreationType.AutoModeration;
-                modCase.PunishmentType = PunishmentType.None;
+                modCase.PunishmentType = PunishmentType.Warn;
                 modCase.PunishedUntil = null;
                 if (modConfig.PunishmentType != null)
                 {
@@ -77,14 +75,15 @@ namespace masz.Repositories
                     modCase = await ModCaseRepository.CreateWithBotIdentity(_serviceProvider).CreateModCase(modCase, true, modConfig.SendPublicNotification, modConfig.SendDmNotification);
 
                     modEvent.AssociatedCaseId = modCase.CaseId;
-                } catch (Exception e)
+                }
+                catch (Exception e)
                 {
-                    _logger.LogError(e, $"Failed to create modcase for modevent {modEvent.GuildId}/{modEvent.UserId}/{modEvent.AutoModerationType}");
+                    Logger.LogError(e, $"Failed to create modcase for modevent {modEvent.GuildId}/{modEvent.UserId}/{modEvent.AutoModerationType}");
                 }
             }
 
-            await _database.SaveModerationEvent(modEvent);
-            await _database.SaveChangesAsync();
+            await Database.SaveModerationEvent(modEvent);
+            await Database.SaveChangesAsync();
 
             await _eventHandler.InvokeAutoModerationEventRegistered(new AutoModerationEventRegisteredEventArgs(modEvent));
 
@@ -92,44 +91,45 @@ namespace masz.Repositories
         }
         public async Task DeleteEventsForGuild(ulong guildId)
         {
-            await _database.DeleteAllModerationEventsForGuild(guildId);
-            await _database.SaveChangesAsync();
+            await Database.DeleteAllModerationEventsForGuild(guildId);
+            await Database.SaveChangesAsync();
         }
         public async Task<List<AutoModerationEvent>> GetPagination(ulong guildId, int startPage = 1, int pageSize = 20)
         {
-            return await _database.SelectAllModerationEventsForGuild(guildId, startPage, pageSize);
+            return await Database.SelectAllModerationEventsForGuild(guildId, startPage, pageSize);
         }
         public async Task<List<AutoModerationEvent>> GetPaginationFilteredForUser(ulong guildId, ulong userId, int startPage = 1, int pageSize = 20)
         {
-            return await _database.SelectAllModerationEventsForSpecificUserOnGuild(guildId, userId, startPage, pageSize);
+            return await Database.SelectAllModerationEventsForSpecificUserOnGuild(guildId, userId, startPage, pageSize);
         }
         public async Task<List<AutoModerationEvent>> GetAllEventsForUser(ulong userId)
         {
-            return await _database.SelectAllModerationEventsForSpecificUser(userId);
+            return await Database.SelectAllModerationEventsForSpecificUser(userId);
         }
         public async Task<List<AutoModerationEvent>> GetAllEventsForUserSinceMinutes(ulong userId, int minutes)
         {
-            return await _database.SelectAllModerationEventsForSpecificUser(userId, minutes);
+            return await Database.SelectAllModerationEventsForSpecificUser(userId, minutes);
         }
         public async Task<List<DbCount>> GetCounts(ulong guildId, DateTime since)
         {
-            return await _database.GetModerationCountGraph(guildId, since);
+            return await Database.GetModerationCountGraph(guildId, since);
         }
         public async Task<List<AutoModerationTypeSplit>> GetCountsByType(ulong guildId, DateTime since)
         {
-            return await _database.GetModerationSplitGraph(guildId, since);
+            return await Database.GetModerationSplitGraph(guildId, since);
         }
         public async Task<List<AutoModerationEvent>> SearchInGuild(ulong guildId, string searchString)
         {
-            List<AutoModerationEvent> events = await _database.SelectAllModerationEventsForGuild(guildId);
-            List<AutoModerationEvent> filteredEvents = new List<AutoModerationEvent>();
+            List<AutoModerationEvent> events = await Database.SelectAllModerationEventsForGuild(guildId);
+            List<AutoModerationEvent> filteredEvents = new();
             foreach (var c in events)
             {
                 var entry = new AutoModerationEventExpandedView(
                     c,
-                    await _discordAPI.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache)
+                    await DiscordAPI.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache)
                 );
-                if (contains(entry, searchString)) {
+                if (Contains(entry, searchString))
+                {
                     filteredEvents.Add(c);
                 }
             }

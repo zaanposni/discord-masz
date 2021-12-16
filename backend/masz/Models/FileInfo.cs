@@ -1,7 +1,7 @@
 
 using System.Net.Mime;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class FileInfo
     {

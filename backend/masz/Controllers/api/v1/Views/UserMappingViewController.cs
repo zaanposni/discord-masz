@@ -1,25 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using masz.Models;
-using masz.Repositories;
+using MASZ.Enums;
+using MASZ.Models;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using masz.Enums;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/guilds/{guildId}/usermapview")]
     [Authorize]
     public class UserMappingViewController : SimpleController
     {
-        private readonly ILogger<UserMappingViewController> _logger;
 
-        public UserMappingViewController(ILogger<UserMappingViewController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public UserMappingViewController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _logger = logger;
         }
 
         [HttpGet]
@@ -29,7 +23,7 @@ namespace masz.Controllers
 
             UserMapRepository repository = UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity());
             List<UserMapping> userMappings = await repository.GetUserMapsByGuild(guildId);
-            List<UserMappingExpandedView> userMappingViews = new List<UserMappingExpandedView>();
+            List<UserMappingExpandedView> userMappingViews = new();
             foreach (UserMapping userMapping in userMappings)
             {
                 userMappingViews.Add(new UserMappingExpandedView(

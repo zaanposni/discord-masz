@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using masz.Enums;
-using Microsoft.Extensions.Logging;
+using MASZ.Enums;
 
-namespace masz.Services
+namespace MASZ.Services
 {
-    public class InternalConfiguration: IInternalConfiguration
+    public class InternalConfiguration : IInternalConfiguration
     {
         private readonly ILogger<InternalConfiguration> _logger;
         private string _discordBotToken;
@@ -41,39 +37,27 @@ namespace masz.Services
             try
             {
                 _siteAdmins = Environment.GetEnvironmentVariable("DISCORD_SITE_ADMINS").Split(",").Select(x => ulong.Parse(x)).ToList();
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, "Could not parse DISCORD_SITE_ADMINS.");
                 _siteAdmins = new List<ulong>();
             }
-            switch (Environment.GetEnvironmentVariable("DEFAULT_LANGUAGE")) {
-                case "de":
-                    _defaultLanguage = Language.de;
-                    break;
-                case "it":
-                    _defaultLanguage = Language.it;
-                    break;
-                case "fr":
-                    _defaultLanguage = Language.fr;
-                    break;
-                case "es":
-                    _defaultLanguage = Language.es;
-                    break;
-                case "at":
-                    _defaultLanguage = Language.at;
-                    break;
-                case "ru":
-                    _defaultLanguage = Language.ru;
-                    break;
-                default:
-                    _defaultLanguage = Language.en;
-                    break;
-            }
+            _defaultLanguage = Environment.GetEnvironmentVariable("DEFAULT_LANGUAGE") switch
+            {
+                "de" => Language.de,
+                "it" => Language.it,
+                "fr" => Language.fr,
+                "es" => Language.es,
+                "at" => Language.at,
+                "ru" => Language.ru,
+                _ => Language.en,
+            };
             _auditLogWebhookUrl = Environment.GetEnvironmentVariable("AUDIT_LOG_WEBHOOK_URL");
-            _publicFilesEnabled = String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_PUBLIC_FILES"));
-            _demoModeEnabled = String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_DEMO_MODE"));
-            _customPluginsEnabled = String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS"));
-            _corsEnabled = String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CORS"));
+            _publicFilesEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_PUBLIC_FILES"));
+            _demoModeEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_DEMO_MODE"));
+            _customPluginsEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS"));
+            _corsEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CORS"));
         }
 
         public string GetBaseUrl()

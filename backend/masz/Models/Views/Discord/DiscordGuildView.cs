@@ -1,7 +1,6 @@
-using System.Collections.Generic;
-using DSharpPlus.Entities;
+using Discord;
 
-namespace masz.Models.Views
+namespace MASZ.Models.Views
 {
     public class DiscordGuildView
     {
@@ -12,19 +11,21 @@ namespace masz.Models.Views
         public List<DiscordRoleView> Roles { get; set; }
 
         public DiscordGuildView() { }
-        public DiscordGuildView(DiscordGuild guild)
+        public DiscordGuildView(IGuild guild)
         {
             Id = guild.Id.ToString();
             Name = guild.Name;
-            Icon = guild.IconHash;
+            Icon = guild.IconId;
             IconUrl = guild.IconUrl;
             Roles = new List<DiscordRoleView>();
-            try {
-                foreach (DiscordRole role in guild.Roles.Values)
+            try
+            {
+                foreach (IRole role in guild.Roles)
                 {
                     Roles.Add(new DiscordRoleView(role));
                 }
-            } catch (System.Exception) { }  // some times this stupid library fails, so we just ignore it
+            }
+            catch (Exception) { }
         }
     }
 }

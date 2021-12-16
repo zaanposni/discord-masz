@@ -1,17 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.SlashCommands;
-using masz.Enums;
-using masz.Models;
-using masz.Repositories;
-using Microsoft.Extensions.Logging;
+using Discord;
+using Discord.Interactions;
+using Discord.Net;
+using MASZ.Enums;
+using System.Net;
 
-namespace masz.Commands
+namespace MASZ.Commands
 {
 
     public class SayCommand : BaseCommand<SayCommand>
@@ -19,40 +12,35 @@ namespace masz.Commands
         public SayCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [SlashCommand("say", "Let the bot send a message.")]
-        public async Task Say(InteractionContext ctx,  [Option("message", "message content the bot shall write")] string message, [Option("channel", "channel to write the message in, defaults to current")] DiscordChannel channel = null)
+        public async Task Say([Summary("message", "message content the bot shall write")] string message, [Summary("channel", "channel to write the message in, defaults to current")] ITextChannel channel = null)
         {
-            await Require(ctx, RequireCheckEnum.GuildModerator);
+            await Require(RequireCheckEnum.GuildModerator);
 
-            if (channel == null)
+            if (channel is null && Context.Channel is not ITextChannel)
             {
-                channel = ctx.Channel;
-            }
-
-            if (channel.Type != ChannelType.Text)
-            {
-                await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                        new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdOnlyTextChannel()).AsEphemeral(true));
+                await Context.Interaction.RespondAsync(Translator.T().CmdOnlyTextChannel(), ephemeral: true);
                 return;
             }
+
+            if (channel is null)
+                channel = Context.Channel as ITextChannel;
 
             try
             {
                 await channel.SendMessageAsync(message);
-            } catch (DSharpPlus.Exceptions.UnauthorizedException)
-            {
-                await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                        new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdCannotViewOrDeleteInChannel()).AsEphemeral(true));
-                return;
-            } catch (Exception e)
-            {
-                _logger.LogError(e, $"Error while writing message in channel {channel.Id}");
-                await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                        new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdSayFailed()).AsEphemeral(true));
-                return;
-            }
 
-            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                    new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdSaySent()).AsEphemeral(true));
+                await Context.Interaction.RespondAsync(Translator.T().CmdSaySent(), ephemeral: true);
+            }
+            catch (HttpException e)
+            {
+                if (e.HttpCode == HttpStatusCode.Unauthorized)
+                    await Context.Interaction.RespondAsync(Translator.T().CmdCannotViewOrDeleteInChannel(), ephemeral: true);
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e, $"Error while writing message in channel {channel.Id}");
+                await Context.Interaction.RespondAsync(Translator.T().CmdSayFailed(), ephemeral: true);
+            }
         }
     }
 }

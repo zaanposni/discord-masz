@@ -1,26 +1,21 @@
-using System;
-using System.Threading.Tasks;
-using DSharpPlus.Entities;
-using masz.Dtos.GuildMotd;
-using masz.Models;
-using masz.Repositories;
+using Discord;
+using MASZ.Dtos.GuildMotd;
+using MASZ.Enums;
+using MASZ.Models;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using masz.Enums;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/guilds/{guildId}/motd")]
     [Authorize]
     public class GuildMotdController : SimpleController
     {
-        private readonly ILogger<GuildMotdController> _logger;
 
-        public GuildMotdController(ILogger<GuildMotdController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public GuildMotdController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _logger = logger;
         }
 
         [HttpGet]
@@ -31,7 +26,7 @@ namespace masz.Controllers
 
             GuildMotd motd = await GuildMotdRepository.CreateDefault(_serviceProvider, identity).GetMotd(guildId);
 
-            DiscordUser creator = await _discordAPI.FetchUserInfo(motd.UserId, CacheBehavior.Default);
+            IUser creator = await _discordAPI.FetchUserInfo(motd.UserId, CacheBehavior.Default);
 
             return Ok(new GuildMotdExpandedView(motd, creator));
         }

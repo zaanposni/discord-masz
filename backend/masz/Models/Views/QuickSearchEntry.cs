@@ -1,13 +1,13 @@
-using System;
-using masz.Enums;
+using MASZ.Enums;
 
-namespace masz.Models
+namespace MASZ.Models
 {
-    public interface QuickSearchEntry
+    public interface IQuickSearchEntry
     {
         DateTime CreatedAt { get; set; }
     }
-    public class QuickSearchEntry<T> : QuickSearchEntry
+
+    public class QuickSearchEntry<T> : IQuickSearchEntry
     {
         public T Entry { get; set; }
         public DateTime CreatedAt { get; set; }

@@ -1,7 +1,7 @@
-using masz.Enums;
-using masz.Models;
+using MASZ.Enums;
+using MASZ.Models;
 
-namespace masz.Exceptions
+namespace MASZ.Exceptions
 {
     public class ProtectedModCaseSuspectException : BaseAPIException
     {

@@ -1,8 +1,7 @@
-using System;
-using masz.Enums;
-using masz.Services;
+using MASZ.Enums;
+using MASZ.Services;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class CaseView
     {

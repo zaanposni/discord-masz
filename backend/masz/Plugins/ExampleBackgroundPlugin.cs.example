@@ -1,19 +1,19 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using masz.Events;
+using MASZ.Events;
 using Microsoft.Extensions.Logging;
 
 /*
 
 This plugin is an example of how to create a background task.
-Especially on some listeners like OnIdentityRegistered it is important to not block masz.
-The website or a slash command may wait for a response so it is important to not block masz.
+Especially on some listeners like OnIdentityRegistered it is important to not block MASZ.
+The website or a slash command may wait for a response so it is important to not block MASZ.
 If you have a long running task you can use the Task.Run() method to run it in a background thread.
 
 */
 
-namespace masz.Plugins
+namespace MASZ.Plugins
 {
     public class ExampleBackgroundPlugin : BasePlugin, IBasePlugin
     {
@@ -33,7 +33,7 @@ namespace masz.Plugins
         {
             _logger.LogInformation($"Identity {e.GetIdentity().GetCurrentUser().Username} registered!");
             Task.Run(() => SomeAsyncBackgroundStuff());
-            _logger.LogInformation("let masz continue...");
+            _logger.LogInformation("let MASZ continue...");
             return Task.CompletedTask;
         }
 

@@ -1,14 +1,12 @@
-using System;
+using Discord;
+using MASZ.Models;
 using System.Text.RegularExpressions;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using masz.Models;
 
-namespace masz.AutoModerations
+namespace MASZ.AutoModerations
 {
     public static class DuplicatedCharacterCheck
     {
-        public static bool Check(DiscordMessage message, AutoModerationConfig config, DiscordClient client)
+        public static bool Check(IMessage message, AutoModerationConfig config, IDiscordClient _)
         {
             if (config.Limit == null)
             {
@@ -23,7 +21,7 @@ namespace masz.AutoModerations
                 return false;
             }
 
-            Regex regexPattern = new Regex(@"([^0-9`])(?:\s*\1){" + config.Limit.ToString() + @",}");
+            Regex regexPattern = new(@"([^0-9`])(?:\s*\1){" + config.Limit.ToString() + @",}");
 
             return regexPattern.Match(message.Content).Success;
         }

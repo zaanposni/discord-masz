@@ -1,7 +1,6 @@
-using System;
-using masz.Enums;
+using MASZ.Enums;
 
-namespace masz.Models.Views
+namespace MASZ.Models.Views
 {
     public class CaseTemplateView
     {
@@ -16,9 +15,9 @@ namespace masz.Models.Views
         public string[] CaseLabels { get; set; }
         public PunishmentType CasePunishmentType { get; set; }
         public DateTime? CasePunishedUntil { get; set; }
-        public bool sendPublicNotification { get; set; }
-        public bool handlePunishment { get; set; }
-        public bool announceDm { get; set; }
+        public bool SendPublicNotification { get; set; }
+        public bool HandlePunishment { get; set; }
+        public bool AnnounceDm { get; set; }
         public CaseTemplateView() { }
         public CaseTemplateView(CaseTemplate template)
         {
@@ -33,9 +32,9 @@ namespace masz.Models.Views
             CaseLabels = template.CaseLabels;
             CasePunishmentType = template.CasePunishmentType;
             CasePunishedUntil = template.CasePunishedUntil;
-            sendPublicNotification = template.sendPublicNotification;
-            handlePunishment = template.handlePunishment;
-            announceDm = template.announceDm;
+            SendPublicNotification = template.SendPublicNotification;
+            HandlePunishment = template.HandlePunishment;
+            AnnounceDm = template.AnnounceDm;
         }
     }
 }

@@ -1,12 +1,11 @@
-using System;
-using System.Linq;
-using Microsoft.Extensions.Logging;
-
-namespace masz.Logger
+namespace MASZ.Logger
 {
     public class CustomLoggerProvider : ILoggerProvider
     {
-        public void Dispose() { }
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
 
         public ILogger CreateLogger(string categoryName)
         {
@@ -16,31 +15,13 @@ namespace masz.Logger
         public class CustomConsoleLogger : ILogger
         {
             private string _categoryName;
-            private LogLevel _level = LogLevel.Information;
-            private readonly string _maszPrefix = "masz.";
-            private readonly string _dSharpPlusPrefix = "DSharpPlus.";
+            private readonly LogLevel _level = LogLevel.Information;
+            private readonly string _MASZPrefix = "MASZ.";
+            private readonly string _dNetPlusPrefix = "Discord.";
 
             public CustomConsoleLogger(string categoryName)
             {
                 _categoryName = categoryName;
-            }
-
-            public void SetLogLevel(LogLevel logLevel)
-            {
-                _level = logLevel;
-            }
-
-            private bool IsBlocked(string message, LogLevel logLevel)
-            {
-                if (_categoryName == "DSharpPlus.BaseDiscordClient" || _categoryName == "D#.BaseDiscordClient")
-                {
-                    // this is really annoying... and not even a real warning...
-                    if (message.Contains("Pre-emptive ratelimit triggered - waiting until") && logLevel == LogLevel.Warning)
-                    {
-                        return true;
-                    }
-                }
-                return false;
             }
 
             public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
@@ -51,10 +32,10 @@ namespace masz.Logger
                 }
 
                 string message = formatter(state, exception);
-                if (IsBlocked(message, logLevel)) { return; }
 
-                string shortLogLevel = logLevel.ToString().ToUpper();
-                switch(logLevel)
+                string shortLogLevel;
+
+                switch (logLevel)
                 {
                     case LogLevel.Trace:
                         shortLogLevel = "T";
@@ -86,13 +67,16 @@ namespace masz.Logger
                         break;
                 }
 
-                if (_categoryName.StartsWith(_maszPrefix)) {
+                if (_categoryName.StartsWith(_MASZPrefix))
+                {
                     _categoryName = _categoryName.Split('.').Last()
                                                  .Replace("RequestLoggingMiddleware", "ReqLog")
                                                  .Replace("Command", "Cmd")
                                                  .Replace("Interface", "I");
-                } else if (_categoryName.StartsWith(_dSharpPlusPrefix)) {
-                    _categoryName = _categoryName.Replace("DSharpPlus.", "D#.");
+                }
+                else if (_categoryName.StartsWith(_dNetPlusPrefix))
+                {
+                    _categoryName = _categoryName.Replace("Discord.", "DNET.");
                 }
 
                 string currentTime = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");

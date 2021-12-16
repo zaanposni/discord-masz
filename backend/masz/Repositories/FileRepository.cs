@@ -1,18 +1,10 @@
+using Discord;
+using MASZ.Enums;
+using MASZ.Events;
+using MASZ.Exceptions;
+using MASZ.Models;
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using masz.Enums;
-using System.Threading.Tasks;
-using DSharpPlus.Entities;
-using masz.Events;
-using masz.Exceptions;
-using masz.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-
-namespace masz.Repositories
+namespace MASZ.Repositories
 {
 
     public class FileRepository : BaseRepository<FileRepository>
@@ -26,8 +18,8 @@ namespace masz.Repositories
         {
         }
 
-        public static FileRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new FileRepository(serviceProvider, identity);
-        public static FileRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new FileRepository(serviceProvider);
+        public static FileRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new(serviceProvider, identity);
+        public static FileRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new(serviceProvider);
 
         public Models.FileInfo GetCaseFile(ulong guildId, int caseId, string fileName)
         {
@@ -45,9 +37,10 @@ namespace masz.Repositories
             try
             {
                 fileData = _filesHandler.ReadFile(filePath);
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
-                _logger.LogError(e, "Failed to read file");
+                Logger.LogError(e, "Failed to read file");
                 throw new ResourceNotFoundException();
             }
 
@@ -96,7 +89,7 @@ namespace masz.Repositories
         public async Task<string> UploadFile(IFormFile file, ulong guildId, int caseId)
         {
             ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, _identity).GetModCase(guildId, caseId);
-            DiscordUser currentUser = _identity.GetCurrentUser();
+            IUser currentUser = _identity.GetCurrentUser();
 
             var uploadDir = Path.Join(_config.GetFileUploadPath(), guildId.ToString(), caseId.ToString());
 
@@ -114,9 +107,9 @@ namespace masz.Repositories
             {
                 await _discordAnnouncer.AnnounceFile(fileName, modCase, currentUser, RestAction.Created);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                _logger.LogError(e, "Failed to announce file.");
+                Logger.LogError(e, "Failed to announce file.");
             }
 
             await _eventHandler.InvokeFileUploaded(new FileUploadedEventArgs(GetCaseFile(guildId, caseId, fileName)));
@@ -127,7 +120,7 @@ namespace masz.Repositories
         public async Task DeleteFile(ulong guildId, int caseId, string fileName)
         {
             ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, _identity).GetModCase(guildId, caseId);
-            DiscordUser currentUser = _identity.GetCurrentUser();
+            IUser currentUser = _identity.GetCurrentUser();
 
             var filePath = Path.Join(_config.GetFileUploadPath(), guildId.ToString(), caseId.ToString(), _filesHandler.RemoveSpecialCharacters(fileName));
 
@@ -139,7 +132,8 @@ namespace masz.Repositories
                 throw new InvalidPathException();
             }
 
-            if (! _filesHandler.FileExists(fullFilePath)) {
+            if (!_filesHandler.FileExists(fullFilePath))
+            {
                 throw new ResourceNotFoundException();
             }
 
@@ -149,9 +143,9 @@ namespace masz.Repositories
             {
                 await _discordAnnouncer.AnnounceFile(fileName, modCase, currentUser, RestAction.Deleted);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                _logger.LogError(e, "Failed to announce file.");
+                Logger.LogError(e, "Failed to announce file.");
             }
         }
     }

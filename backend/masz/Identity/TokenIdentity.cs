@@ -1,20 +1,18 @@
-using DSharpPlus.Entities;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
+using Discord;
+using MASZ.Enums;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using masz.Enums;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class TokenIdentity : Identity
     {
-        private bool isValid = false;
-        public TokenIdentity (string token, IServiceProvider serviceProvider, APIToken dbToken, IServiceScopeFactory serviceScopeFactory) : base(token, serviceProvider, serviceScopeFactory)
+        private readonly bool isValid = false;
+
+        public TokenIdentity(string token, IServiceProvider serviceProvider, APIToken dbToken, IServiceScopeFactory serviceScopeFactory) : base(token, serviceProvider, serviceScopeFactory)
         {
-            if (dbToken != null) {
+            if (dbToken != null)
+            {
                 using var hmac = new HMACSHA512(dbToken.TokenSalt);
                 var generatedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(token));
                 bool valid = generatedHash.Length != 0;
@@ -22,12 +20,13 @@ namespace masz.Models
                 {
                     if (generatedHash[i] != dbToken.TokenHash[i]) valid = false;
                 }
-                if (dbToken.ValidUntil <= DateTime.UtcNow) {
+                if (dbToken.ValidUntil <= DateTime.UtcNow)
+                {
                     valid = false;
                 }
                 isValid = valid;
                 currentUser = _discordAPI.GetCurrentBotInfo(CacheBehavior.Default);
-                currentUserGuilds = new List<DiscordGuild>();
+                currentUserGuilds = new List<IGuild>();
             }
         }
 
@@ -41,9 +40,9 @@ namespace masz.Models
             return IsAuthorized();
         }
 
-        public override Task<DiscordMember> GetGuildMembership(ulong guildId)
+        public override Task<IGuildUser> GetGuildMembership(ulong guildId)
         {
-            return Task.FromResult<DiscordMember>(null);
+            return Task.FromResult<IGuildUser>(null);
         }
 
         public override Task<bool> HasAdminRoleOnGuild(ulong guildId)

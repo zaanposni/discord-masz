@@ -1,10 +1,7 @@
-using System;
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.SlashCommands;
+using Discord;
+using Discord.Interactions;
 
-namespace masz.Commands
+namespace MASZ.Commands
 {
 
     public class AvatarCommand : BaseCommand<AvatarCommand>
@@ -12,28 +9,30 @@ namespace masz.Commands
         public AvatarCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [SlashCommand("avatar", "Get the high resolution avatar of a user.")]
-        public async Task Avatar(InteractionContext ctx, [Option("user", "User to get the avatar from")] DiscordUser user)
+        public async Task Avatar([Summary("user", "User to get the avatar from")] IUser user)
         {
-            DiscordMember member = null;
+            IGuildUser member = null;
             try
             {
-                member = await ctx.Guild.GetMemberAsync(user.Id);
-            } catch (Exception) { }
+                member = Context.Guild.GetUser(user.Id);
+            }
+            catch (Exception) { }
 
-            DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
+            EmbedBuilder embed = new();
             embed.WithTitle("Avatar");
             embed.WithFooter($"UserId: {user.Id}");
-            if (member != null && member.GuildAvatarHash != user.AvatarHash)
+            if (member != null && member.GuildAvatarId != user.AvatarId)
             {
-                embed.WithUrl(member.GuildAvatarUrl);
-                embed.WithImageUrl(member.GuildAvatarUrl);
-            } else
+                embed.WithUrl(member.GuildAvatarId);
+                embed.WithImageUrl(member.GuildAvatarId);
+            }
+            else
             {
-                embed.WithUrl(user.AvatarUrl);
-                embed.WithImageUrl(user.AvatarUrl);
+                embed.WithUrl(user.AvatarId);
+                embed.WithImageUrl(user.AvatarId);
             }
 
-            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().AddEmbed(embed.Build()).AsEphemeral(true));
+            await Context.Interaction.RespondAsync(embed: embed.Build(), ephemeral: true);
         }
     }
 }

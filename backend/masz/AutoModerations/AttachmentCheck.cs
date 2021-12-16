@@ -1,12 +1,11 @@
-using DSharpPlus;
-using DSharpPlus.Entities;
-using masz.Models;
+using Discord;
+using MASZ.Models;
 
-namespace masz.AutoModerations
+namespace MASZ.AutoModerations
 {
     public static class AttachmentCheck
     {
-        public static bool Check(DiscordMessage message, AutoModerationConfig config, DiscordClient client)
+        public static bool Check(IMessage message, AutoModerationConfig config, IDiscordClient _)
         {
             if (config.Limit == null)
             {

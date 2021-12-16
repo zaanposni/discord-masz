@@ -1,28 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using masz.Models;
-using masz.Models.Views;
-using masz.Repositories;
+using Discord;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Models;
+using MASZ.Models.Views;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using masz.Enums;
-using masz.Exceptions;
-using DSharpPlus.Entities;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/guilds/{guildId}/cases/{caseId}/view")]
     [Authorize]
     public class CaseViewController : SimpleCaseController
     {
-        private readonly ILogger<CaseViewController> _logger;
-
         public CaseViewController(ILogger<CaseViewController> logger, IServiceProvider serviceProvider) : base(serviceProvider, logger)
         {
-            _logger = logger;
         }
 
         [HttpGet]
@@ -34,9 +27,9 @@ namespace masz.Controllers
 
             ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, identity).GetModCase(guildId, caseId);
 
-            DiscordUser suspect = await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.OnlyCache);
+            IUser suspect = await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.OnlyCache);
 
-            List<CommentExpandedView> comments = new List<CommentExpandedView>();
+            List<CommentExpandedView> comments = new();
             foreach (ModCaseComment comment in modCase.Comments)
             {
                 comments.Add(new CommentExpandedView(
@@ -56,10 +49,11 @@ namespace masz.Controllers
                         suspect,
                         await _discordAPI.FetchUserInfo(note.CreatorId, CacheBehavior.OnlyCache)
                     );
-                } catch (ResourceNotFoundException) { }
+                }
+                catch (ResourceNotFoundException) { }
             }
 
-            CaseExpandedView caseView = new CaseExpandedView(
+            CaseExpandedView caseView = new(
                 modCase,
                 await _discordAPI.FetchUserInfo(modCase.ModId, CacheBehavior.OnlyCache),
                 await _discordAPI.FetchUserInfo(modCase.LastEditedByModId, CacheBehavior.OnlyCache),
@@ -68,14 +62,17 @@ namespace masz.Controllers
                 userNote
             );
 
-            if (modCase.LockedByUserId != 0) {
+            if (modCase.LockedByUserId != 0)
+            {
                 caseView.LockedBy = DiscordUserView.CreateOrDefault(await _discordAPI.FetchUserInfo(modCase.LockedByUserId, CacheBehavior.OnlyCache));
             }
-            if (modCase.DeletedByUserId != 0) {
+            if (modCase.DeletedByUserId != 0)
+            {
                 caseView.DeletedBy = DiscordUserView.CreateOrDefault(await _discordAPI.FetchUserInfo(modCase.DeletedByUserId, CacheBehavior.OnlyCache));
             }
 
-            if (! (await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId) || guildConfig.PublishModeratorInfo)) {
+            if (!(await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId) || guildConfig.PublishModeratorInfo))
+            {
                 caseView.RemoveModeratorInfo();
             }
 

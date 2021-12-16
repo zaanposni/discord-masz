@@ -1,7 +1,6 @@
-using System;
-using DSharpPlus.Entities;
+using Discord;
 
-namespace masz.InviteTracking
+namespace MASZ.InviteTracking
 {
     /*
         Helper class to combine default invites and vanity url.
@@ -28,28 +27,30 @@ namespace masz.InviteTracking
             return currentUses != Uses;
         }
 
-        public TrackedInvite(DiscordInvite invite, ulong guildId)
+        public TrackedInvite(IInviteMetadata invite, ulong guildId)
         {
             GuildId = guildId;
             Code = invite.Code;
             try
             {
                 CreatorId = invite.Inviter.Id;
-            } catch (NullReferenceException)
+            }
+            catch (NullReferenceException)
             {
                 CreatorId = 0;
             }
-            CreatedAt = invite.CreatedAt.UtcDateTime;
-            Uses = invite.Uses;
+            CreatedAt = invite.CreatedAt.GetValueOrDefault().UtcDateTime;
+            Uses = invite.Uses.GetValueOrDefault();
             MaxUses = invite.MaxUses;
             try
             {
                 TargetChannelId = invite.Channel.Id;
-            } catch (NullReferenceException)
+            }
+            catch (NullReferenceException)
             {
                 TargetChannelId = 0;
             }
-            ExpiresAt = invite.CreatedAt.UtcDateTime;
+            ExpiresAt = invite.CreatedAt.GetValueOrDefault().UtcDateTime.AddSeconds(invite.MaxAge.GetValueOrDefault());
         }
 
         public TrackedInvite(ulong guildId, string vanityUrl, int uses)

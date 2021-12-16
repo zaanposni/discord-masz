@@ -1,4 +1,4 @@
-namespace masz.Enums
+namespace MASZ.Enums
 {
     public enum RestAction
     {

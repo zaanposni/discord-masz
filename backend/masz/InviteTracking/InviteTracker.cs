@@ -1,12 +1,8 @@
-using System.Collections.Generic;
-using System.Linq;
-using DSharpPlus.Entities;
-
-namespace masz.InviteTracking
+namespace MASZ.InviteTracking
 {
     public static class InviteTracker
     {
-        private static Dictionary<ulong, List<TrackedInvite>> GuildInvites = new Dictionary<ulong, List<TrackedInvite>>();
+        private static readonly Dictionary<ulong, List<TrackedInvite>> GuildInvites = new();
 
         public static TrackedInvite GetUsedInvite(ulong guildId, List<TrackedInvite> currentInvites)
         {
@@ -23,7 +19,7 @@ namespace masz.InviteTracking
                     return changedInvites.First();
                 }
 
-                List<TrackedInvite> notExpiredInvites = changedInvites.Where(x => ! x.IsExpired()).ToList();
+                List<TrackedInvite> notExpiredInvites = changedInvites.Where(x => !x.IsExpired()).ToList();
                 if (notExpiredInvites.Count == 1)
                 {
                     return notExpiredInvites.First();
@@ -41,10 +37,11 @@ namespace masz.InviteTracking
 
         public static void AddInvite(ulong guildId, TrackedInvite invite)
         {
-            if (! GuildInvites.ContainsKey(guildId))
+            if (!GuildInvites.ContainsKey(guildId))
             {
                 GuildInvites[guildId] = new List<TrackedInvite>() { invite };
-            } else
+            }
+            else
             {
                 List<TrackedInvite> invites = GuildInvites[guildId];
                 List<TrackedInvite> filteredInvites = invites.Where(x => x.Code != invite.Code).ToList();
@@ -53,12 +50,15 @@ namespace masz.InviteTracking
             }
         }
 
-        public static void RemoveInvite(ulong guildId, string code)
+        public static List<TrackedInvite> RemoveInvite(ulong guildId, string code)
         {
             if (GuildInvites.ContainsKey(guildId))
             {
+                var invites = GuildInvites[guildId].TakeWhile(x => x.Code == code);
                 GuildInvites[guildId].RemoveAll(x => x.Code == code);
+                return invites.ToList();
             }
+            return new List<TrackedInvite>();
         }
     }
 }

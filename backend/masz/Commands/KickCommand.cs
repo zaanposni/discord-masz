@@ -1,13 +1,10 @@
-using System;
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.SlashCommands;
-using masz.Enums;
-using masz.Models;
-using masz.Repositories;
+using Discord;
+using Discord.Interactions;
+using MASZ.Enums;
+using MASZ.Models;
+using MASZ.Repositories;
 
-namespace masz.Commands
+namespace MASZ.Commands
 {
 
     public class KickCommand : BaseCommand<KickCommand>
@@ -16,25 +13,27 @@ namespace masz.Commands
 
         [SlashCommand("kick", "Kick a user and create a modcase")]
         public async Task Kick(
-            InteractionContext ctx,
-            [Option("title", "The title of the modcase")] string title,
-            [Option("user", "User to punish")] DiscordUser user,
-            [Option("description", "The description of the modcase")] string description = "",
-            [Option("dm-notification", "Whether to send a dm notification")] bool sendDmNotification = true,
-            [Option("public-notification", "Whether to send a public webhook notification")] bool sendPublicNotification = true,
-            [Option("execute-punishment", "Whether to execute the punishment or just register it.")] bool executePunishment = true)
+            [Summary("title", "The title of the modcase")] string title,
+            [Summary("user", "User to punish")] IUser user,
+            [Summary("description", "The description of the modcase")] string description = "",
+            [Summary("dm-notification", "Whether to send a dm notification")] bool sendDmNotification = true,
+            [Summary("public-notification", "Whether to send a public webhook notification")] bool sendPublicNotification = true,
+            [Summary("execute-punishment", "Whether to execute the punishment or just register it.")] bool executePunishment = true)
         {
-            await Require(ctx, RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildRegistered, RequireCheckEnum.GuildStrictModeKick);
+            await Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildRegistered, RequireCheckEnum.GuildStrictModeKick);
 
-            ModCase modCase = new ModCase();
-            modCase.Title = title;
-            modCase.GuildId = ctx.Guild.Id;
-            modCase.UserId = user.Id;
-            modCase.ModId = _currentIdentity.GetCurrentUser().Id;
-            if (String.IsNullOrEmpty(description))
+            ModCase modCase = new()
+            {
+                Title = title,
+                GuildId = Context.Guild.Id,
+                UserId = user.Id,
+                ModId = CurrentIdentity.GetCurrentUser().Id
+            };
+            if (string.IsNullOrEmpty(description))
             {
                 modCase.Description = title;
-            } else
+            }
+            else
             {
                 modCase.Description = description;
             }
@@ -43,13 +42,10 @@ namespace masz.Commands
             modCase.PunishedUntil = null;
             modCase.CreationType = CaseCreationType.ByCommand;
 
-            ModCase created = await ModCaseRepository.CreateDefault(_serviceProvider, _currentIdentity).CreateModCase(modCase, executePunishment, sendPublicNotification, sendDmNotification);
+            ModCase created = await ModCaseRepository.CreateDefault(ServiceProvider, CurrentIdentity).CreateModCase(modCase, executePunishment, sendPublicNotification, sendDmNotification);
 
-            DiscordInteractionResponseBuilder response =  new DiscordInteractionResponseBuilder();
-            response.IsEphemeral = !sendPublicNotification;
-
-            string url = $"{_config.GetBaseUrl()}/guilds/{created.GuildId}/cases/{created.CaseId}";
-            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, response.WithContent(_translator.T().CmdPunish(created.CaseId, url)));
+            string url = $"{Config.GetBaseUrl()}/guilds/{created.GuildId}/cases/{created.CaseId}";
+            await Context.Interaction.RespondAsync(Translator.T().CmdPunish(created.CaseId, url), ephemeral: !sendPublicNotification);
         }
     }
 }

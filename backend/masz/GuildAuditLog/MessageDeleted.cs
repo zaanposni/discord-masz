@@ -1,57 +1,56 @@
-using System.Linq;
+using Discord;
+using MASZ.Extensions;
+using MASZ.Services;
 using System.Text;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using masz.Extensions;
-using masz.Services;
 
-namespace masz.GuildAuditLog
+namespace MASZ.GuildAuditLog
 {
     public static class MessageDeletedAuditLog
     {
-        public static DiscordEmbedBuilder HandleMessageDeleted(DiscordClient client, MessageDeleteEventArgs e, ITranslator translator)
+        public static EmbedBuilder HandleMessageDeleted(IMessage message, ITranslator translator)
         {
-            DiscordEmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(DiscordColor.Red);
+            EmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(Color.Red);
 
-            StringBuilder description = new StringBuilder();
-            description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {e.Channel.Name} - {e.Channel.Mention}");
-            description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** [{e.Message.Id}]({e.Message.JumpLink})");
-            if (e.Message.Author != null)
+            if (message.Channel is ITextChannel tchannel)
             {
-                description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {e.Message.Author.Username}#{e.Message.Author.Discriminator} - {e.Message.Author.Mention}");
-                embed.WithAuthor(e.Message.Author.Username, e.Message.Author.AvatarUrl, e.Message.Author.AvatarUrl)
-                     .WithFooter($"{translator.T().GuildAuditLogUserID()}: {e.Message.Author.Id}");
-            }
-            if (e.Message.CreationTimestamp != null)
-            {
-                description.AppendLine($"> **{translator.T().GuildAuditLogCreated()}:** {e.Message.CreationTimestamp.DateTime.ToDiscordTS()}");
-            }
-
-            embed.WithTitle(translator.T().GuildAuditLogMessageDeletedTitle())
-                 .WithDescription(description.ToString());
-
-            if (! string.IsNullOrEmpty(e.Message.Content))
-            {
-                embed.AddField(translator.T().GuildAuditLogMessageDeletedContent(), e.Message.Content.Truncate(1024));
-            }
-
-            if (e.Message.Attachments.Count > 0)
-            {
-                StringBuilder attachmentInfo = new StringBuilder();
-                int counter = 1;
-                foreach (DiscordAttachment attachment in e.Message.Attachments.Take(5))
+                StringBuilder description = new();
+                description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {message.Channel.Name} - {tchannel.Mention}");
+                description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** [{message.Id}]({message.GetJumpUrl()})");
+                if (message.Author != null)
                 {
-                    attachmentInfo.AppendLine($"- [{counter}. {translator.T().Attachment()}]({attachment.Url})");
-                    counter++;
+                    description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {message.Author.Username}#{message.Author.Discriminator} - {message.Author.Mention}");
+                    embed.WithAuthor(message.Author)
+                         .WithFooter($"{translator.T().GuildAuditLogUserID()}: {message.Author.Id}");
                 }
-                if (e.Message.Attachments.Count > 5)
+                if (message.CreatedAt != default)
                 {
-                    attachmentInfo.AppendLine(translator.T().AndXMore(e.Message.Attachments.Count - 5));
+                    description.AppendLine($"> **{translator.T().GuildAuditLogCreated()}:** {message.CreatedAt.DateTime.ToDiscordTS()}");
                 }
-                embed.AddField(translator.T().Attachments(), attachmentInfo.ToString());
-            }
 
+                embed.WithTitle(translator.T().GuildAuditLogMessageDeletedTitle())
+                     .WithDescription(description.ToString());
+
+                if (!string.IsNullOrEmpty(message.Content))
+                {
+                    embed.AddField(translator.T().GuildAuditLogMessageDeletedContent(), message.Content.Truncate(1024));
+                }
+
+                if (message.Attachments.Count > 0)
+                {
+                    StringBuilder attachmentInfo = new();
+                    int counter = 1;
+                    foreach (IAttachment attachment in message.Attachments.Take(5))
+                    {
+                        attachmentInfo.AppendLine($"- [{counter}. {translator.T().Attachment()}]({attachment.Url})");
+                        counter++;
+                    }
+                    if (message.Attachments.Count > 5)
+                    {
+                        attachmentInfo.AppendLine(translator.T().AndXMore(message.Attachments.Count - 5));
+                    }
+                    embed.AddField(translator.T().Attachments(), attachmentInfo.ToString());
+                }
+            }
             return embed;
         }
     }

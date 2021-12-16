@@ -1,40 +1,36 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DSharpPlus.Entities;
-using masz.Events;
-using masz.Exceptions;
-using masz.Models;
-using masz.Enums;
+using Discord;
+using MASZ.Enums;
+using MASZ.Events;
+using MASZ.Exceptions;
+using MASZ.Models;
 
-namespace masz.Repositories
+namespace MASZ.Repositories
 {
 
     public class ModCaseCommentRepository : BaseRepository<ModCaseCommentRepository>
     {
-        private readonly DiscordUser _currentUser;
-        private ModCaseCommentRepository(IServiceProvider serviceProvider, DiscordUser currentUser) : base(serviceProvider)
+        private readonly IUser _currentUser;
+        private ModCaseCommentRepository(IServiceProvider serviceProvider, IUser currentUser) : base(serviceProvider)
         {
             _currentUser = currentUser;
         }
         private ModCaseCommentRepository(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _currentUser = _discordAPI.GetCurrentBotInfo(CacheBehavior.Default);
+            _currentUser = DiscordAPI.GetCurrentBotInfo(CacheBehavior.Default);
         }
-        public static ModCaseCommentRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new ModCaseCommentRepository(serviceProvider, identity.GetCurrentUser());
-        public static ModCaseCommentRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new ModCaseCommentRepository(serviceProvider);
+        public static ModCaseCommentRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new(serviceProvider, identity.GetCurrentUser());
+        public static ModCaseCommentRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new(serviceProvider);
         public async Task<int> CountCommentsByGuild(ulong guildId)
         {
-            return await _database.CountCommentsForGuild(guildId);
+            return await Database.CountCommentsForGuild(guildId);
         }
         public async Task<List<ModCaseComment>> GetLastCommentsByGuild(ulong guildId)
         {
-            return await _database.SelectLastModCaseCommentsByGuild(guildId);
+            return await Database.SelectLastModCaseCommentsByGuild(guildId);
         }
         public async Task<ModCaseComment> GetSpecificComment(int commentId)
         {
-            ModCaseComment comment = await _database.SelectSpecificModCaseComment(commentId);
+            ModCaseComment comment = await Database.SelectSpecificModCaseComment(commentId);
             if (comment == null)
             {
                 throw new ResourceNotFoundException();
@@ -45,7 +41,7 @@ namespace masz.Repositories
         {
             ModCase modCase = await ModCaseRepository.CreateWithBotIdentity(_serviceProvider).GetModCase(guildId, caseId);
 
-            if (! modCase.AllowComments)
+            if (!modCase.AllowComments)
             {
                 throw new CaseIsLockedException();
             }
@@ -54,14 +50,16 @@ namespace masz.Repositories
                 throw new CaseMarkedToBeDeletedException();
             }
 
-            ModCaseComment newComment = new ModCaseComment();
-            newComment.CreatedAt = DateTime.UtcNow;
-            newComment.UserId = _currentUser.Id;
-            newComment.Message = comment;
-            newComment.ModCase = modCase;
+            ModCaseComment newComment = new()
+            {
+                CreatedAt = DateTime.UtcNow,
+                UserId = _currentUser.Id,
+                Message = comment,
+                ModCase = modCase
+            };
 
-            await _database.SaveModCaseComment(newComment);
-            await _database.SaveChangesAsync();
+            await Database.SaveModCaseComment(newComment);
+            await Database.SaveChangesAsync();
 
             await _eventHandler.InvokeModCaseCommentCreated(new ModCaseCommentCreatedEventArgs(newComment));
 
@@ -72,7 +70,7 @@ namespace masz.Repositories
         {
             ModCase modCase = await ModCaseRepository.CreateWithBotIdentity(_serviceProvider).GetModCase(guildId, caseId);
 
-            if (! modCase.AllowComments)
+            if (!modCase.AllowComments)
             {
                 throw new CaseIsLockedException();
             }
@@ -89,8 +87,8 @@ namespace masz.Repositories
 
             newComment.Message = newMessage;
 
-            _database.UpdateModCaseComment(newComment);
-            await _database.SaveChangesAsync();
+            Database.UpdateModCaseComment(newComment);
+            await Database.SaveChangesAsync();
 
             await _eventHandler.InvokeModCaseCommentUpdated(new ModCaseCommentUpdatedEventArgs(newComment));
 
@@ -101,7 +99,7 @@ namespace masz.Repositories
         {
             ModCase modCase = await ModCaseRepository.CreateWithBotIdentity(_serviceProvider).GetModCase(guildId, caseId);
 
-            if (! modCase.AllowComments)
+            if (!modCase.AllowComments)
             {
                 throw new CaseIsLockedException();
             }
@@ -116,8 +114,8 @@ namespace masz.Repositories
                 throw new ResourceNotFoundException();
             }
 
-            _database.DeleteSpecificModCaseComment(deleteComment);
-            await _database.SaveChangesAsync();
+            Database.DeleteSpecificModCaseComment(deleteComment);
+            await Database.SaveChangesAsync();
 
             await _eventHandler.InvokeModCaseCommentDeleted(new ModCaseCommentDeletedEventArgs(deleteComment));
 

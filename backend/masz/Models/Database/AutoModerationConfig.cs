@@ -1,8 +1,8 @@
+using MASZ.Dtos.AutoModerationConfig;
+using MASZ.Enums;
 using System.ComponentModel.DataAnnotations;
-using masz.Dtos.AutoModerationConfig;
-using masz.Enums;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class AutoModerationConfig
     {

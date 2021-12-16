@@ -1,27 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using masz.Models;
-using masz.Repositories;
+using MASZ.Enums;
+using MASZ.Models;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using masz.Enums;
+using System.ComponentModel.DataAnnotations;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/guilds/{guildId}/automoderations")]
     [Authorize]
     public class AutoModerationEventController : SimpleController
     {
-        private readonly ILogger<AutoModerationEventController> _logger;
 
-        public AutoModerationEventController(ILogger<AutoModerationEventController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public AutoModerationEventController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _logger = logger;
         }
 
         [HttpGet]
@@ -31,7 +24,8 @@ namespace masz.Controllers
             await GetRegisteredGuild(guildId);
 
             ulong userOnly = 0;
-            if (! await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId)) {
+            if (!await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
+            {
                 userOnly = currentIdentity.GetCurrentUser().Id;
             }
 
@@ -39,16 +33,19 @@ namespace masz.Controllers
 
             List<AutoModerationEvent> events = null;
             int eventsCount = 0;
-            if (userOnly == 0) {
+            if (userOnly == 0)
+            {
                 events = await repo.GetPagination(guildId, startPage);
                 eventsCount = await repo.CountEventsByGuild(guildId);
             }
-            else {
+            else
+            {
                 events = await repo.GetPaginationFilteredForUser(guildId, userOnly, startPage);
                 eventsCount = await repo.CountEventsByGuildAndUser(guildId, userOnly);
             }
 
-            return Ok(new {
+            return Ok(new
+            {
                 events = events.Select(x => new AutoModerationEventView(x)),
                 count = eventsCount
             });

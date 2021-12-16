@@ -1,7 +1,6 @@
-using System;
-using masz.Enums;
+using MASZ.Enums;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class AutoModerationEventView
     {

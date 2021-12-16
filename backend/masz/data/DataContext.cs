@@ -1,20 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using masz.Models;
+using MASZ.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
 
-namespace masz.data
+namespace MASZ.Data
 {
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         //static LoggerFactory object
-        public static readonly ILoggerFactory loggerFactory = LoggerFactory.Create(builder => {
+        public static readonly ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
+        {
             builder.AddConsole();
         });
 
@@ -31,14 +27,16 @@ namespace masz.data
         public DbSet<UserNote> UserNotes { get; set; }
         public DbSet<GuildLevelAuditLogConfig> GuildLevelAuditLogConfigs { get; set; }
 
-        public void Configure(EntityTypeBuilder<ModCase> builder) {
+        public void Configure(EntityTypeBuilder<ModCase> builder)
+        {
             builder.Property(u => u.CreatedAt).IsRequired(true).HasDefaultValueSql("now()");
             builder.Property(u => u.Valid).HasDefaultValue(true);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_SQL_LOGGING"))) {
+            if (string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_SQL_LOGGING")))
+            {
                 optionsBuilder.UseLoggerFactory(loggerFactory).EnableSensitiveDataLogging();
             }
         }

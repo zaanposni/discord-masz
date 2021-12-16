@@ -1,25 +1,20 @@
-using System;
-using System.Collections.Generic;
-using masz.Dtos.Enum;
-using masz.Enums;
+using MASZ.Dtos.Enum;
+using MASZ.Enums;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/enums/")]
     public class AutoModerationTypeEnumController : SimpleController
     {
-        private readonly ILogger<AutoModerationTypeEnumController> _logger;
-
-        public AutoModerationTypeEnumController(ILogger<AutoModerationTypeEnumController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public AutoModerationTypeEnumController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _logger = logger;
         }
 
         [HttpGet("automodtype")]
-        public IActionResult AutoModTypes([FromQuery] Language? language = null) {
+        public IActionResult AutoModTypes([FromQuery] Language? language = null)
+        {
             _translator.SetContext(language);
             return Ok(new List<EnumDto>()
             {

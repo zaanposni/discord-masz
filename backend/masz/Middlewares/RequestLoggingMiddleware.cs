@@ -1,10 +1,4 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-
-namespace masz.Middlewares
+namespace MASZ.Middlewares
 {
     public class RequestLoggingMiddleware
     {
@@ -26,7 +20,8 @@ namespace masz.Middlewares
                 if (string.IsNullOrEmpty(ip))
                 {
                     ip = context.Request.Headers["REMOTE_ADDR"];
-                } else
+                }
+                else
                 { // Using X-Forwarded-For last address
                     ip = ip.Split(',')
                         .Last()
@@ -39,7 +34,9 @@ namespace masz.Middlewares
                 }
 
                 return ip;
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 _logger.LogError(e, "Error getting IP");
                 return "";
             }
@@ -77,7 +74,8 @@ namespace masz.Middlewares
                 _logger.LogInformation($"INC {method} {context.Request?.Path.Value}{context.Request?.QueryString} | {GetIP(context)}");
                 await _next(context);
                 _logger.LogInformation($"{context.Response?.StatusCode} {method} {context.Request?.Path.Value}");
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"500 {method} {context.Request?.Path.Value}");
                 throw;

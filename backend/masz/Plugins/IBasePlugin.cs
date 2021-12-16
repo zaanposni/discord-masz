@@ -1,4 +1,4 @@
-namespace masz.Plugins
+namespace MASZ.Plugins
 {
     public interface IBasePlugin
     {

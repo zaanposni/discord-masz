@@ -1,25 +1,21 @@
-using System;
-using System.Collections.Generic;
-using masz.Dtos.Enum;
-using masz.Enums;
+using MASZ.Dtos.Enum;
+using MASZ.Enums;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/enums/")]
     public class PunishmentActiveStatusEnumController : SimpleController
     {
-        private readonly ILogger<PunishmentActiveStatusEnumController> _logger;
 
-        public PunishmentActiveStatusEnumController(ILogger<PunishmentActiveStatusEnumController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public PunishmentActiveStatusEnumController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _logger = logger;
         }
 
         [HttpGet("punishmentactivestatus")]
-        public IActionResult ViewPunishmentActiveStatus([FromQuery] Language? language = null) {
+        public IActionResult ViewPunishmentActiveStatus([FromQuery] Language? language = null)
+        {
             _translator.SetContext(language);
             return Ok(new List<EnumDto>()
             {

@@ -1,27 +1,20 @@
-
-using System;
-using System.Threading.Tasks;
-using masz.Dtos.ModCase;
-using masz.Models;
-using masz.Models.Views;
-using masz.Repositories;
+using MASZ.Dtos.ModCase;
+using MASZ.Enums;
+using MASZ.Models;
+using MASZ.Models.Views;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using masz.Enums;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/templates")]
     [Authorize]
     public class CaseTemplateController : SimpleController
     {
-        private readonly ILogger<CaseTemplateController> _logger;
-
-        public CaseTemplateController(ILogger<CaseTemplateController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public CaseTemplateController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _logger = logger;
         }
 
         [HttpPost]
@@ -31,7 +24,8 @@ namespace masz.Controllers
             await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId);
 
 
-            CaseTemplate template = new CaseTemplate() {
+            CaseTemplate template = new()
+            {
                 TemplateName = templateDto.TemplateName,
                 UserId = currentIdentity.GetCurrentUser().Id,
                 ViewPermission = templateDto.ViewPermission,
@@ -42,9 +36,9 @@ namespace masz.Controllers
                 CaseLabels = templateDto.Labels,
                 CasePunishedUntil = templateDto.PunishedUntil,
                 CasePunishmentType = templateDto.PunishmentType,
-                sendPublicNotification = templateDto.sendPublicNotification,
-                announceDm = templateDto.announceDm,
-                handlePunishment = templateDto.handlePunishment
+                SendPublicNotification = templateDto.SendPublicNotification,
+                AnnounceDm = templateDto.AnnounceDm,
+                HandlePunishment = templateDto.HandlePunishment
             };
 
             CaseTemplate createdTemplate = await CaseTemplateRepository.CreateDefault(_serviceProvider, currentIdentity).CreateTemplate(template);
@@ -61,7 +55,7 @@ namespace masz.Controllers
 
             CaseTemplate template = await repo.GetTemplate(templateId);
 
-            if (! (await currentIdentity.IsAllowedTo(APIActionPermission.Delete, template)))
+            if (!await currentIdentity.IsAllowedTo(APIActionPermission.Delete, template))
             {
                 return Unauthorized();
             }

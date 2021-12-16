@@ -1,20 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Discord;
+using Discord.Interactions;
+using MASZ.Enums;
+using MASZ.Extensions;
+using MASZ.Models;
+using MASZ.Repositories;
+using System.Globalization;
 using System.Text;
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using DSharpPlus.Interactivity;
-using DSharpPlus.Interactivity.Extensions;
-using DSharpPlus.SlashCommands;
-using masz.Enums;
-using masz.Extensions;
-using masz.Models;
-using masz.Repositories;
 
-namespace masz.Commands
+namespace MASZ.Commands
 {
 
     public class UnmuteCommand : BaseCommand<UnmuteCommand>
@@ -22,24 +15,22 @@ namespace masz.Commands
         public UnmuteCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [SlashCommand("unmute", "Unmute a user by deactivating all his modcases.")]
-        public async Task Unmute(InteractionContext ctx, [Option("user", "User to unmute")] DiscordUser user)
+        public async Task Unmute([Summary("user", "User to unmute")] IUser user)
         {
-            await Require(ctx, RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildStrictModeMute);
+            await Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildStrictModeMute);
 
-            ModCaseRepository repo = ModCaseRepository.CreateDefault(_serviceProvider, _currentIdentity);
-            List<ModCase> modCases = await repo.GetCasesForGuildAndUser(ctx.Guild.Id, user.Id);
-
-            modCases = modCases.Where(x => x.PunishmentActive && x.PunishmentType == PunishmentType.Mute).ToList();
+            ModCaseRepository repo = ModCaseRepository.CreateDefault(ServiceProvider, CurrentIdentity);
+            List<ModCase> modCases = (await repo.GetCasesForGuildAndUser(Context.Guild.Id, user.Id))
+                .Where(x => x.PunishmentActive && x.PunishmentType == PunishmentType.Mute).ToList();
 
             if (modCases.Count == 0)
             {
-                await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                    new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdUndoNoCases()));
+                await Context.Interaction.RespondAsync(Translator.T().CmdUndoNoCases());
                 return;
             }
 
-            StringBuilder interactionString = new StringBuilder();
-            interactionString.AppendLine(_translator.T().CmdUndoUnmuteFoundXCases(modCases.Count));
+            StringBuilder interactionString = new();
+            interactionString.AppendLine(Translator.T().CmdUndoUnmuteFoundXCases(modCases.Count));
             foreach (ModCase modCase in modCases.Take(5))
             {
                 int truncate = 50;
@@ -48,107 +39,116 @@ namespace masz.Commands
                     truncate = 30;
                 }
                 interactionString.Append($"- [#{modCase.CaseId} - {modCase.Title.Truncate(truncate)}]");
-                interactionString.Append($"({_config.GetBaseUrl()}/guilds/{modCase.GuildId}/cases/{modCase.CaseId})");
+                interactionString.Append($"({Config.GetBaseUrl()}/guilds/{modCase.GuildId}/cases/{modCase.CaseId})");
                 if (modCase.PunishedUntil != null)
                 {
-                    interactionString.Append($" {_translator.T().Until()} {modCase.PunishedUntil.Value.ToDiscordTS()}");
+                    interactionString.Append($" {Translator.T().Until()} {modCase.PunishedUntil.Value.ToDiscordTS()}");
                 }
                 interactionString.AppendLine();
             }
             if (modCases.Count > 5)
             {
-                interactionString.AppendLine(_translator.T().AndXMore(modCases.Count -5));
+                interactionString.AppendLine(Translator.T().AndXMore(modCases.Count - 5));
             }
 
-            DiscordEmbedBuilder embed = new DiscordEmbedBuilder()
+            EmbedBuilder embed = new EmbedBuilder()
                 .WithTitle(user.Username)
                 .WithDescription(interactionString.ToString())
-                .WithColor(DiscordColor.Orange);
+                .WithColor(Color.Orange);
 
-            embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoResultWaiting());
+            embed.AddField(Translator.T().CmdUndoResultTitle(), Translator.T().CmdUndoResultWaiting());
 
-            string uniqueButtonId = "unmute_" + Guid.NewGuid().ToString();
+            var button = new ComponentBuilder()
+                .WithButton(Translator.T().CmdUndoUnmuteButtonsDelete(), $"unmute-delete:{user.Id}", ButtonStyle.Primary)
+                .WithButton(Translator.T().CmdUndoUnmuteButtonsDeactivate(), $"unmute-deactivate:{user.Id}", ButtonStyle.Secondary)
+                .WithButton(Translator.T().CmdUndoButtonsCancel(), "unmute-cancel", ButtonStyle.Danger);
 
-            var deleteButton = new DiscordButtonComponent(ButtonStyle.Primary, uniqueButtonId + "_delete", _translator.T().CmdUndoUnmuteButtonsDelete(), false);
-            var deactivateButton = new DiscordButtonComponent(ButtonStyle.Success, uniqueButtonId + "_deactivate", _translator.T().CmdUndoUnmuteButtonsDeactivate(), false);
-            var cancelButton = new DiscordButtonComponent(ButtonStyle.Danger, uniqueButtonId+ "_cancel", _translator.T().CmdUndoButtonsCancel(), false);
+            await Context.Interaction.RespondAsync(embed: embed.Build(), components: button.Build());
 
-            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                    new DiscordInteractionResponseBuilder().AddEmbed(embed.Build()).AddComponents(deleteButton, deactivateButton, cancelButton));
+            IMessage responseMessage = await Context.Interaction.GetOriginalResponseAsync();
+        }
 
-            DiscordMessage responseMessage = await ctx.Interaction.GetOriginalResponseAsync();
+        [ComponentInteraction("unmute-delete:*")]
+        public async Task Delete(string userID)
+        {
+            var button = new ComponentBuilder()
+                .WithButton(Translator.T().CmdUndoButtonsPublicNotification(), $"unmute-conf-delete:1:{userID}", ButtonStyle.Primary)
+                .WithButton(Translator.T().CmdUndoButtonsNoPublicNotification(), $"unmute-conf-delete:0:{userID}", ButtonStyle.Secondary)
+                .WithButton(Translator.T().CmdUndoButtonsCancel(), "unmute-cancel", ButtonStyle.Danger);
 
-            InteractivityResult<ComponentInteractionCreateEventArgs> response = await responseMessage.WaitForButtonAsync(
-                (ComponentInteractionCreateEventArgs args) => {
-                    return args.User.Id == ctx.User.Id && (args.Id.StartsWith(uniqueButtonId));
-                });
-
-            embed.ClearFields();
-            if (response.TimedOut)
+            await Context.Interaction.ModifyOriginalResponseAsync(message =>
             {
-                embed.WithColor(DiscordColor.Red);
-                embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoResultTimedout());
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
-                return;
+                var embed = message.Embed.GetValueOrDefault().ToEmbedBuilder().WithColor(Color.Red);
+                embed.Fields = new()
+                {
+                    new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoResultWaiting()),
+                    new EmbedFieldBuilder().WithName(Translator.T().CmdUndoPublicNotificationTitle()).WithValue(Translator.T().CmdUndoPublicNotificationDescription())
+                };
+                message.Embed = embed.Build();
+                message.Components = button.Build();
+            });
+        }
+
+        [ComponentInteraction("unmute-conf-delete:*,*")]
+        public async Task DeleteConfirmation(string isPublic, string userID)
+        {
+            ModCaseRepository repo = ModCaseRepository.CreateDefault(ServiceProvider, CurrentIdentity);
+            List<ModCase> modCases = await repo.GetCasesForGuildAndUser(Context.Guild.Id, Convert.ToUInt64(userID));
+
+            modCases = modCases.Where(x => x.PunishmentActive && x.PunishmentType == PunishmentType.Mute).ToList();
+
+            foreach (ModCase modCase in modCases)
+            {
+                await repo.DeleteModCase(modCase.GuildId, modCase.CaseId, false, true, isPublic == "1");
             }
 
-            if (response.Result.Id == uniqueButtonId + "_delete")
+            await Context.Interaction.ModifyOriginalResponseAsync(message =>
             {
-                embed.ClearFields();
-                embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoResultWaiting());
-                embed.AddField(_translator.T().CmdUndoPublicNotificationTitle(), _translator.T().CmdUndoPublicNotificationDescription());
-
-                var publicButton = new DiscordButtonComponent(ButtonStyle.Success, uniqueButtonId + "_n_public", _translator.T().CmdUndoButtonsPublicNotification(), false);
-                var privateButton = new DiscordButtonComponent(ButtonStyle.Primary, uniqueButtonId + "_n_private", _translator.T().CmdUndoButtonsNoPublicNotification(), false);
-                var cancelNotificationButton = new DiscordButtonComponent(ButtonStyle.Danger, uniqueButtonId+ "_n_cancel", _translator.T().CmdUndoButtonsCancel(), false);
-
-                await response.Result.Interaction.CreateResponseAsync(
-                    InteractionResponseType.UpdateMessage,
-                    new DiscordInteractionResponseBuilder().AddEmbed(embed.Build()).AddComponents(publicButton, privateButton, cancelNotificationButton));
-                InteractivityResult<ComponentInteractionCreateEventArgs> responseNotification = await responseMessage.WaitForButtonAsync(
-                    (ComponentInteractionCreateEventArgs args) => {
-                        return args.User.Id == ctx.User.Id && (args.Id.StartsWith(uniqueButtonId));
-                    });
-
-                embed.ClearFields();
-                if (responseNotification.TimedOut)
+                var embed = message.Embed.GetValueOrDefault().ToEmbedBuilder().WithColor(new Color(Convert.ToUInt32(int.Parse("7289da", NumberStyles.HexNumber))));  // discord blurple
+                embed.Fields = new()
                 {
-                    embed.WithColor(DiscordColor.Red);
-                    embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoResultTimedout());
-                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
-                    return;
-                }
-                if (!responseNotification.Result.Id.StartsWith(uniqueButtonId + "_n_") || responseNotification.Result.Id.EndsWith("cancel"))
-                {
-                    embed.WithColor(DiscordColor.Red);
-                    embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoResultCanceled());
-                    await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
-                    return;
-                }
+                    new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoUnmuteResultDeleted())
+                };
+                message.Embed = embed.Build();
+                message.Components = new();
+            });
+        }
 
-                bool publicNotification = responseNotification.Result.Id.EndsWith("public");
-                foreach (ModCase modCase in modCases)
-                {
-                    await repo.DeleteModCase(modCase.GuildId, modCase.CaseId, false, true, publicNotification);
-                }
+        [ComponentInteraction("unmute-deactivate:*")]
+        public async Task Deactivate(string userID)
+        {
+            ModCaseRepository repo = ModCaseRepository.CreateDefault(ServiceProvider, CurrentIdentity);
+            List<ModCase> modCases = await repo.GetCasesForGuildAndUser(Context.Guild.Id, Convert.ToUInt64(userID));
 
-                embed.WithColor(new DiscordColor("#7289da"));  // discord blurple
-                embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoUnmuteResultDeleted());
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
-                return;
-            }
-            if (response.Result.Id == uniqueButtonId + "_deactivate")
+            modCases = modCases.Where(x => x.PunishmentActive && x.PunishmentType == PunishmentType.Mute).ToList();
+
+            await repo.DeactivateModCase(modCases.ToArray());
+
+            await Context.Interaction.ModifyOriginalResponseAsync(message =>
             {
-                await repo.DeactivateModCase(modCases.ToArray());
+                var embed = message.Embed.GetValueOrDefault().ToEmbedBuilder().WithColor(Color.Green);
+                embed.Fields = new()
+                {
+                    new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoUnmuteResultDeactivated())
+                };
+                message.Embed = embed.Build();
+                message.Components = new();
+            });
+        }
 
-                embed.WithColor(DiscordColor.Green);
-                embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoUnmuteResultDeactivated());
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
-                return;
-            }
-            embed.WithColor(DiscordColor.Red);
-            embed.AddField(_translator.T().CmdUndoResultTitle(), _translator.T().CmdUndoResultCanceled());
-            await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
+        [ComponentInteraction("unmute-cancel")]
+        public async Task Cancel()
+        {
+            await Context.Interaction.ModifyOriginalResponseAsync(message =>
+            {
+                var embed = message.Embed.GetValueOrDefault().ToEmbedBuilder().WithColor(Color.Red);
+                embed.Fields = new()
+                {
+                    new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoResultCanceled())
+                };
+                message.Embed = embed.Build();
+                message.Components = new();
+            });
         }
     }
 }

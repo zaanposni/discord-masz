@@ -1,6 +1,6 @@
-using DSharpPlus.Entities;
+using Discord;
 
-namespace masz.Models.Views
+namespace MASZ.Models.Views
 {
     public class DiscordUserView
     {
@@ -14,19 +14,19 @@ namespace masz.Models.Views
 
 
         private DiscordUserView() { }
-        private DiscordUserView(DiscordUser user)
+        private DiscordUserView(IUser user)
         {
             if (user == null) return;
             Id = user.Id.ToString();
             Username = user.Username;
             Discriminator = user.Discriminator;
-            ImageUrl = user.AvatarUrl;
-            Locale = user.Locale;
-            Avatar = user.AvatarHash;
+            ImageUrl = user.GetAvatarUrl();
+            Locale = user is ISelfUser sUser ? sUser.Locale : "en-US";
+            Avatar = user.AvatarId;
             Bot = user.IsBot;
         }
 
-        public static DiscordUserView CreateOrDefault(DiscordUser user)
+        public static DiscordUserView CreateOrDefault(IUser user)
         {
             if (user == null) return null;
             if (user.Id == 0) return null;

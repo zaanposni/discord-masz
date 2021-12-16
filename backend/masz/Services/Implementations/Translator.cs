@@ -1,25 +1,20 @@
-using System;
-using System.Threading.Tasks;
-using masz.Models;
-using masz.Enums;
-using masz.Repositories;
-using masz.Translations;
-using Microsoft.Extensions.Logging;
+using MASZ.Enums;
+using MASZ.Models;
+using MASZ.Repositories;
+using MASZ.Translations;
 
-namespace masz.Services
+namespace MASZ.Services
 {
     public class Translator : ITranslator
     {
-        private readonly ILogger<Scheduler> _logger;
         private readonly IInternalConfiguration _config;
         private readonly Translation _translation;
         private readonly IServiceProvider _serviceProvider;
 
         public Translator() { }
 
-        public Translator(ILogger<Scheduler> logger, IInternalConfiguration config, IServiceProvider serviceProvider)
+        public Translator(IInternalConfiguration config, IServiceProvider serviceProvider)
         {
-            _logger = logger;
             _config = config;
             _serviceProvider = serviceProvider;
             _translation = Translation.Ctx(_config.GetDefaultLanguage());
@@ -43,7 +38,7 @@ namespace masz.Services
         {
             if (language != null)
             {
-                _translation.preferredLanguage = language.Value;
+                _translation.PreferredLanguage = language.Value;
             }
         }
 
@@ -75,7 +70,7 @@ namespace masz.Services
 
         public Language GetLanguage()
         {
-            return _translation.preferredLanguage;
+            return _translation.PreferredLanguage;
         }
     }
 }

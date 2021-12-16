@@ -1,25 +1,21 @@
-using System;
-using System.Threading.Tasks;
+using MASZ.Dtos.Tokens;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Models;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using masz.Models;
-using masz.Dtos.Tokens;
-using masz.Exceptions;
-using masz.Enums;
-using masz.Repositories;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/token")]
     [Authorize]
     public class TokenController : SimpleController
     {
-        private readonly ILogger<TokenController> _logger;
 
-        public TokenController(IServiceProvider serviceProvider, ILogger<TokenController> logger) : base(serviceProvider) {
-            _logger = logger;
+        public TokenController(IServiceProvider serviceProvider) : base(serviceProvider)
+        {
         }
 
         [HttpPost]
@@ -38,7 +34,8 @@ namespace masz.Controllers
                 {
                     throw new BaseAPIException("There already is a token.", APIError.TokenAlreadyRegistered);
                 }
-            } catch (ResourceNotFoundException) { }
+            }
+            catch (ResourceNotFoundException) { }
 
             _identityManager.ClearTokenIdentities();
 
@@ -49,7 +46,8 @@ namespace masz.Controllers
         public async Task<IActionResult> DeleteToken()
         {
             await RequireSiteAdmin();
-            if (await GetIdentity() is TokenIdentity) {
+            if (await GetIdentity() is TokenIdentity)
+            {
                 throw new BaseAPIException("Tokens cannot manage this resource.", APIError.TokenCannotManageThisResource);
             }
 
@@ -64,7 +62,8 @@ namespace masz.Controllers
         public async Task<IActionResult> GetTokenInfo()
         {
             await RequireSiteAdmin();
-            if (await GetIdentity() is TokenIdentity) {
+            if (await GetIdentity() is TokenIdentity)
+            {
                 throw new BaseAPIException("Tokens cannot manage this resource.", APIError.TokenCannotManageThisResource);
             }
 

@@ -1,7 +1,6 @@
-using masz.Enums;
-using System.Linq;
+using MASZ.Enums;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class AutoModerationConfigView
     {

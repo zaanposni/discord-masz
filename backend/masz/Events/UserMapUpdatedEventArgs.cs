@@ -1,11 +1,10 @@
-using System;
-using masz.Models;
+using MASZ.Models;
 
-namespace masz.Events
+namespace MASZ.Events
 {
     public class UserMapUpdatedEventArgs : EventArgs
     {
-        private UserMapping _userMapping;
+        private readonly UserMapping _userMapping;
 
         public UserMapUpdatedEventArgs(UserMapping userMapping)
         {

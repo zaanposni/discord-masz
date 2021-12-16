@@ -1,13 +1,11 @@
-using System;
-using System.Threading.Tasks;
-using DSharpPlus;
+using Discord.WebSocket;
 
-namespace masz.Services
+namespace MASZ.Services
 {
     public interface IDiscordBot
     {
         Task Start();
-        DiscordClient GetClient();
+        DiscordSocketClient GetClient();
         bool IsRunning();
         DateTime? GetLastDisconnectTime();
         int GetPing();

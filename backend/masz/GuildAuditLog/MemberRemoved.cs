@@ -1,27 +1,25 @@
+using Discord;
+using MASZ.Extensions;
+using MASZ.Services;
 using System.Text;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using masz.Extensions;
-using masz.Services;
 
-namespace masz.GuildAuditLog
+namespace MASZ.GuildAuditLog
 {
     public static class MemberRemovedAuditLog
     {
-        public static DiscordEmbedBuilder HandleMemberRemovedUpdated(DiscordClient client, GuildMemberRemoveEventArgs e, ITranslator translator)
+        public static EmbedBuilder HandleMemberRemovedUpdated(IUser user, ITranslator translator)
         {
-            DiscordEmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(DiscordColor.Red);
+            EmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(Color.Red);
 
-            StringBuilder description = new StringBuilder();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {e.Member.Username}#{e.Member.Discriminator} - {e.Member.Mention}");
-            description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{e.Member.Id}`");
-            description.AppendLine($"> **{translator.T().GuildAuditLogMemberJoinedRegistered()}:** {e.Member.CreationTimestamp.DateTime.ToDiscordTS()}");
+            StringBuilder description = new();
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{user.Id}`");
+            description.AppendLine($"> **{translator.T().GuildAuditLogMemberJoinedRegistered()}:** {user.CreatedAt.DateTime.ToDiscordTS()}");
 
             embed.WithTitle(translator.T().GuildAuditLogMemberRemovedTitle())
                  .WithDescription(description.ToString())
-                 .WithAuthor(e.Member.Username, e.Member.AvatarUrl, e.Member.AvatarUrl)
-                 .WithFooter($"{translator.T().GuildAuditLogUserID()}: {e.Member.Id}");
+                 .WithAuthor(user)
+                 .WithFooter($"{translator.T().GuildAuditLogUserID()}: {user.Id}");
 
             return embed;
         }

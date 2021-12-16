@@ -1,18 +1,17 @@
-using System.Threading.Tasks;
-using DSharpPlus.Entities;
-using masz.Enums;
-using masz.Models;
+using Discord;
+using MASZ.Enums;
+using MASZ.Models;
 
-namespace masz.Services
+namespace MASZ.Services
 {
     public interface INotificationEmbedCreator
     {
-        Task<DiscordEmbedBuilder> CreateModcaseEmbed(ModCase modCase, RestAction action, DiscordUser actor, DiscordUser suspect = null, bool isInternal = true);
-        Task<DiscordEmbedBuilder> CreateFileEmbed(string filename, ModCase modCase, RestAction action, DiscordUser actor);
-        Task<DiscordEmbedBuilder> CreateCommentEmbed(ModCaseComment comment, RestAction action, DiscordUser actor);
-        Task<DiscordEmbedBuilder> CreateUserNoteEmbed(UserNote userNote, RestAction action, DiscordUser actor, DiscordUser target);
-        Task<DiscordEmbedBuilder> CreateUserMapEmbed(UserMapping userMapping, RestAction action, DiscordUser actor);
-        DiscordEmbedBuilder CreateTipsEmbedForNewGuilds(GuildConfig guildConfig);
-        DiscordEmbedBuilder CreateInternalAutomodEmbed(AutoModerationEvent autoModerationEvent, GuildConfig guildConfig, DiscordUser user, DiscordChannel channel, PunishmentType? punishmentType = null);
+        Task<EmbedBuilder> CreateModcaseEmbed(ModCase modCase, RestAction action, IUser actor, IUser suspect = null, bool isInternal = true);
+        Task<EmbedBuilder> CreateFileEmbed(string filename, ModCase modCase, RestAction action, IUser actor);
+        Task<EmbedBuilder> CreateCommentEmbed(ModCaseComment comment, RestAction action, IUser actor);
+        Task<EmbedBuilder> CreateUserNoteEmbed(UserNote userNote, RestAction action, IUser actor, IUser target);
+        Task<EmbedBuilder> CreateUserMapEmbed(UserMapping userMapping, RestAction action, IUser actor);
+        EmbedBuilder CreateTipsEmbedForNewGuilds(GuildConfig guildConfig);
+        EmbedBuilder CreateInternalAutomodEmbed(AutoModerationEvent autoModerationEvent, GuildConfig guildConfig, IUser user, ITextChannel channel, PunishmentType? punishmentType = null);
     }
 }

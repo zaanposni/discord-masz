@@ -6,25 +6,25 @@ Please follow the existing examples to create your own plugin.
 
 Your service has to
 
-- be in the namespace `masz.Plugins`.
-- implement the interface `masz.Plugins.IBasePlugin` and inherit the class `masz.Plugins.BasePlugin`.
+- be in the namespace `MASZ.Plugins`.
+- implement the interface `MASZ.Plugins.IBasePlugin` and inherit the class `MASZ.Plugins.BasePlugin`.
 - set the `ENABLE_CUSTOM_PLUGINS` env var to `true` in your `.env` file.
 
-## Access masz resources
+## Access MASZ resources
 
 You can either
 
 - use the current eventArgs to quickly access the current resource.
-- use the protected fields of `masz.Plugins.BasePlugin` to access internal masz stuff like the Discord API Wrapper `_discordAPI`.
+- use the protected fields of `MASZ.Plugins.BasePlugin` to access internal MASZ stuff like the Discord API Wrapper `_discordAPI`.
 
 ## Init
 
-The `void Init()` method of your plugin will be called upon startup of masz.\
+The `void Init()` method of your plugin will be called upon startup of MASZ.\
 It is recommended to do all relevant stuff here.
 
 ## Errors
 
-Errors in your plugins will not crash masz but it is recommended to dispense the use of error-prone operations.
+Errors in your plugins will not crash MASZ but it is recommended to dispense the use of error-prone operations.
 
 ## Execution time
 
@@ -35,7 +35,7 @@ If you need to do longer lasting tasks, please refer to the `ExampleBackgroundPl
 
 ## Custom service
 
-Your plugin does not need to listen on masz events.\
+Your plugin does not need to listen on MASZ events.\
 You can also do your own background stuff like monitoring or cleaning database content.\
 Your service is registered as a singleton.
 

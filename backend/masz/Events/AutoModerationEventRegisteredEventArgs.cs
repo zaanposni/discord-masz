@@ -1,11 +1,10 @@
-using System;
-using masz.Models;
+using MASZ.Models;
 
-namespace masz.Events
+namespace MASZ.Events
 {
     public class AutoModerationEventRegisteredEventArgs : EventArgs
     {
-        private AutoModerationEvent _event;
+        private readonly AutoModerationEvent _event;
 
         public AutoModerationEventRegisteredEventArgs(AutoModerationEvent autoModerationEvent)
         {

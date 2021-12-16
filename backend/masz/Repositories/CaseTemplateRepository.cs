@@ -1,20 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DSharpPlus.Entities;
-using masz.Events;
-using masz.Exceptions;
-using masz.Models;
-using masz.Enums;
+using Discord;
+using MASZ.Enums;
+using MASZ.Events;
+using MASZ.Exceptions;
+using MASZ.Models;
 
-namespace masz.Repositories
+namespace MASZ.Repositories
 {
 
     public class CaseTemplateRepository : BaseRepository<CaseTemplateRepository>
     {
         private readonly bool _isBot;
         private readonly Identity _identity;
-        private readonly DiscordUser _currentUser;
+        private readonly IUser _currentUser;
         private readonly int MAX_ALLOWED_CASE_TEMPLATES_PER_USER = 20;
         private CaseTemplateRepository(IServiceProvider serviceProvider, Identity identity) : base(serviceProvider)
         {
@@ -24,20 +21,20 @@ namespace masz.Repositories
         }
         private CaseTemplateRepository(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _currentUser = _discordAPI.GetCurrentBotInfo(CacheBehavior.Default);
+            _currentUser = DiscordAPI.GetCurrentBotInfo(CacheBehavior.Default);
             _isBot = true;
         }
-        public static CaseTemplateRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new CaseTemplateRepository(serviceProvider, identity);
-        public static CaseTemplateRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new CaseTemplateRepository(serviceProvider);
+        public static CaseTemplateRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new(serviceProvider, identity);
+        public static CaseTemplateRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new(serviceProvider);
 
         public async Task<int> CountTemplates()
         {
-            return await _database.CountAllCaseTemplates();
+            return await Database.CountAllCaseTemplates();
         }
 
         public async Task<CaseTemplate> CreateTemplate(CaseTemplate template)
         {
-            var existingTemplates = await _database.GetAllTemplatesFromUser(template.UserId);
+            var existingTemplates = await Database.GetAllTemplatesFromUser(template.UserId);
             if (existingTemplates.Count >= MAX_ALLOWED_CASE_TEMPLATES_PER_USER)
             {
                 throw new TooManyTemplatesCreatedException();
@@ -46,8 +43,8 @@ namespace masz.Repositories
             template.CreatedAt = DateTime.UtcNow;
             template.UserId = _currentUser.Id;
 
-            await _database.SaveCaseTemplate(template);
-            await _database.SaveChangesAsync();
+            await Database.SaveCaseTemplate(template);
+            await Database.SaveChangesAsync();
 
             await _eventHandler.InvokeCaseTemplateCreated(new CaseTemplateCreatedEventArgs(template));
 
@@ -56,7 +53,7 @@ namespace masz.Repositories
 
         public async Task<CaseTemplate> GetTemplate(int id)
         {
-            CaseTemplate template = await _database.GetSpecificCaseTemplate(id);
+            CaseTemplate template = await Database.GetSpecificCaseTemplate(id);
             if (template == null)
             {
                 throw new ResourceNotFoundException();
@@ -66,26 +63,27 @@ namespace masz.Repositories
 
         public async Task DeleteTemplate(CaseTemplate template)
         {
-            _database.DeleteSpecificCaseTemplate(template);
-            await _database.SaveChangesAsync();
+            Database.DeleteSpecificCaseTemplate(template);
+            await Database.SaveChangesAsync();
 
             await _eventHandler.InvokeCaseTemplateDeleted(new CaseTemplateDeletedEventArgs(template));
         }
 
         public async Task<List<CaseTemplate>> GetTemplatesBasedOnPermissions()
         {
-            List<CaseTemplate> templates = await _database.GetAllCaseTemplates();
-            List<CaseTemplate> filteredTemplates = new List<CaseTemplate>();
+            List<CaseTemplate> templates = await Database.GetAllCaseTemplates();
+            List<CaseTemplate> filteredTemplates = new();
             foreach (CaseTemplate template in templates)
             {
-                if (await allowedToView(template))
+                if (await AllowedToView(template))
                 {
                     filteredTemplates.Add(template);
                 }
             }
             return filteredTemplates;
         }
-        private async Task<bool> allowedToView(CaseTemplate template) {
+        private async Task<bool> AllowedToView(CaseTemplate template)
+        {
             if (_isBot)
             {
                 return true;

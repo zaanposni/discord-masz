@@ -1,17 +1,13 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using DSharpPlus.Entities;
-using masz.Dtos.ModCaseComments;
-using masz.Enums;
-using masz.Exceptions;
-using masz.Models;
-using masz.Repositories;
+using Discord;
+using MASZ.Dtos.ModCaseComments;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Models;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/guilds/{guildId}/cases/{caseId}/comments")]
@@ -30,12 +26,12 @@ namespace masz.Controllers
             await RequirePermission(guildId, caseId, APIActionPermission.View);
 
             Identity currentIdentity = await GetIdentity();
-            DiscordUser currentUser = currentIdentity.GetCurrentUser();
+            IUser currentUser = currentIdentity.GetCurrentUser();
 
             ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetModCase(guildId, caseId);
 
             // suspects can only comment if last comment was not by him.
-            if (! await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
+            if (!await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
             {
                 if (modCase.Comments.Any())
                 {
@@ -52,7 +48,7 @@ namespace masz.Controllers
             {
                 await _discordAnnouncer.AnnounceComment(createdComment, currentUser, RestAction.Created);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 _logger.LogError(e, "Failed to announce comment.");
             }
@@ -66,12 +62,12 @@ namespace masz.Controllers
             await RequirePermission(guildId, caseId, APIActionPermission.View);
 
             Identity currentIdentity = await GetIdentity();
-            DiscordUser currentUser = currentIdentity.GetCurrentUser();
+            IUser currentUser = currentIdentity.GetCurrentUser();
 
             var repo = ModCaseCommentRepository.CreateDefault(_serviceProvider, currentIdentity);
 
             ModCaseComment comment = await repo.GetSpecificComment(commentId);
-            if (comment.UserId != currentUser.Id && ! currentIdentity.IsSiteAdmin())
+            if (comment.UserId != currentUser.Id && !currentIdentity.IsSiteAdmin())
             {
                 throw new UnauthorizedException();
             }
@@ -82,7 +78,7 @@ namespace masz.Controllers
             {
                 await _discordAnnouncer.AnnounceComment(createdComment, currentUser, RestAction.Edited);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 _logger.LogError(e, "Failed to announce comment.");
             }
@@ -96,12 +92,12 @@ namespace masz.Controllers
             await RequirePermission(guildId, caseId, APIActionPermission.View);
 
             Identity currentIdentity = await GetIdentity();
-            DiscordUser currentUser = currentIdentity.GetCurrentUser();
+            IUser currentUser = currentIdentity.GetCurrentUser();
 
             var repo = ModCaseCommentRepository.CreateDefault(_serviceProvider, currentIdentity);
 
             ModCaseComment comment = await repo.GetSpecificComment(commentId);
-            if (comment.UserId != currentUser.Id && ! currentIdentity.IsSiteAdmin())
+            if (comment.UserId != currentUser.Id && !currentIdentity.IsSiteAdmin())
             {
                 throw new UnauthorizedException();
             }
@@ -112,7 +108,7 @@ namespace masz.Controllers
             {
                 await _discordAnnouncer.AnnounceComment(deletedComment, currentUser, RestAction.Deleted);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 _logger.LogError(e, "Failed to announce comment.");
             }

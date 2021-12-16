@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using DSharpPlus.Entities;
-using masz.Models.Views;
-
-namespace masz.Models
+namespace MASZ.Models
 {
     public class CaseTable
     {

@@ -1,7 +1,6 @@
-using System.Collections.Generic;
-using masz.Enums;
+using MASZ.Enums;
 
-namespace masz.Services
+namespace MASZ.Services
 {
     public interface IInternalConfiguration
     {

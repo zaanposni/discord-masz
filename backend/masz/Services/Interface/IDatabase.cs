@@ -1,11 +1,7 @@
-﻿using masz.Enums;
-using masz.Models;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using MASZ.Enums;
+using MASZ.Models;
 
-namespace masz.Services
+namespace MASZ.Services
 {
     public interface IDatabase
     {

@@ -1,7 +1,6 @@
-using System;
-using masz.Enums;
+using MASZ.Enums;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class CaseTemplate
     {
@@ -16,8 +15,8 @@ namespace masz.Models
         public string[] CaseLabels { get; set; }
         public PunishmentType CasePunishmentType { get; set; }
         public DateTime? CasePunishedUntil { get; set; }
-        public bool sendPublicNotification { get; set; }
-        public bool handlePunishment { get; set; }
-        public bool announceDm { get; set; }
+        public bool SendPublicNotification { get; set; }
+        public bool HandlePunishment { get; set; }
+        public bool AnnounceDm { get; set; }
     }
 }

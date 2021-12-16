@@ -1,16 +1,14 @@
-using System;
-
-namespace masz.Events
+namespace MASZ.Events
 {
     public class InternalCachingDoneEventArgs : EventArgs
     {
-        private int _count;
-        private DateTime _nextCache;
+        private readonly int _count;
+        private readonly DateTime _nextCache;
 
         public InternalCachingDoneEventArgs(int count, DateTime nextCache)
         {
-             _count = count;
-             _nextCache = nextCache;
+            _count = count;
+            _nextCache = nextCache;
         }
 
         public int GetUserEntriesCount()

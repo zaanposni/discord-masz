@@ -1,4 +1,4 @@
-namespace masz.Models
+namespace MASZ.Models
 {
     public class DbCount
     {

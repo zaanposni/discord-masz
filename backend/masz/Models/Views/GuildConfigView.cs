@@ -1,7 +1,6 @@
-using System.Linq;
-using masz.Enums;
+using MASZ.Enums;
 
-namespace masz.Models.Views
+namespace MASZ.Models.Views
 {
     public class GuildConfigView
     {

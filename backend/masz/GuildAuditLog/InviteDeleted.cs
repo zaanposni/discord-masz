@@ -1,28 +1,30 @@
+using Discord;
+using MASZ.InviteTracking;
+using MASZ.Services;
 using System.Text;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using masz.Services;
 
-namespace masz.GuildAuditLog
+namespace MASZ.GuildAuditLog
 {
     public static class InviteDeletedAuditLog
     {
-        public static DiscordEmbedBuilder HandleInviteDeleted(DiscordClient client, InviteDeleteEventArgs e, ITranslator translator)
+        public static async Task<EmbedBuilder> HandleInviteDeleted(TrackedInvite invite, IGuildChannel channel, ITranslator translator)
         {
-            DiscordEmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(DiscordColor.Red);
+            EmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(Color.Red);
 
-            StringBuilder description = new StringBuilder();
-            description.AppendLine($"> **{translator.T().GuildAuditLogInviteCreatedURL()}:** {e.Invite.ToString()}");
-            if (e.Invite.Inviter != null)
+            StringBuilder description = new();
+            description.AppendLine($"> **{translator.T().GuildAuditLogInviteCreatedURL()}:** {invite}");
+
+            var inviter = await channel.Guild.GetUserAsync(invite.CreatorId);
+
+            if (inviter != null)
             {
-                description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {e.Invite.Inviter.Username}#{e.Invite.Inviter.Discriminator} - {e.Invite.Inviter.Mention}");
-                embed.WithAuthor(e.Invite.Inviter.Username, e.Invite.Inviter.AvatarUrl, e.Invite.Inviter.AvatarUrl)
-                     .WithFooter($"{translator.T().GuildAuditLogUserID()}: {e.Invite.Inviter.Id}");
+                description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {inviter.Username}#{inviter.Discriminator} - {inviter.Mention}");
+                embed.WithAuthor(inviter)
+                     .WithFooter($"{translator.T().GuildAuditLogUserID()}: {inviter.Id}");
             }
-            if (e.Channel != null)
+            if (channel is ITextChannel tChannel)
             {
-                description.AppendLine($"> **{translator.T().GuildAuditLogInviteCreatedTargetChannel()}:** {e.Channel.Name} - {e.Channel.Mention}");
+                description.AppendLine($"> **{translator.T().GuildAuditLogInviteCreatedTargetChannel()}:** {tChannel.Name} - {tChannel.Mention}");
             }
 
             embed.WithTitle(translator.T().GuildAuditLogInviteDeletedTitle())

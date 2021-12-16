@@ -1,11 +1,10 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace masz.Dtos.ModCaseComments
+namespace MASZ.Dtos.ModCaseComments
 {
     public class ModCaseCommentForCreateDto
     {
-        [Required(AllowEmptyStrings=false, ErrorMessage="A message is required.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "A message is required.")]
         [MaxLength(300)]
         public string Message { get; set; }
     }

@@ -1,26 +1,16 @@
-using System;
-using System.Threading.Tasks;
-using masz.Enums;
-using masz.Models;
-using masz.Models.Views;
-using masz.Services;
-using Microsoft.AspNetCore.Authorization;
+using MASZ.Enums;
+using MASZ.Models.Views;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using RestSharp;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/meta/")]
     public class MetaController : SimpleController
     {
-        private readonly ILogger<MetaController> _logger;
-
-        public MetaController(ILogger<MetaController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public MetaController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _logger = logger;
         }
 
         [HttpGet("user")]
@@ -30,16 +20,19 @@ namespace masz.Controllers
         }
 
         [HttpGet("application")]
-        public IActionResult GetApplication()
+        public async Task<IActionResult> GetApplication()
         {
-            return Ok(DiscordApplicationView.CreateOrDefault(_discordAPI.GetCurrentApplicationInfo()));
+            return Ok(DiscordApplicationView.CreateOrDefault(await _discordAPI.GetCurrentApplicationInfo()));
         }
 
         [HttpGet("versions")]
-        public async Task<IActionResult> GetReleases() {
-            var restClient = new RestClient("https://maszindex.zaanposni.com/");
-            var request = new RestRequest(Method.GET);
-            request.Resource = "/api/v1/versions";
+        public async Task<IActionResult> GetReleases()
+        {
+            var restClient = new RestClient("https://MASZindex.zaanposni.com/");
+            var request = new RestRequest(Method.GET)
+            {
+                Resource = "/api/v1/versions"
+            };
 
             var response = await restClient.ExecuteAsync(request);
 

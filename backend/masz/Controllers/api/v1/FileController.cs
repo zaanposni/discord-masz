@@ -1,27 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using masz.Dtos.ModCase;
-using masz.Exceptions;
-using masz.Models;
-using masz.Repositories;
+using MASZ.Dtos.ModCase;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Models;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using masz.Enums;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/guilds/{guildId}/cases/{caseId}/files")]
     public class FileController : SimpleCaseController
     {
-        private readonly ILogger<FileController> _logger;
 
         public FileController(ILogger<FileController> logger, IServiceProvider serviceProvider) : base(serviceProvider, logger)
         {
-            _logger = logger;
         }
 
         [HttpDelete("{filename}")]
@@ -39,7 +32,7 @@ namespace masz.Controllers
         [HttpGet("{filename}")]
         public async Task<IActionResult> GetSpecificItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromRoute] string filename)
         {
-            if (! _config.IsPublicFileEnabled())
+            if (!_config.IsPublicFileEnabled())
             {
                 await RequirePermission(guildId, caseId, APIActionPermission.View);
             }
@@ -59,13 +52,14 @@ namespace masz.Controllers
             await RequirePermission(guildId, caseId, APIActionPermission.View);
             Identity identity = await GetIdentity();
 
-            List<string> files = new List<string>();
+            List<string> files = new();
             try
             {
                 files = FileRepository.CreateDefault(_serviceProvider, identity).GetCaseFiles(guildId, caseId);
-            } catch (ResourceNotFoundException) { }
+            }
+            catch (ResourceNotFoundException) { }
 
-            return Ok(new { names = files});
+            return Ok(new { names = files });
         }
 
         [HttpPost]
@@ -76,7 +70,7 @@ namespace masz.Controllers
             await RequirePermission(guildId, caseId, APIActionPermission.Edit);
             Identity identity = await GetIdentity();
 
-            return Ok(new { path = await FileRepository.CreateDefault(_serviceProvider, identity).UploadFile(uploadedFile.File, guildId, caseId)});
+            return Ok(new { path = await FileRepository.CreateDefault(_serviceProvider, identity).UploadFile(uploadedFile.File, guildId, caseId) });
         }
     }
 }

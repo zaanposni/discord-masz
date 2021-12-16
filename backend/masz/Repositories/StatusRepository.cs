@@ -1,12 +1,9 @@
-
-using System;
+using Discord;
+using MASZ.Enums;
+using MASZ.Models;
 using System.Diagnostics;
-using masz.Enums;
-using System.Threading.Tasks;
-using DSharpPlus.Entities;
-using masz.Models;
 
-namespace masz.Repositories
+namespace MASZ.Repositories
 {
 
     public class StatusRepository : BaseRepository<StatusRepository>
@@ -15,19 +12,20 @@ namespace masz.Repositories
         {
         }
 
-        public static StatusRepository CreateDefault(IServiceProvider serviceProvider) => new StatusRepository(serviceProvider);
+        public static StatusRepository CreateDefault(IServiceProvider serviceProvider) => new(serviceProvider);
 
         public async Task<StatusDetail> GetDbStatus()
         {
-            StatusDetail dbStatus = new StatusDetail();
+            StatusDetail dbStatus = new();
             try
             {
-                Stopwatch timer = new Stopwatch();
+                Stopwatch timer = new();
                 timer.Start();
-                dbStatus.Online = await _database.CanConnectAsync();
+                dbStatus.Online = await Database.CanConnectAsync();
                 timer.Stop();
                 dbStatus.ResponseTime = timer.Elapsed.TotalMilliseconds;
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 dbStatus.Online = false;
             }
@@ -35,16 +33,17 @@ namespace masz.Repositories
         }
         public StatusDetail GetBotStatus()
         {
-            StatusDetail botStatus = new StatusDetail();
+            StatusDetail botStatus = new();
             try
             {
-                if (! _discordBot.IsRunning())
+                if (!_discordBot.IsRunning())
                 {
                     botStatus.Online = false;
                     botStatus.LastDisconnect = _discordBot.GetLastDisconnectTime();
                 }
                 botStatus.ResponseTime = _discordBot.GetPing();
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 botStatus.Online = false;
                 botStatus.LastDisconnect = _discordBot.GetLastDisconnectTime();
@@ -53,12 +52,12 @@ namespace masz.Repositories
         }
         public StatusDetail GetCacheStatus()
         {
-            StatusDetail cacheStatus = new StatusDetail();
+            StatusDetail cacheStatus = new();
             try
             {
-                Stopwatch timer = new Stopwatch();
+                Stopwatch timer = new();
                 timer.Start();
-                DiscordUser user = _discordAPI.GetCurrentBotInfo(CacheBehavior.OnlyCache);
+                IUser user = DiscordAPI.GetCurrentBotInfo(CacheBehavior.OnlyCache);
                 timer.Stop();
                 cacheStatus.ResponseTime = timer.Elapsed.TotalMilliseconds;
                 if (user == null)
@@ -66,7 +65,8 @@ namespace masz.Repositories
                     cacheStatus.Online = false;
                     cacheStatus.Message = "Cache is empty.";
                 }
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 cacheStatus.Online = false;
             }

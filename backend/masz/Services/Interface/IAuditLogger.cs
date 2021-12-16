@@ -1,6 +1,4 @@
-using System.Threading.Tasks;
-
-namespace masz.Services
+namespace MASZ.Services
 {
     public interface IAuditLogger
     {

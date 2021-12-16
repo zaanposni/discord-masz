@@ -1,7 +1,7 @@
-using DSharpPlus.Entities;
-using masz.Models.Views;
+using Discord;
+using MASZ.Models.Views;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class UserMappingExpandedView
     {
@@ -10,7 +10,7 @@ namespace masz.Models
         public DiscordUserView UserB { get; set; }
         public DiscordUserView Moderator { get; set; }
 
-        public UserMappingExpandedView(UserMapping userMapping, DiscordUser userA, DiscordUser userB, DiscordUser moderator)
+        public UserMappingExpandedView(UserMapping userMapping, IUser userA, IUser userB, IUser moderator)
         {
             UserMapping = new UserMappingView(userMapping);
             UserA = DiscordUserView.CreateOrDefault(userA);

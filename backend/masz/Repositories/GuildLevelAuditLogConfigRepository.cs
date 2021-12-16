@@ -1,28 +1,25 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using masz.Enums;
-using masz.Events;
-using masz.Exceptions;
-using masz.Models;
+using MASZ.Enums;
+using MASZ.Events;
+using MASZ.Exceptions;
+using MASZ.Models;
 
-namespace masz.Repositories
+namespace MASZ.Repositories
 {
 
     public class GuildLevelAuditLogConfigRepository : BaseRepository<GuildLevelAuditLogConfigRepository>
     {
         private GuildLevelAuditLogConfigRepository(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
-        public static GuildLevelAuditLogConfigRepository CreateDefault(IServiceProvider serviceProvider) => new GuildLevelAuditLogConfigRepository(serviceProvider);
+        public static GuildLevelAuditLogConfigRepository CreateDefault(IServiceProvider serviceProvider) => new(serviceProvider);
 
         public async Task<List<GuildLevelAuditLogConfig>> GetConfigsByGuild(ulong guildId)
         {
-            return await _database.SelectAllAuditLogConfigsForGuild(guildId);
+            return await Database.SelectAllAuditLogConfigsForGuild(guildId);
         }
 
         public async Task<GuildLevelAuditLogConfig> GetConfigsByGuildAndType(ulong guildId, GuildAuditLogEvent type)
         {
-            GuildLevelAuditLogConfig config = await _database.SelectAuditLogConfigForGuildAndType(guildId, type);
+            GuildLevelAuditLogConfig config = await Database.SelectAuditLogConfigForGuildAndType(guildId, type);
             if (config == null)
             {
                 throw new ResourceNotFoundException($"GuildAuditLog config {guildId}/{type} does not exist.");
@@ -32,7 +29,8 @@ namespace masz.Repositories
 
         public async Task<GuildLevelAuditLogConfig> UpdateConfig(GuildLevelAuditLogConfig newValue)
         {
-            if (! Enum.IsDefined(typeof(GuildAuditLogEvent), newValue.GuildAuditLogEvent)) {
+            if (!Enum.IsDefined(typeof(GuildAuditLogEvent), newValue.GuildAuditLogEvent))
+            {
                 throw new BaseAPIException("Invalid auditlog event type.", APIError.InvalidAuditLogEvent);
             }
 
@@ -40,7 +38,8 @@ namespace masz.Repositories
             try
             {
                 auditLogConfig = await GetConfigsByGuildAndType(newValue.GuildId, newValue.GuildAuditLogEvent);
-            } catch (ResourceNotFoundException)
+            }
+            catch (ResourceNotFoundException)
             {
                 auditLogConfig = new GuildLevelAuditLogConfig();
             }
@@ -49,8 +48,8 @@ namespace masz.Repositories
             auditLogConfig.ChannelId = newValue.ChannelId;
             auditLogConfig.PingRoles = newValue.PingRoles;
 
-            _database.PutAuditLogConfig(auditLogConfig);
-            await _database.SaveChangesAsync();
+            Database.PutAuditLogConfig(auditLogConfig);
+            await Database.SaveChangesAsync();
 
             await _eventHandler.InvokeGuildLevelAuditLogConfigUpdated(new GuildLevelAuditLogConfigUpdatedEventArgs(auditLogConfig));
 
@@ -59,16 +58,16 @@ namespace masz.Repositories
 
         public async Task DeleteConfigsForGuild(ulong guildId)
         {
-            await _database.DeleteAllAuditLogConfigsForGuild(guildId);
-            await _database.SaveChangesAsync();
+            await Database.DeleteAllAuditLogConfigsForGuild(guildId);
+            await Database.SaveChangesAsync();
         }
 
         public async Task<GuildLevelAuditLogConfig> DeleteConfigForGuild(ulong guildId, GuildAuditLogEvent type)
         {
             GuildLevelAuditLogConfig config = await GetConfigsByGuildAndType(guildId, type);
 
-            _database.DeleteSpecificAuditLogConfig(config);
-            await _database.SaveChangesAsync();
+            Database.DeleteSpecificAuditLogConfig(config);
+            await Database.SaveChangesAsync();
 
             await _eventHandler.InvokeGuildLevelAuditLogConfigDeleted(new GuildLevelAuditLogConfigDeletedEventArgs(config));
 

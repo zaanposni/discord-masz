@@ -1,9 +1,7 @@
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.EventArgs;
-using masz.Models;
+using Discord.WebSocket;
+using MASZ.Models;
 
-namespace masz.Services
+namespace MASZ.Services
 {
     public interface IPunishmentHandler
     {
@@ -11,6 +9,6 @@ namespace masz.Services
         void CheckAllCurrentPunishments();
         Task ExecutePunishment(ModCase modCase);
         Task UndoPunishment(ModCase modCase);
-        Task HandleMemberJoin(DiscordClient client, GuildMemberAddEventArgs e);
+        Task HandleMemberJoin(SocketGuildUser user);
     }
 }

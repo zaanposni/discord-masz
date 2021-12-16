@@ -1,12 +1,9 @@
-using System;
-using masz.Models.Views;
-
-namespace masz.Models
+namespace MASZ.Models
 {
     public class CommentsView
     {
         public int Id { get; set; }
-        public String Message { get; set; }
+        public string Message { get; set; }
         public DateTime CreatedAt { get; set; }
         public string UserId { get; set; }
 
@@ -20,7 +17,8 @@ namespace masz.Models
 
         public void RemoveModeratorInfo(string suspectId)
         {
-            if (UserId != suspectId) {
+            if (UserId != suspectId)
+            {
                 UserId = null;
             }
         }

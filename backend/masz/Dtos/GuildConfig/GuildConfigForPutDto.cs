@@ -1,7 +1,7 @@
+using MASZ.Enums;
 using System.ComponentModel.DataAnnotations;
-using masz.Enums;
 
-namespace masz.Dtos.GuildConfig
+namespace MASZ.Dtos.GuildConfig
 {
     public class GuildConfigForPutDto
     {

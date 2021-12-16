@@ -1,11 +1,10 @@
-using System;
-using masz.Models;
+using MASZ.Models;
 
-namespace masz.Events
+namespace MASZ.Events
 {
     public class CaseTemplateCreatedEventArgs : EventArgs
     {
-        private CaseTemplate _template;
+        private readonly CaseTemplate _template;
 
         public CaseTemplateCreatedEventArgs(CaseTemplate template)
         {

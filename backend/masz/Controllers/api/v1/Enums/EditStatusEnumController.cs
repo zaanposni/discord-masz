@@ -1,25 +1,20 @@
-using System;
-using System.Collections.Generic;
-using masz.Dtos.Enum;
-using masz.Enums;
+using MASZ.Dtos.Enum;
+using MASZ.Enums;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/enums/")]
     public class EditStatusEnumController : SimpleController
     {
-        private readonly ILogger<EditStatusEnumController> _logger;
-
-        public EditStatusEnumController(ILogger<EditStatusEnumController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public EditStatusEnumController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _logger = logger;
         }
 
         [HttpGet("editstatus")]
-        public IActionResult ViewEditStatus([FromQuery] Language? language = null) {
+        public IActionResult ViewEditStatus([FromQuery] Language? language = null)
+        {
             _translator.SetContext(language);
             return Ok(new List<EnumDto>()
             {

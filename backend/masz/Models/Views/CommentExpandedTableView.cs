@@ -1,11 +1,10 @@
-using DSharpPlus.Entities;
-using masz.Models.Views;
+using Discord;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class CommentExpandedTableView : CommentExpandedView
     {
-        public CommentExpandedTableView(ModCaseComment comment, DiscordUser commentor, ulong guildId, int caseId) : base(comment, commentor)
+        public CommentExpandedTableView(ModCaseComment comment, IUser commentor, ulong guildId, int caseId) : base(comment, commentor)
         {
             GuildId = guildId.ToString();
             CaseId = caseId;

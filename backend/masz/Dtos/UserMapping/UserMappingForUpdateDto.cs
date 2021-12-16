@@ -1,6 +1,4 @@
-using System.ComponentModel.DataAnnotations;
-
-namespace masz.Dtos.UserMapping
+namespace MASZ.Dtos.UserMapping
 {
     public class UserMappingForUpdateDto
     {

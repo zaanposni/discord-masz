@@ -1,16 +1,10 @@
-using DSharpPlus.SlashCommands;
-
-namespace masz.Enums
+namespace MASZ.Enums
 {
     public enum PunishmentType
     {
-        [ChoiceName("Warn")]
-        None,
-        [ChoiceName("Mute")]
+        Warn,
         Mute,
-        [ChoiceName("Kick")]
         Kick,
-        [ChoiceName("Ban")]
         Ban
     }
 }

@@ -1,11 +1,10 @@
-using System;
-using masz.Models;
+using MASZ.Models;
 
-namespace masz.Events
+namespace MASZ.Events
 {
     public class ModCaseCommentCreatedEventArgs : EventArgs
     {
-        private ModCaseComment _modCaseComment;
+        private readonly ModCaseComment _modCaseComment;
 
         public ModCaseCommentCreatedEventArgs(ModCaseComment modCaseComment)
         {

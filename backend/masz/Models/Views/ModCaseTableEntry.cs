@@ -1,7 +1,7 @@
-using DSharpPlus.Entities;
-using masz.Models.Views;
+using Discord;
+using MASZ.Models.Views;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class ModCaseTableEntry
     {
@@ -11,11 +11,11 @@ namespace masz.Models
 
         public void RemoveModeratorInfo()
         {
-            this.Moderator = null;
-            this.ModCase.RemoveModeratorInfo();
+            Moderator = null;
+            ModCase.RemoveModeratorInfo();
         }
 
-        public ModCaseTableEntry(ModCase modCase, DiscordUser moderator, DiscordUser suspect)
+        public ModCaseTableEntry(ModCase modCase, IUser moderator, IUser suspect)
         {
             ModCase = new CaseView(modCase);
             Moderator = DiscordUserView.CreateOrDefault(moderator);

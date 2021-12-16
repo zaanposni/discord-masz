@@ -1,13 +1,10 @@
-using System;
+using Discord;
+using MASZ.Enums;
+using MASZ.Extensions;
+using MASZ.Models;
 using System.Text;
-using System.Threading.Tasks;
-using DSharpPlus.Entities;
-using masz.Models;
-using Microsoft.Extensions.Logging;
-using masz.Enums;
-using masz.Extensions;
 
-namespace masz.Services
+namespace MASZ.Services
 {
     public class NotificationEmbedCreator : INotificationEmbedCreator
     {
@@ -29,34 +26,33 @@ namespace masz.Services
             _config = config;
         }
 
-        private DiscordEmbedBuilder CreateBasicEmbed(RestAction action, DiscordUser author = null)
+        private EmbedBuilder CreateBasicEmbed(RestAction action, IUser author = null)
         {
-            DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
+            EmbedBuilder embed = new()
+            {
+                Timestamp = DateTime.Now
+            };
 
-            embed.Timestamp = DateTime.Now;
-
-            switch(action) {
+            switch (action)
+            {
                 case RestAction.Edited:
-                    embed.Color = DiscordColor.Orange;
+                    embed.Color = Color.Orange;
                     break;
                 case RestAction.Deleted:
-                    embed.Color = DiscordColor.Red;
+                    embed.Color = Color.Red;
                     break;
                 case RestAction.Created:
-                    embed.Color = DiscordColor.Green;
+                    embed.Color = Color.Green;
                     break;
             }
 
-            if (author != null) {
-                embed.WithAuthor(
-                    author.Username,
-                    author.AvatarUrl,
-                    author.AvatarUrl
-                );
+            if (author != null)
+            {
+                embed.WithAuthor(author);
             }
 
             // Url
-            if (! string.IsNullOrEmpty(_config.GetBaseUrl()))
+            if (!string.IsNullOrEmpty(_config.GetBaseUrl()))
             {
                 embed.Url = _config.GetBaseUrl();
             }
@@ -64,20 +60,23 @@ namespace masz.Services
             return embed;
         }
 
-        public async Task<DiscordEmbedBuilder> CreateModcaseEmbed(ModCase modCase, RestAction action, DiscordUser actor, DiscordUser suspect = null, bool isInternal = true)
+        public async Task<EmbedBuilder> CreateModcaseEmbed(ModCase modCase, RestAction action, IUser actor, IUser suspect = null, bool isInternal = true)
         {
             await _translator.SetContext(modCase.GuildId);
-            DiscordEmbedBuilder embed;
-            if (isInternal) {
+            EmbedBuilder embed;
+            if (isInternal)
+            {
                 embed = CreateBasicEmbed(action, actor);
-            } else {
+            }
+            else
+            {
                 embed = CreateBasicEmbed(action);
             }
 
             // Thumbnail
             if (suspect != null)
             {
-                embed.WithThumbnail(suspect.AvatarUrl);
+                embed.WithThumbnailUrl(suspect.GetAvatarUrl());
             }
 
             // Description
@@ -90,25 +89,35 @@ namespace masz.Services
             embed.WithFooter($"UserId: {modCase.UserId} | CaseId: {modCase.CaseId}");
 
             // Description
-            switch(action){
+            switch (action)
+            {
                 case RestAction.Edited:
-                    if (isInternal) {
+                    if (isInternal)
+                    {
                         embed.Description = _translator.T().NotificationModcaseUpdateInternal(modCase, actor);
-                    } else {
+                    }
+                    else
+                    {
                         embed.Description = _translator.T().NotificationModcaseUpdatePublic(modCase);
                     }
                     break;
                 case RestAction.Deleted:
-                    if (isInternal) {
+                    if (isInternal)
+                    {
                         embed.Description = _translator.T().NotificationModcaseDeleteInternal(modCase, actor);
-                    } else {
+                    }
+                    else
+                    {
                         embed.Description = _translator.T().NotificationModcaseDeletePublic(modCase);
                     }
                     break;
                 case RestAction.Created:
-                    if (isInternal) {
+                    if (isInternal)
+                    {
                         embed.Description = _translator.T().NotificationModcaseCreateInternal(modCase, actor);
-                    } else {
+                    }
+                    else
+                    {
                         embed.Description = _translator.T().NotificationModcaseCreatePublic(modCase);
                     }
                     break;
@@ -124,11 +133,12 @@ namespace masz.Services
             // Labels
             if (modCase.Labels.Length != 0)
             {
-                StringBuilder sb = new StringBuilder();
-                foreach(string label in modCase.Labels)
+                StringBuilder sb = new();
+                foreach (string label in modCase.Labels)
                 {
                     sb.Append($"`{label}` ");
-                    if (sb.ToString().Length > 1000) {
+                    if (sb.ToString().Length > 1000)
+                    {
                         break;
                     }
                 }
@@ -138,13 +148,13 @@ namespace masz.Services
             return embed;
         }
 
-        public async Task<DiscordEmbedBuilder> CreateFileEmbed(string filename, ModCase modCase, RestAction action, DiscordUser actor)
+        public async Task<EmbedBuilder> CreateFileEmbed(string filename, ModCase modCase, RestAction action, IUser actor)
         {
             await _translator.SetContext(modCase.GuildId);
-            DiscordEmbedBuilder embed = CreateBasicEmbed(action, actor);
+            EmbedBuilder embed = CreateBasicEmbed(action, actor);
 
             // Thumbnail
-            embed.WithThumbnail(actor.AvatarUrl);
+            embed.WithThumbnailUrl(actor.GetAvatarUrl());
 
             // Footer
             embed.WithFooter($"UserId: {actor.Id} | CaseId: {modCase.CaseId}");
@@ -152,7 +162,8 @@ namespace masz.Services
             // Filename
             embed.AddField($"**{_translator.T().Filename()}**", filename.Truncate(1000));
 
-            switch(action){
+            switch (action)
+            {
                 case RestAction.Edited:
                     embed.Description = _translator.T().NotificationModcaseFileUpdate(actor);
                     embed.Title = $"**{_translator.T().NotificationFilesUpdate().ToUpper()}** - #{modCase.CaseId} {modCase.Title}";
@@ -170,17 +181,18 @@ namespace masz.Services
             return embed;
         }
 
-        public async Task<DiscordEmbedBuilder> CreateCommentEmbed(ModCaseComment comment, RestAction action, DiscordUser actor)
+        public async Task<EmbedBuilder> CreateCommentEmbed(ModCaseComment comment, RestAction action, IUser actor)
         {
             await _translator.SetContext(comment.ModCase.GuildId);
-            DiscordEmbedBuilder embed = CreateBasicEmbed(action, actor);
+            EmbedBuilder embed = CreateBasicEmbed(action, actor);
 
             if (actor != null)
             {
-                embed.WithThumbnail(actor.AvatarUrl);
+                embed.WithThumbnailUrl(actor.GetAvatarUrl());
             }
 
-            switch(action){
+            switch (action)
+            {
                 case RestAction.Edited:
                     embed.Description = _translator.T().NotificationModcaseCommentsUpdate(actor);
                     embed.Title = $"**{_translator.T().NotificationModcaseCommentsShortUpdate().ToUpper()}** - #{comment.ModCase.CaseId} {comment.ModCase.Title}";
@@ -204,14 +216,14 @@ namespace masz.Services
             return embed;
         }
 
-        public async Task<DiscordEmbedBuilder> CreateUserNoteEmbed(UserNote userNote, RestAction action, DiscordUser actor, DiscordUser target)
+        public async Task<EmbedBuilder> CreateUserNoteEmbed(UserNote userNote, RestAction action, IUser actor, IUser target)
         {
             await _translator.SetContext(userNote.GuildId);
-            DiscordEmbedBuilder embed = CreateBasicEmbed(action, actor);
+            EmbedBuilder embed = CreateBasicEmbed(action, actor);
 
             if (actor != null)
             {
-                embed.WithThumbnail(target.AvatarUrl);
+                embed.WithThumbnailUrl(target.GetAvatarUrl());
             }
 
             embed.AddField($"**{_translator.T().Description()}**", userNote.Description.Truncate(1000));
@@ -223,10 +235,10 @@ namespace masz.Services
             return embed;
         }
 
-        public async Task<DiscordEmbedBuilder> CreateUserMapEmbed(UserMapping userMapping, RestAction action, DiscordUser actor)
+        public async Task<EmbedBuilder> CreateUserMapEmbed(UserMapping userMapping, RestAction action, IUser actor)
         {
             await _translator.SetContext(userMapping.GuildId);
-            DiscordEmbedBuilder embed = CreateBasicEmbed(action, actor);
+            EmbedBuilder embed = CreateBasicEmbed(action, actor);
 
             embed.AddField($"**{_translator.T().Description()}**", userMapping.Reason.Truncate(1000));
 
@@ -238,10 +250,10 @@ namespace masz.Services
             return embed;
         }
 
-        public DiscordEmbedBuilder CreateTipsEmbedForNewGuilds(GuildConfig guildConfig)
+        public EmbedBuilder CreateTipsEmbedForNewGuilds(GuildConfig guildConfig)
         {
             _translator.SetContext(guildConfig);
-            DiscordEmbedBuilder embed = CreateBasicEmbed(RestAction.Created, null);
+            EmbedBuilder embed = CreateBasicEmbed(RestAction.Created, null);
 
             embed.Title = _translator.T().NotificationRegisterWelcomeToMASZ();
             embed.Description = _translator.T().NotificationRegisterDescriptionThanks();
@@ -275,10 +287,10 @@ namespace masz.Services
             return embed;
         }
 
-        public DiscordEmbedBuilder CreateInternalAutomodEmbed(AutoModerationEvent autoModerationEvent, GuildConfig guildConfig, DiscordUser user, DiscordChannel channel, PunishmentType? punishmentType = null)
+        public EmbedBuilder CreateInternalAutomodEmbed(AutoModerationEvent autoModerationEvent, GuildConfig guildConfig, IUser user, ITextChannel channel, PunishmentType? punishmentType = null)
         {
             _translator.SetContext(guildConfig);
-            DiscordEmbedBuilder embed = CreateBasicEmbed(RestAction.Created, null);
+            EmbedBuilder embed = CreateBasicEmbed(RestAction.Created, null);
 
             embed.Title = _translator.T().Automoderation();
             embed.Description = _translator.T().NotificationAutomoderationInternal(user);
@@ -291,7 +303,7 @@ namespace masz.Services
 
             embed.AddField(
                 _translator.T().Message(),
-                $"[{autoModerationEvent.MessageId.ToString()}](https://discord.com/channels/{autoModerationEvent.GuildId}/{channel.Id}/{autoModerationEvent.MessageId})",
+                $"[{autoModerationEvent.MessageId}](https://discord.com/channels/{autoModerationEvent.GuildId}/{channel.Id}/{autoModerationEvent.MessageId})",
                 true
             );
 

@@ -1,11 +1,10 @@
-using System;
-using masz.Models;
+using MASZ.Models;
 
-namespace masz.Events
+namespace MASZ.Events
 {
     public class ModCaseUpdatedEventArgs : EventArgs
     {
-        private ModCase _modCase;
+        private readonly ModCase _modCase;
 
         public ModCaseUpdatedEventArgs(ModCase modCase)
         {
