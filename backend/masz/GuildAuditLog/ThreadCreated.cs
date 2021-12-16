@@ -7,7 +7,7 @@ namespace MASZ.GuildAuditLog
 {
     public static class ThreadCreatedAuditLog
     {
-        public static EmbedBuilder HandleThreadCreated(SocketThreadChannel thread, ITranslator translator)
+        public static EmbedBuilder HandleThreadCreated(SocketThreadChannel thread, Translator translator)
         {
             EmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(Color.Green);
 

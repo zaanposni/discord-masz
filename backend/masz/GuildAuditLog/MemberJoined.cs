@@ -7,7 +7,7 @@ namespace MASZ.GuildAuditLog
 {
     public static class MemberJoinedAuditLog
     {
-        public static EmbedBuilder HandleMemberJoined(IUser user, ITranslator translator)
+        public static EmbedBuilder HandleMemberJoined(IUser user, Translator translator)
         {
             EmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(Color.Green);
 

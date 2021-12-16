@@ -20,7 +20,6 @@ namespace MASZ.Commands
         [SlashCommand("view", "View details of a modcase.")]
         public async Task View([Summary("id", "the id of the case")] long caseId, [Summary("guildid", "the id of the guild")] string guildId = "")
         {
-            // parse to ulong because discord sux
             ulong parsedGuildId = 0;
             if (Context.Guild == null)
             {

@@ -1,8 +1,8 @@
 using Discord;
 using MASZ.Enums;
-using MASZ.Events;
 using MASZ.Exceptions;
 using MASZ.Models;
+using MASZ.Utils;
 
 namespace MASZ.Repositories
 {
@@ -16,7 +16,7 @@ namespace MASZ.Repositories
         }
         private GuildMotdRepository(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _currentUser = DiscordAPI.GetCurrentBotInfo(CacheBehavior.Default);
+            _currentUser = DiscordAPI.GetCurrentBotInfo();
         }
         public static GuildMotdRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new(serviceProvider, identity.GetCurrentUser());
         public static GuildMotdRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new(serviceProvider);
@@ -52,7 +52,7 @@ namespace MASZ.Repositories
             Database.SaveMotd(motd);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeGuildMotdUpdated(new GuildMotdUpdatedEventArgs(motd));
+            await _eventHandler.OnGuildMotdUpdatedEvent.InvokeAsync(motd);
 
             return motd;
         }

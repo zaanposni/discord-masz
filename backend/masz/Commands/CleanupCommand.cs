@@ -1,6 +1,7 @@
 using Discord;
 using Discord.Interactions;
 using Discord.Net;
+using MASZ.Attributes;
 using MASZ.Enums;
 using System.Net;
 
@@ -11,14 +12,13 @@ namespace MASZ.Commands
     {
         public CleanupCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
+        [Require(RequireCheckEnum.GuildModerator)]
         [SlashCommand("cleanup", "Cleanup specific data from the server and/or channel.")]
         public async Task Cleanup([Summary("mode", "which data you want to delete")] CleanupMode cleanupMode,
                                   [Summary("channel", "where to delete, defaults to current.")] IChannel channel = null,
                                   [Summary("count", "how many messages to scan for your mode.")] long count = 100,
                                   [Summary("user", "additional filter on this user")] IUser filterUser = null)
         {
-            await Require(RequireCheckEnum.GuildModerator);
-
             if (channel == null)
             {
                 channel = Context.Channel;

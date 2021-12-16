@@ -1,7 +1,7 @@
 using MASZ.Dtos.Tokens;
-using MASZ.Events;
 using MASZ.Exceptions;
 using MASZ.Models;
+using MASZ.Utils;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -51,7 +51,7 @@ namespace MASZ.Repositories
             await Database.SaveToken(apiToken);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeTokenCreated(new TokenCreatedEventArgs(apiToken));
+            await _eventHandler.OnTokenCreatedEvent.InvokeAsync(apiToken);
 
             return new CreatedTokenDto()
             {
@@ -65,7 +65,7 @@ namespace MASZ.Repositories
             APIToken apiToken = await GetToken();
             Database.DeleteToken(apiToken);
             await Database.SaveChangesAsync();
-            await _eventHandler.InvokeTokenDeleted(new TokenDeletedEventArgs(apiToken));
+            await _eventHandler.OnTokenDeletedEvent.InvokeAsync(apiToken);
         }
 
         private string GenerateToken(string name)

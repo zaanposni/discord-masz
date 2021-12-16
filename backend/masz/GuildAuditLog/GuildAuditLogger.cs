@@ -19,13 +19,14 @@ namespace MASZ.GuildAuditLog
             _client = client;
             _guildId = guildId;
             _serviceProvider = serviceProvider;
-            _logger = (ILogger<GuildAuditLogger>)_serviceProvider.GetService(typeof(ILogger<GuildAuditLogger>));
+            _logger = (ILogger<GuildAuditLogger>)_serviceProvider.GetRequiredService(typeof(ILogger<GuildAuditLogger>));
         }
 
         public static GuildAuditLogger CreateDefault(IDiscordClient client, IServiceProvider serviceProvider, ulong guildId)
         {
             return new GuildAuditLogger(client, serviceProvider, guildId);
         }
+
         public static EmbedBuilder GenerateBaseEmbed(Color color)
         {
             var embed = new EmbedBuilder();

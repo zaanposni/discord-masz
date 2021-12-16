@@ -1,8 +1,8 @@
 using Discord;
 using MASZ.Enums;
-using MASZ.Events;
 using MASZ.Exceptions;
 using MASZ.Models;
+using MASZ.Utils;
 
 namespace MASZ.Repositories
 {
@@ -21,7 +21,7 @@ namespace MASZ.Repositories
         public static FileRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new(serviceProvider, identity);
         public static FileRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new(serviceProvider);
 
-        public Models.FileInfo GetCaseFile(ulong guildId, int caseId, string fileName)
+        public UploadedFile GetCaseFile(ulong guildId, int caseId, string fileName)
         {
             var filePath = Path.Join(_config.GetFileUploadPath(), guildId.ToString(), caseId.ToString(), _filesHandler.RemoveSpecialCharacters(fileName));
 
@@ -56,7 +56,7 @@ namespace MASZ.Repositories
                 Inline = true,
             };
 
-            return new Models.FileInfo
+            return new UploadedFile
             {
                 Name = fileName,
                 ContentType = contentType,
@@ -77,7 +77,7 @@ namespace MASZ.Repositories
                 throw new InvalidPathException();
             }
 
-            System.IO.FileInfo[] files = _filesHandler.GetFilesByDirectory(fullPath);
+            FileInfo[] files = _filesHandler.GetFilesByDirectory(fullPath);
             if (files == null)
             {
                 throw new ResourceNotFoundException();
@@ -112,7 +112,7 @@ namespace MASZ.Repositories
                 Logger.LogError(e, "Failed to announce file.");
             }
 
-            await _eventHandler.InvokeFileUploaded(new FileUploadedEventArgs(GetCaseFile(guildId, caseId, fileName)));
+            await _eventHandler.OnFileUploadedEvent.InvokeAsync(GetCaseFile(guildId, caseId, fileName));
 
             return fileName;
         }

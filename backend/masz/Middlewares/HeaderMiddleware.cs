@@ -5,9 +5,9 @@ namespace MASZ.Middlewares
     public class HeaderMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IInternalConfiguration _config;
+        private readonly InternalConfiguration _config;
 
-        public HeaderMiddleware(RequestDelegate next, IInternalConfiguration config)
+        public HeaderMiddleware(RequestDelegate next, InternalConfiguration config)
         {
             _next = next;
             _config = config;
@@ -15,7 +15,7 @@ namespace MASZ.Middlewares
 
         public async Task Invoke(HttpContext context)
         {
-            context.Request.Headers["Host"] = _config.GetServiceDomain();
+            context.Request.Headers["Host"] = _config.GetRequiredServiceDomain();
             await _next(context);
         }
     }

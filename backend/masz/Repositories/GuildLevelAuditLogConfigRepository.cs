@@ -1,7 +1,7 @@
 using MASZ.Enums;
-using MASZ.Events;
 using MASZ.Exceptions;
 using MASZ.Models;
+using MASZ.Utils;
 
 namespace MASZ.Repositories
 {
@@ -51,7 +51,7 @@ namespace MASZ.Repositories
             Database.PutAuditLogConfig(auditLogConfig);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeGuildLevelAuditLogConfigUpdated(new GuildLevelAuditLogConfigUpdatedEventArgs(auditLogConfig));
+            await _eventHandler.OnGuildLevelAuditLogConfigUpdatedEvent.InvokeAsync(auditLogConfig);
 
             return auditLogConfig;
         }
@@ -69,7 +69,7 @@ namespace MASZ.Repositories
             Database.DeleteSpecificAuditLogConfig(config);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeGuildLevelAuditLogConfigDeleted(new GuildLevelAuditLogConfigDeletedEventArgs(config));
+            await _eventHandler.OnGuildLevelAuditLogConfigDeletedEvent.InvokeAsync(config);
 
             return config;
         }

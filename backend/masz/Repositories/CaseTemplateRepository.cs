@@ -1,8 +1,8 @@
 using Discord;
 using MASZ.Enums;
-using MASZ.Events;
 using MASZ.Exceptions;
 using MASZ.Models;
+using MASZ.Utils;
 
 namespace MASZ.Repositories
 {
@@ -21,7 +21,7 @@ namespace MASZ.Repositories
         }
         private CaseTemplateRepository(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _currentUser = DiscordAPI.GetCurrentBotInfo(CacheBehavior.Default);
+            _currentUser = DiscordAPI.GetCurrentBotInfo();
             _isBot = true;
         }
         public static CaseTemplateRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new(serviceProvider, identity);
@@ -46,7 +46,7 @@ namespace MASZ.Repositories
             await Database.SaveCaseTemplate(template);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeCaseTemplateCreated(new CaseTemplateCreatedEventArgs(template));
+            await _eventHandler.OnCaseTemplateCreatedEvent.InvokeAsync(template);
 
             return template;
         }
@@ -66,7 +66,7 @@ namespace MASZ.Repositories
             Database.DeleteSpecificCaseTemplate(template);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeCaseTemplateDeleted(new CaseTemplateDeletedEventArgs(template));
+            await _eventHandler.OnCaseTemplateDeletedEvent.InvokeAsync(template);
         }
 
         public async Task<List<CaseTemplate>> GetTemplatesBasedOnPermissions()

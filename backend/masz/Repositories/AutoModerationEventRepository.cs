@@ -1,7 +1,7 @@
 using Discord;
 using MASZ.Enums;
-using MASZ.Events;
 using MASZ.Models;
+using MASZ.Utils;
 using System.Text;
 
 namespace MASZ.Repositories
@@ -85,7 +85,7 @@ namespace MASZ.Repositories
             await Database.SaveModerationEvent(modEvent);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeAutoModerationEventRegistered(new AutoModerationEventRegisteredEventArgs(modEvent));
+            await _eventHandler.OnAutoModerationEventRegisteredEvent.InvokeAsync(modEvent);
 
             return modEvent;
         }

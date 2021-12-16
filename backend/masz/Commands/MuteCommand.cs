@@ -1,5 +1,6 @@
 using Discord;
 using Discord.Interactions;
+using MASZ.Attributes;
 using MASZ.Enums;
 using MASZ.Models;
 using MASZ.Repositories;
@@ -11,6 +12,7 @@ namespace MASZ.Commands
     {
         public MuteCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
+        [Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildRegistered, RequireCheckEnum.GuildStrictModeMute)]
         [SlashCommand("mute", "Mute a user and create a modcase")]
         public async Task Mute(
             [Summary("title", "The title of the modcase")] string title,
@@ -26,8 +28,6 @@ namespace MASZ.Commands
             [Summary("public-notification", "Whether to send a public webhook notification")] bool sendPublicNotification = true,
             [Summary("execute-punishment", "Whether to execute the punishment or just register it.")] bool executePunishment = true)
         {
-            await Require(RequireCheckEnum.GuildModerator, RequireCheckEnum.GuildRegistered, RequireCheckEnum.GuildStrictModeMute);
-
             ModCase modCase = new()
             {
                 Title = title,

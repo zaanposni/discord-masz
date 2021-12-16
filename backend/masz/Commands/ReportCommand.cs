@@ -1,5 +1,6 @@
 using Discord;
 using Discord.Interactions;
+using MASZ.Attributes;
 using MASZ.Enums;
 using MASZ.Extensions;
 using MASZ.Models;
@@ -13,10 +14,10 @@ namespace MASZ.Commands
     {
         public ReportCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
+        [Require(RequireCheckEnum.GuildRegistered)]
         [MessageCommand("Report to moderators")]
         public async Task Report(IMessage msg)
         {
-            await Require(RequireCheckEnum.GuildRegistered);
             GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(ServiceProvider).GetGuildConfig(Context.Guild.Id);
 
             if (string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))

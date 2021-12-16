@@ -7,7 +7,7 @@ namespace MASZ.GuildAuditLog
 {
     public static class MessageDeletedAuditLog
     {
-        public static EmbedBuilder HandleMessageDeleted(IMessage message, ITranslator translator)
+        public static EmbedBuilder HandleMessageDeleted(IMessage message, Translator translator)
         {
             EmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(Color.Red);
 

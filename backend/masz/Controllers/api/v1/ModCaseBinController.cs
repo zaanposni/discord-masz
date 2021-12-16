@@ -12,7 +12,7 @@ namespace MASZ.Controllers
     public class ModCaseBinController : SimpleCaseController
     {
 
-        public ModCaseBinController(ILogger<ModCaseBinController> logger, IServiceProvider serviceProvider) : base(serviceProvider, logger)
+        public ModCaseBinController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
 

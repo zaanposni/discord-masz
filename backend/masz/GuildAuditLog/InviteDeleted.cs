@@ -7,7 +7,7 @@ namespace MASZ.GuildAuditLog
 {
     public static class InviteDeletedAuditLog
     {
-        public static async Task<EmbedBuilder> HandleInviteDeleted(TrackedInvite invite, IGuildChannel channel, ITranslator translator)
+        public static async Task<EmbedBuilder> HandleInviteDeleted(TrackedInvite invite, IGuildChannel channel, Translator translator)
         {
             EmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(Color.Red);
 

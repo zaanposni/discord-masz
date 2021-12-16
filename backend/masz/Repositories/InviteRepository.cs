@@ -1,5 +1,5 @@
-using MASZ.Events;
 using MASZ.Models;
+using MASZ.Utils;
 
 namespace MASZ.Repositories
 {
@@ -39,7 +39,7 @@ namespace MASZ.Repositories
             await Database.SaveInvite(invite);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeInviteUsageRegistered(new InviteUsageRegisteredEventArgs(invite));
+            await _eventHandler.OnInviteUsageRegisteredEvent.InvokeAsync(invite);
 
             return invite;
         }

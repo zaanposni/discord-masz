@@ -9,8 +9,8 @@ namespace MASZ.Models
     public abstract class Identity
     {
         protected readonly IServiceScopeFactory _serviceScopeFactory;
-        protected readonly IDiscordAPIInterface _discordAPI;
-        protected readonly IInternalConfiguration _config;
+        protected readonly DiscordAPIInterface _discordAPI;
+        protected readonly InternalConfiguration _config;
         public DateTime ValidUntil { get; set; }
         protected string Token;
         protected IUser currentUser;
@@ -21,8 +21,8 @@ namespace MASZ.Models
             ValidUntil = DateTime.UtcNow.AddMinutes(15);
 
             _serviceScopeFactory = serviceScopeFactory;
-            _discordAPI = (IDiscordAPIInterface)serviceProvider.GetService(typeof(IDiscordAPIInterface));
-            _config = (IInternalConfiguration)serviceProvider.GetService(typeof(IInternalConfiguration));
+            _discordAPI = (DiscordAPIInterface)serviceProvider.GetRequiredService(typeof(DiscordAPIInterface));
+            _config = (InternalConfiguration)serviceProvider.GetRequiredService(typeof(InternalConfiguration));
         }
 
         /// <summary>

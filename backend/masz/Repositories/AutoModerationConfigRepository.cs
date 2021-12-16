@@ -1,7 +1,7 @@
 using MASZ.Enums;
-using MASZ.Events;
 using MASZ.Exceptions;
 using MASZ.Models;
+using MASZ.Utils;
 
 namespace MASZ.Repositories
 {
@@ -64,7 +64,7 @@ namespace MASZ.Repositories
             Database.PutModerationConfig(autoModerationConfig);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeAutoModerationConfigUpdated(new AutoModerationConfigUpdatedEventArgs(autoModerationConfig));
+            await _eventHandler.OnAutoModerationConfigUpdatedEvent.InvokeAsync(autoModerationConfig);
 
             return autoModerationConfig;
         }
@@ -82,7 +82,7 @@ namespace MASZ.Repositories
             Database.DeleteSpecificModerationConfig(config);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.InvokeAutoModerationConfigDeleted(new AutoModerationConfigDeletedEventArgs(config));
+            await _eventHandler.OnAutoModerationConfigDeletedEvent.InvokeAsync(config);
 
             return config;
         }

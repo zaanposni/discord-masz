@@ -69,7 +69,7 @@ namespace MASZ.Models
             DeletedByUserId = null;
         }
 
-        public string GetPunishment(ITranslator translator)
+        public string GetPunishment(Translator translator)
         {
             return translator.T().Enum(PunishmentType);
         }
