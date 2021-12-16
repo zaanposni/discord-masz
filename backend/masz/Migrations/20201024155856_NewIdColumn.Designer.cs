@@ -19,7 +19,7 @@ namespace MASZ.Migrations
                 .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("MASZ.Models.GuildConfig", b =>
+            modelBuilder.Entity("masz.Models.GuildConfig", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,7 @@ namespace MASZ.Migrations
                     b.ToTable("GuildConfigs");
                 });
 
-            modelBuilder.Entity("MASZ.Models.ModCase", b =>
+            modelBuilder.Entity("masz.Models.ModCase", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

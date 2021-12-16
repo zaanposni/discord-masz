@@ -15,7 +15,7 @@ namespace MASZ.Controllers
     public class ModCaseCommentsController : SimpleCaseController
     {
         private readonly ILogger<ModCaseCommentsController> _logger;
-        public ModCaseCommentsController(ILogger<ModCaseCommentsController> logger, IServiceProvider serviceProvider) : base(serviceProvider, logger)
+        public ModCaseCommentsController(ILogger<ModCaseCommentsController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
             _logger = logger;
         }

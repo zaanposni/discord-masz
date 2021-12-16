@@ -14,7 +14,7 @@ namespace MASZ.Controllers
     [Authorize]
     public class CaseViewController : SimpleCaseController
     {
-        public CaseViewController(ILogger<CaseViewController> logger, IServiceProvider serviceProvider) : base(serviceProvider, logger)
+        public CaseViewController(ILogger<CaseViewController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
 

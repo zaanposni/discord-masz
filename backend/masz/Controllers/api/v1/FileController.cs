@@ -13,7 +13,7 @@ namespace MASZ.Controllers
     public class FileController : SimpleCaseController
     {
 
-        public FileController(ILogger<FileController> logger, IServiceProvider serviceProvider) : base(serviceProvider, logger)
+        public FileController(ILogger<FileController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
 
