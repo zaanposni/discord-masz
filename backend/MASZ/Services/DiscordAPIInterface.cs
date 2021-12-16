@@ -564,7 +564,7 @@ namespace MASZ.Services
 
         public async Task ExecuteWebhook(string url, Embed embed = null, string content = null)
         {
-            await new DiscordWebhookClient(url).SendMessageAsync(content, embeds: new Embed[1] { embed });
+            await new DiscordWebhookClient(url).SendMessageAsync(content, embeds: embed != null ? new Embed[1] { embed } : null);
         }
 
         public Dictionary<string, CacheApiResponse> GetCache()

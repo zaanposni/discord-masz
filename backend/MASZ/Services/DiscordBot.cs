@@ -35,9 +35,6 @@ namespace MASZ.Services
             _serviceProvider = serviceProvider;
             _serviceScopeFactory = serviceScopeFactory;
 
-            var loggerFactory = new LoggerFactory();
-            loggerFactory.AddProvider(new LoggerProvider());
-
             _client.MessageReceived += MessageCreatedHandler;
             _client.MessageUpdated += MessageUpdatedHandler;
             _client.MessageDeleted += MessageDeletedHandler;
@@ -58,11 +55,15 @@ namespace MASZ.Services
 
             _interactions.SlashCommandExecuted += CmdErroredHandler;
 
-            _client.Log += Log;
+            var clientLogger = _serviceProvider.GetRequiredService<ILogger<DiscordSocketClient>>();
+
+            _client.Log += (logLevel) => Log(logLevel, clientLogger);
 
             _client.JoinedGuild += JoinGuild;
 
-            _interactions.Log += Log;
+            var interactionsLogger = _serviceProvider.GetRequiredService<ILogger<InteractionService>>();
+
+            _interactions.Log += (logLevel) => Log(logLevel, interactionsLogger);
         }
 
         public async Task Start()
@@ -101,25 +102,25 @@ namespace MASZ.Services
             }
         }
 
-        private async Task Log(LogMessage logMessage)
+        private Task Log(LogMessage logMessage, ILogger logger)
         {
-            ConsoleColor color = logMessage.Severity switch
+            LogLevel level = logMessage.Severity switch
             {
-                LogSeverity.Info => ConsoleColor.Blue,
-                LogSeverity.Debug => ConsoleColor.Gray,
-                LogSeverity.Critical => ConsoleColor.DarkRed,
-                LogSeverity.Error => ConsoleColor.Red,
-                LogSeverity.Verbose => ConsoleColor.Magenta,
-                LogSeverity.Warning => ConsoleColor.Yellow,
+                LogSeverity.Info => LogLevel.Information,
+                LogSeverity.Debug => LogLevel.Debug,
+                LogSeverity.Critical => LogLevel.Critical,
+                LogSeverity.Error => LogLevel.Error,
+                LogSeverity.Verbose => LogLevel.Trace,
+                LogSeverity.Warning => LogLevel.Warning,
                 _ => throw new NotImplementedException()
             };
 
-            Console.ForegroundColor = color;
-
             if (logMessage.Exception == null)
-                await Console.Out.WriteLineAsync(logMessage.Message);
+                logger.Log(level, logMessage.Message);
             else
-                await Console.Out.WriteLineAsync(logMessage.Exception.ToString());
+                logger.LogError(logMessage.Exception, logMessage.Message);
+
+            return Task.CompletedTask;
         }
 
         private async Task JoinGuild(SocketGuild guild)

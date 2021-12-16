@@ -34,17 +34,18 @@ builder.Services.AddDbContext<DataContext>(x => x.UseMySql(connectionString, Ser
 builder.Services.AddControllers()
     .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-builder.Services.AddSingleton(provider =>
-{
-    var client = new DiscordSocketClient(new DiscordSocketConfig
-    {
-        AlwaysDownloadUsers = true,
-        MessageCacheSize = 50,
-        LogLevel = LogSeverity.Debug
-    });
+builder.Services
 
-    return client;
+.AddSingleton(new DiscordSocketConfig
+{
+    AlwaysDownloadUsers = true,
+    MessageCacheSize = 50,
+    LogLevel = LogSeverity.Debug,
+    GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.GuildMembers,
+    LogGatewayIntentWarnings = false
 })
+
+.AddSingleton<DiscordSocketClient>()
 
 .AddSingleton(new InteractionServiceConfig
 {
@@ -174,19 +175,19 @@ builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection(
 // Load ip rules from appsettings.json
 builder.Services.Configure<IpRateLimitPolicies>(builder.Configuration.GetSection("IpRateLimitPolicies"));
 
-// Inject counter and rules stores
-builder.Services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
-builder.Services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+builder.Services
+
+.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>()
+
+.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>()
+
+.AddSingleton<IHttpContextAccessor, HttpContextAccessor>()
+
+.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>()
+
+.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
 
 builder.Services.AddMvc();
-
-// https://github.com/aspnet/Hosting/issues/793
-// the IHttpContextAccessor service is not registered by default.
-// the clientId/clientIp resolvers use it.
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-// Configuration (resolvers, counter key builders)
-builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
 var app = builder.Build();
 
@@ -238,3 +239,5 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 });
+
+await app.RunAsync();

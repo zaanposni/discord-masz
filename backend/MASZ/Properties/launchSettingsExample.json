@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "masz": {
+    "MASZ": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
