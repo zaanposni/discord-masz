@@ -1,16 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using DSharpPlus.Entities;
-using masz.Models;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using masz.Enums;
-using masz.Events;
+using Discord;
+using MASZ.Enums;
+using MASZ.Events;
+using MASZ.Models;
 
-namespace masz.Services
+namespace MASZ.Services
 {
     public class Scheduler : IScheduler
     {
@@ -22,7 +15,7 @@ namespace masz.Services
         private readonly IIdentityManager _identityManager;
         private readonly IEventHandler _eventHandler;
         private DateTime _nextCacheSchedule;
-        private int _cacheIntervalMinutes = 15;
+        private readonly int _cacheIntervalMinutes = 15;
 
         public Scheduler() { }
 
@@ -40,22 +33,25 @@ namespace masz.Services
         public void StartTimers()
         {
             _logger.LogWarning("Starting schedule timers.");
-            Task task = new Task(() =>
+            Task task = new(() =>
                 {
                     while (true)
                     {
-                        try {
+                        try
+                        {
                             _nextCacheSchedule = DateTime.UtcNow.AddMinutes(_cacheIntervalMinutes);
                             CheckDeletedCases();
                             CacheAll();
                             _identityManager.ClearOldIdentities();
-                        } catch (Exception e) {
+                        }
+                        catch (Exception e)
+                        {
                             _logger.LogError(e, "Error in caching.");
                         }
                         Thread.Sleep(1000 * 60 * _cacheIntervalMinutes);
                     }
                 });
-                task.Start();
+            task.Start();
             _logger.LogWarning("Started schedule timers.");
         }
 
@@ -68,9 +64,12 @@ namespace masz.Services
 
                 foreach (ModCase modCase in await database.SelectAllModcasesMarkedAsDeleted())
                 {
-                    try {
+                    try
+                    {
                         _filesHandler.DeleteDirectory(Path.Combine(_config.GetFileUploadPath(), modCase.GuildId.ToString(), modCase.CaseId.ToString()));
-                    } catch (Exception e) {
+                    }
+                    catch (Exception e)
+                    {
                         _logger.LogError(e, "Failed to delete files directory for modcase.");
                     }
                     database.DeleteSpecificModCase(modCase);
@@ -83,7 +82,7 @@ namespace masz.Services
         public async void CacheAll()
         {
             await CacheAllKnownGuilds();
-            List<ulong> handledUsers = new List<ulong>();
+            List<ulong> handledUsers = new();
             handledUsers = await CacheAllGuildBans(handledUsers);
             handledUsers = await CacheAllGuildMembers(handledUsers);
             handledUsers = await CacheAllKnownUsers(handledUsers);
@@ -94,15 +93,13 @@ namespace masz.Services
         public async Task CacheAllKnownGuilds()
         {
             _logger.LogInformation("Cacher | Cache all registered guilds.");
-            using (var scope = _serviceScopeFactory.CreateScope())
-            {
-                IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
+            using var scope = _serviceScopeFactory.CreateScope();
+            IDatabase database = scope.ServiceProvider.GetService<IDatabase>();
 
-                foreach (var guild in await database.SelectAllGuildConfigs())
-                {
-                    await _discordAPI.FetchGuildInfo(guild.GuildId, CacheBehavior.IgnoreCache);
-                    await _discordAPI.FetchGuildChannels(guild.GuildId, CacheBehavior.IgnoreCache);
-                }
+            foreach (var guild in await database.SelectAllGuildConfigs())
+            {
+                _discordAPI.FetchGuildInfo(guild.GuildId, CacheBehavior.IgnoreCache);
+                await _discordAPI.FetchGuildChannels(guild.GuildId, CacheBehavior.IgnoreCache);
             }
         }
         public async Task<List<ulong>> CacheAllGuildMembers(List<ulong> handledUsers)
@@ -115,10 +112,12 @@ namespace masz.Services
                 foreach (var guild in await database.SelectAllGuildConfigs())
                 {
                     var members = await _discordAPI.FetchGuildMembers(guild.GuildId, CacheBehavior.IgnoreCache);
-                    if (members != null) {
+                    if (members != null)
+                    {
                         foreach (var item in members)
                         {
-                            if (!handledUsers.Contains(item.Id)) {
+                            if (!handledUsers.Contains(item.Id))
+                            {
                                 handledUsers.Add(item.Id);
                             }
                         }
@@ -137,9 +136,10 @@ namespace masz.Services
 
                 foreach (var guild in await database.SelectAllGuildConfigs())
                 {
-                    List<DiscordBan> bans = await _discordAPI.GetGuildBans(guild.GuildId, CacheBehavior.IgnoreCache);
-                    if (bans != null) {
-                        foreach (DiscordBan ban in bans)
+                    List<IBan> bans = await _discordAPI.GetGuildBans(guild.GuildId, CacheBehavior.IgnoreCache);
+                    if (bans != null)
+                    {
+                        foreach (IBan ban in bans)
                         {
                             handledUsers.Add(ban.User.Id);
                         }
@@ -158,15 +158,18 @@ namespace masz.Services
 
                 foreach (var modCase in await database.SelectLatestModCases(DateTime.UtcNow.AddYears(-3), 750))
                 {
-                    if (!handledUsers.Contains(modCase.UserId)) {
+                    if (!handledUsers.Contains(modCase.UserId))
+                    {
                         await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.IgnoreCache);
                         handledUsers.Add(modCase.UserId);
                     }
-                    if (!handledUsers.Contains(modCase.ModId)) {
+                    if (!handledUsers.Contains(modCase.ModId))
+                    {
                         await _discordAPI.FetchUserInfo(modCase.ModId, CacheBehavior.IgnoreCache);
                         handledUsers.Add(modCase.ModId);
                     }
-                    if (!handledUsers.Contains(modCase.LastEditedByModId)) {
+                    if (!handledUsers.Contains(modCase.LastEditedByModId))
+                    {
                         await _discordAPI.FetchUserInfo(modCase.LastEditedByModId, CacheBehavior.IgnoreCache);
                         handledUsers.Add(modCase.LastEditedByModId);
                     }
@@ -174,11 +177,13 @@ namespace masz.Services
 
                 foreach (var userNote in await database.SelectLatestUserNotes(DateTime.UtcNow.AddYears(-3), 100))
                 {
-                    if (!handledUsers.Contains(userNote.UserId)) {
+                    if (!handledUsers.Contains(userNote.UserId))
+                    {
                         await _discordAPI.FetchUserInfo(userNote.UserId, CacheBehavior.IgnoreCache);
                         handledUsers.Add(userNote.UserId);
                     }
-                    if (!handledUsers.Contains(userNote.CreatorId)) {
+                    if (!handledUsers.Contains(userNote.CreatorId))
+                    {
                         await _discordAPI.FetchUserInfo(userNote.CreatorId, CacheBehavior.IgnoreCache);
                         handledUsers.Add(userNote.CreatorId);
                     }
@@ -186,15 +191,18 @@ namespace masz.Services
 
                 foreach (var userMapping in await database.SelectLatestUserMappings(DateTime.UtcNow.AddYears(-3), 100))
                 {
-                    if (!handledUsers.Contains(userMapping.UserA)) {
+                    if (!handledUsers.Contains(userMapping.UserA))
+                    {
                         await _discordAPI.FetchUserInfo(userMapping.UserA, CacheBehavior.IgnoreCache);
                         handledUsers.Add(userMapping.UserA);
                     }
-                    if (!handledUsers.Contains(userMapping.UserB)) {
+                    if (!handledUsers.Contains(userMapping.UserB))
+                    {
                         await _discordAPI.FetchUserInfo(userMapping.UserB, CacheBehavior.IgnoreCache);
                         handledUsers.Add(userMapping.UserB);
                     }
-                    if (!handledUsers.Contains(userMapping.CreatorUserId)) {
+                    if (!handledUsers.Contains(userMapping.CreatorUserId))
+                    {
                         await _discordAPI.FetchUserInfo(userMapping.CreatorUserId, CacheBehavior.IgnoreCache);
                         handledUsers.Add(userMapping.CreatorUserId);
                     }

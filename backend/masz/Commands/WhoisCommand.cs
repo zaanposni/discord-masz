@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Discord;
+using Discord.Interactions;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Extensions;
+using MASZ.Models;
+using MASZ.Repositories;
 using System.Text;
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.SlashCommands;
-using masz.Enums;
-using masz.Exceptions;
-using masz.Extensions;
-using masz.Models;
-using masz.Repositories;
 
-namespace masz.Commands
+namespace MASZ.Commands
 {
 
     public class WhoisCommand : BaseCommand<WhoisCommand>
@@ -20,61 +15,63 @@ namespace masz.Commands
         public WhoisCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [SlashCommand("whois", "Whois information about a user.")]
-        public async Task Whois(InteractionContext ctx,  [Option("user", "user to scan")] DiscordUser user)
+        public async Task Whois([Summary("user", "user to scan")] IUser user)
         {
-            await Require(ctx, RequireCheckEnum.GuildModerator);
-            await ctx.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
+            await Require(RequireCheckEnum.GuildModerator);
+            await Context.Interaction.RespondAsync("Getting WHOIS information...");
 
-            DiscordMember member = null;
+            IGuildUser member = null;
             try
             {
-                member = await ctx.Guild.GetMemberAsync(user.Id);
-            } catch (Exception) { }
+                member = Context.Guild.GetUser(user.Id);
+            }
+            catch (Exception) { }
 
-            DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
+            EmbedBuilder embed = new();
             embed.WithFooter($"UserId: {user.Id}");
             embed.WithTimestamp(DateTime.UtcNow);
             embed.WithDescription(user.Mention);
 
-            List<UserInvite> invites = await InviteRepository.CreateDefault(_serviceProvider).GetusedInvitesForUserAndGuild(user.Id, ctx.Guild.Id);
+            List<UserInvite> invites = await InviteRepository.CreateDefault(ServiceProvider).GetusedInvitesForUserAndGuild(user.Id, Context.Guild.Id);
             List<UserInvite> filteredInvites = invites.OrderByDescending(x => x.JoinedAt).ToList();
             if (member != null && member.JoinedAt != null)
             {
-                filteredInvites = filteredInvites.FindAll(x => x.JoinedAt >= member.JoinedAt.UtcDateTime);
+                filteredInvites = filteredInvites.FindAll(x => x.JoinedAt >= member.JoinedAt.Value.UtcDateTime);
             }
-            StringBuilder joinedInfo = new StringBuilder();
+            StringBuilder joinedInfo = new();
             if (member != null)
             {
-                joinedInfo.AppendLine(member.JoinedAt.DateTime.ToDiscordTS());
+                joinedInfo.AppendLine(member.JoinedAt.Value.DateTime.ToDiscordTS());
             }
             if (filteredInvites.Count > 0)
             {
                 UserInvite usedInvite = filteredInvites.First();
-                joinedInfo.AppendLine(_translator.T().CmdWhoisUsedInvite(usedInvite.UsedInvite));
+                joinedInfo.AppendLine(Translator.T().CmdWhoisUsedInvite(usedInvite.UsedInvite));
                 if (usedInvite.InviteIssuerId != 0)
                 {
-                    joinedInfo.AppendLine(_translator.T().CmdWhoisInviteBy(usedInvite.InviteIssuerId));
+                    joinedInfo.AppendLine(Translator.T().CmdWhoisInviteBy(usedInvite.InviteIssuerId));
                 }
             }
-            if (! string.IsNullOrEmpty(joinedInfo.ToString()))
+            if (!string.IsNullOrEmpty(joinedInfo.ToString()))
             {
-                embed.AddField(_translator.T().Joined(), joinedInfo.ToString(), true);
+                embed.AddField(Translator.T().Joined(), joinedInfo.ToString(), true);
             }
-            embed.AddField(_translator.T().Registered(), user.CreationTimestamp.DateTime.ToDiscordTS(), true);
+            embed.AddField(Translator.T().Registered(), user.CreatedAt.DateTime.ToDiscordTS(), true);
 
-            embed.WithAuthor(user.Username, user.AvatarUrl, user.AvatarUrl);
-            embed.WithThumbnail(user.AvatarUrl);
+            embed.WithAuthor(user);
+            embed.WithThumbnailUrl(user.GetAvatarUrl());
 
             try
             {
-                UserNote userNote = await UserNoteRepository.CreateDefault(_serviceProvider, _currentIdentity).GetUserNote(ctx.Guild.Id, user.Id);
-                embed.AddField(_translator.T().UserNote(), userNote.Description.Truncate(1000), false);
-            } catch (ResourceNotFoundException) { }
+                UserNote userNote = await UserNoteRepository.CreateDefault(ServiceProvider, CurrentIdentity).GetUserNote(Context.Guild.Id, user.Id);
+                embed.AddField(Translator.T().UserNote(), userNote.Description.Truncate(1000), false);
+            }
+            catch (ResourceNotFoundException) { }
 
-            List<UserMapping> userMappings = await UserMapRepository.CreateDefault(_serviceProvider, _currentIdentity).GetUserMapsByGuildAndUser(ctx.Guild.Id, user.Id);
+            List<UserMapping> userMappings = await UserMapRepository.CreateDefault(ServiceProvider, CurrentIdentity).GetUserMapsByGuildAndUser(Context.Guild.Id, user.Id);
             if (userMappings.Count > 0)
             {
-                StringBuilder userMappingsInfo = new StringBuilder();
+                StringBuilder userMappingsInfo = new();
                 foreach (UserMapping userMapping in userMappings.Take(5))
                 {
                     ulong otherUser = userMapping.UserA == user.Id ? userMapping.UserB : userMapping.UserA;
@@ -84,51 +81,52 @@ namespace masz.Commands
                 {
                     userMappingsInfo.Append("[...]");
                 }
-                embed.AddField($"{_translator.T().UserMaps()} [{userMappings.Count}]", userMappingsInfo.ToString(), false);
+                embed.AddField($"{Translator.T().UserMaps()} [{userMappings.Count}]", userMappingsInfo.ToString(), false);
             }
 
-            List<ModCase> cases = await ModCaseRepository.CreateWithBotIdentity(_serviceProvider).GetCasesForGuildAndUser(ctx.Guild.Id, user.Id);
+            List<ModCase> cases = await ModCaseRepository.CreateWithBotIdentity(ServiceProvider).GetCasesForGuildAndUser(Context.Guild.Id, user.Id);
             List<ModCase> activeCases = cases.FindAll(c => c.PunishmentActive);
 
             if (cases.Count > 0)
             {
-                StringBuilder caseInfo = new StringBuilder();
+                StringBuilder caseInfo = new();
                 foreach (ModCase modCase in cases.Take(5))
                 {
                     caseInfo.Append($"[{modCase.CaseId} - {modCase.Title.Truncate(50)}]");
-                    caseInfo.Append($"({_config.GetBaseUrl()}/guilds/{modCase.GuildId}/cases/{modCase.CaseId})\n");
+                    caseInfo.Append($"({Config.GetBaseUrl()}/guilds/{modCase.GuildId}/cases/{modCase.CaseId})\n");
                 }
                 if (cases.Count > 5)
                 {
                     caseInfo.Append("[...]");
                 }
-                embed.AddField($"{_translator.T().Cases()} [{cases.Count}]", caseInfo.ToString(), false);
+                embed.AddField($"{Translator.T().Cases()} [{cases.Count}]", caseInfo.ToString(), false);
 
                 if (activeCases.Count > 0)
                 {
-                    StringBuilder activeInfo = new StringBuilder();
+                    StringBuilder activeInfo = new();
                     foreach (ModCase modCase in activeCases.Take(5))
                     {
-                        activeInfo.Append($"{modCase.GetPunishment(_translator)} ");
+                        activeInfo.Append($"{modCase.GetPunishment(Translator)} ");
                         if (modCase.PunishedUntil != null)
                         {
-                            activeInfo.Append($"({_translator.T().Until()} {modCase.PunishedUntil.Value.ToDiscordTS()}) ");
+                            activeInfo.Append($"({Translator.T().Until()} {modCase.PunishedUntil.Value.ToDiscordTS()}) ");
                         }
                         activeInfo.Append($"[{modCase.CaseId} - {modCase.Title.Truncate(50)}]");
-                        activeInfo.Append($"({_config.GetBaseUrl()}/guilds/{modCase.GuildId}/cases/{modCase.CaseId})\n");
+                        activeInfo.Append($"({Config.GetBaseUrl()}/guilds/{modCase.GuildId}/cases/{modCase.CaseId})\n");
                     }
                     if (activeCases.Count > 5)
                     {
                         activeInfo.Append("[...]");
                     }
-                    embed.AddField($"{_translator.T().ActivePunishments()} [{activeCases.Count}]", activeInfo.ToString(), false);
+                    embed.AddField($"{Translator.T().ActivePunishments()} [{activeCases.Count}]", activeInfo.ToString(), false);
                 }
-            } else
+            }
+            else
             {
-                embed.AddField($"{_translator.T().Cases()} [0]", _translator.T().CmdWhoisNoCases(), false);
+                embed.AddField($"{Translator.T().Cases()} [0]", Translator.T().CmdWhoisNoCases(), false);
             }
 
-            await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
+            await Context.Interaction.ModifyOriginalResponseAsync(message => { message.Content = ""; message.Embed = embed.Build(); });
         }
     }
 }

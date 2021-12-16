@@ -1,25 +1,19 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using masz.Dtos.AutoModerationConfig;
-using masz.Models;
-using masz.Repositories;
+using MASZ.Dtos.AutoModerationConfig;
+using MASZ.Enums;
+using MASZ.Models;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using masz.Enums;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/guilds/{guildId}/automoderationconfig/")]
     [Authorize]
     public class AutoModerationConfigController : SimpleController
     {
-        private readonly ILogger<AutoModerationConfigController> _logger;
-
-        public AutoModerationConfigController(IServiceProvider serviceProvider, ILogger<AutoModerationConfigController> logger) : base(serviceProvider) {
-            _logger = logger;
+        public AutoModerationConfigController(IServiceProvider serviceProvider) : base(serviceProvider)
+        {
         }
 
         [HttpPut]

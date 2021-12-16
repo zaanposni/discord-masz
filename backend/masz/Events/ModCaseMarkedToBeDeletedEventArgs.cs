@@ -1,11 +1,10 @@
-using System;
-using masz.Models;
+using MASZ.Models;
 
-namespace masz.Events
+namespace MASZ.Events
 {
     public class ModCaseMarkedToBeDeletedEventArgs : EventArgs
     {
-        private ModCase _modCase;
+        private readonly ModCase _modCase;
 
         public ModCaseMarkedToBeDeletedEventArgs(ModCase modCase)
         {

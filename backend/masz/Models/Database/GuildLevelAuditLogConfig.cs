@@ -1,8 +1,8 @@
+using MASZ.Dtos.GuildLevelAuditLogConfig;
+using MASZ.Enums;
 using System.ComponentModel.DataAnnotations;
-using masz.Dtos.GuildLevelAuditLogConfig;
-using masz.Enums;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class GuildLevelAuditLogConfig
     {

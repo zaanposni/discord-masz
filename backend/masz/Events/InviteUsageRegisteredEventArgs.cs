@@ -1,11 +1,10 @@
-using System;
-using masz.Models;
+using MASZ.Models;
 
-namespace masz.Events
+namespace MASZ.Events
 {
     public class InviteUsageRegisteredEventArgs : EventArgs
     {
-        private UserInvite _userInivte;
+        private readonly UserInvite _userInivte;
 
         public InviteUsageRegisteredEventArgs(UserInvite userInvite)
         {

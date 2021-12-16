@@ -1,146 +1,44 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.SlashCommands;
-using masz.Enums;
-using masz.Models;
-using masz.Repositories;
-using Microsoft.Extensions.Logging;
+using Discord;
+using Discord.Interactions;
+using Discord.Net;
+using MASZ.Enums;
+using System.Net;
 
-namespace masz.Commands
+namespace MASZ.Commands
 {
 
     public class CleanupCommand : BaseCommand<CleanupCommand>
     {
-        private bool HasAttachment(DiscordMessage m)
-        {
-            return m.Attachments.Count > 0;
-        }
-        private bool IsFromBot(DiscordMessage m)
-        {
-            return m.Author.IsBot;
-        }
-        private async Task<int> IterateAndDeleteChannels(DiscordChannel channel, int limit, Func<DiscordMessage, bool> predicate, DiscordUser currentActor, DiscordUser filterUser = null)
-        {
-            ulong lastId = 0;
-            int deleted = 0;
-            List<DiscordMessage> toDelete = new List<DiscordMessage>();
-            var messages = await channel.GetMessagesAsync(Math.Min(limit, 100));
-            if (messages.Count < Math.Min(limit, 100))
-            {
-                limit = 0;  // ignore while loop since channel will be empty soon
-            }
-            foreach (DiscordMessage message in messages)
-            {
-                lastId = message.Id;
-                limit--;
-                if (filterUser != null && message.Author.Id != filterUser.Id)
-                {
-                    continue;
-                }
-                if (predicate(message))
-                {
-                    deleted++;
-                    if (message.CreationTimestamp.UtcDateTime.AddDays(14) > DateTime.UtcNow)
-                    {
-                        toDelete.Add(message);
-                    } else
-                    {
-                        await message.DeleteAsync();
-                    }
-                }
-            }
-            while (limit > 0)
-            {
-                if (toDelete.Count >= 2)
-                {
-                    await channel.DeleteMessagesAsync(toDelete, $"Bulkdelete by {currentActor.Username}#{currentActor.Discriminator} ({currentActor.Id}).");
-                    toDelete.Clear();
-                } else if (toDelete.Count > 0)
-                {
-                    await toDelete[0].DeleteAsync();
-                    toDelete.Clear();
-                }
-                messages = await channel.GetMessagesBeforeAsync(lastId, Math.Min(limit, 100));
-                bool breakAfterDeleteIteration = false;
-                if (messages.Count == 0)
-                {
-                    break;
-                }
-                if (messages.Count < Math.Min(limit, 100))
-                {
-                    breakAfterDeleteIteration = true;
-                }
-                foreach (DiscordMessage message in messages)
-                {
-                    lastId = message.Id;
-                    limit--;
-                    if (filterUser != null && message.Author.Id != filterUser.Id)
-                    {
-                        continue;
-                    }
-                    if (predicate(message))
-                    {
-                        deleted++;
-                        if (message.CreationTimestamp.UtcDateTime.AddDays(14) > DateTime.UtcNow)
-                        {
-                            toDelete.Add(message);
-                        } else
-                        {
-                            await message.DeleteAsync();
-                        }
-                    }
-                }
-                if (breakAfterDeleteIteration)
-                {
-                    break;
-                }
-            }
-            if (toDelete.Count >= 2)
-            {
-                await channel.DeleteMessagesAsync(toDelete, $"Bulkdelete by {currentActor.Username}#{currentActor.Discriminator} ({currentActor.Id}).");
-                toDelete.Clear();
-            } else if (toDelete.Count > 0)
-            {
-                await toDelete[0].DeleteAsync();
-                toDelete.Clear();
-            }
-            return deleted;
-        }
         public CleanupCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [SlashCommand("cleanup", "Cleanup specific data from the server and/or channel.")]
-        public async Task Cleanup(InteractionContext ctx,
-                                    [Option("mode", "which data you want to delete")]CleanupMode cleanupMode,
-                                    [Option("channel", "where to delete, defaults to current.")] DiscordChannel channel = null,
-                                    [Option("count", "how many messages to scan for your mode.")] long count = 100,
-                                    [Option("user", "additional filter on this user")] DiscordUser filterUser = null)
+        public async Task Cleanup([Summary("mode", "which data you want to delete")] CleanupMode cleanupMode,
+                                  [Summary("channel", "where to delete, defaults to current.")] IChannel channel = null,
+                                  [Summary("count", "how many messages to scan for your mode.")] long count = 100,
+                                  [Summary("user", "additional filter on this user")] IUser filterUser = null)
         {
-            await Require(ctx, RequireCheckEnum.GuildModerator);
+            await Require(RequireCheckEnum.GuildModerator);
 
             if (channel == null)
             {
-                channel = ctx.Channel;
+                channel = Context.Channel;
             }
-            if (channel.Type != ChannelType.Text)
+            if (channel is not ITextChannel textChannel)
             {
-                await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource,
-                        new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdOnlyTextChannel()));
+                await Context.Interaction.RespondAsync(Translator.T().CmdOnlyTextChannel());
                 return;
             }
-            await ctx.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource, new DiscordInteractionResponseBuilder().AsEphemeral(true));
+
+            await Context.Interaction.RespondAsync("Deleting channels...");
 
             if (count > 1000)
             {
                 count = 1000;
             }
 
-            var func = new Func<DiscordMessage, bool>(m => true);
-            switch (cleanupMode) {
+            var func = new Func<IMessage, bool>(m => true);
+            switch (cleanupMode)
+            {
                 case CleanupMode.Bots:
                     func = IsFromBot;
                     break;
@@ -152,17 +50,95 @@ namespace masz.Commands
             int deleted = 0;
             try
             {
-                deleted = await IterateAndDeleteChannels(channel, (int)count, func, ctx.User, filterUser);
-            } catch (DSharpPlus.Exceptions.UnauthorizedException)
+                deleted = await IterateAndDeleteChannels(textChannel, (int)count, func, filterUser);
+                await Context.Interaction.ModifyOriginalResponseAsync(message => message.Content = Translator.T().CmdCleanup(deleted, textChannel));
+            }
+            catch (HttpException e)
             {
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().CmdCannotViewOrDeleteInChannel()));
-                return;
-            } catch (DSharpPlus.Exceptions.NotFoundException)
-            {
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().CmdCannotFindChannel()));
+                if (e.HttpCode == HttpStatusCode.NotFound)
+                    await Context.Interaction.ModifyOriginalResponseAsync(message => message.Content = Translator.T().CmdCannotFindChannel());
+                else if (e.HttpCode == HttpStatusCode.Unauthorized)
+                    await Context.Interaction.ModifyOriginalResponseAsync(message => message.Content = Translator.T().CmdCannotViewOrDeleteInChannel());
                 return;
             }
-            await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().CmdCleanup(deleted, channel)));
         }
+        private bool HasAttachment(IMessage m)
+        {
+            return m.Attachments.Count > 0;
+        }
+        private bool IsFromBot(IMessage m)
+        {
+            return m.Author.IsBot;
+        }
+
+        private static async Task<int> IterateAndDeleteChannels(ITextChannel channel, int limit, Func<IMessage, bool> predicate, IUser filterUser = null)
+        {
+            int deleted = 0;
+            List<IMessage> toDelete = new();
+
+            while (limit > 0)
+            {
+                if (toDelete.Count >= 2)
+                {
+                    await channel.DeleteMessagesAsync(toDelete);
+                    toDelete.Clear();
+                }
+                else if (toDelete.Count > 0)
+                {
+                    await toDelete[0].DeleteAsync();
+                    toDelete.Clear();
+                }
+
+                var messages = channel.GetMessagesAsync(Math.Min(limit, 100));
+                bool breakAfterDeleteIteration = false;
+                if (await messages.CountAsync() == 0)
+                {
+                    break;
+                }
+                if (await messages.CountAsync() < Math.Min(limit, 100))
+                {
+                    breakAfterDeleteIteration = true;
+                }
+                await foreach (IMessage message in messages)
+                {
+                    limit--;
+                    if (filterUser != null && message.Author.Id != filterUser.Id)
+                    {
+                        continue;
+                    }
+                    if (predicate(message))
+                    {
+                        deleted++;
+                        if (message.CreatedAt.UtcDateTime.AddDays(14) > DateTime.UtcNow)
+                        {
+                            toDelete.Add(message);
+                        }
+                        else
+                        {
+                            await message.DeleteAsync();
+                        }
+                    }
+                }
+                if (breakAfterDeleteIteration)
+                {
+                    break;
+                }
+            }
+
+            if (toDelete.Count >= 2)
+            {
+                await channel.DeleteMessagesAsync(toDelete);
+                toDelete.Clear();
+            }
+
+            else if (toDelete.Count > 0)
+            {
+                await toDelete[0].DeleteAsync();
+                toDelete.Clear();
+            }
+
+            return deleted;
+        }
+
     }
 }

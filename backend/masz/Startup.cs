@@ -1,30 +1,21 @@
-using System;
-using System.Text;
-using System.Threading.Tasks;
 using AspNetCoreRateLimit;
-using masz.data;
-using masz.Models;
-using masz.Services;
-using masz.Logger;
+using Discord;
+using Discord.Interactions;
+using Discord.Rest;
+using Discord.WebSocket;
+using MASZ.Data;
+using MASZ.Logger;
+using MASZ.Middlewares;
+using MASZ.Plugins;
+using MASZ.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using masz.Middlewares;
-using masz.Plugins;
-using System.Linq;
-using Scrutor;
+using System.Text;
 
-namespace masz
+namespace MASZ
 {
     public class Startup
     {
@@ -36,15 +27,46 @@ namespace masz
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public async void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(x => x.UseMySql($"Server=" + System.Environment.GetEnvironmentVariable("MYSQL_HOST") + ";" +
-                                                               $"Port=" + System.Environment.GetEnvironmentVariable("MYSQL_PORT") + ";" +
-                                                               $"Database=" + System.Environment.GetEnvironmentVariable("MYSQL_DATABASE") + ";" +
-                                                               $"Uid=" + System.Environment.GetEnvironmentVariable("MYSQL_USER") + ";" +
-                                                               $"Pwd=" + System.Environment.GetEnvironmentVariable("MYSQL_PASSWORD") + ";"));
+            services.AddDbContext<DataContext>(x => x.UseMySql($"Server=" + Environment.GetEnvironmentVariable("MYSQL_HOST") + ";" +
+                                                               $"Port=" + Environment.GetEnvironmentVariable("MYSQL_PORT") + ";" +
+                                                               $"Database=" + Environment.GetEnvironmentVariable("MYSQL_DATABASE") + ";" +
+                                                               $"Uid=" + Environment.GetEnvironmentVariable("MYSQL_USER") + ";" +
+                                                               $"Pwd=" + Environment.GetEnvironmentVariable("MYSQL_PASSWORD") + ";"));
             services.AddControllers()
                 .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            int shards;
+
+            using (var restClient = new DiscordRestClient())
+            {
+                await restClient.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN"));
+
+                shards = await restClient.GetRecommendedShardCountAsync();
+            }
+
+            services.AddSingleton(provider =>
+             {
+                 var client = new DiscordShardedClient(new DiscordSocketConfig
+                 {
+                     AlwaysDownloadUsers = true,
+                     MessageCacheSize = 50,
+                     TotalShards = shards,
+                     LogLevel = LogSeverity.Debug
+                 });
+
+                 return client;
+             })
+
+            .AddSingleton(new InteractionServiceConfig
+            {
+                DefaultRunMode = RunMode.Async,
+                LogLevel = LogSeverity.Debug,
+                UseCompiledLambda = true
+            })
+
+            .AddSingleton<InteractionService>();
 
             services.AddScoped<IDatabase, Database>();
             services.AddScoped<ITranslator, Translator>();
@@ -62,18 +84,18 @@ namespace masz
 
             // Plugin
             // ######################################################################################################
-            if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
+            if (string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
             {
                 Console.WriteLine("########################################################################################################");
                 Console.WriteLine("ENABLED CUSTOM PLUGINS!");
-                Console.WriteLine("This might impact the performance or security of your masz instance!");
+                Console.WriteLine("This might impact the performance or security of your MASZ instance!");
                 Console.WriteLine("Use this only if you know what you are doing!");
                 Console.WriteLine("For support and more information, refer to the creator or community of your plugin!");
                 Console.WriteLine("########################################################################################################");
 
                 services.Scan(scan => scan
                     .FromAssemblyOf<IBasePlugin>()
-                    .AddClasses(classes => classes.InNamespaces("masz.Plugins"))
+                    .AddClasses(classes => classes.InNamespaces("MASZ.Plugins"))
                     .AsImplementedInterfaces()
                     .WithSingletonLifetime());
             }
@@ -86,7 +108,7 @@ namespace masz
                     options.LogoutPath = "/api/v1/logout";
                     options.ExpireTimeSpan = new TimeSpan(7, 0, 0, 0);
                     options.Cookie.MaxAge = new TimeSpan(7, 0, 0, 0);
-                    options.Cookie.Name = "masz_access_token";
+                    options.Cookie.Name = "MASZ_access_token";
                     options.Cookie.HttpOnly = false;
                     options.Events.OnRedirectToLogin = context =>
                     {
@@ -97,15 +119,15 @@ namespace masz
                 })
                 .AddDiscord(options =>
                 {
-                    options.ClientId = System.Environment.GetEnvironmentVariable("DISCORD_OAUTH_CLIENT_ID");
-                    options.ClientSecret = System.Environment.GetEnvironmentVariable("DISCORD_OAUTH_CLIENT_SECRET");
+                    options.ClientId = Environment.GetEnvironmentVariable("DISCORD_OAUTH_CLIENT_ID");
+                    options.ClientSecret = Environment.GetEnvironmentVariable("DISCORD_OAUTH_CLIENT_SECRET");
                     options.Scope.Add("guilds");
                     options.Scope.Add("identify");
                     options.SaveTokens = true;
                     options.Prompt = "none";
                     options.AccessDeniedPath = "/oauthfailed";
                     options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.CorrelationCookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax;
+                    options.CorrelationCookie.SameSite = SameSiteMode.Lax;
                     options.CorrelationCookie.HttpOnly = false;
                 });
 
@@ -118,7 +140,7 @@ namespace masz
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(
                             Encoding.UTF8.GetBytes(
-                                System.Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN"))),
+                                Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN"))),
                         ValidateIssuer = false,
                         ValidateAudience = false
                     };
@@ -131,7 +153,7 @@ namespace masz
                         .Build();
                 });
 
-            if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CORS")))
+            if (string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CORS")))
             {
                 services.AddCors(o => o.AddPolicy("AngularDevCors", builder =>
                 {
@@ -155,7 +177,7 @@ namespace masz
             services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
             services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.AddMvc();
 
             // https://github.com/aspnet/Hosting/issues/793
             // the IHttpContextAccessor service is not registered by default.
@@ -180,7 +202,7 @@ namespace masz
             app.UseMiddleware<RequestLoggingMiddleware>();
             app.UseMiddleware<APIExceptionHandlingMiddleware>();
 
-            if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CORS")))
+            if (string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CORS")))
             {
                 app.UseCors("AngularDevCors");
             }
@@ -199,7 +221,7 @@ namespace masz
                 scope.ServiceProvider.GetService<IPunishmentHandler>().StartTimer();
                 scope.ServiceProvider.GetService<IScheduler>().StartTimers();
                 scope.ServiceProvider.GetService<IDiscordBot>().Start();
-                if (String.Equals("true", System.Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
+                if (string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
                 {
                     scope.ServiceProvider.GetServices<IBasePlugin>().ToList().ForEach(x => x.Init());
                 }

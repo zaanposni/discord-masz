@@ -1,9 +1,8 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace masz.Models
+namespace MASZ.Models
 {
-    public class ModCaseComment: ICloneable
+    public class ModCaseComment : ICloneable
     {
         [Key]
         public int Id { get; set; }
@@ -14,19 +13,21 @@ namespace masz.Models
 
         public object Clone()
         {
-            return new ModCaseComment {
-                Id = this.Id,
-                ModCase = this.ModCase,
-                Message = this.Message,
-                UserId = this.UserId,
-                CreatedAt = this.CreatedAt
+            return new ModCaseComment
+            {
+                Id = Id,
+                ModCase = ModCase,
+                Message = Message,
+                UserId = UserId,
+                CreatedAt = CreatedAt
             };
         }
 
         public void RemoveModeratorInfo(ulong suspectId)
         {
-            if (this.UserId != suspectId) {
-                this.UserId = 0;
+            if (UserId != suspectId)
+            {
+                UserId = 0;
             }
         }
     }

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using masz.data;
+using MASZ.Data;
 
-namespace masz.Migrations
+namespace MASZ.Migrations
 {
     [DbContext(typeof(DataContext))]
     [Migration("20201221122840_AutoModeration")]
@@ -19,7 +19,7 @@ namespace masz.Migrations
                 .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("masz.Models.AutoModerationConfig", b =>
+            modelBuilder.Entity("MASZ.Models.AutoModerationConfig", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,7 +63,7 @@ namespace masz.Migrations
                     b.ToTable("AutoModerationConfigs");
                 });
 
-            modelBuilder.Entity("masz.Models.AutoModerationEvent", b =>
+            modelBuilder.Entity("MASZ.Models.AutoModerationEvent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,7 +108,7 @@ namespace masz.Migrations
                     b.ToTable("AutoModerationEvents");
                 });
 
-            modelBuilder.Entity("masz.Models.GuildConfig", b =>
+            modelBuilder.Entity("MASZ.Models.GuildConfig", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -140,7 +140,7 @@ namespace masz.Migrations
                     b.ToTable("GuildConfigs");
                 });
 
-            modelBuilder.Entity("masz.Models.ModCase", b =>
+            modelBuilder.Entity("MASZ.Models.ModCase", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -212,7 +212,7 @@ namespace masz.Migrations
                     b.ToTable("ModCases");
                 });
 
-            modelBuilder.Entity("masz.Models.ModCaseComment", b =>
+            modelBuilder.Entity("MASZ.Models.ModCaseComment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -237,9 +237,9 @@ namespace masz.Migrations
                     b.ToTable("ModCaseComments");
                 });
 
-            modelBuilder.Entity("masz.Models.ModCaseComment", b =>
+            modelBuilder.Entity("MASZ.Models.ModCaseComment", b =>
                 {
-                    b.HasOne("masz.Models.ModCase", "ModCase")
+                    b.HasOne("MASZ.Models.ModCase", "ModCase")
                         .WithMany("Comments")
                         .HasForeignKey("ModCaseId")
                         .OnDelete(DeleteBehavior.Cascade)

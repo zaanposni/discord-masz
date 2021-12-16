@@ -1,15 +1,10 @@
-﻿using DSharpPlus.Entities;
-using masz.Enums;
-using masz.Exceptions;
-using masz.Repositories;
-using masz.Services;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Discord;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Repositories;
+using MASZ.Services;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public abstract class Identity
     {
@@ -18,16 +13,16 @@ namespace masz.Models
         protected readonly IInternalConfiguration _config;
         public DateTime ValidUntil { get; set; }
         protected string Token;
-        protected DiscordUser currentUser;
-        protected List<DiscordGuild> currentUserGuilds;
-        public Identity (string token, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
+        protected IUser currentUser;
+        protected List<IGuild> currentUserGuilds;
+        public Identity(string token, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
         {
             Token = token;
             ValidUntil = DateTime.UtcNow.AddMinutes(15);
 
             _serviceScopeFactory = serviceScopeFactory;
-            _discordAPI = (IDiscordAPIInterface) serviceProvider.GetService(typeof(IDiscordAPIInterface));
-            _config = (IInternalConfiguration) serviceProvider.GetService(typeof(IInternalConfiguration));
+            _discordAPI = (IDiscordAPIInterface)serviceProvider.GetService(typeof(IDiscordAPIInterface));
+            _config = (IInternalConfiguration)serviceProvider.GetService(typeof(IInternalConfiguration));
         }
 
         /// <summary>
@@ -49,7 +44,7 @@ namespace masz.Models
         /// </summary>
         /// <param name="guildId">guild that the user requestes for</param>
         /// <returns>the guildmember object if the current user could be found on that guild.</returns>
-        public abstract Task<DiscordMember> GetGuildMembership(ulong guildId);
+        public abstract Task<IGuildUser> GetGuildMembership(ulong guildId);
         /// <summary>
         /// Checks if the current user has the defined admin role on the defined guild.
         /// </summary>
@@ -62,25 +57,26 @@ namespace masz.Models
         /// <param name="guildId">the guild to check on</param>
         /// <returns>True if the user is on this guild and has at least one of the configured roles.</returns>
         public abstract Task<bool> HasModRoleOrHigherOnGuild(ulong guildId);
-        public async Task<bool> HasRolePermissionInGuild(ulong guildId, DiscordBitPermissionFlag permission)
+        public async Task<bool> HasRolePermissionInGuild(ulong guildId, GuildPermission permission)
         {
-            DiscordGuild guild = await _discordAPI.FetchGuildInfo(guildId, CacheBehavior.Default);
+            IGuild guild = _discordAPI.FetchGuildInfo(guildId, CacheBehavior.Default);
             if (currentUser == null || guild == null)
             {
                 return false;
             }
-            DiscordMember member = await _discordAPI.FetchMemberInfo(guildId, currentUser.Id, CacheBehavior.Default);
+            IGuildUser member = await _discordAPI.FetchMemberInfo(guildId, currentUser.Id, CacheBehavior.Default);
             if (member == null)
             {
                 return false;
             }
-            if (member.IsOwner)
+
+            if (member.Guild.OwnerId == member.Id)
             {
                 return true;
             }
-            int memberPermission = (int) member.Permissions;
-            return (memberPermission & 1 << (int) permission) >= 1;
+            return member.GuildPermissions.Has(permission);
         }
+
         public async Task<bool> IsAllowedTo(APIActionPermission permission, ModCase modCase)
         {
             if (modCase == null)
@@ -91,9 +87,11 @@ namespace masz.Models
             {
                 return true;
             }
-            switch(permission) {
+            switch (permission)
+            {
                 case APIActionPermission.View:
-                    if (currentUser == null) {
+                    if (currentUser == null)
+                    {
                         return false;
                     }
                     return modCase.UserId == currentUser.Id || await HasPermissionOnGuild(DiscordPermission.Moderator, modCase.GuildId);
@@ -105,19 +103,19 @@ namespace masz.Models
                     GuildConfig guildConfig;
                     try
                     {
-                        using (var scope = _serviceScopeFactory.CreateScope())
-                        {
-                            guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(modCase.GuildId);
-                        }
-                    } catch (ResourceNotFoundException)
+                        using var scope = _serviceScopeFactory.CreateScope();
+                        guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(modCase.GuildId);
+                    }
+                    catch (ResourceNotFoundException)
                     {
                         return false;
                     }
-                    if (guildConfig.StrictModPermissionCheck && modCase.PunishmentType != PunishmentType.None) {
-                        DiscordBitPermissionFlag x = DiscordBitPermissionFlag.CREATE_INSTANT_INVITE;
-                        if (modCase.PunishmentType == PunishmentType.Kick) x = DiscordBitPermissionFlag.KICK_MEMBERS;
-                        if (modCase.PunishmentType == PunishmentType.Ban) x = DiscordBitPermissionFlag.BAN_MEMBERS;
-                        if (modCase.PunishmentType == PunishmentType.Mute) x = DiscordBitPermissionFlag.MANAGE_ROLES;
+                    if (guildConfig.StrictModPermissionCheck && modCase.PunishmentType != PunishmentType.Warn)
+                    {
+                        GuildPermission x = GuildPermission.CreateInstantInvite;
+                        if (modCase.PunishmentType == PunishmentType.Kick) x = GuildPermission.KickMembers;
+                        if (modCase.PunishmentType == PunishmentType.Ban) x = GuildPermission.BanMembers;
+                        if (modCase.PunishmentType == PunishmentType.Mute) x = GuildPermission.ManageRoles;
                         if (await HasPermissionOnGuild(DiscordPermission.Admin, modCase.GuildId))
                         {
                             return true;
@@ -139,19 +137,23 @@ namespace masz.Models
             {
                 return false;
             }
-            if ( IsSiteAdmin())
+            if (IsSiteAdmin())
             {
                 return true;
             }
-            switch(permission) {
+            switch (permission)
+            {
                 case APIActionPermission.View:
-                    if (caseTemplate.UserId == currentUser.Id) {
+                    if (caseTemplate.UserId == currentUser.Id)
+                    {
                         return true;
                     }
-                    if (caseTemplate.ViewPermission == ViewPermission.Self) {
+                    if (caseTemplate.ViewPermission == ViewPermission.Self)
+                    {
                         return false;
                     }
-                    if (caseTemplate.ViewPermission == ViewPermission.Global) {
+                    if (caseTemplate.ViewPermission == ViewPermission.Global)
+                    {
                         return true;
                     }
                     return await HasPermissionOnGuild(DiscordPermission.Moderator, caseTemplate.CreatedForGuildId);
@@ -167,22 +169,19 @@ namespace masz.Models
         public abstract bool IsSiteAdmin();
         public async Task<bool> HasPermissionOnGuild(DiscordPermission permission, ulong guildId)
         {
-            if ( IsSiteAdmin())
+            if (IsSiteAdmin())
             {
                 return true;
             }
-            switch(permission)
+            return permission switch
             {
-                case DiscordPermission.Member:
-                    return IsOnGuild(guildId);
-                case DiscordPermission.Moderator:
-                    return await HasModRoleOrHigherOnGuild(guildId);
-                case DiscordPermission.Admin:
-                    return await HasAdminRoleOnGuild(guildId);
-            }
-            return false;
+                DiscordPermission.Member => IsOnGuild(guildId),
+                DiscordPermission.Moderator => await HasModRoleOrHigherOnGuild(guildId),
+                DiscordPermission.Admin => await HasAdminRoleOnGuild(guildId),
+                _ => false,
+            };
         }
-        public DiscordUser GetCurrentUser()
+        public IUser GetCurrentUser()
         {
             if (currentUser == null)
             {
@@ -190,7 +189,7 @@ namespace masz.Models
             }
             return currentUser;
         }
-        public List<DiscordGuild> GetCurrentUserGuilds()
+        public List<IGuild> GetCurrentUserGuilds()
         {
             if (currentUserGuilds == null)
             {
@@ -203,11 +202,10 @@ namespace masz.Models
             GuildConfig guildConfig;
             try
             {
-                using (var scope = _serviceScopeFactory.CreateScope())
-                {
-                    guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guildId);
-                }
-            } catch (ResourceNotFoundException)
+                using var scope = _serviceScopeFactory.CreateScope();
+                guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guildId);
+            }
+            catch (ResourceNotFoundException)
             {
                 return false;
             }
@@ -215,7 +213,7 @@ namespace masz.Models
             {
                 return true;
             }
-            if (! await HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
+            if (!await HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
             {
                 return false;
             }
@@ -228,9 +226,9 @@ namespace masz.Models
                 switch (punishment)
                 {
                     case PunishmentType.Kick:
-                        return await HasRolePermissionInGuild(guildId, DiscordBitPermissionFlag.KICK_MEMBERS);
+                        return await HasRolePermissionInGuild(guildId, GuildPermission.KickMembers);
                     case PunishmentType.Ban:
-                        return await HasRolePermissionInGuild(guildId, DiscordBitPermissionFlag.BAN_MEMBERS);
+                        return await HasRolePermissionInGuild(guildId, GuildPermission.BanMembers);
                 }
             }
             return true;
@@ -241,17 +239,17 @@ namespace masz.Models
             currentUserGuilds.RemoveAll(x => x.Id == guildId);
         }
 
-        public virtual void AddGuildMembership(DiscordMember member)
+        public virtual void AddGuildMembership(IGuildUser member)
         {
-            if (! currentUserGuilds.Any(x => x.Id == member.Guild.Id))
+            if (!currentUserGuilds.Any(x => x.Id == member.Guild.Id))
             {
                 currentUserGuilds.Add(member.Guild);
             }
         }
 
-        public virtual void UpdateGuildMembership(DiscordMember member)
+        public virtual void UpdateGuildMembership(IGuildUser member)
         {
-            if (! currentUserGuilds.Any(x => x.Id == member.Guild.Id))
+            if (!currentUserGuilds.Any(x => x.Id == member.Guild.Id))
             {
                 currentUserGuilds.Add(member.Guild);
             }

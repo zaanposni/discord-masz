@@ -1,7 +1,6 @@
-using System;
-using masz.Services;
+using MASZ.Services;
 
-namespace masz.Plugins
+namespace MASZ.Plugins
 {
     public class BasePlugin
     {
@@ -18,13 +17,13 @@ namespace masz.Plugins
 
         public BasePlugin(IServiceProvider serviceProvider)
         {
-            _database = (IDatabase) serviceProvider.GetService(typeof(IDatabase));
-            _identityManager = (IIdentityManager) serviceProvider.GetService(typeof(IIdentityManager));
-            _config = (IInternalConfiguration) serviceProvider.GetService(typeof(IInternalConfiguration));
-            _discordAPI = (IDiscordAPIInterface) serviceProvider.GetService(typeof(IDiscordAPIInterface));
-            _discordBot = (IDiscordBot) serviceProvider.GetService(typeof(IDiscordBot));
-            _scheduler = (IScheduler) serviceProvider.GetService(typeof(IScheduler));
-            _eventHandler = (IEventHandler) serviceProvider.GetService(typeof(IEventHandler));
+            _database = (IDatabase)serviceProvider.GetService(typeof(IDatabase));
+            _identityManager = (IIdentityManager)serviceProvider.GetService(typeof(IIdentityManager));
+            _config = (IInternalConfiguration)serviceProvider.GetService(typeof(IInternalConfiguration));
+            _discordAPI = (IDiscordAPIInterface)serviceProvider.GetService(typeof(IDiscordAPIInterface));
+            _discordBot = (IDiscordBot)serviceProvider.GetService(typeof(IDiscordBot));
+            _scheduler = (IScheduler)serviceProvider.GetService(typeof(IScheduler));
+            _eventHandler = (IEventHandler)serviceProvider.GetService(typeof(IEventHandler));
             _serviceProvider = serviceProvider;
         }
     }

@@ -1,11 +1,10 @@
-using System;
-using masz.Models;
+using MASZ.Models;
 
-namespace masz.Events
+namespace MASZ.Events
 {
     public class UserNoteUpdatedEventArgs : EventArgs
     {
-        private UserNote _userNote;
+        private readonly UserNote _userNote;
 
         public UserNoteUpdatedEventArgs(UserNote userNote)
         {

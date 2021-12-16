@@ -1,16 +1,14 @@
-using System;
+using Discord;
+using MASZ.Models;
 using System.Text.RegularExpressions;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using masz.Models;
 
-namespace masz.AutoModerations
+namespace MASZ.AutoModerations
 {
     public static class LinkCheck
     {
-        private static readonly Regex _domainRegex = new Regex(@"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)");
+        private static readonly Regex _domainRegex = new(@"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)");
 
-        public static bool Check(DiscordMessage message, AutoModerationConfig config, DiscordClient client)
+        public static bool Check(IMessage message, AutoModerationConfig config, IDiscordClient _)
         {
             if (config.Limit == null)
             {
@@ -23,7 +21,7 @@ namespace masz.AutoModerations
 
             var foundLinks = _domainRegex.Matches(message.Content);
             int count = foundLinks.Count;
-            if (! string.IsNullOrEmpty(config.CustomWordFilter))
+            if (!string.IsNullOrEmpty(config.CustomWordFilter))
             {
                 foreach (Match link in foundLinks)
                 {
@@ -36,7 +34,8 @@ namespace masz.AutoModerations
                                 count--;
                                 break;
                             }
-                        } catch { }
+                        }
+                        catch { }
                     }
                 }
             }

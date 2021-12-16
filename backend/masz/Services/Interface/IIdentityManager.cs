@@ -1,15 +1,12 @@
-﻿using DSharpPlus.Entities;
-using masz.Models;
-using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using Discord;
+using MASZ.Models;
 
-namespace masz.Services
+namespace MASZ.Services
 {
     public interface IIdentityManager
     {
         Task<Identity> GetIdentity(HttpContext httpContext);
-        Task<Identity> GetIdentity(DiscordUser user);
+        Task<Identity> GetIdentity(IUser user);
         List<Identity> GetCurrentIdentities();
         void ClearAllIdentities();
         void ClearOldIdentities();

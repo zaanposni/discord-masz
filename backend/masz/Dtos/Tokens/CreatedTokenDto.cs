@@ -1,4 +1,4 @@
-namespace masz.Dtos.Tokens
+namespace MASZ.Dtos.Tokens
 {
     public class CreatedTokenDto
     {

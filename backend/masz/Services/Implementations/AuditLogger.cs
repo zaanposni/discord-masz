@@ -1,15 +1,10 @@
-using System;
+using Discord;
+using MASZ.Enums;
+using MASZ.Events;
+using MASZ.Extensions;
 using System.Text;
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using masz.Enums;
-using masz.Events;
-using masz.Extensions;
-using Microsoft.Extensions.Logging;
 
-namespace masz.Services
+namespace MASZ.Services
 {
     public class AuditLogger : IAuditLogger
     {
@@ -18,7 +13,7 @@ namespace masz.Services
         private readonly IDiscordAPIInterface _discordAPI;
         private readonly IDiscordBot _discordBot;
         private readonly IEventHandler _eventHandler;
-        private StringBuilder _currentMessage;
+        private readonly StringBuilder _currentMessage;
         public AuditLogger() { }
 
         public AuditLogger(ILogger<AuditLogger> logger, IInternalConfiguration config, IDiscordAPIInterface discordAPI, IEventHandler eventHandler, IDiscordBot discordBot)
@@ -33,13 +28,14 @@ namespace masz.Services
 
         public async void QueueLog(string message)
         {
-            message = DateTime.UtcNow.ToDiscordTS() + " " + message.Substring(0, Math.Min(message.Length, 1950));
-            if(! string.IsNullOrEmpty(_config.GetAuditLogWebhook()))
+            message = DateTime.UtcNow.ToDiscordTS() + " " + message[..Math.Min(message.Length, 1950)];
+            if (!string.IsNullOrEmpty(_config.GetAuditLogWebhook()))
             {
-                if(_currentMessage.Length + message.Length <= 1998)  // +2 for newline?
+                if (_currentMessage.Length + message.Length <= 1998)  // +2 for newline?
                 {
                     _currentMessage.AppendLine(message);
-                } else
+                }
+                else
                 {
                     await ExecuteWebhook();
                     _currentMessage.AppendLine(message);
@@ -49,12 +45,14 @@ namespace masz.Services
 
         public async Task ExecuteWebhook()
         {
-            if (_currentMessage.Length > 0) {
+            if (_currentMessage.Length > 0)
+            {
                 _logger.LogInformation("Executing auditlog webhook.");
                 try
                 {
                     await _discordAPI.ExecuteWebhook(_config.GetAuditLogWebhook(), null, _currentMessage.ToString());
-                } catch(Exception e)
+                }
+                catch (Exception e)
                 {
                     _logger.LogError(e, "Error executing auditlog webhook. ");
                 }
@@ -64,9 +62,8 @@ namespace masz.Services
 
         public void RegisterEvents()
         {
-            _discordBot.GetClient().Resumed += OnBotResume;
             _discordBot.GetClient().Ready += OnBotReady;
-            _discordBot.GetClient().SocketErrored += OnSocketError;
+            _discordBot.GetClient().Disconnected += OnDisconnect;
             _eventHandler.OnIdentityRegistered += OnIdentityRegistered;
             _eventHandler.OnTokenCreated += OnTokenCreated;
             _eventHandler.OnTokenDeleted += OnTokenDeleted;
@@ -87,7 +84,8 @@ namespace masz.Services
 
         private Task OnFileUploaded(FileUploadedEventArgs e)
         {
-            Task task = new Task(() => {
+            Task task = new(() =>
+            {
                 QueueLog($"**File** `{e.GetFileInfo().Name}` uploaded.");
             });
             task.Start();
@@ -96,7 +94,8 @@ namespace masz.Services
 
         private Task OnGuildMotdUpdated(GuildMotdUpdatedEventArgs e)
         {
-            Task task = new Task(() => {
+            Task task = new(() =>
+            {
                 QueueLog($"**Motd** for guild `{e.GetGuildMotd().GuildId}` updated.");
             });
             task.Start();
@@ -105,7 +104,8 @@ namespace masz.Services
 
         private Task OnModCaseCommentDeleted(ModCaseCommentDeletedEventArgs e)
         {
-            Task task = new Task(() => {
+            Task task = new(() =>
+            {
                 QueueLog($"**Comment** `{e.GetModCaseComment().ModCase.GuildId}/{e.GetModCaseComment().ModCase.CaseId}/{e.GetModCaseComment().Id}` by <@{e.GetModCaseComment().UserId}> deleted.");
             });
             task.Start();
@@ -114,7 +114,8 @@ namespace masz.Services
 
         private Task OnModCaseCommentUpdated(ModCaseCommentUpdatedEventArgs e)
         {
-            Task task = new Task(() => {
+            Task task = new(() =>
+            {
                 QueueLog($"**Comment** `{e.GetModCaseComment().ModCase.GuildId}/{e.GetModCaseComment().ModCase.CaseId}/{e.GetModCaseComment().Id}` by <@{e.GetModCaseComment().UserId}> updated.");
             });
             task.Start();
@@ -123,7 +124,8 @@ namespace masz.Services
 
         private Task OnModCaseCommentCreated(ModCaseCommentCreatedEventArgs e)
         {
-            Task task = new Task(() => {
+            Task task = new(() =>
+            {
                 QueueLog($"**Comment** `{e.GetModCaseComment().ModCase.GuildId}/{e.GetModCaseComment().ModCase.CaseId}/{e.GetModCaseComment().Id}` by <@{e.GetModCaseComment().UserId}> created.");
             });
             task.Start();
@@ -132,7 +134,8 @@ namespace masz.Services
 
         private Task OnModCaseDeleted(ModCaseDeletedEventArgs e)
         {
-            Task task = new Task(() => {
+            Task task = new(() =>
+            {
                 QueueLog($"**Modcase** `{e.GetModCase().GuildId}/{e.GetModCase().CaseId}` for <@{e.GetModCase().UserId}> deleted.");
             });
             task.Start();
@@ -141,7 +144,8 @@ namespace masz.Services
 
         private Task OnModCaseUpdated(ModCaseUpdatedEventArgs e)
         {
-            Task task = new Task(() => {
+            Task task = new(() =>
+            {
                 QueueLog($"**Modcase** `{e.GetModCase().GuildId}/{e.GetModCase().CaseId}` for <@{e.GetModCase().UserId}> by <@{e.GetModCase().LastEditedByModId}> updated.");
             });
             task.Start();
@@ -150,7 +154,8 @@ namespace masz.Services
 
         private Task OnModCaseCreated(ModCaseCreatedEventArgs e)
         {
-            Task task = new Task(() => {
+            Task task = new(() =>
+            {
                 QueueLog($"**Modcase** `{e.GetModCase().GuildId}/{e.GetModCase().CaseId}` for <@{e.GetModCase().UserId}> by <@{e.GetModCase().ModId}> created.");
             });
             task.Start();
@@ -159,7 +164,8 @@ namespace masz.Services
 
         private Task OnGuildDeleted(GuildDeletedEventArgs e)
         {
-            Task task = new Task(() => {
+            Task task = new(() =>
+            {
                 QueueLog($"**Guild** `{e.GetGuildConfig().GuildId}` deleted.");
             });
             task.Start();
@@ -168,7 +174,8 @@ namespace masz.Services
 
         private Task OnGuildUpdated(GuildUpdatedEventArgs e)
         {
-            Task task = new Task(() => {
+            Task task = new(() =>
+            {
                 QueueLog($"**Guild** `{e.GetGuildConfig().GuildId}` updated.");
             });
             task.Start();
@@ -177,7 +184,8 @@ namespace masz.Services
 
         private Task OnGuildRegistered(GuildRegisteredEventArgs e)
         {
-            Task task = new Task(() => {
+            Task task = new(() =>
+            {
                 QueueLog($"**Guild** `{e.GetGuildConfig().GuildId}` registered.");
             });
             task.Start();
@@ -186,7 +194,8 @@ namespace masz.Services
 
         private Task OnInternalCachingDone(InternalCachingDoneEventArgs e)
         {
-            Task task = new Task(async () => {
+            Task task = new(async () =>
+            {
                 QueueLog($"Internal cache refreshed with `{_discordAPI.GetCache().Keys.Count}` entries. Next cache refresh {e.GetNextCache().ToDiscordTS(DiscordTimestampFormat.RelativeTime)}.");
                 await ExecuteWebhook();
             });
@@ -194,9 +203,10 @@ namespace masz.Services
             return Task.CompletedTask;
         }
 
-        private Task OnSocketError(DiscordClient sender, SocketErrorEventArgs e)
+        private Task OnDisconnect(Exception _)
         {
-            Task task = new Task(async () => {
+            Task task = new(async () =>
+            {
                 QueueLog($"Bot **disconnected** from discord sockets.");
                 await ExecuteWebhook();
             });
@@ -204,20 +214,11 @@ namespace masz.Services
             return Task.CompletedTask;
         }
 
-        private Task OnBotResume(DiscordClient sender, ReadyEventArgs e)
+        private Task OnBotReady()
         {
-            Task task = new Task(async () => {
-                QueueLog($"Bot **reconnected** to `{sender.Guilds.Count} guild(s)` with `{sender.Ping}ms` latency.");
-                await ExecuteWebhook();
-            });
-            task.Start();
-            return Task.CompletedTask;
-        }
-
-        private Task OnBotReady(DiscordClient sender, ReadyEventArgs e)
-        {
-            Task task = new Task(async () => {
-                QueueLog($"Bot **connected** to `{sender.Guilds.Count} guild(s)` with `{sender.Ping}ms` latency.");
+            Task task = new(async () =>
+            {
+                QueueLog($"Bot **connected** to `{_discordBot.GetClient().Guilds.Count} guild(s)` with `{_discordBot.GetClient().Latency}ms` latency.");
                 await ExecuteWebhook();
             });
             task.Start();
@@ -226,7 +227,8 @@ namespace masz.Services
 
         private Task OnTokenDeleted(TokenDeletedEventArgs e)
         {
-            Task task = new Task(() => {
+            Task task = new(() =>
+            {
                 QueueLog($"**Token** `{e.GetToken().Name.Truncate(1500)}` (`#{e.GetToken().Id}`) has been deleted.");
             });
             task.Start();
@@ -235,7 +237,8 @@ namespace masz.Services
 
         private Task OnTokenCreated(TokenCreatedEventArgs e)
         {
-            Task task = new Task(() => {
+            Task task = new(() =>
+            {
                 QueueLog($"**Token** `{e.GetToken().Name.Truncate(1500)}` (`#{e.GetToken().Id}`) has been created and expires {e.GetToken().ValidUntil.ToDiscordTS(DiscordTimestampFormat.RelativeTime)}.");
             });
             task.Start();
@@ -244,10 +247,11 @@ namespace masz.Services
 
         private Task OnIdentityRegistered(IdentityRegisteredEventArgs e)
         {
-            Task task = new Task(() => {
+            Task task = new(() =>
+            {
                 if (e.IsOAuthIdentity())
                 {
-                    DiscordUser currentUser = e.GetIdentity().GetCurrentUser();
+                    IUser currentUser = e.GetIdentity().GetCurrentUser();
                     string userDefinition = $"`{currentUser.Username}#{currentUser.Discriminator}` (`{currentUser.Id}`)";
                     QueueLog($"{userDefinition} **logged in** using OAuth.");
                 }
@@ -258,7 +262,8 @@ namespace masz.Services
 
         public void Startup()
         {
-            Task task = new Task(async () => {
+            Task task = new(async () =>
+            {
                 QueueLog($"============== STARTUP ==============");
                 QueueLog("`MASZ` started!");
                 QueueLog("System time: " + DateTime.Now.ToString());
@@ -272,28 +277,36 @@ namespace masz.Services
                 if (_config.IsCorsEnabled())
                 {
                     QueueLog("CORS support: \u26A0 `ENABLED`");
-                } else {
+                }
+                else
+                {
                     QueueLog("CORS support: `DISABLED`");
                 }
 
                 if (_config.IsCustomPluginModeEnabled())
                 {
                     QueueLog("Plugin support: \u26A0 `ENABLED`");
-                } else {
+                }
+                else
+                {
                     QueueLog("Plugin support: `DISABLED`");
                 }
 
                 if (_config.IsDemoModeEnabled())
                 {
                     QueueLog("Demo mode: \u26A0 `ENABLED`");
-                } else {
+                }
+                else
+                {
                     QueueLog("Demo mode: `DISABLED`");
                 }
 
                 if (_config.IsPublicFileEnabled())
                 {
                     QueueLog("Public file mode: \u26A0 `ENABLED`");
-                } else {
+                }
+                else
+                {
                     QueueLog("Public file mode: `DISABLED`");
                 }
 

@@ -1,22 +1,21 @@
-using DSharpPlus;
-using DSharpPlus.Entities;
-using masz.Models;
+using Discord;
+using MASZ.Models;
 
-namespace masz.AutoModerations
+namespace MASZ.AutoModerations
 {
     public static class MentionCheck
     {
-        public static bool Check(DiscordMessage message, AutoModerationConfig config, DiscordClient client)
+        public static bool Check(IMessage message, AutoModerationConfig config, IDiscordClient _)
         {
             if (config.Limit == null)
             {
                 return false;
             }
-            if (message.MentionedUsers == null)
+            if (message.MentionedUserIds == null || message.MentionedRoleIds == null)
             {
                 return false;
             }
-            return message.MentionedUsers.Count > config.Limit;
+            return message.MentionedRoleIds.Count + message.MentionedUserIds.Count > config.Limit;
         }
     }
 }

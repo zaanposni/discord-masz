@@ -1,35 +1,25 @@
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using masz.Dtos.Tokens;
-using masz.Enums;
-using masz.Events;
-using masz.Exceptions;
-using masz.Models;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
+using MASZ.Enums;
+using MASZ.Events;
+using MASZ.Exceptions;
+using MASZ.Models;
 
-namespace masz.Repositories
+namespace MASZ.Repositories
 {
 
     public class AutoModerationConfigRepository : BaseRepository<AutoModerationConfigRepository>
     {
         private AutoModerationConfigRepository(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
-        public static AutoModerationConfigRepository CreateDefault(IServiceProvider serviceProvider) => new AutoModerationConfigRepository(serviceProvider);
+        public static AutoModerationConfigRepository CreateDefault(IServiceProvider serviceProvider) => new(serviceProvider);
 
         public async Task<List<AutoModerationConfig>> GetConfigsByGuild(ulong guildId)
         {
-            return await _database.SelectAllModerationConfigsForGuild(guildId);
+            return await Database.SelectAllModerationConfigsForGuild(guildId);
         }
 
         public async Task<AutoModerationConfig> GetConfigsByGuildAndType(ulong guildId, AutoModerationType type)
         {
-            AutoModerationConfig config = await _database.SelectModerationConfigForGuildAndType(guildId, type);
+            AutoModerationConfig config = await Database.SelectModerationConfigForGuildAndType(guildId, type);
             if (config == null)
             {
                 throw new ResourceNotFoundException($"Automod config {guildId}/{type} does not exist.");
@@ -39,10 +29,12 @@ namespace masz.Repositories
 
         public async Task<AutoModerationConfig> UpdateConfig(AutoModerationConfig newValue)
         {
-            if (! Enum.IsDefined(typeof(AutoModerationType), newValue.AutoModerationType)) {
+            if (!Enum.IsDefined(typeof(AutoModerationType), newValue.AutoModerationType))
+            {
                 throw new BaseAPIException("Invalid automod type.", APIError.InvalidAutomoderationType);
             }
-            if (! Enum.IsDefined(typeof(AutoModerationAction), newValue.AutoModerationAction)) {
+            if (!Enum.IsDefined(typeof(AutoModerationAction), newValue.AutoModerationAction))
+            {
                 throw new BaseAPIException("Invalid automod action.", APIError.InvalidAutomoderationAction);
             }
 
@@ -50,7 +42,8 @@ namespace masz.Repositories
             try
             {
                 autoModerationConfig = await GetConfigsByGuildAndType(newValue.GuildId, newValue.AutoModerationType);
-            } catch (ResourceNotFoundException)
+            }
+            catch (ResourceNotFoundException)
             {
                 autoModerationConfig = new AutoModerationConfig();
             }
@@ -68,8 +61,8 @@ namespace masz.Repositories
             autoModerationConfig.SendPublicNotification = newValue.SendPublicNotification;
             autoModerationConfig.ChannelNotificationBehavior = newValue.ChannelNotificationBehavior;
 
-            _database.PutModerationConfig(autoModerationConfig);
-            await _database.SaveChangesAsync();
+            Database.PutModerationConfig(autoModerationConfig);
+            await Database.SaveChangesAsync();
 
             await _eventHandler.InvokeAutoModerationConfigUpdated(new AutoModerationConfigUpdatedEventArgs(autoModerationConfig));
 
@@ -78,16 +71,16 @@ namespace masz.Repositories
 
         public async Task DeleteConfigsForGuild(ulong guildId)
         {
-            await _database.DeleteAllModerationConfigsForGuild(guildId);
-            await _database.SaveChangesAsync();
+            await Database.DeleteAllModerationConfigsForGuild(guildId);
+            await Database.SaveChangesAsync();
         }
 
         public async Task<AutoModerationConfig> DeleteConfigForGuild(ulong guildId, AutoModerationType type)
         {
             AutoModerationConfig config = await GetConfigsByGuildAndType(guildId, type);
 
-            _database.DeleteSpecificModerationConfig(config);
-            await _database.SaveChangesAsync();
+            Database.DeleteSpecificModerationConfig(config);
+            await Database.SaveChangesAsync();
 
             await _eventHandler.InvokeAutoModerationConfigDeleted(new AutoModerationConfigDeletedEventArgs(config));
 

@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
+using MASZ.Enums;
+using MASZ.Services;
 using System.ComponentModel.DataAnnotations;
-using masz.Services;
-using masz.Enums;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class ModCase : ICloneable
     {
@@ -39,32 +37,33 @@ namespace masz.Models
 
         public object Clone()
         {
-            return new ModCase {
-                Id = this.Id,
-                CaseId = this.CaseId,
-                GuildId = this.GuildId,
-                Title = this.Title,
-                Description = this.Description,
-                UserId = this.UserId,
-                Username = this.Username,
-                Nickname = this.Nickname,
-                ModId = this.ModId,
-                CreatedAt = this.CreatedAt,
-                OccuredAt = this.OccuredAt,
-                LastEditedAt = this.LastEditedAt,
-                LastEditedByModId = this.LastEditedByModId,
-                Labels = this.Labels,
-                Others = this.Others,
-                Valid = this.Valid,
-                PunishmentType = this.PunishmentType,
-                PunishedUntil = this.PunishedUntil,
-                PunishmentActive = this.PunishmentActive,
-                AllowComments = this.AllowComments,
-                LockedByUserId = this.LockedByUserId,
-                LockedAt = this.LockedAt,
-                MarkedToDeleteAt = this.MarkedToDeleteAt,
-                DeletedByUserId = this.DeletedByUserId,
-                Comments = this.Comments,
+            return new ModCase
+            {
+                Id = Id,
+                CaseId = CaseId,
+                GuildId = GuildId,
+                Title = Title,
+                Description = Description,
+                UserId = UserId,
+                Username = Username,
+                Nickname = Nickname,
+                ModId = ModId,
+                CreatedAt = CreatedAt,
+                OccuredAt = OccuredAt,
+                LastEditedAt = LastEditedAt,
+                LastEditedByModId = LastEditedByModId,
+                Labels = Labels,
+                Others = Others,
+                Valid = Valid,
+                PunishmentType = PunishmentType,
+                PunishedUntil = PunishedUntil,
+                PunishmentActive = PunishmentActive,
+                AllowComments = AllowComments,
+                LockedByUserId = LockedByUserId,
+                LockedAt = LockedAt,
+                MarkedToDeleteAt = MarkedToDeleteAt,
+                DeletedByUserId = DeletedByUserId,
+                Comments = Comments,
             };
         }
 

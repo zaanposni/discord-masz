@@ -1,23 +1,18 @@
-using System;
-using System.Threading.Tasks;
-using masz.Exceptions;
-using masz.Models;
-using masz.Repositories;
-using masz.Enums;
-using Microsoft.Extensions.Logging;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Models;
+using MASZ.Repositories;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     public class SimpleCaseController : SimpleController
     {
-        private readonly ILogger<SimpleCaseController> _logger;
 
-        public SimpleCaseController(IServiceProvider serviceProvider, ILogger<SimpleCaseController> logger) : base(serviceProvider) {
-            _logger = logger;
+        public SimpleCaseController(IServiceProvider serviceProvider) : base(serviceProvider)
+        {
         }
         public async Task RequirePermission(ulong guildId, int caseId, APIActionPermission permission)
         {
-            GuildConfig guild = await GetRegisteredGuild(guildId);
             Identity currentIdentity = await GetIdentity();
             ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetModCase(guildId, caseId);
             if (modCase == null)

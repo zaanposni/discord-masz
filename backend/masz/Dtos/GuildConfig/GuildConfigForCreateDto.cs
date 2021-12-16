@@ -1,18 +1,18 @@
+using MASZ.Enums;
 using System.ComponentModel.DataAnnotations;
-using masz.Enums;
 
-namespace masz.Dtos.GuildConfig
+namespace MASZ.Dtos.GuildConfig
 {
     public class GuildConfigForCreateDto
     {
         [Required(ErrorMessage = "GuildId field is required")]
         public ulong GuildId { get; set; }
         [Required(ErrorMessage = "ModRoles field is required")]
-        public ulong[] modRoles { get; set; }
+        public ulong[] ModRoles { get; set; }
         [Required(ErrorMessage = "AdminRoles field is required")]
-        public ulong[] adminRoles { get; set; }
+        public ulong[] AdminRoles { get; set; }
         [Required(ErrorMessage = "MutedRoles field is required")]
-        public ulong[] mutedRoles { get; set; }
+        public ulong[] MutedRoles { get; set; }
         public bool ModNotificationDM { get; set; }
         [Url(ErrorMessage = "Webhook needs to be a valid url")]
         [RegularExpression(@"^https://discord(app)?\.com/.*$", ErrorMessage = "please specify a url that starts with 'https://discordapp.com/'.")]

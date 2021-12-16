@@ -1,6 +1,6 @@
-using DSharpPlus.Entities;
+using Discord;
 
-namespace masz.Models.Views
+namespace MASZ.Models.Views
 {
     public class CaseTemplateExpandedView
     {
@@ -8,7 +8,7 @@ namespace masz.Models.Views
         public DiscordUserView Creator { get; set; }
         public DiscordGuildView Guild { get; set; }
 
-        public CaseTemplateExpandedView(CaseTemplate template, DiscordUser creator, DiscordGuild guild)
+        public CaseTemplateExpandedView(CaseTemplate template, IUser creator, IGuild guild)
         {
             CaseTemplate = new CaseTemplateView(template);
             Creator = DiscordUserView.CreateOrDefault(creator);

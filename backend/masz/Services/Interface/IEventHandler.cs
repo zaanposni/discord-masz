@@ -1,7 +1,6 @@
-using System.Threading.Tasks;
-using masz.Events;
+using MASZ.Events;
 
-namespace masz.Services
+namespace MASZ.Services
 {
     public interface IEventHandler
     {

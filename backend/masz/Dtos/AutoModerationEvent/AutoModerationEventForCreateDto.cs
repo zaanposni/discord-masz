@@ -1,6 +1,6 @@
-using masz.Enums;
+using MASZ.Enums;
 
-namespace masz.Dtos.AutoModerationEvent
+namespace MASZ.Dtos.AutoModerationEvent
 {
     public class AutoModerationEventForCreateDto
     {

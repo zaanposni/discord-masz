@@ -1,18 +1,15 @@
-using System;
-using masz.Models;
-
-namespace masz.Events
+namespace MASZ.Events
 {
     public class FileUploadedEventArgs : EventArgs
     {
-        private FileInfo _fileInfo;
+        private readonly Models.FileInfo _fileInfo;
 
-        public FileUploadedEventArgs(FileInfo fileInfo)
+        public FileUploadedEventArgs(Models.FileInfo fileInfo)
         {
             _fileInfo = fileInfo;
         }
 
-        public FileInfo GetFileInfo()
+        public Models.FileInfo GetFileInfo()
         {
             return _fileInfo;
         }

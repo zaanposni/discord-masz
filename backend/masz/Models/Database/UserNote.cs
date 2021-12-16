@@ -1,7 +1,6 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class UserNote
     {

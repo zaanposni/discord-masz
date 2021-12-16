@@ -1,14 +1,12 @@
-using System;
+using Discord;
+using MASZ.Models;
 using System.Text.RegularExpressions;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using masz.Models;
 
-namespace masz.AutoModerations
+namespace MASZ.AutoModerations
 {
     public static class CustomWordCheck
     {
-        public static bool Check(DiscordMessage message, AutoModerationConfig config, DiscordClient client)
+        public static bool Check(IMessage message, AutoModerationConfig config, IDiscordClient _)
         {
             if (config.Limit == null)
             {
@@ -30,7 +28,8 @@ namespace masz.AutoModerations
                 try
                 {
                     matches += Regex.Matches(message.Content, word, RegexOptions.IgnoreCase).Count;
-                } catch { }
+                }
+                catch { }
                 if (matches > config.Limit)
                 {
                     break;

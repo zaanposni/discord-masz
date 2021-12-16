@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using masz.Models;
-
-namespace masz.Services
+namespace MASZ.Services
 {
     public interface IScheduler
     {

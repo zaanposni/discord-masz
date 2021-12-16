@@ -1,60 +1,63 @@
-using System.Linq;
+using Discord;
+using MASZ.Extensions;
+using MASZ.Services;
 using System.Text;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using masz.Extensions;
-using masz.Services;
 
-namespace masz.GuildAuditLog
+namespace MASZ.GuildAuditLog
 {
     public static class MessageUpdatedAuditLog
     {
-        public static DiscordEmbedBuilder HandleMessageUpdated(DiscordClient client, MessageUpdateEventArgs e, ITranslator translator)
+        public static async Task<EmbedBuilder> HandleMessageUpdated(Cacheable<IMessage, ulong> messageBefore, IMessage messageAfter, ITranslator translator)
         {
-            DiscordEmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(DiscordColor.Orange);
+            EmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(Color.Orange);
 
-            StringBuilder description = new StringBuilder();
-            description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {e.Channel.Name} - {e.Channel.Mention}");
-            description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** [{e.Message.Id}]({e.Message.JumpLink})");
-            description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {e.Author.Username}#{e.Author.Discriminator} - {e.Author.Mention}");
-            description.AppendLine($"> **{translator.T().GuildAuditLogCreated()}:** {e.Message.CreationTimestamp.DateTime.ToDiscordTS()}");
-
-            embed.WithTitle(translator.T().GuildAuditLogMessageUpdatedTitle())
-                 .WithDescription(description.ToString())
-                 .WithAuthor(e.Author.Username, e.Author.AvatarUrl, e.Author.AvatarUrl)
-                 .WithFooter($"{translator.T().GuildAuditLogUserID()}: {e.Author.Id}");
-
-            if (e.MessageBefore == null)
+            if (messageAfter.Channel is ITextChannel tchannel)
             {
-                embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentBefore(), translator.T().GuildAuditLogNotFoundInCache());
-            } else
-            {
-                if (! string.IsNullOrEmpty(e.MessageBefore.Content))
+                StringBuilder description = new();
+                description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {tchannel.Name} - {tchannel.Mention}");
+                description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** [{messageAfter.Id}]({messageAfter.GetJumpUrl()})");
+                description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {messageAfter.Author.Username}#{messageAfter.Author.Discriminator} - {messageAfter.Author.Mention}");
+                description.AppendLine($"> **{translator.T().GuildAuditLogCreated()}:** {messageAfter.CreatedAt.DateTime.ToDiscordTS()}");
+
+                embed.WithTitle(translator.T().GuildAuditLogMessageUpdatedTitle())
+                     .WithDescription(description.ToString())
+                     .WithAuthor(messageAfter.Author)
+                     .WithFooter($"{translator.T().GuildAuditLogUserID()}: {messageAfter.Author.Id}");
+
+                var before = await messageBefore.GetOrDownloadAsync();
+
+                if (before == null)
                 {
-                    embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentBefore(), e.MessageBefore.Content.Truncate(1024));
+                    embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentBefore(), translator.T().GuildAuditLogNotFoundInCache());
                 }
-            }
-
-            if (! string.IsNullOrEmpty(e.Message.Content))
-            {
-                embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentNew(), e.Message.Content.Truncate(1024));
-            }
-
-            if (e.Message.Attachments.Count > 0)
-            {
-                StringBuilder attachmentInfo = new StringBuilder();
-                int counter = 1;
-                foreach (DiscordAttachment attachment in e.Message.Attachments.Take(5))
+                else
                 {
-                    attachmentInfo.AppendLine($"- [{counter}. {translator.T().Attachment()}]({attachment.Url})");
-                    counter++;
+                    if (!string.IsNullOrEmpty(before.Content))
+                    {
+                        embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentBefore(), before.Content.Truncate(1024));
+                    }
                 }
-                if (e.Message.Attachments.Count > 5)
+
+                if (!string.IsNullOrEmpty(messageAfter.Content))
                 {
-                    attachmentInfo.AppendLine(translator.T().AndXMore(e.Message.Attachments.Count - 5));
+                    embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentNew(), messageAfter.Content.Truncate(1024));
                 }
-                embed.AddField(translator.T().Attachments(), attachmentInfo.ToString());
+
+                if (messageAfter.Attachments.Count > 0)
+                {
+                    StringBuilder attachmentInfo = new();
+                    int counter = 1;
+                    foreach (IAttachment attachment in messageAfter.Attachments.Take(5))
+                    {
+                        attachmentInfo.AppendLine($"- [{counter}. {translator.T().Attachment()}]({attachment.Url})");
+                        counter++;
+                    }
+                    if (messageAfter.Attachments.Count > 5)
+                    {
+                        attachmentInfo.AppendLine(translator.T().AndXMore(messageAfter.Attachments.Count - 5));
+                    }
+                    embed.AddField(translator.T().Attachments(), attachmentInfo.ToString());
+                }
             }
 
             return embed;

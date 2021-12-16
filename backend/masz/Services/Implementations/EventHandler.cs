@@ -1,11 +1,8 @@
-using System;
-using System.Threading.Tasks;
-using masz.Events;
-using Microsoft.Extensions.Logging;
+using MASZ.Events;
 
-namespace masz.Services
+namespace MASZ.Services
 {
-    public class EventHandler: IEventHandler
+    public class EventHandler : IEventHandler
     {
         private readonly ILogger<EventHandler> _logger;
         public EventHandler(ILogger<EventHandler> logger)
@@ -14,11 +11,15 @@ namespace masz.Services
         }
         private async Task Invoke<T>(AsyncEventHandler<T> eventHandler, T eventArgs) where T : EventArgs
         {
-            try {
-                if (eventHandler != null) {
+            try
+            {
+                if (eventHandler != null)
+                {
                     await eventHandler(eventArgs);
                 }
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 _logger.LogError(e, $"Error while handling event '{eventHandler?.Method?.Name}'.");
             }
         }

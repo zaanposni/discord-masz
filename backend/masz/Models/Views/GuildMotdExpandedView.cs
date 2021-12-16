@@ -1,14 +1,14 @@
-using DSharpPlus.Entities;
-using masz.Models.Views;
+using Discord;
+using MASZ.Models.Views;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class GuildMotdExpandedView
     {
         public GuildMotdView Motd { get; set; }
         public DiscordUserView Creator { get; set; }
 
-        public GuildMotdExpandedView(GuildMotd moderationEvent, DiscordUser creator)
+        public GuildMotdExpandedView(GuildMotd moderationEvent, IUser creator)
         {
             Motd = new GuildMotdView(moderationEvent);
             Creator = DiscordUserView.CreateOrDefault(creator);

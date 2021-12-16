@@ -1,133 +1,138 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Discord;
+using Discord.Interactions;
+using MASZ.Enums;
+using MASZ.Models;
+using MASZ.Repositories;
 using System.Text;
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.SlashCommands;
-using masz.Enums;
-using masz.Models;
-using masz.Repositories;
-using Microsoft.Extensions.Logging;
 
-namespace masz.Commands
+namespace MASZ.Commands
 {
 
     public class FeatureCommand : BaseCommand<FeatureCommand>
     {
         private readonly string CHECK = "\u2705";
         private readonly string X_CHECK = "\u274C";
+
         public FeatureCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [SlashCommand("features", "Checks if further configuration is needed to use MASZ features.")]
-        public async Task Features(InteractionContext ctx)
+        public async Task Features()
         {
-            await Require(ctx, RequireCheckEnum.GuildModerator);
+            await Require(RequireCheckEnum.GuildModerator);
 
-            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(ctx.Guild.Id);
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(ServiceProvider).GetGuildConfig(Context.Guild.Id);
 
-            GuildFeatureTest featureTest = new GuildFeatureTest(guildConfig);
+            GuildFeatureTest featureTest = new(guildConfig, Context.Guild.GetUser(Context.User.Id));
 
-            DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
+            EmbedBuilder embed = new();
             embed.WithTimestamp(DateTime.UtcNow);
 
-            StringBuilder missingBasicPermissions = new StringBuilder();
+            StringBuilder missingBasicPermissions = new();
 
             // kick
-            if (featureTest.HasKickPermission(ctx))
+            if (featureTest.HasKickPermission())
             {
-                missingBasicPermissions.Append($"\n- {CHECK} {_translator.T().CmdFeaturesKickPermissionGranted()}");
-            } else
+                missingBasicPermissions.Append($"\n- {CHECK} {Translator.T().CmdFeaturesKickPermissionGranted()}");
+            }
+            else
             {
-                missingBasicPermissions.Append($"\n- {X_CHECK} {_translator.T().CmdFeaturesKickPermissionNotGranted()}");
+                missingBasicPermissions.Append($"\n- {X_CHECK} {Translator.T().CmdFeaturesKickPermissionNotGranted()}");
             }
 
             // ban
-            if (featureTest.HasBanPermission(ctx))
+            if (featureTest.HasBanPermission())
             {
-                missingBasicPermissions.Append($"\n- {CHECK} {_translator.T().CmdFeaturesBanPermissionGranted()}");
-            } else
+                missingBasicPermissions.Append($"\n- {CHECK} {Translator.T().CmdFeaturesBanPermissionGranted()}");
+            }
+            else
             {
-                missingBasicPermissions.Append($"\n- {X_CHECK} {_translator.T().CmdFeaturesBanPermissionNotGranted()}");
+                missingBasicPermissions.Append($"\n- {X_CHECK} {Translator.T().CmdFeaturesBanPermissionNotGranted()}");
             }
 
             // mute
-            if (featureTest.HasManagedRolePermission(ctx))
+            if (featureTest.HasManagedRolePermission())
             {
-                missingBasicPermissions.Append($"\n- {CHECK} {_translator.T().CmdFeaturesManageRolePermissionGranted()}");
-            } else
+                missingBasicPermissions.Append($"\n- {CHECK} {Translator.T().CmdFeaturesManageRolePermissionGranted()}");
+            }
+            else
             {
-                missingBasicPermissions.Append($"\n- {X_CHECK} {_translator.T().CmdFeaturesManageRolePermissionNotGranted()}");
+                missingBasicPermissions.Append($"\n- {X_CHECK} {Translator.T().CmdFeaturesManageRolePermissionNotGranted()}");
             }
 
             // muted role
-            if (! featureTest.HasMutedRolesDefined())
+            if (!featureTest.HasMutedRolesDefined())
             {
-                missingBasicPermissions.Append($"\n- {X_CHECK} {_translator.T().CmdFeaturesMutedRoleUndefined()}");
-            } else
+                missingBasicPermissions.Append($"\n- {X_CHECK} {Translator.T().CmdFeaturesMutedRoleUndefined()}");
+            }
+            else
             {
-                switch (featureTest.HasManagableMutedRoles(ctx)) {
+                switch (featureTest.HasManagableMutedRoles())
+                {
                     case GuildFeatureTestResult.OK:
-                        missingBasicPermissions.Append($"\n- {CHECK} {_translator.T().CmdFeaturesMutedRoleDefined()}");
+                        missingBasicPermissions.Append($"\n- {CHECK} {Translator.T().CmdFeaturesMutedRoleDefined()}");
                         break;
                     case GuildFeatureTestResult.ROLE_TOO_HIGH:
-                        missingBasicPermissions.Append($"\n- {X_CHECK} {_translator.T().CmdFeaturesMutedRoleDefinedButTooHigh()}");
+                        missingBasicPermissions.Append($"\n- {X_CHECK} {Translator.T().CmdFeaturesMutedRoleDefinedButTooHigh()}");
                         break;
                     default:
-                        missingBasicPermissions.Append($"\n- {X_CHECK} {_translator.T().CmdFeaturesMutedRoleDefinedButInvalid()}");
+                        missingBasicPermissions.Append($"\n- {X_CHECK} {Translator.T().CmdFeaturesMutedRoleDefinedButInvalid()}");
                         break;
                 }
             }
 
 
             // basic punishment feature
-            if (featureTest.FeaturePunishmentExecution(ctx))
+            if (featureTest.FeaturePunishmentExecution())
             {
-                embed.AddField($"{CHECK} {_translator.T().CmdFeaturesPunishmentExecution()}", _translator.T().CmdFeaturesPunishmentExecutionDescription(), false);
-            } else
+                embed.AddField($"{CHECK} {Translator.T().CmdFeaturesPunishmentExecution()}", Translator.T().CmdFeaturesPunishmentExecutionDescription(), false);
+            }
+            else
             {
-                embed.AddField($"{X_CHECK} {_translator.T().CmdFeaturesPunishmentExecution()}", _translator.T().CmdFeaturesPunishmentExecutionDescription() + missingBasicPermissions.ToString(), false);
+                embed.AddField($"{X_CHECK} {Translator.T().CmdFeaturesPunishmentExecution()}", Translator.T().CmdFeaturesPunishmentExecutionDescription() + missingBasicPermissions.ToString(), false);
             }
 
             // unban feature
-            if (featureTest.HasBanPermission(ctx))
+            if (featureTest.HasBanPermission())
             {
-                embed.AddField($"{CHECK} {_translator.T().CmdFeaturesUnbanRequests()}", _translator.T().CmdFeaturesUnbanRequestsDescriptionGranted(), false);
-            } else
+                embed.AddField($"{CHECK} {Translator.T().CmdFeaturesUnbanRequests()}", Translator.T().CmdFeaturesUnbanRequestsDescriptionGranted(), false);
+            }
+            else
             {
-                embed.AddField($"{X_CHECK} {_translator.T().CmdFeaturesUnbanRequests()}", _translator.T().CmdFeaturesUnbanRequestsDescriptionNotGranted(), false);
+                embed.AddField($"{X_CHECK} {Translator.T().CmdFeaturesUnbanRequests()}", Translator.T().CmdFeaturesUnbanRequestsDescriptionNotGranted(), false);
             }
 
             // report command
             if (featureTest.HasInternalWebhookDefined())
             {
-                embed.AddField($"{CHECK} {_translator.T().CmdFeaturesReportCommand()}", _translator.T().CmdFeaturesReportCommandDescriptionGranted(), false);
-            } else
+                embed.AddField($"{CHECK} {Translator.T().CmdFeaturesReportCommand()}", Translator.T().CmdFeaturesReportCommandDescriptionGranted(), false);
+            }
+            else
             {
-                embed.AddField($"{X_CHECK} {_translator.T().CmdFeaturesReportCommand()}", _translator.T().CmdFeaturesReportCommandDescriptionNotGranted(), false);
+                embed.AddField($"{X_CHECK} {Translator.T().CmdFeaturesReportCommand()}", Translator.T().CmdFeaturesReportCommandDescriptionNotGranted(), false);
             }
 
             // invite tracking
-            if (featureTest.HasManagedGuildPermission(ctx))
+            if (featureTest.HasManagedGuildPermission())
             {
-                embed.AddField($"{CHECK} {_translator.T().CmdFeaturesInviteTracking()}", _translator.T().CmdFeaturesInviteTrackingDescriptionGranted(), false);
-            } else
+                embed.AddField($"{CHECK} {Translator.T().CmdFeaturesInviteTracking()}", Translator.T().CmdFeaturesInviteTrackingDescriptionGranted(), false);
+            }
+            else
             {
-                embed.AddField($"{X_CHECK} {_translator.T().CmdFeaturesInviteTracking()}", _translator.T().CmdFeaturesInviteTrackingDescriptionNotGranted(), false);
+                embed.AddField($"{X_CHECK} {Translator.T().CmdFeaturesInviteTracking()}", Translator.T().CmdFeaturesInviteTrackingDescriptionNotGranted(), false);
             }
 
-            if (featureTest.SupportsAllFeatures(ctx))
+            if (featureTest.SupportsAllFeatures())
             {
-                embed.WithDescription($"{CHECK} {_translator.T().CmdFeaturesSupportAllFeatures()}");
-                embed.WithColor(DiscordColor.Green);
-            } else
+                embed.WithDescription($"{CHECK} {Translator.T().CmdFeaturesSupportAllFeatures()}");
+                embed.WithColor(Color.Green);
+            }
+            else
             {
-                embed.WithDescription($"{X_CHECK} {_translator.T().CmdFeaturesMissingFeatures()}");
-                embed.WithColor(DiscordColor.Red);
+                embed.WithDescription($"{X_CHECK} {Translator.T().CmdFeaturesMissingFeatures()}");
+                embed.WithColor(Color.Red);
             }
 
-            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().AddEmbed(embed.Build()));
+            await Context.Interaction.RespondAsync(embed: embed.Build());
         }
     }
 }

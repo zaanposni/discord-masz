@@ -1,6 +1,4 @@
-using System;
-
-namespace masz.Models.Views
+namespace MASZ.Models.Views
 {
     public class GuildMotdView
     {

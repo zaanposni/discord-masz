@@ -1,8 +1,4 @@
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-
-namespace masz.Services
+namespace MASZ.Services
 {
     public interface IFilesHandler
     {

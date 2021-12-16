@@ -1,13 +1,11 @@
-using System;
-using System.Collections.Generic;
-using DSharpPlus.Entities;
-using masz.Models.Views;
+using Discord;
+using MASZ.Models.Views;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class CaseExpandedView
     {
-        public CaseExpandedView(ModCase modCase, DiscordUser moderator, DiscordUser lastModerator, DiscordUser suspect, List<CommentExpandedView> comments, UserNoteExpandedView userNoteView)
+        public CaseExpandedView(ModCase modCase, IUser moderator, IUser lastModerator, IUser suspect, List<CommentExpandedView> comments, UserNoteExpandedView userNoteView)
         {
             ModCase = new CaseView(modCase);
             Moderator = DiscordUserView.CreateOrDefault(moderator);
@@ -16,11 +14,16 @@ namespace masz.Models
             Comments = comments;
             UserNote = userNoteView;
 
-            if (modCase.PunishedUntil != null) {
-                if (modCase.PunishedUntil > modCase.CreatedAt) {
-                    if (modCase.PunishedUntil < DateTime.UtcNow) {
+            if (modCase.PunishedUntil != null)
+            {
+                if (modCase.PunishedUntil > modCase.CreatedAt)
+                {
+                    if (modCase.PunishedUntil < DateTime.UtcNow)
+                    {
                         PunishmentProgress = 100;
-                    } else {
+                    }
+                    else
+                    {
                         double totalPunished = (modCase.PunishedUntil.Value - modCase.CreatedAt).TotalSeconds;
                         double alreadyPunished = (DateTime.UtcNow - modCase.CreatedAt).TotalSeconds;
 
@@ -41,13 +44,13 @@ namespace masz.Models
 
         public void RemoveModeratorInfo()
         {
-            this.Moderator = null;
-            this.LastModerator = null;
-            this.LockedBy = null;
-            this.DeletedBy = null;
-            this.ModCase.RemoveModeratorInfo();
+            Moderator = null;
+            LastModerator = null;
+            LockedBy = null;
+            DeletedBy = null;
+            ModCase.RemoveModeratorInfo();
 
-            foreach (var comment in this.Comments)
+            foreach (var comment in Comments)
             {
                 comment.RemoveModeratorInfo(ModCase.UserId);
             }

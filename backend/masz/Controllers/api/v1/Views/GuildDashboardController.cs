@@ -1,28 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using masz.Enums;
-using masz.Exceptions;
-using masz.Models;
-using masz.Repositories;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Models;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/guilds/{guildId}/dashboard")]
     [Authorize]
     public class GuildDashbordController : SimpleController
     {
-        private readonly ILogger<GuildDashbordController> _logger;
-        private static readonly DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        private static readonly DateTime epoch = new(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-        public GuildDashbordController(ILogger<GuildDashbordController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public GuildDashbordController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _logger = logger;
         }
 
         [HttpGet("chart")]
@@ -32,13 +25,15 @@ namespace masz.Controllers
             Identity identity = await GetIdentity();
 
             DateTime sinceTime = DateTime.UtcNow.AddYears(-1);
-            if (since != null) {
+            if (since != null)
+            {
                 sinceTime = epoch.AddSeconds(since.Value);
             }
 
             ModCaseRepository modCaseRepo = ModCaseRepository.CreateDefault(_serviceProvider, identity);
             AutoModerationEventRepository automodRepo = AutoModerationEventRepository.CreateDefault(_serviceProvider);
-            return Ok( new {
+            return Ok(new
+            {
                 modCases = await modCaseRepo.GetCounts(guildId, sinceTime),
                 punishments = await modCaseRepo.GetPunishmentCounts(guildId, sinceTime),
                 autoModerations = await automodRepo.GetCounts(guildId, sinceTime)
@@ -49,10 +44,10 @@ namespace masz.Controllers
         public async Task<IActionResult> GetAutomodSplitChart([FromRoute] ulong guildId, [FromQuery] long? since = null)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
-            Identity identity = await GetIdentity();
 
             DateTime sinceTime = DateTime.UtcNow.AddYears(-1);
-            if (since != null) {
+            if (since != null)
+            {
                 sinceTime = epoch.AddSeconds(since.Value);
             }
 
@@ -78,16 +73,17 @@ namespace masz.Controllers
             int userNotes = await UserNoteRepository.CreateDefault(_serviceProvider, identity).CountUserNotesForGuild(guildId);
             int comments = await ModCaseCommentRepository.CreateDefault(_serviceProvider, identity).CountCommentsByGuild(guildId);
 
-            return Ok(new {
+            return Ok(new
+            {
                 caseCount = modCases,
                 activeCount = activePunishments,
                 activeBanCount = activeBans,
                 activeMuteCount = activeMutes,
                 moderationCount = autoModerations,
-                trackedInvites = trackedInvites,
-                userMappings = userMappings,
-                userNotes = userNotes,
-                comments = comments
+                trackedInvites,
+                userMappings,
+                userNotes,
+                comments
             });
         }
 
@@ -97,8 +93,9 @@ namespace masz.Controllers
             await RequirePermission(guildId, DiscordPermission.Moderator);
             Identity identity = await GetIdentity();
 
-            List<CommentExpandedView> view = new List<CommentExpandedView>();
-            foreach (ModCaseComment comment in await ModCaseCommentRepository.CreateDefault(_serviceProvider, identity).GetLastCommentsByGuild(guildId)) {
+            List<CommentExpandedView> view = new();
+            foreach (ModCaseComment comment in await ModCaseCommentRepository.CreateDefault(_serviceProvider, identity).GetLastCommentsByGuild(guildId))
+            {
                 view.Add(new CommentExpandedTableView(
                     comment,
                     await _discordAPI.FetchUserInfo(comment.UserId, CacheBehavior.OnlyCache),
@@ -116,15 +113,17 @@ namespace masz.Controllers
             await RequirePermission(guildId, DiscordPermission.Moderator);
             Identity identity = await GetIdentity();
 
-            if (String.IsNullOrWhiteSpace(search)) {
+            if (string.IsNullOrWhiteSpace(search))
+            {
                 return Ok(new List<string>());
             }
 
-            List<QuickSearchEntry> entries = new List<QuickSearchEntry>();
+            List<IQuickSearchEntry> entries = new();
 
             foreach (ModCase item in await ModCaseRepository.CreateDefault(_serviceProvider, identity).SearchCases(guildId, search))
             {
-                entries.Add(new QuickSearchEntry<CaseExpandedView> {
+                entries.Add(new QuickSearchEntry<CaseExpandedView>
+                {
                     Entry = new CaseExpandedView(
                         item,
                         await _discordAPI.FetchUserInfo(item.ModId, CacheBehavior.OnlyCache),
@@ -140,7 +139,8 @@ namespace masz.Controllers
 
             foreach (AutoModerationEvent item in await AutoModerationEventRepository.CreateDefault(_serviceProvider).SearchInGuild(guildId, search))
             {
-                entries.Add(new QuickSearchEntry<AutoModerationEventExpandedView> {
+                entries.Add(new QuickSearchEntry<AutoModerationEventExpandedView>
+                {
                     Entry = new AutoModerationEventExpandedView(
                         item,
                         await _discordAPI.FetchUserInfo(item.UserId, CacheBehavior.OnlyCache)
@@ -161,34 +161,37 @@ namespace masz.Controllers
                     await _discordAPI.FetchUserInfo(note.UserId, CacheBehavior.OnlyCache),
                     await _discordAPI.FetchUserInfo(note.CreatorId, CacheBehavior.OnlyCache)
                 );
-            } catch (ResourceNotFoundException) { }
-              catch (FormatException) { }
-              catch (ArgumentException) { }
-              catch (OverflowException) { }
+            }
+            catch (ResourceNotFoundException) { }
+            catch (FormatException) { }
+            catch (ArgumentException) { }
+            catch (OverflowException) { }
 
-            List<UserMappingExpandedView> userMappingViews = new List<UserMappingExpandedView>();
+            List<UserMappingExpandedView> userMappingViews = new();
             try
             {
                 ulong userId = ulong.Parse(search);
                 List<UserMapping> userMappings = await UserMapRepository.CreateDefault(_serviceProvider, identity).GetUserMapsByGuildAndUser(guildId, userId);
                 foreach (UserMapping userMapping in userMappings)
-            {
-                userMappingViews.Add(new UserMappingExpandedView(
-                    userMapping,
-                    await _discordAPI.FetchUserInfo(userMapping.UserA, CacheBehavior.OnlyCache),
-                    await _discordAPI.FetchUserInfo(userMapping.UserB, CacheBehavior.OnlyCache),
-                    await _discordAPI.FetchUserInfo(userMapping.CreatorUserId, CacheBehavior.OnlyCache)
-                ));
+                {
+                    userMappingViews.Add(new UserMappingExpandedView(
+                        userMapping,
+                        await _discordAPI.FetchUserInfo(userMapping.UserA, CacheBehavior.OnlyCache),
+                        await _discordAPI.FetchUserInfo(userMapping.UserB, CacheBehavior.OnlyCache),
+                        await _discordAPI.FetchUserInfo(userMapping.CreatorUserId, CacheBehavior.OnlyCache)
+                    ));
+                }
             }
-            } catch (ResourceNotFoundException) { }
-              catch (FormatException) { }
-              catch (ArgumentException) { }
-              catch (OverflowException) { }
+            catch (ResourceNotFoundException) { }
+            catch (FormatException) { }
+            catch (ArgumentException) { }
+            catch (OverflowException) { }
 
-            return Ok(new {
+            return Ok(new
+            {
                 searchEntries = entries.OrderByDescending(x => x.CreatedAt).ToList(),
                 userNoteView = userNote,
-                userMappingViews = userMappingViews
+                userMappingViews
             });
         }
     }

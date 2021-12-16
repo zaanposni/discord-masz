@@ -1,15 +1,11 @@
-﻿using DSharpPlus;
-using DSharpPlus.Entities;
-using masz.Exceptions;
-using masz.Models;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using masz.Enums;
+﻿using Discord;
+using Discord.Rest;
+using Discord.Webhook;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Models;
 
-namespace masz.Services
+namespace MASZ.Services
 {
     public class DiscordAPIInterface : IDiscordAPIInterface
     {
@@ -17,46 +13,52 @@ namespace masz.Services
         private readonly IInternalConfiguration _config;
         private readonly IDiscordBot _discordBot;
         private readonly DiscordRestClient _discordRestClient;
-        private Dictionary<string, CacheApiResponse> _cache = new Dictionary<string, CacheApiResponse>();
+        private readonly Dictionary<string, CacheApiResponse> _cache = new();
 
-        public DiscordAPIInterface() {  }
+        public DiscordAPIInterface() { }
         public DiscordAPIInterface(ILogger<DiscordAPIInterface> logger, IInternalConfiguration config, IDiscordBot discordBot)
         {
-            this._logger = logger;
-            this._config = config;
-            this._discordBot = discordBot;
-            this._discordRestClient = new DiscordRestClient(new DiscordConfiguration
-            {
-                Token = _config.GetBotToken(),
-                TokenType = TokenType.Bot,
-            });
+            _logger = logger;
+            _config = config;
+            _discordBot = discordBot;
+            _discordRestClient = new DiscordRestClient();
+            _discordRestClient.LoginAsync(
+                TokenType.Bot,
+                _config.GetBotToken()
+            );
         }
 
-        public DiscordRestClient GetOAuthClient(string token)
+        public async Task<DiscordRestClient> GetOAuthClient(string token)
         {
-            return new DiscordRestClient(new DiscordConfiguration
-            {
-                Token = token,
-                TokenType = TokenType.Bearer,
-            });
+            var client = new DiscordRestClient();
+
+            await client.LoginAsync(TokenType.Bearer, token);
+
+            return client;
         }
 
         private T TryGetFromCache<T>(CacheKey cacheKey, CacheBehavior cacheBehavior)
         {
-            if (cacheBehavior == CacheBehavior.OnlyCache) {
-                if (_cache.ContainsKey(cacheKey.GetValue())) {
+            if (cacheBehavior == CacheBehavior.OnlyCache)
+            {
+                if (_cache.ContainsKey(cacheKey.GetValue()))
+                {
                     return _cache[cacheKey.GetValue()].GetContent<T>();
-                } else {
+                }
+                else
+                {
                     throw new NotFoundInCacheException(cacheKey.GetValue());
                 }
             }
-            if (_cache.ContainsKey(cacheKey.GetValue()) && cacheBehavior == CacheBehavior.Default) {
-                if (! _cache[cacheKey.GetValue()].IsExpired()) {
+            if (_cache.ContainsKey(cacheKey.GetValue()) && cacheBehavior == CacheBehavior.Default)
+            {
+                if (!_cache[cacheKey.GetValue()].IsExpired())
+                {
                     return _cache[cacheKey.GetValue()].GetContent<T>();
                 }
                 _cache.Remove(cacheKey.GetValue());
             }
-            return default(T);
+            return default;
         }
 
         private T FallBackToCache<T>(CacheKey cacheKey, CacheBehavior cacheBehavior)
@@ -65,14 +67,14 @@ namespace masz.Services
             {
                 if (_cache.ContainsKey(cacheKey.GetValue()))
                 {
-                    if (! _cache[cacheKey.GetValue()].IsExpired())
+                    if (!_cache[cacheKey.GetValue()].IsExpired())
                     {
                         return _cache[cacheKey.GetValue()].GetContent<T>();
                     }
                     _cache.Remove(cacheKey.GetValue());
                 }
             }
-            return default(T);
+            return default;
         }
 
         private void SetCacheValue(CacheKey cacheKey, CacheApiResponse cacheApiResponse)
@@ -80,35 +82,37 @@ namespace masz.Services
             _cache[cacheKey.GetValue()] = cacheApiResponse;
         }
 
-        public async Task<List<DiscordBan>> GetGuildBans(ulong guildId, CacheBehavior cacheBehavior)
+        public async Task<List<IBan>> GetGuildBans(ulong guildId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.GuildBans(guildId);
-            List<DiscordBan> bans = null;
+            List<IBan> bans;
             try
             {
-                bans = TryGetFromCache<List<DiscordBan>>(cacheKey, cacheBehavior);
+                bans = TryGetFromCache<List<IBan>>(cacheKey, cacheBehavior);
                 if (bans != null) return bans;
-            } catch (NotFoundInCacheException)
+            }
+            catch (NotFoundInCacheException)
             {
-                return new List<DiscordBan>();
+                return new List<IBan>();
             }
 
             // request ---------------------------
             try
             {
-                DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
-                if (guild == null) return new List<DiscordBan>();
+                IGuild guild = FetchGuildInfo(guildId, CacheBehavior.Default);
+                if (guild == null) return new List<IBan>();
                 bans = (await guild.GetBansAsync()).ToList();
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to fetch guild bans for guild '{guildId}' from API.");
-                return FallBackToCache<List<DiscordBan>>(cacheKey, cacheBehavior);
+                return FallBackToCache<List<IBan>>(cacheKey, cacheBehavior);
             }
 
             // cache -----------------------------
             SetCacheValue(cacheKey, new CacheApiResponse(bans));
-            foreach (DiscordBan ban in bans)
+            foreach (IBan ban in bans)
             {
                 SetCacheValue(CacheKey.User(ban.User.Id), new CacheApiResponse(ban.User));
                 SetCacheValue(CacheKey.GuildBan(guildId, ban.User.Id), new CacheApiResponse(ban));
@@ -116,16 +120,17 @@ namespace masz.Services
             return bans;
         }
 
-        public async Task<DiscordBan> GetGuildUserBan(ulong guildId, ulong userId, CacheBehavior cacheBehavior)
+        public async Task<IBan> GetGuildUserBan(ulong guildId, ulong userId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.GuildBan(guildId, userId);
-            DiscordBan ban = null;
+            IBan ban = null;
             try
             {
-                ban = TryGetFromCache<DiscordBan>(cacheKey, cacheBehavior);
+                ban = TryGetFromCache<IBan>(cacheKey, cacheBehavior);
                 if (ban != null) return ban;
-            } catch (NotFoundInCacheException)
+            }
+            catch (NotFoundInCacheException)
             {
                 return ban;
             }
@@ -133,13 +138,14 @@ namespace masz.Services
             // request ---------------------------
             try
             {
-                DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
+                IGuild guild = FetchGuildInfo(guildId, CacheBehavior.Default);
                 if (guild == null) return null;
                 ban = await guild.GetBanAsync(userId);
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to fetch guild ban for guild '{guildId}' and user '{userId}' from API.");
-                return FallBackToCache<DiscordBan>(cacheKey, cacheBehavior);
+                return FallBackToCache<IBan>(cacheKey, cacheBehavior);
             }
 
             // cache -----------------------------
@@ -148,16 +154,17 @@ namespace masz.Services
             return ban;
         }
 
-        public async Task<DiscordUser> FetchUserInfo(ulong userId, CacheBehavior cacheBehavior)
+        public async Task<IUser> FetchUserInfo(ulong userId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.User(userId);
-            DiscordUser user = null;
+            IUser user = null;
             try
             {
-                user = TryGetFromCache<DiscordUser>(cacheKey, cacheBehavior);
+                user = TryGetFromCache<IUser>(cacheKey, cacheBehavior);
                 if (user != null) return user;
-            } catch (NotFoundInCacheException)
+            }
+            catch (NotFoundInCacheException)
             {
                 return user;
             }
@@ -166,10 +173,11 @@ namespace masz.Services
             try
             {
                 user = await _discordBot.GetClient().GetUserAsync(userId);
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to fetch user '{userId}' from API.");
-                return FallBackToCache<DiscordUser>(cacheKey, cacheBehavior);
+                return FallBackToCache<IUser>(cacheKey, cacheBehavior);
             }
 
             // cache -----------------------------
@@ -177,52 +185,55 @@ namespace masz.Services
             return user;
         }
 
-        public async Task<List<DiscordMember>> FetchGuildMembers(ulong guildId, CacheBehavior cacheBehavior)
+        public async Task<List<IGuildUser>> FetchGuildMembers(ulong guildId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.GuildMembers(guildId);
-            List<DiscordMember> members = null;
+            List<IGuildUser> members;
             try
             {
-                members = TryGetFromCache<List<DiscordMember>>(cacheKey, cacheBehavior);
+                members = TryGetFromCache<List<IGuildUser>>(cacheKey, cacheBehavior);
                 if (members != null) return members;
-            } catch (NotFoundInCacheException)
+            }
+            catch (NotFoundInCacheException)
             {
-                return new List<DiscordMember>();
+                return new List<IGuildUser>();
             }
 
             // request ---------------------------
             try
             {
-                DiscordGuild guild = await FetchGuildInfo(guildId, cacheBehavior);
-                if (guild == null) return new List<DiscordMember>();
-                members = (await guild.GetAllMembersAsync()).ToList();
-            } catch (Exception e)
+                IGuild guild = FetchGuildInfo(guildId, cacheBehavior);
+                if (guild == null) return new List<IGuildUser>();
+                members = (await guild.GetUsersAsync()).ToList();
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to fetch members for guild '{guildId}' from API.");
-                return FallBackToCache<List<DiscordMember>>(cacheKey, cacheBehavior);
+                return FallBackToCache<List<IGuildUser>>(cacheKey, cacheBehavior);
             }
 
             // cache -----------------------------
-            foreach (DiscordMember item in members)
+            foreach (IGuildUser item in members)
             {
-                SetCacheValue(CacheKey.User(item.Id), new CacheApiResponse((DiscordUser) item));
+                SetCacheValue(CacheKey.User(item.Id), new CacheApiResponse(item));
                 SetCacheValue(CacheKey.GuildMember(guildId, item.Id), new CacheApiResponse(item));
             }
             SetCacheValue(cacheKey, new CacheApiResponse(members));
             return members;
         }
 
-        public async Task<DiscordUser> FetchCurrentUserInfo(string token, CacheBehavior cacheBehavior)
+        public async Task<IUser> FetchCurrentUserInfo(string token, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.TokenUser(token);
-            DiscordUser user = null;
+            IUser user = null;
             try
             {
-                user = TryGetFromCache<DiscordUser>(cacheKey, cacheBehavior);
+                user = TryGetFromCache<IUser>(cacheKey, cacheBehavior);
                 if (user != null) return user;
-            } catch (NotFoundInCacheException)
+            }
+            catch (NotFoundInCacheException)
             {
                 return user;
             }
@@ -230,11 +241,12 @@ namespace masz.Services
             // request ---------------------------
             try
             {
-                user = await GetOAuthClient(token).GetCurrentUserAsync();
-            } catch (Exception e)
+                user = (await GetOAuthClient(token)).CurrentUser;
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to fetch current user for token '{token}' from API.");
-                return FallBackToCache<DiscordUser>(cacheKey, cacheBehavior);
+                return FallBackToCache<IUser>(cacheKey, cacheBehavior);
             }
 
             // cache -----------------------------
@@ -242,50 +254,46 @@ namespace masz.Services
             return user;
         }
 
-        public DiscordUser GetCurrentBotInfo(CacheBehavior cacheBehavior)
+        public IUser GetCurrentBotInfo(CacheBehavior cacheBehavior)
         {
             return _discordBot.GetClient().CurrentUser;
         }
 
-        public DiscordApplication GetCurrentApplicationInfo()
+        public async Task<IUser> FetchCurrentBotInfo()
         {
-            return _discordBot.GetClient().CurrentApplication;
+            var client = new DiscordRestClient();
+
+            await client.LoginAsync(TokenType.Bot, _config.GetBotToken());
+
+            return client.CurrentUser;
         }
 
-        public async Task<DiscordUser> FetchCurrentBotInfo()
-        {
-            var client = new DiscordRestClient(new DiscordConfiguration
-            {
-                Token = _config.GetBotToken(),
-                TokenType = TokenType.Bot,
-            });
-            return await client.GetCurrentUserAsync();
-        }
-
-        public async Task<List<DiscordChannel>> FetchGuildChannels(ulong guildId, CacheBehavior cacheBehavior)
+        public async Task<List<IChannel>> FetchGuildChannels(ulong guildId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.GuildChannels(guildId);
-            List<DiscordChannel> channels = null;
+            List<IChannel> channels;
             try
             {
-                channels = TryGetFromCache<List<DiscordChannel>>(cacheKey, cacheBehavior);
+                channels = TryGetFromCache<List<IChannel>>(cacheKey, cacheBehavior);
                 if (channels != null) return channels;
-            } catch (NotFoundInCacheException)
+            }
+            catch (NotFoundInCacheException)
             {
-                return new List<DiscordChannel>();
+                return new List<IChannel>();
             }
 
             // request ---------------------------
             try
             {
-                DiscordGuild guild = await FetchGuildInfo(guildId, cacheBehavior);
-                if (guild == null) return new List<DiscordChannel>();
-                channels = (await guild.GetChannelsAsync()).ToList();
-            } catch (Exception e)
+                IGuild guild = FetchGuildInfo(guildId, cacheBehavior);
+                if (guild == null) return new List<IChannel>();
+                channels = (await guild.GetChannelsAsync()).Select(channel => channel as IChannel).ToList();
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to fetch guild channels for guild '{guildId}' from API.");
-                return FallBackToCache<List<DiscordChannel>>(cacheKey, cacheBehavior);
+                return FallBackToCache<List<IChannel>>(cacheKey, cacheBehavior);
             }
 
             // cache -----------------------------
@@ -293,16 +301,17 @@ namespace masz.Services
             return channels;
         }
 
-        public async Task<DiscordGuild> FetchGuildInfo(ulong guildId, CacheBehavior cacheBehavior)
+        public IGuild FetchGuildInfo(ulong guildId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.Guild(guildId);
-            DiscordGuild guild = null;
+            IGuild guild;
             try
             {
-                guild = TryGetFromCache<DiscordGuild>(cacheKey, cacheBehavior);
+                guild = TryGetFromCache<IGuild>(cacheKey, cacheBehavior);
                 if (guild != null) return guild;
-            } catch (NotFoundInCacheException)
+            }
+            catch (NotFoundInCacheException)
             {
                 return null;
             }
@@ -310,11 +319,12 @@ namespace masz.Services
             // request ---------------------------
             try
             {
-                guild = await _discordBot.GetClient().GetGuildAsync(guildId);
-            } catch (Exception e)
+                guild = _discordBot.GetClient().GetGuild(guildId);
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to fetch guild '{guildId}' from API.");
-                return FallBackToCache<DiscordGuild>(cacheKey, cacheBehavior);
+                return FallBackToCache<IGuild>(cacheKey, cacheBehavior);
             }
 
             // cache -----------------------------
@@ -322,28 +332,30 @@ namespace masz.Services
             return guild;
         }
 
-        public async Task<List<DiscordGuild>> FetchGuildsOfCurrentUser(string token, CacheBehavior cacheBehavior)
+        public async Task<List<IGuild>> FetchGuildsOfCurrentUser(string token, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.TokenUserGuilds(token);
-            List<DiscordGuild> guilds = null;
+            List<IGuild> guilds;
             try
             {
-                guilds = TryGetFromCache<List<DiscordGuild>>(cacheKey, cacheBehavior);
+                guilds = TryGetFromCache<List<IGuild>>(cacheKey, cacheBehavior);
                 if (guilds != null) return guilds;
-            } catch (NotFoundInCacheException)
+            }
+            catch (NotFoundInCacheException)
             {
-                return new List<DiscordGuild>();
+                return new List<IGuild>();
             }
 
             // request ---------------------------
             try
             {
-                guilds = (await GetOAuthClient(token).GetCurrentUserGuildsAsync(limit: 200)).ToList();  // max 200 guilds
-            } catch (Exception e)
+                guilds = (await (await GetOAuthClient(token)).GetGuildsAsync()).Select(guild => guild as IGuild).ToList();  // max 200 guilds
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to fetch guilds of current user for token '{token}' from API.");
-                return FallBackToCache<List<DiscordGuild>>(cacheKey, cacheBehavior);
+                return FallBackToCache<List<IGuild>>(cacheKey, cacheBehavior);
             }
 
             // cache -----------------------------
@@ -351,16 +363,17 @@ namespace masz.Services
             return guilds;
         }
 
-        public async Task<DiscordMember> FetchMemberInfo(ulong guildId, ulong userId, CacheBehavior cacheBehavior)
+        public async Task<IGuildUser> FetchMemberInfo(ulong guildId, ulong userId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.GuildMember(guildId, userId);
-            DiscordMember member = null;
+            IGuildUser member;
             try
             {
-                member = TryGetFromCache<DiscordMember>(cacheKey, cacheBehavior);
+                member = TryGetFromCache<IGuildUser>(cacheKey, cacheBehavior);
                 if (member != null) return member;
-            } catch (NotFoundInCacheException)
+            }
+            catch (NotFoundInCacheException)
             {
                 return null;
             }
@@ -368,21 +381,22 @@ namespace masz.Services
             // request ---------------------------
             try
             {
-                DiscordGuild g = await _discordBot.GetClient().GetGuildAsync(guildId);
-                member = await g.GetMemberAsync(userId);
-            } catch (Exception e)
+                IGuild g = _discordBot.GetClient().GetGuild(guildId);
+                member = await g.GetUserAsync(userId);
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to fetch guild '{guildId}' member '{userId}' from API.");
-                return FallBackToCache<DiscordMember>(cacheKey, cacheBehavior);
+                return FallBackToCache<IGuildUser>(cacheKey, cacheBehavior);
             }
 
             // cache -----------------------------
             SetCacheValue(cacheKey, new CacheApiResponse(member));
-            SetCacheValue(CacheKey.User(userId), new CacheApiResponse((DiscordUser) member));
+            SetCacheValue(CacheKey.User(userId), new CacheApiResponse(member));
             return member;
         }
 
-        public Task<DiscordMessage> GetDiscordMessage(ulong channelId, ulong messageId, CacheBehavior cacheBehavior)
+        public Task<IMessage> GetIMessage(ulong channelId, ulong messageId, CacheBehavior cacheBehavior)
         {
             throw new NotImplementedException();
         }
@@ -391,10 +405,11 @@ namespace masz.Services
         {
             try
             {
-                DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
+                IGuild guild = FetchGuildInfo(guildId, CacheBehavior.Default);
                 if (guild == null) return false;
-                await guild.BanMemberAsync(userId, 0);
-            } catch (Exception e)
+                await guild.AddBanAsync(userId, 0);
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to ban user '{userId}' from guild '{guildId}'.");
                 return false;
@@ -406,10 +421,11 @@ namespace masz.Services
         {
             try
             {
-                DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
+                IGuild guild = FetchGuildInfo(guildId, CacheBehavior.Default);
                 if (guild == null) return false;
-                await guild.UnbanMemberAsync(userId);
-            } catch (Exception e)
+                await guild.RemoveBanAsync(userId);
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to unban user '{userId}' from guild '{guildId}'.");
                 return false;
@@ -422,13 +438,15 @@ namespace masz.Services
             // request ---------------------------
             try
             {
-                DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
+                IGuild guild = FetchGuildInfo(guildId, CacheBehavior.Default);
                 if (guild == null) return false;
-                DiscordMember member = await FetchMemberInfo(guildId, userId, CacheBehavior.Default);
+                IGuildUser member = await FetchMemberInfo(guildId, userId, CacheBehavior.Default);
                 if (member == null) return false;
-                if(! guild.Roles.ContainsKey(roleId)) return false;
-                await member.GrantRoleAsync(guild.Roles[roleId]);
-            } catch (Exception e)
+                IRole role = guild.Roles.Where(r => r.Id == roleId).FirstOrDefault();
+                if (role == null) return false;
+                await member.AddRoleAsync(role);
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to grant user '{userId}' from guild '{guildId}' role '{roleId}'.");
                 return false;
@@ -441,13 +459,15 @@ namespace masz.Services
             // request ---------------------------
             try
             {
-                DiscordGuild guild = await FetchGuildInfo(guildId, CacheBehavior.Default);
+                IGuild guild = FetchGuildInfo(guildId, CacheBehavior.Default);
                 if (guild == null) return false;
-                DiscordMember member = await FetchMemberInfo(guildId, userId, CacheBehavior.Default);
+                IGuildUser member = await FetchMemberInfo(guildId, userId, CacheBehavior.Default);
                 if (member == null) return false;
-                if(! guild.Roles.ContainsKey(roleId)) return false;
-                await member.RevokeRoleAsync(guild.Roles[roleId]);
-            } catch (Exception e)
+                IRole role = guild.Roles.Where(r => r.Id == roleId).FirstOrDefault();
+                if (role == null) return false;
+                await member.RemoveRoleAsync(role);
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to revoke user '{userId}' from guild '{guildId}' role '{roleId}'.");
                 return false;
@@ -460,10 +480,11 @@ namespace masz.Services
             // request ---------------------------
             try
             {
-                DiscordMember member = await FetchMemberInfo(guildId, userId, CacheBehavior.Default);
+                IGuildUser member = await FetchMemberInfo(guildId, userId, CacheBehavior.Default);
                 if (member == null) return false;
-                await member.RemoveAsync();
-            } catch (Exception e)
+                await member.KickAsync();
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to kick user '{userId}' from guild '{guildId}'.");
                 return false;
@@ -471,16 +492,17 @@ namespace masz.Services
             return true;
         }
 
-        public async Task<DiscordChannel> CreateDmChannel(ulong userId)
+        public async Task<IChannel> CreateDmChannel(ulong userId)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.DMChannel(userId);
-            DiscordChannel channel = null;
+            IChannel channel;
             try
             {
-                channel = TryGetFromCache<DiscordChannel>(cacheKey, CacheBehavior.Default);
+                channel = TryGetFromCache<IChannel>(cacheKey, CacheBehavior.Default);
                 if (channel != null) return channel;
-            } catch (NotFoundInCacheException)
+            }
+            catch (NotFoundInCacheException)
             {
                 return null;
             }
@@ -488,11 +510,12 @@ namespace masz.Services
             // request ---------------------------
             try
             {
-                channel = await _discordRestClient.CreateDmAsync(userId);
-            } catch (Exception e)
+                channel = await (await _discordRestClient.GetUserAsync(userId)).CreateDMChannelAsync();
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to create dm with user '{userId}'.");
-                return FallBackToCache<DiscordChannel>(cacheKey, CacheBehavior.Default);
+                return FallBackToCache<IChannel>(cacheKey, CacheBehavior.Default);
             }
 
             // cache -----------------------------
@@ -500,26 +523,16 @@ namespace masz.Services
             return channel;
         }
 
-        public async Task<bool> SendMessage(ulong channelId, string content = null, DiscordEmbed embed = null)
+        public async Task<bool> SendMessage(ulong channelId, string content = null, Embed embed = null)
         {
             // request ---------------------------
             try
             {
-                DiscordChannel channel = await  _discordBot.GetClient().GetChannelAsync(channelId);
-                if (channel == null) return false;
+                if (await _discordBot.GetClient().GetChannelAsync(channelId) is not ITextChannel channel) return false;
 
-                DiscordMessageBuilder builder = new DiscordMessageBuilder();
-                if (content != null)
-                {
-                    builder.WithContent(content);
-                }
-                if (embed != null)
-                {
-                    builder.WithEmbed(embed);
-                }
-
-                await channel.SendMessageAsync(builder);
-            } catch (Exception e)
+                await channel.SendMessageAsync(content, embed: embed);
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to send message to channel '{channelId}'.");
                 return false;
@@ -529,47 +542,29 @@ namespace masz.Services
 
         public async Task<bool> SendDmMessage(ulong userId, string content)
         {
-            DiscordChannel channel = await CreateDmChannel(userId);
-            if (channel == null) {
+            IChannel channel = await CreateDmChannel(userId);
+            if (channel == null)
+            {
                 return false;
             }
 
             return await SendMessage(channel.Id, content, null);
         }
 
-        public async Task<bool> SendDmMessage(ulong userId, DiscordEmbed embed)
+        public async Task<bool> SendDmMessage(ulong userId, Embed embed)
         {
-            DiscordChannel channel = await CreateDmChannel(userId);
-            if (channel == null) {
+            IChannel channel = await CreateDmChannel(userId);
+            if (channel == null)
+            {
                 return false;
             }
 
             return await SendMessage(channel.Id, null, embed);
         }
 
-        public async Task<bool> ExecuteWebhook(string url, DiscordEmbed embed = null, string content = null)
+        public async Task ExecuteWebhook(string url, Embed embed = null, string content = null)
         {
-            DiscordWebhookBuilder builder = new DiscordWebhookBuilder();
-            if (embed != null)
-            {
-                builder.AddEmbed(embed);
-            }
-            if (content != null)
-            {
-                builder.WithContent(content);
-            }
-            ulong id;
-            string token;
-            try {
-                var splitted = url.Split('/');
-                id = ulong.Parse(splitted[splitted.Length - 2]);
-                token = splitted[splitted.Length - 1];
-            } catch (Exception e)
-            {
-                _logger.LogError(e, $"Failed to parse webhook url '{url}'.");
-                return false;
-            }
-            return (await _discordRestClient.ExecuteWebhookAsync(id, token, builder)) != null;
+            await new DiscordWebhookClient(url).SendMessageAsync(content, embeds: new Embed[1] { embed });
         }
 
         public Dictionary<string, CacheApiResponse> GetCache()
@@ -591,6 +586,11 @@ namespace masz.Services
                 return _cache[key.GetValue()].GetContent<T>();
             }
             throw new NotFoundInCacheException();
+        }
+
+        public async Task<IApplication> GetCurrentApplicationInfo()
+        {
+            return await _discordBot.GetClient().GetApplicationInfoAsync();
         }
 
         public void AddOrUpdateCache(CacheKey key, CacheApiResponse response)

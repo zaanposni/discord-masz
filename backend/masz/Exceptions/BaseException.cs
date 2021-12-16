@@ -1,8 +1,7 @@
 #nullable enable
 
-using System;
 
-namespace masz.Exceptions
+namespace MASZ.Exceptions
 {
     public class BaseException : Exception
     {

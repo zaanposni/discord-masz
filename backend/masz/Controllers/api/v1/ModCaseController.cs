@@ -1,29 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using masz.Dtos.ModCase;
-using masz.Models;
-using masz.Repositories;
+using MASZ.Dtos.ModCase;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Models;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using masz.Enums;
-using Microsoft.Extensions.Logging;
-using masz.Exceptions;
+using System.ComponentModel.DataAnnotations;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/guilds/{guildId}/cases/")]
     [Authorize]
     public class ModCaseController : SimpleCaseController
     {
-        private readonly ILogger<ModCaseController> _logger;
 
         public ModCaseController(IServiceProvider serviceProvider, ILogger<ModCaseController> logger) : base(serviceProvider, logger)
         {
-            _logger = logger;
         }
 
         [HttpGet("{caseId}")]
@@ -32,11 +25,11 @@ namespace masz.Controllers
             await RequirePermission(guildId, caseId, APIActionPermission.View);
 
             Identity currentIdentity = await GetIdentity();
-            CaseView modCase = new CaseView(await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetModCase(guildId, caseId));
+            CaseView modCase = new(await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetModCase(guildId, caseId));
 
-            if (! (await GetRegisteredGuild(guildId)).PublishModeratorInfo)
+            if (!(await GetRegisteredGuild(guildId)).PublishModeratorInfo)
             {
-                if (! await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
+                if (!await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
                 {
                     modCase.RemoveModeratorInfo();
                 }
@@ -61,7 +54,7 @@ namespace masz.Controllers
         {
             await RequirePermission(guildId, caseId, APIActionPermission.Edit);
             Identity currentIdentity = await GetIdentity();
-            if (! await currentIdentity.HasPermissionToExecutePunishment(guildId, newValue.PunishmentType))
+            if (!await currentIdentity.HasPermissionToExecutePunishment(guildId, newValue.PunishmentType))
             {
                 throw new UnauthorizedException();
             }
@@ -69,7 +62,6 @@ namespace masz.Controllers
             var repo = ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity);
 
             ModCase modCase = await repo.GetModCase(guildId, caseId);
-            ModCase oldModCase = (ModCase) modCase.Clone();
 
             modCase.Title = newValue.Title;
             modCase.Description = newValue.Description;
@@ -93,20 +85,21 @@ namespace masz.Controllers
         public async Task<IActionResult> CreateItem([FromRoute] ulong guildId, [FromBody] ModCaseForCreateDto modCaseDto, [FromQuery] bool sendPublicNotification = true, [FromQuery] bool handlePunishment = true, [FromQuery] bool sendDmNotification = true)
         {
             Identity currentIdentity = await GetIdentity();
-            if (! await currentIdentity.HasPermissionToExecutePunishment(guildId, modCaseDto.PunishmentType))
+            if (!await currentIdentity.HasPermissionToExecutePunishment(guildId, modCaseDto.PunishmentType))
             {
                 throw new UnauthorizedException();
             }
 
-            ModCase newModCase = new ModCase();
-
-            newModCase.Title = modCaseDto.Title;
-            newModCase.Description = modCaseDto.Description;
-            newModCase.GuildId = guildId;
-            newModCase.ModId = currentIdentity.GetCurrentUser().Id;
-            newModCase.UserId = modCaseDto.UserId;
-            newModCase.Labels = modCaseDto.Labels.Distinct().ToArray();
-            newModCase.Others = modCaseDto.Others;
+            ModCase newModCase = new()
+            {
+                Title = modCaseDto.Title,
+                Description = modCaseDto.Description,
+                GuildId = guildId,
+                ModId = currentIdentity.GetCurrentUser().Id,
+                UserId = modCaseDto.UserId,
+                Labels = modCaseDto.Labels.Distinct().ToArray(),
+                Others = modCaseDto.Others
+            };
             if (modCaseDto.OccuredAt.HasValue)
             {
                 newModCase.OccuredAt = modCaseDto.OccuredAt.Value;
@@ -121,26 +114,28 @@ namespace masz.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllItems([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage=0)
+        public async Task<IActionResult> GetAllItems([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage = 0)
         {
             Identity currentIdentity = await GetIdentity();
             ulong userOnly = 0;
-            if (! await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
+            if (!await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
             {
                 userOnly = currentIdentity.GetCurrentUser().Id;
             }
             // ========================================================
-            List<CaseView> modCases = new List<CaseView>();
-            if (userOnly == 0) {
+            List<CaseView> modCases = new();
+            if (userOnly == 0)
+            {
                 modCases = (await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetCasePagination(guildId, startPage)).Select(x => new CaseView(x)).ToList();
             }
-            else {
+            else
+            {
                 modCases = (await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetCasePaginationFilteredForUser(guildId, userOnly, startPage)).Select(x => new CaseView(x)).ToList();
             }
 
-            if (! (await GetRegisteredGuild(guildId)).PublishModeratorInfo)
+            if (!(await GetRegisteredGuild(guildId)).PublishModeratorInfo)
             {
-                if (! await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
+                if (!await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
                 {
                     foreach (var modCase in modCases)
                     {

@@ -1,8 +1,7 @@
-using System;
+using MASZ.Enums;
 using System.ComponentModel.DataAnnotations;
-using masz.Enums;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class AutoModerationEvent
     {

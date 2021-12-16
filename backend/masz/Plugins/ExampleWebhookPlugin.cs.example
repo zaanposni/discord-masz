@@ -1,18 +1,18 @@
 using System;
 using System.Threading.Tasks;
-using masz.Events;
+using MASZ.Events;
 using Microsoft.Extensions.Logging;
 
 /*
 
 This is an example of a webhook plugin.
-It shows how to use masz services like the "_discordAPI" which is a discord API wrapper.
+It shows how to use MASZ services like the "_discordAPI" which is a discord API wrapper.
 For further documentation of the services, see the "Services" folder.
 This plugin executes a webhook every time a identity is registered.
 
 */
 
-namespace masz.Plugins
+namespace MASZ.Plugins
 {
     public class ExampleWebhookPlugin : BasePlugin, IBasePlugin
     {

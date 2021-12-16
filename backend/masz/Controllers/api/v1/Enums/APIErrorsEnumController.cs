@@ -1,30 +1,25 @@
-using System;
-using System.Collections.Generic;
-using masz.Dtos.Enum;
-using masz.Enums;
+using MASZ.Dtos.Enum;
+using MASZ.Enums;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/enums/")]
     public class APIErrorsEnumController : SimpleController
     {
-        private readonly ILogger<APIErrorsEnumController> _logger;
-
-        public APIErrorsEnumController(ILogger<APIErrorsEnumController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public APIErrorsEnumController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _logger = logger;
         }
 
         [HttpGet("apierror")]
-        public IActionResult CreationType([FromQuery] Language? language = null) {
+        public IActionResult CreationType([FromQuery] Language? language = null)
+        {
             _translator.SetContext(language);
             return Ok(new List<EnumDto>()
             {
                 EnumDto.Create((int) APIError.Unknown, _translator.T().Enum(APIError.Unknown)),
-                EnumDto.Create((int) APIError.InvalidDiscordUser, _translator.T().Enum(APIError.InvalidDiscordUser)),
+                EnumDto.Create((int) APIError.InvalidIUser, _translator.T().Enum(APIError.InvalidIUser)),
                 EnumDto.Create((int) APIError.ProtectedModCaseSuspect, _translator.T().Enum(APIError.ProtectedModCaseSuspect)),
                 EnumDto.Create((int) APIError.ProtectedModCaseSuspectIsBot, _translator.T().Enum(APIError.ProtectedModCaseSuspectIsBot)),
                 EnumDto.Create((int) APIError.ProtectedModCaseSuspectIsSiteAdmin, _translator.T().Enum(APIError.ProtectedModCaseSuspectIsSiteAdmin)),

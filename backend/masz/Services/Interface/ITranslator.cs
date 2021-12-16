@@ -1,9 +1,8 @@
-using System.Threading.Tasks;
-using masz.Models;
-using masz.Enums;
-using masz.Translations;
+using MASZ.Enums;
+using MASZ.Models;
+using MASZ.Translations;
 
-namespace masz.Services
+namespace MASZ.Services
 {
     public interface ITranslator
     {

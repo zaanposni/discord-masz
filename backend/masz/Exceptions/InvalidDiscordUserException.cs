@@ -1,19 +1,19 @@
-using masz.Enums;
+using MASZ.Enums;
 
-namespace masz.Exceptions
+namespace MASZ.Exceptions
 {
-    public class InvalidDiscordUserException : BaseAPIException
+    public class InvalidIUserException : BaseAPIException
     {
         public ulong UserId { get; set; }
-        public InvalidDiscordUserException(string message, ulong userId) : base(message, APIError.InvalidDiscordUser)
+        public InvalidIUserException(string message, ulong userId) : base(message, APIError.InvalidIUser)
         {
             UserId = userId;
         }
-        public InvalidDiscordUserException(ulong userId) : base("Failed to fetch user '{userId}' from API.", APIError.InvalidDiscordUser)
+        public InvalidIUserException(ulong userId) : base("Failed to fetch user '{userId}' from API.", APIError.InvalidIUser)
         {
             UserId = userId;
         }
-        public InvalidDiscordUserException() : base("Failed to fetch user from API.", APIError.InvalidDiscordUser)
+        public InvalidIUserException() : base("Failed to fetch user from API.", APIError.InvalidIUser)
         {
         }
     }

@@ -1,11 +1,10 @@
-using System;
-using masz.Models;
+using MASZ.Models;
 
-namespace masz.Events
+namespace MASZ.Events
 {
     public class GuildDeletedEventArgs : EventArgs
     {
-        private GuildConfig _guildConfig;
+        private readonly GuildConfig _guildConfig;
 
         public GuildDeletedEventArgs(GuildConfig guildConfig)
         {

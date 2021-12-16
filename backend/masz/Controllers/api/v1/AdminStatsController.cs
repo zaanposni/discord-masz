@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using masz.Models;
-using masz.Repositories;
+using MASZ.Models;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/meta/")]
@@ -16,7 +12,8 @@ namespace masz.Controllers
     {
         private readonly ILogger<AdminStatsController> _logger;
 
-        public AdminStatsController(IServiceProvider serviceProvider, ILogger<AdminStatsController> logger) : base(serviceProvider) {
+        public AdminStatsController(IServiceProvider serviceProvider, ILogger<AdminStatsController> logger) : base(serviceProvider)
+        {
             _logger = logger;
         }
 
@@ -24,9 +21,9 @@ namespace masz.Controllers
         public async Task<IActionResult> Status()
         {
             Identity currentIdentity = await GetIdentity();
-            if (! currentIdentity.IsSiteAdmin()) return Unauthorized();
+            if (!currentIdentity.IsSiteAdmin()) return Unauthorized();
 
-            List<string> currentLogins = new List<string>();
+            List<string> currentLogins = new();
             foreach (var login in _identityManager.GetCurrentIdentities())
             {
                 if (login is DiscordOAuthIdentity)
@@ -37,11 +34,13 @@ namespace masz.Controllers
                         if (user == null)
                         {
                             currentLogins.Add($"Invalid user.");
-                        } else
+                        }
+                        else
                         {
                             currentLogins.Add($"{user.Username}#{user.Discriminator}");
                         }
-                    } catch (Exception e)
+                    }
+                    catch (Exception e)
                     {
                         _logger.LogError(e, "Error getting logged in user.");
                         currentLogins.Add($"Invalid user.");
@@ -55,7 +54,8 @@ namespace masz.Controllers
             StatusDetail dbDetails = await repo.GetDbStatus();
             StatusDetail cacheDetails = repo.GetCacheStatus();
 
-            return Ok(new {
+            return Ok(new
+            {
                 botStatus = botDetails,
                 dbStatus = dbDetails,
                 cacheStatus = cacheDetails,
@@ -74,11 +74,13 @@ namespace masz.Controllers
         }
 
         [HttpPost("cache")]
-        public async Task<IActionResult> TriggerCache() {
+        public async Task<IActionResult> TriggerCache()
+        {
             Identity identity = await GetIdentity();
-            if (! identity.IsSiteAdmin()) return Unauthorized();
+            if (!identity.IsSiteAdmin()) return Unauthorized();
 
-            Task task = new Task(() => {
+            Task task = new(() =>
+            {
                 _identityManager.ClearAllIdentities();
                 _scheduler.CacheAll();
             });

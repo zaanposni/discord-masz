@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using masz.Models;
+using Discord;
+using MASZ.Models;
 
-namespace masz.AutoModerations
+namespace MASZ.AutoModerations
 {
     public static class SpamCheck
     {
         // { guildid -> { userid -> [ timestamps ] } }
-        private static Dictionary<ulong, Dictionary<ulong, List<long>>> msgBoard = new Dictionary<ulong, Dictionary<ulong, List<long>>>();
-        public static bool Check(DiscordMessage message, AutoModerationConfig config, DiscordClient client)
+        private static readonly Dictionary<ulong, Dictionary<ulong, List<long>>> msgBoard = new();
+        public static bool Check(IMessage message, AutoModerationConfig config, IDiscordClient _)
         {
             if (config.Limit == null)
             {
@@ -27,41 +23,43 @@ namespace masz.AutoModerations
             }
 
             // set guild config in msg_board if it doesn't exist
-            if (!msgBoard.ContainsKey(message.Channel.Guild.Id))
+            if (!msgBoard.ContainsKey((message.Channel as ITextChannel).Guild.Id))
             {
-                msgBoard[message.Channel.Guild.Id] = new Dictionary<ulong, List<long>>();
+                msgBoard[(message.Channel as ITextChannel).Guild.Id] = new Dictionary<ulong, List<long>>();
             }
 
-            long timestamp = message.CreationTimestamp.ToUnixTimeSeconds();
+            long timestamp = message.CreatedAt.ToUnixTimeSeconds();
 
             // filter out messages older than TimeLimitMinutes
             // delta is the time minus the TimeLimitMinutes => the time messages older than should be deleted
             // not using *60 because we are working with seconds here
             long delta = timestamp - (long)config.TimeLimitMinutes;
 
-            foreach (ulong userId in msgBoard[message.Channel.Guild.Id].Keys.ToList())
+            foreach (ulong userId in msgBoard[(message.Channel as ITextChannel).Guild.Id].Keys.ToList())
             {
-                var newTimestamps = msgBoard[message.Channel.Guild.Id][userId].FindAll(x => x > delta);
+                var newTimestamps = msgBoard[(message.Channel as ITextChannel).Guild.Id][userId].FindAll(x => x > delta);
                 if (newTimestamps.Count > 0)
                 {
-                    msgBoard[message.Channel.Guild.Id][userId] = newTimestamps;
-                } else
+                    msgBoard[(message.Channel as ITextChannel).Guild.Id][userId] = newTimestamps;
+                }
+                else
                 {
-                    msgBoard[message.Channel.Guild.Id].Remove(userId);
+                    msgBoard[(message.Channel as ITextChannel).Guild.Id].Remove(userId);
                 }
             }
 
             // add the message to the "msg_board"
-            if (!msgBoard[message.Channel.Guild.Id].ContainsKey(message.Author.Id))
+            if (!msgBoard[(message.Channel as ITextChannel).Guild.Id].ContainsKey(message.Author.Id))
             {
-                msgBoard[message.Channel.Guild.Id][message.Author.Id] = new List<long>() { timestamp };
-            } else
+                msgBoard[(message.Channel as ITextChannel).Guild.Id][message.Author.Id] = new List<long>() { timestamp };
+            }
+            else
             {
-                msgBoard[message.Channel.Guild.Id][message.Author.Id].Add(timestamp);
+                msgBoard[(message.Channel as ITextChannel).Guild.Id][message.Author.Id].Add(timestamp);
             }
 
             // count the number of messages and check them for being too high
-            return msgBoard[message.Channel.Guild.Id][message.Author.Id].Count > config.Limit;
+            return msgBoard[(message.Channel as ITextChannel).Guild.Id][message.Author.Id].Count > config.Limit;
         }
     }
 }

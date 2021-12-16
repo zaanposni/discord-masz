@@ -1,10 +1,6 @@
-using System;
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.SlashCommands;
+using Discord.Interactions;
 
-namespace masz.Commands
+namespace MASZ.Commands
 {
 
     public class RegisterCommand : BaseCommand<RegisterCommand>
@@ -12,14 +8,14 @@ namespace masz.Commands
         public RegisterCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [SlashCommand("register", "Displays the URL to register the current guild.")]
-        public async Task Register(InteractionContext ctx)
+        public async Task Register()
         {
-            string url = $"{_config.GetBaseUrl()}/guilds/new";
-            if (ctx.Guild != null)
+            string url = $"{Config.GetBaseUrl()}/guilds/new";
+            if (Context.Guild != null)
             {
-                url = $"{_config.GetBaseUrl()}/guilds/new?guildid={ctx.Guild.Id}";
+                url = $"{Config.GetBaseUrl()}/guilds/new?guildid={Context.Guild.Id}";
             }
-            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdRegister(url)));
+            await Context.Interaction.RespondAsync(Translator.T().CmdRegister(url));
         }
     }
 }

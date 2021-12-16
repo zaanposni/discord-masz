@@ -1,11 +1,11 @@
-using DSharpPlus.Entities;
-using masz.Models.Views;
+using Discord;
+using MASZ.Models.Views;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class CommentExpandedView
     {
-        public CommentExpandedView(ModCaseComment comment, DiscordUser commentor)
+        public CommentExpandedView(ModCaseComment comment, IUser commentor)
         {
             Comment = new CommentsView(comment);
             Commentor = DiscordUserView.CreateOrDefault(commentor);
@@ -15,7 +15,8 @@ namespace masz.Models
 
         public void RemoveModeratorInfo(string suspectId)
         {
-            if (Comment.UserId != suspectId) {
+            if (Comment.UserId != suspectId)
+            {
                 Comment.UserId = null;
                 Commentor = null;
             }

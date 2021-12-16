@@ -1,14 +1,12 @@
-using System;
-using System.Threading.Tasks;
-using DSharpPlus.Entities;
-using masz.Exceptions;
-using masz.Models;
-using masz.Repositories;
-using masz.Services;
+using Discord;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Models;
+using MASZ.Repositories;
+using MASZ.Services;
 using Microsoft.AspNetCore.Mvc;
-using masz.Enums;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     public class SimpleController : ControllerBase
     {
@@ -20,36 +18,42 @@ namespace masz.Controllers
         protected readonly IDiscordAnnouncer _discordAnnouncer;
         protected readonly IServiceProvider _serviceProvider;
         protected readonly ITranslator _translator;
+
         public SimpleController(IServiceProvider serviceProvider)
         {
-            _identityManager = (IIdentityManager) serviceProvider.GetService(typeof(IIdentityManager));
-            _config = (IInternalConfiguration) serviceProvider.GetService(typeof(IInternalConfiguration));
-            _discordAPI = (IDiscordAPIInterface) serviceProvider.GetService(typeof(IDiscordAPIInterface));
-            _discordBot = (IDiscordBot) serviceProvider.GetService(typeof(IDiscordBot));
-            _scheduler = (IScheduler) serviceProvider.GetService(typeof(IScheduler));
-            _discordAnnouncer = (IDiscordAnnouncer) serviceProvider.GetService(typeof(IDiscordAnnouncer));
-            _translator = (ITranslator) serviceProvider.GetService(typeof(ITranslator));
+            _identityManager = (IIdentityManager)serviceProvider.GetService(typeof(IIdentityManager));
+            _config = (IInternalConfiguration)serviceProvider.GetService(typeof(IInternalConfiguration));
+            _discordAPI = (IDiscordAPIInterface)serviceProvider.GetService(typeof(IDiscordAPIInterface));
+            _discordBot = (IDiscordBot)serviceProvider.GetService(typeof(IDiscordBot));
+            _scheduler = (IScheduler)serviceProvider.GetService(typeof(IScheduler));
+            _discordAnnouncer = (IDiscordAnnouncer)serviceProvider.GetService(typeof(IDiscordAnnouncer));
+            _translator = (ITranslator)serviceProvider.GetService(typeof(ITranslator));
             _serviceProvider = serviceProvider;
         }
 
-        public async Task<Identity> GetIdentity() {
+        public async Task<Identity> GetIdentity()
+        {
             Identity identity = await _identityManager.GetIdentity(HttpContext);
-            if (identity == null) {
+            if (identity == null)
+            {
                 throw new InvalidIdentityException();
             }
             return identity;
         }
 
-        public async Task<DiscordUser> GetCurrentDiscordUser() {
+        public async Task<IUser> GetCurrentIUser()
+        {
             Identity identity = await GetIdentity();
             return identity.GetCurrentUser();
         }
 
-        public async Task<GuildConfig> GetRegisteredGuild(ulong guildId) {
+        public async Task<GuildConfig> GetRegisteredGuild(ulong guildId)
+        {
             try
             {
                 return await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(guildId);
-            } catch (ResourceNotFoundException)
+            }
+            catch (ResourceNotFoundException)
             {
                 throw new UnregisteredGuildException(guildId);
             }
@@ -57,9 +61,9 @@ namespace masz.Controllers
 
         public async Task RequirePermission(ulong guildId, DiscordPermission permission)
         {
-            GuildConfig guild = await GetRegisteredGuild(guildId);
             Identity currentIdentity = await GetIdentity();
-            if(! await currentIdentity.HasPermissionOnGuild(permission, guildId)) {
+            if (!await currentIdentity.HasPermissionOnGuild(permission, guildId))
+            {
                 throw new UnauthorizedException();
             }
         }
@@ -67,7 +71,8 @@ namespace masz.Controllers
         public async Task RequireSiteAdmin()
         {
             Identity currentIdentity = await GetIdentity();
-            if(! currentIdentity.IsSiteAdmin()) {
+            if (!currentIdentity.IsSiteAdmin())
+            {
                 throw new UnauthorizedException();
             }
         }

@@ -1,11 +1,10 @@
-using System;
-using masz.Models;
+using MASZ.Models;
 
-namespace masz.Events
+namespace MASZ.Events
 {
     public class GuildLevelAuditLogConfigUpdatedEventArgs : EventArgs
     {
-        private GuildLevelAuditLogConfig _config;
+        private readonly GuildLevelAuditLogConfig _config;
 
         public GuildLevelAuditLogConfigUpdatedEventArgs(GuildLevelAuditLogConfig config)
         {

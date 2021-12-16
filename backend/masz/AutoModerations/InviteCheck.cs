@@ -1,25 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Discord;
+using MASZ.Models;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using masz.Models;
 
-namespace masz.AutoModerations
+namespace MASZ.AutoModerations
 {
     public static class InviteChecker
     {
-        private static readonly Regex _inviteRegex = new Regex(@"(https?:\/\/)?(www\.)?(discord(app)?\.(gg|io|me|li|com)(\/invite)?)\/(?![a-z]+\/)([^\s]+)");
-        public static async Task<bool> Check(DiscordMessage message, AutoModerationConfig config, DiscordClient client)
+        private static readonly Regex _inviteRegex = new(@"(https?:\/\/)?(www\.)?(discord(app)?\.(gg|io|me|li|com)(\/invite)?)\/(?![a-z]+\/)([^\s]+)");
+        public static async Task<bool> Check(IMessage message, AutoModerationConfig config, IDiscordClient client)
         {
             if (string.IsNullOrEmpty(message.Content))
             {
                 return false;
             }
 
-            List<string> ignoreGuilds = new List<string>();
+            List<string> ignoreGuilds = new();
             if (!string.IsNullOrEmpty(config.CustomWordFilter))
             {
                 ignoreGuilds = config.CustomWordFilter.Split('\n').ToList();
@@ -29,7 +24,7 @@ namespace masz.AutoModerations
 
             if (matches.Count != 0)
             {
-                List<string> alreadyChecked = new List<string>();
+                List<string> alreadyChecked = new();
                 foreach (Match usedInvite in matches)
                 {
                     try
@@ -39,13 +34,14 @@ namespace masz.AutoModerations
                         {
                             continue;
                         }
-                        alreadyChecked.Append(inviteCode);
-                        DiscordInvite fetchedInvite = await client.GetInviteByCodeAsync(inviteCode);
-                        if (fetchedInvite.Guild.Id != message.Channel.GuildId && !ignoreGuilds.Contains(fetchedInvite.Guild.Id.ToString()))
+                        alreadyChecked.Add(inviteCode);
+                        IInvite fetchedInvite = await client.GetInviteAsync(inviteCode);
+                        if (fetchedInvite.Guild.Id != (message.Channel as ITextChannel).GuildId && !ignoreGuilds.Contains(fetchedInvite.Guild.Id.ToString()))
                         {
                             return true;
                         }
-                    } catch (Exception e)
+                    }
+                    catch (Exception e)
                     {
                         Console.WriteLine(e);
                         return true;

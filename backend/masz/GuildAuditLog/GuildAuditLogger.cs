@@ -1,49 +1,40 @@
-using System;
+using Discord;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Models;
+using MASZ.Repositories;
 using System.Text;
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using masz.Enums;
-using masz.Exceptions;
-using masz.Models;
-using masz.Repositories;
-using masz.Services;
-using Microsoft.Extensions.Logging;
 
-namespace masz.GuildAuditLog
+namespace MASZ.GuildAuditLog
 {
     public class GuildAuditLogger
     {
         private readonly ILogger<GuildAuditLogger> _logger;
-        private readonly DiscordClient _client;
+        private readonly IDiscordClient _client;
         private readonly ulong _guildId;
         private readonly IServiceProvider _serviceProvider;
-        private readonly ITranslator _translator;
-        private readonly IDatabase _database;
 
-        private GuildAuditLogger(DiscordClient client, IServiceProvider serviceProvider, ulong guildId)
+        private GuildAuditLogger(IDiscordClient client, IServiceProvider serviceProvider, ulong guildId)
         {
             _client = client;
             _guildId = guildId;
             _serviceProvider = serviceProvider;
-            _logger = (ILogger<GuildAuditLogger>) _serviceProvider.GetService(typeof(ILogger<GuildAuditLogger>));
-            _translator = (ITranslator) _serviceProvider.GetService(typeof(ITranslator));
+            _logger = (ILogger<GuildAuditLogger>)_serviceProvider.GetService(typeof(ILogger<GuildAuditLogger>));
         }
 
-        public static GuildAuditLogger CreateDefault(DiscordClient client, IServiceProvider serviceProvider, ulong guildId)
+        public static GuildAuditLogger CreateDefault(IDiscordClient client, IServiceProvider serviceProvider, ulong guildId)
         {
             return new GuildAuditLogger(client, serviceProvider, guildId);
         }
-        public static DiscordEmbedBuilder GenerateBaseEmbed(DiscordColor color)
+        public static EmbedBuilder GenerateBaseEmbed(Color color)
         {
-            var embed = new DiscordEmbedBuilder();
+            var embed = new EmbedBuilder();
             embed.WithColor(color);
             embed.WithTimestamp(DateTime.Now);
             return embed;
         }
 
-        public async Task HandleEvent<T>(T args, Func<DiscordClient, T, ITranslator, DiscordEmbedBuilder> predicate, GuildAuditLogEvent eventType) where T : DiscordEventArgs
+        public async Task HandleEvent(EmbedBuilder embed, GuildAuditLogEvent eventType)
         {
             var guildConfigRepository = GuildConfigRepository.CreateDefault(_serviceProvider);
             try
@@ -53,7 +44,8 @@ namespace masz.GuildAuditLog
                 {
                     return;
                 }
-            } catch (ResourceNotFoundException)
+            }
+            catch (ResourceNotFoundException)
             {
                 return;
             }
@@ -67,33 +59,32 @@ namespace masz.GuildAuditLog
                 {
                     return;
                 }
-            } catch (ResourceNotFoundException)
+            }
+            catch (ResourceNotFoundException)
             {
                 return;
             }
 
-            DiscordChannel channel = null;
+            ITextChannel channel = null;
             try
             {
-                channel = await _client.GetChannelAsync(auditLogConfig.ChannelId);
-            } catch (Exception)
+                channel = await _client.GetChannelAsync(auditLogConfig.ChannelId) as ITextChannel;
+            }
+            catch (Exception)
             {
                 return;
             }
-
-            await _translator.SetContext(_guildId);
-
-            DiscordEmbedBuilder embed = predicate(_client, args, _translator);
 
             if (embed.Footer == null)
             {
                 embed.WithFooter(auditLogConfig.GuildAuditLogEvent.ToString());
-            } else
+            }
+            else
             {
-                embed.WithFooter(embed.Footer.Text + $" | {auditLogConfig.GuildAuditLogEvent.ToString()}");
+                embed.WithFooter(embed.Footer.Text + $" | {auditLogConfig.GuildAuditLogEvent}");
             }
 
-            StringBuilder rolePings = new StringBuilder();
+            StringBuilder rolePings = new();
             foreach (ulong role in auditLogConfig.PingRoles)
             {
                 rolePings.Append($"<@&{role}> ");
@@ -101,8 +92,9 @@ namespace masz.GuildAuditLog
 
             try
             {
-                await channel.SendMessageAsync(rolePings.ToString(), embed);
-            } catch (Exception)
+                await channel.SendMessageAsync(rolePings.ToString(), embed: embed.Build());
+            }
+            catch (Exception)
             {
                 return;
             }

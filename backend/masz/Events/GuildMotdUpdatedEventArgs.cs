@@ -1,11 +1,10 @@
-using System;
-using masz.Models;
+using MASZ.Models;
 
-namespace masz.Events
+namespace MASZ.Events
 {
     public class GuildMotdUpdatedEventArgs : EventArgs
     {
-        private GuildMotd _motd;
+        private readonly GuildMotd _motd;
 
         public GuildMotdUpdatedEventArgs(GuildMotd motd)
         {

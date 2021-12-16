@@ -1,42 +1,40 @@
+using Discord;
+using MASZ.Extensions;
+using MASZ.Services;
 using System.Text;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using masz.Extensions;
-using masz.Services;
 
-namespace masz.GuildAuditLog
+namespace MASZ.GuildAuditLog
 {
     public static class InviteCreatedAuditLog
     {
-        public static DiscordEmbedBuilder HandleInviteCreated(DiscordClient client, InviteCreateEventArgs e, ITranslator translator)
+        public static EmbedBuilder HandleInviteCreated(IInviteMetadata invite, ITranslator translator)
         {
-            DiscordEmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(DiscordColor.Green);
+            EmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(Color.Green);
 
-            StringBuilder description = new StringBuilder();
-            description.AppendLine($"> **{translator.T().GuildAuditLogInviteCreatedURL()}:** {e.Invite.ToString()}");
-            if (e.Invite.Inviter != null)
+            StringBuilder description = new();
+            description.AppendLine($"> **{translator.T().GuildAuditLogInviteCreatedURL()}:** {invite}");
+            if (invite.Inviter != null)
             {
-                description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {e.Invite.Inviter.Username}#{e.Invite.Inviter.Discriminator} - {e.Invite.Inviter.Mention}");
-                embed.WithAuthor(e.Invite.Inviter.Username, e.Invite.Inviter.AvatarUrl, e.Invite.Inviter.AvatarUrl)
-                     .WithFooter($"{translator.T().GuildAuditLogUserID()}: {e.Invite.Inviter.Id}");
+                description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {invite.Inviter.Username}#{invite.Inviter.Discriminator} - {invite.Inviter.Mention}");
+                embed.WithAuthor(invite.Inviter)
+                     .WithFooter($"{translator.T().GuildAuditLogUserID()}: {invite.Inviter.Id}");
             }
-            if (e.Channel != null)
+            if (invite.Channel is ITextChannel tChannel)
             {
-                description.AppendLine($"> **{translator.T().GuildAuditLogInviteCreatedTargetChannel()}:** {e.Channel.Name} - {e.Channel.Mention}");
+                description.AppendLine($"> **{translator.T().GuildAuditLogInviteCreatedTargetChannel()}:** {tChannel.Name} - {tChannel.Mention}");
             }
 
             embed.WithTitle(translator.T().GuildAuditLogInviteCreatedTitle())
                  .WithDescription(description.ToString());
 
-            if (e.Invite.MaxUses != 0)
+            if (invite.MaxUses != 0)
             {
-                embed.AddField(translator.T().GuildAuditLogInviteCreatedMaxUses(), $"`{e.Invite.MaxUses}`", true);
+                embed.AddField(translator.T().GuildAuditLogInviteCreatedMaxUses(), $"`{invite.MaxUses}`", true);
             }
 
-            if (e.Invite.ExpiresAt.HasValue)
+            if (invite.CreatedAt.HasValue && invite.MaxAge.HasValue)
             {
-                embed.AddField(translator.T().GuildAuditLogInviteCreatedExpiration(), e.Invite.ExpiresAt.Value.DateTime.ToDiscordTS(), true);
+                embed.AddField(translator.T().GuildAuditLogInviteCreatedExpiration(), invite.CreatedAt.GetValueOrDefault().AddSeconds(invite.MaxAge.GetValueOrDefault()).DateTime.ToDiscordTS(), true);
             }
 
             return embed;

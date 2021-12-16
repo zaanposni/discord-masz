@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace masz.Migrations
+namespace MASZ.Migrations
 {
     public partial class ModCaseDeleteFK : Migration
     {

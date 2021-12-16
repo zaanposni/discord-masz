@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using masz.Enums;
+using MASZ.Enums;
 
-namespace masz.Dtos.ModCase
+namespace MASZ.Dtos.ModCase
 {
     public class ModCaseTableFilterDto
     {

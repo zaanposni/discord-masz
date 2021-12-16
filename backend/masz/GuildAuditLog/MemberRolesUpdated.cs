@@ -1,15 +1,12 @@
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using masz.Services;
+using Discord;
 
-namespace masz.GuildAuditLog
+namespace MASZ.GuildAuditLog
 {
     public static class MemberRolesUpdatedAuditLog
     {
-        public static DiscordEmbedBuilder HandleMemberRolesUpdated(DiscordClient client, GuildMemberUpdateEventArgs e, ITranslator translator)
+        public static EmbedBuilder HandleMemberRolesUpdated()
         {
-            return GuildAuditLogger.GenerateBaseEmbed(DiscordColor.Orange);
+            return GuildAuditLogger.GenerateBaseEmbed(Color.Orange);
         }
     }
 }

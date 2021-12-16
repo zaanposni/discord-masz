@@ -1,4 +1,4 @@
-namespace masz.Exceptions
+namespace MASZ.Exceptions
 {
     public class NotFoundInCacheException : BaseException
     {

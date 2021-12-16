@@ -1,49 +1,48 @@
-using System.Linq;
+using Discord;
+using MASZ.Extensions;
+using MASZ.Services;
 using System.Text;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using masz.Extensions;
-using masz.Services;
 
-namespace masz.GuildAuditLog
+namespace MASZ.GuildAuditLog
 {
     public static class MessageSentAuditLog
     {
-        public static DiscordEmbedBuilder HandleMessageSent(DiscordClient client, MessageCreateEventArgs e, ITranslator translator)
+        public static EmbedBuilder HandleMessageSent(IMessage message, ITranslator translator)
         {
-            DiscordEmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(DiscordColor.Green);
+            EmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(Color.Green);
 
-            StringBuilder description = new StringBuilder();
-            description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {e.Channel.Name} - {e.Channel.Mention}");
-            description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** [{e.Message.Id}]({e.Message.JumpLink})");
-            description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {e.Author.Username}#{e.Author.Discriminator} - {e.Author.Mention}");
-
-            embed.WithTitle(translator.T().GuildAuditLogMessageSentTitle())
-                 .WithDescription(description.ToString())
-                 .WithAuthor(e.Author.Username, e.Author.AvatarUrl, e.Author.AvatarUrl)
-                 .WithFooter($"{translator.T().GuildAuditLogUserID()}: {e.Author.Id}");
-
-            if (! string.IsNullOrEmpty(e.Message.Content))
+            if (message.Channel is ITextChannel tchannel)
             {
-                embed.AddField(translator.T().GuildAuditLogMessageSentContent(), e.Message.Content.Truncate(1024));
-            }
-            if (e.Message.Attachments.Count > 0)
-            {
-                StringBuilder attachmentInfo = new StringBuilder();
-                int counter = 1;
-                foreach (DiscordAttachment attachment in e.Message.Attachments.Take(5))
-                {
-                    attachmentInfo.AppendLine($"- [{counter}. {translator.T().Attachment()}]({attachment.Url})");
-                    counter++;
-                }
-                if (e.Message.Attachments.Count > 5)
-                {
-                    attachmentInfo.AppendLine(translator.T().AndXMore(e.Message.Attachments.Count - 5));
-                }
-                embed.AddField(translator.T().Attachments(), attachmentInfo.ToString());
-            }
+                StringBuilder description = new();
+                description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {tchannel.Name} - {tchannel.Mention}");
+                description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** [{message.Id}]({message.GetJumpUrl()})");
+                description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {message.Author.Username}#{message.Author.Discriminator} - {message.Author.Mention}");
 
+                embed.WithTitle(translator.T().GuildAuditLogMessageSentTitle())
+                     .WithDescription(description.ToString())
+                     .WithAuthor(message.Author)
+                     .WithFooter($"{translator.T().GuildAuditLogUserID()}: {message.Author.Id}");
+
+                if (!string.IsNullOrEmpty(message.Content))
+                {
+                    embed.AddField(translator.T().GuildAuditLogMessageSentContent(), message.Content.Truncate(1024));
+                }
+                if (message.Attachments.Count > 0)
+                {
+                    StringBuilder attachmentInfo = new();
+                    int counter = 1;
+                    foreach (IAttachment attachment in message.Attachments.Take(5))
+                    {
+                        attachmentInfo.AppendLine($"- [{counter}. {translator.T().Attachment()}]({attachment.Url})");
+                        counter++;
+                    }
+                    if (message.Attachments.Count > 5)
+                    {
+                        attachmentInfo.AppendLine(translator.T().AndXMore(message.Attachments.Count - 5));
+                    }
+                    embed.AddField(translator.T().Attachments(), attachmentInfo.ToString());
+                }
+            }
             return embed;
         }
     }

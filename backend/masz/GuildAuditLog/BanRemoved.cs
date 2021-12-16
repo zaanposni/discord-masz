@@ -1,24 +1,22 @@
+using Discord;
+using MASZ.Services;
 using System.Text;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using masz.Services;
 
-namespace masz.GuildAuditLog
+namespace MASZ.GuildAuditLog
 {
     public static class BanRemovedAuditLog
     {
-        public static DiscordEmbedBuilder HandleBanRemoved(DiscordClient client, GuildBanRemoveEventArgs e, ITranslator translator)
+        public static EmbedBuilder HandleBanRemoved(IUser user, ITranslator translator)
         {
-            DiscordEmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(DiscordColor.Green);
+            EmbedBuilder embed = GuildAuditLogger.GenerateBaseEmbed(Color.Green);
 
-            StringBuilder description = new StringBuilder();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {e.Member.Username}#{e.Member.Discriminator} - {e.Member.Mention}");
+            StringBuilder description = new();
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
 
             embed.WithTitle(translator.T().GuildAuditLogBanRemovedTitle())
                  .WithDescription(description.ToString())
-                 .WithAuthor(e.Member.Username, e.Member.AvatarUrl, e.Member.AvatarUrl)
-                 .WithFooter($"{translator.T().GuildAuditLogUserID()}: {e.Member.Id}");
+                 .WithAuthor(user)
+                 .WithFooter($"{translator.T().GuildAuditLogUserID()}: {user.Id}");
 
             return embed;
         }

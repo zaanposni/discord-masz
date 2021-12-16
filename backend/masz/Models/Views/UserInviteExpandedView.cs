@@ -1,11 +1,11 @@
-using DSharpPlus.Entities;
-using masz.Models.Views;
+using Discord;
+using MASZ.Models.Views;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class UserInviteExpandedView
     {
-        public UserInviteExpandedView(UserInvite userInvite, DiscordUser invitedUser, DiscordUser invitedBy)
+        public UserInviteExpandedView(UserInvite userInvite, IUser invitedUser, IUser invitedBy)
         {
             UserInvite = new UserInviteView(userInvite);
             InvitedUser = DiscordUserView.CreateOrDefault(invitedUser);

@@ -1,54 +1,43 @@
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using masz.Dtos.Tokens;
-using masz.Events;
-using masz.Exceptions;
-using masz.Models;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
+using MASZ.Events;
+using MASZ.Models;
 
-namespace masz.Repositories
+namespace MASZ.Repositories
 {
 
     public class InviteRepository : BaseRepository<InviteRepository>
     {
         private InviteRepository(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
-        public static InviteRepository CreateDefault(IServiceProvider serviceProvider) => new InviteRepository(serviceProvider);
+        public static InviteRepository CreateDefault(IServiceProvider serviceProvider) => new(serviceProvider);
 
         public async Task<int> CountInvites()
         {
-            return await _database.CountTrackedInvites();
+            return await Database.CountTrackedInvites();
         }
         public async Task<int> CountInvitesForGuild(ulong guildId)
         {
-            return await _database.CountTrackedInvitesForGuild(guildId);
+            return await Database.CountTrackedInvitesForGuild(guildId);
         }
         public async Task<List<UserInvite>> GetInvitedForUserAndGuild(ulong userId, ulong guildId)
         {
-            return await _database.GetInvitedUsersByUserAndGuild(userId, guildId);
+            return await Database.GetInvitedUsersByUserAndGuild(userId, guildId);
         }
         public async Task<List<UserInvite>> GetInvitedForUser(ulong userId)
         {
-            return await _database.GetInvitedUsersByUser(userId);
+            return await Database.GetInvitedUsersByUser(userId);
         }
         public async Task<List<UserInvite>> GetusedInvitesForUserAndGuild(ulong userId, ulong guildId)
         {
-            return await _database.GetUsedInvitesByUserAndGuild(userId, guildId);
+            return await Database.GetUsedInvitesByUserAndGuild(userId, guildId);
         }
         public async Task<List<UserInvite>> GetusedInvitesForUser(ulong userId)
         {
-            return await _database.GetUsedInvitesByUser(userId);
+            return await Database.GetUsedInvitesByUser(userId);
         }
         public async Task<UserInvite> CreateInvite(UserInvite invite)
         {
-            await _database.SaveInvite(invite);
-            await _database.SaveChangesAsync();
+            await Database.SaveInvite(invite);
+            await Database.SaveChangesAsync();
 
             await _eventHandler.InvokeInviteUsageRegistered(new InviteUsageRegisteredEventArgs(invite));
 
@@ -56,12 +45,12 @@ namespace masz.Repositories
         }
         public async Task DeleteInvitesByGuild(ulong guildId)
         {
-            await _database.DeleteInviteHistoryByGuild(guildId);
-            await _database.SaveChangesAsync();
+            await Database.DeleteInviteHistoryByGuild(guildId);
+            await Database.SaveChangesAsync();
         }
         public async Task<List<UserInvite>> GetInvitesByCode(string code)
         {
-            return await _database.GetInvitesByCode(code);
+            return await Database.GetInvitesByCode(code);
         }
     }
 }

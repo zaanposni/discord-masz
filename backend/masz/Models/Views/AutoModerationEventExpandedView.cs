@@ -1,17 +1,17 @@
-using DSharpPlus.Entities;
-using masz.Models.Views;
+using Discord;
+using MASZ.Models.Views;
 
-namespace masz.Models
+namespace MASZ.Models
 {
     public class AutoModerationEventExpandedView
     {
         public AutoModerationEventView AutoModerationEvent { get; set; }
         public DiscordUserView Suspect { get; set; }
 
-        public AutoModerationEventExpandedView(AutoModerationEvent moderationEvent, DiscordUser suspect)
+        public AutoModerationEventExpandedView(AutoModerationEvent moderationEvent, IUser suspect)
         {
-            this.AutoModerationEvent = new AutoModerationEventView(moderationEvent);
-            this.Suspect = DiscordUserView.CreateOrDefault(suspect);
+            AutoModerationEvent = new AutoModerationEventView(moderationEvent);
+            Suspect = DiscordUserView.CreateOrDefault(suspect);
         }
     }
 }

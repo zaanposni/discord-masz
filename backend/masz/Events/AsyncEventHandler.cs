@@ -1,7 +1,4 @@
-using System;
-using System.Threading.Tasks;
-
-namespace masz.Events
+namespace MASZ.Events
 {
     public delegate Task AsyncEventHandler<in TArgs>(TArgs e) where TArgs : EventArgs;
 }

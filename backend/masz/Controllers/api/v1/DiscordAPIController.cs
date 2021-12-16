@@ -1,43 +1,35 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DSharpPlus.Entities;
-using masz.Dtos.UserAPIResponses;
-using masz.Enums;
-using masz.Exceptions;
-using masz.Models;
-using masz.Models.Views;
-using masz.Repositories;
+using Discord;
+using MASZ.Dtos.UserAPIResponses;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Models;
+using MASZ.Models.Views;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace masz.Controllers.api.v1
+namespace MASZ.Controllers.api.v1
 {
     [ApiController]
     [Authorize]
     [Route("api/v1/discord")]
     public class DiscordAPIController : SimpleController
     {
-        private readonly ILogger<DiscordAPIController> _logger;
-
-        public DiscordAPIController(ILogger<DiscordAPIController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public DiscordAPIController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _logger = logger;
         }
 
         [HttpGet("users/@me")]
         public async Task<IActionResult> GetUser()
         {
-            Identity identity = await this.GetIdentity();
-            DiscordUser currentUser = identity.GetCurrentUser();
-            List<DiscordGuild> currentUserGuilds = identity.GetCurrentUserGuilds();
+            Identity identity = await GetIdentity();
+            IUser currentUser = identity.GetCurrentUser();
+            List<IGuild> currentUserGuilds = identity.GetCurrentUserGuilds();
 
-            List<DiscordGuildView> memberGuilds = new List<DiscordGuildView>();
-            List<DiscordGuildView> modGuilds = new List<DiscordGuildView>();
-            List<DiscordGuildView> adminGuilds = new List<DiscordGuildView>();
-            List<DiscordGuildView> bannedGuilds = new List<DiscordGuildView>();
+            List<DiscordGuildView> memberGuilds = new();
+            List<DiscordGuildView> modGuilds = new();
+            List<DiscordGuildView> adminGuilds = new();
+            List<DiscordGuildView> bannedGuilds = new();
             bool siteAdmin = _config.GetSiteAdmins().Contains(currentUser.Id) || identity is TokenIdentity;
 
             if (identity is DiscordOAuthIdentity)
@@ -46,10 +38,10 @@ namespace masz.Controllers.api.v1
 
                 foreach (GuildConfig guild in registeredGuilds)
                 {
-                    DiscordGuild userGuild = currentUserGuilds.FirstOrDefault(x => x.Id == guild.GuildId);
+                    IGuild userGuild = currentUserGuilds.FirstOrDefault(x => x.Id == guild.GuildId);
                     if (userGuild != null)
                     {
-                        userGuild = await _discordAPI.FetchGuildInfo(userGuild.Id, CacheBehavior.Default);
+                        userGuild = _discordAPI.FetchGuildInfo(userGuild.Id, CacheBehavior.Default);
                         if (userGuild != null)
                         {
                             if (await identity.HasModRoleOrHigherOnGuild(guild.GuildId))
@@ -57,43 +49,48 @@ namespace masz.Controllers.api.v1
                                 if (await identity.HasAdminRoleOnGuild(guild.GuildId))
                                 {
                                     adminGuilds.Add(new DiscordGuildView(userGuild));
-                                } else
+                                }
+                                else
                                 {
                                     modGuilds.Add(new DiscordGuildView(userGuild));
                                 }
-                            } else {
+                            }
+                            else
+                            {
                                 memberGuilds.Add(new DiscordGuildView(userGuild));
                             }
                         }
-                    } else
+                    }
+                    else
                     {
                         try
                         {
-                            _discordAPI.GetFromCache<DiscordBan>(CacheKey.GuildBan(guild.GuildId, currentUser.Id));
-                            bannedGuilds.Add(new DiscordGuildView(await _discordAPI.FetchGuildInfo(guild.GuildId, CacheBehavior.Default)));
-                        } catch (NotFoundInCacheException) { }
+                            _discordAPI.GetFromCache<IBan>(CacheKey.GuildBan(guild.GuildId, currentUser.Id));
+                            bannedGuilds.Add(new DiscordGuildView(_discordAPI.FetchGuildInfo(guild.GuildId, CacheBehavior.Default)));
+                        }
+                        catch (NotFoundInCacheException) { }
                     }
                 }
             }
 
-            return Ok(new APIUser(memberGuilds, bannedGuilds,  modGuilds, adminGuilds, currentUser, siteAdmin));
+            return Ok(new APIUser(memberGuilds, bannedGuilds, modGuilds, adminGuilds, currentUser, siteAdmin));
         }
 
         [HttpGet("users/{userid}")]
         public async Task<IActionResult> GetSpecificUser([FromRoute] ulong userid)
         {
-            var DiscordUser = await _discordAPI.FetchUserInfo(userid, CacheBehavior.OnlyCache);
-            if (DiscordUser != null)
+            var IUser = await _discordAPI.FetchUserInfo(userid, CacheBehavior.OnlyCache);
+            if (IUser != null)
             {
-                return Ok(DiscordUserView.CreateOrDefault(DiscordUser));
+                return Ok(DiscordUserView.CreateOrDefault(IUser));
             }
             return NotFound();
         }
 
         [HttpGet("guilds/{guildid}")]
-        public async Task<IActionResult> GetSpecificGuild([FromRoute] ulong guildid)
+        public IActionResult GetSpecificGuild([FromRoute] ulong guildid)
         {
-            DiscordGuild guild = await _discordAPI.FetchGuildInfo(guildid, CacheBehavior.Default);
+            IGuild guild = _discordAPI.FetchGuildInfo(guildid, CacheBehavior.Default);
             if (guild != null)
             {
                 return Ok(new DiscordGuildView(guild));
@@ -128,7 +125,7 @@ namespace masz.Controllers.api.v1
         [HttpGet("guilds")]
         public async Task<IActionResult> GetAllGuilds()
         {
-            Identity identity = await this.GetIdentity();
+            Identity identity = await GetIdentity();
             return Ok(identity.GetCurrentUserGuilds().Select(x => new DiscordGuildView(x)));
         }
     }

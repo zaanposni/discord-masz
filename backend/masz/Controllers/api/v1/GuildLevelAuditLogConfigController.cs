@@ -1,25 +1,19 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using masz.Models;
-using masz.Repositories;
+using MASZ.Dtos.GuildLevelAuditLogConfig;
+using MASZ.Enums;
+using MASZ.Models;
+using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using masz.Enums;
-using masz.Dtos.GuildLevelAuditLogConfig;
 
-namespace masz.Controllers
+namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1/guilds/{guildId}/auditlog/")]
     [Authorize]
     public class GuildLevelAuditLogConfigController : SimpleController
     {
-        private readonly ILogger<GuildLevelAuditLogConfigController> _logger;
-
-        public GuildLevelAuditLogConfigController(IServiceProvider serviceProvider, ILogger<GuildLevelAuditLogConfigController> logger) : base(serviceProvider) {
-            _logger = logger;
+        public GuildLevelAuditLogConfigController(IServiceProvider serviceProvider) : base(serviceProvider)
+        {
         }
 
         [HttpPut]

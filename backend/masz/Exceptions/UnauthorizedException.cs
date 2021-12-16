@@ -1,6 +1,6 @@
-using masz.Enums;
+using MASZ.Enums;
 
-namespace masz.Exceptions
+namespace MASZ.Exceptions
 {
     public class UnauthorizedException : BaseAPIException
     {

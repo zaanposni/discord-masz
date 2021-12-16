@@ -1,10 +1,6 @@
-using System;
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.SlashCommands;
+using Discord.Interactions;
 
-namespace masz.Commands
+namespace MASZ.Commands
 {
 
     public class UrlCommand : BaseCommand<UrlCommand>
@@ -12,9 +8,9 @@ namespace masz.Commands
         public UrlCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [SlashCommand("url", "Displays the URL MASZ is deployed on.")]
-        public async Task Url(InteractionContext ctx)
+        public async Task Url()
         {
-            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent(_config.GetBaseUrl()));
+            await Context.Interaction.RespondAsync(Config.GetBaseUrl());
         }
     }
 }

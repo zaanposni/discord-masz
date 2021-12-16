@@ -1,11 +1,10 @@
-using System;
-using masz.Models;
+using MASZ.Models;
 
-namespace masz.Events
+namespace MASZ.Events
 {
     public class TokenDeletedEventArgs : EventArgs
     {
-        private APIToken _token;
+        private readonly APIToken _token;
 
         public TokenDeletedEventArgs(APIToken token)
         {

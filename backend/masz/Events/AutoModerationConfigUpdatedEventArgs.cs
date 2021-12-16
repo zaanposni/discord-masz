@@ -1,11 +1,10 @@
-using System;
-using masz.Models;
+using MASZ.Models;
 
-namespace masz.Events
+namespace MASZ.Events
 {
     public class AutoModerationConfigUpdatedEventArgs : EventArgs
     {
-        private AutoModerationConfig _config;
+        private readonly AutoModerationConfig _config;
 
         public AutoModerationConfigUpdatedEventArgs(AutoModerationConfig config)
         {

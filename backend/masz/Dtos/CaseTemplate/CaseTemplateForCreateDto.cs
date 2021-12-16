@@ -1,12 +1,11 @@
-using System;
+using MASZ.Enums;
 using System.ComponentModel.DataAnnotations;
-using masz.Enums;
 
-namespace masz.Dtos.ModCase
+namespace MASZ.Dtos.ModCase
 {
     public class CaseTemplateForCreateDto
     {
-        [Required(ErrorMessage = "TemplateName field is required", AllowEmptyStrings=false)]
+        [Required(ErrorMessage = "TemplateName field is required", AllowEmptyStrings = false)]
         [MaxLength(100)]
         public string TemplateName { get; set; }
         [Required(ErrorMessage = "ViewPermission field is required")]
@@ -16,15 +15,15 @@ namespace masz.Dtos.ModCase
         public string Title { get; set; }
         [Required(ErrorMessage = "Description field is required")]
         public string Description { get; set; }
-        public string[] Labels { get; set; } = new string[0];
+        public string[] Labels { get; set; } = Array.Empty<string>();
         [Required(ErrorMessage = "PunishmentType field is required")]
         public PunishmentType PunishmentType { get; set; }
         public DateTime? PunishedUntil { get; set; }
         [Required]
-        public bool sendPublicNotification { get; set; } = false;
+        public bool SendPublicNotification { get; set; } = false;
         [Required]
-        public bool handlePunishment { get; set; } = false;
+        public bool HandlePunishment { get; set; } = false;
         [Required]
-        public bool announceDm { get; set; } = false;
+        public bool AnnounceDm { get; set; } = false;
     }
 }

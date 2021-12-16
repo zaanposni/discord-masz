@@ -1,18 +1,13 @@
-using System;
+using Discord;
+using Discord.Interactions;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Extensions;
+using MASZ.Models;
+using MASZ.Repositories;
 using System.Text;
-using System.Threading.Tasks;
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.SlashCommands;
-using masz.Enums;
-using masz.Exceptions;
-using masz.Extensions;
-using masz.Models;
-using masz.Repositories;
-using masz.Services;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace masz.Commands
+namespace MASZ.Commands
 {
 
     public class ViewCommand : BaseCommand<ViewCommand>
@@ -23,73 +18,77 @@ namespace masz.Commands
         public ViewCommand(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [SlashCommand("view", "View details of a modcase.")]
-        public async Task View(InteractionContext ctx, [Option("id", "the id of the case")] long caseId, [Option("guildid", "the id of the guild")] string guildId = "")
+        public async Task View([Summary("id", "the id of the case")] long caseId, [Summary("guildid", "the id of the guild")] string guildId = "")
         {
             // parse to ulong because discord sux
             ulong parsedGuildId = 0;
-            if (ctx.Guild == null)
+            if (Context.Guild == null)
             {
-                if (! ulong.TryParse(guildId, out parsedGuildId))
+                if (!ulong.TryParse(guildId, out parsedGuildId))
                 {
-                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdViewInvalidGuildId()));
+                    await Context.Interaction.RespondAsync(Translator.T().CmdViewInvalidGuildId());
                     return;
                 }
-            } else if (String.IsNullOrEmpty(guildId))
+            }
+            else if (string.IsNullOrEmpty(guildId))
             {
-                parsedGuildId = (ulong) ctx.Guild.Id;
-            } else
+                parsedGuildId = Context.Guild.Id;
+            }
+            else
             {
                 try
                 {
                     parsedGuildId = ulong.Parse(guildId);
-                } catch (Exception)
+                }
+                catch (Exception)
                 {
-                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent(_translator.T().CmdViewInvalidGuildId()));
+                    await Context.Interaction.RespondAsync(Translator.T().CmdViewInvalidGuildId());
                     return;
                 }
             }
-            await ctx.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
+            await Context.Interaction.RespondAsync("Getting modcases...");
 
             ModCase modCase;
             try
             {
-                modCase = await ModCaseRepository.CreateDefault(_serviceProvider, _currentIdentity).GetModCase(parsedGuildId, (int) caseId);
-            } catch (ResourceNotFoundException)
+                modCase = await ModCaseRepository.CreateDefault(ServiceProvider, CurrentIdentity).GetModCase(parsedGuildId, (int)caseId);
+            }
+            catch (ResourceNotFoundException)
             {
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().NotFound()));
+                await Context.Interaction.ModifyOriginalResponseAsync(message => message.Content = Translator.T().NotFound());
                 return;
             }
 
-            if (! await _currentIdentity.IsAllowedTo(APIActionPermission.View, modCase))
+            if (!await CurrentIdentity.IsAllowedTo(APIActionPermission.View, modCase))
             {
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(_translator.T().CmdViewNotAllowedToView()));
+                await Context.Interaction.ModifyOriginalResponseAsync(message => message.Content = Translator.T().CmdViewNotAllowedToView());
                 return;
             }
 
-            DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
-            embed.WithUrl($"{_config.GetBaseUrl()}/guilds/{modCase.GuildId}/cases/{modCase.CaseId}");
+            EmbedBuilder embed = new();
+            embed.WithUrl($"{Config.GetBaseUrl()}/guilds/{modCase.GuildId}/cases/{modCase.CaseId}");
             embed.WithTimestamp(modCase.CreatedAt);
 
-            DiscordUser suspect = await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.Default);
+            IUser suspect = await DiscordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.Default);
             if (suspect != null)
             {
-                embed.WithThumbnail(suspect.AvatarUrl);
+                embed.WithThumbnailUrl(suspect.GetAvatarUrl());
             }
 
             embed.WithTitle($"#{modCase.CaseId} {modCase.Title.Truncate(200)}");
 
             embed.WithDescription(modCase.Description.Truncate(2000));
 
-            embed.AddField($"{SCALES_EMOTE} - {_translator.T().Punishment()}", _translator.T().Enum(modCase.PunishmentType), true);
+            embed.AddField($"{SCALES_EMOTE} - {Translator.T().Punishment()}", Translator.T().Enum(modCase.PunishmentType), true);
 
             if (modCase.PunishedUntil != null)
             {
-                embed.AddField($"{ALARM_CLOCK} - {_translator.T().PunishmentUntil()}", modCase.PunishedUntil.Value.ToDiscordTS(), true);
+                embed.AddField($"{ALARM_CLOCK} - {Translator.T().PunishmentUntil()}", modCase.PunishedUntil.Value.ToDiscordTS(), true);
             }
 
             if (modCase.Labels.Length > 0)
             {
-                StringBuilder labels = new StringBuilder();
+                StringBuilder labels = new();
                 foreach (string label in modCase.Labels)
                 {
                     if (labels.ToString().Length + label.Length + 2 > 2000)
@@ -98,10 +97,10 @@ namespace masz.Commands
                     }
                     labels.Append($"`{label}` ");
                 }
-                embed.AddField($"{SCROLL_EMOTE} - {_translator.T().Labels()}", labels.ToString(), false);
+                embed.AddField($"{SCROLL_EMOTE} - {Translator.T().Labels()}", labels.ToString(), false);
             }
 
-            await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed.Build()));
+            await Context.Interaction.ModifyOriginalResponseAsync(message => { message.Content = ""; message.Embed = embed.Build(); });
         }
     }
 }

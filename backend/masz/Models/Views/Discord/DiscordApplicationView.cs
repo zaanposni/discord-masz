@@ -1,6 +1,6 @@
-using DSharpPlus.Entities;
+using Discord;
 
-namespace masz.Models.Views
+namespace MASZ.Models.Views
 {
     public class DiscordApplicationView
     {
@@ -13,19 +13,19 @@ namespace masz.Models.Views
         public string TermsOfServiceUrl { get; set; }
 
         private DiscordApplicationView() { }
-        private DiscordApplicationView(DiscordApplication application)
+        private DiscordApplicationView(IApplication application)
         {
             if (application == null) return;
             Id = application.Id.ToString();
             Name = application.Name;
             Description = application.Description;
-            IconUrl = application.Icon;
-            IconHash = application.IconHash;
-            PrivacyPolicyUrl = application.PrivacyPolicyUrl;
-            TermsOfServiceUrl = application.TermsOfServiceUrl;
+            IconUrl = application.IconUrl;
+            IconHash = application.IconUrl.Split('/')[^1];
+            PrivacyPolicyUrl = "";
+            TermsOfServiceUrl = "";
         }
 
-        public static DiscordApplicationView CreateOrDefault(DiscordApplication application)
+        public static DiscordApplicationView CreateOrDefault(IApplication application)
         {
             if (application == null) return null;
             if (application.Id == 0) return null;

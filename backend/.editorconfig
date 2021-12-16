@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CA2254: Template should be a static expression
+dotnet_diagnostic.CA2254.severity = none

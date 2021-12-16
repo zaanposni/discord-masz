@@ -1,28 +1,28 @@
 #nullable enable
 
-using masz.Enums;
+using MASZ.Enums;
 
-namespace masz.Exceptions
+namespace MASZ.Exceptions
 {
     public class BaseAPIException : BaseException
     {
-        public APIError error { get; set; } = APIError.Unknown;
+        public APIError Error { get; set; } = APIError.Unknown;
         public BaseAPIException(string? message) : base(message)
         {
         }
 
         public BaseAPIException(string? message, APIError error) : base(message)
         {
-            this.error = error;
+            this.Error = error;
         }
 
         public BaseAPIException(APIError error) : base(null)
         {
-            this.error = error;
+            this.Error = error;
         }
         public BaseException WithError(APIError error)
         {
-            this.error = error;
+            this.Error = error;
             return this;
         }
     }
