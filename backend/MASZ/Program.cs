@@ -1,7 +1,6 @@
 using AspNetCoreRateLimit;
 using Discord;
 using Discord.Interactions;
-using Discord.Rest;
 using Discord.WebSocket;
 using MASZ.Data;
 using MASZ.Logger;
@@ -19,7 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Logging.ClearProviders();
 
-builder.Logging.AddProvider(new CustomLoggerProvider());
+builder.Logging.AddProvider(new LoggerProvider());
 
 builder.WebHost.UseUrls("http://0.0.0.0:80/");
 

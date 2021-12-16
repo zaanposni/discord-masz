@@ -2,7 +2,7 @@
 using MASZ.Exceptions;
 using MASZ.Models;
 using MASZ.Repositories;
-using MASZ.Utils;
+using MASZ.Extensions;
 using Microsoft.AspNetCore.Authentication;
 
 namespace MASZ.Services

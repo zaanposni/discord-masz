@@ -1,5 +1,5 @@
 using MASZ.Models;
-using MASZ.Utils;
+using MASZ.Extensions;
 
 namespace MASZ.Repositories
 {

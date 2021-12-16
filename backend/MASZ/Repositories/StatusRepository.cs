@@ -1,5 +1,4 @@
 using Discord;
-using MASZ.Enums;
 using MASZ.Models;
 using System.Diagnostics;
 

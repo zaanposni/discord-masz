@@ -1,7 +1,7 @@
 using Discord;
 using MASZ.Enums;
 using MASZ.Models;
-using MASZ.Utils;
+using MASZ.Extensions;
 using Timer = System.Timers.Timer;
 
 namespace MASZ.Services

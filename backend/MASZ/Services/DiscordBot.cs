@@ -36,7 +36,7 @@ namespace MASZ.Services
             _serviceScopeFactory = serviceScopeFactory;
 
             var loggerFactory = new LoggerFactory();
-            loggerFactory.AddProvider(new CustomLoggerProvider());
+            loggerFactory.AddProvider(new LoggerProvider());
 
             _client.MessageReceived += MessageCreatedHandler;
             _client.MessageUpdated += MessageUpdatedHandler;
