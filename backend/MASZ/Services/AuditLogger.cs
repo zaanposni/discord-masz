@@ -200,7 +200,7 @@ namespace MASZ.Services
             QueueLog($"Language: `{_config.GetDefaultLanguage()}`");
             QueueLog($"Hostname: `{_config.GetHostName()}`");
             QueueLog($"URL: `{_config.GetBaseUrl()}`");
-            QueueLog($"Domain: `{_config.GetRequiredServiceDomain()}`");
+            QueueLog($"Domain: `{_config.GetServiceDomain()}`");
             QueueLog($"ClientID: `{_config.GetClientId()}`");
 
             if (_config.IsCorsEnabled())

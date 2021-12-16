@@ -15,7 +15,7 @@ namespace MASZ.Middlewares
 
         public async Task Invoke(HttpContext context)
         {
-            context.Request.Headers["Host"] = _config.GetRequiredServiceDomain();
+            context.Request.Headers["Host"] = _config.GetServiceDomain();
             await _next(context);
         }
     }

@@ -32,22 +32,12 @@ builder.Services.AddDbContext<DataContext>(x => x.UseMySql($"Server=" + Environm
 builder.Services.AddControllers()
     .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-int shards;
-
-using (var restClient = new DiscordRestClient())
-{
-    await restClient.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN"));
-
-    shards = await restClient.GetRecommendedShardCountAsync();
-}
-
 builder.Services.AddSingleton(provider =>
 {
-    var client = new DiscordShardedClient(new DiscordSocketConfig
+    var client = new DiscordSocketClient(new DiscordSocketConfig
     {
         AlwaysDownloadUsers = true,
         MessageCacheSize = 50,
-        TotalShards = shards,
         LogLevel = LogSeverity.Debug
     });
 

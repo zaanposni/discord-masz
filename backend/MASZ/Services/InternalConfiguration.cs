@@ -96,7 +96,7 @@ namespace MASZ.Services
             return _serviceHostName;
         }
 
-        public string GetRequiredServiceDomain()
+        public string GetServiceDomain()
         {
             return _serviceDomain;
         }
