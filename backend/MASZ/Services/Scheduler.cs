@@ -7,7 +7,7 @@ using Timer = System.Timers.Timer;
 
 namespace MASZ.Services
 {
-    public class Scheduler : BackgroundService
+    public class Scheduler
     {
         private readonly ILogger<Scheduler> _logger;
         private readonly InternalConfiguration _config;
@@ -32,7 +32,7 @@ namespace MASZ.Services
             _eventHandler = eventHandler;
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        public async Task ExecuteAsync()
         {
             _logger.LogWarning("Starting schedule timers.");
 
@@ -44,7 +44,7 @@ namespace MASZ.Services
 
             EventTimer.Elapsed += (s, e) => LoopThroughCaches();
 
-            await Task.Run(() => EventTimer.Start(), stoppingToken);
+            await Task.Run(() => EventTimer.Start());
 
             _logger.LogWarning("Started schedule timers.");
         }

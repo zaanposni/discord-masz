@@ -36,8 +36,4 @@
     <PackageReference Include="Scrutor" Version="3.3.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Workers\" />
-  </ItemGroup>
 </Project>

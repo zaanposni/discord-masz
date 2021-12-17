@@ -15,7 +15,7 @@ using System.Text;
 
 namespace MASZ.Services
 {
-    public class DiscordBot : BackgroundService
+    public class DiscordBot
     {
         private readonly ILogger<DiscordBot> _logger;
         private readonly DiscordSocketClient _client;
@@ -38,7 +38,7 @@ namespace MASZ.Services
             RegisterEvents();
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        public async Task ExecuteAsync()
         {
             using var scope = _serviceScopeFactory.CreateScope();
 

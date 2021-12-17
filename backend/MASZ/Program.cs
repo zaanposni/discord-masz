@@ -84,17 +84,7 @@ builder.Services
 
 .AddScoped<NotificationEmbedCreator>()
 
-.AddScoped<DiscordAnnouncer>()
-
-// HOSTED
-
-.AddHostedService(p => p.GetRequiredService<DiscordBot>())
-
-.AddHostedService(p => p.GetRequiredService<Punishments>())
-
-.AddHostedService(p => p.GetRequiredService<AuditLogger>())
-
-.AddHostedService(p => p.GetRequiredService<Scheduler>());
+.AddScoped<DiscordAnnouncer>();
 
 // Plugin
 // ######################################################################################################
@@ -228,6 +218,11 @@ using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().Creat
 using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
 {
     scope.ServiceProvider.GetRequiredService<InternalConfiguration>().Init();
+
+    await scope.ServiceProvider.GetRequiredService<AuditLogger>().ExecuteAsync();
+    await scope.ServiceProvider.GetRequiredService<DiscordBot>().ExecuteAsync();
+    await scope.ServiceProvider.GetRequiredService<Punishments>().ExecuteAsync();
+    await scope.ServiceProvider.GetRequiredService<Scheduler>().ExecuteAsync();
 
     if (string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
         scope.ServiceProvider.GetServices<IBasePlugin>().ToList().ForEach(x => x.Init());

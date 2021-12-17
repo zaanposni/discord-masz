@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MASZ.Services
 {
-    public class AuditLogger : BackgroundService
+    public class AuditLogger
     {
         private readonly ILogger<AuditLogger> _logger;
         private readonly InternalConfiguration _config;
@@ -29,7 +29,7 @@ namespace MASZ.Services
             RegisterEvents();
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        public async Task ExecuteAsync()
         {
             QueueLog($"============== STARTUP ==============");
             QueueLog("`MASZ` started!");

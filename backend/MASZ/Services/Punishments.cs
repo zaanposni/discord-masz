@@ -8,7 +8,7 @@ using Timer = System.Timers.Timer;
 
 namespace MASZ.Services
 {
-    public class Punishments : BackgroundService
+    public class Punishments
     {
         private readonly ILogger<Punishments> _logger;
         private readonly DiscordAPIInterface _discord;
@@ -23,7 +23,7 @@ namespace MASZ.Services
             _serviceScopeFactory = serviceScopeFactory;
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        public async Task ExecuteAsync()
         {
             _logger.LogWarning("Starting action loop.");
 
@@ -35,7 +35,7 @@ namespace MASZ.Services
 
             EventTimer.Elapsed += (s, e) => CheckAllCurrentPunishments();
 
-            await Task.Run(() => EventTimer.Start(), stoppingToken);
+            await Task.Run(() => EventTimer.Start());
 
             _logger.LogWarning("Finished action loop.");
         }
