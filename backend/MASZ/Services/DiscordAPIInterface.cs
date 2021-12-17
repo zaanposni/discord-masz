@@ -224,14 +224,14 @@ namespace MASZ.Services
             return members;
         }
 
-        public async Task<IUser> FetchCurrentUserInfo(string token, CacheBehavior cacheBehavior)
+        public async Task<ISelfUser> FetchCurrentUserInfo(string token, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.TokenUser(token);
-            IUser user = null;
+            ISelfUser user = null;
             try
             {
-                user = TryGetFromCache<IUser>(cacheKey, cacheBehavior);
+                user = TryGetFromCache<ISelfUser>(cacheKey, cacheBehavior);
                 if (user != null) return user;
             }
             catch (NotFoundInCacheException)
@@ -247,7 +247,7 @@ namespace MASZ.Services
             catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to fetch current user for token '{token}' from API.");
-                return FallBackToCache<IUser>(cacheKey, cacheBehavior);
+                return FallBackToCache<ISelfUser>(cacheKey, cacheBehavior);
             }
 
             // cache -----------------------------
@@ -255,12 +255,12 @@ namespace MASZ.Services
             return user;
         }
 
-        public IUser GetCurrentBotInfo()
+        public ISelfUser GetCurrentBotInfo()
         {
             return _client.CurrentUser;
         }
 
-        public async Task<IUser> FetchCurrentBotInfo()
+        public async Task<ISelfUser> FetchCurrentBotInfo()
         {
             var client = new DiscordRestClient();
 
@@ -269,32 +269,32 @@ namespace MASZ.Services
             return client.CurrentUser;
         }
 
-        public async Task<List<IChannel>> FetchGuildChannels(ulong guildId, CacheBehavior cacheBehavior)
+        public async Task<List<IGuildChannel>> FetchGuildChannels(ulong guildId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.GuildChannels(guildId);
-            List<IChannel> channels;
+            List<IGuildChannel> channels;
             try
             {
-                channels = TryGetFromCache<List<IChannel>>(cacheKey, cacheBehavior);
+                channels = TryGetFromCache<List<IGuildChannel>>(cacheKey, cacheBehavior);
                 if (channels != null) return channels;
             }
             catch (NotFoundInCacheException)
             {
-                return new List<IChannel>();
+                return new List<IGuildChannel>();
             }
 
             // request ---------------------------
             try
             {
                 IGuild guild = FetchGuildInfo(guildId, cacheBehavior);
-                if (guild == null) return new List<IChannel>();
-                channels = (await guild.GetChannelsAsync()).Select(channel => channel as IChannel).ToList();
+                if (guild == null) return new List<IGuildChannel>();
+                channels = (await guild.GetChannelsAsync()).ToList();
             }
             catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to fetch guild channels for guild '{guildId}' from API.");
-                return FallBackToCache<List<IChannel>>(cacheKey, cacheBehavior);
+                return FallBackToCache<List<IGuildChannel>>(cacheKey, cacheBehavior);
             }
 
             // cache -----------------------------
@@ -493,14 +493,14 @@ namespace MASZ.Services
             return true;
         }
 
-        public async Task<IChannel> CreateDmChannel(ulong userId)
+        public async Task<IDMChannel> CreateDmChannel(ulong userId)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.DMChannel(userId);
-            IChannel channel;
+            IDMChannel channel;
             try
             {
-                channel = TryGetFromCache<IChannel>(cacheKey, CacheBehavior.Default);
+                channel = TryGetFromCache<IDMChannel>(cacheKey, CacheBehavior.Default);
                 if (channel != null) return channel;
             }
             catch (NotFoundInCacheException)
@@ -516,7 +516,7 @@ namespace MASZ.Services
             catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to create dm with user '{userId}'.");
-                return FallBackToCache<IChannel>(cacheKey, CacheBehavior.Default);
+                return FallBackToCache<IDMChannel>(cacheKey, CacheBehavior.Default);
             }
 
             // cache -----------------------------
@@ -543,7 +543,7 @@ namespace MASZ.Services
 
         public async Task<bool> SendDmMessage(ulong userId, string content)
         {
-            IChannel channel = await CreateDmChannel(userId);
+            IDMChannel channel = await CreateDmChannel(userId);
             if (channel == null)
             {
                 return false;
@@ -554,7 +554,7 @@ namespace MASZ.Services
 
         public async Task<bool> SendDmMessage(ulong userId, Embed embed)
         {
-            IChannel channel = await CreateDmChannel(userId);
+            IDMChannel channel = await CreateDmChannel(userId);
             if (channel == null)
             {
                 return false;
