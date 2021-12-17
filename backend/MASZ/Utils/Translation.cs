@@ -1,6 +1,6 @@
 using Discord;
-using MASZ.Enums;
 using MASZ.Extensions;
+using MASZ.Enums;
 using MASZ.Models;
 
 namespace MASZ.Utils
@@ -422,7 +422,7 @@ namespace MASZ.Utils
                 _ => "UserMaps",
             };
         }
-        public string UserMapBetween(UserMapping userMap)
+        public string UserMapBetween(MASZ.Models.UserMapping userMap)
         {
             return PreferredLanguage switch
             {
@@ -478,7 +478,7 @@ namespace MASZ.Utils
                 _ => "Registered",
             };
         }
-        public string NotificationModcaseCreatePublic(ModCase modCase)
+        public string NotificationModcaseCreatePublic(MASZ.Models.ModCase modCase)
         {
             return PreferredLanguage switch
             {
@@ -492,7 +492,7 @@ namespace MASZ.Utils
                 _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.",
             };
         }
-        public string NotificationModcaseCreateInternal(ModCase modCase, IUser moderator)
+        public string NotificationModcaseCreateInternal(MASZ.Models.ModCase modCase, IUser moderator)
         {
             return PreferredLanguage switch
             {
@@ -506,7 +506,7 @@ namespace MASZ.Utils
                 _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
             };
         }
-        public string NotificationModcaseUpdatePublic(ModCase modCase)
+        public string NotificationModcaseUpdatePublic(MASZ.Models.ModCase modCase)
         {
             return PreferredLanguage switch
             {
@@ -520,21 +520,21 @@ namespace MASZ.Utils
                 _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated.",
             };
         }
-        public string NotificationModcaseUpdateInternal(ModCase modCase, IUser moderator)
+        public string NotificationModcaseUpdateInternal(MASZ.Models.ModCase modCase, IUser moderator)
         {
             return PreferredLanguage switch
             {
                 Language.en => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                 Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert.",
                 Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert woan.",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour par <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).",
                 Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido actualizado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                 Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был обновлен <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                 Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato aggiornato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                 _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
             };
         }
-        public string NotificationModcaseDeletePublic(ModCase modCase)
+        public string NotificationModcaseDeletePublic(MASZ.Models.ModCase modCase)
         {
             return PreferredLanguage switch
             {
@@ -548,14 +548,14 @@ namespace MASZ.Utils
                 _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted.",
             };
         }
-        public string NotificationModcaseDeleteInternal(ModCase modCase, IUser moderator)
+        public string NotificationModcaseDeleteInternal(MASZ.Models.ModCase modCase, IUser moderator)
         {
             return PreferredLanguage switch
             {
                 Language.en => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                 Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) gelöscht.",
                 Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is vo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) glescht woan.",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé par <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).",
                 Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido eliminado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                 Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был удален <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                 Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
@@ -702,7 +702,7 @@ namespace MASZ.Utils
                 _ => $"The moderators of guild `{guild.Name}` have warned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
             };
         }
-        public string NotificationModcaseDMMuteTemp(ModCase modCase, IGuild guild, string serviceBaseUrl)
+        public string NotificationModcaseDMMuteTemp(MASZ.Models.ModCase modCase, IGuild guild, string serviceBaseUrl)
         {
             return PreferredLanguage switch
             {
@@ -710,8 +710,8 @@ namespace MASZ.Utils
                 Language.de => $"Die Moderatoren von `{guild.Name}` haben dich temporär stummgeschalten bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont temporairement mis en sourdine jusqu'à {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
-                Language.es => $"Los moderadores del gremio `{guild.Name}` te han silenciado temporalmente hasta {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
-                Language.ru => $"Модераторы гильдии `{guild.Name}` временно отключили ваш звук до {modCase.PunishedUntil.Value.ToDiscordTS()}.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
+                Language.es => $"Los moderadores del gremio `{guild.Name}` te han silenciado temporalmente hasta {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
+                Language.ru => $"Модераторы гильдии `{guild.Name}` временно отключили ваш звук до {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
                 Language.it => $"I moderatori della gilda `{guild.Name}` ti hanno temporaneamente disattivato l'audio fino a {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
                 _ => $"The moderators of guild `{guild.Name}` have temporarily muted you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
             };
@@ -730,7 +730,7 @@ namespace MASZ.Utils
                 _ => $"The moderators of guild `{guild.Name}` have muted you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
             };
         }
-        public string NotificationModcaseDMBanTemp(ModCase modCase, IGuild guild, string serviceBaseUrl)
+        public string NotificationModcaseDMBanTemp(MASZ.Models.ModCase modCase, IGuild guild, string serviceBaseUrl)
         {
             return PreferredLanguage switch
             {
@@ -738,8 +738,8 @@ namespace MASZ.Utils
                 Language.de => $"Die Moderatoren von `{guild.Name}` haben dich temporär gebannt bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont temporairement banni jusqu'à {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
-                Language.es => $"Los moderadores del gremio `{guild.Name}` te han baneado temporalmente hasta el {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
-                Language.ru => $"Модераторы гильдии `{guild.Name}` временно заблокировали вас до {modCase.PunishedUntil.Value.ToDiscordTS()}.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
+                Language.es => $"Los moderadores del gremio `{guild.Name}` te han baneado temporalmente hasta el {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
+                Language.ru => $"Модераторы гильдии `{guild.Name}` временно заблокировали вас до {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
                 Language.it => $"I moderatori della gilda `{guild.Name}` ti hanno temporaneamente bannato fino al {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
                 _ => $"The moderators of guild `{guild.Name}` have temporarily banned you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
             };
@@ -926,18 +926,18 @@ namespace MASZ.Utils
                 _ => $"{user.Username}#{user.Discriminator} triggered automoderation.",
             };
         }
-        public string NotificationAutomoderationDM(IUser user, ITextChannel channel, string reason, string action)
+        public string NotificationAutomoderationDM(IUser user, IChannel channel, string reason, string action)
         {
             return PreferredLanguage switch
             {
-                Language.en => $"Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}",
-                Language.de => $"Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}",
-                Language.at => $"Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention} ausglest. Grund: {reason}\nAktion: {action}",
-                Language.fr => $"Salut {user.Mention},\n\nVous avez déclenché l'automodération dans {channel.Mention}.\nRaison : {reason}\nAction : {action}",
-                Language.es => $"Hola, {user.Mention}:\n\nActivó la automoderación en {channel.Mention}.\nMotivo: {reason}\nAcción: {action}",
-                Language.ru => $"Привет, {user.Mention}!\n\nВы активировали автомодерацию в {channel.Mention}.\nПричина: {reason}\nДействие: {action}",
-                Language.it => $"Ciao {user.Mention},\n\nHai attivato la moderazione automatica in {channel.Mention}.\nMotivo: {reason}\nAzione: {action}",
-                _ => $"Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}",
+                Language.en => $"Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention()}.\nReason: {reason}\nAction: {action}",
+                Language.de => $"Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention()} ausgelöst.\nGrund: {reason}\nAktion: {action}",
+                Language.at => $"Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention()} ausglest. Grund: {reason}\nAktion: {action}",
+                Language.fr => $"Salut {user.Mention},\n\nVous avez déclenché l'automodération dans {channel.Mention()}.\nRaison : {reason}\nAction : {action}",
+                Language.es => $"Hola, {user.Mention}:\n\nActivó la automoderación en {channel.Mention()}.\nMotivo: {reason}\nAcción: {action}",
+                Language.ru => $"Привет, {user.Mention}!\n\nВы активировали автомодерацию в {channel.Mention()}.\nПричина: {reason}\nДействие: {action}",
+                Language.it => $"Ciao {user.Mention},\n\nHai attivato la moderazione automatica in {channel.Mention()}.\nMotivo: {reason}\nAzione: {action}",
+                _ => $"Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention()}.\nReason: {reason}\nAction: {action}",
             };
         }
         public string NotificationAutomoderationChannel(IUser user, string reason)
@@ -962,8 +962,8 @@ namespace MASZ.Utils
                 Language.de => $"{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` beigetreten.",
                 Language.at => $"{user.Mention} (registriat {registered.ToDiscordTS()}) is mit da Eiladung `{invite}` beigetretn.",
                 Language.fr => $"{user.Mention} (enregistré {registered.ToDiscordTS()}) rejoint avec l'invitation `{invite}`.",
-                Language.es => $"{user.Mention} (registrado {registered.ToDiscordTS()}) se unió con la invitación `{invite}`.",
-                Language.ru => $"{user.Mention} (зарегистрированный {registered.ToDiscordTS()}) присоединился с приглашением `{invite}`.",
+                Language.es => $"{user.Mention} (registrado {registered.ToDiscordTS ()}) se unió con la invitación `{invite}`.",
+                Language.ru => $"{user.Mention} (зарегистрированный {registered.ToDiscordTS ()}) присоединился с приглашением `{invite}`.",
                 Language.it => $"{user.Mention} (registrato {registered.ToDiscordTS()}) si è unito con l'invito `{invite}`.",
                 _ => $"{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}`.",
             };
@@ -1038,18 +1038,18 @@ namespace MASZ.Utils
                 _ => "This guild has no webhook for internal notifications configured.",
             };
         }
-        public string CmdCleanup(int count, ITextChannel channel)
+        public string CmdCleanup(int count, IChannel channel)
         {
             return PreferredLanguage switch
             {
-                Language.en => $"Deleted {count} messages in {channel.Mention}.",
-                Language.de => $"{count} Nachrichten in {channel.Mention} gelöscht.",
-                Language.at => $"{count} Nochrichtn in {channel.Mention} glescht.",
-                Language.fr => $"{count} messages supprimés dans {channel.Mention}.",
-                Language.es => $"Se eliminaron {count} mensajes en {channel.Mention}.",
-                Language.ru => $"Удалено {count} сообщений в {channel.Mention}.",
-                Language.it => $"Eliminati {count} messaggi in {channel.Mention}.",
-                _ => $"Deleted {count} messages in {channel.Mention}.",
+                Language.en => $"Deleted {count} messages in {channel.Mention()}.",
+                Language.de => $"{count} Nachrichten in {channel.Mention()} gelöscht.",
+                Language.at => $"{count} Nochrichtn in {channel.Mention()} glescht.",
+                Language.fr => $"{count} messages supprimés dans {channel.Mention()}.",
+                Language.es => $"Se eliminaron {count} mensajes en {channel.Mention()}.",
+                Language.ru => $"Удалено {count} сообщений в {channel.Mention()}.",
+                Language.it => $"Eliminati {count} messaggi in {channel.Mention()}.",
+                _ => $"Deleted {count} messages in {channel.Mention()}.",
             };
         }
         public string CmdFeaturesKickPermissionGranted()
@@ -1378,14 +1378,14 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.en => "You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-MASZ#hosting",
-                Language.de => "Du musst deine eigene Instanz von MASZ auf deinem Server oder PC hosten.\nSchau dir https://github.com/zaanposni/discord-MASZ#hosting an",
-                Language.at => "Du muast dei eignane Inszanz vo MASZ auf deim Serva oda PC hosn.\nSchau da https://github.com/zaanposni/discord-MASZ#hosting o",
-                Language.fr => "Vous devrez héberger votre propre instance de MASZ sur votre serveur ou votre PC.\nCommander https://github.com/zaanposni/discord-MASZ#hosting",
-                Language.es => "Tendrá que alojar su propia instancia de MASZ en su servidor o PC.\nPagar https://github.com/zaanposni/discord-MASZ#hosting",
-                Language.ru => "Вам нужно будет разместить свой собственный экземпляр MASZ на вашем сервере или компьютере.\nОформить заказ https://github.com/zaanposni/discord-MASZ#hosting",
-                Language.it => "Dovrai ospitare la tua istanza di MASZ sul tuo server o PC.\nAcquista https://github.com/zaanposni/discord-MASZ#hosting",
-                _ => "You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-MASZ#hosting",
+                Language.en => "You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-masz#hosting",
+                Language.de => "Du musst deine eigene Instanz von MASZ auf deinem Server oder PC hosten.\nSchau dir https://github.com/zaanposni/discord-masz#hosting an",
+                Language.at => "Du muast dei eignane Inszanz vo MASZ auf deim Serva oda PC hosn.\nSchau da https://github.com/zaanposni/discord-masz#hosting o",
+                Language.fr => "Vous devrez héberger votre propre instance de MASZ sur votre serveur ou votre PC.\nCommander https://github.com/zaanposni/discord-masz#hosting",
+                Language.es => "Tendrá que alojar su propia instancia de MASZ en su servidor o PC.\nPagar https://github.com/zaanposni/discord-masz#hosting",
+                Language.ru => "Вам нужно будет разместить свой собственный экземпляр MASZ на вашем сервере или компьютере.\nОформить заказ https://github.com/zaanposni/discord-masz#hosting",
+                Language.it => "Dovrai ospitare la tua istanza di MASZ sul tuo server o PC.\nAcquista https://github.com/zaanposni/discord-masz#hosting",
+                _ => "You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-masz#hosting",
             };
         }
         public string CmdPunish(int caseId, string caseLink)
@@ -1448,14 +1448,14 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.en => $"{user.Mention} reported a message from {message.Author.Mention} in {(message.Channel as ITextChannel).Mention}.\n{message.GetJumpUrl()}",
-                Language.de => $"{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {(message.Channel as ITextChannel).Mention}.\n{message.GetJumpUrl()}",
-                Language.at => $"{user.Mention} mödet a Nochricht vo {message.Author.Mention} in {(message.Channel as ITextChannel).Mention}.\n{message.GetJumpUrl()}",
-                Language.fr => $"{user.Mention} a signalé un message de {message.Author.Mention} dans {(message.Channel as ITextChannel).Mention}.\n{message.GetJumpUrl()}",
-                Language.es => $"{user.Mention} informó un mensaje de {message.Author.Mention} en {(message.Channel as ITextChannel).Mention}.\n{message.GetJumpUrl()}",
-                Language.ru => $"{user.Mention} сообщил о сообщении от {message.Author.Mention} в {(message.Channel as ITextChannel).Mention}.\n{message.GetJumpUrl()}",
-                Language.it => $"{user.Mention} ha segnalato un messaggio da {message.Author.Mention} in {(message.Channel as ITextChannel).Mention}.\n{message.GetJumpUrl()}",
-                _ => $"{user.Mention} reported a message from {message.Author.Mention} in {(message.Channel as ITextChannel).Mention}.\n{message.GetJumpUrl()}",
+                Language.en => $"{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
+                Language.de => $"{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
+                Language.at => $"{user.Mention} mödet a Nochricht vo {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
+                Language.fr => $"{user.Mention} a signalé un message de {message.Author.Mention} dans {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
+                Language.es => $"{user.Mention} informó un mensaje de {message.Author.Mention} en {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
+                Language.ru => $"{user.Mention} сообщил о сообщении от {message.Author.Mention} в {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
+                Language.it => $"{user.Mention} ha segnalato un messaggio da {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
+                _ => $"{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
             };
         }
         public string CmdSayFailed()
@@ -1536,8 +1536,8 @@ namespace MASZ.Utils
                 Language.de => $"`{inviteCode}` erstellt am {createdAt.ToDiscordTS()}.",
                 Language.at => $"`{inviteCode}` erstöt vo {createdAt.ToDiscordTS()}.",
                 Language.fr => $"`{inviteCode}` créé à {createdAt.ToDiscordTS()}.",
-                Language.es => $"`{inviteCode}` creado en {createdAt.ToDiscordTS()}.",
-                Language.ru => $"`{inviteCode}` создан в {createdAt.ToDiscordTS()}.",
+                Language.es => $"`{inviteCode}` creado en {createdAt.ToDiscordTS ()}.",
+                Language.ru => $"`{inviteCode}` создан в {createdAt.ToDiscordTS ()}.",
                 Language.it => $"`{inviteCode}` creato su {createdAt.ToDiscordTS()}.",
                 _ => $"`{inviteCode}` created at {createdAt.ToDiscordTS()}.",
             };
@@ -1564,8 +1564,8 @@ namespace MASZ.Utils
                 Language.de => $"`{inviteCode}` erstellt von {createdBy.Mention} am {createdAt.ToDiscordTS()}.",
                 Language.at => $"`{inviteCode}` erstöt vo {createdBy.Mention} om {createdAt.ToDiscordTS()}.",
                 Language.fr => $"`{inviteCode}` créé par {createdBy.Mention} à {createdAt.ToDiscordTS()}.",
-                Language.es => $"`{inviteCode}` creado por {createdBy.Mention} en {createdAt.ToDiscordTS()}.",
-                Language.ru => $"`{inviteCode}` создан {createdBy.Mention} в {createdAt.ToDiscordTS()}.",
+                Language.es => $"`{inviteCode}` creado por {createdBy.Mention} en {createdAt.ToDiscordTS ()}.",
+                Language.ru => $"`{inviteCode}` создан {createdBy.Mention} в {createdAt.ToDiscordTS ()}.",
                 Language.it => $"`{inviteCode}` creato da {createdBy.Mention} su {createdAt.ToDiscordTS()}.",
                 _ => $"`{inviteCode}` created by {createdBy.Mention} at {createdAt.ToDiscordTS()}.",
             };
@@ -2277,11 +2277,11 @@ namespace MASZ.Utils
                 _ => "Creator",
             };
         }
-        public string Enum(PunishmentType enumValue)
+        public string Enum(MASZ.Enums.PunishmentType enumValue)
         {
             return enumValue switch
             {
-                PunishmentType.Mute => PreferredLanguage switch
+                MASZ.Enums.PunishmentType.Mute => PreferredLanguage switch
                 {
                     Language.en => "Mute",
                     Language.de => "Stummschaltung",
@@ -2292,7 +2292,7 @@ namespace MASZ.Utils
                     Language.it => "Muto",
                     _ => "Mute",
                 },
-                PunishmentType.Ban => PreferredLanguage switch
+                MASZ.Enums.PunishmentType.Ban => PreferredLanguage switch
                 {
                     Language.en => "Ban",
                     Language.de => "Bann",
@@ -2303,7 +2303,7 @@ namespace MASZ.Utils
                     Language.it => "Bandire",
                     _ => "Ban",
                 },
-                PunishmentType.Kick => PreferredLanguage switch
+                MASZ.Enums.PunishmentType.Kick => PreferredLanguage switch
                 {
                     Language.en => "Kick",
                     Language.de => "Kick",
@@ -2314,7 +2314,7 @@ namespace MASZ.Utils
                     Language.it => "Calcio",
                     _ => "Kick",
                 },
-                PunishmentType.Warn => PreferredLanguage switch
+                MASZ.Enums.PunishmentType.Warn => PreferredLanguage switch
                 {
                     Language.en => "Warn",
                     Language.de => "Verwarnung",
@@ -2328,11 +2328,11 @@ namespace MASZ.Utils
                 _ => "Unknown",
             };
         }
-        public string Enum(ViewPermission enumValue)
+        public string Enum(MASZ.Enums.ViewPermission enumValue)
         {
             return enumValue switch
             {
-                ViewPermission.Self => PreferredLanguage switch
+                MASZ.Enums.ViewPermission.Self => PreferredLanguage switch
                 {
                     Language.en => "Self",
                     Language.de => "Privat",
@@ -2343,7 +2343,7 @@ namespace MASZ.Utils
                     Language.it => "Se stesso",
                     _ => "Self",
                 },
-                ViewPermission.Guild => PreferredLanguage switch
+                MASZ.Enums.ViewPermission.Guild => PreferredLanguage switch
                 {
                     Language.en => "Guild",
                     Language.de => "Gilde",
@@ -2354,7 +2354,7 @@ namespace MASZ.Utils
                     Language.it => "Gilda",
                     _ => "Guild",
                 },
-                ViewPermission.Global => PreferredLanguage switch
+                MASZ.Enums.ViewPermission.Global => PreferredLanguage switch
                 {
                     Language.en => "Global",
                     Language.de => "Global",
@@ -2368,11 +2368,11 @@ namespace MASZ.Utils
                 _ => "Unknown",
             };
         }
-        public string Enum(AutoModerationAction enumValue)
+        public string Enum(MASZ.Enums.AutoModerationAction enumValue)
         {
             return enumValue switch
             {
-                AutoModerationAction.None => PreferredLanguage switch
+                MASZ.Enums.AutoModerationAction.None => PreferredLanguage switch
                 {
                     Language.en => "No action",
                     Language.de => "Keine Aktion",
@@ -2383,7 +2383,7 @@ namespace MASZ.Utils
                     Language.it => "Nessuna azione",
                     _ => "No action",
                 },
-                AutoModerationAction.ContentDeleted => PreferredLanguage switch
+                MASZ.Enums.AutoModerationAction.ContentDeleted => PreferredLanguage switch
                 {
                     Language.en => "Content deleted",
                     Language.de => "Nachricht gelöscht",
@@ -2394,7 +2394,7 @@ namespace MASZ.Utils
                     Language.it => "Contenuto eliminato",
                     _ => "Content deleted",
                 },
-                AutoModerationAction.CaseCreated => PreferredLanguage switch
+                MASZ.Enums.AutoModerationAction.CaseCreated => PreferredLanguage switch
                 {
                     Language.en => "Case created",
                     Language.de => "Vorfall erstellt",
@@ -2405,7 +2405,7 @@ namespace MASZ.Utils
                     Language.it => "Caso creato",
                     _ => "Case created",
                 },
-                AutoModerationAction.ContentDeletedAndCaseCreated => PreferredLanguage switch
+                MASZ.Enums.AutoModerationAction.ContentDeletedAndCaseCreated => PreferredLanguage switch
                 {
                     Language.en => "Content deleted and case created",
                     Language.de => "Nachricht gelöscht und Vorfall erstellt",
@@ -2419,11 +2419,11 @@ namespace MASZ.Utils
                 _ => "Unknown",
             };
         }
-        public string Enum(AutoModerationType enumValue)
+        public string Enum(MASZ.Enums.AutoModerationType enumValue)
         {
             return enumValue switch
             {
-                AutoModerationType.InvitePosted => PreferredLanguage switch
+                MASZ.Enums.AutoModerationType.InvitePosted => PreferredLanguage switch
                 {
                     Language.en => "Invite posted",
                     Language.de => "Einladung gesendet",
@@ -2434,7 +2434,7 @@ namespace MASZ.Utils
                     Language.it => "Invito pubblicato",
                     _ => "Invite posted",
                 },
-                AutoModerationType.TooManyEmotes => PreferredLanguage switch
+                MASZ.Enums.AutoModerationType.TooManyEmotes => PreferredLanguage switch
                 {
                     Language.en => "Too many emotes used",
                     Language.de => "Zu viele Emojis verwendet",
@@ -2445,7 +2445,7 @@ namespace MASZ.Utils
                     Language.it => "Troppe emoticon usate",
                     _ => "Too many emotes used",
                 },
-                AutoModerationType.TooManyMentions => PreferredLanguage switch
+                MASZ.Enums.AutoModerationType.TooManyMentions => PreferredLanguage switch
                 {
                     Language.en => "Too many users mentioned",
                     Language.de => "Zu viele Benutzer erwähnt",
@@ -2456,7 +2456,7 @@ namespace MASZ.Utils
                     Language.it => "Troppi utenti citati",
                     _ => "Too many users mentioned",
                 },
-                AutoModerationType.TooManyAttachments => PreferredLanguage switch
+                MASZ.Enums.AutoModerationType.TooManyAttachments => PreferredLanguage switch
                 {
                     Language.en => "Too many attachments used",
                     Language.de => "Zu viele Anhänge verwendet",
@@ -2467,7 +2467,7 @@ namespace MASZ.Utils
                     Language.it => "Troppi allegati utilizzati",
                     _ => "Too many attachments used",
                 },
-                AutoModerationType.TooManyEmbeds => PreferredLanguage switch
+                MASZ.Enums.AutoModerationType.TooManyEmbeds => PreferredLanguage switch
                 {
                     Language.en => "Too many embeds used",
                     Language.de => "Zu viele Einbettungen verwendet",
@@ -2478,7 +2478,7 @@ namespace MASZ.Utils
                     Language.it => "Troppi incorporamenti utilizzati",
                     _ => "Too many embeds used",
                 },
-                AutoModerationType.TooManyAutoModerations => PreferredLanguage switch
+                MASZ.Enums.AutoModerationType.TooManyAutoModerations => PreferredLanguage switch
                 {
                     Language.en => "Too many auto-moderations",
                     Language.de => "Zu viele automatische Moderationen",
@@ -2489,7 +2489,7 @@ namespace MASZ.Utils
                     Language.it => "Troppe moderazioni automatiche",
                     _ => "Too many auto-moderations",
                 },
-                AutoModerationType.CustomWordFilter => PreferredLanguage switch
+                MASZ.Enums.AutoModerationType.CustomWordFilter => PreferredLanguage switch
                 {
                     Language.en => "Custom wordfilter triggered",
                     Language.de => "Benutzerdefinierter Wortfilter ausgelöst",
@@ -2500,7 +2500,7 @@ namespace MASZ.Utils
                     Language.it => "Filtro parole personalizzato attivato",
                     _ => "Custom wordfilter triggered",
                 },
-                AutoModerationType.TooManyMessages => PreferredLanguage switch
+                MASZ.Enums.AutoModerationType.TooManyMessages => PreferredLanguage switch
                 {
                     Language.en => "Too many messages",
                     Language.de => "Zu viele Nachrichten",
@@ -2511,7 +2511,7 @@ namespace MASZ.Utils
                     Language.it => "Troppi messaggi",
                     _ => "Too many messages",
                 },
-                AutoModerationType.TooManyDuplicatedCharacters => PreferredLanguage switch
+                MASZ.Enums.AutoModerationType.TooManyDuplicatedCharacters => PreferredLanguage switch
                 {
                     Language.en => "Too many duplicated characters used",
                     Language.de => "Zu viele wiederholende Buchstaben verwendet",
@@ -2522,7 +2522,7 @@ namespace MASZ.Utils
                     Language.it => "Troppi caratteri duplicati utilizzati",
                     _ => "Too many duplicated characters used",
                 },
-                AutoModerationType.TooManyLinks => PreferredLanguage switch
+                MASZ.Enums.AutoModerationType.TooManyLinks => PreferredLanguage switch
                 {
                     Language.en => "Too many links used",
                     Language.de => "Zu viele Links verwendet",
@@ -2536,11 +2536,11 @@ namespace MASZ.Utils
                 _ => "Unknown",
             };
         }
-        public string Enum(APIError enumValue)
+        public string Enum(MASZ.Enums.APIError enumValue)
         {
             return enumValue switch
             {
-                APIError.Unknown => PreferredLanguage switch
+                MASZ.Enums.APIError.Unknown => PreferredLanguage switch
                 {
                     Language.en => "Unknown error",
                     Language.de => "Unbekannter Fehler",
@@ -2551,7 +2551,7 @@ namespace MASZ.Utils
                     Language.it => "Errore sconosciuto",
                     _ => "Unknown error",
                 },
-                APIError.InvalidIUser => PreferredLanguage switch
+                MASZ.Enums.APIError.InvalidDiscordUser => PreferredLanguage switch
                 {
                     Language.en => "Invalid discord user",
                     Language.de => "Ungültiger Discordbenutzer",
@@ -2562,7 +2562,7 @@ namespace MASZ.Utils
                     Language.it => "Utente discord non valido",
                     _ => "Invalid discord user",
                 },
-                APIError.ProtectedModCaseSuspect => PreferredLanguage switch
+                MASZ.Enums.APIError.ProtectedModCaseSuspect => PreferredLanguage switch
                 {
                     Language.en => "User is protected",
                     Language.de => "Benutzer ist geschützt",
@@ -2573,7 +2573,7 @@ namespace MASZ.Utils
                     Language.it => "L'utente è protetto",
                     _ => "User is protected",
                 },
-                APIError.ProtectedModCaseSuspectIsBot => PreferredLanguage switch
+                MASZ.Enums.APIError.ProtectedModCaseSuspectIsBot => PreferredLanguage switch
                 {
                     Language.en => "User is protected. He is a bot.",
                     Language.de => "Benutzer ist geschützt. Er ist ein Bot.",
@@ -2584,7 +2584,7 @@ namespace MASZ.Utils
                     Language.it => "L'utente è protetto. Lui è un bot.",
                     _ => "User is protected. He is a bot.",
                 },
-                APIError.ProtectedModCaseSuspectIsSiteAdmin => PreferredLanguage switch
+                MASZ.Enums.APIError.ProtectedModCaseSuspectIsSiteAdmin => PreferredLanguage switch
                 {
                     Language.en => "User is protected. He is a site admin.",
                     Language.de => "Benutzer ist geschützt. Er ist ein Seitenadministrator.",
@@ -2595,7 +2595,7 @@ namespace MASZ.Utils
                     Language.it => "L'utente è protetto. È un amministratore del sito.",
                     _ => "User is protected. He is a site admin.",
                 },
-                APIError.ProtectedModCaseSuspectIsTeam => PreferredLanguage switch
+                MASZ.Enums.APIError.ProtectedModCaseSuspectIsTeam => PreferredLanguage switch
                 {
                     Language.en => "User is protected. He is a team member.",
                     Language.de => "Benutzer ist geschützt. Er ist ein Teammitglied.",
@@ -2606,7 +2606,7 @@ namespace MASZ.Utils
                     Language.it => "L'utente è protetto. È un membro della squadra.",
                     _ => "User is protected. He is a team member.",
                 },
-                APIError.ResourceNotFound => PreferredLanguage switch
+                MASZ.Enums.APIError.ResourceNotFound => PreferredLanguage switch
                 {
                     Language.en => "Resource not found",
                     Language.de => "Ressource nicht gefunden",
@@ -2617,7 +2617,7 @@ namespace MASZ.Utils
                     Language.it => "Risorsa non trovata",
                     _ => "Resource not found",
                 },
-                APIError.InvalidIdentity => PreferredLanguage switch
+                MASZ.Enums.APIError.InvalidIdentity => PreferredLanguage switch
                 {
                     Language.en => "Invalid identity",
                     Language.de => "Ungültige Identität",
@@ -2628,7 +2628,7 @@ namespace MASZ.Utils
                     Language.it => "Identità non valida",
                     _ => "Invalid identity",
                 },
-                APIError.GuildUnregistered => PreferredLanguage switch
+                MASZ.Enums.APIError.GuildUnregistered => PreferredLanguage switch
                 {
                     Language.en => "Guild is not registered",
                     Language.de => "Gilde ist nicht registriert",
@@ -2639,7 +2639,7 @@ namespace MASZ.Utils
                     Language.it => "La gilda non è registrata",
                     _ => "Guild is not registered",
                 },
-                APIError.Unauthorized => PreferredLanguage switch
+                MASZ.Enums.APIError.Unauthorized => PreferredLanguage switch
                 {
                     Language.en => "Unauthorized",
                     Language.de => "Nicht berechtigt",
@@ -2650,7 +2650,7 @@ namespace MASZ.Utils
                     Language.it => "non autorizzato",
                     _ => "Unauthorized",
                 },
-                APIError.GuildUndefinedMutedRoles => PreferredLanguage switch
+                MASZ.Enums.APIError.GuildUndefinedMutedRoles => PreferredLanguage switch
                 {
                     Language.en => "Guild has no roles for mute punishment defined.",
                     Language.de => "Gilde hat keine Rollen für Stummschaltungen definiert.",
@@ -2661,7 +2661,7 @@ namespace MASZ.Utils
                     Language.it => "La gilda non ha ruoli definiti per la punizione muta.",
                     _ => "Guild has no roles for mute punishment defined.",
                 },
-                APIError.ModCaseIsMarkedToBeDeleted => PreferredLanguage switch
+                MASZ.Enums.APIError.ModCaseIsMarkedToBeDeleted => PreferredLanguage switch
                 {
                     Language.en => "Modcase is marked to be deleted",
                     Language.de => "Modcase ist zum Löschen markiert",
@@ -2672,7 +2672,7 @@ namespace MASZ.Utils
                     Language.it => "Modcase è contrassegnato per essere eliminato",
                     _ => "Modcase is marked to be deleted",
                 },
-                APIError.ModCaseIsNotMarkedToBeDeleted => PreferredLanguage switch
+                MASZ.Enums.APIError.ModCaseIsNotMarkedToBeDeleted => PreferredLanguage switch
                 {
                     Language.en => "Modcase is not marked to be deleted",
                     Language.de => "Modcase ist nicht zum Löschen markiert",
@@ -2683,7 +2683,7 @@ namespace MASZ.Utils
                     Language.it => "Modcase non è contrassegnato per essere eliminato",
                     _ => "Modcase is not marked to be deleted",
                 },
-                APIError.GuildAlreadyRegistered => PreferredLanguage switch
+                MASZ.Enums.APIError.GuildAlreadyRegistered => PreferredLanguage switch
                 {
                     Language.en => "Guild is already registered",
                     Language.de => "Gilde ist bereits registriert",
@@ -2694,7 +2694,7 @@ namespace MASZ.Utils
                     Language.it => "La gilda è già registrata",
                     _ => "Guild is already registered",
                 },
-                APIError.NotAllowedInDemoMode => PreferredLanguage switch
+                MASZ.Enums.APIError.NotAllowedInDemoMode => PreferredLanguage switch
                 {
                     Language.en => "This action is not allowed in demo mode",
                     Language.de => "Diese Aktion ist in der Demo-Version nicht erlaubt",
@@ -2705,7 +2705,7 @@ namespace MASZ.Utils
                     Language.it => "Questa azione non è consentita in modalità demo",
                     _ => "This action is not allowed in demo mode",
                 },
-                APIError.RoleNotFound => PreferredLanguage switch
+                MASZ.Enums.APIError.RoleNotFound => PreferredLanguage switch
                 {
                     Language.en => "Role not found",
                     Language.de => "Rolle nicht gefunden",
@@ -2716,7 +2716,7 @@ namespace MASZ.Utils
                     Language.it => "Ruolo non trovato",
                     _ => "Role not found",
                 },
-                APIError.TokenCannotManageThisResource => PreferredLanguage switch
+                MASZ.Enums.APIError.TokenCannotManageThisResource => PreferredLanguage switch
                 {
                     Language.en => "Tokens cannot manage this resource",
                     Language.de => "Tokens können diese Ressource nicht verwalten",
@@ -2727,7 +2727,7 @@ namespace MASZ.Utils
                     Language.it => "I token non possono gestire questa risorsa",
                     _ => "Tokens cannot manage this resource",
                 },
-                APIError.TokenAlreadyRegistered => PreferredLanguage switch
+                MASZ.Enums.APIError.TokenAlreadyRegistered => PreferredLanguage switch
                 {
                     Language.en => "Token is already registered",
                     Language.de => "Token ist bereits registriert",
@@ -2738,7 +2738,7 @@ namespace MASZ.Utils
                     Language.it => "Il token è già registrato",
                     _ => "Token is already registered",
                 },
-                APIError.CannotBeSameUser => PreferredLanguage switch
+                MASZ.Enums.APIError.CannotBeSameUser => PreferredLanguage switch
                 {
                     Language.en => "Both users are the same.",
                     Language.de => "Beide Benutzer sind gleich.",
@@ -2749,7 +2749,7 @@ namespace MASZ.Utils
                     Language.it => "Entrambi gli utenti sono gli stessi.",
                     _ => "Both users are the same.",
                 },
-                APIError.ResourceAlreadyExists => PreferredLanguage switch
+                MASZ.Enums.APIError.ResourceAlreadyExists => PreferredLanguage switch
                 {
                     Language.en => "Resource already exists",
                     Language.de => "Ressource existiert bereits",
@@ -2760,7 +2760,7 @@ namespace MASZ.Utils
                     Language.it => "La risorsa esiste già",
                     _ => "Resource already exists",
                 },
-                APIError.ModCaseDoesNotAllowComments => PreferredLanguage switch
+                MASZ.Enums.APIError.ModCaseDoesNotAllowComments => PreferredLanguage switch
                 {
                     Language.en => "Comments are locked for this modcase",
                     Language.de => "Kommentare sind für diesen Vorfall gesperrt",
@@ -2771,7 +2771,7 @@ namespace MASZ.Utils
                     Language.it => "I commenti sono bloccati per questo modcase",
                     _ => "Comments are locked for this modcase",
                 },
-                APIError.LastCommentAlreadyFromSuspect => PreferredLanguage switch
+                MASZ.Enums.APIError.LastCommentAlreadyFromSuspect => PreferredLanguage switch
                 {
                     Language.en => "The last comment was already from the suspect.",
                     Language.de => "Der letzte Kommentar war schon von dem Beschuldigten.",
@@ -2782,7 +2782,7 @@ namespace MASZ.Utils
                     Language.it => "L'ultimo commento era già del sospettato.",
                     _ => "The last comment was already from the suspect.",
                 },
-                APIError.InvalidAutomoderationAction => PreferredLanguage switch
+                MASZ.Enums.APIError.InvalidAutomoderationAction => PreferredLanguage switch
                 {
                     Language.en => "Invalid automoderation action",
                     Language.de => "Ungültige automoderationsaktion",
@@ -2793,7 +2793,7 @@ namespace MASZ.Utils
                     Language.it => "Azione di moderazione automatica non valida",
                     _ => "Invalid automoderation action",
                 },
-                APIError.InvalidAutomoderationType => PreferredLanguage switch
+                MASZ.Enums.APIError.InvalidAutomoderationType => PreferredLanguage switch
                 {
                     Language.en => "Invalid automoderation type",
                     Language.de => "Ungültiger automoderationstyp",
@@ -2804,7 +2804,7 @@ namespace MASZ.Utils
                     Language.it => "Tipo di moderazione automatica non valido",
                     _ => "Invalid automoderation type",
                 },
-                APIError.TooManyTemplates => PreferredLanguage switch
+                MASZ.Enums.APIError.TooManyTemplates => PreferredLanguage switch
                 {
                     Language.en => "User has reached the max limit of templates",
                     Language.de => "Benutzer hat die maximale Anzahl an Templates erreicht",
@@ -2815,7 +2815,7 @@ namespace MASZ.Utils
                     Language.it => "L'utente ha raggiunto il limite massimo di modelli",
                     _ => "User has reached the max limit of templates",
                 },
-                APIError.InvalidFilePath => PreferredLanguage switch
+                MASZ.Enums.APIError.InvalidFilePath => PreferredLanguage switch
                 {
                     Language.en => "Invalid file path",
                     Language.de => "Ungültiger Dateipfad",
@@ -2826,7 +2826,7 @@ namespace MASZ.Utils
                     Language.it => "Percorso file non valido",
                     _ => "Invalid file path",
                 },
-                APIError.NoGuildsRegistered => PreferredLanguage switch
+                MASZ.Enums.APIError.NoGuildsRegistered => PreferredLanguage switch
                 {
                     Language.en => "There are no guilds registered",
                     Language.de => "Es sind keine Gilden registriert",
@@ -2837,7 +2837,7 @@ namespace MASZ.Utils
                     Language.it => "Non ci sono gilde registrate",
                     _ => "There are no guilds registered",
                 },
-                APIError.OnlyUsableInAGuild => PreferredLanguage switch
+                MASZ.Enums.APIError.OnlyUsableInAGuild => PreferredLanguage switch
                 {
                     Language.en => "This action is only usable in a guild",
                     Language.de => "Diese Aktion ist nur in einer Gilde nutzbar",
@@ -2848,7 +2848,7 @@ namespace MASZ.Utils
                     Language.it => "Questa azione è utilizzabile solo in una gilda",
                     _ => "This action is only usable in a guild",
                 },
-                APIError.InvalidAuditLogEvent => PreferredLanguage switch
+                MASZ.Enums.APIError.InvalidAuditLogEvent => PreferredLanguage switch
                 {
                     Language.en => "Invalid auditlogevent type",
                     Language.de => "Ungültiger Auditlogeventstyp",
@@ -2862,11 +2862,11 @@ namespace MASZ.Utils
                 _ => "Unknown",
             };
         }
-        public string Enum(CaseCreationType enumValue)
+        public string Enum(MASZ.Enums.CaseCreationType enumValue)
         {
             return enumValue switch
             {
-                CaseCreationType.Default => PreferredLanguage switch
+                MASZ.Enums.CaseCreationType.Default => PreferredLanguage switch
                 {
                     Language.en => "Default",
                     Language.de => "Default",
@@ -2877,7 +2877,7 @@ namespace MASZ.Utils
                     Language.it => "Predefinito",
                     _ => "Default",
                 },
-                CaseCreationType.AutoModeration => PreferredLanguage switch
+                MASZ.Enums.CaseCreationType.AutoModeration => PreferredLanguage switch
                 {
                     Language.en => "Case is automoderated.",
                     Language.de => "Automoderiert.",
@@ -2888,7 +2888,7 @@ namespace MASZ.Utils
                     Language.it => "Il caso è moderato automaticamente.",
                     _ => "Case is automoderated.",
                 },
-                CaseCreationType.Imported => PreferredLanguage switch
+                MASZ.Enums.CaseCreationType.Imported => PreferredLanguage switch
                 {
                     Language.en => "Case is imported.",
                     Language.de => "Importiert.",
@@ -2899,7 +2899,7 @@ namespace MASZ.Utils
                     Language.it => "Il caso è importato.",
                     _ => "Case is imported.",
                 },
-                CaseCreationType.ByCommand => PreferredLanguage switch
+                MASZ.Enums.CaseCreationType.ByCommand => PreferredLanguage switch
                 {
                     Language.en => "Case created by command.",
                     Language.de => "Durch Befehl erstellt.",
@@ -2913,11 +2913,11 @@ namespace MASZ.Utils
                 _ => "Unknown",
             };
         }
-        public string Enum(Language enumValue)
+        public string Enum(MASZ.Enums.Language enumValue)
         {
             return enumValue switch
             {
-                Language.en => PreferredLanguage switch
+                MASZ.Enums.Language.en => PreferredLanguage switch
                 {
                     Language.en => "English",
                     Language.de => "Englisch",
@@ -2928,7 +2928,7 @@ namespace MASZ.Utils
                     Language.it => "inglese",
                     _ => "English",
                 },
-                Language.de => PreferredLanguage switch
+                MASZ.Enums.Language.de => PreferredLanguage switch
                 {
                     Language.en => "German",
                     Language.de => "Deutsch",
@@ -2939,7 +2939,7 @@ namespace MASZ.Utils
                     Language.it => "Tedesco",
                     _ => "German",
                 },
-                Language.fr => PreferredLanguage switch
+                MASZ.Enums.Language.fr => PreferredLanguage switch
                 {
                     Language.en => "French",
                     Language.de => "Französisch",
@@ -2950,7 +2950,7 @@ namespace MASZ.Utils
                     Language.it => "francese",
                     _ => "French",
                 },
-                Language.es => PreferredLanguage switch
+                MASZ.Enums.Language.es => PreferredLanguage switch
                 {
                     Language.en => "Spanish",
                     Language.de => "Spanisch",
@@ -2961,7 +2961,7 @@ namespace MASZ.Utils
                     Language.it => "spagnolo",
                     _ => "Spanish",
                 },
-                Language.it => PreferredLanguage switch
+                MASZ.Enums.Language.it => PreferredLanguage switch
                 {
                     Language.en => "Italian",
                     Language.de => "Italienisch",
@@ -2972,7 +2972,7 @@ namespace MASZ.Utils
                     Language.it => "italiano",
                     _ => "Italian",
                 },
-                Language.at => PreferredLanguage switch
+                MASZ.Enums.Language.at => PreferredLanguage switch
                 {
                     Language.en => "Austrian",
                     Language.de => "Österreich",
@@ -2983,7 +2983,7 @@ namespace MASZ.Utils
                     Language.it => "austriaco",
                     _ => "Austrian",
                 },
-                Language.ru => PreferredLanguage switch
+                MASZ.Enums.Language.ru => PreferredLanguage switch
                 {
                     Language.en => "Russian",
                     Language.de => "Russisch",
@@ -2997,23 +2997,23 @@ namespace MASZ.Utils
                 _ => "Unknown",
             };
         }
-        public string Enum(AutoModerationChannelNotificationBehavior enumValue)
+        public string Enum(MASZ.Enums.AutoModerationChannelNotificationBehavior enumValue)
         {
             return enumValue switch
             {
-                AutoModerationChannelNotificationBehavior.SendNotification => PreferredLanguage switch
+                MASZ.Enums.AutoModerationChannelNotificationBehavior.SendNotification => PreferredLanguage switch
                 {
                     Language.en => "Channel notification",
                     Language.de => "Kanalbenachrichtigung",
                     _ => "Channel notification",
                 },
-                AutoModerationChannelNotificationBehavior.SendNotificationAndDelete => PreferredLanguage switch
+                MASZ.Enums.AutoModerationChannelNotificationBehavior.SendNotificationAndDelete => PreferredLanguage switch
                 {
                     Language.en => "Temporary channel notification",
                     Language.de => "Temporäre Kanalbenachrichtigung",
                     _ => "Temporary channel notification",
                 },
-                AutoModerationChannelNotificationBehavior.NoNotification => PreferredLanguage switch
+                MASZ.Enums.AutoModerationChannelNotificationBehavior.NoNotification => PreferredLanguage switch
                 {
                     Language.en => "No channel notification",
                     Language.de => "Keine Kanalbenachrichtigung",
@@ -3022,23 +3022,23 @@ namespace MASZ.Utils
                 _ => "Unknown",
             };
         }
-        public string Enum(EditStatus enumValue)
+        public string Enum(MASZ.Enums.EditStatus enumValue)
         {
             return enumValue switch
             {
-                EditStatus.None => PreferredLanguage switch
+                MASZ.Enums.EditStatus.None => PreferredLanguage switch
                 {
                     Language.en => "None",
                     Language.de => "Unbestimmt",
                     _ => "None",
                 },
-                EditStatus.Unedited => PreferredLanguage switch
+                MASZ.Enums.EditStatus.Unedited => PreferredLanguage switch
                 {
                     Language.en => "Not edited",
                     Language.de => "Nicht bearbeitet",
                     _ => "Not edited",
                 },
-                EditStatus.Edited => PreferredLanguage switch
+                MASZ.Enums.EditStatus.Edited => PreferredLanguage switch
                 {
                     Language.en => "Edited",
                     Language.de => "Bearbeitet",
@@ -3047,23 +3047,23 @@ namespace MASZ.Utils
                 _ => "Unknown",
             };
         }
-        public string Enum(LockedCommentStatus enumValue)
+        public string Enum(MASZ.Enums.LockedCommentStatus enumValue)
         {
             return enumValue switch
             {
-                LockedCommentStatus.None => PreferredLanguage switch
+                MASZ.Enums.LockedCommentStatus.None => PreferredLanguage switch
                 {
                     Language.en => "None",
                     Language.de => "Unbestimmt",
                     _ => "None",
                 },
-                LockedCommentStatus.Locked => PreferredLanguage switch
+                MASZ.Enums.LockedCommentStatus.Locked => PreferredLanguage switch
                 {
                     Language.en => "Locked",
                     Language.de => "Gesperrt",
                     _ => "Locked",
                 },
-                LockedCommentStatus.Unlocked => PreferredLanguage switch
+                MASZ.Enums.LockedCommentStatus.Unlocked => PreferredLanguage switch
                 {
                     Language.en => "Unlocked",
                     Language.de => "Entsperrt",
@@ -3072,23 +3072,23 @@ namespace MASZ.Utils
                 _ => "Unknown",
             };
         }
-        public string Enum(MarkedToDeleteStatus enumValue)
+        public string Enum(MASZ.Enums.MarkedToDeleteStatus enumValue)
         {
             return enumValue switch
             {
-                MarkedToDeleteStatus.None => PreferredLanguage switch
+                MASZ.Enums.MarkedToDeleteStatus.None => PreferredLanguage switch
                 {
                     Language.en => "None",
                     Language.de => "Unbestimmt",
                     _ => "None",
                 },
-                MarkedToDeleteStatus.Marked => PreferredLanguage switch
+                MASZ.Enums.MarkedToDeleteStatus.Marked => PreferredLanguage switch
                 {
                     Language.en => "Marked to delete",
                     Language.de => "Zu löschen markiert",
                     _ => "Marked to delete",
                 },
-                MarkedToDeleteStatus.Unmarked => PreferredLanguage switch
+                MASZ.Enums.MarkedToDeleteStatus.Unmarked => PreferredLanguage switch
                 {
                     Language.en => "Not marked to delete",
                     Language.de => "Nicht zu löschen markiert",
@@ -3097,23 +3097,23 @@ namespace MASZ.Utils
                 _ => "Unknown",
             };
         }
-        public string Enum(PunishmentActiveStatus enumValue)
+        public string Enum(MASZ.Enums.PunishmentActiveStatus enumValue)
         {
             return enumValue switch
             {
-                PunishmentActiveStatus.None => PreferredLanguage switch
+                MASZ.Enums.PunishmentActiveStatus.None => PreferredLanguage switch
                 {
                     Language.en => "None",
                     Language.de => "Unbestimmt",
                     _ => "None",
                 },
-                PunishmentActiveStatus.Active => PreferredLanguage switch
+                MASZ.Enums.PunishmentActiveStatus.Active => PreferredLanguage switch
                 {
                     Language.en => "Active",
                     Language.de => "Aktiv",
                     _ => "Active",
                 },
-                PunishmentActiveStatus.Inactive => PreferredLanguage switch
+                MASZ.Enums.PunishmentActiveStatus.Inactive => PreferredLanguage switch
                 {
                     Language.en => "Inactive",
                     Language.de => "Inaktiv",

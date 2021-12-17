@@ -298,7 +298,7 @@
     "UserMapBetween": {
         "description": "Describes a usermap between two users.",
         "var_types": {
-            "userMap": "masz.Models.UserMapping"
+            "userMap": "MASZ.Models.UserMapping"
         },
         "en": "UserMap between {userMap.UserA} and {userMap.UserB}.",
         "de": "Benutzerbeziehung zwischen {userMap.UserA} und {userMap.UserB}.",
@@ -344,7 +344,7 @@
                 "Public": {
                     "description": "Webhook notification for modcase creation. This does not disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase"
+                        "modCase": "MASZ.Models.ModCase"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde erstellt.",
@@ -357,8 +357,8 @@
                 "Internal": {
                     "description": "Webhook notification for modcase creation. This does disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase",
-                        "moderator": "DSharpPlus.Entities.DiscordUser"
+                        "modCase": "MASZ.Models.ModCase",
+                        "moderator": "IUser"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstellt.",
@@ -373,7 +373,7 @@
                 "Public": {
                     "description": "Webhook notification for modcase update. This does not disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase"
+                        "modCase": "MASZ.Models.ModCase"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated.",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde aktualisiert.",
@@ -386,8 +386,8 @@
                 "Internal": {
                     "description": "Webhook notification for modcase update. This does disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase",
-                        "moderator": "DSharpPlus.Entities.DiscordUser"
+                        "modCase": "MASZ.Models.ModCase",
+                        "moderator": "IUser"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert.",
@@ -402,7 +402,7 @@
                 "Public": {
                     "description": "Webhook notification for modcase deletion. This does not disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase"
+                        "modCase": "MASZ.Models.ModCase"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted.",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde gelöscht.",
@@ -415,8 +415,8 @@
                 "Internal": {
                     "description": "Webhook notification for modcase deletion. This does disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase",
-                        "moderator": "DSharpPlus.Entities.DiscordUser"
+                        "modCase": "MASZ.Models.ModCase",
+                        "moderator": "IUser"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) gelöscht.",
@@ -463,7 +463,7 @@
                 "Create": {
                     "description": "A modcase comment has been created.",
                     "var_types": {
-                        "actor": "DSharpPlus.Entities.DiscordUser"
+                        "actor": "IUser"
                     },
                     "en": "A **comment** has been created by <@{actor.Id}>.",
                     "de": "Ein **Kommentar** wurde von <@{actor.Id}> erstellt.",
@@ -476,7 +476,7 @@
                 "Update": {
                     "description": "A modcase comment has been updated.",
                     "var_types": {
-                        "actor": "DSharpPlus.Entities.DiscordUser"
+                        "actor": "IUser"
                     },
                     "en": "A **comment** has been updated by <@{actor.Id}>.",
                     "de": "Ein **Kommentar** wurde von <@{actor.Id}> aktualisiert.",
@@ -489,7 +489,7 @@
                 "Delete": {
                     "description": "A modcase comment has been deleted.",
                     "var_types": {
-                        "actor": "DSharpPlus.Entities.DiscordUser"
+                        "actor": "IUser"
                     },
                     "en": "A **comment** has been deleted by <@{actor.Id}>.",
                     "de": "Ein **Kommentar** wurde von <@{actor.Id}> gelöscht.",
@@ -504,7 +504,7 @@
                 "Create": {
                     "description": "Webhook notification for modcase file creation.",
                     "var_types": {
-                        "actor": "DSharpPlus.Entities.DiscordUser"
+                        "actor": "IUser"
                     },
                     "en": "A **file** has been uploaded by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
                     "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochgeladen.",
@@ -517,7 +517,7 @@
                 "Delete": {
                     "description": "Webhook notification for modcase file deletion.",
                     "var_types": {
-                        "actor": "DSharpPlus.Entities.DiscordUser"
+                        "actor": "IUser"
                     },
                     "en": "A **file** has been deleted by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
                     "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) gelöscht.",
@@ -530,7 +530,7 @@
                 "Update": {
                     "description": "Webhook notification for modcase file update.",
                     "var_types": {
-                        "actor": "DSharpPlus.Entities.DiscordUser"
+                        "actor": "IUser"
                     },
                     "en": "A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
                     "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert.",
@@ -545,8 +545,7 @@
                 "Warn": {
                     "description": "DM notification for warn modcase. This does not disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase",
-                        "guild": "DSharpPlus.Entities.DiscordGuild",
+                        "guild": "IGuild",
                         "serviceBaseUrl": "string"
                     },
                     "en": "The moderators of guild `{guild.Name}` have warned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
@@ -561,8 +560,8 @@
                     "Temp": {
                         "description": "DM notification for temp mute modcase. This does not disclose information about the moderator.",
                         "var_types": {
-                            "modCase": "masz.Models.ModCase",
-                            "guild": "DSharpPlus.Entities.DiscordGuild",
+                            "modCase": "MASZ.Models.ModCase",
+                            "guild": "IGuild",
                             "serviceBaseUrl": "string"
                         },
                         "en": "The moderators of guild `{guild.Name}` have temporarily muted you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
@@ -576,8 +575,7 @@
                     "Perm": {
                         "description": "DM notification for perm mute modcase. This does not disclose information about the moderator.",
                         "var_types": {
-                            "modCase": "masz.Models.ModCase",
-                            "guild": "DSharpPlus.Entities.DiscordGuild",
+                            "guild": "IGuild",
                             "serviceBaseUrl": "string"
                         },
                         "en": "The moderators of guild `{guild.Name}` have muted you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
@@ -593,8 +591,8 @@
                     "Temp": {
                         "description": "DM notification for temp ban modcase. This does not disclose information about the moderator.",
                         "var_types": {
-                            "modCase": "masz.Models.ModCase",
-                            "guild": "DSharpPlus.Entities.DiscordGuild",
+                            "modCase": "MASZ.Models.ModCase",
+                            "guild": "IGuild",
                             "serviceBaseUrl": "string"
                         },
                         "en": "The moderators of guild `{guild.Name}` have temporarily banned you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
@@ -608,8 +606,7 @@
                     "Perm": {
                         "description": "DM notification for perm ban modcase. This does not disclose information about the moderator.",
                         "var_types": {
-                            "modCase": "masz.Models.ModCase",
-                            "guild": "DSharpPlus.Entities.DiscordGuild",
+                            "guild": "IGuild",
                             "serviceBaseUrl": "string"
                         },
                         "en": "The moderators of guild `{guild.Name}` have banned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
@@ -624,8 +621,7 @@
                 "Kick": {
                     "description": "DM notification for kick modcase. This does not disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase",
-                        "guild": "DSharpPlus.Entities.DiscordGuild",
+                        "guild": "IGuild",
                         "serviceBaseUrl": "string"
                     },
                     "en": "The moderators of guild `{guild.Name}` have kicked you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
@@ -739,7 +735,7 @@
             "Internal": {
                 "description": "Internal notification for automod event",
                 "var_types": {
-                    "user": "DSharpPlus.Entities.DiscordUser"
+                    "user": "IUser"
                 },
                 "en": "{user.Mention} triggered automoderation.",
                 "de": "{user.Mention} hat die Automoderation ausgelöst.",
@@ -752,7 +748,7 @@
             "Case": {
                 "description": "case description for automod event",
                 "var_types": {
-                    "user": "DSharpPlus.Entities.DiscordUser"
+                    "user": "IUser"
                 },
                 "en": "{user.Username}#{user.Discriminator} triggered automoderation.",
                 "de": "{user.Username}#{user.Discriminator} hat die Automoderation ausgelöst.",
@@ -765,23 +761,23 @@
             "DM": {
                 "description": "DM description for automod event",
                 "var_types": {
-                    "user": "DSharpPlus.Entities.DiscordUser",
-                    "channel": "DSharpPlus.Entities.DiscordChannel",
+                    "user": "IUser",
+                    "channel": "IChannel",
                     "reason": "string",
                     "action": "string"
                 },
-                "en": "Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}",
-                "de": "Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}",
-                "at": "Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention} ausglest. Grund: {reason}\nAktion: {action}",
-                "fr": "Salut {user.Mention},\\n\\nVous avez déclenché l'automodération dans {channel.Mention}.\\nRaison : {reason}\\nAction : {action}",
-                "es": "Hola, {user.Mention}:\\n\\nActivó la automoderación en {channel.Mention}.\\nMotivo: {reason}\\nAcción: {action}",
-                "ru": "Привет, {user.Mention}!\\n\\nВы активировали автомодерацию в {channel.Mention}.\\nПричина: {reason}\\nДействие: {action}",
-                "it": "Ciao {user.Mention},\\n\\nHai attivato la moderazione automatica in {channel.Mention}.\\nMotivo: {reason}\\nAzione: {action}"
+                "en": "Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention()}.\nReason: {reason}\nAction: {action}",
+                "de": "Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention()} ausgelöst.\nGrund: {reason}\nAktion: {action}",
+                "at": "Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention()} ausglest. Grund: {reason}\nAktion: {action}",
+                "fr": "Salut {user.Mention},\\n\\nVous avez déclenché l'automodération dans {channel.Mention()}.\\nRaison : {reason}\\nAction : {action}",
+                "es": "Hola, {user.Mention}:\\n\\nActivó la automoderación en {channel.Mention()}.\\nMotivo: {reason}\\nAcción: {action}",
+                "ru": "Привет, {user.Mention}!\\n\\nВы активировали автомодерацию в {channel.Mention()}.\\nПричина: {reason}\\nДействие: {action}",
+                "it": "Ciao {user.Mention},\\n\\nHai attivato la moderazione automatica in {channel.Mention()}.\\nMotivo: {reason}\\nAzione: {action}"
             },
             "Channel": {
                 "description": "channel notification for automod event if message was deleted, should be oneline",
                 "var_types": {
-                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "user": "IUser",
                     "reason": "string"
                 },
                 "en": "{user.Mention} you triggered automoderation. Reason: {reason}. Your message has been deleted.",
@@ -797,7 +793,7 @@
             "JoinWith": {
                 "description": "A user joined with invite x",
                 "var_types": {
-                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "user": "IUser",
                     "registered": "DateTime",
                     "invite": "string"
                 },
@@ -812,7 +808,7 @@
             "JoinWithAndFrom": {
                 "description": "A user joined with invite x",
                 "var_types": {
-                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "user": "IUser",
                     "by": "ulong",
                     "createdAt": "DateTime",
                     "registered": "DateTime",
@@ -873,15 +869,15 @@
             "description": "Cleanup response",
             "var_types": {
                 "count": "int",
-                "channel": "DSharpPlus.Entities.DiscordChannel"
+                "channel": "IChannel"
             },
-            "en": "Deleted {count} messages in {channel.Mention}.",
-            "de": "{count} Nachrichten in {channel.Mention} gelöscht.",
-            "at": "{count} Nochrichtn in {channel.Mention} glescht.",
-            "fr": "{count} messages supprimés dans {channel.Mention}.",
-            "es": "Se eliminaron {count} mensajes en {channel.Mention}.",
-            "ru": "Удалено {count} сообщений в {channel.Mention}.",
-            "it": "Eliminati {count} messaggi in {channel.Mention}."
+            "en": "Deleted {count} messages in {channel.Mention()}.",
+            "de": "{count} Nachrichten in {channel.Mention()} gelöscht.",
+            "at": "{count} Nochrichtn in {channel.Mention()} glescht.",
+            "fr": "{count} messages supprimés dans {channel.Mention()}.",
+            "es": "Se eliminaron {count} mensajes en {channel.Mention()}.",
+            "ru": "Удалено {count} сообщений в {channel.Mention()}.",
+            "it": "Eliminati {count} messaggi in {channel.Mention()}."
         },
         "Features": {
             "KickPermission": {
@@ -1190,16 +1186,16 @@
             "Content": {
                 "description": "Report content",
                 "var_types": {
-                    "user": "DSharpPlus.Entities.DiscordUser",
-                    "message": "DSharpPlus.Entities.DiscordMessage"
+                    "user": "IUser",
+                    "message": "IMessage"
                 },
-                "en": "{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}",
-                "de": "{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}",
-                "at": "{user.Mention} mödet a Nochricht vo {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}",
-                "fr": "{user.Mention} a signalé un message de {message.Author.Mention} dans {message.Channel.Mention}.\\n{message.JumpLink}",
-                "es": "{user.Mention} informó un mensaje de {message.Author.Mention} en {message.Channel.Mention}.\\n{message.JumpLink}",
-                "ru": "{user.Mention} сообщил о сообщении от {message.Author.Mention} в {message.Channel.Mention}.\\n{message.JumpLink}",
-                "it": "{user.Mention} ha segnalato un messaggio da {message.Author.Mention} in {message.Channel.Mention}.\\n{message.JumpLink}"
+                "en": "{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
+                "de": "{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
+                "at": "{user.Mention} mödet a Nochricht vo {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
+                "fr": "{user.Mention} a signalé un message de {message.Author.Mention} dans {message.Channel.Mention()}.\\n{message.GetJumpUrl()}",
+                "es": "{user.Mention} informó un mensaje de {message.Author.Mention} en {message.Channel.Mention()}.\\n{message.GetJumpUrl()}",
+                "ru": "{user.Mention} сообщил о сообщении от {message.Author.Mention} в {message.Channel.Mention()}.\\n{message.GetJumpUrl()}",
+                "it": "{user.Mention} ha segnalato un messaggio da {message.Author.Mention} in {message.Channel.Mention()}.\\n{message.GetJumpUrl()}"
             }
         },
         "Say": {
@@ -1273,7 +1269,7 @@
                 "description": "Created by",
                 "var_types": {
                     "inviteCode": "string",
-                    "createdBy": "DSharpPlus.Entities.DiscordUser"
+                    "createdBy": "IUser"
                 },
                 "en": "`{inviteCode}` created by {createdBy.Mention}.",
                 "de": "`{inviteCode}` erstellt von {createdBy.Mention}.",
@@ -1287,7 +1283,7 @@
                 "description": "Created by",
                 "var_types": {
                     "inviteCode": "string",
-                    "createdBy": "DSharpPlus.Entities.DiscordUser",
+                    "createdBy": "IUser",
                     "createdAt": "DateTime"
                 },
                 "en": "`{inviteCode}` created by {createdBy.Mention} at {createdAt.ToDiscordTS()}.",

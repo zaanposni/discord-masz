@@ -30,7 +30,7 @@
             "ru": "Пинать",
             "it": "Calcio"
         },
-        "None": {
+        "Warn": {
             "description": "The word 'warn'",
             "en": "Warn",
             "de": "Verwarnung",
