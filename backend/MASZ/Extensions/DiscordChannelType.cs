@@ -7,13 +7,19 @@ namespace MASZ.Extensions
 
         public static ChannelType GetChannelType(this IChannel channel)
         {
-            return channel switch
+            switch (channel.GetType().GetInterfaces())
             {
-                channel is ITextChannel => ChannelType.Text
-            }
-
-
-        }
-
+                case Type[] chnl when chnl.Contains(typeof(ITextChannel)): return ChannelType.Text;
+                case Type[] chnl when chnl.Contains(typeof(IDMChannel)): return ChannelType.DM;
+                case Type[] chnl when chnl.Contains(typeof(IVoiceChannel)): return ChannelType.Voice;
+                case Type[] chnl when chnl.Contains(typeof(IGroupChannel)): return ChannelType.Group;
+                case Type[] chnl when chnl.Contains(typeof(ICategoryChannel)): return ChannelType.Category;
+                case Type[] chnl when chnl.Contains(typeof(INewsChannel)): return ChannelType.News;
+                case Type[] chnl when chnl.Contains(typeof(IThreadChannel)): return ChannelType.PublicThread;
+                case Type[] chnl when chnl.Contains(typeof(IStageChannel)): return ChannelType.Stage;
+                default: throw new NotImplementedException();
+            };
     }
+
+}
 }
