@@ -5,24 +5,25 @@ from rich.console import Console
 
 console = Console()
 
-BACKEND_OUTPUT_PATH = "../backend/masz/Translations/Translation.cs"
+BACKEND_OUTPUT_PATH = "../backend/MASZ/Utils/Translation.cs"
 FRONTEND_OUTPUT_PATH = "../nginx/MASZ/src/assets/i18n/"
 
-DEFAULT_ENUM_NAMESPACE = "masz.Enums"
+DEFAULT_ENUM_NAMESPACE = "MASZ.Enums"
 
 TRANSLATION_NODES = 0
 TRANSLATION_STATS = dict()
 
-BACKEND_STRING = """using System;\nusing masz.Extensions;\nusing masz.Enums;\n\nnamespace masz.Translations
+BACKEND_STRING = """using Discord;\nusing MASZ.Extensions;\nusing MASZ.Enums;\nusing MASZ.Models;\n\nnamespace MASZ.Utils
 {
     public class Translation
     {
-        public Language preferredLanguage { get; set; }
+        public Language PreferredLanguage { get; set; }
         private Translation(Language preferredLanguage = Language.en)
         {
-            this.preferredLanguage = preferredLanguage;
+            PreferredLanguage = preferredLanguage;
         }
-        public static Translation Ctx(Language preferredLanguage = Language.en) {
+        public static Translation Ctx(Language preferredLanguage = Language.en)
+        {
             return new Translation(preferredLanguage);
         }
 """
@@ -47,18 +48,17 @@ with console.status("[bold green]Generating backend...") as status:
             TRANSLATION_NODES += 1
             vars = [f"{v} {k}" for k, v in node.get("var_types", dict()).items()]
             insert_interpolation = "$" if vars else ""
-            generate = f"\t\tpublic string {prevKeys}({', '.join(vars)}) " + "{\n"
-            generate += "\t\t\tswitch (preferredLanguage) {\n"
+            generate = f"\t\tpublic string {prevKeys}({', '.join(vars)})" + "\n\t\t{\n"
+            generate += "\t\t\treturn PreferredLanguage switch\n\t\t\t{\n"
             for lang, translation in node.items():
                 if lang.lower() in ["description", "var_types"]:
                     continue
                 t = translation.replace('\n', '\\n')
                 TRANSLATION_STATS[lang.lower()] = TRANSLATION_STATS.get(lang.lower(), 0) + 1
-                generate += f"\t\t\t\tcase Language.{lang.lower()}:\n"
-                generate += f"\t\t\t\t\treturn {insert_interpolation}\"{t}\";\n"
-            generate += "\t\t\t}\n"
+                generate += f"\t\t\t\tLanguage.{lang.lower()} => {insert_interpolation}\"{t}\",\n"
             t = node['en'].replace('\n', '\\n')
-            generate += f"\t\t\treturn {insert_interpolation}\"{t}\";\n"
+            generate += f"\t\t\t\t_ => {insert_interpolation}\"{t}\",\n"
+            generate += "\t\t\t};\n"
             generate += "\t\t}\n"
             BACKEND_STRING += generate
 
@@ -74,26 +74,23 @@ with console.status("[bold green]Generating backend...") as status:
         global BACKEND_STRING
         console.log(f"Generating {enum_name}...")
         vars = [f"{v} {k}" for k, v in node.get("var_types", dict()).items()]
-        generate = f"\t\tpublic string Enum({DEFAULT_ENUM_NAMESPACE}.{enum_name} enumValue) " + "{\n"
-        generate += "\t\t\tswitch (enumValue) {\n"
+        generate = f"\t\tpublic string Enum({DEFAULT_ENUM_NAMESPACE}.{enum_name} enumValue)" + "\n\t\t{\n"
+        generate += "\t\t\treturn enumValue switch\n\t\t\t{\n"
         for enum_value, translations in node.items():
             TRANSLATION_NODES += 1
-            generate += f"\t\t\t\tcase {DEFAULT_ENUM_NAMESPACE}.{enum_name}.{enum_value}:\n"
-            generate += "\t\t\t\t\tswitch (preferredLanguage) {\n"
+            generate += f"\t\t\t\t{DEFAULT_ENUM_NAMESPACE}.{enum_name}.{enum_value} => PreferredLanguage switch\n"
+            generate += "\t\t\t\t{\n"
             for lang, translation in translations.items():
                 if lang.lower() in ["description", "var_types"]:
                     continue
                 t = translation.replace('\n', '\\n')
                 TRANSLATION_STATS[lang.lower()] = TRANSLATION_STATS.get(lang.lower(), 0) + 1
-                generate += f"\t\t\t\t\t\tcase Language.{lang.lower()}:\n"
-                generate += f"\t\t\t\t\t\t\treturn \"{t}\";\n"
+                generate += f"\t\t\t\t\tLanguage.{lang.lower()} => \"{t}\",\n"
             t = translations["en"].replace('\n', '\\n')
-            generate += f"\t\t\t\t\t\tdefault:\n"
-            generate += f"\t\t\t\t\t\t\treturn \"{t}\";\n"
-            generate += "\t\t\t\t\t}\n"
-            t = translations['en'].replace('\n', '\\n')
-        generate += "\t\t\t}\n"
-        generate += f"\t\t\treturn \"Unknown\";\n"
+            generate += f"\t\t\t\t\t_ => \"{t}\",\n"
+            generate += "\t\t\t\t},\n"
+        generate += f"\t\t\t\t_ => \"Unknown\",\n"
+        generate += "\t\t\t};\n"
         generate += "\t\t}\n"
         BACKEND_STRING += generate
 
