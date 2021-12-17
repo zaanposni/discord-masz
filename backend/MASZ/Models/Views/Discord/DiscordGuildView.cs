@@ -6,8 +6,7 @@ namespace MASZ.Models.Views
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public string Icon { get; set; }
-        public string IconUrl { get; set; }
+        public string IconUrl { get; set; }  // TODO: change to this in angular
         public List<DiscordRoleView> Roles { get; set; }
 
         public DiscordGuildView() { }
@@ -15,7 +14,6 @@ namespace MASZ.Models.Views
         {
             Id = guild.Id.ToString();
             Name = guild.Name;
-            Icon = guild.IconId;
             IconUrl = guild.IconUrl;
             Roles = new List<DiscordRoleView>();
             try
@@ -26,6 +24,13 @@ namespace MASZ.Models.Views
                 }
             }
             catch (Exception) { }
+        }
+        public DiscordGuildView(UserGuild guild)
+        {
+            Id = guild.Id.ToString();
+            Name = guild.Name;
+            IconUrl = guild.IconUrl;
+            Roles = new List<DiscordRoleView>();
         }
     }
 }

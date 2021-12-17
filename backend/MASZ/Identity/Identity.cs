@@ -14,7 +14,7 @@ namespace MASZ.Models
         public DateTime ValidUntil { get; set; }
         protected string Token;
         protected IUser currentUser;
-        protected List<IGuild> currentUserGuilds;
+        protected List<UserGuild> currentUserGuilds;
         public Identity(string token, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
         {
             Token = token;
@@ -189,7 +189,7 @@ namespace MASZ.Models
             }
             return currentUser;
         }
-        public List<IGuild> GetCurrentUserGuilds()
+        public List<UserGuild> GetCurrentUserGuilds()
         {
             if (currentUserGuilds == null)
             {
@@ -243,7 +243,7 @@ namespace MASZ.Models
         {
             if (!currentUserGuilds.Any(x => x.Id == member.Guild.Id))
             {
-                currentUserGuilds.Add(member.Guild);
+                currentUserGuilds.Add(new UserGuild(member.Guild));
             }
         }
 
@@ -251,7 +251,7 @@ namespace MASZ.Models
         {
             if (!currentUserGuilds.Any(x => x.Id == member.Guild.Id))
             {
-                currentUserGuilds.Add(member.Guild);
+                currentUserGuilds.Add(new UserGuild(member.Guild));
             }
         }
     }

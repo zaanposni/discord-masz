@@ -18,17 +18,17 @@ namespace MASZ.Models
             DiscordAPIInterface discordAPI = serviceProvider.GetRequiredService<DiscordAPIInterface>();
 
             List<GuildConfig> guildConfigs = await database.SelectAllGuildConfigs();
-            List<IGuild> guilds = new();
+            List<UserGuild> guilds = new();
             foreach (GuildConfig guildConfig in guildConfigs)
             {
                 if ((await discordAPI.FetchMemberInfo(guildConfig.GuildId, user.Id, CacheBehavior.Default)) != null)
                 {
-                    guilds.Add(discordAPI.FetchGuildInfo(guildConfig.GuildId, CacheBehavior.Default));
+                    guilds.Add(new UserGuild(discordAPI.FetchGuildInfo(guildConfig.GuildId, CacheBehavior.Default)));
                 }
             }
             return new DiscordCommandIdentity(serviceProvider, user, guilds, serviceScopeFactory);
         }
-        private DiscordCommandIdentity(IServiceProvider serviceProvider, IUser currentUser, List<IGuild> userGuilds, IServiceScopeFactory serviceScopeFactory) : base(currentUser.Id.ToString(), serviceProvider, serviceScopeFactory)
+        private DiscordCommandIdentity(IServiceProvider serviceProvider, IUser currentUser, List<UserGuild> userGuilds, IServiceScopeFactory serviceScopeFactory) : base(currentUser.Id.ToString(), serviceProvider, serviceScopeFactory)
         {
             this.currentUser = currentUser;
             currentUserGuilds = userGuilds;
@@ -155,7 +155,7 @@ namespace MASZ.Models
         {
             if (!currentUserGuilds.Any(x => x.Id == member.Guild.Id))
             {
-                currentUserGuilds.Add(member.Guild);
+                currentUserGuilds.Add(new UserGuild(member.Guild));
             }
             GuildMemberships[member.Guild.Id] = member;
         }
@@ -164,7 +164,7 @@ namespace MASZ.Models
         {
             if (!currentUserGuilds.Any(x => x.Id == member.Guild.Id))
             {
-                currentUserGuilds.Add(member.Guild);
+                currentUserGuilds.Add(new UserGuild(member.Guild));
             }
             GuildMemberships[member.Guild.Id] = member;
         }

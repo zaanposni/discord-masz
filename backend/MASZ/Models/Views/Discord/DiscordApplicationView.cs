@@ -20,7 +20,7 @@ namespace MASZ.Models.Views
             Name = application.Name;
             Description = application.Description;
             IconUrl = application.IconUrl;
-            IconHash = application.IconUrl.Split('/')[^1];
+            IconHash = application.IconUrl != null ? application.IconUrl.Split('/').Last() : null;
             PrivacyPolicyUrl = "";
             TermsOfServiceUrl = "";
         }
