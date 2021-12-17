@@ -14,5 +14,5 @@ COPY --from=build-env /app/bin/ .
 ENV TZ=Europe/Berlin
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-ENTRYPOINT ["dotnet", "masz.dll"]
+ENTRYPOINT ["dotnet", "MASZ.dll"]
 EXPOSE 80
