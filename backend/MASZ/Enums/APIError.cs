@@ -3,7 +3,7 @@ namespace MASZ.Enums
     public enum APIError
     {
         Unknown = 0,
-        InvalidIUser = 1,
+        InvalidDiscordUser = 1,
         ProtectedModCaseSuspect = 2,
         ProtectedModCaseSuspectIsBot = 3,
         ProtectedModCaseSuspectIsSiteAdmin = 4,

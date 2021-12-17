@@ -19,7 +19,7 @@ namespace MASZ.Controllers
             return Ok(new List<EnumDto>()
             {
                 EnumDto.Create((int) APIError.Unknown, _translator.T().Enum(APIError.Unknown)),
-                EnumDto.Create((int) APIError.InvalidIUser, _translator.T().Enum(APIError.InvalidIUser)),
+                EnumDto.Create((int) APIError.InvalidDiscordUser, _translator.T().Enum(APIError.InvalidDiscordUser)),
                 EnumDto.Create((int) APIError.ProtectedModCaseSuspect, _translator.T().Enum(APIError.ProtectedModCaseSuspect)),
                 EnumDto.Create((int) APIError.ProtectedModCaseSuspectIsBot, _translator.T().Enum(APIError.ProtectedModCaseSuspectIsBot)),
                 EnumDto.Create((int) APIError.ProtectedModCaseSuspectIsSiteAdmin, _translator.T().Enum(APIError.ProtectedModCaseSuspectIsSiteAdmin)),
