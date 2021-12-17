@@ -11,7 +11,7 @@ namespace MASZ.Dtos.UserAPIResponses
             BannedGuilds = bannedGuilds;
             ModGuilds = modGuilds;
             AdminGuilds = adminGuilds;
-            IUser = DiscordUserView.CreateOrDefault(user);
+            DiscordUser = DiscordUserView.CreateOrDefault(user);
             IsAdmin = isAdmin;
         }
 
@@ -19,7 +19,7 @@ namespace MASZ.Dtos.UserAPIResponses
         public List<DiscordGuildView> BannedGuilds { get; set; }
         public List<DiscordGuildView> ModGuilds { get; set; }
         public List<DiscordGuildView> AdminGuilds { get; set; }
-        public DiscordUserView IUser { get; set; }
+        public DiscordUserView DiscordUser { get; set; }
         public bool IsAdmin { get; set; }
     }
 }
