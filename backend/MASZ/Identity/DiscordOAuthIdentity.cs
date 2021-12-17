@@ -14,12 +14,12 @@ namespace MASZ.Models
         {
             DiscordAPIInterface api = serviceProvider.GetRequiredService<DiscordAPIInterface>();
             IUser user = await api.FetchCurrentUserInfo(token, CacheBehavior.IgnoreButCacheOnError);
-            List<IGuild> guilds = await api.FetchGuildsOfCurrentUser(token, CacheBehavior.IgnoreButCacheOnError);
+            List<UserGuild> guilds = await api.FetchGuildsOfCurrentUser(token, CacheBehavior.IgnoreButCacheOnError);
 
             return new DiscordOAuthIdentity(token, serviceProvider, user, guilds, serviceScopeFactory);
         }
 
-        private DiscordOAuthIdentity(string token, IServiceProvider serviceProvider, IUser currentUser, List<IGuild> userGuilds, IServiceScopeFactory serviceScopeFactory) : base(token, serviceProvider, serviceScopeFactory)
+        private DiscordOAuthIdentity(string token, IServiceProvider serviceProvider, IUser currentUser, List<UserGuild> userGuilds, IServiceScopeFactory serviceScopeFactory) : base(token, serviceProvider, serviceScopeFactory)
         {
             this.currentUser = currentUser;
             currentUserGuilds = userGuilds;
@@ -142,7 +142,7 @@ namespace MASZ.Models
         {
             if (!currentUserGuilds.Any(x => x.Id == member.Guild.Id))
             {
-                currentUserGuilds.Add(member.Guild);
+                currentUserGuilds.Add(new UserGuild(member.Guild));
             }
             GuildMemberships[member.Guild.Id] = member;
         }
@@ -151,7 +151,7 @@ namespace MASZ.Models
         {
             if (!currentUserGuilds.Any(x => x.Id == member.Guild.Id))
             {
-                currentUserGuilds.Add(member.Guild);
+                currentUserGuilds.Add(new UserGuild(member.Guild));
             }
             GuildMemberships[member.Guild.Id] = member;
         }

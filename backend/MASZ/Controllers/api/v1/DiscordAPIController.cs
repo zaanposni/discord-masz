@@ -24,7 +24,7 @@ namespace MASZ.Controllers.api.v1
         {
             Identity identity = await GetIdentity();
             IUser currentUser = identity.GetCurrentUser();
-            List<IGuild> currentUserGuilds = identity.GetCurrentUserGuilds();
+            List<UserGuild> currentUserGuilds = identity.GetCurrentUserGuilds();
 
             List<DiscordGuildView> memberGuilds = new();
             List<DiscordGuildView> modGuilds = new();
@@ -38,26 +38,26 @@ namespace MASZ.Controllers.api.v1
 
                 foreach (GuildConfig guild in registeredGuilds)
                 {
-                    IGuild userGuild = currentUserGuilds.FirstOrDefault(x => x.Id == guild.GuildId);
+                    UserGuild userGuild = currentUserGuilds.FirstOrDefault(x => x.Id == guild.GuildId);
                     if (userGuild != null)
                     {
-                        userGuild = _discordAPI.FetchGuildInfo(userGuild.Id, CacheBehavior.Default);
+                        IGuild userGuildFetched = _discordAPI.FetchGuildInfo(userGuild.Id, CacheBehavior.Default);
                         if (userGuild != null)
                         {
                             if (await identity.HasModRoleOrHigherOnGuild(guild.GuildId))
                             {
                                 if (await identity.HasAdminRoleOnGuild(guild.GuildId))
                                 {
-                                    adminGuilds.Add(new DiscordGuildView(userGuild));
+                                    adminGuilds.Add(new DiscordGuildView(userGuildFetched));
                                 }
                                 else
                                 {
-                                    modGuilds.Add(new DiscordGuildView(userGuild));
+                                    modGuilds.Add(new DiscordGuildView(userGuildFetched));
                                 }
                             }
                             else
                             {
-                                memberGuilds.Add(new DiscordGuildView(userGuild));
+                                memberGuilds.Add(new DiscordGuildView(userGuildFetched));
                             }
                         }
                     }

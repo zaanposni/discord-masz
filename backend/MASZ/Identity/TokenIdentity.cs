@@ -25,7 +25,7 @@ namespace MASZ.Models
                 }
                 isValid = valid;
                 currentUser = _discordAPI.GetCurrentBotInfo();
-                currentUserGuilds = new List<IGuild>();
+                currentUserGuilds = new List<UserGuild>();
             }
         }
 

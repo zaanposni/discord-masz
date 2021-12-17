@@ -333,30 +333,31 @@ namespace MASZ.Services
             return guild;
         }
 
-        public async Task<List<IGuild>> FetchGuildsOfCurrentUser(string token, CacheBehavior cacheBehavior)
+        public async Task<List<UserGuild>> FetchGuildsOfCurrentUser(string token, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.TokenUserGuilds(token);
-            List<IGuild> guilds;
+            List<UserGuild> guilds;
             try
             {
-                guilds = TryGetFromCache<List<IGuild>>(cacheKey, cacheBehavior);
+                guilds = TryGetFromCache<List<UserGuild>>(cacheKey, cacheBehavior);
                 if (guilds != null) return guilds;
             }
             catch (NotFoundInCacheException)
             {
-                return new List<IGuild>();
+                return new List<UserGuild>();
             }
 
             // request ---------------------------
             try
             {
-                guilds = (await (await GetOAuthClient(token)).GetGuildsAsync()).Select(guild => guild as IGuild).ToList();  // max 200 guilds
+                var client = await GetOAuthClient(token);
+                guilds = (await client.GetGuildSummariesAsync().FlattenAsync()).Select(guild => new UserGuild(guild)).ToList();
             }
             catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to fetch guilds of current user for token '{token}' from API.");
-                return FallBackToCache<List<IGuild>>(cacheKey, cacheBehavior);
+                return FallBackToCache<List<UserGuild>>(cacheKey, cacheBehavior);
             }
 
             // cache -----------------------------
