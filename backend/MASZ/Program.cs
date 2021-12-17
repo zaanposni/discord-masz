@@ -7,7 +7,6 @@ using MASZ.Logger;
 using MASZ.Middlewares;
 using MASZ.Plugins;
 using MASZ.Services;
-using MASZ.Workers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -63,8 +62,6 @@ builder.Services
 
 .AddSingleton<InternalConfiguration>()
 
-.AddSingleton<DiscordBot>()
-
 .AddSingleton<DiscordAPIInterface>()
 
 .AddSingleton<IdentityManager>()
@@ -72,6 +69,12 @@ builder.Services
 .AddSingleton<InternalEventHandler>()
 
 .AddSingleton<AuditLogger>()
+
+.AddSingleton<DiscordBot>()
+
+.AddSingleton<Punishments>()
+
+.AddSingleton<Scheduler>()
 
 // SCOPED
 
@@ -84,13 +87,13 @@ builder.Services
 .AddScoped<DiscordAnnouncer>()
 
 // HOSTED
-.AddSingleton<BotWorker>()
-.AddHostedService(p => p.GetRequiredService<BotWorker>())
 
-.AddSingleton<Punishments>()
+.AddHostedService(p => p.GetRequiredService<DiscordBot>())
+
 .AddHostedService(p => p.GetRequiredService<Punishments>())
 
-.AddSingleton<Scheduler>()
+.AddHostedService(p => p.GetRequiredService<AuditLogger>())
+
 .AddHostedService(p => p.GetRequiredService<Scheduler>());
 
 // Plugin
@@ -225,9 +228,6 @@ using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().Creat
 using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
 {
     scope.ServiceProvider.GetRequiredService<InternalConfiguration>().Init();
-
-    scope.ServiceProvider.GetRequiredService<DiscordBot>().RegisterEvents();
-    scope.ServiceProvider.GetRequiredService<AuditLogger>().RegisterEvents();
 
     if (string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
         scope.ServiceProvider.GetServices<IBasePlugin>().ToList().ForEach(x => x.Init());

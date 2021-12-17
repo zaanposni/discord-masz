@@ -14,8 +14,8 @@ namespace MASZ.Models
 
         public async static Task<DiscordCommandIdentity> Create(IUser user, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
         {
-            Database database = serviceProvider.GetRequiredService(typeof(Database)) as Database;
-            DiscordAPIInterface discordAPI = serviceProvider.GetRequiredService(typeof(DiscordAPIInterface)) as DiscordAPIInterface;
+            Database database = serviceScopeFactory.CreateScope().ServiceProvider.GetRequiredService<Database>();
+            DiscordAPIInterface discordAPI = serviceProvider.GetRequiredService<DiscordAPIInterface>();
 
             List<GuildConfig> guildConfigs = await database.SelectAllGuildConfigs();
             List<IGuild> guilds = new();
@@ -32,7 +32,7 @@ namespace MASZ.Models
         {
             this.currentUser = currentUser;
             currentUserGuilds = userGuilds;
-            _discordBot = serviceProvider.GetRequiredService(typeof(DiscordBot)) as DiscordBot;
+            _discordBot = serviceProvider.GetRequiredService<DiscordBot>();
         }
         public override async Task<IGuildUser> GetGuildMembership(ulong guildId)
         {

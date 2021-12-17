@@ -6,7 +6,7 @@ namespace MASZ.Utils
     public class AsyncEvent<T>
         where T : class
     {
-        private readonly object _subLock = new ();
+        private readonly object _subLock = new();
         internal ImmutableArray<T> _subscriptions;
 
         public bool HasSubscribers => _subscriptions.Length != 0;

@@ -4,7 +4,6 @@ using MASZ.Exceptions;
 using MASZ.Models;
 using MASZ.Repositories;
 using MASZ.Services;
-using MASZ.Workers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MASZ.Controllers
@@ -22,13 +21,13 @@ namespace MASZ.Controllers
 
         public SimpleController(IServiceProvider serviceProvider)
         {
-            _identityManager = (IdentityManager)serviceProvider.GetRequiredService(typeof(IdentityManager));
-            _config = (InternalConfiguration)serviceProvider.GetRequiredService(typeof(InternalConfiguration));
-            _discordAPI = (DiscordAPIInterface)serviceProvider.GetRequiredService(typeof(DiscordAPIInterface));
-            _discordBot = (DiscordBot)serviceProvider.GetRequiredService(typeof(DiscordBot));
-            _scheduler = (Scheduler)serviceProvider.GetRequiredService(typeof(Scheduler));
-            _discordAnnouncer = (DiscordAnnouncer)serviceProvider.GetRequiredService(typeof(DiscordAnnouncer));
-            _translator = (Translator)serviceProvider.GetRequiredService(typeof(Translator));
+            _identityManager = serviceProvider.GetRequiredService<IdentityManager>();
+            _config = serviceProvider.GetRequiredService<InternalConfiguration>();
+            _discordAPI = serviceProvider.GetRequiredService<DiscordAPIInterface>();
+            _discordBot = serviceProvider.GetRequiredService<DiscordBot>();
+            _scheduler = serviceProvider.GetRequiredService<Scheduler>();
+            _discordAnnouncer = serviceProvider.GetRequiredService<DiscordAnnouncer>();
+            _translator = serviceProvider.GetRequiredService<Translator>();
             _serviceProvider = serviceProvider;
         }
 

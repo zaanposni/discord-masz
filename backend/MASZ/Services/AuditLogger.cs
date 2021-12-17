@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MASZ.Services
 {
-    public class AuditLogger
+    public class AuditLogger : BackgroundService
     {
         private readonly ILogger<AuditLogger> _logger;
         private readonly InternalConfiguration _config;
@@ -16,7 +16,6 @@ namespace MASZ.Services
         private readonly InternalEventHandler _eventHandler;
         private readonly StringBuilder _currentMessage;
 
-        private bool hasStarted;
 
         public AuditLogger(ILogger<AuditLogger> logger, InternalConfiguration config, DiscordAPIInterface discordAPI, InternalEventHandler eventHandler, DiscordSocketClient client)
         {
@@ -26,7 +25,60 @@ namespace MASZ.Services
             _eventHandler = eventHandler;
             _client = client;
             _currentMessage = new StringBuilder();
-            hasStarted = false;
+
+            RegisterEvents();
+        }
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            QueueLog($"============== STARTUP ==============");
+            QueueLog("`MASZ` started!");
+            QueueLog("System time: " + DateTime.Now.ToString());
+            QueueLog("System time (UTC): " + DateTime.UtcNow.ToString());
+            QueueLog($"Language: `{_config.GetDefaultLanguage()}`");
+            QueueLog($"Hostname: `{_config.GetHostName()}`");
+            QueueLog($"URL: `{_config.GetBaseUrl()}`");
+            QueueLog($"Domain: `{_config.GetServiceDomain()}`");
+            QueueLog($"ClientID: `{_config.GetClientId()}`");
+
+            if (_config.IsCorsEnabled())
+            {
+                QueueLog("CORS support: \u26A0 `ENABLED`");
+            }
+            else
+            {
+                QueueLog("CORS support: `DISABLED`");
+            }
+
+            if (_config.IsCustomPluginModeEnabled())
+            {
+                QueueLog("Plugin support: \u26A0 `ENABLED`");
+            }
+            else
+            {
+                QueueLog("Plugin support: `DISABLED`");
+            }
+
+            if (_config.IsDemoModeEnabled())
+            {
+                QueueLog("Demo mode: \u26A0 `ENABLED`");
+            }
+            else
+            {
+                QueueLog("Demo mode: `DISABLED`");
+            }
+
+            if (_config.IsPublicFileEnabled())
+            {
+                QueueLog("Public file mode: \u26A0 `ENABLED`");
+            }
+            else
+            {
+                QueueLog("Public file mode: `DISABLED`");
+            }
+
+            QueueLog($"============== /STARTUP =============");
+            await ExecuteWebhook();
         }
 
         public void RegisterEvents()
@@ -49,8 +101,6 @@ namespace MASZ.Services
             _eventHandler.OnGuildMotdUpdated += OnGuildMotdUpdated;
             _eventHandler.OnFileUploaded += OnFileUploaded;
             _eventHandler.OnInternalCachingDone += OnInternalCachingDone;
-
-            _logger.LogInformation("Registered events for audit logger.");
         }
 
         public async void QueueLog(string message)
@@ -167,12 +217,6 @@ namespace MASZ.Services
 
         private async Task OnBotReady()
         {
-            if (!hasStarted)
-            {
-                hasStarted = true;
-                await Ready();
-            }
-
             QueueLog($"Bot **connected** to `{_client.Guilds.Count} guild(s)` with `{_client.Latency}ms` latency.");
             await ExecuteWebhook();
         }
@@ -201,57 +245,5 @@ namespace MASZ.Services
             return Task.CompletedTask;
         }
 
-        public async Task Ready()
-        {
-            QueueLog($"============== STARTUP ==============");
-            QueueLog("`MASZ` started!");
-            QueueLog("System time: " + DateTime.Now.ToString());
-            QueueLog("System time (UTC): " + DateTime.UtcNow.ToString());
-            QueueLog($"Language: `{_config.GetDefaultLanguage()}`");
-            QueueLog($"Hostname: `{_config.GetHostName()}`");
-            QueueLog($"URL: `{_config.GetBaseUrl()}`");
-            QueueLog($"Domain: `{_config.GetServiceDomain()}`");
-            QueueLog($"ClientID: `{_config.GetClientId()}`");
-
-            if (_config.IsCorsEnabled())
-            {
-                QueueLog("CORS support: \u26A0 `ENABLED`");
-            }
-            else
-            {
-                QueueLog("CORS support: `DISABLED`");
-            }
-
-            if (_config.IsCustomPluginModeEnabled())
-            {
-                QueueLog("Plugin support: \u26A0 `ENABLED`");
-            }
-            else
-            {
-                QueueLog("Plugin support: `DISABLED`");
-            }
-
-            if (_config.IsDemoModeEnabled())
-            {
-                QueueLog("Demo mode: \u26A0 `ENABLED`");
-            }
-            else
-            {
-                QueueLog("Demo mode: `DISABLED`");
-            }
-
-            if (_config.IsPublicFileEnabled())
-            {
-                QueueLog("Public file mode: \u26A0 `ENABLED`");
-            }
-            else
-            {
-                QueueLog("Public file mode: `DISABLED`");
-            }
-
-            QueueLog($"============== /STARTUP =============");
-
-            await ExecuteWebhook();
-        }
     }
 }

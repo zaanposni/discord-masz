@@ -1,6 +1,5 @@
 using MASZ.Data;
 using MASZ.Services;
-using MASZ.Workers;
 
 namespace MASZ.Plugins
 {
@@ -12,20 +11,21 @@ namespace MASZ.Plugins
         protected readonly DiscordAPIInterface _discordAPI;
         protected readonly DiscordBot _discordBot;
         protected readonly Scheduler _scheduler;
-        protected readonly EventHandler _eventHandler;
+        protected readonly InternalEventHandler _eventHandler;
         protected readonly IServiceProvider _serviceProvider;
 
         public BasePlugin() { }
 
         public BasePlugin(IServiceProvider serviceProvider)
         {
-            _database = (Database)serviceProvider.GetRequiredService(typeof(Database));
-            _identityManager = (IdentityManager)serviceProvider.GetRequiredService(typeof(IdentityManager));
-            _config = (InternalConfiguration)serviceProvider.GetRequiredService(typeof(InternalConfiguration));
-            _discordAPI = (DiscordAPIInterface)serviceProvider.GetRequiredService(typeof(DiscordAPIInterface));
-            _discordBot = (DiscordBot)serviceProvider.GetRequiredService(typeof(DiscordBot));
-            _scheduler = (Scheduler)serviceProvider.GetRequiredService(typeof(Scheduler));
-            _eventHandler = (EventHandler)serviceProvider.GetRequiredService(typeof(EventHandler));
+            _database = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<Database>();
+
+            _identityManager = serviceProvider.GetRequiredService<IdentityManager>();
+            _config = serviceProvider.GetRequiredService<InternalConfiguration>();
+            _discordAPI = serviceProvider.GetRequiredService<DiscordAPIInterface>();
+            _discordBot = serviceProvider.GetRequiredService<DiscordBot>();
+            _scheduler = serviceProvider.GetRequiredService<Scheduler>();
+            _eventHandler = serviceProvider.GetRequiredService<InternalEventHandler>();
             _serviceProvider = serviceProvider;
         }
     }

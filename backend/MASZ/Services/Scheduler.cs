@@ -1,12 +1,11 @@
 using Discord;
-using MASZ.Enums;
-using MASZ.Models;
-using MASZ.Extensions;
-using Timer = System.Timers.Timer;
 using MASZ.Data;
-using MASZ.Services;
+using MASZ.Enums;
+using MASZ.Extensions;
+using MASZ.Models;
+using Timer = System.Timers.Timer;
 
-namespace MASZ.Workers
+namespace MASZ.Services
 {
     public class Scheduler : BackgroundService
     {

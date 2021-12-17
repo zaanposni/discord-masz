@@ -1,8 +1,8 @@
 using Discord;
 using MASZ.Enums;
 using MASZ.Exceptions;
-using MASZ.Models;
 using MASZ.Extensions;
+using MASZ.Models;
 
 namespace MASZ.Repositories
 {
@@ -24,6 +24,7 @@ namespace MASZ.Repositories
             _currentUser = DiscordAPI.GetCurrentBotInfo();
             _isBot = true;
         }
+
         public static CaseTemplateRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new(serviceProvider, identity);
         public static CaseTemplateRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new(serviceProvider);
 
@@ -82,6 +83,7 @@ namespace MASZ.Repositories
             }
             return filteredTemplates;
         }
+
         private async Task<bool> AllowedToView(CaseTemplate template)
         {
             if (_isBot)

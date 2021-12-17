@@ -1,8 +1,8 @@
 ﻿using Discord;
 using MASZ.Exceptions;
+using MASZ.Extensions;
 using MASZ.Models;
 using MASZ.Repositories;
-using MASZ.Extensions;
 using Microsoft.AspNetCore.Authentication;
 
 namespace MASZ.Services

@@ -1,7 +1,7 @@
 using Discord;
 using MASZ.Enums;
-using MASZ.Models;
 using MASZ.Extensions;
+using MASZ.Models;
 using System.Text;
 
 namespace MASZ.Repositories

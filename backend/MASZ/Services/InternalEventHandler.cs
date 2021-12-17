@@ -12,7 +12,7 @@ namespace MASZ.Services
             remove { OnIdentityRegisteredEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<Identity, Task>> OnIdentityRegisteredEvent = new ();
+        internal readonly AsyncEvent<Func<Identity, Task>> OnIdentityRegisteredEvent = new();
 
         public event Func<APIToken, Task> OnTokenCreated
         {

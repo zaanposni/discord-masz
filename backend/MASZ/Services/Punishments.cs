@@ -4,10 +4,9 @@ using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.Models;
 using MASZ.Repositories;
-using MASZ.Services;
 using Timer = System.Timers.Timer;
 
-namespace MASZ.Workers
+namespace MASZ.Services
 {
     public class Punishments : BackgroundService
     {
@@ -37,7 +36,7 @@ namespace MASZ.Workers
             EventTimer.Elapsed += (s, e) => CheckAllCurrentPunishments();
 
             await Task.Run(() => EventTimer.Start(), stoppingToken);
-            
+
             _logger.LogWarning("Finished action loop.");
         }
 

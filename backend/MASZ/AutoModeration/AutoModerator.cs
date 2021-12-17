@@ -20,9 +20,9 @@ namespace MASZ.AutoModeration
         {
             _client = client;
             _serviceProvider = serviceProvider;
-            _logger = (ILogger<AutoModerator>)_serviceProvider.GetRequiredService(typeof(ILogger<AutoModerator>));
-            _config = (InternalConfiguration)_serviceProvider.GetRequiredService(typeof(InternalConfiguration));
-            _announcer = (DiscordAnnouncer)_serviceProvider.GetRequiredService(typeof(DiscordAnnouncer));
+            _logger = _serviceProvider.GetRequiredService<ILogger<AutoModerator>>();
+            _config = _serviceProvider.GetRequiredService<InternalConfiguration>();
+            _announcer = _serviceProvider.GetRequiredService<DiscordAnnouncer>();
 
             _guildConfig = guildConfig;
             _autoModerationConfigs = autoModerationConfigs;

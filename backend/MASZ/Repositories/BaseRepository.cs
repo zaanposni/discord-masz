@@ -4,7 +4,6 @@ using MASZ.Data;
 using MASZ.Models;
 using MASZ.Models.Views;
 using MASZ.Services;
-using MASZ.Workers;
 
 namespace MASZ.Repositories
 {
@@ -33,6 +32,7 @@ namespace MASZ.Repositories
             Logger = serviceProvider.GetRequiredService<ILogger<T>>();
             Database = serviceProvider.GetRequiredService<Database>();
             DiscordAPI = serviceProvider.GetRequiredService<DiscordAPIInterface>();
+
             _config = serviceProvider.GetRequiredService<InternalConfiguration>();
             _identityManager = serviceProvider.GetRequiredService<IdentityManager>();
             _discordAnnouncer = serviceProvider.GetRequiredService<DiscordAnnouncer>();

@@ -21,8 +21,8 @@ namespace MASZ.Models
             ValidUntil = DateTime.UtcNow.AddMinutes(15);
 
             _serviceScopeFactory = serviceScopeFactory;
-            _discordAPI = (DiscordAPIInterface)serviceProvider.GetRequiredService(typeof(DiscordAPIInterface));
-            _config = (InternalConfiguration)serviceProvider.GetRequiredService(typeof(InternalConfiguration));
+            _discordAPI = serviceProvider.GetRequiredService<DiscordAPIInterface>();
+            _config = serviceProvider.GetRequiredService<InternalConfiguration>();
         }
 
         /// <summary>
