@@ -44,7 +44,7 @@ namespace MASZ.InviteTracking
             MaxUses = invite.MaxUses;
             try
             {
-                TargetChannelId = invite.Channel.Id;
+                TargetChannelId = invite.ChannelId;
             }
             catch (NullReferenceException)
             {
