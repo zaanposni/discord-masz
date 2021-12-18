@@ -21,17 +21,22 @@ namespace MASZ.Services
         private readonly DiscordSocketClient _client;
         private readonly InternalConfiguration _internalConfiguration;
         private readonly InteractionService _interactions;
+        private readonly Scheduler _scheduler;
+        private readonly Punishments _punishments;
         private readonly IServiceProvider _serviceProvider;
         private readonly IServiceScopeFactory _serviceScopeFactory;
+        private bool _firstReady = true;
         private bool _isRunning = false;
         private DateTime? _lastDisconnect = null;
 
-        public DiscordBot(ILogger<DiscordBot> logger, DiscordSocketClient client, InternalConfiguration internalConfiguration, InteractionService interactions, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
+        public DiscordBot(ILogger<DiscordBot> logger, DiscordSocketClient client, InternalConfiguration internalConfiguration, InteractionService interactions, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory, Scheduler scheduler, Punishments punishments)
         {
             _logger = logger;
             _client = client;
             _internalConfiguration = internalConfiguration;
             _interactions = interactions;
+            _scheduler = scheduler;
+            _punishments = punishments;
             _serviceProvider = serviceProvider;
             _serviceScopeFactory = serviceScopeFactory;
 
@@ -142,6 +147,14 @@ namespace MASZ.Services
             {
                 await JoinGuild(guild);
             }
+
+            if (_firstReady)
+            {
+                _firstReady = false;
+                await _scheduler.ExecuteAsync();
+                await _punishments.ExecuteAsync();
+            }
+
         }
 
         private static Task Log(LogMessage logMessage, ILogger logger)

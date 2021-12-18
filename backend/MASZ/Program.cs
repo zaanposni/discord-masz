@@ -221,8 +221,6 @@ using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().Creat
 
     await scope.ServiceProvider.GetRequiredService<AuditLogger>().ExecuteAsync();
     await scope.ServiceProvider.GetRequiredService<DiscordBot>().ExecuteAsync();
-    await scope.ServiceProvider.GetRequiredService<Punishments>().ExecuteAsync();
-    await scope.ServiceProvider.GetRequiredService<Scheduler>().ExecuteAsync();
 
     if (string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
         scope.ServiceProvider.GetServices<IBasePlugin>().ToList().ForEach(x => x.Init());

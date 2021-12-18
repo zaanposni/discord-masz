@@ -127,7 +127,7 @@ namespace MASZ.Services
                 _logger.LogInformation("Executing auditlog webhook.");
                 try
                 {
-                    await _discordAPI.ExecuteWebhook(_config.GetAuditLogWebhook(), null, _currentMessage.ToString());
+                    await _discordAPI.ExecuteWebhook(_config.GetAuditLogWebhook(), null, _currentMessage.ToString(), AllowedMentions.None);
                 }
                 catch (Exception e)
                 {

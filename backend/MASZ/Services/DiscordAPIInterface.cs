@@ -101,9 +101,8 @@ namespace MASZ.Services
             // request ---------------------------
             try
             {
-                IGuild guild = FetchGuildInfo(guildId, CacheBehavior.Default);
-                if (guild == null) return new List<IBan>();
-                bans = (await guild.GetBansAsync()).ToList();
+                SocketGuild guild = _client.GetGuild(guildId);
+                bans = (await guild.GetBansAsync()).Select(x => x as IBan).ToList();
             }
             catch (Exception e)
             {
@@ -139,8 +138,7 @@ namespace MASZ.Services
             // request ---------------------------
             try
             {
-                IGuild guild = FetchGuildInfo(guildId, CacheBehavior.Default);
-                if (guild == null) return null;
+                SocketGuild guild = _client.GetGuild(guildId);
                 ban = await guild.GetBanAsync(userId);
             }
             catch (Exception e)
@@ -204,9 +202,8 @@ namespace MASZ.Services
             // request ---------------------------
             try
             {
-                IGuild guild = FetchGuildInfo(guildId, cacheBehavior);
-                if (guild == null) return new List<IGuildUser>();
-                members = (await guild.GetUsersAsync()).ToList();
+                SocketGuild guild = _client.GetGuild(guildId);
+                members = (await guild.GetUsersAsync().FlattenAsync()).ToList();
             }
             catch (Exception e)
             {
@@ -287,9 +284,8 @@ namespace MASZ.Services
             // request ---------------------------
             try
             {
-                IGuild guild = FetchGuildInfo(guildId, cacheBehavior);
-                if (guild == null) return new List<IGuildChannel>();
-                channels = (await guild.GetChannelsAsync()).ToList();
+                SocketGuild guild = _client.GetGuild(guildId);
+                channels = guild.Channels.Select(x => x as IGuildChannel).ToList();
             }
             catch (Exception e)
             {
@@ -309,7 +305,7 @@ namespace MASZ.Services
             IGuild guild;
             try
             {
-                guild = TryGetFromCache<IGuild>(cacheKey, cacheBehavior);
+                guild = TryGetFromCache<SocketGuild>(cacheKey, cacheBehavior);
                 if (guild != null) return guild;
             }
             catch (NotFoundInCacheException)
@@ -325,7 +321,7 @@ namespace MASZ.Services
             catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to fetch guild '{guildId}' from API.");
-                return FallBackToCache<IGuild>(cacheKey, cacheBehavior);
+                return FallBackToCache<SocketGuild>(cacheKey, cacheBehavior);
             }
 
             // cache -----------------------------
@@ -407,8 +403,7 @@ namespace MASZ.Services
         {
             try
             {
-                IGuild guild = FetchGuildInfo(guildId, CacheBehavior.Default);
-                if (guild == null) return false;
+                SocketGuild guild = _client.GetGuild(guildId);
                 await guild.AddBanAsync(userId, 0);
             }
             catch (Exception e)
@@ -423,8 +418,7 @@ namespace MASZ.Services
         {
             try
             {
-                IGuild guild = FetchGuildInfo(guildId, CacheBehavior.Default);
-                if (guild == null) return false;
+                SocketGuild guild = _client.GetGuild(guildId);
                 await guild.RemoveBanAsync(userId);
             }
             catch (Exception e)
@@ -440,8 +434,7 @@ namespace MASZ.Services
             // request ---------------------------
             try
             {
-                IGuild guild = FetchGuildInfo(guildId, CacheBehavior.Default);
-                if (guild == null) return false;
+                SocketGuild guild = _client.GetGuild(guildId);
                 IGuildUser member = await FetchMemberInfo(guildId, userId, CacheBehavior.Default);
                 if (member == null) return false;
                 IRole role = guild.Roles.Where(r => r.Id == roleId).FirstOrDefault();
@@ -461,8 +454,7 @@ namespace MASZ.Services
             // request ---------------------------
             try
             {
-                IGuild guild = FetchGuildInfo(guildId, CacheBehavior.Default);
-                if (guild == null) return false;
+                SocketGuild guild = _client.GetGuild(guildId);
                 IGuildUser member = await FetchMemberInfo(guildId, userId, CacheBehavior.Default);
                 if (member == null) return false;
                 IRole role = guild.Roles.Where(r => r.Id == roleId).FirstOrDefault();
@@ -564,9 +556,9 @@ namespace MASZ.Services
             return await SendMessage(channel.Id, null, embed);
         }
 
-        public async Task ExecuteWebhook(string url, Embed embed = null, string content = null)
+        public async Task ExecuteWebhook(string url, Embed embed = null, string content = null, AllowedMentions allowedMentions = null)
         {
-            await new DiscordWebhookClient(url).SendMessageAsync(content, embeds: embed != null ? new Embed[1] { embed } : null);
+            await new DiscordWebhookClient(url).SendMessageAsync(content, embeds: embed != null ? new Embed[1] { embed } : null, allowedMentions: allowedMentions);
         }
 
         public Dictionary<string, CacheApiResponse> GetCache()
