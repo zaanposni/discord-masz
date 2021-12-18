@@ -19,7 +19,7 @@ namespace MASZ.Models.Views
             Id = user.Id.ToString();
             Username = user.Username;
             Discriminator = user.Discriminator;
-            ImageUrl = user.GetAvatarUrl();
+            ImageUrl = user.GetAvatarUrl(size: 512) ?? user.GetDefaultAvatarUrl();
             Locale = user is ISelfUser sUser ? sUser.Locale : "en-US";
             Avatar = user.AvatarId;
             Bot = user.IsBot;

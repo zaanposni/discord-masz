@@ -66,9 +66,11 @@ If you want to deploy on a domain:
 ### Discord OAuth
 
 Create your own OAuth application [here](https://discord.com/developers/applications).\
-Also set the redirect paths in the tab `OAuth2`. Be sure to set the following (choose localhost or domain depending on your deployment):
+Also set the redirect paths in the tab `OAuth2`.\
+Be sure to set the following (choose localhost or domain depending on your deployment):
 
 ![redirect example](/docs/redirects.png)
+![redirect example2](/docs/redirects2.png)
 
 ### Bot Intents
 

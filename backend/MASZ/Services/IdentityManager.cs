@@ -25,14 +25,32 @@ namespace MASZ.Services
             _serviceScopeFactory = serviceScopeFactory;
         }
 
+        private string GetKeyByContext(HttpContext httpContext)
+        {
+            try
+            {
+                if (httpContext.Request.Headers.ContainsKey("Authorization"))
+                {
+                    return "/api/" + httpContext.Request.Headers["Authorization"];
+                }
+                else
+                {
+                    return httpContext.Request.Cookies["masz_access_token"];
+                }
+            }
+            catch (KeyNotFoundException)
+            {
+                throw new UnauthorizedException();
+            }
+        }
+
         private async Task<Identity> RegisterNewIdentity(HttpContext httpContext)
         {
-            string key;
+            string key = GetKeyByContext(httpContext);
             Identity identity;
             if (httpContext.Request.Headers.ContainsKey("Authorization"))
             {
                 _logger.LogInformation("Registering new TokenIdentity.");
-                key = "/api/" + httpContext.Request.Headers["Authorization"];
                 string fullToken = httpContext.Request.Headers["Authorization"];
                 string token = string.Empty;
                 try
@@ -53,7 +71,6 @@ namespace MASZ.Services
             }
             else
             {
-                key = httpContext.Request.Cookies["masz_access_token"];
                 _logger.LogInformation("Registering new DiscordIdentity.");
                 string token = await httpContext.GetTokenAsync("Cookies", "access_token");
                 identity = await DiscordOAuthIdentity.Create(token, _serviceProvider, _serviceScopeFactory);
@@ -76,17 +93,17 @@ namespace MASZ.Services
             return identity;
         }
 
+        public void RemoveIdentity(HttpContext httpContext)
+        {
+            string key = GetKeyByContext(httpContext);
+            identities.Remove(key);
+
+            // TODO: onIdentityRemovedEvent.InvokeAsync();
+        }
+
         public async Task<Identity> GetIdentity(HttpContext httpContext)
         {
-            string key;
-            if (httpContext.Request.Headers.ContainsKey("Authorization"))
-            {
-                key = "/api/" + httpContext.Request.Headers["Authorization"];
-            }
-            else
-            {
-                key = httpContext.Request.Cookies["masz_access_token"];
-            }
+            string key = GetKeyByContext(httpContext);
             if (string.IsNullOrEmpty(key))
             {
                 throw new UnauthorizedException();

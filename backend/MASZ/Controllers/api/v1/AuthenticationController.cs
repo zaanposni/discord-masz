@@ -7,8 +7,12 @@ namespace MASZ.Controllers
 {
     [ApiController]
     [Route("api/v1")]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationController : SimpleController
     {
+        public AuthenticationController(IServiceProvider serviceProvider) : base(serviceProvider)
+        {
+        }
+
         [HttpGet("login")]
         public IActionResult Login([FromQuery] string ReturnUrl)
         {
@@ -35,6 +39,7 @@ namespace MASZ.Controllers
         [Authorize]
         public IActionResult Logout()
         {
+            _identityManager.RemoveIdentity(HttpContext);
             var properties = new AuthenticationProperties()
             {
                 RedirectUri = "/",
