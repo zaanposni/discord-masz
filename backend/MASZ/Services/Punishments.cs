@@ -37,6 +37,8 @@ namespace MASZ.Services
 
             await Task.Run(() => EventTimer.Start());
 
+            CheckAllCurrentPunishments();
+
             _logger.LogWarning("Finished action loop.");
         }
 

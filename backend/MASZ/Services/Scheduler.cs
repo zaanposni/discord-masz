@@ -47,6 +47,8 @@ namespace MASZ.Services
             await Task.Run(() => EventTimer.Start());
 
             _logger.LogWarning("Started schedule timers.");
+
+            LoopThroughCaches();
         }
 
         public void LoopThroughCaches()
@@ -62,7 +64,6 @@ namespace MASZ.Services
             {
                 _logger.LogError(e, "Error in caching.");
             }
-            Thread.Sleep(1000 * 60 * _cacheIntervalMinutes);
         }
 
         public async void CheckDeletedCases()
