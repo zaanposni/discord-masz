@@ -19,15 +19,16 @@ namespace MASZ.Commands
             EmbedBuilder embed = new();
             embed.WithTitle("Avatar");
             embed.WithFooter($"UserId: {user.Id}");
-            if (member != null && member.GuildAvatarId != user.AvatarId)
+
+            if (member != null && member.GuildAvatarId != null)
             {
-                embed.WithUrl(member.GuildAvatarId);
-                embed.WithImageUrl(member.GuildAvatarId);
+                embed.WithUrl(member.GetGuildAvatarUrl());
+                embed.WithImageUrl(member.GetGuildAvatarUrl());
             }
             else
             {
-                embed.WithUrl(user.AvatarId);
-                embed.WithImageUrl(user.AvatarId);
+                embed.WithUrl(user.GetAvatarUrl());
+                embed.WithImageUrl(user.GetAvatarUrl());
             }
 
             await Context.Interaction.RespondAsync(embed: embed.Build(), ephemeral: true);

@@ -102,9 +102,7 @@ namespace MASZ.Services
                 // Create an execution context that matches the generic type parameter of your InteractionModuleBase<T> modules
                 var ctx = new SocketInteractionContext(_client, arg);
 
-                using var scope = _serviceProvider.CreateScope();
-
-                await _interactions.ExecuteCommandAsync(ctx, scope.ServiceProvider);
+                await _interactions.ExecuteCommandAsync(ctx, _serviceProvider);
             }
             catch (Exception)
             {
@@ -580,9 +578,10 @@ namespace MASZ.Services
 
         private async Task CmdErroredHandler(SlashCommandInfo info, IInteractionContext context, Discord.Interactions.IResult result)
         {
-            Console.WriteLine("ASDKJHKFASJ");
             if (!result.IsSuccess)
+            {
                 if (result is ExecuteResult eResult)
+                {
                     if (eResult.Exception is BaseAPIException)
                     {
                         _logger.LogError($"Command '{info.Name}' invoked by '{context.User.Username}#{context.User.Discriminator}' failed: {(eResult.Exception as BaseAPIException).Error}");
@@ -615,6 +614,10 @@ namespace MASZ.Services
                     {
                         _logger.LogError($"Command '{info.Name}' invoked by '{context.User.Username}#{context.User.Discriminator}' failed: " + eResult.Exception.Message + "\n" + eResult.Exception.StackTrace);
                     }
+                }
+                else
+                    _logger.LogError($"Command '{info.Name}' invoked by '{context.User.Username}#{context.User.Discriminator}' failed due to {result.Error}.");
+            }
         }
     }
 }

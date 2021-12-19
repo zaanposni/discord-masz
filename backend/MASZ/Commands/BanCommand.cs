@@ -46,7 +46,7 @@ namespace MASZ.Commands
             modCase.PunishedUntil = DateTime.UtcNow.AddHours(punishedForHours);
             if (punishedForHours == 0)
             {
-                modCase.PunishedUntil = null;  // remove duration for perma ban
+                modCase.PunishedUntil = null; // Permanent ban.
             }
             modCase.CreationType = CaseCreationType.ByCommand;
 
