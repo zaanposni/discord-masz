@@ -13,19 +13,15 @@ namespace MASZ.Services
         private readonly ILogger<IdentityManager> _logger;
         private readonly InternalEventHandler _eventHandler;
         private readonly IServiceProvider _serviceProvider;
-        private readonly IServiceScopeFactory _serviceScopeFactory;
 
-        public IdentityManager() { }
-
-        public IdentityManager(ILogger<IdentityManager> logger, InternalEventHandler eventHandler, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
+        public IdentityManager(ILogger<IdentityManager> logger, InternalEventHandler eventHandler, IServiceProvider serviceProvider)
         {
             _logger = logger;
             _eventHandler = eventHandler;
             _serviceProvider = serviceProvider;
-            _serviceScopeFactory = serviceScopeFactory;
         }
 
-        private string GetKeyByContext(HttpContext httpContext)
+        private static string GetKeyByContext(HttpContext httpContext)
         {
             try
             {
@@ -67,13 +63,13 @@ namespace MASZ.Services
                     registeredToken = await TokenRepository.CreateDefault(_serviceProvider).GetToken();
                 }
                 catch (ResourceNotFoundException) { }
-                identity = new TokenIdentity(token, _serviceProvider, registeredToken, _serviceScopeFactory);
+                identity = new TokenIdentity(token, _serviceProvider, registeredToken);
             }
             else
             {
                 _logger.LogInformation("Registering new DiscordIdentity.");
                 string token = await httpContext.GetTokenAsync("Cookies", "access_token");
-                identity = await DiscordOAuthIdentity.Create(token, _serviceProvider, _serviceScopeFactory);
+                identity = await DiscordOAuthIdentity.Create(token, _serviceProvider);
             }
             identities[key] = identity;
 
@@ -85,7 +81,7 @@ namespace MASZ.Services
         private async Task<Identity> RegisterNewIdentity(IUser user)
         {
             string key = $"/discord/cmd/{user.Id}";
-            Identity identity = await DiscordCommandIdentity.Create(user, _serviceProvider, _serviceScopeFactory);
+            Identity identity = await DiscordCommandIdentity.Create(user, _serviceProvider);
             identities[key] = identity;
 
             await _eventHandler.OnIdentityRegisteredEvent.InvokeAsync(identity);

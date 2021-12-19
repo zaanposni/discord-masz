@@ -11,8 +11,6 @@ namespace MASZ.Services
         private readonly Translation _translation;
         private readonly IServiceProvider _serviceProvider;
 
-        public Translator() { }
-
         public Translator(InternalConfiguration config, IServiceProvider serviceProvider)
         {
             _config = config;

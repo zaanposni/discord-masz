@@ -8,19 +8,19 @@ namespace MASZ.Models
 {
     public abstract class Identity
     {
-        protected readonly IServiceScopeFactory _serviceScopeFactory;
+        protected readonly IServiceProvider _serviceProvider;
         protected readonly DiscordAPIInterface _discordAPI;
         protected readonly InternalConfiguration _config;
         public DateTime ValidUntil { get; set; }
         protected string Token;
         protected IUser currentUser;
         protected List<UserGuild> currentUserGuilds;
-        public Identity(string token, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
+        public Identity(string token, IServiceProvider serviceProvider)
         {
             Token = token;
             ValidUntil = DateTime.UtcNow.AddMinutes(15);
 
-            _serviceScopeFactory = serviceScopeFactory;
+            _serviceProvider = serviceProvider;
             _discordAPI = serviceProvider.GetRequiredService<DiscordAPIInterface>();
             _config = serviceProvider.GetRequiredService<InternalConfiguration>();
         }
@@ -103,7 +103,7 @@ namespace MASZ.Models
                     GuildConfig guildConfig;
                     try
                     {
-                        using var scope = _serviceScopeFactory.CreateScope();
+                        using var scope = _serviceProvider.CreateScope();
                         guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(modCase.GuildId);
                     }
                     catch (ResourceNotFoundException)
@@ -202,7 +202,7 @@ namespace MASZ.Models
             GuildConfig guildConfig;
             try
             {
-                using var scope = _serviceScopeFactory.CreateScope();
+                using var scope = _serviceProvider.CreateScope();
                 guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guildId);
             }
             catch (ResourceNotFoundException)

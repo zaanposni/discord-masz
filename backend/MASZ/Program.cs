@@ -210,12 +210,12 @@ if (string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CORS")))
 
 app.UseIpRateLimiting();
 
-using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
+using (var scope = app.Services.CreateScope())
 {
     scope.ServiceProvider.GetRequiredService<DataContext>().Database.Migrate();
 }
 
-using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
+using (var scope = app.Services.CreateScope())
 {
     scope.ServiceProvider.GetRequiredService<InternalConfiguration>().Init();
 

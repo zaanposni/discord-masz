@@ -24,12 +24,11 @@ namespace MASZ.Services
         private readonly Scheduler _scheduler;
         private readonly Punishments _punishments;
         private readonly IServiceProvider _serviceProvider;
-        private readonly IServiceScopeFactory _serviceScopeFactory;
         private bool _firstReady = true;
         private bool _isRunning = false;
         private DateTime? _lastDisconnect = null;
 
-        public DiscordBot(ILogger<DiscordBot> logger, DiscordSocketClient client, InternalConfiguration internalConfiguration, InteractionService interactions, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory, Scheduler scheduler, Punishments punishments)
+        public DiscordBot(ILogger<DiscordBot> logger, DiscordSocketClient client, InternalConfiguration internalConfiguration, InteractionService interactions, IServiceProvider serviceProvider,  Scheduler scheduler, Punishments punishments)
         {
             _logger = logger;
             _client = client;
@@ -38,14 +37,13 @@ namespace MASZ.Services
             _scheduler = scheduler;
             _punishments = punishments;
             _serviceProvider = serviceProvider;
-            _serviceScopeFactory = serviceScopeFactory;
 
             RegisterEvents();
         }
 
         public async Task ExecuteAsync()
         {
-            using var scope = _serviceScopeFactory.CreateScope();
+            using var scope = _serviceProvider.CreateScope();
 
             try
             {
@@ -104,7 +102,7 @@ namespace MASZ.Services
                 // Create an execution context that matches the generic type parameter of your InteractionModuleBase<T> modules
                 var ctx = new SocketInteractionContext(_client, arg);
 
-                using var scope = _serviceScopeFactory.CreateScope();
+                using var scope = _serviceProvider.CreateScope();
 
                 await _interactions.ExecuteCommandAsync(ctx, scope.ServiceProvider);
             }
@@ -190,7 +188,7 @@ namespace MASZ.Services
 
         private async Task GuildBanRemoved(SocketUser user, SocketGuild guild)
         {
-            using var scope = _serviceScopeFactory.CreateScope();
+            using var scope = _serviceProvider.CreateScope();
 
             var translator = scope.ServiceProvider.GetRequiredService<Translator>();
             await translator.SetContext(guild.Id);
@@ -206,7 +204,7 @@ namespace MASZ.Services
 
         private async Task GuildBanAdded(SocketUser user, SocketGuild guild)
         {
-            using var scope = _serviceScopeFactory.CreateScope();
+            using var scope = _serviceProvider.CreateScope();
 
             var translator = scope.ServiceProvider.GetRequiredService<Translator>();
             await translator.SetContext(guild.Id);
@@ -232,7 +230,7 @@ namespace MASZ.Services
 
         private async Task GuildMemberRemoved(SocketGuildUser usr)
         {
-            using var scope = _serviceScopeFactory.CreateScope();
+            using var scope = _serviceProvider.CreateScope();
 
             var translator = scope.ServiceProvider.GetRequiredService<Translator>();
             await translator.SetContext(usr.Guild.Id);
@@ -253,7 +251,7 @@ namespace MASZ.Services
 
         private async Task GuildMemberUpdatedHandler(Cacheable<SocketGuildUser, ulong> oldUsrCached, SocketGuildUser newUsr)
         {
-            using var scope = _serviceScopeFactory.CreateScope();
+            using var scope = _serviceProvider.CreateScope();
             GuildAuditLogger audit_logger = GuildAuditLogger.CreateDefault(_client, scope.ServiceProvider, newUsr.Guild.Id);
 
             var oldUsr = await oldUsrCached.GetOrDownloadAsync();
@@ -296,7 +294,7 @@ namespace MASZ.Services
             if (chnl is ITextChannel txtChannel)
                 if (txtChannel.Guild != null)
                 {
-                    using var scope = _serviceScopeFactory.CreateScope();
+                    using var scope = _serviceProvider.CreateScope();
 
                     var translator = scope.ServiceProvider.GetRequiredService<Translator>();
                     await translator.SetContext(txtChannel.Guild.Id);
@@ -308,7 +306,7 @@ namespace MASZ.Services
 
         private async Task ThreadCreatedHandler(SocketThreadChannel channel)
         {
-            using var scope = _serviceScopeFactory.CreateScope();
+            using var scope = _serviceProvider.CreateScope();
 
             var translator = scope.ServiceProvider.GetRequiredService<Translator>();
             await translator.SetContext(channel.Guild.Id);
@@ -324,7 +322,7 @@ namespace MASZ.Services
             if (message.Channel is ITextChannel channel)
             {
 
-                using var scope = _serviceScopeFactory.CreateScope();
+                using var scope = _serviceProvider.CreateScope();
 
                 if (channel.Guild != null)
                 {
@@ -368,7 +366,7 @@ namespace MASZ.Services
         {
             if (channel is ITextChannel txtChannel)
             {
-                using var scope = _serviceScopeFactory.CreateScope();
+                using var scope = _serviceProvider.CreateScope();
 
                 if (txtChannel.Guild != null)
                 {
@@ -442,7 +440,7 @@ namespace MASZ.Services
 
         private async Task GuildMemberAddedHandler(SocketGuildUser member)
         {
-            using var scope = _serviceScopeFactory.CreateScope();
+            using var scope = _serviceProvider.CreateScope();
 
             var translator = scope.ServiceProvider.GetRequiredService<Translator>();
             await translator.SetContext(member.Guild.Id);
@@ -558,7 +556,7 @@ namespace MASZ.Services
         {
             InviteTracker.AddInvite(invite.Guild.Id, new TrackedInvite(invite, invite.Guild.Id));
 
-            using var scope = _serviceScopeFactory.CreateScope();
+            using var scope = _serviceProvider.CreateScope();
 
             var translator = scope.ServiceProvider.GetRequiredService<Translator>();
             await translator.SetContext(invite.Guild.Id);
@@ -571,7 +569,7 @@ namespace MASZ.Services
         {
             var invites = InviteTracker.RemoveInvite(channel.Guild.Id, invite);
 
-            using var scope = _serviceScopeFactory.CreateScope();
+            using var scope = _serviceProvider.CreateScope();
 
             var translator = scope.ServiceProvider.GetRequiredService<Translator>();
             await translator.SetContext(channel.Guild.Id);
@@ -589,7 +587,7 @@ namespace MASZ.Services
                     {
                         _logger.LogError($"Command '{info.Name}' invoked by '{context.User.Username}#{context.User.Discriminator}' failed: {(eResult.Exception as BaseAPIException).Error}");
 
-                        using var scope = _serviceScopeFactory.CreateScope();
+                        using var scope = _serviceProvider.CreateScope();
                         Translator translator = scope.ServiceProvider.GetRequiredService<Translator>();
                         if (context.Guild != null)
                         {

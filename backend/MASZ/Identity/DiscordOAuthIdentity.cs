@@ -10,16 +10,16 @@ namespace MASZ.Models
     {
         private readonly Dictionary<ulong, IGuildUser> GuildMemberships = new();
 
-        public async static Task<DiscordOAuthIdentity> Create(string token, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
+        public async static Task<DiscordOAuthIdentity> Create(string token, IServiceProvider serviceProvider)
         {
             DiscordAPIInterface api = serviceProvider.GetRequiredService<DiscordAPIInterface>();
             IUser user = await api.FetchCurrentUserInfo(token, CacheBehavior.IgnoreButCacheOnError);
             List<UserGuild> guilds = await api.FetchGuildsOfCurrentUser(token, CacheBehavior.IgnoreButCacheOnError);
 
-            return new DiscordOAuthIdentity(token, serviceProvider, user, guilds, serviceScopeFactory);
+            return new DiscordOAuthIdentity(token, serviceProvider, user, guilds);
         }
 
-        private DiscordOAuthIdentity(string token, IServiceProvider serviceProvider, IUser currentUser, List<UserGuild> userGuilds, IServiceScopeFactory serviceScopeFactory) : base(token, serviceProvider, serviceScopeFactory)
+        private DiscordOAuthIdentity(string token, IServiceProvider serviceProvider, IUser currentUser, List<UserGuild> userGuilds) : base(token, serviceProvider)
         {
             this.currentUser = currentUser;
             currentUserGuilds = userGuilds;
@@ -72,7 +72,7 @@ namespace MASZ.Models
             GuildConfig guildConfig;
             try
             {
-                using var scope = _serviceScopeFactory.CreateScope();
+                using var scope = _serviceProvider.CreateScope();
                 guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guildId);
             }
             catch (ResourceNotFoundException)
@@ -103,7 +103,7 @@ namespace MASZ.Models
             GuildConfig guildConfig;
             try
             {
-                using var scope = _serviceScopeFactory.CreateScope();
+                using var scope = _serviceProvider.CreateScope();
                 guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guildId);
             }
             catch (ResourceNotFoundException)

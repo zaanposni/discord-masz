@@ -8,7 +8,7 @@ namespace MASZ.Models
     {
         private readonly bool isValid = false;
 
-        public TokenIdentity(string token, IServiceProvider serviceProvider, APIToken dbToken, IServiceScopeFactory serviceScopeFactory) : base(token, serviceProvider, serviceScopeFactory)
+        public TokenIdentity(string token, IServiceProvider serviceProvider, APIToken dbToken) : base(token, serviceProvider)
         {
             if (dbToken != null)
             {

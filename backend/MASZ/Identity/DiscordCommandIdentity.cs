@@ -12,9 +12,9 @@ namespace MASZ.Models
         protected readonly DiscordBot _discordBot;
         private readonly Dictionary<ulong, IGuildUser> GuildMemberships = new();
 
-        public async static Task<DiscordCommandIdentity> Create(IUser user, IServiceProvider serviceProvider, IServiceScopeFactory serviceScopeFactory)
+        public async static Task<DiscordCommandIdentity> Create(IUser user, IServiceProvider serviceProvider)
         {
-            Database database = serviceScopeFactory.CreateScope().ServiceProvider.GetRequiredService<Database>();
+            Database database = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<Database>();
             DiscordAPIInterface discordAPI = serviceProvider.GetRequiredService<DiscordAPIInterface>();
 
             List<GuildConfig> guildConfigs = await database.SelectAllGuildConfigs();
@@ -26,9 +26,9 @@ namespace MASZ.Models
                     guilds.Add(new UserGuild(discordAPI.FetchGuildInfo(guildConfig.GuildId, CacheBehavior.Default)));
                 }
             }
-            return new DiscordCommandIdentity(serviceProvider, user, guilds, serviceScopeFactory);
+            return new DiscordCommandIdentity(serviceProvider, user, guilds);
         }
-        private DiscordCommandIdentity(IServiceProvider serviceProvider, IUser currentUser, List<UserGuild> userGuilds, IServiceScopeFactory serviceScopeFactory) : base(currentUser.Id.ToString(), serviceProvider, serviceScopeFactory)
+        private DiscordCommandIdentity(IServiceProvider serviceProvider, IUser currentUser, List<UserGuild> userGuilds) : base(currentUser.Id.ToString(), serviceProvider)
         {
             this.currentUser = currentUser;
             currentUserGuilds = userGuilds;
@@ -66,7 +66,7 @@ namespace MASZ.Models
             GuildConfig guildConfig;
             try
             {
-                using var scope = _serviceScopeFactory.CreateScope();
+                using var scope = _serviceProvider.CreateScope();
                 guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guildId);
             }
             catch (ResourceNotFoundException)
@@ -98,7 +98,7 @@ namespace MASZ.Models
             GuildConfig guildConfig;
             try
             {
-                using var scope = _serviceScopeFactory.CreateScope();
+                using var scope = _serviceProvider.CreateScope();
                 guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guildId);
             }
             catch (ResourceNotFoundException)

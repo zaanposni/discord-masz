@@ -13,20 +13,18 @@ namespace MASZ.Services
         private readonly InternalConfiguration _config;
         private readonly DiscordAPIInterface _discordAPI;
         private readonly FilesHandler _filesHandler;
-        private readonly IServiceScopeFactory _serviceScopeFactory;
+        private readonly IServiceProvider _serviceProvider;
         private readonly IdentityManager _identityManager;
         private readonly InternalEventHandler _eventHandler;
         private DateTime _nextCacheSchedule;
         private readonly int _cacheIntervalMinutes = 15;
 
-        public Scheduler() { }
-
-        public Scheduler(ILogger<Scheduler> logger, InternalConfiguration config, DiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory, FilesHandler filesHandler, IdentityManager identityManager, InternalEventHandler eventHandler)
+        public Scheduler(ILogger<Scheduler> logger, InternalConfiguration config, DiscordAPIInterface discord, IServiceProvider serviceProvider, FilesHandler filesHandler, IdentityManager identityManager, InternalEventHandler eventHandler)
         {
             _logger = logger;
             _config = config;
             _discordAPI = discord;
-            _serviceScopeFactory = serviceScopeFactory;
+            _serviceProvider = serviceProvider;
             _filesHandler = filesHandler;
             _identityManager = identityManager;
             _eventHandler = eventHandler;
@@ -69,7 +67,7 @@ namespace MASZ.Services
         public async void CheckDeletedCases()
         {
             _logger.LogInformation("Casebin | Checking case bin and delete old cases.");
-            using (var scope = _serviceScopeFactory.CreateScope())
+            using (var scope = _serviceProvider.CreateScope())
             {
                 Database database = scope.ServiceProvider.GetRequiredService<Database>();
 
@@ -104,19 +102,20 @@ namespace MASZ.Services
         public async Task CacheAllKnownGuilds()
         {
             _logger.LogInformation("Cacher | Cache all registered guilds.");
-            using var scope = _serviceScopeFactory.CreateScope();
+            using var scope = _serviceProvider.CreateScope();
             Database database = scope.ServiceProvider.GetRequiredService<Database>();
 
             foreach (var guild in await database.SelectAllGuildConfigs())
             {
                 _discordAPI.FetchGuildInfo(guild.GuildId, CacheBehavior.IgnoreCache);
-                await _discordAPI.FetchGuildChannels(guild.GuildId, CacheBehavior.IgnoreCache);
+                _discordAPI.FetchGuildChannels(guild.GuildId, CacheBehavior.IgnoreCache);
             }
         }
+
         public async Task<List<ulong>> CacheAllGuildMembers(List<ulong> handledUsers)
         {
             _logger.LogInformation("Cacher | Cache all members of registered guilds.");
-            using (var scope = _serviceScopeFactory.CreateScope())
+            using (var scope = _serviceProvider.CreateScope())
             {
                 Database database = scope.ServiceProvider.GetRequiredService<Database>();
 
@@ -141,7 +140,7 @@ namespace MASZ.Services
         public async Task<List<ulong>> CacheAllGuildBans(List<ulong> handledUsers)
         {
             _logger.LogInformation("Cacher | Cache all bans of registered guilds.");
-            using (var scope = _serviceScopeFactory.CreateScope())
+            using (var scope = _serviceProvider.CreateScope())
             {
                 Database database = scope.ServiceProvider.GetRequiredService<Database>();
 
@@ -163,7 +162,7 @@ namespace MASZ.Services
         public async Task<List<ulong>> CacheAllKnownUsers(List<ulong> handledUsers)
         {
             _logger.LogInformation("Cacher | Cache all known users.");
-            using (var scope = _serviceScopeFactory.CreateScope())
+            using (var scope = _serviceProvider.CreateScope())
             {
                 Database database = scope.ServiceProvider.GetRequiredService<Database>();
 

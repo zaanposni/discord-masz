@@ -15,8 +15,6 @@ namespace MASZ.Services
         private readonly Translator _translator;
         private readonly IServiceProvider _serviceProvider;
 
-        public DiscordAnnouncer() { }
-
         public DiscordAnnouncer(ILogger<DiscordAnnouncer> logger, InternalConfiguration config, DiscordAPIInterface discordAPI, NotificationEmbedCreator notificationContentCreator, Translator translator, IServiceProvider serviceProvider)
         {
             _logger = logger;

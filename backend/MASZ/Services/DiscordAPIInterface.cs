@@ -16,7 +16,6 @@ namespace MASZ.Services
         private readonly DiscordRestClient _discordRestClient;
         private readonly Dictionary<string, CacheApiResponse> _cache = new();
 
-        public DiscordAPIInterface() { }
         public DiscordAPIInterface(ILogger<DiscordAPIInterface> logger, InternalConfiguration config, DiscordSocketClient client)
         {
             _logger = logger;
@@ -266,7 +265,7 @@ namespace MASZ.Services
             return client.CurrentUser;
         }
 
-        public async Task<List<IGuildChannel>> FetchGuildChannels(ulong guildId, CacheBehavior cacheBehavior)
+        public List<IGuildChannel> FetchGuildChannels(ulong guildId, CacheBehavior cacheBehavior)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.GuildChannels(guildId);

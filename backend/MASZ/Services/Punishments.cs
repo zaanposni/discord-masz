@@ -12,15 +12,13 @@ namespace MASZ.Services
     {
         private readonly ILogger<Punishments> _logger;
         private readonly DiscordAPIInterface _discord;
-        private readonly IServiceScopeFactory _serviceScopeFactory;
-
-        public Punishments() { }
-
-        public Punishments(ILogger<Punishments> logger, DiscordAPIInterface discord, IServiceScopeFactory serviceScopeFactory)
+        private readonly IServiceProvider _serviceProvider;
+        
+        public Punishments(ILogger<Punishments> logger, DiscordAPIInterface discord, IServiceProvider serviceProvider)
         {
             _logger = logger;
             _discord = discord;
-            _serviceScopeFactory = serviceScopeFactory;
+            _serviceProvider = serviceProvider;
         }
 
         public async Task ExecuteAsync()
@@ -44,7 +42,7 @@ namespace MASZ.Services
 
         public async void CheckAllCurrentPunishments()
         {
-            using var scope = _serviceScopeFactory.CreateScope();
+            using var scope = _serviceProvider.CreateScope();
             Database database = scope.ServiceProvider.GetRequiredService<Database>();
             List<ModCase> cases = await database.SelectAllModCasesWithActivePunishments();
 
@@ -65,7 +63,7 @@ namespace MASZ.Services
 
         public async Task ExecutePunishment(ModCase modCase)
         {
-            using var scope = _serviceScopeFactory.CreateScope();
+            using var scope = _serviceProvider.CreateScope();
             Database database = scope.ServiceProvider.GetRequiredService<Database>();
 
             GuildConfig guildConfig;
@@ -109,7 +107,7 @@ namespace MASZ.Services
 
         public async Task UndoPunishment(ModCase modCase)
         {
-            using var scope = _serviceScopeFactory.CreateScope();
+            using var scope = _serviceProvider.CreateScope();
             Database database = scope.ServiceProvider.GetRequiredService<Database>();
 
             List<ModCase> parallelCases = await database.SelectAllModCasesThatHaveParallelPunishment(modCase);
@@ -156,7 +154,7 @@ namespace MASZ.Services
 
         public async Task HandleMemberJoin(SocketGuildUser user)
         {
-            using var scope = _serviceScopeFactory.CreateScope();
+            using var scope = _serviceProvider.CreateScope();
             Database database = scope.ServiceProvider.GetRequiredService<Database>();
 
             GuildConfig guildConfig;

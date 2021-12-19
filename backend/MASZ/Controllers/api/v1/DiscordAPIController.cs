@@ -99,9 +99,9 @@ namespace MASZ.Controllers.api.v1
         }
 
         [HttpGet("guilds/{guildid}/channels")]
-        public async Task<IActionResult> GetAllGuildChannels([FromRoute] ulong guildid)
+        public IActionResult GetAllGuildChannels([FromRoute] ulong guildid)
         {
-            var channels = await _discordAPI.FetchGuildChannels(guildid, CacheBehavior.Default);
+            var channels = _discordAPI.FetchGuildChannels(guildid, CacheBehavior.Default);
             if (channels != null)
             {
                 return Ok(channels.Select(x => new DiscordChannelView(x)));
