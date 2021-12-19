@@ -6,7 +6,7 @@ namespace MASZ.Models.Views
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public string IconUrl { get; set; }  // TODO: change to this in angular
+        public string IconUrl { get; set; }
         public List<DiscordRoleView> Roles { get; set; }
 
         public DiscordGuildView() { }
@@ -14,7 +14,7 @@ namespace MASZ.Models.Views
         {
             Id = guild.Id.ToString();
             Name = guild.Name;
-            IconUrl = guild.IconUrl;
+            IconUrl = getAnimatedOrDefaultAvatar(guild.IconUrl);
             Roles = new List<DiscordRoleView>();
             try
             {
@@ -29,8 +29,24 @@ namespace MASZ.Models.Views
         {
             Id = guild.Id.ToString();
             Name = guild.Name;
-            IconUrl = guild.IconUrl;
+            IconUrl = getAnimatedOrDefaultAvatar(guild.IconUrl);
             Roles = new List<DiscordRoleView>();
+        }
+
+        private string getAnimatedOrDefaultAvatar(string iconUrl)
+        {
+            if (iconUrl != null)
+            {
+                if (iconUrl.Split("/").Last().StartsWith("a_"))
+                {
+                    iconUrl = iconUrl.Replace(".jpg", ".gif");
+                }
+                if (!iconUrl.Contains("?"))
+                {
+                    iconUrl += "?size=512";
+                }
+            }
+            return iconUrl;
         }
     }
 }
