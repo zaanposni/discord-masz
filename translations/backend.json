@@ -822,6 +822,29 @@
                 "ru": "{user.Mention} (зарегистрированный {registered.ToDiscordTS()}) присоединился с помощью приглашения `{invite}` (created {createdAt.ToDiscordTS()}) пользователем <@{by}>.",
                 "it": "{user.Mention} (registrato {registered.ToDiscordTS()}) si è unito all'invito `{invite}` (creato {createdAt.ToDiscordTS()}) da <@{by}>."
             }
+        },
+        "DiscordAuditLog": {
+            "Punishments": {
+                "Execute": {
+                    "description": "Audit log header reason for executed punishment.",
+                    "var_types": {
+                        "caseId": "int",
+                        "modId": "ulong",
+                        "reason": "string"
+                    },
+                    "en": "Punishment for ModCase #{caseId} by moderator {modId} executed: \\\"{reason}\\\"",
+                    "de": "Bestrafung für Vorfall #{caseId} durch Moderator {modId} ausgeführt: \\\"{reason}\\\""
+                },
+                "Undone": {
+                    "description": "Audit log header reason for executed punishment.",
+                    "var_types": {
+                        "caseId": "int",
+                        "reason": "string"
+                    },
+                    "en": "Punishment for ModCase #{caseId} undone: \\\"{reason}\\\"",
+                    "de": "Bestrafung für Vorfall #{caseId} rückgängig gemacht: \\\"{reason}\\\""
+                }
+            }
         }
     },
     "Cmd": {

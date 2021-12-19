@@ -2,6 +2,7 @@ using Discord.WebSocket;
 using MASZ.Data;
 using MASZ.Enums;
 using MASZ.Exceptions;
+using MASZ.Extensions;
 using MASZ.Models;
 using MASZ.Repositories;
 using Timer = System.Timers.Timer;
@@ -13,7 +14,7 @@ namespace MASZ.Services
         private readonly ILogger<Punishments> _logger;
         private readonly DiscordAPIInterface _discord;
         private readonly IServiceProvider _serviceProvider;
-        
+
         public Punishments(ILogger<Punishments> logger, DiscordAPIInterface discord, IServiceProvider serviceProvider)
         {
             _logger = logger;
@@ -77,6 +78,16 @@ namespace MASZ.Services
                 return;
             }
 
+            string reason = null;
+            try
+            {
+                Translator translator = scope.ServiceProvider.GetRequiredService<Translator>();
+                reason = translator.T(guildConfig).NotificationDiscordAuditLogPunishmentsExecute(modCase.CaseId, modCase.LastEditedByModId, modCase.Title.Truncate(400));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Failed to resolve audit log reason string for case {modCase.GuildId}/{modCase.CaseId}");
+            }
             switch (modCase.PunishmentType)
             {
                 case PunishmentType.Mute:
@@ -85,7 +96,7 @@ namespace MASZ.Services
                         _logger.LogInformation($"Mute User {modCase.UserId} in guild {modCase.GuildId} with roles " + string.Join(',', guildConfig.MutedRoles.Select(x => x.ToString())));
                         foreach (ulong role in guildConfig.MutedRoles)
                         {
-                            await _discord.GrantGuildUserRole(modCase.GuildId, modCase.UserId, role);
+                            await _discord.GrantGuildUserRole(modCase.GuildId, modCase.UserId, role, reason);
                         }
                     }
                     else
@@ -95,12 +106,12 @@ namespace MASZ.Services
                     break;
                 case PunishmentType.Ban:
                     _logger.LogInformation($"Ban User {modCase.UserId} in guild {modCase.GuildId}.");
-                    await _discord.BanUser(modCase.GuildId, modCase.UserId);
+                    await _discord.BanUser(modCase.GuildId, modCase.UserId, reason);
                     await _discord.GetGuildUserBan(modCase.GuildId, modCase.UserId, CacheBehavior.IgnoreCache);  // refresh ban cache
                     break;
                 case PunishmentType.Kick:
                     _logger.LogInformation($"Kick User {modCase.UserId} in guild {modCase.GuildId}.");
-                    await _discord.KickGuildUser(modCase.GuildId, modCase.UserId);
+                    await _discord.KickGuildUser(modCase.GuildId, modCase.UserId, reason);
                     break;
             }
         }
@@ -128,6 +139,15 @@ namespace MASZ.Services
                 return;
             }
 
+            string reason = null;
+            try
+            {
+                Translator translator = scope.ServiceProvider.GetRequiredService<Translator>();
+                reason = translator.T(guildConfig).NotificationDiscordAuditLogPunishmentsUndone(modCase.CaseId, modCase.Title.Truncate(400));
+            } catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Failed to resolve audit log reason string for case {modCase.GuildId}/{modCase.CaseId}");
+            }
             switch (modCase.PunishmentType)
             {
                 case PunishmentType.Mute:
@@ -136,7 +156,7 @@ namespace MASZ.Services
                         _logger.LogInformation($"Unmute User {modCase.UserId} in guild {modCase.GuildId} with roles " + string.Join(',', guildConfig.MutedRoles.Select(x => x.ToString())));
                         foreach (ulong role in guildConfig.MutedRoles)
                         {
-                            await _discord.RemoveGuildUserRole(modCase.GuildId, modCase.UserId, role);
+                            await _discord.RemoveGuildUserRole(modCase.GuildId, modCase.UserId, role, reason);
                         }
                     }
                     else
@@ -146,7 +166,7 @@ namespace MASZ.Services
                     break;
                 case PunishmentType.Ban:
                     _logger.LogInformation($"Unban User {modCase.UserId} in guild {modCase.GuildId}.");
-                    await _discord.UnBanUser(modCase.GuildId, modCase.UserId);
+                    await _discord.UnBanUser(modCase.GuildId, modCase.UserId, reason);
                     await _discord.GetGuildUserBan(modCase.GuildId, modCase.UserId, CacheBehavior.IgnoreCache);  // refresh ban cache
                     break;
             }
@@ -180,7 +200,6 @@ namespace MASZ.Services
             }
 
             _logger.LogInformation($"Muted member {user.Id} rejoined guild {user.Guild.Id}");
-
             await ExecutePunishment(modCases[0]);
         }
     }

@@ -398,12 +398,17 @@ namespace MASZ.Services
             throw new NotImplementedException();
         }
 
-        public async Task<bool> BanUser(ulong guildId, ulong userId)
+        public async Task<bool> BanUser(ulong guildId, ulong userId, string reason = null)
         {
             try
             {
                 SocketGuild guild = _client.GetGuild(guildId);
-                await guild.AddBanAsync(userId, 0);
+
+                RequestOptions options = new();
+                if (!string.IsNullOrEmpty(reason))
+                    options.AuditLogReason = reason;
+
+                await guild.AddBanAsync(userId, 0, reason, options);  // warning: reason property is deprecated
             }
             catch (Exception e)
             {
@@ -413,12 +418,17 @@ namespace MASZ.Services
             return true;
         }
 
-        public async Task<bool> UnBanUser(ulong guildId, ulong userId)
+        public async Task<bool> UnBanUser(ulong guildId, ulong userId, string reason = null)
         {
             try
             {
                 SocketGuild guild = _client.GetGuild(guildId);
-                await guild.RemoveBanAsync(userId);
+
+                RequestOptions options = new();
+                if (!string.IsNullOrEmpty(reason))
+                    options.AuditLogReason = reason;
+
+                await guild.RemoveBanAsync(userId, options);
             }
             catch (Exception e)
             {
@@ -428,7 +438,7 @@ namespace MASZ.Services
             return true;
         }
 
-        public async Task<bool> GrantGuildUserRole(ulong guildId, ulong userId, ulong roleId)
+        public async Task<bool> GrantGuildUserRole(ulong guildId, ulong userId, ulong roleId, string reason = null)
         {
             // request ---------------------------
             try
@@ -438,7 +448,12 @@ namespace MASZ.Services
                 if (member == null) return false;
                 IRole role = guild.Roles.Where(r => r.Id == roleId).FirstOrDefault();
                 if (role == null) return false;
-                await member.AddRoleAsync(role);
+
+                RequestOptions options = new();
+                if (! string.IsNullOrEmpty(reason))
+                    options.AuditLogReason = reason;
+
+                await member.AddRoleAsync(role, options);
             }
             catch (Exception e)
             {
@@ -448,7 +463,7 @@ namespace MASZ.Services
             return true;
         }
 
-        public async Task<bool> RemoveGuildUserRole(ulong guildId, ulong userId, ulong roleId)
+        public async Task<bool> RemoveGuildUserRole(ulong guildId, ulong userId, ulong roleId, string reason = null)
         {
             // request ---------------------------
             try
@@ -458,7 +473,12 @@ namespace MASZ.Services
                 if (member == null) return false;
                 IRole role = guild.Roles.Where(r => r.Id == roleId).FirstOrDefault();
                 if (role == null) return false;
-                await member.RemoveRoleAsync(role);
+
+                RequestOptions options = new();
+                if (!string.IsNullOrEmpty(reason))
+                    options.AuditLogReason = reason;
+
+                await member.RemoveRoleAsync(role, options);
             }
             catch (Exception e)
             {
@@ -468,14 +488,19 @@ namespace MASZ.Services
             return true;
         }
 
-        public async Task<bool> KickGuildUser(ulong guildId, ulong userId)
+        public async Task<bool> KickGuildUser(ulong guildId, ulong userId, string reason = null)
         {
             // request ---------------------------
             try
             {
                 IGuildUser member = await FetchMemberInfo(guildId, userId, CacheBehavior.Default);
                 if (member == null) return false;
-                await member.KickAsync();
+
+                RequestOptions options = new();
+                if (!string.IsNullOrEmpty(reason))
+                    options.AuditLogReason = reason;
+
+                await member.KickAsync(reason, options);
             }
             catch (Exception e)
             {
