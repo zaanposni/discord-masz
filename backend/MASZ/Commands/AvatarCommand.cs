@@ -1,5 +1,6 @@
 using Discord;
 using Discord.Interactions;
+using MASZ.Extensions;
 
 namespace MASZ.Commands
 {
@@ -22,13 +23,13 @@ namespace MASZ.Commands
 
             if (member != null && member.GuildAvatarId != null)
             {
-                embed.WithUrl(member.GetGuildAvatarUrl());
-                embed.WithImageUrl(member.GetGuildAvatarUrl());
+                embed.WithUrl(member.GetGuildAvatarUrl(size: 1024));
+                embed.WithImageUrl(member.GetGuildAvatarUrl(size: 1024));
             }
             else
             {
-                embed.WithUrl(user.GetAvatarUrl());
-                embed.WithImageUrl(user.GetAvatarUrl());
+                embed.WithUrl(user.GetAvatarOrDefaultUrl(size: 1024));
+                embed.WithImageUrl(user.GetAvatarOrDefaultUrl(size: 1024));
             }
 
             await Context.Interaction.RespondAsync(embed: embed.Build(), ephemeral: true);

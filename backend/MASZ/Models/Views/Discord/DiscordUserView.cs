@@ -1,4 +1,5 @@
 using Discord;
+using MASZ.Extensions;
 
 namespace MASZ.Models.Views
 {
@@ -19,7 +20,7 @@ namespace MASZ.Models.Views
             Id = user.Id.ToString();
             Username = user.Username;
             Discriminator = user.Discriminator;
-            ImageUrl = user.GetAvatarUrl(size: 512) ?? user.GetDefaultAvatarUrl();
+            ImageUrl = user.GetAvatarOrDefaultUrl(size: 512);
             Locale = user is ISelfUser sUser ? sUser.Locale : "en-US";
             Avatar = user.AvatarId;
             Bot = user.IsBot;
