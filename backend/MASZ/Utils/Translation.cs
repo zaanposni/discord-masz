@@ -982,6 +982,24 @@ namespace MASZ.Utils
                 _ => $"{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}` (created {createdAt.ToDiscordTS()}) by <@{by}>.",
             };
         }
+        public string NotificationDiscordAuditLogPunishmentsExecute(int caseId, ulong modId, string reason)
+        {
+            return PreferredLanguage switch
+            {
+                Language.en => $"Punishment for ModCase #{caseId} by moderator {modId} executed: \"{reason}\"",
+                Language.de => $"Bestrafung für Vorfall #{caseId} durch Moderator {modId} ausgeführt: \"{reason}\"",
+                _ => $"Punishment for ModCase #{caseId} by moderator {modId} executed: \"{reason}\"",
+            };
+        }
+        public string NotificationDiscordAuditLogPunishmentsUndone(int caseId, string reason)
+        {
+            return PreferredLanguage switch
+            {
+                Language.en => $"Punishment for ModCase #{caseId} undone: \"{reason}\"",
+                Language.de => $"Bestrafung für Vorfall #{caseId} rückgängig gemacht: \"{reason}\"",
+                _ => $"Punishment for ModCase #{caseId} undone: \"{reason}\"",
+            };
+        }
         public string CmdOnlyTextChannel()
         {
             return PreferredLanguage switch
