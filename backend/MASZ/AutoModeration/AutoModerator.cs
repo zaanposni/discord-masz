@@ -247,7 +247,9 @@ namespace MASZ.AutoModeration
             {
                 try
                 {
-                    await message.DeleteAsync();
+                    RequestOptions requestOptions = new();
+                    requestOptions.RetryMode = RetryMode.RetryRatelimit;
+                    await message.DeleteAsync(requestOptions);
                 }
                 catch (Exception ex)
                 {
