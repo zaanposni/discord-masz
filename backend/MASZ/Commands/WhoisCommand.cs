@@ -26,10 +26,11 @@ namespace MASZ.Commands
             }
             catch (Exception) { }
 
-            EmbedBuilder embed = new();
-            embed.WithFooter($"UserId: {user.Id}");
-            embed.WithTimestamp(DateTime.UtcNow);
-            embed.WithDescription(user.Mention);
+            EmbedBuilder embed = new EmbedBuilder()
+                .WithFooter($"UserId: {user.Id}")
+                .WithTimestamp(DateTime.UtcNow)
+                .WithColor(Color.Blue)
+                .WithDescription(user.Mention);
 
             List<UserInvite> invites = await InviteRepository.CreateDefault(ServiceProvider).GetusedInvitesForUserAndGuild(user.Id, Context.Guild.Id);
             List<UserInvite> filteredInvites = invites.OrderByDescending(x => x.JoinedAt).ToList();

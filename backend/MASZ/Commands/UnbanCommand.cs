@@ -71,8 +71,8 @@ namespace MASZ.Commands
         public async Task Delete(string userID)
         {
             var button = new ComponentBuilder()
-                .WithButton(Translator.T().CmdUndoButtonsPublicNotification(), $"unban-conf-delete:1:{userID}", ButtonStyle.Primary)
-                .WithButton(Translator.T().CmdUndoButtonsNoPublicNotification(), $"unban-conf-delete:0:{userID}", ButtonStyle.Secondary)
+                .WithButton(Translator.T().CmdUndoButtonsPublicNotification(), $"unban-conf-delete:1,{userID}", ButtonStyle.Primary)
+                .WithButton(Translator.T().CmdUndoButtonsNoPublicNotification(), $"unban-conf-delete:0,{userID}", ButtonStyle.Secondary)
                 .WithButton(Translator.T().CmdUndoButtonsCancel(), "unban-cancel", ButtonStyle.Danger);
 
             var castInteraction = Context.Interaction as SocketMessageComponent;

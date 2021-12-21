@@ -121,13 +121,14 @@ namespace MASZ.Commands
 
             if (featureTest.SupportsAllFeatures())
             {
-                embed.WithDescription($"{CHECK} {Translator.T().CmdFeaturesSupportAllFeatures()}");
-                embed.WithColor(Color.Green);
+                embed.WithTitle(Translator.T().CmdFeaturesSupportAllFeatures())
+                    .WithDescription(Translator.T().CmdFeaturesSupportAllFeaturesDesc())
+                    .WithColor(Color.Green);
             }
             else
             {
-                embed.WithDescription($"{X_CHECK} {Translator.T().CmdFeaturesMissingFeatures()}");
-                embed.WithColor(Color.Red);
+                embed.WithTitle(Translator.T().CmdFeaturesMissingFeatures())
+                    .WithColor(Color.Red);
             }
 
             await Context.Interaction.RespondAsync(embed: embed.Build());

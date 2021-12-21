@@ -126,6 +126,7 @@ namespace MASZ.Commands
             embed.AddField(Translator.T().CmdTrackUsedBy(usages.GetValueOrDefault()), usedBy.ToString(), false);
             embed.WithFooter($"Invite: {inviteCode}");
             embed.WithTimestamp(DateTime.UtcNow);
+            embed.WithColor(Color.Gold);
 
             await Context.Interaction.ModifyOriginalResponseAsync(message => { message.Content = ""; message.Embed = embed.Build(); });
         }

@@ -7,27 +7,28 @@ using System.Net;
 
 namespace MASZ.Commands
 {
-
     public class CleanupCommand : BaseCommand<CleanupCommand>
     {
         [Require(RequireCheckEnum.GuildModerator)]
         [SlashCommand("cleanup", "Cleanup specific data from the server and/or channel.")]
-        public async Task Cleanup([Summary("mode", "which data you want to delete")] CleanupMode cleanupMode,
-                                  [Summary("channel", "where to delete, defaults to current.")] ITextChannel channel = null,
-                                  [Summary("count", "how many messages to scan for your mode.")] long count = 100,
-                                  [Summary("user", "additional filter on this user")] IUser filterUser = null)
+        public async Task Cleanup(
+            [Summary("mode", "which data you want to delete")] CleanupMode cleanupMode,
+            [Summary("channel", "where to delete, defaults to current.")] ITextChannel channel = null,
+            [Summary("count", "how many messages to scan for your mode.")] long count = 100,
+            [Summary("user", "additional filter on this user")] IUser filterUser = null)
         {
-            if (channel == null)
+            if (channel == null && Context.Channel is ITextChannel txtChnl)
             {
-                if (Context.Channel is not ITextChannel textChannel)
-                {
-                    await Context.Interaction.RespondAsync(Translator.T().CmdOnlyTextChannel());
-                    return;
-                }
-                channel = textChannel;
+                channel = txtChnl;
             }
 
-            await Context.Interaction.RespondAsync("Deleting channels...");
+            if (channel == null)
+            {
+                await Context.Interaction.RespondAsync(Translator.T().CmdOnlyTextChannel());
+                return;
+            }
+
+            await Context.Interaction.RespondAsync("Cleaning channels...", ephemeral: true);
 
             if (count > 1000)
             {
@@ -48,37 +49,70 @@ namespace MASZ.Commands
             int deleted = 0;
             try
             {
-                deleted = await IterateAndDeleteChannels(channel, (int)count, func, filterUser);
-                await Context.Interaction.ModifyOriginalResponseAsync(message => message.Content = Translator.T().CmdCleanup(deleted, channel));
+                deleted = await IterateAndDeleteChannels(channel, (int)count, func, Context.User, filterUser);
             }
-            catch (HttpException e)
+            catch (HttpException ex)
             {
-                if (e.HttpCode == HttpStatusCode.NotFound)
-                    await Context.Interaction.ModifyOriginalResponseAsync(message => message.Content = Translator.T().CmdCannotFindChannel());
-                else if (e.HttpCode == HttpStatusCode.Unauthorized)
-                    await Context.Interaction.ModifyOriginalResponseAsync(message => message.Content = Translator.T().CmdCannotViewOrDeleteInChannel());
+                if (ex.HttpCode == HttpStatusCode.Forbidden)
+                    await Context.Interaction.ModifyOriginalResponseAsync(msg => msg.Content = Translator.T().CmdCannotViewOrDeleteInChannel());
+                else if (ex.HttpCode == HttpStatusCode.Forbidden)
+                    await Context.Interaction.ModifyOriginalResponseAsync(msg => msg.Content = Translator.T().CmdCannotFindChannel());
+
                 return;
             }
+            await Context.Interaction.ModifyOriginalResponseAsync(msg => msg.Content = Translator.T().CmdCleanup(deleted, channel));
         }
+
         private bool HasAttachment(IMessage m)
         {
             return m.Attachments.Count > 0;
         }
+
         private bool IsFromBot(IMessage m)
         {
             return m.Author.IsBot;
         }
 
-        private static async Task<int> IterateAndDeleteChannels(ITextChannel channel, int limit, Func<IMessage, bool> predicate, IUser filterUser = null)
+        private async Task<int> IterateAndDeleteChannels(ITextChannel channel, int limit, Func<IMessage, bool> predicate, IUser currentActor, IUser filterUser = null)
         {
+            ulong lastId = 0;
             int deleted = 0;
-            List<IMessage> toDelete = new();
+            List<IMessage> toDelete = new ();
+            var messages = channel.GetMessagesAsync(Math.Min(limit, 100));
 
+            if (await messages.CountAsync() < Math.Min(limit, 100))
+            {
+                limit = 0;  // ignore while loop since channel will be empty soon
+            }
+            foreach (IMessage message in await messages.FlattenAsync())
+            {
+                lastId = message.Id;
+                limit--;
+                if (filterUser != null && message.Author.Id != filterUser.Id)
+                {
+                    continue;
+                }
+                if (predicate(message))
+                {
+                    deleted++;
+                    if (message.CreatedAt.UtcDateTime.AddDays(14) > DateTime.UtcNow)
+                    {
+                        toDelete.Add(message);
+                    }
+                    else
+                    {
+                        await message.DeleteAsync();
+                    }
+                }
+            }
             while (limit > 0)
             {
                 if (toDelete.Count >= 2)
                 {
-                    await channel.DeleteMessagesAsync(toDelete);
+                    RequestOptions options = new();
+                    options.AuditLogReason = $"Bulkdelete by {currentActor.Username}#{currentActor.Discriminator} ({currentActor.Id}).";
+
+                    await channel.DeleteMessagesAsync(toDelete, options);
                     toDelete.Clear();
                 }
                 else if (toDelete.Count > 0)
@@ -87,8 +121,9 @@ namespace MASZ.Commands
                     toDelete.Clear();
                 }
 
-                var messages = channel.GetMessagesAsync(Math.Min(limit, 100));
+                messages = channel.GetMessagesAsync(lastId, Direction.Before, Math.Min(limit, 100));
                 bool breakAfterDeleteIteration = false;
+
                 if (await messages.CountAsync() == 0)
                 {
                     break;
@@ -97,8 +132,9 @@ namespace MASZ.Commands
                 {
                     breakAfterDeleteIteration = true;
                 }
-                await foreach (IMessage message in messages)
+                foreach (IMessage message in await messages.FlattenAsync())
                 {
+                    lastId = message.Id;
                     limit--;
                     if (filterUser != null && message.Author.Id != filterUser.Id)
                     {
@@ -122,21 +158,20 @@ namespace MASZ.Commands
                     break;
                 }
             }
-
             if (toDelete.Count >= 2)
             {
-                await channel.DeleteMessagesAsync(toDelete);
+                RequestOptions options = new();
+                options.AuditLogReason = $"Bulkdelete by {currentActor.Username}#{currentActor.Discriminator} ({currentActor.Id}).";
+
+                await channel.DeleteMessagesAsync(toDelete, options);
                 toDelete.Clear();
             }
-
             else if (toDelete.Count > 0)
             {
                 await toDelete[0].DeleteAsync();
                 toDelete.Clear();
             }
-
             return deleted;
         }
-
     }
 }

@@ -18,8 +18,8 @@ namespace MASZ.Commands
             catch (Exception) { }
 
             EmbedBuilder embed = new EmbedBuilder()
-                .WithTitle("Get Avatar URL")
-                .WithFooter($"User ID: {user.Id}")
+                .WithTitle(Translator.T().CmdGetAvatarURL())
+                .WithFooter($"{Translator.T().CmdUserID()}: {user.Id}")
                 .WithColor(Color.Magenta)
                 .WithCurrentTimestamp();
 

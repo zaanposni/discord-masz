@@ -868,6 +868,26 @@
             "ru": "Мне не разрешено просматривать или удалять сообщения на этом канале!",
             "it": "Non sono autorizzato a visualizzare o eliminare i messaggi in questo canale!"
         },
+        "GetAvatarURL": {
+            "description": "Returns the avatar url of the chosen user.",
+            "en": "Get Avatar URL",
+            "de": "Hent Avatar URL",
+            "at": "Features",
+            "fr": "Obtenir l'URL d'avatar",
+            "es": "Obtener URL de avatar",
+            "ru": "Получить URL аватара",
+            "it": "Ottieni l'URL dell'avatar"
+        },
+        "UserID": {
+            "description": "User ID",
+            "en": "User ID",
+            "de": "NutzerId",
+            "at": "NutzaId",
+            "fr": "Identifiant d'utilisateur",
+            "es": "User ID",
+            "ru": "ID пользователя",
+            "it": "ID utente"
+        },
         "CannotFindChannel": {
             "description": "Cannot find channel.",
             "en": "Cannot find channel.",
@@ -1129,13 +1149,23 @@
             },
             "SupportAllFeatures": {
                 "description": "Support all features",
-                "en": "Your bot on this guild is configured correctly. All features of MASZ can be used.",
-                "de": "Dein Bot auf diesem Server ist richtig konfiguriert. Alle Funktionen von MASZ können genutzt werden.",
-                "at": "Dei Bot auf dem Serva is richtig konfiguriat. Olle Funktionen vo MASZ kennen gnutzt wean.",
-                "fr": "Votre bot sur cette guilde est correctement configuré. Toutes les fonctionnalités de MASZ peuvent être utilisées.",
-                "es": "Tu bot en este gremio está configurado correctamente. Se pueden utilizar todas las funciones de MASZ.",
-                "ru": "Ваш бот в этой гильдии настроен правильно. Можно использовать все возможности MASZ.",
-                "it": "Il tuo bot in questa gilda è configurato correttamente. Tutte le funzionalità di MASZ possono essere utilizzate."
+                "en": "Your bot on this guild is configured correctly.",
+                "de": "Dein Bot auf diesem Server ist richtig konfiguriert.",
+                "at": "Dei Bot auf dem Serva is richtig konfiguriat.",
+                "fr": "Votre bot sur cette guilde est correctement configuré.",
+                "es": "Tu bot en este gremio está configurado correctamente.",
+                "ru": "Ваш бот в этой гильдии настроен правильно.",
+                "it": "Il tuo bot in questa gilda è configurato correttamente."
+            },
+            "SupportAllFeaturesDesc": {
+                "description": "Support all features description",
+                "en": "All features of MASZ can be used.",
+                "de": "Alle Funktionen von MASZ können genutzt werden.",
+                "at": "Olle Funktionen vo MASZ kennen gnutzt wean.",
+                "fr": "Toutes les fonctionnalités de MASZ peuvent être utilisées.",
+                "es": "Se pueden utilizar todas las funciones de MASZ.",
+                "ru": "Можно использовать все возможности MASZ.",
+                "it": "Tutte le funzionalità di MASZ possono essere utilizzate."
             },
             "MissingFeatures": {
                 "description": "Missing features",
@@ -1150,7 +1180,7 @@
         },
         "Invite": {
             "description": "Host your own instance of MASZ",
-            "en": "You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-masz#hosting",
+            "en": "You will have to host your own instance of MASZ on your server or pc.\nCheck out https://github.com/zaanposni/discord-masz#hosting",
             "de": "Du musst deine eigene Instanz von MASZ auf deinem Server oder PC hosten.\nSchau dir https://github.com/zaanposni/discord-masz#hosting an",
             "at": "Du muast dei eignane Inszanz vo MASZ auf deim Serva oda PC hosn.\nSchau da https://github.com/zaanposni/discord-masz#hosting o",
             "fr": "Vous devrez héberger votre propre instance de MASZ sur votre serveur ou votre PC.\\nCommander https://github.com/zaanposni/discord-masz#hosting",
@@ -1566,12 +1596,12 @@
             "it": "ID"
         },
         "UserID": {
-            "description": "UserId",
-            "en": "UserId",
+            "description": "User ID",
+            "en": "User ID",
             "de": "NutzerId",
             "at": "NutzaId",
             "fr": "Identifiant d'utilisateur",
-            "es": "UserId",
+            "es": "User ID",
             "ru": "ID пользователя",
             "it": "ID utente"
         },

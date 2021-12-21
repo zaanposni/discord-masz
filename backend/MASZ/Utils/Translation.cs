@@ -955,6 +955,32 @@ namespace MASZ.Utils
                 _ => "I'm not allowed to view or delete messages in this channel!",
             };
         }
+        public string CmdGetAvatarURL()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Hent Avatar URL",
+                Language.at => "Features",
+                Language.fr => "Obtenir l'URL d'avatar",
+                Language.es => "Obtener URL de avatar",
+                Language.ru => "Получить URL аватара",
+                Language.it => "Ottieni l'URL dell'avatar",
+                _ => "Get Avatar URL",
+            };
+        }
+        public string CmdUserID()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "NutzerId",
+                Language.at => "NutzaId",
+                Language.fr => "Identifiant d'utilisateur",
+                Language.es => "User ID",
+                Language.ru => "ID пользователя",
+                Language.it => "ID utente",
+                _ => "User ID",
+            };
+        }
         public string CmdCannotFindChannel()
         {
             return PreferredLanguage switch
@@ -1271,13 +1297,26 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Dein Bot auf diesem Server ist richtig konfiguriert. Alle Funktionen von MASZ können genutzt werden.",
-                Language.at => "Dei Bot auf dem Serva is richtig konfiguriat. Olle Funktionen vo MASZ kennen gnutzt wean.",
-                Language.fr => "Votre bot sur cette guilde est correctement configuré. Toutes les fonctionnalités de MASZ peuvent être utilisées.",
-                Language.es => "Tu bot en este gremio está configurado correctamente. Se pueden utilizar todas las funciones de MASZ.",
-                Language.ru => "Ваш бот в этой гильдии настроен правильно. Можно использовать все возможности MASZ.",
-                Language.it => "Il tuo bot in questa gilda è configurato correttamente. Tutte le funzionalità di MASZ possono essere utilizzate.",
-                _ => "Your bot on this guild is configured correctly. All features of MASZ can be used.",
+                Language.de => "Dein Bot auf diesem Server ist richtig konfiguriert.",
+                Language.at => "Dei Bot auf dem Serva is richtig konfiguriat.",
+                Language.fr => "Votre bot sur cette guilde est correctement configuré.",
+                Language.es => "Tu bot en este gremio está configurado correctamente.",
+                Language.ru => "Ваш бот в этой гильдии настроен правильно.",
+                Language.it => "Il tuo bot in questa gilda è configurato correttamente.",
+                _ => "Your bot on this guild is configured correctly.",
+            };
+        }
+        public string CmdFeaturesSupportAllFeaturesDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Alle Funktionen von MASZ können genutzt werden.",
+                Language.at => "Olle Funktionen vo MASZ kennen gnutzt wean.",
+                Language.fr => "Toutes les fonctionnalités de MASZ peuvent être utilisées.",
+                Language.es => "Se pueden utilizar todas las funciones de MASZ.",
+                Language.ru => "Можно использовать все возможности MASZ.",
+                Language.it => "Tutte le funzionalità di MASZ possono essere utilizzate.",
+                _ => "All features of MASZ can be used.",
             };
         }
         public string CmdFeaturesMissingFeatures()
@@ -1303,7 +1342,7 @@ namespace MASZ.Utils
                 Language.es => "Tendrá que alojar su propia instancia de MASZ en su servidor o PC.\nPagar https://github.com/zaanposni/discord-masz#hosting",
                 Language.ru => "Вам нужно будет разместить свой собственный экземпляр MASZ на вашем сервере или компьютере.\nОформить заказ https://github.com/zaanposni/discord-masz#hosting",
                 Language.it => "Dovrai ospitare la tua istanza di MASZ sul tuo server o PC.\nAcquista https://github.com/zaanposni/discord-masz#hosting",
-                _ => "You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-masz#hosting",
+                _ => "You will have to host your own instance of MASZ on your server or pc.\nCheck out https://github.com/zaanposni/discord-masz#hosting",
             };
         }
         public string CmdPunish(int caseId, string caseLink)
@@ -1780,10 +1819,10 @@ namespace MASZ.Utils
                 Language.de => "NutzerId",
                 Language.at => "NutzaId",
                 Language.fr => "Identifiant d'utilisateur",
-                Language.es => "UserId",
+                Language.es => "User ID",
                 Language.ru => "ID пользователя",
                 Language.it => "ID utente",
-                _ => "UserId",
+                _ => "User ID",
             };
         }
         public string GuildAuditLogUser()

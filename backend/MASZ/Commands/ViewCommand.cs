@@ -66,6 +66,7 @@ namespace MASZ.Commands
             EmbedBuilder embed = new();
             embed.WithUrl($"{Config.GetBaseUrl()}/guilds/{modCase.GuildId}/cases/{modCase.CaseId}");
             embed.WithTimestamp(modCase.CreatedAt);
+            embed.WithColor(Color.Blue);
 
             IUser suspect = await DiscordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.Default);
             if (suspect != null)
