@@ -41,7 +41,7 @@ builder.Services
 .AddSingleton(new DiscordSocketConfig
 {
     AlwaysDownloadUsers = true,
-    MessageCacheSize = 50,
+    MessageCacheSize = 10240,
     LogLevel = LogSeverity.Debug,
     GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.GuildMembers,
     LogGatewayIntentWarnings = false

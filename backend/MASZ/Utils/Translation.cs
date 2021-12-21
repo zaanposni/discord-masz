@@ -959,13 +959,13 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Hent Avatar URL",
-                Language.at => "Features",
-                Language.fr => "Obtenir l'URL d'avatar",
-                Language.es => "Obtener URL de avatar",
-                Language.ru => "Получить URL аватара",
-                Language.it => "Ottieni l'URL dell'avatar",
-                _ => "Get Avatar URL",
+                Language.de => "Avatar URL",
+                Language.at => "Avadar URL",
+                Language.fr => "l'URL d'avatar",
+                Language.es => "URL de avatar",
+                Language.ru => "URL аватара",
+                Language.it => "l'URL dell'avatar",
+                _ => "Avatar URL",
             };
         }
         public string CmdUserID()

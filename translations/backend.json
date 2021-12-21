@@ -870,13 +870,13 @@
         },
         "GetAvatarURL": {
             "description": "Returns the avatar url of the chosen user.",
-            "en": "Get Avatar URL",
-            "de": "Hent Avatar URL",
-            "at": "Features",
-            "fr": "Obtenir l'URL d'avatar",
-            "es": "Obtener URL de avatar",
-            "ru": "Получить URL аватара",
-            "it": "Ottieni l'URL dell'avatar"
+            "en": "Avatar URL",
+            "de": "Avatar URL",
+            "at": "Avadar URL",
+            "fr": "l'URL d'avatar",
+            "es": "URL de avatar",
+            "ru": "URL аватара",
+            "it": "l'URL dell'avatar"
         },
         "UserID": {
             "description": "User ID",
