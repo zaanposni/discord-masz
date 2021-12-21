@@ -123,10 +123,10 @@ namespace MASZ.Controllers.api.v1
         }
 
         [HttpGet("guilds")]
-        public async Task<IActionResult> GetAdminGuilds()
+        public async Task<IActionResult> GetAllGuilds()
         {
             Identity identity = await GetIdentity();
-            return Ok(identity.GetCurrentUserGuilds().Where(guild => guild.IsAdmin).Select(x => new DiscordGuildView(x)));
+            return Ok(identity.GetCurrentUserGuilds().Select(x => new DiscordGuildView(x)));
         }
     }
 }

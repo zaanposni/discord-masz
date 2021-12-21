@@ -8,8 +8,6 @@ console = Console()
 BACKEND_OUTPUT_PATH = "../backend/MASZ/Utils/Translation.cs"
 FRONTEND_OUTPUT_PATH = "../nginx/MASZ/src/assets/i18n/"
 
-DEFAULT_ENUM_NAMESPACE = "MASZ.Enums"
-
 TRANSLATION_NODES = 0
 TRANSLATION_STATS = dict()
 
@@ -74,11 +72,11 @@ with console.status("[bold green]Generating backend...") as status:
         global BACKEND_STRING
         console.log(f"Generating {enum_name}...")
         vars = [f"{v} {k}" for k, v in node.get("var_types", dict()).items()]
-        generate = f"\t\tpublic string Enum({DEFAULT_ENUM_NAMESPACE}.{enum_name} enumValue)" + "\n\t\t{\n"
+        generate = f"\t\tpublic string Enum({enum_name} enumValue)" + "\n\t\t{\n"
         generate += "\t\t\treturn enumValue switch\n\t\t\t{\n"
         for enum_value, translations in node.items():
             TRANSLATION_NODES += 1
-            generate += f"\t\t\t\t{DEFAULT_ENUM_NAMESPACE}.{enum_name}.{enum_value} => PreferredLanguage switch\n"
+            generate += f"\t\t\t\t{enum_name}.{enum_value} => PreferredLanguage switch\n"
             generate += "\t\t\t\t{\n"
             for lang, translation in translations.items():
                 if lang.lower() in ["description", "var_types"]:

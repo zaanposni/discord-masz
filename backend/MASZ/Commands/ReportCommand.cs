@@ -25,7 +25,7 @@ namespace MASZ.Commands
             }
 
             StringBuilder sb = new();
-            sb.AppendLine(Translator.T().CmdReportContent(Context.User, msg));
+            sb.AppendLine(Translator.T().CmdReportContent(Context.User, msg, msg.Channel as ITextChannel));
 
             if (!string.IsNullOrEmpty(msg.Content))
             {

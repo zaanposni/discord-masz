@@ -344,7 +344,7 @@
                 "Public": {
                     "description": "Webhook notification for modcase creation. This does not disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "MASZ.Models.ModCase"
+                        "modCase": "ModCase"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde erstellt.",
@@ -357,7 +357,7 @@
                 "Internal": {
                     "description": "Webhook notification for modcase creation. This does disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "MASZ.Models.ModCase",
+                        "modCase": "ModCase",
                         "moderator": "IUser"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
@@ -373,7 +373,7 @@
                 "Public": {
                     "description": "Webhook notification for modcase update. This does not disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "MASZ.Models.ModCase"
+                        "modCase": "ModCase"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated.",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde aktualisiert.",
@@ -386,7 +386,7 @@
                 "Internal": {
                     "description": "Webhook notification for modcase update. This does disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "MASZ.Models.ModCase",
+                        "modCase": "ModCase",
                         "moderator": "IUser"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
@@ -402,7 +402,7 @@
                 "Public": {
                     "description": "Webhook notification for modcase deletion. This does not disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "MASZ.Models.ModCase"
+                        "modCase": "ModCase"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted.",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde gelöscht.",
@@ -415,7 +415,7 @@
                 "Internal": {
                     "description": "Webhook notification for modcase deletion. This does disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "MASZ.Models.ModCase",
+                        "modCase": "ModCase",
                         "moderator": "IUser"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
@@ -560,7 +560,7 @@
                     "Temp": {
                         "description": "DM notification for temp mute modcase. This does not disclose information about the moderator.",
                         "var_types": {
-                            "modCase": "MASZ.Models.ModCase",
+                            "modCase": "ModCase",
                             "guild": "IGuild",
                             "serviceBaseUrl": "string"
                         },
@@ -591,7 +591,7 @@
                     "Temp": {
                         "description": "DM notification for temp ban modcase. This does not disclose information about the moderator.",
                         "var_types": {
-                            "modCase": "MASZ.Models.ModCase",
+                            "modCase": "ModCase",
                             "guild": "IGuild",
                             "serviceBaseUrl": "string"
                         },
@@ -762,17 +762,17 @@
                 "description": "DM description for automod event",
                 "var_types": {
                     "user": "IUser",
-                    "channel": "IChannel",
+                    "channel": "IMentionable",
                     "reason": "string",
                     "action": "string"
                 },
-                "en": "Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention()}.\nReason: {reason}\nAction: {action}",
-                "de": "Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention()} ausgelöst.\nGrund: {reason}\nAktion: {action}",
-                "at": "Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention()} ausglest. Grund: {reason}\nAktion: {action}",
-                "fr": "Salut {user.Mention},\\n\\nVous avez déclenché l'automodération dans {channel.Mention()}.\\nRaison : {reason}\\nAction : {action}",
-                "es": "Hola, {user.Mention}:\\n\\nActivó la automoderación en {channel.Mention()}.\\nMotivo: {reason}\\nAcción: {action}",
-                "ru": "Привет, {user.Mention}!\\n\\nВы активировали автомодерацию в {channel.Mention()}.\\nПричина: {reason}\\nДействие: {action}",
-                "it": "Ciao {user.Mention},\\n\\nHai attivato la moderazione automatica in {channel.Mention()}.\\nMotivo: {reason}\\nAzione: {action}"
+                "en": "Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}",
+                "de": "Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}",
+                "at": "Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention} ausglest. Grund: {reason}\nAktion: {action}",
+                "fr": "Salut {user.Mention},\\n\\nVous avez déclenché l'automodération dans {channel.Mention}.\\nRaison : {reason}\\nAction : {action}",
+                "es": "Hola, {user.Mention}:\\n\\nActivó la automoderación en {channel.Mention}.\\nMotivo: {reason}\\nAcción: {action}",
+                "ru": "Привет, {user.Mention}!\\n\\nВы активировали автомодерацию в {channel.Mention}.\\nПричина: {reason}\\nДействие: {action}",
+                "it": "Ciao {user.Mention},\\n\\nHai attivato la moderazione automatica in {channel.Mention}.\\nMotivo: {reason}\\nAzione: {action}"
             },
             "Channel": {
                 "description": "channel notification for automod event if message was deleted, should be oneline",
@@ -892,15 +892,15 @@
             "description": "Cleanup response",
             "var_types": {
                 "count": "int",
-                "channel": "IChannel"
+                "channel": "IMentionable"
             },
-            "en": "Deleted {count} messages in {channel.Mention()}.",
-            "de": "{count} Nachrichten in {channel.Mention()} gelöscht.",
-            "at": "{count} Nochrichtn in {channel.Mention()} glescht.",
-            "fr": "{count} messages supprimés dans {channel.Mention()}.",
-            "es": "Se eliminaron {count} mensajes en {channel.Mention()}.",
-            "ru": "Удалено {count} сообщений в {channel.Mention()}.",
-            "it": "Eliminati {count} messaggi in {channel.Mention()}."
+            "en": "Deleted {count} messages in {channel.Mention}.",
+            "de": "{count} Nachrichten in {channel.Mention} gelöscht.",
+            "at": "{count} Nochrichtn in {channel.Mention} glescht.",
+            "fr": "{count} messages supprimés dans {channel.Mention}.",
+            "es": "Se eliminaron {count} mensajes en {channel.Mention}.",
+            "ru": "Удалено {count} сообщений в {channel.Mention}.",
+            "it": "Eliminati {count} messaggi in {channel.Mention}."
         },
         "Features": {
             "KickPermission": {
@@ -1210,15 +1210,16 @@
                 "description": "Report content",
                 "var_types": {
                     "user": "IUser",
-                    "message": "IMessage"
+                    "message": "IMessage",
+                    "channel": "IMentionable"
                 },
-                "en": "{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
-                "de": "{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
-                "at": "{user.Mention} mödet a Nochricht vo {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
-                "fr": "{user.Mention} a signalé un message de {message.Author.Mention} dans {message.Channel.Mention()}.\\n{message.GetJumpUrl()}",
-                "es": "{user.Mention} informó un mensaje de {message.Author.Mention} en {message.Channel.Mention()}.\\n{message.GetJumpUrl()}",
-                "ru": "{user.Mention} сообщил о сообщении от {message.Author.Mention} в {message.Channel.Mention()}.\\n{message.GetJumpUrl()}",
-                "it": "{user.Mention} ha segnalato un messaggio da {message.Author.Mention} in {message.Channel.Mention()}.\\n{message.GetJumpUrl()}"
+                "en": "{user.Mention} reported a message from {message.Author.Mention} in {channel.Mention}.\n{message.GetJumpUrl()}",
+                "de": "{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {channel.Mention}.\n{message.GetJumpUrl()}",
+                "at": "{user.Mention} mödet a Nochricht vo {message.Author.Mention} in {channel.Mention}.\n{message.GetJumpUrl()}",
+                "fr": "{user.Mention} a signalé un message de {message.Author.Mention} dans {channel.Mention}.\\n{message.GetJumpUrl()}",
+                "es": "{user.Mention} informó un mensaje de {message.Author.Mention} en {channel.Mention}.\\n{message.GetJumpUrl()}",
+                "ru": "{user.Mention} сообщил о сообщении от {message.Author.Mention} в {channel.Mention}.\\n{message.GetJumpUrl()}",
+                "it": "{user.Mention} ha segnalato un messaggio da {message.Author.Mention} in {channel.Mention}.\\n{message.GetJumpUrl()}"
             }
         },
         "Say": {
