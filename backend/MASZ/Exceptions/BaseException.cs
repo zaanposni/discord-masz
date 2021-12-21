@@ -1,5 +1,3 @@
-#nullable enable
-
 namespace MASZ.Exceptions
 {
     public class BaseException : Exception

@@ -14,16 +14,19 @@ namespace MASZ.Models
 
         public async static Task<DiscordCommandIdentity> Create(IUser user, IServiceProvider serviceProvider)
         {
-            Database database = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<Database>();
+            using var scope = serviceProvider.CreateScope();
+            Database database = scope.ServiceProvider.GetRequiredService<Database>();
             DiscordAPIInterface discordAPI = serviceProvider.GetRequiredService<DiscordAPIInterface>();
 
             List<GuildConfig> guildConfigs = await database.SelectAllGuildConfigs();
             List<UserGuild> guilds = new();
             foreach (GuildConfig guildConfig in guildConfigs)
             {
-                if ((await discordAPI.FetchMemberInfo(guildConfig.GuildId, user.Id, CacheBehavior.Default)) != null)
+                var member = await discordAPI.FetchMemberInfo(guildConfig.GuildId, user.Id, CacheBehavior.Default);
+
+                if (member != null)
                 {
-                    guilds.Add(new UserGuild(discordAPI.FetchGuildInfo(guildConfig.GuildId, CacheBehavior.Default)));
+                    guilds.Add(new UserGuild(member));
                 }
             }
             return new DiscordCommandIdentity(serviceProvider, user, guilds);
@@ -155,7 +158,7 @@ namespace MASZ.Models
         {
             if (!currentUserGuilds.Any(x => x.Id == member.Guild.Id))
             {
-                currentUserGuilds.Add(new UserGuild(member.Guild));
+                currentUserGuilds.Add(new UserGuild(member));
             }
             GuildMemberships[member.Guild.Id] = member;
         }
@@ -164,7 +167,7 @@ namespace MASZ.Models
         {
             if (!currentUserGuilds.Any(x => x.Id == member.Guild.Id))
             {
-                currentUserGuilds.Add(new UserGuild(member.Guild));
+                currentUserGuilds.Add(new UserGuild(member));
             }
             GuildMemberships[member.Guild.Id] = member;
         }

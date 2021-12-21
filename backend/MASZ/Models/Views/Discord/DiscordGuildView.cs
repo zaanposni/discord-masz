@@ -1,4 +1,5 @@
 using Discord;
+using MASZ.Extensions;
 
 namespace MASZ.Models.Views
 {
@@ -9,12 +10,11 @@ namespace MASZ.Models.Views
         public string IconUrl { get; set; }
         public List<DiscordRoleView> Roles { get; set; }
 
-        public DiscordGuildView() { }
         public DiscordGuildView(IGuild guild)
         {
             Id = guild.Id.ToString();
             Name = guild.Name;
-            IconUrl = getAnimatedOrDefaultAvatar(guild.IconUrl);
+            IconUrl = guild.IconUrl.GetAnimatedOrDefaultAvatar();
             Roles = new List<DiscordRoleView>();
             try
             {
@@ -25,28 +25,14 @@ namespace MASZ.Models.Views
             }
             catch (Exception) { }
         }
+
         public DiscordGuildView(UserGuild guild)
         {
             Id = guild.Id.ToString();
             Name = guild.Name;
-            IconUrl = getAnimatedOrDefaultAvatar(guild.IconUrl);
-            Roles = new List<DiscordRoleView>();
-        }
+            IconUrl = guild.IconUrl.GetAnimatedOrDefaultAvatar();
 
-        private string getAnimatedOrDefaultAvatar(string iconUrl)
-        {
-            if (iconUrl != null)
-            {
-                if (iconUrl.Split("/").Last().StartsWith("a_"))
-                {
-                    iconUrl = iconUrl.Replace(".jpg", ".gif");
-                }
-                if (!iconUrl.Contains("?"))
-                {
-                    iconUrl += "?size=512";
-                }
-            }
-            return iconUrl;
+            Roles = new List<DiscordRoleView>();
         }
     }
 }

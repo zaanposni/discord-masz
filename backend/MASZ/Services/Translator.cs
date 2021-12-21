@@ -20,7 +20,8 @@ namespace MASZ.Services
 
         public async Task SetContext(ulong guildId)
         {
-            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(guildId);
+            using var scope = _serviceProvider.CreateScope();
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guildId);
             SetContext(guildConfig);
         }
 

@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Rest;
+using MASZ.Extensions;
 
 namespace MASZ.Models
 {
@@ -8,19 +9,22 @@ namespace MASZ.Models
         public ulong Id { get; set; }
         public string Name { get; set; }
         public string IconUrl { get; set; }
+        public bool IsAdmin { get; set; }
 
-        public UserGuild(IGuild guild)
+        public UserGuild(IGuildUser user)
         {
-            Id = guild.Id;
-            Name = guild.Name;
-            IconUrl = guild.IconUrl;
+            Id = user.Guild.Id;
+            Name = user.Guild.Name;
+            IconUrl = user.Guild.IconUrl.GetAnimatedOrDefaultAvatar();
+            IsAdmin = user.GuildPermissions.Administrator;
         }
 
-        public UserGuild(RestUserGuild guild)
+        public UserGuild(IUserGuild guild)
         {
             Id = guild.Id;
             Name = guild.Name;
-            IconUrl = guild.IconUrl;
+            IconUrl = guild.IconUrl.GetAnimatedOrDefaultAvatar();
+            IsAdmin = guild.Permissions.Administrator;
         }
     }
 }

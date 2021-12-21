@@ -10,7 +10,6 @@ namespace MASZ.Models.Views
         public int Position { get; set; }
         public int Type { get; set; }
 
-        public DiscordChannelView() { }
         public DiscordChannelView(IGuildChannel channel)
         {
             Id = channel.Id.ToString();

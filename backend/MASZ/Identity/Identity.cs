@@ -243,7 +243,7 @@ namespace MASZ.Models
         {
             if (!currentUserGuilds.Any(x => x.Id == member.Guild.Id))
             {
-                currentUserGuilds.Add(new UserGuild(member.Guild));
+                currentUserGuilds.Add(new UserGuild(member));
             }
         }
 
@@ -251,7 +251,7 @@ namespace MASZ.Models
         {
             if (!currentUserGuilds.Any(x => x.Id == member.Guild.Id))
             {
-                currentUserGuilds.Add(new UserGuild(member.Guild));
+                currentUserGuilds.Add(new UserGuild(member));
             }
         }
     }

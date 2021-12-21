@@ -18,7 +18,7 @@ namespace MASZ.Commands
 
         public Identity CurrentIdentity;
 
-        public override async void BeforeExecute(ICommandInfo command)
+        public override void BeforeExecute(ICommandInfo command)
         {
             if (Context.Channel is ITextChannel)
             {
@@ -29,17 +29,21 @@ namespace MASZ.Commands
                 Logger.LogInformation($"{Context.User.Id} used {command.Name} in DM");
             }
 
+            RunCMDSetup().GetAwaiter().GetResult();
+        }
+
+        private async Task RunCMDSetup() {
+            if (Context.Guild != null)
+            {
+                await Translator.SetContext(Context.Guild.Id);
+            }
+
             CurrentIdentity = await IdentityManager.GetIdentity(Context.User);
 
             if (CurrentIdentity == null)
             {
                 Logger.LogError($"Failed to register command identity for '{Context.User.Id}'.");
                 return;
-            }
-
-            if (Context.Guild != null)
-            {
-                await Translator.SetContext(Context.Guild.Id);
             }
         }
 

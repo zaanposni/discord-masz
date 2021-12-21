@@ -13,7 +13,6 @@ namespace MASZ.Models.Views
         public string Avatar { get; set; }
         public bool Bot { get; set; }
 
-        private DiscordUserView() { }
         private DiscordUserView(IUser user)
         {
             if (user == null) return;

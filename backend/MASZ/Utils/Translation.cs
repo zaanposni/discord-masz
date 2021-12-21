@@ -926,18 +926,18 @@ namespace MASZ.Utils
                 _ => $"{user.Username}#{user.Discriminator} triggered automoderation.",
             };
         }
-        public string NotificationAutomoderationDM(IUser user, IChannel channel, string reason, string action)
+        public string NotificationAutomoderationDM(IUser user, ITextChannel channel, string reason, string action)
         {
             return PreferredLanguage switch
             {
-                Language.en => $"Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention()}.\nReason: {reason}\nAction: {action}",
-                Language.de => $"Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention()} ausgelöst.\nGrund: {reason}\nAktion: {action}",
-                Language.at => $"Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention()} ausglest. Grund: {reason}\nAktion: {action}",
-                Language.fr => $"Salut {user.Mention},\n\nVous avez déclenché l'automodération dans {channel.Mention()}.\nRaison : {reason}\nAction : {action}",
-                Language.es => $"Hola, {user.Mention}:\n\nActivó la automoderación en {channel.Mention()}.\nMotivo: {reason}\nAcción: {action}",
-                Language.ru => $"Привет, {user.Mention}!\n\nВы активировали автомодерацию в {channel.Mention()}.\nПричина: {reason}\nДействие: {action}",
-                Language.it => $"Ciao {user.Mention},\n\nHai attivato la moderazione automatica in {channel.Mention()}.\nMotivo: {reason}\nAzione: {action}",
-                _ => $"Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention()}.\nReason: {reason}\nAction: {action}",
+                Language.en => $"Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}",
+                Language.de => $"Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}",
+                Language.at => $"Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention} ausglest. Grund: {reason}\nAktion: {action}",
+                Language.fr => $"Salut {user.Mention},\n\nVous avez déclenché l'automodération dans {channel.Mention}.\nRaison : {reason}\nAction : {action}",
+                Language.es => $"Hola, {user.Mention}:\n\nActivó la automoderación en {channel.Mention}.\nMotivo: {reason}\nAcción: {action}",
+                Language.ru => $"Привет, {user.Mention}!\n\nВы активировали автомодерацию в {channel.Mention}.\nПричина: {reason}\nДействие: {action}",
+                Language.it => $"Ciao {user.Mention},\n\nHai attivato la moderazione automatica in {channel.Mention}.\nMotivo: {reason}\nAzione: {action}",
+                _ => $"Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}",
             };
         }
         public string NotificationAutomoderationChannel(IUser user, string reason)
@@ -1056,18 +1056,18 @@ namespace MASZ.Utils
                 _ => "This guild has no webhook for internal notifications configured.",
             };
         }
-        public string CmdCleanup(int count, IChannel channel)
+        public string CmdCleanup(int count, ITextChannel channel)
         {
             return PreferredLanguage switch
             {
-                Language.en => $"Deleted {count} messages in {channel.Mention()}.",
-                Language.de => $"{count} Nachrichten in {channel.Mention()} gelöscht.",
-                Language.at => $"{count} Nochrichtn in {channel.Mention()} glescht.",
-                Language.fr => $"{count} messages supprimés dans {channel.Mention()}.",
-                Language.es => $"Se eliminaron {count} mensajes en {channel.Mention()}.",
-                Language.ru => $"Удалено {count} сообщений в {channel.Mention()}.",
-                Language.it => $"Eliminati {count} messaggi in {channel.Mention()}.",
-                _ => $"Deleted {count} messages in {channel.Mention()}.",
+                Language.en => $"Deleted {count} messages in {channel.Mention}.",
+                Language.de => $"{count} Nachrichten in {channel.Mention} gelöscht.",
+                Language.at => $"{count} Nochrichtn in {channel.Mention} glescht.",
+                Language.fr => $"{count} messages supprimés dans {channel.Mention}.",
+                Language.es => $"Se eliminaron {count} mensajes en {channel.Mention}.",
+                Language.ru => $"Удалено {count} сообщений в {channel.Mention}.",
+                Language.it => $"Eliminati {count} messaggi in {channel.Mention}.",
+                _ => $"Deleted {count} messages in {channel.Mention}.",
             };
         }
         public string CmdFeaturesKickPermissionGranted()
@@ -1396,7 +1396,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.en => "You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-masz#hosting",
+                Language.en => "You will have to host your own instance of MASZ on your server or pc.\nCheck out https://github.com/zaanposni/discord-masz#hosting",
                 Language.de => "Du musst deine eigene Instanz von MASZ auf deinem Server oder PC hosten.\nSchau dir https://github.com/zaanposni/discord-masz#hosting an",
                 Language.at => "Du muast dei eignane Inszanz vo MASZ auf deim Serva oda PC hosn.\nSchau da https://github.com/zaanposni/discord-masz#hosting o",
                 Language.fr => "Vous devrez héberger votre propre instance de MASZ sur votre serveur ou votre PC.\nCommander https://github.com/zaanposni/discord-masz#hosting",
@@ -1464,17 +1464,20 @@ namespace MASZ.Utils
         }
         public string CmdReportContent(IUser user, IMessage message)
         {
-            return PreferredLanguage switch
-            {
-                Language.en => $"{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
-                Language.de => $"{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
-                Language.at => $"{user.Mention} mödet a Nochricht vo {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
-                Language.fr => $"{user.Mention} a signalé un message de {message.Author.Mention} dans {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
-                Language.es => $"{user.Mention} informó un mensaje de {message.Author.Mention} en {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
-                Language.ru => $"{user.Mention} сообщил о сообщении от {message.Author.Mention} в {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
-                Language.it => $"{user.Mention} ha segnalato un messaggio da {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
-                _ => $"{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention()}.\n{message.GetJumpUrl()}",
-            };
+            if (message.Channel is ITextChannel tChannel)
+                return PreferredLanguage switch
+                {
+                    Language.en => $"{user.Mention} reported a message from {message.Author.Mention} in {tChannel.Mention}.\n{message.GetJumpUrl()}",
+                    Language.de => $"{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {tChannel.Mention}.\n{message.GetJumpUrl()}",
+                    Language.at => $"{user.Mention} mödet a Nochricht vo {message.Author.Mention} in {tChannel.Mention}.\n{message.GetJumpUrl()}",
+                    Language.fr => $"{user.Mention} a signalé un message de {message.Author.Mention} dans {tChannel.Mention}.\n{message.GetJumpUrl()}",
+                    Language.es => $"{user.Mention} informó un mensaje de {message.Author.Mention} en {tChannel.Mention}.\n{message.GetJumpUrl()}",
+                    Language.ru => $"{user.Mention} сообщил о сообщении от {message.Author.Mention} в {tChannel.Mention}.\n{message.GetJumpUrl()}",
+                    Language.it => $"{user.Mention} ha segnalato un messaggio da {message.Author.Mention} in {tChannel.Mention}.\n{message.GetJumpUrl()}",
+                    _ => $"{user.Mention} reported a message from {message.Author.Mention} in {tChannel.Mention}.\n{message.GetJumpUrl()}",
+                };
+            else
+                return "Failed to resolve text channel";
         }
         public string CmdSayFailed()
         {

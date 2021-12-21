@@ -13,18 +13,18 @@ namespace MASZ.Commands
         [Require(RequireCheckEnum.GuildModerator)]
         [SlashCommand("cleanup", "Cleanup specific data from the server and/or channel.")]
         public async Task Cleanup([Summary("mode", "which data you want to delete")] CleanupMode cleanupMode,
-                                  [Summary("channel", "where to delete, defaults to current.")] IChannel channel = null,
+                                  [Summary("channel", "where to delete, defaults to current.")] ITextChannel channel = null,
                                   [Summary("count", "how many messages to scan for your mode.")] long count = 100,
                                   [Summary("user", "additional filter on this user")] IUser filterUser = null)
         {
             if (channel == null)
             {
-                channel = Context.Channel;
-            }
-            if (channel is not ITextChannel textChannel)
-            {
-                await Context.Interaction.RespondAsync(Translator.T().CmdOnlyTextChannel());
-                return;
+                if (Context.Channel is not ITextChannel textChannel)
+                {
+                    await Context.Interaction.RespondAsync(Translator.T().CmdOnlyTextChannel());
+                    return;
+                }
+                channel = textChannel;
             }
 
             await Context.Interaction.RespondAsync("Deleting channels...");
@@ -48,8 +48,8 @@ namespace MASZ.Commands
             int deleted = 0;
             try
             {
-                deleted = await IterateAndDeleteChannels(textChannel, (int)count, func, filterUser);
-                await Context.Interaction.ModifyOriginalResponseAsync(message => message.Content = Translator.T().CmdCleanup(deleted, textChannel));
+                deleted = await IterateAndDeleteChannels(channel, (int)count, func, filterUser);
+                await Context.Interaction.ModifyOriginalResponseAsync(message => message.Content = Translator.T().CmdCleanup(deleted, channel));
             }
             catch (HttpException e)
             {

@@ -593,21 +593,22 @@ namespace MASZ.Services
                             await translator.SetContext(context.Guild.Id);
                         }
 
-                        string errorCode = "0#" + ((int)(eResult.Exception as BaseAPIException).Error).ToString("D7");
-                        StringBuilder sb = new();
-                        sb.AppendLine(translator.T().SomethingWentWrong());
-                        sb.AppendLine($"`{translator.T().Enum((eResult.Exception as BaseAPIException).Error)}`");
-                        sb.Append($"**{translator.T().Code()}** ");
-                        sb.Append($"`{errorCode}`");
+                        string errorCode = "#" + ((int)(eResult.Exception as BaseAPIException).Error).ToString("D4");
+                        
+                        EmbedBuilder builder = new EmbedBuilder()
+                            .WithTitle(translator.T().SomethingWentWrong())
+                            .WithColor(Color.Red)
+                            .WithDescription(translator.T().Enum((eResult.Exception as BaseAPIException).Error))
+                            .WithCurrentTimestamp()
+                            .WithFooter($"{translator.T().Code()} {errorCode}");
 
                         try
                         {
-                            await context.Interaction.RespondAsync(sb.ToString());
+                            await context.Interaction.RespondAsync(embed: builder.Build());
                         }
-                        catch (HttpException ex)
+                        catch (TimeoutException)
                         {
-                            if (ex.HttpCode == HttpStatusCode.NotFound)
-                                await context.Channel.SendMessageAsync(sb.ToString());
+                            await context.Channel.SendMessageAsync(embed: builder.Build());
                         }
                     }
                     else

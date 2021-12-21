@@ -17,19 +17,23 @@ namespace MASZ.Commands
             }
             catch (Exception) { }
 
-            EmbedBuilder embed = new();
-            embed.WithTitle("Avatar");
-            embed.WithFooter($"UserId: {user.Id}");
+            EmbedBuilder embed = new EmbedBuilder()
+                .WithTitle("Get Avatar URL")
+                .WithFooter($"User ID: {user.Id}")
+                .WithColor(Color.Magenta)
+                .WithCurrentTimestamp();
 
             if (member != null && member.GuildAvatarId != null)
             {
-                embed.WithUrl(member.GetGuildAvatarUrl(size: 1024));
-                embed.WithImageUrl(member.GetGuildAvatarUrl(size: 1024));
+                embed.WithUrl(member.GetGuildAvatarUrl(size: 1024))
+                    .WithImageUrl(member.GetGuildAvatarUrl(size: 1024))
+                    .WithAuthor(member);
             }
             else
             {
-                embed.WithUrl(user.GetAvatarOrDefaultUrl(size: 1024));
-                embed.WithImageUrl(user.GetAvatarOrDefaultUrl(size: 1024));
+                embed.WithUrl(user.GetAvatarOrDefaultUrl(size: 1024))
+                    .WithImageUrl(user.GetAvatarOrDefaultUrl(size: 1024))
+                    .WithAuthor(user);
             }
 
             await Context.Interaction.RespondAsync(embed: embed.Build(), ephemeral: true);

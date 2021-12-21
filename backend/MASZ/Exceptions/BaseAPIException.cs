@@ -1,5 +1,3 @@
-#nullable enable
-
 using MASZ.Enums;
 
 namespace MASZ.Exceptions

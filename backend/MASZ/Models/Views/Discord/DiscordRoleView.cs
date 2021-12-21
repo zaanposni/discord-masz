@@ -10,7 +10,6 @@ namespace MASZ.Models.Views
         public int Position { get; set; }
         public string Permissions { get; set; }
 
-        public DiscordRoleView() { }
         public DiscordRoleView(IRole role)
         {
             Id = role.Id.ToString();
