@@ -1,6 +1,6 @@
 ﻿namespace MASZ.Extensions
 {
-    public static class ConfigureIcon
+    public static class GuildIcon
     {
         public static string GetAnimatedOrDefaultAvatar(this string iconUrl)
         {
