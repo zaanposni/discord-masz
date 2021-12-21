@@ -59,7 +59,7 @@ namespace MASZ.Commands
             embed.AddField(Translator.T().Registered(), user.CreatedAt.DateTime.ToDiscordTS(), true);
 
             embed.WithAuthor(user);
-            embed.WithThumbnailUrl(user.GetAvatarUrl());
+            embed.WithThumbnailUrl(user.GetAvatarOrDefaultUrl(size: 1024));
 
             try
             {
