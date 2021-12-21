@@ -11,11 +11,11 @@ namespace MASZ.AutoModeration
             {
                 return false;
             }
-            if (message.MentionedUserIds == null || message.MentionedRoleIds == null)
+            if (message.MentionedUserIds == null)
             {
                 return false;
             }
-            return message.MentionedRoleIds.Count + message.MentionedUserIds.Count > config.Limit;
+            return message.MentionedUserIds.Count > config.Limit;
         }
     }
 }
