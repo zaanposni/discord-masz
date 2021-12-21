@@ -6,7 +6,7 @@ COPY MASZ/ .
 RUN npm install -g @angular/cli
 RUN npm install
 
-RUN ng build --prod --output-hashing=all
+RUN ng build --configuration production --output-hashing=all
 
 FROM nginx:alpine
 
