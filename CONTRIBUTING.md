@@ -4,7 +4,6 @@ All forms of contributions are **welcome**.\
 Feel free to comment existing issues/discussions or create a new one if you have an idea!
 
 - [https://discord.gg/5zjpzw6h3S](https://discord.gg/5zjpzw6h3S)
-- Discord: `zaanposni#9295`
 - [mail me](mailto:me@zaanposni.com)
 
 ## Translations
@@ -44,4 +43,3 @@ If any of our issues catches your eye, feel free to comment on it or get in touc
 ## Developing
 
 Setting up dev environments can be frustrating. Do not hesitate to contact us (see above).
-

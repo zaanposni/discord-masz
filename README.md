@@ -160,9 +160,11 @@ Feel free to get in touch with me via our support server [https://discord.gg/5zj
 docker-compose -f docker-compose-dev.yml up --force-recreate --build
 ```
 
+Feel free to join our discord at [https://discord.gg/5zjpzw6h3S](https://discord.gg/5zjpzw6h3S) if you have further questions about your dev environment.
+
 ### Config
 
-- Using the `setup.py` script. Choose "local" deployment for best development experience.
+- Using the `setup.py` script choose "local" deployment for best development experience.
 
 ### Discord
 
@@ -171,3 +173,4 @@ If you are using a local deployed backend you have to define `https://127.0.0.1:
 ### Angular
 
 If you want to develop on the angular frontend, set the env var `ENABLE_CORS=true` for the backend container.
+Then use `ng serve` to get a hotload angular instance. Adjust the config.ts to allow cors and change the BASE_PATH to `""`.
