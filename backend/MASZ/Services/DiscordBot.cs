@@ -9,9 +9,7 @@ using MASZ.GuildAuditLog;
 using MASZ.InviteTracking;
 using MASZ.Models;
 using MASZ.Repositories;
-using System.Net;
 using System.Reflection;
-using System.Text;
 
 namespace MASZ.Services
 {

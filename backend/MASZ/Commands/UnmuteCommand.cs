@@ -1,5 +1,6 @@
 using Discord;
 using Discord.Interactions;
+using Discord.WebSocket;
 using MASZ.Attributes;
 using MASZ.Enums;
 using MASZ.Extensions;
@@ -69,19 +70,24 @@ namespace MASZ.Commands
         [ComponentInteraction("unmute-delete:*")]
         public async Task Delete(string userID)
         {
+            var castInteraction = Context.Interaction as SocketMessageComponent;
+
             var button = new ComponentBuilder()
-                .WithButton(Translator.T().CmdUndoButtonsPublicNotification(), $"unmute-conf-delete:1:{userID}", ButtonStyle.Primary)
-                .WithButton(Translator.T().CmdUndoButtonsNoPublicNotification(), $"unmute-conf-delete:0:{userID}", ButtonStyle.Secondary)
+                .WithButton(Translator.T().CmdUndoButtonsPublicNotification(), $"unmute-conf-delete:1,{userID}", ButtonStyle.Primary)
+                .WithButton(Translator.T().CmdUndoButtonsNoPublicNotification(), $"unmute-conf-delete:0,{userID}", ButtonStyle.Secondary)
                 .WithButton(Translator.T().CmdUndoButtonsCancel(), "unmute-cancel", ButtonStyle.Danger);
 
-            await Context.Interaction.ModifyOriginalResponseAsync(message =>
+            var embed = castInteraction.Message.Embeds.FirstOrDefault().ToEmbedBuilder()
+                .WithColor(Color.Red);
+
+            embed.Fields = new()
             {
-                var embed = message.Embed.GetValueOrDefault().ToEmbedBuilder().WithColor(Color.Red);
-                embed.Fields = new()
-                {
-                    new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoResultWaiting()),
-                    new EmbedFieldBuilder().WithName(Translator.T().CmdUndoPublicNotificationTitle()).WithValue(Translator.T().CmdUndoPublicNotificationDescription())
-                };
+                new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoResultWaiting()),
+                new EmbedFieldBuilder().WithName(Translator.T().CmdUndoPublicNotificationTitle()).WithValue(Translator.T().CmdUndoPublicNotificationDescription())
+            };
+
+            await castInteraction.UpdateAsync(message =>
+            {
                 message.Embed = embed.Build();
                 message.Components = button.Build();
             });
@@ -100,15 +106,20 @@ namespace MASZ.Commands
                 await repo.DeleteModCase(modCase.GuildId, modCase.CaseId, false, true, isPublic == "1");
             }
 
-            await Context.Interaction.ModifyOriginalResponseAsync(message =>
+            var castInteraction = Context.Interaction as SocketMessageComponent;
+
+            var embed = castInteraction.Message.Embeds.FirstOrDefault().ToEmbedBuilder()
+                .WithColor(new Color(Convert.ToUInt32(int.Parse("7289da", NumberStyles.HexNumber))));  // discord blurple
+            
+            embed.Fields = new()
             {
-                var embed = message.Embed.GetValueOrDefault().ToEmbedBuilder().WithColor(new Color(Convert.ToUInt32(int.Parse("7289da", NumberStyles.HexNumber))));  // discord blurple
-                embed.Fields = new()
-                {
-                    new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoUnmuteResultDeleted())
-                };
+                new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoUnmuteResultDeleted())
+            };
+
+            await castInteraction.UpdateAsync(message =>
+            {
                 message.Embed = embed.Build();
-                message.Components = new();
+                message.Components = new ComponentBuilder().Build();
             });
         }
 
@@ -122,30 +133,38 @@ namespace MASZ.Commands
 
             await repo.DeactivateModCase(modCases.ToArray());
 
-            await Context.Interaction.ModifyOriginalResponseAsync(message =>
+            var castInteraction = Context.Interaction as SocketMessageComponent;
+
+            var embed = castInteraction.Message.Embeds.FirstOrDefault().ToEmbedBuilder().WithColor(Color.Green);
+
+            embed.Fields = new()
             {
-                var embed = message.Embed.GetValueOrDefault().ToEmbedBuilder().WithColor(Color.Green);
-                embed.Fields = new()
-                {
-                    new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoUnmuteResultDeactivated())
-                };
+                new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoUnmuteResultDeactivated())
+            };
+
+            await castInteraction.UpdateAsync(message =>
+            {
                 message.Embed = embed.Build();
-                message.Components = new();
+                message.Components = new ComponentBuilder().Build();
             });
         }
 
         [ComponentInteraction("unmute-cancel")]
         public async Task Cancel()
         {
-            await Context.Interaction.ModifyOriginalResponseAsync(message =>
+            var castInteraction = Context.Interaction as SocketMessageComponent;
+
+            var embed = castInteraction.Message.Embeds.FirstOrDefault().ToEmbedBuilder().WithColor(Color.Red);
+
+            embed.Fields = new()
             {
-                var embed = message.Embed.GetValueOrDefault().ToEmbedBuilder().WithColor(Color.Red);
-                embed.Fields = new()
-                {
-                    new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoResultCanceled())
-                };
+                new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoResultCanceled())
+            };
+
+            await castInteraction.UpdateAsync(message =>
+            {
                 message.Embed = embed.Build();
-                message.Components = new();
+                message.Components = new ComponentBuilder().Build();
             });
         }
     }

@@ -1,5 +1,6 @@
 using Discord;
 using Discord.Interactions;
+using Discord.WebSocket;
 using MASZ.Attributes;
 using MASZ.Enums;
 using MASZ.Extensions;
@@ -74,14 +75,18 @@ namespace MASZ.Commands
                 .WithButton(Translator.T().CmdUndoButtonsNoPublicNotification(), $"unban-conf-delete:0:{userID}", ButtonStyle.Secondary)
                 .WithButton(Translator.T().CmdUndoButtonsCancel(), "unban-cancel", ButtonStyle.Danger);
 
-            await Context.Interaction.ModifyOriginalResponseAsync(message =>
+            var castInteraction = Context.Interaction as SocketMessageComponent;
+
+            var embed = castInteraction.Message.Embeds.FirstOrDefault().ToEmbedBuilder().WithColor(Color.Red);
+
+            embed.Fields = new()
             {
-                var embed = message.Embed.GetValueOrDefault().ToEmbedBuilder().WithColor(Color.Red);
-                embed.Fields = new()
-                {
-                    new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoResultWaiting()),
-                    new EmbedFieldBuilder().WithName(Translator.T().CmdUndoPublicNotificationTitle()).WithValue(Translator.T().CmdUndoPublicNotificationDescription())
-                };
+                new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoResultWaiting()),
+                new EmbedFieldBuilder().WithName(Translator.T().CmdUndoPublicNotificationTitle()).WithValue(Translator.T().CmdUndoPublicNotificationDescription())
+            };
+
+            await castInteraction.UpdateAsync(message =>
+            {
                 message.Embed = embed.Build();
                 message.Components = button.Build();
             });
@@ -99,15 +104,20 @@ namespace MASZ.Commands
                 await repo.DeleteModCase(modCase.GuildId, modCase.CaseId, false, true, isPublic == "1");
             }
 
-            await Context.Interaction.ModifyOriginalResponseAsync(message =>
+            var castInteraction = Context.Interaction as SocketMessageComponent;
+
+            var embed = castInteraction.Message.Embeds.FirstOrDefault().ToEmbedBuilder()
+                .WithColor(new Color(Convert.ToUInt32(int.Parse("7289da", NumberStyles.HexNumber))));  // discord blurple
+            
+            embed.Fields = new()
             {
-                var embed = message.Embed.GetValueOrDefault().ToEmbedBuilder().WithColor(new Color(Convert.ToUInt32(int.Parse("7289da", NumberStyles.HexNumber))));  // discord blurple
-                embed.Fields = new()
-                {
-                    new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoUnbanButtonsDelete())
-                };
+                new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoUnbanButtonsDelete())
+            };
+
+            await castInteraction.UpdateAsync(message =>
+            {
                 message.Embed = embed.Build();
-                message.Components = new();
+                message.Components = new ComponentBuilder().Build();
             });
         }
 
@@ -120,30 +130,38 @@ namespace MASZ.Commands
 
             await repo.DeactivateModCase(modCases.ToArray());
 
-            await Context.Interaction.ModifyOriginalResponseAsync(message =>
+            var castInteraction = Context.Interaction as SocketMessageComponent;
+
+            var embed = castInteraction.Message.Embeds.FirstOrDefault().ToEmbedBuilder().WithColor(Color.Green);
+
+            embed.Fields = new()
             {
-                var embed = message.Embed.GetValueOrDefault().ToEmbedBuilder().WithColor(Color.Green);
-                embed.Fields = new()
-                {
-                    new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoUnbanResultDeactivated())
-                };
+                new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoUnbanResultDeactivated())
+            };
+
+            await castInteraction.UpdateAsync(message =>
+            {
                 message.Embed = embed.Build();
-                message.Components = new();
+                message.Components = new ComponentBuilder().Build();
             });
         }
 
         [ComponentInteraction("unban-cancel")]
         public async Task Cancel()
         {
-            await Context.Interaction.ModifyOriginalResponseAsync(message =>
+            var castInteraction = Context.Interaction as SocketMessageComponent;
+
+            var embed = castInteraction.Message.Embeds.FirstOrDefault().ToEmbedBuilder().WithColor(Color.Red);
+
+            embed.Fields = new()
             {
-                var embed = message.Embed.GetValueOrDefault().ToEmbedBuilder().WithColor(Color.Red);
-                embed.Fields = new()
-                {
-                    new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoResultCanceled())
-                };
+                new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoResultCanceled())
+            };
+
+            await castInteraction.UpdateAsync(message =>
+            {
                 message.Embed = embed.Build();
-                message.Components = new();
+                message.Components = new ComponentBuilder().Build();
             });
         }
     }

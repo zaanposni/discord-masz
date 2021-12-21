@@ -1,5 +1,4 @@
 ﻿using Discord;
-using Discord.Rest;
 using MASZ.Extensions;
 
 namespace MASZ.Models
