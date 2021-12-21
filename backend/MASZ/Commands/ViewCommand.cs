@@ -71,7 +71,7 @@ namespace MASZ.Commands
             IUser suspect = await DiscordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.Default);
             if (suspect != null)
             {
-                embed.WithThumbnailUrl(suspect.GetAvatarUrl());
+                embed.WithThumbnailUrl(suspect.GetAvatarOrDefaultUrl());
             }
 
             embed.WithTitle($"#{modCase.CaseId} {modCase.Title.Truncate(200)}");
