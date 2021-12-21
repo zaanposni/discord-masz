@@ -20,7 +20,7 @@ namespace MASZ.Commands
         {
             GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(ServiceProvider).GetGuildConfig(Context.Guild.Id);
 
-            GuildFeatureTest featureTest = new(guildConfig, Context.Guild.GetUser(Context.User.Id));
+            GuildFeatureTest featureTest = new(guildConfig, Context.Guild.CurrentUser);
 
             EmbedBuilder embed = new();
             embed.WithTimestamp(DateTime.UtcNow);
