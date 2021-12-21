@@ -510,14 +510,14 @@ namespace MASZ.Services
             return true;
         }
 
-        public async Task<IDMChannel> CreateDmChannel(ulong userId)
+        public async Task<RestDMChannel> CreateDmChannel(ulong userId)
         {
             // do cache stuff --------------------
             CacheKey cacheKey = CacheKey.DMChannel(userId);
-            IDMChannel channel;
+            RestDMChannel channel;
             try
             {
-                channel = TryGetFromCache<IDMChannel>(cacheKey, CacheBehavior.Default);
+                channel = TryGetFromCache<RestDMChannel>(cacheKey, CacheBehavior.Default);
                 if (channel != null) return channel;
             }
             catch (NotFoundInCacheException)
@@ -533,7 +533,7 @@ namespace MASZ.Services
             catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to create dm with user '{userId}'.");
-                return FallBackToCache<IDMChannel>(cacheKey, CacheBehavior.Default);
+                return FallBackToCache<RestDMChannel>(cacheKey, CacheBehavior.Default);
             }
 
             // cache -----------------------------
@@ -558,26 +558,26 @@ namespace MASZ.Services
             return true;
         }
 
-        public async Task<bool> SendDmMessage(ulong userId, string content)
+        public async Task SendDmMessage(ulong userId, string content)
         {
-            IDMChannel channel = await CreateDmChannel(userId);
+            RestDMChannel channel = await CreateDmChannel(userId);
             if (channel == null)
             {
-                return false;
+                return;
             }
 
-            return await SendMessage(channel.Id, content, null);
+            await channel.SendMessageAsync(content);
         }
 
-        public async Task<bool> SendDmMessage(ulong userId, Embed embed)
+        public async Task SendDmMessage(ulong userId, Embed embed)
         {
-            IDMChannel channel = await CreateDmChannel(userId);
+            RestDMChannel channel = await CreateDmChannel(userId);
             if (channel == null)
             {
-                return false;
+                return;
             }
 
-            return await SendMessage(channel.Id, null, embed);
+            await channel.SendMessageAsync(embed: embed);
         }
 
         public async Task ExecuteWebhook(string url, Embed embed = null, string content = null, AllowedMentions allowedMentions = null)
