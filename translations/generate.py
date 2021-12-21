@@ -51,8 +51,10 @@ with console.status("[bold green]Generating backend...") as status:
             for lang, translation in node.items():
                 if lang.lower() in ["description", "var_types"]:
                     continue
-                t = translation.replace('\n', '\\n')
                 TRANSLATION_STATS[lang.lower()] = TRANSLATION_STATS.get(lang.lower(), 0) + 1
+                if lang.lower() in ["en"]:
+                    continue
+                t = translation.replace('\n', '\\n')
                 generate += f"\t\t\t\tLanguage.{lang.lower()} => {insert_interpolation}\"{t}\",\n"
             t = node['en'].replace('\n', '\\n')
             generate += f"\t\t\t\t_ => {insert_interpolation}\"{t}\",\n"
@@ -81,8 +83,10 @@ with console.status("[bold green]Generating backend...") as status:
             for lang, translation in translations.items():
                 if lang.lower() in ["description", "var_types"]:
                     continue
-                t = translation.replace('\n', '\\n')
                 TRANSLATION_STATS[lang.lower()] = TRANSLATION_STATS.get(lang.lower(), 0) + 1
+                if lang.lower() in ["en"]:
+                    continue
+                t = translation.replace('\n', '\\n')
                 generate += f"\t\t\t\t\tLanguage.{lang.lower()} => \"{t}\",\n"
             t = translations["en"].replace('\n', '\\n')
             generate += f"\t\t\t\t\t_ => \"{t}\",\n"
