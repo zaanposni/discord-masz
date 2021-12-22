@@ -392,7 +392,7 @@
                     <mat-divider class="mb-2" *ngIf="this.modCase?.content?.modCase?.comments?.length"></mat-divider>
                     <div class="d-flex flex-row flex-wrap align-items-center">
                         <img
-                            *ngIf="this.modCase.content?.modCase?.lockedAt"
+                            *ngIf="this.modCase.content?.lockedBy"
                             [attr.src]="this.modCase.content?.lockedBy?.imageUrl"
                             class="card-img rounded-circle z-depth-0 mr-2"
                             alt="avatar icon"
