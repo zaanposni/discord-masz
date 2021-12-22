@@ -392,7 +392,7 @@
                     <mat-divider class="mb-2" *ngIf="this.modCase?.content?.modCase?.comments?.length"></mat-divider>
                     <div class="d-flex flex-row flex-wrap align-items-center">
                         <img
-                            *ngIf="this.modCase.content?.lockedBy"
+                            *ngIf="this.modCase.content?.modCase?.lockedAt"
                             [attr.src]="this.modCase.content?.lockedBy?.imageUrl"
                             class="card-img rounded-circle z-depth-0 mr-2"
                             alt="avatar icon"
@@ -400,7 +400,7 @@
                             style="width: unset"
                             onerror="this.src='/assets/img/default_profile.png';"
                         />
-                        <div class="mat-h3 mb-0 warn-color" style="display: inline" *ngIf="this.modCase.content?.lockedBy">
+                        <div class="mat-h3 mb-0 warn-color" style="display: inline" *ngIf="this.modCase.content?.modCase?.lockedAt">
                             {{ 'ModCaseView.CommentsLocked' | translate:lockedCommentsParams }}
                             <app-date-display [date]="this.modCase.content?.modCase?.lockedAt"></app-date-display>
                         </div>
