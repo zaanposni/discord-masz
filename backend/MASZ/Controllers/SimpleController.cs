@@ -41,7 +41,7 @@ namespace MASZ.Controllers
             return identity;
         }
 
-        protected async Task<IUser> GetCurrentIUser()
+        protected async Task<IUser> GetCurrentUser()
         {
             Identity identity = await GetIdentity();
             return identity.GetCurrentUser();
