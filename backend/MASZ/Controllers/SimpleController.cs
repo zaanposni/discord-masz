@@ -31,7 +31,7 @@ namespace MASZ.Controllers
             _serviceProvider = serviceProvider;
         }
 
-        public async Task<Identity> GetIdentity()
+        protected async Task<Identity> GetIdentity()
         {
             Identity identity = await _identityManager.GetIdentity(HttpContext);
             if (identity == null)
@@ -41,13 +41,13 @@ namespace MASZ.Controllers
             return identity;
         }
 
-        public async Task<IUser> GetCurrentIUser()
+        protected async Task<IUser> GetCurrentIUser()
         {
             Identity identity = await GetIdentity();
             return identity.GetCurrentUser();
         }
 
-        public async Task<GuildConfig> GetRegisteredGuild(ulong guildId)
+        protected async Task<GuildConfig> GetRegisteredGuild(ulong guildId)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace MASZ.Controllers
             }
         }
 
-        public async Task RequirePermission(ulong guildId, DiscordPermission permission)
+        protected async Task RequirePermission(ulong guildId, DiscordPermission permission)
         {
             Identity currentIdentity = await GetIdentity();
             if (!await currentIdentity.HasPermissionOnGuild(permission, guildId))
@@ -68,7 +68,7 @@ namespace MASZ.Controllers
             }
         }
 
-        public async Task RequireSiteAdmin()
+        protected async Task RequireSiteAdmin()
         {
             Identity currentIdentity = await GetIdentity();
             if (!currentIdentity.IsSiteAdmin())

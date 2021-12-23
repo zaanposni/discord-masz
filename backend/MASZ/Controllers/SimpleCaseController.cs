@@ -11,7 +11,7 @@ namespace MASZ.Controllers
         public SimpleCaseController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
-        public async Task RequirePermission(ulong guildId, int caseId, APIActionPermission permission)
+        protected async Task RequirePermission(ulong guildId, int caseId, APIActionPermission permission)
         {
             Identity currentIdentity = await GetIdentity();
             ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).GetModCase(guildId, caseId);
