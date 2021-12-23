@@ -355,7 +355,7 @@ export class ModcaseViewComponent implements OnInit {
       "message": this.newComment.trim()
     };
 
-    this.api.postSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/comments`, data).subscribe(() => {
+    this.api.postSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/comments`, data, undefined, true, true).subscribe(() => {
       this.newComment = "";
       this.toastr.success(this.translator.instant('ModCaseView.CommentPost.Posted'));
       this.reloadCase();
