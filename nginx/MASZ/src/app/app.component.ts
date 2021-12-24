@@ -187,6 +187,7 @@ export class AppComponent implements OnInit{
               this.toastr.success(this.translator.instant('MASZ.GuildDeleted'));
               this.auth.resetCache();
               this.login();
+              this.router.navigate(['guilds']);
             }, (error) => {
               this.toastr.error(this.translator.instant('MASZ.FailedToDeleteGuild'));
             });
