@@ -76,6 +76,8 @@ builder.Services
 
 .AddSingleton<Scheduler>()
 
+.AddSingleton<BackgroundRunner>()
+
 // SCOPED
 
 .AddScoped<Database>()

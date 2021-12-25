@@ -308,6 +308,16 @@
         "ru": "UserMap между {userMap.UserA} и {userMap.UserB}.",
         "it": "UserMap tra {userMap.UserA} e {userMap.UserB}."
     },
+    "Imported": {
+        "description": "Case that has been imported",
+        "en": "Imported",
+        "de": "Importiert"
+    },
+    "ImportedFromExistingBans": {
+        "description": "Case that has been imported from existing bans",
+        "en": "Imported from existing bans",
+        "de": "Importiert aus bestehenden Sperren"
+    },
     "Type": {
         "description": "The word 'type'",
         "en": "Type",

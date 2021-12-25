@@ -1,9 +1,11 @@
+using Discord;
 using MASZ.Dtos.GuildConfig;
 using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.Models;
 using MASZ.Models.Views;
 using MASZ.Repositories;
+using MASZ.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,7 +40,7 @@ namespace MASZ.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateItem([FromBody] GuildConfigForCreateDto guildConfigForCreateDto)
+        public async Task<IActionResult> CreateItem([FromBody] GuildConfigForCreateDto guildConfigForCreateDto, [FromQuery] bool importExistingBans = false)
         {
             await RequireSiteAdmin();
 
@@ -70,11 +72,39 @@ namespace MASZ.Controllers
 
             await GuildConfigRepository.CreateDefault(_serviceProvider).CreateGuildConfig(guildConfig);
 
-            Task task = new(() =>
+            Func<IServiceScope, GuildConfig, bool, Task> backgroundImport = new(async (IServiceScope scope, GuildConfig guildConfig, bool importExistingBans) =>
             {
-                _scheduler.CacheAll();
+                var discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
+                var scheduler = scope.ServiceProvider.GetRequiredService<Scheduler>();
+
+                await scheduler.CacheAllKnownGuilds();
+                await scheduler.CacheAllGuildMembers(new List<ulong>());
+                await scheduler.CacheAllGuildBans(new List<ulong>());
+
+                if (importExistingBans)
+                {
+                    _translator.SetContext(guildConfig);
+                    ModCaseRepository modCaseRepository = ModCaseRepository.CreateWithBotIdentity(scope.ServiceProvider);
+                    foreach (IBan ban in await discordAPI.GetGuildBans(guildConfig.GuildId, CacheBehavior.OnlyCache))
+                    {
+                        ModCase modCase = new()
+                        {
+                            Title = string.IsNullOrEmpty(ban.Reason) ? _translator.T().ImportedFromExistingBans() : ban.Reason,
+                            Description = string.IsNullOrEmpty(ban.Reason) ? _translator.T().ImportedFromExistingBans() : ban.Reason,
+                            GuildId = guildConfig.GuildId,
+                            UserId = ban.User.Id,
+                            Username = ban.User.Username,
+                            Labels = new[] { _translator.T().Imported() },
+                            Discriminator = ban.User.Discriminator,
+                            CreationType = CaseCreationType.Imported,
+                            PunishmentType = PunishmentType.Ban,
+                            PunishedUntil = null
+                        };
+                        await modCaseRepository.ImportModCase(modCase);
+                    }
+                }
             });
-            task.Start();
+            _backgroundRunner.QueueAction(backgroundImport, guildConfig, importExistingBans);
 
             return StatusCode(201, guildConfig);
         }

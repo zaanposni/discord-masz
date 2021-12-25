@@ -20,6 +20,52 @@ namespace MASZ.Repositories
         }
         public static ModCaseRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new(serviceProvider, identity.GetCurrentUser());
         public static ModCaseRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new(serviceProvider);
+        public async Task<ModCase> ImportModCase(ModCase modCase)
+        {
+            GuildConfig guildConfig;
+            try
+            {
+                guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(modCase.GuildId);
+            }
+            catch (ResourceNotFoundException)
+            {
+                throw new UnregisteredGuildException(modCase.GuildId);
+            }
+
+            modCase.CreationType = CaseCreationType.Imported;
+            modCase.CaseId = await Database.GetHighestCaseIdForGuild(modCase.GuildId) + 1;
+            modCase.CreatedAt = DateTime.UtcNow;
+            if (modCase.OccuredAt == default || modCase.OccuredAt == DateTime.MinValue)
+            {
+                modCase.OccuredAt = modCase.CreatedAt;
+            }
+            modCase.ModId = _currentUser.Id;
+            modCase.LastEditedAt = modCase.CreatedAt;
+            modCase.LastEditedByModId = _currentUser.Id;
+            if (modCase.Labels != null)
+            {
+                modCase.Labels = modCase.Labels.Distinct().ToArray();
+            }
+            else
+            {
+                modCase.Labels = Array.Empty<string>();
+            }
+            modCase.Valid = true;
+            if (modCase.PunishmentType == PunishmentType.Warn || modCase.PunishmentType == PunishmentType.Kick)
+            {
+                modCase.PunishedUntil = null;
+                modCase.PunishmentActive = false;
+            }
+            else
+            {
+                modCase.PunishmentActive = modCase.PunishedUntil == null || modCase.PunishedUntil > DateTime.UtcNow;
+            }
+
+            await Database.SaveModCase(modCase);
+            await Database.SaveChangesAsync();
+
+            return modCase;
+        }
         public async Task<ModCase> CreateModCase(ModCase modCase, bool handlePunishment, bool sendPublicNotification, bool sendDmNotification)
         {
             IUser currentReportedUser = await DiscordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.IgnoreButCacheOnError);

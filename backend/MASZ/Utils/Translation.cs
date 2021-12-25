@@ -406,6 +406,22 @@ namespace MASZ.Utils
                 _ => $"UserMap between {userMap.UserA} and {userMap.UserB}.",
             };
         }
+        public string Imported()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Importiert",
+                _ => "Imported",
+            };
+        }
+        public string ImportedFromExistingBans()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Importiert aus bestehenden Sperren",
+                _ => "Imported from existing bans",
+            };
+        }
         public string Type()
         {
             return PreferredLanguage switch
