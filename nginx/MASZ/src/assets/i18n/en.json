@@ -3,6 +3,7 @@
         "Select": "Select",
         "Search": "Search"
     },
+    "Version": "Version",
     "LoginWithDiscord": {
         "Button": "Login with Discord",
         "Loading": "Logging you in with Discord..."

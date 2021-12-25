@@ -11,6 +11,11 @@
             "de": "Suchen"
         }
     },
+    "Version": {
+        "description": "version",
+        "en": "Version",
+        "de": "Version"
+    },
     "LoginWithDiscord": {
         "Button": {
             "description": "Login button",
