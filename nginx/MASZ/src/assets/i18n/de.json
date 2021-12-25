@@ -146,6 +146,8 @@
         "Confirm": "Bestätigen"
     },
     "GuildDialog": {
+        "ImportExistingBans": "Bestehende Sperren importieren",
+        "ImportExistingBansDetails": "Dies kann bei großen Gilden eine Weile dauern, aber wird im Hintergrund ausgeführt.",
         "AddAGuild": "Gilde hinzufügen",
         "SearchAGuild": "Gilde suchen",
         "SelectAnotherGuild": "Wähle eine andere Gilde",

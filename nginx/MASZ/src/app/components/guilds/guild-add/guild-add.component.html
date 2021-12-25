@@ -148,7 +148,20 @@
                     </form>
                 </mat-step>
                 <mat-step>
-                    <ng-template matStepLabel>{{ 'GuildDialog.Done' | translate }}</ng-template>
+                    <form [formGroup]="queryGroup">
+                        <ng-template matStepLabel>{{ 'GuildDialog.Done' | translate }}</ng-template>
+                        <div class="d-flex flex-row">
+                            <mat-checkbox
+                                class="mr-2"
+                                formControlName="importExistingBans"
+                                [labelPosition]="'after'">
+                                {{ 'GuildDialog.ImportExistingBans' | translate }}
+                            </mat-checkbox>
+                            <mat-icon matTooltip="{{ 'GuildDialog.ImportExistingBansDetails' | translate }}">
+                                help_outline
+                            </mat-icon>
+                        </div>
+                    </form>
                     <div class="d-flex flex-row mt-2 stepper-actions">
                         <button mat-raised-button matStepperPrevious class="mr-2" color="accent">{{ 'GuildDialog.Back' | translate }}</button>
                         <button mat-raised-button (click)="registerGuild()" color="accent">{{ 'GuildDialog.RegisterGuild' | translate }}</button>

@@ -64,6 +64,8 @@ namespace MASZ.Repositories
             await Database.SaveModCase(modCase);
             await Database.SaveChangesAsync();
 
+            await _eventHandler.OnModCaseCreatedEvent.InvokeAsync(modCase);
+
             return modCase;
         }
         public async Task<ModCase> CreateModCase(ModCase modCase, bool handlePunishment, bool sendPublicNotification, bool sendDmNotification)

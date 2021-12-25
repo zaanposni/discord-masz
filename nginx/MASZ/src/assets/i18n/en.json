@@ -146,6 +146,8 @@
         "Confirm": "Confirm"
     },
     "GuildDialog": {
+        "ImportExistingBans": "Import existing bans",
+        "ImportExistingBansDetails": "This might take a while for large guilds but will run in the background.",
         "AddAGuild": "Add a guild",
         "SearchAGuild": "Search a guild",
         "SelectAnotherGuild": "Select a guild",

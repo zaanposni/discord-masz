@@ -1126,6 +1126,16 @@
         }
     },
     "GuildDialog": {
+        "ImportExistingBans": {
+            "description": "import existing bans",
+            "en": "Import existing bans",
+            "de": "Bestehende Sperren importieren"
+        },
+        "ImportExistingBansDetails": {
+            "description": "import existing bans details",
+            "en": "This might take a while for large guilds but will run in the background.",
+            "de": "Dies kann bei großen Gilden eine Weile dauern, aber wird im Hintergrund ausgeführt."
+        },
         "AddAGuild": {
             "description": "Add a guild",
             "en": "Add a guild",

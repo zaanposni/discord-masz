@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -25,6 +26,7 @@ export class GuildAddComponent implements OnInit {
   public modRolesGroup!: FormGroup;
   public muteRolesGroup!: FormGroup;
   public configGroup!: FormGroup;
+  public queryGroup!: FormGroup;
 
   public guilds!: ContentLoading<Guild[]>;
   public searchGuilds!: string;
@@ -56,6 +58,9 @@ export class GuildAddComponent implements OnInit {
       executeWhoisOnJoin: [''],
       publishModeratorInfo: [''],
       preferredLanguage: [''],
+    });
+    this.queryGroup = this._formBuilder.group({
+      importExistingBans: [''],
     });
 
     this.applicationInfoService.currentApplicationInfo.subscribe((data: IApplicationInfo) => {
@@ -135,19 +140,22 @@ export class GuildAddComponent implements OnInit {
 
   registerGuild() {
     const data = {
-      guildid: this.selectedGuild?.id,
-      modRoles: this.modRolesGroup.value.modRoles,
-      adminRoles: this.adminRolesGroup.value.adminRoles,
-      mutedRoles: this.muteRolesGroup.value.muteRoles != '' ? this.muteRolesGroup.value.muteRoles : [],
-      modInternalNotificationWebhook: this.configGroup.value?.internal?.trim() != '' ? this.configGroup?.value?.internal : null,
-      modPublicNotificationWebhook: this.configGroup.value?.public?.trim() != '' ? this.configGroup?.value?.public : null,
-      strictModPermissionCheck: (this.configGroup.value?.strictPermissionCheck != '' ? this.configGroup.value?.strictPermissionCheck : false) ?? false,
-      executeWhoisOnJoin: (this.configGroup.value?.executeWhoisOnJoin != '' ? this.configGroup.value?.executeWhoisOnJoin : false) ?? false,
-      publishModeratorInfo: (this.configGroup.value?.publishModeratorInfo !=='' ? this.configGroup.value?.publishModeratorInfo : false) ?? false,
-      preferredLanguage: this.configGroup.value?.preferredLanguage != '' ? this.configGroup.value?.preferredLanguage : 0
+      guildid:                        this.selectedGuild?.id,
+      modRoles:                       this.modRolesGroup.value.modRoles,
+      adminRoles:                     this.adminRolesGroup.value.adminRoles,
+      mutedRoles:                     this.muteRolesGroup.value.muteRoles           != '' ? this.muteRolesGroup.value.muteRoles                    : [],
+      modInternalNotificationWebhook: this.configGroup.value?.internal?.trim()      != '' ? this.configGroup?.value?.internal                      : null,
+      modPublicNotificationWebhook:   this.configGroup.value?.public?.trim()        != '' ? this.configGroup?.value?.public                        : null,
+      strictModPermissionCheck:       this.configGroup.value?.strictPermissionCheck != '' ? this.configGroup.value?.strictPermissionCheck ?? false : false,
+      executeWhoisOnJoin:             this.configGroup.value?.executeWhoisOnJoin    != '' ? this.configGroup.value?.executeWhoisOnJoin    ?? false : false,
+      publishModeratorInfo:           this.configGroup.value?.publishModeratorInfo  != '' ? this.configGroup.value?.publishModeratorInfo  ?? false : false,
+      preferredLanguage:              this.configGroup.value?.preferredLanguage     != '' ? this.configGroup.value?.preferredLanguage     ?? 0     : 0
     }
 
-    this.api.postSimpleData('/guilds/', data).subscribe(() => {
+    console.log(this.queryGroup.value?.importExistingBans);
+    let params = new HttpParams()
+                      .set("importExistingBans", this.queryGroup.value?.importExistingBans ? 'true' : 'false');
+    this.api.postSimpleData('/guilds/', data, params).subscribe(() => {
       this.toastr.success(this.translator.instant('GuildDialog.GuildCreated'));
       this.authService.resetCache();
       this.router.navigate(['guilds']);
