@@ -308,6 +308,8 @@ BenchmarkDotNet.Artifacts/
 
 # .NET Core
 
+.config/
+
 # StyleCop
 StyleCopReport.xml
 
