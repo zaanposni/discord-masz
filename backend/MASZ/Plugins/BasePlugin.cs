@@ -12,6 +12,7 @@ namespace MASZ.Plugins
         protected readonly DiscordBot _discordBot;
         protected readonly Scheduler _scheduler;
         protected readonly InternalEventHandler _eventHandler;
+        protected readonly BackgroundRunner _backgroundRunner;
         protected readonly IServiceProvider _serviceProvider;
 
         public BasePlugin() { }
@@ -26,6 +27,7 @@ namespace MASZ.Plugins
             _discordBot = serviceProvider.GetRequiredService<DiscordBot>();
             _scheduler = serviceProvider.GetRequiredService<Scheduler>();
             _eventHandler = serviceProvider.GetRequiredService<InternalEventHandler>();
+            _backgroundRunner = serviceProvider.GetService<BackgroundRunner>();
             _serviceProvider = serviceProvider;
         }
     }
