@@ -5,6 +5,91 @@
     "released_at": "2021-12-15",
     "contributors": [
       {
+        "name": "FeroxFoxxo",
+        "link": "https://github.com/FeroxFoxxo",
+        "icon": "https://avatars.githubusercontent.com/u/51069105?v=4"
+      },
+      {
+        "name": "TrissieTheHusky",
+        "link": "https://github.com/TrissieTheHusky",
+        "icon": "https://avatars.githubusercontent.com/u/48584735?v=4"
+      }
+    ],
+    "breaking": [
+      {
+        "title": "Removed upload size cap.",
+        "description": "The limit of 10MB has been removed. Please add this to your own reverse proxy as you see fit."
+      },
+      {
+        "title": "Reworked plugin system.",
+        "description": "As part of the changes stated in the technical section, the plugin system has been reworked. You might need to adjust your existing plugins. If you need any help, feel free to contact me on Discord."
+      }
+    ],
+    "features": [
+      {
+        "title": "Added version info to insights tab.",
+        "description": "The insights tab will now display the currently deployed version."
+      },
+      {
+        "title": "Added reasoning for discord audit logs.",
+        "description": "The reason of a punishment will now be displayed in discords audit log.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/469"
+      },
+      {
+        "title": "Added import of existing bans on guild register.",
+        "description": "You can now import existing bans on guild register. Those will not trigger announcements or dm notification but will be added to the database.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/475"
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Fixed search in multi select.",
+        "description": "A bug was fixed that corrupted selected elements in the multi select when using the search."
+      },
+      {
+        "title": "Fixed display of comment locked status.",
+        "description": "A bug was fixed that caused the comment locked status to not be displayed correctly.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/468"
+      },
+      {
+        "title": "Fixed display of creation type.",
+        "description": "A bug was fixed that caused the creation type of a modcase to not be displayed correctly."
+      },
+      {
+        "title": "Fixed switch of guild in guild edit view.",
+        "description": "A bug was fixed that caused the guild edit view to not refresh if the guild was switched via the taskbar.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/473"
+      },
+      {
+        "title": "fix multiple endpoint matching.",
+        "description": "A bug was fixed that caused internal server errors on certain ambiguous routes."
+      },
+      {
+        "title": "Updated documentation.",
+        "description": "The documentation on OAuth redirect urls has been improved."
+      }
+    ],
+    "technical": [
+      {
+        "title": "MASZ now uses \"Discord.NET\".",
+        "description": "MASZ now uses the library Discord.NET instead of DSharpPlus as the latter one had major caching issues."
+      },
+      {
+        "title": "Upgraded to .NET 6.",
+        "description": "MASZ now uses .NET 6 which is a LTS version."
+      }
+    ]
+  },
+  {
+    "title":  "Version 2.4.0",
+    "version": "v2.4.0",
+    "released_at": "2021-12-15",
+    "contributors": [
+      {
         "name": "FlixProd",
         "link": "https://github.com/FlixProd",
         "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
