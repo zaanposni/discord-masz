@@ -25,6 +25,7 @@ export class AdminstatsComponent implements OnInit {
   public minutesToNewCache?: string = '--';
   public stats: ContentLoading<Adminstats> = { loading: true, content: undefined };
   public newVersionFound: ReplaySubject<IImageVersion> = new ReplaySubject(1);
+  public localVersionFound?: AppVersion = undefined;
 
   constructor(private api: ApiService, private toastr: ToastrService, private dialog: MatDialog, private translator: TranslateService, private versionManager: VersionManagerService) { }
 
@@ -33,6 +34,9 @@ export class AdminstatsComponent implements OnInit {
 
     this.versionManager.newVersionFound.subscribe(data => {
       this.newVersionFound.next(data);
+    });
+    this.versionManager.localVersion.subscribe(data => {
+      this.localVersionFound = data;
     });
   }
 
