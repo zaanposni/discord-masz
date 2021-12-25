@@ -24,7 +24,7 @@ It is recommended to do all relevant stuff here.
 
 ## Errors
 
-Errors in your plugins will not crash MASZ but it is recommended to dispense the use of error-prone operations.
+Be cautious, your plugin can crash MASZ. It is recommended to dispense the use of error-prone operations.
 
 ## Execution time
 
