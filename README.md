@@ -56,7 +56,7 @@ Free hosting providers like replit or heroku **do not work**. You will have to u
 - a (sub)domain to host the application on
 - a reverse proxy on your host
 
-### Request logging and ratelimit
+#### Request logging and ratelimit
 
 MASZ uses the `X-Forwarded-For` http header for logging and ratelimit.\
 Ensure that this header is set in your reverse proxy for best experience.
