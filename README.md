@@ -1,10 +1,10 @@
 # 👮 MASZ
 
-[![https://demomasz.zaanposni.com](https://img.shields.io/badge/demo-online-%234c1)](https://demomasz.zaanposni.com)
-[![https://github.com/users/zaanposni/packages/container/package/masz_backend](https://img.shields.io/badge/using-docker-blue)](https://github.com/users/zaanposni/packages/container/package/masz_backend)
+[![https://demomasz.zaanposni.com](https://img.shields.io/badge/demo-online-%234c1?style=for-the-badge)](https://demomasz.zaanposni.com)
+[![https://github.com/users/zaanposni/packages/container/package/masz_backend](https://img.shields.io/badge/using-docker-blue?style=for-the-badge)](https://github.com/users/zaanposni/packages/container/package/masz_backend)
 ![LatestVersion](https://maszindex.zaanposni.com/api/v1/views/version/current/readme)
-[![https://discord.gg/5zjpzw6h3S](https://img.shields.io/discord/779262870016884756?logo=discord)](https://discord.gg/5zjpzw6h3S)
-[![SupportedLanguages](https://img.shields.io/badge/translated-7%20languages-brightgreen)](https://github.com/zaanposni/discord-masz/blob/master/translations/supported_languages.json)
+[![https://discord.gg/5zjpzw6h3S](https://img.shields.io/discord/779262870016884756?logo=discord&style=for-the-badge)](https://discord.gg/5zjpzw6h3S)
+[![SupportedLanguages](https://img.shields.io/badge/translated-7%20languages-brightgreen?style=for-the-badge)](https://github.com/zaanposni/discord-masz/blob/master/translations/supported_languages.json)
 
 ⭐ **Infractions and managed (temporary) punishments** - to moderate your server\
 ⭐ **Userscan** - quickly spot relations between users with a included visualization\
@@ -15,7 +15,7 @@
 ⭐ **A website and a discord bot** - to use MASZ\
 ⭐ **Full API and plugin support** - for custom scripts and automations
 
-### 🚀 Demo 
+### 🚀 Demo
 
 Visit [https://demomasz.zaanposni.com](https://demomasz.zaanposni.com) for a demo.\
 Furthermore, join the demo guild [https://discord.gg/7ubU6aWX9c](https://discord.gg/7ubU6aWX9c) to get the required permissions.
@@ -44,12 +44,15 @@ Note that MASZ is not hosted publicly. You will have to host your own instance.\
 Furthermore, only deployments on a linux and windows server are supported. Read below for software requirements.\
 Free hosting providers like replit or heroku **do not work**. You will have to use a VPS instead.
 
-#### TL;DR
+#### TL;DR;
 
 - Create a discord application at [https://discord.com/developers/applications](https://discord.com/developers/applications)
 - Set redirect urls on your discord application [as defined](https://github.com/zaanposni/discord-masz#discord-oauth).
 - Enable **Server Members** and **Message Content Intent** in your bot settings.
-- App will be hosted on `127.0.0.1:5565`. Deploy with Docker or on bare metal.
+- Use `python3 setup.py` (`python setup.py` on windows) to setup the configuration.
+- Start the application with `docker-compose up -d`.
+- App will be hosted on `127.0.0.1:5565`.
+- Read further for more information on different deployment methods and further steps.
 
 #### If you want to deploy on a domain:
 
@@ -125,7 +128,7 @@ If you do not enable this mode, moderators can create any modcase.
 - Start the application with `docker-compose up -d`.
 - App will be hosted on `127.0.0.1:5565`, if you are hosting the app on a domain, redirect your reverse proxy to this local port!
 
-####  Update
+#### Update
 
 To install a new update of MASZ just use:
 
@@ -149,6 +152,7 @@ Then use `ng serve` to get a hotload angular instance.
 ## ↪ After Deployment
 
 ### 🐾 First Steps
+
 - You can visit your application at `yourdomain.com` (or `127.0.0.1:5565`). You will see a login screen that will ask you to authenticate yourself using Discord OAuth2.
 - After authorizing your service to use your Discord account you will see your profile picture in the toolbar (this is hosted on `127.0.0.1:4200` when developing).
 - If you are logged in as a siteadmin, you can use the "register guild" (+) button to register your guilds and to get started.
@@ -170,6 +174,6 @@ You can find our contributions guidelines [here](CONTRIBUTING.md).\
 If you are new to open source, checkout [this tutorial](https://github.com/firstcontributions/first-contributions).\
 Feel free to get in touch with me via our support server [https://discord.gg/5zjpzw6h3S](https://discord.gg/5zjpzw6h3S).
 
-### 💁🏻 Further Help:
+### 💁🏻 Further Help
 
 Feel free to join our discord at [https://discord.gg/5zjpzw6h3S](https://discord.gg/5zjpzw6h3S) if you have further questions about your dev environment.
