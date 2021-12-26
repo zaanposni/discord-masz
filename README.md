@@ -49,7 +49,7 @@ Free hosting providers like replit or heroku do not work. **Please use a dedicat
 - Create a discord application at [https://discord.com/developers/applications](https://discord.com/developers/applications)
 - Set redirect urls on your discord application [as defined](https://github.com/zaanposni/discord-masz#discord-oauth).
 - Enable **Server Members** and **Message Content Intent** in your bot settings.
-- App will be hosted on `127.0.0.1:5565`.
+- App will be hosted on `127.0.0.1:5565`. Deploy with Docker or on bare metal.
 
 #### If you want to deploy on a domain:
 
