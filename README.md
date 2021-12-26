@@ -152,7 +152,7 @@ Then use `ng serve` to get a hotload angular instance.
 - You can visit your application at `yourdomain.com` (or `127.0.0.1:5565`). You will see a login screen that will ask you to authenticate yourself using Discord OAuth2.
 - After authorizing your service to use your Discord account you will see your profile picture in the toolbar (this is hosted on `127.0.0.1:4200` when developing).
 - If you are logged in as a siteadmin, you can use the "register guild" (+) button to register your guilds and to get started.
-- Based on wanted features and functionalities you might have to grant your bot advanced permissions, read below for more info.
+- Based on wanted features and functionalities you might have to grant your bot advanced permissions, read above under `Enabling Restricted Features`.
 
 ### 🗃️ Backup
 
