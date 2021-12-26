@@ -35,14 +35,14 @@ Join this server to receive update information or get support: [https://discord.
 ## 🛠 Self Hosting
 
 You can **host your own instance of MASZ**, see below for instructions.\
-If you have any questions, feel free to contact me.
+If you have any questions, feel free to contact Zaanposni, or a support member.
 
 - [Discord server](https://discord.gg/5zjpzw6h3S)
 - [Email](mailto:me@zaanposni.com)
 
 Note that MASZ is not hosted publicly. You will have to host your own instance.\
 Furthermore, only deployments on a linux and windows server are supported. Read below for software requirements.\
-Free hosting providers like replit or heroku do not work. **Please use a dedicated VPS instead.**
+Free hosting providers like replit or heroku **do not work**. You will have to use a VPS instead.
 
 #### TL;DR
 
