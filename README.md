@@ -136,10 +136,9 @@ docker-compose up -d
 
 ## 💻 Self Hosting (Development)
 
-### Configure
+### .NET
 
-- Using the `setup.py` script choose "local" deployment for best development experience.
-- If you're using an IDE, you can copy and paste your ` launchSettingsExample.json` file inside `Properties` if your C# solution to `launchSettings.json`. replacing the values to your testing variables. On running the program, it will treat these as environmental variables.
+- If you're using an IDE like Visual Studio, you can copy and paste your ` launchSettingsExample.json` file inside `Properties` if your C# solution to `launchSettings.json`. replacing the values to your testing variables. On running the program, it will treat these as environmental variables.
 
 ### Angular
 
@@ -151,7 +150,7 @@ Then use `ng serve` to get a hotload angular instance.
 
 ### 🐾 First Steps
 - You can visit your application at `yourdomain.com` (or `127.0.0.1:5565`). You will see a login screen that will ask you to authenticate yourself using Discord OAuth2.
-- After authorizing your service to use your Discord account you will see your profile picture in the toolbar.
+- After authorizing your service to use your Discord account you will see your profile picture in the toolbar (this is hosted on `127.0.0.1:4200` when developing).
 - If you are logged in as a siteadmin, you can use the "register guild" (+) button to register your guilds and to get started.
 - Based on wanted features and functionalities you might have to grant your bot advanced permissions, read below for more info.
 
