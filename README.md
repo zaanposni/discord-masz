@@ -71,6 +71,7 @@ Also set the redirect paths in the tab `OAuth2`.\
 Be sure to set the following (choose localhost or domain depending on your deployment):
 
 ![redirect example](https://raw.githubusercontent.com/zaanposni/discord-masz/master/docs/redirects.png)
+![redirect example 2](https://raw.githubusercontent.com/zaanposni/discord-masz/master/docs/redirects2.png)
 
 ### Bot Intents
 
