@@ -35,7 +35,7 @@ Join this server to receive update information or get support: [https://discord.
 ## 🛠 Self Hosting
 
 You can **host your own instance of MASZ**, see below for instructions.\
-If you have any questions, feel free to contact Zaanposni, or a support member.
+If you have any questions, feel free to contact Zaanposni, or a support member:
 
 - [Discord server](https://discord.gg/5zjpzw6h3S)
 - [Email](mailto:me@zaanposni.com)
@@ -138,7 +138,7 @@ docker-compose up -d
 
 ### .NET
 
-- If you're using an IDE like Visual Studio, you can copy and paste your ` launchSettingsExample.json` file inside `Properties` if your C# solution to `launchSettings.json`. replacing the values to your testing variables. On running the program, it will treat these as environmental variables.
+- If you're using an IDE like Visual Studio, you can copy and paste your ` launchSettingsExample.json` file inside `Properties` if your C# solution to `launchSettings.json`, replacing the values to your testing variables. On running the program, it will treat these as environmental variables.
 
 ### Angular
 
