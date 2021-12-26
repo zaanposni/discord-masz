@@ -139,15 +139,13 @@ docker-compose up -d
 ### Configure
 
 - Using the `setup.py` script choose "local" deployment for best development experience.
-
-### Discord
-
-If you are using a local deployed backend you have to define `https://127.0.0.1:port/` and `https://127.0.0.1:port/signin-discord` as valid redirect in your [Discord application settings](https://discord.com/developers/applications).
+- If you're using an IDE, you can copy and paste your ` launchSettingsExample.json` file inside `Properties` if your C# solution to `launchSettings.json`. replacing the values to your testing variables. On running the program, it will treat these as environmental variables.
 
 ### Angular
 
 If you want to develop on the angular frontend, set the env var `ENABLE_CORS=true` for the backend container.
-Then use `ng serve` to get a hotload angular instance. Adjust the config.ts to allow cors and change the BASE_PATH to `""`.
+To use the angular instance, please change the APP_BASE_URL and ENABLE_CORS values to their development alternatives in the ``config.ts`` file inside the ``src/app/config`` directory
+Then use `ng serve` to get a hotload angular instance.
 
 ## ↪ After Deployment
 
