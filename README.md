@@ -6,8 +6,6 @@
 [![https://discord.gg/5zjpzw6h3S](https://img.shields.io/discord/779262870016884756?logo=discord)](https://discord.gg/5zjpzw6h3S)
 [![SupportedLanguages](https://img.shields.io/badge/translated-7%20languages-brightgreen)](https://github.com/zaanposni/discord-masz/blob/master/translations/supported_languages.json)
 
-MASZ is a highly sophisticated moderation bot for Discord, that includes both a web dashboard and a discord bot, and:
-
 ⭐ **Infractions and managed (temporary) punishments** - to moderate your server\
 ⭐ **Userscan** - quickly spot relations between users with a included visualization\
 ⭐ **Quicksearch** - to reliably search for any infractions or notes a user has\
