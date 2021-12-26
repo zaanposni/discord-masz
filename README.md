@@ -143,7 +143,7 @@ docker-compose up -d
 ### Angular
 
 If you want to develop on the angular frontend, set the env var `ENABLE_CORS=true` for the backend container.
-To use the angular instance, please change the APP_BASE_URL and ENABLE_CORS values to their development alternatives in the ``config.ts`` file inside the ``src/app/config`` directory
+To use the angular instance, please change the `APP_BASE_URL` and `ENABLE_CORS` values to their development alternatives in the ``config.ts`` file inside the ``src/app/config`` directory.
 Then use `ng serve` to get a hotload angular instance.
 
 ## ↪ After Deployment
