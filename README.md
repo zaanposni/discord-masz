@@ -1,18 +1,12 @@
-<table>
-    <tr>
-        <td align="center" width="25%">
-            <div style="font-size:5rem;width:100%;text-align:center;">
-                👮
-            </div>
-        </td>
-        <td align="center" width="75%">
+# 👮 MASZ
 
-# MASZ
+[![https://demomasz.zaanposni.com](https://img.shields.io/badge/demo-online-%234c1)](https://demomasz.zaanposni.com)
+[![https://github.com/users/zaanposni/packages/container/package/masz_backend](https://img.shields.io/badge/using-docker-blue)](https://github.com/users/zaanposni/packages/container/package/masz_backend)
+![LatestVersion](https://maszindex.zaanposni.com/api/v1/views/version/current/readme)
+[![https://discord.gg/5zjpzw6h3S](https://img.shields.io/discord/779262870016884756?logo=discord)](https://discord.gg/5zjpzw6h3S)
+[![SupportedLanguages](https://img.shields.io/badge/translated-7%20languages-brightgreen)](https://github.com/zaanposni/discord-masz/blob/master/translations/supported_languages.json)
 
 MASZ is a highly sophisticated moderation bot for Discord, that includes both a web dashboard and a discord bot, and:
-
-<div style="margin: auto; width: 80%;">
-<div style="text-align: left">
 
 ⭐ **Infractions and managed (temporary) punishments** - to moderate your server\
 ⭐ **Userscan** - quickly spot relations between users with a included visualization\
@@ -22,21 +16,6 @@ MASZ is a highly sophisticated moderation bot for Discord, that includes both a 
 ⭐ **Ban appeals and webhook notifications** - to moderate your server transparently\
 ⭐ **A website and a discord bot** - to use MASZ\
 ⭐ **Full API and plugin support** - for custom scripts and automations
-
-[![https://demomasz.zaanposni.com](https://img.shields.io/badge/demo-online-%234c1)](https://demomasz.zaanposni.com)
-[![https://github.com/users/zaanposni/packages/container/package/masz_backend](https://img.shields.io/badge/using-docker-blue)](https://github.com/users/zaanposni/packages/container/package/masz_backend)
-![LatestVersion](https://maszindex.zaanposni.com/api/v1/views/version/current/readme)
-[![https://discord.gg/5zjpzw6h3S](https://img.shields.io/discord/779262870016884756?logo=discord)](https://discord.gg/5zjpzw6h3S)
-[![SupportedLanguages](https://img.shields.io/badge/translated-7%20languages-brightgreen)](https://github.com/zaanposni/discord-masz/blob/master/translations/supported_languages.json)
-
-</div>
-</div>
-
-</td>
-</tr>
-</table>
-
-## ❔ Information
 
 ### 🚀 Demo 
 
