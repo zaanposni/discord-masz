@@ -24,7 +24,7 @@ Furthermore, join the demo guild [https://discord.gg/7ubU6aWX9c](https://discord
 
 ### 👀 Preview
 
-![dashboard preview](https://raw.githubusercontent.com/zaanposni/discord-masz/master/docs/dashboard.png)
+![dashboard preview](/docs/dashboard.png)
 
 **Previews and examples can be found at:** [https://github.com/zaanposni/discord-masz/tree/master/docs](https://github.com/zaanposni/discord-masz/tree/master/docs)
 
@@ -70,14 +70,14 @@ Create your own OAuth application [here](https://discord.com/developers/applicat
 Also set the redirect paths in the tab `OAuth2`.\
 Be sure to set the following (choose localhost or domain depending on your deployment):
 
-![redirect example](https://raw.githubusercontent.com/zaanposni/discord-masz/master/docs/redirects.png)
-![redirect example 2](https://raw.githubusercontent.com/zaanposni/discord-masz/master/docs/redirects2.png)
+![redirect example](/docs/redirects.png)
+![redirect example 2](/docs/redirects2.png)
 
 ### Bot Intents
 
 Enable **Server Members** and **Message Content Intent** in your bot settings.
 
-![intents example](https://raw.githubusercontent.com/zaanposni/discord-masz/master/docs/intents.png)
+![intents example](/docs/intents.png)
 
 ### Enabling Restricted Features
 
