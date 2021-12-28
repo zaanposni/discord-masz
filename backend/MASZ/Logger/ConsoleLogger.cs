@@ -5,7 +5,8 @@
         private string _categoryName;
         private readonly LogLevel _level = LogLevel.Information;
         private readonly string _MASZPrefix = "MASZ.";
-        private readonly string _dNetPlusPrefix = "Discord.";
+        private readonly string _dNetPrefix = "Discord.";
+        private readonly string _dNetClientPrefix = "Discord.WebSocket.DiscordSocketClient";
 
         public ConsoleLogger(string categoryName)
         {
@@ -62,9 +63,13 @@
                                              .Replace("Command", "Cmd")
                                              .Replace("Interface", "I");
             }
-            else if (_categoryName.StartsWith(_dNetPlusPrefix))
+            else if (_categoryName.StartsWith(_dNetClientPrefix))
             {
-                _categoryName = _categoryName.Replace("Discord.", "DNET.");
+                _categoryName = _categoryName.Replace(_dNetClientPrefix, "DNet.Client");
+            }
+            else if (_categoryName.StartsWith(_dNetPrefix))
+            {
+                _categoryName = _categoryName.Replace(_dNetPrefix, "DNET.");
             }
 
             string currentTime = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");

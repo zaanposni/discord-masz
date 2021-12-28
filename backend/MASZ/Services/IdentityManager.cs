@@ -156,29 +156,31 @@ namespace MASZ.Services
         public void ClearOldIdentities()
         {
             _logger.LogInformation("IdentityManager | Clearing old identities.");
+            int count = 0;
             foreach (var key in identities.Keys)
             {
                 if (identities[key].ValidUntil < DateTime.UtcNow)
                 {
-                    _logger.LogInformation($"IdentityManager | Clearing {key}.");
+                    count++;
                     identities.Remove(key);
                 }
             }
-            _logger.LogInformation("IdentityManager | Cleared old identities.");
+            _logger.LogInformation($"IdentityManager | Cleared {count} old identities.");
         }
 
         public void ClearTokenIdentities()
         {
             _logger.LogInformation("IdentityManager | Clearing token identities.");
+            int count = 0;
             foreach (var key in identities.Keys)
             {
                 if (identities[key] is TokenIdentity)
                 {
-                    _logger.LogInformation($"IdentityManager | Clearing {key}.");
+                    count++;
                     identities.Remove(key);
                 }
             }
-            _logger.LogInformation("IdentityManager | Cleared token identities.");
+            _logger.LogInformation($"IdentityManager | Cleared {count} token identities.");
         }
 
         public Task<Identity> GetIdentityByUserId(ulong userId)
