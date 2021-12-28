@@ -79,6 +79,12 @@ Enable **Server Members** and **Message Content Intent** in your bot settings.
 
 ![intents example](/docs/intents.png)
 
+### Slash commands
+
+If you have added your bot yourself, your bot might be missing the permission to create slashcommands.\
+Use the following link to authorize your bot to do so `https://discord.com/api/oauth2/authorize?permissions=8&scope=bot%20applications.commands&client_id=yourid`.\
+Be sure to replace "yourid" at the end with your client id.
+
 ### Enabling Restricted Features
 
 #### ⭐ Unban request feature
