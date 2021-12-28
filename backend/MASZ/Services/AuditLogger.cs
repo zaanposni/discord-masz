@@ -87,20 +87,31 @@ namespace MASZ.Services
             _client.Disconnected += OnDisconnect;
 
             _eventHandler.OnIdentityRegistered += OnIdentityRegistered;
+
             _eventHandler.OnTokenCreated += OnTokenCreated;
             _eventHandler.OnTokenDeleted += OnTokenDeleted;
+
             _eventHandler.OnGuildRegistered += OnGuildRegistered;
+
             _eventHandler.OnGuildUpdated += OnGuildUpdated;
             _eventHandler.OnGuildDeleted += OnGuildDeleted;
+
             _eventHandler.OnModCaseCreated += OnModCaseCreated;
             _eventHandler.OnModCaseUpdated += OnModCaseUpdated;
             _eventHandler.OnModCaseDeleted += OnModCaseDeleted;
+
             _eventHandler.OnModCaseCommentCreated += OnModCaseCommentCreated;
             _eventHandler.OnModCaseCommentUpdated += OnModCaseCommentUpdated;
             _eventHandler.OnModCaseCommentDeleted += OnModCaseCommentDeleted;
+
+            _eventHandler.OnGuildMotdCreated += OnGuildMotdCreated;
             _eventHandler.OnGuildMotdUpdated += OnGuildMotdUpdated;
+
             _eventHandler.OnFileUploaded += OnFileUploaded;
+
             _eventHandler.OnInternalCachingDone += OnInternalCachingDone;
+
+            // TODO: add more stuff  here, usermap usernotes file delete etc.
         }
 
         public async void QueueLog(string message)
@@ -143,9 +154,15 @@ namespace MASZ.Services
             return Task.CompletedTask;
         }
 
-        private Task OnGuildMotdUpdated(GuildMotd motd)
+        private Task OnGuildMotdCreated(GuildMotd motd, IUser actor)
         {
-            QueueLog($"**Motd** for guild `{motd.GuildId}` updated.");
+            QueueLog($"**Motd** for guild `{motd.GuildId}` created by {actor.Mention}.");
+            return Task.CompletedTask;
+        }
+
+        private Task OnGuildMotdUpdated(GuildMotd motd, IUser actor)
+        {
+            QueueLog($"**Motd** for guild `{motd.GuildId}` updated by {actor.Mention}.");
             return Task.CompletedTask;
         }
 

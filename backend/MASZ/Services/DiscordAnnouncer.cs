@@ -65,6 +65,18 @@ namespace MASZ.Services
 
             _eventHandler.OnAutoModerationEventRegistered += (AutoModerationEvent moderationEvent, AutoModerationConfig moderationConfig, GuildConfig guildConfig, ITextChannel channel, IUser author)
                 => { _backgroundRunner.QueueAction(AnnounceAutomoderation, moderationEvent, moderationConfig, guildConfig, channel, author); return Task.CompletedTask; };
+
+            _eventHandler.OnAutoModerationConfigCreated += (AutoModerationConfig config, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceAutomoderationConfig, config, actor, RestAction.Created); return Task.CompletedTask; };
+            _eventHandler.OnAutoModerationConfigUpdated += (AutoModerationConfig config, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceAutomoderationConfig, config, actor, RestAction.Edited); return Task.CompletedTask; };
+            _eventHandler.OnAutoModerationConfigDeleted += (AutoModerationConfig config, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceAutomoderationConfig, config, actor, RestAction.Deleted); return Task.CompletedTask; };
+
+            _eventHandler.OnGuildMotdCreated += (GuildMotd motd, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceMotd, motd, actor, RestAction.Created); return Task.CompletedTask; };
+            _eventHandler.OnGuildMotdUpdated += (GuildMotd motd, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceMotd, motd, actor, RestAction.Edited); return Task.CompletedTask; };
         }
 
         private async Task AnnounceTipsInNewGuild(IServiceScope scope, GuildConfig guildConfig)
@@ -248,7 +260,7 @@ namespace MASZ.Services
                 }
                 catch (Exception e)
                 {
-                    _logger.LogError(e, $"Error while announcing usernote{userNote.GuildId}/{userNote.UserId} ({userNote.Id}) to {guildConfig.ModInternalNotificationWebhook}.");
+                    _logger.LogError(e, $"Error while announcing usernote {userNote.GuildId}/{userNote.UserId} ({userNote.Id}) to {guildConfig.ModInternalNotificationWebhook}.");
                 }
             }
         }
@@ -346,6 +358,58 @@ namespace MASZ.Services
                 catch (Exception e)
                 {
                     _logger.LogError(e, $"Error while announcing automod event {modEvent.GuildId}/{modEvent.Id} in channel {channel.Id}.");
+                }
+            }
+        }
+
+        private async Task AnnounceAutomoderationConfig(IServiceScope scope, AutoModerationConfig config, IUser actor, RestAction action)
+        {
+            _logger.LogInformation($"Announcing automod config {config.GuildId}/{config.AutoModerationType} ({config.Id}).");
+
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            var embedCreator = scope.ServiceProvider.GetRequiredService<NotificationEmbedCreator>();
+
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(config.GuildId);
+            translator.SetContext(guildConfig);
+
+            if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+            {
+                _logger.LogInformation($"Sending internal webhook for config {config.GuildId}/{config.AutoModerationType} ({config.Id}) to {guildConfig.ModInternalNotificationWebhook}.");
+
+                try
+                {
+                    EmbedBuilder embed = await embedCreator.CreateAutomodConfigEmbed(config, actor, action);
+                    await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError(e, $"Error while announcing config  {config.GuildId}/{config.AutoModerationType} ({config.Id}) to {guildConfig.ModInternalNotificationWebhook}.");
+                }
+            }
+        }
+
+        private async Task AnnounceMotd(IServiceScope scope, GuildMotd motd, IUser actor, RestAction action)
+        {
+            _logger.LogInformation($"Announcing motd {motd.GuildId} ({motd.Id}).");
+
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            var embedCreator = scope.ServiceProvider.GetRequiredService<NotificationEmbedCreator>();
+
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(motd.GuildId);
+            translator.SetContext(guildConfig);
+
+            if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+            {
+                _logger.LogInformation($"Sending internal webhook for motd {motd.GuildId} ({motd.Id}) to {guildConfig.ModInternalNotificationWebhook}.");
+
+                try
+                {
+                    EmbedBuilder embed = await embedCreator.CreateMotdEmbed(motd, actor, action);
+                    await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError(e, $"Error while announcing motd {motd.GuildId} ({motd.Id}) to {guildConfig.ModInternalNotificationWebhook}.");
                 }
             }
         }

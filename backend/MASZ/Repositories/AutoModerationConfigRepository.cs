@@ -1,3 +1,4 @@
+using Discord;
 using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.Extensions;
@@ -8,9 +9,18 @@ namespace MASZ.Repositories
 
     public class AutoModerationConfigRepository : BaseRepository<AutoModerationConfigRepository>
     {
-        private AutoModerationConfigRepository(IServiceProvider serviceProvider) : base(serviceProvider) { }
+        private readonly IUser _currentUser;
+        private AutoModerationConfigRepository(IServiceProvider serviceProvider, IUser currentUser) : base(serviceProvider)
+        {
+            _currentUser = currentUser;
+        }
+        private AutoModerationConfigRepository(IServiceProvider serviceProvider) : base(serviceProvider)
+        {
+            _currentUser = DiscordAPI.GetCurrentBotInfo();
+        }
 
-        public static AutoModerationConfigRepository CreateDefault(IServiceProvider serviceProvider) => new(serviceProvider);
+        public static AutoModerationConfigRepository CreateDefault(IServiceProvider serviceProvider, IUser currentUser) => new(serviceProvider, currentUser);
+        public static AutoModerationConfigRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new(serviceProvider);
 
         public async Task<List<AutoModerationConfig>> GetConfigsByGuild(ulong guildId)
         {
@@ -38,6 +48,7 @@ namespace MASZ.Repositories
                 throw new BaseAPIException("Invalid automod action.", APIError.InvalidAutomoderationAction);
             }
 
+            RestAction action = RestAction.Edited;
             AutoModerationConfig autoModerationConfig;
             try
             {
@@ -46,7 +57,9 @@ namespace MASZ.Repositories
             catch (ResourceNotFoundException)
             {
                 autoModerationConfig = new AutoModerationConfig();
+                action = RestAction.Created;
             }
+
             autoModerationConfig.GuildId = newValue.GuildId;
             autoModerationConfig.AutoModerationType = newValue.AutoModerationType;
             autoModerationConfig.AutoModerationAction = newValue.AutoModerationAction;
@@ -64,7 +77,14 @@ namespace MASZ.Repositories
             Database.PutModerationConfig(autoModerationConfig);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnAutoModerationConfigUpdatedEvent.InvokeAsync(autoModerationConfig);
+            if (action == RestAction.Created)
+            {
+                await _eventHandler.OnAutoModerationConfigCreatedEvent.InvokeAsync(autoModerationConfig, _currentUser);
+            }
+            else
+            {
+                await _eventHandler.OnAutoModerationConfigUpdatedEvent.InvokeAsync(autoModerationConfig, _currentUser);
+            }
 
             return autoModerationConfig;
         }
@@ -82,7 +102,7 @@ namespace MASZ.Repositories
             Database.DeleteSpecificModerationConfig(config);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnAutoModerationConfigDeletedEvent.InvokeAsync(config);
+            await _eventHandler.OnAutoModerationConfigDeletedEvent.InvokeAsync(config, _currentUser);
 
             return config;
         }

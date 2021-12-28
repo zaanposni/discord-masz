@@ -31,21 +31,29 @@ namespace MASZ.Services
 
         internal readonly AsyncEvent<Func<APIToken, Task>> OnTokenDeletedEvent = new();
 
-        public event Func<AutoModerationConfig, Task> OnAutoModerationConfigUpdated
+        public event Func<AutoModerationConfig, IUser, Task> OnAutoModerationConfigCreated
+        {
+            add { OnAutoModerationConfigCreatedEvent.Add(value); }
+            remove { OnAutoModerationConfigCreatedEvent.Remove(value); }
+        }
+
+        internal readonly AsyncEvent<Func<AutoModerationConfig, IUser, Task>> OnAutoModerationConfigCreatedEvent = new();
+
+        public event Func<AutoModerationConfig, IUser, Task> OnAutoModerationConfigUpdated
         {
             add { OnAutoModerationConfigUpdatedEvent.Add(value); }
             remove { OnAutoModerationConfigUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<AutoModerationConfig, Task>> OnAutoModerationConfigUpdatedEvent = new();
+        internal readonly AsyncEvent<Func<AutoModerationConfig, IUser, Task>> OnAutoModerationConfigUpdatedEvent = new();
 
-        public event Func<AutoModerationConfig, Task> OnAutoModerationConfigDeleted
+        public event Func<AutoModerationConfig, IUser, Task> OnAutoModerationConfigDeleted
         {
             add { OnAutoModerationConfigDeletedEvent.Add(value); }
             remove { OnAutoModerationConfigDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<AutoModerationConfig, Task>> OnAutoModerationConfigDeletedEvent = new();
+        internal readonly AsyncEvent<Func<AutoModerationConfig, IUser, Task>> OnAutoModerationConfigDeletedEvent = new();
 
 
         public event Func<AutoModerationEvent, AutoModerationConfig, GuildConfig, ITextChannel, IUser, Task> OnAutoModerationEventRegistered
@@ -124,13 +132,21 @@ namespace MASZ.Services
 
         internal readonly AsyncEvent<Func<GuildConfig, Task>> OnGuildDeletedEvent = new();
 
-        public event Func<GuildMotd, Task> OnGuildMotdUpdated
+        public event Func<GuildMotd, IUser, Task> OnGuildMotdCreated
+        {
+            add { OnGuildMotdCreatedEvent.Add(value); }
+            remove { OnGuildMotdCreatedEvent.Remove(value); }
+        }
+
+        internal readonly AsyncEvent<Func<GuildMotd, IUser, Task>> OnGuildMotdCreatedEvent = new();
+
+        public event Func<GuildMotd, IUser, Task> OnGuildMotdUpdated
         {
             add { OnGuildMotdUpdatedEvent.Add(value); }
             remove { OnGuildMotdUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildMotd, Task>> OnGuildMotdUpdatedEvent = new();
+        internal readonly AsyncEvent<Func<GuildMotd, IUser, Task>> OnGuildMotdUpdatedEvent = new();
 
         public event Func<UserInvite, Task> OnInviteUsageRegistered
         {

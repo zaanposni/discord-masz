@@ -29,7 +29,7 @@ namespace MASZ.AutoModeration
         public static async Task<AutoModerator> CreateDefault(IDiscordClient client, ulong guildId, IServiceProvider serviceProvider)
         {
             var guildConfig = await GuildConfigRepository.CreateDefault(serviceProvider).GetGuildConfig(guildId);
-            var autoModerationConfigs = await AutoModerationConfigRepository.CreateDefault(serviceProvider).GetConfigsByGuild(guildId);
+            var autoModerationConfigs = await AutoModerationConfigRepository.CreateWithBotIdentity(serviceProvider).GetConfigsByGuild(guildId);
             return new AutoModerator(client, serviceProvider, guildConfig, autoModerationConfigs);
         }
 

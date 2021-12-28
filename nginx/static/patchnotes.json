@@ -41,6 +41,12 @@
         "description": "You can now import existing bans on guild register. Those will not trigger announcements or dm notification but will be added to the database.",
         "icon": "link",
         "link": "https://github.com/zaanposni/discord-masz/issues/475"
+      },
+      {
+        "title": "Added more internal notifications.",
+        "description": "Your internal webhook will now receive further notifications about automod auditlog or motd changes.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/474"
       }
     ],
     "fixes": [

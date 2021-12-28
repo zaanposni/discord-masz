@@ -21,7 +21,8 @@ namespace MASZ.Controllers
         {
             await RequirePermission(guildId, DiscordPermission.Admin);
 
-            return Ok(new AutoModerationConfigView(await AutoModerationConfigRepository.CreateDefault(_serviceProvider).UpdateConfig(new AutoModerationConfig(dto, guildId))));
+            return Ok(new AutoModerationConfigView(await AutoModerationConfigRepository.CreateDefault(_serviceProvider, (await GetIdentity()).GetCurrentUser())
+                .UpdateConfig(new AutoModerationConfig(dto, guildId))));
         }
 
         [HttpDelete("{type}")]
@@ -29,14 +30,16 @@ namespace MASZ.Controllers
         {
             await RequirePermission(guildId, DiscordPermission.Admin);
 
-            return Ok(new AutoModerationConfigView(await AutoModerationConfigRepository.CreateDefault(_serviceProvider).DeleteConfigForGuild(guildId, type)));
+            return Ok(new AutoModerationConfigView(await AutoModerationConfigRepository.CreateDefault(_serviceProvider, (await GetIdentity()).GetCurrentUser())
+                .DeleteConfigForGuild(guildId, type)));
         }
 
         [HttpGet("{type}")]
         public async Task<IActionResult> GetItem([FromRoute] ulong guildId, [FromRoute] AutoModerationType type)
         {
             await RequirePermission(guildId, DiscordPermission.Admin);
-            return Ok(new AutoModerationConfigView(await AutoModerationConfigRepository.CreateDefault(_serviceProvider).GetConfigsByGuildAndType(guildId, type)));
+            return Ok(new AutoModerationConfigView(await AutoModerationConfigRepository.CreateDefault(_serviceProvider, (await GetIdentity()).GetCurrentUser())
+                .GetConfigsByGuildAndType(guildId, type)));
         }
 
         [HttpGet]
@@ -44,7 +47,8 @@ namespace MASZ.Controllers
         {
             await RequirePermission(guildId, DiscordPermission.Admin);
 
-            return Ok((await AutoModerationConfigRepository.CreateDefault(_serviceProvider).GetConfigsByGuild(guildId)).Select(x => new AutoModerationConfigView(x)));
+            return Ok((await AutoModerationConfigRepository.CreateDefault(_serviceProvider, (await GetIdentity()).GetCurrentUser())
+                .GetConfigsByGuild(guildId)).Select(x => new AutoModerationConfigView(x)));
         }
     }
 }

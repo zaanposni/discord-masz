@@ -1,4 +1,5 @@
 using Discord;
+using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.Extensions;
 using MASZ.Models;
@@ -30,6 +31,7 @@ namespace MASZ.Repositories
         }
         public async Task<GuildMotd> CreateOrUpdateMotd(ulong guildId, string content, bool visible)
         {
+            RestAction action = RestAction.Edited;
             GuildMotd motd;
             try
             {
@@ -41,6 +43,7 @@ namespace MASZ.Repositories
                 {
                     GuildId = guildId
                 };
+                action = RestAction.Created;
             }
             motd.CreatedAt = DateTime.UtcNow;
             motd.UserId = _currentUser.Id;
@@ -51,7 +54,14 @@ namespace MASZ.Repositories
             Database.SaveMotd(motd);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnGuildMotdUpdatedEvent.InvokeAsync(motd);
+            if (action == RestAction.Created)
+            {
+                await _eventHandler.OnGuildMotdCreatedEvent.InvokeAsync(motd, _currentUser);
+            }
+            else
+            {
+                await _eventHandler.OnGuildMotdUpdatedEvent.InvokeAsync(motd, _currentUser);
+            }
 
             return motd;
         }

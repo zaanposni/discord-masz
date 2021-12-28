@@ -265,6 +265,11 @@
         "ru": "Случаи",
         "it": "casi"
     },
+    "MotD": {
+        "description": "The word 'motd'",
+        "en": "Message of the Day",
+        "de": "Nachricht des Tages"
+    },
     "ActivePunishments": {
         "description": "The word 'active punishments'",
         "en": "Active punishments",
@@ -797,6 +802,104 @@
                 "es": "{user.Mention} has activado la automoderación. Razón: {reason}. Su mensaje ha sido eliminado.",
                 "ru": "{user.Mention} вы запустили автомодерацию. Причина: {reason}. Ваше сообщение было удалено.",
                 "it": "{user.Mention} hai attivato la moderazione automatica. reason: {reason}. Il tuo messaggio è stato cancellato."
+            }
+        },
+        "Motd": {
+            "Internal": {
+                "Create": {
+                    "description": "motd has been created",
+                    "var_types": {
+                        "actor": "IUser"
+                    },
+                    "en": "New MotD has been created by {actor.Mention}.",
+                    "de": "Neue MotD wurde von {actor.Mention} erstellt."
+                },
+                "Edited": {
+                    "description": "motd has been edited",
+                    "var_types": {
+                        "actor": "IUser"
+                    },
+                    "en": "MotD has been edited by {actor.Mention}.",
+                    "de": "MotD wurde von {actor.Mention} bearbeitet."
+                }
+            },
+            "Show": {
+                "description": "motd show property",
+                "en": "Show",
+                "de": "Anzeigen"
+            }
+        },
+        "AutomoderationConfig": {
+            "Internal": {
+                "Create": {
+                    "description": "AutomoderationConfig created",
+                    "var_types": {
+                        "eventType": "string",
+                        "actor": "IUser"
+                    },
+                    "en": "Automodconfig created for {eventType} by {actor.Mention}.",
+                    "de": "Automodkonfiguration für {eventType} von {actor.Mention} erstellt."
+                },
+                "Update": {
+                    "description": "AutomoderationConfig updated",
+                    "var_types": {
+                        "eventType": "string",
+                        "actor": "IUser"
+                    },
+                    "en": "Automodconfig updated for {eventType} by {actor.Mention}.",
+                    "de": "Automodkonfiguration für {eventType} von {actor.Mention} bearbeitet."
+                },
+                "Delete": {
+                    "description": "AutomoderationConfig deleted",
+                    "var_types": {
+                        "eventType": "string",
+                        "actor": "IUser"
+                    },
+                    "en": "Automodconfig deleted for {eventType} by {actor.Mention}.",
+                    "de": "Automodkonfiguration für {eventType} von {actor.Mention} gelöscht."
+                }
+            },
+            "Limit": {
+                "description": "AutomoderationConfig limit",
+                "en": "Limit",
+                "de": "Limit"
+            },
+            "TimeLimit": {
+                "description": "AutomoderationConfig time limit",
+                "en": "Time limit",
+                "de": "Zeitlimit"
+            },
+            "Ignored": {
+                "Roles": {
+                    "description": "Ignored roles in automod config",
+                    "en": "Ignored roles",
+                    "de": "Ignorierte Rollen"
+                },
+                "Channels": {
+                    "description": "Ignored channels in automod config",
+                    "en": "Ignored channels",
+                    "de": "Ignorierte Kanäle"
+                }
+            },
+            "Duration": {
+                "description": "Duration of automod actions",
+                "en": "Duration",
+                "de": "Dauer"
+            },
+            "DeleteMessage": {
+                "description": "Delete message after automod action",
+                "en": "Delete message",
+                "de": "Nachricht löschen"
+            },
+            "SendPublic": {
+                "description": "Send public message after automod action",
+                "en": "Send public notification",
+                "de": "Sende öffentliche Nachricht"
+            },
+            "SendDM": {
+                "description": "Send DM message after automod action",
+                "en": "Send DM notification",
+                "de": "Sende DM Nachricht"
             }
         },
         "AutoWhois": {

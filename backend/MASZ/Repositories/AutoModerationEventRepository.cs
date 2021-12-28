@@ -30,7 +30,7 @@ namespace MASZ.Repositories
             GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(modEvent.GuildId);
 
             _translator.SetContext(guildConfig);
-            AutoModerationConfig modConfig = await AutoModerationConfigRepository.CreateDefault(_serviceProvider).GetConfigsByGuildAndType(modEvent.GuildId, modEvent.AutoModerationType);
+            AutoModerationConfig modConfig = await AutoModerationConfigRepository.CreateWithBotIdentity(_serviceProvider).GetConfigsByGuildAndType(modEvent.GuildId, modEvent.AutoModerationType);
 
             IUser user = await DiscordAPI.FetchUserInfo(modEvent.UserId, CacheBehavior.Default);
             if (user != null)

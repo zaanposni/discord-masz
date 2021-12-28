@@ -2,6 +2,7 @@ using Discord;
 using MASZ.Enums;
 using MASZ.Extensions;
 using MASZ.Models;
+using System.Linq;
 using System.Text;
 
 namespace MASZ.Services
@@ -11,6 +12,8 @@ namespace MASZ.Services
         private readonly ILogger<NotificationEmbedCreator> _logger;
         private readonly InternalConfiguration _config;
         private readonly Translator _translator;
+        private readonly string CHECK = "\u2705";
+        private readonly string X_CHECK = "\u274C";
         private readonly string SCALES_EMOTE = "\u2696";
         private readonly string SCROLL_EMOTE = "\uD83C\uDFF7";
         private readonly string ALARM_CLOCK = "\u23F0";
@@ -76,7 +79,7 @@ namespace MASZ.Services
             // Thumbnail
             if (suspect != null)
             {
-                embed.WithThumbnailUrl(suspect.GetAvatarUrl());
+                embed.WithThumbnailUrl(suspect.GetAvatarOrDefaultUrl());
             }
 
             // Description
@@ -154,7 +157,7 @@ namespace MASZ.Services
             EmbedBuilder embed = CreateBasicEmbed(action, actor);
 
             // Thumbnail
-            embed.WithThumbnailUrl(actor.GetAvatarUrl());
+            embed.WithThumbnailUrl(actor.GetAvatarOrDefaultUrl());
 
             // Footer
             embed.WithFooter($"UserId: {actor.Id} | CaseId: {modCase.CaseId}");
@@ -188,7 +191,7 @@ namespace MASZ.Services
 
             if (actor != null)
             {
-                embed.WithThumbnailUrl(actor.GetAvatarUrl());
+                embed.WithThumbnailUrl(actor.GetAvatarOrDefaultUrl());
             }
 
             switch (action)
@@ -221,9 +224,9 @@ namespace MASZ.Services
             await _translator.SetContext(userNote.GuildId);
             EmbedBuilder embed = CreateBasicEmbed(action, actor);
 
-            if (actor != null)
+            if (target != null)
             {
-                embed.WithThumbnailUrl(target.GetAvatarUrl());
+                embed.WithThumbnailUrl(target.GetAvatarOrDefaultUrl());
             }
 
             embed.AddField($"**{_translator.T().Description()}**", userNote.Description.Truncate(1000));
@@ -337,6 +340,109 @@ namespace MASZ.Services
             }
 
             embed.WithFooter($"GuildId: {guildConfig.GuildId}");
+
+            return embed;
+        }
+
+        public async Task<EmbedBuilder> CreateAutomodConfigEmbed(AutoModerationConfig autoModerationConfig, IUser actor, RestAction action)
+        {
+            await _translator.SetContext(autoModerationConfig.GuildId);
+            EmbedBuilder embed = CreateBasicEmbed(action, actor);
+
+            if (actor != null)
+            {
+                embed.WithThumbnailUrl(actor.GetAvatarOrDefaultUrl());
+            }
+
+            embed.WithTitle(_translator.T().Automoderation() + ": " + _translator.T().Enum(autoModerationConfig.AutoModerationType));
+
+            switch (action)
+            {
+                case RestAction.Created:
+                    embed.WithDescription(_translator.T().NotificationAutomoderationConfigInternalCreate(_translator.T().Enum(autoModerationConfig.AutoModerationType), actor));
+                    break;
+                case RestAction.Edited:
+                    embed.WithDescription(_translator.T().NotificationAutomoderationConfigInternalUpdate(_translator.T().Enum(autoModerationConfig.AutoModerationType), actor));
+                    break;
+                case RestAction.Deleted:
+                    return embed.WithDescription(_translator.T().NotificationAutomoderationConfigInternalDelete(_translator.T().Enum(autoModerationConfig.AutoModerationType), actor));
+            }
+
+            if (autoModerationConfig.Limit != null)
+            {
+                embed.AddField(_translator.T().NotificationAutomoderationConfigLimit(), $"`{autoModerationConfig.Limit}`", true);
+            }
+            if (autoModerationConfig.TimeLimitMinutes != null)
+            {
+                embed.AddField(_translator.T().NotificationAutomoderationConfigTimeLimit(), $"`{autoModerationConfig.TimeLimitMinutes}`", true);
+            }
+            if (autoModerationConfig.Limit != null || autoModerationConfig.TimeLimitMinutes != null)
+            {
+                embed.AddField("\u200b", "\u200b");
+            }
+
+            if (autoModerationConfig.IgnoreRoles.Length > 0)
+            {
+                embed.AddField(_translator.T().NotificationAutomoderationConfigIgnoredRoles(), string.Join(" ", autoModerationConfig.IgnoreRoles.Select(x => $"<@&{x}>")), true);
+            }
+            if (autoModerationConfig.IgnoreChannels.Length > 0)
+            {
+                embed.AddField(_translator.T().NotificationAutomoderationConfigIgnoredChannels(), string.Join(" ", autoModerationConfig.IgnoreChannels.Select(x => $"<#{x}>")), true);
+            }
+            if (autoModerationConfig.IgnoreRoles.Length > 0 || autoModerationConfig.IgnoreChannels.Length > 0)
+            {
+                embed.AddField("\u200b", "\u200b");
+            }
+
+            if (autoModerationConfig.PunishmentType != null && (autoModerationConfig.AutoModerationAction == AutoModerationAction.CaseCreated || autoModerationConfig.AutoModerationAction == AutoModerationAction.ContentDeletedAndCaseCreated))
+            {
+                embed.AddField($"{SCALES_EMOTE} {_translator.T().Punishment()}", _translator.T().Enum(autoModerationConfig.PunishmentType.Value), true);
+                if (autoModerationConfig.PunishmentDurationMinutes > 0)
+                {
+                    embed.AddField($"{ALARM_CLOCK} {_translator.T().NotificationAutomoderationConfigDuration()}", $"`{autoModerationConfig.PunishmentDurationMinutes}`", true);
+                }
+                embed.AddField(
+                    _translator.T().NotificationAutomoderationConfigSendPublic(),
+                    autoModerationConfig.SendPublicNotification ? CHECK : X_CHECK,
+                    true);
+                embed.AddField(
+                    _translator.T().NotificationAutomoderationConfigSendDM(),
+                    autoModerationConfig.SendDmNotification ? CHECK : X_CHECK,
+                    true);
+            }
+            embed.AddField(
+                _translator.T().NotificationAutomoderationConfigDeleteMessage(),
+                autoModerationConfig.AutoModerationAction == AutoModerationAction.ContentDeleted || autoModerationConfig.AutoModerationAction == AutoModerationAction.ContentDeletedAndCaseCreated ? CHECK : X_CHECK,
+                true);
+
+
+            return embed;
+        }
+
+        public async Task<EmbedBuilder> CreateMotdEmbed(GuildMotd motd, IUser actor, RestAction action)
+        {
+            await _translator.SetContext(motd.GuildId);
+            EmbedBuilder embed = CreateBasicEmbed(action, actor);
+
+            if (actor != null)
+            {
+                embed.WithThumbnailUrl(actor.GetAvatarOrDefaultUrl());
+            }
+
+            embed.WithTitle(_translator.T().MotD());
+
+            switch (action)
+            {
+                case RestAction.Created:
+                    embed.WithDescription(_translator.T().NotificationMotdInternalCreate(actor));
+                    break;
+                case RestAction.Edited:
+                    embed.WithDescription(_translator.T().NotificationMotdInternalEdited(actor));
+                    break;
+            }
+
+            embed.AddField(_translator.T().NotificationMotdShow(), motd.ShowMotd ? CHECK : X_CHECK, false);
+            embed.AddField(_translator.T().Message(), motd.Message.Truncate(1000), false);
 
             return embed;
         }

@@ -354,6 +354,14 @@ namespace MASZ.Utils
                 _ => "Cases",
             };
         }
+        public string MotD()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Nachricht des Tages",
+                _ => "Message of the Day",
+            };
+        }
         public string ActivePunishments()
         {
             return PreferredLanguage switch
@@ -901,6 +909,118 @@ namespace MASZ.Utils
                 Language.ru => $"{user.Mention} вы запустили автомодерацию. Причина: {reason}. Ваше сообщение было удалено.",
                 Language.it => $"{user.Mention} hai attivato la moderazione automatica. reason: {reason}. Il tuo messaggio è stato cancellato.",
                 _ => $"{user.Mention} you triggered automoderation. Reason: {reason}. Your message has been deleted.",
+            };
+        }
+        public string NotificationMotdInternalCreate(IUser actor)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Neue MotD wurde von {actor.Mention} erstellt.",
+                _ => $"New MotD has been created by {actor.Mention}.",
+            };
+        }
+        public string NotificationMotdInternalEdited(IUser actor)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"MotD wurde von {actor.Mention} bearbeitet.",
+                _ => $"MotD has been edited by {actor.Mention}.",
+            };
+        }
+        public string NotificationMotdShow()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Anzeigen",
+                _ => "Show",
+            };
+        }
+        public string NotificationAutomoderationConfigInternalCreate(string eventType, IUser actor)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Automodkonfiguration für {eventType} von {actor.Mention} erstellt.",
+                _ => $"Automodconfig created for {eventType} by {actor.Mention}.",
+            };
+        }
+        public string NotificationAutomoderationConfigInternalUpdate(string eventType, IUser actor)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Automodkonfiguration für {eventType} von {actor.Mention} bearbeitet.",
+                _ => $"Automodconfig updated for {eventType} by {actor.Mention}.",
+            };
+        }
+        public string NotificationAutomoderationConfigInternalDelete(string eventType, IUser actor)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Automodkonfiguration für {eventType} von {actor.Mention} gelöscht.",
+                _ => $"Automodconfig deleted for {eventType} by {actor.Mention}.",
+            };
+        }
+        public string NotificationAutomoderationConfigLimit()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Limit",
+                _ => "Limit",
+            };
+        }
+        public string NotificationAutomoderationConfigTimeLimit()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Zeitlimit",
+                _ => "Time limit",
+            };
+        }
+        public string NotificationAutomoderationConfigIgnoredRoles()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ignorierte Rollen",
+                _ => "Ignored roles",
+            };
+        }
+        public string NotificationAutomoderationConfigIgnoredChannels()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ignorierte Kanäle",
+                _ => "Ignored channels",
+            };
+        }
+        public string NotificationAutomoderationConfigDuration()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Dauer",
+                _ => "Duration",
+            };
+        }
+        public string NotificationAutomoderationConfigDeleteMessage()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Nachricht löschen",
+                _ => "Delete message",
+            };
+        }
+        public string NotificationAutomoderationConfigSendPublic()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Sende öffentliche Nachricht",
+                _ => "Send public notification",
+            };
+        }
+        public string NotificationAutomoderationConfigSendDM()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Sende DM Nachricht",
+                _ => "Send DM notification",
             };
         }
         public string NotificationAutoWhoisJoinWith(IUser user, DateTime registered, string invite)
