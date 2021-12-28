@@ -14,10 +14,8 @@ namespace MASZ.Controllers
     [Authorize]
     public class ModCaseCommentsController : SimpleCaseController
     {
-        private readonly ILogger<ModCaseCommentsController> _logger;
-        public ModCaseCommentsController(ILogger<ModCaseCommentsController> logger, IServiceProvider serviceProvider) : base(serviceProvider)
+        public ModCaseCommentsController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _logger = logger;
         }
 
         [HttpPost]
@@ -84,7 +82,7 @@ namespace MASZ.Controllers
                 throw new UnauthorizedException();
             }
 
-            ModCaseComment deletedComment = await repo.DeleteComment(guildId, caseId, commentId);
+            await repo.DeleteComment(guildId, caseId, commentId);
 
             return Ok();
         }

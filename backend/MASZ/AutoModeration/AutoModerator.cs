@@ -12,7 +12,6 @@ namespace MASZ.AutoModeration
         private readonly IDiscordClient _client;
         private readonly IServiceProvider _serviceProvider;
         private readonly InternalConfiguration _config;
-        private readonly DiscordAnnouncer _announcer;
         private readonly GuildConfig _guildConfig;
         private readonly List<AutoModerationConfig> _autoModerationConfigs;
 
@@ -22,7 +21,6 @@ namespace MASZ.AutoModeration
             _serviceProvider = serviceProvider;
             _logger = _serviceProvider.GetRequiredService<ILogger<AutoModerator>>();
             _config = _serviceProvider.GetRequiredService<InternalConfiguration>();
-            _announcer = _serviceProvider.GetRequiredService<DiscordAnnouncer>();
 
             _guildConfig = guildConfig;
             _autoModerationConfigs = autoModerationConfigs;
@@ -129,7 +127,7 @@ namespace MASZ.AutoModeration
                     if (!await IsProtectedByFilter(message, autoModerationConfig))
                     {
                         _logger.LogInformation($"U: {message.Author.Id} | C: {(message.Channel as ITextChannel).Id} | G: {(message.Channel as ITextChannel).Guild.Id} triggered {autoModerationConfig.AutoModerationType}.");
-                        await ExecutePunishment(message, autoModerationConfig, _guildConfig);
+                        await ExecutePunishment(message, autoModerationConfig);
                         if (autoModerationConfig.AutoModerationType != AutoModerationType.TooManyAutoModerations)
                         {
                             await CheckAutoMod(AutoModerationType.TooManyAutoModerations, message, CheckMultipleEvents);
@@ -151,7 +149,7 @@ namespace MASZ.AutoModeration
                     if (!await IsProtectedByFilter(message, autoModerationConfig))
                     {
                         _logger.LogInformation($"U: {message.Author.Id} | C: {(message.Channel as ITextChannel).Id} | G: {(message.Channel as ITextChannel).Guild.Id} triggered {autoModerationConfig.AutoModerationType}.");
-                        await ExecutePunishment(message, autoModerationConfig, _guildConfig);
+                        await ExecutePunishment(message, autoModerationConfig);
                         if (autoModerationConfig.AutoModerationType != AutoModerationType.TooManyAutoModerations)
                         {
                             await CheckAutoMod(AutoModerationType.TooManyAutoModerations, message, CheckMultipleEvents);
@@ -173,7 +171,7 @@ namespace MASZ.AutoModeration
                     if (!await IsProtectedByFilter(message, autoModerationConfig))
                     {
                         _logger.LogInformation($"U: {message.Author.Id} | C: {(message.Channel as ITextChannel).Id} | G: {(message.Channel as ITextChannel).Guild.Id} triggered {autoModerationConfig.AutoModerationType}.");
-                        await ExecutePunishment(message, autoModerationConfig, _guildConfig);
+                        await ExecutePunishment(message, autoModerationConfig);
                         if (autoModerationConfig.AutoModerationType != AutoModerationType.TooManyAutoModerations)
                         {
                             await CheckAutoMod(AutoModerationType.TooManyAutoModerations, message, CheckMultipleEvents);
@@ -229,7 +227,7 @@ namespace MASZ.AutoModeration
             return existing.Count > config.Limit.Value;
         }
 
-        private async Task ExecutePunishment(IMessage message, AutoModerationConfig autoModerationConfig, GuildConfig guildConfig)
+        private async Task ExecutePunishment(IMessage message, AutoModerationConfig autoModerationConfig)
         {
             AutoModerationEvent modEvent = new()
             {
