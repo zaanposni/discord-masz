@@ -224,14 +224,14 @@ namespace MASZ.Services
             }
         }
 
-        private async Task GuildMemberRemoved(SocketGuildUser usr)
+        private async Task GuildMemberRemoved(SocketGuild guild, SocketUser usr)
         {
             using var scope = _serviceProvider.CreateScope();
 
             var translator = scope.ServiceProvider.GetRequiredService<Translator>();
-            await translator.SetContext(usr.Guild.Id);
+            await translator.SetContext(guild.Id);
 
-            GuildAuditLogger audit_logger = GuildAuditLogger.CreateDefault(_client, scope.ServiceProvider, usr.Guild.Id);
+            GuildAuditLogger audit_logger = GuildAuditLogger.CreateDefault(_client, scope.ServiceProvider, guild.Id);
             await audit_logger.HandleEvent(MemberRemovedAuditLog.HandleMemberRemovedUpdated(usr, translator), GuildAuditLogEvent.MemberRemoved);
 
             // Refresh identity memberships
@@ -240,7 +240,7 @@ namespace MASZ.Services
             {
                 if (identity.GetCurrentUser().Id == usr.Id)
                 {
-                    identity.RemoveGuildMembership(usr.Guild.Id);
+                    identity.RemoveGuildMembership(guild.Id);
                 }
             }
         }
@@ -592,7 +592,7 @@ namespace MASZ.Services
                         }
 
                         string errorCode = "#" + ((int)(eResult.Exception as BaseAPIException).Error).ToString("D4");
-                        
+
                         EmbedBuilder builder = new EmbedBuilder()
                             .WithTitle(translator.T().SomethingWentWrong())
                             .WithColor(Color.Red)

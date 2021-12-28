@@ -21,8 +21,8 @@ namespace MASZ.Models.Views
             Description = application.Description;
             IconUrl = application.IconUrl.GetAnimatedOrDefaultAvatar();
             IconHash = application.IconUrl?.GetAnimatedOrDefaultAvatar().Split('/').Last();
-            PrivacyPolicyUrl = "";
-            TermsOfServiceUrl = "";
+            PrivacyPolicyUrl = application?.PrivacyPolicy ?? "";
+            TermsOfServiceUrl = application?.TermsOfService ?? "";
         }
 
         public static DiscordApplicationView CreateOrDefault(IApplication application)
