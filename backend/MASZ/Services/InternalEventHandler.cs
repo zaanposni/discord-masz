@@ -349,21 +349,29 @@ namespace MASZ.Services
 
         internal readonly AsyncEvent<Func<int, DateTime, Task>> OnInternalCachingDoneEvent = new();
 
-        public event Func<GuildLevelAuditLogConfig, Task> OnGuildLevelAuditLogConfigUpdated
+        public event Func<GuildLevelAuditLogConfig, IUser, Task> OnGuildLevelAuditLogConfigCreated
+        {
+            add { OnGuildLevelAuditLogConfigCreatedEvent.Add(value); }
+            remove { OnGuildLevelAuditLogConfigCreatedEvent.Remove(value); }
+        }
+
+        internal readonly AsyncEvent<Func<GuildLevelAuditLogConfig, IUser, Task>> OnGuildLevelAuditLogConfigCreatedEvent = new();
+
+        public event Func<GuildLevelAuditLogConfig, IUser, Task> OnGuildLevelAuditLogConfigUpdated
         {
             add { OnGuildLevelAuditLogConfigUpdatedEvent.Add(value); }
             remove { OnGuildLevelAuditLogConfigUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildLevelAuditLogConfig, Task>> OnGuildLevelAuditLogConfigUpdatedEvent = new();
+        internal readonly AsyncEvent<Func<GuildLevelAuditLogConfig, IUser, Task>> OnGuildLevelAuditLogConfigUpdatedEvent = new();
 
-        public event Func<GuildLevelAuditLogConfig, Task> OnGuildLevelAuditLogConfigDeleted
+        public event Func<GuildLevelAuditLogConfig, IUser, Task> OnGuildLevelAuditLogConfigDeleted
         {
             add { OnGuildLevelAuditLogConfigDeletedEvent.Add(value); }
             remove { OnGuildLevelAuditLogConfigDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildLevelAuditLogConfig, Task>> OnGuildLevelAuditLogConfigDeletedEvent = new();
+        internal readonly AsyncEvent<Func<GuildLevelAuditLogConfig, IUser, Task>> OnGuildLevelAuditLogConfigDeletedEvent = new();
 
     }
 }

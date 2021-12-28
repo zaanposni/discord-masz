@@ -77,6 +77,13 @@ namespace MASZ.Services
                 => { _backgroundRunner.QueueAction(AnnounceMotd, motd, actor, RestAction.Created); return Task.CompletedTask; };
             _eventHandler.OnGuildMotdUpdated += (GuildMotd motd, IUser actor)
                 => { _backgroundRunner.QueueAction(AnnounceMotd, motd, actor, RestAction.Edited); return Task.CompletedTask; };
+
+            _eventHandler.OnGuildLevelAuditLogConfigCreated += (GuildLevelAuditLogConfig config, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceGuildAuditLog, config, actor, RestAction.Created); return Task.CompletedTask; };
+            _eventHandler.OnGuildLevelAuditLogConfigUpdated += (GuildLevelAuditLogConfig config, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceGuildAuditLog, config, actor, RestAction.Edited); return Task.CompletedTask; };
+            _eventHandler.OnGuildLevelAuditLogConfigDeleted += (GuildLevelAuditLogConfig config, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceGuildAuditLog, config, actor, RestAction.Deleted); return Task.CompletedTask; };
         }
 
         private async Task AnnounceTipsInNewGuild(IServiceScope scope, GuildConfig guildConfig)
@@ -410,6 +417,32 @@ namespace MASZ.Services
                 catch (Exception e)
                 {
                     _logger.LogError(e, $"Error while announcing motd {motd.GuildId} ({motd.Id}) to {guildConfig.ModInternalNotificationWebhook}.");
+                }
+            }
+        }
+
+        private async Task AnnounceGuildAuditLog(IServiceScope scope, GuildLevelAuditLogConfig config, IUser actor, RestAction action)
+        {
+            _logger.LogInformation($"Announcing guild auditlog {config.GuildId}/{config.GuildAuditLogEvent} ({config.Id}).");
+
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            var embedCreator = scope.ServiceProvider.GetRequiredService<NotificationEmbedCreator>();
+
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(config.GuildId);
+            translator.SetContext(guildConfig);
+
+            if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+            {
+                _logger.LogInformation($"Sending internal webhook for guild auditlog {config.GuildId}/{config.GuildAuditLogEvent} ({config.Id}) to {guildConfig.ModInternalNotificationWebhook}.");
+
+                try
+                {
+                    EmbedBuilder embed = await embedCreator.CreateGuildAuditLogEmbed(config, actor, action);
+                    await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError(e, $"Error while announcing guild auditlog {config.GuildId}/{config.GuildAuditLogEvent} ({config.Id}) to {guildConfig.ModInternalNotificationWebhook}.");
                 }
             }
         }

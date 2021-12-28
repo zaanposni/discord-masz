@@ -1065,6 +1065,46 @@ namespace MASZ.Utils
                 _ => $"Punishment for ModCase #{caseId} undone: \"{reason}\"",
             };
         }
+        public string NotificationGuildAuditLogInternalCreate(string eventName, IUser actor)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} eingerichtet.",
+                _ => $"Guild-level audit log for event `{eventName}` has been set up by {actor.Mention}.",
+            };
+        }
+        public string NotificationGuildAuditLogInternalUpdate(string eventName, IUser actor)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} bearbeitet.",
+                _ => $"Guild-level audit log for event `{eventName}` has been edited by {actor.Mention}.",
+            };
+        }
+        public string NotificationGuildAuditLogInternalDelete(string eventName, IUser actor)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} gelöscht.",
+                _ => $"Guild-level audit log for event `{eventName}` has been deleted by {actor.Mention}.",
+            };
+        }
+        public string NotificationGuildAuditLogMentionRoles()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Rolle(n) erwähnen",
+                _ => "Mention role(s)",
+            };
+        }
+        public string NotificationGuildAuditLogTitle()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Gildenspezifischer Audit-Log",
+                _ => "Guild-level audit log",
+            };
+        }
         public string CmdOnlyTextChannel()
         {
             return PreferredLanguage switch
@@ -3064,6 +3104,83 @@ namespace MASZ.Utils
                 {
                     Language.de => "Inaktiv",
                     _ => "Inactive",
+                },
+                _ => "Unknown",
+            };
+        }
+        public string Enum(GuildAuditLogEvent enumValue)
+        {
+            return enumValue switch
+            {
+                GuildAuditLogEvent.MessageSent => PreferredLanguage switch
+                {
+                    Language.de => "Nachricht gesendet",
+                    _ => "Message sent",
+                },
+                GuildAuditLogEvent.MessageUpdated => PreferredLanguage switch
+                {
+                    Language.de => "Nachricht aktualisiert",
+                    _ => "Message updated",
+                },
+                GuildAuditLogEvent.MessageDeleted => PreferredLanguage switch
+                {
+                    Language.de => "Nachricht gelöscht",
+                    _ => "Message deleted",
+                },
+                GuildAuditLogEvent.UsernameUpdated => PreferredLanguage switch
+                {
+                    Language.de => "Benutzername aktualisiert",
+                    _ => "Username updated",
+                },
+                GuildAuditLogEvent.AvatarUpdated => PreferredLanguage switch
+                {
+                    Language.de => "Avatar aktualisiert",
+                    _ => "Avatar updated",
+                },
+                GuildAuditLogEvent.NicknameUpdated => PreferredLanguage switch
+                {
+                    Language.de => "Nickname aktualisiert",
+                    _ => "Nickname updated",
+                },
+                GuildAuditLogEvent.MemberRolesUpdated => PreferredLanguage switch
+                {
+                    Language.de => "Mitgliederrollen aktualisiert",
+                    _ => "Member roles updated",
+                },
+                GuildAuditLogEvent.MemberJoined => PreferredLanguage switch
+                {
+                    Language.de => "Mitglied beigetreten",
+                    _ => "Member joined",
+                },
+                GuildAuditLogEvent.MemberRemoved => PreferredLanguage switch
+                {
+                    Language.de => "Mitglied entfernt",
+                    _ => "Member removed",
+                },
+                GuildAuditLogEvent.BanAdded => PreferredLanguage switch
+                {
+                    Language.de => "Mitglied gebannt",
+                    _ => "Member banned",
+                },
+                GuildAuditLogEvent.BanRemoved => PreferredLanguage switch
+                {
+                    Language.de => "Mitglied entsperrt",
+                    _ => "Member unbanned",
+                },
+                GuildAuditLogEvent.InviteCreated => PreferredLanguage switch
+                {
+                    Language.de => "Einladung erstellt",
+                    _ => "Invite created",
+                },
+                GuildAuditLogEvent.InviteDeleted => PreferredLanguage switch
+                {
+                    Language.de => "Einladung gelöscht",
+                    _ => "Invite deleted",
+                },
+                GuildAuditLogEvent.ThreadCreated => PreferredLanguage switch
+                {
+                    Language.de => "Thema erstellt",
+                    _ => "Thread created",
                 },
                 _ => "Unknown",
             };

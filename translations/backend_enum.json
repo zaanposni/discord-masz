@@ -707,5 +707,77 @@
             "en": "Inactive",
             "de": "Inaktiv"
         }
+    },
+    "GuildAuditLogEvent": {
+        "MessageSent": {
+            "description": "A message was sent.",
+            "en": "Message sent",
+            "de": "Nachricht gesendet"
+        },
+        "MessageUpdated": {
+            "description": "A message was updated.",
+            "en": "Message updated",
+            "de": "Nachricht aktualisiert"
+        },
+        "MessageDeleted": {
+            "description": "A message was deleted.",
+            "en": "Message deleted",
+            "de": "Nachricht gelöscht"
+        },
+        "UsernameUpdated": {
+            "description": "The username was updated.",
+            "en": "Username updated",
+            "de": "Benutzername aktualisiert"
+        },
+        "AvatarUpdated": {
+            "description": "The avatar was updated.",
+            "en": "Avatar updated",
+            "de": "Avatar aktualisiert"
+        },
+        "NicknameUpdated": {
+            "description": "The nickname was updated.",
+            "en": "Nickname updated",
+            "de": "Nickname aktualisiert"
+        },
+        "MemberRolesUpdated": {
+            "description": "The member roles were updated.",
+            "en": "Member roles updated",
+            "de": "Mitgliederrollen aktualisiert"
+        },
+        "MemberJoined": {
+            "description": "A member joined the guild.",
+            "en": "Member joined",
+            "de": "Mitglied beigetreten"
+        },
+        "MemberRemoved": {
+            "description": "A member was removed from the guild.",
+            "en": "Member removed",
+            "de": "Mitglied entfernt"
+        },
+        "BanAdded": {
+            "description": "A member was banned from the guild.",
+            "en": "Member banned",
+            "de": "Mitglied gebannt"
+        },
+        "BanRemoved": {
+            "description": "A member was unbanned from the guild.",
+            "en": "Member unbanned",
+            "de": "Mitglied entsperrt"
+        },
+        "InviteCreated": {
+            "description": "An invite was created.",
+            "en": "Invite created",
+            "de": "Einladung erstellt"
+        },
+        "InviteDeleted": {
+            "description": "An invite was deleted.",
+            "en": "Invite deleted",
+            "de": "Einladung gelöscht"
+        },
+        "ThreadCreated": {
+            "description": "A thread was created.",
+            "en": "Thread created",
+            "de": "Thema erstellt"
+        }
     }
 }

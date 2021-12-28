@@ -51,7 +51,7 @@ namespace MASZ.GuildAuditLog
                 return;
             }
 
-            var auditLogRepository = GuildLevelAuditLogConfigRepository.CreateDefault(_serviceProvider);
+            var auditLogRepository = GuildLevelAuditLogConfigRepository.CreateWithBotIdentity(_serviceProvider);
             GuildLevelAuditLogConfig auditLogConfig = null;
             try
             {

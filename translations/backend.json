@@ -958,6 +958,47 @@
                     "de": "Bestrafung für Vorfall #{caseId} rückgängig gemacht: \\\"{reason}\\\""
                 }
             }
+        },
+        "GuildAuditLog": {
+            "Internal": {
+                "Create": {
+                    "description": "A guild-level audit log has been set up.",
+                    "var_types": {
+                        "eventName": "string",
+                        "actor": "IUser"
+                    },
+                    "en": "Guild-level audit log for event `{eventName}` has been set up by {actor.Mention}.",
+                    "de": "Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} eingerichtet."
+                },
+                "Update": {
+                    "description": "A guild-level audit log has been edited.",
+                    "var_types": {
+                        "eventName": "string",
+                        "actor": "IUser"
+                    },
+                    "en": "Guild-level audit log for event `{eventName}` has been edited by {actor.Mention}.",
+                    "de": "Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} bearbeitet."
+                },
+                "Delete": {
+                    "description": "A guild-level audit log has been deleted.",
+                    "var_types": {
+                        "eventName": "string",
+                        "actor": "IUser"
+                    },
+                    "en": "Guild-level audit log for event `{eventName}` has been deleted by {actor.Mention}.",
+                    "de": "Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} gelöscht."
+                }
+            },
+            "MentionRoles": {
+                "description": "mention roles",
+                "en": "Mention role(s)",
+                "de": "Rolle(n) erwähnen"
+            },
+            "Title": {
+                "description": "title",
+                "en": "Guild-level audit log",
+                "de": "Gildenspezifischer Audit-Log"
+            }
         }
     },
     "Cmd": {

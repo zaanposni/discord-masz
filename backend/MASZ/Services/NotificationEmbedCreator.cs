@@ -446,5 +446,39 @@ namespace MASZ.Services
 
             return embed;
         }
+
+        public async Task<EmbedBuilder> CreateGuildAuditLogEmbed(GuildLevelAuditLogConfig config, IUser actor, RestAction action)
+        {
+            await _translator.SetContext(config.GuildId);
+            EmbedBuilder embed = CreateBasicEmbed(action, actor);
+
+            if (actor != null)
+            {
+                embed.WithThumbnailUrl(actor.GetAvatarOrDefaultUrl());
+            }
+
+            embed.WithTitle(_translator.T().NotificationGuildAuditLogTitle());
+
+            switch (action)
+            {
+                case RestAction.Created:
+                    embed.WithDescription(_translator.T().NotificationGuildAuditLogInternalCreate(_translator.T().Enum(config.GuildAuditLogEvent), actor));
+                    break;
+                case RestAction.Edited:
+                    embed.WithDescription(_translator.T().NotificationGuildAuditLogInternalUpdate(_translator.T().Enum(config.GuildAuditLogEvent), actor));
+                    break;
+                case RestAction.Deleted:
+                    return embed.WithDescription(_translator.T().NotificationGuildAuditLogInternalDelete(_translator.T().Enum(config.GuildAuditLogEvent), actor));
+            }
+
+            embed.AddField(_translator.T().Channel(), $"<#{config.ChannelId}>", false);
+
+            if (config.PingRoles.Length > 0)
+            {
+                embed.AddField(_translator.T().NotificationGuildAuditLogMentionRoles(), string.Join(" ", config.PingRoles.Select(x => $"<@&{x}>")), false);
+            }
+
+            return embed;
+        }
     }
 }

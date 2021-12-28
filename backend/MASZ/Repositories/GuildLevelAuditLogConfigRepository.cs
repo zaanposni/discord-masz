@@ -1,3 +1,4 @@
+using Discord;
 using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.Extensions;
@@ -8,9 +9,18 @@ namespace MASZ.Repositories
 
     public class GuildLevelAuditLogConfigRepository : BaseRepository<GuildLevelAuditLogConfigRepository>
     {
-        private GuildLevelAuditLogConfigRepository(IServiceProvider serviceProvider) : base(serviceProvider) { }
+        private readonly IUser _currentUser;
+        private GuildLevelAuditLogConfigRepository(IServiceProvider serviceProvider, IUser currentUser) : base(serviceProvider)
+        {
+            _currentUser = currentUser;
+        }
+        private GuildLevelAuditLogConfigRepository(IServiceProvider serviceProvider) : base(serviceProvider)
+        {
+            _currentUser = DiscordAPI.GetCurrentBotInfo();
+        }
 
-        public static GuildLevelAuditLogConfigRepository CreateDefault(IServiceProvider serviceProvider) => new(serviceProvider);
+        public static GuildLevelAuditLogConfigRepository CreateDefault(IServiceProvider serviceProvider, IUser currentUser) => new(serviceProvider, currentUser);
+        public static GuildLevelAuditLogConfigRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new(serviceProvider);
 
         public async Task<List<GuildLevelAuditLogConfig>> GetConfigsByGuild(ulong guildId)
         {
@@ -34,6 +44,7 @@ namespace MASZ.Repositories
                 throw new BaseAPIException("Invalid auditlog event type.", APIError.InvalidAuditLogEvent);
             }
 
+            RestAction action = RestAction.Edited;
             GuildLevelAuditLogConfig auditLogConfig;
             try
             {
@@ -42,6 +53,7 @@ namespace MASZ.Repositories
             catch (ResourceNotFoundException)
             {
                 auditLogConfig = new GuildLevelAuditLogConfig();
+                action = RestAction.Created;
             }
             auditLogConfig.GuildId = newValue.GuildId;
             auditLogConfig.GuildAuditLogEvent = newValue.GuildAuditLogEvent;
@@ -51,7 +63,14 @@ namespace MASZ.Repositories
             Database.PutAuditLogConfig(auditLogConfig);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnGuildLevelAuditLogConfigUpdatedEvent.InvokeAsync(auditLogConfig);
+            if (action == RestAction.Created)
+            {
+                await _eventHandler.OnGuildLevelAuditLogConfigCreatedEvent.InvokeAsync(auditLogConfig, _currentUser);
+            }
+            else
+            {
+                await _eventHandler.OnGuildLevelAuditLogConfigUpdatedEvent.InvokeAsync(auditLogConfig, _currentUser);
+            }
 
             return auditLogConfig;
         }
@@ -69,7 +88,7 @@ namespace MASZ.Repositories
             Database.DeleteSpecificAuditLogConfig(config);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnGuildLevelAuditLogConfigDeletedEvent.InvokeAsync(config);
+            await _eventHandler.OnGuildLevelAuditLogConfigDeletedEvent.InvokeAsync(config, _currentUser);
 
             return config;
         }
