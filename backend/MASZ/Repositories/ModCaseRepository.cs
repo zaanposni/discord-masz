@@ -64,8 +64,6 @@ namespace MASZ.Repositories
             await Database.SaveModCase(modCase);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnModCaseCreatedEvent.InvokeAsync(modCase);
-
             return modCase;
         }
         public async Task<ModCase> CreateModCase(ModCase modCase, bool handlePunishment, bool sendPublicNotification, bool sendDmNotification)
@@ -144,9 +142,7 @@ namespace MASZ.Repositories
             await Database.SaveModCase(modCase);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnModCaseCreatedEvent.InvokeAsync(modCase);
-
-            await _discordAnnouncer.AnnounceModCase(modCase, RestAction.Created, _currentUser, sendPublicNotification, sendDmNotification);
+            await _eventHandler.OnModCaseCreatedEvent.InvokeAsync(modCase, _currentUser, sendPublicNotification, sendDmNotification);
 
             if (handlePunishment && (modCase.PunishmentActive || modCase.PunishmentType == PunishmentType.Kick))
             {
@@ -186,7 +182,7 @@ namespace MASZ.Repositories
                 Database.DeleteSpecificModCase(modCase);
                 await Database.SaveChangesAsync();
 
-                await _eventHandler.OnModCaseDeletedEvent.InvokeAsync(modCase);
+                await _eventHandler.OnModCaseDeletedEvent.InvokeAsync(modCase, _currentUser, announcePublic, false);
             }
             else
             {
@@ -198,7 +194,7 @@ namespace MASZ.Repositories
                 Database.UpdateModCase(modCase);
                 await Database.SaveChangesAsync();
 
-                await _eventHandler.OnModCaseMarkedToBeDeletedEvent.InvokeAsync(modCase);
+                await _eventHandler.OnModCaseMarkedToBeDeletedEvent.InvokeAsync(modCase, _currentUser, announcePublic, false);
             }
 
             if (handlePunishment)
@@ -212,15 +208,6 @@ namespace MASZ.Repositories
                 {
                     Logger.LogError(e, $"Failed to handle punishment for modcase {guildId}/{caseId}.");
                 }
-            }
-
-            try
-            {
-                await _discordAnnouncer.AnnounceModCase(modCase, RestAction.Deleted, _currentUser, announcePublic, false);
-            }
-            catch (Exception e)
-            {
-                Logger.LogError(e, "Failed to announce modcase.");
             }
             return modCase;
         }
@@ -284,9 +271,7 @@ namespace MASZ.Repositories
             Database.UpdateModCase(modCase);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnModCaseUpdatedEvent.InvokeAsync(modCase);
-
-            await _discordAnnouncer.AnnounceModCase(modCase, RestAction.Edited, _currentUser, sendPublicNotification, false);
+            await _eventHandler.OnModCaseUpdatedEvent.InvokeAsync(modCase, _currentUser, sendPublicNotification, false);
 
             if (handlePunishment && (modCase.PunishmentActive || modCase.PunishmentType == PunishmentType.Kick))
             {
@@ -383,7 +368,7 @@ namespace MASZ.Repositories
             Database.UpdateModCase(modCase);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnModCaseUpdatedEvent.InvokeAsync(modCase);
+            await _eventHandler.OnModCaseUpdatedEvent.InvokeAsync(modCase, _currentUser, false, false);
 
             return modCase;
         }
@@ -397,7 +382,7 @@ namespace MASZ.Repositories
             Database.UpdateModCase(modCase);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnModCaseUpdatedEvent.InvokeAsync(modCase);
+            await _eventHandler.OnModCaseUpdatedEvent.InvokeAsync(modCase, _currentUser, false, false);
 
             return modCase;
         }
@@ -442,7 +427,7 @@ namespace MASZ.Repositories
             Database.UpdateModCase(modCase);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnModCaseUpdatedEvent.InvokeAsync(modCase);
+            await _eventHandler.OnModCaseUpdatedEvent.InvokeAsync(modCase, _currentUser, false, false);
 
             try
             {
@@ -466,7 +451,7 @@ namespace MASZ.Repositories
             Database.UpdateModCase(modCase);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnModCaseUpdatedEvent.InvokeAsync(modCase);
+            await _eventHandler.OnModCaseUpdatedEvent.InvokeAsync(modCase, _currentUser, false, false);
 
             try
             {
@@ -492,7 +477,7 @@ namespace MASZ.Repositories
                 Database.UpdateModCase(modCase);
                 await Database.SaveChangesAsync();
 
-                await _eventHandler.OnModCaseUpdatedEvent.InvokeAsync(modCase);
+                await _eventHandler.OnModCaseUpdatedEvent.InvokeAsync(modCase, _currentUser, false, false);
 
                 try
                 {

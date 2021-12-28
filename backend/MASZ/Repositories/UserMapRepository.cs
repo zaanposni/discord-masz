@@ -80,9 +80,14 @@ namespace MASZ.Repositories
             Database.SaveUserMapping(userMapping);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnUserMapUpdatedEvent.InvokeAsync(userMapping);
-
-            await _discordAnnouncer.AnnounceUserMapping(userMapping, _currentUser, action);
+            if (action == RestAction.Created)
+            {
+                await _eventHandler.OnUserMapUpdatedEvent.InvokeAsync(userMapping, _currentUser);
+            }
+            else
+            {
+                await _eventHandler.OnUserMapUpdatedEvent.InvokeAsync(userMapping, _currentUser);
+            }
 
             return userMapping;
         }
@@ -93,9 +98,7 @@ namespace MASZ.Repositories
             Database.DeleteUserMapping(userMapping);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnUserMapDeletedEvent.InvokeAsync(userMapping);
-
-            await _discordAnnouncer.AnnounceUserMapping(userMapping, _currentUser, RestAction.Deleted);
+            await _eventHandler.OnUserMapDeletedEvent.InvokeAsync(userMapping, _currentUser);
         }
         public async Task DeleteForGuild(ulong guildId)
         {

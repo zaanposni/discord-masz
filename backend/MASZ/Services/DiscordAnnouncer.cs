@@ -11,21 +11,63 @@ namespace MASZ.Services
         private readonly ILogger<DiscordAnnouncer> _logger;
         private readonly InternalConfiguration _config;
         private readonly DiscordAPIInterface _discordAPI;
-        private readonly NotificationEmbedCreator _notificationEmbedCreator;
-        private readonly Translator _translator;
-        private readonly IServiceProvider _serviceProvider;
+        private readonly InternalEventHandler _eventHandler;
+        private readonly BackgroundRunner _backgroundRunner;
 
-        public DiscordAnnouncer(ILogger<DiscordAnnouncer> logger, InternalConfiguration config, DiscordAPIInterface discordAPI, NotificationEmbedCreator notificationContentCreator, Translator translator, IServiceProvider serviceProvider)
+        public DiscordAnnouncer(ILogger<DiscordAnnouncer> logger, InternalConfiguration config, DiscordAPIInterface discordAPI, InternalEventHandler eventHandler, BackgroundRunner backgroundRunner)
         {
             _logger = logger;
             _config = config;
             _discordAPI = discordAPI;
-            _notificationEmbedCreator = notificationContentCreator;
-            _translator = translator;
-            _serviceProvider = serviceProvider;
+            _eventHandler = eventHandler;
+            _backgroundRunner = backgroundRunner;
         }
 
-        public async Task AnnounceTipsInNewGuild(GuildConfig guildConfig)
+        public void Init()
+        {
+            _eventHandler.OnGuildRegistered += (GuildConfig guildConfig)
+                => { _backgroundRunner.QueueAction(AnnounceTipsInNewGuild, guildConfig); return Task.CompletedTask; };
+
+            _eventHandler.OnModCaseCreated += (ModCase modCase, IUser actor, bool announcePublic, bool announceDm)
+                => { _backgroundRunner.QueueAction(AnnounceModCase, modCase, RestAction.Created, actor, announcePublic, announceDm); return Task.CompletedTask; };
+            _eventHandler.OnModCaseUpdated += (ModCase modCase, IUser actor, bool announcePublic, bool announceDm)
+                => { _backgroundRunner.QueueAction(AnnounceModCase, modCase, RestAction.Edited, actor, announcePublic, announceDm); return Task.CompletedTask; };
+            _eventHandler.OnModCaseDeleted += (ModCase modCase, IUser actor, bool announcePublic, bool announceDm)
+                => { _backgroundRunner.QueueAction(AnnounceModCase, modCase, RestAction.Deleted, actor, announcePublic, announceDm); return Task.CompletedTask; };
+            _eventHandler.OnModCaseMarkedToBeDeleted += (ModCase modCase, IUser actor, bool announcePublic, bool announceDm)
+                => { _backgroundRunner.QueueAction(AnnounceModCase, modCase, RestAction.Deleted, actor, announcePublic, announceDm); return Task.CompletedTask; };
+
+            _eventHandler.OnModCaseCommentCreated += (ModCaseComment comment, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceComment, comment, actor, RestAction.Created); return Task.CompletedTask; };
+            _eventHandler.OnModCaseCommentUpdated += (ModCaseComment comment, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceComment, comment, actor, RestAction.Edited); return Task.CompletedTask; };
+            _eventHandler.OnModCaseCommentDeleted += (ModCaseComment comment, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceComment, comment, actor, RestAction.Deleted); return Task.CompletedTask; };
+
+            _eventHandler.OnFileUploaded += (UploadedFile file, ModCase modCase, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceFile, file.Name, modCase, actor, RestAction.Created); return Task.CompletedTask; };
+            _eventHandler.OnFileDeleted += (UploadedFile file, ModCase modCase, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceFile, file.Name, modCase, actor, RestAction.Deleted); return Task.CompletedTask; };
+
+            _eventHandler.OnUserNoteCreated += (UserNote note, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceUserNote, note, actor, RestAction.Created); return Task.CompletedTask; };
+            _eventHandler.OnUserNoteUpdated += (UserNote note, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceUserNote, note, actor, RestAction.Edited); return Task.CompletedTask; };
+            _eventHandler.OnUserNoteDeleted += (UserNote note, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceUserNote, note, actor, RestAction.Deleted); return Task.CompletedTask; };
+
+            _eventHandler.OnUserMapCreated += (UserMapping map, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceUserMapping, map, actor, RestAction.Created); return Task.CompletedTask; };
+            _eventHandler.OnUserMapUpdated += (UserMapping map, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceUserMapping, map, actor, RestAction.Edited); return Task.CompletedTask; };
+            _eventHandler.OnUserMapDeleted += (UserMapping map, IUser actor)
+                => { _backgroundRunner.QueueAction(AnnounceUserMapping, map, actor, RestAction.Deleted); return Task.CompletedTask; };
+
+            _eventHandler.OnAutoModerationEventRegistered += (AutoModerationEvent moderationEvent, AutoModerationConfig moderationConfig, GuildConfig guildConfig, ITextChannel channel, IUser author)
+                => { _backgroundRunner.QueueAction(AnnounceAutomoderation, moderationEvent, moderationConfig, guildConfig, channel, author); return Task.CompletedTask; };
+        }
+
+        private async Task AnnounceTipsInNewGuild(IServiceScope scope, GuildConfig guildConfig)
         {
             if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
@@ -33,7 +75,8 @@ namespace MASZ.Services
 
                 try
                 {
-                    EmbedBuilder embed = _notificationEmbedCreator.CreateTipsEmbedForNewGuilds(guildConfig);
+                    var embedCreator = scope.ServiceProvider.GetRequiredService<NotificationEmbedCreator>();
+                    EmbedBuilder embed = embedCreator.CreateTipsEmbedForNewGuilds(guildConfig);
                     await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build(), null);
                     _logger.LogInformation("Sent internal webhook.");
                 }
@@ -44,13 +87,16 @@ namespace MASZ.Services
             }
         }
 
-        public async Task AnnounceModCase(ModCase modCase, RestAction action, IUser actor, bool announcePublic, bool announceDm)
+        private async Task AnnounceModCase(IServiceScope scope, ModCase modCase, RestAction action, IUser actor, bool announcePublic, bool announceDm)
         {
             _logger.LogInformation($"Announcing modcase {modCase.Id} in guild {modCase.GuildId}.");
 
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            var embedCreator = scope.ServiceProvider.GetRequiredService<NotificationEmbedCreator>();
+
             IUser caseUser = await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.Default);
-            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(modCase.GuildId);
-            _translator.SetContext(guildConfig);
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(modCase.GuildId);
+            translator.SetContext(guildConfig);
 
             if (announceDm && action != RestAction.Deleted)
             {
@@ -65,28 +111,28 @@ namespace MASZ.Services
                         case PunishmentType.Mute:
                             if (modCase.PunishedUntil.HasValue)
                             {
-                                message = _translator.T().NotificationModcaseDMMuteTemp(modCase, guild, _config.GetBaseUrl());
+                                message = translator.T().NotificationModcaseDMMuteTemp(modCase, guild, _config.GetBaseUrl());
                             }
                             else
                             {
-                                message = _translator.T().NotificationModcaseDMMutePerm(guild, _config.GetBaseUrl());
+                                message = translator.T().NotificationModcaseDMMutePerm(guild, _config.GetBaseUrl());
                             }
                             break;
                         case PunishmentType.Kick:
-                            message = _translator.T().NotificationModcaseDMKick(guild, _config.GetBaseUrl());
+                            message = translator.T().NotificationModcaseDMKick(guild, _config.GetBaseUrl());
                             break;
                         case PunishmentType.Ban:
                             if (modCase.PunishedUntil.HasValue)
                             {
-                                message = _translator.T().NotificationModcaseDMBanTemp(modCase, guild, _config.GetBaseUrl());
+                                message = translator.T().NotificationModcaseDMBanTemp(modCase, guild, _config.GetBaseUrl());
                             }
                             else
                             {
-                                message = _translator.T().NotificationModcaseDMBanPerm(guild, _config.GetBaseUrl());
+                                message = translator.T().NotificationModcaseDMBanPerm(guild, _config.GetBaseUrl());
                             }
                             break;
                         default:
-                            message = _translator.T().NotificationModcaseDMWarn(guild, _config.GetBaseUrl());
+                            message = translator.T().NotificationModcaseDMWarn(guild, _config.GetBaseUrl());
                             break;
                     }
                     await _discordAPI.SendDmMessage(modCase.UserId, message);
@@ -105,7 +151,7 @@ namespace MASZ.Services
 
                 try
                 {
-                    EmbedBuilder embed = await _notificationEmbedCreator.CreateModcaseEmbed(modCase, action, actor, caseUser, false);
+                    EmbedBuilder embed = await embedCreator.CreateModcaseEmbed(modCase, action, actor, caseUser, false);
                     await _discordAPI.ExecuteWebhook(guildConfig.ModPublicNotificationWebhook, embed.Build(), $"<@{modCase.UserId}>");
                     _logger.LogInformation("Sent public webhook .");
                 }
@@ -121,7 +167,7 @@ namespace MASZ.Services
 
                 try
                 {
-                    EmbedBuilder embed = await _notificationEmbedCreator.CreateModcaseEmbed(modCase, action, actor, caseUser, true);
+                    EmbedBuilder embed = await embedCreator.CreateModcaseEmbed(modCase, action, actor, caseUser, true);
                     await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build(), $"<@{modCase.UserId}>");
                     _logger.LogInformation("Sent internal webhook.");
                 }
@@ -132,12 +178,15 @@ namespace MASZ.Services
             }
         }
 
-        public async Task AnnounceComment(ModCaseComment comment, IUser actor, RestAction action)
+        private async Task AnnounceComment(IServiceScope scope, ModCaseComment comment, IUser actor, RestAction action)
         {
             _logger.LogInformation($"Announcing comment {comment.Id} in case {comment.ModCase.CaseId} in guild {comment.ModCase.GuildId}.");
 
-            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(comment.ModCase.GuildId);
-            _translator.SetContext(guildConfig);
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            var embedCreator = scope.ServiceProvider.GetRequiredService<NotificationEmbedCreator>();
+
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(comment.ModCase.GuildId);
+            translator.SetContext(guildConfig);
 
             if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
@@ -146,7 +195,7 @@ namespace MASZ.Services
                 try
                 {
                     IUser user = await _discordAPI.FetchUserInfo(comment.UserId, CacheBehavior.Default);
-                    EmbedBuilder embed = await _notificationEmbedCreator.CreateCommentEmbed(comment, action, actor);
+                    EmbedBuilder embed = await embedCreator.CreateCommentEmbed(comment, action, actor);
                     await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
                     _logger.LogInformation("Sent internal webhook.");
                 }
@@ -157,12 +206,15 @@ namespace MASZ.Services
             }
         }
 
-        public async Task AnnounceFile(string filename, ModCase modCase, IUser actor, RestAction action)
+        private async Task AnnounceFile(IServiceScope scope, string filename, ModCase modCase, IUser actor, RestAction action)
         {
             _logger.LogInformation($"Announcing file {filename} in case {modCase.CaseId} in guild {modCase.GuildId}.");
 
-            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(modCase.GuildId);
-            _translator.SetContext(guildConfig);
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            var embedCreator = scope.ServiceProvider.GetRequiredService<NotificationEmbedCreator>();
+
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(modCase.GuildId);
+            translator.SetContext(guildConfig);
 
             if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
@@ -170,7 +222,7 @@ namespace MASZ.Services
 
                 try
                 {
-                    EmbedBuilder embed = await _notificationEmbedCreator.CreateFileEmbed(filename, modCase, action, actor);
+                    EmbedBuilder embed = await embedCreator.CreateFileEmbed(filename, modCase, action, actor);
                     await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
                     _logger.LogInformation("Sent internal webhook.");
                 }
@@ -181,12 +233,15 @@ namespace MASZ.Services
             }
         }
 
-        public async Task AnnounceUserNote(UserNote userNote, IUser actor, RestAction action)
+        private async Task AnnounceUserNote(IServiceScope scope, UserNote userNote, IUser actor, RestAction action)
         {
             _logger.LogInformation($"Announcing usernote {userNote.Id} in guild {userNote.GuildId}.");
 
-            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(userNote.GuildId);
-            _translator.SetContext(guildConfig);
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            var embedCreator = scope.ServiceProvider.GetRequiredService<NotificationEmbedCreator>();
+
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(userNote.GuildId);
+            translator.SetContext(guildConfig);
 
             if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
@@ -195,7 +250,7 @@ namespace MASZ.Services
                 try
                 {
                     IUser user = await _discordAPI.FetchUserInfo(userNote.UserId, CacheBehavior.Default);
-                    EmbedBuilder embed = await _notificationEmbedCreator.CreateUserNoteEmbed(userNote, action, actor, user);
+                    EmbedBuilder embed = await embedCreator.CreateUserNoteEmbed(userNote, action, actor, user);
                     await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
                     _logger.LogInformation("Sent internal webhook.");
                 }
@@ -206,12 +261,15 @@ namespace MASZ.Services
             }
         }
 
-        public async Task AnnounceUserMapping(UserMapping userMapping, IUser actor, RestAction action)
+        private async Task AnnounceUserMapping(IServiceScope scope, UserMapping userMapping, IUser actor, RestAction action)
         {
             _logger.LogInformation($"Announcing usermap {userMapping.Id} in guild {userMapping.GuildId}.");
 
-            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(userMapping.GuildId);
-            _translator.SetContext(guildConfig);
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            var embedCreator = scope.ServiceProvider.GetRequiredService<NotificationEmbedCreator>();
+
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(userMapping.GuildId);
+            translator.SetContext(guildConfig);
 
             if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
@@ -219,7 +277,7 @@ namespace MASZ.Services
 
                 try
                 {
-                    EmbedBuilder embed = await _notificationEmbedCreator.CreateUserMapEmbed(userMapping, action, actor);
+                    EmbedBuilder embed = await embedCreator.CreateUserMapEmbed(userMapping, action, actor);
                     await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
                     _logger.LogInformation("Sent internal webhook.");
                 }
@@ -230,16 +288,19 @@ namespace MASZ.Services
             }
         }
 
-        public async Task AnnounceAutomoderation(AutoModerationEvent modEvent, AutoModerationConfig moderationConfig, GuildConfig guildConfig, ITextChannel channel, IUser author)
+        private async Task AnnounceAutomoderation(IServiceScope scope, AutoModerationEvent modEvent, AutoModerationConfig moderationConfig, GuildConfig guildConfig, ITextChannel channel, IUser author)
         {
-            _translator.SetContext(guildConfig);
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            var embedCreator = scope.ServiceProvider.GetRequiredService<NotificationEmbedCreator>();
+
+            translator.SetContext(guildConfig);
             if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {
                 _logger.LogInformation($"Sending internal automod event webhook to {guildConfig.ModInternalNotificationWebhook}.");
 
                 try
                 {
-                    EmbedBuilder embed = _notificationEmbedCreator.CreateInternalAutomodEmbed(modEvent, guildConfig, author, channel, moderationConfig.PunishmentType);
+                    EmbedBuilder embed = embedCreator.CreateInternalAutomodEmbed(modEvent, guildConfig, author, channel, moderationConfig.PunishmentType);
                     await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
                     _logger.LogInformation("Sent internal automod event webhook.");
                 }
@@ -255,9 +316,9 @@ namespace MASZ.Services
 
                 try
                 {
-                    string reason = _translator.T().Enum(modEvent.AutoModerationType);
-                    string action = _translator.T().Enum(modEvent.AutoModerationAction);
-                    await _discordAPI.SendDmMessage(author.Id, _translator.T().NotificationAutomoderationDM(author, channel, reason, action));
+                    string reason = translator.T().Enum(modEvent.AutoModerationType);
+                    string action = translator.T().Enum(modEvent.AutoModerationAction);
+                    await _discordAPI.SendDmMessage(author.Id, translator.T().NotificationAutomoderationDM(author, channel, reason, action));
                     _logger.LogInformation("Sent dm notification.");
                 }
                 catch (Exception e)
@@ -272,8 +333,8 @@ namespace MASZ.Services
 
                 try
                 {
-                    string reason = _translator.T().Enum(modEvent.AutoModerationType);
-                    IMessage msg = await channel.SendMessageAsync(_translator.T().NotificationAutomoderationChannel(author, reason));
+                    string reason = translator.T().Enum(modEvent.AutoModerationType);
+                    IMessage msg = await channel.SendMessageAsync(translator.T().NotificationAutomoderationChannel(author, reason));
                     _logger.LogInformation("Sent channel notification.");
                     if (moderationConfig.ChannelNotificationBehavior == AutoModerationChannelNotificationBehavior.SendNotificationAndDelete)
                     {

@@ -78,15 +78,15 @@ builder.Services
 
 .AddSingleton<BackgroundRunner>()
 
+.AddSingleton<DiscordAnnouncer>()
+
 // SCOPED
 
 .AddScoped<Database>()
 
 .AddScoped<Translator>()
 
-.AddScoped<NotificationEmbedCreator>()
-
-.AddScoped<DiscordAnnouncer>();
+.AddScoped<NotificationEmbedCreator>();
 
 // Plugin
 // ######################################################################################################
@@ -220,6 +220,7 @@ using (var scope = app.Services.CreateScope())
 using (var scope = app.Services.CreateScope())
 {
     scope.ServiceProvider.GetRequiredService<InternalConfiguration>().Init();
+    scope.ServiceProvider.GetRequiredService<DiscordAnnouncer>().Init();
 
     await scope.ServiceProvider.GetRequiredService<AuditLogger>().ExecuteAsync();
     await scope.ServiceProvider.GetRequiredService<DiscordBot>().ExecuteAsync();

@@ -103,16 +103,7 @@ namespace MASZ.Repositories
 
             string fileName = await _filesHandler.SaveFile(file, fullPath);
 
-            try
-            {
-                await _discordAnnouncer.AnnounceFile(fileName, modCase, currentUser, RestAction.Created);
-            }
-            catch (Exception e)
-            {
-                Logger.LogError(e, "Failed to announce file.");
-            }
-
-            await _eventHandler.OnFileUploadedEvent.InvokeAsync(GetCaseFile(guildId, caseId, fileName));
+            await _eventHandler.OnFileUploadedEvent.InvokeAsync(GetCaseFile(guildId, caseId, fileName), modCase, currentUser);
 
             return fileName;
         }
@@ -121,6 +112,8 @@ namespace MASZ.Repositories
         {
             ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, _identity).GetModCase(guildId, caseId);
             IUser currentUser = _identity.GetCurrentUser();
+
+            var info = GetCaseFile(guildId, caseId, fileName);
 
             var filePath = Path.Join(_config.GetFileUploadPath(), guildId.ToString(), caseId.ToString(), _filesHandler.RemoveSpecialCharacters(fileName));
 
@@ -139,14 +132,7 @@ namespace MASZ.Repositories
 
             _filesHandler.DeleteFile(fullFilePath);
 
-            try
-            {
-                await _discordAnnouncer.AnnounceFile(fileName, modCase, currentUser, RestAction.Deleted);
-            }
-            catch (Exception e)
-            {
-                Logger.LogError(e, "Failed to announce file.");
-            }
+            await _eventHandler.OnFileDeletedEvent.InvokeAsync(info, modCase, currentUser);
         }
     }
 }

@@ -137,9 +137,9 @@ namespace MASZ.Services
             }
         }
 
-        private Task OnFileUploaded(UploadedFile fileInfo)
+        private Task OnFileUploaded(UploadedFile fileInfo, ModCase modCase, IUser actor)
         {
-            QueueLog($"**File** `{fileInfo.Name}` uploaded.");
+            QueueLog($"**File** `{fileInfo.Name}` uploaded to case {modCase.GuildId}/{modCase.CaseId} by <@{actor.Id}>.");
             return Task.CompletedTask;
         }
 
@@ -149,37 +149,37 @@ namespace MASZ.Services
             return Task.CompletedTask;
         }
 
-        private Task OnModCaseCommentDeleted(ModCaseComment modCaseComment)
+        private Task OnModCaseCommentDeleted(ModCaseComment modCaseComment, IUser actor)
         {
             QueueLog($"**Comment** `{modCaseComment.ModCase.GuildId}/{modCaseComment.ModCase.CaseId}/{modCaseComment.Id}` by <@{modCaseComment.UserId}> deleted.");
             return Task.CompletedTask;
         }
 
-        private Task OnModCaseCommentUpdated(ModCaseComment modCaseComment)
+        private Task OnModCaseCommentUpdated(ModCaseComment modCaseComment, IUser actor)
         {
             QueueLog($"**Comment** `{modCaseComment.ModCase.GuildId}/{modCaseComment.ModCase.CaseId}/{modCaseComment.Id}` by <@{modCaseComment.UserId}> updated.");
             return Task.CompletedTask;
         }
 
-        private Task OnModCaseCommentCreated(ModCaseComment modCaseComment)
+        private Task OnModCaseCommentCreated(ModCaseComment modCaseComment, IUser actor)
         {
             QueueLog($"**Comment** `{modCaseComment.ModCase.GuildId}/{modCaseComment.ModCase.CaseId}/{modCaseComment.Id}` by <@{modCaseComment.UserId}> created.");
             return Task.CompletedTask;
         }
 
-        private Task OnModCaseDeleted(ModCase modCase)
+        private Task OnModCaseDeleted(ModCase modCase, IUser actor, bool announcePublic, bool announceDm)
         {
             QueueLog($"**Modcase** `{modCase.GuildId}/{modCase.CaseId}` for <@{modCase.UserId}> deleted.");
             return Task.CompletedTask;
         }
 
-        private Task OnModCaseUpdated(ModCase modCase)
+        private Task OnModCaseUpdated(ModCase modCase, IUser actor, bool announcePublic, bool announceDm)
         {
             QueueLog($"**Modcase** `{modCase.GuildId}/{modCase.CaseId}` for <@{modCase.UserId}> by <@{modCase.LastEditedByModId}> updated.");
             return Task.CompletedTask;
         }
 
-        private Task OnModCaseCreated(ModCase modCase)
+        private Task OnModCaseCreated(ModCase modCase, IUser actor, bool announcePublic, bool announceDm)
         {
             QueueLog($"**Modcase** `{modCase.GuildId}/{modCase.CaseId}` for <@{modCase.UserId}> by <@{modCase.ModId}> created.");
             return Task.CompletedTask;

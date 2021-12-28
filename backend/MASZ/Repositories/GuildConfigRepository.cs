@@ -73,11 +73,6 @@ namespace MASZ.Repositories
             await Database.SaveGuildConfig(guildConfig);
             await Database.SaveChangesAsync();
 
-            if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
-            {
-                await _discordAnnouncer.AnnounceTipsInNewGuild(guildConfig);
-            }
-
             await _eventHandler.OnGuildRegisteredEvent.InvokeAsync(guildConfig);
 
             return guildConfig;

@@ -1,3 +1,4 @@
+using Discord;
 using MASZ.Models;
 using MASZ.Utils;
 
@@ -46,13 +47,14 @@ namespace MASZ.Services
 
         internal readonly AsyncEvent<Func<AutoModerationConfig, Task>> OnAutoModerationConfigDeletedEvent = new();
 
-        public event Func<AutoModerationEvent, Task> OnAutoModerationEventRegistered
+
+        public event Func<AutoModerationEvent, AutoModerationConfig, GuildConfig, ITextChannel, IUser, Task> OnAutoModerationEventRegistered
         {
             add { OnAutoModerationEventRegisteredEvent.Add(value); }
             remove { OnAutoModerationEventRegisteredEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<AutoModerationEvent, Task>> OnAutoModerationEventRegisteredEvent = new();
+        internal readonly AsyncEvent<Func<AutoModerationEvent, AutoModerationConfig, GuildConfig, ITextChannel, IUser, Task>> OnAutoModerationEventRegisteredEvent = new();
 
         public event Func<CaseTemplate, Task> OnCaseTemplateCreated
         {
@@ -70,13 +72,33 @@ namespace MASZ.Services
 
         internal readonly AsyncEvent<Func<CaseTemplate, Task>> OnCaseTemplateDeletedEvent = new();
 
-        public event Func<UploadedFile, Task> OnFileUploaded
+        /// <summary>
+        /// Invoked when a file is uploaded
+        /// </summary>
+        /// <typeparam name="UploadedFile">The created file.</typeparam>
+        /// <typeparam name="ModCase">The modcase the file was uploaded to.</typeparam>
+        /// <typeparam name="IUser">The actor who created the file.</typeparam>
+        public event Func<UploadedFile, ModCase, IUser, Task> OnFileUploaded
         {
             add { OnFileUploadedEvent.Add(value); }
             remove { OnFileUploadedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<UploadedFile, Task>> OnFileUploadedEvent = new();
+        internal readonly AsyncEvent<Func<UploadedFile, ModCase, IUser, Task>> OnFileUploadedEvent = new();
+
+        /// <summary>
+        /// Invoked when a file is deleted
+        /// </summary>
+        /// <typeparam name="UploadedFile">The deleted file.</typeparam>
+        /// <typeparam name="ModCase">The modcase the file was deleted fropm.</typeparam>
+        /// <typeparam name="IUser">The actor who deleted the file.</typeparam>
+        public event Func<UploadedFile, ModCase, IUser, Task> OnFileDeleted
+        {
+            add { OnFileDeletedEvent.Add(value); }
+            remove { OnFileDeletedEvent.Remove(value); }
+        }
+
+        internal readonly AsyncEvent<Func<UploadedFile, ModCase, IUser, Task>> OnFileDeletedEvent = new();
 
         public event Func<GuildConfig, Task> OnGuildRegistered
         {
@@ -118,61 +140,104 @@ namespace MASZ.Services
 
         internal readonly AsyncEvent<Func<UserInvite, Task>> OnInviteUsageRegisteredEvent = new();
 
-        public event Func<ModCaseComment, Task> OnModCaseCommentCreated
+        /// <summary>
+        /// Invoked when a modcase comment is created
+        /// </summary>
+        /// <typeparam name="ModCase">The created comment.</typeparam>
+        /// <typeparam name="IUser">The actor who created the comment.</typeparam>
+        public event Func<ModCaseComment, IUser, Task> OnModCaseCommentCreated
         {
             add { OnModCaseCommentCreatedEvent.Add(value); }
             remove { OnModCaseCommentCreatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCaseComment, Task>> OnModCaseCommentCreatedEvent = new();
+        internal readonly AsyncEvent<Func<ModCaseComment, IUser, Task>> OnModCaseCommentCreatedEvent = new();
 
-        public event Func<ModCaseComment, Task> OnModCaseCommentUpdated
+        /// <summary>
+        /// Invoked when a modcase comment is updated
+        /// </summary>
+        /// <typeparam name="ModCase">The updated comment.</typeparam>
+        /// <typeparam name="IUser">The actor who updated the comment.</typeparam>
+        public event Func<ModCaseComment, IUser, Task> OnModCaseCommentUpdated
         {
             add { OnModCaseCommentUpdatedEvent.Add(value); }
             remove { OnModCaseCommentUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCaseComment, Task>> OnModCaseCommentUpdatedEvent = new();
+        internal readonly AsyncEvent<Func<ModCaseComment, IUser, Task>> OnModCaseCommentUpdatedEvent = new();
 
-        public event Func<ModCaseComment, Task> OnModCaseCommentDeleted
+        /// <summary>
+        /// Invoked when a modcase comment is deleted
+        /// </summary>
+        /// <typeparam name="ModCase">The deleted comment.</typeparam>
+        /// <typeparam name="IUser">The actor who deleted the comment.</typeparam>
+        public event Func<ModCaseComment, IUser, Task> OnModCaseCommentDeleted
         {
             add { OnModCaseCommentDeletedEvent.Add(value); }
             remove { OnModCaseCommentDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCaseComment, Task>> OnModCaseCommentDeletedEvent = new();
+        internal readonly AsyncEvent<Func<ModCaseComment, IUser, Task>> OnModCaseCommentDeletedEvent = new();
 
-        public event Func<ModCase, Task> OnModCaseCreated
+        /// <summary>
+        /// Invoked when a modcase is created
+        /// </summary>
+        /// <typeparam name="ModCase">The created ModCase.</typeparam>
+        /// <typeparam name="IUser">The actor who created the ModCase.</typeparam>
+        /// <typeparam name="bool">The announcePublic flag.</typeparam>
+        /// <typeparam name="bool">The announceDM flag.</typeparam>
+        public event Func<ModCase, IUser, bool, bool, Task> OnModCaseCreated
         {
             add { OnModCaseCreatedEvent.Add(value); }
             remove { OnModCaseCreatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCase, Task>> OnModCaseCreatedEvent = new();
+        internal readonly AsyncEvent<Func<ModCase, IUser, bool, bool, Task>> OnModCaseCreatedEvent = new();
 
-        public event Func<ModCase, Task> OnModCaseUpdated
+        /// <summary>
+        /// Invoked when a modcase is updated
+        /// </summary>
+        /// <typeparam name="ModCase">The updated ModCase.</typeparam>
+        /// <typeparam name="IUser">The actor who updated the ModCase.</typeparam>
+        /// <typeparam name="bool">The announcePublic flag.</typeparam>
+        /// <typeparam name="bool">The announceDM flag.</typeparam>
+        public event Func<ModCase, IUser, bool, bool, Task> OnModCaseUpdated
         {
             add { OnModCaseUpdatedEvent.Add(value); }
             remove { OnModCaseUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCase, Task>> OnModCaseUpdatedEvent = new();
+        internal readonly AsyncEvent<Func<ModCase, IUser, bool, bool, Task>> OnModCaseUpdatedEvent = new();
 
-        public event Func<ModCase, Task> OnModCaseDeleted
+        /// <summary>
+        /// Invoked when a modcase is (force) deleted
+        /// </summary>
+        /// <typeparam name="ModCase">The deleted ModCase.</typeparam>
+        /// <typeparam name="IUser">The actor who deleted the ModCase.</typeparam>
+        /// <typeparam name="bool">The announcePublic flag.</typeparam>
+        /// <typeparam name="bool">The announceDM flag.</typeparam>
+        public event Func<ModCase, IUser, bool, bool, Task> OnModCaseDeleted
         {
             add { OnModCaseDeletedEvent.Add(value); }
             remove { OnModCaseDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCase, Task>> OnModCaseDeletedEvent = new();
+        internal readonly AsyncEvent<Func<ModCase, IUser, bool, bool, Task>> OnModCaseDeletedEvent = new();
 
-        public event Func<ModCase, Task> OnModCaseMarkedToBeDeleted
+        /// <summary>
+        /// Invoked when a modcase is marked to be deleted
+        /// </summary>
+        /// <typeparam name="ModCase">The marked ModCase.</typeparam>
+        /// <typeparam name="IUser">The actor who marked the ModCase.</typeparam>
+        /// <typeparam name="bool">The announcePublic flag.</typeparam>
+        /// <typeparam name="bool">The announceDM flag.</typeparam>
+        public event Func<ModCase, IUser, bool, bool, Task> OnModCaseMarkedToBeDeleted
         {
             add { OnModCaseMarkedToBeDeletedEvent.Add(value); }
             remove { OnModCaseMarkedToBeDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCase, Task>> OnModCaseMarkedToBeDeletedEvent = new();
+        internal readonly AsyncEvent<Func<ModCase, IUser, bool, bool, Task>> OnModCaseMarkedToBeDeletedEvent = new();
 
         public event Func<ModCase, Task> OnModCaseRestored
         {
@@ -182,37 +247,83 @@ namespace MASZ.Services
 
         internal readonly AsyncEvent<Func<ModCase, Task>> OnModCaseRestoredEvent = new();
 
-        public event Func<UserMapping, Task> OnUserMapUpdated
+        /// <summary>
+        /// Invoked when a usermap is created
+        /// </summary>
+        /// <typeparam name="UserMapping">The created usermap.</typeparam>
+        /// <typeparam name="IUser">The actor who created the usermap.</typeparam>
+        public event Func<UserMapping, IUser, Task> OnUserMapCreated
+        {
+            add { OnUserMapCreatedEvent.Add(value); }
+            remove { OnUserMapCreatedEvent.Remove(value); }
+        }
+
+        internal readonly AsyncEvent<Func<UserMapping, IUser, Task>> OnUserMapCreatedEvent = new();
+
+        /// <summary>
+        /// Invoked when a usermap is updated
+        /// </summary>
+        /// <typeparam name="UserMapping">The updated usermap.</typeparam>
+        /// <typeparam name="IUser">The actor who updated the usermap.</typeparam>
+        public event Func<UserMapping, IUser, Task> OnUserMapUpdated
         {
             add { OnUserMapUpdatedEvent.Add(value); }
             remove { OnUserMapUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<UserMapping, Task>> OnUserMapUpdatedEvent = new();
+        internal readonly AsyncEvent<Func<UserMapping, IUser, Task>> OnUserMapUpdatedEvent = new();
 
-        public event Func<UserMapping, Task> OnUserMapDeleted
+        /// <summary>
+        /// Invoked when a usermap is deleted
+        /// </summary>
+        /// <typeparam name="UserMapping">The deleted usermap.</typeparam>
+        /// <typeparam name="IUser">The actor who deleted the usermap.</typeparam>
+        public event Func<UserMapping, IUser, Task> OnUserMapDeleted
         {
             add { OnUserMapDeletedEvent.Add(value); }
             remove { OnUserMapDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<UserMapping, Task>> OnUserMapDeletedEvent = new();
+        internal readonly AsyncEvent<Func<UserMapping, IUser, Task>> OnUserMapDeletedEvent = new();
 
-        public event Func<UserNote, Task> OnUserNoteDeleted
+        /// <summary>
+        /// Invoked when a usernote is deleted
+        /// </summary>
+        /// <typeparam name="UserNote">The deleted usernote.</typeparam>
+        /// <typeparam name="IUser">The actor who deleted the usernote.</typeparam>
+        public event Func<UserNote, IUser, Task> OnUserNoteDeleted
         {
             add { OnUserNoteDeletedEvent.Add(value); }
             remove { OnUserNoteDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<UserNote, Task>> OnUserNoteDeletedEvent = new();
+        internal readonly AsyncEvent<Func<UserNote, IUser, Task>> OnUserNoteDeletedEvent = new();
 
-        public event Func<UserNote, Task> OnUserNoteUpdated
+        /// <summary>
+        /// Invoked when a usernote is updated
+        /// </summary>
+        /// <typeparam name="UserNote">The updated usernote.</typeparam>
+        /// <typeparam name="IUser">The actor who updated the usernote.</typeparam>
+        public event Func<UserNote, IUser, Task> OnUserNoteUpdated
         {
             add { OnUserNoteUpdatedEvent.Add(value); }
             remove { OnUserNoteUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<UserNote, Task>> OnUserNoteUpdatedEvent = new();
+        internal readonly AsyncEvent<Func<UserNote, IUser, Task>> OnUserNoteUpdatedEvent = new();
+
+        /// <summary>
+        /// Invoked when a usernote is created
+        /// </summary>
+        /// <typeparam name="UserNote">The created usernote.</typeparam>
+        /// <typeparam name="IUser">The actor who created the usernote.</typeparam>
+        public event Func<UserNote, IUser, Task> OnUserNoteCreated
+        {
+            add { OnUserNoteCreatedEvent.Add(value); }
+            remove { OnUserNoteCreatedEvent.Remove(value); }
+        }
+
+        internal readonly AsyncEvent<Func<UserNote, IUser, Task>> OnUserNoteCreatedEvent = new();
 
         public event Func<int, DateTime, Task> OnInternalCachingDone
         {

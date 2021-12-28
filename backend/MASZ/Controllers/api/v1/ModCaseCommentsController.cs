@@ -44,15 +44,6 @@ namespace MASZ.Controllers
 
             ModCaseComment createdComment = await ModCaseCommentRepository.CreateDefault(_serviceProvider, currentIdentity).CreateComment(guildId, caseId, comment.Message);
 
-            try
-            {
-                await _discordAnnouncer.AnnounceComment(createdComment, currentUser, RestAction.Created);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "Failed to announce comment.");
-            }
-
             return StatusCode(201, new CommentsView(createdComment));
         }
 
@@ -74,15 +65,6 @@ namespace MASZ.Controllers
 
             ModCaseComment createdComment = await repo.UpdateComment(guildId, caseId, commentId, newValue.Message);
 
-            try
-            {
-                await _discordAnnouncer.AnnounceComment(createdComment, currentUser, RestAction.Edited);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "Failed to announce comment.");
-            }
-
             return Ok(new CommentsView(createdComment));
         }
 
@@ -103,15 +85,6 @@ namespace MASZ.Controllers
             }
 
             ModCaseComment deletedComment = await repo.DeleteComment(guildId, caseId, commentId);
-
-            try
-            {
-                await _discordAnnouncer.AnnounceComment(deletedComment, currentUser, RestAction.Deleted);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "Failed to announce comment.");
-            }
 
             return Ok();
         }

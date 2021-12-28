@@ -241,7 +241,7 @@ namespace MASZ.AutoModeration
                 MessageContent = message.Content
             };
 
-            await AutoModerationEventRepository.CreateDefault(_serviceProvider).RegisterEvent(modEvent);
+            await AutoModerationEventRepository.CreateDefault(_serviceProvider).RegisterEvent(modEvent, message.Channel as ITextChannel, message.Author);
 
             if (modEvent.AutoModerationAction == AutoModerationAction.ContentDeleted || modEvent.AutoModerationAction == AutoModerationAction.ContentDeletedAndCaseCreated)
             {
@@ -256,9 +256,6 @@ namespace MASZ.AutoModeration
                     _logger.LogError(ex, $"Error deleting message {message.Id}.");
                 }
             }
-
-            await _announcer.AnnounceAutomoderation(modEvent, autoModerationConfig, guildConfig, message.Channel as ITextChannel, message.Author);
         }
-
     }
 }

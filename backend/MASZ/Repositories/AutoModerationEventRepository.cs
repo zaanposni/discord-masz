@@ -25,9 +25,11 @@ namespace MASZ.Repositories
         {
             return await Database.CountAllModerationEventsForSpecificUserOnGuild(guildId, userId);
         }
-        public async Task<AutoModerationEvent> RegisterEvent(AutoModerationEvent modEvent)
+        public async Task<AutoModerationEvent> RegisterEvent(AutoModerationEvent modEvent, ITextChannel channel, IUser author)
         {
-            await _translator.SetContext(modEvent.GuildId);
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(modEvent.GuildId);
+
+            _translator.SetContext(guildConfig);
             AutoModerationConfig modConfig = await AutoModerationConfigRepository.CreateDefault(_serviceProvider).GetConfigsByGuildAndType(modEvent.GuildId, modEvent.AutoModerationType);
 
             IUser user = await DiscordAPI.FetchUserInfo(modEvent.UserId, CacheBehavior.Default);
@@ -85,7 +87,7 @@ namespace MASZ.Repositories
             await Database.SaveModerationEvent(modEvent);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnAutoModerationEventRegisteredEvent.InvokeAsync(modEvent);
+            await _eventHandler.OnAutoModerationEventRegisteredEvent.InvokeAsync(modEvent, modConfig, guildConfig, channel, author);
 
             return modEvent;
         }

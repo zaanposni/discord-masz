@@ -60,7 +60,7 @@ namespace MASZ.Repositories
             await Database.SaveModCaseComment(newComment);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnModCaseCommentCreatedEvent.InvokeAsync(newComment);
+            await _eventHandler.OnModCaseCommentCreatedEvent.InvokeAsync(newComment, _currentUser);
 
             return newComment;
         }
@@ -89,7 +89,7 @@ namespace MASZ.Repositories
             Database.UpdateModCaseComment(newComment);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnModCaseCommentUpdatedEvent.InvokeAsync(newComment);
+            await _eventHandler.OnModCaseCommentUpdatedEvent.InvokeAsync(newComment, _currentUser);
 
             return newComment;
         }
@@ -116,7 +116,7 @@ namespace MASZ.Repositories
             Database.DeleteSpecificModCaseComment(deleteComment);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnModCaseCommentDeletedEvent.InvokeAsync(deleteComment);
+            await _eventHandler.OnModCaseCommentDeletedEvent.InvokeAsync(deleteComment, _currentUser);
 
             return deleteComment;
         }

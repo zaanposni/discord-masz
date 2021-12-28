@@ -68,9 +68,14 @@ namespace MASZ.Repositories
             Database.SaveUserNote(userNote);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnUserNoteUpdatedEvent.InvokeAsync(userNote);
-
-            await _discordAnnouncer.AnnounceUserNote(userNote, _currentUser, action);
+            if (action == RestAction.Created)
+            {
+                await _eventHandler.OnUserNoteCreatedEvent.InvokeAsync(userNote, _currentUser);
+            }
+            else
+            {
+                await _eventHandler.OnUserNoteUpdatedEvent.InvokeAsync(userNote, _currentUser);
+            }
 
             return userNote;
         }
@@ -81,9 +86,7 @@ namespace MASZ.Repositories
             Database.DeleteUserNote(userNote);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnUserNoteDeletedEvent.InvokeAsync(userNote);
-
-            await _discordAnnouncer.AnnounceUserNote(userNote, _currentUser, RestAction.Deleted);
+            await _eventHandler.OnUserNoteDeletedEvent.InvokeAsync(userNote, _currentUser);
         }
         public async Task DeleteForGuild(ulong guildId)
         {
