@@ -32,9 +32,9 @@ Furthermore, join the demo guild [https://discord.gg/7ubU6aWX9c](https://discord
 
 Join this server to receive update information or get support: [https://discord.gg/5zjpzw6h3S](https://discord.gg/5zjpzw6h3S)
 
-## 🛠 Self Hosting
+## 🛠 Hosting
 
-You can **host your own instance of MASZ**, see below for instructions.\
+You can **host your own instance of MASZ** by using the instructions below.\
 If you have any questions, feel free to contact Zaanposni, or a support member:
 
 - [Discord server](https://discord.gg/5zjpzw6h3S)
@@ -63,6 +63,12 @@ Free hosting providers like replit or heroku **do not work**. You will have to u
 
 MASZ uses the `X-Forwarded-For` http header for logging and ratelimit.\
 Ensure that this header is set in your reverse proxy for best experience.
+
+#### MySQL Errors
+
+Entity Framework implores some new features of MySQL for sake of optimising calls to the database.\
+As such, it is recommended you install MySQL 8+ to use this new syntax. Otherwise, you will encounter
+a `MySQLException` stating you need to check your MySQL version corresponds correctly.
 
 ### Discord OAuth
 
