@@ -268,7 +268,11 @@
     "MotD": {
         "description": "The word 'motd'",
         "en": "Message of the Day",
-        "de": "Nachricht des Tages"
+        "de": "Nachricht des Tages",
+        "fr": "Le message du jour",
+        "es": "Mensaje del día",
+        "ru": "Послание дня",
+        "it": "Messaggio del giorno"
     },
     "ActivePunishments": {
         "description": "The word 'active punishments'",
@@ -316,12 +320,20 @@
     "Imported": {
         "description": "Case that has been imported",
         "en": "Imported",
-        "de": "Importiert"
+        "de": "Importiert",
+        "fr": "Importé",
+        "es": "Importado",
+        "ru": "Импортный",
+        "it": "importato"
     },
     "ImportedFromExistingBans": {
         "description": "Case that has been imported from existing bans",
         "en": "Imported from existing bans",
-        "de": "Importiert aus bestehenden Sperren"
+        "de": "Importiert aus bestehenden Sperren",
+        "fr": "Importé à partir des interdictions existantes",
+        "es": "Importado de prohibiciones existentes",
+        "ru": "Импортировано из существующих банов",
+        "it": "Importato da divieti esistenti"
     },
     "Type": {
         "description": "The word 'type'",
@@ -812,7 +824,11 @@
                         "actor": "IUser"
                     },
                     "en": "New MotD has been created by {actor.Mention}.",
-                    "de": "Neue MotD wurde von {actor.Mention} erstellt."
+                    "de": "Neue MotD wurde von {actor.Mention} erstellt.",
+                    "fr": "Le nouveau MotD a été créé par {actor.Mention}.",
+                    "es": "El nuevo MotD ha sido creado por {actor.Mention}.",
+                    "ru": "Новый MotD был создан {actor.Mention}.",
+                    "it": "Il nuovo MotD è stato creato da {actor.Mention}."
                 },
                 "Edited": {
                     "description": "motd has been edited",
@@ -820,13 +836,21 @@
                         "actor": "IUser"
                     },
                     "en": "MotD has been edited by {actor.Mention}.",
-                    "de": "MotD wurde von {actor.Mention} bearbeitet."
+                    "de": "MotD wurde von {actor.Mention} bearbeitet.",
+                    "fr": "MotD a été édité par {actor.Mention}.",
+                    "es": "MotD ha sido editado por {actor.Mention}.",
+                    "ru": "MotD редактировал {actor.Mention}.",
+                    "it": "MotD è stato modificato da {actor.Mention}."
                 }
             },
             "Show": {
                 "description": "motd show property",
                 "en": "Show",
-                "de": "Anzeigen"
+                "de": "Anzeigen",
+                "fr": "Montrer",
+                "es": "Show",
+                "ru": "Показывать",
+                "it": "Spettacolo"
             }
         },
         "AutomoderationConfig": {
@@ -838,7 +862,11 @@
                         "actor": "IUser"
                     },
                     "en": "Automodconfig created for {eventType} by {actor.Mention}.",
-                    "de": "Automodkonfiguration für {eventType} von {actor.Mention} erstellt."
+                    "de": "Automodkonfiguration für {eventType} von {actor.Mention} erstellt.",
+                    "fr": "Automodconfig créé pour {eventType} par {actor.Mention}.",
+                    "es": "Automodconfig creado para {eventType} por {actor.Mention}.",
+                    "ru": "Automodconfig, созданный для {eventType} пользователем {actor.Mention}.",
+                    "it": "Automodconfig creato per {eventType} da {actor.Mention}."
                 },
                 "Update": {
                     "description": "AutomoderationConfig updated",
@@ -847,7 +875,11 @@
                         "actor": "IUser"
                     },
                     "en": "Automodconfig updated for {eventType} by {actor.Mention}.",
-                    "de": "Automodkonfiguration für {eventType} von {actor.Mention} bearbeitet."
+                    "de": "Automodkonfiguration für {eventType} von {actor.Mention} bearbeitet.",
+                    "fr": "Automodconfig mis à jour pour {eventType} par {actor.Mention}.",
+                    "es": "Automodconfig actualizado para {eventType} por {actor.Mention}.",
+                    "ru": "Automodconfig обновлен для {eventType} пользователем {actor.Mention}.",
+                    "it": "Automodconfig aggiornato per {eventType} da {actor.Mention}."
                 },
                 "Delete": {
                     "description": "AutomoderationConfig deleted",
@@ -856,50 +888,86 @@
                         "actor": "IUser"
                     },
                     "en": "Automodconfig deleted for {eventType} by {actor.Mention}.",
-                    "de": "Automodkonfiguration für {eventType} von {actor.Mention} gelöscht."
+                    "de": "Automodkonfiguration für {eventType} von {actor.Mention} gelöscht.",
+                    "fr": "Automodconfig supprimé pour {eventType} par {actor.Mention}.",
+                    "es": "Automodconfig eliminado para {eventType} por {actor.Mention}.",
+                    "ru": "Automodconfig удален для {eventType} пользователем {actor.Mention}.",
+                    "it": "Automodconfig eliminato per {eventType} da {actor.Mention}."
                 }
             },
             "Limit": {
                 "description": "AutomoderationConfig limit",
                 "en": "Limit",
-                "de": "Limit"
+                "de": "Limit",
+                "fr": "Limite",
+                "es": "Límite",
+                "ru": "Предел",
+                "it": "Limite"
             },
             "TimeLimit": {
                 "description": "AutomoderationConfig time limit",
                 "en": "Time limit",
-                "de": "Zeitlimit"
+                "de": "Zeitlimit",
+                "fr": "Limite de temps",
+                "es": "Límite de tiempo",
+                "ru": "Лимит времени",
+                "it": "Limite di tempo"
             },
             "Ignored": {
                 "Roles": {
                     "description": "Ignored roles in automod config",
                     "en": "Ignored roles",
-                    "de": "Ignorierte Rollen"
+                    "de": "Ignorierte Rollen",
+                    "fr": "Rôles ignorés",
+                    "es": "Roles ignorados",
+                    "ru": "Игнорируемые роли",
+                    "it": "Ruoli ignorati"
                 },
                 "Channels": {
                     "description": "Ignored channels in automod config",
                     "en": "Ignored channels",
-                    "de": "Ignorierte Kanäle"
+                    "de": "Ignorierte Kanäle",
+                    "fr": "Canaux ignorés",
+                    "es": "Canales ignorados",
+                    "ru": "Игнорируемые каналы",
+                    "it": "Canali ignorati"
                 }
             },
             "Duration": {
                 "description": "Duration of automod actions",
                 "en": "Duration",
-                "de": "Dauer"
+                "de": "Dauer",
+                "fr": "Durée",
+                "es": "Duración",
+                "ru": "Продолжительность",
+                "it": "Durata"
             },
             "DeleteMessage": {
                 "description": "Delete message after automod action",
                 "en": "Delete message",
-                "de": "Nachricht löschen"
+                "de": "Nachricht löschen",
+                "fr": "Supprimer le message",
+                "es": "Borrar mensaje",
+                "ru": "Удаленное сообщение",
+                "it": "Cancella il messaggio"
             },
             "SendPublic": {
                 "description": "Send public message after automod action",
                 "en": "Send public notification",
-                "de": "Sende öffentliche Nachricht"
+                "de": "Sende öffentliche Nachricht",
+                "fr": "Envoyer une notification publique",
+                "es": "Enviar notificación pública",
+                "ru": "Отправить публичное уведомление",
+                "it": "Invia notifica pubblica"
             },
             "SendDM": {
                 "description": "Send DM message after automod action",
                 "en": "Send DM notification",
-                "de": "Sende DM Nachricht"
+                "de": "Sende DM Nachricht",
+                "fr": "Envoyer une notification DM",
+                "es": "Enviar notificación DM",
+                "ru": "Отправить уведомление в прямом эфире",
+                "it": "Invia notifica DM"
             }
         },
         "AutoWhois": {
@@ -946,7 +1014,11 @@
                         "reason": "string"
                     },
                     "en": "Punishment for ModCase #{caseId} by moderator {modId} executed: \\\"{reason}\\\"",
-                    "de": "Bestrafung für Vorfall #{caseId} durch Moderator {modId} ausgeführt: \\\"{reason}\\\""
+                    "de": "Bestrafung für Vorfall #{caseId} durch Moderator {modId} ausgeführt: \\\"{reason}\\\"",
+                    "fr": "Punition pour ModCase #{caseId} par le modérateur {modId} exécutée : \\\"{reason}\\\"",
+                    "es": "Castigo por ModCase # {caseId} por el moderador {modId} ejecutado: \\\"{reason} \\\"",
+                    "ru": "Наказание за ModCase # {caseId} модератором {modId} выполнено: \\\"{reason} \\\"",
+                    "it": "Punizione per ModCase #{caseId} eseguita dal moderatore {modId}: \\\"{reason}\\\""
                 },
                 "Undone": {
                     "description": "Audit log header reason for executed punishment.",
@@ -955,7 +1027,11 @@
                         "reason": "string"
                     },
                     "en": "Punishment for ModCase #{caseId} undone: \\\"{reason}\\\"",
-                    "de": "Bestrafung für Vorfall #{caseId} rückgängig gemacht: \\\"{reason}\\\""
+                    "de": "Bestrafung für Vorfall #{caseId} rückgängig gemacht: \\\"{reason}\\\"",
+                    "fr": "Punition pour ModCase #{caseId} annulée : \\\"{reason}\\\"",
+                    "es": "Castigo por ModCase # {caseId} deshecho: \\\"{reason} \\\"",
+                    "ru": "Наказание за ModCase # {caseId} отменено: \\\"{reason} \\\"",
+                    "it": "Punizione per ModCase #{caseId} annullata: \\\"{reason}\\\""
                 }
             }
         },
@@ -968,7 +1044,11 @@
                         "actor": "IUser"
                     },
                     "en": "Guild-level audit log for event `{eventName}` has been set up by {actor.Mention}.",
-                    "de": "Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} eingerichtet."
+                    "de": "Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} eingerichtet.",
+                    "fr": "Le journal d'audit au niveau de la guilde pour l'événement `{eventName}` a été mis en place par {actor.Mention}.",
+                    "es": "{actor.Mention} ha configurado el registro de auditoría a nivel de gremio para el evento `{eventName}`.",
+                    "ru": "Журнал аудита на уровне гильдии для события `{eventName}` был создан {actor.Mention}.",
+                    "it": "Il registro di controllo a livello di gilda per l'evento `{eventName}` è stato impostato da {actor.Mention}."
                 },
                 "Update": {
                     "description": "A guild-level audit log has been edited.",
@@ -977,7 +1057,11 @@
                         "actor": "IUser"
                     },
                     "en": "Guild-level audit log for event `{eventName}` has been edited by {actor.Mention}.",
-                    "de": "Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} bearbeitet."
+                    "de": "Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} bearbeitet.",
+                    "fr": "Le journal d'audit au niveau de la guilde pour l'événement `{eventName}` a été modifié par {actor.Mention}.",
+                    "es": "{actor.Mention} ha editado el registro de auditoría a nivel de gremio para el evento `{eventName}`.",
+                    "ru": "Журнал аудита на уровне гильдии для события `{eventName}` отредактировал {actor.Mention}.",
+                    "it": "Il registro di controllo a livello di gilda per l'evento `{eventName}` è stato modificato da {actor.Mention}."
                 },
                 "Delete": {
                     "description": "A guild-level audit log has been deleted.",
@@ -986,18 +1070,30 @@
                         "actor": "IUser"
                     },
                     "en": "Guild-level audit log for event `{eventName}` has been deleted by {actor.Mention}.",
-                    "de": "Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} gelöscht."
+                    "de": "Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} gelöscht.",
+                    "fr": "Le journal d'audit au niveau de la guilde pour l'événement `{eventName}` a été supprimé par {actor.Mention}.",
+                    "es": "{actor.Mention} ha eliminado el registro de auditoría a nivel de hermandad para el evento `{eventName}`.",
+                    "ru": "Журнал аудита на уровне гильдии для события `{eventName}` был удален {actor.Mention}.",
+                    "it": "Il registro di controllo a livello di gilda per l'evento `{eventName}` è stato eliminato da {actor.Mention}."
                 }
             },
             "MentionRoles": {
                 "description": "mention roles",
                 "en": "Mention role(s)",
-                "de": "Rolle(n) erwähnen"
+                "de": "Rolle(n) erwähnen",
+                "fr": "Mentionner le(s) rôle(s)",
+                "es": "Mencionar rol (s)",
+                "ru": "Упоминание ролей",
+                "it": "Menzione ruolo/i"
             },
             "Title": {
                 "description": "title",
                 "en": "Guild-level audit log",
-                "de": "Gildenspezifischer Audit-Log"
+                "de": "Gildenspezifischer Audit-Log",
+                "fr": "Journal d'audit au niveau de la guilde",
+                "es": "Registro de auditoría a nivel de gremio",
+                "ru": "Журнал аудита на уровне гильдии",
+                "it": "Registro di controllo a livello di gilda"
             }
         }
     },
@@ -1591,62 +1687,106 @@
                 "Title": {
                     "description": "Result",
                     "en": "Result",
-                    "de": "Ergebnis"
+                    "de": "Ergebnis",
+                    "fr": "Résultat",
+                    "es": "Resultado",
+                    "ru": "Результат",
+                    "it": "Risultato"
                 },
                 "Waiting": {
                     "description": "Waiting for approval",
                     "en": "Waiting for approval.",
-                    "de": "Warte auf Bestätigung."
+                    "de": "Warte auf Bestätigung.",
+                    "fr": "En attente d'approbation.",
+                    "es": "A la espera de la aprobación.",
+                    "ru": "Ожидание подтверждения.",
+                    "it": "In attesa di approvazione."
                 },
                 "Timedout": {
                     "description": "Timed out",
                     "en": "Timed out",
-                    "de": "Zeitüberschreitung"
+                    "de": "Zeitüberschreitung",
+                    "fr": "Fin du temps",
+                    "es": "Caducado",
+                    "ru": "Время вышло",
+                    "it": "Fuori tempo"
                 },
                 "Canceled": {
                     "description": "cancel button to disapprove",
                     "en": "Canceled",
-                    "de": "Abgebrochen"
+                    "de": "Abgebrochen",
+                    "fr": "Annulé",
+                    "es": "Cancelado",
+                    "ru": "Отменено",
+                    "it": "Annullato"
                 }
             },
             "PublicNotification": {
                 "Title": {
                     "description": "Public notification",
                     "en": "Public notification",
-                    "de": "Öffentliche Benachrichtigung"
+                    "de": "Öffentliche Benachrichtigung",
+                    "fr": "Avis public",
+                    "es": "Notificación pública",
+                    "ru": "Публичное уведомление",
+                    "it": "Notifica pubblica"
                 },
                 "Description": {
                     "description": "Public notification description",
                     "en": "Send a public notification?",
-                    "de": "Soll eine öffentliche Benachrichtigung gesendet werden?"
+                    "de": "Soll eine öffentliche Benachrichtigung gesendet werden?",
+                    "fr": "Envoyer une notification publique ?",
+                    "es": "¿Enviar una notificación pública?",
+                    "ru": "Отправить публичное уведомление?",
+                    "it": "Inviare una notifica pubblica?"
                 }
             },
             "Buttons": {
                 "Cancel": {
                     "description": "cancel button to disapprove",
                     "en": "Cancel",
-                    "de": "Abbrechen"
+                    "de": "Abbrechen",
+                    "fr": "Annuler",
+                    "es": "Cancelar",
+                    "ru": "Отмена",
+                    "it": "Annulla"
                 },
                 "PublicNotification": {
                     "description": "public notification button",
                     "en": "Public notification",
-                    "de": "Öffentliche Benachrichtigung"
+                    "de": "Öffentliche Benachrichtigung",
+                    "fr": "Avis public",
+                    "es": "Notificación pública",
+                    "ru": "Публичное уведомление",
+                    "it": "Notifica pubblica"
                 },
                 "NoPublicNotification": {
                     "description": "no public notification button",
                     "en": "No public notification",
-                    "de": "Keine öffentliche Benachrichtigung"
+                    "de": "Keine öffentliche Benachrichtigung",
+                    "fr": "Aucune notification publique",
+                    "es": "Sin notificación pública",
+                    "ru": "Нет публичного уведомления",
+                    "it": "Nessuna notifica pubblica"
                 }
             },
             "CreatedAt": {
                 "description": "Created at",
                 "en": "Created at.",
-                "de": "Erstellt am."
+                "de": "Erstellt am.",
+                "fr": "Créé à.",
+                "es": "Creado en.",
+                "ru": "Создано в.",
+                "it": "Creato a."
             },
             "NoCases": {
                 "description": "No active modcases have been found.",
                 "en": "No active modcases have been found.",
-                "de": "Keine aktiven Mod-Fälle wurden gefunden."
+                "de": "Keine aktiven Mod-Fälle wurden gefunden.",
+                "fr": "Aucun modcase actif n'a été trouvé.",
+                "es": "No se han encontrado casos de modulación activos.",
+                "ru": "Активных модкейсов не обнаружено.",
+                "it": "Nessun modcase attivo è stato trovato."
             },
             "Unmute": {
                 "FoundXCases": {
@@ -1655,30 +1795,50 @@
                         "caseCount": "int"
                     },
                     "en": "Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unmute the user?",
-                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entsperren zu lassen?"
+                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entsperren zu lassen?",
+                    "fr": "`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour réactiver le son de l'utilisateur ?",
+                    "es": "Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para dejar de silenciar al usuario?",
+                    "ru": "Обнаружены активные обращения `{caseCount}`. Вы хотите деактивировать или удалить их все, чтобы включить микрофон для пользователя?",
+                    "it": "Trovati casi attivi di `{caseCount}`. Vuoi disattivarli o eliminarli tutti per riattivare l'audio dell'utente?"
                 },
                 "Result": {
                     "Deleted": {
                         "description": "someone approved",
                         "en": "Mutes deleted",
-                        "de": "Sperrungen gelöscht"
+                        "de": "Sperrungen gelöscht",
+                        "fr": "Muets supprimés",
+                        "es": "Silenciados eliminados",
+                        "ru": "Без звука удалено",
+                        "it": "Disattiva audio cancellato"
                     },
                     "Deactivated": {
                         "description": "someone approved",
                         "en": "Mutes deactivated",
-                        "de": "Sperrungen deaktiviert"
+                        "de": "Sperrungen deaktiviert",
+                        "fr": "Muet désactivé",
+                        "es": "Silencios desactivados",
+                        "ru": "Отключение звука отключено",
+                        "it": "Mute disattivate"
                     }
                 },
                 "Buttons": {
                     "Delete": {
                         "description": "Unban button to approve",
                         "en": "Delete Mutes",
-                        "de": "Sperrungen löschen"
+                        "de": "Sperrungen löschen",
+                        "fr": "Supprimer les sourdines",
+                        "es": "Eliminar silencios",
+                        "ru": "Удалить отключение звука",
+                        "it": "Elimina mute"
                     },
                     "Deactivate": {
                         "description": "Unban button to approve",
                         "en": "Deativate Mutes",
-                        "de": "Sperrungen deaktivieren"
+                        "de": "Sperrungen deaktivieren",
+                        "fr": "Désactiver les sourdines",
+                        "es": "Silenciar desactivados",
+                        "ru": "Отключить отключение звука",
+                        "it": "Disattiva sordina"
                     }
                 }
             },
@@ -1689,30 +1849,50 @@
                         "caseCount": "int"
                     },
                     "en": "Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unban the user?",
-                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entsperren zu lassen?"
+                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entsperren zu lassen?",
+                    "fr": "`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour annuler l'interdiction de l'utilisateur ?",
+                    "es": "Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para desbloquear al usuario?",
+                    "ru": "Обнаружены активные обращения `{caseCount}`. Вы хотите деактивировать или удалить их все, чтобы разблокировать пользователя?",
+                    "it": "Trovati casi attivi di `{caseCount}`. Vuoi disattivarli o eliminarli tutti per riabilitare l'utente?"
                 },
                 "Result": {
                     "Deleted": {
                         "description": "someone approved",
                         "en": "Bans deleted",
-                        "de": "Sperrungen gelöscht"
+                        "de": "Sperrungen gelöscht",
+                        "fr": "Interdictions supprimées",
+                        "es": "Prohibiciones eliminadas",
+                        "ru": "Баны удалены",
+                        "it": "Divieti cancellati"
                     },
                     "Deactivated": {
                         "description": "someone approved",
                         "en": "Bans deactivated",
-                        "de": "Sperrungen deaktiviert"
+                        "de": "Sperrungen deaktiviert",
+                        "fr": "Interdictions désactivées",
+                        "es": "Prohibiciones desactivadas",
+                        "ru": "Баны отключены",
+                        "it": "Divieti disattivati"
                     }
                 },
                 "Buttons": {
                     "Delete": {
                         "description": "Unban button to approve",
                         "en": "Delete Bans",
-                        "de": "Sperrungen löschen"
+                        "de": "Sperrungen löschen",
+                        "fr": "Supprimer les bannissements",
+                        "es": "Eliminar prohibiciones",
+                        "ru": "Удалить баны",
+                        "it": "Elimina ban"
                     },
                     "Deactivate": {
                         "description": "Unban button to approve",
                         "en": "Deativate Bans",
-                        "de": "Sperrungen deaktivieren"
+                        "de": "Sperrungen deaktivieren",
+                        "fr": "Désactiver les interdictions",
+                        "es": "Prohibiciones de desactivación",
+                        "ru": "Деактивировать баны",
+                        "it": "Divieti di disattivazione"
                     }
                 }
             }
@@ -1808,6 +1988,36 @@
             "es": "Información no almacenada en caché.",
             "ru": "Информация не кешируется.",
             "it": "Informazioni non memorizzate nella cache."
+        },
+        "Old": {
+            "description": "Old",
+            "en": "Old",
+            "de": "Alt",
+            "at": "Alt",
+            "fr": "Ancien",
+            "es": "Viejo",
+            "ru": "Старый",
+            "it": "Vecchio"
+        },
+        "New": {
+            "description": "New",
+            "en": "New",
+            "de": "Neu",
+            "at": "Neu",
+            "fr": "Nouveau",
+            "es": "Nuevo",
+            "ru": "Новый",
+            "it": "Nuovo"
+        },
+        "Empty": {
+            "description": "Empty",
+            "en": "Empty",
+            "de": "Leer",
+            "at": "Leer",
+            "fr": "Vide",
+            "es": "Vacío",
+            "ru": "Пустой",
+            "it": "Vuoto"
         },
         "MessageSent": {
             "Title": {
@@ -2037,6 +2247,68 @@
                 "es": "Creador",
                 "ru": "Создатель",
                 "it": "Creatore"
+            }
+        },
+        "UsernameUpdated": {
+            "Title": {
+                "description": "Username updated",
+                "en": "Username updated",
+                "de": "Benutzername aktualisiert",
+                "fr": "Nom d'utilisateur mis à jour",
+                "es": "Nombre de usuario actualizado",
+                "ru": "Имя пользователя обновлено",
+                "it": "Nome utente aggiornato"
+            }
+        },
+        "AvatarUpdated": {
+            "Title": {
+                "description": "Avatar updated",
+                "en": "Avatar updated",
+                "de": "Avatar aktualisiert",
+                "fr": "Avatar mis à jour",
+                "es": "Avatar actualizado",
+                "ru": "Аватар обновлен",
+                "it": "Avatar aggiornato"
+            }
+        },
+        "NicknameUpdated": {
+            "Title": {
+                "description": "Nickname updated",
+                "en": "Nickname updated",
+                "de": "Nickname aktualisiert",
+                "fr": "Pseudo mis à jour",
+                "es": "Se actualizó el apodo",
+                "ru": "Псевдоним обновлен",
+                "it": "Nickname aggiornato"
+            }
+        },
+        "RolesUpdated": {
+            "Title": {
+                "description": "Roles updated",
+                "en": "Roles updated",
+                "de": "Rollen aktualisiert",
+                "fr": "Rôles mis à jour",
+                "es": "Funciones actualizadas",
+                "ru": "Роли обновлены",
+                "it": "Ruoli aggiornati"
+            },
+            "Added": {
+                "description": "Added",
+                "en": "Added",
+                "de": "Hinzugefügt",
+                "fr": "Ajoutée",
+                "es": "Adicional",
+                "ru": "Добавлен",
+                "it": "Aggiunto"
+            },
+            "Removed": {
+                "description": "Removed",
+                "en": "Removed",
+                "de": "Entfernt",
+                "fr": "Supprimé",
+                "es": "Remoto",
+                "ru": "Удаленный",
+                "it": "RIMOSSO"
             }
         }
     }

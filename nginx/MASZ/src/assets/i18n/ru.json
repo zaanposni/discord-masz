@@ -1,4 +1,9 @@
 {
+    "Select": {
+        "Select": "Выбирать",
+        "Search": "Поиск"
+    },
+    "Version": "Версия",
     "LoginWithDiscord": {
         "Button": "Войти через Discord",
         "Loading": "Вход в систему через Discord ..."
@@ -142,6 +147,8 @@
         "Confirm": "Подтверждать"
     },
     "GuildDialog": {
+        "ImportExistingBans": "Импортировать существующие запреты",
+        "ImportExistingBansDetails": "Для больших гильдий это может занять некоторое время, но будет работать в фоновом режиме.",
         "AddAGuild": "Добавить гильдию",
         "SearchAGuild": "Найдите гильдию",
         "SelectAnotherGuild": "Выберите гильдию",
@@ -299,6 +306,7 @@
         "LogEntryHover": "Запись в журнале создается всегда.",
         "SendDMNotification": "Отправить уведомление dm",
         "Action": "Действие",
+        "ChannelNotificationBehavior": "Уведомление канала",
         "SendPublicNotification": "Отправить публичное уведомление",
         "DurationInMinutes": "Продолжительность в минутах",
         "YouAreDone": "Теперь все готово.",
@@ -455,7 +463,21 @@
         "CaseUpdated": "Дело обновлено."
     },
     "ModCaseTable": {
+        "SelectMembers": "Члены",
+        "SelectModerators": "Модераторы",
+        "SelectCreationTypes": "Типы создания",
+        "SelectPunishments": "Наказания",
+        "SelectEdited": "Изменить статус",
+        "SelectLocked": "Статус блокировки",
+        "SelectDelete": "Удалить статус",
+        "SelectActive": "Активный статус",
+        "FilterSince": "Создано с",
+        "FilterUntil": "Создано до",
+        "FilterPunishedSince": "Наказан как минимум до",
+        "FilterPunishedBefore": "Наказан до",
+        "ExecuteSearch": "Поиск",
         "ExcludePermanent": "Исключить постоянные наказания",
+        "UseAdvancedFilter": "Использовать расширенный фильтр",
         "CreateNewCase": "Создать новое дело",
         "Search": "Поиск (пользователь, идентификатор, описание ...)",
         "FailedToLoad": "Не удалось загрузить кейсы.",
@@ -475,7 +497,16 @@
         "Guild": "Гильдия",
         "PunishedUntil": "Наказан до:",
         "PunishedForever": "Наказан навсегда",
+        "Deactivated": {
+            "Success": "Дело было деактивировано.",
+            "Failed": "Дело не может быть деактивировано."
+        },
+        "Activated": {
+            "Success": "Дело было активировано.",
+            "Failed": "Не удалось активировать дело."
+        },
         "PunishmentExpired": "Срок наказания истек.",
+        "CaseInactive": "Modcase неактивен.",
         "CreatedAt": "Создано в",
         "EditedAt": "Отредактировано в",
         "LastEditModerator": "Последнее изменение модератора",

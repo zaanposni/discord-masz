@@ -3,18 +3,30 @@
         "Select": {
             "description": "Select",
             "en": "Select",
-            "de": "Auswählen"
+            "de": "Auswählen",
+            "fr": "Sélectionner",
+            "es": "Seleccione",
+            "ru": "Выбирать",
+            "it": "Selezionare"
         },
         "Search": {
             "description": "Search",
             "en": "Search",
-            "de": "Suchen"
+            "de": "Suchen",
+            "fr": "Chercher",
+            "es": "Búsqueda",
+            "ru": "Поиск",
+            "it": "Ricerca"
         }
     },
     "Version": {
         "description": "version",
         "en": "Version",
-        "de": "Version"
+        "de": "Version",
+        "fr": "Version",
+        "es": "Versión",
+        "ru": "Версия",
+        "it": "Versione"
     },
     "LoginWithDiscord": {
         "Button": {
@@ -1134,12 +1146,20 @@
         "ImportExistingBans": {
             "description": "import existing bans",
             "en": "Import existing bans",
-            "de": "Bestehende Sperren importieren"
+            "de": "Bestehende Sperren importieren",
+            "fr": "Importer des interdictions existantes",
+            "es": "Importar prohibiciones existentes",
+            "ru": "Импортировать существующие запреты",
+            "it": "Importa divieti esistenti"
         },
         "ImportExistingBansDetails": {
             "description": "import existing bans details",
             "en": "This might take a while for large guilds but will run in the background.",
-            "de": "Dies kann bei großen Gilden eine Weile dauern, aber wird im Hintergrund ausgeführt."
+            "de": "Dies kann bei großen Gilden eine Weile dauern, aber wird im Hintergrund ausgeführt.",
+            "fr": "Cela peut prendre un certain temps pour les grandes guildes, mais se déroulera en arrière-plan.",
+            "es": "Esto puede llevar un tiempo para los gremios grandes, pero se ejecutará en segundo plano.",
+            "ru": "Для больших гильдий это может занять некоторое время, но будет работать в фоновом режиме.",
+            "it": "Questo potrebbe richiedere un po' di tempo per le gilde grandi, ma verrà eseguito in background."
         },
         "AddAGuild": {
             "description": "Add a guild",
@@ -2228,7 +2248,11 @@
         "ChannelNotificationBehavior": {
             "description": "Channel notification behavior",
             "en": "Channel notification",
-            "de": "Kanalbenachrichtigung"
+            "de": "Kanalbenachrichtigung",
+            "fr": "Notification de chaîne",
+            "es": "Notificación de canal",
+            "ru": "Уведомление канала",
+            "it": "Notifica del canale"
         },
         "SendPublicNotification": {
             "description": "Send public notification",
@@ -3451,67 +3475,119 @@
         "SelectMembers": {
             "description": "Select members",
             "en": "Members",
-            "de": "Mitglieder"
+            "de": "Mitglieder",
+            "fr": "Membres",
+            "es": "Miembros",
+            "ru": "Члены",
+            "it": "Membri"
         },
         "SelectModerators": {
             "description": "Select moderator",
             "en": "Moderators",
-            "de": "Moderatoren"
+            "de": "Moderatoren",
+            "fr": "Modérateurs",
+            "es": "Moderadores",
+            "ru": "Модераторы",
+            "it": "Moderatori"
         },
         "SelectCreationTypes": {
             "description": "Select creation types",
             "en": "Creation types",
-            "de": "Erstellungsarten"
+            "de": "Erstellungsarten",
+            "fr": "Types de création",
+            "es": "Tipos de creación",
+            "ru": "Типы создания",
+            "it": "Tipi di creazione"
         },
         "SelectPunishments": {
             "description": "Select punishments",
             "en": "Punishments",
-            "de": "Bestrafungen"
+            "de": "Bestrafungen",
+            "fr": "Les sanctions",
+            "es": "Castigos",
+            "ru": "Наказания",
+            "it": "punizioni"
         },
         "SelectEdited": {
             "description": "Select edited",
             "en": "Edit status",
-            "de": "Bearbeitet-Status"
+            "de": "Bearbeitet-Status",
+            "fr": "Modifier le statut",
+            "es": "Editar estado",
+            "ru": "Изменить статус",
+            "it": "Modifica stato"
         },
         "SelectLocked": {
             "description": "Select locked",
             "en": "Lock status",
-            "de": "Sperr-Status"
+            "de": "Sperr-Status",
+            "fr": "État de verrouillage",
+            "es": "Estado de bloqueo",
+            "ru": "Статус блокировки",
+            "it": "Stato di blocco"
         },
         "SelectDelete": {
             "description": "Select delete",
             "en": "Delete status",
-            "de": "Lösch-Status"
+            "de": "Lösch-Status",
+            "fr": "Supprimer le statut",
+            "es": "Eliminar estado",
+            "ru": "Удалить статус",
+            "it": "Elimina stato"
         },
         "SelectActive": {
             "description": "Select active",
             "en": "Active status",
-            "de": "Aktiv-Status"
+            "de": "Aktiv-Status",
+            "fr": "Statut actif",
+            "es": "Estado activo",
+            "ru": "Активный статус",
+            "it": "Stato attivo"
         },
         "FilterSince": {
             "description": "Filter since",
             "en": "Created since",
-            "de": "Erstellt ab"
+            "de": "Erstellt ab",
+            "fr": "Créé depuis",
+            "es": "Creado desde",
+            "ru": "Создано с",
+            "it": "Creato da"
         },
         "FilterUntil": {
             "description": "Filter until",
             "en": "Created until",
-            "de": "Erstellt bis"
+            "de": "Erstellt bis",
+            "fr": "Créé jusqu'au",
+            "es": "Creado hasta",
+            "ru": "Создано до",
+            "it": "Creato fino al"
         },
         "FilterPunishedSince": {
             "description": "Filter punished since",
             "en": "Punished at least until",
-            "de": "Bestraft bis mindestens"
+            "de": "Bestraft bis mindestens",
+            "fr": "Puni au moins jusqu'à",
+            "es": "Castigado al menos hasta",
+            "ru": "Наказан как минимум до",
+            "it": "Punito almeno fino al"
         },
         "FilterPunishedBefore": {
             "description": "Filter punished before",
             "en": "Punished until",
-            "de": "Bestraft bis"
+            "de": "Bestraft bis",
+            "fr": "Puni jusqu'à",
+            "es": "Castigado hasta",
+            "ru": "Наказан до",
+            "it": "punito fino a"
         },
         "ExecuteSearch": {
             "description": "execute search button to use advanced filters",
             "en": "Search",
-            "de": "Suche ausführen"
+            "de": "Suche ausführen",
+            "fr": "Chercher",
+            "es": "Búsqueda",
+            "ru": "Поиск",
+            "it": "Ricerca"
         },
         "ExcludePermanent": {
             "description": "Exclude permanent punishments from current table selection",
@@ -3526,7 +3602,11 @@
         "UseAdvancedFilter": {
             "description": "use advanced filter on current table",
             "en": "Use advanced filter",
-            "de": "Erweiterten Filter nutzen"
+            "de": "Erweiterten Filter nutzen",
+            "fr": "Utiliser le filtre avancé",
+            "es": "Usar filtro avanzado",
+            "ru": "Использовать расширенный фильтр",
+            "it": "Usa il filtro avanzato"
         },
         "CreateNewCase": {
             "description": "Create a new case button",
@@ -3686,24 +3766,40 @@
             "Success": {
                 "description": "deactivate a cases punishment",
                 "en": "Case has been deactivated.",
-                "de": "Vorfall wurde deaktiviert."
+                "de": "Vorfall wurde deaktiviert.",
+                "fr": "Le cas a été désactivé.",
+                "es": "El caso ha sido desactivado.",
+                "ru": "Дело было деактивировано.",
+                "it": "Il caso è stato disattivato."
             },
             "Failed": {
                 "description": "deactivate a cases punishment",
                 "en": "Case could not be deactivated.",
-                "de": "Vorfall konnte nicht deaktiviert werden."
+                "de": "Vorfall konnte nicht deaktiviert werden.",
+                "fr": "Le cas n'a pas pu être désactivé.",
+                "es": "No se pudo desactivar el caso.",
+                "ru": "Дело не может быть деактивировано.",
+                "it": "Impossibile disattivare la custodia."
             }
         },
         "Activated": {
             "Success": {
                 "description": "punished forever",
                 "en": "Case has been activated.",
-                "de": "Vorfall wurde aktiviert."
+                "de": "Vorfall wurde aktiviert.",
+                "fr": "Le cas a été activé.",
+                "es": "El caso se ha activado.",
+                "ru": "Дело было активировано.",
+                "it": "Il caso è stato attivato."
             },
             "Failed": {
                 "description": "failed to activate case",
                 "en": "Failed to activate case.",
-                "de": "Vorfall konnte nicht aktiviert werden."
+                "de": "Vorfall konnte nicht aktiviert werden.",
+                "fr": "Échec de l'activation du boîtier.",
+                "es": "No se pudo activar el caso.",
+                "ru": "Не удалось активировать дело.",
+                "it": "Impossibile attivare il caso."
             }
         },
         "PunishmentExpired": {
@@ -3719,7 +3815,11 @@
         "CaseInactive": {
             "description": "case deactivated",
             "en": "Modcase is inactive.",
-            "de": "Vorfall ist inaktiv."
+            "de": "Vorfall ist inaktiv.",
+            "fr": "Modcase est inactif.",
+            "es": "Modcase está inactivo.",
+            "ru": "Modcase неактивен.",
+            "it": "Modcase non è attivo."
         },
         "CreatedAt": {
             "description": "created at",
