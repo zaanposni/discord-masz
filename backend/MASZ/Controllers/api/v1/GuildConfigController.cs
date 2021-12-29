@@ -70,9 +70,10 @@ namespace MASZ.Controllers
                 PreferredLanguage = guildConfigForCreateDto.PreferredLanguage
             };
 
-            await GuildConfigRepository.CreateDefault(_serviceProvider).CreateGuildConfig(guildConfig);
+            guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).CreateGuildConfig(guildConfig);
 
-            Task.Run(async () => {
+            Task task = new(async () =>
+            {
                 using var scope = _serviceProvider.CreateScope();
 
                 var discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
@@ -104,7 +105,8 @@ namespace MASZ.Controllers
                         await modCaseRepository.ImportModCase(modCase);
                     }
                 }
-            }).Start();
+            });
+            task.Start();
 
             return StatusCode(201, guildConfig);
         }
