@@ -359,6 +359,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Nachricht des Tages",
+                Language.at => "Nochricht vom Tog",
                 Language.fr => "Le message du jour",
                 Language.es => "Mensaje del día",
                 Language.ru => "Послание дня",
@@ -423,6 +424,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Importiert",
+                Language.at => "Importiat",
                 Language.fr => "Importé",
                 Language.es => "Importado",
                 Language.ru => "Импортный",
@@ -435,6 +437,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Importiert aus bestehenden Sperren",
+                Language.at => "Importiat aus vorhondane Sperren",
                 Language.fr => "Importé à partir des interdictions existantes",
                 Language.es => "Importado de prohibiciones existentes",
                 Language.ru => "Импортировано из существующих банов",
@@ -928,6 +931,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"Neue MotD wurde von {actor.Mention} erstellt.",
+                Language.at => $"A neiche MotD wuad vo {actor.Mention} erstöt. ",
                 Language.fr => $"Le nouveau MotD a été créé par {actor.Mention}.",
                 Language.es => $"El nuevo MotD ha sido creado por {actor.Mention}.",
                 Language.ru => $"Новый MotD был создан {actor.Mention}.",
@@ -940,6 +944,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"MotD wurde von {actor.Mention} bearbeitet.",
+                Language.at => $"MotD is vo {actor.Mention} beorbeit woan.",
                 Language.fr => $"MotD a été édité par {actor.Mention}.",
                 Language.es => $"MotD ha sido editado por {actor.Mention}.",
                 Language.ru => $"MotD редактировал {actor.Mention}.",
@@ -952,6 +957,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Anzeigen",
+                Language.at => "Ozeign",
                 Language.fr => "Montrer",
                 Language.es => "Show",
                 Language.ru => "Показывать",
@@ -964,6 +970,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"Automodkonfiguration für {eventType} von {actor.Mention} erstellt.",
+                Language.at => $"Automodkonfiguration fia {eventType} vo {actor.Mention} erstöt.",
                 Language.fr => $"Automodconfig créé pour {eventType} par {actor.Mention}.",
                 Language.es => $"Automodconfig creado para {eventType} por {actor.Mention}.",
                 Language.ru => $"Automodconfig, созданный для {eventType} пользователем {actor.Mention}.",
@@ -976,6 +983,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"Automodkonfiguration für {eventType} von {actor.Mention} bearbeitet.",
+                Language.at => $"Automodkonfiguration fia {eventType} is vo {actor.Mention} beorbeit woan.",
                 Language.fr => $"Automodconfig mis à jour pour {eventType} par {actor.Mention}.",
                 Language.es => $"Automodconfig actualizado para {eventType} por {actor.Mention}.",
                 Language.ru => $"Automodconfig обновлен для {eventType} пользователем {actor.Mention}.",
@@ -988,6 +996,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"Automodkonfiguration für {eventType} von {actor.Mention} gelöscht.",
+                Language.at => $"Automodkonfiguration fia {eventType} vo {actor.Mention} glescht.",
                 Language.fr => $"Automodconfig supprimé pour {eventType} par {actor.Mention}.",
                 Language.es => $"Automodconfig eliminado para {eventType} por {actor.Mention}.",
                 Language.ru => $"Automodconfig удален для {eventType} пользователем {actor.Mention}.",
@@ -1000,6 +1009,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Limit",
+                Language.at => "Limit",
                 Language.fr => "Limite",
                 Language.es => "Límite",
                 Language.ru => "Предел",
@@ -1012,6 +1022,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Zeitlimit",
+                Language.at => "Zeitlimit",
                 Language.fr => "Limite de temps",
                 Language.es => "Límite de tiempo",
                 Language.ru => "Лимит времени",
@@ -1024,6 +1035,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Ignorierte Rollen",
+                Language.at => "Ignoriate Rolln",
                 Language.fr => "Rôles ignorés",
                 Language.es => "Roles ignorados",
                 Language.ru => "Игнорируемые роли",
@@ -1036,6 +1048,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Ignorierte Kanäle",
+                Language.at => "Ignoriate Kanäle",
                 Language.fr => "Canaux ignorés",
                 Language.es => "Canales ignorados",
                 Language.ru => "Игнорируемые каналы",
@@ -1048,6 +1061,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Dauer",
+                Language.at => "Daua",
                 Language.fr => "Durée",
                 Language.es => "Duración",
                 Language.ru => "Продолжительность",
@@ -1060,6 +1074,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Nachricht löschen",
+                Language.at => "Nochricht leschn",
                 Language.fr => "Supprimer le message",
                 Language.es => "Borrar mensaje",
                 Language.ru => "Удаленное сообщение",
@@ -1072,6 +1087,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Sende öffentliche Nachricht",
+                Language.at => "Schick a öffentliche Nochricht",
                 Language.fr => "Envoyer une notification publique",
                 Language.es => "Enviar notificación pública",
                 Language.ru => "Отправить публичное уведомление",
@@ -1084,6 +1100,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Sende DM Nachricht",
+                Language.at => "Schick a Direktnachricht",
                 Language.fr => "Envoyer une notification DM",
                 Language.es => "Enviar notificación DM",
                 Language.ru => "Отправить уведомление в прямом эфире",
@@ -1122,6 +1139,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"Bestrafung für Vorfall #{caseId} durch Moderator {modId} ausgeführt: \"{reason}\"",
+                Language.at => $"Bestrofun fian Vorfoi #{caseId} vom Modarator {modId} ausgführt: \"{reason}\"",
                 Language.fr => $"Punition pour ModCase #{caseId} par le modérateur {modId} exécutée : \"{reason}\"",
                 Language.es => $"Castigo por ModCase # {caseId} por el moderador {modId} ejecutado: \"{reason} \"",
                 Language.ru => $"Наказание за ModCase # {caseId} модератором {modId} выполнено: \"{reason} \"",
@@ -1134,6 +1152,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"Bestrafung für Vorfall #{caseId} rückgängig gemacht: \"{reason}\"",
+                Language.at => $"Bestrofung fian Vorfoi #{caseId} is rückgängig gmocht woan: \"{reason}\"",
                 Language.fr => $"Punition pour ModCase #{caseId} annulée : \"{reason}\"",
                 Language.es => $"Castigo por ModCase # {caseId} deshecho: \"{reason} \"",
                 Language.ru => $"Наказание за ModCase # {caseId} отменено: \"{reason} \"",
@@ -1146,6 +1165,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} eingerichtet.",
+                Language.at => $"Güdnspezifischa Audit-Log fias Ereignis `{eventName}` wuad vo {actor.Mention} eingrichtet.",
                 Language.fr => $"Le journal d'audit au niveau de la guilde pour l'événement `{eventName}` a été mis en place par {actor.Mention}.",
                 Language.es => $"{actor.Mention} ha configurado el registro de auditoría a nivel de gremio para el evento `{eventName}`.",
                 Language.ru => $"Журнал аудита на уровне гильдии для события `{eventName}` был создан {actor.Mention}.",
@@ -1158,6 +1178,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} bearbeitet.",
+                Language.at => $"Güdnspezifischa Audit-Log fias Ereignis `{eventName}` wuad vo {actor.Mention} beoarbeit.",
                 Language.fr => $"Le journal d'audit au niveau de la guilde pour l'événement `{eventName}` a été modifié par {actor.Mention}.",
                 Language.es => $"{actor.Mention} ha editado el registro de auditoría a nivel de gremio para el evento `{eventName}`.",
                 Language.ru => $"Журнал аудита на уровне гильдии для события `{eventName}` отредактировал {actor.Mention}.",
@@ -1170,6 +1191,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} gelöscht.",
+                Language.at => $"Güdnspezifischa Audit-Log fias Ereignis `{eventName}` wuad vo {actor.Mention} glescht.",
                 Language.fr => $"Le journal d'audit au niveau de la guilde pour l'événement `{eventName}` a été supprimé par {actor.Mention}.",
                 Language.es => $"{actor.Mention} ha eliminado el registro de auditoría a nivel de hermandad para el evento `{eventName}`.",
                 Language.ru => $"Журнал аудита на уровне гильдии для события `{eventName}` был удален {actor.Mention}.",
@@ -1182,6 +1204,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Rolle(n) erwähnen",
+                Language.at => "Rolle(n) erwähnan",
                 Language.fr => "Mentionner le(s) rôle(s)",
                 Language.es => "Mencionar rol (s)",
                 Language.ru => "Упоминание ролей",
@@ -1194,6 +1217,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Gildenspezifischer Audit-Log",
+                Language.at => "Güdnspezifischa Audit-Log",
                 Language.fr => "Journal d'audit au niveau de la guilde",
                 Language.es => "Registro de auditoría a nivel de gremio",
                 Language.ru => "Журнал аудита на уровне гильдии",
@@ -1882,6 +1906,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Ergebnis",
+                Language.at => "Ergebnis",
                 Language.fr => "Résultat",
                 Language.es => "Resultado",
                 Language.ru => "Результат",
@@ -1894,6 +1919,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Warte auf Bestätigung.",
+                Language.at => "Woat auf a Bestätigung",
                 Language.fr => "En attente d'approbation.",
                 Language.es => "A la espera de la aprobación.",
                 Language.ru => "Ожидание подтверждения.",
@@ -1906,6 +1932,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Zeitüberschreitung",
+                Language.at => "Zeitübaschreitung",
                 Language.fr => "Fin du temps",
                 Language.es => "Caducado",
                 Language.ru => "Время вышло",
@@ -1918,6 +1945,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Abgebrochen",
+                Language.at => "Wuad obbrochn",
                 Language.fr => "Annulé",
                 Language.es => "Cancelado",
                 Language.ru => "Отменено",
@@ -1930,6 +1958,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Öffentliche Benachrichtigung",
+                Language.at => "Öffentliche Benochrichtigung",
                 Language.fr => "Avis public",
                 Language.es => "Notificación pública",
                 Language.ru => "Публичное уведомление",
@@ -1942,6 +1971,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Soll eine öffentliche Benachrichtigung gesendet werden?",
+                Language.at => "Soll a öffentliche Benochrichtung gsendet wean?",
                 Language.fr => "Envoyer une notification publique ?",
                 Language.es => "¿Enviar una notificación pública?",
                 Language.ru => "Отправить публичное уведомление?",
@@ -1954,6 +1984,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Abbrechen",
+                Language.at => "Obbrechn",
                 Language.fr => "Annuler",
                 Language.es => "Cancelar",
                 Language.ru => "Отмена",
@@ -1966,6 +1997,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Öffentliche Benachrichtigung",
+                Language.at => "Öffentliche Benochrichtigung",
                 Language.fr => "Avis public",
                 Language.es => "Notificación pública",
                 Language.ru => "Публичное уведомление",
@@ -1978,6 +2010,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Keine öffentliche Benachrichtigung",
+                Language.at => "Ka öffentliche Benochrichtung",
                 Language.fr => "Aucune notification publique",
                 Language.es => "Sin notificación pública",
                 Language.ru => "Нет публичного уведомления",
@@ -1990,6 +2023,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Erstellt am.",
+                Language.at => "Erstöt am.",
                 Language.fr => "Créé à.",
                 Language.es => "Creado en.",
                 Language.ru => "Создано в.",
@@ -2002,6 +2036,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Keine aktiven Mod-Fälle wurden gefunden.",
+                Language.at => "Kane aktiven Mod-Fälle san gfundn woan.",
                 Language.fr => "Aucun modcase actif n'a été trouvé.",
                 Language.es => "No se han encontrado casos de modulación activos.",
                 Language.ru => "Активных модкейсов не обнаружено.",
@@ -2013,7 +2048,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entsperren zu lassen?",
+                Language.de => $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer nicht mehr stummgeschaltet zu lassen?",
+                Language.at => $"Es san `{caseCount}` aktive Fälle gfundn woan. Möchtest olle deaktivian oda löschn, damit da Nutza nimma stummgschoitn bleibt?",
                 Language.fr => $"`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour réactiver le son de l'utilisateur ?",
                 Language.es => $"Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para dejar de silenciar al usuario?",
                 Language.ru => $"Обнаружены активные обращения `{caseCount}`. Вы хотите деактивировать или удалить их все, чтобы включить микрофон для пользователя?",
@@ -2026,6 +2062,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Sperrungen gelöscht",
+                Language.at => "Sperrungen san glescht woan",
                 Language.fr => "Muets supprimés",
                 Language.es => "Silenciados eliminados",
                 Language.ru => "Без звука удалено",
@@ -2038,6 +2075,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Sperrungen deaktiviert",
+                Language.at => "Sperrungen san deaktiviert woan",
                 Language.fr => "Muet désactivé",
                 Language.es => "Silencios desactivados",
                 Language.ru => "Отключение звука отключено",
@@ -2050,6 +2088,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Sperrungen löschen",
+                Language.at => "Sperrungen löschn",
                 Language.fr => "Supprimer les sourdines",
                 Language.es => "Eliminar silencios",
                 Language.ru => "Удалить отключение звука",
@@ -2062,6 +2101,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Sperrungen deaktivieren",
+                Language.at => "Sperrungen deaktivian",
                 Language.fr => "Désactiver les sourdines",
                 Language.es => "Silenciar desactivados",
                 Language.ru => "Отключить отключение звука",
@@ -2074,6 +2114,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entsperren zu lassen?",
+                Language.at => $"Es san `{caseCount}` aktive Fälle gfundn woan. Möchtest olle deaktivian oda löschn, damit da Nutza entsperrt bleibt?",
                 Language.fr => $"`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour annuler l'interdiction de l'utilisateur ?",
                 Language.es => $"Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para desbloquear al usuario?",
                 Language.ru => $"Обнаружены активные обращения `{caseCount}`. Вы хотите деактивировать или удалить их все, чтобы разблокировать пользователя?",
@@ -2086,6 +2127,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Sperrungen gelöscht",
+                Language.at => "Sperrungen glescht",
                 Language.fr => "Interdictions supprimées",
                 Language.es => "Prohibiciones eliminadas",
                 Language.ru => "Баны удалены",
@@ -2098,6 +2140,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Sperrungen deaktiviert",
+                Language.at => "Sperrungen deaktiviat",
                 Language.fr => "Interdictions désactivées",
                 Language.es => "Prohibiciones desactivadas",
                 Language.ru => "Баны отключены",
@@ -2110,6 +2153,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Sperrungen löschen",
+                Language.at => "Sperrungen löschn",
                 Language.fr => "Supprimer les bannissements",
                 Language.es => "Eliminar prohibiciones",
                 Language.ru => "Удалить баны",
@@ -2122,6 +2166,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Sperrungen deaktivieren",
+                Language.at => "Sperrungen deaktivian",
                 Language.fr => "Désactiver les interdictions",
                 Language.es => "Prohibiciones de desactivación",
                 Language.ru => "Деактивировать баны",
@@ -2563,6 +2608,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Benutzername aktualisiert",
+                Language.at => "Benutzanom aktualisiat",
                 Language.fr => "Nom d'utilisateur mis à jour",
                 Language.es => "Nombre de usuario actualizado",
                 Language.ru => "Имя пользователя обновлено",
@@ -2575,6 +2621,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Avatar aktualisiert",
+                Language.at => "Avatar aktualisiat",
                 Language.fr => "Avatar mis à jour",
                 Language.es => "Avatar actualizado",
                 Language.ru => "Аватар обновлен",
@@ -2587,6 +2634,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Nickname aktualisiert",
+                Language.at => "Nickname aktualisiat",
                 Language.fr => "Pseudo mis à jour",
                 Language.es => "Se actualizó el apodo",
                 Language.ru => "Псевдоним обновлен",
@@ -2599,6 +2647,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Rollen aktualisiert",
+                Language.at => "Rollen aktualisiat",
                 Language.fr => "Rôles mis à jour",
                 Language.es => "Funciones actualizadas",
                 Language.ru => "Роли обновлены",
@@ -2611,6 +2660,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Hinzugefügt",
+                Language.at => "Hinzugfügt",
                 Language.fr => "Ajoutée",
                 Language.es => "Adicional",
                 Language.ru => "Добавлен",
@@ -2623,6 +2673,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Entfernt",
+                Language.at => "Entfernt",
                 Language.fr => "Supprimé",
                 Language.es => "Remoto",
                 Language.ru => "Удаленный",
@@ -3296,6 +3347,7 @@ namespace MASZ.Utils
                 AutoModerationChannelNotificationBehavior.SendNotification => PreferredLanguage switch
                 {
                     Language.de => "Kanalbenachrichtigung",
+                    Language.at => "Kanalbenochrichtung",
                     Language.fr => "Notification de chaîne",
                     Language.es => "Notificación de canal",
                     Language.ru => "Уведомление канала",
@@ -3305,6 +3357,7 @@ namespace MASZ.Utils
                 AutoModerationChannelNotificationBehavior.SendNotificationAndDelete => PreferredLanguage switch
                 {
                     Language.de => "Temporäre Kanalbenachrichtigung",
+                    Language.at => "Temporäre Kanalbenochrichtigung",
                     Language.fr => "Notification de chaîne temporaire",
                     Language.es => "Notificación de canal temporal",
                     Language.ru => "Уведомление о временном канале",
@@ -3314,6 +3367,7 @@ namespace MASZ.Utils
                 AutoModerationChannelNotificationBehavior.NoNotification => PreferredLanguage switch
                 {
                     Language.de => "Keine Kanalbenachrichtigung",
+                    Language.at => "Kane Kanalbenochrichtigung",
                     Language.fr => "Aucune notification de chaîne",
                     Language.es => "Sin notificación de canal",
                     Language.ru => "Уведомление о канале отсутствует",
@@ -3330,6 +3384,7 @@ namespace MASZ.Utils
                 EditStatus.None => PreferredLanguage switch
                 {
                     Language.de => "Unbestimmt",
+                    Language.at => "Unbekonnt",
                     Language.fr => "Rien",
                     Language.es => "Ninguna",
                     Language.ru => "Никто",
@@ -3339,6 +3394,7 @@ namespace MASZ.Utils
                 EditStatus.Unedited => PreferredLanguage switch
                 {
                     Language.de => "Nicht bearbeitet",
+                    Language.at => "Ned beorbeitet.",
                     Language.fr => "Non édité",
                     Language.es => "No editado",
                     Language.ru => "Не редактировалось",
@@ -3348,6 +3404,7 @@ namespace MASZ.Utils
                 EditStatus.Edited => PreferredLanguage switch
                 {
                     Language.de => "Bearbeitet",
+                    Language.at => "Beorbeitet",
                     Language.fr => "Édité",
                     Language.es => "Editado",
                     Language.ru => "Отредактировано",
@@ -3364,6 +3421,7 @@ namespace MASZ.Utils
                 LockedCommentStatus.None => PreferredLanguage switch
                 {
                     Language.de => "Unbestimmt",
+                    Language.at => "Unbekonnt",
                     Language.fr => "Rien",
                     Language.es => "Ninguna",
                     Language.ru => "Никто",
@@ -3373,6 +3431,7 @@ namespace MASZ.Utils
                 LockedCommentStatus.Locked => PreferredLanguage switch
                 {
                     Language.de => "Gesperrt",
+                    Language.at => "Gsperrt",
                     Language.fr => "Fermé à clé",
                     Language.es => "Bloqueado",
                     Language.ru => "Заблокировано",
@@ -3382,6 +3441,7 @@ namespace MASZ.Utils
                 LockedCommentStatus.Unlocked => PreferredLanguage switch
                 {
                     Language.de => "Entsperrt",
+                    Language.at => "Entsperrt",
                     Language.fr => "Débloqué",
                     Language.es => "Desbloqueado",
                     Language.ru => "Разблокирован",
@@ -3398,6 +3458,7 @@ namespace MASZ.Utils
                 MarkedToDeleteStatus.None => PreferredLanguage switch
                 {
                     Language.de => "Unbestimmt",
+                    Language.at => "Unbekonnt",
                     Language.fr => "Rien",
                     Language.es => "Ninguna",
                     Language.ru => "Никто",
@@ -3407,6 +3468,7 @@ namespace MASZ.Utils
                 MarkedToDeleteStatus.Marked => PreferredLanguage switch
                 {
                     Language.de => "Zu löschen markiert",
+                    Language.at => "Zum löschn markiat",
                     Language.fr => "Marqué à supprimer",
                     Language.es => "Marcado para eliminar",
                     Language.ru => "Отмечено для удаления",
@@ -3416,6 +3478,7 @@ namespace MASZ.Utils
                 MarkedToDeleteStatus.Unmarked => PreferredLanguage switch
                 {
                     Language.de => "Nicht zu löschen markiert",
+                    Language.at => "Ned zum löschn markiat",
                     Language.fr => "Non marqué pour supprimer",
                     Language.es => "No marcado para eliminar",
                     Language.ru => "Не отмечен для удаления",
@@ -3432,6 +3495,7 @@ namespace MASZ.Utils
                 PunishmentActiveStatus.None => PreferredLanguage switch
                 {
                     Language.de => "Unbestimmt",
+                    Language.at => "Unbekonnt",
                     Language.fr => "Rien",
                     Language.es => "Ninguna",
                     Language.ru => "Никто",
@@ -3441,6 +3505,7 @@ namespace MASZ.Utils
                 PunishmentActiveStatus.Active => PreferredLanguage switch
                 {
                     Language.de => "Aktiv",
+                    Language.at => "Aktiv",
                     Language.fr => "actif",
                     Language.es => "Activo",
                     Language.ru => "Активный",
@@ -3450,6 +3515,7 @@ namespace MASZ.Utils
                 PunishmentActiveStatus.Inactive => PreferredLanguage switch
                 {
                     Language.de => "Inaktiv",
+                    Language.at => "Inaktiv",
                     Language.fr => "Inactif",
                     Language.es => "Inactivo",
                     Language.ru => "Неактивный",
@@ -3466,6 +3532,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.MessageSent => PreferredLanguage switch
                 {
                     Language.de => "Nachricht gesendet",
+                    Language.at => "Nochricht gsendet",
                     Language.fr => "Message envoyé",
                     Language.es => "Mensaje enviado",
                     Language.ru => "Сообщение отправлено",
@@ -3475,6 +3542,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.MessageUpdated => PreferredLanguage switch
                 {
                     Language.de => "Nachricht aktualisiert",
+                    Language.at => "Nochricht aktualisiat",
                     Language.fr => "Message mis à jour",
                     Language.es => "Mensaje actualizado",
                     Language.ru => "Сообщение обновлено",
@@ -3484,6 +3552,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.MessageDeleted => PreferredLanguage switch
                 {
                     Language.de => "Nachricht gelöscht",
+                    Language.at => "Nochricht glescht",
                     Language.fr => "Message supprimé",
                     Language.es => "Mensaje borrado",
                     Language.ru => "Сообщение удалено",
@@ -3493,6 +3562,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.UsernameUpdated => PreferredLanguage switch
                 {
                     Language.de => "Benutzername aktualisiert",
+                    Language.at => "Benutzaname aktualisiat",
                     Language.fr => "Nom d'utilisateur mis à jour",
                     Language.es => "Nombre de usuario actualizado",
                     Language.ru => "Имя пользователя обновлено",
@@ -3502,6 +3572,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.AvatarUpdated => PreferredLanguage switch
                 {
                     Language.de => "Avatar aktualisiert",
+                    Language.at => "Avatar aktualisiat",
                     Language.fr => "Avatar mis à jour",
                     Language.es => "Avatar actualizado",
                     Language.ru => "Аватар обновлен",
@@ -3511,6 +3582,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.NicknameUpdated => PreferredLanguage switch
                 {
                     Language.de => "Nickname aktualisiert",
+                    Language.at => "Nickname aktualisiat",
                     Language.fr => "Pseudo mis à jour",
                     Language.es => "Se actualizó el apodo",
                     Language.ru => "Псевдоним обновлен",
@@ -3520,6 +3592,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.MemberRolesUpdated => PreferredLanguage switch
                 {
                     Language.de => "Mitgliederrollen aktualisiert",
+                    Language.at => "Mitgliedarollen aktualisiat",
                     Language.fr => "Rôles des membres mis à jour",
                     Language.es => "Se actualizaron las funciones de los miembros",
                     Language.ru => "Роли участников обновлены",
@@ -3529,6 +3602,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.MemberJoined => PreferredLanguage switch
                 {
                     Language.de => "Mitglied beigetreten",
+                    Language.at => "Mitglied beitretn",
                     Language.fr => "Membre rejoint",
                     Language.es => "Miembro se unió",
                     Language.ru => "Участник присоединился",
@@ -3538,6 +3612,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.MemberRemoved => PreferredLanguage switch
                 {
                     Language.de => "Mitglied entfernt",
+                    Language.at => "Mitglied entfernt",
                     Language.fr => "Membre supprimé",
                     Language.es => "Miembro eliminado",
                     Language.ru => "Участник удален",
@@ -3547,6 +3622,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.BanAdded => PreferredLanguage switch
                 {
                     Language.de => "Mitglied gebannt",
+                    Language.at => "Mitglied ausgsperrt",
                     Language.fr => "Membre banni",
                     Language.es => "Miembro prohibido",
                     Language.ru => "Участник забанен",
@@ -3556,6 +3632,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.BanRemoved => PreferredLanguage switch
                 {
                     Language.de => "Mitglied entsperrt",
+                    Language.at => "Mitglied nimma ausgsperrt",
                     Language.fr => "Membre non banni",
                     Language.es => "Miembro no prohibido",
                     Language.ru => "Участник разблокирован",
@@ -3565,6 +3642,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.InviteCreated => PreferredLanguage switch
                 {
                     Language.de => "Einladung erstellt",
+                    Language.at => "Eiladung erstöt",
                     Language.fr => "Invitation créée",
                     Language.es => "Invitación creada",
                     Language.ru => "Приглашение создано",
@@ -3574,6 +3652,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.InviteDeleted => PreferredLanguage switch
                 {
                     Language.de => "Einladung gelöscht",
+                    Language.at => "Einladung glescht",
                     Language.fr => "Invitation supprimée",
                     Language.es => "Invitación eliminada",
                     Language.ru => "Приглашение удалено",
@@ -3583,6 +3662,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.ThreadCreated => PreferredLanguage switch
                 {
                     Language.de => "Thema erstellt",
+                    Language.at => "Fadn erstöt",
                     Language.fr => "Fil créé",
                     Language.es => "Hilo creado",
                     Language.ru => "Тема создана",

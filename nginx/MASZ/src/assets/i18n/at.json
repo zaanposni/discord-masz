@@ -1,4 +1,9 @@
 {
+    "Select": {
+        "Select": "Auswöhn",
+        "Search": "Suchn"
+    },
+    "Version": "Version",
     "LoginWithDiscord": {
         "Button": "Mit Discord omödn",
         "Loading": "Du wiast ogmödt..."
@@ -142,6 +147,8 @@
         "Confirm": "Zustima"
     },
     "GuildDialog": {
+        "ImportExistingBans": "Bestehende Sperrn importian",
+        "ImportExistingBansDetails": "Des ko bei ana großn Güdn a bissal dauan, oba des wird im Hintagrund ausgfüaht.",
         "AddAGuild": "Güde hinzufügn",
         "SearchAGuild": "Güde suchn",
         "SelectAnotherGuild": "Tu a ondera Güde wöhn",
@@ -299,6 +306,7 @@
         "LogEntryHover": "A Eitrog wird imma erstöt.",
         "SendDMNotification": "Schick a DM Benochrichtigung",
         "Action": "Aktion",
+        "ChannelNotificationBehavior": "Kanalbenochrichtigung",
         "SendPublicNotification": "Send a öffentliche Benochrichtigung",
         "DurationInMinutes": "Daua in Minutn",
         "YouAreDone": "Du bist jetzt fertig.",
@@ -455,7 +463,21 @@
         "CaseUpdated": "Vorfoi aktualisiat."
     },
     "ModCaseTable": {
+        "SelectMembers": "Mitglieda",
+        "SelectModerators": "Modaratoren",
+        "SelectCreationTypes": "Erstöllungsoartn",
+        "SelectPunishments": "Bestrofungen",
+        "SelectEdited": "Beorbeitet-Status",
+        "SelectLocked": "Sperr-Status",
+        "SelectDelete": "Lösch-Status",
+        "SelectActive": "Aktiv-Status",
+        "FilterSince": "Erstöt vo",
+        "FilterUntil": "Erstöt bis",
+        "FilterPunishedSince": "Bestroft bis mindastens",
+        "FilterPunishedBefore": "Bestroft bis",
+        "ExecuteSearch": "Suche startn",
         "ExcludePermanent": "Permanente Vorfälle vasteckn",
+        "UseAdvancedFilter": "Erweitatn Füta nutzn",
         "CreateNewCase": "Neichn Vorfoi erstön",
         "Search": "Suach (Benutza, ID, Beschreibung ...)",
         "FailedToLoad": "Vorfälle konntn ned glodn wean.",
@@ -475,7 +497,16 @@
         "Guild": "Güde",
         "PunishedUntil": "Bestroft bis:",
         "PunishedForever": "Bestroft fia imma",
+        "Deactivated": {
+            "Success": "Vorfoi is deaktiviat woan",
+            "Failed": "Vorfoi konnt ned deaktiviat wean."
+        },
+        "Activated": {
+            "Success": "Vorfoi wuad deaktiviat.",
+            "Failed": "Vorfoi konnt ned deaktiviat wean."
+        },
         "PunishmentExpired": "Bestrofung is ausglaufn",
+        "CaseInactive": "Vorfoi is ned aktiv.",
         "CreatedAt": "Erstöt am",
         "EditedAt": "Aktualisiat",
         "LastEditModerator": "Aktualisiat vo",
