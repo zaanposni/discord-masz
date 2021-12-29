@@ -32,7 +32,7 @@ namespace MASZ.Repositories
             return await Database.CountAllGuildConfigs();
         }
 
-        public async Task<GuildConfig> CreateGuildConfig(GuildConfig guildConfig)
+        public async Task<GuildConfig> CreateGuildConfig(GuildConfig guildConfig, bool importExistingBans)
         {
             IGuild guild = DiscordAPI.FetchGuildInfo(guildConfig.GuildId, CacheBehavior.IgnoreCache);
             if (guild == null)
@@ -73,7 +73,7 @@ namespace MASZ.Repositories
             await Database.SaveGuildConfig(guildConfig);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnGuildRegisteredEvent.InvokeAsync(guildConfig);
+            await _eventHandler.OnGuildRegisteredEvent.InvokeAsync(guildConfig, importExistingBans);
 
             return guildConfig;
         }

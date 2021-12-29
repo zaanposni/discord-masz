@@ -31,53 +31,38 @@ namespace MASZ.Services
             _eventHandler.OnAutoModerationEventRegistered += AnnounceAutomoderation;
 
             _eventHandler.OnModCaseCreated += async (a, b, c, d) => await AnnounceModCase(a, b, c, d, RestAction.Created);
-
             _eventHandler.OnModCaseUpdated += async (a, b, c, d) => await AnnounceModCase(a, b, c, d, RestAction.Updated);
-
             _eventHandler.OnModCaseDeleted += async (a, b, c, d) => await AnnounceModCase(a, b, c, d, RestAction.Deleted);
-
             _eventHandler.OnModCaseMarkedToBeDeleted += async (a, b, c, d) => await AnnounceModCase(a, b, c, d, RestAction.Deleted);
 
             _eventHandler.OnModCaseCommentCreated += async (a, b) => await AnnounceComment(a, b, RestAction.Created);
-
             _eventHandler.OnModCaseCommentUpdated += async (a, b) => await AnnounceComment(a, b, RestAction.Updated);
-
             _eventHandler.OnModCaseCommentDeleted += async (a, b) => await AnnounceComment(a, b, RestAction.Deleted);
 
             _eventHandler.OnFileUploaded += async (a, b, c) => await AnnounceFile(a, b, c, RestAction.Created);
-
             _eventHandler.OnFileDeleted += async (a, b, c) => await AnnounceFile(a, b, c, RestAction.Deleted);
 
             _eventHandler.OnUserNoteCreated += async (a, b) => await AnnounceUserNote(a, b, RestAction.Created);
-
             _eventHandler.OnUserNoteUpdated += async (a, b) => await AnnounceUserNote(a, b, RestAction.Updated);
-
             _eventHandler.OnUserNoteDeleted += async (a, b) => await AnnounceUserNote(a, b, RestAction.Deleted);
 
             _eventHandler.OnUserMapCreated += async (a, b) => await AnnounceUserMapping(a, b, RestAction.Created);
-
             _eventHandler.OnUserMapUpdated += async (a, b) => await AnnounceUserMapping(a, b, RestAction.Updated);
-
             _eventHandler.OnUserMapDeleted += async (a, b) => await AnnounceUserMapping(a, b, RestAction.Deleted);
 
             _eventHandler.OnAutoModerationConfigCreated += async (a, b) => await AnnounceAutomoderationConfig(a, b, RestAction.Created);
-
             _eventHandler.OnAutoModerationConfigUpdated += async (a, b) => await AnnounceAutomoderationConfig(a, b, RestAction.Updated);
-
             _eventHandler.OnAutoModerationConfigDeleted += async (a, b) => await AnnounceAutomoderationConfig(a, b, RestAction.Deleted);
 
             _eventHandler.OnGuildMotdCreated += async (a, b) => await AnnounceMotd(a, b, RestAction.Created);
-
             _eventHandler.OnGuildMotdUpdated += async (a, b) => await AnnounceMotd(a, b, RestAction.Updated);
 
             _eventHandler.OnGuildLevelAuditLogConfigCreated += async (a, b) => await AnnounceGuildAuditLog(a, b, RestAction.Created);
-
             _eventHandler.OnGuildLevelAuditLogConfigUpdated += async (a, b) => await AnnounceGuildAuditLog(a, b, RestAction.Updated);
-
             _eventHandler.OnGuildLevelAuditLogConfigDeleted += async (a, b) => await AnnounceGuildAuditLog(a, b, RestAction.Deleted);
         }
 
-        private async Task AnnounceTipsInNewGuild(GuildConfig guildConfig)
+        private async Task AnnounceTipsInNewGuild(GuildConfig guildConfig, bool importExistingBans)
         {
             if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {

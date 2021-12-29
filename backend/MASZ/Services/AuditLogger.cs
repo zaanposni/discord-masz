@@ -214,7 +214,7 @@ namespace MASZ.Services
             return Task.CompletedTask;
         }
 
-        private Task OnGuildRegistered(GuildConfig guildConfig)
+        private Task OnGuildRegistered(GuildConfig guildConfig, bool importExistingBans)
         {
             QueueLog($"**Guild** `{guildConfig.GuildId}` registered.");
             return Task.CompletedTask;

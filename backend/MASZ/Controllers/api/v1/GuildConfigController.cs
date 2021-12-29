@@ -70,43 +70,7 @@ namespace MASZ.Controllers
                 PreferredLanguage = guildConfigForCreateDto.PreferredLanguage
             };
 
-            guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).CreateGuildConfig(guildConfig);
-
-            Task task = new(async () =>
-            {
-                using var scope = _serviceProvider.CreateScope();
-
-                var discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
-                var scheduler = scope.ServiceProvider.GetRequiredService<Scheduler>();
-
-                await scheduler.CacheAllKnownGuilds();
-                await scheduler.CacheAllGuildMembers(new List<ulong>());
-                await scheduler.CacheAllGuildBans(new List<ulong>());
-
-                if (importExistingBans)
-                {
-                    _translator.SetContext(guildConfig);
-                    ModCaseRepository modCaseRepository = ModCaseRepository.CreateWithBotIdentity(scope.ServiceProvider);
-                    foreach (IBan ban in await discordAPI.GetGuildBans(guildConfig.GuildId, CacheBehavior.OnlyCache))
-                    {
-                        ModCase modCase = new()
-                        {
-                            Title = string.IsNullOrEmpty(ban.Reason) ? _translator.T().ImportedFromExistingBans() : ban.Reason,
-                            Description = string.IsNullOrEmpty(ban.Reason) ? _translator.T().ImportedFromExistingBans() : ban.Reason,
-                            GuildId = guildConfig.GuildId,
-                            UserId = ban.User.Id,
-                            Username = ban.User.Username,
-                            Labels = new[] { _translator.T().Imported() },
-                            Discriminator = ban.User.Discriminator,
-                            CreationType = CaseCreationType.Imported,
-                            PunishmentType = PunishmentType.Ban,
-                            PunishedUntil = null
-                        };
-                        await modCaseRepository.ImportModCase(modCase);
-                    }
-                }
-            });
-            task.Start();
+            guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).CreateGuildConfig(guildConfig, importExistingBans);
 
             return StatusCode(201, guildConfig);
         }

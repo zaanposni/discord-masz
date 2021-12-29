@@ -108,13 +108,18 @@ namespace MASZ.Services
 
         internal readonly AsyncEvent<Func<UploadedFile, ModCase, IUser, Task>> OnFileDeletedEvent = new();
 
-        public event Func<GuildConfig, Task> OnGuildRegistered
+        /// <summary>
+        /// Invoked when a guild is registered
+        /// </summary>
+        /// <typeparam name="GuildConfig">The created guildconfig.</typeparam>
+        /// <typeparam name="bool">Whether the user choosed a ban import for this register to run.</typeparam>
+        public event Func<GuildConfig, bool, Task> OnGuildRegistered
         {
             add { OnGuildRegisteredEvent.Add(value); }
             remove { OnGuildRegisteredEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildConfig, Task>> OnGuildRegisteredEvent = new();
+        internal readonly AsyncEvent<Func<GuildConfig, bool, Task>> OnGuildRegisteredEvent = new();
 
         public event Func<GuildConfig, Task> OnGuildUpdated
         {
