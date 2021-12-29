@@ -68,7 +68,7 @@ Ensure that this header is set in your reverse proxy for best experience.
 
 Entity Framework implores some new features of MySQL for sake of optimising calls to the database.\
 As such, it is recommended you install MySQL 8+ to use this new syntax. Otherwise, you will encounter
-a `MySQLException` stating you need to check your MySQL version corresponds correctly.
+a `MySQLException` stating you need to check your MySQL version corresponds correctly with the version in your manual.
 
 ### Discord OAuth
 
