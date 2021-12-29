@@ -44,7 +44,6 @@ namespace MASZ.Extensions
                     try
                     {
                         await subscription.Invoke(arg).ConfigureAwait(false);
-                        throw new MASZ.Exceptions.UnregisteredGuildException();
                     }
                     catch (Exception ex)
                     {
