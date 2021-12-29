@@ -37,6 +37,7 @@ namespace MASZ.Services
             _client.ThreadCreated += HandleThreadCreated;
             _client.InviteDeleted += HandleInviteDeleted;
             _client.UserUpdated += HandleUsernameUpdated;
+            _client.GuildMemberUpdated += HandleGUserUpdated;
         }
 
         public async Task SendEmbed(EmbedBuilder embed, ulong guildID, GuildAuditLogEvent eventType) {
@@ -112,52 +113,125 @@ namespace MASZ.Services
             try
             {
                 channel = await _client.GetChannelAsync(auditLogConfig.ChannelId) as ITextChannel;
-
-                await channel.SendMessageAsync(rolePings.ToString(), embed: embed.Build());
             }
             catch (Exception)
             {
                 return;
             }
 
-            await channel.SendMessageAsync(embed: embed.Build());
+            await channel.SendMessageAsync(rolePings.ToString(), embed: embed.Build());
         }
 
-        public async Task HandleGUserUpdated(SocketGuildUser oldU, SocketGuildUser newU)
+        public async Task HandleGUserUpdated(Cacheable<SocketGuildUser, ulong> oldU, SocketGuildUser newU)
 		{
-            if (oldU.Nickname != newU.Nickname)
-                await HandleNicknameUpdated(oldU.Nickname, newU.Nickname, newU.Guild.Id);
-            else if (oldU.GuildAvatarId != newU.GuildAvatarId)
-                await HandleAvatarUpdated(oldU.GuildAvatarId, newU.GuildAvatarId, newU.Guild.Id);
-            else if (oldU.Roles != newU.Roles)
-                await HandleMemberRolesUpdated(oldU.Roles, newU.Roles, newU.Guild.Id);
+            if (oldU.HasValue)
+            {
+                if (oldU.Value.Nickname != newU.Nickname)
+                    await HandleNicknameUpdated(oldU.Value, newU, newU.Guild.Id);
+                else if (oldU.Value.AvatarId != newU.AvatarId)
+                    await HandleAvatarUpdated(oldU.Value, newU, newU.Guild.Id);
+                else if (oldU.Value.Roles != newU.Roles)
+                    await HandleMemberRolesUpdated(newU, oldU.Value.Roles, newU.Roles, newU.Guild.Id);
+            }
 		}
 
-        public async Task HandleAvatarUpdated(string oldId, string newId, ulong guildID)
+        public async Task HandleAvatarUpdated(IGuildUser oldU, IGuildUser newU, ulong guildID)
         {
+            using var scope = _serviceProvider.CreateScope();
+
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            await translator.SetContext(guildID);
+
+            StringBuilder description = new();
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username}#{newU.Discriminator} - {newU.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{newU.Id}`");
+
             var embed = new EmbedBuilder()
-                .WithTitle("NOT IMPLEMENTED")
-                .WithDescription($"{oldId} -> {newId}");
+                .WithTitle(_translator.T().GuildAuditLogAvatarUpdatedTitle())
+                .WithDescription(description.ToString())
+                .WithImageUrl(newU.GetAvatarOrDefaultUrl());
+
+            embed.AddField(
+                _translator.T().GuildAuditLogOld(),
+                oldU.GetAvatarOrDefaultUrl(),
+                true
+            );
+            embed.AddField(
+                newU.GetAvatarOrDefaultUrl(),
+                true
+            );
 
             await SendEmbed(embed, guildID, GuildAuditLogEvent.AvatarUpdated);
         }
 
-        public async Task HandleNicknameUpdated(string oldN, string newN, ulong guildID)
+        public async Task HandleNicknameUpdated(IGuildUser oldU, IGuildUser newU, ulong guildID)
         {
+            using var scope = _serviceProvider.CreateScope();
+
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            await translator.SetContext(guildID);
+
+            StringBuilder description = new();
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username}#{newU.Discriminator} - {newU.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{newU.Id}`");
+
             var embed = new EmbedBuilder()
-                .WithTitle("NOT IMPLEMENTED")
-                .WithDescription($"{oldN} -> {newN}");
+                .WithTitle(_translator.T().GuildAuditLogNicknameUpdatedTitle())
+                .WithDescription(description.ToString());
+
+            embed.AddField(
+                _translator.T().GuildAuditLogOld(),
+                string.IsNullOrEmpty(oldU.Nickname) ? $"`{_translator.T().GuildAuditLogEmpty()}`" : oldU.Nickname,
+                true
+            );
+            embed.AddField(
+                _translator.T().GuildAuditLogNew(),
+                string.IsNullOrEmpty(newU.Nickname) ? $"`{_translator.T().GuildAuditLogEmpty()}`" : newU.Nickname,
+                true
+            );
 
             await SendEmbed(embed, guildID, GuildAuditLogEvent.NicknameUpdated);
         }
 
-        public async Task HandleMemberRolesUpdated(IReadOnlyCollection<SocketRole> roleOld, IReadOnlyCollection<SocketRole> roleNew, ulong guildID)
+        public async Task HandleMemberRolesUpdated(IGuildUser user, IReadOnlyCollection<SocketRole> roleOld, IReadOnlyCollection<SocketRole> roleNew, ulong guildID)
         {
-            var embed = new EmbedBuilder()
-                .WithTitle("NOT IMPLEMENTED")
-                .WithDescription($"{roleOld.Count} -> {roleNew.Count}");
+            using var scope = _serviceProvider.CreateScope();
 
-            await SendEmbed(embed, guildID, GuildAuditLogEvent.MemberRolesUpdated);
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            await translator.SetContext(guildID);
+
+            StringBuilder description = new();
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{user.Id}`");
+
+            var embed = new EmbedBuilder()
+                .WithTitle(_translator.T().GuildAuditLogRolesUpdatedTitle())
+                .WithDescription(description.ToString());
+
+            List<SocketRole> addedRoles = roleNew.Except(roleOld).ToList();
+            List<SocketRole> removedRoles = roleOld.Except(roleNew).ToList();
+
+            if (removedRoles.Count > 0)
+            {
+                embed.AddField(
+                    _translator.T().GuildAuditLogRolesUpdatedRemoved(),
+                    string.Join(" ", removedRoles.Select(x => x.Mention)),
+                    true
+                );
+            }
+            if (addedRoles.Count > 0)
+            {
+                embed.AddField(
+                    _translator.T().GuildAuditLogRolesUpdatedAdded(),
+                    string.Join(" ", addedRoles.Select(x => x.Mention)),
+                    true
+                );
+            }
+
+            if (addedRoles.Count + removedRoles.Count > 0)
+            {
+                await SendEmbed(embed, guildID, GuildAuditLogEvent.MemberRolesUpdated);
+            }
         }
 
         public async Task HandleUsernameUpdated(SocketUser oldU, SocketUser newU)
@@ -172,9 +246,24 @@ namespace MASZ.Services
                 {
                     await translator.SetContext(guild.Id);
 
+                    StringBuilder description = new();
+                    description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username}#{newU.Discriminator} - {newU.Mention}");
+                    description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{newU.Id}`");
+
                     var embed = new EmbedBuilder()
-                        .WithTitle("NOT IMPLEMENTED")
-                        .WithDescription($"{oldU.Username} -> {newU.Username}");
+                        .WithTitle(_translator.T().GuildAuditLogUsernameUpdatedTitle())
+                        .WithDescription(description.ToString());
+
+                    embed.AddField(
+                        _translator.T().GuildAuditLogOld(),
+                        oldU.Username,
+                        true
+                    );
+                    embed.AddField(
+                        _translator.T().GuildAuditLogNew(),
+                        newU.Username,
+                        true
+                    );
 
                     await SendEmbed(embed, guild.Id, GuildAuditLogEvent.UsernameUpdated);
                 }
