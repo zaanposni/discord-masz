@@ -18,7 +18,6 @@ namespace MASZ.Controllers
         protected readonly DiscordAnnouncer _discordAnnouncer;
         protected readonly IServiceProvider _serviceProvider;
         protected readonly Translator _translator;
-        protected readonly BackgroundRunner _backgroundRunner;
 
         public SimpleController(IServiceProvider serviceProvider)
         {
@@ -29,7 +28,6 @@ namespace MASZ.Controllers
             _scheduler = serviceProvider.GetRequiredService<Scheduler>();
             _discordAnnouncer = serviceProvider.GetRequiredService<DiscordAnnouncer>();
             _translator = serviceProvider.GetRequiredService<Translator>();
-            _backgroundRunner = serviceProvider.GetService<BackgroundRunner>();
             _serviceProvider = serviceProvider;
         }
 

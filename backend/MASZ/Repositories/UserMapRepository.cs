@@ -57,7 +57,7 @@ namespace MASZ.Repositories
             if (userA == userB) throw new InvalidUserMapException();
 
             UserMapping userMapping;
-            RestAction action = RestAction.Edited;
+            RestAction action = RestAction.Updated;
             try
             {
                 userMapping = await GetUserMap(guildId, userA, userB);

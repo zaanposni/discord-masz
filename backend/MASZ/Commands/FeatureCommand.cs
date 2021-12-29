@@ -66,10 +66,10 @@ namespace MASZ.Commands
             {
                 switch (featureTest.HasManagableMutedRoles())
                 {
-                    case GuildFeatureTestResult.OK:
+                    case GuildFeatureTestResult.Ok:
                         missingBasicPermissions.Append($"\n- {CHECK} {Translator.T().CmdFeaturesMutedRoleDefined()}");
                         break;
-                    case GuildFeatureTestResult.ROLE_TOO_HIGH:
+                    case GuildFeatureTestResult.RoleTooHigh:
                         missingBasicPermissions.Append($"\n- {X_CHECK} {Translator.T().CmdFeaturesMutedRoleDefinedButTooHigh()}");
                         break;
                     default:

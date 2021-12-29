@@ -46,7 +46,7 @@ namespace MASZ.Repositories
             }
 
             UserNote userNote;
-            RestAction action = RestAction.Edited;
+            RestAction action = RestAction.Updated;
             try
             {
                 userNote = await GetUserNote(guildId, userId);

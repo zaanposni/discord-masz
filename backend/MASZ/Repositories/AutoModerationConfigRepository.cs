@@ -48,7 +48,7 @@ namespace MASZ.Repositories
                 throw new BaseAPIException("Invalid automod action.", APIError.InvalidAutomoderationAction);
             }
 
-            RestAction action = RestAction.Edited;
+            RestAction action = RestAction.Updated;
             AutoModerationConfig autoModerationConfig;
             try
             {

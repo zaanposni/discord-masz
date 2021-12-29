@@ -72,8 +72,9 @@ namespace MASZ.Controllers
 
             await GuildConfigRepository.CreateDefault(_serviceProvider).CreateGuildConfig(guildConfig);
 
-            Func<IServiceScope, GuildConfig, bool, Task> backgroundImport = new(async (IServiceScope scope, GuildConfig guildConfig, bool importExistingBans) =>
-            {
+            Task.Run(async () => {
+                using var scope = _serviceProvider.CreateScope();
+
                 var discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
                 var scheduler = scope.ServiceProvider.GetRequiredService<Scheduler>();
 
@@ -103,8 +104,7 @@ namespace MASZ.Controllers
                         await modCaseRepository.ImportModCase(modCase);
                     }
                 }
-            });
-            _backgroundRunner.QueueAction(backgroundImport, guildConfig, importExistingBans);
+            }).Start();
 
             return StatusCode(201, guildConfig);
         }

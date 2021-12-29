@@ -44,7 +44,7 @@ namespace MASZ.Repositories
                 throw new BaseAPIException("Invalid auditlog event type.", APIError.InvalidAuditLogEvent);
             }
 
-            RestAction action = RestAction.Edited;
+            RestAction action = RestAction.Updated;
             GuildLevelAuditLogConfig auditLogConfig;
             try
             {

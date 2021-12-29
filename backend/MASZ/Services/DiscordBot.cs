@@ -5,15 +5,15 @@ using Discord.WebSocket;
 using MASZ.AutoModeration;
 using MASZ.Enums;
 using MASZ.Exceptions;
-using MASZ.GuildAuditLog;
 using MASZ.InviteTracking;
 using MASZ.Models;
 using MASZ.Repositories;
+using MASZ.Utils;
 using System.Reflection;
 
 namespace MASZ.Services
 {
-    public class DiscordBot
+	public class DiscordBot : IEvent
     {
         private readonly ILogger<DiscordBot> _logger;
         private readonly DiscordSocketClient _client;
@@ -62,13 +62,11 @@ namespace MASZ.Services
         {
             _client.MessageReceived += MessageCreatedHandler;
             _client.MessageUpdated += MessageUpdatedHandler;
-            _client.MessageDeleted += MessageDeletedHandler;
             _client.JoinedGuild += GuildCreatedHandler;
             _client.UserJoined += GuildMemberAddedHandler;
             _client.GuildMemberUpdated += GuildMemberUpdatedHandler;
-            _client.UserLeft += GuildMemberRemoved;
+            _client.UserLeft += GuildUserRemoved;
             _client.InviteCreated += InviteCreatedHandler;
-            _client.InviteDeleted += InviteDeletedHandler;
             _client.UserBanned += GuildBanAdded;
             _client.UserUnbanned += GuildBanRemoved;
             _client.GuildUpdated += GuildUpdatedHandler;
@@ -182,31 +180,20 @@ namespace MASZ.Services
             _logger.LogInformation($"Initialized guild commands for guild {guild.Name}.");
         }
 
-        private async Task GuildBanRemoved(SocketUser user, SocketGuild guild)
+        private Task GuildBanRemoved(SocketUser user, SocketGuild guild)
         {
             using var scope = _serviceProvider.CreateScope();
-
-            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
-            await translator.SetContext(guild.Id);
-
-            GuildAuditLogger audit_logger = GuildAuditLogger.CreateDefault(_client, scope.ServiceProvider, guild.Id);
-
-            await audit_logger.HandleEvent(BanRemovedAuditLog.HandleBanRemoved(user, translator), GuildAuditLogEvent.BanRemoved);
 
             // Refresh ban cache
             DiscordAPIInterface discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
             discordAPI.RemoveFromCache(CacheKey.GuildBan(guild.Id, user.Id));
+
+            return Task.CompletedTask;
         }
 
         private async Task GuildBanAdded(SocketUser user, SocketGuild guild)
         {
             using var scope = _serviceProvider.CreateScope();
-
-            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
-            await translator.SetContext(guild.Id);
-
-            GuildAuditLogger audit_logger = GuildAuditLogger.CreateDefault(_client, scope.ServiceProvider, guild.Id);
-            await audit_logger.HandleEvent(BanAddedAuditLog.HandleBanAdded(user, translator), GuildAuditLogEvent.BanAdded);
 
             // Refresh ban cache
             DiscordAPIInterface discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
@@ -224,15 +211,9 @@ namespace MASZ.Services
             }
         }
 
-        private async Task GuildMemberRemoved(SocketGuild guild, SocketUser usr)
+        private Task GuildUserRemoved(SocketGuild guild, SocketUser usr)
         {
             using var scope = _serviceProvider.CreateScope();
-
-            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
-            await translator.SetContext(guild.Id);
-
-            GuildAuditLogger audit_logger = GuildAuditLogger.CreateDefault(_client, scope.ServiceProvider, guild.Id);
-            await audit_logger.HandleEvent(MemberRemovedAuditLog.HandleMemberRemovedUpdated(usr, translator), GuildAuditLogEvent.MemberRemoved);
 
             // Refresh identity memberships
             IdentityManager identityManager = scope.ServiceProvider.GetRequiredService<IdentityManager>();
@@ -243,29 +224,13 @@ namespace MASZ.Services
                     identity.RemoveGuildMembership(guild.Id);
                 }
             }
+
+            return Task.CompletedTask;
         }
 
-        private async Task GuildMemberUpdatedHandler(Cacheable<SocketGuildUser, ulong> oldUsrCached, SocketGuildUser newUsr)
+        private Task GuildMemberUpdatedHandler(Cacheable<SocketGuildUser, ulong> oldUsrCached, SocketGuildUser newUsr)
         {
             using var scope = _serviceProvider.CreateScope();
-            GuildAuditLogger audit_logger = GuildAuditLogger.CreateDefault(_client, scope.ServiceProvider, newUsr.Guild.Id);
-
-            var oldUsr = await oldUsrCached.GetOrDownloadAsync();
-
-            if (oldUsr.Nickname != newUsr.Nickname)
-            {
-                await audit_logger.HandleEvent(NicknameUpdatedAuditLog.HandleNicknameUpdated(), GuildAuditLogEvent.NicknameUpdated);
-            }
-
-            if (oldUsr.AvatarId != newUsr.AvatarId)
-            {
-                await audit_logger.HandleEvent(AvatarUpdatedAuditLog.HandleAvatarUpdated(), GuildAuditLogEvent.AvatarUpdated);
-            }
-
-            if (oldUsr.Roles.Select(r => r.Id).ToArray() != newUsr.Roles.Select(r => r.Id).ToArray())
-            {
-                await audit_logger.HandleEvent(MemberRolesUpdatedAuditLog.HandleMemberRolesUpdated(), GuildAuditLogEvent.MemberRolesUpdated);
-            }
 
             // Refresh identity memberships
             IdentityManager identityManager = scope.ServiceProvider.GetRequiredService<IdentityManager>();
@@ -280,36 +245,12 @@ namespace MASZ.Services
             // Refresh member cache
             DiscordAPIInterface discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
             discordAPI.AddOrUpdateCache(CacheKey.GuildMember(newUsr.Id, newUsr.Id), new CacheApiResponse(newUsr));
-        }
 
-        private async Task MessageDeletedHandler(Cacheable<IMessage, ulong> msgC, Cacheable<IMessageChannel, ulong> channel)
-        {
-            var chnl = await channel.GetOrDownloadAsync();
-            var msg = await msgC.GetOrDownloadAsync();
-
-            if (chnl is ITextChannel txtChannel)
-                if (txtChannel.Guild != null)
-                {
-                    using var scope = _serviceProvider.CreateScope();
-
-                    var translator = scope.ServiceProvider.GetRequiredService<Translator>();
-                    await translator.SetContext(txtChannel.Guild.Id);
-
-                    GuildAuditLogger audit_logger = GuildAuditLogger.CreateDefault(_client, scope.ServiceProvider, txtChannel.Guild.Id);
-                    await audit_logger.HandleEvent(MessageDeletedAuditLog.HandleMessageDeleted(msg, translator), GuildAuditLogEvent.MessageDeleted);
-                }
+            return Task.CompletedTask;
         }
 
         private async Task ThreadCreatedHandler(SocketThreadChannel channel)
         {
-            using var scope = _serviceProvider.CreateScope();
-
-            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
-            await translator.SetContext(channel.Guild.Id);
-
-            GuildAuditLogger audit_logger = GuildAuditLogger.CreateDefault(_client, scope.ServiceProvider, channel.Guild.Id);
-            await audit_logger.HandleEvent(ThreadCreatedAuditLog.HandleThreadCreated(channel, translator), GuildAuditLogEvent.ThreadCreated);
-
             await channel.JoinAsync();
         }
 
@@ -319,18 +260,6 @@ namespace MASZ.Services
             {
 
                 using var scope = _serviceProvider.CreateScope();
-
-                if (channel.Guild != null)
-                {
-                    if (!message.Author.IsBot && !message.Author.IsWebhook)
-                    {
-                        var translator = scope.ServiceProvider.GetRequiredService<Translator>();
-                        await translator.SetContext(channel.Guild.Id);
-
-                        GuildAuditLogger audit_logger = GuildAuditLogger.CreateDefault(_client, scope.ServiceProvider, channel.Guild.Id);
-                        await audit_logger.HandleEvent(MessageSentAuditLog.HandleMessageSent(message, translator), GuildAuditLogEvent.MessageSent);
-                    }
-                }
 
                 if (message.Type != MessageType.Default && message.Type != MessageType.Reply)
                 {
@@ -363,15 +292,6 @@ namespace MASZ.Services
             if (channel is ITextChannel txtChannel)
             {
                 using var scope = _serviceProvider.CreateScope();
-
-                if (txtChannel.Guild != null)
-                {
-                    var translator = scope.ServiceProvider.GetRequiredService<Translator>();
-                    await translator.SetContext(txtChannel.Guild.Id);
-
-                    GuildAuditLogger audit_logger = GuildAuditLogger.CreateDefault(_client, scope.ServiceProvider, txtChannel.Guild.Id);
-                    await audit_logger.HandleEvent(await MessageUpdatedAuditLog.HandleMessageUpdated(oldMsg, newMsg, translator), GuildAuditLogEvent.MessageUpdated);
-                }
 
                 if (newMsg.Type != MessageType.Default && newMsg.Type != MessageType.Reply)
                 {
@@ -440,9 +360,6 @@ namespace MASZ.Services
 
             var translator = scope.ServiceProvider.GetRequiredService<Translator>();
             await translator.SetContext(member.Guild.Id);
-
-            GuildAuditLogger audit_logger = GuildAuditLogger.CreateDefault(_client, scope.ServiceProvider, member.Guild.Id);
-            await audit_logger.HandleEvent(MemberJoinedAuditLog.HandleMemberJoined(member, translator), GuildAuditLogEvent.MemberJoined);
 
             // Refresh identity memberships
             IdentityManager identityManager = scope.ServiceProvider.GetRequiredService<IdentityManager>();
@@ -548,30 +465,11 @@ namespace MASZ.Services
             }
         }
 
-        private async Task InviteCreatedHandler(SocketInvite invite)
+        private Task InviteCreatedHandler(SocketInvite invite)
         {
             InviteTracker.AddInvite(invite.Guild.Id, new TrackedInvite(invite, invite.Guild.Id));
 
-            using var scope = _serviceProvider.CreateScope();
-
-            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
-            await translator.SetContext(invite.Guild.Id);
-
-            GuildAuditLogger audit_logger = GuildAuditLogger.CreateDefault(_client, scope.ServiceProvider, invite.Guild.Id);
-            await audit_logger.HandleEvent(InviteCreatedAuditLog.HandleInviteCreated(invite, translator), GuildAuditLogEvent.InviteCreated);
-        }
-
-        private async Task InviteDeletedHandler(SocketGuildChannel channel, string invite)
-        {
-            var invites = InviteTracker.RemoveInvite(channel.Guild.Id, invite);
-
-            using var scope = _serviceProvider.CreateScope();
-
-            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
-            await translator.SetContext(channel.Guild.Id);
-
-            GuildAuditLogger audit_logger = GuildAuditLogger.CreateDefault(_client, scope.ServiceProvider, channel.Guild.Id);
-            await audit_logger.HandleEvent(await InviteDeletedAuditLog.HandleInviteDeleted(invites.First(), channel, translator), GuildAuditLogEvent.InviteDeleted);
+            return Task.CompletedTask;
         }
 
         private async Task CmdErroredHandler(SlashCommandInfo info, IInteractionContext context, Discord.Interactions.IResult result)

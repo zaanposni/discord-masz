@@ -3,7 +3,7 @@ namespace MASZ.Enums
     public enum RestAction
     {
         Created,
-        Edited,
+        Updated,
         Deleted
     }
 }

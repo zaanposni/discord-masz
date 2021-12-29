@@ -31,7 +31,7 @@ namespace MASZ.Repositories
         }
         public async Task<GuildMotd> CreateOrUpdateMotd(ulong guildId, string content, bool visible)
         {
-            RestAction action = RestAction.Edited;
+            RestAction action = RestAction.Updated;
             GuildMotd motd;
             try
             {

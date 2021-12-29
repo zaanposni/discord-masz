@@ -3,11 +3,12 @@ using Discord.WebSocket;
 using MASZ.Enums;
 using MASZ.Extensions;
 using MASZ.Models;
+using MASZ.Utils;
 using System.Text;
 
 namespace MASZ.Services
 {
-    public class AuditLogger
+    public class AuditLogger : IEvent
     {
         private readonly ILogger<AuditLogger> _logger;
         private readonly InternalConfiguration _config;
@@ -15,7 +16,6 @@ namespace MASZ.Services
         private readonly DiscordSocketClient _client;
         private readonly InternalEventHandler _eventHandler;
         private readonly StringBuilder _currentMessage;
-
 
         public AuditLogger(ILogger<AuditLogger> logger, InternalConfiguration config, DiscordAPIInterface discordAPI, InternalEventHandler eventHandler, DiscordSocketClient client)
         {
@@ -111,10 +111,10 @@ namespace MASZ.Services
 
             _eventHandler.OnInternalCachingDone += OnInternalCachingDone;
 
-            // TODO: add more stuff  here, usermap usernotes file delete etc.
+            // TODO: add more stuff here, usermap usernotes file delete etc.
         }
 
-        public async void QueueLog(string message)
+        private async void QueueLog(string message)
         {
             message = DateTime.UtcNow.ToDiscordTS() + " " + message[..Math.Min(message.Length, 1950)];
             if (!string.IsNullOrEmpty(_config.GetAuditLogWebhook()))
@@ -131,7 +131,7 @@ namespace MASZ.Services
             }
         }
 
-        public async Task ExecuteWebhook()
+        private async Task ExecuteWebhook()
         {
             if (_currentMessage.Length > 0)
             {

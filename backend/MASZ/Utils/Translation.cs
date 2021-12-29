@@ -2261,7 +2261,7 @@ namespace MASZ.Utils
                 _ => "Invite deleted",
             };
         }
-        public string GuildAuditLogMemberJoinedTitle()
+        public string GuildAuditLogUserJoinedTitle()
         {
             return PreferredLanguage switch
             {
@@ -2274,7 +2274,7 @@ namespace MASZ.Utils
                 _ => "Member joined",
             };
         }
-        public string GuildAuditLogMemberJoinedRegistered()
+        public string GuildAuditLogUserJoinedRegistered()
         {
             return PreferredLanguage switch
             {
@@ -2287,7 +2287,7 @@ namespace MASZ.Utils
                 _ => "Registered",
             };
         }
-        public string GuildAuditLogMemberRemovedTitle()
+        public string GuildAuditLogUserRemovedTitle()
         {
             return PreferredLanguage switch
             {
@@ -3147,12 +3147,12 @@ namespace MASZ.Utils
                     Language.de => "Mitgliederrollen aktualisiert",
                     _ => "Member roles updated",
                 },
-                GuildAuditLogEvent.MemberJoined => PreferredLanguage switch
+                GuildAuditLogEvent.UserJoined => PreferredLanguage switch
                 {
                     Language.de => "Mitglied beigetreten",
                     _ => "Member joined",
                 },
-                GuildAuditLogEvent.MemberRemoved => PreferredLanguage switch
+                GuildAuditLogEvent.UserRemoved => PreferredLanguage switch
                 {
                     Language.de => "Mitglied entfernt",
                     _ => "Member removed",

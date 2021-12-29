@@ -7,6 +7,7 @@ using MASZ.Logger;
 using MASZ.Middlewares;
 using MASZ.Plugins;
 using MASZ.Services;
+using MASZ.Utils;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -76,17 +77,13 @@ builder.Services
 
 .AddSingleton<Scheduler>()
 
-.AddSingleton<BackgroundRunner>()
-
 .AddSingleton<DiscordAnnouncer>()
 
 // SCOPED
 
 .AddScoped<Database>()
 
-.AddScoped<Translator>()
-
-.AddScoped<NotificationEmbedCreator>();
+.AddScoped<Translator>();
 
 // Plugin
 // ######################################################################################################
@@ -217,10 +214,12 @@ using (var scope = app.Services.CreateScope())
     scope.ServiceProvider.GetRequiredService<DataContext>().Database.Migrate();
 }
 
+foreach (var eventHandler in app.Services.GetServices<IEvent>())
+    eventHandler.RegisterEvents();
+
 using (var scope = app.Services.CreateScope())
 {
     scope.ServiceProvider.GetRequiredService<InternalConfiguration>().Init();
-    scope.ServiceProvider.GetRequiredService<DiscordAnnouncer>().Init();
 
     await scope.ServiceProvider.GetRequiredService<AuditLogger>().ExecuteAsync();
     await scope.ServiceProvider.GetRequiredService<DiscordBot>().ExecuteAsync();

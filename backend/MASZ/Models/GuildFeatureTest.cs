@@ -25,19 +25,19 @@ namespace MASZ.Models
                     IRole role = _user.Guild.GetRole(item);
                     if (role == null)
                     {
-                        return GuildFeatureTestResult.ROLE_UNKNOWN;
+                        return GuildFeatureTestResult.RoleUnknown;
                     }
                     if (role.Position >= _user.RoleIds.Select(r => _user.Guild.Roles.Where(role => role.Id == r).First()).Max(r => r.Position))
                     {
-                        return GuildFeatureTestResult.ROLE_TOO_HIGH;
+                        return GuildFeatureTestResult.RoleTooHigh;
                     }
                 }
                 catch (Exception)
                 {
-                    return GuildFeatureTestResult.ROLE_UNKNOWN;
+                    return GuildFeatureTestResult.RoleUnknown;
                 }
             }
-            return GuildFeatureTestResult.OK;
+            return GuildFeatureTestResult.Ok;
         }
         public bool HasKickPermission() => _user.GuildPermissions.KickMembers;
         public bool HasBanPermission() => _user.GuildPermissions.BanMembers;
@@ -48,13 +48,13 @@ namespace MASZ.Models
                                                                           HasManagedRolePermission() &&
                                                                           HasManagedGuildPermission() &&
                                                                           HasMutedRolesDefined() &&
-                                                                          HasManagableMutedRoles() == GuildFeatureTestResult.OK;
+                                                                          HasManagableMutedRoles() == GuildFeatureTestResult.Ok;
         public bool SupportsAllFeatures() => HasKickPermission() &&
                                                                    HasBanPermission() &&
                                                                    HasManagedRolePermission() &&
                                                                    HasManagedGuildPermission() &&
                                                                    HasMutedRolesDefined() &&
-                                                                   HasManagableMutedRoles() == GuildFeatureTestResult.OK &&
+                                                                   HasManagableMutedRoles() == GuildFeatureTestResult.Ok &&
                                                                    HasInternalWebhookDefined();
     }
 }
