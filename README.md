@@ -156,6 +156,12 @@ If you want to develop on the angular frontend, set the env var `ENABLE_CORS=tru
 To use the angular instance, please change the `APP_BASE_URL` and `ENABLE_CORS` values to their development alternatives in the ``config.ts`` file inside the ``src/app/config`` directory.
 Then use `ng serve` to get a hotload angular instance.
 
+### Building Docker Containers
+
+After development, you may want to build a docker container to test on! This can be done simply through the following commands:
+
+``docker-compose -f docker-compose-dev.yml up --force-recreate --build``
+
 ## ↪ After Deployment
 
 ### 🐾 First Steps
