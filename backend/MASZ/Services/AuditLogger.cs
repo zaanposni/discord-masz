@@ -25,8 +25,6 @@ namespace MASZ.Services
             _eventHandler = eventHandler;
             _client = client;
             _currentMessage = new StringBuilder();
-
-            RegisterEvents();
         }
 
         public async Task ExecuteAsync()

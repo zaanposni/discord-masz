@@ -6,6 +6,8 @@ namespace MASZ.Utils
     public class AsyncEvent<T>
         where T : class
     {
+        private readonly string _name;
+
         private readonly object _subLock = new();
 
         internal ImmutableArray<T> _subscriptions;
@@ -14,9 +16,10 @@ namespace MASZ.Utils
 
         public IReadOnlyList<T> Subscriptions => _subscriptions;
 
-        public AsyncEvent()
+        public AsyncEvent(string name)
         {
             _subscriptions = ImmutableArray.Create<T>();
+            _name = name;
         }
 
         public void Add(T subscriber)
@@ -30,6 +33,11 @@ namespace MASZ.Utils
             subscriber.NotNull(nameof(subscriber));
             lock (_subLock)
                 _subscriptions = _subscriptions.Remove(subscriber);
+        }
+
+        public string GetName()
+        {
+            return _name;
         }
     }
 }

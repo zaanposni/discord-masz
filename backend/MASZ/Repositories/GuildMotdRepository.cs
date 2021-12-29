@@ -56,11 +56,11 @@ namespace MASZ.Repositories
 
             if (action == RestAction.Created)
             {
-                await _eventHandler.OnGuildMotdCreatedEvent.InvokeAsync(motd, _currentUser);
+                _eventHandler.OnGuildMotdCreatedEvent.InvokeAsync(motd, _currentUser);
             }
             else
             {
-                await _eventHandler.OnGuildMotdUpdatedEvent.InvokeAsync(motd, _currentUser);
+                _eventHandler.OnGuildMotdUpdatedEvent.InvokeAsync(motd, _currentUser);
             }
 
             return motd;

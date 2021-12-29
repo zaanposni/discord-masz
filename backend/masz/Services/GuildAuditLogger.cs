@@ -17,7 +17,7 @@ namespace MASZ.Services
         private readonly IServiceProvider _serviceProvider;
         private readonly Translator _translator;
 
-        private GuildAuditLogger(DiscordSocketClient client, IServiceProvider serviceProvider)
+        public GuildAuditLogger(DiscordSocketClient client, IServiceProvider serviceProvider)
         {
             _client = client;
             _serviceProvider = serviceProvider;
@@ -511,7 +511,7 @@ namespace MASZ.Services
 
             var translator = scope.ServiceProvider.GetRequiredService<Translator>();
             await translator.SetContext(thread.Guild.Id);
-            
+
             StringBuilder description = new();
             description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {thread.Name} - {thread.Mention}");
             description.AppendLine($"> **{translator.T().GuildAuditLogThreadCreatedParent()}:** {thread.ParentChannel.Name} - {thread.ParentChannel.Mention}");

@@ -35,8 +35,6 @@ namespace MASZ.Services
             _scheduler = scheduler;
             _punishments = punishments;
             _serviceProvider = serviceProvider;
-
-            RegisterEvents();
         }
 
         public async Task ExecuteAsync()
@@ -146,7 +144,6 @@ namespace MASZ.Services
                 await _scheduler.ExecuteAsync();
                 await _punishments.ExecuteAsync();
             }
-
         }
 
         private static Task Log(LogMessage logMessage, ILogger logger)

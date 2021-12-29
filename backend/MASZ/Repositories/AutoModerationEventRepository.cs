@@ -87,7 +87,7 @@ namespace MASZ.Repositories
             await Database.SaveModerationEvent(modEvent);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnAutoModerationEventRegisteredEvent.InvokeAsync(modEvent, modConfig, guildConfig, channel, author);
+            _eventHandler.OnAutoModerationEventRegisteredEvent.InvokeAsync(modEvent, modConfig, guildConfig, channel, author);
 
             return modEvent;
         }

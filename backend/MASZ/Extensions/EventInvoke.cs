@@ -15,41 +15,120 @@ namespace MASZ.Extensions
             else return new ArgumentNullException(paramName: name, message: msg);
         }
 
-        public static async Task InvokeAsync(this AsyncEvent<Func<Task>> eventHandler)
+        public static void InvokeAsync(this AsyncEvent<Func<Task>> eventHandler)
         {
             var subscribers = eventHandler.Subscriptions;
-            for (int i = 0; i < subscribers.Count; i++)
-                await subscribers[i].Invoke().ConfigureAwait(false);
+            foreach (var subscription in subscribers)
+            {
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        await subscription.Invoke().ConfigureAwait(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Something went wrong while executing subscription {subscription.Target}/{subscription.Method.Name} of {eventHandler.GetName()}.");
+                        Console.WriteLine(ex);
+                    }
+                });
+            }
         }
-        public static async Task InvokeAsync<T>(this AsyncEvent<Func<T, Task>> eventHandler, T arg)
+        public static void InvokeAsync<T>(this AsyncEvent<Func<T, Task>> eventHandler, T arg)
         {
             var subscribers = eventHandler.Subscriptions;
-            for (int i = 0; i < subscribers.Count; i++)
-                await subscribers[i].Invoke(arg).ConfigureAwait(false);
+            foreach (var subscription in subscribers)
+            {
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        await subscription.Invoke(arg).ConfigureAwait(false);
+                        throw new MASZ.Exceptions.UnregisteredGuildException();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Something went wrong while executing subscription {subscription.Target}/{subscription.Method.Name} of {eventHandler.GetName()}.");
+                        Console.WriteLine(ex);
+                    }
+                });
+            }
         }
-        public static async Task InvokeAsync<T1, T2>(this AsyncEvent<Func<T1, T2, Task>> eventHandler, T1 arg1, T2 arg2)
+        public static void InvokeAsync<T1, T2>(this AsyncEvent<Func<T1, T2, Task>> eventHandler, T1 arg1, T2 arg2)
         {
             var subscribers = eventHandler.Subscriptions;
-            for (int i = 0; i < subscribers.Count; i++)
-                await subscribers[i].Invoke(arg1, arg2).ConfigureAwait(false);
+            foreach (var subscription in subscribers)
+            {
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        await subscription.Invoke(arg1, arg2).ConfigureAwait(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Something went wrong while executing subscription {subscription.Target}/{subscription.Method.Name} of {eventHandler.GetName()}.");
+                        Console.WriteLine(ex);
+                    }
+                });
+            }
         }
-        public static async Task InvokeAsync<T1, T2, T3>(this AsyncEvent<Func<T1, T2, T3, Task>> eventHandler, T1 arg1, T2 arg2, T3 arg3)
+        public static void InvokeAsync<T1, T2, T3>(this AsyncEvent<Func<T1, T2, T3, Task>> eventHandler, T1 arg1, T2 arg2, T3 arg3)
         {
             var subscribers = eventHandler.Subscriptions;
-            for (int i = 0; i < subscribers.Count; i++)
-                await subscribers[i].Invoke(arg1, arg2, arg3).ConfigureAwait(false);
+            foreach (var subscription in subscribers)
+            {
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        await subscription.Invoke(arg1, arg2, arg3).ConfigureAwait(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Something went wrong while executing subscription {subscription.Target}/{subscription.Method.Name} of {eventHandler.GetName()}.");
+                        Console.WriteLine(ex);
+                    }
+                });
+            }
         }
-        public static async Task InvokeAsync<T1, T2, T3, T4>(this AsyncEvent<Func<T1, T2, T3, T4, Task>> eventHandler, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
+        public static void InvokeAsync<T1, T2, T3, T4>(this AsyncEvent<Func<T1, T2, T3, T4, Task>> eventHandler, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
         {
             var subscribers = eventHandler.Subscriptions;
-            for (int i = 0; i < subscribers.Count; i++)
-                await subscribers[i].Invoke(arg1, arg2, arg3, arg4).ConfigureAwait(false);
+            foreach (var subscription in subscribers)
+            {
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        await subscription.Invoke(arg1, arg2, arg3, arg4).ConfigureAwait(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Something went wrong while executing subscription {subscription.Target}/{subscription.Method.Name} of {eventHandler.GetName()}.");
+                        Console.WriteLine(ex);
+                    }
+                });
+            }
         }
-        public static async Task InvokeAsync<T1, T2, T3, T4, T5>(this AsyncEvent<Func<T1, T2, T3, T4, T5, Task>> eventHandler, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
+        public static void InvokeAsync<T1, T2, T3, T4, T5>(this AsyncEvent<Func<T1, T2, T3, T4, T5, Task>> eventHandler, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
         {
             var subscribers = eventHandler.Subscriptions;
-            for (int i = 0; i < subscribers.Count; i++)
-                await subscribers[i].Invoke(arg1, arg2, arg3, arg4, arg5).ConfigureAwait(false);
+            foreach (var subscription in subscribers)
+            {
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        await subscription.Invoke(arg1, arg2, arg3, arg4, arg5).ConfigureAwait(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Something went wrong while executing subscription {subscription.Target}/{subscription.Method.Name} of {eventHandler.GetName()}.");
+                        Console.WriteLine(ex);
+                    }
+                });
+            }
         }
     }
 }

@@ -51,7 +51,7 @@ namespace MASZ.Repositories
             await Database.SaveToken(apiToken);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnTokenCreatedEvent.InvokeAsync(apiToken);
+            _eventHandler.OnTokenCreatedEvent.InvokeAsync(apiToken);
 
             return new CreatedTokenDto()
             {
@@ -65,7 +65,7 @@ namespace MASZ.Repositories
             APIToken apiToken = await GetToken();
             Database.DeleteToken(apiToken);
             await Database.SaveChangesAsync();
-            await _eventHandler.OnTokenDeletedEvent.InvokeAsync(apiToken);
+            _eventHandler.OnTokenDeletedEvent.InvokeAsync(apiToken);
         }
 
         private string GenerateToken(string name)

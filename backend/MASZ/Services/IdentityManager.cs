@@ -73,7 +73,7 @@ namespace MASZ.Services
             }
             identities[key] = identity;
 
-            await _eventHandler.OnIdentityRegisteredEvent.InvokeAsync(identity);
+            _eventHandler.OnIdentityRegisteredEvent.InvokeAsync(identity);
 
             return identity;
         }
@@ -84,7 +84,7 @@ namespace MASZ.Services
             Identity identity = await DiscordCommandIdentity.Create(user, _serviceProvider);
             identities[key] = identity;
 
-            await _eventHandler.OnIdentityRegisteredEvent.InvokeAsync(identity);
+            _eventHandler.OnIdentityRegisteredEvent.InvokeAsync(identity);
 
             return identity;
         }

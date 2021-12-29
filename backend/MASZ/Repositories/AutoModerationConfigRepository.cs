@@ -79,11 +79,11 @@ namespace MASZ.Repositories
 
             if (action == RestAction.Created)
             {
-                await _eventHandler.OnAutoModerationConfigCreatedEvent.InvokeAsync(autoModerationConfig, _currentUser);
+                _eventHandler.OnAutoModerationConfigCreatedEvent.InvokeAsync(autoModerationConfig, _currentUser);
             }
             else
             {
-                await _eventHandler.OnAutoModerationConfigUpdatedEvent.InvokeAsync(autoModerationConfig, _currentUser);
+                _eventHandler.OnAutoModerationConfigUpdatedEvent.InvokeAsync(autoModerationConfig, _currentUser);
             }
 
             return autoModerationConfig;
@@ -102,7 +102,7 @@ namespace MASZ.Repositories
             Database.DeleteSpecificModerationConfig(config);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnAutoModerationConfigDeletedEvent.InvokeAsync(config, _currentUser);
+            _eventHandler.OnAutoModerationConfigDeletedEvent.InvokeAsync(config, _currentUser);
 
             return config;
         }

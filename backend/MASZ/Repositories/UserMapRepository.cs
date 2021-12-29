@@ -82,11 +82,11 @@ namespace MASZ.Repositories
 
             if (action == RestAction.Created)
             {
-                await _eventHandler.OnUserMapUpdatedEvent.InvokeAsync(userMapping, _currentUser);
+                _eventHandler.OnUserMapUpdatedEvent.InvokeAsync(userMapping, _currentUser);
             }
             else
             {
-                await _eventHandler.OnUserMapUpdatedEvent.InvokeAsync(userMapping, _currentUser);
+                _eventHandler.OnUserMapUpdatedEvent.InvokeAsync(userMapping, _currentUser);
             }
 
             return userMapping;
@@ -98,7 +98,7 @@ namespace MASZ.Repositories
             Database.DeleteUserMapping(userMapping);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnUserMapDeletedEvent.InvokeAsync(userMapping, _currentUser);
+            _eventHandler.OnUserMapDeletedEvent.InvokeAsync(userMapping, _currentUser);
         }
         public async Task DeleteForGuild(ulong guildId)
         {

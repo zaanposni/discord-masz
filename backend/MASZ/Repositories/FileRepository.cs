@@ -102,7 +102,7 @@ namespace MASZ.Repositories
 
             string fileName = await _filesHandler.SaveFile(file, fullPath);
 
-            await _eventHandler.OnFileUploadedEvent.InvokeAsync(GetCaseFile(guildId, caseId, fileName), modCase, currentUser);
+            _eventHandler.OnFileUploadedEvent.InvokeAsync(GetCaseFile(guildId, caseId, fileName), modCase, currentUser);
 
             return fileName;
         }
@@ -131,7 +131,7 @@ namespace MASZ.Repositories
 
             _filesHandler.DeleteFile(fullFilePath);
 
-            await _eventHandler.OnFileDeletedEvent.InvokeAsync(info, modCase, currentUser);
+            _eventHandler.OnFileDeletedEvent.InvokeAsync(info, modCase, currentUser);
         }
     }
 }

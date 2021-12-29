@@ -47,7 +47,7 @@ namespace MASZ.Repositories
             await Database.SaveCaseTemplate(template);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnCaseTemplateCreatedEvent.InvokeAsync(template);
+            _eventHandler.OnCaseTemplateCreatedEvent.InvokeAsync(template);
 
             return template;
         }
@@ -67,7 +67,7 @@ namespace MASZ.Repositories
             Database.DeleteSpecificCaseTemplate(template);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnCaseTemplateDeletedEvent.InvokeAsync(template);
+            _eventHandler.OnCaseTemplateDeletedEvent.InvokeAsync(template);
         }
 
         public async Task<List<CaseTemplate>> GetTemplatesBasedOnPermissions()

@@ -13,7 +13,7 @@ namespace MASZ.Services
             remove { OnIdentityRegisteredEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<Identity, Task>> OnIdentityRegisteredEvent = new();
+        internal readonly AsyncEvent<Func<Identity, Task>> OnIdentityRegisteredEvent = new("OnIdentityRegisteredEvent");
 
         public event Func<APIToken, Task> OnTokenCreated
         {
@@ -21,7 +21,7 @@ namespace MASZ.Services
             remove { OnTokenCreatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<APIToken, Task>> OnTokenCreatedEvent = new();
+        internal readonly AsyncEvent<Func<APIToken, Task>> OnTokenCreatedEvent = new("OnTokenCreatedEvent");
 
         public event Func<APIToken, Task> OnTokenDeleted
         {
@@ -29,7 +29,7 @@ namespace MASZ.Services
             remove { OnTokenDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<APIToken, Task>> OnTokenDeletedEvent = new();
+        internal readonly AsyncEvent<Func<APIToken, Task>> OnTokenDeletedEvent = new("OnTokenDeletedEvent");
 
         public event Func<AutoModerationConfig, IUser, Task> OnAutoModerationConfigCreated
         {
@@ -37,7 +37,7 @@ namespace MASZ.Services
             remove { OnAutoModerationConfigCreatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<AutoModerationConfig, IUser, Task>> OnAutoModerationConfigCreatedEvent = new();
+        internal readonly AsyncEvent<Func<AutoModerationConfig, IUser, Task>> OnAutoModerationConfigCreatedEvent = new("OnAutoModerationConfigCreatedEvent");
 
         public event Func<AutoModerationConfig, IUser, Task> OnAutoModerationConfigUpdated
         {
@@ -45,7 +45,7 @@ namespace MASZ.Services
             remove { OnAutoModerationConfigUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<AutoModerationConfig, IUser, Task>> OnAutoModerationConfigUpdatedEvent = new();
+        internal readonly AsyncEvent<Func<AutoModerationConfig, IUser, Task>> OnAutoModerationConfigUpdatedEvent = new("OnAutoModerationConfigUpdatedEvent");
 
         public event Func<AutoModerationConfig, IUser, Task> OnAutoModerationConfigDeleted
         {
@@ -53,7 +53,7 @@ namespace MASZ.Services
             remove { OnAutoModerationConfigDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<AutoModerationConfig, IUser, Task>> OnAutoModerationConfigDeletedEvent = new();
+        internal readonly AsyncEvent<Func<AutoModerationConfig, IUser, Task>> OnAutoModerationConfigDeletedEvent = new("OnAutoModerationConfigDeletedEvent");
 
 
         public event Func<AutoModerationEvent, AutoModerationConfig, GuildConfig, ITextChannel, IUser, Task> OnAutoModerationEventRegistered
@@ -62,7 +62,7 @@ namespace MASZ.Services
             remove { OnAutoModerationEventRegisteredEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<AutoModerationEvent, AutoModerationConfig, GuildConfig, ITextChannel, IUser, Task>> OnAutoModerationEventRegisteredEvent = new();
+        internal readonly AsyncEvent<Func<AutoModerationEvent, AutoModerationConfig, GuildConfig, ITextChannel, IUser, Task>> OnAutoModerationEventRegisteredEvent = new("OnAutoModerationEventRegisteredEvent");
 
         public event Func<CaseTemplate, Task> OnCaseTemplateCreated
         {
@@ -70,7 +70,7 @@ namespace MASZ.Services
             remove { OnCaseTemplateCreatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<CaseTemplate, Task>> OnCaseTemplateCreatedEvent = new();
+        internal readonly AsyncEvent<Func<CaseTemplate, Task>> OnCaseTemplateCreatedEvent = new("OnCaseTemplateCreatedEvent");
 
         public event Func<CaseTemplate, Task> OnCaseTemplateDeleted
         {
@@ -78,7 +78,7 @@ namespace MASZ.Services
             remove { OnCaseTemplateDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<CaseTemplate, Task>> OnCaseTemplateDeletedEvent = new();
+        internal readonly AsyncEvent<Func<CaseTemplate, Task>> OnCaseTemplateDeletedEvent = new("OnCaseTemplateDeletedEvent");
 
         /// <summary>
         /// Invoked when a file is uploaded
@@ -92,7 +92,7 @@ namespace MASZ.Services
             remove { OnFileUploadedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<UploadedFile, ModCase, IUser, Task>> OnFileUploadedEvent = new();
+        internal readonly AsyncEvent<Func<UploadedFile, ModCase, IUser, Task>> OnFileUploadedEvent = new("OnFileUploadedEvent");
 
         /// <summary>
         /// Invoked when a file is deleted
@@ -106,7 +106,7 @@ namespace MASZ.Services
             remove { OnFileDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<UploadedFile, ModCase, IUser, Task>> OnFileDeletedEvent = new();
+        internal readonly AsyncEvent<Func<UploadedFile, ModCase, IUser, Task>> OnFileDeletedEvent = new("OnFileDeletedEvent");
 
         /// <summary>
         /// Invoked when a guild is registered
@@ -119,7 +119,7 @@ namespace MASZ.Services
             remove { OnGuildRegisteredEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildConfig, bool, Task>> OnGuildRegisteredEvent = new();
+        internal readonly AsyncEvent<Func<GuildConfig, bool, Task>> OnGuildRegisteredEvent = new("OnGuildRegisteredEvent");
 
         public event Func<GuildConfig, Task> OnGuildUpdated
         {
@@ -127,7 +127,7 @@ namespace MASZ.Services
             remove { OnGuildUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildConfig, Task>> OnGuildUpdatedEvent = new();
+        internal readonly AsyncEvent<Func<GuildConfig, Task>> OnGuildUpdatedEvent = new("OnGuildUpdatedEvent");
 
         public event Func<GuildConfig, Task> OnGuildDeleted
         {
@@ -135,7 +135,7 @@ namespace MASZ.Services
             remove { OnGuildDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildConfig, Task>> OnGuildDeletedEvent = new();
+        internal readonly AsyncEvent<Func<GuildConfig, Task>> OnGuildDeletedEvent = new("OnGuildDeletedEvent");
 
         public event Func<GuildMotd, IUser, Task> OnGuildMotdCreated
         {
@@ -143,7 +143,7 @@ namespace MASZ.Services
             remove { OnGuildMotdCreatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildMotd, IUser, Task>> OnGuildMotdCreatedEvent = new();
+        internal readonly AsyncEvent<Func<GuildMotd, IUser, Task>> OnGuildMotdCreatedEvent = new("OnGuildMotdCreatedEvent");
 
         public event Func<GuildMotd, IUser, Task> OnGuildMotdUpdated
         {
@@ -151,7 +151,7 @@ namespace MASZ.Services
             remove { OnGuildMotdUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildMotd, IUser, Task>> OnGuildMotdUpdatedEvent = new();
+        internal readonly AsyncEvent<Func<GuildMotd, IUser, Task>> OnGuildMotdUpdatedEvent = new("OnGuildMotdUpdatedEvent");
 
         public event Func<UserInvite, Task> OnInviteUsageRegistered
         {
@@ -159,7 +159,7 @@ namespace MASZ.Services
             remove { OnInviteUsageRegisteredEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<UserInvite, Task>> OnInviteUsageRegisteredEvent = new();
+        internal readonly AsyncEvent<Func<UserInvite, Task>> OnInviteUsageRegisteredEvent = new("OnInviteUsageRegisteredEvent");
 
         /// <summary>
         /// Invoked when a modcase comment is created
@@ -172,7 +172,7 @@ namespace MASZ.Services
             remove { OnModCaseCommentCreatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCaseComment, IUser, Task>> OnModCaseCommentCreatedEvent = new();
+        internal readonly AsyncEvent<Func<ModCaseComment, IUser, Task>> OnModCaseCommentCreatedEvent = new("OnModCaseCommentCreatedEvent");
 
         /// <summary>
         /// Invoked when a modcase comment is updated
@@ -185,7 +185,7 @@ namespace MASZ.Services
             remove { OnModCaseCommentUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCaseComment, IUser, Task>> OnModCaseCommentUpdatedEvent = new();
+        internal readonly AsyncEvent<Func<ModCaseComment, IUser, Task>> OnModCaseCommentUpdatedEvent = new("OnModCaseCommentUpdatedEvent");
 
         /// <summary>
         /// Invoked when a modcase comment is deleted
@@ -198,7 +198,7 @@ namespace MASZ.Services
             remove { OnModCaseCommentDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCaseComment, IUser, Task>> OnModCaseCommentDeletedEvent = new();
+        internal readonly AsyncEvent<Func<ModCaseComment, IUser, Task>> OnModCaseCommentDeletedEvent = new("OnModCaseCommentDeletedEvent");
 
         /// <summary>
         /// Invoked when a modcase is created
@@ -213,7 +213,7 @@ namespace MASZ.Services
             remove { OnModCaseCreatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCase, IUser, bool, bool, Task>> OnModCaseCreatedEvent = new();
+        internal readonly AsyncEvent<Func<ModCase, IUser, bool, bool, Task>> OnModCaseCreatedEvent = new("OnModCaseCreatedEvent");
 
         /// <summary>
         /// Invoked when a modcase is updated
@@ -228,7 +228,7 @@ namespace MASZ.Services
             remove { OnModCaseUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCase, IUser, bool, bool, Task>> OnModCaseUpdatedEvent = new();
+        internal readonly AsyncEvent<Func<ModCase, IUser, bool, bool, Task>> OnModCaseUpdatedEvent = new("OnModCaseUpdatedEvent");
 
         /// <summary>
         /// Invoked when a modcase is (force) deleted
@@ -243,7 +243,7 @@ namespace MASZ.Services
             remove { OnModCaseDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCase, IUser, bool, bool, Task>> OnModCaseDeletedEvent = new();
+        internal readonly AsyncEvent<Func<ModCase, IUser, bool, bool, Task>> OnModCaseDeletedEvent = new("OnModCaseDeletedEvent");
 
         /// <summary>
         /// Invoked when a modcase is marked to be deleted
@@ -258,7 +258,7 @@ namespace MASZ.Services
             remove { OnModCaseMarkedToBeDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCase, IUser, bool, bool, Task>> OnModCaseMarkedToBeDeletedEvent = new();
+        internal readonly AsyncEvent<Func<ModCase, IUser, bool, bool, Task>> OnModCaseMarkedToBeDeletedEvent = new("OnModCaseMarkedToBeDeletedEvent");
 
         public event Func<ModCase, Task> OnModCaseRestored
         {
@@ -266,7 +266,7 @@ namespace MASZ.Services
             remove { OnModCaseRestoredEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCase, Task>> OnModCaseRestoredEvent = new();
+        internal readonly AsyncEvent<Func<ModCase, Task>> OnModCaseRestoredEvent = new("OnModCaseRestoredEvent");
 
         /// <summary>
         /// Invoked when a usermap is created
@@ -279,7 +279,7 @@ namespace MASZ.Services
             remove { OnUserMapCreatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<UserMapping, IUser, Task>> OnUserMapCreatedEvent = new();
+        internal readonly AsyncEvent<Func<UserMapping, IUser, Task>> OnUserMapCreatedEvent = new("OnUserMapCreatedEvent");
 
         /// <summary>
         /// Invoked when a usermap is updated
@@ -292,7 +292,7 @@ namespace MASZ.Services
             remove { OnUserMapUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<UserMapping, IUser, Task>> OnUserMapUpdatedEvent = new();
+        internal readonly AsyncEvent<Func<UserMapping, IUser, Task>> OnUserMapUpdatedEvent = new("OnUserMapUpdatedEvent");
 
         /// <summary>
         /// Invoked when a usermap is deleted
@@ -305,7 +305,7 @@ namespace MASZ.Services
             remove { OnUserMapDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<UserMapping, IUser, Task>> OnUserMapDeletedEvent = new();
+        internal readonly AsyncEvent<Func<UserMapping, IUser, Task>> OnUserMapDeletedEvent = new("OnUserMapDeletedEvent");
 
         /// <summary>
         /// Invoked when a usernote is deleted
@@ -318,7 +318,7 @@ namespace MASZ.Services
             remove { OnUserNoteDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<UserNote, IUser, Task>> OnUserNoteDeletedEvent = new();
+        internal readonly AsyncEvent<Func<UserNote, IUser, Task>> OnUserNoteDeletedEvent = new("OnUserNoteDeletedEvent");
 
         /// <summary>
         /// Invoked when a usernote is updated
@@ -331,7 +331,7 @@ namespace MASZ.Services
             remove { OnUserNoteUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<UserNote, IUser, Task>> OnUserNoteUpdatedEvent = new();
+        internal readonly AsyncEvent<Func<UserNote, IUser, Task>> OnUserNoteUpdatedEvent = new("OnUserNoteUpdatedEvent");
 
         /// <summary>
         /// Invoked when a usernote is created
@@ -344,7 +344,7 @@ namespace MASZ.Services
             remove { OnUserNoteCreatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<UserNote, IUser, Task>> OnUserNoteCreatedEvent = new();
+        internal readonly AsyncEvent<Func<UserNote, IUser, Task>> OnUserNoteCreatedEvent = new("OnUserNoteCreatedEvent");
 
         public event Func<int, DateTime, Task> OnInternalCachingDone
         {
@@ -352,7 +352,7 @@ namespace MASZ.Services
             remove { OnInternalCachingDoneEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<int, DateTime, Task>> OnInternalCachingDoneEvent = new();
+        internal readonly AsyncEvent<Func<int, DateTime, Task>> OnInternalCachingDoneEvent = new("OnInternalCachingDoneEvent");
 
         public event Func<GuildLevelAuditLogConfig, IUser, Task> OnGuildLevelAuditLogConfigCreated
         {
@@ -360,7 +360,7 @@ namespace MASZ.Services
             remove { OnGuildLevelAuditLogConfigCreatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildLevelAuditLogConfig, IUser, Task>> OnGuildLevelAuditLogConfigCreatedEvent = new();
+        internal readonly AsyncEvent<Func<GuildLevelAuditLogConfig, IUser, Task>> OnGuildLevelAuditLogConfigCreatedEvent = new("OnGuildLevelAuditLogConfigCreatedEvent");
 
         public event Func<GuildLevelAuditLogConfig, IUser, Task> OnGuildLevelAuditLogConfigUpdated
         {
@@ -368,7 +368,7 @@ namespace MASZ.Services
             remove { OnGuildLevelAuditLogConfigUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildLevelAuditLogConfig, IUser, Task>> OnGuildLevelAuditLogConfigUpdatedEvent = new();
+        internal readonly AsyncEvent<Func<GuildLevelAuditLogConfig, IUser, Task>> OnGuildLevelAuditLogConfigUpdatedEvent = new("OnGuildLevelAuditLogConfigUpdatedEvent");
 
         public event Func<GuildLevelAuditLogConfig, IUser, Task> OnGuildLevelAuditLogConfigDeleted
         {
@@ -376,7 +376,7 @@ namespace MASZ.Services
             remove { OnGuildLevelAuditLogConfigDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildLevelAuditLogConfig, IUser, Task>> OnGuildLevelAuditLogConfigDeletedEvent = new();
+        internal readonly AsyncEvent<Func<GuildLevelAuditLogConfig, IUser, Task>> OnGuildLevelAuditLogConfigDeletedEvent = new("OnGuildLevelAuditLogConfigDeletedEvent");
 
     }
 }

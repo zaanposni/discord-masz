@@ -39,7 +39,7 @@ namespace MASZ.Repositories
             await Database.SaveInvite(invite);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnInviteUsageRegisteredEvent.InvokeAsync(invite);
+            _eventHandler.OnInviteUsageRegisteredEvent.InvokeAsync(invite);
 
             return invite;
         }

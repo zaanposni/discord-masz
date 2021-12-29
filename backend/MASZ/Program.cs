@@ -79,6 +79,8 @@ builder.Services
 
 .AddSingleton<DiscordAnnouncer>()
 
+.AddSingleton<GuildAuditLogger>()
+
 // SCOPED
 
 .AddScoped<Database>()
@@ -214,12 +216,15 @@ using (var scope = app.Services.CreateScope())
     scope.ServiceProvider.GetRequiredService<DataContext>().Database.Migrate();
 }
 
-foreach (var eventHandler in app.Services.GetServices<IEvent>())
-    eventHandler.RegisterEvents();
-
 using (var scope = app.Services.CreateScope())
 {
     scope.ServiceProvider.GetRequiredService<InternalConfiguration>().Init();
+
+    scope.ServiceProvider.GetRequiredService<AuditLogger>().RegisterEvents();
+    scope.ServiceProvider.GetRequiredService<DiscordAnnouncer>().RegisterEvents();
+    scope.ServiceProvider.GetRequiredService<DiscordBot>().RegisterEvents();
+    scope.ServiceProvider.GetRequiredService<GuildAuditLogger>().RegisterEvents();
+    scope.ServiceProvider.GetRequiredService<Scheduler>().RegisterEvents();
 
     await scope.ServiceProvider.GetRequiredService<AuditLogger>().ExecuteAsync();
     await scope.ServiceProvider.GetRequiredService<DiscordBot>().ExecuteAsync();

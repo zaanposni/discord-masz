@@ -65,11 +65,11 @@ namespace MASZ.Repositories
 
             if (action == RestAction.Created)
             {
-                await _eventHandler.OnGuildLevelAuditLogConfigCreatedEvent.InvokeAsync(auditLogConfig, _currentUser);
+                _eventHandler.OnGuildLevelAuditLogConfigCreatedEvent.InvokeAsync(auditLogConfig, _currentUser);
             }
             else
             {
-                await _eventHandler.OnGuildLevelAuditLogConfigUpdatedEvent.InvokeAsync(auditLogConfig, _currentUser);
+                _eventHandler.OnGuildLevelAuditLogConfigUpdatedEvent.InvokeAsync(auditLogConfig, _currentUser);
             }
 
             return auditLogConfig;
@@ -88,7 +88,7 @@ namespace MASZ.Repositories
             Database.DeleteSpecificAuditLogConfig(config);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnGuildLevelAuditLogConfigDeletedEvent.InvokeAsync(config, _currentUser);
+            _eventHandler.OnGuildLevelAuditLogConfigDeletedEvent.InvokeAsync(config, _currentUser);
 
             return config;
         }

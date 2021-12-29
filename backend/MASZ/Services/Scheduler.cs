@@ -139,7 +139,7 @@ namespace MASZ.Services
             handledUsers = await CacheAllGuildMembers(handledUsers);
             handledUsers = await CacheAllKnownUsers(handledUsers);
             _logger.LogInformation($"Cacher | Done with {handledUsers.Count} entries.");
-            await _eventHandler.OnInternalCachingDoneEvent.InvokeAsync(handledUsers.Count, GetNextCacheSchedule());
+            _eventHandler.OnInternalCachingDoneEvent.InvokeAsync(handledUsers.Count, GetNextCacheSchedule());
         }
 
         public async Task CacheAllKnownGuilds()

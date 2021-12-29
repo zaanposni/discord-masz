@@ -73,7 +73,7 @@ namespace MASZ.Repositories
             await Database.SaveGuildConfig(guildConfig);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnGuildRegisteredEvent.InvokeAsync(guildConfig, importExistingBans);
+            _eventHandler.OnGuildRegisteredEvent.InvokeAsync(guildConfig, importExistingBans);
 
             return guildConfig;
         }
@@ -119,7 +119,7 @@ namespace MASZ.Repositories
             Database.UpdateGuildConfig(guildConfig);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnGuildUpdatedEvent.InvokeAsync(guildConfig);
+            _eventHandler.OnGuildUpdatedEvent.InvokeAsync(guildConfig);
 
             return guildConfig;
         }
@@ -150,7 +150,7 @@ namespace MASZ.Repositories
             Database.DeleteSpecificGuildConfig(guildConfig);
             await Database.SaveChangesAsync();
 
-            await _eventHandler.OnGuildDeletedEvent.InvokeAsync(guildConfig);
+            _eventHandler.OnGuildDeletedEvent.InvokeAsync(guildConfig);
 
             return guildConfig;
         }
