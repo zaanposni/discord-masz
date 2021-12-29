@@ -1,8 +1,7 @@
 # 👮 MASZ
 
-[![https://demomasz.zaanposni.com](https://img.shields.io/badge/demo-online-%234c1?style=for-the-badge)](https://demomasz.zaanposni.com)
+![LatestVersion](https://maszindex.zaanposni.com/api/v1/views/version/current/readme?)
 [![https://github.com/users/zaanposni/packages/container/package/masz_backend](https://img.shields.io/badge/using-docker-blue?style=for-the-badge)](https://github.com/users/zaanposni/packages/container/package/masz_backend)
-![LatestVersion](https://maszindex.zaanposni.com/api/v1/views/version/current/readme)
 [![https://discord.gg/5zjpzw6h3S](https://img.shields.io/discord/779262870016884756?logo=discord&style=for-the-badge)](https://discord.gg/5zjpzw6h3S)
 [![SupportedLanguages](https://img.shields.io/badge/translated-7%20languages-brightgreen?style=for-the-badge)](https://github.com/zaanposni/discord-masz/blob/master/translations/supported_languages.json)
 
@@ -32,9 +31,9 @@ Furthermore, join the demo guild [https://discord.gg/7ubU6aWX9c](https://discord
 
 Join this server to receive update information or get support: [https://discord.gg/5zjpzw6h3S](https://discord.gg/5zjpzw6h3S)
 
-## 🛠 Self Hosting
+## 🛠 Hosting
 
-You can **host your own instance of MASZ**, see below for instructions.\
+You can **host your own instance of MASZ** by using the instructions below.\
 If you have any questions, feel free to contact Zaanposni, or a support member:
 
 - [Discord server](https://discord.gg/5zjpzw6h3S)
@@ -63,6 +62,12 @@ Free hosting providers like replit or heroku **do not work**. You will have to u
 
 MASZ uses the `X-Forwarded-For` http header for logging and ratelimit.\
 Ensure that this header is set in your reverse proxy for best experience.
+
+#### MySQL Errors
+
+Entity Framework implores some new features of MySQL for sake of optimising calls to the database.\
+As such, it is recommended you install MySQL 8+ to use this new syntax. Otherwise, you will encounter
+a `MySQLException` stating you need to check your MySQL version corresponds correctly with the version in your manual.
 
 ### Discord OAuth
 
@@ -155,6 +160,12 @@ docker-compose up -d
 If you want to develop on the angular frontend, set the env var `ENABLE_CORS=true` for the backend container.
 To use the angular instance, please change the `APP_BASE_URL` and `ENABLE_CORS` values to their development alternatives in the ``config.ts`` file inside the ``src/app/config`` directory.
 Then use `ng serve` to get a hotload angular instance.
+
+### Building Docker Containers
+
+After development, you may want to build a docker container to test on! This can be done simply through the following commands:
+
+``docker-compose -f docker-compose-dev.yml up --force-recreate --build``
 
 ## ↪ After Deployment
 
