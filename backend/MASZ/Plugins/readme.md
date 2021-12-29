@@ -24,14 +24,12 @@ It is recommended to do all relevant stuff here.
 
 ## Errors
 
-Be cautious, your plugin can crash MASZ. It is recommended to dispense the use of error-prone operations.
+Errors in your plugins will not crash masz but it is recommended to dispense the use of error-prone operations.
 
 ## Execution time
 
 Your plugin can take as long as you want to handle an incoming event.\
-However, be aware that you will block the currently executed web API request or slash command or similiar.\
-It is recommded for plugins to only execute small task like logging or creating statistics.\
-If you need to do longer lasting tasks, please refer to the `ExampleBackgroundPlugin.cs`.
+As your plugin/the event subscriptions are invoked in a different thread, MASZ wont be blocked.
 
 ## Custom service
 
@@ -44,7 +42,7 @@ Your service is registered as a singleton.
 You can find all subscribable events in the _eventHandler property.\
 For example `_eventHandler.OnIdentityRegistered`.
 
-# Deployment
+## Deployment
 
 You have to rebuild your backend image when using custom plugins.\
 Either overwrite the image tag or use `docker-compose -f docker-compose-dev.yml up --force-recreate --build` to locally build images.\
