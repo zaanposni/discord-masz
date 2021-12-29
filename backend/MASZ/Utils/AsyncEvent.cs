@@ -7,9 +7,11 @@ namespace MASZ.Utils
         where T : class
     {
         private readonly object _subLock = new();
+
         internal ImmutableArray<T> _subscriptions;
 
         public bool HasSubscribers => _subscriptions.Length != 0;
+
         public IReadOnlyList<T> Subscriptions => _subscriptions;
 
         public AsyncEvent()

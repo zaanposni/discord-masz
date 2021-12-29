@@ -52,8 +52,8 @@ namespace MASZ.Services
                     GuildAuditLogEvent.AvatarUpdated => Color.Orange,
                     GuildAuditLogEvent.NicknameUpdated => Color.Orange,
                     GuildAuditLogEvent.MemberRolesUpdated => Color.Orange,
-                    GuildAuditLogEvent.UserJoined => Color.Green,
-                    GuildAuditLogEvent.UserRemoved => Color.Red,
+                    GuildAuditLogEvent.MemberJoined => Color.Green,
+                    GuildAuditLogEvent.MemberRemoved => Color.Red,
                     GuildAuditLogEvent.BanAdded => Color.Red,
                     GuildAuditLogEvent.BanRemoved => Color.Green,
                     GuildAuditLogEvent.InviteCreated => Color.Green,
@@ -303,15 +303,15 @@ namespace MASZ.Services
             StringBuilder description = new();
             description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
             description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{user.Id}`");
-            description.AppendLine($"> **{translator.T().GuildAuditLogUserJoinedRegistered()}:** {user.CreatedAt.DateTime.ToDiscordTS()}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogMemberJoinedRegistered()}:** {user.CreatedAt.DateTime.ToDiscordTS()}");
 
             EmbedBuilder embed = new EmbedBuilder()
-                .WithTitle(translator.T().GuildAuditLogUserJoinedTitle())
+                .WithTitle(translator.T().GuildAuditLogMemberJoinedTitle())
                 .WithDescription(description.ToString())
                 .WithAuthor(user)
                 .WithFooter($"{translator.T().GuildAuditLogUserID()}: {user.Id}");
 
-            await SendEmbed(embed, user.Guild.Id, GuildAuditLogEvent.UserJoined);
+            await SendEmbed(embed, user.Guild.Id, GuildAuditLogEvent.MemberJoined);
         }
 
         public async Task HandleUserRemoved(SocketGuild guild, SocketUser user)
@@ -324,15 +324,15 @@ namespace MASZ.Services
             StringBuilder description = new();
             description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
             description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{user.Id}`");
-            description.AppendLine($"> **{translator.T().GuildAuditLogUserJoinedRegistered()}:** {user.CreatedAt.DateTime.ToDiscordTS()}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogMemberJoinedRegistered()}:** {user.CreatedAt.DateTime.ToDiscordTS()}");
 
             EmbedBuilder embed = new EmbedBuilder()
-                 .WithTitle(translator.T().GuildAuditLogUserRemovedTitle())
+                 .WithTitle(translator.T().GuildAuditLogMemberRemovedTitle())
                  .WithDescription(description.ToString())
                  .WithAuthor(user)
                  .WithFooter($"{translator.T().GuildAuditLogUserID()}: {user.Id}");
 
-            await SendEmbed(embed, guild.Id, GuildAuditLogEvent.UserRemoved);
+            await SendEmbed(embed, guild.Id, GuildAuditLogEvent.MemberRemoved);
         }
 
         public async Task HandleMessageDeleted(Cacheable<IMessage, ulong> messageCached, Cacheable<IMessageChannel, ulong> channel)
