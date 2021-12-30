@@ -19,6 +19,7 @@ namespace MASZ.Commands
             [Summary("dm-notification", "Whether to send a dm notification")] bool sendDmNotification = true,
             [Summary("public-notification", "Whether to send a public webhook notification")] bool sendPublicNotification = true)
         {
+            await Context.Interaction.DeferAsync(ephemeral: !sendPublicNotification);
             ModCase modCase = new()
             {
                 Title = title,
@@ -42,7 +43,10 @@ namespace MASZ.Commands
             ModCase created = await ModCaseRepository.CreateDefault(ServiceProvider, CurrentIdentity).CreateModCase(modCase, true, sendPublicNotification, sendDmNotification);
 
             string url = $"{Config.GetBaseUrl()}/guilds/{created.GuildId}/cases/{created.CaseId}";
-            await Context.Interaction.RespondAsync(Translator.T().CmdPunish(created.CaseId, url), ephemeral: !sendPublicNotification);
+            await Context.Interaction.ModifyOriginalResponseAsync((MessageProperties msg) =>
+            {
+                msg.Content = Translator.T().CmdPunish(created.CaseId, url);
+            }); ;
         }
     }
 }
