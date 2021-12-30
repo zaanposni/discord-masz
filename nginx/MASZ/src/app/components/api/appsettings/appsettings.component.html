@@ -11,7 +11,7 @@
                 <input matInput type="text" formControlName="title">
                 <div *ngIf="title?.invalid && (title?.dirty || title?.touched)" class="alert alert-danger my-1">
                     <div *ngIf="title?.errors?.['required']">
-                        {{ 'Forms.Required' | translate }}
+                        {{ 'Forms.FieldRequired' | translate }}
                     </div>
                     <div *ngIf="title?.errors?.['maxlength']">
                         {{ 'Forms.MaxLength' | translate:maxLength256 }}
@@ -23,7 +23,7 @@
                 <textarea matInput type="text" formControlName="content" rows="{{initRows}}"></textarea>
                 <div *ngIf="content?.invalid && (content?.dirty || content?.touched)" class="alert alert-danger my-1">
                     <div *ngIf="content?.errors?.['required']">
-                        {{ 'Forms.Required' | translate }}
+                        {{ 'Forms.FieldRequired' | translate }}
                     </div>
                     <div *ngIf="content?.errors?.['maxlength']">
                         {{ 'Forms.MaxLength' | translate:maxLength4096 }}
