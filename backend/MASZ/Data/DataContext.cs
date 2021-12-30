@@ -22,6 +22,7 @@ namespace MASZ.Data
         public DbSet<UserMapping> UserMappings { get; set; }
         public DbSet<UserNote> UserNotes { get; set; }
         public DbSet<GuildLevelAuditLogConfig> GuildLevelAuditLogConfigs { get; set; }
+        public DbSet<AppSettings> AppSettings { get; set; }
 
         public void Configure(EntityTypeBuilder<ModCase> builder)
         {

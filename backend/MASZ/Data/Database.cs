@@ -670,5 +670,21 @@ namespace MASZ.Data
             var events = await context.GuildLevelAuditLogConfigs.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
             context.GuildLevelAuditLogConfigs.RemoveRange(events);
         }
+
+        // ==================================================================================
+        //
+        // AppSettings
+        //
+        // ==================================================================================
+
+        public async Task<AppSettings> GetAppSetting()
+        {
+            return await context.AppSettings.AsQueryable().FirstOrDefaultAsync();
+        }
+
+        public void PutAppSetting(AppSettings appSettings)
+        {
+            context.AppSettings.Update(appSettings);
+        }
     }
 }
