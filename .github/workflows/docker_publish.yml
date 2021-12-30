@@ -3,7 +3,7 @@ name: DockerPublish
 on:
   push:
     branches:
-      - "dnet-rewrite"
+      - "master"
 
 jobs:
   DockerPublish:
