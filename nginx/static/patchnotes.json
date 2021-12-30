@@ -52,6 +52,10 @@
         "description": "Your internal webhook will now receive further notifications about automod auditlog or motd changes.",
         "icon": "link",
         "link": "https://github.com/zaanposni/discord-masz/issues/474"
+      },
+      {
+        "title": "Change content of website embed.",
+        "description": "Siteadmins can now edit the content that is displayed in the website embed. Head over to the new settings tab to do so."
       }
     ],
     "fixes": [
