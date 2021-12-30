@@ -207,9 +207,12 @@
                                             </mat-progress-bar>
                                         </div>
                                         <ng-container *ngIf="showActivationSlider && isModOrHigher">
-                                            <mat-slide-toggle [matTooltip]="activationSliderModeDeactivation ? 'Deactivate Punishment' : 'Activate Punishment'"
-                                                (change)="handleActivation()" [(ngModel)]="activationSliderValue">
-                                                {{ activationSliderModeDeactivation ? 'Deactivate Punishment' : 'Activate Punishment'}}
+                                            <mat-slide-toggle 
+                                                [matTooltip]="activationSliderModeDeactivation ? 'Deactivate Punishment' : 'Activate Punishment'"
+                                                (change)="handleActivation()"
+                                                [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != null"
+                                                [(ngModel)]="activationSliderValue">
+                                                    {{ activationSliderModeDeactivation ? 'Deactivate Punishment' : 'Activate Punishment'}}
                                             </mat-slide-toggle>
                                         </ng-container>
                                     </ng-container>
