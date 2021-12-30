@@ -14,7 +14,7 @@
                         "<meta property=\"og:site_name\" content=\"MASZ by zaanposni\" />" +
                         "<meta property=\"og:title\" content=\"" + EmbedTitle + "\" />" +
                         "<meta property=\"og:url\" content=\"" + url + "\" />" +
-                        "<meta property=\"og:description\" content=\"" + EmbedContent + "\" />" +
+                        (string.IsNullOrWhiteSpace(EmbedContent) ? "" : "<meta property=\"og:description\" content=\"" + EmbedContent + "\" />") +
                     "</head>" +
                 "</html>";
         }

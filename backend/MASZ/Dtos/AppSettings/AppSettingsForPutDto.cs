@@ -8,7 +8,6 @@ namespace MASZ.Dtos.AppSettings
         [Required(ErrorMessage = "EmbedTitle field is required")]
         [MaxLength(256)]
         public string EmbedTitle { get; set; }
-        [Required(ErrorMessage = "EmbedContent field is required")]
         [MaxLength(4096)]
         public string EmbedContent { get; set; }
     }

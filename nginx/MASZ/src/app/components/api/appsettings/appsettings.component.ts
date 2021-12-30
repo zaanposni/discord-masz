@@ -25,7 +25,7 @@ export class AppsettingsComponent implements OnInit {
   ngOnInit(): void {
     this.formGroup = this._formBuilder.group({
       title: ['', [ Validators.required, Validators.maxLength(256) ]],
-      content: ['', [ Validators.required, Validators.maxLength(4096) ]],
+      content: ['', [ Validators.maxLength(4096) ]],
     });
 
     this.api.getSimpleData('/settings').subscribe((data: IAppSettings) => {
