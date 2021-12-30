@@ -71,6 +71,7 @@ namespace MASZ.Services
             _client.GuildAvailable += GuildAvailableHandler;
             _client.ThreadCreated += ThreadCreatedHandler;
 
+            _client.Connected += Connected;
             _client.Disconnected += Disconnected;
             _client.Ready += ReadyHandler;
 
@@ -117,6 +118,14 @@ namespace MASZ.Services
         public DateTime? GetLastDisconnectTime()
         {
             return _lastDisconnect;
+        }
+
+        private Task Connected()
+        {
+            _logger.LogCritical("Client connected.");
+            _isRunning = true;
+
+            return Task.CompletedTask;
         }
 
         private Task Disconnected(Exception _)
