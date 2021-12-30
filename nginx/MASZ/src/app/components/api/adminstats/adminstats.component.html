@@ -12,7 +12,7 @@
         <app-update-warning [newestVersionObservable]="newVersionFound" *ngIf="newVersionFound | async"></app-update-warning>
 
         <div class="d-flex flex-row flex-wrap statcards" *ngIf="localVersionFound">
-            <app-statcard [emote]="'update'" [text]="localVersionFound?.version" [titleKey]="'Version'"></app-statcard>
+            <app-statcard [emote]="'update'" [text]="localVersionFound" [titleKey]="'Version'"></app-statcard>
         </div>
         <div class="d-flex flex-row flex-wrap statcards" *ngIf="!stats.loading && stats.content != undefined">
             <app-statcard [emote]="'smart_toy'" [renderPing]="stats.content?.botStatus" [titleKey]="'Adminstats.Bot'"></app-statcard>
