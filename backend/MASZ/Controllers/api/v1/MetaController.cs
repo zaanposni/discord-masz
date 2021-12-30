@@ -25,7 +25,11 @@ namespace MASZ.Controllers
         {
             AppSettings appSettings = await AppSettingsRepository.CreateDefault(_serviceProvider).GetAppSettings();
 
-            return Ok(appSettings.GetEmbedData(_config.GetBaseUrl()));
+            return new ContentResult()
+            {
+                Content = appSettings.GetEmbedData(_config.GetBaseUrl()),
+                ContentType = "text/html"
+            };
         }
 
         [HttpGet("application")]
