@@ -32,10 +32,13 @@ jobs:
       - name: Push images
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u zaanposni --password-stdin
-          docker push ghcr.io/${{ github.repository_owner }}/masz_backend:latest
           docker push ghcr.io/${{ github.repository_owner }}/masz_backend:${{ env.VERSION }}
-          docker push ghcr.io/${{ github.repository_owner }}/masz_nginx:latest
           docker push ghcr.io/${{ github.repository_owner }}/masz_nginx:${{ env.VERSION }}
+          if [[ ${{ env.VERSION }}  != *"alpha"* ]]
+          then
+            docker push ghcr.io/${{ github.repository_owner }}/masz_backend:latest
+            docker push ghcr.io/${{ github.repository_owner }}/masz_nginx:latest
+          fi
 
       - name: Calculate image sizes
         run: |
@@ -51,28 +54,31 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: "🚀 Published `masz_backend:${{ env.VERSION }}` and `masz_backend:latest` with `${{ env.SIZE_BACKEND }}`.\n🚀 Published `masz_nginx:${{ env.VERSION }}` and `masz_nginx:latest` with `${{ env.SIZE_NGINX }}`."
+          args: "🚀 Published `masz_backend:${{ env.VERSION }}` with `${{ env.SIZE_BACKEND }}`.\n🚀 Published `masz_nginx:${{ env.VERSION }}` with `${{ env.SIZE_NGINX }}`."
 
       - name: Save version in index service
         run: |
-          fullhash=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/${{ github.repository_owner }}/masz_nginx:latest)
-          hash="${fullhash##*:}"
-          curl --location --request POST 'https://maszindex.zaanposni.com/api/v1/versions' \
-               --header 'Content-Type: application/json' \
-               --header 'X-GITHUB-TOKEN: ${{ secrets.INDEX_SERVICE_AUTH_HEADER }}' \
-               --data-raw '{
-                   "imagename": "masz_nginx",
-                   "tag": "${{ env.VERSION }}",
-                   "hash": "'"$hash"'"
-               }'
+          if [[ ${{ env.VERSION }}  != *"alpha"* ]]
+          then
+            fullhash=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/${{ github.repository_owner }}/masz_nginx:latest)
+            hash="${fullhash##*:}"
+            curl --location --request POST 'https://maszindex.zaanposni.com/api/v1/versions' \
+                --header 'Content-Type: application/json' \
+                --header 'X-GITHUB-TOKEN: ${{ secrets.INDEX_SERVICE_AUTH_HEADER }}' \
+                --data-raw '{
+                    "imagename": "masz_nginx",
+                    "tag": "${{ env.VERSION }}",
+                    "hash": "'"$hash"'"
+                }'
 
-          fullhash=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/${{ github.repository_owner }}/masz_backend:latest)
-          hash="${fullhash##*:}"
-          curl --location --request POST 'https://maszindex.zaanposni.com/api/v1/versions' \
-               --header 'Content-Type: application/json' \
-               --header 'X-GITHUB-TOKEN: ${{ secrets.INDEX_SERVICE_AUTH_HEADER }}' \
-               --data-raw '{
-                   "imagename": "masz_backend",
-                   "tag": "${{ env.VERSION }}",
-                   "hash": "'"$hash"'"
-               }'
+            fullhash=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/${{ github.repository_owner }}/masz_backend:latest)
+            hash="${fullhash##*:}"
+            curl --location --request POST 'https://maszindex.zaanposni.com/api/v1/versions' \
+                --header 'Content-Type: application/json' \
+                --header 'X-GITHUB-TOKEN: ${{ secrets.INDEX_SERVICE_AUTH_HEADER }}' \
+                --data-raw '{
+                    "imagename": "masz_backend",
+                    "tag": "${{ env.VERSION }}",
+                    "hash": "'"$hash"'"
+                }'
+          fi
