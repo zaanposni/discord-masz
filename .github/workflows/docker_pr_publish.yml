@@ -1,10 +1,10 @@
-name: DockerPublish
+name: DockerPRPublish
 
 on:
   pull_request:
 
 jobs:
-  DockerPublish:
+  DockerPRPublish:
     if: github.repository_owner  == 'zaanposni'
     runs-on: ubuntu-latest
     steps:
@@ -15,8 +15,8 @@ jobs:
         env:
           PR_NUMBER: ${{ github.event.number }}
         run: |
-          echo "I found version: {{ env.PR_NUMBER }}"
-          echo "VERSION={{ env.PR_NUMBER }}" >> $GITHUB_ENV
+          echo "I found version: ${{ env.PR_NUMBER }}"
+          echo "VERSION=${{ env.PR_NUMBER }}" >> $GITHUB_ENV
 
       - name: Build backend
         run: |
