@@ -36,7 +36,7 @@ export class AdminstatsComponent implements OnInit {
       this.newVersionFound.next(data);
     });
     this.versionManager.localVersion.subscribe(data => {
-      this.localVersionFound = data.version + (data.pre_release ? '-alpha' : '');
+      this.localVersionFound = data.version;
     });
   }
 
