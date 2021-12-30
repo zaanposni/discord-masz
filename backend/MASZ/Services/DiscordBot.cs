@@ -448,7 +448,7 @@ namespace MASZ.Services
                         message = translator.T().NotificationAutoWhoisJoinWith(member, member.CreatedAt.DateTime, invite.UsedInvite);
                     }
 
-                    await discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, null, message);
+                    await discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, null, message, AllowedMentions.None);
                 }
 
                 await InviteRepository.CreateDefault(scope.ServiceProvider).CreateInvite(invite);

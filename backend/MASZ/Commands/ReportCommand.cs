@@ -49,7 +49,7 @@ namespace MASZ.Commands
 
             try
             {
-                await DiscordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, null, sb.ToString());
+                await DiscordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, null, sb.ToString(), AllowedMentions.None);
             }
             catch (Exception e)
             {
