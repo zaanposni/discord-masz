@@ -51,5 +51,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "🚀 Published `masz_backend_pr:${{ env.VERSION }}` with `${{ env.SIZE_BACKEND }}`.\n🚀 Published `masz_nginx_pr:${{ env.VERSION }}` with `${{ env.SIZE_NGINX }}`.\n\nUse those images to quickly test this PR.\nYou can also commit new changes to overwrite this images."
+              body: "🚀 Published `masz_backend_pr:${{ env.VERSION }}` with `${{ env.SIZE_BACKEND }}`.\n🚀 Published `masz_nginx_pr:${{ env.VERSION }}` with `${{ env.SIZE_NGINX }}`.\n\nUse these images to quickly test this PR.\nYou can also commit new changes to overwrite these images."
             })
