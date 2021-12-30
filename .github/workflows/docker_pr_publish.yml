@@ -43,13 +43,6 @@ jobs:
           echo "SIZE_BACKEND=$SIZE_BACKEND" >> $GITHUB_ENV
           echo "SIZE_NGINX=$SIZE_NGINX" >> $GITHUB_ENV
 
-      - name: Send discord notification
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: "🚀 Published `masz_backend_pr:${{ env.VERSION }}` with `${{ env.SIZE_BACKEND }}`.\n🚀 Published `masz_nginx_pr:${{ env.VERSION }}` with `${{ env.SIZE_NGINX }}`."
-
       - uses: actions/github-script@v5
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -58,5 +51,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "🚀 Published `masz_backend_pr:${{ env.VERSION }}` with `${{ env.SIZE_BACKEND }}`.\n🚀 Published `masz_nginx_pr:${{ env.VERSION }}` with `${{ env.SIZE_NGINX }}`."
+              body: "🚀 Published `masz_backend_pr:${{ env.VERSION }}` with `${{ env.SIZE_BACKEND }}`.\n🚀 Published `masz_nginx_pr:${{ env.VERSION }}` with `${{ env.SIZE_NGINX }}`.\n\nUse those images to quickly test this PR.\nYou can also commit new changes to overwrite this image."
             })
