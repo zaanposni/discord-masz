@@ -1,4 +1,8 @@
 {
+    "Forms": {
+        "FieldRequired": "Dieses Feld ist erforderlich.",
+        "MaxLength": "Dieses Feld darf maximal {{length}} Zeichen lang sein."
+    },
     "Select": {
         "Select": "Auswöhn",
         "Search": "Suchn"
@@ -33,6 +37,7 @@
         "Legal": "Rechtlichs",
         "API": "API",
         "Insights": "Statistikn",
+        "Settings": "Einstellungn",
         "Scanning": "Untasuchung"
     },
     "Guilds": {
@@ -47,6 +52,18 @@
         "GuildDeleted": "Güde glescht.",
         "FailedToDeleteGuild": "Güde konnt ned glescht wean.",
         "PleaseLoginFirst": "Bitte möd di zerst o."
+    },
+    "AppSettings": {
+        "Title": "Einstellungn",
+        "Embed": {
+            "Title": "Discord Einbettung",
+            "Content": "Diese Einstellung ändert den Inhalt der Einbettung, wenn deine MASZ-Instanz in Discord verknüpft ist.",
+            "TakeToUpdate": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird",
+            "Save": {
+                "Button": "Späicheren",
+                "Message": "Gspäichert."
+            }
+        }
     },
     "Adminstats": {
         "Bot": "Bot",

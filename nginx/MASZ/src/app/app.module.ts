@@ -112,6 +112,7 @@ import { AuditlogConfigComponent } from './components/guilds/guild-config/auditl
 import { AuditlogConfigRuleComponent } from './components/guilds/guild-config/auditlog-config/auditlog-config-rule/auditlog-config-rule.component';
 import { MultiSelectComponent } from './components/basic/multi-select/multi-select.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { AppsettingsComponent } from './components/api/appsettings/appsettings.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -183,7 +184,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     UpdateWarningComponent,
     AuditlogConfigComponent,
     AuditlogConfigRuleComponent,
-    MultiSelectComponent
+    MultiSelectComponent,
+    AppsettingsComponent
   ],
   imports: [
     CommonModule,

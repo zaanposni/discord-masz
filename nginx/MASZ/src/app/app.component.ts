@@ -19,7 +19,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { DEFAULT_LANGUAGE, DEFAULT_TIMEZONE, LANGUAGES, TIMEZONES } from './config/config';
 import { TimezoneService } from './services/timezone.service';
 import { CookieTrackerService } from './services/cookie-tracker.service';
-import { AppSettings } from './models/AppSettings';
+import { ILocalAppSettings } from './models/ILocalAppSettings';
 import { AppVersion } from './models/AppVersion';
 import { VersionManagerService } from './services/version-manager.service';
 import { IImageVersion } from './models/IImageVersion';
@@ -42,7 +42,7 @@ export class AppComponent implements OnInit{
   applicationInfo?: IApplicationInfo = undefined;
   languages = LANGUAGES;
   timezones = TIMEZONES;
-  currentAppSettings: AppSettings = {
+  currentAppSettings: ILocalAppSettings = {
     language: DEFAULT_LANGUAGE,
     timezone: DEFAULT_TIMEZONE
   };
@@ -101,7 +101,7 @@ export class AppComponent implements OnInit{
       this.currentAppSettings.language = this.translator.currentLang;
     });
 
-    this.cookieTracker.settings.subscribe((data: AppSettings) => {
+    this.cookieTracker.settings.subscribe((data: ILocalAppSettings) => {
       if (TIMEZONES.includes(data.timezone)) {  // user might enter random stuff
         this.currentAppSettings.timezone = data.timezone;
         this.timezoneService.timezoneChanged(data.timezone);

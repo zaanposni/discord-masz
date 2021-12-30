@@ -1,4 +1,8 @@
 {
+    "Forms": {
+        "FieldRequired": "Este campo es obligatorio.",
+        "MaxLength": "Este campo debe tener como máximo {{length}} caracteres."
+    },
     "Select": {
         "Select": "Seleccione",
         "Search": "Búsqueda"
@@ -33,6 +37,7 @@
         "Legal": "Legal",
         "API": "API",
         "Insights": "Perspectivas",
+        "Settings": "Ajustes",
         "Scanning": "Exploración"
     },
     "Guilds": {
@@ -47,6 +52,18 @@
         "GuildDeleted": "Gremio eliminado.",
         "FailedToDeleteGuild": "No se pudo borrar el gremio.",
         "PleaseLoginFirst": "Por favor ingresa primero."
+    },
+    "AppSettings": {
+        "Title": "Ajustes",
+        "Embed": {
+            "Title": "Embed de Discord",
+            "Content": "Esta configuración cambiará el contenido del anuncio cuando tu instancia MASZ esté vinculada en Discord.",
+            "TakeToUpdate": "Por favor tenga en cuenta que esto puede tomar hasta una hora para actualizar.",
+            "Save": {
+                "Button": "Guardar",
+                "Message": "Guardado."
+            }
+        }
     },
     "Adminstats": {
         "Bot": "Bot",

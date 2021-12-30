@@ -1,4 +1,26 @@
 {
+    "Forms": {
+        "FieldRequired": {
+            "description": "This field is required.",
+            "en": "This field is required.",
+            "de": "Dieses Feld ist erforderlich.",
+            "at": "Dieses Feld ist erforderlich.",
+            "fr": "Ce champ est obligatoire.",
+            "es": "Este campo es obligatorio.",
+            "ru": "Это поле обязательно.",
+            "it": "Questo campo è obbligatorio."
+        },
+        "MaxLength": {
+            "description": "This field must be at most {{length}} characters long.",
+            "en": "This field must be at most {{length}} characters long.",
+            "de": "Dieses Feld darf maximal {{length}} Zeichen lang sein.",
+            "at": "Dieses Feld darf maximal {{length}} Zeichen lang sein.",
+            "fr": "Ce champ doit contenir au plus {{length}} caractères.",
+            "es": "Este campo debe tener como máximo {{length}} caracteres.",
+            "ru": "Это поле должно содержать не более {{length}} символов.",
+            "it": "Questo campo deve contenere al massimo {{length}} caratteri."
+        }
+    },
     "Select": {
         "Select": {
             "description": "Select",
@@ -294,6 +316,16 @@
             "ru": "Insights",
             "it": "Approfondimenti"
         },
+        "Settings": {
+            "description": "Settings",
+            "en": "Settings",
+            "de": "Einstellungen",
+            "at": "Einstellungn",
+            "fr": "Paramètres",
+            "es": "Ajustes",
+            "ru": "Настройки",
+            "it": "Impostazioni"
+        },
         "Scanning": {
             "description": "Scanning",
             "en": "Scanning",
@@ -397,6 +429,72 @@
             "es": "Por favor ingresa primero.",
             "ru": "Пожалуйста, войдите сначала.",
             "it": "Per favore fai prima il log in."
+        }
+    },
+    "AppSettings": {
+        "Title": {
+            "description": "the word 'description'",
+            "en": "Settings",
+            "de": "Einstellungen",
+            "at": "Einstellungn",
+            "fr": "Paramètres",
+            "es": "Ajustes",
+            "ru": "Настройки",
+            "it": "Impostazioni"
+        },
+        "Embed": {
+            "Title": {
+                "description": "The word 'discord embed'",
+                "en": "Discord Embed",
+                "de": "Discord Einbettung",
+                "at": "Discord Einbettung",
+                "fr": "Embed Discord",
+                "es": "Embed de Discord",
+                "ru": "Встроенный Discord",
+                "it": "Embed Discord"
+            },
+            "Content": {
+                "description": "This setting will change the content of the embed when your MASZ instance is linked in Discord.",
+                "en": "This setting will change the content of the embed when your MASZ instance is linked in Discord.",
+                "de": "Diese Einstellung ändert den Inhalt der Einbettung, wenn deine MASZ-Instanz in Discord verknüpft ist.",
+                "at": "Diese Einstellung ändert den Inhalt der Einbettung, wenn deine MASZ-Instanz in Discord verknüpft ist.",
+                "fr": "Ce paramètre modifiera le contenu de l'encart lorsque votre instance MASZ est liée dans Discord.",
+                "es": "Esta configuración cambiará el contenido del anuncio cuando tu instancia MASZ esté vinculada en Discord.",
+                "ru": "Этот параметр изменит содержание встроенного контента, когда ваша страница MASZ будет привязана к Discord.",
+                "it": "Questa impostazione cambierà il contenuto dell'embed quando il tuo istanza MASZ è collegata in Discord."
+            },
+            "TakeToUpdate": {
+                "description": "Please note that this might take up to one hour to update in discord.",
+                "en": "Please note that this might take up to one hour to update in discord.",
+                "de": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird.",
+                "at": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird",
+                "fr": "Veuillez noter que cela peut prendre jusqu'à une heure pour mettre à jour.",
+                "es": "Por favor tenga en cuenta que esto puede tomar hasta una hora para actualizar.",
+                "ru": "Обратите внимание, что это может занять до одного часа для обновления.",
+                "it": "Si prega di notare che questo può richiedere fino a un'ora per aggiornare."
+            },
+            "Save": {
+                "Button": {
+                    "description": "The word 'save'",
+                    "en": "Save",
+                    "de": "Speichern",
+                    "at": "Späicheren",
+                    "fr": "Enregistrer",
+                    "es": "Guardar",
+                    "ru": "Сохранить",
+                    "it": "Salva"
+                },
+                "Message": {
+                    "description": "The word 'saved'",
+                    "en": "Saved.",
+                    "de": "Gespeichert.",
+                    "at": "Gspäichert.",
+                    "fr": "Enregistré.",
+                    "es": "Guardado.",
+                    "ru": "Сохранено.",
+                    "it": "Salvato."
+                }
+            }
         }
     },
     "Adminstats": {

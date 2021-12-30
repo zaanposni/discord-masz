@@ -1,4 +1,8 @@
 {
+    "Forms": {
+        "FieldRequired": "Ce champ est obligatoire.",
+        "MaxLength": "Ce champ doit contenir au plus {{length}} caractères."
+    },
     "Select": {
         "Select": "Sélectionner",
         "Search": "Chercher"
@@ -33,6 +37,7 @@
         "Legal": "Légal",
         "API": "API",
         "Insights": "Connaissances",
+        "Settings": "Paramètres",
         "Scanning": "Balayage"
     },
     "Guilds": {
@@ -47,6 +52,18 @@
         "GuildDeleted": "Guilde supprimée.",
         "FailedToDeleteGuild": "Échec de la suppression de la guilde.",
         "PleaseLoginFirst": "S'il vous plait Connectez-vous d'abord."
+    },
+    "AppSettings": {
+        "Title": "Paramètres",
+        "Embed": {
+            "Title": "Embed Discord",
+            "Content": "Ce paramètre modifiera le contenu de l'encart lorsque votre instance MASZ est liée dans Discord.",
+            "TakeToUpdate": "Veuillez noter que cela peut prendre jusqu'à une heure pour mettre à jour.",
+            "Save": {
+                "Button": "Enregistrer",
+                "Message": "Enregistré."
+            }
+        }
     },
     "Adminstats": {
         "Bot": "Bot",

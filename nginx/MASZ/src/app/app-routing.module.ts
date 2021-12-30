@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminstatsComponent } from './components/api/adminstats/adminstats.component';
+import { AppsettingsComponent } from './components/api/appsettings/appsettings.component';
 import { TokenOverviewComponent } from './components/api/token-overview/token-overview.component';
 import { DonateComponent } from './components/basic/donate/donate.component';
 import { GuidelinesComponent } from './components/basic/guidelines/guidelines.component';
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'userscan', component: UserscanComponent, canActivate: [AuthGuard] },
   { path: 'scanning', component: UserscanComponent, canActivate: [AuthGuard] },
   { path: 'adminstats', component: AdminstatsComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: AppsettingsComponent, canActivate: [AuthGuard] },
   { path: 'patchnotes', component: PatchnotesComponent },
   { path: 'oauthfailed', component: OauthFailedComponent },
   { path: 'donate', component: DonateComponent },
