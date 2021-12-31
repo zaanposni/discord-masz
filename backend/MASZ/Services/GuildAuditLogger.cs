@@ -15,13 +15,11 @@ namespace MASZ.Services
     {
         private readonly DiscordSocketClient _client;
         private readonly IServiceProvider _serviceProvider;
-        private readonly Translator _translator;
 
         public GuildAuditLogger(DiscordSocketClient client, IServiceProvider serviceProvider)
         {
             _client = client;
             _serviceProvider = serviceProvider;
-            _translator = (Translator)_serviceProvider.GetService(typeof(Translator));
         }
 
         public void RegisterEvents()
@@ -147,12 +145,12 @@ namespace MASZ.Services
             description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{newU.Id}`");
 
             var embed = new EmbedBuilder()
-                .WithTitle(_translator.T().GuildAuditLogAvatarUpdatedTitle())
+                .WithTitle(translator.T().GuildAuditLogAvatarUpdatedTitle())
                 .WithDescription(description.ToString())
                 .WithImageUrl(newU.GetAvatarOrDefaultUrl());
 
             embed.AddField(
-                _translator.T().GuildAuditLogOld(),
+                translator.T().GuildAuditLogOld(),
                 oldU.GetAvatarOrDefaultUrl(),
                 true
             );
@@ -176,17 +174,17 @@ namespace MASZ.Services
             description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{newU.Id}`");
 
             var embed = new EmbedBuilder()
-                .WithTitle(_translator.T().GuildAuditLogNicknameUpdatedTitle())
+                .WithTitle(translator.T().GuildAuditLogNicknameUpdatedTitle())
                 .WithDescription(description.ToString());
 
             embed.AddField(
-                _translator.T().GuildAuditLogOld(),
-                string.IsNullOrEmpty(oldU.Nickname) ? $"`{_translator.T().GuildAuditLogEmpty()}`" : oldU.Nickname,
+                translator.T().GuildAuditLogOld(),
+                string.IsNullOrEmpty(oldU.Nickname) ? $"`{translator.T().GuildAuditLogEmpty()}`" : oldU.Nickname,
                 true
             );
             embed.AddField(
-                _translator.T().GuildAuditLogNew(),
-                string.IsNullOrEmpty(newU.Nickname) ? $"`{_translator.T().GuildAuditLogEmpty()}`" : newU.Nickname,
+                translator.T().GuildAuditLogNew(),
+                string.IsNullOrEmpty(newU.Nickname) ? $"`{translator.T().GuildAuditLogEmpty()}`" : newU.Nickname,
                 true
             );
 
@@ -205,7 +203,7 @@ namespace MASZ.Services
             description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{user.Id}`");
 
             var embed = new EmbedBuilder()
-                .WithTitle(_translator.T().GuildAuditLogRolesUpdatedTitle())
+                .WithTitle(translator.T().GuildAuditLogRolesUpdatedTitle())
                 .WithDescription(description.ToString());
 
             List<SocketRole> addedRoles = roleNew.Except(roleOld).ToList();
@@ -214,7 +212,7 @@ namespace MASZ.Services
             if (removedRoles.Count > 0)
             {
                 embed.AddField(
-                    _translator.T().GuildAuditLogRolesUpdatedRemoved(),
+                    translator.T().GuildAuditLogRolesUpdatedRemoved(),
                     string.Join(" ", removedRoles.Select(x => x.Mention)),
                     true
                 );
@@ -222,7 +220,7 @@ namespace MASZ.Services
             if (addedRoles.Count > 0)
             {
                 embed.AddField(
-                    _translator.T().GuildAuditLogRolesUpdatedAdded(),
+                    translator.T().GuildAuditLogRolesUpdatedAdded(),
                     string.Join(" ", addedRoles.Select(x => x.Mention)),
                     true
                 );
@@ -239,7 +237,6 @@ namespace MASZ.Services
             if (oldU.Username != newU.Username)
 			{
                 using var scope = _serviceProvider.CreateScope();
-
                 var translator = scope.ServiceProvider.GetRequiredService<Translator>();
 
                 foreach (var guild in newU.MutualGuilds)
@@ -251,16 +248,16 @@ namespace MASZ.Services
                     description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{newU.Id}`");
 
                     var embed = new EmbedBuilder()
-                        .WithTitle(_translator.T().GuildAuditLogUsernameUpdatedTitle())
+                        .WithTitle(translator.T().GuildAuditLogUsernameUpdatedTitle())
                         .WithDescription(description.ToString());
 
                     embed.AddField(
-                        _translator.T().GuildAuditLogOld(),
+                        translator.T().GuildAuditLogOld(),
                         oldU.Username,
                         true
                     );
                     embed.AddField(
-                        _translator.T().GuildAuditLogNew(),
+                        translator.T().GuildAuditLogNew(),
                         newU.Username,
                         true
                     );
