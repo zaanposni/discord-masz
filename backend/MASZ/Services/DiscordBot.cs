@@ -142,18 +142,41 @@ namespace MASZ.Services
             _logger.LogInformation("Client connected.");
             _isRunning = true;
 
-            await _client.BulkOverwriteGlobalApplicationCommandsAsync(Array.Empty<ApplicationCommandProperties>());
-
+            try
+            {
+                await _client.BulkOverwriteGlobalApplicationCommandsAsync(Array.Empty<ApplicationCommandProperties>());
+            } catch (Exception ex)
+            {
+                _logger.LogError(ex, "Something went wrong while overwriting global application commands.");
+            }
             foreach (var guild in _client.Guilds)
             {
-                await JoinGuild(guild);
+                try
+                {
+                    await JoinGuild(guild);
+                } catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Something went wrong while handling guild join for {guild.Id}.");
+                }
             }
 
             if (_firstReady)
             {
                 _firstReady = false;
-                await _scheduler.ExecuteAsync();
-                await _punishments.ExecuteAsync();
+                try
+                {
+                    await _scheduler.ExecuteAsync();
+                } catch (Exception ex)
+                {
+                    _logger.LogCritical(ex, "Something went wrong while starting the scheduler timer.");
+                }
+                try
+                {
+                    await _punishments.ExecuteAsync();
+                } catch (Exception ex)
+                {
+                    _logger.LogCritical(ex, "Something went wrong while starting the punishmenthandling timer.");
+                }
             }
         }
 
