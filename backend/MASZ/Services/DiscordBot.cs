@@ -142,6 +142,8 @@ namespace MASZ.Services
             _logger.LogInformation("Client connected.");
             _isRunning = true;
 
+            await _client.BulkOverwriteGlobalApplicationCommandsAsync(Array.Empty<ApplicationCommandProperties>());
+
             foreach (var guild in _client.Guilds)
             {
                 await JoinGuild(guild);
