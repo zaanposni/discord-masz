@@ -1,0 +1,31 @@
+{
+  "profiles": {
+    "MASZ": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DISCORD_BOT_TOKEN": "",
+        "MYSQL_HOST": "",
+        "MYSQL_PORT": "",
+        "MYSQL_USER": "",
+        "MYSQL_PASSWORD": "",
+        "MYSQL_DATABASE": "",
+        "DISCORD_OAUTH_CLIENT_ID": "",
+        "DISCORD_OAUTH_CLIENT_SECRET": "",
+        "DEPLOY_MODE": "local",
+        "META_SERVICE_DOMAIN": "127.0.0.1:5565",
+        "META_SERVICE_BASE_URL": "http://127.0.0.1:5565",
+        "META_SERVICE_NAME": "masz",
+        "DISCORD_SITE_ADMINS": "",
+        "DEFAULT_LANGUAGE": "en",
+        "AUDIT_LOG_WEBHOOK_URL": "https://discord.com/",
+        "ENABLE_DEMO_MODE": "false",
+        "ENABLE_CUSTOM_PLUGINS": "false",
+        "ENABLE_CORS": "true",
+        "ENABLE_PUBLIC_FILES": "false"
+      },
+      "applicationUrl": "http://127.0.0.1:5565"
+    }
+  }
+}

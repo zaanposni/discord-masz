@@ -325,14 +325,14 @@ export class UserscanComponent implements OnInit {
       searchFor: user?.id ?? backupUserId
     } as Node
   }
-  
+
   newGuildNode(guild: Guild, guildId: string, size: number = 30, idPrefix: string = ''): Node {
     return {
       id: idPrefix + guild?.id ?? guildId,
       shape: 'circularImage',
       group: 'basics',
-      image: guild != null ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` : '/assets/img/default_profile.png',
-      label: guild != null ? guild.name : guildId,
+      image: guild?.iconUrl ?? '/assets/img/default_profile.png',
+      label: guild?.name ?? guildId,
       title: guild?.id ?? guildId,
       size: size
     }

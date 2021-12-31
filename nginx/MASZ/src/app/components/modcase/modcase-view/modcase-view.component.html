@@ -207,9 +207,12 @@
                                             </mat-progress-bar>
                                         </div>
                                         <ng-container *ngIf="showActivationSlider && isModOrHigher">
-                                            <mat-slide-toggle [matTooltip]="activationSliderModeDeactivation ? 'Deactivate Punishment' : 'Activate Punishment'"
-                                                (change)="handleActivation()" [(ngModel)]="activationSliderValue">
-                                                {{ activationSliderModeDeactivation ? 'Deactivate Punishment' : 'Activate Punishment'}}
+                                            <mat-slide-toggle 
+                                                [matTooltip]="activationSliderModeDeactivation ? 'Deactivate Punishment' : 'Activate Punishment'"
+                                                (change)="handleActivation()"
+                                                [disabled]="this.modCase.content?.modCase?.markedToDeleteAt != null"
+                                                [(ngModel)]="activationSliderValue">
+                                                    {{ activationSliderModeDeactivation ? 'Deactivate Punishment' : 'Activate Punishment'}}
                                             </mat-slide-toggle>
                                         </ng-container>
                                     </ng-container>
@@ -400,7 +403,7 @@
                             style="width: unset"
                             onerror="this.src='/assets/img/default_profile.png';"
                         />
-                        <div class="mat-h3 mb-0 warn-color" style="display: inline" *ngIf="this.modCase.content?.lockedBy">
+                        <div class="mat-h3 mb-0 warn-color" style="display: inline" *ngIf="this.modCase.content?.modCase?.lockedAt">
                             {{ 'ModCaseView.CommentsLocked' | translate:lockedCommentsParams }}
                             <app-date-display [date]="this.modCase.content?.modCase?.lockedAt"></app-date-display>
                         </div>

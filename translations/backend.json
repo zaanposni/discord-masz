@@ -265,6 +265,16 @@
         "ru": "Случаи",
         "it": "casi"
     },
+    "MotD": {
+        "description": "The word 'motd'",
+        "en": "Message of the Day",
+        "de": "Nachricht des Tages",
+        "at": "Nochricht vom Tog",
+        "fr": "Le message du jour",
+        "es": "Mensaje del día",
+        "ru": "Послание дня",
+        "it": "Messaggio del giorno"
+    },
     "ActivePunishments": {
         "description": "The word 'active punishments'",
         "en": "Active punishments",
@@ -298,7 +308,7 @@
     "UserMapBetween": {
         "description": "Describes a usermap between two users.",
         "var_types": {
-            "userMap": "masz.Models.UserMapping"
+            "userMap": "MASZ.Models.UserMapping"
         },
         "en": "UserMap between {userMap.UserA} and {userMap.UserB}.",
         "de": "Benutzerbeziehung zwischen {userMap.UserA} und {userMap.UserB}.",
@@ -307,6 +317,26 @@
         "es": "UserMap entre {userMap.UserA} y {userMap.UserB}.",
         "ru": "UserMap между {userMap.UserA} и {userMap.UserB}.",
         "it": "UserMap tra {userMap.UserA} e {userMap.UserB}."
+    },
+    "Imported": {
+        "description": "Case that has been imported",
+        "en": "Imported",
+        "de": "Importiert",
+        "at": "Importiat",
+        "fr": "Importé",
+        "es": "Importado",
+        "ru": "Импортный",
+        "it": "importato"
+    },
+    "ImportedFromExistingBans": {
+        "description": "Case that has been imported from existing bans",
+        "en": "Imported from existing bans",
+        "de": "Importiert aus bestehenden Sperren",
+        "at": "Importiat aus vorhondane Sperren",
+        "fr": "Importé à partir des interdictions existantes",
+        "es": "Importado de prohibiciones existentes",
+        "ru": "Импортировано из существующих банов",
+        "it": "Importato da divieti esistenti"
     },
     "Type": {
         "description": "The word 'type'",
@@ -344,7 +374,7 @@
                 "Public": {
                     "description": "Webhook notification for modcase creation. This does not disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase"
+                        "modCase": "ModCase"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde erstellt.",
@@ -357,8 +387,8 @@
                 "Internal": {
                     "description": "Webhook notification for modcase creation. This does disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase",
-                        "moderator": "DSharpPlus.Entities.DiscordUser"
+                        "modCase": "ModCase",
+                        "moderator": "IUser"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstellt.",
@@ -373,7 +403,7 @@
                 "Public": {
                     "description": "Webhook notification for modcase update. This does not disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase"
+                        "modCase": "ModCase"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated.",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde aktualisiert.",
@@ -386,8 +416,8 @@
                 "Internal": {
                     "description": "Webhook notification for modcase update. This does disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase",
-                        "moderator": "DSharpPlus.Entities.DiscordUser"
+                        "modCase": "ModCase",
+                        "moderator": "IUser"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert.",
@@ -402,7 +432,7 @@
                 "Public": {
                     "description": "Webhook notification for modcase deletion. This does not disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase"
+                        "modCase": "ModCase"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted.",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde gelöscht.",
@@ -415,8 +445,8 @@
                 "Internal": {
                     "description": "Webhook notification for modcase deletion. This does disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase",
-                        "moderator": "DSharpPlus.Entities.DiscordUser"
+                        "modCase": "ModCase",
+                        "moderator": "IUser"
                     },
                     "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) gelöscht.",
@@ -463,7 +493,7 @@
                 "Create": {
                     "description": "A modcase comment has been created.",
                     "var_types": {
-                        "actor": "DSharpPlus.Entities.DiscordUser"
+                        "actor": "IUser"
                     },
                     "en": "A **comment** has been created by <@{actor.Id}>.",
                     "de": "Ein **Kommentar** wurde von <@{actor.Id}> erstellt.",
@@ -476,7 +506,7 @@
                 "Update": {
                     "description": "A modcase comment has been updated.",
                     "var_types": {
-                        "actor": "DSharpPlus.Entities.DiscordUser"
+                        "actor": "IUser"
                     },
                     "en": "A **comment** has been updated by <@{actor.Id}>.",
                     "de": "Ein **Kommentar** wurde von <@{actor.Id}> aktualisiert.",
@@ -489,7 +519,7 @@
                 "Delete": {
                     "description": "A modcase comment has been deleted.",
                     "var_types": {
-                        "actor": "DSharpPlus.Entities.DiscordUser"
+                        "actor": "IUser"
                     },
                     "en": "A **comment** has been deleted by <@{actor.Id}>.",
                     "de": "Ein **Kommentar** wurde von <@{actor.Id}> gelöscht.",
@@ -504,7 +534,7 @@
                 "Create": {
                     "description": "Webhook notification for modcase file creation.",
                     "var_types": {
-                        "actor": "DSharpPlus.Entities.DiscordUser"
+                        "actor": "IUser"
                     },
                     "en": "A **file** has been uploaded by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
                     "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochgeladen.",
@@ -517,7 +547,7 @@
                 "Delete": {
                     "description": "Webhook notification for modcase file deletion.",
                     "var_types": {
-                        "actor": "DSharpPlus.Entities.DiscordUser"
+                        "actor": "IUser"
                     },
                     "en": "A **file** has been deleted by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
                     "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) gelöscht.",
@@ -530,7 +560,7 @@
                 "Update": {
                     "description": "Webhook notification for modcase file update.",
                     "var_types": {
-                        "actor": "DSharpPlus.Entities.DiscordUser"
+                        "actor": "IUser"
                     },
                     "en": "A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
                     "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert.",
@@ -545,8 +575,7 @@
                 "Warn": {
                     "description": "DM notification for warn modcase. This does not disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase",
-                        "guild": "DSharpPlus.Entities.DiscordGuild",
+                        "guild": "IGuild",
                         "serviceBaseUrl": "string"
                     },
                     "en": "The moderators of guild `{guild.Name}` have warned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
@@ -561,8 +590,8 @@
                     "Temp": {
                         "description": "DM notification for temp mute modcase. This does not disclose information about the moderator.",
                         "var_types": {
-                            "modCase": "masz.Models.ModCase",
-                            "guild": "DSharpPlus.Entities.DiscordGuild",
+                            "modCase": "ModCase",
+                            "guild": "IGuild",
                             "serviceBaseUrl": "string"
                         },
                         "en": "The moderators of guild `{guild.Name}` have temporarily muted you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
@@ -576,8 +605,7 @@
                     "Perm": {
                         "description": "DM notification for perm mute modcase. This does not disclose information about the moderator.",
                         "var_types": {
-                            "modCase": "masz.Models.ModCase",
-                            "guild": "DSharpPlus.Entities.DiscordGuild",
+                            "guild": "IGuild",
                             "serviceBaseUrl": "string"
                         },
                         "en": "The moderators of guild `{guild.Name}` have muted you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
@@ -593,8 +621,8 @@
                     "Temp": {
                         "description": "DM notification for temp ban modcase. This does not disclose information about the moderator.",
                         "var_types": {
-                            "modCase": "masz.Models.ModCase",
-                            "guild": "DSharpPlus.Entities.DiscordGuild",
+                            "modCase": "ModCase",
+                            "guild": "IGuild",
                             "serviceBaseUrl": "string"
                         },
                         "en": "The moderators of guild `{guild.Name}` have temporarily banned you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
@@ -608,8 +636,7 @@
                     "Perm": {
                         "description": "DM notification for perm ban modcase. This does not disclose information about the moderator.",
                         "var_types": {
-                            "modCase": "masz.Models.ModCase",
-                            "guild": "DSharpPlus.Entities.DiscordGuild",
+                            "guild": "IGuild",
                             "serviceBaseUrl": "string"
                         },
                         "en": "The moderators of guild `{guild.Name}` have banned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
@@ -624,8 +651,7 @@
                 "Kick": {
                     "description": "DM notification for kick modcase. This does not disclose information about the moderator.",
                     "var_types": {
-                        "modCase": "masz.Models.ModCase",
-                        "guild": "DSharpPlus.Entities.DiscordGuild",
+                        "guild": "IGuild",
                         "serviceBaseUrl": "string"
                     },
                     "en": "The moderators of guild `{guild.Name}` have kicked you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
@@ -739,7 +765,7 @@
             "Internal": {
                 "description": "Internal notification for automod event",
                 "var_types": {
-                    "user": "DSharpPlus.Entities.DiscordUser"
+                    "user": "IUser"
                 },
                 "en": "{user.Mention} triggered automoderation.",
                 "de": "{user.Mention} hat die Automoderation ausgelöst.",
@@ -752,7 +778,7 @@
             "Case": {
                 "description": "case description for automod event",
                 "var_types": {
-                    "user": "DSharpPlus.Entities.DiscordUser"
+                    "user": "IUser"
                 },
                 "en": "{user.Username}#{user.Discriminator} triggered automoderation.",
                 "de": "{user.Username}#{user.Discriminator} hat die Automoderation ausgelöst.",
@@ -765,8 +791,8 @@
             "DM": {
                 "description": "DM description for automod event",
                 "var_types": {
-                    "user": "DSharpPlus.Entities.DiscordUser",
-                    "channel": "DSharpPlus.Entities.DiscordChannel",
+                    "user": "IUser",
+                    "channel": "IMentionable",
                     "reason": "string",
                     "action": "string"
                 },
@@ -781,7 +807,7 @@
             "Channel": {
                 "description": "channel notification for automod event if message was deleted, should be oneline",
                 "var_types": {
-                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "user": "IUser",
                     "reason": "string"
                 },
                 "en": "{user.Mention} you triggered automoderation. Reason: {reason}. Your message has been deleted.",
@@ -793,11 +819,179 @@
                 "it": "{user.Mention} hai attivato la moderazione automatica. reason: {reason}. Il tuo messaggio è stato cancellato."
             }
         },
+        "Motd": {
+            "Internal": {
+                "Create": {
+                    "description": "motd has been created",
+                    "var_types": {
+                        "actor": "IUser"
+                    },
+                    "en": "New MotD has been created by {actor.Mention}.",
+                    "de": "Neue MotD wurde von {actor.Mention} erstellt.",
+                    "at": "A neiche MotD wuad vo {actor.Mention} erstöt. ",
+                    "fr": "Le nouveau MotD a été créé par {actor.Mention}.",
+                    "es": "El nuevo MotD ha sido creado por {actor.Mention}.",
+                    "ru": "Новый MotD был создан {actor.Mention}.",
+                    "it": "Il nuovo MotD è stato creato da {actor.Mention}."
+                },
+                "Edited": {
+                    "description": "motd has been edited",
+                    "var_types": {
+                        "actor": "IUser"
+                    },
+                    "en": "MotD has been edited by {actor.Mention}.",
+                    "de": "MotD wurde von {actor.Mention} bearbeitet.",
+                    "at": "MotD is vo {actor.Mention} beorbeit woan.",
+                    "fr": "MotD a été édité par {actor.Mention}.",
+                    "es": "MotD ha sido editado por {actor.Mention}.",
+                    "ru": "MotD редактировал {actor.Mention}.",
+                    "it": "MotD è stato modificato da {actor.Mention}."
+                }
+            },
+            "Show": {
+                "description": "motd show property",
+                "en": "Show",
+                "de": "Anzeigen",
+                "at": "Ozeign",
+                "fr": "Montrer",
+                "es": "Show",
+                "ru": "Показывать",
+                "it": "Spettacolo"
+            }
+        },
+        "AutomoderationConfig": {
+            "Internal": {
+                "Create": {
+                    "description": "AutomoderationConfig created",
+                    "var_types": {
+                        "eventType": "string",
+                        "actor": "IUser"
+                    },
+                    "en": "Automodconfig created for {eventType} by {actor.Mention}.",
+                    "de": "Automodkonfiguration für {eventType} von {actor.Mention} erstellt.",
+                    "at": "Automodkonfiguration fia {eventType} vo {actor.Mention} erstöt.",
+                    "fr": "Automodconfig créé pour {eventType} par {actor.Mention}.",
+                    "es": "Automodconfig creado para {eventType} por {actor.Mention}.",
+                    "ru": "Automodconfig, созданный для {eventType} пользователем {actor.Mention}.",
+                    "it": "Automodconfig creato per {eventType} da {actor.Mention}."
+                },
+                "Update": {
+                    "description": "AutomoderationConfig updated",
+                    "var_types": {
+                        "eventType": "string",
+                        "actor": "IUser"
+                    },
+                    "en": "Automodconfig updated for {eventType} by {actor.Mention}.",
+                    "de": "Automodkonfiguration für {eventType} von {actor.Mention} bearbeitet.",
+                    "at": "Automodkonfiguration fia {eventType} is vo {actor.Mention} beorbeit woan.",
+                    "fr": "Automodconfig mis à jour pour {eventType} par {actor.Mention}.",
+                    "es": "Automodconfig actualizado para {eventType} por {actor.Mention}.",
+                    "ru": "Automodconfig обновлен для {eventType} пользователем {actor.Mention}.",
+                    "it": "Automodconfig aggiornato per {eventType} da {actor.Mention}."
+                },
+                "Delete": {
+                    "description": "AutomoderationConfig deleted",
+                    "var_types": {
+                        "eventType": "string",
+                        "actor": "IUser"
+                    },
+                    "en": "Automodconfig deleted for {eventType} by {actor.Mention}.",
+                    "de": "Automodkonfiguration für {eventType} von {actor.Mention} gelöscht.",
+                    "at": "Automodkonfiguration fia {eventType} vo {actor.Mention} glescht.",
+                    "fr": "Automodconfig supprimé pour {eventType} par {actor.Mention}.",
+                    "es": "Automodconfig eliminado para {eventType} por {actor.Mention}.",
+                    "ru": "Automodconfig удален для {eventType} пользователем {actor.Mention}.",
+                    "it": "Automodconfig eliminato per {eventType} da {actor.Mention}."
+                }
+            },
+            "Limit": {
+                "description": "AutomoderationConfig limit",
+                "en": "Limit",
+                "de": "Limit",
+                "at": "Limit",
+                "fr": "Limite",
+                "es": "Límite",
+                "ru": "Предел",
+                "it": "Limite"
+            },
+            "TimeLimit": {
+                "description": "AutomoderationConfig time limit",
+                "en": "Time limit",
+                "de": "Zeitlimit",
+                "at": "Zeitlimit",
+                "fr": "Limite de temps",
+                "es": "Límite de tiempo",
+                "ru": "Лимит времени",
+                "it": "Limite di tempo"
+            },
+            "Ignored": {
+                "Roles": {
+                    "description": "Ignored roles in automod config",
+                    "en": "Ignored roles",
+                    "de": "Ignorierte Rollen",
+                    "at": "Ignoriate Rolln",
+                    "fr": "Rôles ignorés",
+                    "es": "Roles ignorados",
+                    "ru": "Игнорируемые роли",
+                    "it": "Ruoli ignorati"
+                },
+                "Channels": {
+                    "description": "Ignored channels in automod config",
+                    "en": "Ignored channels",
+                    "de": "Ignorierte Kanäle",
+                    "at": "Ignoriate Kanäle",
+                    "fr": "Canaux ignorés",
+                    "es": "Canales ignorados",
+                    "ru": "Игнорируемые каналы",
+                    "it": "Canali ignorati"
+                }
+            },
+            "Duration": {
+                "description": "Duration of automod actions",
+                "en": "Duration",
+                "de": "Dauer",
+                "at": "Daua",
+                "fr": "Durée",
+                "es": "Duración",
+                "ru": "Продолжительность",
+                "it": "Durata"
+            },
+            "DeleteMessage": {
+                "description": "Delete message after automod action",
+                "en": "Delete message",
+                "de": "Nachricht löschen",
+                "at": "Nochricht leschn",
+                "fr": "Supprimer le message",
+                "es": "Borrar mensaje",
+                "ru": "Удаленное сообщение",
+                "it": "Cancella il messaggio"
+            },
+            "SendPublic": {
+                "description": "Send public message after automod action",
+                "en": "Send public notification",
+                "de": "Sende öffentliche Nachricht",
+                "at": "Schick a öffentliche Nochricht",
+                "fr": "Envoyer une notification publique",
+                "es": "Enviar notificación pública",
+                "ru": "Отправить публичное уведомление",
+                "it": "Invia notifica pubblica"
+            },
+            "SendDM": {
+                "description": "Send DM message after automod action",
+                "en": "Send DM notification",
+                "de": "Sende DM Nachricht",
+                "at": "Schick a Direktnachricht",
+                "fr": "Envoyer une notification DM",
+                "es": "Enviar notificación DM",
+                "ru": "Отправить уведомление в прямом эфире",
+                "it": "Invia notifica DM"
+            }
+        },
         "AutoWhois": {
             "JoinWith": {
                 "description": "A user joined with invite x",
                 "var_types": {
-                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "user": "IUser",
                     "registered": "DateTime",
                     "invite": "string"
                 },
@@ -812,7 +1006,7 @@
             "JoinWithAndFrom": {
                 "description": "A user joined with invite x",
                 "var_types": {
-                    "user": "DSharpPlus.Entities.DiscordUser",
+                    "user": "IUser",
                     "by": "ulong",
                     "createdAt": "DateTime",
                     "registered": "DateTime",
@@ -825,6 +1019,105 @@
                 "es": "{user.Mention} (registrado {registered.ToDiscordTS()}) se unió con la invitación `{invite}` (creado {createdAt.ToDiscordTS()}) por <@{by}>.",
                 "ru": "{user.Mention} (зарегистрированный {registered.ToDiscordTS()}) присоединился с помощью приглашения `{invite}` (created {createdAt.ToDiscordTS()}) пользователем <@{by}>.",
                 "it": "{user.Mention} (registrato {registered.ToDiscordTS()}) si è unito all'invito `{invite}` (creato {createdAt.ToDiscordTS()}) da <@{by}>."
+            }
+        },
+        "DiscordAuditLog": {
+            "Punishments": {
+                "Execute": {
+                    "description": "Audit log header reason for executed punishment.",
+                    "var_types": {
+                        "caseId": "int",
+                        "modId": "ulong",
+                        "reason": "string"
+                    },
+                    "en": "Punishment for ModCase #{caseId} by moderator {modId} executed: \\\"{reason}\\\"",
+                    "de": "Bestrafung für Vorfall #{caseId} durch Moderator {modId} ausgeführt: \\\"{reason}\\\"",
+                    "at": "Bestrofun fian Vorfoi #{caseId} vom Modarator {modId} ausgführt: \\\"{reason}\\\"",
+                    "fr": "Punition pour ModCase #{caseId} par le modérateur {modId} exécutée : \\\"{reason}\\\"",
+                    "es": "Castigo por ModCase # {caseId} por el moderador {modId} ejecutado: \\\"{reason} \\\"",
+                    "ru": "Наказание за ModCase # {caseId} модератором {modId} выполнено: \\\"{reason} \\\"",
+                    "it": "Punizione per ModCase #{caseId} eseguita dal moderatore {modId}: \\\"{reason}\\\""
+                },
+                "Undone": {
+                    "description": "Audit log header reason for executed punishment.",
+                    "var_types": {
+                        "caseId": "int",
+                        "reason": "string"
+                    },
+                    "en": "Punishment for ModCase #{caseId} undone: \\\"{reason}\\\"",
+                    "de": "Bestrafung für Vorfall #{caseId} rückgängig gemacht: \\\"{reason}\\\"",
+                    "at": "Bestrofung fian Vorfoi #{caseId} is rückgängig gmocht woan: \\\"{reason}\\\"",    
+                    "fr": "Punition pour ModCase #{caseId} annulée : \\\"{reason}\\\"",
+                    "es": "Castigo por ModCase # {caseId} deshecho: \\\"{reason} \\\"",
+                    "ru": "Наказание за ModCase # {caseId} отменено: \\\"{reason} \\\"",
+                    "it": "Punizione per ModCase #{caseId} annullata: \\\"{reason}\\\""
+                }
+            }
+        },
+        "GuildAuditLog": {
+            "Internal": {
+                "Create": {
+                    "description": "A guild-level audit log has been set up.",
+                    "var_types": {
+                        "eventName": "string",
+                        "actor": "IUser"
+                    },
+                    "en": "Guild-level audit log for event `{eventName}` has been set up by {actor.Mention}.",
+                    "de": "Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} eingerichtet.",
+                    "at": "Güdnspezifischa Audit-Log fias Ereignis `{eventName}` wuad vo {actor.Mention} eingrichtet.",
+                    "fr": "Le journal d'audit au niveau de la guilde pour l'événement `{eventName}` a été mis en place par {actor.Mention}.",
+                    "es": "{actor.Mention} ha configurado el registro de auditoría a nivel de gremio para el evento `{eventName}`.",
+                    "ru": "Журнал аудита на уровне гильдии для события `{eventName}` был создан {actor.Mention}.",
+                    "it": "Il registro di controllo a livello di gilda per l'evento `{eventName}` è stato impostato da {actor.Mention}."
+                },
+                "Update": {
+                    "description": "A guild-level audit log has been edited.",
+                    "var_types": {
+                        "eventName": "string",
+                        "actor": "IUser"
+                    },
+                    "en": "Guild-level audit log for event `{eventName}` has been edited by {actor.Mention}.",
+                    "de": "Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} bearbeitet.",
+                    "at": "Güdnspezifischa Audit-Log fias Ereignis `{eventName}` wuad vo {actor.Mention} beoarbeit.",
+                    "fr": "Le journal d'audit au niveau de la guilde pour l'événement `{eventName}` a été modifié par {actor.Mention}.",
+                    "es": "{actor.Mention} ha editado el registro de auditoría a nivel de gremio para el evento `{eventName}`.",
+                    "ru": "Журнал аудита на уровне гильдии для события `{eventName}` отредактировал {actor.Mention}.",
+                    "it": "Il registro di controllo a livello di gilda per l'evento `{eventName}` è stato modificato da {actor.Mention}."
+                },
+                "Delete": {
+                    "description": "A guild-level audit log has been deleted.",
+                    "var_types": {
+                        "eventName": "string",
+                        "actor": "IUser"
+                    },
+                    "en": "Guild-level audit log for event `{eventName}` has been deleted by {actor.Mention}.",
+                    "de": "Gildenspezifischer Audit-Log für Ereignis `{eventName}` wurde von {actor.Mention} gelöscht.",
+                    "at": "Güdnspezifischa Audit-Log fias Ereignis `{eventName}` wuad vo {actor.Mention} glescht.",
+                    "fr": "Le journal d'audit au niveau de la guilde pour l'événement `{eventName}` a été supprimé par {actor.Mention}.",
+                    "es": "{actor.Mention} ha eliminado el registro de auditoría a nivel de hermandad para el evento `{eventName}`.",
+                    "ru": "Журнал аудита на уровне гильдии для события `{eventName}` был удален {actor.Mention}.",
+                    "it": "Il registro di controllo a livello di gilda per l'evento `{eventName}` è stato eliminato da {actor.Mention}."
+                }
+            },
+            "MentionRoles": {
+                "description": "mention roles",
+                "en": "Mention role(s)",
+                "de": "Rolle(n) erwähnen",
+                "at": "Rolle(n) erwähnan",
+                "fr": "Mentionner le(s) rôle(s)",
+                "es": "Mencionar rol (s)",
+                "ru": "Упоминание ролей",
+                "it": "Menzione ruolo/i"
+            },
+            "Title": {
+                "description": "title",
+                "en": "Guild-level audit log",
+                "de": "Gildenspezifischer Audit-Log",
+                "at": "Güdnspezifischa Audit-Log",
+                "fr": "Journal d'audit au niveau de la guilde",
+                "es": "Registro de auditoría a nivel de gremio",
+                "ru": "Журнал аудита на уровне гильдии",
+                "it": "Registro di controllo a livello di gilda"
             }
         }
     },
@@ -848,6 +1141,26 @@
             "es": "¡No puedo ver ni borrar mensajes en este canal!",
             "ru": "Мне не разрешено просматривать или удалять сообщения на этом канале!",
             "it": "Non sono autorizzato a visualizzare o eliminare i messaggi in questo canale!"
+        },
+        "GetAvatarURL": {
+            "description": "Returns the avatar url of the chosen user.",
+            "en": "Avatar URL",
+            "de": "Avatar URL",
+            "at": "Avadar URL",
+            "fr": "l'URL d'avatar",
+            "es": "URL de avatar",
+            "ru": "URL аватара",
+            "it": "l'URL dell'avatar"
+        },
+        "UserID": {
+            "description": "User ID",
+            "en": "User ID",
+            "de": "NutzerId",
+            "at": "NutzaId",
+            "fr": "Identifiant d'utilisateur",
+            "es": "User ID",
+            "ru": "ID пользователя",
+            "it": "ID utente"
         },
         "CannotFindChannel": {
             "description": "Cannot find channel.",
@@ -873,7 +1186,7 @@
             "description": "Cleanup response",
             "var_types": {
                 "count": "int",
-                "channel": "DSharpPlus.Entities.DiscordChannel"
+                "channel": "IMentionable"
             },
             "en": "Deleted {count} messages in {channel.Mention}.",
             "de": "{count} Nachrichten in {channel.Mention} gelöscht.",
@@ -1110,13 +1423,23 @@
             },
             "SupportAllFeatures": {
                 "description": "Support all features",
-                "en": "Your bot on this guild is configured correctly. All features of MASZ can be used.",
-                "de": "Dein Bot auf diesem Server ist richtig konfiguriert. Alle Funktionen von MASZ können genutzt werden.",
-                "at": "Dei Bot auf dem Serva is richtig konfiguriat. Olle Funktionen vo MASZ kennen gnutzt wean.",
-                "fr": "Votre bot sur cette guilde est correctement configuré. Toutes les fonctionnalités de MASZ peuvent être utilisées.",
-                "es": "Tu bot en este gremio está configurado correctamente. Se pueden utilizar todas las funciones de MASZ.",
-                "ru": "Ваш бот в этой гильдии настроен правильно. Можно использовать все возможности MASZ.",
-                "it": "Il tuo bot in questa gilda è configurato correttamente. Tutte le funzionalità di MASZ possono essere utilizzate."
+                "en": "Your bot on this guild is configured correctly.",
+                "de": "Dein Bot auf diesem Server ist richtig konfiguriert.",
+                "at": "Dei Bot auf dem Serva is richtig konfiguriat.",
+                "fr": "Votre bot sur cette guilde est correctement configuré.",
+                "es": "Tu bot en este gremio está configurado correctamente.",
+                "ru": "Ваш бот в этой гильдии настроен правильно.",
+                "it": "Il tuo bot in questa gilda è configurato correttamente."
+            },
+            "SupportAllFeaturesDesc": {
+                "description": "Support all features description",
+                "en": "All features of MASZ can be used.",
+                "de": "Alle Funktionen von MASZ können genutzt werden.",
+                "at": "Olle Funktionen vo MASZ kennen gnutzt wean.",
+                "fr": "Toutes les fonctionnalités de MASZ peuvent être utilisées.",
+                "es": "Se pueden utilizar todas las funciones de MASZ.",
+                "ru": "Можно использовать все возможности MASZ.",
+                "it": "Tutte le funzionalità di MASZ possono essere utilizzate."
             },
             "MissingFeatures": {
                 "description": "Missing features",
@@ -1131,7 +1454,7 @@
         },
         "Invite": {
             "description": "Host your own instance of MASZ",
-            "en": "You will have to host your own instance of MASZ on your server or pc.\nCheckout https://github.com/zaanposni/discord-masz#hosting",
+            "en": "You will have to host your own instance of MASZ on your server or pc.\nCheck out https://github.com/zaanposni/discord-masz#hosting",
             "de": "Du musst deine eigene Instanz von MASZ auf deinem Server oder PC hosten.\nSchau dir https://github.com/zaanposni/discord-masz#hosting an",
             "at": "Du muast dei eignane Inszanz vo MASZ auf deim Serva oda PC hosn.\nSchau da https://github.com/zaanposni/discord-masz#hosting o",
             "fr": "Vous devrez héberger votre propre instance de MASZ sur votre serveur ou votre PC.\\nCommander https://github.com/zaanposni/discord-masz#hosting",
@@ -1190,16 +1513,17 @@
             "Content": {
                 "description": "Report content",
                 "var_types": {
-                    "user": "DSharpPlus.Entities.DiscordUser",
-                    "message": "DSharpPlus.Entities.DiscordMessage"
+                    "user": "IUser",
+                    "message": "IMessage",
+                    "channel": "IMentionable"
                 },
-                "en": "{user.Mention} reported a message from {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}",
-                "de": "{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}",
-                "at": "{user.Mention} mödet a Nochricht vo {message.Author.Mention} in {message.Channel.Mention}.\n{message.JumpLink}",
-                "fr": "{user.Mention} a signalé un message de {message.Author.Mention} dans {message.Channel.Mention}.\\n{message.JumpLink}",
-                "es": "{user.Mention} informó un mensaje de {message.Author.Mention} en {message.Channel.Mention}.\\n{message.JumpLink}",
-                "ru": "{user.Mention} сообщил о сообщении от {message.Author.Mention} в {message.Channel.Mention}.\\n{message.JumpLink}",
-                "it": "{user.Mention} ha segnalato un messaggio da {message.Author.Mention} in {message.Channel.Mention}.\\n{message.JumpLink}"
+                "en": "{user.Mention} reported a message from {message.Author.Mention} in {channel.Mention}.\n{message.GetJumpUrl()}",
+                "de": "{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {channel.Mention}.\n{message.GetJumpUrl()}",
+                "at": "{user.Mention} mödet a Nochricht vo {message.Author.Mention} in {channel.Mention}.\n{message.GetJumpUrl()}",
+                "fr": "{user.Mention} a signalé un message de {message.Author.Mention} dans {channel.Mention}.\\n{message.GetJumpUrl()}",
+                "es": "{user.Mention} informó un mensaje de {message.Author.Mention} en {channel.Mention}.\\n{message.GetJumpUrl()}",
+                "ru": "{user.Mention} сообщил о сообщении от {message.Author.Mention} в {channel.Mention}.\\n{message.GetJumpUrl()}",
+                "it": "{user.Mention} ha segnalato un messaggio da {message.Author.Mention} in {channel.Mention}.\\n{message.GetJumpUrl()}"
             }
         },
         "Say": {
@@ -1273,7 +1597,7 @@
                 "description": "Created by",
                 "var_types": {
                     "inviteCode": "string",
-                    "createdBy": "DSharpPlus.Entities.DiscordUser"
+                    "createdBy": "IUser"
                 },
                 "en": "`{inviteCode}` created by {createdBy.Mention}.",
                 "de": "`{inviteCode}` erstellt von {createdBy.Mention}.",
@@ -1287,7 +1611,7 @@
                 "description": "Created by",
                 "var_types": {
                     "inviteCode": "string",
-                    "createdBy": "DSharpPlus.Entities.DiscordUser",
+                    "createdBy": "IUser",
                     "createdAt": "DateTime"
                 },
                 "en": "`{inviteCode}` created by {createdBy.Mention} at {createdAt.ToDiscordTS()}.",
@@ -1387,62 +1711,117 @@
                 "Title": {
                     "description": "Result",
                     "en": "Result",
-                    "de": "Ergebnis"
+                    "de": "Ergebnis",
+                    "at": "Ergebnis",
+                    "fr": "Résultat",
+                    "es": "Resultado",
+                    "ru": "Результат",
+                    "it": "Risultato"
                 },
                 "Waiting": {
                     "description": "Waiting for approval",
                     "en": "Waiting for approval.",
-                    "de": "Warte auf Bestätigung."
+                    "de": "Warte auf Bestätigung.",
+                    "at": "Woat auf a Bestätigung",
+                    "fr": "En attente d'approbation.",
+                    "es": "A la espera de la aprobación.",
+                    "ru": "Ожидание подтверждения.",
+                    "it": "In attesa di approvazione."
                 },
                 "Timedout": {
                     "description": "Timed out",
                     "en": "Timed out",
-                    "de": "Zeitüberschreitung"
+                    "de": "Zeitüberschreitung",
+                    "at": "Zeitübaschreitung",
+                    "fr": "Fin du temps",
+                    "es": "Caducado",
+                    "ru": "Время вышло",
+                    "it": "Fuori tempo"
                 },
                 "Canceled": {
                     "description": "cancel button to disapprove",
                     "en": "Canceled",
-                    "de": "Abgebrochen"
+                    "de": "Abgebrochen",
+                    "at": "Wuad obbrochn",
+                    "fr": "Annulé",
+                    "es": "Cancelado",
+                    "ru": "Отменено",
+                    "it": "Annullato"
                 }
             },
             "PublicNotification": {
                 "Title": {
                     "description": "Public notification",
                     "en": "Public notification",
-                    "de": "Öffentliche Benachrichtigung"
+                    "de": "Öffentliche Benachrichtigung",
+                    "at": "Öffentliche Benochrichtigung",
+                    "fr": "Avis public",
+                    "es": "Notificación pública",
+                    "ru": "Публичное уведомление",
+                    "it": "Notifica pubblica"
                 },
                 "Description": {
                     "description": "Public notification description",
                     "en": "Send a public notification?",
-                    "de": "Soll eine öffentliche Benachrichtigung gesendet werden?"
+                    "de": "Soll eine öffentliche Benachrichtigung gesendet werden?",
+                    "at": "Soll a öffentliche Benochrichtung gsendet wean?",
+                    "fr": "Envoyer une notification publique ?",
+                    "es": "¿Enviar una notificación pública?",
+                    "ru": "Отправить публичное уведомление?",
+                    "it": "Inviare una notifica pubblica?"
                 }
             },
             "Buttons": {
                 "Cancel": {
                     "description": "cancel button to disapprove",
                     "en": "Cancel",
-                    "de": "Abbrechen"
+                    "de": "Abbrechen",
+                    "at": "Obbrechn",
+                    "fr": "Annuler",
+                    "es": "Cancelar",
+                    "ru": "Отмена",
+                    "it": "Annulla"
                 },
                 "PublicNotification": {
                     "description": "public notification button",
                     "en": "Public notification",
-                    "de": "Öffentliche Benachrichtigung"
+                    "de": "Öffentliche Benachrichtigung",
+                    "at": "Öffentliche Benochrichtigung",
+                    "fr": "Avis public",
+                    "es": "Notificación pública",
+                    "ru": "Публичное уведомление",
+                    "it": "Notifica pubblica"
                 },
                 "NoPublicNotification": {
                     "description": "no public notification button",
                     "en": "No public notification",
-                    "de": "Keine öffentliche Benachrichtigung"
+                    "de": "Keine öffentliche Benachrichtigung",
+                    "at": "Ka öffentliche Benochrichtung",
+                    "fr": "Aucune notification publique",
+                    "es": "Sin notificación pública",
+                    "ru": "Нет публичного уведомления",
+                    "it": "Nessuna notifica pubblica"
                 }
             },
             "CreatedAt": {
                 "description": "Created at",
                 "en": "Created at.",
-                "de": "Erstellt am."
+                "de": "Erstellt am.",
+                "at": "Erstöt am.",
+                "fr": "Créé à.",
+                "es": "Creado en.",
+                "ru": "Создано в.",
+                "it": "Creato a."
             },
             "NoCases": {
                 "description": "No active modcases have been found.",
                 "en": "No active modcases have been found.",
-                "de": "Keine aktiven Mod-Fälle wurden gefunden."
+                "de": "Keine aktiven Mod-Fälle wurden gefunden.",
+                "at": "Kane aktiven Mod-Fälle san gfundn woan.",
+                "fr": "Aucun modcase actif n'a été trouvé.",
+                "es": "No se han encontrado casos de modulación activos.",
+                "ru": "Активных модкейсов не обнаружено.",
+                "it": "Nessun modcase attivo è stato trovato."
             },
             "Unmute": {
                 "FoundXCases": {
@@ -1451,30 +1830,55 @@
                         "caseCount": "int"
                     },
                     "en": "Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unmute the user?",
-                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entsperren zu lassen?"
+                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer nicht mehr stummgeschaltet zu lassen?",
+                    "at": "Es san `{caseCount}` aktive Fälle gfundn woan. Möchtest olle deaktivian oda löschn, damit da Nutza nimma stummgschoitn bleibt?",
+                    "fr": "`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour réactiver le son de l'utilisateur ?",
+                    "es": "Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para dejar de silenciar al usuario?",
+                    "ru": "Обнаружены активные обращения `{caseCount}`. Вы хотите деактивировать или удалить их все, чтобы включить микрофон для пользователя?",
+                    "it": "Trovati casi attivi di `{caseCount}`. Vuoi disattivarli o eliminarli tutti per riattivare l'audio dell'utente?"
                 },
                 "Result": {
                     "Deleted": {
                         "description": "someone approved",
                         "en": "Mutes deleted",
-                        "de": "Sperrungen gelöscht"
+                        "de": "Sperrungen gelöscht",
+                        "at": "Sperrungen san glescht woan",
+                        "fr": "Muets supprimés",
+                        "es": "Silenciados eliminados",
+                        "ru": "Без звука удалено",
+                        "it": "Disattiva audio cancellato"
                     },
                     "Deactivated": {
                         "description": "someone approved",
                         "en": "Mutes deactivated",
-                        "de": "Sperrungen deaktiviert"
+                        "de": "Sperrungen deaktiviert",
+                        "at": "Sperrungen san deaktiviert woan",
+                        "fr": "Muet désactivé",
+                        "es": "Silencios desactivados",
+                        "ru": "Отключение звука отключено",
+                        "it": "Mute disattivate"
                     }
                 },
                 "Buttons": {
                     "Delete": {
                         "description": "Unban button to approve",
                         "en": "Delete Mutes",
-                        "de": "Sperrungen löschen"
+                        "de": "Sperrungen löschen",
+                        "at": "Sperrungen löschn",
+                        "fr": "Supprimer les sourdines",
+                        "es": "Eliminar silencios",
+                        "ru": "Удалить отключение звука",
+                        "it": "Elimina mute"
                     },
                     "Deactivate": {
                         "description": "Unban button to approve",
                         "en": "Deativate Mutes",
-                        "de": "Sperrungen deaktivieren"
+                        "de": "Sperrungen deaktivieren",
+                        "at": "Sperrungen deaktivian",
+                        "fr": "Désactiver les sourdines",
+                        "es": "Silenciar desactivados",
+                        "ru": "Отключить отключение звука",
+                        "it": "Disattiva sordina"
                     }
                 }
             },
@@ -1485,30 +1889,55 @@
                         "caseCount": "int"
                     },
                     "en": "Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unban the user?",
-                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entsperren zu lassen?"
+                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entsperren zu lassen?",
+                    "at": "Es san `{caseCount}` aktive Fälle gfundn woan. Möchtest olle deaktivian oda löschn, damit da Nutza entsperrt bleibt?",
+                    "fr": "`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour annuler l'interdiction de l'utilisateur ?",
+                    "es": "Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para desbloquear al usuario?",
+                    "ru": "Обнаружены активные обращения `{caseCount}`. Вы хотите деактивировать или удалить их все, чтобы разблокировать пользователя?",
+                    "it": "Trovati casi attivi di `{caseCount}`. Vuoi disattivarli o eliminarli tutti per riabilitare l'utente?"
                 },
                 "Result": {
                     "Deleted": {
                         "description": "someone approved",
                         "en": "Bans deleted",
-                        "de": "Sperrungen gelöscht"
+                        "de": "Sperrungen gelöscht",
+                        "at": "Sperrungen glescht",
+                        "fr": "Interdictions supprimées",
+                        "es": "Prohibiciones eliminadas",
+                        "ru": "Баны удалены",
+                        "it": "Divieti cancellati"
                     },
                     "Deactivated": {
                         "description": "someone approved",
                         "en": "Bans deactivated",
-                        "de": "Sperrungen deaktiviert"
+                        "de": "Sperrungen deaktiviert",
+                        "at": "Sperrungen deaktiviat",
+                        "fr": "Interdictions désactivées",
+                        "es": "Prohibiciones desactivadas",
+                        "ru": "Баны отключены",
+                        "it": "Divieti disattivati"
                     }
                 },
                 "Buttons": {
                     "Delete": {
                         "description": "Unban button to approve",
                         "en": "Delete Bans",
-                        "de": "Sperrungen löschen"
+                        "de": "Sperrungen löschen",
+                        "at": "Sperrungen löschn",
+                        "fr": "Supprimer les bannissements",
+                        "es": "Eliminar prohibiciones",
+                        "ru": "Удалить баны",
+                        "it": "Elimina ban"
                     },
                     "Deactivate": {
                         "description": "Unban button to approve",
                         "en": "Deativate Bans",
-                        "de": "Sperrungen deaktivieren"
+                        "de": "Sperrungen deaktivieren",
+                        "at": "Sperrungen deaktivian",
+                        "fr": "Désactiver les interdictions",
+                        "es": "Prohibiciones de desactivación",
+                        "ru": "Деактивировать баны",
+                        "it": "Divieti di disattivazione"
                     }
                 }
             }
@@ -1546,12 +1975,12 @@
             "it": "ID"
         },
         "UserID": {
-            "description": "UserId",
-            "en": "UserId",
+            "description": "User ID",
+            "en": "User ID",
             "de": "NutzerId",
             "at": "NutzaId",
             "fr": "Identifiant d'utilisateur",
-            "es": "UserId",
+            "es": "User ID",
             "ru": "ID пользователя",
             "it": "ID utente"
         },
@@ -1604,6 +2033,36 @@
             "es": "Información no almacenada en caché.",
             "ru": "Информация не кешируется.",
             "it": "Informazioni non memorizzate nella cache."
+        },
+        "Old": {
+            "description": "Old",
+            "en": "Old",
+            "de": "Alt",
+            "at": "Alt",
+            "fr": "Ancien",
+            "es": "Viejo",
+            "ru": "Старый",
+            "it": "Vecchio"
+        },
+        "New": {
+            "description": "New",
+            "en": "New",
+            "de": "Neu",
+            "at": "Neu",
+            "fr": "Nouveau",
+            "es": "Nuevo",
+            "ru": "Новый",
+            "it": "Nuovo"
+        },
+        "Empty": {
+            "description": "Empty",
+            "en": "Empty",
+            "de": "Leer",
+            "at": "Leer",
+            "fr": "Vide",
+            "es": "Vacío",
+            "ru": "Пустой",
+            "it": "Vuoto"
         },
         "MessageSent": {
             "Title": {
@@ -1833,6 +2292,74 @@
                 "es": "Creador",
                 "ru": "Создатель",
                 "it": "Creatore"
+            }
+        },
+        "UsernameUpdated": {
+            "Title": {
+                "description": "Username updated",
+                "en": "Username updated",
+                "de": "Benutzername aktualisiert",
+                "at": "Benutzanom aktualisiat",
+                "fr": "Nom d'utilisateur mis à jour",
+                "es": "Nombre de usuario actualizado",
+                "ru": "Имя пользователя обновлено",
+                "it": "Nome utente aggiornato"
+            }
+        },
+        "AvatarUpdated": {
+            "Title": {
+                "description": "Avatar updated",
+                "en": "Avatar updated",
+                "de": "Avatar aktualisiert",
+                "at": "Avatar aktualisiat",
+                "fr": "Avatar mis à jour",
+                "es": "Avatar actualizado",
+                "ru": "Аватар обновлен",
+                "it": "Avatar aggiornato"
+            }
+        },
+        "NicknameUpdated": {
+            "Title": {
+                "description": "Nickname updated",
+                "en": "Nickname updated",
+                "de": "Nickname aktualisiert",
+                "at": "Nickname aktualisiat",
+                "fr": "Pseudo mis à jour",
+                "es": "Se actualizó el apodo",
+                "ru": "Псевдоним обновлен",
+                "it": "Nickname aggiornato"
+            }
+        },
+        "RolesUpdated": {
+            "Title": {
+                "description": "Roles updated",
+                "en": "Roles updated",
+                "de": "Rollen aktualisiert",
+                "at": "Rollen aktualisiat",
+                "fr": "Rôles mis à jour",
+                "es": "Funciones actualizadas",
+                "ru": "Роли обновлены",
+                "it": "Ruoli aggiornati"
+            },
+            "Added": {
+                "description": "Added",
+                "en": "Added",
+                "de": "Hinzugefügt",
+                "at": "Hinzugfügt",
+                "fr": "Ajoutée",
+                "es": "Adicional",
+                "ru": "Добавлен",
+                "it": "Aggiunto"
+            },
+            "Removed": {
+                "description": "Removed",
+                "en": "Removed",
+                "de": "Entfernt",
+                "at": "Entfernt",
+                "fr": "Supprimé",
+                "es": "Remoto",
+                "ru": "Удаленный",
+                "it": "RIMOSSO"
             }
         }
     }

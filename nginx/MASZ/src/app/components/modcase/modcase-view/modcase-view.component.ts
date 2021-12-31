@@ -158,6 +158,7 @@ export class ModcaseViewComponent implements OnInit {
       this.modCase.content = data;
       this.renderedDescription = this.renderDescription(data.modCase.description, this.guildId)
       this.punishment = convertModcaseToPunishmentString(this.modCase.content?.modCase, this.punishments?.content);
+      this.creationType = this.creationTypes?.find(x => x.key == this.modCase.content?.modCase?.creationType)?.value ?? '';
       this.markedDeleteParams = {
         user: data.deletedBy ? `${data.deletedBy.username}#${data.deletedBy.discriminator}` : this.translator.instant('ModCaseView.Moderators')
       };
@@ -355,7 +356,7 @@ export class ModcaseViewComponent implements OnInit {
       "message": this.newComment.trim()
     };
 
-    this.api.postSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/comments`, data).subscribe(() => {
+    this.api.postSimpleData(`/guilds/${this.guildId}/cases/${this.caseId}/comments`, data, undefined, true, true).subscribe(() => {
       this.newComment = "";
       this.toastr.success(this.translator.instant('ModCaseView.CommentPost.Posted'));
       this.reloadCase();

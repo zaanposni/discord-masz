@@ -1,4 +1,13 @@
 {
+    "Forms": {
+        "FieldRequired": "Questo campo è obbligatorio.",
+        "MaxLength": "Questo campo deve contenere al massimo {{length}} caratteri."
+    },
+    "Select": {
+        "Select": "Selezionare",
+        "Search": "Ricerca"
+    },
+    "Version": "Versione",
     "LoginWithDiscord": {
         "Button": "Accedi con Discord",
         "Loading": "Accesso con Discord..."
@@ -28,6 +37,7 @@
         "Legal": "legale",
         "API": "API",
         "Insights": "Approfondimenti",
+        "Settings": "Impostazioni",
         "Scanning": "Scansione"
     },
     "Guilds": {
@@ -42,6 +52,18 @@
         "GuildDeleted": "Gilda eliminata.",
         "FailedToDeleteGuild": "Impossibile eliminare la gilda.",
         "PleaseLoginFirst": "Per favore fai prima il log in."
+    },
+    "AppSettings": {
+        "Title": "Impostazioni",
+        "Embed": {
+            "Title": "Embed Discord",
+            "Content": "Questa impostazione cambierà il contenuto dell'embed quando il tuo istanza MASZ è collegata in Discord.",
+            "TakeToUpdate": "Si prega di notare che questo può richiedere fino a un'ora per aggiornare.",
+            "Save": {
+                "Button": "Salva",
+                "Message": "Salvato."
+            }
+        }
     },
     "Adminstats": {
         "Bot": "bot",
@@ -142,6 +164,8 @@
         "Confirm": "Confermare"
     },
     "GuildDialog": {
+        "ImportExistingBans": "Importa divieti esistenti",
+        "ImportExistingBansDetails": "Questo potrebbe richiedere un po' di tempo per le gilde grandi, ma verrà eseguito in background.",
         "AddAGuild": "Aggiungi una gilda",
         "SearchAGuild": "Cerca una gilda",
         "SelectAnotherGuild": "Seleziona una gilda",
@@ -299,6 +323,7 @@
         "LogEntryHover": "Viene sempre generata una voce di registro.",
         "SendDMNotification": "Invia notifica dm",
         "Action": "Azione",
+        "ChannelNotificationBehavior": "Notifica del canale",
         "SendPublicNotification": "Invia notifica pubblica",
         "DurationInMinutes": "Durata in minuti",
         "YouAreDone": "Ora hai finito.",
@@ -455,7 +480,21 @@
         "CaseUpdated": "Caso aggiornato."
     },
     "ModCaseTable": {
+        "SelectMembers": "Membri",
+        "SelectModerators": "Moderatori",
+        "SelectCreationTypes": "Tipi di creazione",
+        "SelectPunishments": "punizioni",
+        "SelectEdited": "Modifica stato",
+        "SelectLocked": "Stato di blocco",
+        "SelectDelete": "Elimina stato",
+        "SelectActive": "Stato attivo",
+        "FilterSince": "Creato da",
+        "FilterUntil": "Creato fino al",
+        "FilterPunishedSince": "Punito almeno fino al",
+        "FilterPunishedBefore": "punito fino a",
+        "ExecuteSearch": "Ricerca",
         "ExcludePermanent": "Escludi punizioni permanenti",
+        "UseAdvancedFilter": "Usa il filtro avanzato",
         "CreateNewCase": "Crea nuovo caso",
         "Search": "Cerca (utente, id, descrizione...)",
         "FailedToLoad": "Impossibile caricare i casi.",
@@ -475,7 +514,16 @@
         "Guild": "Gilda",
         "PunishedUntil": "Punito fino a:",
         "PunishedForever": "Punito per sempre",
+        "Deactivated": {
+            "Success": "Il caso è stato disattivato.",
+            "Failed": "Impossibile disattivare la custodia."
+        },
+        "Activated": {
+            "Success": "Il caso è stato attivato.",
+            "Failed": "Impossibile attivare il caso."
+        },
         "PunishmentExpired": "La pena è scaduta.",
+        "CaseInactive": "Modcase non è attivo.",
         "CreatedAt": "Creato a",
         "EditedAt": "Modificato a",
         "LastEditModerator": "Ultima modifica del moderatore",

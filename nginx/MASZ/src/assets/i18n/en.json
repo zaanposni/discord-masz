@@ -1,8 +1,13 @@
 {
+    "Forms": {
+        "FieldRequired": "This field is required.",
+        "MaxLength": "This field must be at most {{length}} characters long."
+    },
     "Select": {
         "Select": "Select",
         "Search": "Search"
     },
+    "Version": "Version",
     "LoginWithDiscord": {
         "Button": "Login with Discord",
         "Loading": "Logging you in with Discord..."
@@ -32,6 +37,7 @@
         "Legal": "Legal",
         "API": "API",
         "Insights": "Insights",
+        "Settings": "Settings",
         "Scanning": "Scanning"
     },
     "Guilds": {
@@ -46,6 +52,18 @@
         "GuildDeleted": "Guild deleted.",
         "FailedToDeleteGuild": "Failed to delete guild.",
         "PleaseLoginFirst": "Please login first."
+    },
+    "AppSettings": {
+        "Title": "Settings",
+        "Embed": {
+            "Title": "Discord Embed",
+            "Content": "This setting will change the content of the embed when your MASZ instance is linked in Discord.",
+            "TakeToUpdate": "Please note that this might take up to one hour to update in discord.",
+            "Save": {
+                "Button": "Save",
+                "Message": "Saved."
+            }
+        }
     },
     "Adminstats": {
         "Bot": "Bot",
@@ -146,6 +164,8 @@
         "Confirm": "Confirm"
     },
     "GuildDialog": {
+        "ImportExistingBans": "Import existing bans",
+        "ImportExistingBansDetails": "This might take a while for large guilds but will run in the background.",
         "AddAGuild": "Add a guild",
         "SearchAGuild": "Search a guild",
         "SelectAnotherGuild": "Select a guild",

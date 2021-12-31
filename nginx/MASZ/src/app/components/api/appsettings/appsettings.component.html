@@ -1,0 +1,44 @@
+<div style="height: 100px;"></div>
+<div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="d-flex flex-column justify-content-center align-items-left cw-50-75">
+        <div class="mat-display-2 font-weight-bold mb-4">{{ 'AppSettings.Title' | translate }}</div>
+        <div class="mat-h1 font-weight-bold mb-2">{{ 'AppSettings.Embed.Title' | translate }}</div>
+        <div class="mb-0">{{ 'AppSettings.Embed.Content' | translate }}</div>
+        <div class="mb-3 warn-color">{{ 'AppSettings.Embed.TakeToUpdate' | translate }}</div>
+        <form *ngIf="!settingsLoading" [formGroup]="formGroup">
+            <mat-form-field class="w-75 mb-2">
+                <mat-label>{{ 'ModCaseDialog.Title' | translate }}</mat-label>
+                <input matInput type="text" formControlName="title">
+                <div *ngIf="title?.invalid && (title?.dirty || title?.touched)" class="alert alert-danger my-1">
+                    <div *ngIf="title?.errors?.['required']">
+                        {{ 'Forms.FieldRequired' | translate }}
+                    </div>
+                    <div *ngIf="title?.errors?.['maxlength']">
+                        {{ 'Forms.MaxLength' | translate:maxLength256 }}
+                    </div>
+                </div>
+            </mat-form-field><br/>
+            <mat-form-field class="w-75 mb-2">
+                <mat-label>{{ 'ModCaseDialog.Description' | translate }}</mat-label>
+                <textarea matInput type="text" formControlName="content" rows="{{initRows}}"></textarea>
+                <div *ngIf="content?.invalid && (content?.dirty || content?.touched)" class="alert alert-danger my-1">
+                    <div *ngIf="content?.errors?.['required']">
+                        {{ 'Forms.FieldRequired' | translate }}
+                    </div>
+                    <div *ngIf="content?.errors?.['maxlength']">
+                        {{ 'Forms.MaxLength' | translate:maxLength4096 }}
+                    </div>
+                </div>
+            </mat-form-field><br/>
+            <button mat-raised-button
+                color="primary"
+                aria-label="create token"
+                class="flex-shrink-1"
+                (click)="updateSettings()"
+                [disabled]="title?.invalid || content?.invalid">
+                    {{ 'AppSettings.Embed.Save.Button' | translate }}
+            </button>
+        </form>
+        <mat-spinner *ngIf="settingsLoading"></mat-spinner>
+    </div>
+</div>

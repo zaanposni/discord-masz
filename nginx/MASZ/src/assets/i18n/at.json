@@ -1,4 +1,13 @@
 {
+    "Forms": {
+        "FieldRequired": "Dieses Feld ist erforderlich.",
+        "MaxLength": "Dieses Feld darf maximal {{length}} Zeichen lang sein."
+    },
+    "Select": {
+        "Select": "Auswöhn",
+        "Search": "Suchn"
+    },
+    "Version": "Version",
     "LoginWithDiscord": {
         "Button": "Mit Discord omödn",
         "Loading": "Du wiast ogmödt..."
@@ -28,6 +37,7 @@
         "Legal": "Rechtlichs",
         "API": "API",
         "Insights": "Statistikn",
+        "Settings": "Einstellungn",
         "Scanning": "Untasuchung"
     },
     "Guilds": {
@@ -42,6 +52,18 @@
         "GuildDeleted": "Güde glescht.",
         "FailedToDeleteGuild": "Güde konnt ned glescht wean.",
         "PleaseLoginFirst": "Bitte möd di zerst o."
+    },
+    "AppSettings": {
+        "Title": "Einstellungn",
+        "Embed": {
+            "Title": "Discord Einbettung",
+            "Content": "Diese Einstellung ändert den Inhalt der Einbettung, wenn deine MASZ-Instanz in Discord verknüpft ist.",
+            "TakeToUpdate": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird",
+            "Save": {
+                "Button": "Späicheren",
+                "Message": "Gspäichert."
+            }
+        }
     },
     "Adminstats": {
         "Bot": "Bot",
@@ -142,6 +164,8 @@
         "Confirm": "Zustima"
     },
     "GuildDialog": {
+        "ImportExistingBans": "Bestehende Sperrn importian",
+        "ImportExistingBansDetails": "Des ko bei ana großn Güdn a bissal dauan, oba des wird im Hintagrund ausgfüaht.",
         "AddAGuild": "Güde hinzufügn",
         "SearchAGuild": "Güde suchn",
         "SelectAnotherGuild": "Tu a ondera Güde wöhn",
@@ -299,6 +323,7 @@
         "LogEntryHover": "A Eitrog wird imma erstöt.",
         "SendDMNotification": "Schick a DM Benochrichtigung",
         "Action": "Aktion",
+        "ChannelNotificationBehavior": "Kanalbenochrichtigung",
         "SendPublicNotification": "Send a öffentliche Benochrichtigung",
         "DurationInMinutes": "Daua in Minutn",
         "YouAreDone": "Du bist jetzt fertig.",
@@ -455,7 +480,21 @@
         "CaseUpdated": "Vorfoi aktualisiat."
     },
     "ModCaseTable": {
+        "SelectMembers": "Mitglieda",
+        "SelectModerators": "Modaratoren",
+        "SelectCreationTypes": "Erstöllungsoartn",
+        "SelectPunishments": "Bestrofungen",
+        "SelectEdited": "Beorbeitet-Status",
+        "SelectLocked": "Sperr-Status",
+        "SelectDelete": "Lösch-Status",
+        "SelectActive": "Aktiv-Status",
+        "FilterSince": "Erstöt vo",
+        "FilterUntil": "Erstöt bis",
+        "FilterPunishedSince": "Bestroft bis mindastens",
+        "FilterPunishedBefore": "Bestroft bis",
+        "ExecuteSearch": "Suche startn",
         "ExcludePermanent": "Permanente Vorfälle vasteckn",
+        "UseAdvancedFilter": "Erweitatn Füta nutzn",
         "CreateNewCase": "Neichn Vorfoi erstön",
         "Search": "Suach (Benutza, ID, Beschreibung ...)",
         "FailedToLoad": "Vorfälle konntn ned glodn wean.",
@@ -475,7 +514,16 @@
         "Guild": "Güde",
         "PunishedUntil": "Bestroft bis:",
         "PunishedForever": "Bestroft fia imma",
+        "Deactivated": {
+            "Success": "Vorfoi is deaktiviat woan",
+            "Failed": "Vorfoi konnt ned deaktiviat wean."
+        },
+        "Activated": {
+            "Success": "Vorfoi wuad deaktiviat.",
+            "Failed": "Vorfoi konnt ned deaktiviat wean."
+        },
         "PunishmentExpired": "Bestrofung is ausglaufn",
+        "CaseInactive": "Vorfoi is ned aktiv.",
         "CreatedAt": "Erstöt am",
         "EditedAt": "Aktualisiat",
         "LastEditModerator": "Aktualisiat vo",

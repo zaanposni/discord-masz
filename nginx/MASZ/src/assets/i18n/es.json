@@ -1,4 +1,13 @@
 {
+    "Forms": {
+        "FieldRequired": "Este campo es obligatorio.",
+        "MaxLength": "Este campo debe tener como máximo {{length}} caracteres."
+    },
+    "Select": {
+        "Select": "Seleccione",
+        "Search": "Búsqueda"
+    },
+    "Version": "Versión",
     "LoginWithDiscord": {
         "Button": "Iniciar sesión con Discord",
         "Loading": "Iniciando sesión con Discord ..."
@@ -28,6 +37,7 @@
         "Legal": "Legal",
         "API": "API",
         "Insights": "Perspectivas",
+        "Settings": "Ajustes",
         "Scanning": "Exploración"
     },
     "Guilds": {
@@ -42,6 +52,18 @@
         "GuildDeleted": "Gremio eliminado.",
         "FailedToDeleteGuild": "No se pudo borrar el gremio.",
         "PleaseLoginFirst": "Por favor ingresa primero."
+    },
+    "AppSettings": {
+        "Title": "Ajustes",
+        "Embed": {
+            "Title": "Embed de Discord",
+            "Content": "Esta configuración cambiará el contenido del anuncio cuando tu instancia MASZ esté vinculada en Discord.",
+            "TakeToUpdate": "Por favor tenga en cuenta que esto puede tomar hasta una hora para actualizar.",
+            "Save": {
+                "Button": "Guardar",
+                "Message": "Guardado."
+            }
+        }
     },
     "Adminstats": {
         "Bot": "Bot",
@@ -142,6 +164,8 @@
         "Confirm": "Confirmar"
     },
     "GuildDialog": {
+        "ImportExistingBans": "Importar prohibiciones existentes",
+        "ImportExistingBansDetails": "Esto puede llevar un tiempo para los gremios grandes, pero se ejecutará en segundo plano.",
         "AddAGuild": "Agregar un gremio",
         "SearchAGuild": "Buscar un gremio",
         "SelectAnotherGuild": "Seleccionar un gremio",
@@ -299,6 +323,7 @@
         "LogEntryHover": "Siempre se genera una entrada de registro.",
         "SendDMNotification": "Enviar notificación dm",
         "Action": "Acción",
+        "ChannelNotificationBehavior": "Notificación de canal",
         "SendPublicNotification": "Enviar notificación pública",
         "DurationInMinutes": "Duración en minutos",
         "YouAreDone": "Ya ha terminado.",
@@ -455,7 +480,21 @@
         "CaseUpdated": "Caso actualizado."
     },
     "ModCaseTable": {
+        "SelectMembers": "Miembros",
+        "SelectModerators": "Moderadores",
+        "SelectCreationTypes": "Tipos de creación",
+        "SelectPunishments": "Castigos",
+        "SelectEdited": "Editar estado",
+        "SelectLocked": "Estado de bloqueo",
+        "SelectDelete": "Eliminar estado",
+        "SelectActive": "Estado activo",
+        "FilterSince": "Creado desde",
+        "FilterUntil": "Creado hasta",
+        "FilterPunishedSince": "Castigado al menos hasta",
+        "FilterPunishedBefore": "Castigado hasta",
+        "ExecuteSearch": "Búsqueda",
         "ExcludePermanent": "Excluir castigos permanentes",
+        "UseAdvancedFilter": "Usar filtro avanzado",
         "CreateNewCase": "Crear nuevo caso",
         "Search": "Búsqueda (usuario, id, descripción ...)",
         "FailedToLoad": "No se pudieron cargar los casos.",
@@ -475,7 +514,16 @@
         "Guild": "Gremio",
         "PunishedUntil": "Castigado hasta:",
         "PunishedForever": "Castigado para siempre",
+        "Deactivated": {
+            "Success": "El caso ha sido desactivado.",
+            "Failed": "No se pudo desactivar el caso."
+        },
+        "Activated": {
+            "Success": "El caso se ha activado.",
+            "Failed": "No se pudo activar el caso."
+        },
         "PunishmentExpired": "El castigo ha expirado.",
+        "CaseInactive": "Modcase está inactivo.",
         "CreatedAt": "Creado en",
         "EditedAt": "Editado en",
         "LastEditModerator": "Última edición del moderador",

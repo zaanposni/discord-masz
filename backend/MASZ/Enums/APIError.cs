@@ -1,0 +1,35 @@
+namespace MASZ.Enums
+{
+    public enum APIError
+    {
+        Unknown,
+        InvalidDiscordUser,
+        ProtectedModCaseSuspect,
+        ProtectedModCaseSuspectIsBot,
+        ProtectedModCaseSuspectIsSiteAdmin,
+        ProtectedModCaseSuspectIsTeam,
+        ResourceNotFound,
+        InvalidIdentity,
+        GuildUnregistered,
+        Unauthorized,
+        GuildUndefinedMutedRoles,
+        ModCaseIsMarkedToBeDeleted,
+        ModCaseIsNotMarkedToBeDeleted,
+        GuildAlreadyRegistered,
+        NotAllowedInDemoMode,
+        RoleNotFound,
+        TokenCannotManageThisResource,
+        TokenAlreadyRegistered,
+        CannotBeSameUser,
+        ResourceAlreadyExists,
+        ModCaseDoesNotAllowComments,
+        LastCommentAlreadyFromSuspect,
+        InvalidAutomoderationAction,
+        InvalidAutomoderationType,
+        TooManyTemplates,
+        InvalidFilePath,
+        NoGuildsRegistered,
+        OnlyUsableInAGuild,
+        InvalidAuditLogEvent,
+    }
+}

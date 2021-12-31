@@ -49,10 +49,12 @@ export class GuildEditComponent implements OnInit {
       preferredLanguage: ['']
     });
 
-    const guildId = this.route.snapshot.paramMap.get('guildid');
-    this.loadLanguages();
-    this.loadGuild(guildId);
-    this.loadConfig(guildId);
+      this.route.paramMap.subscribe(params => {
+        const guildId = params.get("guildid");
+        this.loadLanguages();
+        this.loadGuild(guildId);
+        this.loadConfig(guildId);
+      });
   }
 
   generateRoleColor(role: GuildRole): string {

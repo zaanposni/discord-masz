@@ -30,7 +30,7 @@
             "ru": "Пинать",
             "it": "Calcio"
         },
-        "None": {
+        "Warn": {
             "description": "The word 'warn'",
             "en": "Warn",
             "de": "Verwarnung",
@@ -627,85 +627,302 @@
         "SendNotification": {
             "description": "A notification is send.",
             "en": "Channel notification",
-            "de": "Kanalbenachrichtigung"
+            "de": "Kanalbenachrichtigung",
+            "at": "Kanalbenochrichtung",
+            "fr": "Notification de chaîne",
+            "es": "Notificación de canal",
+            "ru": "Уведомление канала",
+            "it": "Notifica del canale"
         },
         "SendNotificationAndDelete": {
             "description": "A notification is send and the message is deleted shortly after.",
             "en": "Temporary channel notification",
-            "de": "Temporäre Kanalbenachrichtigung"
+            "de": "Temporäre Kanalbenachrichtigung",
+            "at": "Temporäre Kanalbenochrichtigung",
+            "fr": "Notification de chaîne temporaire",
+            "es": "Notificación de canal temporal",
+            "ru": "Уведомление о временном канале",
+            "it": "Notifica temporanea del canale"
         },
         "NoNotification": {
             "description": "No notification is send.",
             "en": "No channel notification",
-            "de": "Keine Kanalbenachrichtigung"
+            "de": "Keine Kanalbenachrichtigung",
+            "at": "Kane Kanalbenochrichtigung",
+            "fr": "Aucune notification de chaîne",
+            "es": "Sin notificación de canal",
+            "ru": "Уведомление о канале отсутствует",
+            "it": "Nessuna notifica del canale"
         }
     },
     "EditStatus": {
         "None": {
             "description": "No edit status.",
             "en": "None",
-            "de": "Unbestimmt"
+            "de": "Unbestimmt",
+            "at": "Unbekonnt",
+            "fr": "Rien",
+            "es": "Ninguna",
+            "ru": "Никто",
+            "it": "Nessuno"
         },
         "Unedited": {
             "description": "The case is not edited.",
             "en": "Not edited",
-            "de": "Nicht bearbeitet"
+            "de": "Nicht bearbeitet",
+            "at": "Ned beorbeitet.",
+            "fr": "Non édité",
+            "es": "No editado",
+            "ru": "Не редактировалось",
+            "it": "Non modificato"
         },
         "Edited": {
             "description": "The case is edited.",
             "en": "Edited",
-            "de": "Bearbeitet"
+            "de": "Bearbeitet",
+            "at": "Beorbeitet",
+            "fr": "Édité",
+            "es": "Editado",
+            "ru": "Отредактировано",
+            "it": "Modificato"
         }
     },
     "LockedCommentStatus": {
         "None": {
             "description": "No locked comment status.",
             "en": "None",
-            "de": "Unbestimmt"
+            "de": "Unbestimmt",
+            "at": "Unbekonnt",
+            "fr": "Rien",
+            "es": "Ninguna",
+            "ru": "Никто",
+            "it": "Nessuno"
         },
         "Locked": {
             "description": "The comment is locked.",
             "en": "Locked",
-            "de": "Gesperrt"
+            "de": "Gesperrt",
+            "at": "Gsperrt",
+            "fr": "Fermé à clé",
+            "es": "Bloqueado",
+            "ru": "Заблокировано",
+            "it": "bloccato"
         },
         "Unlocked": {
             "description": "The comment is unlocked.",
             "en": "Unlocked",
-            "de": "Entsperrt"
+            "de": "Entsperrt",
+            "at": "Entsperrt",
+            "fr": "Débloqué",
+            "es": "Desbloqueado",
+            "ru": "Разблокирован",
+            "it": "sbloccato"
         }
     },
     "MarkedToDeleteStatus": {
         "None": {
             "description": "No marked to delete status.",
             "en": "None",
-            "de": "Unbestimmt"
+            "de": "Unbestimmt",
+            "at": "Unbekonnt",
+            "fr": "Rien",
+            "es": "Ninguna",
+            "ru": "Никто",
+            "it": "Nessuno"
         },
         "Marked": {
             "description": "The case is marked to delete.",
             "en": "Marked to delete",
-            "de": "Zu löschen markiert"
+            "de": "Zu löschen markiert",
+            "at": "Zum löschn markiat",
+            "fr": "Marqué à supprimer",
+            "es": "Marcado para eliminar",
+            "ru": "Отмечено для удаления",
+            "it": "Contrassegnato per eliminare"
         },
         "Unmarked": {
             "description": "The case is not marked to delete.",
             "en": "Not marked to delete",
-            "de": "Nicht zu löschen markiert"
+            "de": "Nicht zu löschen markiert",
+            "at": "Ned zum löschn markiat",
+            "fr": "Non marqué pour supprimer",
+            "es": "No marcado para eliminar",
+            "ru": "Не отмечен для удаления",
+            "it": "Non contrassegnato per l'eliminazione"
         }
     },
     "PunishmentActiveStatus": {
         "None": {
             "description": "No punishment active status.",
             "en": "None",
-            "de": "Unbestimmt"
+            "de": "Unbestimmt",
+            "at": "Unbekonnt",
+            "fr": "Rien",
+            "es": "Ninguna",
+            "ru": "Никто",
+            "it": "Nessuno"
         },
         "Active": {
             "description": "The punishment is active.",
             "en": "Active",
-            "de": "Aktiv"
+            "de": "Aktiv",
+            "at": "Aktiv",
+            "fr": "actif",
+            "es": "Activo",
+            "ru": "Активный",
+            "it": "Attivo"
         },
         "Inactive": {
             "description": "The punishment is inactive.",
             "en": "Inactive",
-            "de": "Inaktiv"
+            "de": "Inaktiv",
+            "at": "Inaktiv",
+            "fr": "Inactif",
+            "es": "Inactivo",
+            "ru": "Неактивный",
+            "it": "Non attivo"
+        }
+    },
+    "GuildAuditLogEvent": {
+        "MessageSent": {
+            "description": "A message was sent.",
+            "en": "Message sent",
+            "de": "Nachricht gesendet",
+            "at": "Nochricht gsendet",
+            "fr": "Message envoyé",
+            "es": "Mensaje enviado",
+            "ru": "Сообщение отправлено",
+            "it": "Messaggio inviato"
+        },
+        "MessageUpdated": {
+            "description": "A message was updated.",
+            "en": "Message updated",
+            "de": "Nachricht aktualisiert",
+            "at": "Nochricht aktualisiat",
+            "fr": "Message mis à jour",
+            "es": "Mensaje actualizado",
+            "ru": "Сообщение обновлено",
+            "it": "Messaggio aggiornato"
+        },
+        "MessageDeleted": {
+            "description": "A message was deleted.",
+            "en": "Message deleted",
+            "de": "Nachricht gelöscht",
+            "at": "Nochricht glescht",
+            "fr": "Message supprimé",
+            "es": "Mensaje borrado",
+            "ru": "Сообщение удалено",
+            "it": "Messaggio cancellato"
+        },
+        "UsernameUpdated": {
+            "description": "The username was updated.",
+            "en": "Username updated",
+            "de": "Benutzername aktualisiert",
+            "at": "Benutzaname aktualisiat",
+            "fr": "Nom d'utilisateur mis à jour",
+            "es": "Nombre de usuario actualizado",
+            "ru": "Имя пользователя обновлено",
+            "it": "Nome utente aggiornato"
+        },
+        "AvatarUpdated": {
+            "description": "The avatar was updated.",
+            "en": "Avatar updated",
+            "de": "Avatar aktualisiert",
+            "at": "Avatar aktualisiat",
+            "fr": "Avatar mis à jour",
+            "es": "Avatar actualizado",
+            "ru": "Аватар обновлен",
+            "it": "Avatar aggiornato"
+        },
+        "NicknameUpdated": {
+            "description": "The nickname was updated.",
+            "en": "Nickname updated",
+            "de": "Nickname aktualisiert",
+            "at": "Nickname aktualisiat",
+            "fr": "Pseudo mis à jour",
+            "es": "Se actualizó el apodo",
+            "ru": "Псевдоним обновлен",
+            "it": "Nickname aggiornato"
+        },
+        "MemberRolesUpdated": {
+            "description": "The member roles were updated.",
+            "en": "Member roles updated",
+            "de": "Mitgliederrollen aktualisiert",
+            "at": "Mitgliedarollen aktualisiat",
+            "fr": "Rôles des membres mis à jour",
+            "es": "Se actualizaron las funciones de los miembros",
+            "ru": "Роли участников обновлены",
+            "it": "Ruoli dei membri aggiornati"
+        },
+        "MemberJoined": {
+            "description": "A member joined the guild.",
+            "en": "Member joined",
+            "de": "Mitglied beigetreten",
+            "at": "Mitglied beitretn",
+            "fr": "Membre rejoint",
+            "es": "Miembro se unió",
+            "ru": "Участник присоединился",
+            "it": "Membro iscritto"
+        },
+        "MemberRemoved": {
+            "description": "A member was removed from the guild.",
+            "en": "Member removed",
+            "de": "Mitglied entfernt",
+            "at": "Mitglied entfernt",
+            "fr": "Membre supprimé",
+            "es": "Miembro eliminado",
+            "ru": "Участник удален",
+            "it": "Membro rimosso"
+        },
+        "BanAdded": {
+            "description": "A member was banned from the guild.",
+            "en": "Member banned",
+            "de": "Mitglied gebannt",
+            "at": "Mitglied ausgsperrt",
+            "fr": "Membre banni",
+            "es": "Miembro prohibido",
+            "ru": "Участник забанен",
+            "it": "Membro bannato"
+        },
+        "BanRemoved": {
+            "description": "A member was unbanned from the guild.",
+            "en": "Member unbanned",
+            "de": "Mitglied entsperrt",
+            "at": "Mitglied nimma ausgsperrt",
+            "fr": "Membre non banni",
+            "es": "Miembro no prohibido",
+            "ru": "Участник разблокирован",
+            "it": "Membro non bannato"
+        },
+        "InviteCreated": {
+            "description": "An invite was created.",
+            "en": "Invite created",
+            "de": "Einladung erstellt",
+            "at": "Eiladung erstöt",
+            "fr": "Invitation créée",
+            "es": "Invitación creada",
+            "ru": "Приглашение создано",
+            "it": "Invito creato"
+        },
+        "InviteDeleted": {
+            "description": "An invite was deleted.",
+            "en": "Invite deleted",
+            "de": "Einladung gelöscht",
+            "at": "Einladung glescht",
+            "fr": "Invitation supprimée",
+            "es": "Invitación eliminada",
+            "ru": "Приглашение удалено",
+            "it": "Invito cancellato"
+        },
+        "ThreadCreated": {
+            "description": "A thread was created.",
+            "en": "Thread created",
+            "de": "Thema erstellt",
+            "at": "Fadn erstöt",
+            "fr": "Fil créé",
+            "es": "Hilo creado",
+            "ru": "Тема создана",
+            "it": "Discussione creata"
         }
     }
 }

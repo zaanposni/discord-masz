@@ -1,15 +1,57 @@
 {
+    "Forms": {
+        "FieldRequired": {
+            "description": "This field is required.",
+            "en": "This field is required.",
+            "de": "Dieses Feld ist erforderlich.",
+            "at": "Dieses Feld ist erforderlich.",
+            "fr": "Ce champ est obligatoire.",
+            "es": "Este campo es obligatorio.",
+            "ru": "Это поле обязательно.",
+            "it": "Questo campo è obbligatorio."
+        },
+        "MaxLength": {
+            "description": "This field must be at most {{length}} characters long.",
+            "en": "This field must be at most {{length}} characters long.",
+            "de": "Dieses Feld darf maximal {{length}} Zeichen lang sein.",
+            "at": "Dieses Feld darf maximal {{length}} Zeichen lang sein.",
+            "fr": "Ce champ doit contenir au plus {{length}} caractères.",
+            "es": "Este campo debe tener como máximo {{length}} caracteres.",
+            "ru": "Это поле должно содержать не более {{length}} символов.",
+            "it": "Questo campo deve contenere al massimo {{length}} caratteri."
+        }
+    },
     "Select": {
         "Select": {
             "description": "Select",
             "en": "Select",
-            "de": "Auswählen"
+            "de": "Auswählen",
+            "at": "Auswöhn",
+            "fr": "Sélectionner",
+            "es": "Seleccione",
+            "ru": "Выбирать",
+            "it": "Selezionare"
         },
         "Search": {
             "description": "Search",
             "en": "Search",
-            "de": "Suchen"
+            "de": "Suchen",
+            "at": "Suchn",
+            "fr": "Chercher",
+            "es": "Búsqueda",
+            "ru": "Поиск",
+            "it": "Ricerca"
         }
+    },
+    "Version": {
+        "description": "version",
+        "en": "Version",
+        "de": "Version",
+        "at": "Version",
+        "fr": "Version",
+        "es": "Versión",
+        "ru": "Версия",
+        "it": "Versione"
     },
     "LoginWithDiscord": {
         "Button": {
@@ -274,6 +316,16 @@
             "ru": "Insights",
             "it": "Approfondimenti"
         },
+        "Settings": {
+            "description": "Settings",
+            "en": "Settings",
+            "de": "Einstellungen",
+            "at": "Einstellungn",
+            "fr": "Paramètres",
+            "es": "Ajustes",
+            "ru": "Настройки",
+            "it": "Impostazioni"
+        },
         "Scanning": {
             "description": "Scanning",
             "en": "Scanning",
@@ -377,6 +429,72 @@
             "es": "Por favor ingresa primero.",
             "ru": "Пожалуйста, войдите сначала.",
             "it": "Per favore fai prima il log in."
+        }
+    },
+    "AppSettings": {
+        "Title": {
+            "description": "the word 'description'",
+            "en": "Settings",
+            "de": "Einstellungen",
+            "at": "Einstellungn",
+            "fr": "Paramètres",
+            "es": "Ajustes",
+            "ru": "Настройки",
+            "it": "Impostazioni"
+        },
+        "Embed": {
+            "Title": {
+                "description": "The word 'discord embed'",
+                "en": "Discord Embed",
+                "de": "Discord Einbettung",
+                "at": "Discord Einbettung",
+                "fr": "Embed Discord",
+                "es": "Embed de Discord",
+                "ru": "Встроенный Discord",
+                "it": "Embed Discord"
+            },
+            "Content": {
+                "description": "This setting will change the content of the embed when your MASZ instance is linked in Discord.",
+                "en": "This setting will change the content of the embed when your MASZ instance is linked in Discord.",
+                "de": "Diese Einstellung ändert den Inhalt der Einbettung, wenn deine MASZ-Instanz in Discord verknüpft ist.",
+                "at": "Diese Einstellung ändert den Inhalt der Einbettung, wenn deine MASZ-Instanz in Discord verknüpft ist.",
+                "fr": "Ce paramètre modifiera le contenu de l'encart lorsque votre instance MASZ est liée dans Discord.",
+                "es": "Esta configuración cambiará el contenido del anuncio cuando tu instancia MASZ esté vinculada en Discord.",
+                "ru": "Этот параметр изменит содержание встроенного контента, когда ваша страница MASZ будет привязана к Discord.",
+                "it": "Questa impostazione cambierà il contenuto dell'embed quando il tuo istanza MASZ è collegata in Discord."
+            },
+            "TakeToUpdate": {
+                "description": "Please note that this might take up to one hour to update in discord.",
+                "en": "Please note that this might take up to one hour to update in discord.",
+                "de": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird.",
+                "at": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird",
+                "fr": "Veuillez noter que cela peut prendre jusqu'à une heure pour mettre à jour.",
+                "es": "Por favor tenga en cuenta que esto puede tomar hasta una hora para actualizar.",
+                "ru": "Обратите внимание, что это может занять до одного часа для обновления.",
+                "it": "Si prega di notare che questo può richiedere fino a un'ora per aggiornare."
+            },
+            "Save": {
+                "Button": {
+                    "description": "The word 'save'",
+                    "en": "Save",
+                    "de": "Speichern",
+                    "at": "Späicheren",
+                    "fr": "Enregistrer",
+                    "es": "Guardar",
+                    "ru": "Сохранить",
+                    "it": "Salva"
+                },
+                "Message": {
+                    "description": "The word 'saved'",
+                    "en": "Saved.",
+                    "de": "Gespeichert.",
+                    "at": "Gspäichert.",
+                    "fr": "Enregistré.",
+                    "es": "Guardado.",
+                    "ru": "Сохранено.",
+                    "it": "Salvato."
+                }
+            }
         }
     },
     "Adminstats": {
@@ -1126,6 +1244,26 @@
         }
     },
     "GuildDialog": {
+        "ImportExistingBans": {
+            "description": "import existing bans",
+            "en": "Import existing bans",
+            "de": "Bestehende Sperren importieren",
+            "at": "Bestehende Sperrn importian",
+            "fr": "Importer des interdictions existantes",
+            "es": "Importar prohibiciones existentes",
+            "ru": "Импортировать существующие запреты",
+            "it": "Importa divieti esistenti"
+        },
+        "ImportExistingBansDetails": {
+            "description": "import existing bans details",
+            "en": "This might take a while for large guilds but will run in the background.",
+            "de": "Dies kann bei großen Gilden eine Weile dauern, aber wird im Hintergrund ausgeführt.",
+            "at": "Des ko bei ana großn Güdn a bissal dauan, oba des wird im Hintagrund ausgfüaht.",
+            "fr": "Cela peut prendre un certain temps pour les grandes guildes, mais se déroulera en arrière-plan.",
+            "es": "Esto puede llevar un tiempo para los gremios grandes, pero se ejecutará en segundo plano.",
+            "ru": "Для больших гильдий это может занять некоторое время, но будет работать в фоновом режиме.",
+            "it": "Questo potrebbe richiedere un po' di tempo per le gilde grandi, ma verrà eseguito in background."
+        },
         "AddAGuild": {
             "description": "Add a guild",
             "en": "Add a guild",
@@ -2213,7 +2351,12 @@
         "ChannelNotificationBehavior": {
             "description": "Channel notification behavior",
             "en": "Channel notification",
-            "de": "Kanalbenachrichtigung"
+            "de": "Kanalbenachrichtigung",
+            "at": "Kanalbenochrichtigung",
+            "fr": "Notification de chaîne",
+            "es": "Notificación de canal",
+            "ru": "Уведомление канала",
+            "it": "Notifica del canale"
         },
         "SendPublicNotification": {
             "description": "Send public notification",
@@ -3436,67 +3579,132 @@
         "SelectMembers": {
             "description": "Select members",
             "en": "Members",
-            "de": "Mitglieder"
+            "de": "Mitglieder",
+            "at": "Mitglieda",
+            "fr": "Membres",
+            "es": "Miembros",
+            "ru": "Члены",
+            "it": "Membri"
         },
         "SelectModerators": {
             "description": "Select moderator",
             "en": "Moderators",
-            "de": "Moderatoren"
+            "de": "Moderatoren",
+            "at": "Modaratoren",
+            "fr": "Modérateurs",
+            "es": "Moderadores",
+            "ru": "Модераторы",
+            "it": "Moderatori"
         },
         "SelectCreationTypes": {
             "description": "Select creation types",
             "en": "Creation types",
-            "de": "Erstellungsarten"
+            "de": "Erstellungsarten",
+            "at": "Erstöllungsoartn",
+            "fr": "Types de création",
+            "es": "Tipos de creación",
+            "ru": "Типы создания",
+            "it": "Tipi di creazione"
         },
         "SelectPunishments": {
             "description": "Select punishments",
             "en": "Punishments",
-            "de": "Bestrafungen"
+            "de": "Bestrafungen",
+            "at": "Bestrofungen",
+            "fr": "Les sanctions",
+            "es": "Castigos",
+            "ru": "Наказания",
+            "it": "punizioni"
         },
         "SelectEdited": {
             "description": "Select edited",
             "en": "Edit status",
-            "de": "Bearbeitet-Status"
+            "de": "Bearbeitet-Status",
+            "at": "Beorbeitet-Status",
+            "fr": "Modifier le statut",
+            "es": "Editar estado",
+            "ru": "Изменить статус",
+            "it": "Modifica stato"
         },
         "SelectLocked": {
             "description": "Select locked",
             "en": "Lock status",
-            "de": "Sperr-Status"
+            "de": "Sperr-Status",
+            "at": "Sperr-Status",
+            "fr": "État de verrouillage",
+            "es": "Estado de bloqueo",
+            "ru": "Статус блокировки",
+            "it": "Stato di blocco"
         },
         "SelectDelete": {
             "description": "Select delete",
             "en": "Delete status",
-            "de": "Lösch-Status"
+            "de": "Lösch-Status",
+            "at": "Lösch-Status",
+            "fr": "Supprimer le statut",
+            "es": "Eliminar estado",
+            "ru": "Удалить статус",
+            "it": "Elimina stato"
         },
         "SelectActive": {
             "description": "Select active",
             "en": "Active status",
-            "de": "Aktiv-Status"
+            "de": "Aktiv-Status",
+            "at": "Aktiv-Status",
+            "fr": "Statut actif",
+            "es": "Estado activo",
+            "ru": "Активный статус",
+            "it": "Stato attivo"
         },
         "FilterSince": {
             "description": "Filter since",
             "en": "Created since",
-            "de": "Erstellt ab"
+            "de": "Erstellt ab",
+            "at": "Erstöt vo",
+            "fr": "Créé depuis",
+            "es": "Creado desde",
+            "ru": "Создано с",
+            "it": "Creato da"
         },
         "FilterUntil": {
             "description": "Filter until",
             "en": "Created until",
-            "de": "Erstellt bis"
+            "de": "Erstellt bis",
+            "at": "Erstöt bis",
+            "fr": "Créé jusqu'au",
+            "es": "Creado hasta",
+            "ru": "Создано до",
+            "it": "Creato fino al"
         },
         "FilterPunishedSince": {
             "description": "Filter punished since",
             "en": "Punished at least until",
-            "de": "Bestraft bis mindestens"
+            "de": "Bestraft bis mindestens",
+            "at": "Bestroft bis mindastens",
+            "fr": "Puni au moins jusqu'à",
+            "es": "Castigado al menos hasta",
+            "ru": "Наказан как минимум до",
+            "it": "Punito almeno fino al"
         },
         "FilterPunishedBefore": {
             "description": "Filter punished before",
             "en": "Punished until",
-            "de": "Bestraft bis"
+            "de": "Bestraft bis",
+            "at": "Bestroft bis",
+            "fr": "Puni jusqu'à",
+            "es": "Castigado hasta",
+            "ru": "Наказан до",
+            "it": "punito fino a"
         },
         "ExecuteSearch": {
             "description": "execute search button to use advanced filters",
             "en": "Search",
-            "de": "Suche ausführen"
+            "de": "Suche ausführen",
+            "at": "Suche startn",
+            "fr": "Chercher",
+            "es": "Búsqueda",
+            "ru": "Поиск",
+            "it": "Ricerca"
         },
         "ExcludePermanent": {
             "description": "Exclude permanent punishments from current table selection",
@@ -3511,7 +3719,12 @@
         "UseAdvancedFilter": {
             "description": "use advanced filter on current table",
             "en": "Use advanced filter",
-            "de": "Erweiterten Filter nutzen"
+            "de": "Erweiterten Filter nutzen",
+            "at": "Erweitatn Füta nutzn",
+            "fr": "Utiliser le filtre avancé",
+            "es": "Usar filtro avanzado",
+            "ru": "Использовать расширенный фильтр",
+            "it": "Usa il filtro avanzato"
         },
         "CreateNewCase": {
             "description": "Create a new case button",
@@ -3671,24 +3884,44 @@
             "Success": {
                 "description": "deactivate a cases punishment",
                 "en": "Case has been deactivated.",
-                "de": "Vorfall wurde deaktiviert."
+                "de": "Vorfall wurde deaktiviert.",
+                "at": "Vorfoi is deaktiviat woan",
+                "fr": "Le cas a été désactivé.",
+                "es": "El caso ha sido desactivado.",
+                "ru": "Дело было деактивировано.",
+                "it": "Il caso è stato disattivato."
             },
             "Failed": {
                 "description": "deactivate a cases punishment",
                 "en": "Case could not be deactivated.",
-                "de": "Vorfall konnte nicht deaktiviert werden."
+                "de": "Vorfall konnte nicht deaktiviert werden.",
+                "at": "Vorfoi konnt ned deaktiviat wean.",
+                "fr": "Le cas n'a pas pu être désactivé.",
+                "es": "No se pudo desactivar el caso.",
+                "ru": "Дело не может быть деактивировано.",
+                "it": "Impossibile disattivare la custodia."
             }
         },
         "Activated": {
             "Success": {
                 "description": "punished forever",
                 "en": "Case has been activated.",
-                "de": "Vorfall wurde aktiviert."
+                "de": "Vorfall wurde aktiviert.",
+                "at": "Vorfoi wuad deaktiviat.",
+                "fr": "Le cas a été activé.",
+                "es": "El caso se ha activado.",
+                "ru": "Дело было активировано.",
+                "it": "Il caso è stato attivato."
             },
             "Failed": {
                 "description": "failed to activate case",
                 "en": "Failed to activate case.",
-                "de": "Vorfall konnte nicht aktiviert werden."
+                "de": "Vorfall konnte nicht aktiviert werden.",
+                "at": "Vorfoi konnt ned deaktiviat wean.",
+                "fr": "Échec de l'activation du boîtier.",
+                "es": "No se pudo activar el caso.",
+                "ru": "Не удалось активировать дело.",
+                "it": "Impossibile attivare il caso."
             }
         },
         "PunishmentExpired": {
@@ -3704,7 +3937,12 @@
         "CaseInactive": {
             "description": "case deactivated",
             "en": "Modcase is inactive.",
-            "de": "Vorfall ist inaktiv."
+            "de": "Vorfall ist inaktiv.",
+            "at": "Vorfoi is ned aktiv.",
+            "fr": "Modcase est inactif.",
+            "es": "Modcase está inactivo.",
+            "ru": "Modcase неактивен.",
+            "it": "Modcase non è attivo."
         },
         "CreatedAt": {
             "description": "created at",

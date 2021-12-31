@@ -1,8 +1,13 @@
 {
+    "Forms": {
+        "FieldRequired": "Dieses Feld ist erforderlich.",
+        "MaxLength": "Dieses Feld darf maximal {{length}} Zeichen lang sein."
+    },
     "Select": {
         "Select": "Auswählen",
         "Search": "Suchen"
     },
+    "Version": "Version",
     "LoginWithDiscord": {
         "Button": "Mit Discord anmelden",
         "Loading": "Du wirst angemeldet..."
@@ -32,6 +37,7 @@
         "Legal": "Rechtliches",
         "API": "API",
         "Insights": "Statistiken",
+        "Settings": "Einstellungen",
         "Scanning": "Untersuchung"
     },
     "Guilds": {
@@ -46,6 +52,18 @@
         "GuildDeleted": "Gilde gelöscht.",
         "FailedToDeleteGuild": "Gilde konnte nicht gelöscht werden.",
         "PleaseLoginFirst": "Bitte melde dich zuerst an."
+    },
+    "AppSettings": {
+        "Title": "Einstellungen",
+        "Embed": {
+            "Title": "Discord Einbettung",
+            "Content": "Diese Einstellung ändert den Inhalt der Einbettung, wenn deine MASZ-Instanz in Discord verknüpft ist.",
+            "TakeToUpdate": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird.",
+            "Save": {
+                "Button": "Speichern",
+                "Message": "Gespeichert."
+            }
+        }
     },
     "Adminstats": {
         "Bot": "Bot",
@@ -146,6 +164,8 @@
         "Confirm": "Bestätigen"
     },
     "GuildDialog": {
+        "ImportExistingBans": "Bestehende Sperren importieren",
+        "ImportExistingBansDetails": "Dies kann bei großen Gilden eine Weile dauern, aber wird im Hintergrund ausgeführt.",
         "AddAGuild": "Gilde hinzufügen",
         "SearchAGuild": "Gilde suchen",
         "SelectAnotherGuild": "Wähle eine andere Gilde",

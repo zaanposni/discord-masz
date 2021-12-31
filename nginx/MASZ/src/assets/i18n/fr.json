@@ -1,4 +1,13 @@
 {
+    "Forms": {
+        "FieldRequired": "Ce champ est obligatoire.",
+        "MaxLength": "Ce champ doit contenir au plus {{length}} caractères."
+    },
+    "Select": {
+        "Select": "Sélectionner",
+        "Search": "Chercher"
+    },
+    "Version": "Version",
     "LoginWithDiscord": {
         "Button": "Connectez-vous avec Discord",
         "Loading": "Connexion avec Discord..."
@@ -28,6 +37,7 @@
         "Legal": "Légal",
         "API": "API",
         "Insights": "Connaissances",
+        "Settings": "Paramètres",
         "Scanning": "Balayage"
     },
     "Guilds": {
@@ -42,6 +52,18 @@
         "GuildDeleted": "Guilde supprimée.",
         "FailedToDeleteGuild": "Échec de la suppression de la guilde.",
         "PleaseLoginFirst": "S'il vous plait Connectez-vous d'abord."
+    },
+    "AppSettings": {
+        "Title": "Paramètres",
+        "Embed": {
+            "Title": "Embed Discord",
+            "Content": "Ce paramètre modifiera le contenu de l'encart lorsque votre instance MASZ est liée dans Discord.",
+            "TakeToUpdate": "Veuillez noter que cela peut prendre jusqu'à une heure pour mettre à jour.",
+            "Save": {
+                "Button": "Enregistrer",
+                "Message": "Enregistré."
+            }
+        }
     },
     "Adminstats": {
         "Bot": "Bot",
@@ -142,6 +164,8 @@
         "Confirm": "Confirmer"
     },
     "GuildDialog": {
+        "ImportExistingBans": "Importer des interdictions existantes",
+        "ImportExistingBansDetails": "Cela peut prendre un certain temps pour les grandes guildes, mais se déroulera en arrière-plan.",
         "AddAGuild": "Ajouter une guilde",
         "SearchAGuild": "Rechercher une guilde",
         "SelectAnotherGuild": "Sélectionnez une guilde",
@@ -299,6 +323,7 @@
         "LogEntryHover": "Une entrée de journal est toujours générée.",
         "SendDMNotification": "Envoyer une notification dm",
         "Action": "action",
+        "ChannelNotificationBehavior": "Notification de chaîne",
         "SendPublicNotification": "Envoyer une notification publique",
         "DurationInMinutes": "Durée en minutes",
         "YouAreDone": "Vous avez maintenant terminé.",
@@ -455,7 +480,21 @@
         "CaseUpdated": "Cas mis à jour."
     },
     "ModCaseTable": {
+        "SelectMembers": "Membres",
+        "SelectModerators": "Modérateurs",
+        "SelectCreationTypes": "Types de création",
+        "SelectPunishments": "Les sanctions",
+        "SelectEdited": "Modifier le statut",
+        "SelectLocked": "État de verrouillage",
+        "SelectDelete": "Supprimer le statut",
+        "SelectActive": "Statut actif",
+        "FilterSince": "Créé depuis",
+        "FilterUntil": "Créé jusqu'au",
+        "FilterPunishedSince": "Puni au moins jusqu'à",
+        "FilterPunishedBefore": "Puni jusqu'à",
+        "ExecuteSearch": "Chercher",
         "ExcludePermanent": "Exclure les peines permanentes",
+        "UseAdvancedFilter": "Utiliser le filtre avancé",
         "CreateNewCase": "Créer un nouveau cas",
         "Search": "Recherche (utilisateur, identifiant, description...)",
         "FailedToLoad": "Échec du chargement des cas.",
@@ -475,7 +514,16 @@
         "Guild": "Guilde",
         "PunishedUntil": "Puni jusqu'à :",
         "PunishedForever": "Puni à jamais",
+        "Deactivated": {
+            "Success": "Le cas a été désactivé.",
+            "Failed": "Le cas n'a pas pu être désactivé."
+        },
+        "Activated": {
+            "Success": "Le cas a été activé.",
+            "Failed": "Échec de l'activation du boîtier."
+        },
         "PunishmentExpired": "La peine est expirée.",
+        "CaseInactive": "Modcase est inactif.",
         "CreatedAt": "Créé à",
         "EditedAt": "Edité à",
         "LastEditModerator": "Dernière modification par le modérateur",
