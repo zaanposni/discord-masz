@@ -1,7 +1,8 @@
 {
     "Forms": {
         "FieldRequired": "This field is required.",
-        "MaxLength": "This field must be at most {{length}} characters long."
+        "MaxLength": "This field must be at most {{length}} characters long.",
+        "InvalidWebhookURL": "This is not a valid webhook URL."
     },
     "Select": {
         "Select": "Select",
@@ -55,6 +56,14 @@
     },
     "AppSettings": {
         "Title": "Settings",
+        "Infrastrcture": {
+            "Title": "Infrastructure",
+            "Language": "Language",
+            "AuditLogWebhookUrl": {
+                "Explained": "Use a private webhook accessible for siteadmins only since it may log sensitive information.",
+                "Field": "Auditlog webhook URL"
+            }
+        },
         "Embed": {
             "Title": "Discord Embed",
             "Content": "This setting will change the content of the embed when your MASZ instance is linked in Discord.",
