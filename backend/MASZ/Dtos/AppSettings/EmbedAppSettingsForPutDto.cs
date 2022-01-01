@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MASZ.Dtos.AppSettings
 {
-    public class AppSettingsForPutDto
+    public class EmbedAppSettingsForPutDto
     {
         [Required(ErrorMessage = "EmbedTitle field is required")]
         [MaxLength(256)]
