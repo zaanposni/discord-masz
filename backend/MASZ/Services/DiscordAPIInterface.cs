@@ -147,8 +147,15 @@ namespace MASZ.Services
             }
 
             // cache -----------------------------
-            SetCacheValue(cacheKey, new CacheApiResponse(ban));
-            SetCacheValue(CacheKey.User(ban.User.Id), new CacheApiResponse(ban.User));
+            if (ban == null)
+            {
+                RemoveFromCache(cacheKey);
+            }
+            else
+            {
+                SetCacheValue(cacheKey, new CacheApiResponse(ban));
+                SetCacheValue(CacheKey.User(ban.User.Id), new CacheApiResponse(ban.User));
+            }
             return ban;
         }
 
