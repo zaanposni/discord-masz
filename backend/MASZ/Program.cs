@@ -6,6 +6,7 @@ using MASZ.Data;
 using MASZ.Logger;
 using MASZ.Middlewares;
 using MASZ.Plugins;
+using MASZ.Repositories;
 using MASZ.Services;
 using MASZ.Utils;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -219,6 +220,8 @@ using (var scope = app.Services.CreateScope())
 using (var scope = app.Services.CreateScope())
 {
     scope.ServiceProvider.GetRequiredService<InternalConfiguration>().Init();
+
+    await AppSettingsRepository.CreateDefault(scope.ServiceProvider).ApplyAppSettings();
 
     scope.ServiceProvider.GetRequiredService<AuditLogger>().RegisterEvents();
     scope.ServiceProvider.GetRequiredService<DiscordAnnouncer>().RegisterEvents();

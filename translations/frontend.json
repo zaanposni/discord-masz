@@ -19,6 +19,16 @@
             "es": "Este campo debe tener como máximo {{length}} caracteres.",
             "ru": "Это поле должно содержать не более {{length}} символов.",
             "it": "Questo campo deve contenere al massimo {{length}} caratteri."
+        },
+        "InvalidWebhookURL": {
+            "description": "This is not a valid webhook URL.",
+            "en": "This is not a valid webhook URL.",
+            "de": "Dies ist keine gültige Webhook-URL.",
+            "at": "Dies ist keine gültige Webhook-URL.",
+            "fr": "Ceci n'est pas une URL de Webhook valide.",
+            "es": "Esta no es una URL de Webhook válida.",
+            "ru": "Это не является действительным вебхуковым URL.",
+            "it": "Questo non è un URL di Webhook valido."
         }
     },
     "Select": {
@@ -441,6 +451,50 @@
             "es": "Ajustes",
             "ru": "Настройки",
             "it": "Impostazioni"
+        },
+        "Infrastrcture": {
+            "Title": {
+                "description": "the word 'infrastrcture'",
+                "en": "Infrastructure",
+                "de": "Infrastruktur",
+                "at": "Infrastruktur",
+                "fr": "Infrastructure",
+                "es": "Infraestructura",
+                "ru": "Инфраструктура",
+                "it": "Infrastruttura"
+            },
+            "Language": {
+                "description": "the word 'language'",
+                "en": "Language",
+                "de": "Sprache",
+                "at": "Sprache",
+                "fr": "Langue",
+                "es": "Idioma",
+                "ru": "Язык",
+                "it": "Lingua"
+            },
+            "AuditLogWebhookUrl": {
+                "Explained": {
+                    "description": "AuditlogWebhookurl explained",
+                    "en": "Use a private webhook accessible for siteadmins only since it may log sensitive information.",
+                    "de": "Verwenden Sie einen privaten Webhook, der nur für Siteadmins zugänglich ist, da es sensible Informationen protokollieren könnte.",
+                    "at": "Verwenden Sie einen privaten Webhook, der nur für Siteadmins zugänglich ist, da es sensible Informationen protokollieren könnte.",
+                    "fr": "Utilisez un webhook privé accessible uniquement pour les administrateurs du site, car il peut enregistrer des informations sensibles.",
+                    "es": "Utilice un webhook privado accesible solo para los administradores del sitio, ya que puede registrar información sensible.",
+                    "ru": "Используйте приватный вебхук, который доступен только для администраторов сайта, потому что он может записывать конфиденциальную информацию.",
+                    "it": "Utilizzare un webhook privato accessibile solo per gli amministratori del sito, poiché può registrare informazioni sensibili."
+                },
+                "Field": {
+                    "description": "Auditlog webhook URL",
+                    "en": "Auditlog webhook URL",
+                    "de": "Auditlog Webhook URL",
+                    "at": "Auditlog Webhook URL",
+                    "fr": "Auditlog webhook URL",
+                    "es": "Auditlog webhook URL",
+                    "ru": "Auditlog webhook URL",
+                    "it": "Auditlog webhook URL"
+                }
+            }
         },
         "Embed": {
             "Title": {

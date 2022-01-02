@@ -149,10 +149,8 @@ export class GuildAddComponent implements OnInit {
       strictModPermissionCheck:       this.configGroup.value?.strictPermissionCheck != '' ? this.configGroup.value?.strictPermissionCheck ?? false : false,
       executeWhoisOnJoin:             this.configGroup.value?.executeWhoisOnJoin    != '' ? this.configGroup.value?.executeWhoisOnJoin    ?? false : false,
       publishModeratorInfo:           this.configGroup.value?.publishModeratorInfo  != '' ? this.configGroup.value?.publishModeratorInfo  ?? false : false,
-      preferredLanguage:              this.configGroup.value?.preferredLanguage     != '' ? this.configGroup.value?.preferredLanguage     ?? 0     : 0
-    }
-
-    console.log(this.queryGroup.value?.importExistingBans);
+      preferredLanguage:              this.configGroup.value?.preferredLanguage     != '' ? this.configGroup.value?.preferredLanguage     ?? null  : null
+    };
     let params = new HttpParams()
                       .set("importExistingBans", this.queryGroup.value?.importExistingBans ? 'true' : 'false');
     this.api.postSimpleData('/guilds/', data, params).subscribe(() => {
