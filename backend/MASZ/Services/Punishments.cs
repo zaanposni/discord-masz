@@ -53,7 +53,13 @@ namespace MASZ.Services
                 {
                     if (element.PunishedUntil <= DateTime.UtcNow)
                     {
-                        await UndoPunishment(element);
+                        try
+                        {
+                            await UndoPunishment(element);
+                        } catch (Exception ex)
+                        {
+                            _logger.LogCritical(ex, $"Something went wrong while undoing punishment for modcase {element.GuildId}/{element.CaseId} ({element.Id}).");
+                        }
                         element.PunishmentActive = false;
                         database.UpdateModCase(element);
                     }
@@ -167,7 +173,7 @@ namespace MASZ.Services
                 case PunishmentType.Ban:
                     _logger.LogInformation($"Unban User {modCase.UserId} in guild {modCase.GuildId}.");
                     await _discord.UnBanUser(modCase.GuildId, modCase.UserId, reason);
-                    await _discord.GetGuildUserBan(modCase.GuildId, modCase.UserId, CacheBehavior.IgnoreCache);  // refresh ban cache
+                    _discord.RemoveFromCache(CacheKey.GuildBan(modCase.GuildId, modCase.UserId));  // refresh ban cache
                     break;
             }
         }
