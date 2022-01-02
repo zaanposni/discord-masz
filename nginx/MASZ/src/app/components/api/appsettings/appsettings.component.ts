@@ -35,7 +35,7 @@ export class AppsettingsComponent implements OnInit {
     });
     this.settingsFormGroup = this._formBuilder.group({
       defaultLanguage: ['', Validators.required ],
-      auditLogWebhookURL: ['',  Validators.pattern('https://discord(app)?\.com/.*') ]
+      auditLogWebhookURL: ['',  Validators.pattern('https://discord(app)?\.com/api/webhooks/[0-9]+/[A-Za-z0-9]+') ]
     });
 
     this.api.getSimpleData('/settings').subscribe((data: IAppSettings) => {
@@ -49,7 +49,7 @@ export class AppsettingsComponent implements OnInit {
         auditLogWebhookURL: data.auditLogWebhookURL
       });
       console.log(this.settingsFormGroup);
-      
+
       this.settingsLoading = false;
     }, error => {
       this.settingsLoading = false;
@@ -81,7 +81,21 @@ export class AppsettingsComponent implements OnInit {
   }
 
   updateSettings() {
-    console.log(this.settingsAuditLogWebhookURL?.errors);
+    let body = {
+      defaultLanguage: this.settingsFormGroup.value?.defaultLanguage ?? 0,
+      auditLogWebhookURL: this.settingsFormGroup.value?.auditLogWebhookURL ?? null
+    }
+    this.api.putSimpleData('/settings/infrastructure', body, undefined, true, true).subscribe((data: IAppSettings) => {
+      this.toastr.success(this.translator.instant("AppSettings.Embed.Save.Message"));
+      this.settingsLoading = false;
+      this.settingsFormGroup.setValue({
+        defaultLanguage: data.defaultLanguage,
+        auditLogWebhookURL: data.auditLogWebhookURL
+      });
+    }, error => {
+      this.settingsLoading = false;
+      console.error(error);
+    });
   }
 
   get embedTitle() { return this.embedFormGroup.get('title'); }

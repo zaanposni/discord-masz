@@ -42,8 +42,8 @@ namespace MASZ.Controllers
             return Ok(await repo.UpdateAppSettings(current));
         }
 
-        [HttpPut("settings")]
-        public async Task<IActionResult> UpdateAppSettings([FromBody] SEttingsAppSettingsForPutDto newSettings)
+        [HttpPut("infrastructure")]
+        public async Task<IActionResult> UpdateAppSettings([FromBody] SettingsAppSettingsForPutDto newSettings)
         {
             await RequireSiteAdmin();
 
@@ -52,7 +52,7 @@ namespace MASZ.Controllers
             AppSettings current = await repo.GetAppSettings();
 
             current.DefaultLanguage = newSettings.DefaultLanguage;
-            current.AuditLogWebhookURL = newSettings.AuditLogWebhookURL;
+            current.AuditLogWebhookURL = newSettings.AuditLogWebhookURL ?? string.Empty;
 
             return Ok(await repo.UpdateAppSettings(current));
         }
