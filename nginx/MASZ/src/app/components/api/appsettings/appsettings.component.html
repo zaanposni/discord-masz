@@ -47,11 +47,12 @@
         <!-- Settings -->
 
         <div class="mat-h1 font-weight-bold mt-4 mb-2">{{ 'AppSettings.Infrastrcture.Title' | translate }}</div>
-        <div class="mb-3 warn-color">{{ 'AppSettings.Infrastrcture.AuditLogWebhookUrl.Explained' | translate }}</div>
+        <div class="">{{ 'AppSettings.Infrastrcture.DefaultLanguage.Explained' | translate }}</div>
+        <div class="mb-2 warn-color">{{ 'AppSettings.Infrastrcture.AuditLogWebhookUrl.Explained' | translate }}</div>
         <mat-spinner *ngIf="settingsLoading"></mat-spinner>
         <form *ngIf="!settingsLoading" [formGroup]="settingsFormGroup">
             <mat-form-field class="mb-2">
-                <mat-label>{{ 'AppSettings.Infrastrcture.Language' | translate }}</mat-label>
+                <mat-label>{{ 'AppSettings.Infrastrcture.DefaultLanguage.Field' | translate }}</mat-label>
                 <mat-select formControlName="defaultLanguage">
                     <mat-option *ngFor="let language of allLanguages"
                         [value]="language.key">{{ language.value }}</mat-option>

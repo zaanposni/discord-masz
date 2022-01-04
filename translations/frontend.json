@@ -463,15 +463,27 @@
                 "ru": "Инфраструктура",
                 "it": "Infrastruttura"
             },
-            "Language": {
-                "description": "the word 'language'",
-                "en": "Language",
-                "de": "Sprache",
-                "at": "Sprache",
-                "fr": "Langue",
-                "es": "Idioma",
-                "ru": "Язык",
-                "it": "Lingua"
+            "DefaultLanguage": {
+                "Explained": {
+                    "description": "default language explained",
+                    "en": "MASZ will use this language as the default language whenever possible. However, possibly only an english version is available for certain texts.",
+                    "de": "MASZ wird diese Sprache als Standard verwenden, wenn möglich. Jedoch ist es möglich, dass nur eine englische Version verfügbar ist für bestimmte Texte.",
+                    "at": "MASZ wird diese Sprache als Standard verwenden, wenn möglich. Jedoch ist es möglich, dass nur eine englische Version verfügbar ist für bestimmte Texte.",
+                    "fr": "MASZ utilisera cette langue par défaut lorsque cela est possible. Cependant, il est possible que seule une version anglaise soit disponible pour certains textes.",
+                    "es": "MASZ usará este idioma por defecto cuando sea posible. Sin embargo, posiblemente solo una versión inglesa esté disponible para algunos textos.",
+                    "ru": "MASZ будет использовать этот язык по умолчанию, если это возможно. Однако, возможно, только английская версия доступна для некоторых текстов.",
+                    "it": "MASZ userà questa lingua come predefinita quando possibile. Tuttavia, è possibile che solo una versione inglese sia disponibile per alcuni testi."
+                },
+                "Field": {
+                    "description": "the word 'default language'",
+                    "en": "Default language",
+                    "de": "Standard-Sprache",
+                    "at": "Standard-Sprache",
+                    "fr": "Langue par défaut",
+                    "es": "Idioma predeterminado",
+                    "ru": "Язык по умолчанию",
+                    "it": "Lingua predefinita"
+                }
             },
             "AuditLogWebhookUrl": {
                 "Explained": {

@@ -58,7 +58,10 @@
         "Title": "Impostazioni",
         "Infrastrcture": {
             "Title": "Infrastruttura",
-            "Language": "Lingua",
+            "DefaultLanguage": {
+                "Explained": "MASZ userà questa lingua come predefinita quando possibile. Tuttavia, è possibile che solo una versione inglese sia disponibile per alcuni testi.",
+                "Field": "Lingua predefinita"
+            },
             "AuditLogWebhookUrl": {
                 "Explained": "Utilizzare un webhook privato accessibile solo per gli amministratori del sito, poiché può registrare informazioni sensibili.",
                 "Field": "Auditlog webhook URL"
