@@ -12,6 +12,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class GuildOverviewComponent implements OnInit {
 
+  private modSub: any;
+  private adminSub: any;
   public tabs: IDashboardTabs[] = [
     {
       "icon": "list",
@@ -30,6 +32,8 @@ export class GuildOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((data) => {
+      this.modSub?.unsubscribe();
+      this.adminSub?.unsubscribe();
       this.initialize(data.get('guildid') as string);
     });
   }
@@ -45,7 +49,7 @@ export class GuildOverviewComponent implements OnInit {
         "component": "automods"
       }
     ];
-    this.auth.isModInGuild(guildId).subscribe((data) => {
+    this.modSub = this.auth.isModInGuild(guildId).subscribe((data: boolean) => {
       this.isModOrHigher = data;
       if (data) {
         this.tabs.unshift({ component: 'dashboard', icon: 'dashboard' });
@@ -57,12 +61,11 @@ export class GuildOverviewComponent implements OnInit {
         }, 200);
       }
     });
-    this.auth.isAdminInGuild(guildId).subscribe((data) => {
+    this.adminSub = this.auth.isAdminInGuild(guildId).subscribe((data: boolean) => {
       this.isAdminOrHigher = data;
       if (data) {
         this.tabs.push({ component: 'config', icon: 'settings' });
       }
     });
   }
-
 }
