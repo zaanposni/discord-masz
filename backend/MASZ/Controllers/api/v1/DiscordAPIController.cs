@@ -42,7 +42,7 @@ namespace MASZ.Controllers.api.v1
                     if (userGuild != null)
                     {
                         IGuild userGuildFetched = _discordAPI.FetchGuildInfo(userGuild.Id, CacheBehavior.Default);
-                        if (userGuild != null)
+                        if (userGuildFetched != null)
                         {
                             if (await identity.HasModRoleOrHigherOnGuild(guild.GuildId))
                             {
