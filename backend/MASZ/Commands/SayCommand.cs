@@ -42,7 +42,6 @@ namespace MASZ.Commands
                             Translator.T().CmdSaySentMod(
                                 Context.User,
                                 createdMessage,
-                                Context.Channel as ITextChannel,
                                 channel
                             ),
                             AllowedMentions.None
