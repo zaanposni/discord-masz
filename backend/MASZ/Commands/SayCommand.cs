@@ -3,6 +3,8 @@ using Discord.Interactions;
 using Discord.Net;
 using MASZ.Attributes;
 using MASZ.Enums;
+using MASZ.Models;
+using MASZ.Repositories;
 using System.Net;
 
 namespace MASZ.Commands
@@ -25,9 +27,31 @@ namespace MASZ.Commands
 
             try
             {
-                await channel.SendMessageAsync(message);
+                IUserMessage createdMessage = await channel.SendMessageAsync(message);
 
                 await Context.Interaction.RespondAsync(Translator.T().CmdSaySent(), ephemeral: true);
+
+                try
+                {
+                    GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(ServiceProvider).GetGuildConfig(Context.Guild.Id);
+                    if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+                    {
+                        await DiscordAPI.ExecuteWebhook(
+                            guildConfig.ModInternalNotificationWebhook,
+                            null,
+                            Translator.T().CmdSaySentMod(
+                                Context.User,
+                                createdMessage,
+                                Context.Channel as ITextChannel,
+                                channel
+                            ),
+                            AllowedMentions.None
+                        );
+                    }
+                } catch (Exception ex)
+                {
+                    Logger.LogError(ex, $"Something went wrong while sending the internal notification for the say command by {Context.User.Id} in {Context.Guild.Id}/{Context.Channel.Id}.");
+                }
             }
             catch (HttpException e)
             {

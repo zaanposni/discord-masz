@@ -1732,6 +1732,19 @@ namespace MASZ.Utils
                 _ => "Message sent.",
             };
         }
+        public string CmdSaySentMod(IUser user, IUserMessage message, IMentionable channelInvoked, IMentionable channelTarget)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"{user.Mention} verwendete den Say-Befehl in {channelInvoked.Mention} für {channelTarget.Mention}.\n{message.GetJumpUrl()}",
+                Language.at => $"{user.Mention} verwendete den Say-Befehl in {channelInvoked.Mention} für {channelTarget.Mention}.\n{message.GetJumpUrl()}",
+                Language.fr => $"{user.Mention} a utilisé la commande « dire » dans {channelInvoked.Mention} pour {channelTarget.Mention}.\n{message.GetJumpUrl()}",
+                Language.es => $"{user.Mention} usó el comando «decir» en {channelInvoked.Mention} para {channelTarget.Mention}.\n{message.GetJumpUrl()}",
+                Language.ru => $"{user.Mention} использовал команду «сказать» в {channelInvoked.Mention} для {channelTarget.Mention}.\n{message.GetJumpUrl()}",
+                Language.it => $"{user.Mention} ha usato il comando \"dire\" in {channelInvoked.Mention} per {channelTarget.Mention}.\n{message.GetJumpUrl()}",
+                _ => $"{user.Mention} used the say command in {channelInvoked.Mention} for {channelTarget.Mention}.\n{message.GetJumpUrl()}",
+            };
+        }
         public string CmdTrackInviteNotFromThisGuild()
         {
             return PreferredLanguage switch

@@ -1546,6 +1546,22 @@
                 "es": "Mensaje enviado.",
                 "ru": "Сообщение отправлено.",
                 "it": "Messaggio inviato."
+            },
+            "SentMod": {
+                "description": "internal notification on say command",
+                "var_types": {
+                    "user": "IUser",
+                    "message": "IUserMessage",
+                    "channelInvoked": "IMentionable",
+                    "channelTarget": "IMentionable"
+                },
+                "en": "{user.Mention} used the say command in {channelInvoked.Mention} for {channelTarget.Mention}.\n{message.GetJumpUrl()}",
+                "de": "{user.Mention} verwendete den Say-Befehl in {channelInvoked.Mention} für {channelTarget.Mention}.\n{message.GetJumpUrl()}",
+                "at": "{user.Mention} verwendete den Say-Befehl in {channelInvoked.Mention} für {channelTarget.Mention}.\n{message.GetJumpUrl()}",
+                "fr": "{user.Mention} a utilisé la commande « dire » dans {channelInvoked.Mention} pour {channelTarget.Mention}.\\n{message.GetJumpUrl()}",
+                "es": "{user.Mention} usó el comando «decir» en {channelInvoked.Mention} para {channelTarget.Mention}.\\n{message.GetJumpUrl()}",
+                "ru": "{user.Mention} использовал команду «сказать» в {channelInvoked.Mention} для {channelTarget.Mention}.\\n{message.GetJumpUrl()}",
+                "it": "{user.Mention} ha usato il comando \\\"dire\\\" in {channelInvoked.Mention} per {channelTarget.Mention}.\\n{message.GetJumpUrl()}"
             }
         },
         "Track": {
