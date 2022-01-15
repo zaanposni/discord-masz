@@ -1,5 +1,6 @@
 using MASZ.Dtos.ModCase;
 using MASZ.Enums;
+using MASZ.Exceptions;
 using MASZ.Models;
 using MASZ.Models.Views;
 using MASZ.Repositories;
@@ -21,7 +22,10 @@ namespace MASZ.Controllers
         public async Task<IActionResult> CreateTemplate([FromBody] CaseTemplateForCreateDto templateDto, [FromQuery] ulong guildId)
         {
             Identity currentIdentity = await GetIdentity();
-            await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId);
+            if (!await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
+            {
+                throw new UnauthorizedException();
+            }
 
 
             CaseTemplate template = new()
