@@ -25,7 +25,7 @@ namespace MASZ.Controllers
             CaseTemplateRepository repository = CaseTemplateRepository.CreateDefault(_serviceProvider, currentIdentity);
             List<CaseTemplate> templates = await repository.GetTemplatesBasedOnPermissions();
             List<CaseTemplateExpandedView> templatesView = new();
-            foreach (var template in templates.Where(x => x.UserId == userId))
+            foreach (var template in templates.Where(x => x.UserId == userId || userId == 0))
             {
                 templatesView.Add(new CaseTemplateExpandedView(
                     template,
