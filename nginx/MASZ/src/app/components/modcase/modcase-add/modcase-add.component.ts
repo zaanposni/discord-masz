@@ -138,7 +138,6 @@ export class ModcaseAddComponent implements OnInit {
         x.caseTemplate.templateName.includes(search) ||
         x.caseTemplate.caseTitle.includes(search) ||
         x.caseTemplate.caseDescription.includes(search) ||
-        x.caseTemplate.casePunishment.includes(search) ||
         x.caseTemplate.caseLabels.includes(search) ||
 
         (x.creator?.username + "#" + x.creator?.discriminator).includes(search) ||
