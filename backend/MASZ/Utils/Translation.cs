@@ -2187,6 +2187,84 @@ namespace MASZ.Utils
                 _ => "Deativate Bans",
             };
         }
+        public string CmdStatusTitle()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Status",
+                Language.at => "Status",
+                Language.fr => "Statut",
+                Language.es => "Estado",
+                Language.ru => "Статус",
+                Language.it => "Stato",
+                _ => "Status",
+            };
+        }
+        public string CmdStatusBot()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Bot",
+                Language.at => "Bot",
+                Language.fr => "Bot",
+                Language.es => "Bot",
+                Language.ru => "Бот",
+                Language.it => "Bot",
+                _ => "Bot",
+            };
+        }
+        public string CmdStatusDatabase()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Datenbank",
+                Language.at => "Datenbank",
+                Language.fr => "Base de données",
+                Language.es => "Base de datos",
+                Language.ru => "База данных",
+                Language.it => "Database",
+                _ => "Database",
+            };
+        }
+        public string CmdStatusInternalCache()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Interner Cache",
+                Language.at => "Interner Cache",
+                Language.fr => "Cache interne",
+                Language.es => "Cache interno",
+                Language.ru => "Внутренний кеш",
+                Language.it => "Cache interno",
+                _ => "Internal Cache",
+            };
+        }
+        public string CmdStatusCurrentlyLoggedIn()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Momentan angemeldete Benutzer",
+                Language.at => "Momentan angemeldete Benutzer",
+                Language.fr => "Utilisateurs actuellement connectés",
+                Language.es => "Usuarios actualmente conectados",
+                Language.ru => "Пользователи, в настоящее время в системе",
+                Language.it => "Utenti attualmente collegati",
+                _ => "Currently logged in users",
+            };
+        }
+        public string CmdStatusLastDisconnectAt(string time)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Letzter Abmeldungszeitpunkt: {time}.",
+                Language.at => $"Letzter Abmeldungszeitpunkt: {time}.",
+                Language.fr => $"Dernière déconnexion à {time}.",
+                Language.es => $"Última desconexión en {time}.",
+                Language.ru => $"Последнее отключение: {time}.",
+                Language.it => $"Ultima disconnessione a {time}.",
+                _ => $"Experienced last disconnect at {time}.",
+            };
+        }
         public string GuildAuditLogChannel()
         {
             return PreferredLanguage switch

@@ -1956,6 +1956,71 @@
                     }
                 }
             }
+        },
+        "Status": {
+            "Title": {
+                "description": "title of the status embed",
+                "en": "Status",
+                "de": "Status",
+                "at": "Status",
+                "fr": "Statut",
+                "es": "Estado",
+                "ru": "Статус",
+                "it": "Stato"
+            },
+            "Bot": {
+                "description": "bot status",
+                "en": "Bot",
+                "de": "Bot",
+                "at": "Bot",
+                "fr": "Bot",
+                "es": "Bot",
+                "ru": "Бот",
+                "it": "Bot"
+            },
+            "Database": {
+                "description": "database status",
+                "en": "Database",
+                "de": "Datenbank",
+                "at": "Datenbank",
+                "fr": "Base de données",
+                "es": "Base de datos",
+                "ru": "База данных",
+                "it": "Database"
+            },
+            "InternalCache": {
+                "description": "internal cache status",
+                "en": "Internal Cache",
+                "de": "Interner Cache",
+                "at": "Interner Cache",
+                "fr": "Cache interne",
+                "es": "Cache interno",
+                "ru": "Внутренний кеш",
+                "it": "Cache interno"
+            },
+            "CurrentlyLoggedIn": {
+                "description": "currently logged in users",
+                "en": "Currently logged in users",
+                "de": "Momentan angemeldete Benutzer",
+                "at": "Momentan angemeldete Benutzer",
+                "fr": "Utilisateurs actuellement connectés",
+                "es": "Usuarios actualmente conectados",
+                "ru": "Пользователи, в настоящее время в системе",
+                "it": "Utenti attualmente collegati"
+            },
+            "LastDisconnectAt": {
+                "description": "last disconnect at",
+                "var_types": {
+                    "time": "string"
+                },
+                "en": "Experienced last disconnect at {time}.",
+                "de": "Letzter Abmeldungszeitpunkt: {time}.",
+                "at": "Letzter Abmeldungszeitpunkt: {time}.",
+                "fr": "Dernière déconnexion à {time}.",
+                "es": "Última desconexión en {time}.",
+                "ru": "Последнее отключение: {time}.",
+                "it": "Ultima disconnessione a {time}."
+            }
         }
     },
     "GuildAuditLog": {
