@@ -35,11 +35,8 @@ namespace MASZ.Repositories
             StatusDetail botStatus = new();
             try
             {
-                if (!_discordBot.IsRunning())
-                {
-                    botStatus.Online = false;
-                    botStatus.LastDisconnect = _discordBot.GetLastDisconnectTime();
-                }
+                botStatus.Online = _discordBot.IsRunning();
+                botStatus.LastDisconnect = _discordBot.GetLastDisconnectTime();
                 botStatus.ResponseTime = _client.Latency;
             }
             catch (Exception)
