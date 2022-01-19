@@ -466,13 +466,13 @@
             "DefaultLanguage": {
                 "Explained": {
                     "description": "default language explained",
-                    "en": "MASZ will use this language as the default language whenever possible. However, possibly only an english version is available for certain texts.",
-                    "de": "MASZ wird diese Sprache als Standard verwenden, wenn möglich. Jedoch ist es möglich, dass nur eine englische Version verfügbar ist für bestimmte Texte.",
-                    "at": "MASZ wird diese Sprache als Standard verwenden, wenn möglich. Jedoch ist es möglich, dass nur eine englische Version verfügbar ist für bestimmte Texte.",
-                    "fr": "MASZ utilisera cette langue par défaut lorsque cela est possible. Cependant, il est possible que seule une version anglaise soit disponible pour certains textes.",
-                    "es": "MASZ usará este idioma por defecto cuando sea posible. Sin embargo, posiblemente solo una versión inglesa esté disponible para algunos textos.",
-                    "ru": "MASZ будет использовать этот язык по умолчанию, если это возможно. Однако, возможно, только английская версия доступна для некоторых текстов.",
-                    "it": "MASZ userà questa lingua come predefinita quando possibile. Tuttavia, è possibile che solo una versione inglese sia disponibile per alcuni testi."
+                    "en": "MASZ will use this language as the default language whenever possible. However, possibly only an english version is available for certain texts. Guild specific settings overwrite this setting.",
+                    "de": "MASZ wird diese Sprache als Standard verwenden, wenn möglich. Jedoch ist es möglich, dass nur eine englische Version verfügbar ist für bestimmte Texte. Gilden-spezifische Einstellungen überschreiben diese Einstellung.",
+                    "at": "MASZ wird diese Sprache als Standard verwenden, wenn möglich. Jedoch ist es möglich, dass nur eine englische Version verfügbar ist für bestimmte Texte. Gilden-spezifische Einstellungen überschreiben diese Einstellung.",
+                    "fr": "MASZ utilisera cette langue comme langue par défaut lorsque cela est possible. Cependant, il est possible que seule une version anglaise soit disponible pour certains textes. Les paramètres de guilde remplacent cette option.",
+                    "es": "MASZ utilizará este idioma como idioma predeterminado cuando sea posible. Sin embargo, es posible que solo una versión inglesa esté disponible para algunos textos. Los ajustes de la hermandad sobrescriben esta configuración.",
+                    "ru": "MASZ будет использовать этот язык по умолчанию, если это возможно. Однако, возможно, только английская версия доступна для некоторых текстов. Настройки гильдии перезаписывают этот параметр.",
+                    "it": "MASZ userà questa lingua come lingua predefinita quando possibile. Tuttavia, è possibile che solo una versione inglese sia disponibile per alcuni testi. Le impostazioni della gilda sovrascrivono questa impostazione."
                 },
                 "Field": {
                     "description": "the word 'default language'",
@@ -505,6 +505,28 @@
                     "es": "Auditlog webhook URL",
                     "ru": "Auditlog webhook URL",
                     "it": "Auditlog webhook URL"
+                }
+            },
+            "PublicFileMode": {
+                "Explained": {
+                    "description": "PublicFileMode explained",
+                    "en": "Enable this to allow public access to all uploaded files.",
+                    "de": "Aktivieren Sie dies, um den öffentlichen Zugriff auf alle hochgeladenen Dateien zu ermöglichen.",
+                    "at": "Aktivieren Sie dies, um den öffentlichen Zugriff auf alle hochgeladenen Dateien zu ermöglichen.",
+                    "fr": "Activez ceci pour autoriser l'accès public à tous les fichiers téléchargés.",
+                    "es": "Habilite esto para permitir el acceso público a todos los archivos subidos.",
+                    "ru": "Включите это, чтобы разрешить общий доступ ко всем загруженным файлам.",
+                    "it": "Abilitare questo per consentire l'accesso pubblico a tutti i file caricati."
+                },
+                "Field": {
+                    "description": "Public file mode",
+                    "en": "Public file mode",
+                    "de": "Öffentlicher Dateimodus",
+                    "at": "Öffentlicher Dateimodus",
+                    "fr": "Mode de fichier public",
+                    "es": "Modo de archivo público",
+                    "ru": "Общий режим файла",
+                    "it": "Modalità file pubblico"
                 }
             }
         },

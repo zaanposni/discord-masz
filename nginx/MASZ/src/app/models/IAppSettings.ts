@@ -3,4 +3,5 @@ export interface IAppSettings {
     embedContent: string;
     defaultLanguage: number;
     auditLogWebhookURL: string;
+    publicFileMode: boolean;
 }

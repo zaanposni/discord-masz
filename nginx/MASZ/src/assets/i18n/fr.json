@@ -59,12 +59,16 @@
         "Infrastrcture": {
             "Title": "Infrastructure",
             "DefaultLanguage": {
-                "Explained": "MASZ utilisera cette langue par défaut lorsque cela est possible. Cependant, il est possible que seule une version anglaise soit disponible pour certains textes.",
+                "Explained": "MASZ utilisera cette langue comme langue par défaut lorsque cela est possible. Cependant, il est possible que seule une version anglaise soit disponible pour certains textes. Les paramètres de guilde remplacent cette option.",
                 "Field": "Langue par défaut"
             },
             "AuditLogWebhookUrl": {
                 "Explained": "Utilisez un webhook privé accessible uniquement pour les administrateurs du site, car il peut enregistrer des informations sensibles.",
                 "Field": "Auditlog webhook URL"
+            },
+            "PublicFileMode": {
+                "Explained": "Activez ceci pour autoriser l'accès public à tous les fichiers téléchargés.",
+                "Field": "Mode de fichier public"
             }
         },
         "Embed": {

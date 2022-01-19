@@ -59,12 +59,16 @@
         "Infrastrcture": {
             "Title": "Infraestructura",
             "DefaultLanguage": {
-                "Explained": "MASZ usará este idioma por defecto cuando sea posible. Sin embargo, posiblemente solo una versión inglesa esté disponible para algunos textos.",
+                "Explained": "MASZ utilizará este idioma como idioma predeterminado cuando sea posible. Sin embargo, es posible que solo una versión inglesa esté disponible para algunos textos. Los ajustes de la hermandad sobrescriben esta configuración.",
                 "Field": "Idioma predeterminado"
             },
             "AuditLogWebhookUrl": {
                 "Explained": "Utilice un webhook privado accesible solo para los administradores del sitio, ya que puede registrar información sensible.",
                 "Field": "Auditlog webhook URL"
+            },
+            "PublicFileMode": {
+                "Explained": "Habilite esto para permitir el acceso público a todos los archivos subidos.",
+                "Field": "Modo de archivo público"
             }
         },
         "Embed": {
