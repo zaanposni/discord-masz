@@ -30,6 +30,7 @@ namespace MASZ.Repositories
             existing.EmbedContent = appSettings.EmbedContent;
             existing.AuditLogWebhookURL = appSettings.AuditLogWebhookURL;
             existing.DefaultLanguage = appSettings.DefaultLanguage;
+            existing.PublicFileMode = appSettings.PublicFileMode;
 
             Database.PutAppSetting(existing);
             await Database.SaveChangesAsync();
@@ -48,6 +49,7 @@ namespace MASZ.Repositories
         {
             _config.SetAuditLogWebhook(settings.AuditLogWebhookURL);
             _config.SetDefaultLanguage(settings.DefaultLanguage);
+            _config.SetPublicFileModeEnabled(settings.PublicFileMode);
             _translator.SetContext(settings.DefaultLanguage);
         }
     }

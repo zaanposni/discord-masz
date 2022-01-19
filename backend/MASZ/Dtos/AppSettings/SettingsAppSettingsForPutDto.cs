@@ -9,5 +9,7 @@ namespace MASZ.Dtos.AppSettings
         public Language DefaultLanguage { get; set; }
         [RegularExpression("https://discord(app)?.com/api/webhooks/[0-9]+/[A-Za-z0-9]+", ErrorMessage = "Must be a valid url")]
         public string? AuditLogWebhookURL { get; set; }
+        [Required(ErrorMessage = "PublicFileMode field is required")]
+        public bool PublicFileMode { get; set; }
     }
 }

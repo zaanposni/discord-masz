@@ -46,7 +46,7 @@ namespace MASZ.Services
             }
             _defaultLanguage = Language.en;
             _auditLogWebhookUrl = string.Empty;
-            _publicFilesEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_PUBLIC_FILES"));
+            _publicFilesEnabled = false;
             _demoModeEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_DEMO_MODE"));
             _customPluginsEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS"));
             _corsEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CORS"));
@@ -110,6 +110,11 @@ namespace MASZ.Services
         public string GetAuditLogWebhook()
         {
             return _auditLogWebhookUrl;
+        }
+
+        public void SetPublicFileModeEnabled(bool mode)
+        {
+            _publicFilesEnabled = mode;
         }
 
         public bool IsPublicFileEnabled()

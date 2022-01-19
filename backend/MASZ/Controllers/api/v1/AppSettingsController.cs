@@ -53,6 +53,7 @@ namespace MASZ.Controllers
 
             current.DefaultLanguage = newSettings.DefaultLanguage;
             current.AuditLogWebhookURL = newSettings.AuditLogWebhookURL ?? string.Empty;
+            current.PublicFileMode = newSettings.PublicFileMode;
 
             return Ok(await repo.UpdateAppSettings(current));
         }

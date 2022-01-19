@@ -9,6 +9,7 @@ namespace MASZ.Models
         public string EmbedContent { get; set; }
         public Language DefaultLanguage { get; set; }
         public string AuditLogWebhookURL { get; set; }
+        public bool PublicFileMode { get; set; }
 
         public string GetEmbedData(string url)
         {
@@ -30,7 +31,8 @@ namespace MASZ.Models
                 EmbedTitle = "MASZ - a discord moderation bot",
                 EmbedContent = "MASZ is a moderation bot for Discord Moderators. Keep track of all moderation events on your server, search reliably for infractions or setup automoderation to be one step ahead of trolls and rule breakers.",
                 AuditLogWebhookURL = string.Empty,
-                DefaultLanguage = Language.en
+                DefaultLanguage = Language.en,
+                PublicFileMode = false
             };
         }
     }
