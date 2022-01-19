@@ -50,7 +50,6 @@ services:
       - ENABLE_DEMO_MODE=${ENABLE_DEMO_MODE}
       - ENABLE_CUSTOM_PLUGINS=${ENABLE_CUSTOM_PLUGINS}
       - ABSOLUTE_PATH_TO_FILE_UPLOAD=/filehost/
-      - ENABLE_PUBLIC_FILES=${ENABLE_PUBLIC_FILES}
     networks:
       - appnetwork
     volumes:
