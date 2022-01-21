@@ -1,5 +1,91 @@
 [
   {
+    "title": "Version 2.6.0",
+    "version": "v2.6.0",
+    "released_at": "2022-01-23",
+    "contributors": [
+      {
+        "name": "Bricksmaster",
+        "link": "https://github.com/Bricksmaster",
+        "icon": "https://avatars.githubusercontent.com/u/47327755?v=4"
+      },
+      {
+        "name": "FlixProd",
+        "link": "https://github.com/FlixProd",
+        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+      },
+      {
+        "name": "TrissieTheHusky",
+        "link": "https://github.com/TrissieTheHusky",
+        "icon": "https://avatars.githubusercontent.com/u/48584735?v=4"
+      }
+    ],
+    "breaking": [
+      {
+        "title": "Some env vars have been moved to the appsettings tab.",
+        "description": "The default language, auditlog webhook url and public file mode settings have been moved to the appsettings tab. The env vars will be ignored."
+      }
+    ],
+    "features": [
+      {
+        "title": "Internal notification for say command.",
+        "description": "The bot will now send a notification to the internal webhook when a moderator uses the say command.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/479"
+      },
+      {
+        "title": "Add more parameters to the appsettings.",
+        "description": "Default language, auditlog webhoook url and public file mode are now adjustable through the appsettings tab. Please note that this is a breaking change and may require reconfiguration by a siteadmin."
+      },
+      {
+        "title": "Added status command.",
+        "description": "A status command has been added that displays the current state of the application, similiar to the insights tab.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/486"
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Delete auditlog config on guild delete.",
+        "description": "If you delete a guild and choose to delete its content, the guilds auditlog config will be deleted as well.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/482"
+      },
+      {
+        "title": "Fixed duplicated guild tabs.",
+        "description": "Fixed a bug that caused duplicated guild tabs to occure after guild registration or swapping the current guild via the toolbar too fast."
+      },
+      {
+        "title": "Fixed case template access permissions.",
+        "description": "Fixed a bug that prevented users from accessing their own case templates.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/485"
+      },
+      {
+        "title": "Fixed case template search.",
+        "description": "Fixed a bug that caused case template searching to fail.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/485"
+      },
+      {
+        "title": "Fixed case template creation permissions.",
+        "description": "Fixed a case where some users could create case templates eventhough they were no moderator and thus not allowed to do that."
+      },
+      {
+        "title": "Improved modcase creation dialog.",
+        "description": "Removed unneeded \"back\" button at the start of the case creation dialog."
+      },
+      {
+        "title": "Fixed application startup process.",
+        "description": "Two bugs in the applications startup process have been fixed that caused the app to not work properly and eventually crash"
+      },
+      {
+        "title": "Fixed NRE in unban procedure.",
+        "description": "Fixed a caching issue during the unban procedure that occurred when a user was unbanned before MASZ tries to unban him."
+      }
+    ]
+  },
+  {
     "title":  "Version 2.5.0",
     "version": "v2.5.0",
     "released_at": "2021-12-31",
