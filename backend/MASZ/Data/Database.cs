@@ -686,5 +686,47 @@ namespace MASZ.Data
         {
             context.AppSettings.Update(appSettings);
         }
+
+        // ==================================================================================
+        //
+        // ScheduledMessages
+        //
+        // ==================================================================================
+
+        public async Task<ScheduledMessage> GetMessage(int id)
+        {
+            return await context.ScheduledMessages.AsQueryable().Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<ScheduledMessage>> GetScheduledMessages(ulong guildId)
+        {
+            return await context.ScheduledMessages.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+        }
+
+        public async Task<List<ScheduledMessage>> GetDueMessages()
+        {
+            return await context.ScheduledMessages.AsQueryable().Where(x => x.Status == ScheduledMessageStatus.Pending && x.ScheduledFor < DateTime.UtcNow).ToListAsync();
+        }
+
+        public void SaveMessage(ScheduledMessage message)
+        {
+            context.ScheduledMessages.Add(message);
+        }
+
+        public void UpdateMessage(ScheduledMessage message)
+        {
+            context.ScheduledMessages.Update(message);
+        }
+
+        public void DeleteMessage(ScheduledMessage message)
+        {
+            context.ScheduledMessages.Remove(message);
+        }
+
+        public async Task DeleteMessagesForGuild(ulong guildId)
+        {
+            List<ScheduledMessage> messages = await GetScheduledMessages(guildId);
+            context.ScheduledMessages.RemoveRange(messages);
+        }
     }
 }
