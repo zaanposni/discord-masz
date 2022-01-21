@@ -6,7 +6,7 @@ using MASZ.Models;
 using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace MASZ.Controllers
 {
@@ -21,12 +21,16 @@ namespace MASZ.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetMessages([FromRoute] ulong guildId)
+        public async Task<IActionResult> GetMessages([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int page = 0)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            List<ScheduledMessage> userNotes = await ScheduledMessageRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetAllMessages(guildId);
-            return Ok(userNotes.Select(x => new ScheduledMessageView(x)));
+            List<ScheduledMessage> userNotes = await ScheduledMessageRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetAllMessages(guildId, page);
+            return Ok(userNotes.Select(
+                        async x => new ScheduledMessageView(x,
+                                                            await _discordAPI.FetchUserInfo(x.CreatorId, CacheBehavior.OnlyCache),
+                                                            await _discordAPI.FetchUserInfo(x.LastEditedById, CacheBehavior.OnlyCache))
+            ));
         }
 
         [HttpPost]
@@ -48,7 +52,11 @@ namespace MASZ.Controllers
 
             message = await ScheduledMessageRepository.CreateDefault(_serviceProvider, await GetIdentity()).CreateMessage(message);
 
-            return Ok(new ScheduledMessageView(message));
+            return Ok(new ScheduledMessageView(
+                message,
+                await _discordAPI.FetchUserInfo(message.CreatorId, CacheBehavior.OnlyCache),
+                await _discordAPI.FetchUserInfo(message.LastEditedById, CacheBehavior.OnlyCache)
+            ));
         }
 
         [HttpPut("{id}")]
@@ -76,7 +84,11 @@ namespace MASZ.Controllers
 
             message = await repo.UpdateMessage(message);
 
-            return Ok(new ScheduledMessageView(message));
+            return Ok(new ScheduledMessageView(
+                message,
+                await _discordAPI.FetchUserInfo(message.CreatorId, CacheBehavior.OnlyCache),
+                await _discordAPI.FetchUserInfo(message.LastEditedById, CacheBehavior.OnlyCache)
+            ));
         }
 
         [HttpDelete("{id}")]

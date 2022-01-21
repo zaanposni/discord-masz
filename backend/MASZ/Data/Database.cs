@@ -698,9 +698,9 @@ namespace MASZ.Data
             return await context.ScheduledMessages.AsQueryable().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<List<ScheduledMessage>> GetScheduledMessages(ulong guildId)
+        public async Task<List<ScheduledMessage>> GetScheduledMessages(ulong guildId, int page = 0)
         {
-            return await context.ScheduledMessages.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            return await context.ScheduledMessages.AsQueryable().Where(x => x.GuildId == guildId).Skip(page * 20).Take(20).ToListAsync();
         }
 
         public async Task<List<ScheduledMessage>> GetDueMessages()

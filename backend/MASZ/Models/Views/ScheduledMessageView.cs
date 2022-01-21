@@ -1,4 +1,6 @@
-﻿using MASZ.Enums;
+﻿using Discord;
+using MASZ.Enums;
+using MASZ.Models.Views;
 
 namespace MASZ.Models
 {
@@ -17,7 +19,10 @@ namespace MASZ.Models
         public DateTime LastEditedAt { get; set; }
         public ScheduledMessageFailureReason? FailureReason { get; set; }
 
-        public ScheduledMessageView(ScheduledMessage message)
+        public DiscordUserView Creator { get; set; }
+        public DiscordUserView LastEdited { get; set; }
+
+        public ScheduledMessageView(ScheduledMessage message, IUser creator, IUser lastEdited)
         {
             Id = message.Id;
             Name = message.Name;
@@ -31,6 +36,9 @@ namespace MASZ.Models
             CreatedAt = message.CreatedAt;
             LastEditedAt = message.LastEditedAt;
             FailureReason = message.FailureReason;
+
+            Creator = DiscordUserView.CreateOrDefault(creator);
+            LastEdited = DiscordUserView.CreateOrDefault(lastEdited);
         }
     }
 }
