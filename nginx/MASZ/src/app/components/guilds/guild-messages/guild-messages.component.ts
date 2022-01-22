@@ -7,6 +7,7 @@ import { ReplaySubject } from 'rxjs';
 import { GuildChannel } from 'src/app/models/GuildChannel';
 import { IScheduledMessage } from 'src/app/models/IScheduledMessage';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { EnumManagerService } from 'src/app/services/enum-manager.service';
 
 @Component({
@@ -18,14 +19,7 @@ export class GuildMessagesComponent implements OnInit {
 
   public guildId!: string;
 
-  public messages: any[] = [
-    {
-      id: 1,
-    },
-    {
-      id: 2,
-    }
-  ];
+  public messages: any[] = [];
 
   public channels: GuildChannel[] = [];
 
@@ -34,7 +28,7 @@ export class GuildMessagesComponent implements OnInit {
   public newMessageForm!: FormGroup;
   public scheduledForChangedForPicker: ReplaySubject<Date> = new ReplaySubject<Date>(1);
 
-  constructor(private _formBuilder: FormBuilder, private toastr: ToastrService, private api: ApiService, private enumManager: EnumManagerService, private route: ActivatedRoute) { }
+  constructor(private _formBuilder: FormBuilder, private toastr: ToastrService, private api: ApiService, private enumManager: EnumManagerService, private route: ActivatedRoute, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -46,8 +40,12 @@ export class GuildMessagesComponent implements OnInit {
       scheduledFor: ['', [ Validators.required ]]
     });
 
-    this.api.getSimpleData(`/discord/guilds/${this.guildId}/channels`).subscribe((channels: GuildChannel[]) => {
-      this.channels = channels;
+    this.api.getSimpleData(`/guilds/${this.guildId}/scheduledmessages`).subscribe((data) => {
+      this.messages.push(...data);
+    });
+
+    this.api.getSimpleData(`/discord/guilds/${this.guildId}/channels`).subscribe((data: GuildChannel[]) => {
+      this.channels = data.filter(x => x.type === 0).sort((a, b) => (a.position > b.position) ? 1 : -1);
     });
   }
 
@@ -71,7 +69,7 @@ export class GuildMessagesComponent implements OnInit {
       this.newMessageForm.markAsPristine();
       this.newMessageForm.markAsUntouched();
       this.scheduledForChangedForPicker.next(undefined);
-      this.messages.push(data);
+      this.messages.unshift(data);
       this.newMessageLoading = false;
     }, error => {
       console.error(error);

@@ -1,1 +1,70 @@
-<p>guild-message-card works! {{message.id}}</p>
+<a class="font-weight-bold">
+    <div class="card-container">
+        <div class="card-container-body d-flex conditional-fc">
+            <!-- Profile picture -->
+            <div class="pictures-parent mr-3">
+                <img
+                    src="{{ message.creator?.imageUrl }}"
+                    class="rounded-circle z-depth-0 big-image"
+                    alt="avatar image"
+                    height="96"
+                    title="Suspect {{ message.creatorId }}"
+                    onerror="this.src='/assets/img/default_profile.png';"
+                />
+                <img *ngIf="message.creatorId !== message.lastEditedById"
+                    src="{{ message.lastEdited?.imageUrl }}"
+                    class="rounded-circle z-depth-0 small-image"
+                    alt="avatar image"
+                    height="40"
+                    title="Moderator {{ message.lastEditedById }}"
+                    onerror="this.style.display='none';"
+                />
+            </div>
+            <div class="flex-shrink-1 flex-grow-0 d-flex flex-column flex-wrap">
+                <!-- Title -->
+                <div>
+                    <span class="badge mat-h4 mb-0 mr-1" style="padding: .1rem .4rem"
+                    [class.badge-primary]="message.status === 0"
+                    [class.badge-success]="message.status === 1"
+                    [class.badge-danger]="message.status === 2">
+                        {{ status }}{{ message.status === 2 ? ': ' : '' }}{{ failureReason }}
+                    </span>
+
+                    <span *ngIf="message.channel" class="mat-h2 mb-0">
+                        #{{ message.channel?.name }}:
+                    </span>
+
+                    <span title="{{ message.name }}" class="mat-h2 mb-0">
+                        {{ message.name.length > 35 ? message.name.slice(0, 35) + ' [...]' : message.name }}
+                    </span>
+                </div>
+
+                <app-date-display [date]="message.scheduledFor" [showTime]="true"></app-date-display>
+
+                <!-- Text -->
+                <span title="{{ message.content }}" style="white-space: pre-wrap; word-wrap: anywhere;">
+                    {{ message.content }}
+                </span>
+            </div>
+            <div class="flex-grow-1"></div>
+            <div class="d-flex flex-column align-content-center flex-shrink-0">
+                <ng-container>
+                    <span class="text-black-50" style="text-align: right;">
+                        <app-date-display [date]="message.createdAt" [prefixKey]="'ModCaseCard.Created'"></app-date-display>
+                    </span>
+                    <span class="text-black-50" style="text-align: right;" *ngIf="message.createdAt !== message.lastEditedAt">
+                        <app-date-display [date]="message.lastEditedAt" [prefixKey]="'ModCaseCard.Until'"></app-date-display>
+                    </span>
+                </ng-container>
+                <div class="flex-grow-1"></div>
+                <!-- Button -->
+                <button mat-raised-button color="accent" class="mb-1" (click)="editMessage()">
+                    {{ 'Edit' | translate }}
+                </button>
+                <button mat-raised-button color="accent" *ngIf="isAdminOrHigher">
+                    {{ 'Delete' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+</a>

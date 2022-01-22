@@ -115,6 +115,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { AppsettingsComponent } from './components/api/appsettings/appsettings.component';
 import { GuildMessagesComponent } from './components/guilds/guild-messages/guild-messages.component';
 import { GuildMessageCardComponent } from './components/guilds/guild-messages/guild-message-card/guild-message-card.component';
+import { ScheduledMessageEditDialogComponent } from './components/dialogs/scheduled-message-edit-dialog/scheduled-message-edit-dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -189,7 +190,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MultiSelectComponent,
     AppsettingsComponent,
     GuildMessagesComponent,
-    GuildMessageCardComponent
+    GuildMessageCardComponent,
+    ScheduledMessageEditDialogComponent
   ],
   imports: [
     CommonModule,

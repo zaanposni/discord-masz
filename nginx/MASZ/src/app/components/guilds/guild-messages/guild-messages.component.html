@@ -2,6 +2,7 @@
     <span class="mt-2">{{ 'GuildMessages.Explained' | translate }}</span>
     <div class="mat-h1 mt-4 mb-0">{{ 'GuildMessages.QueueMessage' | translate }}</div>
 
+    <mat-spinner class="my-2 w-75" *ngIf="newMessageLoading"></mat-spinner>
     <form class="d-flex flex-column w-75" [formGroup]="newMessageForm" *ngIf="!newMessageLoading">
         <div class="d-flex flex-row conditional-fc">
             <mat-form-field class="mr-2">
@@ -37,20 +38,23 @@
                 </div>
         </mat-form-field>
     </form>
+
     <button mat-raised-button
         color="primary"
         aria-label="save settings"
         class="flex-shrink-1 w-25"
         (click)="queueMessage()"
-        [disabled]="newMessageName?.invalid || newMessageContent?.invalid || newMessageChannel?.invalid || newMessageScheduledFor?.invalid">
+        [disabled]="newMessageName?.invalid || newMessageContent?.invalid || newMessageChannel?.invalid || newMessageScheduledFor?.invalid || newMessageLoading">
             {{ 'GuildMessages.QueueMessage' | translate }}
     </button>
 
-    <div class="mat-h1 mt-4 mb-0">{{ 'GuildMessages.Messages' | translate }}</div>
+    <mat-divider class="my-2"></mat-divider>
+
+    <div class="mat-h1 mb-0">{{ 'GuildMessages.Messages' | translate }}</div>
     <span class="mb-2">{{ 'GuildMessages.SortBy' | translate }}</span>
 
     <div class="d-flex flex-column">
-        <app-guild-message-card *ngFor="let message of messages" [message]="message"></app-guild-message-card>
+        <app-guild-message-card class="mb-2" *ngFor="let message of messages" [message]="message"></app-guild-message-card>
     </div>
 
 </div>
