@@ -507,6 +507,26 @@
             "es": "Tipo de evento de auditoría no válido",
             "ru": "Неверный тип auditlogevent",
             "it": "Tipo di evento auditlog non valido"
+        },
+        "ProtectedScheduledMessage": {
+            "description": "The scheduled message is protected and cannot be deleted.",
+            "en": "The scheduled message is protected and cannot be deleted.",
+            "de": "Die geplante Nachricht ist geschützt und kann nicht gelöscht werden.",
+            "at": "Dé geplanten Nachricht ist geschützt und kann nicht gelöscht werden.",
+            "fr": "Le message planifié est protégé et ne peut pas être supprimé.",
+            "es": "El mensaje programado está protegido y no se puede eliminar.",
+            "ru": "Запланированное сообщение защищено и не может быть удалено.",
+            "it": "Il messaggio programmato è protetto e non può essere eliminato."
+        },
+        "InvalidDateForScheduledMessage": {
+            "description": "the provided date is invalid (most likely in the past)",
+            "en": "The execution date has to be at least one minute in the future.",
+            "de": "Das Ausführungsdatum muss mindestens eine Minute in der Zukunft liegen.",
+            "at": "Dé Ausführungsdatum muss mindestens eine Minute in der Zukunft liegen.",
+            "fr": "La date d'exécution doit être au moins une minute dans le futur.",
+            "es": "La fecha de ejecución debe ser al menos un minuto en el futuro.",
+            "ru": "Дата выполнения должна быть не менее одной минуты в будущем.",
+            "it": "La data di esecuzione deve essere almeno un minuto nel futuro."
         }
     },
     "CaseCreationType": {
@@ -923,6 +943,70 @@
             "es": "Hilo creado",
             "ru": "Тема создана",
             "it": "Discussione creata"
+        }
+    },
+    "ScheduledMessageFailureReason": {
+        "Unknown": {
+            "description": "An unknown error occurred.",
+            "en": "Unknown error",
+            "de": "Unbekannter Fehler",
+            "at": "Unbekannter Fehler",
+            "fr": "Erreur inconnue",
+            "es": "Error desconocido",
+            "ru": "Неизвестная ошибка",
+            "it": "Errore sconosciuto"
+        },
+        "ChannelNotFound": {
+            "description": "The channel was not found.",
+            "en": "Channel not found",
+            "de": "Kanal nicht gefunden",
+            "at": "Kanal nicht gefunden",
+            "fr": "Canal introuvable",
+            "es": "Canal no encontrado",
+            "ru": "Канал не найден",
+            "it": "Canale non trovato"
+        },
+        "InsufficientPermission": {
+            "description": "The user does not have permission to send messages in the channel.",
+            "en": "Insufficient permission",
+            "de": "Unzureichende Berechtigung",
+            "at": "Unzureichende Berechtigung",
+            "fr": "Permission insuffisante",
+            "es": "Permiso insuficiente",
+            "ru": "Недостаточно прав",
+            "it": "Permessi insufficienti"
+        }
+    },
+    "ScheduledMessageStatus": {
+        "Pending": {
+            "description": "The scheduled message is pending.",
+            "en": "Pending",
+            "de": "Ausstehend",
+            "at": "Ausstehend",
+            "fr": "En attente",
+            "es": "Pendiente",
+            "ru": "Ожидается",
+            "it": "In attesa"
+        },
+        "Sent": {
+            "description": "The scheduled message was sent.",
+            "en": "Sent",
+            "de": "Gesendet",
+            "at": "Gesendet",
+            "fr": "Envoyé",
+            "es": "Enviado",
+            "ru": "Отправлено",
+            "it": "Inviato"
+        },
+        "Failed": {
+            "description": "The scheduled message failed to send.",
+            "en": "Failed",
+            "de": "Fehlgeschlagen",
+            "at": "Fehlgeschlagen",
+            "fr": "Échec",
+            "es": "Falló",
+            "ru": "Не удалось отправить",
+            "it": "Invio fallito"
         }
     }
 }

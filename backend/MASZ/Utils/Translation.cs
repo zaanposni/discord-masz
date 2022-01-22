@@ -3304,6 +3304,26 @@ namespace MASZ.Utils
                     Language.it => "Tipo di evento auditlog non valido",
                     _ => "Invalid auditlogevent type",
                 },
+                APIError.ProtectedScheduledMessage => PreferredLanguage switch
+                {
+                    Language.de => "Die geplante Nachricht ist geschützt und kann nicht gelöscht werden.",
+                    Language.at => "Dé geplanten Nachricht ist geschützt und kann nicht gelöscht werden.",
+                    Language.fr => "Le message planifié est protégé et ne peut pas être supprimé.",
+                    Language.es => "El mensaje programado está protegido y no se puede eliminar.",
+                    Language.ru => "Запланированное сообщение защищено и не может быть удалено.",
+                    Language.it => "Il messaggio programmato è protetto e non può essere eliminato.",
+                    _ => "The scheduled message is protected and cannot be deleted.",
+                },
+                APIError.InvalidDateForScheduledMessage => PreferredLanguage switch
+                {
+                    Language.de => "Das Ausführungsdatum muss mindestens eine Minute in der Zukunft liegen.",
+                    Language.at => "Dé Ausführungsdatum muss mindestens eine Minute in der Zukunft liegen.",
+                    Language.fr => "La date d'exécution doit être au moins une minute dans le futur.",
+                    Language.es => "La fecha de ejecución debe ser al menos un minuto en el futuro.",
+                    Language.ru => "Дата выполнения должна быть не менее одной минуты в будущем.",
+                    Language.it => "La data di esecuzione deve essere almeno un minuto nel futuro.",
+                    _ => "The execution date has to be at least one minute in the future.",
+                },
                 _ => "Unknown",
             };
         }
@@ -3759,6 +3779,80 @@ namespace MASZ.Utils
                     Language.ru => "Тема создана",
                     Language.it => "Discussione creata",
                     _ => "Thread created",
+                },
+                _ => "Unknown",
+            };
+        }
+        public string Enum(ScheduledMessageFailureReason enumValue)
+        {
+            return enumValue switch
+            {
+                ScheduledMessageFailureReason.Unknown => PreferredLanguage switch
+                {
+                    Language.de => "Unbekannter Fehler",
+                    Language.at => "Unbekannter Fehler",
+                    Language.fr => "Erreur inconnue",
+                    Language.es => "Error desconocido",
+                    Language.ru => "Неизвестная ошибка",
+                    Language.it => "Errore sconosciuto",
+                    _ => "Unknown error",
+                },
+                ScheduledMessageFailureReason.ChannelNotFound => PreferredLanguage switch
+                {
+                    Language.de => "Kanal nicht gefunden",
+                    Language.at => "Kanal nicht gefunden",
+                    Language.fr => "Canal introuvable",
+                    Language.es => "Canal no encontrado",
+                    Language.ru => "Канал не найден",
+                    Language.it => "Canale non trovato",
+                    _ => "Channel not found",
+                },
+                ScheduledMessageFailureReason.InsufficientPermission => PreferredLanguage switch
+                {
+                    Language.de => "Unzureichende Berechtigung",
+                    Language.at => "Unzureichende Berechtigung",
+                    Language.fr => "Permission insuffisante",
+                    Language.es => "Permiso insuficiente",
+                    Language.ru => "Недостаточно прав",
+                    Language.it => "Permessi insufficienti",
+                    _ => "Insufficient permission",
+                },
+                _ => "Unknown",
+            };
+        }
+        public string Enum(ScheduledMessageStatus enumValue)
+        {
+            return enumValue switch
+            {
+                ScheduledMessageStatus.Pending => PreferredLanguage switch
+                {
+                    Language.de => "Ausstehend",
+                    Language.at => "Ausstehend",
+                    Language.fr => "En attente",
+                    Language.es => "Pendiente",
+                    Language.ru => "Ожидается",
+                    Language.it => "In attesa",
+                    _ => "Pending",
+                },
+                ScheduledMessageStatus.Sent => PreferredLanguage switch
+                {
+                    Language.de => "Gesendet",
+                    Language.at => "Gesendet",
+                    Language.fr => "Envoyé",
+                    Language.es => "Enviado",
+                    Language.ru => "Отправлено",
+                    Language.it => "Inviato",
+                    _ => "Sent",
+                },
+                ScheduledMessageStatus.Failed => PreferredLanguage switch
+                {
+                    Language.de => "Fehlgeschlagen",
+                    Language.at => "Fehlgeschlagen",
+                    Language.fr => "Échec",
+                    Language.es => "Falló",
+                    Language.ru => "Не удалось отправить",
+                    Language.it => "Invio fallito",
+                    _ => "Failed",
                 },
                 _ => "Unknown",
             };
