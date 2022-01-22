@@ -85,7 +85,7 @@ namespace MASZ.Controllers
             {
                 throw new ProtectedScheduledMessageException();
             }
-            if (message.ScheduledFor < DateTime.UtcNow.AddMinutes(1))
+            if (dto.ScheduledFor < DateTime.UtcNow.AddMinutes(1))
             {
                 throw new InvalidDateForScheduledMessageException();
             }
