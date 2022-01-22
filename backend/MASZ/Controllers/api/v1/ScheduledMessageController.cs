@@ -25,12 +25,18 @@ namespace MASZ.Controllers
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            List<ScheduledMessage> userNotes = await ScheduledMessageRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetAllMessages(guildId, page);
-            return Ok(userNotes.Select(
-                        async x => new ScheduledMessageView(x,
-                                                            await _discordAPI.FetchUserInfo(x.CreatorId, CacheBehavior.OnlyCache),
-                                                            await _discordAPI.FetchUserInfo(x.LastEditedById, CacheBehavior.OnlyCache))
-            ));
+            List<ScheduledMessage> messages = await ScheduledMessageRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetAllMessages(guildId, page);
+
+            List<ScheduledMessageView> results = new List<ScheduledMessageView>();
+
+            foreach (ScheduledMessage message in messages)
+            {
+                results.Add(new ScheduledMessageView(message,
+                                                     await _discordAPI.FetchUserInfo(message.CreatorId, CacheBehavior.OnlyCache),
+                                                     await _discordAPI.FetchUserInfo(message.LastEditedById, CacheBehavior.OnlyCache)));
+            }
+
+            return Ok(results);
         }
 
         [HttpPost]
