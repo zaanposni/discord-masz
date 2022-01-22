@@ -2537,6 +2537,78 @@
             "it": "Impossibile caricare le informazioni sul canale di gilda."
         }
     },
+    "GuildMessages": {
+        "Explained": {
+            "description": "explained message",
+            "en": "Use scheduled messages to manage and coordinate announcement to your community or staff.",
+            "de": "Benutze geplante Nachrichten, um Nachrichten zu organisieren und zu koordinieren.",
+            "at": "Benutze geplante Nachrichten, um Nachrichten zu organisieren und zu koordinieren.",
+            "fr": "Utilisez les messages programmés pour gérer et coordonner les annonces à votre communauté ou à votre personnel.",
+            "es": "Utiliza los mensajes programados para gestionar y coordinar anuncios a tu comunidad o personal.",
+            "ru": "Используйте запланированные сообщения для управления и согласования объявлений в вашей сообществе или вашей команде.",
+            "it": "Utilizza i messaggi programmati per gestire e coordinare gli annunci alla tua comunità o al tuo personale."
+        },
+        "NameField": {
+            "description": "name field",
+            "en": "Name",
+            "de": "Name",
+            "at": "Name",
+            "fr": "Nom",
+            "es": "Nombre",
+            "ru": "Имя",
+            "it": "Nome"
+        },
+        "ChannelField": {
+            "description": "channel field",
+            "en": "Channel",
+            "de": "Kanal",
+            "at": "Kanal",
+            "fr": "Canal",
+            "es": "Canal",
+            "ru": "Канал",
+            "it": "Canale"
+        },
+        "ContentField": {
+            "description": "content field",
+            "en": "Content",
+            "de": "Inhalt",
+            "at": "Inhalt",
+            "fr": "Contenu",
+            "es": "Contenido",
+            "ru": "Содержание",
+            "it": "Contenuto"
+        },
+        "QueueMessage": {
+            "description": "queue message",
+            "en": "Queue message",
+            "de": "Nachricht einplanen",
+            "at": "Nachricht einplanen",
+            "fr": "Message en file d'attente",
+            "es": "Mensaje en cola",
+            "ru": "Сообщение в очередь",
+            "it": "Messaggio in coda"
+        },
+        "Messages": {
+            "description": "existing messages table",
+            "en": "Scheduled messages",
+            "de": "Geplante Nachrichten",
+            "at": "Geplante Nachrichten",
+            "fr": "Messages programmés",
+            "es": "Mensajes programados",
+            "ru": "Запланированные сообщения",
+            "it": "Messaggi programmati"
+        },
+        "SortBy": {
+            "description": "sort by",
+            "en": "Sort by",
+            "de": "Sortieren nach",
+            "at": "Sortieren nach",
+            "fr": "Trier par",
+            "es": "Ordenar por",
+            "ru": "Сортировать по",
+            "it": "Ordina per"
+        }
+    },
     "GuildMotd": {
         "Enable": {
             "description": "Enable motd checkbox",
@@ -2899,15 +2971,15 @@
                 "ru": "Автомобили",
                 "it": "Automoderazione"
             },
-            "Bin": {
-                "description": "Bin",
-                "en": "Bin",
-                "de": "Papierkorb",
-                "at": "Mistkübl",
-                "fr": "Poubelle",
-                "es": "Compartimiento",
-                "ru": "Корзина",
-                "it": "Bidone"
+            "Messages": {
+                "description": "Messages",
+                "en": "Messages",
+                "de": "Nachrichten",
+                "at": "Nachrichten",
+                "fr": "Messages",
+                "es": "Mensajes",
+                "ru": "Сообщения",
+                "it": "Messaggi"
             },
             "Usernote": {
                 "description": "Usernote",

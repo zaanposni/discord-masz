@@ -350,6 +350,15 @@
         "FailedToLoadGuild": "No se pudo cargar la información del gremio.",
         "FailedToLoadChannels": "No se pudo cargar la información del canal del gremio."
     },
+    "GuildMessages": {
+        "Explained": "Utiliza los mensajes programados para gestionar y coordinar anuncios a tu comunidad o personal.",
+        "NameField": "Nombre",
+        "ChannelField": "Canal",
+        "ContentField": "Contenido",
+        "QueueMessage": "Mensaje en cola",
+        "Messages": "Mensajes programados",
+        "SortBy": "Ordenar por"
+    },
     "GuildMotd": {
         "Enable": "Habilitar MotD",
         "Message": "Mensaje",
@@ -406,7 +415,7 @@
             "Dashboard": "Tablero",
             "Case": "Casos",
             "Automoderation": "Automoderaciones",
-            "Bin": "Compartimiento",
+            "Messages": "Mensajes",
             "Usernote": "Notas de usuario",
             "Usermap": "Mapas de usuario",
             "Config": "Config"

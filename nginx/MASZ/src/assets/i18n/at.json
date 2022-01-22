@@ -350,6 +350,15 @@
         "FailedToLoadGuild": "Güdeninfos konnten ned glodn wean.",
         "FailedToLoadChannels": "Küdnkanoiinformationen konntn ned glodn wean."
     },
+    "GuildMessages": {
+        "Explained": "Benutze geplante Nachrichten, um Nachrichten zu organisieren und zu koordinieren.",
+        "NameField": "Name",
+        "ChannelField": "Kanal",
+        "ContentField": "Inhalt",
+        "QueueMessage": "Nachricht einplanen",
+        "Messages": "Geplante Nachrichten",
+        "SortBy": "Sortieren nach"
+    },
     "GuildMotd": {
         "Enable": "Schoit MotD ei",
         "Message": "Nochricht",
@@ -406,7 +415,7 @@
             "Dashboard": "Dashboard",
             "Case": "Vorfälle",
             "Automoderation": "Automodarationen",
-            "Bin": "Mistkübl",
+            "Messages": "Nachrichten",
             "Usernote": "Benutzanotizn",
             "Usermap": "Benutzabeziehungen",
             "Config": "Konfiguration"

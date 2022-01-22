@@ -350,6 +350,15 @@
         "FailedToLoadGuild": "Gildeninformationen konnten nicht geladen werden.",
         "FailedToLoadChannels": "Gildenkanalinformationen konnten nicht geladen werden."
     },
+    "GuildMessages": {
+        "Explained": "Benutze geplante Nachrichten, um Nachrichten zu organisieren und zu koordinieren.",
+        "NameField": "Name",
+        "ChannelField": "Kanal",
+        "ContentField": "Inhalt",
+        "QueueMessage": "Nachricht einplanen",
+        "Messages": "Geplante Nachrichten",
+        "SortBy": "Sortieren nach"
+    },
     "GuildMotd": {
         "Enable": "Aktiviere MotD",
         "Message": "Nachricht",
@@ -406,7 +415,7 @@
             "Dashboard": "Dashboard",
             "Case": "Vorfälle",
             "Automoderation": "Automoderationen",
-            "Bin": "Papierkorb",
+            "Messages": "Nachrichten",
             "Usernote": "Benutzernotizen",
             "Usermap": "Benutzerbeziehungen",
             "Config": "Konfiguration"

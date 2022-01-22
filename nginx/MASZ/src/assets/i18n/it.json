@@ -350,6 +350,15 @@
         "FailedToLoadGuild": "Impossibile caricare le informazioni sulla gilda.",
         "FailedToLoadChannels": "Impossibile caricare le informazioni sul canale di gilda."
     },
+    "GuildMessages": {
+        "Explained": "Utilizza i messaggi programmati per gestire e coordinare gli annunci alla tua comunità o al tuo personale.",
+        "NameField": "Nome",
+        "ChannelField": "Canale",
+        "ContentField": "Contenuto",
+        "QueueMessage": "Messaggio in coda",
+        "Messages": "Messaggi programmati",
+        "SortBy": "Ordina per"
+    },
     "GuildMotd": {
         "Enable": "Abilita MotD",
         "Message": "Messaggio",
@@ -406,7 +415,7 @@
             "Dashboard": "Pannello di controllo",
             "Case": "casi",
             "Automoderation": "Automoderazione",
-            "Bin": "Bidone",
+            "Messages": "Messaggi",
             "Usernote": "Note utente",
             "Usermap": "Mappe utente",
             "Config": "config"

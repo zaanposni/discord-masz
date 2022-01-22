@@ -40,22 +40,14 @@ export class GuildOverviewComponent implements OnInit {
 
   initialize(guildId: string) {
     this.tabs = [
-      {
-        "icon": "list",
-        "component": "cases"
-      },
-      {
-        "icon": "bolt",
-        "component": "automods"
-      }
     ];
     this.modSub = this.auth.isModInGuild(guildId).subscribe((data: boolean) => {
       this.isModOrHigher = data;
       if (data) {
-        this.tabs.unshift({ component: 'dashboard', icon: 'dashboard' });
-        this.tabs.push({ component: 'usernote', icon: 'badge' });
-        this.tabs.push({ component: 'usermap', icon: 'people' });
-        this.tabs.push({ component: 'bin', icon: 'delete_forever' });
+        //this.tabs.unshift({ component: 'dashboard', icon: 'dashboard' });
+        //this.tabs.push({ component: 'usernote', icon: 'badge' });
+        //this.tabs.push({ component: 'usermap', icon: 'people' });
+        this.tabs.push({ component: 'messages', icon: 'chat' });
         setTimeout(() => {
           this.selectedTab.setValue(-1);
         }, 200);
@@ -64,7 +56,7 @@ export class GuildOverviewComponent implements OnInit {
     this.adminSub = this.auth.isAdminInGuild(guildId).subscribe((data: boolean) => {
       this.isAdminOrHigher = data;
       if (data) {
-        this.tabs.push({ component: 'config', icon: 'settings' });
+        //this.tabs.push({ component: 'config', icon: 'settings' });
       }
     });
   }

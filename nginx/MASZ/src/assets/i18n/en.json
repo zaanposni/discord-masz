@@ -350,6 +350,15 @@
         "FailedToLoadGuild": "Failed to load guild info.",
         "FailedToLoadChannels": "Failed to load guildchannel info."
     },
+    "GuildMessages": {
+        "Explained": "Use scheduled messages to manage and coordinate announcement to your community or staff.",
+        "NameField": "Name",
+        "ChannelField": "Channel",
+        "ContentField": "Content",
+        "QueueMessage": "Queue message",
+        "Messages": "Scheduled messages",
+        "SortBy": "Sort by"
+    },
     "GuildMotd": {
         "Enable": "Enable MotD",
         "Message": "Message",
@@ -406,7 +415,7 @@
             "Dashboard": "Dashboard",
             "Case": "Cases",
             "Automoderation": "Automoderations",
-            "Bin": "Bin",
+            "Messages": "Messages",
             "Usernote": "Usernotes",
             "Usermap": "Usermaps",
             "Config": "Config"

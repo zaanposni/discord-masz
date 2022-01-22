@@ -350,6 +350,15 @@
         "FailedToLoadGuild": "Échec du chargement des informations de guilde.",
         "FailedToLoadChannels": "Échec du chargement des informations du canal de guilde."
     },
+    "GuildMessages": {
+        "Explained": "Utilisez les messages programmés pour gérer et coordonner les annonces à votre communauté ou à votre personnel.",
+        "NameField": "Nom",
+        "ChannelField": "Canal",
+        "ContentField": "Contenu",
+        "QueueMessage": "Message en file d'attente",
+        "Messages": "Messages programmés",
+        "SortBy": "Trier par"
+    },
     "GuildMotd": {
         "Enable": "Activer MotD",
         "Message": "Un message",
@@ -406,7 +415,7 @@
             "Dashboard": "Tableau de bord",
             "Case": "Cas",
             "Automoderation": "Automodérations",
-            "Bin": "Poubelle",
+            "Messages": "Messages",
             "Usernote": "Notes d'utilisateur",
             "Usermap": "Cartes utilisateur",
             "Config": "Configuration"
