@@ -64,7 +64,8 @@ namespace MASZ.Controllers
             return Ok(new ScheduledMessageView(
                 message,
                 await _discordAPI.FetchUserInfo(message.CreatorId, CacheBehavior.OnlyCache),
-                await _discordAPI.FetchUserInfo(message.LastEditedById, CacheBehavior.OnlyCache)
+                await _discordAPI.FetchUserInfo(message.LastEditedById, CacheBehavior.OnlyCache),
+                _discordAPI.FetchGuildChannels(guildId, CacheBehavior.OnlyCache).FirstOrDefault(x => x.Id == message.ChannelId)
             ));
         }
 
@@ -100,7 +101,8 @@ namespace MASZ.Controllers
             return Ok(new ScheduledMessageView(
                 message,
                 await _discordAPI.FetchUserInfo(message.CreatorId, CacheBehavior.OnlyCache),
-                await _discordAPI.FetchUserInfo(message.LastEditedById, CacheBehavior.OnlyCache)
+                await _discordAPI.FetchUserInfo(message.LastEditedById, CacheBehavior.OnlyCache),
+                _discordAPI.FetchGuildChannels(guildId, CacheBehavior.OnlyCache).FirstOrDefault(x => x.Id == message.ChannelId)
             ));
         }
 
