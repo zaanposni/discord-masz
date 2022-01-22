@@ -42,7 +42,7 @@ namespace MASZ.Repositories
         public async Task<ScheduledMessage> CreateMessage(ScheduledMessage message)
         {
             message.CreatedAt = DateTime.UtcNow;
-            message.LastEditedAt = DateTime.UtcNow;
+            message.LastEditedAt = message.CreatedAt;
             message.CreatorId = _currentUser.Id;
             message.LastEditedById = _currentUser.Id;
             message.Status = ScheduledMessageStatus.Pending;

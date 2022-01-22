@@ -27,13 +27,14 @@ namespace MASZ.Controllers
 
             List<ScheduledMessage> messages = await ScheduledMessageRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetAllMessages(guildId, page);
 
-            List<ScheduledMessageView> results = new List<ScheduledMessageView>();
+            List<ScheduledMessageView> results = new();
 
             foreach (ScheduledMessage message in messages)
             {
                 results.Add(new ScheduledMessageView(message,
                                                      await _discordAPI.FetchUserInfo(message.CreatorId, CacheBehavior.OnlyCache),
-                                                     await _discordAPI.FetchUserInfo(message.LastEditedById, CacheBehavior.OnlyCache)));
+                                                     await _discordAPI.FetchUserInfo(message.LastEditedById, CacheBehavior.OnlyCache),
+                                                     _discordAPI.FetchGuildChannels(guildId, CacheBehavior.OnlyCache).FirstOrDefault(x => x.Id == message.ChannelId)));
             }
 
             return Ok(results);
@@ -80,16 +81,19 @@ namespace MASZ.Controllers
             {
                 throw new UnauthorizedException();
             }
+            if (message.Status != ScheduledMessageStatus.Pending)
+            {
+                throw new ProtectedScheduledMessageException();
+            }
+            if (message.ScheduledFor < DateTime.UtcNow.AddMinutes(1))
+            {
+                throw new InvalidDateForScheduledMessageException();
+            }
 
             message.Name = dto.Name;
             message.Content = dto.Content;
             message.ScheduledFor = dto.ScheduledFor;
             message.ChannelId = dto.ChannelId;
-
-            if (message.ScheduledFor < DateTime.UtcNow.AddMinutes(1))
-            {
-                throw new InvalidDateForScheduledMessageException();
-            }
 
             message = await repo.UpdateMessage(message);
 

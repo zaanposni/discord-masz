@@ -21,8 +21,9 @@ namespace MASZ.Models
 
         public DiscordUserView Creator { get; set; }
         public DiscordUserView LastEdited { get; set; }
+        public DiscordChannelView Channel { get; set; }
 
-        public ScheduledMessageView(ScheduledMessage message, IUser creator, IUser lastEdited)
+        public ScheduledMessageView(ScheduledMessage message, IUser creator, IUser lastEdited, IGuildChannel channel = null)
         {
             Id = message.Id;
             Name = message.Name;
@@ -39,6 +40,7 @@ namespace MASZ.Models
 
             Creator = DiscordUserView.CreateOrDefault(creator);
             LastEdited = DiscordUserView.CreateOrDefault(lastEdited);
+            Channel = DiscordChannelView.CreateOrDefault(channel);
         }
     }
 }
