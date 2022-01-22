@@ -65,6 +65,10 @@ namespace MASZ.Data
         //
         // ==================================================================================
 
+        public async Task<List<string>> GetAllLabels(ulong guildId)
+        {
+            return (await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync()).SelectMany(x => x.Labels).ToList();
+        }
         public async Task<List<ModCase>> SelectAllModcasesMarkedAsDeleted()
         {
             return await context.ModCases.AsQueryable().Where(x => x.MarkedToDeleteAt < DateTime.UtcNow).ToListAsync();

@@ -18,6 +18,14 @@ namespace MASZ.Controllers
         {
         }
 
+        [HttpGet("labels")]
+        public async Task<IActionResult> Get([FromRoute] ulong guildId)
+        {
+            await RequirePermission(guildId, DiscordPermission.Moderator);
+
+            return Ok(await ModCaseRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetLabelUsages(guildId));
+        }
+
         [HttpGet("{caseId}")]
         public async Task<IActionResult> GetSpecificItem([FromRoute] ulong guildId, [FromRoute] int caseId)
         {
