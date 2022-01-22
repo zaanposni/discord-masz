@@ -700,7 +700,7 @@ namespace MASZ.Data
 
         public async Task<List<ScheduledMessage>> GetScheduledMessages(ulong guildId, int page = 0)
         {
-            return await context.ScheduledMessages.AsQueryable().Where(x => x.GuildId == guildId).Skip(page * 20).Take(20).ToListAsync();
+            return await context.ScheduledMessages.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.Id).Skip(page * 20).Take(20).ToListAsync();
         }
 
         public async Task<List<ScheduledMessage>> GetDueMessages()
