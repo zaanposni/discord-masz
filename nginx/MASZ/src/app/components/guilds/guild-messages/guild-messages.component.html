@@ -63,6 +63,12 @@
             [disabled]="loadingFurtherMessages">
                 {{ 'GuildMessages.LoadMore.Button' | translate }}
         </button>
+
+        <div class="card-container rounded m-2 mb-3" *ngIf="messages.length === 0">
+            <div class="card-container-body">
+                <span class="mat-h1">{{ 'NothingHere' | translate }}</span>
+            </div>
+        </div>
     </div>
 
 </div>
