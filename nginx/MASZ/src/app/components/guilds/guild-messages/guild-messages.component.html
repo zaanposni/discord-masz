@@ -41,7 +41,7 @@
 
     <button mat-raised-button
         color="primary"
-        aria-label="save settings"
+        aria-label="register message"
         class="flex-shrink-1 w-25"
         (click)="queueMessage()"
         [disabled]="newMessageName?.invalid || newMessageContent?.invalid || newMessageChannel?.invalid || newMessageScheduledFor?.invalid || newMessageLoading">
@@ -50,11 +50,19 @@
 
     <mat-divider class="my-2"></mat-divider>
 
-    <div class="mat-h1 mb-0">{{ 'GuildMessages.Messages' | translate }}</div>
-    <span class="mb-2">{{ 'GuildMessages.SortBy' | translate }}</span>
+    <div class="mat-h1 mb-2">{{ 'GuildMessages.Messages' | translate }}</div>
 
     <div class="d-flex flex-column">
-        <app-guild-message-card class="mb-2" *ngFor="let message of messages" [message]="message"></app-guild-message-card>
+        <app-guild-message-card class="mb-2" *ngFor="let message of messages" [message]="message" (deleteEvent)="messageDeleted($event)"></app-guild-message-card>
+
+        <button mat-raised-button *ngIf="messages.length !== 0"
+            color="accent"
+            aria-label="load further messages"
+            class="flex-shrink-1 w-25 align-self-center"
+            (click)="loadFurtherMessages()"
+            [disabled]="loadingFurtherMessages">
+                {{ 'GuildMessages.LoadMore.Button' | translate }}
+        </button>
     </div>
 
 </div>

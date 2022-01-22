@@ -173,6 +173,15 @@
         "Cancel": "Abbrechen",
         "Confirm": "Bestätigen"
     },
+    "ScheduledMessageEditDialog": {
+        "EditMessage": "Nachricht aktualisieren",
+        "Name": "Name",
+        "Content": "Inhalt",
+        "EditSuccess": "Nachricht erfolgreich aktualisiert.",
+        "DeleteSuccess": "Nachricht erfolgreich gelöscht.",
+        "Cancel": "Abbrechen",
+        "Confirm": "Bestätigen"
+    },
     "UsernoteEditDialog": {
         "EditUsernote": "Benutzernotiz aktualisieren",
         "Description": "Beschreibung",
@@ -357,7 +366,11 @@
         "ContentField": "Inhalt",
         "QueueMessage": "Nachricht einplanen",
         "Messages": "Geplante Nachrichten",
-        "SortBy": "Sortieren nach"
+        "SortBy": "Sortieren nach",
+        "LoadMore": {
+            "Button": "Mehr laden",
+            "Failed": "Nachrichten konnten nicht geladen werden."
+        }
     },
     "GuildMotd": {
         "Enable": "Aktiviere MotD",
@@ -524,6 +537,12 @@
         "Search": "Suche (Benutzer, ID, Beschreibung...)",
         "FailedToLoad": "Vorfälle konnten nicht geladen werden.",
         "NoMatches": "Keine Vorfälle passen zu deiner Suche."
+    },
+    "ScheduleMessageCard": {
+        "Created": "Erstellt:",
+        "Edited": "Bearbeitet:",
+        "Edit": "Bearbeiten",
+        "Delete": "Löschen"
     },
     "ModCaseCard": {
         "ViewDetailsButton": "Details anzeigen",

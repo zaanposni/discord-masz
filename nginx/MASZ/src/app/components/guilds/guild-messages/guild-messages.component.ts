@@ -1,6 +1,8 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Moment } from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { ReplaySubject } from 'rxjs';
@@ -20,6 +22,8 @@ export class GuildMessagesComponent implements OnInit {
   public guildId!: string;
 
   public messages: any[] = [];
+  public apiPage: number = 1;
+  public loadingFurtherMessages: boolean = false;
 
   public channels: GuildChannel[] = [];
 
@@ -28,7 +32,7 @@ export class GuildMessagesComponent implements OnInit {
   public newMessageForm!: FormGroup;
   public scheduledForChangedForPicker: ReplaySubject<Date> = new ReplaySubject<Date>(1);
 
-  constructor(private _formBuilder: FormBuilder, private toastr: ToastrService, private api: ApiService, private enumManager: EnumManagerService, private route: ActivatedRoute, private auth: AuthService) { }
+  constructor(private _formBuilder: FormBuilder, private toastr: ToastrService, private api: ApiService, private route: ActivatedRoute, private translator: TranslateService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -79,6 +83,28 @@ export class GuildMessagesComponent implements OnInit {
 
   newMessageDateChanged(date: Moment) {
     this.newMessageScheduledFor?.setValue(date);
+  }
+
+  messageDeleted(id: number) {
+    const index = this.messages.findIndex(x => x.id === id);
+    if (index > -1) {
+      this.messages.splice(index, 1);
+    }
+  }
+
+  loadFurtherMessages() {
+    this.loadingFurtherMessages = true;
+    const params = new HttpParams()
+                        .set('page', this.apiPage.toString())
+
+    this.api.getSimpleData(`/guilds/${this.guildId}/scheduledmessages`, true, params).subscribe((data) => {
+      this.messages.push(...data);
+      this.loadingFurtherMessages = false;
+      this.apiPage++;
+    }, error => {
+      console.error(error);
+      this.toastr.error(this.translator.instant('GuildMessages.LoadMore.Failed'))
+    });
   }
 
   get newMessageName() { return this.newMessageForm.get('name'); }

@@ -1,7 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ThisReceiver } from '@angular/compiler';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmationDialogComponent } from 'src/app/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { ScheduledMessageEditDialogComponent } from 'src/app/components/dialogs/scheduled-message-edit-dialog/scheduled-message-edit-dialog.component';
 import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
 import { IScheduledMessage } from 'src/app/models/IScheduledMessage';
@@ -23,8 +26,9 @@ export class GuildMessageCardComponent implements OnInit {
   public failureReason?: string;
 
   @Input() message!: IScheduledMessage;
+  @Output() deleteEvent = new EventEmitter<number>();
 
-  constructor(private auth: AuthService, private enumManager: EnumManagerService, private toastr: ToastrService, private route: ActivatedRoute, private api: ApiService, private dialog: MatDialog) { }
+  constructor(private auth: AuthService, private enumManager: EnumManagerService, private toastr: ToastrService, private route: ActivatedRoute, private api: ApiService, private dialog: MatDialog, private translator: TranslateService) { }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -64,6 +68,7 @@ export class GuildMessageCardComponent implements OnInit {
 
         this.api.putSimpleData(`/guilds/${this.guildId}/scheduledmessages/${this.message.id}`, body, undefined, true, true).subscribe((data) => {
           this.message = data;
+          this.toastr.success(this.translator.instant('ScheduledMessageEditDialog.EditSuccess'));
         }, error => {
           console.error(error);
         });
@@ -71,4 +76,15 @@ export class GuildMessageCardComponent implements OnInit {
     });
   }
 
+  deleteMessage() {
+    const editDialogRef = this.dialog.open(ConfirmationDialogComponent);
+    editDialogRef.afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        this.api.deleteData(`/guilds/${this.guildId}/scheduledmessages/${this.message.id}`, undefined, true, true).subscribe(() => {
+          this.toastr.success(this.translator.instant('ScheduledMessageEditDialog.DeleteSuccess'));
+          this.deleteEvent.emit(this.message.id);
+        });
+      }
+    });
+  }
 }

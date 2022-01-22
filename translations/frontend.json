@@ -1289,6 +1289,78 @@
             "it": "Confermare"
         }
     },
+    "ScheduledMessageEditDialog": {
+        "EditMessage": {
+            "description": "Edit message",
+            "en": "Edit message",
+            "de": "Nachricht aktualisieren",
+            "at": "Nachricht aktualisian",
+            "fr": "Modifier le message",
+            "es": "Editar mensaje",
+            "ru": "Редактировать сообщение",
+            "it": "Modifica messaggio"
+        },
+        "Name": {
+            "description": "name field",
+            "en": "Name",
+            "de": "Name",
+            "at": "Nom",
+            "fr": "Nom",
+            "es": "Nombre",
+            "ru": "Имя",
+            "it": "Nome"
+        },
+        "Content": {
+            "description": "content field",
+            "en": "Content",
+            "de": "Inhalt",
+            "at": "Inhalt",
+            "fr": "Contenu",
+            "es": "Contenido",
+            "ru": "Содержание",
+            "it": "Contenuto"
+        },
+        "EditSuccess": {
+            "description": "edit success",
+            "en": "Message successfully edited.",
+            "de": "Nachricht erfolgreich aktualisiert.",
+            "at": "Nachricht erfolgreich aktualisiian.",
+            "fr": "Message modifié avec succès.",
+            "es": "Mensaje editado con éxito.",
+            "ru": "Сообщение успешно отредактировано.",
+            "it": "Messaggio modificato con successo."
+        },
+        "DeleteSuccess": {
+            "description": "delete success",
+            "en": "Message successfully deleted.",
+            "de": "Nachricht erfolgreich gelöscht.",
+            "at": "Nachricht erfolgreich gelöschian.",
+            "fr": "Message supprimé avec succès.",
+            "es": "Mensaje eliminado con éxito.",
+            "ru": "Сообщение успешно удалено.",
+            "it": "Messaggio eliminato con successo."
+        },
+        "Cancel": {
+            "description": "cancel button",
+            "en": "Cancel",
+            "de": "Abbrechen",
+            "at": "Obrechn",
+            "fr": "Annuler",
+            "es": "Cancelar",
+            "ru": "Отмена",
+            "it": "Annulla"
+        },
+        "Confirm": {
+            "description": "confirm button",
+            "en": "Confirm",
+            "de": "Bestätigen",
+            "at": "Zustima",
+            "fr": "Confirmer",
+            "es": "Confirmar",
+            "ru": "Подтверждать",
+            "it": "Confermare"
+        }
+    },
     "UsernoteEditDialog": {
         "EditUsernote": {
             "description": "Edit usernote",
@@ -2607,6 +2679,28 @@
             "es": "Ordenar por",
             "ru": "Сортировать по",
             "it": "Ordina per"
+        },
+        "LoadMore": {
+            "Button": {
+                "description": "load more button",
+                "en": "Load more",
+                "de": "Mehr laden",
+                "at": "Mehr laden",
+                "fr": "Charger plus",
+                "es": "Cargar más",
+                "ru": "Загрузить еще",
+                "it": "Carica altro"
+            },
+            "Failed": {
+                "description": "failed to load more messages",
+                "en": "Failed to load more messages.",
+                "de": "Nachrichten konnten nicht geladen werden.",
+                "at": "Nachrichten konntn ned glodn wean.",
+                "fr": "Échec du chargement des messages.",
+                "es": "No se pudo cargar más mensajes.",
+                "ru": "Не удалось загрузить больше сообщений.",
+                "it": "Impossibile caricare altri messaggi."
+            }
         }
     },
     "GuildMotd": {
@@ -3925,6 +4019,48 @@
             "es": "Ningún caso coincide con su búsqueda.",
             "ru": "По вашему запросу не найдено ни одного случая.",
             "it": "Nessun caso corrisponde alla tua ricerca."
+        }
+    },
+    "ScheduleMessageCard": {
+        "Created": {
+            "description": "Created prefix for card",
+            "en": "Created:",
+            "de": "Erstellt:",
+            "at": "Erstöt:",
+            "fr": "Créé:",
+            "es": "Creado:",
+            "ru": "Созданный:",
+            "it": "Creato:"
+        },
+        "Edited": {
+            "description": "Edited prefix for card",
+            "en": "Edited:",
+            "de": "Bearbeitet:",
+            "at": "Bearbeitet:",
+            "fr": "Édité:",
+            "es": "Editado:",
+            "ru": "Измененный:",
+            "it": "Modificato:"
+        },
+        "Edit": {
+            "description": "Edit button",
+            "en": "Edit",
+            "de": "Bearbeiten",
+            "at": "Bearbeitn",
+            "fr": "Modifier",
+            "es": "Editar",
+            "ru": "Редактировать",
+            "it": "Modifica"
+        },
+        "Delete": {
+            "description": "Delete prefix for card",
+            "en": "Delete",
+            "de": "Löschen",
+            "at": "Leschn",
+            "fr": "Effacer",
+            "es": "Borrar",
+            "ru": "Удалить",
+            "it": "Elimina"
         }
     },
     "ModCaseCard": {

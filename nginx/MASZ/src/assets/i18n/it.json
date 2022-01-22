@@ -173,6 +173,15 @@
         "Cancel": "Annulla",
         "Confirm": "Confermare"
     },
+    "ScheduledMessageEditDialog": {
+        "EditMessage": "Modifica messaggio",
+        "Name": "Nome",
+        "Content": "Contenuto",
+        "EditSuccess": "Messaggio modificato con successo.",
+        "DeleteSuccess": "Messaggio eliminato con successo.",
+        "Cancel": "Annulla",
+        "Confirm": "Confermare"
+    },
     "UsernoteEditDialog": {
         "EditUsernote": "Modifica nota utente",
         "Description": "Descrizione",
@@ -357,7 +366,11 @@
         "ContentField": "Contenuto",
         "QueueMessage": "Messaggio in coda",
         "Messages": "Messaggi programmati",
-        "SortBy": "Ordina per"
+        "SortBy": "Ordina per",
+        "LoadMore": {
+            "Button": "Carica altro",
+            "Failed": "Impossibile caricare altri messaggi."
+        }
     },
     "GuildMotd": {
         "Enable": "Abilita MotD",
@@ -524,6 +537,12 @@
         "Search": "Cerca (utente, id, descrizione...)",
         "FailedToLoad": "Impossibile caricare i casi.",
         "NoMatches": "Nessun caso corrisponde alla tua ricerca."
+    },
+    "ScheduleMessageCard": {
+        "Created": "Creato:",
+        "Edited": "Modificato:",
+        "Edit": "Modifica",
+        "Delete": "Elimina"
     },
     "ModCaseCard": {
         "ViewDetailsButton": "Visualizza dettagli",

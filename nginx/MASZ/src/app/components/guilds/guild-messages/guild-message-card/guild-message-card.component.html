@@ -42,27 +42,25 @@
                 <app-date-display [date]="message.scheduledFor" [showTime]="true"></app-date-display>
 
                 <!-- Text -->
-                <span title="{{ message.content }}" style="white-space: pre-wrap; word-wrap: anywhere;">
-                    {{ message.content }}
-                </span>
+                <span title="{{ message.content }}" style="white-space: pre-wrap; word-wrap: anywhere;">{{ message.content }}</span>
             </div>
             <div class="flex-grow-1"></div>
             <div class="d-flex flex-column align-content-center flex-shrink-0">
                 <ng-container>
                     <span class="text-black-50" style="text-align: right;">
-                        <app-date-display [date]="message.createdAt" [prefixKey]="'ModCaseCard.Created'"></app-date-display>
+                        <app-date-display [date]="message.createdAt" [prefixKey]="'ScheduleMessageCard.Created'"></app-date-display>
                     </span>
                     <span class="text-black-50" style="text-align: right;" *ngIf="message.createdAt !== message.lastEditedAt">
-                        <app-date-display [date]="message.lastEditedAt" [prefixKey]="'ModCaseCard.Until'"></app-date-display>
+                        <app-date-display [date]="message.lastEditedAt" [prefixKey]="'ScheduleMessageCard.Edited'"></app-date-display>
                     </span>
                 </ng-container>
                 <div class="flex-grow-1"></div>
                 <!-- Button -->
-                <button mat-raised-button color="accent" class="mb-1" (click)="editMessage()">
-                    {{ 'Edit' | translate }}
+                <button mat-raised-button color="accent" class="mb-1" (click)="editMessage()" *ngIf="message.status === 0">
+                    {{ 'ScheduleMessageCard.Edit' | translate }}
                 </button>
-                <button mat-raised-button color="accent" *ngIf="isAdminOrHigher">
-                    {{ 'Delete' | translate }}
+                <button mat-raised-button color="accent" (click)="deleteMessage()" *ngIf="isAdminOrHigher">
+                    {{ 'ScheduleMessageCard.Delete' | translate }}
                 </button>
             </div>
         </div>

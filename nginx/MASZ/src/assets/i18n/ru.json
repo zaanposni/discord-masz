@@ -173,6 +173,15 @@
         "Cancel": "Отмена",
         "Confirm": "Подтверждать"
     },
+    "ScheduledMessageEditDialog": {
+        "EditMessage": "Редактировать сообщение",
+        "Name": "Имя",
+        "Content": "Содержание",
+        "EditSuccess": "Сообщение успешно отредактировано.",
+        "DeleteSuccess": "Сообщение успешно удалено.",
+        "Cancel": "Отмена",
+        "Confirm": "Подтверждать"
+    },
     "UsernoteEditDialog": {
         "EditUsernote": "Редактировать заметку пользователя",
         "Description": "Описание",
@@ -357,7 +366,11 @@
         "ContentField": "Содержание",
         "QueueMessage": "Сообщение в очередь",
         "Messages": "Запланированные сообщения",
-        "SortBy": "Сортировать по"
+        "SortBy": "Сортировать по",
+        "LoadMore": {
+            "Button": "Загрузить еще",
+            "Failed": "Не удалось загрузить больше сообщений."
+        }
     },
     "GuildMotd": {
         "Enable": "Включить MotD",
@@ -524,6 +537,12 @@
         "Search": "Поиск (пользователь, идентификатор, описание ...)",
         "FailedToLoad": "Не удалось загрузить кейсы.",
         "NoMatches": "По вашему запросу не найдено ни одного случая."
+    },
+    "ScheduleMessageCard": {
+        "Created": "Созданный:",
+        "Edited": "Измененный:",
+        "Edit": "Редактировать",
+        "Delete": "Удалить"
     },
     "ModCaseCard": {
         "ViewDetailsButton": "Посмотреть детали",

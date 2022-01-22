@@ -173,6 +173,15 @@
         "Cancel": "Cancel",
         "Confirm": "Confirm"
     },
+    "ScheduledMessageEditDialog": {
+        "EditMessage": "Edit message",
+        "Name": "Name",
+        "Content": "Content",
+        "EditSuccess": "Message successfully edited.",
+        "DeleteSuccess": "Message successfully deleted.",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm"
+    },
     "UsernoteEditDialog": {
         "EditUsernote": "Edit usernote",
         "Description": "Description",
@@ -357,7 +366,11 @@
         "ContentField": "Content",
         "QueueMessage": "Queue message",
         "Messages": "Scheduled messages",
-        "SortBy": "Sort by"
+        "SortBy": "Sort by",
+        "LoadMore": {
+            "Button": "Load more",
+            "Failed": "Failed to load more messages."
+        }
     },
     "GuildMotd": {
         "Enable": "Enable MotD",
@@ -524,6 +537,12 @@
         "Search": "Search (user, id, description...)",
         "FailedToLoad": "Failed to load cases.",
         "NoMatches": "No case matches your search."
+    },
+    "ScheduleMessageCard": {
+        "Created": "Created:",
+        "Edited": "Edited:",
+        "Edit": "Edit",
+        "Delete": "Delete"
     },
     "ModCaseCard": {
         "ViewDetailsButton": "View Details",

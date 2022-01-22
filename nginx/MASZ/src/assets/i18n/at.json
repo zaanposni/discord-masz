@@ -173,6 +173,15 @@
         "Cancel": "Obrechn",
         "Confirm": "Zustima"
     },
+    "ScheduledMessageEditDialog": {
+        "EditMessage": "Nachricht aktualisian",
+        "Name": "Nom",
+        "Content": "Inhalt",
+        "EditSuccess": "Nachricht erfolgreich aktualisiian.",
+        "DeleteSuccess": "Nachricht erfolgreich gelöschian.",
+        "Cancel": "Obrechn",
+        "Confirm": "Zustima"
+    },
     "UsernoteEditDialog": {
         "EditUsernote": "Benutzanotiz aktualisian",
         "Description": "Beschreibung",
@@ -357,7 +366,11 @@
         "ContentField": "Inhalt",
         "QueueMessage": "Nachricht einplanen",
         "Messages": "Geplante Nachrichten",
-        "SortBy": "Sortieren nach"
+        "SortBy": "Sortieren nach",
+        "LoadMore": {
+            "Button": "Mehr laden",
+            "Failed": "Nachrichten konntn ned glodn wean."
+        }
     },
     "GuildMotd": {
         "Enable": "Schoit MotD ei",
@@ -524,6 +537,12 @@
         "Search": "Suach (Benutza, ID, Beschreibung ...)",
         "FailedToLoad": "Vorfälle konntn ned glodn wean.",
         "NoMatches": "Kane Vorfälle passn zu deina Suach."
+    },
+    "ScheduleMessageCard": {
+        "Created": "Erstöt:",
+        "Edited": "Bearbeitet:",
+        "Edit": "Bearbeitn",
+        "Delete": "Leschn"
     },
     "ModCaseCard": {
         "ViewDetailsButton": "Details ozeign",
