@@ -37,6 +37,7 @@ namespace MASZ.Controllers
         public async Task<IActionResult> CreateMessage([FromRoute] ulong guildId, [FromBody] ScheduledMessageForCreateDto dto)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
+            await GetRegisteredGuild(guildId);
 
             ScheduledMessage message = new();
 
@@ -44,6 +45,7 @@ namespace MASZ.Controllers
             message.Content = dto.Content;
             message.ScheduledFor = dto.ScheduledFor;
             message.ChannelId = dto.ChannelId;
+            message.GuildId = guildId;
 
             if (message.ScheduledFor < DateTime.UtcNow.AddMinutes(1))
             {
@@ -63,6 +65,7 @@ namespace MASZ.Controllers
         public async Task<IActionResult> EditMessage([FromRoute] ulong guildId, [FromRoute] int id, [FromBody] ScheduledMessageForPutDto dto)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
+            await GetRegisteredGuild(guildId);
 
             ScheduledMessageRepository repo = ScheduledMessageRepository.CreateDefault(_serviceProvider, await GetIdentity());
 
@@ -95,6 +98,7 @@ namespace MASZ.Controllers
         public async Task<IActionResult> DeleteMessage([FromRoute] ulong guildId, [FromRoute] int id)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
+            await GetRegisteredGuild(guildId);
             Identity identity = await GetIdentity();
 
             ScheduledMessageRepository repo = ScheduledMessageRepository.CreateDefault(_serviceProvider, identity);
