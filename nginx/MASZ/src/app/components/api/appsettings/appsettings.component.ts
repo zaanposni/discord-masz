@@ -50,7 +50,6 @@ export class AppsettingsComponent implements OnInit {
         auditLogWebhookURL: data.auditLogWebhookURL,
         publicFileMode: data.publicFileMode
       });
-      console.log(this.settingsFormGroup);
 
       this.settingsLoading = false;
     }, error => {
