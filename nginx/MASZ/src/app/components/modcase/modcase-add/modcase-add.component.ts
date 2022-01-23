@@ -341,7 +341,6 @@ export class ModcaseAddComponent implements OnInit {
   }
 
   add(event: MatChipInputEvent): void {
-    console.log(event);
     const input = event.input;
     const value = event.value;
 
