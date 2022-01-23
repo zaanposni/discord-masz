@@ -45,7 +45,10 @@ namespace MASZ.Controllers
                 EnumDto.Create((int) APIError.TooManyTemplates, _translator.T().Enum(APIError.TooManyTemplates)),
                 EnumDto.Create((int) APIError.InvalidFilePath, _translator.T().Enum(APIError.InvalidFilePath)),
                 EnumDto.Create((int) APIError.NoGuildsRegistered, _translator.T().Enum(APIError.NoGuildsRegistered)),
-                EnumDto.Create((int) APIError.OnlyUsableInAGuild, _translator.T().Enum(APIError.OnlyUsableInAGuild))
+                EnumDto.Create((int) APIError.OnlyUsableInAGuild, _translator.T().Enum(APIError.OnlyUsableInAGuild)),
+                EnumDto.Create((int) APIError.InvalidAuditLogEvent, _translator.T().Enum(APIError.InvalidAuditLogEvent)),
+                EnumDto.Create((int) APIError.ProtectedScheduledMessage, _translator.T().Enum(APIError.ProtectedScheduledMessage)),
+                EnumDto.Create((int) APIError.InvalidDateForScheduledMessage, _translator.T().Enum(APIError.InvalidDateForScheduledMessage))
             });
         }
     }

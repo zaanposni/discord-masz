@@ -1,7 +1,8 @@
 {
     "Forms": {
         "FieldRequired": "Questo campo è obbligatorio.",
-        "MaxLength": "Questo campo deve contenere al massimo {{length}} caratteri."
+        "MaxLength": "Questo campo deve contenere al massimo {{length}} caratteri.",
+        "InvalidWebhookURL": "Questo non è un URL di Webhook valido."
     },
     "Select": {
         "Select": "Selezionare",
@@ -55,6 +56,21 @@
     },
     "AppSettings": {
         "Title": "Impostazioni",
+        "Infrastrcture": {
+            "Title": "Infrastruttura",
+            "DefaultLanguage": {
+                "Explained": "MASZ userà questa lingua come lingua predefinita quando possibile. Tuttavia, è possibile che solo una versione inglese sia disponibile per alcuni testi. Le impostazioni della gilda sovrascrivono questa impostazione.",
+                "Field": "Lingua predefinita"
+            },
+            "AuditLogWebhookUrl": {
+                "Explained": "Utilizzare un webhook privato accessibile solo per gli amministratori del sito, poiché può registrare informazioni sensibili.",
+                "Field": "Auditlog webhook URL"
+            },
+            "PublicFileMode": {
+                "Explained": "Abilitare questo per consentire l'accesso pubblico a tutti i file caricati.",
+                "Field": "Modalità file pubblico"
+            }
+        },
         "Embed": {
             "Title": "Embed Discord",
             "Content": "Questa impostazione cambierà il contenuto dell'embed quando il tuo istanza MASZ è collegata in Discord.",
@@ -154,6 +170,15 @@
     "UsermapEditDialog": {
         "EditUsermap": "Modifica mappa utente",
         "Description": "Descrizione",
+        "Cancel": "Annulla",
+        "Confirm": "Confermare"
+    },
+    "ScheduledMessageEditDialog": {
+        "EditMessage": "Modifica messaggio",
+        "Name": "Nome",
+        "Content": "Contenuto",
+        "EditSuccess": "Messaggio modificato con successo.",
+        "DeleteSuccess": "Messaggio eliminato con successo.",
         "Cancel": "Annulla",
         "Confirm": "Confermare"
     },
@@ -334,6 +359,19 @@
         "FailedToLoadGuild": "Impossibile caricare le informazioni sulla gilda.",
         "FailedToLoadChannels": "Impossibile caricare le informazioni sul canale di gilda."
     },
+    "GuildMessages": {
+        "Explained": "Utilizza i messaggi programmati per gestire e coordinare gli annunci alla tua comunità o al tuo personale.",
+        "NameField": "Nome",
+        "ChannelField": "Canale",
+        "ContentField": "Contenuto",
+        "QueueMessage": "Messaggio in coda",
+        "Messages": "Messaggi programmati",
+        "SortBy": "Ordina per",
+        "LoadMore": {
+            "Button": "Carica altro",
+            "Failed": "Impossibile caricare altri messaggi."
+        }
+    },
     "GuildMotd": {
         "Enable": "Abilita MotD",
         "Message": "Messaggio",
@@ -390,7 +428,7 @@
             "Dashboard": "Pannello di controllo",
             "Case": "casi",
             "Automoderation": "Automoderazione",
-            "Bin": "Bidone",
+            "Messages": "Messaggi",
             "Usernote": "Note utente",
             "Usermap": "Mappe utente",
             "Config": "config"
@@ -499,6 +537,12 @@
         "Search": "Cerca (utente, id, descrizione...)",
         "FailedToLoad": "Impossibile caricare i casi.",
         "NoMatches": "Nessun caso corrisponde alla tua ricerca."
+    },
+    "ScheduleMessageCard": {
+        "Created": "Creato:",
+        "Edited": "Modificato:",
+        "Edit": "Modifica",
+        "Delete": "Elimina"
     },
     "ModCaseCard": {
         "ViewDetailsButton": "Visualizza dettagli",

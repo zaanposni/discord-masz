@@ -1,7 +1,8 @@
 {
     "Forms": {
         "FieldRequired": "Este campo es obligatorio.",
-        "MaxLength": "Este campo debe tener como máximo {{length}} caracteres."
+        "MaxLength": "Este campo debe tener como máximo {{length}} caracteres.",
+        "InvalidWebhookURL": "Esta no es una URL de Webhook válida."
     },
     "Select": {
         "Select": "Seleccione",
@@ -55,6 +56,21 @@
     },
     "AppSettings": {
         "Title": "Ajustes",
+        "Infrastrcture": {
+            "Title": "Infraestructura",
+            "DefaultLanguage": {
+                "Explained": "MASZ utilizará este idioma como idioma predeterminado cuando sea posible. Sin embargo, es posible que solo una versión inglesa esté disponible para algunos textos. Los ajustes de la hermandad sobrescriben esta configuración.",
+                "Field": "Idioma predeterminado"
+            },
+            "AuditLogWebhookUrl": {
+                "Explained": "Utilice un webhook privado accesible solo para los administradores del sitio, ya que puede registrar información sensible.",
+                "Field": "Auditlog webhook URL"
+            },
+            "PublicFileMode": {
+                "Explained": "Habilite esto para permitir el acceso público a todos los archivos subidos.",
+                "Field": "Modo de archivo público"
+            }
+        },
         "Embed": {
             "Title": "Embed de Discord",
             "Content": "Esta configuración cambiará el contenido del anuncio cuando tu instancia MASZ esté vinculada en Discord.",
@@ -154,6 +170,15 @@
     "UsermapEditDialog": {
         "EditUsermap": "Editar mapa de usuario",
         "Description": "Descripción",
+        "Cancel": "Cancelar",
+        "Confirm": "Confirmar"
+    },
+    "ScheduledMessageEditDialog": {
+        "EditMessage": "Editar mensaje",
+        "Name": "Nombre",
+        "Content": "Contenido",
+        "EditSuccess": "Mensaje editado con éxito.",
+        "DeleteSuccess": "Mensaje eliminado con éxito.",
         "Cancel": "Cancelar",
         "Confirm": "Confirmar"
     },
@@ -334,6 +359,19 @@
         "FailedToLoadGuild": "No se pudo cargar la información del gremio.",
         "FailedToLoadChannels": "No se pudo cargar la información del canal del gremio."
     },
+    "GuildMessages": {
+        "Explained": "Utiliza los mensajes programados para gestionar y coordinar anuncios a tu comunidad o personal.",
+        "NameField": "Nombre",
+        "ChannelField": "Canal",
+        "ContentField": "Contenido",
+        "QueueMessage": "Mensaje en cola",
+        "Messages": "Mensajes programados",
+        "SortBy": "Ordenar por",
+        "LoadMore": {
+            "Button": "Cargar más",
+            "Failed": "No se pudo cargar más mensajes."
+        }
+    },
     "GuildMotd": {
         "Enable": "Habilitar MotD",
         "Message": "Mensaje",
@@ -390,7 +428,7 @@
             "Dashboard": "Tablero",
             "Case": "Casos",
             "Automoderation": "Automoderaciones",
-            "Bin": "Compartimiento",
+            "Messages": "Mensajes",
             "Usernote": "Notas de usuario",
             "Usermap": "Mapas de usuario",
             "Config": "Config"
@@ -499,6 +537,12 @@
         "Search": "Búsqueda (usuario, id, descripción ...)",
         "FailedToLoad": "No se pudieron cargar los casos.",
         "NoMatches": "Ningún caso coincide con su búsqueda."
+    },
+    "ScheduleMessageCard": {
+        "Created": "Creado:",
+        "Edited": "Editado:",
+        "Edit": "Editar",
+        "Delete": "Borrar"
     },
     "ModCaseCard": {
         "ViewDetailsButton": "Ver detalles",

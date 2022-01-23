@@ -2,43 +2,89 @@
 <div class="d-flex flex-column justify-content-center align-items-center">
     <div class="d-flex flex-column justify-content-center align-items-left cw-50-75">
         <div class="mat-display-2 font-weight-bold mb-4">{{ 'AppSettings.Title' | translate }}</div>
+
+        <!-- Embed -->
+
         <div class="mat-h1 font-weight-bold mb-2">{{ 'AppSettings.Embed.Title' | translate }}</div>
         <div class="mb-0">{{ 'AppSettings.Embed.Content' | translate }}</div>
         <div class="mb-3 warn-color">{{ 'AppSettings.Embed.TakeToUpdate' | translate }}</div>
-        <form *ngIf="!settingsLoading" [formGroup]="formGroup">
+        <mat-spinner *ngIf="settingsLoading"></mat-spinner>
+        <form *ngIf="!settingsLoading" [formGroup]="embedFormGroup">
             <mat-form-field class="w-75 mb-2">
                 <mat-label>{{ 'ModCaseDialog.Title' | translate }}</mat-label>
                 <input matInput type="text" formControlName="title">
-                <div *ngIf="title?.invalid && (title?.dirty || title?.touched)" class="alert alert-danger my-1">
-                    <div *ngIf="title?.errors?.['required']">
+                <div *ngIf="embedTitle?.invalid && (embedTitle?.dirty || embedTitle?.touched)" class="alert alert-danger my-1">
+                    <div *ngIf="embedTitle?.errors?.['required']">
                         {{ 'Forms.FieldRequired' | translate }}
                     </div>
-                    <div *ngIf="title?.errors?.['maxlength']">
+                    <div *ngIf="embedTitle?.errors?.['maxlength']">
                         {{ 'Forms.MaxLength' | translate:maxLength256 }}
                     </div>
                 </div>
-            </mat-form-field><br/>
+            </mat-form-field>
             <mat-form-field class="w-75 mb-2">
                 <mat-label>{{ 'ModCaseDialog.Description' | translate }}</mat-label>
                 <textarea matInput type="text" formControlName="content" rows="{{initRows}}"></textarea>
-                <div *ngIf="content?.invalid && (content?.dirty || content?.touched)" class="alert alert-danger my-1">
-                    <div *ngIf="content?.errors?.['required']">
+                <div *ngIf="embedContent?.invalid && (embedContent?.dirty || embedContent?.touched)" class="alert alert-danger my-1">
+                    <div *ngIf="embedContent?.errors?.['required']">
                         {{ 'Forms.FieldRequired' | translate }}
                     </div>
-                    <div *ngIf="content?.errors?.['maxlength']">
+                    <div *ngIf="embedContent?.errors?.['maxlength']">
                         {{ 'Forms.MaxLength' | translate:maxLength4096 }}
                     </div>
                 </div>
-            </mat-form-field><br/>
-            <button mat-raised-button
-                color="primary"
-                aria-label="create token"
-                class="flex-shrink-1"
-                (click)="updateSettings()"
-                [disabled]="title?.invalid || content?.invalid">
-                    {{ 'AppSettings.Embed.Save.Button' | translate }}
-            </button>
+            </mat-form-field>
+            <div>
+                <button mat-raised-button
+                    color="primary"
+                    aria-label="save settings"
+                    class="flex-shrink-1"
+                    (click)="updateEmbed()"
+                    [disabled]="embedTitle?.invalid || embedContent?.invalid">
+                        {{ 'AppSettings.Embed.Save.Button' | translate }}
+                </button>
+            </div>
         </form>
+
+        <!-- Settings -->
+
+        <div class="mat-h1 font-weight-bold mt-4 mb-2">{{ 'AppSettings.Infrastrcture.Title' | translate }}</div>
+        <div class="mb-2">{{ 'AppSettings.Infrastrcture.DefaultLanguage.Explained' | translate }}</div>
         <mat-spinner *ngIf="settingsLoading"></mat-spinner>
+        <form *ngIf="!settingsLoading" [formGroup]="settingsFormGroup">
+            <mat-form-field class="mb-4">
+                <mat-label>{{ 'AppSettings.Infrastrcture.DefaultLanguage.Field' | translate }}</mat-label>
+                <mat-select formControlName="defaultLanguage">
+                    <mat-option *ngFor="let language of allLanguages"
+                        [value]="language.key">{{ language.value }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="mb-2 warn-color">{{ 'AppSettings.Infrastrcture.AuditLogWebhookUrl.Explained' | translate }}</div>
+            <mat-form-field class="w-75 mb-4">
+                <mat-label>{{ 'AppSettings.Infrastrcture.AuditLogWebhookUrl.Field' | translate }}</mat-label>
+                <input matInput type="text" formControlName="auditLogWebhookURL">
+                <div *ngIf="settingsAuditLogWebhookURL?.invalid && (settingsAuditLogWebhookURL?.dirty || settingsAuditLogWebhookURL?.touched)" class="alert alert-danger my-1">
+                    <div *ngIf="settingsAuditLogWebhookURL?.errors?.['pattern']">
+                        {{ 'Forms.InvalidWebhookURL' | translate }}
+                    </div>
+                </div>
+            </mat-form-field>
+            <div class="mb-2">{{ 'AppSettings.Infrastrcture.PublicFileMode.Explained' | translate }}</div>
+            <mat-checkbox class="mb-2 mr-2"
+                          formControlName="publicFileMode"
+                          [labelPosition]="'after'">
+                    {{ 'AppSettings.Infrastrcture.PublicFileMode.Field' | translate }}
+            </mat-checkbox>
+            <div>
+                <button mat-raised-button
+                    color="primary"
+                    aria-label="save settings"
+                    class="flex-shrink-1"
+                    (click)="updateSettings()"
+                    [disabled]="settingsDefaultLanguage?.invalid || settingsAuditLogWebhookURL?.invalid">
+                        {{ 'AppSettings.Embed.Save.Button' | translate }}
+                </button>
+            </div>
+        </form>
     </div>
 </div>

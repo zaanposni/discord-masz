@@ -1,10 +1,15 @@
-﻿namespace MASZ.Models
+﻿using MASZ.Enums;
+
+namespace MASZ.Models
 {
     public class AppSettings
     {
         public int Id { get; set; }
         public string EmbedTitle { get; set; }
         public string EmbedContent { get; set; }
+        public Language DefaultLanguage { get; set; }
+        public string AuditLogWebhookURL { get; set; }
+        public bool PublicFileMode { get; set; }
 
         public string GetEmbedData(string url)
         {
@@ -24,7 +29,10 @@
             return new AppSettings()
             {
                 EmbedTitle = "MASZ - a discord moderation bot",
-                EmbedContent = "MASZ is a moderation bot for Discord Moderators. Keep track of all moderation events on your server, search reliably for infractions or setup automoderation to be one step ahead of trolls and rule breakers."
+                EmbedContent = "MASZ is a moderation bot for Discord Moderators. Keep track of all moderation events on your server, search reliably for infractions or setup automoderation to be one step ahead of trolls and rule breakers.",
+                AuditLogWebhookURL = string.Empty,
+                DefaultLanguage = Language.en,
+                PublicFileMode = false
             };
         }
     }

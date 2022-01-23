@@ -1,7 +1,8 @@
 {
     "Forms": {
         "FieldRequired": "Dieses Feld ist erforderlich.",
-        "MaxLength": "Dieses Feld darf maximal {{length}} Zeichen lang sein."
+        "MaxLength": "Dieses Feld darf maximal {{length}} Zeichen lang sein.",
+        "InvalidWebhookURL": "Dies ist keine gültige Webhook-URL."
     },
     "Select": {
         "Select": "Auswöhn",
@@ -55,6 +56,21 @@
     },
     "AppSettings": {
         "Title": "Einstellungn",
+        "Infrastrcture": {
+            "Title": "Infrastruktur",
+            "DefaultLanguage": {
+                "Explained": "MASZ wird diese Sprache als Standard verwenden, wenn möglich. Jedoch ist es möglich, dass nur eine englische Version verfügbar ist für bestimmte Texte. Gilden-spezifische Einstellungen überschreiben diese Einstellung.",
+                "Field": "Standard-Sprache"
+            },
+            "AuditLogWebhookUrl": {
+                "Explained": "Verwenden Sie einen privaten Webhook, der nur für Siteadmins zugänglich ist, da es sensible Informationen protokollieren könnte.",
+                "Field": "Auditlog Webhook URL"
+            },
+            "PublicFileMode": {
+                "Explained": "Aktivieren Sie dies, um den öffentlichen Zugriff auf alle hochgeladenen Dateien zu ermöglichen.",
+                "Field": "Öffentlicher Dateimodus"
+            }
+        },
         "Embed": {
             "Title": "Discord Einbettung",
             "Content": "Diese Einstellung ändert den Inhalt der Einbettung, wenn deine MASZ-Instanz in Discord verknüpft ist.",
@@ -154,6 +170,15 @@
     "UsermapEditDialog": {
         "EditUsermap": "Benutzabeziehungen aktualisian",
         "Description": "Beschreibung",
+        "Cancel": "Obrechn",
+        "Confirm": "Zustima"
+    },
+    "ScheduledMessageEditDialog": {
+        "EditMessage": "Nachricht aktualisian",
+        "Name": "Nom",
+        "Content": "Inhalt",
+        "EditSuccess": "Nachricht erfolgreich aktualisiian.",
+        "DeleteSuccess": "Nachricht erfolgreich gelöschian.",
         "Cancel": "Obrechn",
         "Confirm": "Zustima"
     },
@@ -334,6 +359,19 @@
         "FailedToLoadGuild": "Güdeninfos konnten ned glodn wean.",
         "FailedToLoadChannels": "Küdnkanoiinformationen konntn ned glodn wean."
     },
+    "GuildMessages": {
+        "Explained": "Benutze geplante Nachrichten, um Nachrichten zu organisieren und zu koordinieren.",
+        "NameField": "Name",
+        "ChannelField": "Kanal",
+        "ContentField": "Inhalt",
+        "QueueMessage": "Nachricht einplanen",
+        "Messages": "Geplante Nachrichten",
+        "SortBy": "Sortieren nach",
+        "LoadMore": {
+            "Button": "Mehr laden",
+            "Failed": "Nachrichten konntn ned glodn wean."
+        }
+    },
     "GuildMotd": {
         "Enable": "Schoit MotD ei",
         "Message": "Nochricht",
@@ -390,7 +428,7 @@
             "Dashboard": "Dashboard",
             "Case": "Vorfälle",
             "Automoderation": "Automodarationen",
-            "Bin": "Mistkübl",
+            "Messages": "Nachrichten",
             "Usernote": "Benutzanotizn",
             "Usermap": "Benutzabeziehungen",
             "Config": "Konfiguration"
@@ -499,6 +537,12 @@
         "Search": "Suach (Benutza, ID, Beschreibung ...)",
         "FailedToLoad": "Vorfälle konntn ned glodn wean.",
         "NoMatches": "Kane Vorfälle passn zu deina Suach."
+    },
+    "ScheduleMessageCard": {
+        "Created": "Erstöt:",
+        "Edited": "Bearbeitet:",
+        "Edit": "Bearbeitn",
+        "Delete": "Leschn"
     },
     "ModCaseCard": {
         "ViewDetailsButton": "Details ozeign",

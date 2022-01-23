@@ -1,7 +1,8 @@
 {
     "Forms": {
         "FieldRequired": "Dieses Feld ist erforderlich.",
-        "MaxLength": "Dieses Feld darf maximal {{length}} Zeichen lang sein."
+        "MaxLength": "Dieses Feld darf maximal {{length}} Zeichen lang sein.",
+        "InvalidWebhookURL": "Dies ist keine gültige Webhook-URL."
     },
     "Select": {
         "Select": "Auswählen",
@@ -55,6 +56,21 @@
     },
     "AppSettings": {
         "Title": "Einstellungen",
+        "Infrastrcture": {
+            "Title": "Infrastruktur",
+            "DefaultLanguage": {
+                "Explained": "MASZ wird diese Sprache als Standard verwenden, wenn möglich. Jedoch ist es möglich, dass nur eine englische Version verfügbar ist für bestimmte Texte. Gilden-spezifische Einstellungen überschreiben diese Einstellung.",
+                "Field": "Standard-Sprache"
+            },
+            "AuditLogWebhookUrl": {
+                "Explained": "Verwenden Sie einen privaten Webhook, der nur für Siteadmins zugänglich ist, da es sensible Informationen protokollieren könnte.",
+                "Field": "Auditlog Webhook URL"
+            },
+            "PublicFileMode": {
+                "Explained": "Aktivieren Sie dies, um den öffentlichen Zugriff auf alle hochgeladenen Dateien zu ermöglichen.",
+                "Field": "Öffentlicher Dateimodus"
+            }
+        },
         "Embed": {
             "Title": "Discord Einbettung",
             "Content": "Diese Einstellung ändert den Inhalt der Einbettung, wenn deine MASZ-Instanz in Discord verknüpft ist.",
@@ -154,6 +170,15 @@
     "UsermapEditDialog": {
         "EditUsermap": "Benutzerbeziehung aktualisieren",
         "Description": "Beschreibung",
+        "Cancel": "Abbrechen",
+        "Confirm": "Bestätigen"
+    },
+    "ScheduledMessageEditDialog": {
+        "EditMessage": "Nachricht aktualisieren",
+        "Name": "Name",
+        "Content": "Inhalt",
+        "EditSuccess": "Nachricht erfolgreich aktualisiert.",
+        "DeleteSuccess": "Nachricht erfolgreich gelöscht.",
         "Cancel": "Abbrechen",
         "Confirm": "Bestätigen"
     },
@@ -334,6 +359,19 @@
         "FailedToLoadGuild": "Gildeninformationen konnten nicht geladen werden.",
         "FailedToLoadChannels": "Gildenkanalinformationen konnten nicht geladen werden."
     },
+    "GuildMessages": {
+        "Explained": "Benutze geplante Nachrichten, um Nachrichten zu organisieren und zu koordinieren.",
+        "NameField": "Name",
+        "ChannelField": "Kanal",
+        "ContentField": "Inhalt",
+        "QueueMessage": "Nachricht einplanen",
+        "Messages": "Geplante Nachrichten",
+        "SortBy": "Sortieren nach",
+        "LoadMore": {
+            "Button": "Mehr laden",
+            "Failed": "Nachrichten konnten nicht geladen werden."
+        }
+    },
     "GuildMotd": {
         "Enable": "Aktiviere MotD",
         "Message": "Nachricht",
@@ -390,7 +428,7 @@
             "Dashboard": "Dashboard",
             "Case": "Vorfälle",
             "Automoderation": "Automoderationen",
-            "Bin": "Papierkorb",
+            "Messages": "Nachrichten",
             "Usernote": "Benutzernotizen",
             "Usermap": "Benutzerbeziehungen",
             "Config": "Konfiguration"
@@ -499,6 +537,12 @@
         "Search": "Suche (Benutzer, ID, Beschreibung...)",
         "FailedToLoad": "Vorfälle konnten nicht geladen werden.",
         "NoMatches": "Keine Vorfälle passen zu deiner Suche."
+    },
+    "ScheduleMessageCard": {
+        "Created": "Erstellt:",
+        "Edited": "Bearbeitet:",
+        "Edit": "Bearbeiten",
+        "Delete": "Löschen"
     },
     "ModCaseCard": {
         "ViewDetailsButton": "Details anzeigen",

@@ -67,7 +67,7 @@ namespace MASZ.Controllers
                 StrictModPermissionCheck = guildConfigForCreateDto.StrictModPermissionCheck,
                 ExecuteWhoisOnJoin = guildConfigForCreateDto.ExecuteWhoisOnJoin,
                 PublishModeratorInfo = guildConfigForCreateDto.PublishModeratorInfo,
-                PreferredLanguage = guildConfigForCreateDto.PreferredLanguage
+                PreferredLanguage = guildConfigForCreateDto?.PreferredLanguage ?? _config.GetDefaultLanguage()
             };
 
             guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).CreateGuildConfig(guildConfig, importExistingBans);

@@ -55,31 +55,6 @@ while True:
 
 ENV_FILE["DISCORD_SITE_ADMINS"] = ','.join(admins)
 
-print("")  # newline
-table = Table(title=":earth_americas: Languages")
-
-table.add_column("Code", justify="right", style="cyan", no_wrap=True)
-table.add_column("Native Name")
-table.add_column("English Name", justify="right", style="bright_black")
-table.add_column("Supported (%)", justify="right")
-
-for code, lang in SUPPORTED_LANGUAGES.items():
-    color = "white"
-    if lang["supported"] > 90:
-        color = "bright_green"
-    elif lang["supported"] > 60:
-        color = "bright_yellow"
-    elif lang["supported"] < 30:
-        color = "bright_black"
-    table.add_row(code, lang["nativeName"], lang["name"], f'[{color}]{lang["supported"]}[/{color}]%')
-
-console = Console()
-console.print(table)
-ENV_FILE["DEFAULT_LANGUAGE"] = Prompt.ask(":question_mark: Enter the default language MASZ should use", choices=SUPPORTED_LANGUAGES.keys(), default="en")
-
-print(":question_mark: Please specify a discord webhook url for auditlogs.\n[bright_black]This should be a private channel for siteadmins only since it may log sensitive information.\nYou can also leave this empty to disable audit logs.[/bright_black]")
-ENV_FILE["AUDIT_LOG_WEBHOOK_URL"] = Prompt.ask("URL")
-
 ENV_FILE["ENABLE_DEMO_MODE"] = "false"
 ENV_FILE["ENABLE_CUSTOM_PLUGINS"] = "false"
 ENV_FILE["ENABLE_CORS"] = "false"

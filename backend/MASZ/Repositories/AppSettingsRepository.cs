@@ -28,11 +28,29 @@ namespace MASZ.Repositories
 
             existing.EmbedTitle = appSettings.EmbedTitle;
             existing.EmbedContent = appSettings.EmbedContent;
+            existing.AuditLogWebhookURL = appSettings.AuditLogWebhookURL;
+            existing.DefaultLanguage = appSettings.DefaultLanguage;
+            existing.PublicFileMode = appSettings.PublicFileMode;
 
             Database.PutAppSetting(existing);
             await Database.SaveChangesAsync();
 
+            ApplyAppSettings(existing);
+
             return existing;
+        }
+
+        public async Task ApplyAppSettings()
+        {
+            ApplyAppSettings(await GetAppSettings());
+        }
+
+        public void ApplyAppSettings(AppSettings settings)
+        {
+            _config.SetAuditLogWebhook(settings.AuditLogWebhookURL);
+            _config.SetDefaultLanguage(settings.DefaultLanguage);
+            _config.SetPublicFileModeEnabled(settings.PublicFileMode);
+            _translator.SetContext(settings.DefaultLanguage);
         }
     }
 }

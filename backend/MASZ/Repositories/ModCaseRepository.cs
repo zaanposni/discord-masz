@@ -20,6 +20,37 @@ namespace MASZ.Repositories
         }
         public static ModCaseRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new(serviceProvider, identity.GetCurrentUser());
         public static ModCaseRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new(serviceProvider);
+
+        public async Task<List<LabelUsage>> GetLabelUsages(ulong guildId)
+        {
+            var labels = await Database.GetAllLabels(guildId);
+
+            Dictionary<string, int> countMap = new();
+
+            foreach (string label in labels)
+            {
+                if (countMap.ContainsKey(label))
+                {
+                    countMap[label]++;
+                }
+                else
+                {
+                    countMap[label] = 1;
+                }
+            }
+
+            List<LabelUsage> result = new();
+            foreach (string label in countMap.Keys)
+            {
+                result.Add(new LabelUsage()
+                {
+                    Label = label,
+                    Count = countMap[label]
+                });
+            }
+
+            return result.OrderByDescending(x => x.Count).ToList();
+        }
         public async Task<ModCase> ImportModCase(ModCase modCase)
         {
             GuildConfig guildConfig;

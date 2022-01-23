@@ -10,5 +10,7 @@ export enum APIEnumTypes {
     EDITSTATUS = "editstatus",
     LOCKEDCOMMENTSTATUS = "lockedcommentstatus",
     MARKEDTODELETESTATUS = "markedtodeletestatus",
-    PUNISHMENTACTIVESTATUS = "punishmentactivestatus"
+    PUNISHMENTACTIVESTATUS = "punishmentactivestatus",
+    SCHEDULEMESSAGESTATUS = "scheduledmessagestatus",
+    SCHEDULEMESSAGEFAILUREREASON = "scheduledmessagefailurereason",
 }

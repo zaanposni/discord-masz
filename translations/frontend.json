@@ -19,6 +19,16 @@
             "es": "Este campo debe tener como máximo {{length}} caracteres.",
             "ru": "Это поле должно содержать не более {{length}} символов.",
             "it": "Questo campo deve contenere al massimo {{length}} caratteri."
+        },
+        "InvalidWebhookURL": {
+            "description": "This is not a valid webhook URL.",
+            "en": "This is not a valid webhook URL.",
+            "de": "Dies ist keine gültige Webhook-URL.",
+            "at": "Dies ist keine gültige Webhook-URL.",
+            "fr": "Ceci n'est pas une URL de Webhook valide.",
+            "es": "Esta no es una URL de Webhook válida.",
+            "ru": "Это не является действительным вебхуковым URL.",
+            "it": "Questo non è un URL di Webhook valido."
         }
     },
     "Select": {
@@ -441,6 +451,84 @@
             "es": "Ajustes",
             "ru": "Настройки",
             "it": "Impostazioni"
+        },
+        "Infrastrcture": {
+            "Title": {
+                "description": "the word 'infrastrcture'",
+                "en": "Infrastructure",
+                "de": "Infrastruktur",
+                "at": "Infrastruktur",
+                "fr": "Infrastructure",
+                "es": "Infraestructura",
+                "ru": "Инфраструктура",
+                "it": "Infrastruttura"
+            },
+            "DefaultLanguage": {
+                "Explained": {
+                    "description": "default language explained",
+                    "en": "MASZ will use this language as the default language whenever possible. However, possibly only an english version is available for certain texts. Guild specific settings overwrite this setting.",
+                    "de": "MASZ wird diese Sprache als Standard verwenden, wenn möglich. Jedoch ist es möglich, dass nur eine englische Version verfügbar ist für bestimmte Texte. Gilden-spezifische Einstellungen überschreiben diese Einstellung.",
+                    "at": "MASZ wird diese Sprache als Standard verwenden, wenn möglich. Jedoch ist es möglich, dass nur eine englische Version verfügbar ist für bestimmte Texte. Gilden-spezifische Einstellungen überschreiben diese Einstellung.",
+                    "fr": "MASZ utilisera cette langue comme langue par défaut lorsque cela est possible. Cependant, il est possible que seule une version anglaise soit disponible pour certains textes. Les paramètres de guilde remplacent cette option.",
+                    "es": "MASZ utilizará este idioma como idioma predeterminado cuando sea posible. Sin embargo, es posible que solo una versión inglesa esté disponible para algunos textos. Los ajustes de la hermandad sobrescriben esta configuración.",
+                    "ru": "MASZ будет использовать этот язык по умолчанию, если это возможно. Однако, возможно, только английская версия доступна для некоторых текстов. Настройки гильдии перезаписывают этот параметр.",
+                    "it": "MASZ userà questa lingua come lingua predefinita quando possibile. Tuttavia, è possibile che solo una versione inglese sia disponibile per alcuni testi. Le impostazioni della gilda sovrascrivono questa impostazione."
+                },
+                "Field": {
+                    "description": "the word 'default language'",
+                    "en": "Default language",
+                    "de": "Standard-Sprache",
+                    "at": "Standard-Sprache",
+                    "fr": "Langue par défaut",
+                    "es": "Idioma predeterminado",
+                    "ru": "Язык по умолчанию",
+                    "it": "Lingua predefinita"
+                }
+            },
+            "AuditLogWebhookUrl": {
+                "Explained": {
+                    "description": "AuditlogWebhookurl explained",
+                    "en": "Use a private webhook accessible for siteadmins only since it may log sensitive information.",
+                    "de": "Verwenden Sie einen privaten Webhook, der nur für Siteadmins zugänglich ist, da es sensible Informationen protokollieren könnte.",
+                    "at": "Verwenden Sie einen privaten Webhook, der nur für Siteadmins zugänglich ist, da es sensible Informationen protokollieren könnte.",
+                    "fr": "Utilisez un webhook privé accessible uniquement pour les administrateurs du site, car il peut enregistrer des informations sensibles.",
+                    "es": "Utilice un webhook privado accesible solo para los administradores del sitio, ya que puede registrar información sensible.",
+                    "ru": "Используйте приватный вебхук, который доступен только для администраторов сайта, потому что он может записывать конфиденциальную информацию.",
+                    "it": "Utilizzare un webhook privato accessibile solo per gli amministratori del sito, poiché può registrare informazioni sensibili."
+                },
+                "Field": {
+                    "description": "Auditlog webhook URL",
+                    "en": "Auditlog webhook URL",
+                    "de": "Auditlog Webhook URL",
+                    "at": "Auditlog Webhook URL",
+                    "fr": "Auditlog webhook URL",
+                    "es": "Auditlog webhook URL",
+                    "ru": "Auditlog webhook URL",
+                    "it": "Auditlog webhook URL"
+                }
+            },
+            "PublicFileMode": {
+                "Explained": {
+                    "description": "PublicFileMode explained",
+                    "en": "Enable this to allow public access to all uploaded files.",
+                    "de": "Aktivieren Sie dies, um den öffentlichen Zugriff auf alle hochgeladenen Dateien zu ermöglichen.",
+                    "at": "Aktivieren Sie dies, um den öffentlichen Zugriff auf alle hochgeladenen Dateien zu ermöglichen.",
+                    "fr": "Activez ceci pour autoriser l'accès public à tous les fichiers téléchargés.",
+                    "es": "Habilite esto para permitir el acceso público a todos los archivos subidos.",
+                    "ru": "Включите это, чтобы разрешить общий доступ ко всем загруженным файлам.",
+                    "it": "Abilitare questo per consentire l'accesso pubblico a tutti i file caricati."
+                },
+                "Field": {
+                    "description": "Public file mode",
+                    "en": "Public file mode",
+                    "de": "Öffentlicher Dateimodus",
+                    "at": "Öffentlicher Dateimodus",
+                    "fr": "Mode de fichier public",
+                    "es": "Modo de archivo público",
+                    "ru": "Общий режим файла",
+                    "it": "Modalità file pubblico"
+                }
+            }
         },
         "Embed": {
             "Title": {
@@ -1179,6 +1267,78 @@
             "es": "Descripción",
             "ru": "Описание",
             "it": "Descrizione"
+        },
+        "Cancel": {
+            "description": "cancel button",
+            "en": "Cancel",
+            "de": "Abbrechen",
+            "at": "Obrechn",
+            "fr": "Annuler",
+            "es": "Cancelar",
+            "ru": "Отмена",
+            "it": "Annulla"
+        },
+        "Confirm": {
+            "description": "confirm button",
+            "en": "Confirm",
+            "de": "Bestätigen",
+            "at": "Zustima",
+            "fr": "Confirmer",
+            "es": "Confirmar",
+            "ru": "Подтверждать",
+            "it": "Confermare"
+        }
+    },
+    "ScheduledMessageEditDialog": {
+        "EditMessage": {
+            "description": "Edit message",
+            "en": "Edit message",
+            "de": "Nachricht aktualisieren",
+            "at": "Nachricht aktualisian",
+            "fr": "Modifier le message",
+            "es": "Editar mensaje",
+            "ru": "Редактировать сообщение",
+            "it": "Modifica messaggio"
+        },
+        "Name": {
+            "description": "name field",
+            "en": "Name",
+            "de": "Name",
+            "at": "Nom",
+            "fr": "Nom",
+            "es": "Nombre",
+            "ru": "Имя",
+            "it": "Nome"
+        },
+        "Content": {
+            "description": "content field",
+            "en": "Content",
+            "de": "Inhalt",
+            "at": "Inhalt",
+            "fr": "Contenu",
+            "es": "Contenido",
+            "ru": "Содержание",
+            "it": "Contenuto"
+        },
+        "EditSuccess": {
+            "description": "edit success",
+            "en": "Message successfully edited.",
+            "de": "Nachricht erfolgreich aktualisiert.",
+            "at": "Nachricht erfolgreich aktualisiian.",
+            "fr": "Message modifié avec succès.",
+            "es": "Mensaje editado con éxito.",
+            "ru": "Сообщение успешно отредактировано.",
+            "it": "Messaggio modificato con successo."
+        },
+        "DeleteSuccess": {
+            "description": "delete success",
+            "en": "Message successfully deleted.",
+            "de": "Nachricht erfolgreich gelöscht.",
+            "at": "Nachricht erfolgreich gelöschian.",
+            "fr": "Message supprimé avec succès.",
+            "es": "Mensaje eliminado con éxito.",
+            "ru": "Сообщение успешно удалено.",
+            "it": "Messaggio eliminato con successo."
         },
         "Cancel": {
             "description": "cancel button",
@@ -2449,6 +2609,100 @@
             "it": "Impossibile caricare le informazioni sul canale di gilda."
         }
     },
+    "GuildMessages": {
+        "Explained": {
+            "description": "explained message",
+            "en": "Use scheduled messages to manage and coordinate announcement to your community or staff.",
+            "de": "Benutze geplante Nachrichten, um Nachrichten zu organisieren und zu koordinieren.",
+            "at": "Benutze geplante Nachrichten, um Nachrichten zu organisieren und zu koordinieren.",
+            "fr": "Utilisez les messages programmés pour gérer et coordonner les annonces à votre communauté ou à votre personnel.",
+            "es": "Utiliza los mensajes programados para gestionar y coordinar anuncios a tu comunidad o personal.",
+            "ru": "Используйте запланированные сообщения для управления и согласования объявлений в вашей сообществе или вашей команде.",
+            "it": "Utilizza i messaggi programmati per gestire e coordinare gli annunci alla tua comunità o al tuo personale."
+        },
+        "NameField": {
+            "description": "name field",
+            "en": "Name",
+            "de": "Name",
+            "at": "Name",
+            "fr": "Nom",
+            "es": "Nombre",
+            "ru": "Имя",
+            "it": "Nome"
+        },
+        "ChannelField": {
+            "description": "channel field",
+            "en": "Channel",
+            "de": "Kanal",
+            "at": "Kanal",
+            "fr": "Canal",
+            "es": "Canal",
+            "ru": "Канал",
+            "it": "Canale"
+        },
+        "ContentField": {
+            "description": "content field",
+            "en": "Content",
+            "de": "Inhalt",
+            "at": "Inhalt",
+            "fr": "Contenu",
+            "es": "Contenido",
+            "ru": "Содержание",
+            "it": "Contenuto"
+        },
+        "QueueMessage": {
+            "description": "queue message",
+            "en": "Queue message",
+            "de": "Nachricht einplanen",
+            "at": "Nachricht einplanen",
+            "fr": "Message en file d'attente",
+            "es": "Mensaje en cola",
+            "ru": "Сообщение в очередь",
+            "it": "Messaggio in coda"
+        },
+        "Messages": {
+            "description": "existing messages table",
+            "en": "Scheduled messages",
+            "de": "Geplante Nachrichten",
+            "at": "Geplante Nachrichten",
+            "fr": "Messages programmés",
+            "es": "Mensajes programados",
+            "ru": "Запланированные сообщения",
+            "it": "Messaggi programmati"
+        },
+        "SortBy": {
+            "description": "sort by",
+            "en": "Sort by",
+            "de": "Sortieren nach",
+            "at": "Sortieren nach",
+            "fr": "Trier par",
+            "es": "Ordenar por",
+            "ru": "Сортировать по",
+            "it": "Ordina per"
+        },
+        "LoadMore": {
+            "Button": {
+                "description": "load more button",
+                "en": "Load more",
+                "de": "Mehr laden",
+                "at": "Mehr laden",
+                "fr": "Charger plus",
+                "es": "Cargar más",
+                "ru": "Загрузить еще",
+                "it": "Carica altro"
+            },
+            "Failed": {
+                "description": "failed to load more messages",
+                "en": "Failed to load more messages.",
+                "de": "Nachrichten konnten nicht geladen werden.",
+                "at": "Nachrichten konntn ned glodn wean.",
+                "fr": "Échec du chargement des messages.",
+                "es": "No se pudo cargar más mensajes.",
+                "ru": "Не удалось загрузить больше сообщений.",
+                "it": "Impossibile caricare altri messaggi."
+            }
+        }
+    },
     "GuildMotd": {
         "Enable": {
             "description": "Enable motd checkbox",
@@ -2811,15 +3065,15 @@
                 "ru": "Автомобили",
                 "it": "Automoderazione"
             },
-            "Bin": {
-                "description": "Bin",
-                "en": "Bin",
-                "de": "Papierkorb",
-                "at": "Mistkübl",
-                "fr": "Poubelle",
-                "es": "Compartimiento",
-                "ru": "Корзина",
-                "it": "Bidone"
+            "Messages": {
+                "description": "Messages",
+                "en": "Messages",
+                "de": "Nachrichten",
+                "at": "Nachrichten",
+                "fr": "Messages",
+                "es": "Mensajes",
+                "ru": "Сообщения",
+                "it": "Messaggi"
             },
             "Usernote": {
                 "description": "Usernote",
@@ -3765,6 +4019,48 @@
             "es": "Ningún caso coincide con su búsqueda.",
             "ru": "По вашему запросу не найдено ни одного случая.",
             "it": "Nessun caso corrisponde alla tua ricerca."
+        }
+    },
+    "ScheduleMessageCard": {
+        "Created": {
+            "description": "Created prefix for card",
+            "en": "Created:",
+            "de": "Erstellt:",
+            "at": "Erstöt:",
+            "fr": "Créé:",
+            "es": "Creado:",
+            "ru": "Созданный:",
+            "it": "Creato:"
+        },
+        "Edited": {
+            "description": "Edited prefix for card",
+            "en": "Edited:",
+            "de": "Bearbeitet:",
+            "at": "Bearbeitet:",
+            "fr": "Édité:",
+            "es": "Editado:",
+            "ru": "Измененный:",
+            "it": "Modificato:"
+        },
+        "Edit": {
+            "description": "Edit button",
+            "en": "Edit",
+            "de": "Bearbeiten",
+            "at": "Bearbeitn",
+            "fr": "Modifier",
+            "es": "Editar",
+            "ru": "Редактировать",
+            "it": "Modifica"
+        },
+        "Delete": {
+            "description": "Delete prefix for card",
+            "en": "Delete",
+            "de": "Löschen",
+            "at": "Leschn",
+            "fr": "Effacer",
+            "es": "Borrar",
+            "ru": "Удалить",
+            "it": "Elimina"
         }
     },
     "ModCaseCard": {

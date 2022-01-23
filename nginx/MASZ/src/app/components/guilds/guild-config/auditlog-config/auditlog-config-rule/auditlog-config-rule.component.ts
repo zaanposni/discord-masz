@@ -87,15 +87,20 @@ export class AuditlogConfigRuleComponent implements OnInit {
   }
 
   deleteConfig() {
+    this.tryingToSaveConfig = true;
     this.api.deleteData(`/guilds/${this.guildId}/auditlog/${this.definition.type}`).subscribe(() => {
       this.toastr.success(this.translator.instant('GuildAuditLogConfig.ConfigDeleted'));
-      this.reload();
+      this.configForm.setValue({
+        channel: null,
+        pingRoles: null,
+      });
+      this.tryingToSaveConfig = false;
     }, error => {
       console.error(error);
       if (error?.error?.status !== 404 && error?.status !== 404) {
         this.toastr.error(this.translator.instant('GuildAuditLogConfig.FailedToDeleteConfig'));
       }
-      this.reload();
+      this.tryingToSaveConfig = false;
     });
   }
 

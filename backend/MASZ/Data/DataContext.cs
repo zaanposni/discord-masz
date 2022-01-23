@@ -23,6 +23,7 @@ namespace MASZ.Data
         public DbSet<UserNote> UserNotes { get; set; }
         public DbSet<GuildLevelAuditLogConfig> GuildLevelAuditLogConfigs { get; set; }
         public DbSet<AppSettings> AppSettings { get; set; }
+        public DbSet<ScheduledMessage> ScheduledMessages { get; set; }
 
         public void Configure(EntityTypeBuilder<ModCase> builder)
         {

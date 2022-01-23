@@ -621,7 +621,7 @@ copy of the Program in return for a fee.
                      END OF TERMS AND CONDITIONS
 
     MASZ. A discord moderation bot.
-    Copyright (C) 2019-2021 zaanposni
+    Copyright (C) 2019-2022 zaanposni
     Mail: masz@zaanposni.com
 
     This program is free software: you can redistribute it and/or modify
@@ -638,7 +638,9 @@ copy of the Program in return for a fee.
     along with this program. If not, see <https://www.gnu.org/licenses/>.
 
                      ADDITION TO THIS LICENSE
-                     MASZ Copyright (C) 2019-2021 zaanposni
+                     MASZ Copyright (C) 2019-2022 zaanposni
 
-All copies and modifications of MASZ have to include the already existing note "MASZ by zaanposni" in the website's toolbar.
+All copies and modifications of MASZ have to include "MASZ by zaanposni" in the website's credit page.
+This can be changed to "Based on MASZ by zaanposni" if needed.
 This note must link to the repository "discord-masz" from "zaanposni" on github.com
+The website's credit page should furthermore be directly accessible via the website's toolbar, footer or similar.

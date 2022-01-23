@@ -1,10 +1,12 @@
 using Discord;
+using Discord.Net;
 using MASZ.Data;
 using MASZ.Enums;
 using MASZ.Extensions;
 using MASZ.Models;
 using MASZ.Repositories;
 using MASZ.Utils;
+using System.Net;
 using Timer = System.Timers.Timer;
 
 namespace MASZ.Services
@@ -82,14 +84,84 @@ namespace MASZ.Services
                 AutoReset = true,
                 Enabled = true
             };
+            Timer MinuteEventTimer = new(TimeSpan.FromMinutes(1).TotalMilliseconds)
+            {
+                AutoReset = true,
+                Enabled = true
+            };
 
             EventTimer.Elapsed += (s, e) => LoopThroughCaches();
+            MinuteEventTimer.Elapsed += async (s, e) => await CheckDueScheduledMessages();
 
             await Task.Run(() => EventTimer.Start());
+            await Task.Run(() => MinuteEventTimer.Start());
 
             _logger.LogWarning("Started schedule timers.");
 
             LoopThroughCaches();
+        }
+
+        public async Task CheckDueScheduledMessages()
+        {
+            using var scope = _serviceProvider.CreateScope();
+            var repo = ScheduledMessageRepository.CreateWithBotIdentity(scope.ServiceProvider);
+            var messages = await repo.GetDueMessages();
+
+            foreach (ScheduledMessage message in messages)
+            {
+                _logger.LogInformation($"Handling scheduled message {message.Id} for {message.GuildId}/{message.ChannelId} by {message.CreatorId}/{message.LastEditedById}.");
+                IGuild guild;
+                ITextChannel channel;
+                try
+                {
+                    guild = _discordAPI.FetchGuildInfo(message.GuildId, CacheBehavior.OnlyCache);
+                    if (guild == null)
+                        throw new Exception();
+                } catch (Exception)
+                {
+                    _logger.LogInformation($"Failed scheduled message {message.Id}. Reason unknown.");
+                    await repo.SetMessageAsFailed(message.Id, ScheduledMessageFailureReason.Unknown);
+                    continue;
+                }
+
+                try
+                {
+                    channel = await guild.GetTextChannelAsync(message.ChannelId);
+                    if (channel == null)
+                        throw new Exception();
+                }
+                catch (Exception)
+                {
+                    _logger.LogInformation($"Failed scheduled message {message.Id}. Reason channel not found.");
+                    await repo.SetMessageAsFailed(message.Id, ScheduledMessageFailureReason.ChannelNotFound);
+                    continue;
+                }
+
+                try
+                {
+                    await channel.SendMessageAsync(message.Content);
+                    await repo.SetMessageAsSent(message.Id);
+                    _logger.LogInformation($"Sent scheduled message {message.Id} for {message.GuildId}/{message.ChannelId} by {message.CreatorId}/{message.LastEditedById}.");
+                }
+                catch (HttpException e)
+                {
+                    if (e.HttpCode == HttpStatusCode.Unauthorized || e.HttpCode == HttpStatusCode.Forbidden)
+                    {
+                        _logger.LogInformation($"Failed scheduled message {message.Id}. Reason insufficient permission.");
+                        await repo.SetMessageAsFailed(message.Id, ScheduledMessageFailureReason.InsufficientPermission);
+                    }
+                    else
+                    {
+                        _logger.LogInformation($"Failed scheduled message {message.Id}. Reason unknown");
+                        await repo.SetMessageAsFailed(message.Id, ScheduledMessageFailureReason.Unknown);
+                    }
+                }
+                catch (Exception)
+                {
+                    _logger.LogInformation($"Failed scheduled message {message.Id}. Reason unknown");
+                    await repo.SetMessageAsFailed(message.Id, ScheduledMessageFailureReason.Unknown);
+                }
+            }
         }
 
         public void LoopThroughCaches()

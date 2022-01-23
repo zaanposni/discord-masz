@@ -17,5 +17,12 @@ namespace MASZ.Models.Views
             Position = channel.Position;
             Type = (int)channel.GetChannelType();
         }
+
+        public static DiscordChannelView CreateOrDefault(IGuildChannel channel)
+        {
+            if (channel == null) return null;
+            if (channel.Id == 0) return null;
+            return new DiscordChannelView(channel);
+        }
     }
 }

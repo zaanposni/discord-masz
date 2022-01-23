@@ -44,18 +44,9 @@ namespace MASZ.Services
                 _logger.LogError(e, "Could not parse DISCORD_SITE_ADMINS.");
                 _siteAdmins = new List<ulong>();
             }
-            _defaultLanguage = Environment.GetEnvironmentVariable("DEFAULT_LANGUAGE") switch
-            {
-                "de" => Language.de,
-                "it" => Language.it,
-                "fr" => Language.fr,
-                "es" => Language.es,
-                "at" => Language.at,
-                "ru" => Language.ru,
-                _ => Language.en,
-            };
-            _auditLogWebhookUrl = Environment.GetEnvironmentVariable("AUDIT_LOG_WEBHOOK_URL");
-            _publicFilesEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_PUBLIC_FILES"));
+            _defaultLanguage = Language.en;
+            _auditLogWebhookUrl = string.Empty;
+            _publicFilesEnabled = false;
             _demoModeEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_DEMO_MODE"));
             _customPluginsEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS"));
             _corsEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CORS"));
@@ -79,6 +70,11 @@ namespace MASZ.Services
         public string GetClientSecret()
         {
             return _clientSecret;
+        }
+
+        public void SetDefaultLanguage(Language language)
+        {
+            _defaultLanguage = language;
         }
 
         public Language GetDefaultLanguage()
@@ -106,9 +102,19 @@ namespace MASZ.Services
             return _siteAdmins;
         }
 
+        public void SetAuditLogWebhook(string url)
+        {
+            _auditLogWebhookUrl = url;
+        }
+
         public string GetAuditLogWebhook()
         {
             return _auditLogWebhookUrl;
+        }
+
+        public void SetPublicFileModeEnabled(bool mode)
+        {
+            _publicFilesEnabled = mode;
         }
 
         public bool IsPublicFileEnabled()

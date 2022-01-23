@@ -51,11 +51,20 @@ namespace MASZ.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("AuditLogWebhookURL")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("DefaultLanguage")
+                        .HasColumnType("int");
+
                     b.Property<string>("EmbedContent")
                         .HasColumnType("longtext");
 
                     b.Property<string>("EmbedTitle")
                         .HasColumnType("longtext");
+
+                    b.Property<bool>("PublicFileMode")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
 
@@ -408,6 +417,50 @@ namespace MASZ.Migrations
                     b.HasIndex("ModCaseId");
 
                     b.ToTable("ModCaseComments");
+                });
+
+            modelBuilder.Entity("MASZ.Models.ScheduledMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<ulong>("ChannelId")
+                        .HasColumnType("bigint unsigned");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<ulong>("CreatorId")
+                        .HasColumnType("bigint unsigned");
+
+                    b.Property<int?>("FailureReason")
+                        .HasColumnType("int");
+
+                    b.Property<ulong>("GuildId")
+                        .HasColumnType("bigint unsigned");
+
+                    b.Property<DateTime>("LastEditedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<ulong>("LastEditedById")
+                        .HasColumnType("bigint unsigned");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("ScheduledFor")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ScheduledMessages");
                 });
 
             modelBuilder.Entity("MASZ.Models.UserInvite", b =>

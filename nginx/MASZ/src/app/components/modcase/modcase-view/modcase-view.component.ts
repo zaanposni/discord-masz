@@ -170,7 +170,6 @@ export class ModcaseViewComponent implements OnInit {
         this.activationSliderModeDeactivation = this.modCase.content.modCase?.punishmentActive;
       }
       if (this.modCase.content.modCase.punishmentType !== PunishmentType.None && this.modCase.content.modCase.punishmentType !== PunishmentType.Kick && ! this.modCase.content.modCase.punishmentActive) {
-        console.log(this.modCase.content.modCase?.punishedUntil);
         if (this.modCase.content.modCase?.punishedUntil == null) {
           this.punishmentDescriptionTranslationKey = "CaseInactive";
         } else if (moment(this.modCase.content.modCase?.punishedUntil).utc(true).isAfter(moment())) {

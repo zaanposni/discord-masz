@@ -27,7 +27,6 @@
                 </ng-container>
                 <mat-spinner *ngIf="this.templates.loading"></mat-spinner>
                 <div class="stepper-actions">
-                    <button mat-raised-button matStepperPrevious class="mr-2 mb-2" color="accent">{{ 'ModCaseDialog.Back' | translate }}</button>
                     <button mat-raised-button matStepperNext color="accent">{{ 'ModCaseDialog.Next' | translate }}</button>
                 </div>
             </mat-step>
@@ -74,13 +73,21 @@
                             {{label}}
                             <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
                             </mat-chip>
-                            <input placeholder="{{ 'ModCaseDialog.NewLabel' | translate }}"
+                            <input  #labelInput
+                                    placeholder="{{ 'ModCaseDialog.NewLabel' | translate }}"
+                                    [formControl]="labelInputForm"
+                                    [matAutocomplete]="auto"
                                     [matChipInputFor]="chipList"
                                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                    [matChipInputAddOnBlur]="true"
+                                    [matChipInputAddOnBlur]="false"
                                     (matChipInputTokenEnd)="add($event)">
                         </mat-chip-list>
-                        </mat-form-field>
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="autoCompleteSelected($event)">
+                            <mat-option *ngFor="let label of filteredLabels | async" [value]="label?.cleanValue ?? label.label">
+                                <span [innerHtml]="label.label"></span><span> ({{ label.count }})</span>
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
                 </form>
                 <div class="stepper-actions">
                     <button mat-raised-button matStepperPrevious class="mr-2 mb-2" color="accent">{{ 'ModCaseDialog.Back' | translate }}</button>

@@ -27,18 +27,35 @@ namespace MASZ.Controllers
             return Ok(await AppSettingsRepository.CreateDefault(_serviceProvider).GetAppSettings());
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateAppSettings([FromBody] AppSettingsForPutDto newSettings)
+        [HttpPut("embed")]
+        public async Task<IActionResult> UpdateAppSettings([FromBody] EmbedAppSettingsForPutDto newSettings)
         {
             await RequireSiteAdmin();
 
-            AppSettings toAdd = new AppSettings()
-            {
-                EmbedTitle = newSettings.EmbedTitle,
-                EmbedContent = newSettings.EmbedContent
-            };
+            AppSettingsRepository repo = AppSettingsRepository.CreateDefault(_serviceProvider);
 
-            return Ok(await AppSettingsRepository.CreateDefault(_serviceProvider).UpdateAppSettings(toAdd));
+            AppSettings current = await repo.GetAppSettings();
+
+            current.EmbedTitle = newSettings.EmbedTitle;
+            current.EmbedContent = newSettings.EmbedContent;
+
+            return Ok(await repo.UpdateAppSettings(current));
+        }
+
+        [HttpPut("infrastructure")]
+        public async Task<IActionResult> UpdateAppSettings([FromBody] SettingsAppSettingsForPutDto newSettings)
+        {
+            await RequireSiteAdmin();
+
+            AppSettingsRepository repo = AppSettingsRepository.CreateDefault(_serviceProvider);
+
+            AppSettings current = await repo.GetAppSettings();
+
+            current.DefaultLanguage = newSettings.DefaultLanguage;
+            current.AuditLogWebhookURL = newSettings.AuditLogWebhookURL ?? string.Empty;
+            current.PublicFileMode = newSettings.PublicFileMode;
+
+            return Ok(await repo.UpdateAppSettings(current));
         }
     }
 }

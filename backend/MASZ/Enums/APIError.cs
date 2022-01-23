@@ -31,5 +31,7 @@ namespace MASZ.Enums
         NoGuildsRegistered,
         OnlyUsableInAGuild,
         InvalidAuditLogEvent,
+        ProtectedScheduledMessage,
+        InvalidDateForScheduledMessage
     }
 }

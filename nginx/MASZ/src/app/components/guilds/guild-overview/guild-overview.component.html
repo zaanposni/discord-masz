@@ -9,7 +9,7 @@
                     <mat-icon class="mr-1">{{ tab.icon }}</mat-icon>
                     <span *ngIf="tab.component == 'dashboard'">{{ 'GuildOverview.Tabs.Dashboard' | translate }}</span>
                     <span *ngIf="tab.component == 'cases'">{{ 'GuildOverview.Tabs.Case' | translate }}</span>
-                    <span *ngIf="tab.component == 'bin'">{{ 'GuildOverview.Tabs.Bin' | translate }}</span>
+                    <span *ngIf="tab.component == 'messages'">{{ 'GuildOverview.Tabs.Messages' | translate }}</span>
                     <span *ngIf="tab.component == 'automods'">{{ 'GuildOverview.Tabs.Automoderation' | translate }}</span>
                     <span *ngIf="tab.component == 'config'">{{ 'GuildOverview.Tabs.Config' | translate }}</span>
                     <span *ngIf="tab.component == 'usermap'">{{ 'GuildOverview.Tabs.Usermap' | translate }}</span>
@@ -18,7 +18,7 @@
                 <ng-template matTabContent>
                     <app-guild-dashboard *ngIf="tab.component == 'dashboard'"></app-guild-dashboard>
                     <app-modcase-table *ngIf="tab.component=='cases'"></app-modcase-table>
-                    <app-modcase-table [apiUrl]="'casebin'" *ngIf="tab.component=='bin'"></app-modcase-table>
+                    <app-guild-messages *ngIf="tab.component=='messages'"></app-guild-messages>
                     <app-automod-table *ngIf="tab.component=='automods'"></app-automod-table>
                     <app-guild-config *ngIf="tab.component=='config'"></app-guild-config>
                     <app-guild-usermapping *ngIf="tab.component=='usermap'"></app-guild-usermapping>

@@ -65,6 +65,10 @@ namespace MASZ.Data
         //
         // ==================================================================================
 
+        public async Task<List<string>> GetAllLabels(ulong guildId)
+        {
+            return (await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync()).SelectMany(x => x.Labels).ToList();
+        }
         public async Task<List<ModCase>> SelectAllModcasesMarkedAsDeleted()
         {
             return await context.ModCases.AsQueryable().Where(x => x.MarkedToDeleteAt < DateTime.UtcNow).ToListAsync();
@@ -685,6 +689,48 @@ namespace MASZ.Data
         public void PutAppSetting(AppSettings appSettings)
         {
             context.AppSettings.Update(appSettings);
+        }
+
+        // ==================================================================================
+        //
+        // ScheduledMessages
+        //
+        // ==================================================================================
+
+        public async Task<ScheduledMessage> GetMessage(int id)
+        {
+            return await context.ScheduledMessages.AsQueryable().Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<ScheduledMessage>> GetScheduledMessages(ulong guildId, int page = 0)
+        {
+            return await context.ScheduledMessages.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.Id).Skip(page * 20).Take(20).ToListAsync();
+        }
+
+        public async Task<List<ScheduledMessage>> GetDueMessages()
+        {
+            return await context.ScheduledMessages.AsQueryable().Where(x => x.Status == ScheduledMessageStatus.Pending && x.ScheduledFor < DateTime.UtcNow).ToListAsync();
+        }
+
+        public void SaveMessage(ScheduledMessage message)
+        {
+            context.ScheduledMessages.Add(message);
+        }
+
+        public void UpdateMessage(ScheduledMessage message)
+        {
+            context.ScheduledMessages.Update(message);
+        }
+
+        public void DeleteMessage(ScheduledMessage message)
+        {
+            context.ScheduledMessages.Remove(message);
+        }
+
+        public async Task DeleteMessagesForGuild(ulong guildId)
+        {
+            List<ScheduledMessage> messages = await GetScheduledMessages(guildId);
+            context.ScheduledMessages.RemoveRange(messages);
         }
     }
 }

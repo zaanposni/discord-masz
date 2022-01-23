@@ -31,6 +31,10 @@ export class DatePickerComponent implements OnInit {
     });
     if (this.dateChangedInParent) {
       this.dateChangedInParent.subscribe(date => {
+        if (date == undefined) {
+          this.date = undefined;
+          return;
+        }
         let momentDate = moment.utc(moment(date));
         if (this.invertedCurrentTimezone !== 'UTC') {
           momentDate = momentDate.utcOffset(this.invertedCurrentTimezone, true);

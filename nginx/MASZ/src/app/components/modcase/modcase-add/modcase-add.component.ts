@@ -23,6 +23,10 @@ import { EnumManagerService } from 'src/app/services/enum-manager.service';
 import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { ICaseLabel } from 'src/app/models/ICaseLabel';
+import { go, highlight } from 'fuzzysort';
+
 
 @Component({
   selector: 'app-modcase-add',
@@ -46,6 +50,10 @@ export class ModcaseAddComponent implements OnInit {
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA, SPACE];
   public caseLabels: string[] = [];
+  public labelInputForm: FormControl = new FormControl();
+  @ViewChild('labelInput') labelInput?: ElementRef<HTMLInputElement>;
+  public filteredLabels: ReplaySubject<ICaseLabel[]> = new ReplaySubject(1);
+  public remoteLabels: ICaseLabel[] = [];
 
   public memberForm = new FormControl();
   public filteredMembers!: Observable<DiscordUser[]>;
@@ -60,7 +68,12 @@ export class ModcaseAddComponent implements OnInit {
   public allTemplates: TemplateView[] = [];
   public punishmentOptions: ContentLoading<APIEnum[]> = { loading: true, content: [] };
   public currentUser!: AppUser;
-  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog, private enumManager: EnumManagerService, private translator: TranslateService) { }
+  constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog, private enumManager: EnumManagerService, private translator: TranslateService) {
+    this.labelInputForm.valueChanges.subscribe(data => {
+      const localeLowerCaseCopy = this.caseLabels.slice().map(x => x.toLowerCase());
+      this.filteredLabels.next(data ? this._filterLabel(data) : this.remoteLabels.slice(0, 5).filter(x => !localeLowerCaseCopy.includes(x.label.toLowerCase())));
+    });
+   }
 
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
@@ -117,6 +130,21 @@ export class ModcaseAddComponent implements OnInit {
        option.id.includes(filterValue)) && !option.bot).slice(0, 10) as DiscordUser[];
   }
 
+  private _filterLabel(value: string): ICaseLabel[] {
+    const localeLowerCaseCopy = this.caseLabels.slice().map(x => x.toLowerCase());
+    if (! value)
+    {
+      return this.remoteLabels.slice(0, 5).filter(x => !localeLowerCaseCopy.includes(x.label.toLowerCase()));
+    }
+
+    const filterValue = value.trim().toLowerCase();
+    return go(filterValue, this.remoteLabels.slice().filter(x => !localeLowerCaseCopy.includes(x.label.toLowerCase())), { key: 'label' }).map(r => ({
+      label: highlight(r),
+      cleanValue: r.obj.label,
+      count: r.obj.count
+    }as ICaseLabel)).sort((a, b) => b.count - a.count).slice(0, 5);
+  }
+
   uploadInit() {
     const fileInput = this.fileInput.nativeElement;
     fileInput .onchange = () => {
@@ -138,7 +166,6 @@ export class ModcaseAddComponent implements OnInit {
         x.caseTemplate.templateName.includes(search) ||
         x.caseTemplate.caseTitle.includes(search) ||
         x.caseTemplate.caseDescription.includes(search) ||
-        x.caseTemplate.casePunishment.includes(search) ||
         x.caseTemplate.caseLabels.includes(search) ||
 
         (x.creator?.username + "#" + x.creator?.discriminator).includes(search) ||
@@ -179,6 +206,11 @@ export class ModcaseAddComponent implements OnInit {
 
     this.authService.getUserProfile().subscribe((data) => {
       this.currentUser = data;
+    });
+
+    this.api.getSimpleData(`/guilds/${this.guildId}/cases/labels`).subscribe(labels => {
+      this.remoteLabels = labels;
+      this.filteredLabels.next(this._filterLabel(this.labelInputForm.value));
     });
   }
 
@@ -313,7 +345,10 @@ export class ModcaseAddComponent implements OnInit {
     const value = event.value;
 
     if ((value || '').trim()) {
-      this.caseLabels.push(value.trim());
+      const localeLowerCaseCopy = this.caseLabels.slice().map(x => x.toLowerCase());
+      if (! localeLowerCaseCopy.includes(value.trim().toLowerCase())) {
+        this.caseLabels.push(value.trim());
+      }
     }
 
     if (input) {
@@ -326,6 +361,15 @@ export class ModcaseAddComponent implements OnInit {
 
     if (index >= 0) {
       this.caseLabels.splice(index, 1);
+    }
+  }
+
+  autoCompleteSelected(event: MatAutocompleteSelectedEvent) {
+    this.labelInput!.nativeElement.value = '';
+    this.labelInputForm.setValue(null);
+    const localeLowerCaseCopy = this.caseLabels.slice().map(x => x.toLowerCase());
+    if (! localeLowerCaseCopy.includes(event.option.value.toLowerCase())) {
+      this.caseLabels.push(event.option.value);
     }
   }
 }

@@ -1,7 +1,8 @@
 {
     "Forms": {
         "FieldRequired": "This field is required.",
-        "MaxLength": "This field must be at most {{length}} characters long."
+        "MaxLength": "This field must be at most {{length}} characters long.",
+        "InvalidWebhookURL": "This is not a valid webhook URL."
     },
     "Select": {
         "Select": "Select",
@@ -55,6 +56,21 @@
     },
     "AppSettings": {
         "Title": "Settings",
+        "Infrastrcture": {
+            "Title": "Infrastructure",
+            "DefaultLanguage": {
+                "Explained": "MASZ will use this language as the default language whenever possible. However, possibly only an english version is available for certain texts. Guild specific settings overwrite this setting.",
+                "Field": "Default language"
+            },
+            "AuditLogWebhookUrl": {
+                "Explained": "Use a private webhook accessible for siteadmins only since it may log sensitive information.",
+                "Field": "Auditlog webhook URL"
+            },
+            "PublicFileMode": {
+                "Explained": "Enable this to allow public access to all uploaded files.",
+                "Field": "Public file mode"
+            }
+        },
         "Embed": {
             "Title": "Discord Embed",
             "Content": "This setting will change the content of the embed when your MASZ instance is linked in Discord.",
@@ -154,6 +170,15 @@
     "UsermapEditDialog": {
         "EditUsermap": "Edit usermap",
         "Description": "Description",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm"
+    },
+    "ScheduledMessageEditDialog": {
+        "EditMessage": "Edit message",
+        "Name": "Name",
+        "Content": "Content",
+        "EditSuccess": "Message successfully edited.",
+        "DeleteSuccess": "Message successfully deleted.",
         "Cancel": "Cancel",
         "Confirm": "Confirm"
     },
@@ -334,6 +359,19 @@
         "FailedToLoadGuild": "Failed to load guild info.",
         "FailedToLoadChannels": "Failed to load guildchannel info."
     },
+    "GuildMessages": {
+        "Explained": "Use scheduled messages to manage and coordinate announcement to your community or staff.",
+        "NameField": "Name",
+        "ChannelField": "Channel",
+        "ContentField": "Content",
+        "QueueMessage": "Queue message",
+        "Messages": "Scheduled messages",
+        "SortBy": "Sort by",
+        "LoadMore": {
+            "Button": "Load more",
+            "Failed": "Failed to load more messages."
+        }
+    },
     "GuildMotd": {
         "Enable": "Enable MotD",
         "Message": "Message",
@@ -390,7 +428,7 @@
             "Dashboard": "Dashboard",
             "Case": "Cases",
             "Automoderation": "Automoderations",
-            "Bin": "Bin",
+            "Messages": "Messages",
             "Usernote": "Usernotes",
             "Usermap": "Usermaps",
             "Config": "Config"
@@ -499,6 +537,12 @@
         "Search": "Search (user, id, description...)",
         "FailedToLoad": "Failed to load cases.",
         "NoMatches": "No case matches your search."
+    },
+    "ScheduleMessageCard": {
+        "Created": "Created:",
+        "Edited": "Edited:",
+        "Edit": "Edit",
+        "Delete": "Delete"
     },
     "ModCaseCard": {
         "ViewDetailsButton": "View Details",
