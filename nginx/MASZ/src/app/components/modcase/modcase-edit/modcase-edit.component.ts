@@ -143,12 +143,12 @@ export class ModcaseEditComponent implements OnInit {
   private _filterLabel(value: string): ICaseLabel[] {
     if (! value)
     {
-      return this.remoteLabels.slice();
+      return this.remoteLabels.slice(0, 5);
     }
     const filterValue = value.trim().toLowerCase();
 
     const localeLowerCaseCopy = this.caseLabels.slice().map(x => x.toLowerCase());
-    return go(filterValue, this.remoteLabels.slice().filter(x => !localeLowerCaseCopy.includes(x.label.toLowerCase())), { limit: 10, key: 'label' }).map(r => ({
+    return go(filterValue, this.remoteLabels.slice().filter(x => !localeLowerCaseCopy.includes(x.label.toLowerCase())), { limit: 5, key: 'label' }).map(r => ({
       label: highlight(r),
       cleanValue: r.obj.label,
       count: r.obj.count

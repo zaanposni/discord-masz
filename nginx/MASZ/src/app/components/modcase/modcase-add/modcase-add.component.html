@@ -79,7 +79,7 @@
                                     [matAutocomplete]="auto"
                                     [matChipInputFor]="chipList"
                                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                    [matChipInputAddOnBlur]="true"
+                                    [matChipInputAddOnBlur]="false"
                                     (matChipInputTokenEnd)="add($event)">
                         </mat-chip-list>
                         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="autoCompleteSelected($event)">

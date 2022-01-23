@@ -4,7 +4,7 @@
         <mat-spinner *ngIf="this.oldCase.loading"></mat-spinner>
         <div class="d-flex flex-column align-items-center" *ngIf="!this.oldCase.loading && !this.oldCase.content">
             <span class="mat-display-1 font-weight-bold">{{ 'ModCaseDialog.FailedToLoad.CurrentCase' | translate }}</span>
-            <img src="/assets/img/notfound.svg" class="w-50"/>
+            <img src="/assets/img/notfound.svg" alt="not found" class="w-50"/>
         </div>
         <mat-vertical-stepper [linear]="true" #stepper color="accent" class="cw-75-100" [style.display]="(!this.oldCase.loading && this.oldCase.content) ? 'block' : 'none'">
             <mat-step [stepControl]="memberFormGroup">
@@ -56,7 +56,7 @@
                                     [matAutocomplete]="auto"
                                     [matChipInputFor]="chipList"
                                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                    [matChipInputAddOnBlur]="true"
+                                    [matChipInputAddOnBlur]="false"
                                     (matChipInputTokenEnd)="add($event)">
                         </mat-chip-list>
                         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="autoCompleteSelected($event)">
