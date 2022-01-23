@@ -42,6 +42,18 @@
         "description": "A status command has been added that displays the current state of the application, similiar to the insights tab.",
         "icon": "link",
         "link": "https://github.com/zaanposni/discord-masz/issues/486"
+      },
+      {
+        "title": "Added scheduled message announcements.",
+        "description": "A scheduled message announcement has been added that allows you to send a message to a channel at a specific time. This is useful for announcing events.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/479"
+      },
+      {
+        "title": "Added case label autocompletion.",
+        "description": "While creating or editing cases MASZ will now display choices for case labels based on already existing case labels.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/489"
       }
     ],
     "fixes": [
@@ -82,6 +94,10 @@
       {
         "title": "Fixed NRE in unban procedure.",
         "description": "Fixed a caching issue during the unban procedure that occurred when a user was unbanned before MASZ tries to unban him."
+      },
+      {
+        "title": "Removed case bin.",
+        "description": "The case bin tab has been removed since the new filters in the modcase table can do the same thing."
       }
     ]
   },
