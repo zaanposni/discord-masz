@@ -1,4 +1,4 @@
-import { ENTER, COMMA, SPACE } from '@angular/cdk/keycodes';
+import { ENTER, COMMA, SPACE, X } from '@angular/cdk/keycodes';
 import { HttpParams } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -57,7 +57,8 @@ export class ModcaseEditComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private translator: TranslateService, private router: Router, private route: ActivatedRoute, private enumManager: EnumManagerService) {
     this.labelInputForm.valueChanges.subscribe(data => {
-      this.filteredLabels.next(data ? this._filterLabel(data) : this.remoteLabels.slice());
+      const localeLowerCaseCopy = this.caseLabels.slice().map(x => x.toLowerCase());
+      this.filteredLabels.next(data ? this._filterLabel(data) : this.remoteLabels.slice(0, 5).filter(x => !localeLowerCaseCopy.includes(x.label.toLowerCase())));
     });
   }
 
@@ -141,18 +142,18 @@ export class ModcaseEditComponent implements OnInit {
   }
 
   private _filterLabel(value: string): ICaseLabel[] {
+    const localeLowerCaseCopy = this.caseLabels.slice().map(x => x.toLowerCase());
     if (! value)
     {
-      return this.remoteLabels.slice(0, 5);
+      return this.remoteLabels.slice(0, 5).filter(x => !localeLowerCaseCopy.includes(x.label.toLowerCase()));
     }
-    const filterValue = value.trim().toLowerCase();
 
-    const localeLowerCaseCopy = this.caseLabels.slice().map(x => x.toLowerCase());
-    return go(filterValue, this.remoteLabels.slice().filter(x => !localeLowerCaseCopy.includes(x.label.toLowerCase())), { limit: 5, key: 'label' }).map(r => ({
+    const filterValue = value.trim().toLowerCase();
+    return go(filterValue, this.remoteLabels.slice().filter(x => !localeLowerCaseCopy.includes(x.label.toLowerCase())), { key: 'label' }).map(r => ({
       label: highlight(r),
       cleanValue: r.obj.label,
       count: r.obj.count
-    }as ICaseLabel));
+    }as ICaseLabel)).sort((a, b) => b.count - a.count).slice(0, 5);
   }
 
   private _filter(value: string): DiscordUser[] {

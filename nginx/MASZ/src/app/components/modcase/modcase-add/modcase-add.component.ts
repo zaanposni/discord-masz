@@ -70,7 +70,8 @@ export class ModcaseAddComponent implements OnInit {
   public currentUser!: AppUser;
   constructor(private _formBuilder: FormBuilder, private api: ApiService, private toastr: ToastrService, private authService: AuthService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog, private enumManager: EnumManagerService, private translator: TranslateService) {
     this.labelInputForm.valueChanges.subscribe(data => {
-      this.filteredLabels.next(data ? this._filterLabel(data) : this.remoteLabels.slice());
+      const localeLowerCaseCopy = this.caseLabels.slice().map(x => x.toLowerCase());
+      this.filteredLabels.next(data ? this._filterLabel(data) : this.remoteLabels.slice(0, 5).filter(x => !localeLowerCaseCopy.includes(x.label.toLowerCase())));
     });
    }
 
@@ -130,18 +131,18 @@ export class ModcaseAddComponent implements OnInit {
   }
 
   private _filterLabel(value: string): ICaseLabel[] {
+    const localeLowerCaseCopy = this.caseLabels.slice().map(x => x.toLowerCase());
     if (! value)
     {
-      return this.remoteLabels.slice(0, 5);
+      return this.remoteLabels.slice(0, 5).filter(x => !localeLowerCaseCopy.includes(x.label.toLowerCase()));
     }
-    const filterValue = value.trim().toLowerCase();
 
-    const localeLowerCaseCopy = this.caseLabels.slice().map(x => x.toLowerCase());
-    return go(filterValue, this.remoteLabels.slice().filter(x => !localeLowerCaseCopy.includes(x.label.toLowerCase())), { limit: 5, key: 'label' }).map(r => ({
+    const filterValue = value.trim().toLowerCase();
+    return go(filterValue, this.remoteLabels.slice().filter(x => !localeLowerCaseCopy.includes(x.label.toLowerCase())), { key: 'label' }).map(r => ({
       label: highlight(r),
       cleanValue: r.obj.label,
       count: r.obj.count
-    }as ICaseLabel));
+    }as ICaseLabel)).sort((a, b) => b.count - a.count).slice(0, 5);
   }
 
   uploadInit() {
@@ -206,7 +207,7 @@ export class ModcaseAddComponent implements OnInit {
     this.authService.getUserProfile().subscribe((data) => {
       this.currentUser = data;
     });
-    
+
     this.api.getSimpleData(`/guilds/${this.guildId}/cases/labels`).subscribe(labels => {
       this.remoteLabels = labels;
       this.filteredLabels.next(this._filterLabel(this.labelInputForm.value));
