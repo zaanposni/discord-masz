@@ -3317,7 +3317,7 @@ namespace MASZ.Utils
                 APIError.InvalidDateForScheduledMessage => PreferredLanguage switch
                 {
                     Language.de => "Das Ausführungsdatum muss mindestens eine Minute in der Zukunft liegen.",
-                    Language.at => "Dé Ausführungsdatum muss mindestens eine Minute in der Zukunft liegen.",
+                    Language.at => "Das Ausführungsdatum muss mindestens eine Minute in der Zukunft liegen.",
                     Language.fr => "La date d'exécution doit être au moins une minute dans le futur.",
                     Language.es => "La fecha de ejecución debe ser al menos un minuto en el futuro.",
                     Language.ru => "Дата выполнения должна быть не менее одной минуты в будущем.",
