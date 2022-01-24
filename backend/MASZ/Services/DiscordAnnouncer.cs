@@ -26,9 +26,9 @@ namespace MASZ.Services
 
         public void RegisterEvents()
         {
-            _eventHandler.OnGuildRegistered += AnnounceTipsInNewGuild;
+            _eventHandler.OnGuildRegistered += async (a, b) => await AnnounceTipsInNewGuild(a, b);
 
-            _eventHandler.OnAutoModerationEventRegistered += AnnounceAutomoderation;
+            _eventHandler.OnAutoModerationEventRegistered += async (a, b, c, d, e) => await AnnounceAutomoderation(a, b, c, d, e);
 
             _eventHandler.OnModCaseCreated += async (a, b, c, d) => await AnnounceModCase(a, b, c, d, RestAction.Created);
             _eventHandler.OnModCaseUpdated += async (a, b, c, d) => await AnnounceModCase(a, b, c, d, RestAction.Updated);

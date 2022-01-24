@@ -265,7 +265,7 @@ namespace MASZ.Services
 
             await translator.SetContext(guildConfig.GuildId);
 
-            EmbedBuilder embed = CreateBasicEmbed(RestAction.Created, null);
+            EmbedBuilder embed = CreateBasicEmbed(RestAction.Created, provider);
 
             embed.Title = translator.T().NotificationRegisterWelcomeToMASZ();
             embed.Description = translator.T().NotificationRegisterDescriptionThanks();
@@ -305,7 +305,7 @@ namespace MASZ.Services
 
             await translator.SetContext(autoModerationEvent.GuildId);
 
-            EmbedBuilder embed = CreateBasicEmbed(RestAction.Created, null);
+            EmbedBuilder embed = CreateBasicEmbed(RestAction.Created, provider);
 
             embed.Title = translator.T().Automoderation();
             embed.Description = translator.T().NotificationAutomoderationInternal(user);
