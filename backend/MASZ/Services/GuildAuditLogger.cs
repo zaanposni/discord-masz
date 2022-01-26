@@ -458,7 +458,23 @@ namespace MASZ.Services
 
                 if (!string.IsNullOrEmpty(message.Content))
                 {
-                    embed.AddField(translator.T().GuildAuditLogMessageDeletedContent(), message.Content.Truncate(1024));
+                    if (message.Content.Length > 1024)
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (message.Content.Length >= i * 1024)
+                            {
+                                embed.AddField(
+                                    $"{translator.T().GuildAuditLogMessageDeletedContent()} [{i + 1}]",
+                                    new string(message.Content.Skip(i * 1024).Take(1024).ToArray())
+                                );
+                            }
+                        }
+                    }
+                    else
+                    {
+                        embed.AddField(translator.T().GuildAuditLogMessageDeletedContent(), message.Content);
+                    }
                 }
 
                 if (message.Attachments.Count > 0)
@@ -505,7 +521,23 @@ namespace MASZ.Services
 
                     if (!string.IsNullOrEmpty(message.Content))
                     {
-                        embed.AddField(translator.T().GuildAuditLogMessageSentContent(), message.Content.Truncate(1024));
+                        if (message.Content.Length > 1024)
+                        {
+                            for (int i = 0; i < 4; i++)
+                            {
+                                if (message.Content.Length >= i * 1024)
+                                {
+                                    embed.AddField(
+                                        $"{translator.T().GuildAuditLogMessageSentContent()} [{i + 1}]",
+                                        new string(message.Content.Skip(i * 1024).Take(1024).ToArray())
+                                    );
+                                }
+                            }
+                        }
+                        else
+                        {
+                            embed.AddField(translator.T().GuildAuditLogMessageSentContent(), message.Content);
+                        }
                     }
                     if (message.Attachments.Count > 0)
                     {
@@ -559,6 +591,10 @@ namespace MASZ.Services
                     }
                     else
                     {
+                        if (string.Equals(before.Content, messageAfter.Content) && before.Embeds.Count != messageAfter.Embeds.Count)
+                        {
+                            return;
+                        }
                         if (!string.IsNullOrEmpty(before.Content))
                         {
                             embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentBefore(), before.Content.Truncate(1024));
@@ -567,7 +603,23 @@ namespace MASZ.Services
 
                     if (!string.IsNullOrEmpty(messageAfter.Content))
                     {
-                        embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentNew(), messageAfter.Content.Truncate(1024));
+                        if (messageAfter.Content.Length > 1024)
+                        {
+                            for (int i = 0; i < 4; i++)
+                            {
+                                if (messageAfter.Content.Length >= i * 1024)
+                                {
+                                    embed.AddField(
+                                        $"{translator.T().GuildAuditLogMessageUpdatedContentNew()} [{i + 1}]",
+                                        new string(messageAfter.Content.Skip(i * 1024).Take(1024).ToArray())
+                                    );
+                                }
+                            }
+                        }
+                        else
+                        {
+                            embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentNew(), messageAfter.Content);
+                        }
                     }
 
                     if (messageAfter.Attachments.Count > 0)
