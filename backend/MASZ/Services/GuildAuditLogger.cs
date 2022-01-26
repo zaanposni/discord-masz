@@ -462,7 +462,7 @@ namespace MASZ.Services
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            if (message.Content.Length >= i * 1024)
+                            if (message.Content.Length > i * 1024)
                             {
                                 embed.AddField(
                                     $"{translator.T().GuildAuditLogMessageDeletedContent()} [{i + 1}]",
@@ -525,7 +525,7 @@ namespace MASZ.Services
                         {
                             for (int i = 0; i < 4; i++)
                             {
-                                if (message.Content.Length >= i * 1024)
+                                if (message.Content.Length > i * 1024)
                                 {
                                     embed.AddField(
                                         $"{translator.T().GuildAuditLogMessageSentContent()} [{i + 1}]",
@@ -607,7 +607,7 @@ namespace MASZ.Services
                         {
                             for (int i = 0; i < 4; i++)
                             {
-                                if (messageAfter.Content.Length >= i * 1024)
+                                if (messageAfter.Content.Length > i * 1024)
                                 {
                                     embed.AddField(
                                         $"{translator.T().GuildAuditLogMessageUpdatedContentNew()} [{i + 1}]",
