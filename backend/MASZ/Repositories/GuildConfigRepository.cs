@@ -146,6 +146,7 @@ namespace MASZ.Repositories
                 await Database.DeleteUserNoteByGuild(guildId);
                 await Database.DeleteUserMappingByGuild(guildId);
                 await Database.DeleteAllAuditLogConfigsForGuild(guildId);
+                await Database.DeleteMessagesForGuild(guildId);
             }
 
             Database.DeleteSpecificGuildConfig(guildConfig);
