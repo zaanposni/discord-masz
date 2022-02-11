@@ -1,3 +1,4 @@
+using Discord;
 using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.Models;
@@ -34,8 +35,12 @@ namespace MASZ.Controllers
             {
                 if (await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildConfig.GuildId))
                 {
-                    modGuilds.Add(guildConfig.GuildId.ToString());
-                    guildViews.Add(new DiscordGuildView(_discordAPI.FetchGuildInfo(guildConfig.GuildId, CacheBehavior.Default)));
+                    IGuild guild = _discordAPI.FetchGuildInfo(guildConfig.GuildId, CacheBehavior.Default);
+                    if (guild != null)
+                    {
+                        modGuilds.Add(guildConfig.GuildId.ToString());
+                        guildViews.Add(new DiscordGuildView(guild));
+                    }
                 }
             }
             if (modGuilds.Count == 0)
