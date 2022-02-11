@@ -35,7 +35,7 @@
                     <textarea matInput type="text" formControlName="reason" rows="1"></textarea>
                 </mat-form-field>
                 <button mat-raised-button color="accent" (click)="createMap()"
-                 [disabled]="!this.newMapFormGroup.value.userA.trim() || !this.newMapFormGroup.value.reason.trim() || !this.newMapFormGroup.value.userB.trim() || this.newMapFormGroup.value.userA.trim() == this.newMapFormGroup.value.userB.trim()">
+                 [disabled]="!this.newMapFormGroup.value?.userA?.trim() || !this.newMapFormGroup.value?.reason?.trim() || !this.newMapFormGroup.value?.userB?.trim() || this.newMapFormGroup.value?.userA?.trim() == this.newMapFormGroup.value?.userB?.trim()">
                  {{ 'UsermapTable.CreateNewMap' | translate }}
                 </button>
             </form>
