@@ -49,7 +49,7 @@
       </a>
     </div>
 
-    <ng-container *ngIf="!anyGuilds">
+    <ng-container *ngIf="!anyGuilds && !currentUser?.loading">
         <img alt="not found" src="/assets/img/notfound.svg" class="w-50 align-self-center"/>
         <div class="mat-display-1 align-self-center font-weight-bold">
           {{ 'GuildList.NoGuild' | translate }}

@@ -27,8 +27,10 @@ export class GuildListComponent implements OnInit {
         loading: false,
         content: data
       };
-      this.anyGuilds = (data.memberGuilds?.length ?? 0 + data.modGuilds?.length ?? 0 + data.adminGuilds?.length ?? 0 + data.bannedGuilds?.length ?? 0) > 0;
-    }, () => { this.currentUser.loading = false });
+      this.anyGuilds = ((data.memberGuilds?.length ?? 0) + (data.modGuilds?.length ?? 0) + (data.adminGuilds?.length ?? 0) + (data.bannedGuilds?.length ?? 0)) > 0;
+    }, () => {
+      this.currentUser.loading = false;
+    });
   }
 
   open(...target: any[]) {
