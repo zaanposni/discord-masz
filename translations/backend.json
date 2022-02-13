@@ -2054,6 +2054,16 @@
             "ru": "Я БЫ",
             "it": "ID"
         },
+        "Message": {
+            "description": "Message",
+            "en": "Message",
+            "de": "Nachricht",
+            "at": "Nachricht",
+            "fr": "Message",
+            "es": "Mensaje",
+            "ru": "Сообщение",
+            "it": "Messaggio"
+        },
         "UserID": {
             "description": "User ID",
             "en": "User ID",
@@ -2073,6 +2083,16 @@
             "es": "Usuario",
             "ru": "Пользователь",
             "it": "Utente"
+        },
+        "Emote": {
+            "description": "Emote",
+            "en": "Emote",
+            "de": "Emote",
+            "at": "Emote",
+            "fr": "Émoticône",
+            "es": "Emoción",
+            "ru": "Эмоция",
+            "it": "Emote"
         },
         "Author": {
             "description": "Author",
@@ -2440,6 +2460,30 @@
                 "es": "Remoto",
                 "ru": "Удаленный",
                 "it": "RIMOSSO"
+            }
+        },
+        "ReactionAdded": {
+            "Title": {
+                "description": "Reaction added",
+                "en": "Reaction added",
+                "de": "Reaktion hinzugefügt",
+                "at": "Reaktion hinzugfügt",
+                "fr": "Réaction ajoutée",
+                "es": "Reacción añadida",
+                "ru": "Реакция добавлена",
+                "it": "Risposta aggiunta"
+            }
+        },
+        "ReactionRemoved": {
+            "Title": {
+                "description": "Reaction removed",
+                "en": "Reaction removed",
+                "de": "Reaktion entfernt",
+                "at": "Reaktion entfernt",
+                "fr": "Réaction supprimée",
+                "es": "Reacción eliminada",
+                "ru": "Реакция удалена",
+                "it": "Risposta rimossa"
             }
         }
     }

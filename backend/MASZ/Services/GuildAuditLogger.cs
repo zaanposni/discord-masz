@@ -1,4 +1,5 @@
 using Discord;
+using Discord.Net;
 using Discord.WebSocket;
 using MASZ.Enums;
 using MASZ.Exceptions;
@@ -36,6 +37,9 @@ namespace MASZ.Services
             _client.InviteDeleted += HandleInviteDeleted;
             _client.UserUpdated += HandleUsernameUpdated;
             _client.GuildMemberUpdated += HandleGUserUpdated;
+            _client.UserVoiceStateUpdated += HandleVoiceStateUpdated;
+            _client.ReactionAdded += HandleReactionAdded;
+            _client.ReactionRemoved += HandleReactionRemoved;
         }
 
         public async Task SendEmbed(EmbedBuilder embed, ulong guildID, GuildAuditLogEvent eventType) {
@@ -58,6 +62,10 @@ namespace MASZ.Services
                     GuildAuditLogEvent.InviteCreated => Color.Green,
                     GuildAuditLogEvent.InviteDeleted => Color.Red,
                     GuildAuditLogEvent.ThreadCreated => Color.Green,
+                    GuildAuditLogEvent.VoiceJoined => Color.Green,
+                    GuildAuditLogEvent.VoiceLeft => Color.Red,
+                    GuildAuditLogEvent.ReactionAdded => Color.Green,
+                    GuildAuditLogEvent.ReactionRemoved => Color.Red,
                     _ => throw new NotImplementedException(),
                 })
 
@@ -265,6 +273,91 @@ namespace MASZ.Services
                     await SendEmbed(embed, guild.Id, GuildAuditLogEvent.UsernameUpdated);
                 }
             }
+        }
+
+        private async Task HandleReactionRemoved(Cacheable<IUserMessage, ulong> message, Cacheable<IMessageChannel, ulong> channel, SocketReaction reaction)
+        {
+            using var scope = _serviceProvider.CreateScope();
+
+            IGuildChannel guildChannel;
+            try
+            {
+                guildChannel = (IGuildChannel) await _client.GetChannelAsync(channel.Id);
+                if (guildChannel == null)
+                {
+                    return;
+                }
+            }
+            catch (HttpException)
+            {
+                return;
+            }
+
+            if (! reaction.User.IsSpecified)
+            {
+                return;
+            }
+
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            await translator.SetContext(guildChannel.GuildId);
+
+            StringBuilder description = new();
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {reaction.User.Value.Username}#{reaction.User.Value.Discriminator} - {reaction.User.Value.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogMessage()}:** [{message.Id}]({message.Value.GetJumpUrl()})");
+            description.AppendLine($"> **{translator.T().GuildAuditLogEmote()}:** {reaction.Emote}");
+
+            var embed = new EmbedBuilder()
+                .WithTitle(translator.T().GuildAuditLogReactionRemovedTitle())
+                .WithDescription(description.ToString())
+                .WithAuthor(reaction.User.Value)
+                .WithFooter($"{translator.T().GuildAuditLogUserID()}: {reaction.User.Value.Id}");
+
+            await SendEmbed(embed, guildChannel.GuildId, GuildAuditLogEvent.ReactionRemoved);
+        }
+
+        private async Task HandleReactionAdded(Cacheable<IUserMessage, ulong> message, Cacheable<IMessageChannel, ulong> channel, SocketReaction reaction)
+        {
+            using var scope = _serviceProvider.CreateScope();
+
+            IGuildChannel guildChannel;
+            try
+            {
+                guildChannel = (IGuildChannel) await _client.GetChannelAsync(channel.Id);
+                if (guildChannel == null)
+                {
+                    return;
+                }
+            }
+            catch (HttpException)
+            {
+                return;
+            }
+
+            if (! reaction.User.IsSpecified)
+            {
+                return;
+            }
+
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            await translator.SetContext(guildChannel.GuildId);
+
+            StringBuilder description = new();
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {reaction.User.Value.Username}#{reaction.User.Value.Discriminator} - {reaction.User.Value.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogMessage()}:** [{message.Id}]({message.Value.GetJumpUrl()})");
+            description.AppendLine($"> **{translator.T().GuildAuditLogEmote()}:** {reaction.Emote}");
+
+            var embed = new EmbedBuilder()
+                .WithTitle(translator.T().GuildAuditLogReactionAddedTitle())
+                .WithDescription(description.ToString())
+                .WithAuthor(reaction.User.Value)
+                .WithFooter($"{translator.T().GuildAuditLogUserID()}: {reaction.User.Value.Id}");
+
+            await SendEmbed(embed, guildChannel.GuildId, GuildAuditLogEvent.ReactionAdded);
+        }
+
+        private Task HandleVoiceStateUpdated(SocketUser arg1, SocketVoiceState arg2, SocketVoiceState arg3)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task HandleBanAdded(SocketUser user, SocketGuild guild)

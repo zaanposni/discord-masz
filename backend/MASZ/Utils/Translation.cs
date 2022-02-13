@@ -2304,6 +2304,19 @@ namespace MASZ.Utils
                 _ => "ID",
             };
         }
+        public string GuildAuditLogMessage()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Nachricht",
+                Language.at => "Nachricht",
+                Language.fr => "Message",
+                Language.es => "Mensaje",
+                Language.ru => "Сообщение",
+                Language.it => "Messaggio",
+                _ => "Message",
+            };
+        }
         public string GuildAuditLogUserID()
         {
             return PreferredLanguage switch
@@ -2328,6 +2341,19 @@ namespace MASZ.Utils
                 Language.ru => "Пользователь",
                 Language.it => "Utente",
                 _ => "User",
+            };
+        }
+        public string GuildAuditLogEmote()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Emote",
+                Language.at => "Emote",
+                Language.fr => "Émoticône",
+                Language.es => "Emoción",
+                Language.ru => "Эмоция",
+                Language.it => "Emote",
+                _ => "Emote",
             };
         }
         public string GuildAuditLogAuthor()
@@ -2770,6 +2796,32 @@ namespace MASZ.Utils
                 Language.ru => "Удаленный",
                 Language.it => "RIMOSSO",
                 _ => "Removed",
+            };
+        }
+        public string GuildAuditLogReactionAddedTitle()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Reaktion hinzugefügt",
+                Language.at => "Reaktion hinzugfügt",
+                Language.fr => "Réaction ajoutée",
+                Language.es => "Reacción añadida",
+                Language.ru => "Реакция добавлена",
+                Language.it => "Risposta aggiunta",
+                _ => "Reaction added",
+            };
+        }
+        public string GuildAuditLogReactionRemovedTitle()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Reaktion entfernt",
+                Language.at => "Reaktion entfernt",
+                Language.fr => "Réaction supprimée",
+                Language.es => "Reacción eliminada",
+                Language.ru => "Реакция удалена",
+                Language.it => "Risposta rimossa",
+                _ => "Reaction removed",
             };
         }
         public string Enum(PunishmentType enumValue)
