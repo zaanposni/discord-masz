@@ -43,7 +43,9 @@ namespace MASZ.Services
         }
 
         public async Task SendEmbed(EmbedBuilder embed, ulong guildID, GuildAuditLogEvent eventType) {
-            var guildConfigRepository = GuildConfigRepository.CreateDefault(_serviceProvider);
+            using var scope = _serviceProvider.CreateScope();
+
+            var guildConfigRepository = GuildConfigRepository.CreateDefault(scope.ServiceProvider);
 
             embed
                 .WithColor(eventType switch
@@ -85,7 +87,7 @@ namespace MASZ.Services
                 return;
             }
 
-            var auditLogRepository = GuildLevelAuditLogConfigRepository.CreateWithBotIdentity(_serviceProvider);
+            var auditLogRepository = GuildLevelAuditLogConfigRepository.CreateWithBotIdentity(scope.ServiceProvider);
             GuildLevelAuditLogConfig auditLogConfig = null;
             try
             {
