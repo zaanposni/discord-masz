@@ -2023,6 +2023,66 @@
                 "ru": "Тема создана",
                 "it": "Discussione creata"
             }
+        },
+        "VoiceJoined": {
+            "title": {
+                "description": "A member joined a voice channel.",
+                "en": "Member joined voice channel",
+                "de": "Mitglied ist in einem Sprachkanal beigetreten",
+                "at": "Mitglied ist in einem Sprachkanal beitretn",
+                "fr": "Membre rejoint le salon vocal",
+                "es": "Miembro se unió al canal de voz",
+                "ru": "Участник присоединился к голосовому каналу",
+                "it": "Membro entrato nel canale vocale"
+            }
+        },
+        "VoiceLeft": {
+            "title": {
+                "description": "A member left a voice channel.",
+                "en": "Member left voice channel",
+                "de": "Mitglied hat einen Sprachkanal verlassen",
+                "at": "Mitglied hat einen Sprachkanal verlassn",
+                "fr": "Membre a quitté le salon vocal",
+                "es": "Miembro dejó el canal de voz",
+                "ru": "Участник покинул голосовой канал",
+                "it": "Membro uscito dal canale vocale"
+            }
+        },
+        "VoiceMoved": {
+            "title": {
+                "description": "A member moved to a different voice channel.",
+                "en": "Member moved voice channel",
+                "de": "Mitglied hat sich in einen anderen Sprachkanal bewegt",
+                "at": "Mitglied hat sich in einen anderen Sprachkanal bewegt",
+                "fr": "Membre a déplacé le salon vocal",
+                "es": "Miembro movió al canal de voz",
+                "ru": "Участник переместился в другой голосовой канал",
+                "it": "Membro spostato nel canale vocale"
+            }
+        },
+        "ReactionAdded": {
+            "title": {
+                "description": "A reaction was added to a message.",
+                "en": "Reaction added",
+                "de": "Reaktion hinzugefügt",
+                "at": "Reaktion hinzugefügt",
+                "fr": "Réaction ajoutée",
+                "es": "Reacción añadida",
+                "ru": "Реакция добавлена",
+                "it": "Risposta aggiunta"
+            }
+        },
+        "ReactionRemoved": {
+            "title": {
+                "description": "A reaction was removed from a message.",
+                "en": "Reaction removed",
+                "de": "Reaktion entfernt",
+                "at": "Reaktion entfernt",
+                "fr": "Réaction supprimée",
+                "es": "Reacción eliminada",
+                "ru": "Реакция удалена",
+                "it": "Risposta rimossa"
+            }
         }
     },
     "AutomodConfig": {

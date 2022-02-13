@@ -3897,6 +3897,56 @@ namespace MASZ.Utils
                     Language.it => "Discussione creata",
                     _ => "Thread created",
                 },
+                GuildAuditLogEvent.VoiceJoined => PreferredLanguage switch
+                {
+                    Language.de => "Mitglied ist in einem Sprachkanal beigetreten",
+                    Language.at => "Mitglied ist in einem Sprachkanal beitretn",
+                    Language.fr => "Membre rejoint le salon vocal",
+                    Language.es => "Miembro se unió al canal de voz",
+                    Language.ru => "Участник присоединился к голосовому каналу",
+                    Language.it => "Membro entrato nel canale vocale",
+                    _ => "Member joined voice channel",
+                },
+                GuildAuditLogEvent.VoiceLeft => PreferredLanguage switch
+                {
+                    Language.de => "Mitglied hat einen Sprachkanal verlassen",
+                    Language.at => "Mitglied hat einen Sprachkanal verlassn",
+                    Language.fr => "Membre a quitté le salon vocal",
+                    Language.es => "Miembro dejó el canal de voz",
+                    Language.ru => "Участник покинул голосовой канал",
+                    Language.it => "Membro uscito dal canale vocale",
+                    _ => "Member left voice channel",
+                },
+                GuildAuditLogEvent.VoiceMoved => PreferredLanguage switch
+                {
+                    Language.de => "Mitglied hat sich in einen anderen Sprachkanal bewegt",
+                    Language.at => "Mitglied hat sich in einen anderen Sprachkanal bewegt",
+                    Language.fr => "Membre a déplacé le salon vocal",
+                    Language.es => "Miembro movió al canal de voz",
+                    Language.ru => "Участник переместился в другой голосовой канал",
+                    Language.it => "Membro spostato nel canale vocale",
+                    _ => "Member moved voice channel",
+                },
+                GuildAuditLogEvent.ReactionAdded => PreferredLanguage switch
+                {
+                    Language.de => "Reaktion hinzugefügt",
+                    Language.at => "Reaktion hinzugefügt",
+                    Language.fr => "Réaction ajoutée",
+                    Language.es => "Reacción añadida",
+                    Language.ru => "Реакция добавлена",
+                    Language.it => "Risposta aggiunta",
+                    _ => "Reaction added",
+                },
+                GuildAuditLogEvent.ReactionRemoved => PreferredLanguage switch
+                {
+                    Language.de => "Reaktion entfernt",
+                    Language.at => "Reaktion entfernt",
+                    Language.fr => "Réaction supprimée",
+                    Language.es => "Reacción eliminada",
+                    Language.ru => "Реакция удалена",
+                    Language.it => "Risposta rimossa",
+                    _ => "Reaction removed",
+                },
                 _ => "Unknown",
             };
         }

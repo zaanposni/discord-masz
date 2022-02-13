@@ -277,6 +277,21 @@
         },
         "ThreadCreated": {
             "title": "Thread created"
+        },
+        "VoiceJoined": {
+            "title": "Member joined voice channel"
+        },
+        "VoiceLeft": {
+            "title": "Member left voice channel"
+        },
+        "VoiceMoved": {
+            "title": "Member moved voice channel"
+        },
+        "ReactionAdded": {
+            "title": "Reaction added"
+        },
+        "ReactionRemoved": {
+            "title": "Reaction removed"
         }
     },
     "AutomodConfig": {

@@ -277,6 +277,21 @@
         },
         "ThreadCreated": {
             "title": "Fil créé"
+        },
+        "VoiceJoined": {
+            "title": "Membre rejoint le salon vocal"
+        },
+        "VoiceLeft": {
+            "title": "Membre a quitté le salon vocal"
+        },
+        "VoiceMoved": {
+            "title": "Membre a déplacé le salon vocal"
+        },
+        "ReactionAdded": {
+            "title": "Réaction ajoutée"
+        },
+        "ReactionRemoved": {
+            "title": "Réaction supprimée"
         }
     },
     "AutomodConfig": {

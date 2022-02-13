@@ -71,6 +71,26 @@ export class AuditlogConfigComponent implements OnInit {
     {
       type: 13,
       key: 'ThreadCreated'
+    },
+    {
+      type: 14,
+      key: 'VoiceJoined'
+    },
+    {
+      type: 15,
+      key: 'VoiceLeft'
+    },
+    {
+      type: 16,
+      key: 'VoiceMoved'
+    },
+    {
+      type: 17,
+      key: 'ReactionAdded'
+    },
+    {
+      type: 18,
+      key: 'ReactionRemoved'
     }
   ];
 

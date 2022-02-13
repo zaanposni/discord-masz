@@ -277,6 +277,21 @@
         },
         "ThreadCreated": {
             "title": "Thread erstellt"
+        },
+        "VoiceJoined": {
+            "title": "Mitglied ist in einem Sprachkanal beigetreten"
+        },
+        "VoiceLeft": {
+            "title": "Mitglied hat einen Sprachkanal verlassen"
+        },
+        "VoiceMoved": {
+            "title": "Mitglied hat sich in einen anderen Sprachkanal bewegt"
+        },
+        "ReactionAdded": {
+            "title": "Reaktion hinzugefügt"
+        },
+        "ReactionRemoved": {
+            "title": "Reaktion entfernt"
         }
     },
     "AutomodConfig": {

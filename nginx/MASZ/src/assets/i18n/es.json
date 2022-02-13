@@ -277,6 +277,21 @@
         },
         "ThreadCreated": {
             "title": "Hilo creado"
+        },
+        "VoiceJoined": {
+            "title": "Miembro se unió al canal de voz"
+        },
+        "VoiceLeft": {
+            "title": "Miembro dejó el canal de voz"
+        },
+        "VoiceMoved": {
+            "title": "Miembro movió al canal de voz"
+        },
+        "ReactionAdded": {
+            "title": "Reacción añadida"
+        },
+        "ReactionRemoved": {
+            "title": "Reacción eliminada"
         }
     },
     "AutomodConfig": {

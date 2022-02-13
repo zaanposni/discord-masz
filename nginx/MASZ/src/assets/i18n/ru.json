@@ -277,6 +277,21 @@
         },
         "ThreadCreated": {
             "title": "Тема создана"
+        },
+        "VoiceJoined": {
+            "title": "Участник присоединился к голосовому каналу"
+        },
+        "VoiceLeft": {
+            "title": "Участник покинул голосовой канал"
+        },
+        "VoiceMoved": {
+            "title": "Участник переместился в другой голосовой канал"
+        },
+        "ReactionAdded": {
+            "title": "Реакция добавлена"
+        },
+        "ReactionRemoved": {
+            "title": "Реакция удалена"
         }
     },
     "AutomodConfig": {

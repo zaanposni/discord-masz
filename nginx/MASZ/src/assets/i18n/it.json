@@ -277,6 +277,21 @@
         },
         "ThreadCreated": {
             "title": "Discussione creata"
+        },
+        "VoiceJoined": {
+            "title": "Membro entrato nel canale vocale"
+        },
+        "VoiceLeft": {
+            "title": "Membro uscito dal canale vocale"
+        },
+        "VoiceMoved": {
+            "title": "Membro spostato nel canale vocale"
+        },
+        "ReactionAdded": {
+            "title": "Risposta aggiunta"
+        },
+        "ReactionRemoved": {
+            "title": "Risposta rimossa"
         }
     },
     "AutomodConfig": {
