@@ -18,7 +18,7 @@ export class ApplicationInfoService {
     }
     if (data?.name) {
       let tabtitle = document.getElementById('tabtitle');
-      if (tabtitle!== null) {
+      if (tabtitle !== null) {
         tabtitle.innerText = data.name;
       }
     }
