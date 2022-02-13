@@ -16,5 +16,11 @@ export class ApplicationInfoService {
     if (data?.iconUrl) {
       document.getElementById('favicon')?.setAttribute('href', data.iconUrl);
     }
+    if (data?.name) {
+      let tabtitle = document.getElementById('tabtitle');
+      if (tabtitle!== null) {
+        tabtitle.innerText = data.name;
+      }
+    }
   }
 }
