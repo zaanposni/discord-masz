@@ -18,6 +18,7 @@ namespace MASZ.Enums
         ThreadCreated,
         VoiceJoined,
         VoiceLeft,
+        VoiceMoved,
         ReactionAdded,
         ReactionRemoved
     }

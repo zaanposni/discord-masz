@@ -2034,6 +2034,26 @@
             "ru": "Канал",
             "it": "Canale"
         },
+        "ChannelBefore": {
+            "description": "Channel before",
+            "en": "Channel before",
+            "de": "Kanal vorher",
+            "at": "Kanal vorher",
+            "fr": "Canaliser avant",
+            "es": "Canal antes",
+            "ru": "Канал до",
+            "it": "Canale prima"
+        },
+        "ChannelAfter": {
+            "description": "Channel after",
+            "en": "Channel after",
+            "de": "Kanal nachher",
+            "at": "Kanal nachher",
+            "fr": "Canaliser après",
+            "es": "Canal después",
+            "ru": "Канал после",
+            "it": "Canale dopo"
+        },
         "ChannelId": {
             "description": "ChannelId",
             "en": "ChannelId",
@@ -2484,6 +2504,42 @@
                 "es": "Reacción eliminada",
                 "ru": "Реакция удалена",
                 "it": "Risposta rimossa"
+            }
+        },
+        "VoiceJoined": {
+            "Title": {
+                "description": "Voicechannel joined",
+                "en": "Voicechannel joined",
+                "de": "Sprachkanal betreten",
+                "at": "Sprachkanal betreten",
+                "fr": "Canal vocal rejoint",
+                "es": "Canal de voz unido",
+                "ru": "Голосовой канал присоединился",
+                "it": "Canale vocale unito"
+            }
+        },
+        "VoiceLeft": {
+            "Title": {
+                "description": "Voicechannel left",
+                "en": "Voicechannel left",
+                "de": "Sprachkanal verlassen",
+                "at": "Sprachkanal verlassen",
+                "fr": "Canal vocal quitté",
+                "es": "Canal de voz abandonado",
+                "ru": "Голосовой канал покинул",
+                "it": "Canale vocale lasciato"
+            }
+        },
+        "VoiceMoved": {
+            "Title": {
+                "description": "Switched voicechannel",
+                "en": "Switched voicechannel",
+                "de": "Sprachkanal gewechselt",
+                "at": "Sprachkanal gewechselt",
+                "fr": "Canal vocal changé",
+                "es": "Canal de voz cambiado",
+                "ru": "Переключен голосовой канал",
+                "it": "Canale vocale cambiato"
             }
         }
     }

@@ -2278,6 +2278,32 @@ namespace MASZ.Utils
                 _ => "Channel",
             };
         }
+        public string GuildAuditLogChannelBefore()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Kanal vorher",
+                Language.at => "Kanal vorher",
+                Language.fr => "Canaliser avant",
+                Language.es => "Canal antes",
+                Language.ru => "Канал до",
+                Language.it => "Canale prima",
+                _ => "Channel before",
+            };
+        }
+        public string GuildAuditLogChannelAfter()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Kanal nachher",
+                Language.at => "Kanal nachher",
+                Language.fr => "Canaliser après",
+                Language.es => "Canal después",
+                Language.ru => "Канал после",
+                Language.it => "Canale dopo",
+                _ => "Channel after",
+            };
+        }
         public string GuildAuditLogChannelId()
         {
             return PreferredLanguage switch
@@ -2822,6 +2848,45 @@ namespace MASZ.Utils
                 Language.ru => "Реакция удалена",
                 Language.it => "Risposta rimossa",
                 _ => "Reaction removed",
+            };
+        }
+        public string GuildAuditLogVoiceJoinedTitle()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Sprachkanal betreten",
+                Language.at => "Sprachkanal betreten",
+                Language.fr => "Canal vocal rejoint",
+                Language.es => "Canal de voz unido",
+                Language.ru => "Голосовой канал присоединился",
+                Language.it => "Canale vocale unito",
+                _ => "Voicechannel joined",
+            };
+        }
+        public string GuildAuditLogVoiceLeftTitle()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Sprachkanal verlassen",
+                Language.at => "Sprachkanal verlassen",
+                Language.fr => "Canal vocal quitté",
+                Language.es => "Canal de voz abandonado",
+                Language.ru => "Голосовой канал покинул",
+                Language.it => "Canale vocale lasciato",
+                _ => "Voicechannel left",
+            };
+        }
+        public string GuildAuditLogVoiceMovedTitle()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Sprachkanal gewechselt",
+                Language.at => "Sprachkanal gewechselt",
+                Language.fr => "Canal vocal changé",
+                Language.es => "Canal de voz cambiado",
+                Language.ru => "Переключен голосовой канал",
+                Language.it => "Canale vocale cambiato",
+                _ => "Switched voicechannel",
             };
         }
         public string Enum(PunishmentType enumValue)

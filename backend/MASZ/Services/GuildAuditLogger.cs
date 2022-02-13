@@ -64,6 +64,7 @@ namespace MASZ.Services
                     GuildAuditLogEvent.ThreadCreated => Color.Green,
                     GuildAuditLogEvent.VoiceJoined => Color.Green,
                     GuildAuditLogEvent.VoiceLeft => Color.Red,
+                    GuildAuditLogEvent.VoiceMoved => Color.Orange,
                     GuildAuditLogEvent.ReactionAdded => Color.Green,
                     GuildAuditLogEvent.ReactionRemoved => Color.Red,
                     _ => throw new NotImplementedException(),
@@ -355,9 +356,89 @@ namespace MASZ.Services
             await SendEmbed(embed, guildChannel.GuildId, GuildAuditLogEvent.ReactionAdded);
         }
 
-        private Task HandleVoiceStateUpdated(SocketUser arg1, SocketVoiceState arg2, SocketVoiceState arg3)
+        private async Task HandleVoiceStateUpdated(SocketUser user, SocketVoiceState voiceStateBefore, SocketVoiceState voiceStateAfter)
         {
-            throw new NotImplementedException();
+            using var scope = _serviceProvider.CreateScope();
+
+            if (voiceStateBefore.VoiceChannel == voiceStateAfter.VoiceChannel)
+            {
+                return;
+            }
+
+            GuildAuditLogEvent eventType;
+            IVoiceChannel beforeChannel = null;
+            IVoiceChannel afterChannel = null;
+            ulong guildId;
+            if (voiceStateBefore.VoiceChannel == null)
+            {
+                eventType = GuildAuditLogEvent.VoiceJoined;
+                afterChannel = voiceStateAfter.VoiceChannel;
+                guildId = afterChannel.Guild.Id;
+            }
+            else if (voiceStateAfter.VoiceChannel == null)
+            {
+                eventType = GuildAuditLogEvent.VoiceLeft;
+                beforeChannel = voiceStateBefore.VoiceChannel;
+                guildId = beforeChannel.Guild.Id;
+            }
+            else
+            {
+                eventType = GuildAuditLogEvent.VoiceMoved;
+                beforeChannel = voiceStateBefore.VoiceChannel;
+                afterChannel = voiceStateAfter.VoiceChannel;
+                if (beforeChannel.GuildId != afterChannel.GuildId)
+                {
+                    return;
+                }
+                guildId = beforeChannel.GuildId;
+            }
+
+            if (guildId == 0)
+            {
+                return;
+            }
+
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            await translator.SetContext(guildId);
+
+            string title;
+            if (eventType == GuildAuditLogEvent.VoiceJoined)
+            {
+                title = translator.T().GuildAuditLogVoiceJoinedTitle();
+            }
+            else if (eventType == GuildAuditLogEvent.VoiceLeft)
+            {
+                title = translator.T().GuildAuditLogVoiceLeftTitle();
+            }
+            else
+            {
+                title = translator.T().GuildAuditLogVoiceMovedTitle();
+            }
+
+            StringBuilder description = new();
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+
+            if (eventType == GuildAuditLogEvent.VoiceJoined)
+            {
+                description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {afterChannel.Name} - {afterChannel.Mention}");
+            }
+            else if (eventType == GuildAuditLogEvent.VoiceLeft)
+            {
+                description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {beforeChannel.Name} - {beforeChannel.Mention}");
+            }
+            else
+            {
+                description.AppendLine($"> **{translator.T().GuildAuditLogChannelBefore()}:** {beforeChannel.Name} - {beforeChannel.Mention}");
+                description.AppendLine($"> **{translator.T().GuildAuditLogChannelAfter()}:** {afterChannel.Name} - {afterChannel.Mention}");
+            }
+
+            var embed = new EmbedBuilder()
+                .WithTitle(title)
+                .WithDescription(description.ToString())
+                .WithAuthor(user)
+                .WithFooter($"{translator.T().GuildAuditLogUserID()}: {user.Id}");
+
+            await SendEmbed(embed, guildId, eventType);
         }
 
         public async Task HandleBanAdded(SocketUser user, SocketGuild guild)
