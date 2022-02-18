@@ -410,13 +410,13 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Benutzerbeziehung zwischen {userMap.UserA} und {userMap.UserB}.",
-                Language.at => $"Benutzabeziehung zwischa {userMap.UserA} und {userMap.UserB}.",
-                Language.fr => $"UserMap entre {userMap.UserA} et {userMap.UserB}.",
-                Language.es => $"UserMap entre {userMap.UserA} y {userMap.UserB}.",
-                Language.ru => $"UserMap между {userMap.UserA} и {userMap.UserB}.",
-                Language.it => $"UserMap tra {userMap.UserA} e {userMap.UserB}.",
-                _ => $"UserMap between {userMap.UserA} and {userMap.UserB}.",
+                Language.de => $"Benutzerbeziehung zwischen <@{userMap.UserA}> und <@{userMap.UserB}>.",
+                Language.at => $"Benutzabeziehung zwischa <@{userMap.UserA}> und <@{userMap.UserB}>.",
+                Language.fr => $"UserMap entre <@{userMap.UserA}> et <@{userMap.UserB}>.",
+                Language.es => $"UserMap entre <@{userMap.UserA}> y <@{userMap.UserB}>.",
+                Language.ru => $"UserMap между <@{userMap.UserA}> и <@{userMap.UserB}>.",
+                Language.it => $"UserMap tra <@{userMap.UserA}> e <@{userMap.UserB}>.",
+                _ => $"UserMap between <@{userMap.UserA}> and <@{userMap.UserB}>.",
             };
         }
         public string Imported()

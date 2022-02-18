@@ -310,13 +310,13 @@
         "var_types": {
             "userMap": "MASZ.Models.UserMapping"
         },
-        "en": "UserMap between {userMap.UserA} and {userMap.UserB}.",
-        "de": "Benutzerbeziehung zwischen {userMap.UserA} und {userMap.UserB}.",
-        "at": "Benutzabeziehung zwischa {userMap.UserA} und {userMap.UserB}.",
-        "fr": "UserMap entre {userMap.UserA} et {userMap.UserB}.",
-        "es": "UserMap entre {userMap.UserA} y {userMap.UserB}.",
-        "ru": "UserMap между {userMap.UserA} и {userMap.UserB}.",
-        "it": "UserMap tra {userMap.UserA} e {userMap.UserB}."
+        "en": "UserMap between <@{userMap.UserA}> and <@{userMap.UserB}>.",
+        "de": "Benutzerbeziehung zwischen <@{userMap.UserA}> und <@{userMap.UserB}>.",
+        "at": "Benutzabeziehung zwischa <@{userMap.UserA}> und <@{userMap.UserB}>.",
+        "fr": "UserMap entre <@{userMap.UserA}> et <@{userMap.UserB}>.",
+        "es": "UserMap entre <@{userMap.UserA}> y <@{userMap.UserB}>.",
+        "ru": "UserMap между <@{userMap.UserA}> и <@{userMap.UserB}>.",
+        "it": "UserMap tra <@{userMap.UserA}> e <@{userMap.UserB}>."
     },
     "Imported": {
         "description": "Case that has been imported",
