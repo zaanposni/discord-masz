@@ -3,6 +3,7 @@ using MASZ.Models;
 using Microsoft.AspNetCore.Mvc;
 using RestSharp;
 using MASZ.Repositories;
+using Discord;
 
 namespace MASZ.Controllers
 {
@@ -24,10 +25,11 @@ namespace MASZ.Controllers
         public async Task<IActionResult> GetOEmbedInfo()
         {
             AppSettings appSettings = await AppSettingsRepository.CreateDefault(_serviceProvider).GetAppSettings();
+            IApplication application = await _discordAPI.GetCurrentApplicationInfo();
 
             return new ContentResult()
             {
-                Content = appSettings.GetEmbedData(_config.GetBaseUrl()),
+                Content = appSettings.GetEmbedData(_config.GetBaseUrl(), application.IconUrl),
                 ContentType = "text/html"
             };
         }
