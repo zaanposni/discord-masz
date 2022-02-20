@@ -24,6 +24,9 @@ namespace MASZ.Data
         public DbSet<GuildLevelAuditLogConfig> GuildLevelAuditLogConfigs { get; set; }
         public DbSet<AppSettings> AppSettings { get; set; }
         public DbSet<ScheduledMessage> ScheduledMessages { get; set; }
+        public DbSet<Appeal> Appeals { get; set; }
+        public DbSet<AppealStructure> AppealStructures { get; set; }
+        public DbSet<AppealAnswer> AppealAnswers { get; set; }
 
         public void Configure(EntityTypeBuilder<ModCase> builder)
         {
@@ -78,6 +81,16 @@ namespace MASZ.Data
                 .HasOne(c => c.ModCase)
                 .WithMany(c => c.Comments)
                 .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<AppealAnswer>()
+                .HasOne(c => c.Appeal)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<AppealAnswer>()
+                .HasOne(c => c.AppealQuestion)
+                .WithMany()
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
