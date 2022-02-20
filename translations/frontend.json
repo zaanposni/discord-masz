@@ -551,6 +551,16 @@
                 "ru": "Этот параметр изменит содержание встроенного контента, когда ваша страница MASZ будет привязана к Discord.",
                 "it": "Questa impostazione cambierà il contenuto dell'embed quando il tuo istanza MASZ è collegata in Discord."
             },
+            "ShowIcon": {
+                "description": "This setting will show the application's icon in the embed when your MASZ instance is linked in Discord.",
+                "en": "Show application's icon in embed.",
+                "de": "Zeige das Icon der Anwendung in der Einbettung.",
+                "at": "Zeige das Icon der Anwendung in der Einbettung.",
+                "fr": "Afficher l'icône de l'application dans l'encart.",
+                "es": "Mostrar el icono de la aplicación en el anuncio.",
+                "ru": "Показать иконку приложения в встроенном контенте, когда ваша страница MASZ будет привязана к Discord.",
+                "it": "Mostra l'icona dell'applicazione nell'embed quando il tuo istanza MASZ è collegata in Discord."
+            },
             "TakeToUpdate": {
                 "description": "Please note that this might take up to one hour to update in discord.",
                 "en": "Please note that this might take up to one hour to update in discord.",

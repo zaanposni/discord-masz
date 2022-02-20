@@ -34,6 +34,11 @@
                     </div>
                 </div>
             </mat-form-field>
+            <mat-checkbox class="mb-2 mr-2"
+                          formControlName="showIcon"
+                          [labelPosition]="'after'">
+                    {{ 'AppSettings.Embed.ShowIcon' | translate }}
+            </mat-checkbox>
             <div>
                 <button mat-raised-button
                     color="primary"

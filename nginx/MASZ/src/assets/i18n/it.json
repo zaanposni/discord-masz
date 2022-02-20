@@ -74,6 +74,7 @@
         "Embed": {
             "Title": "Embed Discord",
             "Content": "Questa impostazione cambierà il contenuto dell'embed quando il tuo istanza MASZ è collegata in Discord.",
+            "ShowIcon": "Mostra l'icona dell'applicazione nell'embed quando il tuo istanza MASZ è collegata in Discord.",
             "TakeToUpdate": "Si prega di notare che questo può richiedere fino a un'ora per aggiornare.",
             "Save": {
                 "Button": "Salva",

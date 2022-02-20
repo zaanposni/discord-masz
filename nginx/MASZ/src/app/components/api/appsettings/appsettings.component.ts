@@ -31,7 +31,8 @@ export class AppsettingsComponent implements OnInit {
   ngOnInit(): void {
     this.embedFormGroup = this._formBuilder.group({
       title: ['', [ Validators.required, Validators.maxLength(256) ]],
-      content: ['', [ Validators.maxLength(4096) ]]
+      content: ['', [ Validators.maxLength(4096) ]],
+      showIcon: [false]
     });
     this.settingsFormGroup = this._formBuilder.group({
       defaultLanguage: ['', Validators.required ],
@@ -43,7 +44,8 @@ export class AppsettingsComponent implements OnInit {
       this.initRows = Math.max(Math.min(data?.embedContent?.split(/\r\n|\r|\n/)?.length ?? 0, 15), 2);
       this.embedFormGroup.setValue({
         title: data.embedTitle,
-        content: data.embedContent
+        content: data.embedContent,
+        showIcon: data.embedShowIcon
       });
       this.settingsFormGroup.setValue({
         defaultLanguage: data.defaultLanguage,
@@ -65,7 +67,8 @@ export class AppsettingsComponent implements OnInit {
   updateEmbed() {
     let body = {
       embedTitle: this.embedFormGroup.value.title,
-      embedContent: this.embedFormGroup.value.content
+      embedContent: this.embedFormGroup.value.content,
+      embedShowIcon: this.embedFormGroup.value.showIcon
     }
     this.api.putSimpleData('/settings/embed', body, undefined, true, true).subscribe((data: IAppSettings) => {
       this.toastr.success(this.translator.instant("AppSettings.Embed.Save.Message"));
@@ -73,7 +76,8 @@ export class AppsettingsComponent implements OnInit {
       this.initRows = Math.max(Math.min(data?.embedContent?.split(/\r\n|\r|\n/)?.length ?? 0, 15), 2);
       this.embedFormGroup.setValue({
         title: data.embedTitle,
-        content: data.embedContent
+        content: data.embedContent,
+        showIcon: data.embedShowIcon
       });
     }, error => {
       this.settingsLoading = false;

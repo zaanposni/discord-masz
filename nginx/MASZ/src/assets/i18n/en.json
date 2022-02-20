@@ -74,6 +74,7 @@
         "Embed": {
             "Title": "Discord Embed",
             "Content": "This setting will change the content of the embed when your MASZ instance is linked in Discord.",
+            "ShowIcon": "Show application's icon in embed.",
             "TakeToUpdate": "Please note that this might take up to one hour to update in discord.",
             "Save": {
                 "Button": "Save",

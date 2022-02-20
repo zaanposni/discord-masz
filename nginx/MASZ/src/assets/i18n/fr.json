@@ -74,6 +74,7 @@
         "Embed": {
             "Title": "Embed Discord",
             "Content": "Ce paramètre modifiera le contenu de l'encart lorsque votre instance MASZ est liée dans Discord.",
+            "ShowIcon": "Afficher l'icône de l'application dans l'encart.",
             "TakeToUpdate": "Veuillez noter que cela peut prendre jusqu'à une heure pour mettre à jour.",
             "Save": {
                 "Button": "Enregistrer",

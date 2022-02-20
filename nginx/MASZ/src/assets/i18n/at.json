@@ -74,6 +74,7 @@
         "Embed": {
             "Title": "Discord Einbettung",
             "Content": "Diese Einstellung ändert den Inhalt der Einbettung, wenn deine MASZ-Instanz in Discord verknüpft ist.",
+            "ShowIcon": "Zeige das Icon der Anwendung in der Einbettung.",
             "TakeToUpdate": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird",
             "Save": {
                 "Button": "Späicheren",
