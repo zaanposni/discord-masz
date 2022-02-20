@@ -28,6 +28,7 @@ namespace MASZ.Repositories
 
             existing.EmbedTitle = appSettings.EmbedTitle;
             existing.EmbedContent = appSettings.EmbedContent;
+            existing.EmbedShowIcon = appSettings.EmbedShowIcon;
             existing.AuditLogWebhookURL = appSettings.AuditLogWebhookURL;
             existing.DefaultLanguage = appSettings.DefaultLanguage;
             existing.PublicFileMode = appSettings.PublicFileMode;
