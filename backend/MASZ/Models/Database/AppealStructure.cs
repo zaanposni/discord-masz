@@ -9,5 +9,6 @@ namespace MASZ.Models
         public ulong GuildId { get; set; }
         public int SortOrder { get; set; }
         public string Question { get; set; }
+        public bool Deleted { get; set; }
     }
 }

@@ -4,10 +4,6 @@ using MASZ.Exceptions;
 using MASZ.Extensions;
 using MASZ.Models;
 
-        public async Task<Appeal> Get(int id)
-        {
-
-        }
 namespace MASZ.Repositories
 {
 
@@ -18,11 +14,17 @@ namespace MASZ.Repositories
 
         public async Task<List<AppealAnswer>> GetForAppeal(int appealId)
         {
-
+            return await Database.GetAppealAnswers(appealId);
+        }
+        public async Task<List<AppealAnswer>> GetByQuestionId(int questionId)
+        {
+            return await Database.GetAppealAnswersByQuestionId(questionId);
         }
         public async Task<AppealAnswer> Create(AppealAnswer answer)
         {
-
+            Database.CreateAppealAnswer(answer);
+            await Database.SaveChangesAsync();
+            return answer;
         }
     }
 }
