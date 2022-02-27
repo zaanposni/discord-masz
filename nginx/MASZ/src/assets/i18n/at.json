@@ -429,7 +429,7 @@
     },
     "GuildNotifications": {
         "Title": "Warnung",
-        "MissingAppeals": "Du häscht keine Bann-Anfragn konfigurierd. Bannierte Benutzer können daher zurzeit keine Bann-Anfragen erstön.",
+        "MissingAppeals": "Du häscht keine Fragen für den Entbannungsantrag konfiguriert. Gebannte Benutzer können daher zurzeit keine Bann-Anfragen erstön.",
         "FailedToLoad": "Güdnbenachrichtigungen konntn ned glodn wean."
     },
     "DashboardMotd": {
@@ -454,7 +454,8 @@
             "Messages": "Nachrichten",
             "Usernote": "Benutzanotizn",
             "Usermap": "Benutzabeziehungen",
-            "Config": "Konfiguration"
+            "Config": "Konfiguration",
+            "BanAppeals": "Entbannungsanträge"
         }
     },
     "UsermapTable": {

@@ -454,7 +454,8 @@
             "Messages": "Сообщения",
             "Usernote": "Примечания пользователя",
             "Usermap": "Карты пользователя",
-            "Config": "Конфиг"
+            "Config": "Конфиг",
+            "BanAppeals": "Жалобы на бан"
         }
     },
     "UsermapTable": {

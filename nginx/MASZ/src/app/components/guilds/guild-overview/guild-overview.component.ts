@@ -22,6 +22,10 @@ export class GuildOverviewComponent implements OnInit {
     {
       "icon": "bolt",
       "component": "automods"
+    },
+    {
+      "icon": "gavel",
+      "component": "appeals"
     }
   ]
   public isModOrHigher: boolean = false;
@@ -47,6 +51,10 @@ export class GuildOverviewComponent implements OnInit {
       {
         "icon": "bolt",
         "component": "automods"
+      },
+      {
+        "icon": "gavel",
+        "component": "appeals"
       }
     ];
     this.modSub = this.auth.isModInGuild(guildId).subscribe((data: boolean) => {

@@ -454,7 +454,8 @@
             "Messages": "Messages",
             "Usernote": "Usernotes",
             "Usermap": "Usermaps",
-            "Config": "Config"
+            "Config": "Config",
+            "BanAppeals": "Appeals"
         }
     },
     "UsermapTable": {
