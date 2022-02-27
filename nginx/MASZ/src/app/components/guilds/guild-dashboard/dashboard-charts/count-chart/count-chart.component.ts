@@ -13,7 +13,6 @@ export class CountChartComponent implements OnInit {
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
   @Input() titleKey: string = '';
-  @Input() max!: Observable<number>;
   @Input() chartLoading: boolean = true;
   @Input() public chartData: ChartDataSets[] = [];
   @Input() public chartLabels: Label[] = [];
@@ -72,10 +71,6 @@ export class CountChartComponent implements OnInit {
     this.translator.onLangChange.subscribe(() => {
       this.chartOptions['title']['text'] = this.translator.instant(this.titleKey);
       this.chart?.ngOnInit();
-    });
-
-    this.max?.subscribe((data) => {
-      this.chartOptions['scales']['yAxes'][0]['ticks']['max'] = data;
     });
   }
 }

@@ -2920,6 +2920,16 @@
             "ru": "Наказания",
             "it": "punizioni"
         },
+        "Appeals": {
+            "description": "ban appeals",
+            "en": "Ban appeals",
+            "de": "Entbannungsanträge",
+            "at": "Entbannungsanträge",
+            "fr": "Appel de bannissement",
+            "es": "Apelaciones de baneo",
+            "ru": "Обжалования банов",
+            "it": "appelli di banno"
+        },
         "Automoderations": {
             "description": "Automoderations",
             "en": "Automoderations",
