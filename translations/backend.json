@@ -1046,11 +1046,25 @@
                     },
                     "en": "Punishment for ModCase #{caseId} undone: \\\"{reason}\\\"",
                     "de": "Bestrafung für Vorfall #{caseId} rückgängig gemacht: \\\"{reason}\\\"",
-                    "at": "Bestrofung fian Vorfoi #{caseId} is rückgängig gmocht woan: \\\"{reason}\\\"",    
+                    "at": "Bestrofung fian Vorfoi #{caseId} is rückgängig gmocht woan: \\\"{reason}\\\"",
                     "fr": "Punition pour ModCase #{caseId} annulée : \\\"{reason}\\\"",
                     "es": "Castigo por ModCase # {caseId} deshecho: \\\"{reason} \\\"",
                     "ru": "Наказание за ModCase # {caseId} отменено: \\\"{reason} \\\"",
                     "it": "Punizione per ModCase #{caseId} annullata: \\\"{reason}\\\""
+                },
+                "AppealApproved": {
+                    "description": "Audit log header reason for executed punishment.",
+                    "var_types": {
+                        "appealId": "int",
+                        "reason": "string"
+                    },
+                    "en": "Ban Appeal #{appealId} approved: \\\"{reason}\\\"",
+                    "de": "Entbannungsantrag #{appealId} genehmigt: \\\"{reason}\\\"",
+                    "at": "Entbannungsantrag #{appealId} genehmigt: \\\"{reason}\\\"",
+                    "fr": "Appel de bannissement #{appealId} approuvé : \\\"{reason}\\\"",
+                    "es": "Solicitud de prohibición # {appealId} aprobada: \\\"{reason} \\\"",
+                    "ru": "Обжалование забанения # {appealId} одобрено: \\\"{reason} \\\"",
+                    "it": "Appello per Ban Appeal #{appealId} approvato: \\\"{reason}\\\""
                 }
             }
         },

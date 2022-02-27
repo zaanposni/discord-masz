@@ -16,9 +16,10 @@ namespace MASZ.Controllers
     [Authorize]
     public class AppealController : SimpleController
     {
-
-        public AppealController(IServiceProvider serviceProvider) : base(serviceProvider)
+        private readonly ILogger<AppealController> _logger;
+        public AppealController(IServiceProvider serviceProvider, ILogger<AppealController> logger) : base(serviceProvider)
         {
+            _logger = logger;
         }
 
         [HttpGet("allowed")]
@@ -186,6 +187,7 @@ namespace MASZ.Controllers
             Identity identity = await GetIdentity();
             GuildConfig guildConfig = await GetRegisteredGuild(guildId);
             IUser currentUser = identity.GetCurrentUser();
+            _translator.SetContext(guildConfig);
 
             AppealRepository repo = AppealRepository.CreateDefault(_serviceProvider);
 
@@ -193,6 +195,19 @@ namespace MASZ.Controllers
             if (appeal.GuildId != guildId)
             {
                 return BadRequest();
+            }
+
+            if (appeal.Status != AppealStatus.Approved && dto.Status == AppealStatus.Approved)
+            {
+                try
+                {
+                    // TODO: notify user?
+                    await _discordAPI.UnBanUser(guildId, appeal.UserId, _translator.T().NotificationDiscordAuditLogPunishmentsAppealApproved(appeal.Id, dto.ModeratorComment));
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError(e, $"Could not  unban user {appeal.UserId} in guild {guildId} by approved ban appeal {appeal.Id}");
+                }
             }
 
             appeal.Status = dto.Status;

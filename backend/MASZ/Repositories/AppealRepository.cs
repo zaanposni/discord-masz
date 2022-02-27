@@ -82,6 +82,13 @@ namespace MASZ.Repositories
             {
                 return true;
             }
+            if (latestBanModCase != null)
+            {
+                if (lastestAppeal.CreatedAt < latestBanModCase.CreatedAt)
+                {
+                    return true;
+                }
+            }
             if (lastestAppeal.Status == AppealStatus.Pending)
             {
                 return false;
@@ -107,7 +114,7 @@ namespace MASZ.Repositories
         public async Task SetAllAppealsAsInvalid(ulong guildId, ulong userId)
         {
             List<Appeal> appeals = await Database.GetAppealsForUser(guildId, userId);
-            foreach (Appeal appeal in appeals.Where(a => a.Status == AppealStatus.Denied && a.InvalidDueToLaterRejoinAt == null))
+            foreach (Appeal appeal in appeals.Where(a => a.Status != AppealStatus.Approved && a.InvalidDueToLaterRejoinAt == null))
             {
                 appeal.InvalidDueToLaterRejoinAt = DateTime.UtcNow;
                 Database.UpdateAppeal(appeal);

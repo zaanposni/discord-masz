@@ -1160,6 +1160,19 @@ namespace MASZ.Utils
                 _ => $"Punishment for ModCase #{caseId} undone: \"{reason}\"",
             };
         }
+        public string NotificationDiscordAuditLogPunishmentsAppealApproved(int appealId, string reason)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Entbannungsantrag #{appealId} genehmigt: \"{reason}\"",
+                Language.at => $"Entbannungsantrag #{appealId} genehmigt: \"{reason}\"",
+                Language.fr => $"Appel de bannissement #{appealId} approuvé : \"{reason}\"",
+                Language.es => $"Solicitud de prohibición # {appealId} aprobada: \"{reason} \"",
+                Language.ru => $"Обжалование забанения # {appealId} одобрено: \"{reason} \"",
+                Language.it => $"Appello per Ban Appeal #{appealId} approvato: \"{reason}\"",
+                _ => $"Ban Appeal #{appealId} approved: \"{reason}\"",
+            };
+        }
         public string NotificationGuildAuditLogInternalCreate(string eventName, IUser actor)
         {
             return PreferredLanguage switch
