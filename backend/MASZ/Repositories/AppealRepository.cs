@@ -12,6 +12,14 @@ namespace MASZ.Repositories
         private AppealRepository(IServiceProvider serviceProvider) : base(serviceProvider) { }
         public static AppealRepository CreateDefault(IServiceProvider serviceProvider) => new(serviceProvider);
 
+        public async Task<int> CountAppeals()
+        {
+            return await Database.GetAppealCount();
+        }
+        public async Task<int> CountAppeals(ulong guildId)
+        {
+            return await Database.GetAppealCount(guildId);
+        }
         public async Task<Appeal> GetById(int id)
         {
             Appeal appeal = await Database.GetAppeal(id);
@@ -80,6 +88,16 @@ namespace MASZ.Repositories
         public async Task<List<DbCount>> GetCounts(ulong guildId, DateTime since)
         {
             return await Database.GetAppealCount(guildId, since);
+        }
+        public async Task SetAllAppealsAsInvalid(ulong guildId, ulong userId)
+        {
+            List<Appeal> appeals = await Database.GetAppealsForUser(guildId, userId);
+            foreach (Appeal appeal in appeals.Where(a => a.Status == AppealStatus.Denied && a.InvalidDueToLaterRejoinAt == null))
+            {
+                appeal.InvalidDueToLaterRejoinAt = DateTime.UtcNow;
+                Database.UpdateAppeal(appeal);
+            }
+            await Database.SaveChangesAsync();
         }
     }
 }

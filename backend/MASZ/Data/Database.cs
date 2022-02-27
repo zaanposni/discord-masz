@@ -776,9 +776,24 @@ namespace MASZ.Data
         //
         // ==================================================================================
 
+        public async Task<int> GetAppealCount(ulong guildId)
+        {
+            return await context.Appeals.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
+        }
+
+        public async Task<int> GetAppealCount()
+        {
+            return await context.Appeals.AsQueryable().CountAsync();
+        }
+
         public async Task<Appeal> GetAppeal(int id)
         {
             return await context.Appeals.AsQueryable().Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Appeal>> GetAppealsForUser(ulong guildId, ulong userId)
+        {
+            return await context.Appeals.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.Id).ToListAsync();
         }
 
         public async Task<Appeal> GetLatestAppealForUser(ulong guildId, ulong userId)
