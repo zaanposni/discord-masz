@@ -215,6 +215,16 @@
         "ru": "Комментарии",
         "it": "Commenti"
     },
+    "BanAppeals": {
+        "description": "ban appeals",
+        "en": "Ban appeals",
+        "de": "Entbannungsantrag",
+        "at": "Entbannungsantrag",
+        "fr": "Appel de bannissement",
+        "es": "Solicitud de prohibición",
+        "ru": "Жалобы на бан",
+        "it": "Appelli di banno"
+    },
     "Loading": {
         "description": "loading",
         "en": "Loading...",
