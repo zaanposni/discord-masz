@@ -1,5 +1,6 @@
 <div class="d-flex flex-column w-100">
     <app-dashboard-guildinfo class="flex-grow-1"></app-dashboard-guildinfo>
+    <app-dashboard-notifications *ngIf="isAdminOrHigher" class="flex-grow-1"></app-dashboard-notifications>
     <app-dashboard-quicksearch class="d-flex flex-column"></app-dashboard-quicksearch>
     <app-dashboard-charts></app-dashboard-charts>
     <div class="d-flex flex-row flex-wrap conditional-fc mb-2">

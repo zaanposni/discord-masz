@@ -425,6 +425,11 @@
         "CreateNewCase": "Créer un nouveau cas",
         "FailedToLoad": "Échec du chargement des informations de guilde."
     },
+    "GuildNotifications": {
+        "Title": "Avertissement",
+        "MissingAppeals": "Vous n'avez pas de questions de plainte de bannissement configurées. Les utilisateurs bannis ne peuvent pas créer de plainte de bannissement pour le moment.",
+        "FailedToLoad": "Échec du chargement des notifications de guilde."
+    },
     "DashboardMotd": {
         "FailedToLoad": "Échec du chargement de motd.",
         "MessageFrom": "Message de {{name}}"

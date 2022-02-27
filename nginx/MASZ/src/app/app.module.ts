@@ -116,6 +116,7 @@ import { AppsettingsComponent } from './components/api/appsettings/appsettings.c
 import { GuildMessagesComponent } from './components/guilds/guild-messages/guild-messages.component';
 import { GuildMessageCardComponent } from './components/guilds/guild-messages/guild-message-card/guild-message-card.component';
 import { ScheduledMessageEditDialogComponent } from './components/dialogs/scheduled-message-edit-dialog/scheduled-message-edit-dialog.component';
+import { DashboardNotificationsComponent } from './components/guilds/guild-dashboard/dashboard-notifications/dashboard-notifications.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -191,7 +192,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppsettingsComponent,
     GuildMessagesComponent,
     GuildMessageCardComponent,
-    ScheduledMessageEditDialogComponent
+    ScheduledMessageEditDialogComponent,
+    DashboardNotificationsComponent
   ],
   imports: [
     CommonModule,

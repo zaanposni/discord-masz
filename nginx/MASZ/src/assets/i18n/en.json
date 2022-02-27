@@ -425,6 +425,11 @@
         "CreateNewCase": "Create new case",
         "FailedToLoad": "Failed to load guild info."
     },
+    "GuildNotifications": {
+        "Title": "Warning",
+        "MissingAppeals": "You have no ban appeal questions configured. Thus, banned users cannot create a ban appeal right now.",
+        "FailedToLoad": "Failed to load guild notifications."
+    },
     "DashboardMotd": {
         "FailedToLoad": "Failed to load motd.",
         "MessageFrom": "Message from {{name}}"

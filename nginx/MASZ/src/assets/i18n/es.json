@@ -425,6 +425,11 @@
         "CreateNewCase": "Crear nuevo caso",
         "FailedToLoad": "No se pudo cargar la información del gremio."
     },
+    "GuildNotifications": {
+        "Title": "Advertencia",
+        "MissingAppeals": "No tienes preguntas de apelación de expulsión configuradas. Los usuarios expulsados no pueden crear una pregunta de apelación de expulsión ahora mismo.",
+        "FailedToLoad": "No se pudieron cargar las notificaciones del gremio."
+    },
     "DashboardMotd": {
         "FailedToLoad": "No se pudo cargar motd.",
         "MessageFrom": "Mensaje de {{name}}"

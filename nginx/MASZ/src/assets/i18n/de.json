@@ -425,6 +425,11 @@
         "CreateNewCase": "Neuen Vorfall erstellen",
         "FailedToLoad": "Gildeninfo konnte nicht geladen werden."
     },
+    "GuildNotifications": {
+        "Title": "Warnung",
+        "MissingAppeals": "Du hast keine Bann-Anfragen konfiguriert. Bannierte Benutzer können daher zurzeit keine Bann-Anfragen erstellen.",
+        "FailedToLoad": "Gildenbenachrichtigungen konnten nicht geladen werden."
+    },
     "DashboardMotd": {
         "FailedToLoad": "Motd konnte nicht geladen werden.",
         "MessageFrom": "Nachricht von {{name}}"

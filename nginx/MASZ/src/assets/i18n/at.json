@@ -425,6 +425,11 @@
         "CreateNewCase": "Neichn Vorfoi erstön",
         "FailedToLoad": "Güdnnifo konnt ned glodn wean."
     },
+    "GuildNotifications": {
+        "Title": "Warnung",
+        "MissingAppeals": "Du häscht keine Bann-Anfragn konfigurierd. Bannierte Benutzer können daher zurzeit keine Bann-Anfragen erstön.",
+        "FailedToLoad": "Güdnbenachrichtigungen konntn ned glodn wean."
+    },
     "DashboardMotd": {
         "FailedToLoad": "Motd konnt ned glodn wean.",
         "MessageFrom": "Nochricht vo {{name}}"

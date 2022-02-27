@@ -425,6 +425,11 @@
         "CreateNewCase": "Crea nuovo caso",
         "FailedToLoad": "Impossibile caricare le informazioni sulla gilda."
     },
+    "GuildNotifications": {
+        "Title": "Avvertimento",
+        "MissingAppeals": "Non hai domande di appello di banno configurate. Gli utenti bannati non possono creare un appello di banno adesso.",
+        "FailedToLoad": "Impossibile caricare le notifiche della gilda."
+    },
     "DashboardMotd": {
         "FailedToLoad": "Impossibile caricare motd.",
         "MessageFrom": "Messaggio da {{name}}"

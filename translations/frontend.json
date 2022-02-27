@@ -3017,6 +3017,38 @@
             "it": "Impossibile caricare le informazioni sulla gilda."
         }
     },
+    "GuildNotifications": {
+        "Title": {
+            "description": "Warning",
+            "en": "Warning",
+            "de": "Warnung",
+            "at": "Warnung",
+            "fr": "Avertissement",
+            "es": "Advertencia",
+            "ru": "Предупреждение",
+            "it": "Avvertimento"
+        },
+        "MissingAppeals": {
+            "description": "No appeals configured",
+            "en": "You have no ban appeal questions configured. Thus, banned users cannot create a ban appeal right now.",
+            "de": "Du hast keine Bann-Anfragen konfiguriert. Bannierte Benutzer können daher zurzeit keine Bann-Anfragen erstellen.",
+            "at": "Du häscht keine Bann-Anfragn konfigurierd. Bannierte Benutzer können daher zurzeit keine Bann-Anfragen erstön.",
+            "fr": "Vous n'avez pas de questions de plainte de bannissement configurées. Les utilisateurs bannis ne peuvent pas créer de plainte de bannissement pour le moment.",
+            "es": "No tienes preguntas de apelación de expulsión configuradas. Los usuarios expulsados no pueden crear una pregunta de apelación de expulsión ahora mismo.",
+            "ru": "У вас нет настроенных вопросов о бане. Поэтому забаненные пользователи не могут сейчас создать вопрос о бане.",
+            "it": "Non hai domande di appello di banno configurate. Gli utenti bannati non possono creare un appello di banno adesso."
+        },
+        "FailedToLoad": {
+            "description": "Failed to load",
+            "en": "Failed to load guild notifications.",
+            "de": "Gildenbenachrichtigungen konnten nicht geladen werden.",
+            "at": "Güdnbenachrichtigungen konntn ned glodn wean.",
+            "fr": "Échec du chargement des notifications de guilde.",
+            "es": "No se pudieron cargar las notificaciones del gremio.",
+            "ru": "Не удалось загрузить уведомления о гильдии.",
+            "it": "Impossibile caricare le notifiche della gilda."
+        }
+    },
     "DashboardMotd": {
         "FailedToLoad": {
             "description": "Failed to laod motd",
