@@ -114,12 +114,22 @@ namespace MASZ.Repositories
         public async Task SetAllAppealsAsInvalid(ulong guildId, ulong userId)
         {
             List<Appeal> appeals = await Database.GetAppealsForUser(guildId, userId);
-            foreach (Appeal appeal in appeals.Where(a => a.Status != AppealStatus.Approved && a.InvalidDueToLaterRejoinAt == null))
+            foreach (Appeal appeal in appeals.Where(a => a.InvalidDueToLaterRejoinAt == null))
             {
                 appeal.InvalidDueToLaterRejoinAt = DateTime.UtcNow;
                 Database.UpdateAppeal(appeal);
             }
             await Database.SaveChangesAsync();
+        }
+        public async Task<bool> UserHasConfirmedAppeal(ulong guildId, ulong userId)
+        {
+            List<Appeal> appeals = await Database.GetAppealsForUser(guildId, userId);
+            return appeals.Any(a => a.Status == AppealStatus.Approved && a.InvalidDueToLaterRejoinAt == null);
+        }
+        public async Task<bool> UserHasPendingOrDeclinedAppeal(ulong guildId, ulong userId)
+        {
+            List<Appeal> appeals = await Database.GetAppealsForUser(guildId, userId);
+            return appeals.Any(a => (a.Status == AppealStatus.Pending || a.Status == AppealStatus.Denied) && a.InvalidDueToLaterRejoinAt == null);
         }
     }
 }
