@@ -722,6 +722,11 @@ namespace MASZ.Data
             context.ScheduledMessages.Update(message);
         }
 
+        public async Task<int> CountMessages()
+        {
+            return await context.ScheduledMessages.AsQueryable().CountAsync();
+        }
+
         public void DeleteMessage(ScheduledMessage message)
         {
             context.ScheduledMessages.Remove(message);
@@ -804,11 +809,6 @@ namespace MASZ.Data
         public async Task<List<Appeal>> GetAppeals(ulong guildId)
         {
             return await context.Appeals.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.Id).ToListAsync();
-        }
-
-        public async Task<List<Appeal>> GetAppeals(ulong guildId, int page)
-        {
-            return await context.Appeals.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.Id).Skip(page * 20).Take(20).ToListAsync();
         }
 
         public async Task<List<DbCount>> GetAppealCount(ulong guildId, DateTime since)

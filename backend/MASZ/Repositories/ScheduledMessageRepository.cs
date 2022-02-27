@@ -64,6 +64,11 @@ namespace MASZ.Repositories
             return message;
         }
 
+        public async Task<int> CountMessages()
+        {
+            return await Database.CountMessages();
+        }
+
         public async Task<ScheduledMessage> SetMessageAsSent(int id)
         {
             ScheduledMessage message = await GetMessage(id);

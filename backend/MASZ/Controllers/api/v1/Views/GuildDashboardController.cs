@@ -32,10 +32,13 @@ namespace MASZ.Controllers
 
             ModCaseRepository modCaseRepo = ModCaseRepository.CreateDefault(_serviceProvider, identity);
             AutoModerationEventRepository automodRepo = AutoModerationEventRepository.CreateDefault(_serviceProvider);
+            AppealRepository appealRepo = AppealRepository.CreateDefault(_serviceProvider);
+
             return Ok(new
             {
                 modCases = await modCaseRepo.GetCounts(guildId, sinceTime),
                 punishments = await modCaseRepo.GetPunishmentCounts(guildId, sinceTime),
+                appeals = await appealRepo.GetCounts(guildId, sinceTime),
                 autoModerations = await automodRepo.GetCounts(guildId, sinceTime)
             });
         }
@@ -72,6 +75,7 @@ namespace MASZ.Controllers
             int userMappings = await UserMapRepository.CreateDefault(_serviceProvider, identity).CountAllUserMapsByGuild(guildId);
             int userNotes = await UserNoteRepository.CreateDefault(_serviceProvider, identity).CountUserNotesForGuild(guildId);
             int comments = await ModCaseCommentRepository.CreateDefault(_serviceProvider, identity).CountCommentsByGuild(guildId);
+            int appeals = await AppealRepository.CreateDefault(_serviceProvider).CountAppeals(guildId);
 
             return Ok(new
             {
@@ -83,9 +87,25 @@ namespace MASZ.Controllers
                 trackedInvites,
                 userMappings,
                 userNotes,
-                comments
+                comments,
+                appeals
             });
         }
+
+        [HttpGet("notifications")]
+        public async Task<IActionResult> DashboardNotifications([FromRoute] ulong guildId)
+        {
+            await RequirePermission(guildId, DiscordPermission.Moderator);
+            Identity identity = await GetIdentity();
+
+            bool appealConfigured = await AppealStructureRepository.CreateDefault(_serviceProvider).ConfiguredForGuild(guildId);
+
+            return Ok(new
+            {
+                appealConfigured
+            });
+        }
+
 
         [HttpGet("latestcomments")]
         public async Task<IActionResult> LatestComments([FromRoute] ulong guildId)

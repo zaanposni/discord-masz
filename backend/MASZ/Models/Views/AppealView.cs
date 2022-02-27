@@ -17,8 +17,9 @@ namespace MASZ.Models.Views
         public Nullable<DateTime> UserCanCreateNewAppeals { get; set; }
         public Nullable<DateTime> InvalidDueToLaterRejoinAt { get; set; }
         public List<AppealAnswerView> Answers { get; set; } = new();
+        public List<AppealStructureView> Structures { get; set; } = new();
 
-        public AppealView(Appeal appeal, IUser user, IUser lastModerator, List<AppealAnswer> answers)
+        public AppealView(Appeal appeal, IUser user, IUser lastModerator, List<AppealAnswer> answers, List<AppealStructure> structures)
         {
             Id = appeal.Id;
             User = DiscordUserView.CreateOrDefault(user);
@@ -33,6 +34,12 @@ namespace MASZ.Models.Views
             InvalidDueToLaterRejoinAt = appeal.InvalidDueToLaterRejoinAt;
 
             Answers = answers.Select(a => new AppealAnswerView(a)).ToList();
+            Structures = structures.Select(s => new AppealStructureView(s)).ToList();
+        }
+
+        public void RemoveModeratorInfo()
+        {
+            LastModerator = null;
         }
     }
 }

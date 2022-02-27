@@ -2,13 +2,17 @@ namespace MASZ.Models.Views
 {
     public class AppealAnswerView
     {
+        public int Id { get; set; }
+        public int? AppealId { get; set; }
         public string Answer { get; set; }
-        public AppealStructureView Question { get; set; }
+        public int? QuestionId { get; set; }
 
         public AppealAnswerView(AppealAnswer answer)
         {
+            Id = answer.Id;
+            AppealId = answer.Appeal?.Id;
             Answer = answer.Answer;
-            Question = AppealStructureView.CreateOrDefault(answer.AppealQuestion);
+            QuestionId = answer.AppealQuestion?.Id;
         }
     }
 }

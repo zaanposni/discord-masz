@@ -29,14 +29,14 @@ namespace MASZ.Repositories
             }
             return appeal;
         }
-        public async Task<List<Appeal>> GetForGuild(ulong guildId, int page = 0)
+        public async Task<List<Appeal>> GetForGuild(ulong guildId)
         {
-            return await Database.GetAppeals(guildId, page);
+            return await Database.GetAppeals(guildId);
         }
         public async Task<Appeal> Create(Appeal appeal, List<AppealAnswer> answers)
         {
             appeal.CreatedAt = DateTime.UtcNow;
-            appeal.UpdatedAt = DateTime.UtcNow;
+            appeal.UpdatedAt = appeal.CreatedAt;
             appeal.InvalidDueToLaterRejoinAt = null;
             appeal.UserCanCreateNewAppeals = null;
             appeal.Status = AppealStatus.Pending;
@@ -62,6 +62,21 @@ namespace MASZ.Repositories
         }
         public async Task<bool> UserIsAllowedToCreateNewAppeal(ulong guildId, ulong userId)
         {
+            GuildConfig config = await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(guildId);
+
+            ModCase latestBanModCase = (await ModCaseRepository.CreateWithBotIdentity(_serviceProvider).GetCasesForGuildAndUser(guildId, userId))
+                                        .Where(x => x.PunishmentType == PunishmentType.Ban && x.PunishmentActive)
+                                        .OrderByDescending(x => x.CreatedAt)
+                                        .FirstOrDefault();
+
+            if (latestBanModCase != null)
+            {
+                if (latestBanModCase.CreatedAt.AddDays(config.AllowBanAppealAfterDays) > DateTime.UtcNow)
+                {
+                    return false;
+                }
+            }
+
             Appeal lastestAppeal = await Database.GetLatestAppealForUser(guildId, userId);
             if (lastestAppeal == null)
             {

@@ -8,7 +8,6 @@ namespace MASZ.Dtos.Appeal
         [EmailAddress]
         [MaxLength(512)]
         public string Email { get; set; } = string.Empty;
-        public int SortOrder { get; set; } = 0;
         public List<AppealAnswerDto> Answers { get; set; } = new();
     }
 }
