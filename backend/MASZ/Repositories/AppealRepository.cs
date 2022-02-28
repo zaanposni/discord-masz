@@ -129,7 +129,7 @@ namespace MASZ.Repositories
         public async Task<bool> UserHasPendingOrDeclinedAppeal(ulong guildId, ulong userId)
         {
             List<Appeal> appeals = await Database.GetAppealsForUser(guildId, userId);
-            return appeals.Any(a => (a.Status == AppealStatus.Pending || a.Status == AppealStatus.Denied) && a.InvalidDueToLaterRejoinAt == null);
+            return appeals.Any(a => (a.Status == AppealStatus.Pending || a.Status == AppealStatus.Declined) && a.InvalidDueToLaterRejoinAt == null);
         }
     }
 }

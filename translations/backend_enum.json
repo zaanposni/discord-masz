@@ -1058,5 +1058,37 @@
             "ru": "Не удалось отправить",
             "it": "Invio fallito"
         }
+    },
+    "AppealStatus": {
+        "Pending": {
+            "description": "The appeal is pending.",
+            "en": "Pending",
+            "de": "Ausstehend",
+            "at": "Ausstehend",
+            "fr": "En attente",
+            "es": "Pendiente",
+            "ru": "Ожидается",
+            "it": "In attesa"
+        },
+        "Approved": {
+            "description": "The appeal was approved.",
+            "en": "Approved",
+            "de": "Genehmigt",
+            "at": "Genehmigt",
+            "fr": "Approuvé",
+            "es": "Aprobado",
+            "ru": "Утвержден",
+            "it": "Approvato"
+        },
+        "Declined": {
+            "description": "The appeal was declined.",
+            "en": "Declined",
+            "de": "Abgelehnt",
+            "at": "Abgelehnt",
+            "fr": "Refusé",
+            "es": "Denegado",
+            "ru": "Отклонен",
+            "it": "Rifiutato"
+        }
     }
 }

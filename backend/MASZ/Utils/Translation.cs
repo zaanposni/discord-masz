@@ -4061,7 +4061,7 @@ namespace MASZ.Utils
                     Language.it => "Approvato",
                     _ => "Approved",
                 },
-                AppealStatus.Denied => PreferredLanguage switch
+                AppealStatus.Declined => PreferredLanguage switch
                 {
                     Language.de => "Abgelehnt",
                     Language.at => "Abgelehnt",
@@ -4069,7 +4069,7 @@ namespace MASZ.Utils
                     Language.es => "Denegado",
                     Language.ru => "Отклонен",
                     Language.it => "Rifiutato",
-                    _ => "Denied",
+                    _ => "Declined",
                 },
                 _ => "Unknown",
             };
