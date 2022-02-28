@@ -61,7 +61,7 @@ namespace MASZ.Controllers
             ));
         }
 
-        [HttpGet]
+        [HttpPost("table")]
         public async Task<IActionResult> GetAppeals([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int page = 0, [FromBody] AppealFilterDto filter = null)
         {
             Identity identity = await GetIdentity();
