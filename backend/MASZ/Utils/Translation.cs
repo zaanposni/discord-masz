@@ -4037,6 +4037,43 @@ namespace MASZ.Utils
                 _ => "Unknown",
             };
         }
+        public string Enum(AppealStatus enumValue)
+        {
+            return enumValue switch
+            {
+                AppealStatus.Pending => PreferredLanguage switch
+                {
+                    Language.de => "Ausstehend",
+                    Language.at => "Ausstehend",
+                    Language.fr => "En attente",
+                    Language.es => "Pendiente",
+                    Language.ru => "Ожидается",
+                    Language.it => "In attesa",
+                    _ => "Pending",
+                },
+                AppealStatus.Approved => PreferredLanguage switch
+                {
+                    Language.de => "Genehmigt",
+                    Language.at => "Genehmigt",
+                    Language.fr => "Approuvé",
+                    Language.es => "Aprobado",
+                    Language.ru => "Утвержден",
+                    Language.it => "Approvato",
+                    _ => "Approved",
+                },
+                AppealStatus.Denied => PreferredLanguage switch
+                {
+                    Language.de => "Abgelehnt",
+                    Language.at => "Abgelehnt",
+                    Language.fr => "Refusé",
+                    Language.es => "Denegado",
+                    Language.ru => "Отклонен",
+                    Language.it => "Rifiutato",
+                    _ => "Denied",
+                },
+                _ => "Unknown",
+            };
+        }
 
     }
 }
