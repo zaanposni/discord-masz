@@ -429,7 +429,7 @@
     },
     "GuildNotifications": {
         "Title": "Warnung",
-        "MissingAppeals": "Du hast keine Fragen für den Entbannungsantrag konfiguriert. Gebannte Benutzer können daher zurzeit keine Bann-Anfragen erstellen.",
+        "MissingAppeals": "Du hast keine Fragen für den Entbannungsantrag konfiguriert. Gebannte Benutzer können daher zurzeit keine Entbannungsanträge erstellen.",
         "FailedToLoad": "Gildenbenachrichtigungen konnten nicht geladen werden."
     },
     "DashboardMotd": {

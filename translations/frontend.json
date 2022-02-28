@@ -3051,8 +3051,8 @@
         "MissingAppeals": {
             "description": "No appeals configured",
             "en": "You have no ban appeal questions configured. Thus, banned users cannot create a ban appeal right now.",
-            "de": "Du hast keine Fragen für den Entbannungsantrag konfiguriert. Gebannte Benutzer können daher zurzeit keine Bann-Anfragen erstellen.",
-            "at": "Du häscht keine Fragen für den Entbannungsantrag konfiguriert. Gebannte Benutzer können daher zurzeit keine Bann-Anfragen erstön.",
+            "de": "Du hast keine Fragen für den Entbannungsantrag konfiguriert. Gebannte Benutzer können daher zurzeit keine Entbannungsanträge erstellen.",
+            "at": "Du häscht keine Fragen für den Entbannungsantrag konfiguriert. Gebannte Benutzer können daher zurzeit keine Entbannungsanträge erstön.",
             "fr": "Vous n'avez pas de questions de plainte de bannissement configurées. Les utilisateurs bannis ne peuvent pas créer de plainte de bannissement pour le moment.",
             "es": "No tienes preguntas de apelación de expulsión configuradas. Los usuarios expulsados no pueden crear una pregunta de apelación de expulsión ahora mismo.",
             "ru": "У вас нет настроенных вопросов о бане. Поэтому забаненные пользователи не могут сейчас создать вопрос о бане.",
