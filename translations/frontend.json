@@ -3961,6 +3961,98 @@
             "it": "Caso aggiornato."
         }
     },
+    "AppealTable": {
+        "SelectMembers": {
+            "description": "Select members",
+            "en": "Members",
+            "de": "Mitglieder",
+            "at": "Mitglieda",
+            "fr": "Membres",
+            "es": "Miembros",
+            "ru": "Члены",
+            "it": "Membri"
+        },
+        "SelectedStatus": {
+            "description": "Selected status",
+            "en": "Status",
+            "de": "Status",
+            "at": "Status",
+            "fr": "Statut",
+            "es": "Estado",
+            "ru": "Статус",
+            "it": "Stato"
+        },
+        "FilterSince": {
+            "description": "Filter since",
+            "en": "Created since",
+            "de": "Erstellt ab",
+            "at": "Erstöt vo",
+            "fr": "Créé depuis",
+            "es": "Creado desde",
+            "ru": "Создано с",
+            "it": "Creato da"
+        },
+        "FilterUntil": {
+            "description": "Filter until",
+            "en": "Created until",
+            "de": "Erstellt bis",
+            "at": "Erstöt bis",
+            "fr": "Créé jusqu'au",
+            "es": "Creado hasta",
+            "ru": "Создано до",
+            "it": "Creato fino al"
+        },
+        "ExecuteSearch": {
+            "description": "execute search button to use advanced filters",
+            "en": "Search",
+            "de": "Suche ausführen",
+            "at": "Suche startn",
+            "fr": "Chercher",
+            "es": "Búsqueda",
+            "ru": "Поиск",
+            "it": "Ricerca"
+        },
+        "FailedToLoad": {
+            "description": "Failed to load appeal table",
+            "en": "Failed to load appeals.",
+            "de": "Anträge konnten nicht geladen werden.",
+            "at": "Anträge konnten ned geladen wean.",
+            "fr": "Échec du chargement des demandes.",
+            "es": "No se pudo cargar la tabla de solicitudes.",
+            "ru": "Не удалось загрузить таблицу обращений.",
+            "it": "Impossibile caricare la tabella dei reclami."
+        },
+        "NoMatches": {
+            "description": "No matches for search string found.",
+            "en": "No appeals matches your search.",
+            "de": "Keine Anträge passen zu deiner Suche.",
+            "at": "Kane Anträge passn zu deina Suach.",
+            "fr": "Aucun cas ne correspond à votre recherche.",
+            "es": "No hay casos que coincidan con su búsqueda.",
+            "ru": "Нет дел, соответствующих вашему поиску.",
+            "it": "Nessun caso corrisponde alla tua ricerca."
+        },
+        "CreateNewAppeal": {
+            "description": "Create a new ban appeal button",
+            "en": "Create new appeal",
+            "de": "Neuen Entbannungsantrag stellen",
+            "at": "Neien Entbannungsantrag stellen",
+            "fr": "Créer un nouveau cas",
+            "es": "Crear un nuevo caso",
+            "ru": "Создать новое дело",
+            "it": "Crea un nuovo caso"
+        },
+        "ConfigureAppeals": {
+            "description": "Configure ban appeals button",
+            "en": "Configure appeals",
+            "de": "Formular konfigurieren",
+            "at": "Formular konfigurieren",
+            "fr": "Configurer les demandes",
+            "es": "Configurar solicitudes",
+            "ru": "Настроить обращения",
+            "it": "Configura reclami"
+        }
+    },
     "ModCaseTable": {
         "SelectMembers": {
             "description": "Select members",

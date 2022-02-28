@@ -541,6 +541,17 @@
         "CaseCreated": "Caso creado.",
         "CaseUpdated": "Caso actualizado."
     },
+    "AppealTable": {
+        "SelectMembers": "Miembros",
+        "SelectedStatus": "Estado",
+        "FilterSince": "Creado desde",
+        "FilterUntil": "Creado hasta",
+        "ExecuteSearch": "Búsqueda",
+        "FailedToLoad": "No se pudo cargar la tabla de solicitudes.",
+        "NoMatches": "No hay casos que coincidan con su búsqueda.",
+        "CreateNewAppeal": "Crear un nuevo caso",
+        "ConfigureAppeals": "Configurar solicitudes"
+    },
     "ModCaseTable": {
         "SelectMembers": "Miembros",
         "SelectModerators": "Moderadores",

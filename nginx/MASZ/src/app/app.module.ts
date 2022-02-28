@@ -117,7 +117,6 @@ import { GuildMessagesComponent } from './components/guilds/guild-messages/guild
 import { GuildMessageCardComponent } from './components/guilds/guild-messages/guild-message-card/guild-message-card.component';
 import { ScheduledMessageEditDialogComponent } from './components/dialogs/scheduled-message-edit-dialog/scheduled-message-edit-dialog.component';
 import { DashboardNotificationsComponent } from './components/guilds/guild-dashboard/dashboard-notifications/dashboard-notifications.component';
-import { GuildAppealsComponent } from './components/guilds/guild-appeals/guild-appeals.component';
 import { GuildAppealsTableComponent } from './components/guilds/guild-appeals/guild-appeals-table/guild-appeals-table.component';
 import { GuildAppealsCardComponent } from './components/guilds/guild-appeals/guild-appeals-card/guild-appeals-card.component';
 import { GuildAppealViewComponent } from './components/guilds/guild-appeals/guild-appeal-view/guild-appeal-view.component';
@@ -200,7 +199,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     GuildMessageCardComponent,
     ScheduledMessageEditDialogComponent,
     DashboardNotificationsComponent,
-    GuildAppealsComponent,
     GuildAppealsTableComponent,
     GuildAppealsCardComponent,
     GuildAppealViewComponent,

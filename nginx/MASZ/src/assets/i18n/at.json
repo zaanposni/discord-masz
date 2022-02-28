@@ -541,6 +541,17 @@
         "CaseCreated": "Vorfoi erstöt.",
         "CaseUpdated": "Vorfoi aktualisiat."
     },
+    "AppealTable": {
+        "SelectMembers": "Mitglieda",
+        "SelectedStatus": "Status",
+        "FilterSince": "Erstöt vo",
+        "FilterUntil": "Erstöt bis",
+        "ExecuteSearch": "Suche startn",
+        "FailedToLoad": "Anträge konnten ned geladen wean.",
+        "NoMatches": "Kane Anträge passn zu deina Suach.",
+        "CreateNewAppeal": "Neien Entbannungsantrag stellen",
+        "ConfigureAppeals": "Formular konfigurieren"
+    },
     "ModCaseTable": {
         "SelectMembers": "Mitglieda",
         "SelectModerators": "Modaratoren",

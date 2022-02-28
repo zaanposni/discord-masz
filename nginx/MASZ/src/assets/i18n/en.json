@@ -541,6 +541,17 @@
         "CaseCreated": "Case created.",
         "CaseUpdated": "Case updated."
     },
+    "AppealTable": {
+        "SelectMembers": "Members",
+        "SelectedStatus": "Status",
+        "FilterSince": "Created since",
+        "FilterUntil": "Created until",
+        "ExecuteSearch": "Search",
+        "FailedToLoad": "Failed to load appeals.",
+        "NoMatches": "No appeals matches your search.",
+        "CreateNewAppeal": "Create new appeal",
+        "ConfigureAppeals": "Configure appeals"
+    },
     "ModCaseTable": {
         "SelectMembers": "Members",
         "SelectModerators": "Moderators",

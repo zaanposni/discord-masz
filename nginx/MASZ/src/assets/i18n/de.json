@@ -541,6 +541,17 @@
         "CaseCreated": "Vorfall erstellt.",
         "CaseUpdated": "Vorfall aktualisiert."
     },
+    "AppealTable": {
+        "SelectMembers": "Mitglieder",
+        "SelectedStatus": "Status",
+        "FilterSince": "Erstellt ab",
+        "FilterUntil": "Erstellt bis",
+        "ExecuteSearch": "Suche ausführen",
+        "FailedToLoad": "Anträge konnten nicht geladen werden.",
+        "NoMatches": "Keine Anträge passen zu deiner Suche.",
+        "CreateNewAppeal": "Neuen Entbannungsantrag stellen",
+        "ConfigureAppeals": "Formular konfigurieren"
+    },
     "ModCaseTable": {
         "SelectMembers": "Mitglieder",
         "SelectModerators": "Moderatoren",

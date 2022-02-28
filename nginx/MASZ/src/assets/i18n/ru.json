@@ -541,6 +541,17 @@
         "CaseCreated": "Дело создано.",
         "CaseUpdated": "Дело обновлено."
     },
+    "AppealTable": {
+        "SelectMembers": "Члены",
+        "SelectedStatus": "Статус",
+        "FilterSince": "Создано с",
+        "FilterUntil": "Создано до",
+        "ExecuteSearch": "Поиск",
+        "FailedToLoad": "Не удалось загрузить таблицу обращений.",
+        "NoMatches": "Нет дел, соответствующих вашему поиску.",
+        "CreateNewAppeal": "Создать новое дело",
+        "ConfigureAppeals": "Настроить обращения"
+    },
     "ModCaseTable": {
         "SelectMembers": "Члены",
         "SelectModerators": "Модераторы",

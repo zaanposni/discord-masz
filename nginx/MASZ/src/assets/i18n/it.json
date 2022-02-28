@@ -541,6 +541,17 @@
         "CaseCreated": "Caso creato.",
         "CaseUpdated": "Caso aggiornato."
     },
+    "AppealTable": {
+        "SelectMembers": "Membri",
+        "SelectedStatus": "Stato",
+        "FilterSince": "Creato da",
+        "FilterUntil": "Creato fino al",
+        "ExecuteSearch": "Ricerca",
+        "FailedToLoad": "Impossibile caricare la tabella dei reclami.",
+        "NoMatches": "Nessun caso corrisponde alla tua ricerca.",
+        "CreateNewAppeal": "Crea un nuovo caso",
+        "ConfigureAppeals": "Configura reclami"
+    },
     "ModCaseTable": {
         "SelectMembers": "Membri",
         "SelectModerators": "Moderatori",
