@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IAppealView } from 'src/app/models/IAppealView';
 
 @Component({
   selector: 'app-guild-appeals-card',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuildAppealsCardComponent implements OnInit {
 
+  @Input() entry!: IAppealView;
   constructor() { }
 
   ngOnInit(): void {
