@@ -69,6 +69,10 @@ export class GuildAppealsTableComponent implements OnInit {
   reload() {
     this.loadFirstCases();
     this.loadMembers();
+
+    this.api.getSimpleData(`/guilds/${this.guildId}/appeal/allowed`).subscribe((data: { allowed: boolean }) => {
+      this.$isAllowedToCreateNewAppeal.next(data.allowed);
+    });
   }
 
   private loadMembers() {

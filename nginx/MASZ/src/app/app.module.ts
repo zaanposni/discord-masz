@@ -122,6 +122,7 @@ import { GuildAppealsCardComponent } from './components/guilds/guild-appeals/gui
 import { GuildAppealViewComponent } from './components/guilds/guild-appeals/guild-appeal-view/guild-appeal-view.component';
 import { GuildAppealQuestionComponent } from './components/guilds/guild-appeals/guild-appeal-question/guild-appeal-question.component';
 import { GuildAppealConfigComponent } from './components/guilds/guild-appeals/guild-appeal-config/guild-appeal-config.component';
+import { GuildAppealNewComponent } from './components/guilds/guild-appeals/guild-appeal-new/guild-appeal-new.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -203,7 +204,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     GuildAppealsCardComponent,
     GuildAppealViewComponent,
     GuildAppealQuestionComponent,
-    GuildAppealConfigComponent
+    GuildAppealConfigComponent,
+    GuildAppealNewComponent
   ],
   imports: [
     CommonModule,

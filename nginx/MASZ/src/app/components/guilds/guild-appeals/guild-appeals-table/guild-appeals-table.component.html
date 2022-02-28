@@ -27,15 +27,22 @@
             <div class="d-flex flex-column">
                 <button mat-raised-button
                         color="accent"
-                        routerLink="/guilds/{{this.guildId}}/cases/new"
+                        routerLink="/guilds/{{this.guildId}}/appeals/new"
                         class="mb-2 mr-2"
                         *ngIf="(this.isMember | async) && !(this.isAdminOrHigher | async) && (isAllowedToCreateNewAppeal | async)">
                     {{ 'AppealTable.CreateNewAppeal' | translate }}
                 </button>
-                <button mat-raised-button color="accent" routerLink="/guilds/{{this.guildId}}/cases/new" class="mb-2 mr-2" *ngIf="this.isAdminOrHigher | async">
+                <button mat-raised-button
+                        color="accent"
+                        routerLink="/guilds/{{this.guildId}}/appeals/edit"
+                        class="mb-2 mr-2"
+                        *ngIf="this.isAdminOrHigher | async">
                     {{ 'AppealTable.ConfigureAppeals' | translate }}
                 </button>
-                <button mat-raised-button color="accent" (click)="loadFirstCases()" class="mr-2">
+                <button mat-raised-button
+                        color="accent"
+                        (click)="loadFirstCases()"
+                        class="mr-2">
                     {{ 'AppealTable.ExecuteSearch' | translate }}
                 </button>
             </div>

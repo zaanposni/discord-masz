@@ -10,6 +10,9 @@ import { PatchnotesComponent } from './components/basic/patchnotes/patchnotes.co
 import { NotFoundComponent } from './components/errors/not-found/not-found.component';
 import { OauthFailedComponent } from './components/errors/oauth-failed/oauth-failed.component';
 import { GuildAddComponent } from './components/guilds/guild-add/guild-add.component';
+import { GuildAppealConfigComponent } from './components/guilds/guild-appeals/guild-appeal-config/guild-appeal-config.component';
+import { GuildAppealNewComponent } from './components/guilds/guild-appeals/guild-appeal-new/guild-appeal-new.component';
+import { GuildAppealViewComponent } from './components/guilds/guild-appeals/guild-appeal-view/guild-appeal-view.component';
 import { GuildEditComponent } from './components/guilds/guild-edit/guild-edit.component';
 import { GuildListComponent } from './components/guilds/guild-list/guild-list.component';
 import { GuildOverviewComponent } from './components/guilds/guild-overview/guild-overview.component';
@@ -27,6 +30,9 @@ const routes: Routes = [
   { path: 'guilds/:guildid/cases/new', component: ModcaseAddComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/cases/:caseid', component: ModcaseViewComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/cases/:caseid/edit', component: ModcaseEditComponent, canActivate: [AuthGuard] },
+  { path: 'guilds/:guildid/appeals/edit', component: GuildAppealConfigComponent, canActivate: [AuthGuard] },
+  { path: 'guilds/:guildid/appeals/new', component: GuildAppealNewComponent, canActivate: [AuthGuard] },
+  { path: 'guilds/:guildid/appeals/:id', component: GuildAppealViewComponent, canActivate: [AuthGuard] },
   { path: 'tokens', component: TokenOverviewComponent, canActivate: [AuthGuard] },
   { path: 'userscan', component: UserscanComponent, canActivate: [AuthGuard] },
   { path: 'scanning', component: UserscanComponent, canActivate: [AuthGuard] },
