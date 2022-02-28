@@ -118,6 +118,11 @@ import { GuildMessageCardComponent } from './components/guilds/guild-messages/gu
 import { ScheduledMessageEditDialogComponent } from './components/dialogs/scheduled-message-edit-dialog/scheduled-message-edit-dialog.component';
 import { DashboardNotificationsComponent } from './components/guilds/guild-dashboard/dashboard-notifications/dashboard-notifications.component';
 import { GuildAppealsComponent } from './components/guilds/guild-appeals/guild-appeals.component';
+import { GuildAppealsTableComponent } from './components/guilds/guild-appeals/guild-appeals-table/guild-appeals-table.component';
+import { GuildAppealsCardComponent } from './components/guilds/guild-appeals/guild-appeals-card/guild-appeals-card.component';
+import { GuildAppealViewComponent } from './components/guilds/guild-appeals/guild-appeal-view/guild-appeal-view.component';
+import { GuildAppealQuestionComponent } from './components/guilds/guild-appeals/guild-appeal-question/guild-appeal-question.component';
+import { GuildAppealConfigComponent } from './components/guilds/guild-appeals/guild-appeal-config/guild-appeal-config.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -195,7 +200,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     GuildMessageCardComponent,
     ScheduledMessageEditDialogComponent,
     DashboardNotificationsComponent,
-    GuildAppealsComponent
+    GuildAppealsComponent,
+    GuildAppealsTableComponent,
+    GuildAppealsCardComponent,
+    GuildAppealViewComponent,
+    GuildAppealQuestionComponent,
+    GuildAppealConfigComponent
   ],
   imports: [
     CommonModule,
