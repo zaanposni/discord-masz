@@ -37,12 +37,31 @@ namespace MASZ.Controllers
 
             appealStructure.GuildId = guildId;
             appealStructure.SortOrder = dto.SortOrder;
-            appealStructure.Question = dto.Question;
+            appealStructure.Question = dto.Question.Trim();
             appealStructure.Deleted = false;
 
             appealStructure = await AppealStructureRepository.CreateDefault(_serviceProvider).Create(appealStructure);
 
             return Ok(new AppealStructureView(appealStructure));
+        }
+
+        [HttpPut("reorder")]
+        [Authorize]
+        public async Task<IActionResult> ReorderAppealStructures([FromRoute] ulong guildId, [FromBody] List<AppealStructureOrderDto> dtos)
+        {
+            await RequirePermission(guildId, DiscordPermission.Admin);
+            await GetRegisteredGuild(guildId);
+
+            foreach (AppealStructureOrderDto dto in dtos)
+            {
+                AppealStructure appealStructure = await AppealStructureRepository.CreateDefault(_serviceProvider).GetById(guildId, dto.Id);
+
+                appealStructure.SortOrder = dto.SortOrder;
+
+                await AppealStructureRepository.CreateDefault(_serviceProvider).Update(appealStructure);
+            }
+
+            return Ok();
         }
 
         [HttpPut("{id}")]
@@ -57,7 +76,7 @@ namespace MASZ.Controllers
             AppealStructure appealStructure = await repo.GetById(guildId, id);
 
             appealStructure.SortOrder = dto.SortOrder;
-            appealStructure.Question = dto.Question;
+            appealStructure.Question = dto.Question.Trim();
             appealStructure.Deleted = false;
 
             appealStructure = await AppealStructureRepository.CreateDefault(_serviceProvider).Update(appealStructure);

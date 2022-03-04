@@ -74,6 +74,14 @@ export class GuildAppealConfigComponent implements OnInit {
       };
     });
     console.log(data);
+
+    this.api.putSimpleData(`/guilds/${this.guildId}/appealstructures/reorder`, data).subscribe(() => {
+      this.toastr.success("Reordered");
+    }, error => {
+      console.error(error);
+      this.toastr.error("oh no");
+      moveItemInArray(this.questions.content as [], event.currentIndex, event.previousIndex);
+    });
   }
 
   get newQuestion() { return this.newQuestionFormGroup.get('question'); }

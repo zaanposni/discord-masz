@@ -751,7 +751,7 @@ namespace MASZ.Data
 
         public async Task<List<AppealStructure>> GetAppealStructure(ulong guildId)
         {
-            return await context.AppealStructures.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.SortOrder).ToListAsync();
+            return await context.AppealStructures.AsQueryable().Where(x => x.GuildId == guildId).OrderBy(x => x.SortOrder).ToListAsync();
         }
 
         public void SaveAppealStructure(AppealStructure appealStructure)
