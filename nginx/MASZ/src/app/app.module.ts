@@ -123,6 +123,7 @@ import { GuildAppealViewComponent } from './components/guilds/guild-appeals/guil
 import { GuildAppealQuestionComponent } from './components/guilds/guild-appeals/guild-appeal-question/guild-appeal-question.component';
 import { GuildAppealConfigComponent } from './components/guilds/guild-appeals/guild-appeal-config/guild-appeal-config.component';
 import { GuildAppealNewComponent } from './components/guilds/guild-appeals/guild-appeal-new/guild-appeal-new.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -245,6 +246,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    DragDropModule,
 
     BrowserModule,
     AppRoutingModule,

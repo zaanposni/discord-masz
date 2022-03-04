@@ -65,7 +65,15 @@ export class GuildAppealConfigComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     console.log(event);
-    // moveItemInArray(this.questions, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.questions.content as [], event.previousIndex, event.currentIndex);
+
+    const data = this.questions.content?.map((element, index) => {
+      return {
+        id: element.id,
+        sortOrder: index
+      };
+    });
+    console.log(data);
   }
 
   get newQuestion() { return this.newQuestionFormGroup.get('question'); }
