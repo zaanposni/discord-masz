@@ -16,8 +16,13 @@
                 <ng-container *ngIf="!this.questions.loading">
                     <div class="d-flex flex-column">
                     </div>
-                    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-                        <app-guild-appeal-question class="example-box" *ngFor="let question of this.questions.content" cdkDrag></app-guild-appeal-question>
+                    <div cdkDropList class="question-list" (cdkDropListDropped)="drop($event)">
+                        <app-guild-appeal-question *ngFor="let question of this.questions.content"
+                                                   cdkDrag
+                                                   class="question-box"
+                                                   [question]="question.question"
+                                                   [showActionButtons]="true">
+                        </app-guild-appeal-question>
                     </div>
                     <mat-divider class="my-2" *ngIf="this.questions.content?.length"></mat-divider>
                     <div class="d-flex flex-column flex-grow-1">

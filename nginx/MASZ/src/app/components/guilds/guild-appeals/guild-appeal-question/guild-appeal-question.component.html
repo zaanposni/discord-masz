@@ -1,14 +1,24 @@
 
 <div class="card-container flex-grow-1">
-    <div class="card-container-body d-flex flex-row">
+    <div class="card-container-body d-flex flex-col">
+        <div class="d-flex flex-row flex-grow-1">
+            <div class="mat-display-1 mb-0" style="white-space: pre-wrap; word-wrap: anywhere">
+                {{ question }}
+            </div>
 
-        <span>guild-appeal-question works!</span>
+            <div class="flex-grow-1"></div>
 
-        <div class="flex-grow-1"></div>
-
-        <div class="example-handle" cdkDragHandle>
-            <mat-icon>drag_handle</mat-icon>
+            <div class="d-flex flex-row" *ngIf="showActionButtons">
+                <div class="crs-ptr mr-2">
+                    <mat-icon>edit</mat-icon>
+                </div>
+                <div class="example-handle" cdkDragHandle>
+                    <mat-icon>drag_handle</mat-icon>
+                </div>
+            </div>
         </div>
-
+        <div class="mt-4" *ngIf="answer !== null">
+            {{ answer }}
+        </div>
     </div>
 </div>
