@@ -1,1 +1,53 @@
-<p>guild-appeal-config works!</p>
+<div style="height: 50px;" class="dp-on-big-screen">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="d-flex flex-column justify-content-center align-items-left cw-75-100">
+            <div class="d-flex flex-column p-4 mt-2">
+                <span class="mat-display-2 mb-2" style="word-break: break-all;">
+                    Ban appeal structure
+                </span>
+                <div class="mb-5">
+                    Configure the form for the guild's ban appeal.<br />
+                    Users can skip questions if they want to.<br />
+                    If you delete a question it will still be visible in old ban appeals.
+                </div>
+                <ng-container *ngIf="this.questions.loading">
+                    <mat-spinner></mat-spinner>
+                </ng-container>
+                <ng-container *ngIf="!this.questions.loading">
+                    <div class="d-flex flex-column">
+                        <app-guild-appeal-question *ngFor="let question of this.questions.content"></app-guild-appeal-question>
+                    </div>
+                    <div cdkDropList class="example-list" (cdkDropListDropped)="drop">
+                        <div class="example-box" *ngFor="let question of this.questions.content" cdkDrag>{{question}}</div>
+                    </div>
+                    <mat-divider class="my-2" *ngIf="this.questions.content?.length"></mat-divider>
+                    <div class="d-flex flex-column flex-grow-1">
+                        <form [formGroup]="newQuestionFormGroup" class="flex-grow-1 mb-2">
+                            <mat-form-field class="d-flex flex-column mr-2">
+                                <mat-label>New question</mat-label>
+                                <textarea matInput formControlName="question"></textarea>
+                                <div *ngIf="newQuestion?.invalid && (newQuestion?.dirty || newQuestion?.touched)" class="alert alert-danger my-2">
+                                    <div *ngIf="newQuestion?.errors?.['required']">
+                                        {{ 'Forms.FieldRequired' | translate }}
+                                    </div>
+                                    <div *ngIf="newQuestion?.errors?.['maxlength']">
+                                        {{ 'Forms.MaxLength' | translate:maxLength4096 }}
+                                    </div>
+                                </div>
+                            </mat-form-field>
+                        </form>
+                        <div class="d-flex flex-row">
+                            <div class="flex-grow-1"></div>
+                            <button mat-raised-button color="accent"
+                                class="flex-shrink-0 mb-2"
+                                [disabled]="newQuestion?.invalid"
+                                (click)="saveNewQuestion()">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
