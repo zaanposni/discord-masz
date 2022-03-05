@@ -1089,6 +1089,48 @@
             "it": "Confermare"
         }
     },
+    "AppealStructureEditDialog": {
+        "EditQuestion": {
+            "description": "edit question",
+            "en": "Edit question",
+            "de": "Frage bearbeiten",
+            "at": "Frage bearbeitn",
+            "fr": "Modifier la question",
+            "es": "Editar pregunta",
+            "ru": "Редактировать вопрос",
+            "it": "Modifica domanda"
+        },
+        "Question": {
+            "description": "Question field",
+            "en": "Question",
+            "de": "Frage",
+            "at": "Frage",
+            "fr": "Question",
+            "es": "Pregunta",
+            "ru": "Вопрос",
+            "it": "Domanda"
+        },
+        "Cancel": {
+            "description": "cancel button",
+            "en": "Cancel",
+            "de": "Abbrechen",
+            "at": "Obrechn",
+            "fr": "Annuler",
+            "es": "Cancelar",
+            "ru": "Отмена",
+            "it": "Annulla"
+        },
+        "Confirm": {
+            "description": "confirm button",
+            "en": "Confirm",
+            "de": "Bestätigen",
+            "at": "Zuastima",
+            "fr": "Confirmer",
+            "es": "Confirmar",
+            "ru": "Подтверждать",
+            "it": "Confermare"
+        }
+    },
     "CommentEditDialog": {
         "EditComment": {
             "description": "edit comment",

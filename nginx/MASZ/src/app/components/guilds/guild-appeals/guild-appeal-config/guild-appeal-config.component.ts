@@ -64,7 +64,7 @@ export class GuildAppealConfigComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    console.log(event);
+    if (event.previousIndex === event.currentIndex) return;
     moveItemInArray(this.questions.content as [], event.previousIndex, event.currentIndex);
 
     const data = this.questions.content?.map((element, index) => {
@@ -73,7 +73,6 @@ export class GuildAppealConfigComponent implements OnInit {
         sortOrder: index
       };
     });
-    console.log(data);
 
     this.api.putSimpleData(`/guilds/${this.guildId}/appealstructures/reorder`, data).subscribe(() => {
       this.toastr.success("Reordered");
@@ -82,6 +81,12 @@ export class GuildAppealConfigComponent implements OnInit {
       this.toastr.error("oh no");
       moveItemInArray(this.questions.content as [], event.currentIndex, event.previousIndex);
     });
+  }
+
+  onDelete(id: number) {
+    if (this.questions.content) {
+      this.questions.content = this.questions.content.filter(x => x.id !== id);
+    }
   }
 
   get newQuestion() { return this.newQuestionFormGroup.get('question'); }

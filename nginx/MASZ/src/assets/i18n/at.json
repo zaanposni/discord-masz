@@ -144,6 +144,12 @@
         "Cancel": "Obrechn",
         "Confirm": "Zuastimma"
     },
+    "AppealStructureEditDialog": {
+        "EditQuestion": "Frage bearbeitn",
+        "Question": "Frage",
+        "Cancel": "Obrechn",
+        "Confirm": "Zuastima"
+    },
     "CommentEditDialog": {
         "EditComment": "Kommentoa aktualisiat",
         "Comment": "Kommentoa",

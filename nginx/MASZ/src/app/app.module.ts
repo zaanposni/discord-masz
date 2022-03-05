@@ -124,6 +124,7 @@ import { GuildAppealQuestionComponent } from './components/guilds/guild-appeals/
 import { GuildAppealConfigComponent } from './components/guilds/guild-appeals/guild-appeal-config/guild-appeal-config.component';
 import { GuildAppealNewComponent } from './components/guilds/guild-appeals/guild-appeal-new/guild-appeal-new.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AppealStructureEditDialogComponent } from './components/dialogs/appeal-structure-edit-dialog/appeal-structure-edit-dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -206,7 +207,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     GuildAppealViewComponent,
     GuildAppealQuestionComponent,
     GuildAppealConfigComponent,
-    GuildAppealNewComponent
+    GuildAppealNewComponent,
+    AppealStructureEditDialogComponent
   ],
   imports: [
     CommonModule,

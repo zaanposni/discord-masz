@@ -8,7 +8,8 @@
                 <div class="mb-5">
                     Configure the form for the guild's ban appeal.<br />
                     Users can skip questions if they want to.<br />
-                    If you delete a question it will still be visible in old ban appeals.
+                    If you delete a question it will still be visible in old ban appeals.<br />
+                    If you have no questions configured, users will not be able to appeal bans.
                 </div>
                 <ng-container *ngIf="this.questions.loading">
                     <mat-spinner></mat-spinner>
@@ -20,7 +21,8 @@
                         <app-guild-appeal-question *ngFor="let question of this.questions.content"
                                                    cdkDrag
                                                    class="question-box"
-                                                   [question]="question.question"
+                                                   [question]="question"
+                                                   (deleteEvent)="onDelete($event)"
                                                    [showActionButtons]="true">
                         </app-guild-appeal-question>
                     </div>

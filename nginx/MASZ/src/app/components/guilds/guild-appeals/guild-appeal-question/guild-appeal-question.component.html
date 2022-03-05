@@ -3,14 +3,17 @@
     <div class="card-container-body d-flex flex-col">
         <div class="d-flex flex-row flex-grow-1">
             <div class="mat-display-1 mb-0" style="white-space: pre-wrap; word-wrap: anywhere">
-                {{ question }}
+                {{ question?.question }}
             </div>
 
             <div class="flex-grow-1"></div>
 
             <div class="d-flex flex-row" *ngIf="showActionButtons">
-                <div class="crs-ptr mr-2">
+                <div class="crs-ptr mr-2" (click)="edit()">
                     <mat-icon>edit</mat-icon>
+                </div>
+                <div class="crs-ptr mr-2" (click)="delete()">
+                    <mat-icon>delete</mat-icon>
                 </div>
                 <div class="example-handle" cdkDragHandle>
                     <mat-icon>drag_handle</mat-icon>
@@ -18,7 +21,7 @@
             </div>
         </div>
         <div class="mt-4" *ngIf="answer !== null">
-            {{ answer }}
+            {{ answer?.answer }}
         </div>
     </div>
 </div>

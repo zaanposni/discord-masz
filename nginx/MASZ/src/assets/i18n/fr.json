@@ -144,6 +144,12 @@
         "Cancel": "Annuler",
         "Confirm": "Confirmer"
     },
+    "AppealStructureEditDialog": {
+        "EditQuestion": "Modifier la question",
+        "Question": "Question",
+        "Cancel": "Annuler",
+        "Confirm": "Confirmer"
+    },
     "CommentEditDialog": {
         "EditComment": "Modifier le commentaire",
         "Comment": "Commenter",

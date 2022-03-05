@@ -144,6 +144,12 @@
         "Cancel": "Отмена",
         "Confirm": "Подтверждать"
     },
+    "AppealStructureEditDialog": {
+        "EditQuestion": "Редактировать вопрос",
+        "Question": "Вопрос",
+        "Cancel": "Отмена",
+        "Confirm": "Подтверждать"
+    },
     "CommentEditDialog": {
         "EditComment": "Редактировать комментарий",
         "Comment": "Комментарий",
