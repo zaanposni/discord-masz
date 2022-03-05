@@ -102,7 +102,7 @@ export class GuildAppealsTableComponent implements OnInit {
     this.apiFilter.userIds = members?.map(x => x.id) ?? [];
   }
   selectedStatusChanged(type: APIEnum[]) {
-    this.apiFilter.appealStatus = type?.map(x => x.key) ?? [];
+    this.apiFilter.status = type?.map(x => x.key) ?? [];
   }
 
   loadFirstCases() {

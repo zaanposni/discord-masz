@@ -4,5 +4,5 @@ export interface IAppealFilter {
     userIds?: string[];
     since?: string;
     before?: string;
-    appealStatus?: AppealStatus[];
+    status?: AppealStatus[];
 }
