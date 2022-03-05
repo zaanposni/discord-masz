@@ -1,1 +1,56 @@
-<p>guild-appeals-card works! id: {{ entry.id }}</p>
+<a class="font-weight-bold" routerLink="/guilds/{{entry.guildId}}/appeals/{{ entry.id }}">
+    <div class="card-container">
+        <div class="card-container-body d-flex flex-wrap">
+            <!-- Profile picture -->
+            <div class="pictures-parent mr-3">
+                <img
+                    src="{{ entry.user?.imageUrl }}"
+                    class="rounded-circle z-depth-0 user-image"
+                    alt="avatar image"
+                    height="96"
+                    title="Suspect {{ entry.user?.id }}"
+                    onerror="this.src='/assets/img/default_profile.png';"
+                />
+                <img *ngIf="entry.lastModerator"
+                    src="{{ entry.lastModerator?.imageUrl }}"
+                    class="rounded-circle z-depth-0 mod-image"
+                    alt="avatar image"
+                    height="40"
+                    title="Moderator {{ entry.lastModerator?.id }}"
+                    onerror="this.style.display='none';"
+                />
+            </div>
+            <div class="flex-shrink-1 d-flex flex-column flex-wrap">
+                <!-- Title -->
+                <div>
+                    <span class="badge mat-h4 mb-0 mr-1"
+                          style="padding: .1rem .4rem"
+                          [class.badge-primary]="entry.status === AppealStatus.Pending"
+                          [class.badge-success]="entry.status === AppealStatus.Approved"
+                          [class.badge-danger]="entry.status === AppealStatus.Denied">
+                        {{ status }}
+                    </span>
+                    <span title="{{ entry.userId }}" class="mat-h2 mb-0">
+                        {{ entry.user?.username || entry.username }}<ng-container *ngIf="entry.user?.discriminator || entry.discriminator">#{{ entry.user?.discriminator || entry.discriminator }}</ng-container>
+                    </span>
+                </div>
+
+                <!-- Text -->
+                <span>
+                    {{ 'AppealCard.AnswerCount' | translate:questionsAnswered }}
+                </span>
+            </div>
+            <div class="flex-grow-1"></div>
+            <div class="d-flex flex-column align-content-center">
+                <ng-container>
+                    <span class="text-black-50" style="text-align: right;">
+                        <app-date-display [date]="entry.createdAt" [prefixKey]="'AppealCard.Created'"></app-date-display>
+                    </span>
+                    <span class="text-black-50" style="text-align: right;" *ngIf="entry.createdAt !== entry.updatedAt">
+                        <app-date-display [date]="entry.updatedAt" [prefixKey]="'AppealCard.Updated'"></app-date-display>
+                    </span>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</a>

@@ -547,6 +547,11 @@
         "CaseCreated": "Vorfall erstellt.",
         "CaseUpdated": "Vorfall aktualisiert."
     },
+    "AppealCard": {
+        "Created": "Erstellt:",
+        "Updated": "Aktualisiert:",
+        "AnswerCount": "Benutzer hat {{count}} Fragen beantwortet."
+    },
     "AppealTable": {
         "Warning": "Warnung",
         "NotConfigured": "Dieser Server hat kein Formular für den Entbannungsantrag konfiguriert. Du kannst deshalb keinen Entbannungsantrag erstellen.",

@@ -547,6 +547,11 @@
         "CaseCreated": "Case created.",
         "CaseUpdated": "Case updated."
     },
+    "AppealCard": {
+        "Created": "Created:",
+        "Updated": "Updated:",
+        "AnswerCount": "User has answered {{count}} questions."
+    },
     "AppealTable": {
         "Warning": "Warning",
         "NotConfigured": "This guild has no ban appeal form configured. Thus, you cannot create an appeal right now.",

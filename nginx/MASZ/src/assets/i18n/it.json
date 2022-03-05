@@ -547,6 +547,11 @@
         "CaseCreated": "Caso creato.",
         "CaseUpdated": "Caso aggiornato."
     },
+    "AppealCard": {
+        "Created": "Creato:",
+        "Updated": "Aggiornato:",
+        "AnswerCount": "L'utente ha risposto {{count}} domande."
+    },
     "AppealTable": {
         "Warning": "Avvertimento",
         "NotConfigured": "Questo server non ha un modulo di richiesta di banno configurato. Perciò, non puoi creare una richiesta di banno ora.",

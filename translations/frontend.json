@@ -4003,6 +4003,38 @@
             "it": "Caso aggiornato."
         }
     },
+    "AppealCard": {
+        "Created": {
+            "description": "Created",
+            "en": "Created:",
+            "de": "Erstellt:",
+            "at": "Erstöt:",
+            "fr": "Créé:",
+            "es": "Creado:",
+            "ru": "Создан:",
+            "it": "Creato:"
+        },
+        "Updated": {
+            "description": "Updated",
+            "en": "Updated:",
+            "de": "Aktualisiert:",
+            "at": "Aktualisiat:",
+            "fr": "Mis à jour:",
+            "es": "Actualizado:",
+            "ru": "Обновлен:",
+            "it": "Aggiornato:"
+        },
+        "AnswerCount": {
+            "description": "user has answered x questions.",
+            "en": "User has answered {{count}} questions.",
+            "de": "Benutzer hat {{count}} Fragen beantwortet.",
+            "at": "Benutzer hat {{count}} Fragen beantwortet.",
+            "fr": "L'utilisateur a répondu {{count}} questions.",
+            "es": "El usuario ha respondido {{count}} preguntas.",
+            "ru": "Пользователь ответил на {{count}} вопросов.",
+            "it": "L'utente ha risposto {{count}} domande."
+        }
+    },
     "AppealTable": {
         "Warning": {
             "description": "Warning",
