@@ -29,7 +29,7 @@
                         color="accent"
                         routerLink="/guilds/{{this.guildId}}/appeals/new"
                         class="mb-2 mr-2"
-                        *ngIf="(this.isMember | async) && !(this.isAdminOrHigher | async) && (isAllowedToCreateNewAppeal | async)">
+                        *ngIf="!(this.isMember | async) && !(this.isAdminOrHigher | async) && (isAllowedToCreateNewAppeal | async)">
                     {{ 'AppealTable.CreateNewAppeal' | translate }}
                 </button>
                 <button mat-raised-button
@@ -56,7 +56,7 @@
             <app-guild-appeals-card *ngFor="let appeal of this.appealTable.appealViews"
                 [entry]="appeal" class="mb-2">
             </app-guild-appeals-card>
-            <div class="d-flex flex-row" *ngIf="this.appealTable.appealViews?.length">
+            <div class="d-flex flex-row" *ngIf="this.appealTable!.fullSize > 20 && this.currentPage * 20 < this.appealTable!.fullSize">
                 <div class="flex-grow-1"></div>
                 <button mat-raised-button color="accent" (click)="loadNextPage()">Load more cases</button>
                 <div class="flex-grow-1"></div>
