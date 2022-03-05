@@ -8,7 +8,7 @@
 
             <div class="flex-grow-1"></div>
 
-            <div class="d-flex flex-row" *ngIf="showActionButtons">
+            <div class="d-flex flex-row" *ngIf="mode === AppealStructureMode.EDIT">
                 <div class="crs-ptr mr-2" (click)="edit()">
                     <mat-icon>edit</mat-icon>
                 </div>

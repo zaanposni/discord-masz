@@ -6,6 +6,7 @@ import { AppealStructureEditDialogComponent } from 'src/app/components/dialogs/a
 import { IAppealAnswer } from 'src/app/models/IAppealAnswer';
 import { IAppealStructure } from 'src/app/models/IAppealStructure';
 import { ApiService } from 'src/app/services/api.service';
+import { AppealStructureMode } from 'src/app/models/AppealStructureMode';
 
 @Component({
   selector: 'app-guild-appeal-question',
@@ -14,7 +15,8 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class GuildAppealQuestionComponent implements OnInit {
 
-  @Input() showActionButtons: boolean = false;
+  AppealStructureMode = AppealStructureMode;
+  @Input() mode: AppealStructureMode = AppealStructureMode.VIEW;
   @Input() question?: IAppealStructure;
   @Input() answer?: IAppealAnswer;
 

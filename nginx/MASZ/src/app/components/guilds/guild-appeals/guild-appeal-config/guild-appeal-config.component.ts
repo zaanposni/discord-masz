@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { EnumManagerService } from 'src/app/services/enum-manager.service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { AppealStructureMode } from 'src/app/models/AppealStructureMode';
 
 @Component({
   selector: 'app-guild-appeal-config',
@@ -18,6 +19,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 })
 export class GuildAppealConfigComponent implements OnInit {
 
+  AppealStructureMode = AppealStructureMode;
   public guildId!: string;
   public newQuestionFormGroup!: FormGroup;
   maxLength4096 = { length: 4096 };

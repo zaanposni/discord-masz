@@ -28,7 +28,7 @@
                                                 class="question-box"
                                                 [question]="question"
                                                 (deleteEvent)="onDelete($event)"
-                                                [showActionButtons]="true">
+                                                [mode]="AppealStructureMode.EDIT">
                     </app-guild-appeal-question>
                 </div>
                 <mat-divider class="my-2" *ngIf="this.questions.content?.length"></mat-divider>
