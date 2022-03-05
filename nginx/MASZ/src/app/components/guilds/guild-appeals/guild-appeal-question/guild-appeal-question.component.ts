@@ -7,6 +7,7 @@ import { IAppealAnswer } from 'src/app/models/IAppealAnswer';
 import { IAppealStructure } from 'src/app/models/IAppealStructure';
 import { ApiService } from 'src/app/services/api.service';
 import { AppealStructureMode } from 'src/app/models/AppealStructureMode';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-guild-appeal-question',
@@ -20,11 +21,22 @@ export class GuildAppealQuestionComponent implements OnInit {
   @Input() question?: IAppealStructure;
   @Input() answer?: IAppealAnswer;
 
+  @Output() answerEvent = new EventEmitter<{id: number, answer: string}>();
   @Output() deleteEvent = new EventEmitter<number>();
 
-  constructor(private dialog: MatDialog, private toastr: ToastrService, private api: ApiService) { }
+  maxLength10240 = { length: 10240 };
+  public answerForm!: FormGroup;
+
+  constructor(private dialog: MatDialog, private toastr: ToastrService, private api: ApiService, private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.answerForm = this._formBuilder.group({
+      answer: ['', [ Validators.maxLength(10240) ]]
+    });
+
+    this.answerForm.valueChanges.subscribe(() => {
+      this.answerEvent.emit({ id: this.question!.id, answer: this.answerForm.value.answer });
+    });
   }
 
   edit() {
@@ -65,4 +77,6 @@ export class GuildAppealQuestionComponent implements OnInit {
       }
     });
   }
+
+  get newAnswer() { return this.answerForm.get('answer'); }
 }

@@ -51,7 +51,7 @@
                         <div class="flex-grow-1"></div>
                         <button mat-raised-button color="accent"
                             class="flex-shrink-0 mb-2"
-                            [disabled]="newQuestion?.invalid"
+                            [disabled]="newQuestion?.invalid || !newQuestion?.value"
                             (click)="saveNewQuestion()">
                             Save
                         </button>

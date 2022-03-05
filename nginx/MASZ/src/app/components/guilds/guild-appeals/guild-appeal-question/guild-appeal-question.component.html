@@ -1,6 +1,6 @@
 
 <div class="card-container flex-grow-1">
-    <div class="card-container-body d-flex flex-col">
+    <div class="card-container-body d-flex flex-column">
         <div class="d-flex flex-row flex-grow-1">
             <div class="mat-display-1 mb-0" style="white-space: pre-wrap; word-wrap: anywhere">
                 {{ question?.question }}
@@ -20,8 +20,26 @@
                 </div>
             </div>
         </div>
-        <div class="mt-4" *ngIf="answer !== null">
-            {{ answer?.answer }}
+        <div *ngIf="mode === AppealStructureMode.VIEW">
+            <mat-divider class="mt-4 mb-2"></mat-divider>
+            <div>
+                {{ answer?.answer }}
+            </div>
         </div>
+        <form [formGroup]="answerForm" *ngIf="mode === AppealStructureMode.USE">
+            <mat-divider class="mt-4 mb-2"></mat-divider>
+            <mat-form-field class="d-flex flex-column mr-2">
+                <mat-label>Your answer</mat-label>
+                <textarea matInput formControlName="answer"></textarea>
+                <div *ngIf="newAnswer?.invalid && (newAnswer?.dirty || newAnswer?.touched)" class="alert alert-danger my-2">
+                    <div *ngIf="newAnswer?.errors?.['required']">
+                        {{ 'Forms.FieldRequired' | translate }}
+                    </div>
+                    <div *ngIf="newAnswer?.errors?.['maxlength']">
+                        {{ 'Forms.MaxLength' | translate:maxLength10240 }}
+                    </div>
+                </div>
+            </mat-form-field>
+        </form>
     </div>
 </div>
