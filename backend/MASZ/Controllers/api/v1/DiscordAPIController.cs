@@ -80,6 +80,15 @@ namespace MASZ.Controllers.api.v1
                             }
                         }
                         catch (NotFoundInCacheException) { }
+
+                        if ((await ModCaseRepository.CreateWithBotIdentity(_serviceProvider).GetCasesForGuildAndUser(guild.GuildId, currentUser.Id))
+                                        .Where(x => x.PunishmentType == PunishmentType.Ban && x.PunishmentActive)
+                                        .OrderByDescending(x => x.CreatedAt)
+                                        .FirstOrDefault() != null)
+                        {
+                            bannedGuilds.Add(new DiscordGuildView(_discordAPI.FetchGuildInfo(guild.GuildId, CacheBehavior.Default)));
+                            continue;
+                        }
                     }
                 }
             }

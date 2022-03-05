@@ -77,6 +77,12 @@ namespace MASZ.Repositories
                 }
             }
 
+            IBan ban = await DiscordAPI.GetGuildUserBan(guildId, userId, CacheBehavior.IgnoreButCacheOnError);
+            if (ban == null && latestBanModCase == null)
+            {
+                return false;
+            }
+
             Appeal lastestAppeal = await Database.GetLatestAppealForUser(guildId, userId);
             if (lastestAppeal == null)
             {

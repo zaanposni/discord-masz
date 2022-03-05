@@ -47,7 +47,7 @@ namespace MASZ.Controllers
                 return BadRequest();
             }
 
-            if (appeal.UserId != currentUser.Id && await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
+            if (appeal.UserId != currentUser.Id && !(await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId)))
             {
                 return Unauthorized();
             }
@@ -142,12 +142,6 @@ namespace MASZ.Controllers
                 return BadRequest();
             }
 
-            IBan ban = await _discordAPI.GetGuildUserBan(guildId, currentUser.Id, CacheBehavior.IgnoreButCacheOnError);
-            if (ban == null)
-            {
-                return BadRequest();
-            }
-
             AppealRepository repo = AppealRepository.CreateDefault(_serviceProvider);
             if (! await repo.UserIsAllowedToCreateNewAppeal(guildId, currentUser.Id))
             {
@@ -156,7 +150,7 @@ namespace MASZ.Controllers
 
             Appeal appeal = new();
             appeal.UserId = currentUser.Id;
-            appeal.Mail = dto.Email;
+            appeal.Mail = string.Empty;
             appeal.GuildId = guildId;
 
             List<AppealAnswer> answers = new();
