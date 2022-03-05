@@ -548,6 +548,8 @@
         "CaseUpdated": "Caso actualizado."
     },
     "AppealTable": {
+        "Warning": "Advertencia",
+        "NotConfigured": "Este servidor no tiene un formulario de apelación de baneo configurado. Por lo tanto, no puedes crear una apelación de baneo ahora.",
         "SelectMembers": "Miembros",
         "SelectedStatus": "Estado",
         "FilterSince": "Creado desde",

@@ -10,6 +10,7 @@ import { APIEnumTypes } from 'src/app/models/APIEmumTypes';
 import { APIEnum } from 'src/app/models/APIEnum';
 import { DiscordUser } from 'src/app/models/DiscordUser';
 import { IAppealFilter } from 'src/app/models/IAppealFilter';
+import { IAppealStructure } from 'src/app/models/IAppealStructure';
 import { IAppealTable } from 'src/app/models/IAppealTable';
 import { IAppealView } from 'src/app/models/IAppealView';
 import { ApiService } from 'src/app/services/api.service';
@@ -23,6 +24,7 @@ import { EnumManagerService } from 'src/app/services/enum-manager.service';
 })
 export class GuildAppealsTableComponent implements OnInit {
 
+  structures: IAppealStructure[] = [];
   currentPage: number = 0;
   appealTable!: IAppealTable;
   $isAllowedToCreateNewAppeal: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
@@ -72,6 +74,10 @@ export class GuildAppealsTableComponent implements OnInit {
 
     this.api.getSimpleData(`/guilds/${this.guildId}/appeal/allowed`).subscribe((data: { allowed: boolean }) => {
       this.$isAllowedToCreateNewAppeal.next(data.allowed);
+    });
+
+    this.api.getSimpleData(`/guilds/${this.guildId}/appealstructures`).subscribe((data: IAppealStructure[]) => {
+      this.structures = data;
     });
   }
 

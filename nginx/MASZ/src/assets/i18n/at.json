@@ -548,6 +548,8 @@
         "CaseUpdated": "Vorfoi aktualisiat."
     },
     "AppealTable": {
+        "Warning": "Warnung",
+        "NotConfigured": "Dieser Server hat kein Formular für den Entbannungsantrag konfiguriert. Du kannst deshalb keinen Entbannungsantrag erstellen.",
         "SelectMembers": "Mitglieda",
         "SelectedStatus": "Status",
         "FilterSince": "Erstöt vo",

@@ -548,6 +548,8 @@
         "CaseUpdated": "Case updated."
     },
     "AppealTable": {
+        "Warning": "Warning",
+        "NotConfigured": "This guild has no ban appeal form configured. Thus, you cannot create an appeal right now.",
         "SelectMembers": "Members",
         "SelectedStatus": "Status",
         "FilterSince": "Created since",

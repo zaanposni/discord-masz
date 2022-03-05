@@ -548,6 +548,8 @@
         "CaseUpdated": "Cas mis à jour."
     },
     "AppealTable": {
+        "Warning": "Avertissement",
+        "NotConfigured": "Ce serveur n'a pas de formulaire de plainte de bannissement configuré. Vous ne pouvez pas créer de plainte de bannissement pour le moment.",
         "SelectMembers": "Membres",
         "SelectedStatus": "Statut",
         "FilterSince": "Créé depuis",

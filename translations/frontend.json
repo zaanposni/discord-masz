@@ -4004,6 +4004,26 @@
         }
     },
     "AppealTable": {
+        "Warning": {
+            "description": "Warning",
+            "en": "Warning",
+            "de": "Warnung",
+            "at": "Warnung",
+            "fr": "Avertissement",
+            "es": "Advertencia",
+            "ru": "Предупреждение",
+            "it": "Avvertimento"
+        },
+        "NotConfigured": {
+            "description": "Not configured",
+            "en": "This guild has no ban appeal form configured. Thus, you cannot create an appeal right now.",
+            "de": "Dieser Server hat kein Formular für den Entbannungsantrag konfiguriert. Du kannst deshalb keinen Entbannungsantrag erstellen.",
+            "at": "Dieser Server hat kein Formular für den Entbannungsantrag konfiguriert. Du kannst deshalb keinen Entbannungsantrag erstellen.",
+            "fr": "Ce serveur n'a pas de formulaire de plainte de bannissement configuré. Vous ne pouvez pas créer de plainte de bannissement pour le moment.",
+            "es": "Este servidor no tiene un formulario de apelación de baneo configurado. Por lo tanto, no puedes crear una apelación de baneo ahora.",
+            "ru": "Этот сервер не имеет настроенной формы обращения за баном. Вы не можете создать обращение за баном прямо сейчас.",
+            "it": "Questo server non ha un modulo di richiesta di banno configurato. Perciò, non puoi creare una richiesta di banno ora."
+        },
         "SelectMembers": {
             "description": "Select members",
             "en": "Members",
