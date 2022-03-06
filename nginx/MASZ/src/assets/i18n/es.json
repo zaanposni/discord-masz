@@ -434,7 +434,7 @@
         "FailedToLoad": "No se pudo cargar la información del gremio."
     },
     "GuildNotifications": {
-        "Title": "Advertencia",
+        "Title": "Aviso",
         "MissingAppeals": "No tienes preguntas de apelación de expulsión configuradas. Los usuarios expulsados no pueden crear una pregunta de apelación de expulsión ahora mismo.",
         "FailedToLoad": "No se pudieron cargar las notificaciones del gremio."
     },
@@ -547,13 +547,44 @@
         "CaseCreated": "Caso creado.",
         "CaseUpdated": "Caso actualizado."
     },
+    "AppealCreate": {
+        "Title": "Su solicitud de exclusión",
+        "Answer": "Responda a estas preguntas para completar su solicitud de exclusión.",
+        "Skip": "Puede saltar las preguntas si lo desea.",
+        "View": "Podrá ver el estado de su solicitud de exclusión en esta página web cada vez que lo desee.",
+        "Save": "Guardar",
+        "Created": "Su solicitud de exclusión ha sido creada.",
+        "FailedToCreate": "No se pudo crear la solicitud de exclusión.",
+        "FailedToLoadQuestions": "No se pudieron cargar las preguntas."
+    },
+    "AppealConfig": {
+        "AppealStructure": "Estructura del apelante",
+        "Configure": "Configurar el formulario para el apelante de la gildia.",
+        "Skip": "Los usuarios pueden omitir las preguntas si quieren.",
+        "Delete": "Si elimina una pregunta, permanecerá visible en los apelantes de la gildia.",
+        "NotConfigured": "Si no tiene preguntas configuradas, los usuarios no podrán hacer apelantes.",
+        "Save": "Guardar",
+        "NewQuestion": "Nueva pregunta",
+        "Reordered": "Las preguntas han sido reordenadas.",
+        "FailedToReorder": "No se pudo reordenar las preguntas.",
+        "FailedToCreate": "No se pudo crear la pregunta.",
+        "Created": "La pregunta ha sido creada."
+    },
     "AppealCard": {
         "Created": "Creado:",
         "Updated": "Actualizado:",
         "AnswerCount": "El usuario ha respondido {{count}} preguntas.",
         "AllowedNewAppeal": "El usuario puede crear un nuevo reclamo a: "
     },
+    "AppealQuestionCard": {
+        "YourAnswer": "Tu respuesta",
+        "Updated": "Actualizado.",
+        "FailedToUpdate": "No se pudo actualizar la pregunta",
+        "Deleted": "Eliminado.",
+        "FailedToDelete": "No se pudo eliminar la pregunta."
+    },
     "AppealTable": {
+        "Count": "Número",
         "Warning": "Advertencia",
         "NotConfigured": "Este servidor no tiene un formulario de apelación de baneo configurado. Por lo tanto, no puedes crear una apelación de baneo ahora.",
         "SelectMembers": "Miembros",
@@ -567,6 +598,7 @@
         "ConfigureAppeals": "Configurar solicitudes"
     },
     "AppealView": {
+        "FailedToLoad": "No se pudo cargar la solicitud.",
         "CreatedAt": "Creado el:",
         "UpdatedAt": "Actualizado el:",
         "LatestCases": "Últimos casos",

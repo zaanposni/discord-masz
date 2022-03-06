@@ -59,9 +59,10 @@ export class GuildAppealConfigComponent implements OnInit {
       Object.keys(this.newQuestionFormGroup.controls).forEach(key =>{
         this.newQuestionFormGroup.controls[key].setErrors(null)
       });
+      this.toastr.success(this.translator.instant('AppealConfig.Created'));
     }, error => {
       console.error(error);
-      this.toastr.error("oh no");
+      this.toastr.error(this.translator.instant('AppealConfig.FailedToCreate'));
     });
   }
 
@@ -77,10 +78,10 @@ export class GuildAppealConfigComponent implements OnInit {
     });
 
     this.api.putSimpleData(`/guilds/${this.guildId}/appealstructures/reorder`, data).subscribe(() => {
-      this.toastr.success("Reordered");
+      this.toastr.success(this.translator.instant('AppealConfig.Reordered'));
     }, error => {
       console.error(error);
-      this.toastr.error("oh no");
+      this.toastr.error(this.translator.instant('AppealConfig.FailedToReorder'));
       moveItemInArray(this.questions.content as [], event.currentIndex, event.previousIndex);
     });
   }

@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="mat-h2 mb-2" *ngIf="this.appealTable?.fullSize">
-            Count: {{ this.appealTable?.fullSize }}
+            {{ 'AppealTable.Count' | translate }}: {{ this.appealTable?.fullSize }}
         </div>
         <!-- Table -->
         <mat-spinner *ngIf="this.loading"></mat-spinner>

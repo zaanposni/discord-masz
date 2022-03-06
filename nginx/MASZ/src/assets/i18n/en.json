@@ -434,7 +434,7 @@
         "FailedToLoad": "Failed to load guild info."
     },
     "GuildNotifications": {
-        "Title": "Warning",
+        "Title": "Notice",
         "MissingAppeals": "You have no ban appeal questions configured. Thus, banned users cannot create a ban appeal right now.",
         "FailedToLoad": "Failed to load guild notifications."
     },
@@ -547,13 +547,44 @@
         "CaseCreated": "Case created.",
         "CaseUpdated": "Case updated."
     },
+    "AppealCreate": {
+        "Title": "Your ban appeal",
+        "Answer": "Answer these questions to complete your ban appeal.",
+        "Skip": "You can skip questions if you want to.",
+        "View": "You will be able to view the status of your appeal on this website everytime.",
+        "Save": "Save",
+        "Created": "Your appeal has been created.",
+        "FailedToCreate": "Failed to create appeal.",
+        "FailedToLoadQuestions": "Failed to load questions."
+    },
+    "AppealConfig": {
+        "AppealStructure": "Ban appeal structure",
+        "Configure": "Configure the form for the guild's ban appeal.",
+        "Skip": "Users can skip questions if they want to.",
+        "Delete": "If you delete a question it will still be visible in old ban appeals.",
+        "NotConfigured": "If you have no questions configured, users will not be able to appeal bans.",
+        "Save": "Save",
+        "NewQuestion": "New question",
+        "Reordered": "Questions have been reordered.",
+        "FailedToReorder": "Failed to reorder questions.",
+        "FailedToCreate": "Failed to create question.",
+        "Created": "Question has been created."
+    },
     "AppealCard": {
         "Created": "Created:",
         "Updated": "Updated:",
         "AnswerCount": "User has answered {{count}} questions.",
         "AllowedNewAppeal": "User is allowed to create a new appeal at: "
     },
+    "AppealQuestionCard": {
+        "YourAnswer": "Your answer",
+        "Updated": "Updated.",
+        "FailedToUpdate": "Failed to update question",
+        "Deleted": "Deleted.",
+        "FailedToDelete": "Failed to delete question."
+    },
     "AppealTable": {
+        "Count": "Count",
         "Warning": "Warning",
         "NotConfigured": "This guild has no ban appeal form configured. Thus, you cannot create an appeal right now.",
         "SelectMembers": "Members",
@@ -567,6 +598,7 @@
         "ConfigureAppeals": "Configure appeals"
     },
     "AppealView": {
+        "FailedToLoad": "Failed to load appeal.",
         "CreatedAt": "Created at:",
         "UpdatedAt": "Updated at:",
         "LatestCases": "Latest cases",

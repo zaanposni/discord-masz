@@ -45,7 +45,7 @@ export class GuildAppealNewComponent implements OnInit {
       this.answers = data.map(x => { return { questionId: x.id, answer: "" }; });
     }, error => {
       console.error(error);
-      this.toastr.error("oh no");
+      this.toastr.error(this.translator.instant('AppealCreate.FailedToLoadQuestions'));
     });
   }
 
@@ -63,11 +63,11 @@ export class GuildAppealNewComponent implements OnInit {
       answers: this.answers,
     }
     this.api.postSimpleData(`/guilds/${this.guildId}/appeal`, data).subscribe((data: IAppealView) => {
-      this.toastr.success("Appeal created");
+      this.toastr.success(this.translator.instant('AppealCreate.Created'));
       this.router.navigate(['/guilds', this.guildId, 'appeals', data.id]);
     }, error => {
       console.error(error);
-      this.toastr.error("oh no");
+      this.toastr.error(this.translator.instant('AppealCreate.FailedToCreate'));
     });
   }
 }

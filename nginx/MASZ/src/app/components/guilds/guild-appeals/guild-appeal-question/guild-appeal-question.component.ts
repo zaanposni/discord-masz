@@ -8,6 +8,7 @@ import { IAppealStructure } from 'src/app/models/IAppealStructure';
 import { ApiService } from 'src/app/services/api.service';
 import { AppealStructureMode } from 'src/app/models/AppealStructureMode';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-guild-appeal-question',
@@ -27,7 +28,7 @@ export class GuildAppealQuestionComponent implements OnInit {
   maxLength10240 = { length: 10240 };
   public answerForm!: FormGroup;
 
-  constructor(private dialog: MatDialog, private toastr: ToastrService, private api: ApiService, private _formBuilder: FormBuilder) { }
+  constructor(private translator: TranslateService, private dialog: MatDialog, private toastr: ToastrService, private api: ApiService, private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.answerForm = this._formBuilder.group({
@@ -53,11 +54,11 @@ export class GuildAppealQuestionComponent implements OnInit {
     editDialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
         this.api.putSimpleData(`/guilds/${this.question?.guildId}/appealstructures/${this.question?.id}`, questionDto).subscribe(() => {
-          this.toastr.success("updated");
+          this.toastr.success(this.translator.instant('AppealQuestionCard.Updated'));
           this.question!.question = questionDto.question.trim();
         }, error => {
           console.error(error);
-          this.toastr.error("oh no");
+          this.toastr.error(this.translator.instant('AppealQuestionCard.FailedToupdate'));
         });
       }
     });
@@ -69,10 +70,10 @@ export class GuildAppealQuestionComponent implements OnInit {
       if (confirmed) {
         this.api.deleteData(`/guilds/${this.question?.guildId}/appealstructures/${this.question?.id}`).subscribe(() => {
           this.deleteEvent.emit(this.question?.id);
-          this.toastr.success("deleted");
+          this.toastr.success(this.translator.instant('AppealQuestionCard.Deleted'));
         }, error => {
           console.error(error);
-          this.toastr.error("failed to delete");
+          this.toastr.error(this.translator.instant('AppealQuestionCard.FailedToDelete'));
         })
       }
     });

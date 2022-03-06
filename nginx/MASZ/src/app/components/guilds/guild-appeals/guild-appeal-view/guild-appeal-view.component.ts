@@ -69,7 +69,7 @@ export class GuildAppealViewComponent implements OnInit {
     }, error => {
       console.error(error);
       this.appeal.loading = false;
-      this.toastr.error("oh no");
+      this.toastr.error(this.translator.instant('AppealView.FailedToLoad'));
     });
   }
 

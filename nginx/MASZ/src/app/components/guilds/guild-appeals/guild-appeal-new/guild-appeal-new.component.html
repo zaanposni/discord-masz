@@ -7,13 +7,13 @@
                     <mat-icon [inline]="true">arrow_back_ios</mat-icon>
                 </div>
                 <span class="mat-display-2 mb-0" style="word-break: break-all;">
-                    Your ban appeal
+                    {{ 'AppealCreate.Title' | translate }}
                 </span>
             </div>
             <div class="mb-5">
-                Answer these questions to complete your ban appeal.<br/>
-                You can skip questions if you want to.<br/>
-                You will be able to view the status of your appeal on this website everytime.
+                {{ 'AppealCreate.Answer' | translate }}<br/>
+                {{ 'AppealCreate.Skip' | translate }}<br/>
+                {{ 'AppealCreate.View' | translate }}
             </div>
             <ng-container *ngIf="this.questions.loading">
                 <mat-spinner></mat-spinner>
@@ -21,9 +21,10 @@
             <ng-container *ngIf="!this.questions.loading">
                 <div class="d-flex flex-column mb-4">
                     <app-guild-appeal-question *ngFor="let question of this.questions.content"
-                                                (answerEvent)="saveAnswer($event)"
-                                                [question]="question"
-                                                [mode]="AppealStructureMode.USE">
+                                               class="mb-2"
+                                               (answerEvent)="saveAnswer($event)"
+                                               [question]="question"
+                                               [mode]="AppealStructureMode.USE">
                     </app-guild-appeal-question>
                 </div>
                 <div class="d-flex flex-row">
@@ -31,7 +32,7 @@
                     <button mat-raised-button color="accent"
                         class="flex-shrink-0 mb-2"
                         (click)="createAppeal()">
-                        Save
+                        {{ 'AppealCreate.Save' | translate }}
                     </button>
                 </div>
             </ng-container>

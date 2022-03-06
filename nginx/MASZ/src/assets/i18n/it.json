@@ -434,7 +434,7 @@
         "FailedToLoad": "Impossibile caricare le informazioni sulla gilda."
     },
     "GuildNotifications": {
-        "Title": "Avvertimento",
+        "Title": "Avviso",
         "MissingAppeals": "Non hai domande di appello di banno configurate. Gli utenti bannati non possono creare un appello di banno adesso.",
         "FailedToLoad": "Impossibile caricare le notifiche della gilda."
     },
@@ -547,13 +547,44 @@
         "CaseCreated": "Caso creato.",
         "CaseUpdated": "Caso aggiornato."
     },
+    "AppealCreate": {
+        "Title": "Il tuo appello al ban",
+        "Answer": "Rispondi a queste domande per completare il tuo appello al ban.",
+        "Skip": "Puoi saltare le domande se vuoi.",
+        "View": "Potrai visualizzare lo stato del tuo appello al ban su questo sito ogni volta.",
+        "Save": "Salva",
+        "Created": "Il tuo appello al ban è stato creato.",
+        "FailedToCreate": "Impossibile creare l'appello al ban.",
+        "FailedToLoadQuestions": "Impossibile caricare le domande."
+    },
+    "AppealConfig": {
+        "AppealStructure": "Struttura dell'appello",
+        "Configure": "Configura il modulo per l'appello della gilda.",
+        "Skip": "Gli utenti possono saltare le domande se vogliono.",
+        "Delete": "Se si elimina una domanda, sarà ancora visibile nei precedenti appelli.",
+        "NotConfigured": "Se non hai domande configurate, gli utenti non potranno richiedere appelli.",
+        "Save": "Salva",
+        "NewQuestion": "Nuova domanda",
+        "Reordered": "Le domande sono state riordinate.",
+        "FailedToReorder": "Impossibile riordinare le domande.",
+        "FailedToCreate": "Impossibile creare la domanda.",
+        "Created": "La domanda è stata creata."
+    },
     "AppealCard": {
         "Created": "Creato:",
         "Updated": "Aggiornato:",
         "AnswerCount": "L'utente ha risposto {{count}} domande.",
         "AllowedNewAppeal": "L'utente può creare un nuovo reclamo a:"
     },
+    "AppealQuestionCard": {
+        "YourAnswer": "La tua risposta",
+        "Updated": "Aggiornato.",
+        "FailedToUpdate": "Impossibile aggiornare la domanda",
+        "Deleted": "Eliminato.",
+        "FailedToDelete": "Impossibile eliminare la domanda."
+    },
     "AppealTable": {
+        "Count": "Conteggio",
         "Warning": "Avvertimento",
         "NotConfigured": "Questo server non ha un modulo di richiesta di banno configurato. Perciò, non puoi creare una richiesta di banno ora.",
         "SelectMembers": "Membri",
@@ -567,6 +598,7 @@
         "ConfigureAppeals": "Configura reclami"
     },
     "AppealView": {
+        "FailedToLoad": "Impossibile caricare il reclamo.",
         "CreatedAt": "Creato il:",
         "UpdatedAt": "Aggiornato il:",
         "LatestCases": "Ultimi casi",

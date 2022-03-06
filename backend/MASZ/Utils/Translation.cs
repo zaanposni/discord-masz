@@ -796,6 +796,58 @@ namespace MASZ.Utils
                 _ => "File updated",
             };
         }
+        public string NotificationAppealsCreate(IUser actor)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Ein **Entbannungsantrag** wurde von <@{actor.Id}> erstellt.",
+                Language.at => $"Ein **Entbannungsantrag** wurde von <@{actor.Id}> erstellt.",
+                Language.fr => $"Un **appel de bannissement** a été créé par <@{actor.Id}>.",
+                Language.es => $"Un **apelación de prohibición** ha sido creado por <@{actor.Id}>.",
+                Language.ru => $"Заявка на **бан** создана пользователем <@{actor.Id}>.",
+                Language.it => $"Un **appello al ban** è stato creato da <@{actor.Id}>.",
+                _ => $"A **ban appeal** has been created by <@{actor.Id}>.",
+            };
+        }
+        public string NotificationAppealsUpdate(IUser user, IUser actor)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Ein **Entbannungsantrag** für <@{user.Id}> wurde von <@{actor.Id}> aktualisiert.",
+                Language.at => $"Ein **Entbannungsantrag** für <@{user.Id}> wurde von <@{actor.Id}> aktualisiert.",
+                Language.fr => $"Un **appel de bannissement** pour <@{user.Id}> a été mis à jour par <@{actor.Id}>.",
+                Language.es => $"Un **apelación de prohibición** para <@{user.Id}> ha sido actualizado por <@{actor.Id}>.",
+                Language.ru => $"Заявка на **бан** для <@{user.Id}> была обновлена пользователем <@{actor.Id}>.",
+                Language.it => $"Un **appello al ban** per <@{user.Id}> è stato aggiornato da <@{actor.Id}>.",
+                _ => $"A **ban appeal** for <@{user.Id}> has been updated by <@{actor.Id}>.",
+            };
+        }
+        public string NotificationAppealsStatus()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Status",
+                Language.at => "Status",
+                Language.fr => "statut",
+                Language.es => "estado",
+                Language.ru => "статус",
+                Language.it => "stato",
+                _ => "status",
+            };
+        }
+        public string NotificationAppealsAppeal()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Entbannungsantrag",
+                Language.at => "Entbannungsantrag",
+                Language.fr => "appel de bannissement",
+                Language.es => "apelación de prohibición",
+                Language.ru => "заявка на бан",
+                Language.it => "appello al ban",
+                _ => "Ban appeal",
+            };
+        }
         public string NotificationRegisterWelcomeToMASZ()
         {
             return PreferredLanguage switch

@@ -434,7 +434,7 @@
         "FailedToLoad": "Échec du chargement des informations de guilde."
     },
     "GuildNotifications": {
-        "Title": "Avertissement",
+        "Title": "Avis",
         "MissingAppeals": "Vous n'avez pas de questions de plainte de bannissement configurées. Les utilisateurs bannis ne peuvent pas créer de plainte de bannissement pour le moment.",
         "FailedToLoad": "Échec du chargement des notifications de guilde."
     },
@@ -547,13 +547,44 @@
         "CaseCreated": "Cas créé.",
         "CaseUpdated": "Cas mis à jour."
     },
+    "AppealCreate": {
+        "Title": "Votre demande d'exclusion",
+        "Answer": "Répondez aux questions pour compléter votre demande d'exclusion.",
+        "Skip": "Vous pouvez ignorer les questions si vous le souhaitez.",
+        "View": "Vous pourrez consulter le statut de votre demande d'exclusion sur ce site toutes les fois.",
+        "Save": "Enregistrer",
+        "Created": "Votre demande d'exclusion a été créée.",
+        "FailedToCreate": "Échec de la création de la demande d'exclusion.",
+        "FailedToLoadQuestions": "Échec du chargement des questions."
+    },
+    "AppealConfig": {
+        "AppealStructure": "Structure de l'appel d'embargo",
+        "Configure": "Configurer le formulaire pour l'appel d'embargo de la guilde.",
+        "Skip": "Les utilisateurs peuvent sauter des questions si ils le souhaitent.",
+        "Delete": "Si vous supprimez une question, elle sera toujours visible dans les appels d'embargo antérieurs.",
+        "NotConfigured": "Si vous n'avez pas de questions configurées, les utilisateurs ne pourront pas appeler d'embargo.",
+        "Save": "Enregistrer",
+        "NewQuestion": "Nouvelle question",
+        "Reordered": "Les questions ont été réordonnées.",
+        "FailedToReorder": "Échec de la réorganisation des questions.",
+        "FailedToCreate": "Échec de la création de la question.",
+        "Created": "La question a été créée."
+    },
     "AppealCard": {
         "Created": "Créé:",
         "Updated": "Mis à jour:",
         "AnswerCount": "L'utilisateur a répondu {{count}} questions.",
         "AllowedNewAppeal": "L'utilisateur peut créer un nouvel appel à la loi à: "
     },
+    "AppealQuestionCard": {
+        "YourAnswer": "Votre réponse",
+        "Updated": "Mis à jour.",
+        "FailedToUpdate": "Échec de la mise à jour de la question",
+        "Deleted": "Supprimé.",
+        "FailedToDelete": "Échec de la suppression de la question."
+    },
     "AppealTable": {
+        "Count": "Nombre",
         "Warning": "Avertissement",
         "NotConfigured": "Ce serveur n'a pas de formulaire de plainte de bannissement configuré. Vous ne pouvez pas créer de plainte de bannissement pour le moment.",
         "SelectMembers": "Membres",
@@ -567,6 +598,7 @@
         "ConfigureAppeals": "Configurer les demandes"
     },
     "AppealView": {
+        "FailedToLoad": "Échec du chargement de la demande.",
         "CreatedAt": "Créé le:",
         "UpdatedAt": "Mis à jour le:",
         "LatestCases": "Derniers cas",
