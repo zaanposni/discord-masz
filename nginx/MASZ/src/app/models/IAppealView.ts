@@ -2,6 +2,7 @@ import { AppealStatus } from "./AppealStatus";
 import { DiscordUser } from "./DiscordUser";
 import { IAppealStructure } from "./IAppealStructure";
 import { IAppealAnswer } from "./IAppealAnswer";
+import { IModCaseTableEntry } from "./IModCaseTableEntry";
 
 export interface IAppealView {
     id: number;
@@ -20,4 +21,5 @@ export interface IAppealView {
     invalidDueToLaterRejoinAt?: Date;
     answers: IAppealAnswer[];
     structures: IAppealStructure[];
+    latestCases: IModCaseTableEntry[];
 }

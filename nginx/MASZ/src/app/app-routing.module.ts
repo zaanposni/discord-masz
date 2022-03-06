@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'guilds/:guildid/cases/:caseid/edit', component: ModcaseEditComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/appeals/edit', component: GuildAppealConfigComponent, canActivate: [AuthGuard] },
   { path: 'guilds/:guildid/appeals/new', component: GuildAppealNewComponent, canActivate: [AuthGuard] },
-  { path: 'guilds/:guildid/appeals/:id', component: GuildAppealViewComponent, canActivate: [AuthGuard] },
+  { path: 'guilds/:guildid/appeals/:appealid', component: GuildAppealViewComponent, canActivate: [AuthGuard] },
   { path: 'tokens', component: TokenOverviewComponent, canActivate: [AuthGuard] },
   { path: 'userscan', component: UserscanComponent, canActivate: [AuthGuard] },
   { path: 'scanning', component: UserscanComponent, canActivate: [AuthGuard] },

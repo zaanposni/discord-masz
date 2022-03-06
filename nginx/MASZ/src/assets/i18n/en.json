@@ -566,6 +566,20 @@
         "CreateNewAppeal": "Create new appeal",
         "ConfigureAppeals": "Configure appeals"
     },
+    "AppealView": {
+        "CreatedAt": "Created at:",
+        "UpdatedAt": "Updated at:",
+        "LatestCases": "Latest cases",
+        "ModeratorsDecisionAt": "Moderators decision at:",
+        "ModeratorsComment": "Moderators comment",
+        "NewAppeal": "New appeal",
+        "UserIsAllowedToCreateNewAppealAt": "User is allowed to create new appeal at:",
+        "UserIsNeverAllowedToCreateNewAppeal": "User is never allowed to create new appeal",
+        "Edit": "Edit",
+        "Status": "Status",
+        "Updated": "Appeal updated.",
+        "FailedToUpdate": "Failed to update appeal."
+    },
     "ModCaseTable": {
         "SelectMembers": "Members",
         "SelectModerators": "Moderators",

@@ -4157,6 +4157,128 @@
             "it": "Configura reclami"
         }
     },
+    "AppealView": {
+        "CreatedAt": {
+            "description": "Created at",
+            "en": "Created at:",
+            "de": "Erstellt am:",
+            "at": "Erstöt am:",
+            "fr": "Créé le:",
+            "es": "Creado el:",
+            "ru": "Создано:",
+            "it": "Creato il:"
+        },
+        "UpdatedAt": {
+            "description": "Updated at",
+            "en": "Updated at:",
+            "de": "Aktualisiert am:",
+            "at": "Aktualisiert am:",
+            "fr": "Mis à jour le:",
+            "es": "Actualizado el:",
+            "ru": "Обновлено:",
+            "it": "Aggiornato il:"
+        },
+        "LatestCases": {
+            "description": "Latest cases",
+            "en": "Latest cases",
+            "de": "Neueste Fälle",
+            "at": "Neueste Fälle",
+            "fr": "Derniers cas",
+            "es": "Últimos casos",
+            "ru": "Последние дела",
+            "it": "Ultimi casi"
+        },
+        "ModeratorsDecisionAt": {
+            "description": "Moderators decision at",
+            "en": "Moderators decision at:",
+            "de": "Entscheidung des Moderatoration am:",
+            "at": "Entscheidung des Moderatoration am:",
+            "fr": "Décision du modérateur le:",
+            "es": "Decisión del moderador el:",
+            "ru": "Решение модератора:",
+            "it": "Decisione dei moderatori il:"
+        },
+        "ModeratorsComment": {
+            "description": "Moderators comment",
+            "en": "Moderators comment",
+            "de": "Kommentar der Moderation",
+            "at": "Kommentar der Moderation",
+            "fr": "Commentaire du modérateur",
+            "es": "Comentario del moderador",
+            "ru": "Комментарий модератора",
+            "it": "Commento dei moderatori"
+        },
+        "NewAppeal": {
+            "description": "New appeal",
+            "en": "New appeal",
+            "de": "Neuer Antrag",
+            "at": "Neuer Antrag",
+            "fr": "Nouveau cas",
+            "es": "Nuevo caso",
+            "ru": "Новое дело",
+            "it": "Nuovo caso"
+        },
+        "UserIsAllowedToCreateNewAppealAt": {
+            "description": "User is allowed to create new appeal at",
+            "en": "User is allowed to create new appeal at:",
+            "de": "Benutzer darf neuen Entbannungsantrag am:",
+            "at": "Benutzer darf neuen Entbannungsantrag am:",
+            "fr": "L'utilisateur est autorisé à créer un nouveau cas à:",
+            "es": "El usuario está autorizado a crear un nuevo caso en:",
+            "ru": "Пользователь имеет право создавать новое дело в:",
+            "it": "L'utente è autorizzato a creare un nuovo caso il:"
+        },
+        "UserIsNeverAllowedToCreateNewAppeal": {
+            "description": "User is never allowed to create new appeal",
+            "en": "User is never allowed to create new appeal",
+            "de": "Benutzer darf nie neuen Entbannungsantrag stellen",
+            "at": "Benutzer darf nie neuen Entbannungsantrag stellen",
+            "fr": "L'utilisateur n'est jamais autorisé à créer un nouveau cas",
+            "es": "El usuario nunca está autorizado a crear un nuevo caso",
+            "ru": "Пользователь никогда не имеет права создавать новое дело",
+            "it": "L'utente non è mai autorizzato a creare un nuovo caso"
+        },
+        "Edit": {
+            "description": "Edit",
+            "en": "Edit",
+            "de": "Bearbeiten",
+            "at": "Bearbeiten",
+            "fr": "Modifier",
+            "es": "Editar",
+            "ru": "Редактировать",
+            "it": "Modifica"
+        },
+        "Status": {
+            "description": "Status",
+            "en": "Status",
+            "de": "Status",
+            "at": "Status",
+            "fr": "Statut",
+            "es": "Estado",
+            "ru": "Статус",
+            "it": "Stato"
+        },
+        "Updated": {
+            "description": "Updated",
+            "en": "Appeal updated.",
+            "de": "Antrag aktualisiert.",
+            "at": "Antrag aktualisiert.",
+            "fr": "Demande mise à jour.",
+            "es": "Solicitud actualizada.",
+            "ru": "Обращение обновлено.",
+            "it": "Appeal aggiornato."
+        },
+        "FailedToUpdate": {
+            "description": "Failed to update appeal",
+            "en": "Failed to update appeal.",
+            "de": "Konnte Entbannungsantrag nicht aktualisieren.",
+            "at": "Konnte Entbannungsantrag nicht aktualisieren.",
+            "fr": "Impossible de mettre à jour la demande.",
+            "es": "No se pudo actualizar la solicitud.",
+            "ru": "Не удалось обновить обращение.",
+            "it": "Impossibile aggiornare il reclamo."
+        }
+    },
     "ModCaseTable": {
         "SelectMembers": {
             "description": "Select members",

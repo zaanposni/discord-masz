@@ -566,6 +566,20 @@
         "CreateNewAppeal": "Создать новое дело",
         "ConfigureAppeals": "Настроить обращения"
     },
+    "AppealView": {
+        "CreatedAt": "Создано:",
+        "UpdatedAt": "Обновлено:",
+        "LatestCases": "Последние дела",
+        "ModeratorsDecisionAt": "Решение модератора:",
+        "ModeratorsComment": "Комментарий модератора",
+        "NewAppeal": "Новое дело",
+        "UserIsAllowedToCreateNewAppealAt": "Пользователь имеет право создавать новое дело в:",
+        "UserIsNeverAllowedToCreateNewAppeal": "Пользователь никогда не имеет права создавать новое дело",
+        "Edit": "Редактировать",
+        "Status": "Статус",
+        "Updated": "Обращение обновлено.",
+        "FailedToUpdate": "Не удалось обновить обращение."
+    },
     "ModCaseTable": {
         "SelectMembers": "Члены",
         "SelectModerators": "Модераторы",

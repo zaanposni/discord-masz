@@ -566,6 +566,20 @@
         "CreateNewAppeal": "Crear un nuevo caso",
         "ConfigureAppeals": "Configurar solicitudes"
     },
+    "AppealView": {
+        "CreatedAt": "Creado el:",
+        "UpdatedAt": "Actualizado el:",
+        "LatestCases": "Últimos casos",
+        "ModeratorsDecisionAt": "Decisión del moderador el:",
+        "ModeratorsComment": "Comentario del moderador",
+        "NewAppeal": "Nuevo caso",
+        "UserIsAllowedToCreateNewAppealAt": "El usuario está autorizado a crear un nuevo caso en:",
+        "UserIsNeverAllowedToCreateNewAppeal": "El usuario nunca está autorizado a crear un nuevo caso",
+        "Edit": "Editar",
+        "Status": "Estado",
+        "Updated": "Solicitud actualizada.",
+        "FailedToUpdate": "No se pudo actualizar la solicitud."
+    },
     "ModCaseTable": {
         "SelectMembers": "Miembros",
         "SelectModerators": "Moderadores",
