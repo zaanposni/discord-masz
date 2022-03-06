@@ -115,7 +115,7 @@ namespace MASZ.Controllers
                     c,
                     await _discordAPI.FetchUserInfo(c.UserId, CacheBehavior.OnlyCache),
                     await _discordAPI.FetchUserInfo(c.LastModeratorId, CacheBehavior.OnlyCache),
-                    new List<AppealAnswer>(),
+                    await AppealAnswerRepository.CreateDefault(_serviceProvider).GetForAppeal(c.Id),
                     new List<AppealStructure>()
                 );
                 if (!publishMod)
