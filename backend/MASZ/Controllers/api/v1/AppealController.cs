@@ -57,7 +57,12 @@ namespace MASZ.Controllers
             List<ModCaseTableEntry> latestCases = new List<ModCaseTableEntry>();
             if (isModOrHigher)
             {
-                List<ModCase> latestCasesRaw = (await modCaseRepo.GetCasesForGuildAndUser(guildId, appeal.UserId)).OrderByDescending(c => c.CreatedAt).Take(3).ToList();
+                List<ModCase> latestCasesRaw = (await modCaseRepo.GetCasesForGuildAndUser(guildId, appeal.UserId))
+                    .Where(c => c.PunishmentType == PunishmentType.Ban)
+                    .OrderByDescending(c => c.PunishmentActive ? 1 : 0)
+                    .ThenByDescending(c => c.CreatedAt)
+                    .Take(2)
+                    .ToList();
                 foreach (ModCase modCase in latestCasesRaw)
                 {
                     latestCases.Add(new ModCaseTableEntry(
