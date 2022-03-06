@@ -550,7 +550,8 @@
     "AppealCard": {
         "Created": "Created:",
         "Updated": "Updated:",
-        "AnswerCount": "User has answered {{count}} questions."
+        "AnswerCount": "User has answered {{count}} questions.",
+        "AllowedNewAppeal": "User is allowed to create a new appeal at: "
     },
     "AppealTable": {
         "Warning": "Warning",

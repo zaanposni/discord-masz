@@ -550,7 +550,8 @@
     "AppealCard": {
         "Created": "Создан:",
         "Updated": "Обновлен:",
-        "AnswerCount": "Пользователь ответил на {{count}} вопросов."
+        "AnswerCount": "Пользователь ответил на {{count}} вопросов.",
+        "AllowedNewAppeal": "Пользователь может создать новое дело в: "
     },
     "AppealTable": {
         "Warning": "Предупреждение",

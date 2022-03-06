@@ -4033,6 +4033,16 @@
             "es": "El usuario ha respondido {{count}} preguntas.",
             "ru": "Пользователь ответил на {{count}} вопросов.",
             "it": "L'utente ha risposto {{count}} domande."
+        },
+        "AllowedNewAppeal": {
+            "description": "user is allowed new appeal after x date",
+            "en": "User is allowed to create a new appeal at: ",
+            "de": "Benutzer darf einen neuen Vorfall erstellen am: ",
+            "at": "Benutzer darf einen neuen Vorfall erstellen am: ",
+            "fr": "L'utilisateur peut créer un nouvel appel à la loi à: ",
+            "es": "El usuario puede crear un nuevo reclamo a: ",
+            "ru": "Пользователь может создать новое дело в: ",
+            "it": "L'utente può creare un nuovo reclamo a:"
         }
     },
     "AppealTable": {

@@ -550,7 +550,8 @@
     "AppealCard": {
         "Created": "Creado:",
         "Updated": "Actualizado:",
-        "AnswerCount": "El usuario ha respondido {{count}} preguntas."
+        "AnswerCount": "El usuario ha respondido {{count}} preguntas.",
+        "AllowedNewAppeal": "El usuario puede crear un nuevo reclamo a: "
     },
     "AppealTable": {
         "Warning": "Advertencia",

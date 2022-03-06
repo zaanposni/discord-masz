@@ -550,7 +550,8 @@
     "AppealCard": {
         "Created": "Créé:",
         "Updated": "Mis à jour:",
-        "AnswerCount": "L'utilisateur a répondu {{count}} questions."
+        "AnswerCount": "L'utilisateur a répondu {{count}} questions.",
+        "AllowedNewAppeal": "L'utilisateur peut créer un nouvel appel à la loi à: "
     },
     "AppealTable": {
         "Warning": "Avertissement",

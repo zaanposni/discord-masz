@@ -550,7 +550,8 @@
     "AppealCard": {
         "Created": "Erstellt:",
         "Updated": "Aktualisiert:",
-        "AnswerCount": "Benutzer hat {{count}} Fragen beantwortet."
+        "AnswerCount": "Benutzer hat {{count}} Fragen beantwortet.",
+        "AllowedNewAppeal": "Benutzer darf einen neuen Vorfall erstellen am: "
     },
     "AppealTable": {
         "Warning": "Warnung",

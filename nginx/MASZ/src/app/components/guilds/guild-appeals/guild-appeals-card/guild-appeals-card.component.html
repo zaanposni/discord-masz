@@ -39,6 +39,9 @@
                 <span>
                     {{ 'AppealCard.AnswerCount' | translate:questionsAnswered }}
                 </span>
+                <span *ngIf="entry.status === AppealStatus.Denied && entry.userCanCreateNewAppeals !== null">
+                    <app-date-display [date]="entry.userCanCreateNewAppeals" [showTime]="true" [prefixKey]="'AppealCard.AllowedNewAppeal'"></app-date-display>
+                </span>
             </div>
             <div class="flex-grow-1"></div>
             <div class="d-flex flex-column align-content-center">
