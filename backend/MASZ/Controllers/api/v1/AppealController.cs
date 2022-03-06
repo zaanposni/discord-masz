@@ -73,10 +73,12 @@ namespace MASZ.Controllers
                 }
             }
 
+            // PUBLISH MOD MODE
+            bool publishMod = guildConfig.PublishModeratorInfo || await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId);
             return Ok(new AppealView(
                 appeal,
                 await _discordAPI.FetchUserInfo(appeal.UserId, CacheBehavior.OnlyCache),
-                await _discordAPI.FetchUserInfo(appeal.LastModeratorId, CacheBehavior.OnlyCache),
+                publishMod ? await _discordAPI.FetchUserInfo(appeal.LastModeratorId, CacheBehavior.OnlyCache) : null,
                 await AppealAnswerRepository.CreateDefault(_serviceProvider).GetForAppeal(id),
                 await AppealStructureRepository.CreateDefault(_serviceProvider).GetForGuild(guildId),
                 latestCases
