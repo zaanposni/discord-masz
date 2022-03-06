@@ -696,6 +696,55 @@
                 "it": "File aggiornato"
             }
         },
+        "Appeals": {
+            "Create": {
+                "description": "A appeal has been created.",
+                    "var_types": {
+                        "actorId": "ulong"
+                    },
+                    "en": "A **ban appeal** has been created by <@{actorId}>.",
+                    "de": "Ein **Entbannungsantrag** wurde von <@{actorId}> erstellt.",
+                    "at": "Ein **Entbannungsantrag** wurde von <@{actorId}> erstellt.",
+                    "fr": "Un **appel de bannissement** a été créé par <@{actorId}>.",
+                    "es": "Un **apelación de prohibición** ha sido creado por <@{actorId}>.",
+                    "ru": "Заявка на **бан** создана пользователем <@{actorId}>.",
+                    "it": "Un **appello al ban** è stato creato da <@{actorId}>."
+            },
+            "Update": {
+                "description": "A appeal has been updated.",
+                    "var_types": {
+                        "userId": "ulong",
+                        "actorId": "ulong"
+                    },
+                    "en": "A **ban appeal** for <@{userId}> has been updated by <@{actorId}>.",
+                    "de": "Ein **Entbannungsantrag** für <@{userId}> wurde von <@{actorId}> aktualisiert.",
+                    "at": "Ein **Entbannungsantrag** für <@{userId}> wurde von <@{actorId}> aktualisiert.",
+                    "fr": "Un **appel de bannissement** pour <@{userId}> a été mis à jour par <@{actorId}>.",
+                    "es": "Un **apelación de prohibición** para <@{userId}> ha sido actualizado por <@{actorId}>.",
+                    "ru": "Заявка на **бан** для <@{userId}> была обновлена пользователем <@{actorId}>.",
+                    "it": "Un **appello al ban** per <@{userId}> è stato aggiornato da <@{actorId}>."
+            },
+            "Status": {
+                "description": "The word status",
+                "en": "Status",
+                "de": "Status",
+                "at": "Status",
+                "fr": "Statut",
+                "es": "Estado",
+                "ru": "статус",
+                "it": "Stato"
+            },
+            "Appeal": {
+                "description": "The word appeal",
+                "en": "Ban appeal",
+                "de": "Entbannungsantrag",
+                "at": "Entbannungsantrag",
+                "fr": "appel de bannissement",
+                "es": "apelación de prohibición",
+                "ru": "заявка на бан",
+                "it": "appello al ban"
+            }
+        },
         "Register": {
             "WelcomeToMASZ": {
                 "description": "Welcome to MASZ",
@@ -1046,11 +1095,25 @@
                     },
                     "en": "Punishment for ModCase #{caseId} undone: \\\"{reason}\\\"",
                     "de": "Bestrafung für Vorfall #{caseId} rückgängig gemacht: \\\"{reason}\\\"",
-                    "at": "Bestrofung fian Vorfoi #{caseId} is rückgängig gmocht woan: \\\"{reason}\\\"",    
+                    "at": "Bestrofung fian Vorfoi #{caseId} is rückgängig gmocht woan: \\\"{reason}\\\"",
                     "fr": "Punition pour ModCase #{caseId} annulée : \\\"{reason}\\\"",
                     "es": "Castigo por ModCase # {caseId} deshecho: \\\"{reason} \\\"",
                     "ru": "Наказание за ModCase # {caseId} отменено: \\\"{reason} \\\"",
                     "it": "Punizione per ModCase #{caseId} annullata: \\\"{reason}\\\""
+                },
+                "AppealApproved": {
+                    "description": "Audit log header reason for executed punishment.",
+                    "var_types": {
+                        "appealId": "int",
+                        "reason": "string"
+                    },
+                    "en": "Ban Appeal #{appealId} approved: \\\"{reason}\\\"",
+                    "de": "Entbannungsantrag #{appealId} genehmigt: \\\"{reason}\\\"",
+                    "at": "Entbannungsantrag #{appealId} genehmigt: \\\"{reason}\\\"",
+                    "fr": "Appel de bannissement #{appealId} approuvé : \\\"{reason}\\\"",
+                    "es": "Solicitud de prohibición # {appealId} aprobada: \\\"{reason} \\\"",
+                    "ru": "Обжалование забанения # {appealId} одобрено: \\\"{reason} \\\"",
+                    "it": "Appello per Ban Appeal #{appealId} approvato: \\\"{reason}\\\""
                 }
             }
         },

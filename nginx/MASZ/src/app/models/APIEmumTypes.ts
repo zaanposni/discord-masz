@@ -13,4 +13,5 @@ export enum APIEnumTypes {
     PUNISHMENTACTIVESTATUS = "punishmentactivestatus",
     SCHEDULEMESSAGESTATUS = "scheduledmessagestatus",
     SCHEDULEMESSAGEFAILUREREASON = "scheduledmessagefailurereason",
+    APPEALSTATUS = "appealstatus"
 }

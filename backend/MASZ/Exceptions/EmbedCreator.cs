@@ -501,5 +501,49 @@ namespace MASZ.Services
 
             return embed;
         }
+
+        public static async Task<EmbedBuilder> CreateEmbedForNewAppeal(this Appeal appeal, IUser actor, IServiceProvider provider)
+        {
+            var translator = provider.GetService<Translator>();
+
+            await translator.SetContext(appeal.GuildId);
+
+            EmbedBuilder embed = CreateBasicEmbed(RestAction.Created, provider, actor);
+
+            if (actor != null)
+            {
+                embed.WithThumbnailUrl(actor.GetAvatarOrDefaultUrl());
+            }
+            embed.Description = translator.T().NotificationAppealsCreate(appeal.UserId);
+            embed.Title = $"**{translator.T().NotificationAppealsAppeal().ToUpper()}** - {actor.Username}#{actor.Discriminator}";
+
+            // Footer
+            embed.WithFooter($"UserId: {appeal.UserId} | AppealId: {appeal.Id}");
+
+            return embed;
+        }
+
+        public static async Task<EmbedBuilder> CreateEmbedForUpdatedAppeal(this Appeal appeal, IUser actor, IUser user, IServiceProvider provider)
+        {
+            var translator = provider.GetService<Translator>();
+
+            await translator.SetContext(appeal.GuildId);
+
+            EmbedBuilder embed = CreateBasicEmbed(RestAction.Updated, provider, actor);
+
+            if (actor != null)
+            {
+                embed.WithThumbnailUrl(actor.GetAvatarOrDefaultUrl());
+            }
+            embed.Description = translator.T().NotificationAppealsUpdate(appeal.UserId, actor.Id);
+            embed.Title = $"**{translator.T().NotificationAppealsAppeal().ToUpper()}** - {user?.Username ?? appeal.Username}#{user?.Discriminator ?? appeal.Discriminator}";
+
+            embed.AddField(translator.T().NotificationAppealsStatus(), translator.T().Enum(appeal.Status), true);
+
+            // Footer
+            embed.WithFooter($"UserId: {appeal.UserId} | AppealId: {appeal.Id}");
+
+            return embed;
+        }
     }
 }

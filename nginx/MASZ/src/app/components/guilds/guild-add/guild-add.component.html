@@ -141,6 +141,10 @@
                                 help_outline
                             </mat-icon>
                         </div>
+                        <mat-form-field class="w-50">
+                            <mat-label>{{ 'GuildDialog.AllowAppealAfterXDays' | translate }}</mat-label>
+                            <input type="text" matInput formControlName="allowBanAppealAfterDays" placeholder="0">
+                        </mat-form-field>
                         <div class="stepper-actions">
                             <button mat-raised-button matStepperPrevious class="mr-2" color="accent">{{ 'GuildDialog.Back' | translate }}</button>
                             <button mat-raised-button matStepperNext color="accent">{{ 'GuildDialog.Next' | translate }}</button>

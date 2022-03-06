@@ -45,6 +45,100 @@ namespace MASZ.Migrations
                     b.ToTable("APITokens");
                 });
 
+            modelBuilder.Entity("MASZ.Models.Appeal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Discriminator")
+                        .HasColumnType("longtext");
+
+                    b.Property<ulong>("GuildId")
+                        .HasColumnType("bigint unsigned");
+
+                    b.Property<DateTime?>("InvalidDueToLaterRejoinAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<ulong>("LastModeratorId")
+                        .HasColumnType("bigint unsigned");
+
+                    b.Property<string>("Mail")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ModeratorComment")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("UserCanCreateNewAppeals")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<ulong>("UserId")
+                        .HasColumnType("bigint unsigned");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Appeals");
+                });
+
+            modelBuilder.Entity("MASZ.Models.AppealAnswer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Answer")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("AppealId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AppealQuestionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppealId");
+
+                    b.HasIndex("AppealQuestionId");
+
+                    b.ToTable("AppealAnswers");
+                });
+
+            modelBuilder.Entity("MASZ.Models.AppealStructure", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<ulong>("GuildId")
+                        .HasColumnType("bigint unsigned");
+
+                    b.Property<string>("Question")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppealStructures");
+                });
+
             modelBuilder.Entity("MASZ.Models.AppSettings", b =>
                 {
                     b.Property<int>("Id")
@@ -226,6 +320,9 @@ namespace MASZ.Migrations
 
                     b.Property<string>("AdminRoles")
                         .HasColumnType("longtext");
+
+                    b.Property<int>("AllowBanAppealAfterDays")
+                        .HasColumnType("int");
 
                     b.Property<bool>("ExecuteWhoisOnJoin")
                         .HasColumnType("tinyint(1)");
@@ -551,6 +648,23 @@ namespace MASZ.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserNotes");
+                });
+
+            modelBuilder.Entity("MASZ.Models.AppealAnswer", b =>
+                {
+                    b.HasOne("MASZ.Models.Appeal", "Appeal")
+                        .WithMany()
+                        .HasForeignKey("AppealId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MASZ.Models.AppealStructure", "AppealQuestion")
+                        .WithMany()
+                        .HasForeignKey("AppealQuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Appeal");
+
+                    b.Navigation("AppealQuestion");
                 });
 
             modelBuilder.Entity("MASZ.Models.ModCaseComment", b =>

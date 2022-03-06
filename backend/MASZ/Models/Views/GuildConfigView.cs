@@ -16,6 +16,7 @@ namespace MASZ.Models.Views
         public bool ExecuteWhoisOnJoin { get; set; }
         public bool PublishModeratorInfo { get; set; }
         public Language PreferredLanguage { get; set; }
+        public int AllowBanAppealAfterDays { get; set; }
 
 
         public GuildConfigView() { }
@@ -33,6 +34,7 @@ namespace MASZ.Models.Views
             ExecuteWhoisOnJoin = config.ExecuteWhoisOnJoin;
             PublishModeratorInfo = config.PublishModeratorInfo;
             PreferredLanguage = config.PreferredLanguage;
+            AllowBanAppealAfterDays = config.AllowBanAppealAfterDays;
         }
     }
 }

@@ -68,6 +68,8 @@ namespace MASZ.Controllers
                 userNotes = await UserNoteRepository.CreateWithBotIdentity(_serviceProvider).CountUserNotes(),
                 userMappings = await UserMapRepository.CreateWithBotIdentity(_serviceProvider).CountAllUserMaps(),
                 apiTokens = await TokenRepository.CreateDefault(_serviceProvider).CountTokens(),
+                scheduledMessages = await ScheduledMessageRepository.CreateWithBotIdentity(_serviceProvider).CountMessages(),
+                appeals = await AppealRepository.CreateDefault(_serviceProvider).CountAppeals(),
                 nextCache = _scheduler.GetNextCacheSchedule(),
                 cachedDataFromDiscord = _discordAPI.GetCache().Keys
             });

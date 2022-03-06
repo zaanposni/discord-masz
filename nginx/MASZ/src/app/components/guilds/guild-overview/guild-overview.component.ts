@@ -12,6 +12,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class GuildOverviewComponent implements OnInit {
 
+  private modSubTriggered: boolean = false;
+  private adminSubTriggered: boolean = false;
   private modSub: any;
   private adminSub: any;
   public tabs: IDashboardTabs[] = [
@@ -22,6 +24,10 @@ export class GuildOverviewComponent implements OnInit {
     {
       "icon": "bolt",
       "component": "automods"
+    },
+    {
+      "icon": "gavel",
+      "component": "appeals"
     }
   ]
   public isModOrHigher: boolean = false;
@@ -34,6 +40,8 @@ export class GuildOverviewComponent implements OnInit {
     this.route.paramMap.subscribe((data) => {
       this.modSub?.unsubscribe();
       this.adminSub?.unsubscribe();
+      this.modSubTriggered = false;
+      this.adminSubTriggered = false;
       this.initialize(data.get('guildid') as string);
     });
   }
@@ -47,11 +55,16 @@ export class GuildOverviewComponent implements OnInit {
       {
         "icon": "bolt",
         "component": "automods"
+      },
+      {
+        "icon": "gavel",
+        "component": "appeals"
       }
     ];
     this.modSub = this.auth.isModInGuild(guildId).subscribe((data: boolean) => {
       this.isModOrHigher = data;
-      if (data) {
+      if (data && !this.modSubTriggered) {
+        this.modSubTriggered = true;
         this.tabs.unshift({ component: 'dashboard', icon: 'dashboard' });
         this.tabs.push({ component: 'usernote', icon: 'badge' });
         this.tabs.push({ component: 'usermap', icon: 'people' });
@@ -63,7 +76,8 @@ export class GuildOverviewComponent implements OnInit {
     });
     this.adminSub = this.auth.isAdminInGuild(guildId).subscribe((data: boolean) => {
       this.isAdminOrHigher = data;
-      if (data) {
+      if (data && !this.adminSubTriggered) {
+        this.adminSubTriggered = true;
         this.tabs.push({ component: 'config', icon: 'settings' });
       }
     });

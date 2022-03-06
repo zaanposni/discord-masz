@@ -796,6 +796,58 @@ namespace MASZ.Utils
                 _ => "File updated",
             };
         }
+        public string NotificationAppealsCreate(ulong actorId)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Ein **Entbannungsantrag** wurde von <@{actorId}> erstellt.",
+                Language.at => $"Ein **Entbannungsantrag** wurde von <@{actorId}> erstellt.",
+                Language.fr => $"Un **appel de bannissement** a été créé par <@{actorId}>.",
+                Language.es => $"Un **apelación de prohibición** ha sido creado por <@{actorId}>.",
+                Language.ru => $"Заявка на **бан** создана пользователем <@{actorId}>.",
+                Language.it => $"Un **appello al ban** è stato creato da <@{actorId}>.",
+                _ => $"A **ban appeal** has been created by <@{actorId}>.",
+            };
+        }
+        public string NotificationAppealsUpdate(ulong userId, ulong actorId)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Ein **Entbannungsantrag** für <@{userId}> wurde von <@{actorId}> aktualisiert.",
+                Language.at => $"Ein **Entbannungsantrag** für <@{userId}> wurde von <@{actorId}> aktualisiert.",
+                Language.fr => $"Un **appel de bannissement** pour <@{userId}> a été mis à jour par <@{actorId}>.",
+                Language.es => $"Un **apelación de prohibición** para <@{userId}> ha sido actualizado por <@{actorId}>.",
+                Language.ru => $"Заявка на **бан** для <@{userId}> была обновлена пользователем <@{actorId}>.",
+                Language.it => $"Un **appello al ban** per <@{userId}> è stato aggiornato da <@{actorId}>.",
+                _ => $"A **ban appeal** for <@{userId}> has been updated by <@{actorId}>.",
+            };
+        }
+        public string NotificationAppealsStatus()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Status",
+                Language.at => "Status",
+                Language.fr => "Statut",
+                Language.es => "Estado",
+                Language.ru => "статус",
+                Language.it => "Stato",
+                _ => "Status",
+            };
+        }
+        public string NotificationAppealsAppeal()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Entbannungsantrag",
+                Language.at => "Entbannungsantrag",
+                Language.fr => "appel de bannissement",
+                Language.es => "apelación de prohibición",
+                Language.ru => "заявка на бан",
+                Language.it => "appello al ban",
+                _ => "Ban appeal",
+            };
+        }
         public string NotificationRegisterWelcomeToMASZ()
         {
             return PreferredLanguage switch
@@ -1158,6 +1210,19 @@ namespace MASZ.Utils
                 Language.ru => $"Наказание за ModCase # {caseId} отменено: \"{reason} \"",
                 Language.it => $"Punizione per ModCase #{caseId} annullata: \"{reason}\"",
                 _ => $"Punishment for ModCase #{caseId} undone: \"{reason}\"",
+            };
+        }
+        public string NotificationDiscordAuditLogPunishmentsAppealApproved(int appealId, string reason)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Entbannungsantrag #{appealId} genehmigt: \"{reason}\"",
+                Language.at => $"Entbannungsantrag #{appealId} genehmigt: \"{reason}\"",
+                Language.fr => $"Appel de bannissement #{appealId} approuvé : \"{reason}\"",
+                Language.es => $"Solicitud de prohibición # {appealId} aprobada: \"{reason} \"",
+                Language.ru => $"Обжалование забанения # {appealId} одобрено: \"{reason} \"",
+                Language.it => $"Appello per Ban Appeal #{appealId} approvato: \"{reason}\"",
+                _ => $"Ban Appeal #{appealId} approved: \"{reason}\"",
             };
         }
         public string NotificationGuildAuditLogInternalCreate(string eventName, IUser actor)
@@ -4020,6 +4085,43 @@ namespace MASZ.Utils
                     Language.ru => "Не удалось отправить",
                     Language.it => "Invio fallito",
                     _ => "Failed",
+                },
+                _ => "Unknown",
+            };
+        }
+        public string Enum(AppealStatus enumValue)
+        {
+            return enumValue switch
+            {
+                AppealStatus.Pending => PreferredLanguage switch
+                {
+                    Language.de => "Ausstehend",
+                    Language.at => "Ausstehend",
+                    Language.fr => "En attente",
+                    Language.es => "Pendiente",
+                    Language.ru => "Ожидается",
+                    Language.it => "In attesa",
+                    _ => "Pending",
+                },
+                AppealStatus.Approved => PreferredLanguage switch
+                {
+                    Language.de => "Genehmigt",
+                    Language.at => "Genehmigt",
+                    Language.fr => "Approuvé",
+                    Language.es => "Aprobado",
+                    Language.ru => "Утвержден",
+                    Language.it => "Approvato",
+                    _ => "Approved",
+                },
+                AppealStatus.Declined => PreferredLanguage switch
+                {
+                    Language.de => "Abgelehnt",
+                    Language.at => "Abgelehnt",
+                    Language.fr => "Refusé",
+                    Language.es => "Denegado",
+                    Language.ru => "Отклонен",
+                    Language.it => "Rifiutato",
+                    _ => "Declined",
                 },
                 _ => "Unknown",
             };

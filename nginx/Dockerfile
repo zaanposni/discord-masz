@@ -1,10 +1,10 @@
-FROM node:14.15 AS compile-frontend
+FROM node:16 AS compile-frontend
 WORKDIR /angular
 
 COPY MASZ/ .
 
 RUN npm install -g @angular/cli
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 RUN ng build --configuration production --output-hashing=all
 

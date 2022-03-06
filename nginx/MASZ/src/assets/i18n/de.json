@@ -26,6 +26,7 @@
     "Usernotes": "Nutzernotizen",
     "Usermaps": "Benutzerbeziehungen",
     "Comments": "Kommentare",
+    "BanAppeals": "Entbannungsantrag",
     "Loading": "Lädt...",
     "NothingHere": "Nichts gefunden.",
     "AcceptTermsOnLogin": "Beim Anmelden stimmen Sie unseren Nutzungsbedingungen und Richtlinien zu.",
@@ -143,6 +144,12 @@
         "Cancel": "Abbrechen",
         "Confirm": "Bestätigen"
     },
+    "AppealStructureEditDialog": {
+        "EditQuestion": "Frage bearbeiten",
+        "Question": "Frage",
+        "Cancel": "Abbrechen",
+        "Confirm": "Bestätigen"
+    },
     "CommentEditDialog": {
         "EditComment": "Kommentar aktualisieren",
         "Comment": "Kommentar",
@@ -190,6 +197,7 @@
         "Confirm": "Bestätigen"
     },
     "GuildDialog": {
+        "AllowAppealAfterXDays": "Entbannungsanträge nach x Tagen erlauben",
         "ImportExistingBans": "Bestehende Sperren importieren",
         "ImportExistingBansDetails": "Dies kann bei großen Gilden eine Weile dauern, aber wird im Hintergrund ausgeführt.",
         "AddAGuild": "Gilde hinzufügen",
@@ -408,6 +416,7 @@
         "Overview": "Übersicht",
         "Cases": "Vorfälle",
         "Punishments": "Bestrafungen",
+        "Appeals": "Entbannungsanträge",
         "Automoderations": "Automoderationen",
         "ChooseADate": "Wähle ein Datum",
         "Reset": "Zurücksetzen"
@@ -424,6 +433,11 @@
     "GuildInfoCard": {
         "CreateNewCase": "Neuen Vorfall erstellen",
         "FailedToLoad": "Gildeninfo konnte nicht geladen werden."
+    },
+    "GuildNotifications": {
+        "Title": "Hinweis",
+        "MissingAppeals": "Du hast keine Fragen für den Entbannungsantrag konfiguriert. Gebannte Benutzer können daher zurzeit keine Entbannungsanträge erstellen.",
+        "FailedToLoad": "Gildenbenachrichtigungen konnten nicht geladen werden."
     },
     "DashboardMotd": {
         "FailedToLoad": "Motd konnte nicht geladen werden.",
@@ -447,7 +461,8 @@
             "Messages": "Nachrichten",
             "Usernote": "Benutzernotizen",
             "Usermap": "Benutzerbeziehungen",
-            "Config": "Konfiguration"
+            "Config": "Konfiguration",
+            "BanAppeals": "Entbannungsanträge"
         }
     },
     "UsermapTable": {
@@ -532,6 +547,71 @@
         "FailedToUploadFile": "Datei konnte nicht hochgeladen werden.",
         "CaseCreated": "Vorfall erstellt.",
         "CaseUpdated": "Vorfall aktualisiert."
+    },
+    "AppealCreate": {
+        "Title": "Dein Entbannungsantrag",
+        "Answer": "Antworte auf diese Fragen, um deinen Entbannungsantrag abzuschließen.",
+        "Skip": "Du kannst die Fragen überspringen, wenn du willst.",
+        "View": "Du kannst jederzeit auf dieser Website den Status deines Entbannungsantrags einsehen.",
+        "Save": "Speichern",
+        "Created": "Dein Entbannungsantrag wurde erstellt.",
+        "FailedToCreate": "Entbannungsantrag konnte nicht erstellt werden.",
+        "FailedToLoadQuestions": "Fragen konnten nicht geladen werden."
+    },
+    "AppealConfig": {
+        "AppealStructure": "Entbannungsantrag Fragebogen",
+        "Configure": "Konfiguriere das Formular für den Entbannungsantrag der Gilde.",
+        "Skip": "Benutzer können Fragen überspringen, wenn sie möchten.",
+        "Delete": "Wenn Sie eine Frage löschen, wird sie weiterhin in alten Entbannungsanträgen sichtbar sein.",
+        "NotConfigured": "Wenn Sie keine Fragen konfiguriert haben, können Benutzer keine Entbannungsanträge mehr stellen.",
+        "Save": "Speichern",
+        "NewQuestion": "Neue Frage",
+        "Reordered": "Fragen wurden neu geordnet.",
+        "FailedToReorder": "Fehler beim Neuordnen der Fragen.",
+        "FailedToCreate": "Fehler beim Erstellen der Frage.",
+        "Created": "Die Frage wurde erstellt."
+    },
+    "AppealCard": {
+        "Created": "Erstellt:",
+        "Updated": "Aktualisiert:",
+        "AnswerCount": "Benutzer hat {{count}} Fragen beantwortet.",
+        "AllowedNewAppeal": "Benutzer darf einen neuen Antrag erstellen am: "
+    },
+    "AppealQuestionCard": {
+        "YourAnswer": "Deine Antwort",
+        "Updated": "Aktualisiert.",
+        "FailedToUpdate": "Fehler beim Aktualisieren der Frage",
+        "Deleted": "Gelöscht.",
+        "FailedToDelete": "Fehler beim Löschen der Frage."
+    },
+    "AppealTable": {
+        "Count": "Anzahl",
+        "Warning": "Warnung",
+        "NotConfigured": "Dieser Server hat kein Formular für den Entbannungsantrag konfiguriert. Du kannst deshalb keinen Entbannungsantrag erstellen.",
+        "SelectMembers": "Mitglieder",
+        "SelectedStatus": "Status",
+        "FilterSince": "Erstellt ab",
+        "FilterUntil": "Erstellt bis",
+        "ExecuteSearch": "Suche ausführen",
+        "FailedToLoad": "Anträge konnten nicht geladen werden.",
+        "NoMatches": "Keine Anträge passen zu deiner Suche.",
+        "CreateNewAppeal": "Neuen Entbannungsantrag stellen",
+        "ConfigureAppeals": "Formular konfigurieren"
+    },
+    "AppealView": {
+        "FailedToLoad": "Antrag konnte nicht geladen werden.",
+        "CreatedAt": "Erstellt am:",
+        "UpdatedAt": "Aktualisiert am:",
+        "LatestCases": "Neueste Fälle",
+        "ModeratorsDecisionAt": "Entscheidung des Moderatoration am:",
+        "ModeratorsComment": "Kommentar der Moderation",
+        "NewAppeal": "Neuer Antrag",
+        "UserIsAllowedToCreateNewAppealAt": "Benutzer darf neuen Entbannungsantrag am:",
+        "UserIsNeverAllowedToCreateNewAppeal": "Benutzer darf nie neuen Entbannungsantrag stellen",
+        "Edit": "Bearbeiten",
+        "Status": "Status",
+        "Updated": "Antrag aktualisiert.",
+        "FailedToUpdate": "Konnte Entbannungsantrag nicht aktualisieren."
     },
     "ModCaseTable": {
         "SelectMembers": "Mitglieder",

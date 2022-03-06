@@ -49,6 +49,11 @@
                 <span class="d-block mat-h1 mb-0" *ngIf="stats.content">{{ stats.content?.comments }}</span>
                 <span class="d-block mat-h1 mb-0 waiting-for-text" style="width: 40px;" *ngIf="!stats.content"></span>
             </div>
+            <div class="mr-3">
+                <span>{{ 'BanAppeals' | translate }}</span>
+                <span class="d-block mat-h1 mb-0" *ngIf="stats.content">{{ stats.content?.appeals }}</span>
+                <span class="d-block mat-h1 mb-0 waiting-for-text" style="width: 40px;" *ngIf="!stats.content"></span>
+            </div>
         </div>
         <mat-spinner *ngIf="stats.loading"></mat-spinner>
         <div *ngIf="!stats.loading && !stats.content">

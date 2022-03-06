@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ContentLoading } from 'src/app/models/ContentLoading';
-import { GuildStats } from 'src/app/models/GuildStats';
+import { IGuildStats } from 'src/app/models/IGuildStats';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class DashboardGuildStatsComponent implements OnInit {
 
-  public stats: ContentLoading<GuildStats> = { loading: true, content: undefined };
+  public stats: ContentLoading<IGuildStats> = { loading: true, content: undefined };
 
   constructor(private route: ActivatedRoute, private api: ApiService, private toastr: ToastrService, private translator: TranslateService) { }
 

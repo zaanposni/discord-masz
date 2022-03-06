@@ -116,6 +116,15 @@ import { AppsettingsComponent } from './components/api/appsettings/appsettings.c
 import { GuildMessagesComponent } from './components/guilds/guild-messages/guild-messages.component';
 import { GuildMessageCardComponent } from './components/guilds/guild-messages/guild-message-card/guild-message-card.component';
 import { ScheduledMessageEditDialogComponent } from './components/dialogs/scheduled-message-edit-dialog/scheduled-message-edit-dialog.component';
+import { DashboardNotificationsComponent } from './components/guilds/guild-dashboard/dashboard-notifications/dashboard-notifications.component';
+import { GuildAppealsTableComponent } from './components/guilds/guild-appeals/guild-appeals-table/guild-appeals-table.component';
+import { GuildAppealsCardComponent } from './components/guilds/guild-appeals/guild-appeals-card/guild-appeals-card.component';
+import { GuildAppealViewComponent } from './components/guilds/guild-appeals/guild-appeal-view/guild-appeal-view.component';
+import { GuildAppealQuestionComponent } from './components/guilds/guild-appeals/guild-appeal-question/guild-appeal-question.component';
+import { GuildAppealConfigComponent } from './components/guilds/guild-appeals/guild-appeal-config/guild-appeal-config.component';
+import { GuildAppealNewComponent } from './components/guilds/guild-appeals/guild-appeal-new/guild-appeal-new.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AppealStructureEditDialogComponent } from './components/dialogs/appeal-structure-edit-dialog/appeal-structure-edit-dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -191,7 +200,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppsettingsComponent,
     GuildMessagesComponent,
     GuildMessageCardComponent,
-    ScheduledMessageEditDialogComponent
+    ScheduledMessageEditDialogComponent,
+    DashboardNotificationsComponent,
+    GuildAppealsTableComponent,
+    GuildAppealsCardComponent,
+    GuildAppealViewComponent,
+    GuildAppealQuestionComponent,
+    GuildAppealConfigComponent,
+    GuildAppealNewComponent,
+    AppealStructureEditDialogComponent
   ],
   imports: [
     CommonModule,
@@ -231,6 +248,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    DragDropModule,
 
     BrowserModule,
     AppRoutingModule,

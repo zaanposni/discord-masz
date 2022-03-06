@@ -39,9 +39,9 @@ namespace MASZ.Controllers.api.v1
                 foreach (GuildConfig guild in registeredGuilds)
                 {
                     UserGuild userGuild = currentUserGuilds.FirstOrDefault(x => x.Id == guild.GuildId);
-                    if (userGuild != null)
+                    if (userGuild != null || await AppealRepository.CreateDefault(_serviceProvider).UserHasConfirmedAppeal(guild.GuildId, currentUser.Id))
                     {
-                        IGuild userGuildFetched = _discordAPI.FetchGuildInfo(userGuild.Id, CacheBehavior.Default);
+                        IGuild userGuildFetched = _discordAPI.FetchGuildInfo(guild.GuildId, CacheBehavior.Default);
                         if (userGuildFetched != null)
                         {
                             if (await identity.HasModRoleOrHigherOnGuild(guild.GuildId))
@@ -67,8 +67,28 @@ namespace MASZ.Controllers.api.v1
                         {
                             _discordAPI.GetFromCache<IBan>(CacheKey.GuildBan(guild.GuildId, currentUser.Id));
                             bannedGuilds.Add(new DiscordGuildView(_discordAPI.FetchGuildInfo(guild.GuildId, CacheBehavior.Default)));
+                            continue;
                         }
                         catch (NotFoundInCacheException) { }
+
+                        try
+                        {
+                            if (await AppealRepository.CreateDefault(_serviceProvider).UserHasPendingOrDeclinedAppeal(guild.GuildId, currentUser.Id))
+                            {
+                                bannedGuilds.Add(new DiscordGuildView(_discordAPI.FetchGuildInfo(guild.GuildId, CacheBehavior.Default)));
+                                continue;
+                            }
+                        }
+                        catch (NotFoundInCacheException) { }
+
+                        if ((await ModCaseRepository.CreateWithBotIdentity(_serviceProvider).GetCasesForGuildAndUser(guild.GuildId, currentUser.Id))
+                                        .Where(x => x.PunishmentType == PunishmentType.Ban && x.PunishmentActive)
+                                        .OrderByDescending(x => x.CreatedAt)
+                                        .FirstOrDefault() != null)
+                        {
+                            bannedGuilds.Add(new DiscordGuildView(_discordAPI.FetchGuildInfo(guild.GuildId, CacheBehavior.Default)));
+                            continue;
+                        }
                     }
                 }
             }

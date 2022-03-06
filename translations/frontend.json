@@ -215,6 +215,16 @@
         "ru": "Комментарии",
         "it": "Commenti"
     },
+    "BanAppeals": {
+        "description": "ban appeals",
+        "en": "Ban appeals",
+        "de": "Entbannungsantrag",
+        "at": "Entbannungsantrag",
+        "fr": "Appel de bannissement",
+        "es": "Solicitud de prohibición",
+        "ru": "Жалобы на бан",
+        "it": "Appelli di banno"
+    },
     "Loading": {
         "description": "loading",
         "en": "Loading...",
@@ -1079,6 +1089,48 @@
             "it": "Confermare"
         }
     },
+    "AppealStructureEditDialog": {
+        "EditQuestion": {
+            "description": "edit question",
+            "en": "Edit question",
+            "de": "Frage bearbeiten",
+            "at": "Frage bearbeitn",
+            "fr": "Modifier la question",
+            "es": "Editar pregunta",
+            "ru": "Редактировать вопрос",
+            "it": "Modifica domanda"
+        },
+        "Question": {
+            "description": "Question field",
+            "en": "Question",
+            "de": "Frage",
+            "at": "Frage",
+            "fr": "Question",
+            "es": "Pregunta",
+            "ru": "Вопрос",
+            "it": "Domanda"
+        },
+        "Cancel": {
+            "description": "cancel button",
+            "en": "Cancel",
+            "de": "Abbrechen",
+            "at": "Obrechn",
+            "fr": "Annuler",
+            "es": "Cancelar",
+            "ru": "Отмена",
+            "it": "Annulla"
+        },
+        "Confirm": {
+            "description": "confirm button",
+            "en": "Confirm",
+            "de": "Bestätigen",
+            "at": "Zuastima",
+            "fr": "Confirmer",
+            "es": "Confirmar",
+            "ru": "Подтверждать",
+            "it": "Confermare"
+        }
+    },
     "CommentEditDialog": {
         "EditComment": {
             "description": "edit comment",
@@ -1414,6 +1466,16 @@
         }
     },
     "GuildDialog": {
+        "AllowAppealAfterXDays": {
+            "description": "allow appeal after x days",
+            "en": "Allow ban appeal after x days",
+            "de": "Entbannungsanträge nach x Tagen erlauben",
+            "at": "Entbannungsanträge nach x Tagen erlauben",
+            "fr": "Autoriser l'appel d'une décision après x jours",
+            "es": "Permitir que los miembros del grupo puedan presentar una reclamación de expulsión después de x días",
+            "ru": "Разрешить обжалование бана после x дней",
+            "it": "Consenti reclamo bando dopo x giorni"
+        },
         "ImportExistingBans": {
             "description": "import existing bans",
             "en": "Import existing bans",
@@ -2910,6 +2972,16 @@
             "ru": "Наказания",
             "it": "punizioni"
         },
+        "Appeals": {
+            "description": "ban appeals",
+            "en": "Ban appeals",
+            "de": "Entbannungsanträge",
+            "at": "Entbannungsanträge",
+            "fr": "Appel de bannissement",
+            "es": "Apelaciones de baneo",
+            "ru": "Обжалования банов",
+            "it": "appelli di banno"
+        },
         "Automoderations": {
             "description": "Automoderations",
             "en": "Automoderations",
@@ -3015,6 +3087,38 @@
             "es": "No se pudo cargar la información del gremio.",
             "ru": "Не удалось загрузить информацию о гильдии.",
             "it": "Impossibile caricare le informazioni sulla gilda."
+        }
+    },
+    "GuildNotifications": {
+        "Title": {
+            "description": "Notice",
+            "en": "Notice",
+            "de": "Hinweis",
+            "at": "Hinweis",
+            "fr": "Avis",
+            "es": "Aviso",
+            "ru": "Уведомление",
+            "it": "Avviso"
+        },
+        "MissingAppeals": {
+            "description": "No appeals configured",
+            "en": "You have no ban appeal questions configured. Thus, banned users cannot create a ban appeal right now.",
+            "de": "Du hast keine Fragen für den Entbannungsantrag konfiguriert. Gebannte Benutzer können daher zurzeit keine Entbannungsanträge erstellen.",
+            "at": "Du häscht keine Fragen für den Entbannungsantrag konfiguriert. Gebannte Benutzer können daher zurzeit keine Entbannungsanträge erstön.",
+            "fr": "Vous n'avez pas de questions de plainte de bannissement configurées. Les utilisateurs bannis ne peuvent pas créer de plainte de bannissement pour le moment.",
+            "es": "No tienes preguntas de apelación de expulsión configuradas. Los usuarios expulsados no pueden crear una pregunta de apelación de expulsión ahora mismo.",
+            "ru": "У вас нет настроенных вопросов о бане. Поэтому забаненные пользователи не могут сейчас создать вопрос о бане.",
+            "it": "Non hai domande di appello di banno configurate. Gli utenti bannati non possono creare un appello di banno adesso."
+        },
+        "FailedToLoad": {
+            "description": "Failed to load",
+            "en": "Failed to load guild notifications.",
+            "de": "Gildenbenachrichtigungen konnten nicht geladen werden.",
+            "at": "Güdnbenachrichtigungen konntn ned glodn wean.",
+            "fr": "Échec du chargement des notifications de guilde.",
+            "es": "No se pudieron cargar las notificaciones del gremio.",
+            "ru": "Не удалось загрузить уведомления о гильдии.",
+            "it": "Impossibile caricare le notifiche della gilda."
         }
     },
     "DashboardMotd": {
@@ -3174,6 +3278,16 @@
                 "es": "Config",
                 "ru": "Конфиг",
                 "it": "config"
+            },
+            "BanAppeals": {
+                "description": "Ban appeals",
+                "en": "Appeals",
+                "de": "Entbannungsanträge",
+                "at": "Entbannungsanträge",
+                "fr": "Appel de bannissements",
+                "es": "Reclamaciones de baneo",
+                "ru": "Жалобы на бан",
+                "it": "Appelli di banno"
             }
         }
     },
@@ -3897,6 +4011,548 @@
             "es": "Caso actualizado.",
             "ru": "Дело обновлено.",
             "it": "Caso aggiornato."
+        }
+    },
+    "AppealCreate": {
+        "Title": {
+            "description": "Appeal create",
+            "en": "Your ban appeal",
+            "de": "Dein Entbannungsantrag",
+            "at": "Dein Entbannungsantrag",
+            "fr": "Votre demande d'exclusion",
+            "es": "Su solicitud de exclusión",
+            "ru": "Ваш обращение к бану",
+            "it": "Il tuo appello al ban"
+        },
+        "Answer": {
+            "description": "Answer",
+            "en": "Answer these questions to complete your ban appeal.",
+            "de": "Antworte auf diese Fragen, um deinen Entbannungsantrag abzuschließen.",
+            "at": "Antworte auf diese Fragen, um deinen Entbannungsantrag abzuschließen.",
+            "fr": "Répondez aux questions pour compléter votre demande d'exclusion.",
+            "es": "Responda a estas preguntas para completar su solicitud de exclusión.",
+            "ru": "Ответьте на эти вопросы, чтобы завершить ваше обращение к бану.",
+            "it": "Rispondi a queste domande per completare il tuo appello al ban."
+        },
+        "Skip": {
+            "description": "Skip",
+            "en": "You can skip questions if you want to.",
+            "de": "Du kannst die Fragen überspringen, wenn du willst.",
+            "at": "Du kannst die Fragen überspringen, wenn du willst.",
+            "fr": "Vous pouvez ignorer les questions si vous le souhaitez.",
+            "es": "Puede saltar las preguntas si lo desea.",
+            "ru": "Вы можете пропустить вопросы, если хотите.",
+            "it": "Puoi saltare le domande se vuoi."
+        },
+        "View": {
+            "description": "View",
+            "en": "You will be able to view the status of your appeal on this website everytime.",
+            "de": "Du kannst jederzeit auf dieser Website den Status deines Entbannungsantrags einsehen.",
+            "at": "Du kannst jederzeit auf dieser Website den Status deines Entbannungsantrags einsehen.",
+            "fr": "Vous pourrez consulter le statut de votre demande d'exclusion sur ce site toutes les fois.",
+            "es": "Podrá ver el estado de su solicitud de exclusión en esta página web cada vez que lo desee.",
+            "ru": "Вы сможете просмотреть статус вашего обращения к бану на этом сайте всегда.",
+            "it": "Potrai visualizzare lo stato del tuo appello al ban su questo sito ogni volta."
+        },
+        "Save": {
+            "description": "Save",
+            "en": "Save",
+            "de": "Speichern",
+            "at": "Speichern",
+            "fr": "Enregistrer",
+            "es": "Guardar",
+            "ru": "Сохранить",
+            "it": "Salva"
+        },
+        "Created": {
+            "description": "Created",
+            "en": "Your appeal has been created.",
+            "de": "Dein Entbannungsantrag wurde erstellt.",
+            "at": "Dein Entbannungsantrag wurde erstellt.",
+            "fr": "Votre demande d'exclusion a été créée.",
+            "es": "Su solicitud de exclusión ha sido creada.",
+            "ru": "Ваше обращение к бану было создано.",
+            "it": "Il tuo appello al ban è stato creato."
+        },
+        "FailedToCreate": {
+            "description": "Failed to create appeal",
+            "en": "Failed to create appeal.",
+            "de": "Entbannungsantrag konnte nicht erstellt werden.",
+            "at": "Entbannungsantrag konnte nicht erstellt werden.",
+            "fr": "Échec de la création de la demande d'exclusion.",
+            "es": "No se pudo crear la solicitud de exclusión.",
+            "ru": "Не удалось создать обращение к бану.",
+            "it": "Impossibile creare l'appello al ban."
+        },
+        "FailedToLoadQuestions": {
+            "description": "Failed to load questions",
+            "en": "Failed to load questions.",
+            "de": "Fragen konnten nicht geladen werden.",
+            "at": "Fragen konnten nicht geladen werden.",
+            "fr": "Échec du chargement des questions.",
+            "es": "No se pudieron cargar las preguntas.",
+            "ru": "Не удалось загрузить вопросы.",
+            "it": "Impossibile caricare le domande."
+        }
+    },
+    "AppealConfig": {
+        "AppealStructure": {
+            "description": "Appeal structure",
+            "en": "Ban appeal structure",
+            "de": "Entbannungsantrag Fragebogen",
+            "at": "Entbannungsantrag Fragebog",
+            "fr": "Structure de l'appel d'embargo",
+            "es": "Estructura del apelante",
+            "ru": "Структура обращения",
+            "it": "Struttura dell'appello"
+        },
+        "Configure": {
+            "description": "Configure",
+            "en": "Configure the form for the guild's ban appeal.",
+            "de": "Konfiguriere das Formular für den Entbannungsantrag der Gilde.",
+            "at": "Konfiguriere das Formular für den Entbannungsantrag der Gilde.",
+            "fr": "Configurer le formulaire pour l'appel d'embargo de la guilde.",
+            "es": "Configurar el formulario para el apelante de la gildia.",
+            "ru": "Настройте форму для обращения в гильдию.",
+            "it": "Configura il modulo per l'appello della gilda."
+        },
+        "Skip": {
+            "description": "Skip",
+            "en": "Users can skip questions if they want to.",
+            "de": "Benutzer können Fragen überspringen, wenn sie möchten.",
+            "at": "Benutzer können Fragen überspringen, wenn sie möchten.",
+            "fr": "Les utilisateurs peuvent sauter des questions si ils le souhaitent.",
+            "es": "Los usuarios pueden omitir las preguntas si quieren.",
+            "ru": "Пользователи могут пропустить вопросы, если хотят.",
+            "it": "Gli utenti possono saltare le domande se vogliono."
+        },
+        "Delete": {
+            "description": "Delete",
+            "en": "If you delete a question it will still be visible in old ban appeals.",
+            "de": "Wenn Sie eine Frage löschen, wird sie weiterhin in alten Entbannungsanträgen sichtbar sein.",
+            "at": "Wenn Sie eine Frage löschen, wird sie weiterhin in alten Entbannungsanträgen sichtbar sein.",
+            "fr": "Si vous supprimez une question, elle sera toujours visible dans les appels d'embargo antérieurs.",
+            "es": "Si elimina una pregunta, permanecerá visible en los apelantes de la gildia.",
+            "ru": "Если удалите вопрос, он будет все еще видим в старых обращениях.",
+            "it": "Se si elimina una domanda, sarà ancora visibile nei precedenti appelli."
+        },
+        "NotConfigured": {
+            "description": "Not configured",
+            "en": "If you have no questions configured, users will not be able to appeal bans.",
+            "de": "Wenn Sie keine Fragen konfiguriert haben, können Benutzer keine Entbannungsanträge mehr stellen.",
+            "at": "Wenn Sie keine Fragen konfiguriert haben, können Benutzer keine Entbannungsanträge mehr stellen.",
+            "fr": "Si vous n'avez pas de questions configurées, les utilisateurs ne pourront pas appeler d'embargo.",
+            "es": "Si no tiene preguntas configuradas, los usuarios no podrán hacer apelantes.",
+            "ru": "Если у вас нет вопросов, пользователи не смогут подать обращения.",
+            "it": "Se non hai domande configurate, gli utenti non potranno richiedere appelli."
+        },
+        "Save": {
+            "description": "Save",
+            "en": "Save",
+            "de": "Speichern",
+            "at": "Speichern",
+            "fr": "Enregistrer",
+            "es": "Guardar",
+            "ru": "Сохранить",
+            "it": "Salva"
+        },
+        "NewQuestion": {
+            "description": "New question",
+            "en": "New question",
+            "de": "Neue Frage",
+            "at": "Neue Frage",
+            "fr": "Nouvelle question",
+            "es": "Nueva pregunta",
+            "ru": "Новый вопрос",
+            "it": "Nuova domanda"
+        },
+        "Reordered": {
+            "description": "Reordered",
+            "en": "Questions have been reordered.",
+            "de": "Fragen wurden neu geordnet.",
+            "at": "Fragen wurden neu geordnet.",
+            "fr": "Les questions ont été réordonnées.",
+            "es": "Las preguntas han sido reordenadas.",
+            "ru": "Вопросы были переставлены.",
+            "it": "Le domande sono state riordinate."
+        },
+        "FailedToReorder": {
+            "description": "Failed to reorder",
+            "en": "Failed to reorder questions.",
+            "de": "Fehler beim Neuordnen der Fragen.",
+            "at": "Fehler beim Neuordnen der Fragen.",
+            "fr": "Échec de la réorganisation des questions.",
+            "es": "No se pudo reordenar las preguntas.",
+            "ru": "Не удалось переставить вопросы.",
+            "it": "Impossibile riordinare le domande."
+        },
+        "FailedToCreate": {
+            "description": "Failed to create",
+            "en": "Failed to create question.",
+            "de": "Fehler beim Erstellen der Frage.",
+            "at": "Fehler beim Erstellen der Frage.",
+            "fr": "Échec de la création de la question.",
+            "es": "No se pudo crear la pregunta.",
+            "ru": "Не удалось создать вопрос.",
+            "it": "Impossibile creare la domanda."
+        },
+        "Created": {
+            "description": "Created",
+            "en": "Question has been created.",
+            "de": "Die Frage wurde erstellt.",
+            "at": "Die Frage wurde erstellt.",
+            "fr": "La question a été créée.",
+            "es": "La pregunta ha sido creada.",
+            "ru": "Вопрос был создан.",
+            "it": "La domanda è stata creata."
+        }
+    },
+    "AppealCard": {
+        "Created": {
+            "description": "Created",
+            "en": "Created:",
+            "de": "Erstellt:",
+            "at": "Erstöt:",
+            "fr": "Créé:",
+            "es": "Creado:",
+            "ru": "Создан:",
+            "it": "Creato:"
+        },
+        "Updated": {
+            "description": "Updated",
+            "en": "Updated:",
+            "de": "Aktualisiert:",
+            "at": "Aktualisiat:",
+            "fr": "Mis à jour:",
+            "es": "Actualizado:",
+            "ru": "Обновлен:",
+            "it": "Aggiornato:"
+        },
+        "AnswerCount": {
+            "description": "user has answered x questions.",
+            "en": "User has answered {{count}} questions.",
+            "de": "Benutzer hat {{count}} Fragen beantwortet.",
+            "at": "Benutzer hat {{count}} Fragen beantwortet.",
+            "fr": "L'utilisateur a répondu {{count}} questions.",
+            "es": "El usuario ha respondido {{count}} preguntas.",
+            "ru": "Пользователь ответил на {{count}} вопросов.",
+            "it": "L'utente ha risposto {{count}} domande."
+        },
+        "AllowedNewAppeal": {
+            "description": "user is allowed new appeal after x date",
+            "en": "User is allowed to create a new appeal at: ",
+            "de": "Benutzer darf einen neuen Antrag erstellen am: ",
+            "at": "Benutzer darf einen neuen Antrag erstellen am: ",
+            "fr": "L'utilisateur peut créer un nouvel appel à la loi à: ",
+            "es": "El usuario puede crear un nuevo reclamo a: ",
+            "ru": "Пользователь может создать новое дело в: ",
+            "it": "L'utente può creare un nuovo reclamo a:"
+        }
+    },
+    "AppealQuestionCard": {
+        "YourAnswer": {
+            "description": "Your answer",
+            "en": "Your answer",
+            "de": "Deine Antwort",
+            "at": "Deine Antwort",
+            "fr": "Votre réponse",
+            "es": "Tu respuesta",
+            "ru": "Ваш ответ",
+            "it": "La tua risposta"
+        },
+        "Updated": {
+            "description": "Updated",
+            "en": "Updated.",
+            "de": "Aktualisiert.",
+            "at": "Aktualisiat.",
+            "fr": "Mis à jour.",
+            "es": "Actualizado.",
+            "ru": "Обновлен.",
+            "it": "Aggiornato."
+        },
+        "FailedToUpdate": {
+            "description": "Failed to update",
+            "en": "Failed to update question",
+            "de": "Fehler beim Aktualisieren der Frage",
+            "at": "Fehler beim Aktualisieren der Frage",
+            "fr": "Échec de la mise à jour de la question",
+            "es": "No se pudo actualizar la pregunta",
+            "ru": "Не удалось обновить вопрос",
+            "it": "Impossibile aggiornare la domanda"
+        },
+        "Deleted": {
+            "description": "Deleted",
+            "en": "Deleted.",
+            "de": "Gelöscht.",
+            "at": "Gelöscht.",
+            "fr": "Supprimé.",
+            "es": "Eliminado.",
+            "ru": "Удален.",
+            "it": "Eliminato."
+        },
+        "FailedToDelete": {
+            "description": "Failed to delete",
+            "en": "Failed to delete question.",
+            "de": "Fehler beim Löschen der Frage.",
+            "at": "Fehler beim Löschen der Frage.",
+            "fr": "Échec de la suppression de la question.",
+            "es": "No se pudo eliminar la pregunta.",
+            "ru": "Не удалось удалить вопрос.",
+            "it": "Impossibile eliminare la domanda."
+        }
+    },
+    "AppealTable": {
+        "Count": {
+            "description": "The word count",
+            "en": "Count",
+            "de": "Anzahl",
+            "at": "Anzahl",
+            "fr": "Nombre",
+            "es": "Número",
+            "ru": "Количество",
+            "it": "Conteggio"
+        },
+        "Warning": {
+            "description": "Warning",
+            "en": "Warning",
+            "de": "Warnung",
+            "at": "Warnung",
+            "fr": "Avertissement",
+            "es": "Advertencia",
+            "ru": "Предупреждение",
+            "it": "Avvertimento"
+        },
+        "NotConfigured": {
+            "description": "Not configured",
+            "en": "This guild has no ban appeal form configured. Thus, you cannot create an appeal right now.",
+            "de": "Dieser Server hat kein Formular für den Entbannungsantrag konfiguriert. Du kannst deshalb keinen Entbannungsantrag erstellen.",
+            "at": "Dieser Server hat kein Formular für den Entbannungsantrag konfiguriert. Du kannst deshalb keinen Entbannungsantrag erstellen.",
+            "fr": "Ce serveur n'a pas de formulaire de plainte de bannissement configuré. Vous ne pouvez pas créer de plainte de bannissement pour le moment.",
+            "es": "Este servidor no tiene un formulario de apelación de baneo configurado. Por lo tanto, no puedes crear una apelación de baneo ahora.",
+            "ru": "Этот сервер не имеет настроенной формы обращения за баном. Вы не можете создать обращение за баном прямо сейчас.",
+            "it": "Questo server non ha un modulo di richiesta di banno configurato. Perciò, non puoi creare una richiesta di banno ora."
+        },
+        "SelectMembers": {
+            "description": "Select members",
+            "en": "Members",
+            "de": "Mitglieder",
+            "at": "Mitglieda",
+            "fr": "Membres",
+            "es": "Miembros",
+            "ru": "Члены",
+            "it": "Membri"
+        },
+        "SelectedStatus": {
+            "description": "Selected status",
+            "en": "Status",
+            "de": "Status",
+            "at": "Status",
+            "fr": "Statut",
+            "es": "Estado",
+            "ru": "Статус",
+            "it": "Stato"
+        },
+        "FilterSince": {
+            "description": "Filter since",
+            "en": "Created since",
+            "de": "Erstellt ab",
+            "at": "Erstöt vo",
+            "fr": "Créé depuis",
+            "es": "Creado desde",
+            "ru": "Создано с",
+            "it": "Creato da"
+        },
+        "FilterUntil": {
+            "description": "Filter until",
+            "en": "Created until",
+            "de": "Erstellt bis",
+            "at": "Erstöt bis",
+            "fr": "Créé jusqu'au",
+            "es": "Creado hasta",
+            "ru": "Создано до",
+            "it": "Creato fino al"
+        },
+        "ExecuteSearch": {
+            "description": "execute search button to use advanced filters",
+            "en": "Search",
+            "de": "Suche ausführen",
+            "at": "Suche startn",
+            "fr": "Chercher",
+            "es": "Búsqueda",
+            "ru": "Поиск",
+            "it": "Ricerca"
+        },
+        "FailedToLoad": {
+            "description": "Failed to load appeal table",
+            "en": "Failed to load appeals.",
+            "de": "Anträge konnten nicht geladen werden.",
+            "at": "Anträge konnten ned geladen wean.",
+            "fr": "Échec du chargement des demandes.",
+            "es": "No se pudo cargar la tabla de solicitudes.",
+            "ru": "Не удалось загрузить таблицу обращений.",
+            "it": "Impossibile caricare la tabella dei reclami."
+        },
+        "NoMatches": {
+            "description": "No matches for search string found.",
+            "en": "No appeals matches your search.",
+            "de": "Keine Anträge passen zu deiner Suche.",
+            "at": "Kane Anträge passn zu deina Suach.",
+            "fr": "Aucun cas ne correspond à votre recherche.",
+            "es": "No hay casos que coincidan con su búsqueda.",
+            "ru": "Нет дел, соответствующих вашему поиску.",
+            "it": "Nessun caso corrisponde alla tua ricerca."
+        },
+        "CreateNewAppeal": {
+            "description": "Create a new ban appeal button",
+            "en": "Create new appeal",
+            "de": "Neuen Entbannungsantrag stellen",
+            "at": "Neien Entbannungsantrag stellen",
+            "fr": "Créer un nouveau cas",
+            "es": "Crear un nuevo caso",
+            "ru": "Создать новое дело",
+            "it": "Crea un nuovo caso"
+        },
+        "ConfigureAppeals": {
+            "description": "Configure ban appeals button",
+            "en": "Configure appeals",
+            "de": "Formular konfigurieren",
+            "at": "Formular konfigurieren",
+            "fr": "Configurer les demandes",
+            "es": "Configurar solicitudes",
+            "ru": "Настроить обращения",
+            "it": "Configura reclami"
+        }
+    },
+    "AppealView": {
+        "FailedToLoad": {
+            "description": "Failed to load appeal",
+            "en": "Failed to load appeal.",
+            "de": "Antrag konnte nicht geladen werden.",
+            "at": "Antrag konnte ned geladen wean.",
+            "fr": "Échec du chargement de la demande.",
+            "es": "No se pudo cargar la solicitud.",
+            "ru": "Не удалось загрузить обращение.",
+            "it": "Impossibile caricare il reclamo."
+        },
+        "CreatedAt": {
+            "description": "Created at",
+            "en": "Created at:",
+            "de": "Erstellt am:",
+            "at": "Erstöt am:",
+            "fr": "Créé le:",
+            "es": "Creado el:",
+            "ru": "Создано:",
+            "it": "Creato il:"
+        },
+        "UpdatedAt": {
+            "description": "Updated at",
+            "en": "Updated at:",
+            "de": "Aktualisiert am:",
+            "at": "Aktualisiert am:",
+            "fr": "Mis à jour le:",
+            "es": "Actualizado el:",
+            "ru": "Обновлено:",
+            "it": "Aggiornato il:"
+        },
+        "LatestCases": {
+            "description": "Latest cases",
+            "en": "Latest cases",
+            "de": "Neueste Fälle",
+            "at": "Neueste Fälle",
+            "fr": "Derniers cas",
+            "es": "Últimos casos",
+            "ru": "Последние дела",
+            "it": "Ultimi casi"
+        },
+        "ModeratorsDecisionAt": {
+            "description": "Moderators decision at",
+            "en": "Moderators decision at:",
+            "de": "Entscheidung des Moderatoration am:",
+            "at": "Entscheidung des Moderatoration am:",
+            "fr": "Décision du modérateur le:",
+            "es": "Decisión del moderador el:",
+            "ru": "Решение модератора:",
+            "it": "Decisione dei moderatori il:"
+        },
+        "ModeratorsComment": {
+            "description": "Moderators comment",
+            "en": "Moderators comment",
+            "de": "Kommentar der Moderation",
+            "at": "Kommentar der Moderation",
+            "fr": "Commentaire du modérateur",
+            "es": "Comentario del moderador",
+            "ru": "Комментарий модератора",
+            "it": "Commento dei moderatori"
+        },
+        "NewAppeal": {
+            "description": "New appeal",
+            "en": "New appeal",
+            "de": "Neuer Antrag",
+            "at": "Neuer Antrag",
+            "fr": "Nouveau cas",
+            "es": "Nuevo caso",
+            "ru": "Новое дело",
+            "it": "Nuovo caso"
+        },
+        "UserIsAllowedToCreateNewAppealAt": {
+            "description": "User is allowed to create new appeal at",
+            "en": "User is allowed to create new appeal at:",
+            "de": "Benutzer darf neuen Entbannungsantrag am:",
+            "at": "Benutzer darf neuen Entbannungsantrag am:",
+            "fr": "L'utilisateur est autorisé à créer un nouveau cas à:",
+            "es": "El usuario está autorizado a crear un nuevo caso en:",
+            "ru": "Пользователь имеет право создавать новое дело в:",
+            "it": "L'utente è autorizzato a creare un nuovo caso il:"
+        },
+        "UserIsNeverAllowedToCreateNewAppeal": {
+            "description": "User is never allowed to create new appeal",
+            "en": "User is never allowed to create new appeal",
+            "de": "Benutzer darf nie neuen Entbannungsantrag stellen",
+            "at": "Benutzer darf nie neuen Entbannungsantrag stellen",
+            "fr": "L'utilisateur n'est jamais autorisé à créer un nouveau cas",
+            "es": "El usuario nunca está autorizado a crear un nuevo caso",
+            "ru": "Пользователь никогда не имеет права создавать новое дело",
+            "it": "L'utente non è mai autorizzato a creare un nuovo caso"
+        },
+        "Edit": {
+            "description": "Edit",
+            "en": "Edit",
+            "de": "Bearbeiten",
+            "at": "Bearbeiten",
+            "fr": "Modifier",
+            "es": "Editar",
+            "ru": "Редактировать",
+            "it": "Modifica"
+        },
+        "Status": {
+            "description": "Status",
+            "en": "Status",
+            "de": "Status",
+            "at": "Status",
+            "fr": "Statut",
+            "es": "Estado",
+            "ru": "Статус",
+            "it": "Stato"
+        },
+        "Updated": {
+            "description": "Updated",
+            "en": "Appeal updated.",
+            "de": "Antrag aktualisiert.",
+            "at": "Antrag aktualisiert.",
+            "fr": "Demande mise à jour.",
+            "es": "Solicitud actualizada.",
+            "ru": "Обращение обновлено.",
+            "it": "Appeal aggiornato."
+        },
+        "FailedToUpdate": {
+            "description": "Failed to update appeal",
+            "en": "Failed to update appeal.",
+            "de": "Konnte Entbannungsantrag nicht aktualisieren.",
+            "at": "Konnte Entbannungsantrag nicht aktualisieren.",
+            "fr": "Impossible de mettre à jour la demande.",
+            "es": "No se pudo actualizar la solicitud.",
+            "ru": "Не удалось обновить обращение.",
+            "it": "Impossibile aggiornare il reclamo."
         }
     },
     "ModCaseTable": {

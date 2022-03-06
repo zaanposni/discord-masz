@@ -31,6 +31,15 @@ string connectionString =
             $"Uid={      Environment.GetEnvironmentVariable("MYSQL_USER")};" +
             $"Pwd={      Environment.GetEnvironmentVariable("MYSQL_PASSWORD")};";
 
+if (false) {
+    connectionString =
+            $"Server=localhost;" +
+            $"Port=3306;" +
+            $"Database=masz;" +
+            $"Uid=root;" +
+            $"Pwd=root;";
+}
+
 builder.Services.AddDbContext<DataContext>(x => x.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddControllers()

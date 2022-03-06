@@ -16,14 +16,14 @@
         </div>
         <div class="d-flex flex-row flex-wrap conditional-fc">
             <div class="flex-grow-1"></div>
-            <app-count-chart class="flex-grow-1" [titleKey]="'DashboardCharts.Cases'" [max]="max"
+            <app-count-chart class="flex-grow-1" [titleKey]="'DashboardCharts.Cases'"
             [chartLoading]="loading" [chartData]="caseChartData" [chartLabels]="caseChartLabels"></app-count-chart>
-            <div class="flex-grow-1"></div>
-            <app-count-chart class="flex-grow-1" [titleKey]="'DashboardCharts.Punishments'" [max]="max"
-            [chartLoading]="loading" [chartData]="punishmentChartData" [chartLabels]="punishmentChartLabels"></app-count-chart>
             <div class="flex-grow-1"></div>
             <app-count-chart class="flex-grow-1" [titleKey]="'DashboardCharts.Automoderations'"
             [chartLoading]="loading" [chartData]="moderationChartData" [chartLabels]="moderationChartLabels"></app-count-chart>
+            <div class="flex-grow-1"></div>
+            <app-count-chart class="flex-grow-1" [titleKey]="'DashboardCharts.Appeals'"
+            [chartLoading]="loading" [chartData]="appealChartData" [chartLabels]="appealChartLabels"></app-count-chart>
             <div class="flex-grow-1"></div>
         </div>
     </div>

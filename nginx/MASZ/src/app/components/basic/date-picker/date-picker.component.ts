@@ -3,7 +3,6 @@ import * as moment from 'moment';
 import { TimezoneService } from 'src/app/services/timezone.service';
 import { DEFAULT_TIMEZONE } from 'src/app/config/config';
 import { Observable } from 'rxjs';
-import { NgxMatDateAdapter } from '@angular-material-components/datetime-picker';
 
 @Component({
   selector: 'app-date-picker',
@@ -16,7 +15,7 @@ export class DatePickerComponent implements OnInit {
   currentTimezone: string = DEFAULT_TIMEZONE;
   invertedCurrentTimezone: string = DEFAULT_TIMEZONE;
 
-  @Input() dateChangedInParent?: Observable<Date|moment.Moment>;
+  @Input() dateChangedInParent?: Observable<Date|moment.Moment|string>;
   @Input() placeholder: string = 'DTPicker.ChooseADate';
 
   @Output() dateChanged = new EventEmitter<moment.Moment>();
@@ -31,6 +30,9 @@ export class DatePickerComponent implements OnInit {
     });
     if (this.dateChangedInParent) {
       this.dateChangedInParent.subscribe(date => {
+        if (typeof date === "string" && date.endsWith('Z')) {
+          date = date.substring(0, date.length - 1) as any;
+        }
         if (date == undefined) {
           this.date = undefined;
           return;

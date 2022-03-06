@@ -1,5 +1,5 @@
 
-<div style="height: 100px;" class="dp-on-big-screen"></div>
+<div style="height: 50px;" class="dp-on-big-screen"></div>
 <div class="d-flex flex-column justify-content-center align-items-center">
     <div class="d-flex flex-column justify-content-center align-items-left cw-75-100">
         <!-- only list for cases and automods -->
@@ -14,6 +14,7 @@
                     <span *ngIf="tab.component == 'config'">{{ 'GuildOverview.Tabs.Config' | translate }}</span>
                     <span *ngIf="tab.component == 'usermap'">{{ 'GuildOverview.Tabs.Usermap' | translate }}</span>
                     <span *ngIf="tab.component == 'usernote'">{{ 'GuildOverview.Tabs.Usernote' | translate }}</span>
+                    <span *ngIf="tab.component == 'appeals'">{{ 'GuildOverview.Tabs.BanAppeals' | translate }}</span>
                 </ng-template>
                 <ng-template matTabContent>
                     <app-guild-dashboard *ngIf="tab.component == 'dashboard'"></app-guild-dashboard>
@@ -23,6 +24,7 @@
                     <app-guild-config *ngIf="tab.component=='config'"></app-guild-config>
                     <app-guild-usermapping *ngIf="tab.component=='usermap'"></app-guild-usermapping>
                     <app-guild-usernotes *ngIf="tab.component=='usernote'"></app-guild-usernotes>
+                    <app-guild-appeals-table *ngIf="tab.component=='appeals'"></app-guild-appeals-table>
                 </ng-template>
             </mat-tab>
             <!-- dash board optional tab? -->
