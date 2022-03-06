@@ -38,18 +38,34 @@ namespace MASZ.Controllers
             Identity identity = await GetIdentity();
             GuildConfig guildConfig = await GetRegisteredGuild(guildId);
             IUser currentUser = identity.GetCurrentUser();
+            bool isModOrHigher = await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId);
 
-            AppealRepository repo = AppealRepository.CreateDefault(_serviceProvider);
+            AppealRepository appealRepo = AppealRepository.CreateDefault(_serviceProvider);
+            ModCaseRepository modCaseRepo = ModCaseRepository.CreateWithBotIdentity(_serviceProvider);
 
-            Appeal appeal = await repo.GetById(id);
+            Appeal appeal = await appealRepo.GetById(id);
             if (appeal.GuildId != guildId)
             {
                 return BadRequest();
             }
 
-            if (appeal.UserId != currentUser.Id && !(await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId)))
+            if (appeal.UserId != currentUser.Id && !isModOrHigher)
             {
                 return Unauthorized();
+            }
+
+            List<ModCaseTableEntry> latestCases = new List<ModCaseTableEntry>();
+            if (isModOrHigher)
+            {
+                List<ModCase> latestCasesRaw = (await modCaseRepo.GetCasesForGuildAndUser(guildId, appeal.UserId)).OrderByDescending(c => c.CreatedAt).Take(3).ToList();
+                foreach (ModCase modCase in latestCasesRaw)
+                {
+                    latestCases.Add(new ModCaseTableEntry(
+                        modCase,
+                        await _discordAPI.FetchUserInfo(modCase.ModId, CacheBehavior.OnlyCache),
+                        await _discordAPI.FetchUserInfo(modCase.UserId, CacheBehavior.OnlyCache)
+                    ));
+                }
             }
 
             return Ok(new AppealView(
@@ -57,7 +73,8 @@ namespace MASZ.Controllers
                 await _discordAPI.FetchUserInfo(appeal.UserId, CacheBehavior.OnlyCache),
                 await _discordAPI.FetchUserInfo(appeal.LastModeratorId, CacheBehavior.OnlyCache),
                 await AppealAnswerRepository.CreateDefault(_serviceProvider).GetForAppeal(id),
-                await AppealStructureRepository.CreateDefault(_serviceProvider).GetForGuild(guildId)
+                await AppealStructureRepository.CreateDefault(_serviceProvider).GetForGuild(guildId),
+                latestCases
             ));
         }
 
