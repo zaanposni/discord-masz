@@ -1,8 +1,8 @@
 {
     "Forms": {
-        "FieldRequired": "Dieses Feld ist erforderlich.",
-        "MaxLength": "Dieses Feld darf maximal {{length}} Zeichen lang sein.",
-        "InvalidWebhookURL": "Dies ist keine gültige Webhook-URL."
+        "FieldRequired": "Des Föd is erfordalich.",
+        "MaxLength": "Des Föd derf maximal {{length}} Zeichn long sei.",
+        "InvalidWebhookURL": "Des is ka gütige Webhook-URL."
     },
     "Select": {
         "Select": "Auswöhn",
@@ -60,22 +60,22 @@
         "Infrastrcture": {
             "Title": "Infrastruktur",
             "DefaultLanguage": {
-                "Explained": "MASZ wird diese Sprache als Standard verwenden, wenn möglich. Jedoch ist es möglich, dass nur eine englische Version verfügbar ist für bestimmte Texte. Gilden-spezifische Einstellungen überschreiben diese Einstellung.",
-                "Field": "Standard-Sprache"
+                "Explained": "MASZ wiad de Sproch ois Standard vawendn, wenns geht. Jedoch ists möglich, dass nua a englische Version fia monche Texte vafügbar is. Güdn-spezifische Eistellungen wean diese Eistellung übaschreibn.",
+                "Field": "Standard-Sproch"
             },
             "AuditLogWebhookUrl": {
-                "Explained": "Verwenden Sie einen privaten Webhook, der nur für Siteadmins zugänglich ist, da es sensible Informationen protokollieren könnte.",
+                "Explained": "Vawendns an privaten Webhook, dea nua fia Siteadmins zugänglich is, da dea sensible Infos protokollieren kenntat.",
                 "Field": "Auditlog Webhook URL"
             },
             "PublicFileMode": {
-                "Explained": "Aktivieren Sie dies, um den öffentlichen Zugriff auf alle hochgeladenen Dateien zu ermöglichen.",
-                "Field": "Öffentlicher Dateimodus"
+                "Explained": "Aktivians des, um den öffentlichn Zugriff auf olle hochglodane Dateien zua ermöglichn.",
+                "Field": "Öffentlicha Dateimodus"
             }
         },
         "Embed": {
-            "Title": "Discord Einbettung",
-            "Content": "Diese Einstellung ändert den Inhalt der Einbettung, wenn deine MASZ-Instanz in Discord verknüpft ist.",
-            "ShowIcon": "Zeige das Icon der Anwendung in der Einbettung.",
+            "Title": "Discord Eibettung",
+            "Content": "Die Eistellung ändat den Inhoit da Eibettung, wenn dei MASZ-Instanz in Discord vaknüpft is.",
+            "ShowIcon": "Zeig des Icon da Anwendung in da Eibettung.",
             "TakeToUpdate": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird",
             "Save": {
                 "Button": "Späicheren",
@@ -146,7 +146,7 @@
     },
     "AppealStructureEditDialog": {
         "EditQuestion": "Frage bearbeitn",
-        "Question": "Frage",
+        "Question": "Frog",
         "Cancel": "Obrechn",
         "Confirm": "Zuastima"
     },
@@ -184,8 +184,8 @@
     "ScheduledMessageEditDialog": {
         "EditMessage": "Nachricht aktualisian",
         "Name": "Nom",
-        "Content": "Inhalt",
-        "EditSuccess": "Nachricht erfolgreich aktualisiian.",
+        "Content": "Inhoit",
+        "EditSuccess": "Nachricht erfolgreich aktualisiat.",
         "DeleteSuccess": "Nachricht erfolgreich gelöschian.",
         "Cancel": "Obrechn",
         "Confirm": "Zustima"
@@ -197,7 +197,7 @@
         "Confirm": "Zustima"
     },
     "GuildDialog": {
-        "AllowAppealAfterXDays": "Entbannungsanträge nach x Tagen erlauben",
+        "AllowAppealAfterXDays": "Entbannungsanträge noch x Tagn erlaubn",
         "ImportExistingBans": "Bestehende Sperrn importian",
         "ImportExistingBansDetails": "Des ko bei ana großn Güdn a bissal dauan, oba des wird im Hintagrund ausgfüaht.",
         "AddAGuild": "Güde hinzufügn",
@@ -223,7 +223,7 @@
         "WhoisDetails": "Tua automatisch Infos üba an neichn Nutza on dein internan Webhook schickn.",
         "PublishModerator": "Veröfftnlich Modarationsinfos",
         "PublishModeratorDetails": "A Verdächtiga wird de Meglichkeit hom, zum schaun, wöchana Modarator erm verurtoit hot.",
-        "Done": "Fertig",
+        "Done": "Basst",
         "RegisterGuild": "Güde registrian",
         "UpdateGuild": "Güde aktualisian",
         "FailedToLoadGuilds": "Güde konnt ned glodn wean.",
@@ -244,7 +244,7 @@
         "SavedConfig": "Kondiguration gspeichat.",
         "FailedToSaveConfig": "Konfiguration konnt ned gspeichat wean.",
         "FailedToLoadGuild": "Güdeninfos konnten ned glodn wean.",
-        "FailedToLoadChannels": "Küdnkanoiinformationen konntn ned glodn wean.",
+        "FailedToLoadChannels": "Güdnkanalinformationen konntn ned glodn wean.",
         "MessageSent": {
             "title": "Nochricht gsendet"
         },
@@ -270,7 +270,7 @@
             "title": "Mitglied beigetretn"
         },
         "MemberRemoved": {
-            "title": "Mitglied entfernt"
+            "title": "Mitglied entfeant"
         },
         "BanAdded": {
             "title": "Rauschmuss hinzugfügt"
@@ -294,13 +294,13 @@
             "title": "Mitglied hat einen Sprachkanal verlassn"
         },
         "VoiceMoved": {
-            "title": "Mitglied hat sich in einen anderen Sprachkanal bewegt"
+            "title": "Mitglied hot sich in an ondaren Sprachkanal bewegt"
         },
         "ReactionAdded": {
-            "title": "Reaktion hinzugefügt"
+            "title": "Reaktion hinzugfügt"
         },
         "ReactionRemoved": {
-            "title": "Reaktion entfernt"
+            "title": "Reaktion entfeant"
         }
     },
     "AutomodConfig": {
@@ -381,18 +381,18 @@
         "SavedConfig": "Konfiguration gspeichat.",
         "FailedToSaveConfig": "Konfiguration konnte ned gspeichat wean.",
         "FailedToLoadGuild": "Güdeninfos konnten ned glodn wean.",
-        "FailedToLoadChannels": "Küdnkanoiinformationen konntn ned glodn wean."
+        "FailedToLoadChannels": "Güdnkanalinformationen konntn ned glodn wean."
     },
     "GuildMessages": {
-        "Explained": "Benutze geplante Nachrichten, um Nachrichten zu organisieren und zu koordinieren.",
+        "Explained": "Nutz geplante Nochrichtn, um Nochrichtn zu organisian und zu koordinian.",
         "NameField": "Name",
         "ChannelField": "Kanal",
-        "ContentField": "Inhalt",
-        "QueueMessage": "Nachricht einplanen",
-        "Messages": "Geplante Nachrichten",
-        "SortBy": "Sortieren nach",
+        "ContentField": "Inhoit",
+        "QueueMessage": "Nochricht eiplanen",
+        "Messages": "Geplante Nochrichtn",
+        "SortBy": "Sortian nach",
         "LoadMore": {
-            "Button": "Mehr laden",
+            "Button": "Mehr ladn",
             "Failed": "Nachrichten konntn ned glodn wean."
         }
     },
@@ -458,7 +458,7 @@
             "Dashboard": "Dashboard",
             "Case": "Vorfälle",
             "Automoderation": "Automodarationen",
-            "Messages": "Nachrichten",
+            "Messages": "Nochrichtn",
             "Usernote": "Benutzanotizn",
             "Usermap": "Benutzabeziehungen",
             "Config": "Konfiguration",
@@ -525,7 +525,7 @@
         "SendDmNotification": "Direktnochrichtnbenochrichtigung",
         "HandlePunishment": "Bestrofung ausfian",
         "UploadFiles": "Dateinupload",
-        "Upload": "Upload",
+        "Upload": "Hochlodn",
         "CreateCase": "Vorfoi erstön",
         "UpdateCase": "Vorfoi aktualisian",
         "PublicNotification": "Öffentliche Benochrichtigung",
@@ -549,45 +549,45 @@
         "CaseUpdated": "Vorfoi aktualisiat."
     },
     "AppealCreate": {
-        "Title": "Dein Entbannungsantrag",
-        "Answer": "Antworte auf diese Fragen, um deinen Entbannungsantrag abzuschließen.",
-        "Skip": "Du kannst die Fragen überspringen, wenn du willst.",
-        "View": "Du kannst jederzeit auf dieser Website den Status deines Entbannungsantrags einsehen.",
-        "Save": "Speichern",
-        "Created": "Dein Entbannungsantrag wurde erstellt.",
-        "FailedToCreate": "Entbannungsantrag konnte nicht erstellt werden.",
-        "FailedToLoadQuestions": "Fragen konnten nicht geladen werden."
+        "Title": "Dei Entbannungsantrag",
+        "Answer": "Beantworte die Frogn, um dein Entbannungsantrag abzuschließn.",
+        "Skip": "Du konnst de Frog übaspringen, wennst wüst.",
+        "View": "Du konnst jedazeit auf dea Website den Status vo deim Entbannungsantrag eisehn.",
+        "Save": "Speichan",
+        "Created": "Dei Entbannungsantrag wuad erstöt.",
+        "FailedToCreate": "Entbannungsantrag konnte ned erstöt wean.",
+        "FailedToLoadQuestions": "Fragen konnten ned glodn wean."
     },
     "AppealConfig": {
         "AppealStructure": "Entbannungsantrag Fragebog",
-        "Configure": "Konfiguriere das Formular für den Entbannungsantrag der Gilde.",
-        "Skip": "Benutzer können Fragen überspringen, wenn sie möchten.",
-        "Delete": "Wenn Sie eine Frage löschen, wird sie weiterhin in alten Entbannungsanträgen sichtbar sein.",
-        "NotConfigured": "Wenn Sie keine Fragen konfiguriert haben, können Benutzer keine Entbannungsanträge mehr stellen.",
-        "Save": "Speichern",
-        "NewQuestion": "Neue Frage",
-        "Reordered": "Fragen wurden neu geordnet.",
-        "FailedToReorder": "Fehler beim Neuordnen der Fragen.",
-        "FailedToCreate": "Fehler beim Erstellen der Frage.",
-        "Created": "Die Frage wurde erstellt."
+        "Configure": "Konfiguriere des Formular fia dein Entbannungsantrag der Güde.",
+        "Skip": "Benutzer können Frodn übaspringen, wenns woin.",
+        "Delete": "Wenns a Frog löschn, wiad die Frog weitahin in den oitn Entbannungsanträgen sichtboa sei.",
+        "NotConfigured": "Wenns keine Frogn konfiguriat hobn, kennan Benutzer kane Entbannungsanträge mehr stön.",
+        "Save": "Speichan",
+        "NewQuestion": "Neiche Frog",
+        "Reordered": "Frogn wuadn neich gordnet.",
+        "FailedToReorder": "Fehla beim neich Ordnen der Frogn.",
+        "FailedToCreate": "Fehler beim Erstön da Frog.",
+        "Created": "Die Frog wuad erstöt."
     },
     "AppealCard": {
         "Created": "Erstöt:",
         "Updated": "Aktualisiat:",
-        "AnswerCount": "Benutzer hat {{count}} Fragen beantwortet.",
-        "AllowedNewAppeal": "Benutzer darf einen neuen Antrag erstellen am: "
+        "AnswerCount": "Benutzer hot {{count}} Frogn beantwortet.",
+        "AllowedNewAppeal": "Benutzer deaf an neich Antrag erstön am: "
     },
     "AppealQuestionCard": {
         "YourAnswer": "Deine Antwort",
         "Updated": "Aktualisiat.",
-        "FailedToUpdate": "Fehler beim Aktualisieren der Frage",
-        "Deleted": "Gelöscht.",
-        "FailedToDelete": "Fehler beim Löschen der Frage."
+        "FailedToUpdate": "Fehler beim Aktualisian der Frog",
+        "Deleted": "Glöscht.",
+        "FailedToDelete": "Fehler beim Löschn der Frog."
     },
     "AppealTable": {
-        "Count": "Anzahl",
+        "Count": "Onzoi",
         "Warning": "Warnung",
-        "NotConfigured": "Dieser Server hat kein Formular für den Entbannungsantrag konfiguriert. Du kannst deshalb keinen Entbannungsantrag erstellen.",
+        "NotConfigured": "Diesa Server hot ka Formular fia den Entbannungsantrag konfiguriat. Darum konnst du kan Entbannungsantrag erstön.",
         "SelectMembers": "Mitglieda",
         "SelectedStatus": "Status",
         "FilterSince": "Erstöt vo",
@@ -596,22 +596,22 @@
         "FailedToLoad": "Anträge konnten ned geladen wean.",
         "NoMatches": "Kane Anträge passn zu deina Suach.",
         "CreateNewAppeal": "Neien Entbannungsantrag stellen",
-        "ConfigureAppeals": "Formular konfigurieren"
+        "ConfigureAppeals": "Formular konfigurian"
     },
     "AppealView": {
         "FailedToLoad": "Antrag konnte ned geladen wean.",
         "CreatedAt": "Erstöt am:",
         "UpdatedAt": "Aktualisiert am:",
         "LatestCases": "Neueste Fälle",
-        "ModeratorsDecisionAt": "Entscheidung des Moderatoration am:",
-        "ModeratorsComment": "Kommentar der Moderation",
-        "NewAppeal": "Neuer Antrag",
-        "UserIsAllowedToCreateNewAppealAt": "Benutzer darf neuen Entbannungsantrag am:",
-        "UserIsNeverAllowedToCreateNewAppeal": "Benutzer darf nie neuen Entbannungsantrag stellen",
-        "Edit": "Bearbeiten",
+        "ModeratorsDecisionAt": "Entscheidung vom Modarator am:",
+        "ModeratorsComment": "Kommentar vo da Modaration",
+        "NewAppeal": "Neua Antrag",
+        "UserIsAllowedToCreateNewAppealAt": "Benutzer deaf neichn Entbannungsantrag erstön am:",
+        "UserIsNeverAllowedToCreateNewAppeal": "Benutzer deaf nie an neichn Entbannungsantrag erstön",
+        "Edit": "Beorbeitn",
         "Status": "Status",
-        "Updated": "Antrag aktualisiert.",
-        "FailedToUpdate": "Konnte Entbannungsantrag nicht aktualisieren."
+        "Updated": "Antrag aktualisiat.",
+        "FailedToUpdate": "Konnte Entbannungsantrag ned aktualisian."
     },
     "ModCaseTable": {
         "SelectMembers": "Mitglieda",
@@ -636,7 +636,7 @@
     },
     "ScheduleMessageCard": {
         "Created": "Erstöt:",
-        "Edited": "Bearbeitet:",
+        "Edited": "Beorbeitet:",
         "Edit": "Bearbeitn",
         "Delete": "Leschn"
     },
@@ -669,7 +669,7 @@
         "LastEditModerator": "Aktualisiat vo",
         "Description": "Beschreibung",
         "UploadedFiles": "Hochglodnene Datein",
-        "Upload": "Upload",
+        "Upload": "Hochlodn",
         "Comments": "Kommentare",
         "NewComment": "Neua Kommentar",
         "LockComments": "Kommentare spean",

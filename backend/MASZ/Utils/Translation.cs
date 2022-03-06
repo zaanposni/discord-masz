@@ -788,7 +788,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Datei aktualisiert",
-                Language.at => "Datei aktualisiert",
+                Language.at => "Datei aktualisiat",
                 Language.fr => "Fichier mis à jour",
                 Language.es => "Archivo actualizado",
                 Language.ru => "Файл обновлен",
@@ -801,7 +801,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"Ein **Entbannungsantrag** wurde von <@{actorId}> erstellt.",
-                Language.at => $"Ein **Entbannungsantrag** wurde von <@{actorId}> erstellt.",
+                Language.at => $"A **Entbannungsantrag** wuad vo <@{actorId}> erstöt.",
                 Language.fr => $"Un **appel de bannissement** a été créé par <@{actorId}>.",
                 Language.es => $"Un **apelación de prohibición** ha sido creado por <@{actorId}>.",
                 Language.ru => $"Заявка на **бан** создана пользователем <@{actorId}>.",
@@ -814,7 +814,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"Ein **Entbannungsantrag** für <@{userId}> wurde von <@{actorId}> aktualisiert.",
-                Language.at => $"Ein **Entbannungsantrag** für <@{userId}> wurde von <@{actorId}> aktualisiert.",
+                Language.at => $"A **Entbannungsantrag** fia <@{userId}> wuad vo <@{actorId}> aktualisiat.",
                 Language.fr => $"Un **appel de bannissement** pour <@{userId}> a été mis à jour par <@{actorId}>.",
                 Language.es => $"Un **apelación de prohibición** para <@{userId}> ha sido actualizado por <@{actorId}>.",
                 Language.ru => $"Заявка на **бан** для <@{userId}> была обновлена пользователем <@{actorId}>.",
@@ -1217,7 +1217,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"Entbannungsantrag #{appealId} genehmigt: \"{reason}\"",
-                Language.at => $"Entbannungsantrag #{appealId} genehmigt: \"{reason}\"",
+                Language.at => $"Entbannungsantrag #{appealId} gnehmigt: \"{reason}\"",
                 Language.fr => $"Appel de bannissement #{appealId} approuvé : \"{reason}\"",
                 Language.es => $"Solicitud de prohibición # {appealId} aprobada: \"{reason} \"",
                 Language.ru => $"Обжалование забанения # {appealId} одобрено: \"{reason} \"",
@@ -2283,7 +2283,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Datenbank",
-                Language.at => "Datenbank",
+                Language.at => "Datenbok",
                 Language.fr => "Base de données",
                 Language.es => "Base de datos",
                 Language.ru => "База данных",
@@ -2296,7 +2296,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Interner Cache",
-                Language.at => "Interner Cache",
+                Language.at => "Interna Cache",
                 Language.fr => "Cache interne",
                 Language.es => "Cache interno",
                 Language.ru => "Внутренний кеш",
@@ -2309,7 +2309,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Momentan angemeldete Benutzer",
-                Language.at => "Momentan angemeldete Benutzer",
+                Language.at => "Momentan ogmödete Benutza",
                 Language.fr => "Utilisateurs actuellement connectés",
                 Language.es => "Usuarios actualmente conectados",
                 Language.ru => "Пользователи, в настоящее время в системе",
@@ -2322,7 +2322,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"Letzter Abmeldungszeitpunkt: {time}.",
-                Language.at => $"Letzter Abmeldungszeitpunkt: {time}.",
+                Language.at => $"Letzta Abmeldungszeitpunkt: {time}.",
                 Language.fr => $"Dernière déconnexion à {time}.",
                 Language.es => $"Última desconexión en {time}.",
                 Language.ru => $"Последнее отключение: {time}.",
@@ -2361,7 +2361,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Kanal nachher",
-                Language.at => "Kanal nachher",
+                Language.at => "Kanal nochher",
                 Language.fr => "Canaliser après",
                 Language.es => "Canal después",
                 Language.ru => "Канал после",
@@ -2400,7 +2400,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Nachricht",
-                Language.at => "Nachricht",
+                Language.at => "Nochricht",
                 Language.fr => "Message",
                 Language.es => "Mensaje",
                 Language.ru => "Сообщение",
@@ -2504,7 +2504,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Alt",
-                Language.at => "Alt",
+                Language.at => "Oit",
                 Language.fr => "Ancien",
                 Language.es => "Viejo",
                 Language.ru => "Старый",
@@ -2517,7 +2517,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Neu",
-                Language.at => "Neu",
+                Language.at => "Neich",
                 Language.fr => "Nouveau",
                 Language.es => "Nuevo",
                 Language.ru => "Новый",
@@ -2530,7 +2530,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Leer",
-                Language.at => "Leer",
+                Language.at => "Lea",
                 Language.fr => "Vide",
                 Language.es => "Vacío",
                 Language.ru => "Пустой",
@@ -2556,7 +2556,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Inhalt",
-                Language.at => "Inhalt",
+                Language.at => "Inhoi",
                 Language.fr => "Teneur",
                 Language.es => "Contenido",
                 Language.ru => "Содержание",
@@ -2764,7 +2764,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Mitglied entfernt",
-                Language.at => "Mitglied entfernt",
+                Language.at => "Mitglied entfeant",
                 Language.fr => "Membre supprimé",
                 Language.es => "Miembro eliminado",
                 Language.ru => "Участник удален",
@@ -2881,7 +2881,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Entfernt",
-                Language.at => "Entfernt",
+                Language.at => "Entfeant",
                 Language.fr => "Supprimé",
                 Language.es => "Remoto",
                 Language.ru => "Удаленный",
@@ -2907,7 +2907,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Reaktion entfernt",
-                Language.at => "Reaktion entfernt",
+                Language.at => "Reaktion entfeant",
                 Language.fr => "Réaction supprimée",
                 Language.es => "Reacción eliminada",
                 Language.ru => "Реакция удалена",
@@ -2920,7 +2920,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Sprachkanal betreten",
-                Language.at => "Sprachkanal betreten",
+                Language.at => "Sprachkanal betretn",
                 Language.fr => "Canal vocal rejoint",
                 Language.es => "Canal de voz unido",
                 Language.ru => "Голосовой канал присоединился",
@@ -2933,7 +2933,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Sprachkanal verlassen",
-                Language.at => "Sprachkanal verlassen",
+                Language.at => "Sprachkanal valossn",
                 Language.fr => "Canal vocal quitté",
                 Language.es => "Canal de voz abandonado",
                 Language.ru => "Голосовой канал покинул",
@@ -2946,7 +2946,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Sprachkanal gewechselt",
-                Language.at => "Sprachkanal gewechselt",
+                Language.at => "Sprachkanal gwechslt",
                 Language.fr => "Canal vocal changé",
                 Language.es => "Canal de voz cambiado",
                 Language.ru => "Переключен голосовой канал",
@@ -3269,7 +3269,7 @@ namespace MASZ.Utils
                 APIError.InvalidIdentity => PreferredLanguage switch
                 {
                     Language.de => "Ungültige Identität",
-                    Language.at => "Ungültige Identität",
+                    Language.at => "Ungütige Identität",
                     Language.fr => "Identité invalide",
                     Language.es => "Identidad inválida",
                     Language.ru => "Неверная личность",
@@ -3499,7 +3499,7 @@ namespace MASZ.Utils
                 APIError.InvalidDateForScheduledMessage => PreferredLanguage switch
                 {
                     Language.de => "Das Ausführungsdatum muss mindestens eine Minute in der Zukunft liegen.",
-                    Language.at => "Das Ausführungsdatum muss mindestens eine Minute in der Zukunft liegen.",
+                    Language.at => "Des Ausführungsdatum muas mindestens a Minutn in da Zukunft liagn.",
                     Language.fr => "La date d'exécution doit être au moins une minute dans le futur.",
                     Language.es => "La fecha de ejecución debe ser al menos un minuto en el futuro.",
                     Language.ru => "Дата выполнения должна быть не менее одной минуты в будущем.",
@@ -3516,7 +3516,7 @@ namespace MASZ.Utils
                 CaseCreationType.Default => PreferredLanguage switch
                 {
                     Language.de => "Default",
-                    Language.at => "Default",
+                    Language.at => "Standard",
                     Language.fr => "Défaut",
                     Language.es => "Defecto",
                     Language.ru => "Дефолт",
@@ -3734,7 +3734,7 @@ namespace MASZ.Utils
                 LockedCommentStatus.Unlocked => PreferredLanguage switch
                 {
                     Language.de => "Entsperrt",
-                    Language.at => "Entsperrt",
+                    Language.at => "Entspeat",
                     Language.fr => "Débloqué",
                     Language.es => "Desbloqueado",
                     Language.ru => "Разблокирован",
@@ -3905,7 +3905,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.MemberRemoved => PreferredLanguage switch
                 {
                     Language.de => "Mitglied entfernt",
-                    Language.at => "Mitglied entfernt",
+                    Language.at => "Mitglied entfeant",
                     Language.fr => "Membre supprimé",
                     Language.es => "Miembro eliminado",
                     Language.ru => "Участник удален",
@@ -3985,7 +3985,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.VoiceMoved => PreferredLanguage switch
                 {
                     Language.de => "Mitglied hat sich in einen anderen Sprachkanal bewegt",
-                    Language.at => "Mitglied hat sich in einen anderen Sprachkanal bewegt",
+                    Language.at => "Mitglied hot sich in an ondaren Sprachkanal bewegt",
                     Language.fr => "Membre a déplacé le salon vocal",
                     Language.es => "Miembro movió al canal de voz",
                     Language.ru => "Участник переместился в другой голосовой канал",
@@ -3995,7 +3995,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.ReactionAdded => PreferredLanguage switch
                 {
                     Language.de => "Reaktion hinzugefügt",
-                    Language.at => "Reaktion hinzugefügt",
+                    Language.at => "Reaktion hinzugfügt",
                     Language.fr => "Réaction ajoutée",
                     Language.es => "Reacción añadida",
                     Language.ru => "Реакция добавлена",
@@ -4005,7 +4005,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.ReactionRemoved => PreferredLanguage switch
                 {
                     Language.de => "Reaktion entfernt",
-                    Language.at => "Reaktion entfernt",
+                    Language.at => "Reaktion entfeant",
                     Language.fr => "Réaction supprimée",
                     Language.es => "Reacción eliminada",
                     Language.ru => "Реакция удалена",
@@ -4022,7 +4022,7 @@ namespace MASZ.Utils
                 ScheduledMessageFailureReason.Unknown => PreferredLanguage switch
                 {
                     Language.de => "Unbekannter Fehler",
-                    Language.at => "Unbekannter Fehler",
+                    Language.at => "Unbekannta Föhla",
                     Language.fr => "Erreur inconnue",
                     Language.es => "Error desconocido",
                     Language.ru => "Неизвестная ошибка",
@@ -4032,7 +4032,7 @@ namespace MASZ.Utils
                 ScheduledMessageFailureReason.ChannelNotFound => PreferredLanguage switch
                 {
                     Language.de => "Kanal nicht gefunden",
-                    Language.at => "Kanal nicht gefunden",
+                    Language.at => "Kanal ned gfundn",
                     Language.fr => "Canal introuvable",
                     Language.es => "Canal no encontrado",
                     Language.ru => "Канал не найден",
@@ -4069,7 +4069,7 @@ namespace MASZ.Utils
                 ScheduledMessageStatus.Sent => PreferredLanguage switch
                 {
                     Language.de => "Gesendet",
-                    Language.at => "Gesendet",
+                    Language.at => "Gsendet",
                     Language.fr => "Envoyé",
                     Language.es => "Enviado",
                     Language.ru => "Отправлено",
@@ -4079,7 +4079,7 @@ namespace MASZ.Utils
                 ScheduledMessageStatus.Failed => PreferredLanguage switch
                 {
                     Language.de => "Fehlgeschlagen",
-                    Language.at => "Fehlgeschlagen",
+                    Language.at => "Fehlgschlogn",
                     Language.fr => "Échec",
                     Language.es => "Falló",
                     Language.ru => "Не удалось отправить",
@@ -4116,7 +4116,7 @@ namespace MASZ.Utils
                 AppealStatus.Declined => PreferredLanguage switch
                 {
                     Language.de => "Abgelehnt",
-                    Language.at => "Abgelehnt",
+                    Language.at => "Obglehnt",
                     Language.fr => "Refusé",
                     Language.es => "Denegado",
                     Language.ru => "Отклонен",
