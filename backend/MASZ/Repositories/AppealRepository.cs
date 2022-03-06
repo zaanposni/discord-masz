@@ -51,13 +51,23 @@ namespace MASZ.Repositories
                 await answerRepository.Create(answer);
             }
 
+            _eventHandler.OnAppealCreatedEvent.InvokeAsync(appeal, await DiscordAPI.FetchUserInfo(appeal.UserId, CacheBehavior.OnlyCache));
+
             return appeal;
         }
         public async Task<Appeal> Update(Appeal appeal)
         {
             appeal.UpdatedAt = DateTime.UtcNow;
+
             Database.UpdateAppeal(appeal);
             await Database.SaveChangesAsync();
+
+            _eventHandler.OnAppealUpdatedEvent.InvokeAsync(
+                appeal,
+                await DiscordAPI.FetchUserInfo(appeal.LastModeratorId, CacheBehavior.OnlyCache),
+                await DiscordAPI.FetchUserInfo(appeal.UserId, CacheBehavior.OnlyCache)
+            );
+
             return appeal;
         }
         public async Task<bool> UserIsAllowedToCreateNewAppeal(ulong guildId, ulong userId)

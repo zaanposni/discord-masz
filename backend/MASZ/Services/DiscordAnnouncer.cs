@@ -197,6 +197,54 @@ namespace MASZ.Services
             }
         }
 
+        private async Task AnnounceNewAppeal(Appeal appeal, IUser actor)
+        {
+            using var scope = _serviceProvider.CreateScope();
+
+            _logger.LogInformation($"Announcing new appeal {appeal.Id} for user {appeal.UserId} in guild {appeal.GuildId}.");
+
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(appeal.GuildId);
+
+            if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+            {
+                _logger.LogInformation($"Sending internal webhook for new appeal {appeal.GuildId}/{appeal.UserId}/{appeal.Id} to {guildConfig.ModInternalNotificationWebhook}.");
+
+                try
+                {
+                    EmbedBuilder embed = await appeal.CreateEmbedForNewAppeal(actor, scope.ServiceProvider);
+                    await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError(e, $"Error while announcing new appeal {appeal.GuildId}/{appeal.UserId}/{appeal.Id} to {guildConfig.ModInternalNotificationWebhook}.");
+                }
+            }
+        }
+
+        private async Task AnnounceUpdatedAppeal(Appeal appeal, IUser actor, IUser user)
+        {
+            using var scope = _serviceProvider.CreateScope();
+
+            _logger.LogInformation($"Announcing new appeal {appeal.Id} for user {appeal.UserId} in guild {appeal.GuildId}.");
+
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(appeal.GuildId);
+
+            if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+            {
+                _logger.LogInformation($"Sending internal webhook for new appeal {appeal.GuildId}/{appeal.UserId}/{appeal.Id} to {guildConfig.ModInternalNotificationWebhook}.");
+
+                try
+                {
+                    EmbedBuilder embed = await appeal.CreateEmbedForUpdatedAppeal(actor, user, scope.ServiceProvider);
+                    await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, embed.Build());
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError(e, $"Error while announcing new appeal {appeal.GuildId}/{appeal.UserId}/{appeal.Id} to {guildConfig.ModInternalNotificationWebhook}.");
+                }
+            }
+        }
+
         private async Task AnnounceFile(UploadedFile file, ModCase modCase, IUser actor, RestAction action)
         {
             using var scope = _serviceProvider.CreateScope();
