@@ -796,30 +796,30 @@ namespace MASZ.Utils
                 _ => "File updated",
             };
         }
-        public string NotificationAppealsCreate(IUser actor)
+        public string NotificationAppealsCreate(ulong actorId)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Ein **Entbannungsantrag** wurde von <@{actor.Id}> erstellt.",
-                Language.at => $"Ein **Entbannungsantrag** wurde von <@{actor.Id}> erstellt.",
-                Language.fr => $"Un **appel de bannissement** a été créé par <@{actor.Id}>.",
-                Language.es => $"Un **apelación de prohibición** ha sido creado por <@{actor.Id}>.",
-                Language.ru => $"Заявка на **бан** создана пользователем <@{actor.Id}>.",
-                Language.it => $"Un **appello al ban** è stato creato da <@{actor.Id}>.",
-                _ => $"A **ban appeal** has been created by <@{actor.Id}>.",
+                Language.de => $"Ein **Entbannungsantrag** wurde von <@{actorId}> erstellt.",
+                Language.at => $"Ein **Entbannungsantrag** wurde von <@{actorId}> erstellt.",
+                Language.fr => $"Un **appel de bannissement** a été créé par <@{actorId}>.",
+                Language.es => $"Un **apelación de prohibición** ha sido creado por <@{actorId}>.",
+                Language.ru => $"Заявка на **бан** создана пользователем <@{actorId}>.",
+                Language.it => $"Un **appello al ban** è stato creato da <@{actorId}>.",
+                _ => $"A **ban appeal** has been created by <@{actorId}>.",
             };
         }
-        public string NotificationAppealsUpdate(IUser user, IUser actor)
+        public string NotificationAppealsUpdate(ulong userId, ulong actorId)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Ein **Entbannungsantrag** für <@{user.Id}> wurde von <@{actor.Id}> aktualisiert.",
-                Language.at => $"Ein **Entbannungsantrag** für <@{user.Id}> wurde von <@{actor.Id}> aktualisiert.",
-                Language.fr => $"Un **appel de bannissement** pour <@{user.Id}> a été mis à jour par <@{actor.Id}>.",
-                Language.es => $"Un **apelación de prohibición** para <@{user.Id}> ha sido actualizado por <@{actor.Id}>.",
-                Language.ru => $"Заявка на **бан** для <@{user.Id}> была обновлена пользователем <@{actor.Id}>.",
-                Language.it => $"Un **appello al ban** per <@{user.Id}> è stato aggiornato da <@{actor.Id}>.",
-                _ => $"A **ban appeal** for <@{user.Id}> has been updated by <@{actor.Id}>.",
+                Language.de => $"Ein **Entbannungsantrag** für <@{userId}> wurde von <@{actorId}> aktualisiert.",
+                Language.at => $"Ein **Entbannungsantrag** für <@{userId}> wurde von <@{actorId}> aktualisiert.",
+                Language.fr => $"Un **appel de bannissement** pour <@{userId}> a été mis à jour par <@{actorId}>.",
+                Language.es => $"Un **apelación de prohibición** para <@{userId}> ha sido actualizado por <@{actorId}>.",
+                Language.ru => $"Заявка на **бан** для <@{userId}> была обновлена пользователем <@{actorId}>.",
+                Language.it => $"Un **appello al ban** per <@{userId}> è stato aggiornato da <@{actorId}>.",
+                _ => $"A **ban appeal** for <@{userId}> has been updated by <@{actorId}>.",
             };
         }
         public string NotificationAppealsStatus()
@@ -828,11 +828,11 @@ namespace MASZ.Utils
             {
                 Language.de => "Status",
                 Language.at => "Status",
-                Language.fr => "statut",
-                Language.es => "estado",
+                Language.fr => "Statut",
+                Language.es => "Estado",
                 Language.ru => "статус",
-                Language.it => "stato",
-                _ => "status",
+                Language.it => "Stato",
+                _ => "Status",
             };
         }
         public string NotificationAppealsAppeal()

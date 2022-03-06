@@ -60,6 +60,9 @@ namespace MASZ.Services
             _eventHandler.OnGuildLevelAuditLogConfigCreated += async (a, b) => await AnnounceGuildAuditLog(a, b, RestAction.Created);
             _eventHandler.OnGuildLevelAuditLogConfigUpdated += async (a, b) => await AnnounceGuildAuditLog(a, b, RestAction.Updated);
             _eventHandler.OnGuildLevelAuditLogConfigDeleted += async (a, b) => await AnnounceGuildAuditLog(a, b, RestAction.Deleted);
+
+            _eventHandler.OnAppealCreated += async (a, b) => await AnnounceNewAppeal(a, b);
+            _eventHandler.OnAppealUpdated += async (a, b, c) => await AnnounceUpdatedAppeal(a, b, c);
         }
 
         private async Task AnnounceTipsInNewGuild(GuildConfig guildConfig, bool importExistingBans)

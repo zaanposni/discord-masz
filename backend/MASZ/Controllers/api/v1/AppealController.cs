@@ -232,6 +232,7 @@ namespace MASZ.Controllers
 
             appeal.Status = dto.Status;
             appeal.ModeratorComment = dto.ModeratorComment;
+            appeal.LastModeratorId = currentUser.Id;
             appeal.UserCanCreateNewAppeals = dto.UserCanCreateNewAppeals;
 
             await repo.Update(appeal);

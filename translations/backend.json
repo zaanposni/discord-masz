@@ -700,39 +700,39 @@
             "Create": {
                 "description": "A appeal has been created.",
                     "var_types": {
-                        "actor": "IUser"
+                        "actorId": "ulong"
                     },
-                    "en": "A **ban appeal** has been created by <@{actor.Id}>.",
-                    "de": "Ein **Entbannungsantrag** wurde von <@{actor.Id}> erstellt.",
-                    "at": "Ein **Entbannungsantrag** wurde von <@{actor.Id}> erstellt.",
-                    "fr": "Un **appel de bannissement** a été créé par <@{actor.Id}>.",
-                    "es": "Un **apelación de prohibición** ha sido creado por <@{actor.Id}>.",
-                    "ru": "Заявка на **бан** создана пользователем <@{actor.Id}>.",
-                    "it": "Un **appello al ban** è stato creato da <@{actor.Id}>."
+                    "en": "A **ban appeal** has been created by <@{actorId}>.",
+                    "de": "Ein **Entbannungsantrag** wurde von <@{actorId}> erstellt.",
+                    "at": "Ein **Entbannungsantrag** wurde von <@{actorId}> erstellt.",
+                    "fr": "Un **appel de bannissement** a été créé par <@{actorId}>.",
+                    "es": "Un **apelación de prohibición** ha sido creado por <@{actorId}>.",
+                    "ru": "Заявка на **бан** создана пользователем <@{actorId}>.",
+                    "it": "Un **appello al ban** è stato creato da <@{actorId}>."
             },
             "Update": {
                 "description": "A appeal has been updated.",
                     "var_types": {
-                        "user": "IUser",
-                        "actor": "IUser"
+                        "userId": "ulong",
+                        "actorId": "ulong"
                     },
-                    "en": "A **ban appeal** for <@{user.Id}> has been updated by <@{actor.Id}>.",
-                    "de": "Ein **Entbannungsantrag** für <@{user.Id}> wurde von <@{actor.Id}> aktualisiert.",
-                    "at": "Ein **Entbannungsantrag** für <@{user.Id}> wurde von <@{actor.Id}> aktualisiert.",
-                    "fr": "Un **appel de bannissement** pour <@{user.Id}> a été mis à jour par <@{actor.Id}>.",
-                    "es": "Un **apelación de prohibición** para <@{user.Id}> ha sido actualizado por <@{actor.Id}>.",
-                    "ru": "Заявка на **бан** для <@{user.Id}> была обновлена пользователем <@{actor.Id}>.",
-                    "it": "Un **appello al ban** per <@{user.Id}> è stato aggiornato da <@{actor.Id}>."
+                    "en": "A **ban appeal** for <@{userId}> has been updated by <@{actorId}>.",
+                    "de": "Ein **Entbannungsantrag** für <@{userId}> wurde von <@{actorId}> aktualisiert.",
+                    "at": "Ein **Entbannungsantrag** für <@{userId}> wurde von <@{actorId}> aktualisiert.",
+                    "fr": "Un **appel de bannissement** pour <@{userId}> a été mis à jour par <@{actorId}>.",
+                    "es": "Un **apelación de prohibición** para <@{userId}> ha sido actualizado por <@{actorId}>.",
+                    "ru": "Заявка на **бан** для <@{userId}> была обновлена пользователем <@{actorId}>.",
+                    "it": "Un **appello al ban** per <@{userId}> è stato aggiornato da <@{actorId}>."
             },
             "Status": {
                 "description": "The word status",
-                "en": "status",
+                "en": "Status",
                 "de": "Status",
                 "at": "Status",
-                "fr": "statut",
-                "es": "estado",
+                "fr": "Statut",
+                "es": "Estado",
                 "ru": "статус",
-                "it": "stato"
+                "it": "Stato"
             },
             "Appeal": {
                 "description": "The word appeal",

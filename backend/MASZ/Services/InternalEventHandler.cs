@@ -386,7 +386,7 @@ namespace MASZ.Services
 
         internal readonly AsyncEvent<Func<Appeal, IUser, Task>> OnAppealCreatedEvent = new("OnAppealCreatedEvent");
 
-        public event Func<Appeal, IUser, IUser,Task> OnAppealUpdated
+        public event Func<Appeal, IUser, IUser, Task> OnAppealUpdated
         {
             add { OnAppealUpdatedEvent.Add(value); }
             remove { OnAppealUpdatedEvent.Remove(value); }
