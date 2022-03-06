@@ -5,19 +5,19 @@
             <mat-spinner *ngIf="appeal.loading || !appeal.content"></mat-spinner>
             <ng-container *ngIf="!appeal.loading && appeal.content">
                 <!-- Header -->
-                <div class="d-flex flex-row align-items-center mb-3">
-                    <div class="crs-ptr" style="font-size: 56px;" routerLink="/guilds/{{ this.guildId }}" title="back to guild">
+                <div class="d-flex flex-row conditional-fc align-items-center mb-3">
+                    <div class="crs-ptr my-1" style="font-size: 56px;" routerLink="/guilds/{{ this.guildId }}" title="back to guild">
                         <mat-icon [inline]="true">arrow_back_ios</mat-icon>
                     </div>
                     <img *ngIf="this.appeal.content?.user"
-                        class="rounded-circle z-depth-0 mr-1"
+                        class="rounded-circle z-depth-0 m-1"
                         [attr.src]="this.appeal.content?.user?.imageUrl"
                         alt="avatar"
                         height="140"
                         onerror="this.src='/assets/img/default_profile.png';" />
                     <div class="d-flex flex-column ml-2">
-                        <div class="d-flex flex-row align-items-center mb-1">
-                            <span class="badge mat-display-1 font-weight-bold mb-0 mr-1 p-2"
+                        <div class="d-flex flex-row conditional-fc align-items-center mb-1">
+                            <span class="badge mat-display-1 font-weight-bold mb-0 m-1 p-2"
                                 style="padding: .1rem .4rem"
                                 [class.badge-primary]="appeal.content.status === AppealStatus.Pending"
                                 [class.badge-success]="appeal.content.status === AppealStatus.Approved"
