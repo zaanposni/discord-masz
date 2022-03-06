@@ -25,7 +25,6 @@ export class GuildAppealsCardComponent implements OnInit {
       this.status = data.find(x => x.key === this.entry.status)?.value ?? "Unknown";
     });
 
-    console.log(this.entry.answers);
     this.questionsAnswered = { count: this.entry.answers.filter(x => x.answer?.trim()).length };
   }
 }
