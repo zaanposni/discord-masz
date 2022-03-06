@@ -7,6 +7,9 @@ namespace MASZ.Models.Views
     {
         public int Id { get; set; }
         public DiscordUserView User { get; set; }
+        public string UserId { get; set; }
+        public string Username { get; set; }
+        public string Discriminator { get; set; }
         public string Mail { get; set; }
         public string GuildId { get; set; }
         public AppealStatus Status { get; set; }
@@ -23,6 +26,9 @@ namespace MASZ.Models.Views
         {
             Id = appeal.Id;
             User = DiscordUserView.CreateOrDefault(user);
+            UserId = appeal.UserId.ToString();
+            Username = appeal.Username;
+            Discriminator = appeal.Discriminator;
             Mail = appeal.Mail;
             GuildId = appeal.GuildId.ToString();
             Status = appeal.Status;

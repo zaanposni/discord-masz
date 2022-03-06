@@ -6,6 +6,9 @@ import { IAppealAnswer } from "./IAppealAnswer";
 export interface IAppealView {
     id: number;
     user?: DiscordUser;
+    userId: string;
+    username: string;
+    discriminator: string;
     mail?: string;
     guildId: number;
     status: AppealStatus;

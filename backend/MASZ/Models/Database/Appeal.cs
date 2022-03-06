@@ -8,6 +8,8 @@ namespace MASZ.Models
         [Key]
         public int Id { get; set; }
         public ulong UserId { get; set; }
+        public string Username { get; set; }
+        public string Discriminator { get; set; }
         public string Mail { get; set; }
         public ulong GuildId { get; set; }
         public AppealStatus Status { get; set; }

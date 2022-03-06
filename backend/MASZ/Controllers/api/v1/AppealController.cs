@@ -150,6 +150,8 @@ namespace MASZ.Controllers
 
             Appeal appeal = new();
             appeal.UserId = currentUser.Id;
+            appeal.Username = currentUser.Username;
+            appeal.Discriminator = currentUser.Discriminator;
             appeal.Mail = string.Empty;
             appeal.GuildId = guildId;
 
