@@ -197,6 +197,7 @@
         "Confirm": "Confirm"
     },
     "GuildDialog": {
+        "AllowAppealAfterXDays": "Allow ban appeal after x days",
         "ImportExistingBans": "Import existing bans",
         "ImportExistingBansDetails": "This might take a while for large guilds but will run in the background.",
         "AddAGuild": "Add a guild",

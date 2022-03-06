@@ -197,6 +197,7 @@
         "Confirm": "Zustima"
     },
     "GuildDialog": {
+        "AllowAppealAfterXDays": "Entbannungsanträge nach x Tagen erlauben",
         "ImportExistingBans": "Bestehende Sperrn importian",
         "ImportExistingBansDetails": "Des ko bei ana großn Güdn a bissal dauan, oba des wird im Hintagrund ausgfüaht.",
         "AddAGuild": "Güde hinzufügn",

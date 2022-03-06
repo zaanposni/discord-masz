@@ -197,6 +197,7 @@
         "Confirm": "Bestätigen"
     },
     "GuildDialog": {
+        "AllowAppealAfterXDays": "Entbannungsanträge nach x Tagen erlauben",
         "ImportExistingBans": "Bestehende Sperren importieren",
         "ImportExistingBansDetails": "Dies kann bei großen Gilden eine Weile dauern, aber wird im Hintergrund ausgeführt.",
         "AddAGuild": "Gilde hinzufügen",

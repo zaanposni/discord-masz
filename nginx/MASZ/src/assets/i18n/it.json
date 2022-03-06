@@ -197,6 +197,7 @@
         "Confirm": "Confermare"
     },
     "GuildDialog": {
+        "AllowAppealAfterXDays": "Consenti reclamo bando dopo x giorni",
         "ImportExistingBans": "Importa divieti esistenti",
         "ImportExistingBansDetails": "Questo potrebbe richiedere un po' di tempo per le gilde grandi, ma verrà eseguito in background.",
         "AddAGuild": "Aggiungi una gilda",

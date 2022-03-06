@@ -46,7 +46,8 @@ export class GuildEditComponent implements OnInit {
       strictPermissionCheck: [''],
       executeWhoisOnJoin: [''],
       publishModeratorInfo: [''],
-      preferredLanguage: ['']
+      preferredLanguage: [''],
+      allowBanAppealAfterDays: ['', Validators.pattern("^[0-9]+$")]
     });
 
       this.route.paramMap.subscribe(params => {
@@ -91,7 +92,8 @@ export class GuildEditComponent implements OnInit {
         strictPermissionCheck: data.strictModPermissionCheck,
         executeWhoisOnJoin: data.executeWhoisOnJoin,
         publishModeratorInfo: data.publishModeratorInfo,
-        preferredLanguage: data.preferredLanguage
+        preferredLanguage: data.preferredLanguage,
+        allowBanAppealAfterDays: data.allowBanAppealAfterDays
       });
       this.currentGuildConfig = { loading: false, content: data };
     }, error => {
@@ -111,7 +113,8 @@ export class GuildEditComponent implements OnInit {
       strictModPermissionCheck: (this.configGroup.value?.strictPermissionCheck != '' ? this.configGroup.value?.strictPermissionCheck : false) ?? false,
       executeWhoisOnJoin: (this.configGroup.value?.executeWhoisOnJoin != '' ? this.configGroup.value?.executeWhoisOnJoin : false) ?? false,
       publishModeratorInfo: (this.configGroup.value?.publishModeratorInfo != '' ? this.configGroup.value?.publishModeratorInfo : false) ?? false,
-      preferredLanguage: this.configGroup.value?.preferredLanguage != '' ? this.configGroup.value?.preferredLanguage : 0
+      preferredLanguage: this.configGroup.value?.preferredLanguage != '' ? this.configGroup.value?.preferredLanguage : 0,
+      allowBanAppealAfterDays: this.configGroup.value?.allowBanAppealAfterDays != '' ? this.configGroup.value?.allowBanAppealAfterDays : 0
     }
 
     this.api.putSimpleData(`/guilds/${this.currentGuild?.content?.id}`, data).subscribe(() => {

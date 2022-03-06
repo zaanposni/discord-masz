@@ -1466,6 +1466,16 @@
         }
     },
     "GuildDialog": {
+        "AllowAppealAfterXDays": {
+            "description": "allow appeal after x days",
+            "en": "Allow ban appeal after x days",
+            "de": "Entbannungsanträge nach x Tagen erlauben",
+            "at": "Entbannungsanträge nach x Tagen erlauben",
+            "fr": "Autoriser l'appel d'une décision après x jours",
+            "es": "Permitir que los miembros del grupo puedan presentar una reclamación de expulsión después de x días",
+            "ru": "Разрешить обжалование бана после x дней",
+            "it": "Consenti reclamo bando dopo x giorni"
+        },
         "ImportExistingBans": {
             "description": "import existing bans",
             "en": "Import existing bans",

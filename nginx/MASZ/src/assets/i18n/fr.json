@@ -197,6 +197,7 @@
         "Confirm": "Confirmer"
     },
     "GuildDialog": {
+        "AllowAppealAfterXDays": "Autoriser l'appel d'une décision après x jours",
         "ImportExistingBans": "Importer des interdictions existantes",
         "ImportExistingBansDetails": "Cela peut prendre un certain temps pour les grandes guildes, mais se déroulera en arrière-plan.",
         "AddAGuild": "Ajouter une guilde",

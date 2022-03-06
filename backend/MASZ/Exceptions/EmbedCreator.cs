@@ -529,7 +529,7 @@ namespace MASZ.Services
 
             await translator.SetContext(appeal.GuildId);
 
-            EmbedBuilder embed = CreateBasicEmbed(RestAction.Created, provider, actor);
+            EmbedBuilder embed = CreateBasicEmbed(RestAction.Updated, provider, actor);
 
             if (actor != null)
             {
