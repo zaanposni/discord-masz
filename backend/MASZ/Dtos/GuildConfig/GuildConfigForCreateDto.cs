@@ -27,5 +27,7 @@ namespace MASZ.Dtos.GuildConfig
         [Required(ErrorMessage = "PublishModeratorInfo field is required")]
         public bool PublishModeratorInfo { get; set; }
         public Language? PreferredLanguage { get; set; } = null;
+        [Required(ErrorMessage = "AllowBanAppealAfterDays field is required")]
+        public int AllowBanAppealAfterDays { get; set; }
     }
 }

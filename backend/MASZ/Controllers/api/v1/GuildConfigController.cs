@@ -67,7 +67,8 @@ namespace MASZ.Controllers
                 StrictModPermissionCheck = guildConfigForCreateDto.StrictModPermissionCheck,
                 ExecuteWhoisOnJoin = guildConfigForCreateDto.ExecuteWhoisOnJoin,
                 PublishModeratorInfo = guildConfigForCreateDto.PublishModeratorInfo,
-                PreferredLanguage = guildConfigForCreateDto?.PreferredLanguage ?? _config.GetDefaultLanguage()
+                PreferredLanguage = guildConfigForCreateDto?.PreferredLanguage ?? _config.GetDefaultLanguage(),
+                AllowBanAppealAfterDays = guildConfigForCreateDto.AllowBanAppealAfterDays
             };
 
             guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).CreateGuildConfig(guildConfig, importExistingBans);
@@ -107,6 +108,7 @@ namespace MASZ.Controllers
             guildConfig.ExecuteWhoisOnJoin = newValue.ExecuteWhoisOnJoin;
             guildConfig.PublishModeratorInfo = newValue.PublishModeratorInfo;
             guildConfig.PreferredLanguage = newValue.PreferredLanguage;
+            guildConfig.AllowBanAppealAfterDays = newValue.AllowBanAppealAfterDays;
 
             return Ok(await GuildConfigRepository.CreateDefault(_serviceProvider).UpdateGuildConfig(guildConfig));
         }
