@@ -1466,6 +1466,26 @@
         }
     },
     "GuildDialog": {
+        "PublicEmbedMode": {
+            "description": "public embed mode",
+            "en": "Public embed mode",
+            "de": "Öffentlicher Einbettungsmodus",
+            "at": "Öffentlicher Einbettungsmodus",
+            "fr": "Mode d'intégration publique",
+            "es": "Modo de incrustación pública",
+            "ru": "Публичный режим встраивания",
+            "it": "Modalità di incorporamento pubblica"
+        },
+        "PublicEmbedModeExplained": {
+            "description": "public embed mode explained",
+            "en": "This mode enables detailed embeds when linking modcases in discord. This will disclose private information like the suspect, punishments, etc.",
+            "de": "Dieser Modus ermöglicht detaillierte Einbettungen, wenn Vorfälle in Discord verlinkt werden. Dies wird private Informationen wie den Verdächtigen, die Strafen, etc. offenbaren.",
+            "at": "Dieser Modus ermöglicht detaillierte Einbettungen, wenn Vorfälle in Discord verlinkt werden. Dies wird private Informationen wie den Verdächtigen, die Strafen, etc. offenbaren.",
+            "fr": "Ce mode permet d'intégrer des informations détaillées lorsque vous liez des cas dans le discord. Cela rendra les informations privées comme le suspect, les punitions, etc. accessibles.",
+            "es": "Este modo permite incrustar detalles cuando se vincula un caso en discord. Esto hará públicas las informaciones privadas como el sujeto, las sanciones, etc.",
+            "ru": "Этот режим позволяет встраивать детальные вкладки при ссылке на преступление в дискорде. Это позволит открыть личную информацию, такую как подозреваемого, наказания и т.д.",
+            "it": "Questa modalità consente di incorporare dettagliati quando si collega un caso nel discord. Questo permetterà di divulgare informazioni private come il sospettato, le punizioni, ecc."
+        },
         "AllowAppealAfterXDays": {
             "description": "allow appeal after x days",
             "en": "Allow ban appeal after x days",

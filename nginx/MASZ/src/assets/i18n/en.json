@@ -197,6 +197,8 @@
         "Confirm": "Confirm"
     },
     "GuildDialog": {
+        "PublicEmbedMode": "Public embed mode",
+        "PublicEmbedModeExplained": "This mode enables detailed embeds when linking modcases in discord. This will disclose private information like the suspect, punishments, etc.",
         "AllowAppealAfterXDays": "Allow ban appeal after x days",
         "ImportExistingBans": "Import existing bans",
         "ImportExistingBansDetails": "This might take a while for large guilds but will run in the background.",

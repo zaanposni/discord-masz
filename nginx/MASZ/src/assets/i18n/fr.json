@@ -197,6 +197,8 @@
         "Confirm": "Confirmer"
     },
     "GuildDialog": {
+        "PublicEmbedMode": "Mode d'intégration publique",
+        "PublicEmbedModeExplained": "Ce mode permet d'intégrer des informations détaillées lorsque vous liez des cas dans le discord. Cela rendra les informations privées comme le suspect, les punitions, etc. accessibles.",
         "AllowAppealAfterXDays": "Autoriser l'appel d'une décision après x jours",
         "ImportExistingBans": "Importer des interdictions existantes",
         "ImportExistingBansDetails": "Cela peut prendre un certain temps pour les grandes guildes, mais se déroulera en arrière-plan.",

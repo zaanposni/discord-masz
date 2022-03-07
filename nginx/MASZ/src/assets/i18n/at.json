@@ -197,6 +197,8 @@
         "Confirm": "Zustima"
     },
     "GuildDialog": {
+        "PublicEmbedMode": "Öffentlicher Einbettungsmodus",
+        "PublicEmbedModeExplained": "Dieser Modus ermöglicht detaillierte Einbettungen, wenn Vorfälle in Discord verlinkt werden. Dies wird private Informationen wie den Verdächtigen, die Strafen, etc. offenbaren.",
         "AllowAppealAfterXDays": "Entbannungsanträge noch x Tagn erlaubn",
         "ImportExistingBans": "Bestehende Sperrn importian",
         "ImportExistingBansDetails": "Des ko bei ana großn Güdn a bissal dauan, oba des wird im Hintagrund ausgfüaht.",

@@ -197,6 +197,8 @@
         "Confirm": "Confirmar"
     },
     "GuildDialog": {
+        "PublicEmbedMode": "Modo de incrustación pública",
+        "PublicEmbedModeExplained": "Este modo permite incrustar detalles cuando se vincula un caso en discord. Esto hará públicas las informaciones privadas como el sujeto, las sanciones, etc.",
         "AllowAppealAfterXDays": "Permitir que los miembros del grupo puedan presentar una reclamación de expulsión después de x días",
         "ImportExistingBans": "Importar prohibiciones existentes",
         "ImportExistingBansDetails": "Esto puede llevar un tiempo para los gremios grandes, pero se ejecutará en segundo plano.",

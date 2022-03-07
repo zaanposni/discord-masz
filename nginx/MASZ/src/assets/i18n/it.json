@@ -197,6 +197,8 @@
         "Confirm": "Confermare"
     },
     "GuildDialog": {
+        "PublicEmbedMode": "Modalità di incorporamento pubblica",
+        "PublicEmbedModeExplained": "Questa modalità consente di incorporare dettagliati quando si collega un caso nel discord. Questo permetterà di divulgare informazioni private come il sospettato, le punizioni, ecc.",
         "AllowAppealAfterXDays": "Consenti reclamo bando dopo x giorni",
         "ImportExistingBans": "Importa divieti esistenti",
         "ImportExistingBansDetails": "Questo potrebbe richiedere un po' di tempo per le gilde grandi, ma verrà eseguito in background.",

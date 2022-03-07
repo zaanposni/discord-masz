@@ -12,4 +12,5 @@ export interface GuildConfig {
     publishModeratorInfo: boolean;
     preferredLanguage: number;
     allowBanAppealAfterDays: number;
+    publicEmbedMode: boolean;
 }
