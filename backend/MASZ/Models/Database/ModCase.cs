@@ -1,6 +1,8 @@
 using MASZ.Enums;
 using MASZ.Services;
 using System.ComponentModel.DataAnnotations;
+using Discord;
+using MASZ.Extensions;
 
 namespace MASZ.Models
 {
@@ -70,6 +72,21 @@ namespace MASZ.Models
         public string GetPunishment(Translator translator)
         {
             return translator.T().Enum(PunishmentType);
+        }
+
+        public string GetEmbedData(string baseUrl, IUser user, Translator translator)
+        {
+            return
+                "<html>" +
+                    "<head>" +
+                        $"<meta name=\"theme-color\" content=\"#3498db\">" +
+                        $"<meta property=\"og:site_name\" content=\"MASZ by zaanposni\" />" +
+                        $"<meta property=\"og:title\" content=\"#{this.CaseId}: {this.Title}\" />" +
+                        $"<meta property=\"og:url\" content=\"{baseUrl}/guilds/{this.GuildId}/cases/{this.CaseId}\" />" +
+                        $"<meta property=\"og:description\" content=\"{this.GetPunishment(translator)}: {this.Description}\" />" +
+                        ( user != null ? $"<meta property=\"og:image\" content=\"{user.GetAvatarOrDefaultUrl()}\" />" : "") +
+                    "</head>" +
+                "</html>";
         }
     }
 }

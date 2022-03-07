@@ -21,19 +21,6 @@ namespace MASZ.Controllers
             return Ok(DiscordUserView.CreateOrDefault(_discordAPI.GetCurrentBotInfo()));
         }
 
-        [HttpGet("embed")]
-        public async Task<IActionResult> GetOEmbedInfo()
-        {
-            AppSettings appSettings = await AppSettingsRepository.CreateDefault(_serviceProvider).GetAppSettings();
-            IApplication application = await _discordAPI.GetCurrentApplicationInfo();
-
-            return new ContentResult()
-            {
-                Content = appSettings.GetEmbedData(_config.GetBaseUrl(), application.IconUrl),
-                ContentType = "text/html"
-            };
-        }
-
         [HttpGet("application")]
         public async Task<IActionResult> GetApplication()
         {
