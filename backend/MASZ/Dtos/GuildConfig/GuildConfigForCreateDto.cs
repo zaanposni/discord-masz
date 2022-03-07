@@ -29,5 +29,7 @@ namespace MASZ.Dtos.GuildConfig
         public Language? PreferredLanguage { get; set; } = null;
         [Required(ErrorMessage = "AllowBanAppealAfterDays field is required")]
         public int AllowBanAppealAfterDays { get; set; }
+        [Required(ErrorMessage = "PublicEmbedMode field is required")]
+        public bool PublicEmbedMode { get; set; }
     }
 }
