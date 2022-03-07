@@ -106,19 +106,19 @@
                 <!-- guilds information -->
                 <div class="col-12 col-sm-6 col-md-4 grid-margin stretch-card mt-2 crs-pnt" routerLink="/guilds/{{ this.guildId }}">
                     <div class="infobox bg-g-orange">
-                        <div class="infobox-body d-flex flex-row flex-wrap">
-                            <div class="flex-grow-1 d-flex flex-column">
+                        <div class="infobox-body d-flex flex-row">
+                            <div class="flex-grow-1 d-flex flex-column flex-shrink-1">
                                 <span class="mat-h2 mb-0 font-weight-bold">{{ 'ModCaseView.Guild' | translate }}</span>
                                 <ng-container *ngIf="this.modCase.loading">
                                     <div class="waiting-for-text mb-2" style="width: 10rem"></div>
                                     <div class="waiting-for-text mb-2" style="width: 8rem"></div>
                                 </ng-container>
                                 <ng-container *ngIf="!this.modCase.loading">
-                                    <span class="mat-h3 mb-0" style="word-break: break-all;">{{ this.currentGuild.content?.name }}</span>
+                                    <span class="mat-h3 mb-0" style="white-space: pre-wrap; word-wrap: break-word">{{ this.currentGuild.content?.name }}</span>
                                     <span class="mat-h3 mb-0 text-white-50">{{ 'ModCaseView.ID' | translate }}: {{this.modCase.content?.modCase?.guildId }}</span>
                                 </ng-container>
                             </div>
-                            <div class="infobox-icon">
+                            <div class="infobox-icon flex-grow-0">
                                 <app-guild-icon [guild]="this.currentGuild?.content" [width]="'80px'" [height]="'80px'"></app-guild-icon>
                             </div>
                         </div>
