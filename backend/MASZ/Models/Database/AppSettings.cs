@@ -17,6 +17,7 @@ namespace MASZ.Models
             return
                 "<html>" +
                     "<head>" +
+                        "<meta name=\"theme-color\" content=\"#3498db\">" +
                         "<meta property=\"og:site_name\" content=\"MASZ by zaanposni\" />" +
                         "<meta property=\"og:title\" content=\"" + EmbedTitle + "\" />" +
                         "<meta property=\"og:url\" content=\"" + url + "\" />" +
