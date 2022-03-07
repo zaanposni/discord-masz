@@ -67,7 +67,7 @@ namespace MASZ.Controllers
                 StrictModPermissionCheck = guildConfigForCreateDto.StrictModPermissionCheck,
                 ExecuteWhoisOnJoin = guildConfigForCreateDto.ExecuteWhoisOnJoin,
                 PublishModeratorInfo = guildConfigForCreateDto.PublishModeratorInfo,
-                PreferredLanguage = guildConfigForCreateDto?.PreferredLanguage ?? _config.GetDefaultLanguage(),
+                PreferredLanguage = guildConfigForCreateDto.PreferredLanguage ?? _config.GetDefaultLanguage(),
                 AllowBanAppealAfterDays = guildConfigForCreateDto.AllowBanAppealAfterDays,
                 PublicEmbedMode = guildConfigForCreateDto.PublicEmbedMode,
             };
@@ -108,7 +108,7 @@ namespace MASZ.Controllers
             guildConfig.StrictModPermissionCheck = newValue.StrictModPermissionCheck;
             guildConfig.ExecuteWhoisOnJoin = newValue.ExecuteWhoisOnJoin;
             guildConfig.PublishModeratorInfo = newValue.PublishModeratorInfo;
-            guildConfig.PreferredLanguage = newValue.PreferredLanguage;
+            guildConfig.PreferredLanguage = newValue.PreferredLanguage ?? _config.GetDefaultLanguage();
             guildConfig.AllowBanAppealAfterDays = newValue.AllowBanAppealAfterDays;
             guildConfig.PublicEmbedMode = newValue.PublicEmbedMode;
 

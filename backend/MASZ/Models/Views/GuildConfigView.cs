@@ -17,6 +17,7 @@ namespace MASZ.Models.Views
         public bool PublishModeratorInfo { get; set; }
         public Language PreferredLanguage { get; set; }
         public int AllowBanAppealAfterDays { get; set; }
+        public bool PublicEmbedMode { get; set; }
 
 
         public GuildConfigView() { }
@@ -35,6 +36,7 @@ namespace MASZ.Models.Views
             PublishModeratorInfo = config.PublishModeratorInfo;
             PreferredLanguage = config.PreferredLanguage;
             AllowBanAppealAfterDays = config.AllowBanAppealAfterDays;
+            PublicEmbedMode = config.PublicEmbedMode;
         }
     }
 }
