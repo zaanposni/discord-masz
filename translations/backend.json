@@ -2299,6 +2299,16 @@
                 "es": "Nuevo",
                 "ru": "Новый",
                 "it": "Nuovo"
+            },
+            "Pinned": {
+                "description": "Pinned",
+                "en": "Pinned",
+                "de": "Gepinnt",
+                "at": "Gepinnt",
+                "fr": "Épinglé",
+                "es": "Fijado",
+                "ru": "Закрепленный",
+                "it": "In evidenza"
             }
         },
         "MessageDeleted": {

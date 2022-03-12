@@ -2603,6 +2603,19 @@ namespace MASZ.Utils
                 _ => "New",
             };
         }
+        public string GuildAuditLogMessageUpdatedPinned()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Gepinnt",
+                Language.at => "Gepinnt",
+                Language.fr => "Épinglé",
+                Language.es => "Fijado",
+                Language.ru => "Закрепленный",
+                Language.it => "In evidenza",
+                _ => "Pinned",
+            };
+        }
         public string GuildAuditLogMessageDeletedTitle()
         {
             return PreferredLanguage switch

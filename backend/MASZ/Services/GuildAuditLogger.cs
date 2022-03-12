@@ -14,6 +14,8 @@ namespace MASZ.Services
 {
 	public class GuildAuditLogger : IEvent
     {
+        private readonly static string CHECK = "\u2705";
+        private readonly static string X_CHECK = "\u274C";
         private readonly DiscordSocketClient _client;
         private readonly IServiceProvider _serviceProvider;
 
@@ -758,6 +760,8 @@ namespace MASZ.Services
                          .WithDescription(description.ToString())
                          .WithAuthor(messageAfter.Author)
                          .WithFooter($"{translator.T().GuildAuditLogUserID()}: {messageAfter.Author.Id}");
+
+                    embed.AddField(translator.T().GuildAuditLogMessageUpdatedPinned(), messageAfter.IsPinned ? CHECK : X_CHECK, false);
 
                     var before = await messageBefore.GetOrDownloadAsync();
 
