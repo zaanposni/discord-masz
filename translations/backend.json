@@ -734,6 +734,16 @@
                 "ru": "статус",
                 "it": "Stato"
             },
+            "Reason": {
+                "description": "The word reason",
+                "en": "Reason",
+                "de": "Grund",
+                "at": "Grund",
+                "fr": "Raison",
+                "es": "Razón",
+                "ru": "причина",
+                "it": "Motivo"
+            },
             "Appeal": {
                 "description": "The word appeal",
                 "en": "Ban appeal",

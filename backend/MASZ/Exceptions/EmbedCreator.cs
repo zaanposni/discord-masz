@@ -538,7 +538,9 @@ namespace MASZ.Services
             embed.Description = translator.T().NotificationAppealsUpdate(appeal.UserId, actor.Id);
             embed.Title = $"**{translator.T().NotificationAppealsAppeal().ToUpper()}** - {user?.Username ?? appeal.Username}#{user?.Discriminator ?? appeal.Discriminator}";
 
-            embed.AddField(translator.T().NotificationAppealsStatus(), translator.T().Enum(appeal.Status), true);
+            embed.AddField(translator.T().NotificationAppealsStatus(), translator.T().Enum(appeal.Status), false);
+
+            embed.AddField(translator.T().NotificationAppealsReason(), appeal.ModeratorComment.Truncate(1024), false);
 
             // Footer
             embed.WithFooter($"UserId: {appeal.UserId} | AppealId: {appeal.Id}");

@@ -835,6 +835,19 @@ namespace MASZ.Utils
                 _ => "Status",
             };
         }
+        public string NotificationAppealsReason()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Grund",
+                Language.at => "Grund",
+                Language.fr => "Raison",
+                Language.es => "Razón",
+                Language.ru => "причина",
+                Language.it => "Motivo",
+                _ => "Reason",
+            };
+        }
         public string NotificationAppealsAppeal()
         {
             return PreferredLanguage switch
