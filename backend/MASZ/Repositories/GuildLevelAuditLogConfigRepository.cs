@@ -59,6 +59,8 @@ namespace MASZ.Repositories
             auditLogConfig.GuildAuditLogEvent = newValue.GuildAuditLogEvent;
             auditLogConfig.ChannelId = newValue.ChannelId;
             auditLogConfig.PingRoles = newValue.PingRoles;
+            auditLogConfig.IgnoreChannels = newValue.IgnoreChannels;
+            auditLogConfig.IgnoreRoles = newValue.IgnoreRoles;
 
             Database.PutAuditLogConfig(auditLogConfig);
             await Database.SaveChangesAsync();

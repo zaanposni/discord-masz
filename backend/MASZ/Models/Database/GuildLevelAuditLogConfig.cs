@@ -12,6 +12,8 @@ namespace MASZ.Models
         public GuildAuditLogEvent GuildAuditLogEvent { get; set; }
         public ulong ChannelId { get; set; }
         public ulong[] PingRoles { get; set; }
+        public ulong[] IgnoreRoles { get; set; }
+        public ulong[] IgnoreChannels { get; set; }
 
         public GuildLevelAuditLogConfig()
         {
@@ -23,6 +25,8 @@ namespace MASZ.Models
             GuildAuditLogEvent = dto.GuildAuditLogEvent;
             ChannelId = dto.ChannelId;
             PingRoles = dto.PingRoles;
+            IgnoreRoles = dto.IgnoreRoles;
+            IgnoreChannels = dto.IgnoreChannels;
         }
     }
 }
