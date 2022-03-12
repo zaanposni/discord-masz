@@ -1878,6 +1878,26 @@
             "ru": "Роли пинга",
             "it": "Ping ruoli"
         },
+        "ExcludeRoles": {
+            "description": "Select to exclude certain roles",
+            "en": "Exclude roles",
+            "de": "Ausgenommene Rollen",
+            "at": "Ausgnommene Roin",
+            "fr": "Exclure les rôles",
+            "es": "Excluir roles",
+            "ru": "Исключить роли",
+            "it": "Escludi ruoli"
+        },
+        "ExcludeChannels": {
+            "description": "Select to exclude certain channels",
+            "en": "Exclude channels",
+            "de": "Ausgenommene Kanäle",
+            "at": "Ausgnommene Kanäle",
+            "fr": "Exclure les chaînes",
+            "es": "Excluir canales",
+            "ru": "Исключить каналы",
+            "it": "Escludi canali"
+        },
         "AuditLog": {
             "description": "audit log",
             "en": "AuditLog",

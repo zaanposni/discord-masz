@@ -240,6 +240,8 @@
         "TargetChannel": "Canal cible",
         "ComingSoon": "Bientôt disponible",
         "PingRoles": "Rôles de ping",
+        "ExcludeRoles": "Exclure les rôles",
+        "ExcludeChannels": "Exclure les chaînes",
         "AuditLog": "Journal d'audit",
         "ConfigDeleted": "Configuration supprimée.",
         "FailedToDeleteConfig": "Échec de la suppression de la configuration.",

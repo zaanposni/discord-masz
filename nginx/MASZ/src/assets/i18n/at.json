@@ -240,6 +240,8 @@
         "TargetChannel": "Zielkanal",
         "ComingSoon": "Kimmt boid",
         "PingRoles": "Rolle pingan",
+        "ExcludeRoles": "Ausgnommene Roin",
+        "ExcludeChannels": "Ausgnommene Kanäle",
         "AuditLog": "AuditLog",
         "ConfigDeleted": "Konfiguration glescht.",
         "FailedToDeleteConfig": "Konfiguration konnte ned glescht wean.",

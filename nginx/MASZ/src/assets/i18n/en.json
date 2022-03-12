@@ -240,6 +240,8 @@
         "TargetChannel": "Target channel",
         "ComingSoon": "Coming soon",
         "PingRoles": "Ping roles",
+        "ExcludeRoles": "Exclude roles",
+        "ExcludeChannels": "Exclude channels",
         "AuditLog": "AuditLog",
         "ConfigDeleted": "Config deleted.",
         "FailedToDeleteConfig": "Failed to delete config.",

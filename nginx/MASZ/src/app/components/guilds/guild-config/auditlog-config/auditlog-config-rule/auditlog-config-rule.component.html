@@ -25,15 +25,15 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field class="ml-4" *ngIf="this.definition.roleFilter">
-            <mat-label>{{ 'AutomodConfig.ExcludeRoles' | translate }}</mat-label>
-            <mat-select formControlName="excludeRoles" multiple>
+            <mat-label>{{ 'GuildAuditLogConfig.ExcludeRoles' | translate }}</mat-label>
+            <mat-select formControlName="ignoreRoles" multiple>
             <mat-option *ngFor="let role of this.guild?.roles"
             [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field class="ml-4" *ngIf="this.definition.channelFilter">
-            <mat-label>{{ 'AutomodConfig.ExcludeChannels' | translate }}</mat-label>
-            <mat-select formControlName="excludeChannels" multiple>
+            <mat-label>{{ 'GuildAuditLogConfig.ExcludeChannels' | translate }}</mat-label>
+            <mat-select formControlName="ignoreChannels" multiple>
             <mat-option *ngFor="let channel of this.guildChannels"
             [value]="channel.id" >#{{channel.name}}</mat-option>
             </mat-select>

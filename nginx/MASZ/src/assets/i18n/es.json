@@ -240,6 +240,8 @@
         "TargetChannel": "Canal objetivo",
         "ComingSoon": "Próximamente, en breve, pronto",
         "PingRoles": "Roles de ping",
+        "ExcludeRoles": "Excluir roles",
+        "ExcludeChannels": "Excluir canales",
         "AuditLog": "Registro de auditoría",
         "ConfigDeleted": "Configuración eliminada.",
         "FailedToDeleteConfig": "No se pudo borrar la configuración.",

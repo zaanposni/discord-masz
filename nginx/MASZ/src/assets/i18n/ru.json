@@ -240,6 +240,8 @@
         "TargetChannel": "Целевой канал",
         "ComingSoon": "Скоро будет",
         "PingRoles": "Роли пинга",
+        "ExcludeRoles": "Исключить роли",
+        "ExcludeChannels": "Исключить каналы",
         "AuditLog": "AuditLog",
         "ConfigDeleted": "Конфиг удален.",
         "FailedToDeleteConfig": "Не удалось удалить конфигурацию.",
