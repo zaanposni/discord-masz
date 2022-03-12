@@ -147,7 +147,7 @@ namespace MASZ.Services
                 {
                     return false;
                 }
-                return auditLogConfig.IgnoreRoles.Any(role => roles.Contains(role));
+                return auditLogConfig.IgnoreRoles?.Any(role => roles.Contains(role)) ?? false;
             }
             catch (ResourceNotFoundException) { }
             return false;
@@ -171,7 +171,7 @@ namespace MASZ.Services
                 {
                     return false;
                 }
-                return auditLogConfig.IgnoreChannels.Contains(channelId);
+                return auditLogConfig.IgnoreChannels?.Contains(channelId) ?? false;
             }
             catch (ResourceNotFoundException) { }
             return false;
@@ -701,6 +701,14 @@ namespace MASZ.Services
                     return;
                 }
 
+                if (message.Author is IGuildUser tauthor)
+                {
+                    if (await CheckForIgnoredRoles(tchannel.GuildId, GuildAuditLogEvent.MessageDeleted, tauthor.RoleIds.ToList()))
+                    {
+                        return;
+                    }
+                }
+
                 using var scope = _serviceProvider.CreateScope();
 
                 var translator = scope.ServiceProvider.GetRequiredService<Translator>();
@@ -779,6 +787,14 @@ namespace MASZ.Services
                         return;
                     }
 
+                    if (message.Author is IGuildUser tauthor)
+                    {
+                        if (await CheckForIgnoredRoles(tchannel.GuildId, GuildAuditLogEvent.MessageSent, tauthor.RoleIds.ToList()))
+                        {
+                            return;
+                        }
+                    }
+
                     using var scope = _serviceProvider.CreateScope();
 
                     var translator = scope.ServiceProvider.GetRequiredService<Translator>();
@@ -845,6 +861,14 @@ namespace MASZ.Services
                     if (await CheckForIgnoredChannel(tchannel.GuildId, GuildAuditLogEvent.MessageUpdated, tchannel.Id))
                     {
                         return;
+                    }
+
+                    if (messageAfter.Author is IGuildUser tauthor)
+                    {
+                        if (await CheckForIgnoredRoles(tchannel.GuildId, GuildAuditLogEvent.MessageUpdated, tauthor.RoleIds.ToList()))
+                        {
+                            return;
+                        }
                     }
 
                     using var scope = _serviceProvider.CreateScope();
