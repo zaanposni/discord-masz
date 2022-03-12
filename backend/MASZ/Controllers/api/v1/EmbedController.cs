@@ -49,7 +49,7 @@ namespace MASZ.Controllers
             return new ContentResult()
             {
                 Content = appSettings.GetEmbedData(_config.GetBaseUrl(), application.IconUrl),
-                ContentType = "text/html"
+                ContentType = "text/html; charset=utf-8"
             };
         }
 
@@ -74,7 +74,7 @@ namespace MASZ.Controllers
                 return new ContentResult()
                 {
                     Content = modCase.GetEmbedData(_config.GetBaseUrl(), user, _translator),
-                    ContentType = "text/html"
+                    ContentType = "text/html; charset=utf-8"
                 };
             }
             return await GetDefaultEmbed();
