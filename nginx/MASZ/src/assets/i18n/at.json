@@ -590,6 +590,7 @@
         "Count": "Onzoi",
         "Warning": "Warnung",
         "NotConfigured": "Diesa Server hot ka Formular fia den Entbannungsantrag konfiguriat. Darum konnst du kan Entbannungsantrag erstön.",
+        "Locked": "Aufgrund der Server-Einstellungen oder vorheriger Entbannungsanträge dürfen Sie keinen Entbannungsantrag erstön.",
         "SelectMembers": "Mitglieda",
         "SelectedStatus": "Status",
         "FilterSince": "Erstöt vo",

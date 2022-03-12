@@ -590,6 +590,7 @@
         "Count": "Count",
         "Warning": "Warning",
         "NotConfigured": "This guild has no ban appeal form configured. Thus, you cannot create an appeal right now.",
+        "Locked": "Due to the guilds settings or previous appeal decisions you are not allowed to create an appeal right now.",
         "SelectMembers": "Members",
         "SelectedStatus": "Status",
         "FilterSince": "Created since",

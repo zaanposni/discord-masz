@@ -590,6 +590,7 @@
         "Count": "Anzahl",
         "Warning": "Warnung",
         "NotConfigured": "Dieser Server hat kein Formular für den Entbannungsantrag konfiguriert. Du kannst deshalb keinen Entbannungsantrag erstellen.",
+        "Locked": "Aufgrund der Server-Einstellungen oder vorheriger Entbannungsanträge dürfen Sie keinen Entbannungsantrag erstellen.",
         "SelectMembers": "Mitglieder",
         "SelectedStatus": "Status",
         "FilterSince": "Erstellt ab",

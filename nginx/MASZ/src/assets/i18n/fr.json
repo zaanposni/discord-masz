@@ -590,6 +590,7 @@
         "Count": "Nombre",
         "Warning": "Avertissement",
         "NotConfigured": "Ce serveur n'a pas de formulaire de plainte de bannissement configuré. Vous ne pouvez pas créer de plainte de bannissement pour le moment.",
+        "Locked": "En raison des paramètres de serveur ou des décisions précédentes, vous ne pouvez pas créer de plainte de bannissement pour le moment.",
         "SelectMembers": "Membres",
         "SelectedStatus": "Statut",
         "FilterSince": "Créé depuis",

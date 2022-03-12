@@ -29,8 +29,8 @@
                         color="accent"
                         routerLink="/guilds/{{this.guildId}}/appeals/new"
                         class="mb-2 mr-2"
-                        [disabled]="this.structures.length === 0"
-                        *ngIf="!(this.isMember | async) && !(this.isAdminOrHigher | async) && (isAllowedToCreateNewAppeal | async)">
+                        [disabled]="this.structures.length === 0 || !(isAllowedToCreateNewAppeal | async)"
+                        *ngIf="!(this.isMember | async) && !(this.isAdminOrHigher | async)">
                     {{ 'AppealTable.CreateNewAppeal' | translate }}
                 </button>
                 <button mat-raised-button
@@ -48,7 +48,7 @@
                 </button>
             </div>
         </div>
-        <div class="card-container mt-3" *ngIf="!(this.isMember | async) && !(this.isAdminOrHigher | async) && (isAllowedToCreateNewAppeal | async) && this.structures.length === 0">
+        <div class="card-container mt-3 mb-3" *ngIf="!(this.isMember | async) && !(this.isAdminOrHigher | async) && ( !(isAllowedToCreateNewAppeal | async) || this.structures.length === 0)">
             <div class="card-container-body d-flex flex-column flex-wrap flex-shrink-0 flex-grow-1">
                 <!-- Content -->
                 <div class="mat-h1 text-warning font-weight-bold d-flex flex-row align-items-center mb-0">
@@ -57,8 +57,11 @@
                         {{ 'AppealTable.Warning' | translate }}
                     </div>
                 </div>
-                <div class="mat-h4 text-warning font-weight-bold mb-0">
+                <div class="mat-h4 text-warning font-weight-bold mb-0" *ngIf="this.structures.length === 0 && (isAllowedToCreateNewAppeal | async)">
                     {{ 'AppealTable.NotConfigured' | translate }}
+                </div>
+                <div class="mat-h4 text-warning font-weight-bold mb-0" *ngIf="!(isAllowedToCreateNewAppeal | async)">
+                    {{ 'AppealTable.Locked' | translate }}
                 </div>
             </div>
         </div>
