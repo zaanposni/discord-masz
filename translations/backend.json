@@ -579,8 +579,8 @@
                         "serviceBaseUrl": "string"
                     },
                     "en": "The moderators of guild `{guild.Name}` have warned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                    "de": "Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen besuche: {serviceBaseUrl}",
-                    "at": "Die Moderatoan vo `{guild.Name}` hom di verwoarnt.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
+                    "de": "Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen oder einen Entbannungsantrag besuche: {serviceBaseUrl}",
+                    "at": "Die Moderatoan vo `{guild.Name}` hom di verwoarnt.\nFia weitere Infos oda ein Entbannungsantrag schau bei {serviceBaseUrl} noch.",
                     "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont prévenu.\\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                     "es": "Los moderadores del gremio `{guild.Name}` te han advertido.\\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
                     "ru": "Модераторы гильдии `{guild.Name}` вас предупредили.\\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
