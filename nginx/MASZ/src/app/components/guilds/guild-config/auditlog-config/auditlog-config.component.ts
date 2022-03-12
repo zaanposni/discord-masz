@@ -18,15 +18,21 @@ export class AuditlogConfigComponent implements OnInit {
   types: IGuildAuditLogRuleDefinition[] = [
     {
       type: 0,
-      key: 'MessageSent'
+      key: 'MessageSent',
+      channelFilter: true,
+      roleFilter: true
     },
     {
       type: 1,
-      key: 'MessageUpdated'
+      key: 'MessageUpdated',
+      channelFilter: true,
+      roleFilter: true
     },
     {
       type: 2,
-      key: 'MessageDeleted'
+      key: 'MessageDeleted',
+      channelFilter: true,
+      roleFilter: true
     },
     {
       type: 3,
@@ -34,15 +40,18 @@ export class AuditlogConfigComponent implements OnInit {
     },
     {
       type: 4,
-      key: 'AvatarUpdated'
+      key: 'AvatarUpdated',
+      roleFilter: true
     },
     {
       type: 5,
-      key: 'NicknameUpdated'
+      key: 'NicknameUpdated',
+      roleFilter: true
     },
     {
       type: 6,
-      key: 'MemberRolesUpdated'
+      key: 'MemberRolesUpdated',
+      roleFilter: true
     },
     {
       type: 7,
@@ -62,35 +71,43 @@ export class AuditlogConfigComponent implements OnInit {
     },
     {
       type: 11,
-      key: 'InviteCreated'
+      key: 'InviteCreated',
+      channelFilter: true
     },
     {
       type: 12,
-      key: 'InviteDeleted'
+      key: 'InviteDeleted',
+      channelFilter: true
     },
     {
       type: 13,
-      key: 'ThreadCreated'
+      key: 'ThreadCreated',
+      channelFilter: true
     },
     {
       type: 14,
-      key: 'VoiceJoined'
+      key: 'VoiceJoined',
+      channelFilter: true
     },
     {
       type: 15,
-      key: 'VoiceLeft'
+      key: 'VoiceLeft',
+      channelFilter: true
     },
     {
       type: 16,
-      key: 'VoiceMoved'
+      key: 'VoiceMoved',
+      channelFilter: true
     },
     {
       type: 17,
-      key: 'ReactionAdded'
+      key: 'ReactionAdded',
+      channelFilter: true
     },
     {
       type: 18,
-      key: 'ReactionRemoved'
+      key: 'ReactionRemoved',
+      channelFilter: true
     }
   ];
 
