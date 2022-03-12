@@ -1212,6 +1212,19 @@ namespace MASZ.Utils
                 _ => $"Punishment for ModCase #{caseId} by moderator {modId} executed: \"{reason}\"",
             };
         }
+        public string NotificationDiscordAuditLogPunishmentsExecuteAutomod(string autoModEvent)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Bestrafung für Automoderation {autoModEvent} ausgeführt.",
+                Language.at => $"Bestrofun für Automod {autoModEvent} ausgführt.",
+                Language.fr => $"Punition pour Automod {autoModEvent} exécutée.",
+                Language.es => $"Castigo para Automod {autoModEvent} ejecutado.",
+                Language.ru => $"Наказание за Automod {autoModEvent} выполнено.",
+                Language.it => $"Punizione per Automod {autoModEvent} eseguita.",
+                _ => $"Punishment for Automod {autoModEvent} executed.",
+            };
+        }
         public string NotificationDiscordAuditLogPunishmentsUndone(int caseId, string reason)
         {
             return PreferredLanguage switch
@@ -3107,6 +3120,16 @@ namespace MASZ.Utils
                     Language.ru => "Контент удален, а дело создано",
                     Language.it => "Contenuto eliminato e caso creato",
                     _ => "Content deleted and case created",
+                },
+                AutoModerationAction.Timeout => PreferredLanguage switch
+                {
+                    Language.de => "Timeout",
+                    Language.at => "Timeout",
+                    Language.fr => "Timeout",
+                    Language.es => "Timeout",
+                    Language.ru => "Таймаут",
+                    Language.it => "Timeout",
+                    _ => "Timeout",
                 },
                 _ => "Unknown",
             };

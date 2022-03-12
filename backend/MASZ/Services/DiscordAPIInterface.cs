@@ -445,6 +445,29 @@ namespace MASZ.Services
             return true;
         }
 
+        public async Task<bool> TimeoutGuildUser(ulong guildId, ulong userId, DateTime until, string reason = null)
+        {
+            // request ---------------------------
+            try
+            {
+                SocketGuild guild = _client.GetGuild(guildId);
+                IGuildUser member = await FetchMemberInfo(guildId, userId, CacheBehavior.Default);
+                if (member == null) return false;
+
+                RequestOptions options = new();
+                if (! string.IsNullOrEmpty(reason))
+                    options.AuditLogReason = reason;
+
+                await member.SetTimeOutAsync(until - DateTime.UtcNow ,options);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"Failed to timeout user '{userId}' from guild '{guildId}' until '{until}'.");
+                return false;
+            }
+            return true;
+        }
+
         public async Task<bool> GrantGuildUserRole(ulong guildId, ulong userId, ulong roleId, string reason = null)
         {
             // request ---------------------------

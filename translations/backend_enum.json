@@ -113,6 +113,16 @@
             "es": "Contenido eliminado y caso creado",
             "ru": "Контент удален, а дело создано",
             "it": "Contenuto eliminato e caso creato"
+        },
+        "Timeout": {
+            "description": "The user is timed out. The word 'timeout'.",
+            "en": "Timeout",
+            "de": "Timeout",
+            "at": "Timeout",
+            "fr": "Timeout",
+            "es": "Timeout",
+            "ru": "Таймаут",
+            "it": "Timeout"
         }
     },
     "AutoModerationType": {

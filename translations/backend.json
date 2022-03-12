@@ -1097,6 +1097,19 @@
                     "ru": "Наказание за ModCase # {caseId} модератором {modId} выполнено: \\\"{reason} \\\"",
                     "it": "Punizione per ModCase #{caseId} eseguita dal moderatore {modId}: \\\"{reason}\\\""
                 },
+                "ExecuteAutomod": {
+                    "description": "Audit log header reason for executed punishment.",
+                    "var_types": {
+                        "autoModEvent": "string"
+                    },
+                    "en": "Punishment for Automod {autoModEvent} executed.",
+                    "de": "Bestrafung für Automoderation {autoModEvent} ausgeführt.",
+                    "at": "Bestrofun für Automod {autoModEvent} ausgführt.",
+                    "fr": "Punition pour Automod {autoModEvent} exécutée.",
+                    "es": "Castigo para Automod {autoModEvent} ejecutado.",
+                    "ru": "Наказание за Automod {autoModEvent} выполнено.",
+                    "it": "Punizione per Automod {autoModEvent} eseguita."
+                },
                 "Undone": {
                     "description": "Audit log header reason for executed punishment.",
                     "var_types": {

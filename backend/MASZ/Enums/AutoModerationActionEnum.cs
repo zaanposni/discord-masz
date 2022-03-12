@@ -5,6 +5,7 @@ namespace MASZ.Enums
         None,
         ContentDeleted,
         CaseCreated,
-        ContentDeletedAndCaseCreated
+        ContentDeletedAndCaseCreated,
+        Timeout
     }
 }
