@@ -1854,7 +1854,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"{user.Mention} verwendete den Say-Befehl in {channel.Mention}.\n{message.GetJumpUrl()}",
-                Language.at => $"{user.Mention} verwendete den Say-Befehl in {channel.Mention}.\n{message.GetJumpUrl()}",
+                Language.at => $"{user.Mention} vawendete den Say-Befehl in {channel.Mention}.\n{message.GetJumpUrl()}",
                 Language.fr => $"{user.Mention} a utilisé la commande « dire » dans{channel.Mention}.\n{message.GetJumpUrl()}",
                 Language.es => $"{user.Mention} usó el comando «decir» en {channel.Mention}.\n{message.GetJumpUrl()}",
                 Language.ru => $"{user.Mention} использовал команду «сказать» в {channel.Mention}.\n{message.GetJumpUrl()}",
@@ -2400,7 +2400,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Kanal vorher",
-                Language.at => "Kanal vorher",
+                Language.at => "Kanal vorhea",
                 Language.fr => "Canaliser avant",
                 Language.es => "Canal antes",
                 Language.ru => "Канал до",
@@ -2660,7 +2660,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Gepinnt",
-                Language.at => "Gepinnt",
+                Language.at => "Opinnt",
                 Language.fr => "Épinglé",
                 Language.es => "Fijado",
                 Language.ru => "Закрепленный",
@@ -2686,7 +2686,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Inhalt",
-                Language.at => "Inhalt",
+                Language.at => "Inhoit",
                 Language.fr => "Teneur",
                 Language.es => "Contenido",
                 Language.ru => "Содержание",
@@ -4117,7 +4117,7 @@ namespace MASZ.Utils
                 ScheduledMessageFailureReason.InsufficientPermission => PreferredLanguage switch
                 {
                     Language.de => "Unzureichende Berechtigung",
-                    Language.at => "Unzureichende Berechtigung",
+                    Language.at => "Unzureichnde Berechtigung",
                     Language.fr => "Permission insuffisante",
                     Language.es => "Permiso insuficiente",
                     Language.ru => "Недостаточно прав",
@@ -4134,7 +4134,7 @@ namespace MASZ.Utils
                 ScheduledMessageStatus.Pending => PreferredLanguage switch
                 {
                     Language.de => "Ausstehend",
-                    Language.at => "Ausstehend",
+                    Language.at => "Ausstehnd",
                     Language.fr => "En attente",
                     Language.es => "Pendiente",
                     Language.ru => "Ожидается",
@@ -4181,7 +4181,7 @@ namespace MASZ.Utils
                 AppealStatus.Approved => PreferredLanguage switch
                 {
                     Language.de => "Genehmigt",
-                    Language.at => "Genehmigt",
+                    Language.at => "Gnehmigt",
                     Language.fr => "Approuvé",
                     Language.es => "Aprobado",
                     Language.ru => "Утвержден",
