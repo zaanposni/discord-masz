@@ -98,8 +98,8 @@
         "FailedToClear": "Speicha konnte ned gleat wean.",
         "Cleared": "Speicha gleat.",
         "Insights": "Statistikn",
-        "UpdateAvailableHeadline": "Update verfügbar",
-        "Published": "Veröffentlicht:",
+        "UpdateAvailableHeadline": "Update vafügbar",
+        "Published": "Veröffntlicht:",
         "UpdateAvailableText": "Update {{tag}} is verfügbar. Bit aktualisier deinen Bot."
     },
     "AdminstatsList": {
@@ -197,8 +197,8 @@
         "Confirm": "Zustima"
     },
     "GuildDialog": {
-        "PublicEmbedMode": "Öffentlicher Einbettungsmodus",
-        "PublicEmbedModeExplained": "Dieser Modus ermöglicht detaillierte Einbettungen, wenn Vorfälle in Discord verlinkt werden. Dies wird private Informationen wie den Verdächtigen, die Strafen, etc. offenbaren.",
+        "PublicEmbedMode": "Öffentlicha Eibettungsmodus",
+        "PublicEmbedModeExplained": "Dea Modus ermöglicht detaillierte Eibettungen, wenn Vorfälle in Discord valinkt wean. Des wiad private Informationen wia den Vadächtigen, die Strofn, etc. offenboarn.",
         "AllowAppealAfterXDays": "Entbannungsanträge noch x Tagn erlaubn",
         "ImportExistingBans": "Bestehende Sperrn importian",
         "ImportExistingBansDetails": "Des ko bei ana großn Güdn a bissal dauan, oba des wird im Hintagrund ausgfüaht.",
@@ -459,7 +459,7 @@
     },
     "GuildOverview": {
         "Tabs": {
-            "Dashboard": "Dashboard",
+            "Dashboard": "Deschboard",
             "Case": "Vorfälle",
             "Automoderation": "Automodarationen",
             "Messages": "Nochrichtn",
@@ -582,7 +582,7 @@
         "AllowedNewAppeal": "Benutzer deaf an neich Antrag erstön am: "
     },
     "AppealQuestionCard": {
-        "YourAnswer": "Deine Antwort",
+        "YourAnswer": "Dei Ontwort",
         "Updated": "Aktualisiat.",
         "FailedToUpdate": "Fehler beim Aktualisian der Frog",
         "Deleted": "Glöscht.",
@@ -606,8 +606,8 @@
     "AppealView": {
         "FailedToLoad": "Antrag konnte ned geladen wean.",
         "CreatedAt": "Erstöt am:",
-        "UpdatedAt": "Aktualisiert am:",
-        "LatestCases": "Neueste Fälle",
+        "UpdatedAt": "Aktualisiat am:",
+        "LatestCases": "Neieste Fälle",
         "ModeratorsDecisionAt": "Entscheidung vom Modarator am:",
         "ModeratorsComment": "Kommentar vo da Modaration",
         "NewAppeal": "Neua Antrag",
