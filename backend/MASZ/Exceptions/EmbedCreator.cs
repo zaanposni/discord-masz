@@ -494,9 +494,19 @@ namespace MASZ.Services
 
             embed.AddField(translator.T().Channel(), $"<#{config.ChannelId}>", false);
 
-            if (config.PingRoles.Length > 0)
+            if ((config.PingRoles?.Length ?? 0) > 0)
             {
                 embed.AddField(translator.T().NotificationGuildAuditLogMentionRoles(), string.Join(" ", config.PingRoles.Select(x => $"<@&{x}>")), false);
+            }
+
+            if ((config.IgnoreRoles?.Length ?? 0) > 0)
+            {
+                embed.AddField(translator.T().NotificationGuildAuditLogExcludeRoles(), string.Join(" ", config.IgnoreRoles.Select(x => $"<@&{x}>")), false);
+            }
+
+            if ((config.IgnoreChannels?.Length ?? 0) > 0)
+            {
+                embed.AddField(translator.T().NotificationGuildAuditLogExcludeChannels(), string.Join(" ", config.IgnoreChannels.Select(x => $"<#{x}>")), false);
             }
 
             return embed;

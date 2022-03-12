@@ -1303,6 +1303,32 @@ namespace MASZ.Utils
                 _ => "Mention role(s)",
             };
         }
+        public string NotificationGuildAuditLogExcludeRoles()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ausgenommene Rollen",
+                Language.at => "Ausgnommene Roin",
+                Language.fr => "Exclure les rôles",
+                Language.es => "Excluir roles",
+                Language.ru => "Исключить роли",
+                Language.it => "Escludi ruoli",
+                _ => "Exclude roles",
+            };
+        }
+        public string NotificationGuildAuditLogExcludeChannels()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ausgenommene Kanäle",
+                Language.at => "Ausgnommene Kanäle",
+                Language.fr => "Exclure les chaînes",
+                Language.es => "Excluir canales",
+                Language.ru => "Исключить каналы",
+                Language.it => "Escludi canali",
+                _ => "Exclude channels",
+            };
+        }
         public string NotificationGuildAuditLogTitle()
         {
             return PreferredLanguage switch
