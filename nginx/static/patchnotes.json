@@ -57,10 +57,6 @@
         "link": "https://github.com/zaanposni/discord-masz/issues/502"
       },
       {
-        "title": "Fixed invite autmod for events.",
-        "description": "The invite autmod for events now works as intended."
-      },
-      {
         "title": "Ignore rules on guild auditlogs.",
         "description": "You can now ignore certain roles or channels in the guild auditlog similiar to the filters in automods.",
         "icon": "link",
@@ -113,6 +109,10 @@
         "description": "The usermap embed now mentions the user in the embed.",
         "icon": "link",
         "link": "https://github.com/zaanposni/discord-masz/issues/500"
+      },
+      {
+        "title": "Fixed invite autmod for events.",
+        "description": "The invite autmod for events now works as intended."
       },
       {
         "title": "Fixed text breaking and alignment in automod table.",
