@@ -2916,6 +2916,16 @@
             "ru": "Не удалось сохранить motd.",
             "it": "Impossibile salvare motd."
         },
+        "Save": {
+            "description": "Save button",
+            "en": "Save",
+            "de": "Speichern",
+            "at": "Speichan",
+            "fr": "Enregistrer",
+            "es": "Guardar",
+            "ru": "Сохранить",
+            "it": "Salva"
+        },
         "Saved": {
             "description": "Saved message",
             "en": "Saved motd.",

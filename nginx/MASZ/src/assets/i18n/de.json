@@ -405,6 +405,7 @@
         "Message": "Nachricht",
         "FailedToLoad": "MotD konnte nicht geladen werden.",
         "FailedToSave": "MotD konnte nicht gespeichert werden.",
+        "Save": "Speichern",
         "Saved": "MotD gespeichert.",
         "Explanation": "Diese Nachricht wird deinen Administratoren und Moderatoren auf dem Dashboard angezeigt."
     },

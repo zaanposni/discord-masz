@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ContentLoading } from 'src/app/models/ContentLoading';
-import { GuildMotd, GuildMotdView } from 'src/app/models/GuildMotd';
+import { GuildMotdView } from 'src/app/models/GuildMotd';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -46,19 +46,11 @@ export class MotdConfigComponent implements OnInit {
     });
   }
 
-  onChange(event: any) {
-    clearTimeout(this.timeout);
-    var $this = this;
-    this.timeout = setTimeout(function () {
-      if (event.keyCode != 13) {
-        $this.updateMotd();
-      }
-    }, 500);
-  }
-
   onToggle(event: any) {
-    var $this = this;
-    setTimeout(function () { $this.updateMotd() }, 100);  // wait a bit because angular sux
+    if (!event) {
+      var $this = this;
+      setTimeout(function () { $this.updateMotd() }, 100);  // wait a bit because angular sux
+    }
   }
 
   public updateMotd() {
@@ -71,13 +63,15 @@ export class MotdConfigComponent implements OnInit {
       data.message = "Placeholder";
     }
 
-    this.api.putSimpleData(`/guilds/${this.guildId}/motd`, data).subscribe(() => {
+    this.api.putSimpleData(`/guilds/${this.guildId}/motd`, data).subscribe((data) => {
         this.toastr.success(this.translator.instant('GuildMotd.Saved'));
-        this.reload();
+        this.motd.content = {
+          motd: data,
+          creator: this.motd.content?.creator
+        };
       }, error => {
         console.error(error);
         this.toastr.error(this.translator.instant('GuildMotd.FailedToSave'));
     });
   }
-
 }

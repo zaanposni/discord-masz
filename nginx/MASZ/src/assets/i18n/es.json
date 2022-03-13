@@ -405,6 +405,7 @@
         "Message": "Mensaje",
         "FailedToLoad": "No se pudo cargar motd.",
         "FailedToSave": "No se pudo salvar a motd.",
+        "Save": "Guardar",
         "Saved": "Motd guardado.",
         "Explanation": "Este mensaje se mostrará a sus administradores y moderadores en el panel de control."
     },

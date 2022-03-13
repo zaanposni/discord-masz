@@ -405,6 +405,7 @@
         "Message": "Un message",
         "FailedToLoad": "Échec du chargement de motd.",
         "FailedToSave": "Échec de l'enregistrement de motd.",
+        "Save": "Enregistrer",
         "Saved": "Mot enregistré.",
         "Explanation": "Ce message sera affiché à vos administrateurs et modérateurs sur le tableau de bord."
     },

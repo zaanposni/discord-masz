@@ -405,6 +405,7 @@
         "Message": "Nochricht",
         "FailedToLoad": "MotD konnt ned glodn wean.",
         "FailedToSave": "MotD konnt ned gspeichat wean.",
+        "Save": "Speichan",
         "Saved": "MotD gspeichat.",
         "Explanation": "De Nochricht wird am Administratoa oda am Modaratoa aufm Dashboard ozeigt."
     },
