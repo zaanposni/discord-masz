@@ -1,38 +1,26 @@
 <script lang="ts">
 	import { Router } from "@roxi/routify";
 	import { routes } from "../.routify/routes";
-  	import { Button } from 'attractions';
+	import { Button, Autocomplete } from "attractions";
 
-
-	export let name: string;
+	async function* getOptions(text) {
+		yield [
+			{ name: text, details: "Optional" },
+			{ name: `it highlights the match: ${text}` },
+		];
+	}
 </script>
 
+<style global lang="postcss">
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+</style>
+
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 	<Router {routes} />
 	<Button filled class="mb-3">click me</Button>
 	<i class="material-icons">home</i>
+
+	<Autocomplete {getOptions} minSearchLength={0} />
 </main>
-
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
