@@ -3,6 +3,7 @@ using MASZ.Models;
 using Microsoft.AspNetCore.Mvc;
 using RestSharp;
 using MASZ.Repositories;
+using Discord;
 
 namespace MASZ.Controllers
 {
@@ -18,18 +19,6 @@ namespace MASZ.Controllers
         public IActionResult GetBotUser()
         {
             return Ok(DiscordUserView.CreateOrDefault(_discordAPI.GetCurrentBotInfo()));
-        }
-
-        [HttpGet("embed")]
-        public async Task<IActionResult> GetOEmbedInfo()
-        {
-            AppSettings appSettings = await AppSettingsRepository.CreateDefault(_serviceProvider).GetAppSettings();
-
-            return new ContentResult()
-            {
-                Content = appSettings.GetEmbedData(_config.GetBaseUrl()),
-                ContentType = "text/html"
-            };
         }
 
         [HttpGet("application")]

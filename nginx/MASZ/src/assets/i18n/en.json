@@ -26,6 +26,7 @@
     "Usernotes": "Usernotes",
     "Usermaps": "Usermaps",
     "Comments": "Comments",
+    "BanAppeals": "Ban appeals",
     "Loading": "Loading...",
     "NothingHere": "Nothing here.",
     "AcceptTermsOnLogin": "By logging in you accept our Terms and Guidelines.",
@@ -74,6 +75,7 @@
         "Embed": {
             "Title": "Discord Embed",
             "Content": "This setting will change the content of the embed when your MASZ instance is linked in Discord.",
+            "ShowIcon": "Show application's icon in embed.",
             "TakeToUpdate": "Please note that this might take up to one hour to update in discord.",
             "Save": {
                 "Button": "Save",
@@ -142,6 +144,12 @@
         "Cancel": "Cancel",
         "Confirm": "Confirm"
     },
+    "AppealStructureEditDialog": {
+        "EditQuestion": "Edit question",
+        "Question": "Question",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm"
+    },
     "CommentEditDialog": {
         "EditComment": "Edit comment",
         "Comment": "Comment",
@@ -189,6 +197,9 @@
         "Confirm": "Confirm"
     },
     "GuildDialog": {
+        "PublicEmbedMode": "Public embed mode",
+        "PublicEmbedModeExplained": "This mode enables detailed embeds when linking modcases in discord. This will disclose private information like the suspect, punishments, etc.",
+        "AllowAppealAfterXDays": "Allow ban appeal after x days",
         "ImportExistingBans": "Import existing bans",
         "ImportExistingBansDetails": "This might take a while for large guilds but will run in the background.",
         "AddAGuild": "Add a guild",
@@ -229,6 +240,8 @@
         "TargetChannel": "Target channel",
         "ComingSoon": "Coming soon",
         "PingRoles": "Ping roles",
+        "ExcludeRoles": "Exclude roles",
+        "ExcludeChannels": "Exclude channels",
         "AuditLog": "AuditLog",
         "ConfigDeleted": "Config deleted.",
         "FailedToDeleteConfig": "Failed to delete config.",
@@ -277,6 +290,21 @@
         },
         "ThreadCreated": {
             "title": "Thread created"
+        },
+        "VoiceJoined": {
+            "title": "Member joined voice channel"
+        },
+        "VoiceLeft": {
+            "title": "Member left voice channel"
+        },
+        "VoiceMoved": {
+            "title": "Member moved voice channel"
+        },
+        "ReactionAdded": {
+            "title": "Reaction added"
+        },
+        "ReactionRemoved": {
+            "title": "Reaction removed"
         }
     },
     "AutomodConfig": {
@@ -377,6 +405,7 @@
         "Message": "Message",
         "FailedToLoad": "Failed to load motd.",
         "FailedToSave": "Failed to save motd.",
+        "Save": "Save",
         "Saved": "Saved motd.",
         "Explanation": "This message will be displayed to your administrators and moderators on the dashboard."
     },
@@ -392,6 +421,7 @@
         "Overview": "Overview",
         "Cases": "Cases",
         "Punishments": "Punishments",
+        "Appeals": "Ban appeals",
         "Automoderations": "Automoderations",
         "ChooseADate": "Choose a date",
         "Reset": "Reset"
@@ -408,6 +438,11 @@
     "GuildInfoCard": {
         "CreateNewCase": "Create new case",
         "FailedToLoad": "Failed to load guild info."
+    },
+    "GuildNotifications": {
+        "Title": "Notice",
+        "MissingAppeals": "You have no ban appeal questions configured. Thus, banned users cannot create a ban appeal right now.",
+        "FailedToLoad": "Failed to load guild notifications."
     },
     "DashboardMotd": {
         "FailedToLoad": "Failed to load motd.",
@@ -431,7 +466,8 @@
             "Messages": "Messages",
             "Usernote": "Usernotes",
             "Usermap": "Usermaps",
-            "Config": "Config"
+            "Config": "Config",
+            "BanAppeals": "Appeals"
         }
     },
     "UsermapTable": {
@@ -516,6 +552,72 @@
         "FailedToUploadFile": "Failed to upload file.",
         "CaseCreated": "Case created.",
         "CaseUpdated": "Case updated."
+    },
+    "AppealCreate": {
+        "Title": "Your ban appeal",
+        "Answer": "Answer these questions to complete your ban appeal.",
+        "Skip": "You can skip questions if you want to.",
+        "View": "You will be able to view the status of your appeal on this website everytime.",
+        "Save": "Save",
+        "Created": "Your appeal has been created.",
+        "FailedToCreate": "Failed to create appeal.",
+        "FailedToLoadQuestions": "Failed to load questions."
+    },
+    "AppealConfig": {
+        "AppealStructure": "Ban appeal structure",
+        "Configure": "Configure the form for the guild's ban appeal.",
+        "Skip": "Users can skip questions if they want to.",
+        "Delete": "If you delete a question it will still be visible in old ban appeals.",
+        "NotConfigured": "If you have no questions configured, users will not be able to appeal bans.",
+        "Save": "Save",
+        "NewQuestion": "New question",
+        "Reordered": "Questions have been reordered.",
+        "FailedToReorder": "Failed to reorder questions.",
+        "FailedToCreate": "Failed to create question.",
+        "Created": "Question has been created."
+    },
+    "AppealCard": {
+        "Created": "Created:",
+        "Updated": "Updated:",
+        "AnswerCount": "User has answered {{count}} questions.",
+        "AllowedNewAppeal": "User is allowed to create a new appeal at: "
+    },
+    "AppealQuestionCard": {
+        "YourAnswer": "Your answer",
+        "Updated": "Updated.",
+        "FailedToUpdate": "Failed to update question",
+        "Deleted": "Deleted.",
+        "FailedToDelete": "Failed to delete question."
+    },
+    "AppealTable": {
+        "Count": "Count",
+        "Warning": "Warning",
+        "NotConfigured": "This guild has no ban appeal form configured. Thus, you cannot create an appeal right now.",
+        "Locked": "Due to the guilds settings or previous appeal decisions you are not allowed to create an appeal right now.",
+        "SelectMembers": "Members",
+        "SelectedStatus": "Status",
+        "FilterSince": "Created since",
+        "FilterUntil": "Created until",
+        "ExecuteSearch": "Search",
+        "FailedToLoad": "Failed to load appeals.",
+        "NoMatches": "No appeals matches your search.",
+        "CreateNewAppeal": "Create new appeal",
+        "ConfigureAppeals": "Configure appeals"
+    },
+    "AppealView": {
+        "FailedToLoad": "Failed to load appeal.",
+        "CreatedAt": "Created at:",
+        "UpdatedAt": "Updated at:",
+        "LatestCases": "Latest cases",
+        "ModeratorsDecisionAt": "Moderators decision at:",
+        "ModeratorsComment": "Moderators comment",
+        "NewAppeal": "New appeal",
+        "UserIsAllowedToCreateNewAppealAt": "User is allowed to create new appeal at:",
+        "UserIsNeverAllowedToCreateNewAppeal": "User is never allowed to create new appeal",
+        "Edit": "Edit",
+        "Status": "Status",
+        "Updated": "Appeal updated.",
+        "FailedToUpdate": "Failed to update appeal."
     },
     "ModCaseTable": {
         "SelectMembers": "Members",

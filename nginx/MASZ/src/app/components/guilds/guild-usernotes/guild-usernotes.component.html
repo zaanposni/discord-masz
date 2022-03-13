@@ -21,7 +21,7 @@
                     <textarea matInput type="text" formControlName="description" rows="1"></textarea>
                 </mat-form-field>
                 <button mat-raised-button color="accent" (click)="createNote()"
-                 [disabled]="!this.newNoteFormGroup.value.userid.trim() || !this.newNoteFormGroup.value.description.trim()">
+                 [disabled]="!this.newNoteFormGroup.value?.userid?.trim() || !this.newNoteFormGroup.value?.description?.trim()">
                     {{ 'UsernoteTable.CreateNewNote' | translate }}
                 </button>
             </form>

@@ -4,4 +4,6 @@ export interface IGuildAuditLogConfig {
     guildAuditLogEvent: number;
     channelId: string;
     pingRoles: string[];
+    ignoreRoles: string[];
+    ignoreChannels: string[];
 }

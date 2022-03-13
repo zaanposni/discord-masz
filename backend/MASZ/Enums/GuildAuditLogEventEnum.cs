@@ -15,6 +15,11 @@ namespace MASZ.Enums
         BanRemoved,
         InviteCreated,
         InviteDeleted,
-        ThreadCreated
+        ThreadCreated,
+        VoiceJoined,
+        VoiceLeft,
+        VoiceMoved,
+        ReactionAdded,
+        ReactionRemoved
     }
 }

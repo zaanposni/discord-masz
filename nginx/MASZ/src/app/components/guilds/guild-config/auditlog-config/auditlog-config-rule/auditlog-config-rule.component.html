@@ -24,6 +24,20 @@
             [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
             </mat-select>
         </mat-form-field>
+        <mat-form-field class="ml-4" *ngIf="this.definition.roleFilter">
+            <mat-label>{{ 'GuildAuditLogConfig.ExcludeRoles' | translate }}</mat-label>
+            <mat-select formControlName="ignoreRoles" multiple>
+            <mat-option *ngFor="let role of this.guild?.roles"
+            [value]="role.id" [style.color]="generateRoleColor(role)">{{role.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="ml-4" *ngIf="this.definition.channelFilter">
+            <mat-label>{{ 'GuildAuditLogConfig.ExcludeChannels' | translate }}</mat-label>
+            <mat-select formControlName="ignoreChannels" multiple>
+            <mat-option *ngFor="let channel of this.guildChannels"
+            [value]="channel.id" >#{{channel.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
     </form>
     <div class="mat-h4 mb-0 ml-4 text-warning" *ngIf="this.definition.comingSoon">
         {{ 'GuildAuditLogConfig.ComingSoon' | translate }}

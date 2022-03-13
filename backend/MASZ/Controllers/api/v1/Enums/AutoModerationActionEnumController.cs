@@ -21,7 +21,8 @@ namespace MASZ.Controllers
                 EnumDto.Create((int) AutoModerationAction.None, _translator.T().Enum(AutoModerationAction.None)),
                 EnumDto.Create((int) AutoModerationAction.ContentDeleted, _translator.T().Enum(AutoModerationAction.ContentDeleted)),
                 EnumDto.Create((int) AutoModerationAction.CaseCreated, _translator.T().Enum(AutoModerationAction.CaseCreated)),
-                EnumDto.Create((int) AutoModerationAction.ContentDeletedAndCaseCreated, _translator.T().Enum(AutoModerationAction.ContentDeletedAndCaseCreated))
+                EnumDto.Create((int) AutoModerationAction.ContentDeletedAndCaseCreated, _translator.T().Enum(AutoModerationAction.ContentDeletedAndCaseCreated)),
+                EnumDto.Create((int) AutoModerationAction.Timeout, _translator.T().Enum(AutoModerationAction.Timeout))
             });
         }
     }

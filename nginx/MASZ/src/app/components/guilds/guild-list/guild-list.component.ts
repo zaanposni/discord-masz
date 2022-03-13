@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class GuildListComponent implements OnInit {
 
+  public anyGuilds: boolean = false;
   public currentUser: ContentLoading<AppUser> = { loading: true, content: {} as AppUser }
 
   constructor(private auth: AuthService, private router: Router) { }
@@ -22,12 +23,18 @@ export class GuildListComponent implements OnInit {
   login() {
     this.currentUser = { loading: true, content: {} as AppUser };
     this.auth.getUserProfile().subscribe((data) => {
-      this.currentUser = { loading: false, content: data };
-    }, () => { this.currentUser.loading = false });
+      this.currentUser = {
+        loading: false,
+        content: data
+      };
+      this.anyGuilds = ((data.memberGuilds?.length ?? 0) + (data.modGuilds?.length ?? 0) + (data.adminGuilds?.length ?? 0) + (data.bannedGuilds?.length ?? 0)) > 0;
+    }, () => {
+      this.currentUser.loading = false;
+    });
   }
 
   open(...target: any[]) {
     const url = target.join('/');
-    this.router.navigateByUrl(url);    
+    this.router.navigateByUrl(url);
   }
 }

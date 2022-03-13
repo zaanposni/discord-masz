@@ -10,5 +10,6 @@ namespace MASZ.Dtos.AppSettings
         public string EmbedTitle { get; set; }
         [MaxLength(4096)]
         public string EmbedContent { get; set; }
+        public bool EmbedShowIcon { get; set; } = false;
     }
 }

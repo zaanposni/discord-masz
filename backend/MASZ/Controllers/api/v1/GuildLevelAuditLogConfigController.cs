@@ -21,8 +21,9 @@ namespace MASZ.Controllers
         {
             await RequirePermission(guildId, DiscordPermission.Admin);
 
-            return Ok(new GuildLevelAuditLogConfigView(await GuildLevelAuditLogConfigRepository.CreateDefault(_serviceProvider, (await GetIdentity()).GetCurrentUser())
-                .UpdateConfig(new GuildLevelAuditLogConfig(dto, guildId))));
+            return Ok(new GuildLevelAuditLogConfigView(
+                await GuildLevelAuditLogConfigRepository.CreateDefault(_serviceProvider, (await GetIdentity()).GetCurrentUser())
+                    .UpdateConfig(new GuildLevelAuditLogConfig(dto, guildId))));
         }
 
         [HttpDelete("{type}")]

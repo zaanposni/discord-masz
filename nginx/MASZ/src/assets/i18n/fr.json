@@ -26,6 +26,7 @@
     "Usernotes": "Notes d'utilisateur",
     "Usermaps": "Cartes utilisateur",
     "Comments": "commentaires",
+    "BanAppeals": "Appel de bannissement",
     "Loading": "Chargement...",
     "NothingHere": "Rien ici.",
     "AcceptTermsOnLogin": "En vous connectant, vous acceptez nos conditions et directives.",
@@ -74,6 +75,7 @@
         "Embed": {
             "Title": "Embed Discord",
             "Content": "Ce paramètre modifiera le contenu de l'encart lorsque votre instance MASZ est liée dans Discord.",
+            "ShowIcon": "Afficher l'icône de l'application dans l'encart.",
             "TakeToUpdate": "Veuillez noter que cela peut prendre jusqu'à une heure pour mettre à jour.",
             "Save": {
                 "Button": "Enregistrer",
@@ -142,6 +144,12 @@
         "Cancel": "Annuler",
         "Confirm": "Confirmer"
     },
+    "AppealStructureEditDialog": {
+        "EditQuestion": "Modifier la question",
+        "Question": "Question",
+        "Cancel": "Annuler",
+        "Confirm": "Confirmer"
+    },
     "CommentEditDialog": {
         "EditComment": "Modifier le commentaire",
         "Comment": "Commenter",
@@ -189,6 +197,9 @@
         "Confirm": "Confirmer"
     },
     "GuildDialog": {
+        "PublicEmbedMode": "Mode d'intégration publique",
+        "PublicEmbedModeExplained": "Ce mode permet d'intégrer des informations détaillées lorsque vous liez des cas dans le discord. Cela rendra les informations privées comme le suspect, les punitions, etc. accessibles.",
+        "AllowAppealAfterXDays": "Autoriser l'appel d'une décision après x jours",
         "ImportExistingBans": "Importer des interdictions existantes",
         "ImportExistingBansDetails": "Cela peut prendre un certain temps pour les grandes guildes, mais se déroulera en arrière-plan.",
         "AddAGuild": "Ajouter une guilde",
@@ -229,6 +240,8 @@
         "TargetChannel": "Canal cible",
         "ComingSoon": "Bientôt disponible",
         "PingRoles": "Rôles de ping",
+        "ExcludeRoles": "Exclure les rôles",
+        "ExcludeChannels": "Exclure les chaînes",
         "AuditLog": "Journal d'audit",
         "ConfigDeleted": "Configuration supprimée.",
         "FailedToDeleteConfig": "Échec de la suppression de la configuration.",
@@ -277,6 +290,21 @@
         },
         "ThreadCreated": {
             "title": "Fil créé"
+        },
+        "VoiceJoined": {
+            "title": "Membre rejoint le salon vocal"
+        },
+        "VoiceLeft": {
+            "title": "Membre a quitté le salon vocal"
+        },
+        "VoiceMoved": {
+            "title": "Membre a déplacé le salon vocal"
+        },
+        "ReactionAdded": {
+            "title": "Réaction ajoutée"
+        },
+        "ReactionRemoved": {
+            "title": "Réaction supprimée"
         }
     },
     "AutomodConfig": {
@@ -377,6 +405,7 @@
         "Message": "Un message",
         "FailedToLoad": "Échec du chargement de motd.",
         "FailedToSave": "Échec de l'enregistrement de motd.",
+        "Save": "Enregistrer",
         "Saved": "Mot enregistré.",
         "Explanation": "Ce message sera affiché à vos administrateurs et modérateurs sur le tableau de bord."
     },
@@ -392,6 +421,7 @@
         "Overview": "Aperçu",
         "Cases": "Cas",
         "Punishments": "Les sanctions",
+        "Appeals": "Appel de bannissement",
         "Automoderations": "Automodérations",
         "ChooseADate": "Choisissez une date",
         "Reset": "Réinitialiser"
@@ -408,6 +438,11 @@
     "GuildInfoCard": {
         "CreateNewCase": "Créer un nouveau cas",
         "FailedToLoad": "Échec du chargement des informations de guilde."
+    },
+    "GuildNotifications": {
+        "Title": "Avis",
+        "MissingAppeals": "Vous n'avez pas de questions de plainte de bannissement configurées. Les utilisateurs bannis ne peuvent pas créer de plainte de bannissement pour le moment.",
+        "FailedToLoad": "Échec du chargement des notifications de guilde."
     },
     "DashboardMotd": {
         "FailedToLoad": "Échec du chargement de motd.",
@@ -431,7 +466,8 @@
             "Messages": "Messages",
             "Usernote": "Notes d'utilisateur",
             "Usermap": "Cartes utilisateur",
-            "Config": "Configuration"
+            "Config": "Configuration",
+            "BanAppeals": "Appel de bannissements"
         }
     },
     "UsermapTable": {
@@ -516,6 +552,72 @@
         "FailedToUploadFile": "Échec du téléchargement du fichier.",
         "CaseCreated": "Cas créé.",
         "CaseUpdated": "Cas mis à jour."
+    },
+    "AppealCreate": {
+        "Title": "Votre demande d'exclusion",
+        "Answer": "Répondez aux questions pour compléter votre demande d'exclusion.",
+        "Skip": "Vous pouvez ignorer les questions si vous le souhaitez.",
+        "View": "Vous pourrez consulter le statut de votre demande d'exclusion sur ce site toutes les fois.",
+        "Save": "Enregistrer",
+        "Created": "Votre demande d'exclusion a été créée.",
+        "FailedToCreate": "Échec de la création de la demande d'exclusion.",
+        "FailedToLoadQuestions": "Échec du chargement des questions."
+    },
+    "AppealConfig": {
+        "AppealStructure": "Structure de l'appel d'embargo",
+        "Configure": "Configurer le formulaire pour l'appel d'embargo de la guilde.",
+        "Skip": "Les utilisateurs peuvent sauter des questions si ils le souhaitent.",
+        "Delete": "Si vous supprimez une question, elle sera toujours visible dans les appels d'embargo antérieurs.",
+        "NotConfigured": "Si vous n'avez pas de questions configurées, les utilisateurs ne pourront pas appeler d'embargo.",
+        "Save": "Enregistrer",
+        "NewQuestion": "Nouvelle question",
+        "Reordered": "Les questions ont été réordonnées.",
+        "FailedToReorder": "Échec de la réorganisation des questions.",
+        "FailedToCreate": "Échec de la création de la question.",
+        "Created": "La question a été créée."
+    },
+    "AppealCard": {
+        "Created": "Créé:",
+        "Updated": "Mis à jour:",
+        "AnswerCount": "L'utilisateur a répondu {{count}} questions.",
+        "AllowedNewAppeal": "L'utilisateur peut créer un nouvel appel à la loi à: "
+    },
+    "AppealQuestionCard": {
+        "YourAnswer": "Votre réponse",
+        "Updated": "Mis à jour.",
+        "FailedToUpdate": "Échec de la mise à jour de la question",
+        "Deleted": "Supprimé.",
+        "FailedToDelete": "Échec de la suppression de la question."
+    },
+    "AppealTable": {
+        "Count": "Nombre",
+        "Warning": "Avertissement",
+        "NotConfigured": "Ce serveur n'a pas de formulaire de plainte de bannissement configuré. Vous ne pouvez pas créer de plainte de bannissement pour le moment.",
+        "Locked": "En raison des paramètres de serveur ou des décisions précédentes, vous ne pouvez pas créer de plainte de bannissement pour le moment.",
+        "SelectMembers": "Membres",
+        "SelectedStatus": "Statut",
+        "FilterSince": "Créé depuis",
+        "FilterUntil": "Créé jusqu'au",
+        "ExecuteSearch": "Chercher",
+        "FailedToLoad": "Échec du chargement des demandes.",
+        "NoMatches": "Aucun cas ne correspond à votre recherche.",
+        "CreateNewAppeal": "Créer un nouveau cas",
+        "ConfigureAppeals": "Configurer les demandes"
+    },
+    "AppealView": {
+        "FailedToLoad": "Échec du chargement de la demande.",
+        "CreatedAt": "Créé le:",
+        "UpdatedAt": "Mis à jour le:",
+        "LatestCases": "Derniers cas",
+        "ModeratorsDecisionAt": "Décision du modérateur le:",
+        "ModeratorsComment": "Commentaire du modérateur",
+        "NewAppeal": "Nouveau cas",
+        "UserIsAllowedToCreateNewAppealAt": "L'utilisateur est autorisé à créer un nouveau cas à:",
+        "UserIsNeverAllowedToCreateNewAppeal": "L'utilisateur n'est jamais autorisé à créer un nouveau cas",
+        "Edit": "Modifier",
+        "Status": "Statut",
+        "Updated": "Demande mise à jour.",
+        "FailedToUpdate": "Impossible de mettre à jour la demande."
     },
     "ModCaseTable": {
         "SelectMembers": "Membres",

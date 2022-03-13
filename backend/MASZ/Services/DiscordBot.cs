@@ -416,6 +416,7 @@ namespace MASZ.Services
                 return;
             }
 
+            // Punishment handling
             try
             {
                 Punishments handler = scope.ServiceProvider.GetRequiredService<Punishments>();
@@ -431,9 +432,9 @@ namespace MASZ.Services
                 return;
             }
 
+            // Invitetracking
             List<TrackedInvite> newInvites = await FetchInvites(member.Guild);
             TrackedInvite usedInvite = null;
-
             try
             {
                 usedInvite = InviteTracker.GetUsedInvite(member.Guild.Id, newInvites);
@@ -477,6 +478,16 @@ namespace MASZ.Services
                 }
 
                 await InviteRepository.CreateDefault(scope.ServiceProvider).CreateInvite(invite);
+            }
+
+            // Appeal handling
+            try
+            {
+                await AppealRepository.CreateDefault(scope.ServiceProvider).SetAllAppealsAsInvalid(member.Guild.Id, member.Id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to handle appeal on member join.");
             }
         }
 

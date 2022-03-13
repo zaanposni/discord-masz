@@ -113,6 +113,16 @@
             "es": "Contenido eliminado y caso creado",
             "ru": "Контент удален, а дело создано",
             "it": "Contenuto eliminato e caso creato"
+        },
+        "Timeout": {
+            "description": "The user is timed out. The word 'timeout'.",
+            "en": "Timeout",
+            "de": "Timeout",
+            "at": "Timeout",
+            "fr": "Timeout",
+            "es": "Timeout",
+            "ru": "Таймаут",
+            "it": "Timeout"
         }
     },
     "AutoModerationType": {
@@ -292,7 +302,7 @@
             "description": "The identity is not valid.",
             "en": "Invalid identity",
             "de": "Ungültige Identität",
-            "at": "Ungültige Identität",
+            "at": "Ungütige Identität",
             "fr": "Identité invalide",
             "es": "Identidad inválida",
             "ru": "Неверная личность",
@@ -522,7 +532,7 @@
             "description": "the provided date is invalid (most likely in the past)",
             "en": "The execution date has to be at least one minute in the future.",
             "de": "Das Ausführungsdatum muss mindestens eine Minute in der Zukunft liegen.",
-            "at": "Das Ausführungsdatum muss mindestens eine Minute in der Zukunft liegen.",
+            "at": "Des Ausführungsdatum muas mindestens a Minutn in da Zukunft liagn.",
             "fr": "La date d'exécution doit être au moins une minute dans le futur.",
             "es": "La fecha de ejecución debe ser al menos un minuto en el futuro.",
             "ru": "Дата выполнения должна быть не менее одной минуты в будущем.",
@@ -534,7 +544,7 @@
             "description": "Default",
             "en": "Default",
             "de": "Default",
-            "at": "Default",
+            "at": "Standard",
             "fr": "Défaut",
             "es": "Defecto",
             "ru": "Дефолт",
@@ -732,7 +742,7 @@
             "description": "The comment is unlocked.",
             "en": "Unlocked",
             "de": "Entsperrt",
-            "at": "Entsperrt",
+            "at": "Entspeat",
             "fr": "Débloqué",
             "es": "Desbloqueado",
             "ru": "Разблокирован",
@@ -888,7 +898,7 @@
             "description": "A member was removed from the guild.",
             "en": "Member removed",
             "de": "Mitglied entfernt",
-            "at": "Mitglied entfernt",
+            "at": "Mitglied entfeant",
             "fr": "Membre supprimé",
             "es": "Miembro eliminado",
             "ru": "Участник удален",
@@ -943,6 +953,56 @@
             "es": "Hilo creado",
             "ru": "Тема создана",
             "it": "Discussione creata"
+        },
+        "VoiceJoined": {
+            "description": "A member joined a voice channel.",
+            "en": "Member joined voice channel",
+            "de": "Mitglied ist in einem Sprachkanal beigetreten",
+            "at": "Mitglied ist in einem Sprachkanal beitretn",
+            "fr": "Membre rejoint le salon vocal",
+            "es": "Miembro se unió al canal de voz",
+            "ru": "Участник присоединился к голосовому каналу",
+            "it": "Membro entrato nel canale vocale"
+        },
+        "VoiceLeft": {
+            "description": "A member left a voice channel.",
+            "en": "Member left voice channel",
+            "de": "Mitglied hat einen Sprachkanal verlassen",
+            "at": "Mitglied hat einen Sprachkanal verlassn",
+            "fr": "Membre a quitté le salon vocal",
+            "es": "Miembro dejó el canal de voz",
+            "ru": "Участник покинул голосовой канал",
+            "it": "Membro uscito dal canale vocale"
+        },
+        "VoiceMoved": {
+            "description": "A member moved to a different voice channel.",
+            "en": "Member moved voice channel",
+            "de": "Mitglied hat sich in einen anderen Sprachkanal bewegt",
+            "at": "Mitglied hot sich in an ondaren Sprachkanal bewegt",
+            "fr": "Membre a déplacé le salon vocal",
+            "es": "Miembro movió al canal de voz",
+            "ru": "Участник переместился в другой голосовой канал",
+            "it": "Membro spostato nel canale vocale"
+        },
+        "ReactionAdded": {
+            "description": "A reaction was added to a message.",
+            "en": "Reaction added",
+            "de": "Reaktion hinzugefügt",
+            "at": "Reaktion hinzugfügt",
+            "fr": "Réaction ajoutée",
+            "es": "Reacción añadida",
+            "ru": "Реакция добавлена",
+            "it": "Risposta aggiunta"
+        },
+        "ReactionRemoved": {
+            "description": "A reaction was removed from a message.",
+            "en": "Reaction removed",
+            "de": "Reaktion entfernt",
+            "at": "Reaktion entfeant",
+            "fr": "Réaction supprimée",
+            "es": "Reacción eliminada",
+            "ru": "Реакция удалена",
+            "it": "Risposta rimossa"
         }
     },
     "ScheduledMessageFailureReason": {
@@ -950,7 +1010,7 @@
             "description": "An unknown error occurred.",
             "en": "Unknown error",
             "de": "Unbekannter Fehler",
-            "at": "Unbekannter Fehler",
+            "at": "Unbekannta Föhla",
             "fr": "Erreur inconnue",
             "es": "Error desconocido",
             "ru": "Неизвестная ошибка",
@@ -960,7 +1020,7 @@
             "description": "The channel was not found.",
             "en": "Channel not found",
             "de": "Kanal nicht gefunden",
-            "at": "Kanal nicht gefunden",
+            "at": "Kanal ned gfundn",
             "fr": "Canal introuvable",
             "es": "Canal no encontrado",
             "ru": "Канал не найден",
@@ -970,7 +1030,7 @@
             "description": "The user does not have permission to send messages in the channel.",
             "en": "Insufficient permission",
             "de": "Unzureichende Berechtigung",
-            "at": "Unzureichende Berechtigung",
+            "at": "Unzureichnde Berechtigung",
             "fr": "Permission insuffisante",
             "es": "Permiso insuficiente",
             "ru": "Недостаточно прав",
@@ -982,7 +1042,7 @@
             "description": "The scheduled message is pending.",
             "en": "Pending",
             "de": "Ausstehend",
-            "at": "Ausstehend",
+            "at": "Ausstehnd",
             "fr": "En attente",
             "es": "Pendiente",
             "ru": "Ожидается",
@@ -992,7 +1052,7 @@
             "description": "The scheduled message was sent.",
             "en": "Sent",
             "de": "Gesendet",
-            "at": "Gesendet",
+            "at": "Gsendet",
             "fr": "Envoyé",
             "es": "Enviado",
             "ru": "Отправлено",
@@ -1002,11 +1062,43 @@
             "description": "The scheduled message failed to send.",
             "en": "Failed",
             "de": "Fehlgeschlagen",
-            "at": "Fehlgeschlagen",
+            "at": "Fehlgschlogn",
             "fr": "Échec",
             "es": "Falló",
             "ru": "Не удалось отправить",
             "it": "Invio fallito"
+        }
+    },
+    "AppealStatus": {
+        "Pending": {
+            "description": "The appeal is pending.",
+            "en": "Pending",
+            "de": "Ausstehend",
+            "at": "Ausstehend",
+            "fr": "En attente",
+            "es": "Pendiente",
+            "ru": "Ожидается",
+            "it": "In attesa"
+        },
+        "Approved": {
+            "description": "The appeal was approved.",
+            "en": "Approved",
+            "de": "Genehmigt",
+            "at": "Gnehmigt",
+            "fr": "Approuvé",
+            "es": "Aprobado",
+            "ru": "Утвержден",
+            "it": "Approvato"
+        },
+        "Declined": {
+            "description": "The appeal was declined.",
+            "en": "Declined",
+            "de": "Abgelehnt",
+            "at": "Obglehnt",
+            "fr": "Refusé",
+            "es": "Denegado",
+            "ru": "Отклонен",
+            "it": "Rifiutato"
         }
     }
 }

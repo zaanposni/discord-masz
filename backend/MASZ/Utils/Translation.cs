@@ -410,13 +410,13 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Benutzerbeziehung zwischen {userMap.UserA} und {userMap.UserB}.",
-                Language.at => $"Benutzabeziehung zwischa {userMap.UserA} und {userMap.UserB}.",
-                Language.fr => $"UserMap entre {userMap.UserA} et {userMap.UserB}.",
-                Language.es => $"UserMap entre {userMap.UserA} y {userMap.UserB}.",
-                Language.ru => $"UserMap между {userMap.UserA} и {userMap.UserB}.",
-                Language.it => $"UserMap tra {userMap.UserA} e {userMap.UserB}.",
-                _ => $"UserMap between {userMap.UserA} and {userMap.UserB}.",
+                Language.de => $"Benutzerbeziehung zwischen <@{userMap.UserA}> und <@{userMap.UserB}>.",
+                Language.at => $"Benutzabeziehung zwischa <@{userMap.UserA}> und <@{userMap.UserB}>.",
+                Language.fr => $"UserMap entre <@{userMap.UserA}> et <@{userMap.UserB}>.",
+                Language.es => $"UserMap entre <@{userMap.UserA}> y <@{userMap.UserB}>.",
+                Language.ru => $"UserMap между <@{userMap.UserA}> и <@{userMap.UserB}>.",
+                Language.it => $"UserMap tra <@{userMap.UserA}> e <@{userMap.UserB}>.",
+                _ => $"UserMap between <@{userMap.UserA}> and <@{userMap.UserB}>.",
             };
         }
         public string Imported()
@@ -683,8 +683,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen besuche: {serviceBaseUrl}",
-                Language.at => $"Die Moderatoan vo `{guild.Name}` hom di verwoarnt.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
+                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen oder einen Entbannungsantrag besuche: {serviceBaseUrl}",
+                Language.at => $"Die Moderatoan vo `{guild.Name}` hom di verwoarnt.\nFia weitere Infos oda ein Entbannungsantrag schau bei {serviceBaseUrl} noch.",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont prévenu.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han advertido.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
                 Language.ru => $"Модераторы гильдии `{guild.Name}` вас предупредили.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
@@ -788,12 +788,77 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Datei aktualisiert",
-                Language.at => "Datei aktualisiert",
+                Language.at => "Datei aktualisiat",
                 Language.fr => "Fichier mis à jour",
                 Language.es => "Archivo actualizado",
                 Language.ru => "Файл обновлен",
                 Language.it => "File aggiornato",
                 _ => "File updated",
+            };
+        }
+        public string NotificationAppealsCreate(ulong actorId)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Ein **Entbannungsantrag** wurde von <@{actorId}> erstellt.",
+                Language.at => $"A **Entbannungsantrag** wuad vo <@{actorId}> erstöt.",
+                Language.fr => $"Un **appel de bannissement** a été créé par <@{actorId}>.",
+                Language.es => $"Un **apelación de prohibición** ha sido creado por <@{actorId}>.",
+                Language.ru => $"Заявка на **бан** создана пользователем <@{actorId}>.",
+                Language.it => $"Un **appello al ban** è stato creato da <@{actorId}>.",
+                _ => $"A **ban appeal** has been created by <@{actorId}>.",
+            };
+        }
+        public string NotificationAppealsUpdate(ulong userId, ulong actorId)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Ein **Entbannungsantrag** für <@{userId}> wurde von <@{actorId}> aktualisiert.",
+                Language.at => $"A **Entbannungsantrag** fia <@{userId}> wuad vo <@{actorId}> aktualisiat.",
+                Language.fr => $"Un **appel de bannissement** pour <@{userId}> a été mis à jour par <@{actorId}>.",
+                Language.es => $"Un **apelación de prohibición** para <@{userId}> ha sido actualizado por <@{actorId}>.",
+                Language.ru => $"Заявка на **бан** для <@{userId}> была обновлена пользователем <@{actorId}>.",
+                Language.it => $"Un **appello al ban** per <@{userId}> è stato aggiornato da <@{actorId}>.",
+                _ => $"A **ban appeal** for <@{userId}> has been updated by <@{actorId}>.",
+            };
+        }
+        public string NotificationAppealsStatus()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Status",
+                Language.at => "Status",
+                Language.fr => "Statut",
+                Language.es => "Estado",
+                Language.ru => "статус",
+                Language.it => "Stato",
+                _ => "Status",
+            };
+        }
+        public string NotificationAppealsReason()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Grund",
+                Language.at => "Grund",
+                Language.fr => "Raison",
+                Language.es => "Razón",
+                Language.ru => "причина",
+                Language.it => "Motivo",
+                _ => "Reason",
+            };
+        }
+        public string NotificationAppealsAppeal()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Entbannungsantrag",
+                Language.at => "Entbannungsantrag",
+                Language.fr => "appel de bannissement",
+                Language.es => "apelación de prohibición",
+                Language.ru => "заявка на бан",
+                Language.it => "appello al ban",
+                _ => "Ban appeal",
             };
         }
         public string NotificationRegisterWelcomeToMASZ()
@@ -1147,6 +1212,19 @@ namespace MASZ.Utils
                 _ => $"Punishment for ModCase #{caseId} by moderator {modId} executed: \"{reason}\"",
             };
         }
+        public string NotificationDiscordAuditLogPunishmentsExecuteAutomod(string autoModEvent)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Bestrafung für Automoderation {autoModEvent} ausgeführt.",
+                Language.at => $"Bestrofun für Automod {autoModEvent} ausgführt.",
+                Language.fr => $"Punition pour Automod {autoModEvent} exécutée.",
+                Language.es => $"Castigo para Automod {autoModEvent} ejecutado.",
+                Language.ru => $"Наказание за Automod {autoModEvent} выполнено.",
+                Language.it => $"Punizione per Automod {autoModEvent} eseguita.",
+                _ => $"Punishment for Automod {autoModEvent} executed.",
+            };
+        }
         public string NotificationDiscordAuditLogPunishmentsUndone(int caseId, string reason)
         {
             return PreferredLanguage switch
@@ -1158,6 +1236,19 @@ namespace MASZ.Utils
                 Language.ru => $"Наказание за ModCase # {caseId} отменено: \"{reason} \"",
                 Language.it => $"Punizione per ModCase #{caseId} annullata: \"{reason}\"",
                 _ => $"Punishment for ModCase #{caseId} undone: \"{reason}\"",
+            };
+        }
+        public string NotificationDiscordAuditLogPunishmentsAppealApproved(int appealId, string reason)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Entbannungsantrag #{appealId} genehmigt: \"{reason}\"",
+                Language.at => $"Entbannungsantrag #{appealId} gnehmigt: \"{reason}\"",
+                Language.fr => $"Appel de bannissement #{appealId} approuvé : \"{reason}\"",
+                Language.es => $"Solicitud de prohibición # {appealId} aprobada: \"{reason} \"",
+                Language.ru => $"Обжалование забанения # {appealId} одобрено: \"{reason} \"",
+                Language.it => $"Appello per Ban Appeal #{appealId} approvato: \"{reason}\"",
+                _ => $"Ban Appeal #{appealId} approved: \"{reason}\"",
             };
         }
         public string NotificationGuildAuditLogInternalCreate(string eventName, IUser actor)
@@ -1210,6 +1301,32 @@ namespace MASZ.Utils
                 Language.ru => "Упоминание ролей",
                 Language.it => "Menzione ruolo/i",
                 _ => "Mention role(s)",
+            };
+        }
+        public string NotificationGuildAuditLogExcludeRoles()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ausgenommene Rollen",
+                Language.at => "Ausgnommene Roin",
+                Language.fr => "Exclure les rôles",
+                Language.es => "Excluir roles",
+                Language.ru => "Исключить роли",
+                Language.it => "Escludi ruoli",
+                _ => "Exclude roles",
+            };
+        }
+        public string NotificationGuildAuditLogExcludeChannels()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ausgenommene Kanäle",
+                Language.at => "Ausgnommene Kanäle",
+                Language.fr => "Exclure les chaînes",
+                Language.es => "Excluir canales",
+                Language.ru => "Исключить каналы",
+                Language.it => "Escludi canali",
+                _ => "Exclude channels",
             };
         }
         public string NotificationGuildAuditLogTitle()
@@ -1737,7 +1854,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"{user.Mention} verwendete den Say-Befehl in {channel.Mention}.\n{message.GetJumpUrl()}",
-                Language.at => $"{user.Mention} verwendete den Say-Befehl in {channel.Mention}.\n{message.GetJumpUrl()}",
+                Language.at => $"{user.Mention} vawendete den Say-Befehl in {channel.Mention}.\n{message.GetJumpUrl()}",
                 Language.fr => $"{user.Mention} a utilisé la commande « dire » dans{channel.Mention}.\n{message.GetJumpUrl()}",
                 Language.es => $"{user.Mention} usó el comando «decir» en {channel.Mention}.\n{message.GetJumpUrl()}",
                 Language.ru => $"{user.Mention} использовал команду «сказать» в {channel.Mention}.\n{message.GetJumpUrl()}",
@@ -2218,7 +2335,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Datenbank",
-                Language.at => "Datenbank",
+                Language.at => "Datenbok",
                 Language.fr => "Base de données",
                 Language.es => "Base de datos",
                 Language.ru => "База данных",
@@ -2231,7 +2348,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Interner Cache",
-                Language.at => "Interner Cache",
+                Language.at => "Interna Cache",
                 Language.fr => "Cache interne",
                 Language.es => "Cache interno",
                 Language.ru => "Внутренний кеш",
@@ -2244,7 +2361,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Momentan angemeldete Benutzer",
-                Language.at => "Momentan angemeldete Benutzer",
+                Language.at => "Momentan ogmödete Benutza",
                 Language.fr => "Utilisateurs actuellement connectés",
                 Language.es => "Usuarios actualmente conectados",
                 Language.ru => "Пользователи, в настоящее время в системе",
@@ -2257,7 +2374,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => $"Letzter Abmeldungszeitpunkt: {time}.",
-                Language.at => $"Letzter Abmeldungszeitpunkt: {time}.",
+                Language.at => $"Letzta Abmeldungszeitpunkt: {time}.",
                 Language.fr => $"Dernière déconnexion à {time}.",
                 Language.es => $"Última desconexión en {time}.",
                 Language.ru => $"Последнее отключение: {time}.",
@@ -2276,6 +2393,32 @@ namespace MASZ.Utils
                 Language.ru => "Канал",
                 Language.it => "Canale",
                 _ => "Channel",
+            };
+        }
+        public string GuildAuditLogChannelBefore()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Kanal vorher",
+                Language.at => "Kanal vorhea",
+                Language.fr => "Canaliser avant",
+                Language.es => "Canal antes",
+                Language.ru => "Канал до",
+                Language.it => "Canale prima",
+                _ => "Channel before",
+            };
+        }
+        public string GuildAuditLogChannelAfter()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Kanal nachher",
+                Language.at => "Kanal nochher",
+                Language.fr => "Canaliser après",
+                Language.es => "Canal después",
+                Language.ru => "Канал после",
+                Language.it => "Canale dopo",
+                _ => "Channel after",
             };
         }
         public string GuildAuditLogChannelId()
@@ -2304,6 +2447,19 @@ namespace MASZ.Utils
                 _ => "ID",
             };
         }
+        public string GuildAuditLogMessage()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Nachricht",
+                Language.at => "Nochricht",
+                Language.fr => "Message",
+                Language.es => "Mensaje",
+                Language.ru => "Сообщение",
+                Language.it => "Messaggio",
+                _ => "Message",
+            };
+        }
         public string GuildAuditLogUserID()
         {
             return PreferredLanguage switch
@@ -2328,6 +2484,19 @@ namespace MASZ.Utils
                 Language.ru => "Пользователь",
                 Language.it => "Utente",
                 _ => "User",
+            };
+        }
+        public string GuildAuditLogEmote()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Emote",
+                Language.at => "Emote",
+                Language.fr => "Émoticône",
+                Language.es => "Emoción",
+                Language.ru => "Эмоция",
+                Language.it => "Emote",
+                _ => "Emote",
             };
         }
         public string GuildAuditLogAuthor()
@@ -2387,7 +2556,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Alt",
-                Language.at => "Alt",
+                Language.at => "Oit",
                 Language.fr => "Ancien",
                 Language.es => "Viejo",
                 Language.ru => "Старый",
@@ -2400,7 +2569,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Neu",
-                Language.at => "Neu",
+                Language.at => "Neich",
                 Language.fr => "Nouveau",
                 Language.es => "Nuevo",
                 Language.ru => "Новый",
@@ -2413,7 +2582,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Leer",
-                Language.at => "Leer",
+                Language.at => "Lea",
                 Language.fr => "Vide",
                 Language.es => "Vacío",
                 Language.ru => "Пустой",
@@ -2439,7 +2608,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Inhalt",
-                Language.at => "Inhalt",
+                Language.at => "Inhoi",
                 Language.fr => "Teneur",
                 Language.es => "Contenido",
                 Language.ru => "Содержание",
@@ -2486,6 +2655,19 @@ namespace MASZ.Utils
                 _ => "New",
             };
         }
+        public string GuildAuditLogMessageUpdatedPinned()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Gepinnt",
+                Language.at => "Opinnt",
+                Language.fr => "Épinglé",
+                Language.es => "Fijado",
+                Language.ru => "Закрепленный",
+                Language.it => "In evidenza",
+                _ => "Pinned",
+            };
+        }
         public string GuildAuditLogMessageDeletedTitle()
         {
             return PreferredLanguage switch
@@ -2504,7 +2686,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Inhalt",
-                Language.at => "Inhalt",
+                Language.at => "Inhoit",
                 Language.fr => "Teneur",
                 Language.es => "Contenido",
                 Language.ru => "Содержание",
@@ -2647,7 +2829,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Mitglied entfernt",
-                Language.at => "Mitglied entfernt",
+                Language.at => "Mitglied entfeant",
                 Language.fr => "Membre supprimé",
                 Language.es => "Miembro eliminado",
                 Language.ru => "Участник удален",
@@ -2764,12 +2946,77 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Entfernt",
-                Language.at => "Entfernt",
+                Language.at => "Entfeant",
                 Language.fr => "Supprimé",
                 Language.es => "Remoto",
                 Language.ru => "Удаленный",
                 Language.it => "RIMOSSO",
                 _ => "Removed",
+            };
+        }
+        public string GuildAuditLogReactionAddedTitle()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Reaktion hinzugefügt",
+                Language.at => "Reaktion hinzugfügt",
+                Language.fr => "Réaction ajoutée",
+                Language.es => "Reacción añadida",
+                Language.ru => "Реакция добавлена",
+                Language.it => "Risposta aggiunta",
+                _ => "Reaction added",
+            };
+        }
+        public string GuildAuditLogReactionRemovedTitle()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Reaktion entfernt",
+                Language.at => "Reaktion entfeant",
+                Language.fr => "Réaction supprimée",
+                Language.es => "Reacción eliminada",
+                Language.ru => "Реакция удалена",
+                Language.it => "Risposta rimossa",
+                _ => "Reaction removed",
+            };
+        }
+        public string GuildAuditLogVoiceJoinedTitle()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Sprachkanal betreten",
+                Language.at => "Sprachkanal betretn",
+                Language.fr => "Canal vocal rejoint",
+                Language.es => "Canal de voz unido",
+                Language.ru => "Голосовой канал присоединился",
+                Language.it => "Canale vocale unito",
+                _ => "Voicechannel joined",
+            };
+        }
+        public string GuildAuditLogVoiceLeftTitle()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Sprachkanal verlassen",
+                Language.at => "Sprachkanal valossn",
+                Language.fr => "Canal vocal quitté",
+                Language.es => "Canal de voz abandonado",
+                Language.ru => "Голосовой канал покинул",
+                Language.it => "Canale vocale lasciato",
+                _ => "Voicechannel left",
+            };
+        }
+        public string GuildAuditLogVoiceMovedTitle()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Sprachkanal gewechselt",
+                Language.at => "Sprachkanal gwechslt",
+                Language.fr => "Canal vocal changé",
+                Language.es => "Canal de voz cambiado",
+                Language.ru => "Переключен голосовой канал",
+                Language.it => "Canale vocale cambiato",
+                _ => "Switched voicechannel",
             };
         }
         public string Enum(PunishmentType enumValue)
@@ -2899,6 +3146,16 @@ namespace MASZ.Utils
                     Language.ru => "Контент удален, а дело создано",
                     Language.it => "Contenuto eliminato e caso creato",
                     _ => "Content deleted and case created",
+                },
+                AutoModerationAction.Timeout => PreferredLanguage switch
+                {
+                    Language.de => "Timeout",
+                    Language.at => "Timeout",
+                    Language.fr => "Timeout",
+                    Language.es => "Timeout",
+                    Language.ru => "Таймаут",
+                    Language.it => "Timeout",
+                    _ => "Timeout",
                 },
                 _ => "Unknown",
             };
@@ -3087,7 +3344,7 @@ namespace MASZ.Utils
                 APIError.InvalidIdentity => PreferredLanguage switch
                 {
                     Language.de => "Ungültige Identität",
-                    Language.at => "Ungültige Identität",
+                    Language.at => "Ungütige Identität",
                     Language.fr => "Identité invalide",
                     Language.es => "Identidad inválida",
                     Language.ru => "Неверная личность",
@@ -3317,7 +3574,7 @@ namespace MASZ.Utils
                 APIError.InvalidDateForScheduledMessage => PreferredLanguage switch
                 {
                     Language.de => "Das Ausführungsdatum muss mindestens eine Minute in der Zukunft liegen.",
-                    Language.at => "Das Ausführungsdatum muss mindestens eine Minute in der Zukunft liegen.",
+                    Language.at => "Des Ausführungsdatum muas mindestens a Minutn in da Zukunft liagn.",
                     Language.fr => "La date d'exécution doit être au moins une minute dans le futur.",
                     Language.es => "La fecha de ejecución debe ser al menos un minuto en el futuro.",
                     Language.ru => "Дата выполнения должна быть не менее одной минуты в будущем.",
@@ -3334,7 +3591,7 @@ namespace MASZ.Utils
                 CaseCreationType.Default => PreferredLanguage switch
                 {
                     Language.de => "Default",
-                    Language.at => "Default",
+                    Language.at => "Standard",
                     Language.fr => "Défaut",
                     Language.es => "Defecto",
                     Language.ru => "Дефолт",
@@ -3552,7 +3809,7 @@ namespace MASZ.Utils
                 LockedCommentStatus.Unlocked => PreferredLanguage switch
                 {
                     Language.de => "Entsperrt",
-                    Language.at => "Entsperrt",
+                    Language.at => "Entspeat",
                     Language.fr => "Débloqué",
                     Language.es => "Desbloqueado",
                     Language.ru => "Разблокирован",
@@ -3723,7 +3980,7 @@ namespace MASZ.Utils
                 GuildAuditLogEvent.MemberRemoved => PreferredLanguage switch
                 {
                     Language.de => "Mitglied entfernt",
-                    Language.at => "Mitglied entfernt",
+                    Language.at => "Mitglied entfeant",
                     Language.fr => "Membre supprimé",
                     Language.es => "Miembro eliminado",
                     Language.ru => "Участник удален",
@@ -3780,6 +4037,56 @@ namespace MASZ.Utils
                     Language.it => "Discussione creata",
                     _ => "Thread created",
                 },
+                GuildAuditLogEvent.VoiceJoined => PreferredLanguage switch
+                {
+                    Language.de => "Mitglied ist in einem Sprachkanal beigetreten",
+                    Language.at => "Mitglied ist in einem Sprachkanal beitretn",
+                    Language.fr => "Membre rejoint le salon vocal",
+                    Language.es => "Miembro se unió al canal de voz",
+                    Language.ru => "Участник присоединился к голосовому каналу",
+                    Language.it => "Membro entrato nel canale vocale",
+                    _ => "Member joined voice channel",
+                },
+                GuildAuditLogEvent.VoiceLeft => PreferredLanguage switch
+                {
+                    Language.de => "Mitglied hat einen Sprachkanal verlassen",
+                    Language.at => "Mitglied hat einen Sprachkanal verlassn",
+                    Language.fr => "Membre a quitté le salon vocal",
+                    Language.es => "Miembro dejó el canal de voz",
+                    Language.ru => "Участник покинул голосовой канал",
+                    Language.it => "Membro uscito dal canale vocale",
+                    _ => "Member left voice channel",
+                },
+                GuildAuditLogEvent.VoiceMoved => PreferredLanguage switch
+                {
+                    Language.de => "Mitglied hat sich in einen anderen Sprachkanal bewegt",
+                    Language.at => "Mitglied hot sich in an ondaren Sprachkanal bewegt",
+                    Language.fr => "Membre a déplacé le salon vocal",
+                    Language.es => "Miembro movió al canal de voz",
+                    Language.ru => "Участник переместился в другой голосовой канал",
+                    Language.it => "Membro spostato nel canale vocale",
+                    _ => "Member moved voice channel",
+                },
+                GuildAuditLogEvent.ReactionAdded => PreferredLanguage switch
+                {
+                    Language.de => "Reaktion hinzugefügt",
+                    Language.at => "Reaktion hinzugfügt",
+                    Language.fr => "Réaction ajoutée",
+                    Language.es => "Reacción añadida",
+                    Language.ru => "Реакция добавлена",
+                    Language.it => "Risposta aggiunta",
+                    _ => "Reaction added",
+                },
+                GuildAuditLogEvent.ReactionRemoved => PreferredLanguage switch
+                {
+                    Language.de => "Reaktion entfernt",
+                    Language.at => "Reaktion entfeant",
+                    Language.fr => "Réaction supprimée",
+                    Language.es => "Reacción eliminada",
+                    Language.ru => "Реакция удалена",
+                    Language.it => "Risposta rimossa",
+                    _ => "Reaction removed",
+                },
                 _ => "Unknown",
             };
         }
@@ -3790,7 +4097,7 @@ namespace MASZ.Utils
                 ScheduledMessageFailureReason.Unknown => PreferredLanguage switch
                 {
                     Language.de => "Unbekannter Fehler",
-                    Language.at => "Unbekannter Fehler",
+                    Language.at => "Unbekannta Föhla",
                     Language.fr => "Erreur inconnue",
                     Language.es => "Error desconocido",
                     Language.ru => "Неизвестная ошибка",
@@ -3800,7 +4107,7 @@ namespace MASZ.Utils
                 ScheduledMessageFailureReason.ChannelNotFound => PreferredLanguage switch
                 {
                     Language.de => "Kanal nicht gefunden",
-                    Language.at => "Kanal nicht gefunden",
+                    Language.at => "Kanal ned gfundn",
                     Language.fr => "Canal introuvable",
                     Language.es => "Canal no encontrado",
                     Language.ru => "Канал не найден",
@@ -3810,7 +4117,7 @@ namespace MASZ.Utils
                 ScheduledMessageFailureReason.InsufficientPermission => PreferredLanguage switch
                 {
                     Language.de => "Unzureichende Berechtigung",
-                    Language.at => "Unzureichende Berechtigung",
+                    Language.at => "Unzureichnde Berechtigung",
                     Language.fr => "Permission insuffisante",
                     Language.es => "Permiso insuficiente",
                     Language.ru => "Недостаточно прав",
@@ -3827,7 +4134,7 @@ namespace MASZ.Utils
                 ScheduledMessageStatus.Pending => PreferredLanguage switch
                 {
                     Language.de => "Ausstehend",
-                    Language.at => "Ausstehend",
+                    Language.at => "Ausstehnd",
                     Language.fr => "En attente",
                     Language.es => "Pendiente",
                     Language.ru => "Ожидается",
@@ -3837,7 +4144,7 @@ namespace MASZ.Utils
                 ScheduledMessageStatus.Sent => PreferredLanguage switch
                 {
                     Language.de => "Gesendet",
-                    Language.at => "Gesendet",
+                    Language.at => "Gsendet",
                     Language.fr => "Envoyé",
                     Language.es => "Enviado",
                     Language.ru => "Отправлено",
@@ -3847,12 +4154,49 @@ namespace MASZ.Utils
                 ScheduledMessageStatus.Failed => PreferredLanguage switch
                 {
                     Language.de => "Fehlgeschlagen",
-                    Language.at => "Fehlgeschlagen",
+                    Language.at => "Fehlgschlogn",
                     Language.fr => "Échec",
                     Language.es => "Falló",
                     Language.ru => "Не удалось отправить",
                     Language.it => "Invio fallito",
                     _ => "Failed",
+                },
+                _ => "Unknown",
+            };
+        }
+        public string Enum(AppealStatus enumValue)
+        {
+            return enumValue switch
+            {
+                AppealStatus.Pending => PreferredLanguage switch
+                {
+                    Language.de => "Ausstehend",
+                    Language.at => "Ausstehend",
+                    Language.fr => "En attente",
+                    Language.es => "Pendiente",
+                    Language.ru => "Ожидается",
+                    Language.it => "In attesa",
+                    _ => "Pending",
+                },
+                AppealStatus.Approved => PreferredLanguage switch
+                {
+                    Language.de => "Genehmigt",
+                    Language.at => "Gnehmigt",
+                    Language.fr => "Approuvé",
+                    Language.es => "Aprobado",
+                    Language.ru => "Утвержден",
+                    Language.it => "Approvato",
+                    _ => "Approved",
+                },
+                AppealStatus.Declined => PreferredLanguage switch
+                {
+                    Language.de => "Abgelehnt",
+                    Language.at => "Obglehnt",
+                    Language.fr => "Refusé",
+                    Language.es => "Denegado",
+                    Language.ru => "Отклонен",
+                    Language.it => "Rifiutato",
+                    _ => "Declined",
                 },
                 _ => "Unknown",
             };

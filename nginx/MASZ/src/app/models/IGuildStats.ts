@@ -1,4 +1,4 @@
-export interface GuildStats {
+export interface IGuildStats {
     caseCount: number;
     activeCount: number;
     activeBanCount: number;
@@ -8,4 +8,5 @@ export interface GuildStats {
     userMappings: number;
     userNotes: number;
     comments: number;
+    appeals: number;
 }

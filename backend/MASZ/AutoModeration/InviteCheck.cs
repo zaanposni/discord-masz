@@ -6,7 +6,7 @@ namespace MASZ.AutoModeration
 {
     public static class InviteChecker
     {
-        private static readonly Regex _inviteRegex = new(@"(https?:\/\/)?(www\.)?(discord(app)?\.(gg|io|me|li|com)(\/invite)?)\/(?![a-z]+\/)([^\s]+)");
+        private static readonly Regex _inviteRegex = new(@"(https?:\/\/)?(www\.)?(discord(app)?\.(gg|io|me|li|com)(\/invite)?)\/(?![a-z]+\/)([^\?\s]+)(\?event=([^\s]+))?");
         public static async Task<bool> Check(IMessage message, AutoModerationConfig config, IDiscordClient client)
         {
             if (string.IsNullOrEmpty(message.Content))
@@ -29,14 +29,14 @@ namespace MASZ.AutoModeration
                 {
                     try
                     {
-                        string inviteCode = usedInvite.Groups.Values.Last().ToString().Trim();
+                        string inviteCode = usedInvite.Groups.Values.Skip(7).First().ToString().Trim();
                         if (alreadyChecked.Contains(inviteCode))
                         {
                             continue;
                         }
                         alreadyChecked.Add(inviteCode);
                         IInvite fetchedInvite = await client.GetInviteAsync(inviteCode);
-                        if (fetchedInvite.Guild.Id != (message.Channel as ITextChannel).GuildId && !ignoreGuilds.Contains(fetchedInvite.Guild.Id.ToString()))
+                        if (fetchedInvite.GuildId != (message.Channel as ITextChannel).GuildId && !ignoreGuilds.Contains(fetchedInvite.GuildId.ToString()))
                         {
                             return true;
                         }

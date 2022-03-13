@@ -26,6 +26,7 @@
     "Usernotes": "Note utente",
     "Usermaps": "Mappe utente",
     "Comments": "Commenti",
+    "BanAppeals": "Appelli di banno",
     "Loading": "Caricamento in corso...",
     "NothingHere": "Niente qui.",
     "AcceptTermsOnLogin": "Effettuando l'accesso accetti i nostri Termini e Linee guida.",
@@ -74,6 +75,7 @@
         "Embed": {
             "Title": "Embed Discord",
             "Content": "Questa impostazione cambierà il contenuto dell'embed quando il tuo istanza MASZ è collegata in Discord.",
+            "ShowIcon": "Mostra l'icona dell'applicazione nell'embed quando il tuo istanza MASZ è collegata in Discord.",
             "TakeToUpdate": "Si prega di notare che questo può richiedere fino a un'ora per aggiornare.",
             "Save": {
                 "Button": "Salva",
@@ -142,6 +144,12 @@
         "Cancel": "Annulla",
         "Confirm": "Confermare"
     },
+    "AppealStructureEditDialog": {
+        "EditQuestion": "Modifica domanda",
+        "Question": "Domanda",
+        "Cancel": "Annulla",
+        "Confirm": "Confermare"
+    },
     "CommentEditDialog": {
         "EditComment": "Modifica commento",
         "Comment": "Commento",
@@ -189,6 +197,9 @@
         "Confirm": "Confermare"
     },
     "GuildDialog": {
+        "PublicEmbedMode": "Modalità di incorporamento pubblica",
+        "PublicEmbedModeExplained": "Questa modalità consente di incorporare dettagliati quando si collega un caso nel discord. Questo permetterà di divulgare informazioni private come il sospettato, le punizioni, ecc.",
+        "AllowAppealAfterXDays": "Consenti reclamo bando dopo x giorni",
         "ImportExistingBans": "Importa divieti esistenti",
         "ImportExistingBansDetails": "Questo potrebbe richiedere un po' di tempo per le gilde grandi, ma verrà eseguito in background.",
         "AddAGuild": "Aggiungi una gilda",
@@ -229,6 +240,8 @@
         "TargetChannel": "Canale di destinazione",
         "ComingSoon": "Prossimamente",
         "PingRoles": "Ping ruoli",
+        "ExcludeRoles": "Escludi ruoli",
+        "ExcludeChannels": "Escludi canali",
         "AuditLog": "Registro di audizione",
         "ConfigDeleted": "Configurazione eliminata.",
         "FailedToDeleteConfig": "Impossibile eliminare la configurazione.",
@@ -277,6 +290,21 @@
         },
         "ThreadCreated": {
             "title": "Discussione creata"
+        },
+        "VoiceJoined": {
+            "title": "Membro entrato nel canale vocale"
+        },
+        "VoiceLeft": {
+            "title": "Membro uscito dal canale vocale"
+        },
+        "VoiceMoved": {
+            "title": "Membro spostato nel canale vocale"
+        },
+        "ReactionAdded": {
+            "title": "Risposta aggiunta"
+        },
+        "ReactionRemoved": {
+            "title": "Risposta rimossa"
         }
     },
     "AutomodConfig": {
@@ -377,6 +405,7 @@
         "Message": "Messaggio",
         "FailedToLoad": "Impossibile caricare motd.",
         "FailedToSave": "Impossibile salvare motd.",
+        "Save": "Salva",
         "Saved": "Modifiche salvate",
         "Explanation": "Questo messaggio verrà mostrato ai tuoi amministratori e moderatori sulla dashboard."
     },
@@ -392,6 +421,7 @@
         "Overview": "Panoramica",
         "Cases": "casi",
         "Punishments": "punizioni",
+        "Appeals": "appelli di banno",
         "Automoderations": "Automoderazione",
         "ChooseADate": "Scegli una data",
         "Reset": "Ripristina"
@@ -408,6 +438,11 @@
     "GuildInfoCard": {
         "CreateNewCase": "Crea nuovo caso",
         "FailedToLoad": "Impossibile caricare le informazioni sulla gilda."
+    },
+    "GuildNotifications": {
+        "Title": "Avviso",
+        "MissingAppeals": "Non hai domande di appello di banno configurate. Gli utenti bannati non possono creare un appello di banno adesso.",
+        "FailedToLoad": "Impossibile caricare le notifiche della gilda."
     },
     "DashboardMotd": {
         "FailedToLoad": "Impossibile caricare motd.",
@@ -431,7 +466,8 @@
             "Messages": "Messaggi",
             "Usernote": "Note utente",
             "Usermap": "Mappe utente",
-            "Config": "config"
+            "Config": "config",
+            "BanAppeals": "Appelli di banno"
         }
     },
     "UsermapTable": {
@@ -516,6 +552,72 @@
         "FailedToUploadFile": "Impossibile caricare il file.",
         "CaseCreated": "Caso creato.",
         "CaseUpdated": "Caso aggiornato."
+    },
+    "AppealCreate": {
+        "Title": "Il tuo appello al ban",
+        "Answer": "Rispondi a queste domande per completare il tuo appello al ban.",
+        "Skip": "Puoi saltare le domande se vuoi.",
+        "View": "Potrai visualizzare lo stato del tuo appello al ban su questo sito ogni volta.",
+        "Save": "Salva",
+        "Created": "Il tuo appello al ban è stato creato.",
+        "FailedToCreate": "Impossibile creare l'appello al ban.",
+        "FailedToLoadQuestions": "Impossibile caricare le domande."
+    },
+    "AppealConfig": {
+        "AppealStructure": "Struttura dell'appello",
+        "Configure": "Configura il modulo per l'appello della gilda.",
+        "Skip": "Gli utenti possono saltare le domande se vogliono.",
+        "Delete": "Se si elimina una domanda, sarà ancora visibile nei precedenti appelli.",
+        "NotConfigured": "Se non hai domande configurate, gli utenti non potranno richiedere appelli.",
+        "Save": "Salva",
+        "NewQuestion": "Nuova domanda",
+        "Reordered": "Le domande sono state riordinate.",
+        "FailedToReorder": "Impossibile riordinare le domande.",
+        "FailedToCreate": "Impossibile creare la domanda.",
+        "Created": "La domanda è stata creata."
+    },
+    "AppealCard": {
+        "Created": "Creato:",
+        "Updated": "Aggiornato:",
+        "AnswerCount": "L'utente ha risposto {{count}} domande.",
+        "AllowedNewAppeal": "L'utente può creare un nuovo reclamo a:"
+    },
+    "AppealQuestionCard": {
+        "YourAnswer": "La tua risposta",
+        "Updated": "Aggiornato.",
+        "FailedToUpdate": "Impossibile aggiornare la domanda",
+        "Deleted": "Eliminato.",
+        "FailedToDelete": "Impossibile eliminare la domanda."
+    },
+    "AppealTable": {
+        "Count": "Conteggio",
+        "Warning": "Avvertimento",
+        "NotConfigured": "Questo server non ha un modulo di richiesta di banno configurato. Perciò, non puoi creare una richiesta di banno ora.",
+        "Locked": "A causa delle impostazioni del server o delle decisioni precedenti, non puoi creare una richiesta di banno ora.",
+        "SelectMembers": "Membri",
+        "SelectedStatus": "Stato",
+        "FilterSince": "Creato da",
+        "FilterUntil": "Creato fino al",
+        "ExecuteSearch": "Ricerca",
+        "FailedToLoad": "Impossibile caricare la tabella dei reclami.",
+        "NoMatches": "Nessun caso corrisponde alla tua ricerca.",
+        "CreateNewAppeal": "Crea un nuovo caso",
+        "ConfigureAppeals": "Configura reclami"
+    },
+    "AppealView": {
+        "FailedToLoad": "Impossibile caricare il reclamo.",
+        "CreatedAt": "Creato il:",
+        "UpdatedAt": "Aggiornato il:",
+        "LatestCases": "Ultimi casi",
+        "ModeratorsDecisionAt": "Decisione dei moderatori il:",
+        "ModeratorsComment": "Commento dei moderatori",
+        "NewAppeal": "Nuovo caso",
+        "UserIsAllowedToCreateNewAppealAt": "L'utente è autorizzato a creare un nuovo caso il:",
+        "UserIsNeverAllowedToCreateNewAppeal": "L'utente non è mai autorizzato a creare un nuovo caso",
+        "Edit": "Modifica",
+        "Status": "Stato",
+        "Updated": "Appeal aggiornato.",
+        "FailedToUpdate": "Impossibile aggiornare il reclamo."
     },
     "ModCaseTable": {
         "SelectMembers": "Membri",

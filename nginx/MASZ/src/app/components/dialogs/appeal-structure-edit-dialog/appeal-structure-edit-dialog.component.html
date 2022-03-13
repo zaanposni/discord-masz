@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>{{ 'AppealStructureEditDialog.EditQuestion' | translate }}</h1>
+<form mat-dialog-content [formGroup]="form">
+    <mat-form-field class="w-100">
+        <mat-label>{{ 'AppealStructureEditDialog.Question' | translate }}</mat-label>
+        <textarea matInput formControlName="question" ></textarea>
+        <div *ngIf="newQuestion?.invalid && (newQuestion?.dirty || newQuestion?.touched)" class="alert alert-danger my-2">
+            <div *ngIf="newQuestion?.errors?.['required']">
+                {{ 'Forms.FieldRequired' | translate }}
+            </div>
+            <div *ngIf="newQuestion?.errors?.['maxlength']">
+                {{ 'Forms.MaxLength' | translate:maxLength4096 }}
+            </div>
+        </div>
+    </mat-form-field>
+</form>
+<div mat-dialog-actions class="w-100 d-flex flex-row justify-content-center">
+    <button mat-raised-button color="accent" [mat-dialog-close]="false" cdkFocusInitial>{{ 'AppealStructureEditDialog.Cancel' | translate }}</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="newQuestion?.invalid">{{ 'AppealStructureEditDialog.Confirm' | translate }}</button>
+</div>

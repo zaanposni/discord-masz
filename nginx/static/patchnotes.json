@@ -1,5 +1,142 @@
 [
   {
+    "title": "Version 2.7.0",
+    "version": "v2.7.0",
+    "released_at": "2022-03-12",
+    "contributors": [
+      {
+        "name": "Bricksmaster",
+        "link": "https://github.com/Bricksmaster",
+        "icon": "https://avatars.githubusercontent.com/u/47327755?v=4"
+      },
+      {
+        "name": "FlixProd",
+        "link": "https://github.com/FlixProd",
+        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+      },
+      {
+        "name": "FeroxFoxxo",
+        "link": "https://github.com/FeroxFoxxo",
+        "icon": "https://avatars.githubusercontent.com/u/51069105?v=4"
+      },
+      {
+        "name": "Kye",
+        "link": "https://github.com/UponAnonymous",
+        "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
+      }
+    ],
+    "features": [
+      {
+        "title": "Show full message in guild auditlog,",
+        "description": "The auditlog now shows the full message of the audit log entry, instead of just the first few words."
+      },
+      {
+        "title": "Use application name in tab title.",
+        "description": "The tab title now shows the application name instead of the default \"MASZ\".",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/492"
+      },
+      {
+        "title": "Added more guild auditlog scopes.",
+        "description": "You can now create auditlogs for voice activity and message reactions."
+      },
+      {
+        "title": "Show icon in discord embed.",
+        "description": "The discord embed now shows the icon of the application if configured.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/503"
+      },
+      {
+        "title": "Ban appeals.",
+        "description": "The ability to create and manage ban appeals is now available. You can create a ban appeal questionnaire in your guild settings. You can also define how long a user has to wait before creating ban appeals in your guildconfig."
+      },
+      {
+        "title": "Added public embed mode for guilds.",
+        "description": "When activated, linking a modcase in discord will now display some general information about this modcase in the embed.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/502"
+      },
+      {
+        "title": "Ignore rules on guild auditlogs.",
+        "description": "You can now ignore certain roles or channels in the guild auditlog similiar to the filters in automods.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/504"
+      },
+      {
+        "title": "Timeout in automod.",
+        "description": "You can now choose a timeout for the punishment of automods. This is useful if you want to punish a user without creating a modcase."
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Fixed webhook validator.",
+        "description": "The webhook validator was not working properly. It was causing the webhook to fail to validate."
+      },
+      {
+        "title": "Fixed automod and guildtips embed.",
+        "description": "The automod and guildtips embeds were not showing the correct information."
+      },
+      {
+        "title": "Fixed max upload size.",
+        "description": "The max upload size was not being disabled correctly. Please remember that you need to limit it in your own reverse proxy.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/498"
+      },
+      {
+        "title": "Fix userscan for \"ghost\" guilds.",
+        "description": "If the bot was not in a guild that was registered in MASZ, the userscan crashed.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/497"
+      },
+      {
+        "title": "Scheduled messages deleted on guild delete.",
+        "description": "When deleting a guild, MASZ will now correctly remove scheduled messages as well."
+      },
+      {
+        "title": "Fixed search in usernote and usermap.",
+        "description": "The search in usernote and usermap was not working properly when used more than one time.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/491"
+      },
+      {
+        "title": "Improved alginment of guild names and edit buttons in the toolbar.",
+        "description": "The alignment of the guild names and edit buttons in the toolbar was not correct.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/493"
+      },
+      {
+        "title": "Mention user in usermap embed.",
+        "description": "The usermap embed now mentions the user in the embed.",
+        "icon": "link",
+        "link": "https://github.com/zaanposni/discord-masz/issues/500"
+      },
+      {
+        "title": "Fixed invite autmod for events.",
+        "description": "The invite autmod for events now works as intended."
+      },
+      {
+        "title": "Fixed text breaking and alignment in automod table.",
+        "description": "The text breaking and alignment in the automod table was not correct and overflowed in the right border of your screen."
+      },
+      {
+        "title": "Fixed duplicated guild tabs.",
+        "description": "Fixed a bug that caused duplicated guild tabs to occure after guild registration or swapping the current guild via the toolbar too fast."
+      }
+    ],
+    "technical": [
+      {
+        "title": "Node docker image.",
+        "description": "The frontend docker image was updated to the LTS version of node."
+      },
+      {
+        "title": "Adjust linking to container in nginx.",
+        "description": "Nginx now redirects requests to http://backend instead of http://masz_backend. If you have a locally adjusted MASZ setup, this might be an issue for you.",
+        "icon": "visiblity",
+        "link": "https://github.com/zaanposni/discord-masz/commit/92f569bbb0130e8d236d3040a24df4c7b960b3af"
+      }
+    ]
+  },
+  {
     "title": "Version 2.6.0",
     "version": "v2.6.0",
     "released_at": "2022-01-23",

@@ -58,6 +58,8 @@ export class GuildAddComponent implements OnInit {
       executeWhoisOnJoin: [''],
       publishModeratorInfo: [''],
       preferredLanguage: [''],
+      allowBanAppealAfterDays: ['', Validators.pattern("^[0-9]+$")],
+      publicEmbedMode: ['']
     });
     this.queryGroup = this._formBuilder.group({
       importExistingBans: [''],
@@ -143,13 +145,15 @@ export class GuildAddComponent implements OnInit {
       guildid:                        this.selectedGuild?.id,
       modRoles:                       this.modRolesGroup.value.modRoles,
       adminRoles:                     this.adminRolesGroup.value.adminRoles,
-      mutedRoles:                     this.muteRolesGroup.value.muteRoles           != '' ? this.muteRolesGroup.value.muteRoles                    : [],
-      modInternalNotificationWebhook: this.configGroup.value?.internal?.trim()      != '' ? this.configGroup?.value?.internal                      : null,
-      modPublicNotificationWebhook:   this.configGroup.value?.public?.trim()        != '' ? this.configGroup?.value?.public                        : null,
-      strictModPermissionCheck:       this.configGroup.value?.strictPermissionCheck != '' ? this.configGroup.value?.strictPermissionCheck ?? false : false,
-      executeWhoisOnJoin:             this.configGroup.value?.executeWhoisOnJoin    != '' ? this.configGroup.value?.executeWhoisOnJoin    ?? false : false,
-      publishModeratorInfo:           this.configGroup.value?.publishModeratorInfo  != '' ? this.configGroup.value?.publishModeratorInfo  ?? false : false,
-      preferredLanguage:              this.configGroup.value?.preferredLanguage     != '' ? this.configGroup.value?.preferredLanguage     ?? null  : null
+      mutedRoles:                     this.muteRolesGroup.value.muteRoles             !=  '' ? this.muteRolesGroup.value.muteRoles                      : [],
+      modInternalNotificationWebhook: this.configGroup.value?.internal?.trim()        !=  '' ? this.configGroup?.value?.internal                        : null,
+      modPublicNotificationWebhook:   this.configGroup.value?.public?.trim()          !=  '' ? this.configGroup?.value?.public                          : null,
+      strictModPermissionCheck:       this.configGroup.value?.strictPermissionCheck   !=  '' ? this.configGroup.value?.strictPermissionCheck   ?? false : false,
+      executeWhoisOnJoin:             this.configGroup.value?.executeWhoisOnJoin      !=  '' ? this.configGroup.value?.executeWhoisOnJoin      ?? false : false,
+      publishModeratorInfo:           this.configGroup.value?.publishModeratorInfo    !=  '' ? this.configGroup.value?.publishModeratorInfo    ?? false : false,
+      preferredLanguage:              this.configGroup.value?.preferredLanguage       !== '' ? this.configGroup.value?.preferredLanguage       ?? null  : null,
+      allowBanAppealAfterDays:        this.configGroup.value?.allowBanAppealAfterDays !=  '' ? this.configGroup.value?.allowBanAppealAfterDays ?? 0     : 0,
+      publicEmbedMode:                this.configGroup.value?.publicEmbedMode         !=  '' ? this.configGroup.value?.publicEmbedMode         ?? false : false
     };
     let params = new HttpParams()
                       .set("importExistingBans", this.queryGroup.value?.importExistingBans ? 'true' : 'false');

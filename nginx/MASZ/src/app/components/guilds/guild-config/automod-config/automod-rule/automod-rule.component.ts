@@ -61,7 +61,7 @@ export class AutomodRuleComponent implements OnInit {
     });
 
     this.actionForm.get('automodAction')?.valueChanges.subscribe(val => {
-      if (val >= 2) {
+      if (val === 2 || val === 3) {
           this.actionForm.controls['punishmentType'].setValidators([Validators.required]);
           this.actionForm.controls['punishmentType'].setValue(0);
           this.actionForm.controls['punishmentType'].updateValueAndValidity();

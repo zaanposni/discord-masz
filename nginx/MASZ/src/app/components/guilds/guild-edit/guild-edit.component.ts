@@ -46,7 +46,9 @@ export class GuildEditComponent implements OnInit {
       strictPermissionCheck: [''],
       executeWhoisOnJoin: [''],
       publishModeratorInfo: [''],
-      preferredLanguage: ['']
+      preferredLanguage: [''],
+      allowBanAppealAfterDays: ['', Validators.pattern("^[0-9]+$")],
+      publicEmbedMode: ['']
     });
 
       this.route.paramMap.subscribe(params => {
@@ -91,7 +93,9 @@ export class GuildEditComponent implements OnInit {
         strictPermissionCheck: data.strictModPermissionCheck,
         executeWhoisOnJoin: data.executeWhoisOnJoin,
         publishModeratorInfo: data.publishModeratorInfo,
-        preferredLanguage: data.preferredLanguage
+        preferredLanguage: data.preferredLanguage,
+        allowBanAppealAfterDays: data.allowBanAppealAfterDays,
+        publicEmbedMode: data.publicEmbedMode
       });
       this.currentGuildConfig = { loading: false, content: data };
     }, error => {
@@ -102,16 +106,19 @@ export class GuildEditComponent implements OnInit {
   }
 
   updateGuild() {
+    console.log(this.configGroup.value?.preferredLanguage, this.configGroup.value?.preferredLanguage !== '');
     const data = {
-      modRoles: this.modRolesGroup.value.modRoles,
-      adminRoles: this.adminRolesGroup.value.adminRoles,
-      mutedRoles: this.muteRolesGroup.value.muteRoles != '' ? this.muteRolesGroup.value.muteRoles : [],
-      modInternalNotificationWebhook: this.configGroup.value?.internal?.trim() ? this.configGroup?.value?.internal : null,
-      modPublicNotificationWebhook: this.configGroup.value?.public?.trim() ? this.configGroup?.value?.public : null,
-      strictModPermissionCheck: (this.configGroup.value?.strictPermissionCheck != '' ? this.configGroup.value?.strictPermissionCheck : false) ?? false,
-      executeWhoisOnJoin: (this.configGroup.value?.executeWhoisOnJoin != '' ? this.configGroup.value?.executeWhoisOnJoin : false) ?? false,
-      publishModeratorInfo: (this.configGroup.value?.publishModeratorInfo != '' ? this.configGroup.value?.publishModeratorInfo : false) ?? false,
-      preferredLanguage: this.configGroup.value?.preferredLanguage != '' ? this.configGroup.value?.preferredLanguage : 0
+      modRoles:                       this.modRolesGroup.value.modRoles,
+      adminRoles:                     this.adminRolesGroup.value.adminRoles,
+      mutedRoles:                     this.muteRolesGroup.value.muteRoles             !=  '' ? this.muteRolesGroup.value.muteRoles                      : [],
+      modInternalNotificationWebhook: this.configGroup.value?.internal?.trim()        !=  '' ? this.configGroup?.value?.internal                        : null,
+      modPublicNotificationWebhook:   this.configGroup.value?.public?.trim()          !=  '' ? this.configGroup?.value?.public                          : null,
+      strictModPermissionCheck:       this.configGroup.value?.strictPermissionCheck   !=  '' ? this.configGroup.value?.strictPermissionCheck   ?? false : false,
+      executeWhoisOnJoin:             this.configGroup.value?.executeWhoisOnJoin      !=  '' ? this.configGroup.value?.executeWhoisOnJoin      ?? false : false,
+      publishModeratorInfo:           this.configGroup.value?.publishModeratorInfo    !=  '' ? this.configGroup.value?.publishModeratorInfo    ?? false : false,
+      preferredLanguage:              this.configGroup.value?.preferredLanguage       !== '' ? this.configGroup.value?.preferredLanguage       ?? null  : null,
+      allowBanAppealAfterDays:        this.configGroup.value?.allowBanAppealAfterDays !=  '' ? this.configGroup.value?.allowBanAppealAfterDays ?? 0     : 0,
+      publicEmbedMode:                this.configGroup.value?.publicEmbedMode         !=  '' ? this.configGroup.value?.publicEmbedMode         ?? false : false
     }
 
     this.api.putSimpleData(`/guilds/${this.currentGuild?.content?.id}`, data).subscribe(() => {

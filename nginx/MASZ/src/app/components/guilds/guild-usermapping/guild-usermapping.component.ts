@@ -35,7 +35,11 @@ export class GuildUsermappingComponent implements OnInit {
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
 
-    this.resetForm();
+    this.newMapFormGroup = this._formBuilder.group({
+      userA: ['', Validators.required],
+      userB: ['', Validators.required],
+      reason: ['', Validators.required]
+    });
 
     this.filteredMembersA = this.newMapFormGroup.valueChanges
       .pipe(
@@ -49,16 +53,13 @@ export class GuildUsermappingComponent implements OnInit {
       );
 
     this.reloadData();
+    this.reloadMembers();
   }
 
   resetForm() {
-    if (this.newMapFormGroup) {
-      this.newMapFormGroup.reset();
-    }
-    this.newMapFormGroup = this._formBuilder.group({
-      userA: ['', Validators.required],
-      userB: ['', Validators.required],
-      reason: ['', Validators.required]
+    this.newMapFormGroup.reset();
+    Object.keys(this.newMapFormGroup.controls).forEach(key =>{
+      this.newMapFormGroup.controls[key].setErrors(null)
     });
   }
 
@@ -77,7 +78,6 @@ export class GuildUsermappingComponent implements OnInit {
     this.loading = true;
     this.$showUserMappings.next([]);
     this.allUserMappings = [];
-    this.members = { loading: true, content: [] };
 
     this.api.getSimpleData(`/guilds/${this.guildId}/usermapview`).subscribe((data: UserMappingView[]) => {
       this.allUserMappings = data;
@@ -88,7 +88,10 @@ export class GuildUsermappingComponent implements OnInit {
       this.loading = false;
       this.toastr.error(this.translator.instant('UsermapTable.FailedToLoad'));
     });
+  }
 
+  private reloadMembers() {
+    this.members = { loading: true, content: [] };
     const params = new HttpParams()
           .set('partial', 'true');
     this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`, true, params).subscribe(data => {
@@ -144,9 +147,9 @@ export class GuildUsermappingComponent implements OnInit {
     };
 
     this.api.postSimpleData(`/guilds/${this.guildId}/usermap`, data).subscribe(() => {
+      this.resetForm();
       this.reloadData();
       this.toastr.success(this.translator.instant('UsermapTable.Created'));
-      this.resetForm();
     }, error => {
       console.error(error);
       this.toastr.error(this.translator.instant('UsermapTable.FailedToCreate'));

@@ -109,6 +109,21 @@
                                 help_outline
                             </mat-icon>
                         </div>
+                        <mat-form-field class="w-50">
+                            <mat-label>{{ 'GuildDialog.AllowAppealAfterXDays' | translate }}</mat-label>
+                            <input type="text" matInput formControlName="allowBanAppealAfterDays" placeholder="0">
+                        </mat-form-field>
+                        <div class="d-flex flex-row">
+                            <mat-checkbox
+                                class="mr-2"
+                                formControlName="publicEmbedMode"
+                                [labelPosition]="'after'">
+                                {{ 'GuildDialog.PublicEmbedMode' | translate }}
+                            </mat-checkbox>
+                            <mat-icon matTooltip="{{ 'GuildDialog.PublicEmbedModeExplained' | translate }}">
+                                help_outline
+                            </mat-icon>
+                        </div>
                         <div class="stepper-actions">
                             <button mat-raised-button matStepperPrevious class="mr-2" color="accent">{{ 'GuildDialog.Back' | translate }}</button>
                             <button mat-raised-button matStepperNext color="accent">{{ 'GuildDialog.Next' | translate }}</button>

@@ -38,24 +38,24 @@ export class GuildUsernotesComponent implements OnInit {
   ngOnInit(): void {
     this.guildId = this.route.snapshot.paramMap.get('guildid') as string;
 
-    this.resetForm();
-
+    this.newNoteFormGroup = this._formBuilder.group({
+      userid: ['', Validators.required],
+      description: ['', Validators.required]
+    });
     this.filteredMembers = this.newNoteFormGroup.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filter(value.userid))
-      );
+    );
 
     this.reloadData();
+    this.reloadMembers();
   }
 
   resetForm() {
-    if (this.newNoteFormGroup) {
-      this.newNoteFormGroup.reset();
-    }
-    this.newNoteFormGroup = this._formBuilder.group({
-      userid: ['', Validators.required],
-      description: ['', Validators.required]
+    this.newNoteFormGroup.reset();
+    Object.keys(this.newNoteFormGroup.controls).forEach(key =>{
+      this.newNoteFormGroup.controls[key].setErrors(null)
     });
   }
 
@@ -74,7 +74,6 @@ export class GuildUsernotesComponent implements OnInit {
     this.loading = true;
     this.$showUserNotes.next([]);
     this.allUserNotes = [];
-    this.members = { loading: true, content: [] };
 
     this.api.getSimpleData(`/guilds/${this.guildId}/usernoteview`).subscribe((data: UserNoteView[]) => {
       this.allUserNotes = data;
@@ -85,7 +84,10 @@ export class GuildUsernotesComponent implements OnInit {
       this.loading = false;
       this.toastr.error(this.translator.instant('UsernoteTable.FailedToLoad'));
     });
+  }
 
+  private reloadMembers() {
+    this.members = { loading: true, content: [] };
     const params = new HttpParams()
           .set('partial', 'true');
     this.api.getSimpleData(`/discord/guilds/${this.guildId}/members`, true, params).subscribe(data => {
@@ -138,8 +140,8 @@ export class GuildUsernotesComponent implements OnInit {
     };
 
     this.api.putSimpleData(`/guilds/${this.guildId}/usernote`, data).subscribe(() => {
-      this.reloadData();
       this.resetForm();
+      this.reloadData();
       this.toastr.success(this.translator.instant('UsernoteTable.Created'));
     }, error => {
       console.error(error);

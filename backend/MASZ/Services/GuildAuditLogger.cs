@@ -1,4 +1,5 @@
 using Discord;
+using Discord.Net;
 using Discord.WebSocket;
 using MASZ.Enums;
 using MASZ.Exceptions;
@@ -13,6 +14,8 @@ namespace MASZ.Services
 {
 	public class GuildAuditLogger : IEvent
     {
+        private readonly static string CHECK = "\u2705";
+        private readonly static string X_CHECK = "\u274C";
         private readonly DiscordSocketClient _client;
         private readonly IServiceProvider _serviceProvider;
 
@@ -36,10 +39,16 @@ namespace MASZ.Services
             _client.InviteDeleted += HandleInviteDeleted;
             _client.UserUpdated += HandleUsernameUpdated;
             _client.GuildMemberUpdated += HandleGUserUpdated;
+            _client.UserVoiceStateUpdated += HandleVoiceStateUpdated;
+            _client.ReactionAdded += HandleReactionAdded;
+            _client.ReactionRemoved += HandleReactionRemoved;
         }
 
-        public async Task SendEmbed(EmbedBuilder embed, ulong guildID, GuildAuditLogEvent eventType) {
-            var guildConfigRepository = GuildConfigRepository.CreateDefault(_serviceProvider);
+        public async Task SendEmbed(EmbedBuilder embed, ulong guildId, GuildAuditLogEvent eventType)
+        {
+            using var scope = _serviceProvider.CreateScope();
+
+            var guildConfigRepository = GuildConfigRepository.CreateDefault(scope.ServiceProvider);
 
             embed
                 .WithColor(eventType switch
@@ -58,6 +67,11 @@ namespace MASZ.Services
                     GuildAuditLogEvent.InviteCreated => Color.Green,
                     GuildAuditLogEvent.InviteDeleted => Color.Red,
                     GuildAuditLogEvent.ThreadCreated => Color.Green,
+                    GuildAuditLogEvent.VoiceJoined => Color.Green,
+                    GuildAuditLogEvent.VoiceLeft => Color.Red,
+                    GuildAuditLogEvent.VoiceMoved => Color.Orange,
+                    GuildAuditLogEvent.ReactionAdded => Color.Green,
+                    GuildAuditLogEvent.ReactionRemoved => Color.Red,
                     _ => throw new NotImplementedException(),
                 })
 
@@ -65,7 +79,7 @@ namespace MASZ.Services
 
             try
             {
-                GuildConfig guildConfig = await guildConfigRepository.GetGuildConfig(guildID);
+                GuildConfig guildConfig = await guildConfigRepository.GetGuildConfig(guildId);
                 if (guildConfig == null)
                 {
                     return;
@@ -76,11 +90,11 @@ namespace MASZ.Services
                 return;
             }
 
-            var auditLogRepository = GuildLevelAuditLogConfigRepository.CreateWithBotIdentity(_serviceProvider);
+            var auditLogRepository = GuildLevelAuditLogConfigRepository.CreateWithBotIdentity(scope.ServiceProvider);
             GuildLevelAuditLogConfig auditLogConfig = null;
             try
             {
-                auditLogConfig = await auditLogRepository.GetConfigsByGuildAndType(guildID, eventType);
+                auditLogConfig = await auditLogRepository.GetConfigsByGuildAndType(guildId, eventType);
                 if (auditLogConfig == null)
                 {
                     return;
@@ -120,8 +134,55 @@ namespace MASZ.Services
             await channel.SendMessageAsync(rolePings.ToString(), embed: embed.Build());
         }
 
+        public async Task<bool> CheckForIgnoredRoles(ulong guildId, GuildAuditLogEvent eventType, List<ulong> roles)
+        {
+            using var scope = _serviceProvider.CreateScope();
+
+            var auditLogRepository = GuildLevelAuditLogConfigRepository.CreateWithBotIdentity(scope.ServiceProvider);
+            GuildLevelAuditLogConfig auditLogConfig = null;
+            try
+            {
+                auditLogConfig = await auditLogRepository.GetConfigsByGuildAndType(guildId, eventType);
+                if (auditLogConfig == null)
+                {
+                    return false;
+                }
+                return auditLogConfig.IgnoreRoles?.Any(role => roles.Contains(role)) ?? false;
+            }
+            catch (ResourceNotFoundException) { }
+            return false;
+        }
+
+        public async Task<bool> CheckForIgnoredRoles(ulong guildId, GuildAuditLogEvent eventType, IReadOnlyCollection<SocketRole> roles)
+        {
+            return await CheckForIgnoredRoles(guildId, eventType, roles.Select(role => role.Id).ToList());
+        }
+
+        public async Task<bool> CheckForIgnoredChannel(ulong guildId, GuildAuditLogEvent eventType, ulong channelId)
+        {
+            using var scope = _serviceProvider.CreateScope();
+
+            var auditLogRepository = GuildLevelAuditLogConfigRepository.CreateWithBotIdentity(scope.ServiceProvider);
+            GuildLevelAuditLogConfig auditLogConfig = null;
+            try
+            {
+                auditLogConfig = await auditLogRepository.GetConfigsByGuildAndType(guildId, eventType);
+                if (auditLogConfig == null)
+                {
+                    return false;
+                }
+                return auditLogConfig.IgnoreChannels?.Contains(channelId) ?? false;
+            }
+            catch (ResourceNotFoundException) { }
+            return false;
+        }
+
         public async Task HandleGUserUpdated(Cacheable<SocketGuildUser, ulong> oldU, SocketGuildUser newU)
 		{
+            if (await CheckForIgnoredRoles(newU.Guild.Id, GuildAuditLogEvent.MemberRolesUpdated, newU.Roles))
+            {
+                return;
+            }
             if (oldU.HasValue)
             {
                 if (oldU.Value.Nickname != newU.Nickname)
@@ -133,12 +194,12 @@ namespace MASZ.Services
             }
 		}
 
-        public async Task HandleAvatarUpdated(IGuildUser oldU, IGuildUser newU, ulong guildID)
+        public async Task HandleAvatarUpdated(IGuildUser oldU, IGuildUser newU, ulong guildId)
         {
             using var scope = _serviceProvider.CreateScope();
 
             var translator = scope.ServiceProvider.GetRequiredService<Translator>();
-            await translator.SetContext(guildID);
+            await translator.SetContext(guildId);
 
             StringBuilder description = new();
             description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username}#{newU.Discriminator} - {newU.Mention}");
@@ -159,15 +220,15 @@ namespace MASZ.Services
                 true
             );
 
-            await SendEmbed(embed, guildID, GuildAuditLogEvent.AvatarUpdated);
+            await SendEmbed(embed, guildId, GuildAuditLogEvent.AvatarUpdated);
         }
 
-        public async Task HandleNicknameUpdated(IGuildUser oldU, IGuildUser newU, ulong guildID)
+        public async Task HandleNicknameUpdated(IGuildUser oldU, IGuildUser newU, ulong guildId)
         {
             using var scope = _serviceProvider.CreateScope();
 
             var translator = scope.ServiceProvider.GetRequiredService<Translator>();
-            await translator.SetContext(guildID);
+            await translator.SetContext(guildId);
 
             StringBuilder description = new();
             description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username}#{newU.Discriminator} - {newU.Mention}");
@@ -188,15 +249,15 @@ namespace MASZ.Services
                 true
             );
 
-            await SendEmbed(embed, guildID, GuildAuditLogEvent.NicknameUpdated);
+            await SendEmbed(embed, guildId, GuildAuditLogEvent.NicknameUpdated);
         }
 
-        public async Task HandleMemberRolesUpdated(IGuildUser user, IReadOnlyCollection<SocketRole> roleOld, IReadOnlyCollection<SocketRole> roleNew, ulong guildID)
+        public async Task HandleMemberRolesUpdated(IGuildUser user, IReadOnlyCollection<SocketRole> roleOld, IReadOnlyCollection<SocketRole> roleNew, ulong guildId)
         {
             using var scope = _serviceProvider.CreateScope();
 
             var translator = scope.ServiceProvider.GetRequiredService<Translator>();
-            await translator.SetContext(guildID);
+            await translator.SetContext(guildId);
 
             StringBuilder description = new();
             description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
@@ -228,7 +289,7 @@ namespace MASZ.Services
 
             if (addedRoles.Count + removedRoles.Count > 0)
             {
-                await SendEmbed(embed, guildID, GuildAuditLogEvent.MemberRolesUpdated);
+                await SendEmbed(embed, guildId, GuildAuditLogEvent.MemberRolesUpdated);
             }
         }
 
@@ -265,6 +326,197 @@ namespace MASZ.Services
                     await SendEmbed(embed, guild.Id, GuildAuditLogEvent.UsernameUpdated);
                 }
             }
+        }
+
+        private async Task HandleReactionRemoved(Cacheable<IUserMessage, ulong> message, Cacheable<IMessageChannel, ulong> channel, SocketReaction reaction)
+        {
+            using var scope = _serviceProvider.CreateScope();
+
+            IGuildChannel guildChannel;
+            try
+            {
+                guildChannel = (IGuildChannel) await _client.GetChannelAsync(channel.Id);
+                if (guildChannel == null)
+                {
+                    return;
+                }
+            }
+            catch (HttpException)
+            {
+                return;
+            }
+
+            if (await CheckForIgnoredChannel(guildChannel.GuildId, GuildAuditLogEvent.ReactionRemoved, guildChannel.Id))
+            {
+                return;
+            }
+
+            if (! reaction.User.IsSpecified)
+            {
+                return;
+            }
+
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            await translator.SetContext(guildChannel.GuildId);
+
+            StringBuilder description = new();
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {reaction.User.Value.Username}#{reaction.User.Value.Discriminator} - {reaction.User.Value.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogMessage()}:** [{message.Id}]({message.Value.GetJumpUrl()})");
+            description.AppendLine($"> **{translator.T().GuildAuditLogEmote()}:** {reaction.Emote}");
+
+            var embed = new EmbedBuilder()
+                .WithTitle(translator.T().GuildAuditLogReactionRemovedTitle())
+                .WithDescription(description.ToString())
+                .WithAuthor(reaction.User.Value)
+                .WithFooter($"{translator.T().GuildAuditLogUserID()}: {reaction.User.Value.Id}");
+
+            await SendEmbed(embed, guildChannel.GuildId, GuildAuditLogEvent.ReactionRemoved);
+        }
+
+        private async Task HandleReactionAdded(Cacheable<IUserMessage, ulong> message, Cacheable<IMessageChannel, ulong> channel, SocketReaction reaction)
+        {
+            using var scope = _serviceProvider.CreateScope();
+
+            IGuildChannel guildChannel;
+            try
+            {
+                guildChannel = (IGuildChannel) await _client.GetChannelAsync(channel.Id);
+                if (guildChannel == null)
+                {
+                    return;
+                }
+            }
+            catch (HttpException)
+            {
+                return;
+            }
+
+            if (await CheckForIgnoredChannel(guildChannel.GuildId, GuildAuditLogEvent.ReactionRemoved, guildChannel.Id))
+            {
+                return;
+            }
+
+            if (! reaction.User.IsSpecified)
+            {
+                return;
+            }
+
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            await translator.SetContext(guildChannel.GuildId);
+
+            StringBuilder description = new();
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {reaction.User.Value.Username}#{reaction.User.Value.Discriminator} - {reaction.User.Value.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogMessage()}:** [{message.Id}]({message.Value.GetJumpUrl()})");
+            description.AppendLine($"> **{translator.T().GuildAuditLogEmote()}:** {reaction.Emote}");
+
+            var embed = new EmbedBuilder()
+                .WithTitle(translator.T().GuildAuditLogReactionAddedTitle())
+                .WithDescription(description.ToString())
+                .WithAuthor(reaction.User.Value)
+                .WithFooter($"{translator.T().GuildAuditLogUserID()}: {reaction.User.Value.Id}");
+
+            await SendEmbed(embed, guildChannel.GuildId, GuildAuditLogEvent.ReactionAdded);
+        }
+
+        private async Task HandleVoiceStateUpdated(SocketUser user, SocketVoiceState voiceStateBefore, SocketVoiceState voiceStateAfter)
+        {
+            using var scope = _serviceProvider.CreateScope();
+
+            if (voiceStateBefore.VoiceChannel == voiceStateAfter.VoiceChannel)
+            {
+                return;
+            }
+
+            GuildAuditLogEvent eventType;
+            IVoiceChannel beforeChannel = null;
+            IVoiceChannel afterChannel = null;
+            ulong guildId;
+            if (voiceStateBefore.VoiceChannel == null)
+            {
+                eventType = GuildAuditLogEvent.VoiceJoined;
+                afterChannel = voiceStateAfter.VoiceChannel;
+                guildId = afterChannel.Guild.Id;
+            }
+            else if (voiceStateAfter.VoiceChannel == null)
+            {
+                eventType = GuildAuditLogEvent.VoiceLeft;
+                beforeChannel = voiceStateBefore.VoiceChannel;
+                guildId = beforeChannel.Guild.Id;
+            }
+            else
+            {
+                eventType = GuildAuditLogEvent.VoiceMoved;
+                beforeChannel = voiceStateBefore.VoiceChannel;
+                afterChannel = voiceStateAfter.VoiceChannel;
+                if (beforeChannel.GuildId != afterChannel.GuildId)
+                {
+                    return;
+                }
+                guildId = beforeChannel.GuildId;
+            }
+
+            if (guildId == 0)
+            {
+                return;
+            }
+
+            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            await translator.SetContext(guildId);
+
+            string title;
+            if (eventType == GuildAuditLogEvent.VoiceJoined)
+            {
+                title = translator.T().GuildAuditLogVoiceJoinedTitle();
+            }
+            else if (eventType == GuildAuditLogEvent.VoiceLeft)
+            {
+                title = translator.T().GuildAuditLogVoiceLeftTitle();
+            }
+            else
+            {
+                title = translator.T().GuildAuditLogVoiceMovedTitle();
+            }
+
+            StringBuilder description = new();
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+
+            if (eventType == GuildAuditLogEvent.VoiceJoined)
+            {
+                if (await CheckForIgnoredChannel(guildId, GuildAuditLogEvent.VoiceJoined, afterChannel.Id))
+                {
+                    return;
+                }
+                description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {afterChannel.Name} - {afterChannel.Mention}");
+            }
+            else if (eventType == GuildAuditLogEvent.VoiceLeft)
+            {
+                if (await CheckForIgnoredChannel(guildId, GuildAuditLogEvent.VoiceLeft, beforeChannel.Id))
+                {
+                    return;
+                }
+                description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {beforeChannel.Name} - {beforeChannel.Mention}");
+            }
+            else
+            {
+                if (await CheckForIgnoredChannel(guildId, GuildAuditLogEvent.VoiceMoved, beforeChannel.Id))
+                {
+                    return;
+                }
+                if (await CheckForIgnoredChannel(guildId, GuildAuditLogEvent.VoiceMoved, afterChannel.Id))
+                {
+                    return;
+                }
+                description.AppendLine($"> **{translator.T().GuildAuditLogChannelBefore()}:** {beforeChannel.Name} - {beforeChannel.Mention}");
+                description.AppendLine($"> **{translator.T().GuildAuditLogChannelAfter()}:** {afterChannel.Name} - {afterChannel.Mention}");
+            }
+
+            var embed = new EmbedBuilder()
+                .WithTitle(title)
+                .WithDescription(description.ToString())
+                .WithAuthor(user)
+                .WithFooter($"{translator.T().GuildAuditLogUserID()}: {user.Id}");
+
+            await SendEmbed(embed, guildId, eventType);
         }
 
         public async Task HandleBanAdded(SocketUser user, SocketGuild guild)
@@ -322,9 +574,15 @@ namespace MASZ.Services
                 embed.WithAuthor(invite.Inviter)
                      .WithFooter($"{translator.T().GuildAuditLogUserID()}: {invite.Inviter.Id}");
             }
+
             if (invite.Channel is ITextChannel tChannel)
             {
                 description.AppendLine($"> **{translator.T().GuildAuditLogInviteCreatedTargetChannel()}:** {tChannel.Name} - {tChannel.Mention}");
+            }
+
+            if (invite.GuildId.HasValue && await CheckForIgnoredChannel(invite.GuildId.Value, GuildAuditLogEvent.InviteCreated, invite.ChannelId))
+            {
+                return;
             }
 
             embed.WithTitle(translator.T().GuildAuditLogInviteCreatedTitle())
@@ -368,9 +626,15 @@ namespace MASZ.Services
                 embed.WithAuthor(inviter)
                      .WithFooter($"{translator.T().GuildAuditLogUserID()}: {inviter.Id}");
             }
+
             if (channel is ITextChannel tChannel)
             {
                 description.AppendLine($"> **{translator.T().GuildAuditLogInviteCreatedTargetChannel()}:** {tChannel.Name} - {tChannel.Mention}");
+            }
+
+            if (await CheckForIgnoredChannel(invite.GuildId, GuildAuditLogEvent.InviteCreated, channel.Id))
+            {
+                return;
             }
 
             embed.WithTitle(translator.T().GuildAuditLogInviteDeletedTitle())
@@ -426,10 +690,25 @@ namespace MASZ.Services
             var message = await messageCached.GetOrDownloadAsync();
 
             if (message == null)
+            {
                 return;
+            }
 
             if (message.Channel is ITextChannel tchannel)
             {
+                if (await CheckForIgnoredChannel(tchannel.GuildId, GuildAuditLogEvent.MessageDeleted, tchannel.Id))
+                {
+                    return;
+                }
+
+                if (message.Author is IGuildUser tauthor)
+                {
+                    if (await CheckForIgnoredRoles(tchannel.GuildId, GuildAuditLogEvent.MessageDeleted, tauthor.RoleIds.ToList()))
+                    {
+                        return;
+                    }
+                }
+
                 using var scope = _serviceProvider.CreateScope();
 
                 var translator = scope.ServiceProvider.GetRequiredService<Translator>();
@@ -503,6 +782,19 @@ namespace MASZ.Services
             {
                 if (message.Channel is ITextChannel tchannel)
                 {
+                    if (await CheckForIgnoredChannel(tchannel.GuildId, GuildAuditLogEvent.MessageSent, tchannel.Id))
+                    {
+                        return;
+                    }
+
+                    if (message.Author is IGuildUser tauthor)
+                    {
+                        if (await CheckForIgnoredRoles(tchannel.GuildId, GuildAuditLogEvent.MessageSent, tauthor.RoleIds.ToList()))
+                        {
+                            return;
+                        }
+                    }
+
                     using var scope = _serviceProvider.CreateScope();
 
                     var translator = scope.ServiceProvider.GetRequiredService<Translator>();
@@ -566,6 +858,19 @@ namespace MASZ.Services
             {
                 if (channel is ITextChannel tchannel)
                 {
+                    if (await CheckForIgnoredChannel(tchannel.GuildId, GuildAuditLogEvent.MessageUpdated, tchannel.Id))
+                    {
+                        return;
+                    }
+
+                    if (messageAfter.Author is IGuildUser tauthor)
+                    {
+                        if (await CheckForIgnoredRoles(tchannel.GuildId, GuildAuditLogEvent.MessageUpdated, tauthor.RoleIds.ToList()))
+                        {
+                            return;
+                        }
+                    }
+
                     using var scope = _serviceProvider.CreateScope();
 
                     var translator = scope.ServiceProvider.GetRequiredService<Translator>();
@@ -582,6 +887,8 @@ namespace MASZ.Services
                          .WithDescription(description.ToString())
                          .WithAuthor(messageAfter.Author)
                          .WithFooter($"{translator.T().GuildAuditLogUserID()}: {messageAfter.Author.Id}");
+
+                    embed.AddField(translator.T().GuildAuditLogMessageUpdatedPinned(), messageAfter.IsPinned ? CHECK : X_CHECK, false);
 
                     var before = await messageBefore.GetOrDownloadAsync();
 
@@ -645,6 +952,11 @@ namespace MASZ.Services
 
         public async Task HandleThreadCreated(SocketThreadChannel thread)
         {
+            if (await CheckForIgnoredChannel(thread.Guild.Id, GuildAuditLogEvent.MessageUpdated, thread.ParentChannel.Id))
+            {
+                return;
+            }
+
             using var scope = _serviceProvider.CreateScope();
 
             var translator = scope.ServiceProvider.GetRequiredService<Translator>();

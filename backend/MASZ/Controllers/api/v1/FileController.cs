@@ -62,7 +62,6 @@ namespace MASZ.Controllers
         }
 
         [HttpPost]
-        [RequestSizeLimit(10485760)]
         [Authorize]
         public async Task<IActionResult> PostItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromForm] Dtos.ModCase.UploadedFile uploadedFile)
         {

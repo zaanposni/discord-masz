@@ -16,6 +16,8 @@ namespace MASZ.Models
         public bool ExecuteWhoisOnJoin { get; set; }
         public bool PublishModeratorInfo { get; set; } = true;
         public Language PreferredLanguage { get; set; }
+        public int AllowBanAppealAfterDays { get; set; }
+        public bool PublicEmbedMode { get; set; }
 
         public object Clone()
         {
@@ -31,7 +33,9 @@ namespace MASZ.Models
                 ModInternalNotificationWebhook = ModInternalNotificationWebhook,
                 StrictModPermissionCheck = StrictModPermissionCheck,
                 ExecuteWhoisOnJoin = ExecuteWhoisOnJoin,
-                PreferredLanguage = PreferredLanguage
+                PreferredLanguage = PreferredLanguage,
+                AllowBanAppealAfterDays = AllowBanAppealAfterDays,
+                PublicEmbedMode = PublicEmbedMode
             };
         }
     }

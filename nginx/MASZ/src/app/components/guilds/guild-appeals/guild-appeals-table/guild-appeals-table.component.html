@@ -1,0 +1,90 @@
+<div class="d-flex flex-column w-100">
+    <div class="p-2">
+        <div class="d-flex flex-row flex-wrap mb-2">
+            <!-- Filters -->
+            <div class="d-flex flex-row flex-wrap mb-2 align-items-baseline">
+                <app-multi-select class="px-2 pb-2" [elements]="this.members" (selected)="selectedMemberChanged($event)"
+                                  [placeholderKey]="'AppealTable.SelectMembers'"
+                                  [searchPredicate]="userFilterPredicate"
+                                  [compareWithPredicate]="userComparePredicate"
+                                  [displayPredicate]="userDisplayPredicate"></app-multi-select>
+                <app-multi-select class="px-2 pb-2" [elements]="this.appealStatus" (selected)="selectedStatusChanged($event)"
+                                  [placeholderKey]="'AppealTable.SelectedStatus'"
+                                  [searchPredicate]="enumFilterPredicate"
+                                  [displayPredicate]="enumDisplayPredicate"></app-multi-select>
+                <div class="px-2 pb-2">
+                    <app-date-picker [placeholder]="'AppealTable.FilterSince'"
+                                     (dateChanged)="selectedSinceChanged($event)"></app-date-picker>
+                </div>
+                <div class="px-2 pb-2">
+                    <app-date-picker [placeholder]="'AppealTable.FilterUntil'"
+                                     (dateChanged)="selectedUntilChanged($event)"></app-date-picker>
+                </div>
+                <div class="px-2 pb-2">
+                </div>
+            </div>
+            <div class="flex-grow-1"></div>
+            <div class="d-flex flex-column">
+                <button mat-raised-button
+                        color="accent"
+                        routerLink="/guilds/{{this.guildId}}/appeals/new"
+                        class="mb-2 mr-2"
+                        [disabled]="this.structures.length === 0 || !(isAllowedToCreateNewAppeal | async)"
+                        *ngIf="!(this.isMember | async) && !(this.isAdminOrHigher | async)">
+                    {{ 'AppealTable.CreateNewAppeal' | translate }}
+                </button>
+                <button mat-raised-button
+                        color="accent"
+                        routerLink="/guilds/{{this.guildId}}/appeals/edit"
+                        class="mb-2 mr-2"
+                        *ngIf="this.isAdminOrHigher | async">
+                    {{ 'AppealTable.ConfigureAppeals' | translate }}
+                </button>
+                <button mat-raised-button
+                        color="accent"
+                        (click)="loadFirstCases()"
+                        class="mr-2">
+                    {{ 'AppealTable.ExecuteSearch' | translate }}
+                </button>
+            </div>
+        </div>
+        <div class="card-container mt-3 mb-3" *ngIf="!(this.isMember | async) && !(this.isAdminOrHigher | async) && ( !(isAllowedToCreateNewAppeal | async) || this.structures.length === 0)">
+            <div class="card-container-body d-flex flex-column flex-wrap flex-shrink-0 flex-grow-1">
+                <!-- Content -->
+                <div class="mat-h1 text-warning font-weight-bold d-flex flex-row align-items-center mb-0">
+                    <mat-icon class="mr-3" aria-hidden="false" aria-label="warning icon">warning</mat-icon>
+                    <div>
+                        {{ 'AppealTable.Warning' | translate }}
+                    </div>
+                </div>
+                <div class="mat-h4 text-warning font-weight-bold mb-0" *ngIf="this.structures.length === 0 && (isAllowedToCreateNewAppeal | async)">
+                    {{ 'AppealTable.NotConfigured' | translate }}
+                </div>
+                <div class="mat-h4 text-warning font-weight-bold mb-0" *ngIf="!(isAllowedToCreateNewAppeal | async)">
+                    {{ 'AppealTable.Locked' | translate }}
+                </div>
+            </div>
+        </div>
+        <div class="mat-h2 mb-2" *ngIf="this.appealTable?.fullSize">
+            {{ 'AppealTable.Count' | translate }}: {{ this.appealTable?.fullSize }}
+        </div>
+        <!-- Table -->
+        <mat-spinner *ngIf="this.loading"></mat-spinner>
+        <div class="d-flex flex-column" *ngIf="!this.loading">
+            <app-guild-appeals-card *ngFor="let appeal of this.appealTable.appealViews"
+                [entry]="appeal" class="mb-2">
+            </app-guild-appeals-card>
+            <div class="d-flex flex-row" *ngIf="this.appealTable!.fullSize > 20 && this.currentPage * 20 < this.appealTable!.fullSize">
+                <div class="flex-grow-1"></div>
+                <button mat-raised-button color="accent" (click)="loadNextPage()">Load more cases</button>
+                <div class="flex-grow-1"></div>
+            </div>
+            <div class="card-container rounded mt-3" *ngIf="! this.appealTable?.appealViews?.length">
+                <div class="card-container-body">
+                    <span class="mat-h1">{{ 'NothingHere' | translate }}</span>
+                    <p class="card-text">{{ 'AppealTable.NoMatches' | translate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

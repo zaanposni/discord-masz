@@ -11,4 +11,6 @@ export interface GuildConfig {
     modInternalNotificationWebhook: string;
     publishModeratorInfo: boolean;
     preferredLanguage: number;
+    allowBanAppealAfterDays: number;
+    publicEmbedMode: boolean;
 }

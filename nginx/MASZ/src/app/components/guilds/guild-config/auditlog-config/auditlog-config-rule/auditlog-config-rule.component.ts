@@ -39,7 +39,9 @@ export class AuditlogConfigRuleComponent implements OnInit {
 
     this.configForm = this._formBuilder.group({
       channel: [''],
-      pingRoles: ['']
+      pingRoles: [''],
+      ignoreRoles: [''],
+      ignoreChannels: ['']
     });
 
     this.configForm.valueChanges.subscribe(() => {
@@ -77,6 +79,8 @@ export class AuditlogConfigRuleComponent implements OnInit {
     this.configForm.setValue({
       channel: config.channelId,
       pingRoles: config.pingRoles,
+      ignoreRoles: config.ignoreRoles,
+      ignoreChannels: config.ignoreChannels
     });
   }
 
@@ -110,6 +114,8 @@ export class AuditlogConfigRuleComponent implements OnInit {
       "GuildAuditLogEvent": this.definition.type,
       "ChannelId": this.configForm.value.channel ? this.configForm.value.channel : 0,
       "PingRoles": this.configForm.value.pingRoles ? this.configForm.value.pingRoles : [],
+      "IgnoreRoles": this.configForm.value.ignoreRoles ? this.configForm.value.ignoreRoles : [],
+      "IgnoreChannels": this.configForm.value.ignoreChannels ? this.configForm.value.ignoreChannels : []
     }
 
     this.api.putSimpleData(`/guilds/${this.guildId}/auditlog`, data).subscribe((data) => {

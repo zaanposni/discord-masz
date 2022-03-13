@@ -1,8 +1,8 @@
 {
     "Forms": {
-        "FieldRequired": "Dieses Feld ist erforderlich.",
-        "MaxLength": "Dieses Feld darf maximal {{length}} Zeichen lang sein.",
-        "InvalidWebhookURL": "Dies ist keine gültige Webhook-URL."
+        "FieldRequired": "Des Föd is erfordalich.",
+        "MaxLength": "Des Föd derf maximal {{length}} Zeichn long sei.",
+        "InvalidWebhookURL": "Des is ka gütige Webhook-URL."
     },
     "Select": {
         "Select": "Auswöhn",
@@ -26,6 +26,7 @@
     "Usernotes": "Nutzanotizn",
     "Usermaps": "Benutzanotizn",
     "Comments": "Kommentare",
+    "BanAppeals": "Entbannungsantrag",
     "Loading": "Lodt...",
     "NothingHere": "Nix gfundn",
     "AcceptTermsOnLogin": "Beim omödn stimmens de Nutzungsbedinungen und de Richtlinien zua.",
@@ -59,21 +60,22 @@
         "Infrastrcture": {
             "Title": "Infrastruktur",
             "DefaultLanguage": {
-                "Explained": "MASZ wird diese Sprache als Standard verwenden, wenn möglich. Jedoch ist es möglich, dass nur eine englische Version verfügbar ist für bestimmte Texte. Gilden-spezifische Einstellungen überschreiben diese Einstellung.",
-                "Field": "Standard-Sprache"
+                "Explained": "MASZ wiad de Sproch ois Standard vawendn, wenns geht. Jedoch ists möglich, dass nua a englische Version fia monche Texte vafügbar is. Güdn-spezifische Eistellungen wean diese Eistellung übaschreibn.",
+                "Field": "Standard-Sproch"
             },
             "AuditLogWebhookUrl": {
-                "Explained": "Verwenden Sie einen privaten Webhook, der nur für Siteadmins zugänglich ist, da es sensible Informationen protokollieren könnte.",
+                "Explained": "Vawendns an privaten Webhook, dea nua fia Siteadmins zugänglich is, da dea sensible Infos protokollieren kenntat.",
                 "Field": "Auditlog Webhook URL"
             },
             "PublicFileMode": {
-                "Explained": "Aktivieren Sie dies, um den öffentlichen Zugriff auf alle hochgeladenen Dateien zu ermöglichen.",
-                "Field": "Öffentlicher Dateimodus"
+                "Explained": "Aktivians des, um den öffentlichn Zugriff auf olle hochglodane Dateien zua ermöglichn.",
+                "Field": "Öffentlicha Dateimodus"
             }
         },
         "Embed": {
-            "Title": "Discord Einbettung",
-            "Content": "Diese Einstellung ändert den Inhalt der Einbettung, wenn deine MASZ-Instanz in Discord verknüpft ist.",
+            "Title": "Discord Eibettung",
+            "Content": "Die Eistellung ändat den Inhoit da Eibettung, wenn dei MASZ-Instanz in Discord vaknüpft is.",
+            "ShowIcon": "Zeig des Icon da Anwendung in da Eibettung.",
             "TakeToUpdate": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird",
             "Save": {
                 "Button": "Späicheren",
@@ -96,8 +98,8 @@
         "FailedToClear": "Speicha konnte ned gleat wean.",
         "Cleared": "Speicha gleat.",
         "Insights": "Statistikn",
-        "UpdateAvailableHeadline": "Update verfügbar",
-        "Published": "Veröffentlicht:",
+        "UpdateAvailableHeadline": "Update vafügbar",
+        "Published": "Veröffntlicht:",
         "UpdateAvailableText": "Update {{tag}} is verfügbar. Bit aktualisier deinen Bot."
     },
     "AdminstatsList": {
@@ -142,6 +144,12 @@
         "Cancel": "Obrechn",
         "Confirm": "Zuastimma"
     },
+    "AppealStructureEditDialog": {
+        "EditQuestion": "Frage bearbeitn",
+        "Question": "Frog",
+        "Cancel": "Obrechn",
+        "Confirm": "Zuastima"
+    },
     "CommentEditDialog": {
         "EditComment": "Kommentoa aktualisiat",
         "Comment": "Kommentoa",
@@ -176,8 +184,8 @@
     "ScheduledMessageEditDialog": {
         "EditMessage": "Nachricht aktualisian",
         "Name": "Nom",
-        "Content": "Inhalt",
-        "EditSuccess": "Nachricht erfolgreich aktualisiian.",
+        "Content": "Inhoit",
+        "EditSuccess": "Nachricht erfolgreich aktualisiat.",
         "DeleteSuccess": "Nachricht erfolgreich gelöschian.",
         "Cancel": "Obrechn",
         "Confirm": "Zustima"
@@ -189,6 +197,9 @@
         "Confirm": "Zustima"
     },
     "GuildDialog": {
+        "PublicEmbedMode": "Öffentlicha Eibettungsmodus",
+        "PublicEmbedModeExplained": "Dea Modus ermöglicht detaillierte Eibettungen, wenn Vorfälle in Discord valinkt wean. Des wiad private Informationen wia den Vadächtigen, die Strofn, etc. offenboarn.",
+        "AllowAppealAfterXDays": "Entbannungsanträge noch x Tagn erlaubn",
         "ImportExistingBans": "Bestehende Sperrn importian",
         "ImportExistingBansDetails": "Des ko bei ana großn Güdn a bissal dauan, oba des wird im Hintagrund ausgfüaht.",
         "AddAGuild": "Güde hinzufügn",
@@ -214,7 +225,7 @@
         "WhoisDetails": "Tua automatisch Infos üba an neichn Nutza on dein internan Webhook schickn.",
         "PublishModerator": "Veröfftnlich Modarationsinfos",
         "PublishModeratorDetails": "A Verdächtiga wird de Meglichkeit hom, zum schaun, wöchana Modarator erm verurtoit hot.",
-        "Done": "Fertig",
+        "Done": "Basst",
         "RegisterGuild": "Güde registrian",
         "UpdateGuild": "Güde aktualisian",
         "FailedToLoadGuilds": "Güde konnt ned glodn wean.",
@@ -229,13 +240,15 @@
         "TargetChannel": "Zielkanal",
         "ComingSoon": "Kimmt boid",
         "PingRoles": "Rolle pingan",
+        "ExcludeRoles": "Ausgnommene Roin",
+        "ExcludeChannels": "Ausgnommene Kanäle",
         "AuditLog": "AuditLog",
         "ConfigDeleted": "Konfiguration glescht.",
         "FailedToDeleteConfig": "Konfiguration konnte ned glescht wean.",
         "SavedConfig": "Kondiguration gspeichat.",
         "FailedToSaveConfig": "Konfiguration konnt ned gspeichat wean.",
         "FailedToLoadGuild": "Güdeninfos konnten ned glodn wean.",
-        "FailedToLoadChannels": "Küdnkanoiinformationen konntn ned glodn wean.",
+        "FailedToLoadChannels": "Güdnkanalinformationen konntn ned glodn wean.",
         "MessageSent": {
             "title": "Nochricht gsendet"
         },
@@ -261,7 +274,7 @@
             "title": "Mitglied beigetretn"
         },
         "MemberRemoved": {
-            "title": "Mitglied entfernt"
+            "title": "Mitglied entfeant"
         },
         "BanAdded": {
             "title": "Rauschmuss hinzugfügt"
@@ -277,6 +290,21 @@
         },
         "ThreadCreated": {
             "title": "Thread erstöt"
+        },
+        "VoiceJoined": {
+            "title": "Mitglied ist in einem Sprachkanal beitretn"
+        },
+        "VoiceLeft": {
+            "title": "Mitglied hat einen Sprachkanal verlassn"
+        },
+        "VoiceMoved": {
+            "title": "Mitglied hot sich in an ondaren Sprachkanal bewegt"
+        },
+        "ReactionAdded": {
+            "title": "Reaktion hinzugfügt"
+        },
+        "ReactionRemoved": {
+            "title": "Reaktion entfeant"
         }
     },
     "AutomodConfig": {
@@ -357,18 +385,18 @@
         "SavedConfig": "Konfiguration gspeichat.",
         "FailedToSaveConfig": "Konfiguration konnte ned gspeichat wean.",
         "FailedToLoadGuild": "Güdeninfos konnten ned glodn wean.",
-        "FailedToLoadChannels": "Küdnkanoiinformationen konntn ned glodn wean."
+        "FailedToLoadChannels": "Güdnkanalinformationen konntn ned glodn wean."
     },
     "GuildMessages": {
-        "Explained": "Benutze geplante Nachrichten, um Nachrichten zu organisieren und zu koordinieren.",
+        "Explained": "Nutz geplante Nochrichtn, um Nochrichtn zu organisian und zu koordinian.",
         "NameField": "Name",
         "ChannelField": "Kanal",
-        "ContentField": "Inhalt",
-        "QueueMessage": "Nachricht einplanen",
-        "Messages": "Geplante Nachrichten",
-        "SortBy": "Sortieren nach",
+        "ContentField": "Inhoit",
+        "QueueMessage": "Nochricht eiplanen",
+        "Messages": "Geplante Nochrichtn",
+        "SortBy": "Sortian nach",
         "LoadMore": {
-            "Button": "Mehr laden",
+            "Button": "Mehr ladn",
             "Failed": "Nachrichten konntn ned glodn wean."
         }
     },
@@ -377,6 +405,7 @@
         "Message": "Nochricht",
         "FailedToLoad": "MotD konnt ned glodn wean.",
         "FailedToSave": "MotD konnt ned gspeichat wean.",
+        "Save": "Speichan",
         "Saved": "MotD gspeichat.",
         "Explanation": "De Nochricht wird am Administratoa oda am Modaratoa aufm Dashboard ozeigt."
     },
@@ -392,6 +421,7 @@
         "Overview": "Übasicht",
         "Cases": "Vorfälle",
         "Punishments": "Bestrofungen",
+        "Appeals": "Entbannungsanträge",
         "Automoderations": "Automodaratonen",
         "ChooseADate": "Tua a Datum auswöhn",
         "Reset": "Zrucksetzn"
@@ -409,6 +439,11 @@
         "CreateNewCase": "Neichn Vorfoi erstön",
         "FailedToLoad": "Güdnnifo konnt ned glodn wean."
     },
+    "GuildNotifications": {
+        "Title": "Hinweis",
+        "MissingAppeals": "Du häscht keine Fragen für den Entbannungsantrag konfiguriert. Gebannte Benutzer können daher zurzeit keine Entbannungsanträge erstön.",
+        "FailedToLoad": "Güdnbenachrichtigungen konntn ned glodn wean."
+    },
     "DashboardMotd": {
         "FailedToLoad": "Motd konnt ned glodn wean.",
         "MessageFrom": "Nochricht vo {{name}}"
@@ -425,13 +460,14 @@
     },
     "GuildOverview": {
         "Tabs": {
-            "Dashboard": "Dashboard",
+            "Dashboard": "Deschboard",
             "Case": "Vorfälle",
             "Automoderation": "Automodarationen",
-            "Messages": "Nachrichten",
+            "Messages": "Nochrichtn",
             "Usernote": "Benutzanotizn",
             "Usermap": "Benutzabeziehungen",
-            "Config": "Konfiguration"
+            "Config": "Konfiguration",
+            "BanAppeals": "Entbannungsanträge"
         }
     },
     "UsermapTable": {
@@ -494,7 +530,7 @@
         "SendDmNotification": "Direktnochrichtnbenochrichtigung",
         "HandlePunishment": "Bestrofung ausfian",
         "UploadFiles": "Dateinupload",
-        "Upload": "Upload",
+        "Upload": "Hochlodn",
         "CreateCase": "Vorfoi erstön",
         "UpdateCase": "Vorfoi aktualisian",
         "PublicNotification": "Öffentliche Benochrichtigung",
@@ -516,6 +552,72 @@
         "FailedToUploadFile": "Datei konnt ned hochglodn wean.",
         "CaseCreated": "Vorfoi erstöt.",
         "CaseUpdated": "Vorfoi aktualisiat."
+    },
+    "AppealCreate": {
+        "Title": "Dei Entbannungsantrag",
+        "Answer": "Beantworte die Frogn, um dein Entbannungsantrag abzuschließn.",
+        "Skip": "Du konnst de Frog übaspringen, wennst wüst.",
+        "View": "Du konnst jedazeit auf dea Website den Status vo deim Entbannungsantrag eisehn.",
+        "Save": "Speichan",
+        "Created": "Dei Entbannungsantrag wuad erstöt.",
+        "FailedToCreate": "Entbannungsantrag konnte ned erstöt wean.",
+        "FailedToLoadQuestions": "Fragen konnten ned glodn wean."
+    },
+    "AppealConfig": {
+        "AppealStructure": "Entbannungsantrag Fragebog",
+        "Configure": "Konfiguriere des Formular fia dein Entbannungsantrag der Güde.",
+        "Skip": "Benutzer können Frodn übaspringen, wenns woin.",
+        "Delete": "Wenns a Frog löschn, wiad die Frog weitahin in den oitn Entbannungsanträgen sichtboa sei.",
+        "NotConfigured": "Wenns keine Frogn konfiguriat hobn, kennan Benutzer kane Entbannungsanträge mehr stön.",
+        "Save": "Speichan",
+        "NewQuestion": "Neiche Frog",
+        "Reordered": "Frogn wuadn neich gordnet.",
+        "FailedToReorder": "Fehla beim neich Ordnen der Frogn.",
+        "FailedToCreate": "Fehler beim Erstön da Frog.",
+        "Created": "Die Frog wuad erstöt."
+    },
+    "AppealCard": {
+        "Created": "Erstöt:",
+        "Updated": "Aktualisiat:",
+        "AnswerCount": "Benutzer hot {{count}} Frogn beantwortet.",
+        "AllowedNewAppeal": "Benutzer deaf an neich Antrag erstön am: "
+    },
+    "AppealQuestionCard": {
+        "YourAnswer": "Dei Ontwort",
+        "Updated": "Aktualisiat.",
+        "FailedToUpdate": "Fehler beim Aktualisian der Frog",
+        "Deleted": "Glöscht.",
+        "FailedToDelete": "Fehler beim Löschn der Frog."
+    },
+    "AppealTable": {
+        "Count": "Onzoi",
+        "Warning": "Warnung",
+        "NotConfigured": "Diesa Server hot ka Formular fia den Entbannungsantrag konfiguriat. Darum konnst du kan Entbannungsantrag erstön.",
+        "Locked": "Aufgrund der Server-Einstellungen oder vorheriger Entbannungsanträge dürfen Sie keinen Entbannungsantrag erstön.",
+        "SelectMembers": "Mitglieda",
+        "SelectedStatus": "Status",
+        "FilterSince": "Erstöt vo",
+        "FilterUntil": "Erstöt bis",
+        "ExecuteSearch": "Suche startn",
+        "FailedToLoad": "Anträge konnten ned geladen wean.",
+        "NoMatches": "Kane Anträge passn zu deina Suach.",
+        "CreateNewAppeal": "Neien Entbannungsantrag stellen",
+        "ConfigureAppeals": "Formular konfigurian"
+    },
+    "AppealView": {
+        "FailedToLoad": "Antrag konnte ned geladen wean.",
+        "CreatedAt": "Erstöt am:",
+        "UpdatedAt": "Aktualisiat am:",
+        "LatestCases": "Neieste Fälle",
+        "ModeratorsDecisionAt": "Entscheidung vom Modarator am:",
+        "ModeratorsComment": "Kommentar vo da Modaration",
+        "NewAppeal": "Neua Antrag",
+        "UserIsAllowedToCreateNewAppealAt": "Benutzer deaf neichn Entbannungsantrag erstön am:",
+        "UserIsNeverAllowedToCreateNewAppeal": "Benutzer deaf nie an neichn Entbannungsantrag erstön",
+        "Edit": "Beorbeitn",
+        "Status": "Status",
+        "Updated": "Antrag aktualisiat.",
+        "FailedToUpdate": "Konnte Entbannungsantrag ned aktualisian."
     },
     "ModCaseTable": {
         "SelectMembers": "Mitglieda",
@@ -540,7 +642,7 @@
     },
     "ScheduleMessageCard": {
         "Created": "Erstöt:",
-        "Edited": "Bearbeitet:",
+        "Edited": "Beorbeitet:",
         "Edit": "Bearbeitn",
         "Delete": "Leschn"
     },
@@ -573,7 +675,7 @@
         "LastEditModerator": "Aktualisiat vo",
         "Description": "Beschreibung",
         "UploadedFiles": "Hochglodnene Datein",
-        "Upload": "Upload",
+        "Upload": "Hochlodn",
         "Comments": "Kommentare",
         "NewComment": "Neua Kommentar",
         "LockComments": "Kommentare spean",

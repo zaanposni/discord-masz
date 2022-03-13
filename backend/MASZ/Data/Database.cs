@@ -722,6 +722,11 @@ namespace MASZ.Data
             context.ScheduledMessages.Update(message);
         }
 
+        public async Task<int> CountMessages()
+        {
+            return await context.ScheduledMessages.AsQueryable().CountAsync();
+        }
+
         public void DeleteMessage(ScheduledMessage message)
         {
             context.ScheduledMessages.Remove(message);
@@ -731,6 +736,127 @@ namespace MASZ.Data
         {
             List<ScheduledMessage> messages = await GetScheduledMessages(guildId);
             context.ScheduledMessages.RemoveRange(messages);
+        }
+
+        // ==================================================================================
+        //
+        // AppealStructure
+        //
+        // ==================================================================================
+
+        public async Task<AppealStructure> GetAppealStructure(ulong guildId, int id)
+        {
+            return await context.AppealStructures.AsQueryable().Where(x => x.GuildId == guildId && x.Id == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<AppealStructure>> GetAppealStructure(ulong guildId)
+        {
+            return await context.AppealStructures.AsQueryable().Where(x => x.GuildId == guildId).OrderBy(x => x.SortOrder).ToListAsync();
+        }
+
+        public void SaveAppealStructure(AppealStructure appealStructure)
+        {
+            context.AppealStructures.Add(appealStructure);
+        }
+
+        public void UpdateAppealStructure(AppealStructure appealStructure)
+        {
+            context.AppealStructures.Update(appealStructure);
+        }
+
+        public void DeleteAppealStructure(AppealStructure appealStructure)
+        {
+            context.AppealStructures.Remove(appealStructure);
+        }
+
+        public async Task DeleteAppealStructuresForGuild(ulong guildId)
+        {
+            List<AppealStructure> appealStructures = await GetAppealStructure(guildId);
+            context.AppealStructures.RemoveRange(appealStructures);
+        }
+
+        // ==================================================================================
+        //
+        // Appeal
+        //
+        // ==================================================================================
+
+        public async Task<int> GetAppealCount(ulong guildId)
+        {
+            return await context.Appeals.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
+        }
+
+        public async Task<int> GetAppealCount()
+        {
+            return await context.Appeals.AsQueryable().CountAsync();
+        }
+
+        public async Task<Appeal> GetAppeal(int id)
+        {
+            return await context.Appeals.AsQueryable().Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Appeal>> GetAppealsForUser(ulong guildId, ulong userId)
+        {
+            return await context.Appeals.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.Id).ToListAsync();
+        }
+
+        public async Task<Appeal> GetLatestAppealForUser(ulong guildId, ulong userId)
+        {
+            return await context.Appeals.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.Id).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Appeal>> GetAppeals(ulong guildId)
+        {
+            return await context.Appeals.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.Id).ToListAsync();
+        }
+
+        public async Task<List<DbCount>> GetAppealCount(ulong guildId, DateTime since)
+        {
+            return await context.Appeals.AsQueryable().Where(x => x.GuildId == guildId && x.CreatedAt > since)
+            .GroupBy(x => new { x.CreatedAt.Month, x.CreatedAt.Year }).Select(x => new DbCount { Year = x.Key.Year, Month = x.Key.Month, Count = x.Count() }).OrderByDescending(x => x.Year).ThenByDescending(x => x.Month).ToListAsync();
+        }
+
+        public void SaveAppeal(Appeal appeal)
+        {
+            context.Appeals.Add(appeal);
+        }
+
+        public void UpdateAppeal(Appeal appeal)
+        {
+            context.Appeals.Update(appeal);
+        }
+
+        public void DeleteAppeal(Appeal appeal)
+        {
+            context.Appeals.Remove(appeal);
+        }
+
+        public async Task DeleteAppealsForGuild(ulong guildId)
+        {
+            List<Appeal> appeals = await GetAppeals(guildId);
+            context.Appeals.RemoveRange(appeals);
+        }
+
+        // ==================================================================================
+        //
+        // AppealAnswer
+        //
+        // ==================================================================================
+
+        public async Task<List<AppealAnswer>> GetAppealAnswers(int appealId)
+        {
+            return await context.AppealAnswers.Include(x => x.Appeal).Include(x => x.AppealQuestion).AsQueryable().Where(x => x.Appeal.Id == appealId).ToListAsync();
+        }
+
+        public async Task<List<AppealAnswer>> GetAppealAnswersByQuestionId(int questionId)
+        {
+            return await context.AppealAnswers.Include(x => x.Appeal).Include(x => x.AppealQuestion).AsQueryable().Where(x => x.AppealQuestion.Id == questionId).ToListAsync();
+        }
+
+        public void CreateAppealAnswer(AppealAnswer answer)
+        {
+            context.AppealAnswers.Add(answer);
         }
     }
 }

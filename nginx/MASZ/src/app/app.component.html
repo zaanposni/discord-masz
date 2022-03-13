@@ -87,10 +87,10 @@
               <app-guild-icon [guild]="guild" [showBorder]="false"></app-guild-icon>
               <span class="text-break">{{ guild.name }}</span>
               <div class="flex-grow-1"></div>
-              <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon" (click)="open('guilds', guild.id, 'edit'); $event.stopPropagation()">
+              <mat-icon class="mr-2" aria-hidden="false" aria-label="group icon" (click)="open('guilds', guild.id, 'edit'); $event.stopPropagation()">
                 edit
               </mat-icon>
-              <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon"
+              <mat-icon class="mr-2" aria-hidden="false" aria-label="group icon"
                 *ngIf="this.currentUser.isAdmin" (click)="deleteGuild(guild); $event.stopPropagation()">
                 delete
               </mat-icon>
@@ -115,10 +115,10 @@
               <span class="text-break" [class.pr-2]="!this.currentUser.isAdmin">{{ guild.name }}</span>
               <div class="flex-grow-1"></div>
               <ng-container *ngIf="this.currentUser.isAdmin">
-                <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon" (click)="open('guilds', guild.id, 'edit'); $event.stopPropagation()">
+                <mat-icon class="mr-2" aria-hidden="false" aria-label="group icon" (click)="open('guilds', guild.id, 'edit'); $event.stopPropagation()">
                   edit
                 </mat-icon>
-                <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon" (click)="deleteGuild(guild); $event.stopPropagation()">
+                <mat-icon class="mr-2" aria-hidden="false" aria-label="group icon" (click)="deleteGuild(guild); $event.stopPropagation()">
                   delete
                 </mat-icon>
               </ng-container>
@@ -143,10 +143,10 @@
               <span class="text-break" [class.pr-2]="!this.currentUser.isAdmin">{{ guild.name }}</span>
               <div class="flex-grow-1"></div>
               <ng-container *ngIf="this.currentUser.isAdmin">
-                <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon" (click)="open('guilds', guild.id, 'edit'); $event.stopPropagation()">
+                <mat-icon class="mr-2" aria-hidden="false" aria-label="group icon" (click)="open('guilds', guild.id, 'edit'); $event.stopPropagation()">
                   edit
                 </mat-icon>
-                <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon" (click)="deleteGuild(guild); $event.stopPropagation()">
+                <mat-icon class="mr-2" aria-hidden="false" aria-label="group icon" (click)="deleteGuild(guild); $event.stopPropagation()">
                   delete
                 </mat-icon>
               </ng-container>
@@ -171,10 +171,10 @@
               <span class="text-break" [class.pr-2]="!this.currentUser.isAdmin">{{ guild.name }}</span>
               <div class="flex-grow-1"></div>
               <ng-container *ngIf="this.currentUser.isAdmin">
-                <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon" (click)="open('guilds', guild.id, 'edit'); $event.stopPropagation()">
+                <mat-icon class="mr-2" aria-hidden="false" aria-label="group icon" (click)="open('guilds', guild.id, 'edit'); $event.stopPropagation()">
                   edit
                 </mat-icon>
-                <mat-icon class="align-self-end mr-2" aria-hidden="false" aria-label="group icon" (click)="deleteGuild(guild); $event.stopPropagation()">
+                <mat-icon class="mr-2" aria-hidden="false" aria-label="group icon" (click)="deleteGuild(guild); $event.stopPropagation()">
                   delete
                 </mat-icon>
               </ng-container>

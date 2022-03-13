@@ -10,8 +10,10 @@
       {{ 'Guilds.Admin' | translate }}
     </div>
     <div class="row w-100 justify-content-center" *ngIf="!this.currentUser.loading">
-      <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.adminGuilds" routerLink="/guilds/{{ guild.id }}">
-        <app-guild-icon [guild]="guild" [width]="'128px'" [height]="'128px'"></app-guild-icon>
+      <a class="col-sm-2 d-flex flex-column align-items-center crs-ptr" *ngFor="let guild of currentUser.content?.adminGuilds" routerLink="/guilds/{{ guild.id }}">
+        <div class="p-4">
+          <app-guild-icon [guild]="guild" [width]="'128px'" [height]="'128px'"></app-guild-icon>
+        </div>
         <div class="mat-h3 mb-0 font-weight-bold">{{ guild.name }}</div>
       </a>
     </div>
@@ -21,8 +23,10 @@
       {{ 'Guilds.Moderator' | translate }}
     </div>
     <div class="row w-100 justify-content-center" *ngIf="!this.currentUser.loading">
-      <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.modGuilds" routerLink="/guilds/{{ guild.id }}">
-        <app-guild-icon [guild]="guild" [width]="'128px'" [height]="'128px'"></app-guild-icon>
+      <a class="col-sm-2 d-flex flex-column align-items-center crs-ptr" *ngFor="let guild of currentUser.content?.modGuilds" routerLink="/guilds/{{ guild.id }}">
+        <div class="p-4">
+          <app-guild-icon [guild]="guild" [width]="'128px'" [height]="'128px'"></app-guild-icon>
+        </div>
         <div class="mat-h3 mb-0 font-weight-bold">{{ guild.name }}</div>
       </a>
     </div>
@@ -32,8 +36,10 @@
       {{ 'Guilds.Member' | translate }}
     </div>
     <div class="row w-100 justify-content-center" *ngIf="!this.currentUser.loading">
-      <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.memberGuilds" routerLink="/guilds/{{ guild.id }}">
-        <app-guild-icon [guild]="guild" [width]="'128px'" [height]="'128px'"></app-guild-icon>
+      <a class="col-sm-2 d-flex flex-column align-items-center crs-ptr" *ngFor="let guild of currentUser.content?.memberGuilds" routerLink="/guilds/{{ guild.id }}">
+        <div class="p-4">
+          <app-guild-icon [guild]="guild" [width]="'128px'" [height]="'128px'"></app-guild-icon>
+        </div>
         <div class="mat-h3 mb-0 font-weight-bold">{{ guild.name }}</div>
       </a>
     </div>
@@ -43,14 +49,16 @@
       {{ 'Guilds.Banned' | translate }}
     </div>
     <div class="row w-100 justify-content-center" *ngIf="!this.currentUser.loading">
-      <a class="col-sm-2 d-flex flex-column align-items-center p-4 crs-ptr" *ngFor="let guild of currentUser.content?.bannedGuilds" routerLink="/guilds/{{ guild.id }}">
-        <app-guild-icon [guild]="guild" [width]="'128px'" [height]="'128px'"></app-guild-icon>
+      <a class="col-sm-2 d-flex flex-column align-items-center crs-ptr" *ngFor="let guild of currentUser.content?.bannedGuilds" routerLink="/guilds/{{ guild.id }}">
+        <div class="p-4">
+          <app-guild-icon [guild]="guild" [width]="'128px'" [height]="'128px'"></app-guild-icon>
+        </div>
         <div class="mat-h3 mb-0 font-weight-bold">{{ guild.name }}</div>
       </a>
     </div>
 
-    <ng-container *ngIf="this.currentUser?.content?.bannedGuilds!.length + this.currentUser?.content?.memberGuilds!.length + this.currentUser?.content?.modGuilds!.length + this.currentUser?.content?.adminGuilds!.length === 0">
-        <img src="/assets/img/notfound.svg" class="w-50 align-self-center"/>
+    <ng-container *ngIf="!anyGuilds && !currentUser?.loading">
+        <img alt="not found" src="/assets/img/notfound.svg" class="w-50 align-self-center"/>
         <div class="mat-display-1 align-self-center font-weight-bold">
           {{ 'GuildList.NoGuild' | translate }}
         </div>

@@ -7,18 +7,21 @@ namespace MASZ.Models
         public int Id { get; set; }
         public string EmbedTitle { get; set; }
         public string EmbedContent { get; set; }
+        public bool EmbedShowIcon { get; set; }
         public Language DefaultLanguage { get; set; }
         public string AuditLogWebhookURL { get; set; }
         public bool PublicFileMode { get; set; }
 
-        public string GetEmbedData(string url)
+        public string GetEmbedData(string url, string iconUrl)
         {
             return
                 "<html>" +
                     "<head>" +
+                        "<meta name=\"theme-color\" content=\"#3498db\">" +
                         "<meta property=\"og:site_name\" content=\"MASZ by zaanposni\" />" +
                         "<meta property=\"og:title\" content=\"" + EmbedTitle + "\" />" +
                         "<meta property=\"og:url\" content=\"" + url + "\" />" +
+                        (EmbedShowIcon && ! string.IsNullOrWhiteSpace(iconUrl) ? "<meta property=\"og:image\" content=\"" + iconUrl + "\" />" : "") +
                         (string.IsNullOrWhiteSpace(EmbedContent) ? "" : "<meta property=\"og:description\" content=\"" + EmbedContent + "\" />") +
                     "</head>" +
                 "</html>";

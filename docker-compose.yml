@@ -62,7 +62,6 @@ services:
     depends_on:
         - db
         - backend
-    restart: unless-stopped
     ports:
       - "127.0.0.1:5565:80"
     networks:

@@ -26,6 +26,7 @@
     "Usernotes": "Notas de usuario",
     "Usermaps": "Mapas de usuario",
     "Comments": "Comentarios",
+    "BanAppeals": "Solicitud de prohibición",
     "Loading": "Cargando...",
     "NothingHere": "Nada aquí.",
     "AcceptTermsOnLogin": "Al iniciar sesión, acepta nuestros Términos y directrices.",
@@ -74,6 +75,7 @@
         "Embed": {
             "Title": "Embed de Discord",
             "Content": "Esta configuración cambiará el contenido del anuncio cuando tu instancia MASZ esté vinculada en Discord.",
+            "ShowIcon": "Mostrar el icono de la aplicación en el anuncio.",
             "TakeToUpdate": "Por favor tenga en cuenta que esto puede tomar hasta una hora para actualizar.",
             "Save": {
                 "Button": "Guardar",
@@ -142,6 +144,12 @@
         "Cancel": "Cancelar",
         "Confirm": "Confirmar"
     },
+    "AppealStructureEditDialog": {
+        "EditQuestion": "Editar pregunta",
+        "Question": "Pregunta",
+        "Cancel": "Cancelar",
+        "Confirm": "Confirmar"
+    },
     "CommentEditDialog": {
         "EditComment": "Editar comentario",
         "Comment": "Comentario",
@@ -189,6 +197,9 @@
         "Confirm": "Confirmar"
     },
     "GuildDialog": {
+        "PublicEmbedMode": "Modo de incrustación pública",
+        "PublicEmbedModeExplained": "Este modo permite incrustar detalles cuando se vincula un caso en discord. Esto hará públicas las informaciones privadas como el sujeto, las sanciones, etc.",
+        "AllowAppealAfterXDays": "Permitir que los miembros del grupo puedan presentar una reclamación de expulsión después de x días",
         "ImportExistingBans": "Importar prohibiciones existentes",
         "ImportExistingBansDetails": "Esto puede llevar un tiempo para los gremios grandes, pero se ejecutará en segundo plano.",
         "AddAGuild": "Agregar un gremio",
@@ -229,6 +240,8 @@
         "TargetChannel": "Canal objetivo",
         "ComingSoon": "Próximamente, en breve, pronto",
         "PingRoles": "Roles de ping",
+        "ExcludeRoles": "Excluir roles",
+        "ExcludeChannels": "Excluir canales",
         "AuditLog": "Registro de auditoría",
         "ConfigDeleted": "Configuración eliminada.",
         "FailedToDeleteConfig": "No se pudo borrar la configuración.",
@@ -277,6 +290,21 @@
         },
         "ThreadCreated": {
             "title": "Hilo creado"
+        },
+        "VoiceJoined": {
+            "title": "Miembro se unió al canal de voz"
+        },
+        "VoiceLeft": {
+            "title": "Miembro dejó el canal de voz"
+        },
+        "VoiceMoved": {
+            "title": "Miembro movió al canal de voz"
+        },
+        "ReactionAdded": {
+            "title": "Reacción añadida"
+        },
+        "ReactionRemoved": {
+            "title": "Reacción eliminada"
         }
     },
     "AutomodConfig": {
@@ -377,6 +405,7 @@
         "Message": "Mensaje",
         "FailedToLoad": "No se pudo cargar motd.",
         "FailedToSave": "No se pudo salvar a motd.",
+        "Save": "Guardar",
         "Saved": "Motd guardado.",
         "Explanation": "Este mensaje se mostrará a sus administradores y moderadores en el panel de control."
     },
@@ -392,6 +421,7 @@
         "Overview": "Visión general",
         "Cases": "Casos",
         "Punishments": "Castigos",
+        "Appeals": "Apelaciones de baneo",
         "Automoderations": "Automoderaciones",
         "ChooseADate": "Elige una fecha",
         "Reset": "Reiniciar"
@@ -408,6 +438,11 @@
     "GuildInfoCard": {
         "CreateNewCase": "Crear nuevo caso",
         "FailedToLoad": "No se pudo cargar la información del gremio."
+    },
+    "GuildNotifications": {
+        "Title": "Aviso",
+        "MissingAppeals": "No tienes preguntas de apelación de expulsión configuradas. Los usuarios expulsados no pueden crear una pregunta de apelación de expulsión ahora mismo.",
+        "FailedToLoad": "No se pudieron cargar las notificaciones del gremio."
     },
     "DashboardMotd": {
         "FailedToLoad": "No se pudo cargar motd.",
@@ -431,7 +466,8 @@
             "Messages": "Mensajes",
             "Usernote": "Notas de usuario",
             "Usermap": "Mapas de usuario",
-            "Config": "Config"
+            "Config": "Config",
+            "BanAppeals": "Reclamaciones de baneo"
         }
     },
     "UsermapTable": {
@@ -516,6 +552,72 @@
         "FailedToUploadFile": "No se pudo cargar el archivo.",
         "CaseCreated": "Caso creado.",
         "CaseUpdated": "Caso actualizado."
+    },
+    "AppealCreate": {
+        "Title": "Su solicitud de exclusión",
+        "Answer": "Responda a estas preguntas para completar su solicitud de exclusión.",
+        "Skip": "Puede saltar las preguntas si lo desea.",
+        "View": "Podrá ver el estado de su solicitud de exclusión en esta página web cada vez que lo desee.",
+        "Save": "Guardar",
+        "Created": "Su solicitud de exclusión ha sido creada.",
+        "FailedToCreate": "No se pudo crear la solicitud de exclusión.",
+        "FailedToLoadQuestions": "No se pudieron cargar las preguntas."
+    },
+    "AppealConfig": {
+        "AppealStructure": "Estructura del apelante",
+        "Configure": "Configurar el formulario para el apelante de la gildia.",
+        "Skip": "Los usuarios pueden omitir las preguntas si quieren.",
+        "Delete": "Si elimina una pregunta, permanecerá visible en los apelantes de la gildia.",
+        "NotConfigured": "Si no tiene preguntas configuradas, los usuarios no podrán hacer apelantes.",
+        "Save": "Guardar",
+        "NewQuestion": "Nueva pregunta",
+        "Reordered": "Las preguntas han sido reordenadas.",
+        "FailedToReorder": "No se pudo reordenar las preguntas.",
+        "FailedToCreate": "No se pudo crear la pregunta.",
+        "Created": "La pregunta ha sido creada."
+    },
+    "AppealCard": {
+        "Created": "Creado:",
+        "Updated": "Actualizado:",
+        "AnswerCount": "El usuario ha respondido {{count}} preguntas.",
+        "AllowedNewAppeal": "El usuario puede crear un nuevo reclamo a: "
+    },
+    "AppealQuestionCard": {
+        "YourAnswer": "Tu respuesta",
+        "Updated": "Actualizado.",
+        "FailedToUpdate": "No se pudo actualizar la pregunta",
+        "Deleted": "Eliminado.",
+        "FailedToDelete": "No se pudo eliminar la pregunta."
+    },
+    "AppealTable": {
+        "Count": "Número",
+        "Warning": "Advertencia",
+        "NotConfigured": "Este servidor no tiene un formulario de apelación de baneo configurado. Por lo tanto, no puedes crear una apelación de baneo ahora.",
+        "Locked": "Debido a la configuración del servidor o a las decisiones anteriores, no se te permite crear una apelación de baneo ahora.",
+        "SelectMembers": "Miembros",
+        "SelectedStatus": "Estado",
+        "FilterSince": "Creado desde",
+        "FilterUntil": "Creado hasta",
+        "ExecuteSearch": "Búsqueda",
+        "FailedToLoad": "No se pudo cargar la tabla de solicitudes.",
+        "NoMatches": "No hay casos que coincidan con su búsqueda.",
+        "CreateNewAppeal": "Crear un nuevo caso",
+        "ConfigureAppeals": "Configurar solicitudes"
+    },
+    "AppealView": {
+        "FailedToLoad": "No se pudo cargar la solicitud.",
+        "CreatedAt": "Creado el:",
+        "UpdatedAt": "Actualizado el:",
+        "LatestCases": "Últimos casos",
+        "ModeratorsDecisionAt": "Decisión del moderador el:",
+        "ModeratorsComment": "Comentario del moderador",
+        "NewAppeal": "Nuevo caso",
+        "UserIsAllowedToCreateNewAppealAt": "El usuario está autorizado a crear un nuevo caso en:",
+        "UserIsNeverAllowedToCreateNewAppeal": "El usuario nunca está autorizado a crear un nuevo caso",
+        "Edit": "Editar",
+        "Status": "Estado",
+        "Updated": "Solicitud actualizada.",
+        "FailedToUpdate": "No se pudo actualizar la solicitud."
     },
     "ModCaseTable": {
         "SelectMembers": "Miembros",

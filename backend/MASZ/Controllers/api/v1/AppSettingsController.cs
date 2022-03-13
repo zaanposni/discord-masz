@@ -38,6 +38,7 @@ namespace MASZ.Controllers
 
             current.EmbedTitle = newSettings.EmbedTitle;
             current.EmbedContent = newSettings.EmbedContent;
+            current.EmbedShowIcon = newSettings.EmbedShowIcon;
 
             return Ok(await repo.UpdateAppSettings(current));
         }

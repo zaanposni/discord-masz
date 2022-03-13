@@ -87,7 +87,6 @@ export class ModcaseTableComponent implements OnInit {
       this.selectedPunishmentActiveStatusChanged(value);
     });
 
-
     this.enumManager.getEnum(APIEnumTypes.CASECREATIONTYPE).subscribe(data => {
       this.caseCreationTypes.next(data);
     });
@@ -184,6 +183,7 @@ export class ModcaseTableComponent implements OnInit {
       this.casesTable = data;
       this.applyCurrentFilters();
     }, error => {
+      this.loading = false;
       console.error(error);
       this.toastr.error(this.translator.instant('ModCaseTable.FailedToLoad'));
     });

@@ -310,13 +310,13 @@
         "var_types": {
             "userMap": "MASZ.Models.UserMapping"
         },
-        "en": "UserMap between {userMap.UserA} and {userMap.UserB}.",
-        "de": "Benutzerbeziehung zwischen {userMap.UserA} und {userMap.UserB}.",
-        "at": "Benutzabeziehung zwischa {userMap.UserA} und {userMap.UserB}.",
-        "fr": "UserMap entre {userMap.UserA} et {userMap.UserB}.",
-        "es": "UserMap entre {userMap.UserA} y {userMap.UserB}.",
-        "ru": "UserMap между {userMap.UserA} и {userMap.UserB}.",
-        "it": "UserMap tra {userMap.UserA} e {userMap.UserB}."
+        "en": "UserMap between <@{userMap.UserA}> and <@{userMap.UserB}>.",
+        "de": "Benutzerbeziehung zwischen <@{userMap.UserA}> und <@{userMap.UserB}>.",
+        "at": "Benutzabeziehung zwischa <@{userMap.UserA}> und <@{userMap.UserB}>.",
+        "fr": "UserMap entre <@{userMap.UserA}> et <@{userMap.UserB}>.",
+        "es": "UserMap entre <@{userMap.UserA}> y <@{userMap.UserB}>.",
+        "ru": "UserMap между <@{userMap.UserA}> и <@{userMap.UserB}>.",
+        "it": "UserMap tra <@{userMap.UserA}> e <@{userMap.UserB}>."
     },
     "Imported": {
         "description": "Case that has been imported",
@@ -579,8 +579,8 @@
                         "serviceBaseUrl": "string"
                     },
                     "en": "The moderators of guild `{guild.Name}` have warned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                    "de": "Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen besuche: {serviceBaseUrl}",
-                    "at": "Die Moderatoan vo `{guild.Name}` hom di verwoarnt.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
+                    "de": "Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen oder einen Entbannungsantrag besuche: {serviceBaseUrl}",
+                    "at": "Die Moderatoan vo `{guild.Name}` hom di verwoarnt.\nFia weitere Infos oda ein Entbannungsantrag schau bei {serviceBaseUrl} noch.",
                     "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont prévenu.\\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                     "es": "Los moderadores del gremio `{guild.Name}` te han advertido.\\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
                     "ru": "Модераторы гильдии `{guild.Name}` вас предупредили.\\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
@@ -689,11 +689,70 @@
                 "description": "A file has been updated.",
                 "en": "File updated",
                 "de": "Datei aktualisiert",
-                "at": "Datei aktualisiert",
+                "at": "Datei aktualisiat",
                 "fr": "Fichier mis à jour",
                 "es": "Archivo actualizado",
                 "ru": "Файл обновлен",
                 "it": "File aggiornato"
+            }
+        },
+        "Appeals": {
+            "Create": {
+                "description": "A appeal has been created.",
+                    "var_types": {
+                        "actorId": "ulong"
+                    },
+                    "en": "A **ban appeal** has been created by <@{actorId}>.",
+                    "de": "Ein **Entbannungsantrag** wurde von <@{actorId}> erstellt.",
+                    "at": "A **Entbannungsantrag** wuad vo <@{actorId}> erstöt.",
+                    "fr": "Un **appel de bannissement** a été créé par <@{actorId}>.",
+                    "es": "Un **apelación de prohibición** ha sido creado por <@{actorId}>.",
+                    "ru": "Заявка на **бан** создана пользователем <@{actorId}>.",
+                    "it": "Un **appello al ban** è stato creato da <@{actorId}>."
+            },
+            "Update": {
+                "description": "A appeal has been updated.",
+                    "var_types": {
+                        "userId": "ulong",
+                        "actorId": "ulong"
+                    },
+                    "en": "A **ban appeal** for <@{userId}> has been updated by <@{actorId}>.",
+                    "de": "Ein **Entbannungsantrag** für <@{userId}> wurde von <@{actorId}> aktualisiert.",
+                    "at": "A **Entbannungsantrag** fia <@{userId}> wuad vo <@{actorId}> aktualisiat.",
+                    "fr": "Un **appel de bannissement** pour <@{userId}> a été mis à jour par <@{actorId}>.",
+                    "es": "Un **apelación de prohibición** para <@{userId}> ha sido actualizado por <@{actorId}>.",
+                    "ru": "Заявка на **бан** для <@{userId}> была обновлена пользователем <@{actorId}>.",
+                    "it": "Un **appello al ban** per <@{userId}> è stato aggiornato da <@{actorId}>."
+            },
+            "Status": {
+                "description": "The word status",
+                "en": "Status",
+                "de": "Status",
+                "at": "Status",
+                "fr": "Statut",
+                "es": "Estado",
+                "ru": "статус",
+                "it": "Stato"
+            },
+            "Reason": {
+                "description": "The word reason",
+                "en": "Reason",
+                "de": "Grund",
+                "at": "Grund",
+                "fr": "Raison",
+                "es": "Razón",
+                "ru": "причина",
+                "it": "Motivo"
+            },
+            "Appeal": {
+                "description": "The word appeal",
+                "en": "Ban appeal",
+                "de": "Entbannungsantrag",
+                "at": "Entbannungsantrag",
+                "fr": "appel de bannissement",
+                "es": "apelación de prohibición",
+                "ru": "заявка на бан",
+                "it": "appello al ban"
             }
         },
         "Register": {
@@ -1038,6 +1097,19 @@
                     "ru": "Наказание за ModCase # {caseId} модератором {modId} выполнено: \\\"{reason} \\\"",
                     "it": "Punizione per ModCase #{caseId} eseguita dal moderatore {modId}: \\\"{reason}\\\""
                 },
+                "ExecuteAutomod": {
+                    "description": "Audit log header reason for executed punishment.",
+                    "var_types": {
+                        "autoModEvent": "string"
+                    },
+                    "en": "Punishment for Automod {autoModEvent} executed.",
+                    "de": "Bestrafung für Automoderation {autoModEvent} ausgeführt.",
+                    "at": "Bestrofun für Automod {autoModEvent} ausgführt.",
+                    "fr": "Punition pour Automod {autoModEvent} exécutée.",
+                    "es": "Castigo para Automod {autoModEvent} ejecutado.",
+                    "ru": "Наказание за Automod {autoModEvent} выполнено.",
+                    "it": "Punizione per Automod {autoModEvent} eseguita."
+                },
                 "Undone": {
                     "description": "Audit log header reason for executed punishment.",
                     "var_types": {
@@ -1046,11 +1118,25 @@
                     },
                     "en": "Punishment for ModCase #{caseId} undone: \\\"{reason}\\\"",
                     "de": "Bestrafung für Vorfall #{caseId} rückgängig gemacht: \\\"{reason}\\\"",
-                    "at": "Bestrofung fian Vorfoi #{caseId} is rückgängig gmocht woan: \\\"{reason}\\\"",    
+                    "at": "Bestrofung fian Vorfoi #{caseId} is rückgängig gmocht woan: \\\"{reason}\\\"",
                     "fr": "Punition pour ModCase #{caseId} annulée : \\\"{reason}\\\"",
                     "es": "Castigo por ModCase # {caseId} deshecho: \\\"{reason} \\\"",
                     "ru": "Наказание за ModCase # {caseId} отменено: \\\"{reason} \\\"",
                     "it": "Punizione per ModCase #{caseId} annullata: \\\"{reason}\\\""
+                },
+                "AppealApproved": {
+                    "description": "Audit log header reason for executed punishment.",
+                    "var_types": {
+                        "appealId": "int",
+                        "reason": "string"
+                    },
+                    "en": "Ban Appeal #{appealId} approved: \\\"{reason}\\\"",
+                    "de": "Entbannungsantrag #{appealId} genehmigt: \\\"{reason}\\\"",
+                    "at": "Entbannungsantrag #{appealId} gnehmigt: \\\"{reason}\\\"",
+                    "fr": "Appel de bannissement #{appealId} approuvé : \\\"{reason}\\\"",
+                    "es": "Solicitud de prohibición # {appealId} aprobada: \\\"{reason} \\\"",
+                    "ru": "Обжалование забанения # {appealId} одобрено: \\\"{reason} \\\"",
+                    "it": "Appello per Ban Appeal #{appealId} approvato: \\\"{reason}\\\""
                 }
             }
         },
@@ -1108,6 +1194,26 @@
                 "es": "Mencionar rol (s)",
                 "ru": "Упоминание ролей",
                 "it": "Menzione ruolo/i"
+            },
+            "ExcludeRoles": {
+                "description": "Select to exclude certain roles",
+                "en": "Exclude roles",
+                "de": "Ausgenommene Rollen",
+                "at": "Ausgnommene Roin",
+                "fr": "Exclure les rôles",
+                "es": "Excluir roles",
+                "ru": "Исключить роли",
+                "it": "Escludi ruoli"
+            },
+            "ExcludeChannels": {
+                "description": "Select to exclude certain channels",
+                "en": "Exclude channels",
+                "de": "Ausgenommene Kanäle",
+                "at": "Ausgnommene Kanäle",
+                "fr": "Exclure les chaînes",
+                "es": "Excluir canales",
+                "ru": "Исключить каналы",
+                "it": "Escludi canali"
             },
             "Title": {
                 "description": "title",
@@ -1556,7 +1662,7 @@
                 },
                 "en": "{user.Mention} used the say command in {channel.Mention}.\n{message.GetJumpUrl()}",
                 "de": "{user.Mention} verwendete den Say-Befehl in {channel.Mention}.\n{message.GetJumpUrl()}",
-                "at": "{user.Mention} verwendete den Say-Befehl in {channel.Mention}.\n{message.GetJumpUrl()}",
+                "at": "{user.Mention} vawendete den Say-Befehl in {channel.Mention}.\n{message.GetJumpUrl()}",
                 "fr": "{user.Mention} a utilisé la commande « dire » dans{channel.Mention}.\\n{message.GetJumpUrl()}",
                 "es": "{user.Mention} usó el comando «decir» en {channel.Mention}.\\n{message.GetJumpUrl()}",
                 "ru": "{user.Mention} использовал команду «сказать» в {channel.Mention}.\\n{message.GetJumpUrl()}",
@@ -1982,7 +2088,7 @@
                 "description": "database status",
                 "en": "Database",
                 "de": "Datenbank",
-                "at": "Datenbank",
+                "at": "Datenbok",
                 "fr": "Base de données",
                 "es": "Base de datos",
                 "ru": "База данных",
@@ -1992,7 +2098,7 @@
                 "description": "internal cache status",
                 "en": "Internal Cache",
                 "de": "Interner Cache",
-                "at": "Interner Cache",
+                "at": "Interna Cache",
                 "fr": "Cache interne",
                 "es": "Cache interno",
                 "ru": "Внутренний кеш",
@@ -2002,7 +2108,7 @@
                 "description": "currently logged in users",
                 "en": "Currently logged in users",
                 "de": "Momentan angemeldete Benutzer",
-                "at": "Momentan angemeldete Benutzer",
+                "at": "Momentan ogmödete Benutza",
                 "fr": "Utilisateurs actuellement connectés",
                 "es": "Usuarios actualmente conectados",
                 "ru": "Пользователи, в настоящее время в системе",
@@ -2015,7 +2121,7 @@
                 },
                 "en": "Experienced last disconnect at {time}.",
                 "de": "Letzter Abmeldungszeitpunkt: {time}.",
-                "at": "Letzter Abmeldungszeitpunkt: {time}.",
+                "at": "Letzta Abmeldungszeitpunkt: {time}.",
                 "fr": "Dernière déconnexion à {time}.",
                 "es": "Última desconexión en {time}.",
                 "ru": "Последнее отключение: {time}.",
@@ -2033,6 +2139,26 @@
             "es": "Canal",
             "ru": "Канал",
             "it": "Canale"
+        },
+        "ChannelBefore": {
+            "description": "Channel before",
+            "en": "Channel before",
+            "de": "Kanal vorher",
+            "at": "Kanal vorhea",
+            "fr": "Canaliser avant",
+            "es": "Canal antes",
+            "ru": "Канал до",
+            "it": "Canale prima"
+        },
+        "ChannelAfter": {
+            "description": "Channel after",
+            "en": "Channel after",
+            "de": "Kanal nachher",
+            "at": "Kanal nochher",
+            "fr": "Canaliser après",
+            "es": "Canal después",
+            "ru": "Канал после",
+            "it": "Canale dopo"
         },
         "ChannelId": {
             "description": "ChannelId",
@@ -2054,6 +2180,16 @@
             "ru": "Я БЫ",
             "it": "ID"
         },
+        "Message": {
+            "description": "Message",
+            "en": "Message",
+            "de": "Nachricht",
+            "at": "Nochricht",
+            "fr": "Message",
+            "es": "Mensaje",
+            "ru": "Сообщение",
+            "it": "Messaggio"
+        },
         "UserID": {
             "description": "User ID",
             "en": "User ID",
@@ -2073,6 +2209,16 @@
             "es": "Usuario",
             "ru": "Пользователь",
             "it": "Utente"
+        },
+        "Emote": {
+            "description": "Emote",
+            "en": "Emote",
+            "de": "Emote",
+            "at": "Emote",
+            "fr": "Émoticône",
+            "es": "Emoción",
+            "ru": "Эмоция",
+            "it": "Emote"
         },
         "Author": {
             "description": "Author",
@@ -2118,7 +2264,7 @@
             "description": "Old",
             "en": "Old",
             "de": "Alt",
-            "at": "Alt",
+            "at": "Oit",
             "fr": "Ancien",
             "es": "Viejo",
             "ru": "Старый",
@@ -2128,7 +2274,7 @@
             "description": "New",
             "en": "New",
             "de": "Neu",
-            "at": "Neu",
+            "at": "Neich",
             "fr": "Nouveau",
             "es": "Nuevo",
             "ru": "Новый",
@@ -2138,7 +2284,7 @@
             "description": "Empty",
             "en": "Empty",
             "de": "Leer",
-            "at": "Leer",
+            "at": "Lea",
             "fr": "Vide",
             "es": "Vacío",
             "ru": "Пустой",
@@ -2159,7 +2305,7 @@
                 "description": "Content",
                 "en": "Content",
                 "de": "Inhalt",
-                "at": "Inhalt",
+                "at": "Inhoi",
                 "fr": "Teneur",
                 "es": "Contenido",
                 "ru": "Содержание",
@@ -2196,6 +2342,16 @@
                 "es": "Nuevo",
                 "ru": "Новый",
                 "it": "Nuovo"
+            },
+            "Pinned": {
+                "description": "Pinned",
+                "en": "Pinned",
+                "de": "Gepinnt",
+                "at": "Opinnt",
+                "fr": "Épinglé",
+                "es": "Fijado",
+                "ru": "Закрепленный",
+                "it": "In evidenza"
             }
         },
         "MessageDeleted": {
@@ -2213,7 +2369,7 @@
                 "description": "Content",
                 "en": "Content",
                 "de": "Inhalt",
-                "at": "Inhalt",
+                "at": "Inhoit",
                 "fr": "Teneur",
                 "es": "Contenido",
                 "ru": "Содержание",
@@ -2335,7 +2491,7 @@
                 "description": "Member removed",
                 "en": "Member removed",
                 "de": "Mitglied entfernt",
-                "at": "Mitglied entfernt",
+                "at": "Mitglied entfeant",
                 "fr": "Membre supprimé",
                 "es": "Miembro eliminado",
                 "ru": "Участник удален",
@@ -2435,11 +2591,71 @@
                 "description": "Removed",
                 "en": "Removed",
                 "de": "Entfernt",
-                "at": "Entfernt",
+                "at": "Entfeant",
                 "fr": "Supprimé",
                 "es": "Remoto",
                 "ru": "Удаленный",
                 "it": "RIMOSSO"
+            }
+        },
+        "ReactionAdded": {
+            "Title": {
+                "description": "Reaction added",
+                "en": "Reaction added",
+                "de": "Reaktion hinzugefügt",
+                "at": "Reaktion hinzugfügt",
+                "fr": "Réaction ajoutée",
+                "es": "Reacción añadida",
+                "ru": "Реакция добавлена",
+                "it": "Risposta aggiunta"
+            }
+        },
+        "ReactionRemoved": {
+            "Title": {
+                "description": "Reaction removed",
+                "en": "Reaction removed",
+                "de": "Reaktion entfernt",
+                "at": "Reaktion entfeant",
+                "fr": "Réaction supprimée",
+                "es": "Reacción eliminada",
+                "ru": "Реакция удалена",
+                "it": "Risposta rimossa"
+            }
+        },
+        "VoiceJoined": {
+            "Title": {
+                "description": "Voicechannel joined",
+                "en": "Voicechannel joined",
+                "de": "Sprachkanal betreten",
+                "at": "Sprachkanal betretn",
+                "fr": "Canal vocal rejoint",
+                "es": "Canal de voz unido",
+                "ru": "Голосовой канал присоединился",
+                "it": "Canale vocale unito"
+            }
+        },
+        "VoiceLeft": {
+            "Title": {
+                "description": "Voicechannel left",
+                "en": "Voicechannel left",
+                "de": "Sprachkanal verlassen",
+                "at": "Sprachkanal valossn",
+                "fr": "Canal vocal quitté",
+                "es": "Canal de voz abandonado",
+                "ru": "Голосовой канал покинул",
+                "it": "Canale vocale lasciato"
+            }
+        },
+        "VoiceMoved": {
+            "Title": {
+                "description": "Switched voicechannel",
+                "en": "Switched voicechannel",
+                "de": "Sprachkanal gewechselt",
+                "at": "Sprachkanal gwechslt",
+                "fr": "Canal vocal changé",
+                "es": "Canal de voz cambiado",
+                "ru": "Переключен голосовой канал",
+                "it": "Canale vocale cambiato"
             }
         }
     }

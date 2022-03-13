@@ -11,8 +11,14 @@
         <ng-container *ngIf="this.motd.content.motd.showMotd">
             <mat-form-field class="mb-2">
                 <mat-label>{{ 'GuildMotd.Message' | translate }}</mat-label>
-                <textarea matInput placeholder="Important message to my administrators." [(ngModel)]="this.motd.content.motd.message" (ngModelChange)="onChange($event)"></textarea>
+                <textarea matInput placeholder="Important message to my administrators." [(ngModel)]="this.motd.content.motd.message"></textarea>
             </mat-form-field>
+            <button mat-raised-button color="accent"
+                class="flex-shrink-0 w-25 mb-2"
+                [disabled]="!this.motd.content.motd.message"
+                (click)="updateMotd()">
+                {{ 'GuildMotd.Save' | translate }}
+            </button>
         </ng-container>
     </div>
     <mat-spinner *ngIf="this.motd.loading"></mat-spinner>

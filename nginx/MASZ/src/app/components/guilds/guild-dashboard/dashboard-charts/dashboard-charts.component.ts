@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Observable, Subject } from 'rxjs';
-import { DashboardCharts } from 'src/app/models/DashboardCharts';
+import { IDashboardCharts } from 'src/app/models/IDashboardCharts';
 import { DbCount } from 'src/app/models/DbCount';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -23,12 +23,10 @@ export class DashboardChartsComponent implements OnInit {
 
   public caseChartData: ChartDataSets[] = [];
   public caseChartLabels: Label[] = [];
-  public punishmentChartData: ChartDataSets[] = [];
-  public punishmentChartLabels: Label[] = [];
   public moderationChartData: ChartDataSets[] = [];
   public moderationChartLabels: Label[] = [];
-  private maxSubject$ = new Subject<number>();
-  public max: Observable<number> = this.maxSubject$.asObservable();
+  public appealChartData: ChartDataSets[] = [];
+  public appealChartLabels: Label[] = [];
 
   constructor(private api: ApiService, private route: ActivatedRoute) { }
 
@@ -52,7 +50,7 @@ export class DashboardChartsComponent implements OnInit {
     let params = new HttpParams()
       .set('since', Math.floor(new Date(this.since).getTime() / 1000).toString());
 
-    this.api.getSimpleData(`/guilds/${this.guildId}/dashboard/chart`, true, params).subscribe((data: DashboardCharts) => {
+    this.api.getSimpleData(`/guilds/${this.guildId}/dashboard/chart`, true, params).subscribe((data: IDashboardCharts) => {
 
       const sinceInsert = this.convertTime(this.since);
 
@@ -64,14 +62,6 @@ export class DashboardChartsComponent implements OnInit {
         this.caseChartLabels = [ sinceInsert.toString(), ...data.modCases.map(x => this.convertTime(x)) ];
       }
 
-      if (data.punishments.map(x => this.convertTime(x)).includes(sinceInsert)) {
-        this.punishmentChartData = [{ data: data.punishments.map(x => x.count), label: 'Count' }];
-        this.punishmentChartLabels = data.punishments.map(x => this.convertTime(x));
-      } else {
-        this.punishmentChartData = [{ data: [ 0, ...data.punishments.map(x => x.count) ], label: 'Count' }];
-        this.punishmentChartLabels = [ sinceInsert.toString(), ...data.punishments.map(x => this.convertTime(x)) ];
-      }
-
       if (data.autoModerations.map(x => this.convertTime(x)).includes(sinceInsert)) {
         this.moderationChartData = [{ data: data.autoModerations.map(x => x.count), label: 'Count' }];
         this.moderationChartLabels = data.autoModerations.map(x => this.convertTime(x));
@@ -80,7 +70,13 @@ export class DashboardChartsComponent implements OnInit {
         this.moderationChartLabels = [ sinceInsert.toString(), ...data.autoModerations.map(x => this.convertTime(x)) ];
       }
 
-      this.maxSubject$.next(Math.max( ...data.modCases.map(x => x.count), ...data.punishments.map(x => x.count), 10 ));
+      if (data.appeals.map(x => this.convertTime(x)).includes(sinceInsert)) {
+        this.appealChartData = [{ data: data.appeals.map(x => x.count), label: 'Count' }];
+        this.appealChartLabels = data.appeals.map(x => this.convertTime(x));
+      } else {
+        this.appealChartData = [{ data: [ 0, ...data.appeals.map(x => x.count) ], label: 'Count' }];
+        this.appealChartLabels = [ sinceInsert.toString(), ...data.appeals.map(x => this.convertTime(x)) ];
+      }
 
       this.loading = false;
     }, () => { this.loading = false; });

@@ -378,5 +378,20 @@ namespace MASZ.Services
 
         internal readonly AsyncEvent<Func<GuildLevelAuditLogConfig, IUser, Task>> OnGuildLevelAuditLogConfigDeletedEvent = new("OnGuildLevelAuditLogConfigDeletedEvent");
 
+        public event Func<Appeal, IUser, Task> OnAppealCreated
+        {
+            add { OnAppealCreatedEvent.Add(value); }
+            remove { OnAppealCreatedEvent.Remove(value); }
+        }
+
+        internal readonly AsyncEvent<Func<Appeal, IUser, Task>> OnAppealCreatedEvent = new("OnAppealCreatedEvent");
+
+        public event Func<Appeal, IUser, IUser, Task> OnAppealUpdated
+        {
+            add { OnAppealUpdatedEvent.Add(value); }
+            remove { OnAppealUpdatedEvent.Remove(value); }
+        }
+
+        internal readonly AsyncEvent<Func<Appeal, IUser, IUser, Task>> OnAppealUpdatedEvent = new("OnAppealUpdatedEvent");
     }
 }

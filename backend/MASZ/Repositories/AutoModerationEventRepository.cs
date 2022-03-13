@@ -87,6 +87,13 @@ namespace MASZ.Repositories
             await Database.SaveModerationEvent(modEvent);
             await Database.SaveChangesAsync();
 
+            if (modConfig.AutoModerationAction == AutoModerationAction.Timeout && modConfig.PunishmentDurationMinutes.HasValue)
+            {
+                string reason = _translator.T().NotificationDiscordAuditLogPunishmentsExecuteAutomod(_translator.T().Enum(modEvent.AutoModerationType));
+                DateTime until = DateTime.UtcNow.AddMinutes(modConfig.PunishmentDurationMinutes.Value);
+                await DiscordAPI.TimeoutGuildUser(modEvent.GuildId, modEvent.UserId, until, reason);
+            }
+
             _eventHandler.OnAutoModerationEventRegisteredEvent.InvokeAsync(modEvent, modConfig, guildConfig, channel, author);
 
             return modEvent;
