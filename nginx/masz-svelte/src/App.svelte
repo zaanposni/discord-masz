@@ -6,6 +6,8 @@
 
 	import { Accordion, AccordionItem } from "carbon-components-svelte";
 	import Add32 from "carbon-icons-svelte/lib/Add32";
+
+	import Theme from "./components/nav/theme.svelte";
 </script>
 
 <style global lang="postcss">
@@ -15,9 +17,10 @@
 </style>
 
 <main>
+	<Theme />
 	<Router {routes} />
 	<i class="material-icons">home</i>
-	<Add32 title="Add" />
+	<Add32 title="Add" class="my-5" />
 	<Accordion>
 	  <AccordionItem title="Section 1" open> Content 1 </AccordionItem>
 	  <AccordionItem title="Section 2"> Content 2 </AccordionItem>
