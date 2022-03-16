@@ -6,7 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import css from 'rollup-plugin-css-only';
-import replace from '@rollup/plugin-replace';
+import { optimizeImports } from "carbon-preprocess-svelte";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -41,21 +41,18 @@ export default {
 		inlineDynamicImports: true
 	},
 	plugins: [
-		replace({
-			preventAssignment: true,
-			'process.env.NODE_ENV': JSON.stringify('production'),
-			__buildDate__: () => JSON.stringify(new Date()),
-			__buildVersion: 16
-		}),
 		svelte({
-			preprocess: sveltePreprocess({
-				sourceMap: !production,
-				postcss: {
-						plugins: [
-						require("tailwindcss"),
-					],
-				},
-			}),
+			preprocess: [
+					sveltePreprocess({
+					sourceMap: !production,
+					postcss: {
+							plugins: [
+							require("tailwindcss"),
+						],
+					},
+				}),
+				optimizeImports()
+			],
 			compilerOptions: {
 				// enable run-time checks when not in production
 				dev: !production

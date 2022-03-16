@@ -1,14 +1,11 @@
 <script lang="ts">
 	import { Router } from "@roxi/routify";
 	import { routes } from "../.routify/routes";
-	import { Button, Autocomplete } from "attractions";
 
-	async function* getOptions(text) {
-		yield [
-			{ name: text, details: "Optional" },
-			{ name: `it highlights the match: ${text}` },
-		];
-	}
+	import "carbon-components-svelte/css/all.css";
+
+	import { Accordion, AccordionItem } from "carbon-components-svelte";
+	import Add32 from "carbon-icons-svelte/lib/Add32";
 </script>
 
 <style global lang="postcss">
@@ -19,8 +16,11 @@
 
 <main>
 	<Router {routes} />
-	<Button filled class="mb-3">click me</Button>
 	<i class="material-icons">home</i>
-
-	<Autocomplete {getOptions} minSearchLength={0} />
+	<Add32 title="Add" />
+	<Accordion>
+	  <AccordionItem title="Section 1" open> Content 1 </AccordionItem>
+	  <AccordionItem title="Section 2"> Content 2 </AccordionItem>
+	  <AccordionItem title="Section 3"> Content 3 </AccordionItem>
+	</Accordion>
 </main>
