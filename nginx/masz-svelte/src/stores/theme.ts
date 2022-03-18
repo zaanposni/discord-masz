@@ -1,4 +1,4 @@
-import { Readable, Writable } from "svelte/store";
+import type { Readable, Writable } from "svelte/store";
 import { writable, derived } from "svelte/store";
 
 export const currentTheme: Writable<string> = writable(null);
