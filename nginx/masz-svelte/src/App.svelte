@@ -39,28 +39,12 @@
     <HeaderGlobalAction aria-label="Settings" icon={SettingsAdjust20} />
     <HeaderAction bind:isOpen={isOpen1} icon={UserAvatarFilledAlt20} closeIcon={UserAvatarFilledAlt20}>
       <HeaderPanelLinks>
-        <HeaderPanelDivider>Switcher subject 1</HeaderPanelDivider>
-        <HeaderPanelLink>Switcher item 1</HeaderPanelLink>
-        <HeaderPanelLink>Switcher item 2</HeaderPanelLink>
-        <HeaderPanelLink>Switcher item 3</HeaderPanelLink>
-        <HeaderPanelLink>Switcher item 4</HeaderPanelLink>
-        <HeaderPanelDivider>Switcher subject 2</HeaderPanelDivider>
-        <HeaderPanelLink>Switcher item 1</HeaderPanelLink>
-        <HeaderPanelLink>Switcher item 2</HeaderPanelLink>
-        <HeaderPanelDivider>Switcher subject 3</HeaderPanelDivider>
         <HeaderPanelLink>Switcher item 1</HeaderPanelLink>
       </HeaderPanelLinks>
     </HeaderAction>
     <HeaderAction bind:isOpen={isOpen2}>
       <HeaderPanelLinks>
-        <HeaderPanelDivider>Switcher subject 1</HeaderPanelDivider>
         <HeaderPanelLink>Switcher item 1</HeaderPanelLink>
-        <HeaderPanelDivider>Switcher subject 2</HeaderPanelDivider>
-        <HeaderPanelLink>Switcher item 1</HeaderPanelLink>
-        <HeaderPanelLink>Switcher item 2</HeaderPanelLink>
-        <HeaderPanelLink>Switcher item 3</HeaderPanelLink>
-        <HeaderPanelLink>Switcher item 4</HeaderPanelLink>
-        <HeaderPanelLink>Switcher item 5</HeaderPanelLink>
       </HeaderPanelLinks>
     </HeaderAction>
   </HeaderUtilities>

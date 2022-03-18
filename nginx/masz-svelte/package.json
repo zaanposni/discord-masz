@@ -19,6 +19,7 @@
     "@roxi/routify": "^2.18.5",
     "@tsconfig/svelte": "^2.0.0",
     "autoprefixer": "^10.4.2",
+    "axios": "^0.26.1",
     "carbon-components-svelte": "^0.61.1",
     "carbon-icons-svelte": "^10.45.0",
     "carbon-preprocess-svelte": "^0.6.0",
