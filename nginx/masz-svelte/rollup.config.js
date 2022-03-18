@@ -7,6 +7,7 @@ import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import css from 'rollup-plugin-css-only';
 import { optimizeImports } from "carbon-preprocess-svelte";
+import json from '@rollup/plugin-json';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -41,6 +42,7 @@ export default {
 		inlineDynamicImports: true
 	},
 	plugins: [
+		json(),
 		svelte({
 			preprocess: [
 				sveltePreprocess({
@@ -75,7 +77,8 @@ export default {
 		// https://github.com/rollup/plugins/tree/master/packages/commonjs
 		resolve({
 			browser: true,
-			dedupe: ['svelte']
+			dedupe: ['svelte'],
+			preferBuiltins: true,
 		}),
 		commonjs(),
 		typescript({
