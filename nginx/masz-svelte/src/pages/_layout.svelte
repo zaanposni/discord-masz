@@ -23,6 +23,7 @@
   import { showUserSettings } from "../components/nav/store";
 
   import Usersettings from "../components/nav/usersettings.svelte";
+  import { APP_NAME, APP_VERSION } from "../config";
   import { isLoggedIn } from "../stores/auth";
 
   $: if ($layout.path !== "/login" && !$isLoggedIn) {
@@ -38,7 +39,7 @@
 
 <Usersettings />
 
-<Header company="MASZ" platformName="v3.0" bind:isSideNavOpen>
+<Header company={APP_NAME} platformName={APP_VERSION} bind:isSideNavOpen>
   <svelte:fragment slot="skip-to-content">
     <SkipToContent />
   </svelte:fragment>

@@ -5,3 +5,6 @@ export const ENABLE_CORS = false;
 // export const ENABLE_CORS = true;
 
 export const THEME_LOCAL_STORAGE_KEY = "__carbon-theme";
+
+export const APP_NAME = "MASZ";
+export const APP_VERSION = "v3.0";
