@@ -8,7 +8,7 @@
 
 {#if $toasts}
   <section>
-    {#each $toasts as toast}
+    {#each $toasts as toast (toast.id)}
       <ToastNotification
         kind={toast.type}
         title={toast.title}
