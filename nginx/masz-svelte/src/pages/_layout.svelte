@@ -86,6 +86,6 @@
   </SideNav>
 {/if}
 
-<Content class="h-full">
+<Content style="height: calc(100vh - 5rem); padding-top: 5rem; margin-top: unset" >
   <slot />
 </Content>
