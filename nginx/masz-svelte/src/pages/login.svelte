@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto, params } from '@roxi/routify';
     import { authUser } from "./../stores/auth";
     import { Button } from "carbon-components-svelte";
     import { onDestroy, onMount } from "svelte";
@@ -30,12 +31,16 @@
     });
 
     function testLogin() {
-        // check if cookie is set
         if (Cookies.getCookie("masz_access_token") != null) {
             loggingIn = true;
             API.get("discord/users/@me")
                 .then((res: IAuthUser) => {
                     authUser.set(res);
+                    if ($params.returnUrl && $params.returnUrl !== "/") {
+                        $goto($params.returnUrl);
+                    } else {
+                        $goto("/guilds");
+                    }
                 })
                 .catch((err) => {
                     loggingIn = false;

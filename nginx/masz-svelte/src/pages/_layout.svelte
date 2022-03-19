@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { goto, layout } from "@roxi/routify";
+    import { goto, layout, url } from "@roxi/routify";
     import {
         Header,
         SideNav,
@@ -24,17 +24,21 @@
 
     import Usersettings from "../components/nav/usersettings.svelte";
     import { APP_NAME, APP_VERSION } from "../config";
+    import Cookies from "../services/cookie";
     import { isLoggedIn } from "../stores/auth";
+    import { currentParams } from "../stores/currentParams";
 
-    $: if ($layout.path !== "/login" && !$isLoggedIn) {
-        $goto("/login");
+    if (window.location.pathname !== "/login" && !$isLoggedIn) {
+        $goto("/login", { returnUrl: window.location.pathname });
     } else {
-        $goto("/dashboard");
+        $goto("/guilds");
     }
 
     let isSideNavOpen = false;
     let isOpen1 = false;
     let isOpen2 = false;
+
+    $: console.log("currentParams", $currentParams);
 </script>
 
 <Usersettings />
@@ -66,7 +70,7 @@
     </HeaderUtilities>
 </Header>
 
-{#if $isLoggedIn}
+{#if $isLoggedIn && $currentParams.guildId}
     <SideNav bind:isOpen={isSideNavOpen} rail>
         <SideNavItems>
             <SideNavLink icon={Fade16} text="Link 1" href="/" isSelected />
