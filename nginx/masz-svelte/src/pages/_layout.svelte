@@ -33,8 +33,6 @@
 
     if (window.location.pathname !== "/login" && !$isLoggedIn) {
         $goto("/login", { returnUrl: window.location.pathname });
-    } else {
-        $goto("/guilds");
     }
 
     let isSideNavOpen = false;

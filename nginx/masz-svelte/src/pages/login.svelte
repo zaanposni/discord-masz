@@ -15,7 +15,6 @@
     function login() {
         loggingIn = true;
         window.location.href = "/api/v1/login";
-        //authUser.set({} as any);
     }
 
     onMount(() => {

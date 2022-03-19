@@ -6,7 +6,7 @@
 import { currentTheme } from "../../stores/theme";
 
   const themeSettings = {
-    themes: ["white", "g10", "g80", "g90", "g100"],
+    themes: ["white", "g10", "g90", "g100"],
     labelText: "Theme"
   };
 

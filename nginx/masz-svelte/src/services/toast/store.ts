@@ -83,7 +83,6 @@ export const setToastHovered = (id, hovered) => {
         if (t.id === id && t.dismissible) {
             t.hovered = hovered;
             if (!hovered && t.dismissAt + 500 < Date.now()) {
-                console.log("case");
                 t.dismissAt = Date.now() + 2500;
             }
         }
