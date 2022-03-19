@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { goto, layout, url } from "@roxi/routify";
+    import { goto, url } from "@roxi/routify";
+    import { shortcut } from "../utils/shortcut.js";
     import {
         Header,
         SideNav,
@@ -16,6 +17,7 @@
         HeaderPanelLinks,
         HeaderAction,
         HeaderPanelDivider,
+        HeaderSearch,
     } from "carbon-components-svelte";
     import Fade16 from "carbon-icons-svelte/lib/Fade16";
     import SettingsAdjust20 from "carbon-icons-svelte/lib/SettingsAdjust20";
@@ -54,15 +56,63 @@
     function changeFavorite(guildId: string) {
         favoriteGuild.set(guildId);
     }
+
+    const data = [];
+    for (let i = 0; i < 100; i++) {
+        data.push({
+            href: "/",
+            text: "Kubernetes Service",
+            description:
+                "Deploy secure, highly available apps in a native Kubernetes experience. IBM Cloud Kubernetes Service creates a cluster of compute hosts and deploys highly available containers.",
+        });
+    }
+
+    let value = "";
+    let searchActive = false;
+
+    $: lowerCaseValue = value.toLowerCase();
+    $: results =
+        value.length > 0
+            ? data.filter((item) => {
+                  return (
+                      item.text.toLowerCase().includes(lowerCaseValue) ||
+                      item.description.includes(lowerCaseValue)
+                  );
+              })
+            : [];
+
+    function activateSearch() {
+        if ($isLoggedIn) {
+            searchActive = true;
+        }
+    }
 </script>
 
 <Usersettings />
 
+<div
+    on:click={activateSearch}
+    use:shortcut={{ control: true, code: "KeyK" }}
+    use:shortcut={{ shift: true, code: "KeyK" }}
+    use:shortcut={{ control: true, code: "KeyF" }}
+    use:shortcut={{ shift: true, code: "KeyF" }}
+/>
 <Header company={APP_NAME} platformName={APP_VERSION} bind:isSideNavOpen>
     <svelte:fragment slot="skip-to-content">
         <SkipToContent />
     </svelte:fragment>
     <HeaderUtilities>
+        {#if $isLoggedIn}
+            <HeaderSearch
+                bind:value
+                bind:active={searchActive}
+                placeholder="Search services"
+                {results}
+                on:select={(e) => {
+                    console.log("hi", e);
+                }}
+            />
+        {/if}
         <HeaderGlobalAction
             aria-label="Settings"
             icon={SettingsAdjust20}
@@ -135,6 +185,8 @@
     </SideNav>
 {/if}
 
-<Content style="min-height: 100vh; padding-top: 5rem; margin-top: unset; display: flex; flex-direction: column">
+<Content
+    style="min-height: 100vh; padding-top: 5rem; margin-top: unset; display: flex; flex-direction: column"
+>
     <slot />
 </Content>
