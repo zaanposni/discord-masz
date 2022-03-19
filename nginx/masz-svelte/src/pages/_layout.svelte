@@ -37,8 +37,6 @@
     let isSideNavOpen = false;
     let isOpen1 = false;
     let isOpen2 = false;
-
-    $: console.log("currentParams", $currentParams);
 </script>
 
 <Usersettings />
@@ -87,6 +85,6 @@
     </SideNav>
 {/if}
 
-<Content style="height: 100vh; padding-top: 5rem; margin-top: unset">
+<Content style="min-height: 100vh; padding-top: 5rem; margin-top: unset">
     <slot />
 </Content>

@@ -4,5 +4,5 @@
     $: console.log($currentParams);
 </script>
 
-{$currentParams.guildId} cases
+{$currentParams.guildId} dashboard
 {$currentParams.guild?.name}
