@@ -15,8 +15,13 @@ body {
 /*
 	Fix vertical alginment for icons in header actions
 */
-.bx--header__action svg {
+.bx--header__action svg,
+.bx--header__action img {
 	display: inline;
+}
+
+.bx--header__action img + svg {
+	display: none;
 }
 
 .login-gradient {

@@ -19,7 +19,7 @@
   } from "carbon-components-svelte";
   import Fade16 from "carbon-icons-svelte/lib/Fade16";
   import SettingsAdjust20 from "carbon-icons-svelte/lib/SettingsAdjust20";
-  import UserAvatarFilledAlt20 from "carbon-icons-svelte/lib/UserAvatarFilledAlt20";
+  import UserIcon from "../components/discord/UserIcon.svelte";
   import { showUserSettings } from "../components/nav/store";
 
   import Usersettings from "../components/nav/usersettings.svelte";
@@ -51,16 +51,15 @@
         showUserSettings.set(true);
       }}
     />
-    <HeaderAction
-      bind:isOpen={isOpen1}
-      icon={UserAvatarFilledAlt20}
-      closeIcon={UserAvatarFilledAlt20}
-    >
-      <HeaderPanelLinks>
-        <HeaderPanelLink>Switcher item 1</HeaderPanelLink>
-      </HeaderPanelLinks>
-    </HeaderAction>
     {#if $isLoggedIn}
+      <HeaderAction
+        bind:isOpen={isOpen1}
+        icon={UserIcon}
+      >
+        <HeaderPanelLinks>
+          <HeaderPanelLink>Switcher item 1</HeaderPanelLink>
+        </HeaderPanelLinks>
+      </HeaderAction>
       <HeaderAction bind:isOpen={isOpen2}>
         <HeaderPanelLinks>
           <HeaderPanelLink>Switcher item 1</HeaderPanelLink>
