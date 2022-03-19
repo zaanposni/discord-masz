@@ -1,6 +1,13 @@
-<script>
+<script lang="ts">
     import GuildCards from "../../components/guilds/GuildCards.svelte";
     import { authUser } from "../../stores/auth";
+
+    let noGuilds: boolean = false;
+    $: noGuilds =
+        $authUser?.adminGuilds?.length === 0 &&
+        $authUser?.modGuilds?.length === 0 &&
+        $authUser?.memberGuilds?.length === 0 &&
+        $authUser?.bannedGuilds?.length === 0;
 </script>
 
 <style>
@@ -14,16 +21,23 @@
     }
 </style>
 
-{#if $authUser}
-    <h2>Admin guilds ({$authUser.adminGuilds?.length ?? 0})</h2>
-    <GuildCards guilds={$authUser.adminGuilds} />
-
-    <h2>Moderator guilds ({$authUser.modGuilds?.length ?? 0})</h2>
-    <GuildCards guilds={$authUser.modGuilds} />
-
-    <h2>Member guilds ({$authUser.memberGuilds?.length ?? 0})</h2>
-    <GuildCards guilds={$authUser.memberGuilds} />
-
-    <h2>Banned from guilds ({$authUser.bannedGuilds?.length ?? 0})</h2>
-    <GuildCards guilds={$authUser.bannedGuilds} />
+{#if noGuilds}
+    no guilds
+{:else if $authUser}
+    {#if $authUser.adminGuilds.length > 0}
+        <h2>Admin guilds ({$authUser.adminGuilds?.length ?? 0})</h2>
+        <GuildCards guilds={$authUser.adminGuilds} />
+    {/if}
+    {#if $authUser.modGuilds.length > 0}
+        <h2>Moderator guilds ({$authUser.modGuilds?.length ?? 0})</h2>
+        <GuildCards guilds={$authUser.modGuilds} />
+    {/if}
+    {#if $authUser.memberGuilds.length > 0}
+        <h2>Guilds ({$authUser.memberGuilds?.length ?? 0})</h2>
+        <GuildCards guilds={$authUser.memberGuilds} />
+    {/if}
+    {#if $authUser.bannedGuilds.length > 0}
+        <h2>Banned guilds ({$authUser.bannedGuilds?.length ?? 0})</h2>
+        <GuildCards guilds={$authUser.bannedGuilds} />
+    {/if}
 {/if}
