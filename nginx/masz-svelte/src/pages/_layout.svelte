@@ -87,6 +87,6 @@
   </SideNav>
 {/if}
 
-<Content>
+<Content class="h-full">
   <slot />
 </Content>

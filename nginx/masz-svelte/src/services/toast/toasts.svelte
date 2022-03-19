@@ -2,8 +2,6 @@
   import { ToastNotification } from "carbon-components-svelte";
   import { isDarkMode } from "../../stores/theme";
   import { dismissToast, toasts, setToastHovered } from "./store";
-
-  $: console.log("dark", $isDarkMode);
 </script>
 
 {#if $toasts}

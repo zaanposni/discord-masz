@@ -15,11 +15,12 @@ const apirequest = (method, url, data) => {
         return Promise.resolve(res.data);
       })
       .catch(err => {
+        console.error(err);
         return Promise.reject(err);
       });
 };
 
-const get = (url, data) => apirequest("get",url,data);
+const get = (url) => apirequest("get",url, undefined);
 const deleteData = (url, data) =>  apirequest("delete", url, data);
 const post = (url, data) => apirequest("post", url, data);
 const put = (url, data) => apirequest("put", url, data);

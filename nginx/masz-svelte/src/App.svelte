@@ -5,10 +5,8 @@
   import Toasts from "./services/toast/toasts.svelte";
 </script>
 
-<main>
-  <Toasts />
-  <Router {routes} />
-</main>
+<Toasts />
+<Router {routes} />
 
 <style global lang="postcss">
   @tailwind base;
