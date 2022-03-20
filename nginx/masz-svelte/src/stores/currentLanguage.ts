@@ -7,5 +7,7 @@ export const currentLanguage: Writable<ILanguageSelect> = writable(null);
 currentLanguage.subscribe(language => {
     if (language) {
         localStorage.setItem(LOCAL_STORAGE_KEY_LANGUAGE, language.language);
+    } else {
+        localStorage.removeItem(LOCAL_STORAGE_KEY_LANGUAGE);
     }
 });

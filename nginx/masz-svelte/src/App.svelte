@@ -42,11 +42,12 @@
     if (localStorage.getItem(LOCAL_STORAGE_KEY_LANGUAGE)) {
         initialLocale = localStorage.getItem(LOCAL_STORAGE_KEY_LANGUAGE);
     } else {
-        const language = LANGUAGES.find((l) => l.language === getLocaleFromNavigator());
+        const language = LANGUAGES.find(l => l.language === getLocaleFromNavigator());
         if (language) {
             currentLanguage.set(language);
         }
     }
+    console.log(initialLocale);
 
     init({
         fallbackLocale: "en",

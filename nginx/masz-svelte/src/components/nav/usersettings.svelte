@@ -2,7 +2,7 @@
     import { Modal } from "carbon-components-svelte";
     import { showUserSettings } from "./store";
     import { Theme } from "carbon-components-svelte";
-    import { THEME_LOCAL_STORAGE_KEY } from "../../config";
+    import { LOCAL_STORAGE_KEY_THEME } from "../../config";
     import { currentTheme } from "../../stores/theme";
 
     const themeSettings = {
@@ -11,7 +11,7 @@
     };
 
     function onModalClose() {
-        currentTheme.set(localStorage.getItem(THEME_LOCAL_STORAGE_KEY));
+        currentTheme.set(localStorage.getItem(LOCAL_STORAGE_KEY_THEME));
         showUserSettings.set(false);
     }
 </script>
@@ -23,5 +23,5 @@
     primaryButtonText="Save"
     on:close={onModalClose}
     on:submit={onModalClose}>
-    <Theme select={themeSettings} render="select" persist persistKey={THEME_LOCAL_STORAGE_KEY} />
+    <Theme select={themeSettings} render="select" persist persistKey={LOCAL_STORAGE_KEY_THEME} />
 </Modal>
