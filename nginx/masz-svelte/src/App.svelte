@@ -7,7 +7,7 @@
     import { currentTheme } from "./stores/theme";
     import API from "./services/api/api";
 
-    import { register, init, getLocaleFromNavigator } from "svelte-i18n";
+    import { register, init as initI18N, getLocaleFromNavigator, isLoading } from "svelte-i18n";
     import { currentLanguage } from "./stores/currentLanguage";
     register("en", () => {
         return API.getAsset("/i18n/en.json");
@@ -47,9 +47,8 @@
             currentLanguage.set(language);
         }
     }
-    console.log(initialLocale);
 
-    init({
+    initI18N({
         fallbackLocale: "en",
         initialLocale,
     });
@@ -62,4 +61,8 @@
 </style>
 
 <Toasts />
-<Router {routes} />
+{#if $isLoading}
+    Please wait...
+{:else}
+    <Router {routes} />
+{/if}
