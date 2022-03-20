@@ -7,7 +7,7 @@
     import { currentTheme } from "./stores/theme";
     import API from "./services/api/api";
 
-    import { register, init as initI18N, getLocaleFromNavigator, isLoading } from "svelte-i18n";
+    import { register, init as initI18N, getLocaleFromNavigator, isLoading, locale } from "svelte-i18n";
     import { currentLanguage } from "./stores/currentLanguage";
     register("en", () => {
         return API.getAsset("/i18n/en.json");
@@ -35,22 +35,32 @@
     });
 
     setTimeout(() => {
-        currentTheme.set(document.getElementsByTagName("html")[0].getAttribute("theme"));
+        const html = document.getElementsByTagName("html");
+        if (html?.length != 0) {
+            const htmlNode = html[0];
+            if (htmlNode) {
+                currentTheme.set(htmlNode.getAttribute("theme"));
+            }
+        }
     }, 100);
 
-    let initialLocale = getLocaleFromNavigator();
-    if (localStorage.getItem(LOCAL_STORAGE_KEY_LANGUAGE)) {
-        initialLocale = localStorage.getItem(LOCAL_STORAGE_KEY_LANGUAGE);
-    } else {
-        const language = LANGUAGES.find(l => l.language === getLocaleFromNavigator());
+    setTimeout(() => {
+        const languageLocalStorage = localStorage.getItem(LOCAL_STORAGE_KEY_LANGUAGE);
+        let language;
+        if (languageLocalStorage) {
+            locale.set(languageLocalStorage);
+            language = LANGUAGES.find((l) => l.language === languageLocalStorage);
+        } else {
+            language = LANGUAGES.find((l) => l.language === $locale);
+        }
         if (language) {
             currentLanguage.set(language);
         }
-    }
+    }, 100);
 
     initI18N({
         fallbackLocale: "en",
-        initialLocale,
+        initialLocale: localStorage.getItem(LOCAL_STORAGE_KEY_LANGUAGE) || getLocaleFromNavigator() || "en",
     });
 </script>
 
