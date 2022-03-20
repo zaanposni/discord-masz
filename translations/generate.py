@@ -6,7 +6,7 @@ from rich.console import Console
 console = Console()
 
 BACKEND_OUTPUT_PATH = "../backend/MASZ/Utils/Translation.cs"
-FRONTEND_OUTPUT_PATH = "../nginx/MASZ/src/assets/i18n/"
+FRONTEND_OUTPUT_PATH = "../nginx/masz-svelte/public/i18n/"
 
 TRANSLATION_NODES = 0
 TRANSLATION_STATS = dict()

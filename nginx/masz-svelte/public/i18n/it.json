@@ -1,0 +1,749 @@
+{
+    "Forms": {
+        "FieldRequired": "Questo campo è obbligatorio.",
+        "MaxLength": "Questo campo deve contenere al massimo {{length}} caratteri.",
+        "InvalidWebhookURL": "Questo non è un URL di Webhook valido."
+    },
+    "Select": {
+        "Select": "Selezionare",
+        "Search": "Ricerca"
+    },
+    "Version": "Versione",
+    "LoginWithDiscord": {
+        "Button": "Accedi con Discord",
+        "Loading": "Accesso con Discord..."
+    },
+    "Case": "Caso",
+    "Cases": "casi",
+    "Punishment": "Punizione",
+    "Punishments": "punizioni",
+    "Bans": "Divieti",
+    "Mutes": "Disattiva",
+    "Automods": "Automod",
+    "Automoderations": "Automoderazione",
+    "Invite": "Invitare",
+    "Invites": "invita",
+    "Usernotes": "Note utente",
+    "Usermaps": "Mappe utente",
+    "Comments": "Commenti",
+    "BanAppeals": "Appelli di banno",
+    "Loading": "Caricamento in corso...",
+    "NothingHere": "Niente qui.",
+    "AcceptTermsOnLogin": "Effettuando l'accesso accetti i nostri Termini e Linee guida.",
+    "Toolbar": {
+        "Login": "Login",
+        "Logout": "Disconnettersi",
+        "Patchnotes": "Patchnote",
+        "Community": "Comunità",
+        "Terms": "Termini",
+        "Legal": "legale",
+        "API": "API",
+        "Insights": "Approfondimenti",
+        "Settings": "Impostazioni",
+        "Scanning": "Scansione"
+    },
+    "Guilds": {
+        "Guilds": "Gilde",
+        "All": "Tutte le gilde",
+        "Admin": "Gilde di amministratori",
+        "Moderator": "Gilde dei moderatori",
+        "Member": "Gilde",
+        "Banned": "Bandito dalle gilde"
+    },
+    "MASZ": {
+        "GuildDeleted": "Gilda eliminata.",
+        "FailedToDeleteGuild": "Impossibile eliminare la gilda.",
+        "PleaseLoginFirst": "Per favore fai prima il log in."
+    },
+    "AppSettings": {
+        "Title": "Impostazioni",
+        "Infrastrcture": {
+            "Title": "Infrastruttura",
+            "DefaultLanguage": {
+                "Explained": "MASZ userà questa lingua come lingua predefinita quando possibile. Tuttavia, è possibile che solo una versione inglese sia disponibile per alcuni testi. Le impostazioni della gilda sovrascrivono questa impostazione.",
+                "Field": "Lingua predefinita"
+            },
+            "AuditLogWebhookUrl": {
+                "Explained": "Utilizzare un webhook privato accessibile solo per gli amministratori del sito, poiché può registrare informazioni sensibili.",
+                "Field": "Auditlog webhook URL"
+            },
+            "PublicFileMode": {
+                "Explained": "Abilitare questo per consentire l'accesso pubblico a tutti i file caricati.",
+                "Field": "Modalità file pubblico"
+            }
+        },
+        "Embed": {
+            "Title": "Embed Discord",
+            "Content": "Questa impostazione cambierà il contenuto dell'embed quando il tuo istanza MASZ è collegata in Discord.",
+            "ShowIcon": "Mostra l'icona dell'applicazione nell'embed quando il tuo istanza MASZ è collegata in Discord.",
+            "TakeToUpdate": "Si prega di notare che questo può richiedere fino a un'ora per aggiornare.",
+            "Save": {
+                "Button": "Salva",
+                "Message": "Salvato."
+            }
+        }
+    },
+    "Adminstats": {
+        "Bot": "bot",
+        "Database": "Banca dati",
+        "InternalCache": "Cache interna",
+        "NextCache": "Cache successiva",
+        "Tokens": "gettoni",
+        "CurrentlyLoggedIn": "Attualmente connesso",
+        "DiscordCache": "Discord cache",
+        "ClearCache": "Cancella cache",
+        "FailedToLoad": "Impossibile caricare le statistiche di amministrazione.",
+        "FailedToLoadLocalVersion": "Impossibile caricare la versione installata.",
+        "FailedToLoadAvailableVersions": "Impossibile caricare le versioni disponibili.",
+        "FailedToClear": "Impossibile cancellare la cache.",
+        "Cleared": "Cache cancellata.",
+        "Insights": "Approfondimenti",
+        "UpdateAvailableHeadline": "Aggiornamento disponibile",
+        "Published": "Pubblicato:",
+        "UpdateAvailableText": "L'aggiornamento {{tag}} è disponibile. Aggiorna la tua istanza."
+    },
+    "AdminstatsList": {
+        "ShowMore": "Mostra di più"
+    },
+    "TokenOverview": {
+        "Description": "Come amministratore del sito puoi utilizzare l'API MASZ per implementare i tuoi script personalizzati e automatizzare le cose su MASZ. Crea una chiave API di seguito per autorizzarti contro l'API mentre effettui richieste web.",
+        "Documentation": "Puoi trovare una documentazione completa nella directory /docs.",
+        "Postman": "Basta installare postino e importare il file json.",
+        "TokenHeader": "Includere i token nell'intestazione \"Authorization\" con un prefisso \"Bearer\".",
+        "PythonAPIWrapper": "Prova il wrapper API Python ufficiale.",
+        "Warning": "Avvertimento",
+        "TokenIsPowerful": "Una chiave API è molto potente e può controllare tutto su MASZ!",
+        "CreateToken": "Crea token",
+        "SaveSecurely": "Salva questo token in modo sicuro.",
+        "Tokens": "gettoni",
+        "NoTokensFound": "Nessun token trovato",
+        "ValidUntil": "Valido fino a:",
+        "CopiedClipboard": "Copiato negli appunti.",
+        "Deleted": "Token eliminato.",
+        "FailedToDelete": "Impossibile eliminare il token..",
+        "Created": "Token creato.",
+        "FailedToCreate": "Impossibile creare il token..",
+        "FailedToLoad": "Impossibile caricare il token corrente.."
+    },
+    "AutoModCard": {
+        "ViewCase": "Visualizza caso",
+        "Message": "Messaggio"
+    },
+    "AutoModTable": {
+        "FailedToLoad": "Impossibile caricare le moderazioni automatiche.",
+        "NoMatches": "Non ci sono eventi moderati.",
+        "LoadMoreEvents": "Carica più voci"
+    },
+    "DTPicker": {
+        "ChooseADate": "Scegli una data",
+        "OK": "ok"
+    },
+    "CaseDeleteDialog": {
+        "SendPublicNotification": "Invia notifica pubblica",
+        "ForceDelete": "Forza l'eliminazione",
+        "Cancel": "Annulla",
+        "Confirm": "Confermare"
+    },
+    "AppealStructureEditDialog": {
+        "EditQuestion": "Modifica domanda",
+        "Question": "Domanda",
+        "Cancel": "Annulla",
+        "Confirm": "Confermare"
+    },
+    "CommentEditDialog": {
+        "EditComment": "Modifica commento",
+        "Comment": "Commento",
+        "Cancel": "Annulla",
+        "Confirm": "Confermare"
+    },
+    "ConfirmDialog": {
+        "AreYouSure": "Sei sicuro?",
+        "Cancel": "Annulla",
+        "Confirm": "Confermare"
+    },
+    "NewTokenDialog": {
+        "NameToken": "Dai un nome al tuo token.",
+        "Name": "Nome",
+        "Cancel": "Annulla",
+        "Confirm": "Confermare"
+    },
+    "TemplateCreateDialog": {
+        "CreateTemplate": "Dai un nome al tuo modello.",
+        "Name": "Nome",
+        "Visibility": "Visibilità",
+        "Cancel": "Annulla",
+        "Confirm": "Confermare",
+        "FailedToLoadPermissions": "Impossibile caricare le opzioni di visibilità."
+    },
+    "UsermapEditDialog": {
+        "EditUsermap": "Modifica mappa utente",
+        "Description": "Descrizione",
+        "Cancel": "Annulla",
+        "Confirm": "Confermare"
+    },
+    "ScheduledMessageEditDialog": {
+        "EditMessage": "Modifica messaggio",
+        "Name": "Nome",
+        "Content": "Contenuto",
+        "EditSuccess": "Messaggio modificato con successo.",
+        "DeleteSuccess": "Messaggio eliminato con successo.",
+        "Cancel": "Annulla",
+        "Confirm": "Confermare"
+    },
+    "UsernoteEditDialog": {
+        "EditUsernote": "Modifica nota utente",
+        "Description": "Descrizione",
+        "Cancel": "Annulla",
+        "Confirm": "Confermare"
+    },
+    "GuildDialog": {
+        "PublicEmbedMode": "Modalità di incorporamento pubblica",
+        "PublicEmbedModeExplained": "Questa modalità consente di incorporare dettagliati quando si collega un caso nel discord. Questo permetterà di divulgare informazioni private come il sospettato, le punizioni, ecc.",
+        "AllowAppealAfterXDays": "Consenti reclamo bando dopo x giorni",
+        "ImportExistingBans": "Importa divieti esistenti",
+        "ImportExistingBansDetails": "Questo potrebbe richiedere un po' di tempo per le gilde grandi, ma verrà eseguito in background.",
+        "AddAGuild": "Aggiungi una gilda",
+        "SearchAGuild": "Cerca una gilda",
+        "SelectAnotherGuild": "Seleziona una gilda",
+        "InviteFirst": "Devi prima invitare il bot!",
+        "Invite": "Invitare",
+        "Back": "Di ritorno",
+        "Next": "Prossimo",
+        "StepAdminRoles": "Seleziona i ruoli di amministratore",
+        "AdminRoles": "Ruoli di amministratore",
+        "StepModeratorRoles": "Seleziona i ruoli del moderatore",
+        "ModeratorRoles": "Ruoli di moderatore",
+        "StepMutedRoles": "Seleziona ruoli disattivati",
+        "MutedRoles": "Ruoli silenziati",
+        "StepFurtherConfiguration": "Seleziona un'ulteriore configurazione",
+        "InternalStaffWebhook": "Webhook di notifica del personale interno",
+        "PublicWebhook": "Webhook pubblico di notifica dei membri",
+        "Language": "Lingua",
+        "StrictPermissionCheckbox": "Controllo rigoroso dei permessi",
+        "StrictPermissionDetails": "Un moderatore ha bisogno dei permessi kick/ban su discord per creare modcase kick/ban",
+        "ExecuteWhois": "Esegui whois sul membro join",
+        "WhoisDetails": "Invia automaticamente le informazioni sull'utente iscritto al tuo webhook interno.",
+        "PublishModerator": "Pubblica informazioni sul moderatore",
+        "PublishModeratorDetails": "Un sospetto sarà in grado di vedere quale moderatore lo ha punito.",
+        "Done": "Fatto",
+        "RegisterGuild": "Registrati gilda",
+        "UpdateGuild": "Aggiorna gilda",
+        "FailedToLoadGuilds": "Impossibile caricare le gilde.",
+        "FailedToLoadCurrentGuild": "Impossibile caricare le informazioni correnti sulla gilda.",
+        "FailedInviteWindow": "Impossibile aprire la finestra di invito.",
+        "FailedToRegisterGuild": "Impossibile registrare la gilda.",
+        "FailedToUpdateGuild": "Impossibile aggiornare la gilda.",
+        "GuildCreated": "Gilda creata",
+        "GuildUpdated": "Gilda aggiornata"
+    },
+    "GuildAuditLogConfig": {
+        "TargetChannel": "Canale di destinazione",
+        "ComingSoon": "Prossimamente",
+        "PingRoles": "Ping ruoli",
+        "ExcludeRoles": "Escludi ruoli",
+        "ExcludeChannels": "Escludi canali",
+        "AuditLog": "Registro di audizione",
+        "ConfigDeleted": "Configurazione eliminata.",
+        "FailedToDeleteConfig": "Impossibile eliminare la configurazione.",
+        "SavedConfig": "Configurazione salvata.",
+        "FailedToSaveConfig": "Impossibile salvare la configurazione.",
+        "FailedToLoadGuild": "Impossibile caricare le informazioni sulla gilda.",
+        "FailedToLoadChannels": "Impossibile caricare le informazioni sul canale di gilda.",
+        "MessageSent": {
+            "title": "Messaggio inviato"
+        },
+        "MessageUpdated": {
+            "title": "Messaggio aggiornato"
+        },
+        "MessageDeleted": {
+            "title": "Messaggio cancellato"
+        },
+        "UsernameUpdated": {
+            "title": "Nome utente aggiornato"
+        },
+        "AvatarUpdated": {
+            "title": "Avatar aggiornato"
+        },
+        "NicknameUpdated": {
+            "title": "Nickname aggiornato"
+        },
+        "MemberRolesUpdated": {
+            "title": "Ruoli dei membri aggiornati"
+        },
+        "MemberJoined": {
+            "title": "Membro iscritto"
+        },
+        "MemberRemoved": {
+            "title": "Membro rimosso"
+        },
+        "BanAdded": {
+            "title": "Divieto aggiunto"
+        },
+        "BanRemoved": {
+            "title": "Divieto rimosso"
+        },
+        "InviteCreated": {
+            "title": "Invito creato"
+        },
+        "InviteDeleted": {
+            "title": "Invito cancellato"
+        },
+        "ThreadCreated": {
+            "title": "Discussione creata"
+        },
+        "VoiceJoined": {
+            "title": "Membro entrato nel canale vocale"
+        },
+        "VoiceLeft": {
+            "title": "Membro uscito dal canale vocale"
+        },
+        "VoiceMoved": {
+            "title": "Membro spostato nel canale vocale"
+        },
+        "ReactionAdded": {
+            "title": "Risposta aggiunta"
+        },
+        "ReactionRemoved": {
+            "title": "Risposta rimossa"
+        }
+    },
+    "AutomodConfig": {
+        "Automoderation": "Automoderazione",
+        "Invites": {
+            "title": "invita",
+            "details": "Un messaggio sulla tua gilda corrisponde al modello di invito. Gli inviti a questa gilda verranno ignorati.",
+            "customWordField": "Ignora le gilde (inserisci gli ID divisi per newline)"
+        },
+        "Emotes": {
+            "title": "emote",
+            "details": "Un messaggio sulla tua gilda contiene troppe emote."
+        },
+        "Mentions": {
+            "title": "Menzioni",
+            "details": "Un messaggio sulla tua gilda contiene troppe menzioni."
+        },
+        "Attachments": {
+            "title": "Allegati",
+            "details": "Un messaggio sulla tua gilda contiene troppi allegati."
+        },
+        "Embeds": {
+            "title": "Incorpora",
+            "details": "Un messaggio sulla tua gilda contiene troppi incorporamenti."
+        },
+        "Automoderations": {
+            "title": "Automoderazione",
+            "details": "Un utente attiva troppe moderazioni automatiche in un intervallo di tempo definito."
+        },
+        "CustomFilter": {
+            "title": "Filtro personalizzato",
+            "details": "Un utente utilizza troppe parole definite nell'elenco.",
+            "tooltip": "Le parole vengono controllate riga per riga senza distinzione tra maiuscole e minuscole.",
+            "linkText": "Esempio",
+            "customWordField": "Parole personalizzate (modello regex diviso per newline)"
+        },
+        "Spam": {
+            "title": "Spam",
+            "details": "Un utente della tua gilda invia troppi messaggi in un intervallo di tempo.",
+            "TimeLimitMessage": "Limite di tempo (secondi)"
+        },
+        "DuplicatedChars": {
+            "title": "Personaggi duplicati",
+            "details": "Un messaggio sulla tua gilda contiene troppi caratteri duplicati."
+        },
+        "Link": {
+            "title": "Link",
+            "details": "Un messaggio sulla tua gilda contiene troppi link.",
+            "customWordField": "Ignora collegamenti (inserisci modelli regex divisi per newline)",
+            "linkText": "Esempio"
+        },
+        "Next": "Prossimo",
+        "Back": "Di ritorno",
+        "Save": "Salva",
+        "TimeLimitMinutes": "Limite di tempo (minuti)",
+        "Steps": {
+            "Event": "Evento",
+            "Filter": "Filtro",
+            "Action": "Azione",
+            "Done": "Fatto"
+        },
+        "UpperLimit": "Limite superiore",
+        "TeamMembersExcluded": "Nota: i membri del team sono sempre esclusi.",
+        "ExcludeRoles": "Escludi ruoli",
+        "ExcludeChannels": "Escludi canali",
+        "SendInternalNotification": "Invia notifica interna",
+        "SendInternalNotificationHover": "Viene sempre inviata una notifica interna.",
+        "LogEntry": "Voce di registro",
+        "LogEntryHover": "Viene sempre generata una voce di registro.",
+        "SendDMNotification": "Invia notifica dm",
+        "Action": "Azione",
+        "ChannelNotificationBehavior": "Notifica del canale",
+        "SendPublicNotification": "Invia notifica pubblica",
+        "DurationInMinutes": "Durata in minuti",
+        "YouAreDone": "Ora hai finito.",
+        "ConfigDeleted": "Configurazione eliminata",
+        "FailedToDeleteConfig": "Impossibile eliminare la configurazione.",
+        "SavedConfig": "Configurazione salvata",
+        "FailedToSaveConfig": "Impossibile salvare la configurazione.",
+        "FailedToLoadGuild": "Impossibile caricare le informazioni sulla gilda.",
+        "FailedToLoadChannels": "Impossibile caricare le informazioni sul canale di gilda."
+    },
+    "GuildMessages": {
+        "Explained": "Utilizza i messaggi programmati per gestire e coordinare gli annunci alla tua comunità o al tuo personale.",
+        "NameField": "Nome",
+        "ChannelField": "Canale",
+        "ContentField": "Contenuto",
+        "QueueMessage": "Messaggio in coda",
+        "Messages": "Messaggi programmati",
+        "SortBy": "Ordina per",
+        "LoadMore": {
+            "Button": "Carica altro",
+            "Failed": "Impossibile caricare altri messaggi."
+        }
+    },
+    "GuildMotd": {
+        "Enable": "Abilita MotD",
+        "Message": "Messaggio",
+        "FailedToLoad": "Impossibile caricare motd.",
+        "FailedToSave": "Impossibile salvare motd.",
+        "Save": "Salva",
+        "Saved": "Modifiche salvate",
+        "Explanation": "Questo messaggio verrà mostrato ai tuoi amministratori e moderatori sulla dashboard."
+    },
+    "AutomodSplit": {
+        "FailedToLoad": "Impossibile caricare il grafico di suddivisione autmod della gilda."
+    },
+    "DashboardCaseList": {
+        "NewestCases": "Casi più recenti",
+        "ExpiringPunishments": "Pene in scadenza",
+        "NoCasesFound": "Nessun caso trovato"
+    },
+    "DashboardCharts": {
+        "Overview": "Panoramica",
+        "Cases": "casi",
+        "Punishments": "punizioni",
+        "Appeals": "appelli di banno",
+        "Automoderations": "Automoderazione",
+        "ChooseADate": "Scegli una data",
+        "Reset": "Ripristina"
+    },
+    "DashboardComments": {
+        "Newestcomments": "Commenti più recenti",
+        "NothingFound": "Nessun commento trovato.",
+        "FailedToLoad": "Impossibile caricare i commenti."
+    },
+    "GuildStats": {
+        "GuildStats": "Statistiche della gilda",
+        "FailedToLoad": "Impossibile caricare le statistiche della gilda."
+    },
+    "GuildInfoCard": {
+        "CreateNewCase": "Crea nuovo caso",
+        "FailedToLoad": "Impossibile caricare le informazioni sulla gilda."
+    },
+    "GuildNotifications": {
+        "Title": "Avviso",
+        "MissingAppeals": "Non hai domande di appello di banno configurate. Gli utenti bannati non possono creare un appello di banno adesso.",
+        "FailedToLoad": "Impossibile caricare le notifiche della gilda."
+    },
+    "DashboardMotd": {
+        "FailedToLoad": "Impossibile caricare motd.",
+        "MessageFrom": "Messaggio da {{name}}"
+    },
+    "Quicksearch": {
+        "Placeholder": "Utenti Quicksearch, modcase, punizioni, automoderations, ...",
+        "NoMatches": "Niente corrisponde alla tua ricerca :(",
+        "SearchFailed": "Ricerca non riuscita."
+    },
+    "GuildList": {
+        "LoadingGuilds": "Caricamento gilde...",
+        "NoGuild": "Per favore unisciti a una gilda o vieni bannato così posso mostrare qualcosa :(",
+        "AddGuild": "Aggiungi gilda"
+    },
+    "GuildOverview": {
+        "Tabs": {
+            "Dashboard": "Pannello di controllo",
+            "Case": "casi",
+            "Automoderation": "Automoderazione",
+            "Messages": "Messaggi",
+            "Usernote": "Note utente",
+            "Usermap": "Mappe utente",
+            "Config": "config",
+            "BanAppeals": "Appelli di banno"
+        }
+    },
+    "UsermapTable": {
+        "Member": "Membro",
+        "Description": "Descrizione",
+        "CreateNewMap": "Crea nuova mappa utente",
+        "Search": "Cerca (utente, id, descrizione...)",
+        "NoMatches": "Nessuna mappa utente corrisponde alla tua ricerca.",
+        "FailedToLoad": "Impossibile caricare le mappe utente.",
+        "FailedToLoadMember": "Impossibile caricare l'elenco dei membri.",
+        "FailedToCreate": "Impossibile creare la mappa utente.",
+        "Created": "Mappa utente creata."
+    },
+    "UsermapCard": {
+        "UpdatedPrefix": "Aggiornato:",
+        "Edit": "Modificare",
+        "Delete": "Elimina",
+        "FailedToUpdate": "Impossibile aggiornare la mappa utente.",
+        "Updated": "Mappa utente aggiornata.",
+        "FailedToDelete": "Impossibile eliminare la mappa utente.",
+        "Deleted": "Mappa utente eliminata."
+    },
+    "UsernoteTable": {
+        "Member": "Membro",
+        "Description": "Descrizione",
+        "CreateNewNote": "Crea nuova nota utente",
+        "Search": "Cerca (utente, id, descrizione...)",
+        "NoMatches": "Nessuna nota utente corrisponde alla tua ricerca.",
+        "FailedToLoad": "Impossibile caricare le note utente.",
+        "FailedToLoadMember": "Impossibile caricare l'elenco dei membri.",
+        "FailedToCreate": "Impossibile creare la nota utente.",
+        "Created": "Nota utente creata."
+    },
+    "UsernoteCard": {
+        "UpdatedPrefix": "Aggiornato:",
+        "Edit": "Modificare",
+        "Delete": "Elimina",
+        "FailedToUpdate": "Impossibile aggiornare la nota utente.",
+        "Updated": "Nota utente aggiornata.",
+        "FailedToDelete": "Impossibile eliminare la nota utente.",
+        "Deleted": "Nota utente eliminata."
+    },
+    "ModCaseDialog": {
+        "SelectATemplate": "Seleziona un modello",
+        "BackToGuild": "Torna alla gilda.",
+        "BackToCase": "Torna a modcase.",
+        "SearchTemplate": "Modello di ricerca",
+        "Back": "Di ritorno",
+        "Next": "Prossimo",
+        "ChooseAMember": "Scegli un membro",
+        "Member": "Membro",
+        "PickOne": "Sceglierne uno",
+        "DescribeCase": "Descrivi il caso",
+        "Title": "Titolo",
+        "Description": "Descrizione",
+        "Labels": "etichette",
+        "NewLabel": "Nuova etichetta...",
+        "ChoosePunishment": "Scegli una punizione",
+        "Punishment": "Punizione",
+        "SendDmNotification": "Invia notifica dm",
+        "HandlePunishment": "Esegui questa punizione",
+        "UploadFiles": "Caricare files",
+        "Upload": "Caricamento",
+        "CreateCase": "Crea caso",
+        "UpdateCase": "Aggiorna caso",
+        "PublicNotification": "Invia notifica pubblica",
+        "SaveAsTemplate": "Salva come modello",
+        "CreateCaseButton": "Crea caso",
+        "UpdateCaseButton": "Aggiorna caso",
+        "FailedToLoad": {
+            "MemberList": "Impossibile caricare l'elenco dei membri.",
+            "PunishmentEnum": "Impossibile caricare le punizioni disponibili.",
+            "CaseTemplates": "Impossibile caricare i modelli dei casi.",
+            "CurrentCase": "Impossibile caricare il caso corrente."
+        },
+        "AppliedTemplate": "Modello applicato.",
+        "TemplateDeleted": "Modello eliminato.",
+        "FailedToDeleteTemplate": "Impossibile eliminare il modello.",
+        "TemplateSaved": "Modello salvato.",
+        "FailedToSaveTemplate": "Impossibile salvare il modello.",
+        "FileUploaded": "File caricato.",
+        "FailedToUploadFile": "Impossibile caricare il file.",
+        "CaseCreated": "Caso creato.",
+        "CaseUpdated": "Caso aggiornato."
+    },
+    "AppealCreate": {
+        "Title": "Il tuo appello al ban",
+        "Answer": "Rispondi a queste domande per completare il tuo appello al ban.",
+        "Skip": "Puoi saltare le domande se vuoi.",
+        "View": "Potrai visualizzare lo stato del tuo appello al ban su questo sito ogni volta.",
+        "Save": "Salva",
+        "Created": "Il tuo appello al ban è stato creato.",
+        "FailedToCreate": "Impossibile creare l'appello al ban.",
+        "FailedToLoadQuestions": "Impossibile caricare le domande."
+    },
+    "AppealConfig": {
+        "AppealStructure": "Struttura dell'appello",
+        "Configure": "Configura il modulo per l'appello della gilda.",
+        "Skip": "Gli utenti possono saltare le domande se vogliono.",
+        "Delete": "Se si elimina una domanda, sarà ancora visibile nei precedenti appelli.",
+        "NotConfigured": "Se non hai domande configurate, gli utenti non potranno richiedere appelli.",
+        "Save": "Salva",
+        "NewQuestion": "Nuova domanda",
+        "Reordered": "Le domande sono state riordinate.",
+        "FailedToReorder": "Impossibile riordinare le domande.",
+        "FailedToCreate": "Impossibile creare la domanda.",
+        "Created": "La domanda è stata creata."
+    },
+    "AppealCard": {
+        "Created": "Creato:",
+        "Updated": "Aggiornato:",
+        "AnswerCount": "L'utente ha risposto {{count}} domande.",
+        "AllowedNewAppeal": "L'utente può creare un nuovo reclamo a:"
+    },
+    "AppealQuestionCard": {
+        "YourAnswer": "La tua risposta",
+        "Updated": "Aggiornato.",
+        "FailedToUpdate": "Impossibile aggiornare la domanda",
+        "Deleted": "Eliminato.",
+        "FailedToDelete": "Impossibile eliminare la domanda."
+    },
+    "AppealTable": {
+        "Count": "Conteggio",
+        "Warning": "Avvertimento",
+        "NotConfigured": "Questo server non ha un modulo di richiesta di banno configurato. Perciò, non puoi creare una richiesta di banno ora.",
+        "Locked": "A causa delle impostazioni del server o delle decisioni precedenti, non puoi creare una richiesta di banno ora.",
+        "SelectMembers": "Membri",
+        "SelectedStatus": "Stato",
+        "FilterSince": "Creato da",
+        "FilterUntil": "Creato fino al",
+        "ExecuteSearch": "Ricerca",
+        "FailedToLoad": "Impossibile caricare la tabella dei reclami.",
+        "NoMatches": "Nessun caso corrisponde alla tua ricerca.",
+        "CreateNewAppeal": "Crea un nuovo caso",
+        "ConfigureAppeals": "Configura reclami"
+    },
+    "AppealView": {
+        "FailedToLoad": "Impossibile caricare il reclamo.",
+        "CreatedAt": "Creato il:",
+        "UpdatedAt": "Aggiornato il:",
+        "LatestCases": "Ultimi casi",
+        "ModeratorsDecisionAt": "Decisione dei moderatori il:",
+        "ModeratorsComment": "Commento dei moderatori",
+        "NewAppeal": "Nuovo caso",
+        "UserIsAllowedToCreateNewAppealAt": "L'utente è autorizzato a creare un nuovo caso il:",
+        "UserIsNeverAllowedToCreateNewAppeal": "L'utente non è mai autorizzato a creare un nuovo caso",
+        "Edit": "Modifica",
+        "Status": "Stato",
+        "Updated": "Appeal aggiornato.",
+        "FailedToUpdate": "Impossibile aggiornare il reclamo."
+    },
+    "ModCaseTable": {
+        "SelectMembers": "Membri",
+        "SelectModerators": "Moderatori",
+        "SelectCreationTypes": "Tipi di creazione",
+        "SelectPunishments": "punizioni",
+        "SelectEdited": "Modifica stato",
+        "SelectLocked": "Stato di blocco",
+        "SelectDelete": "Elimina stato",
+        "SelectActive": "Stato attivo",
+        "FilterSince": "Creato da",
+        "FilterUntil": "Creato fino al",
+        "FilterPunishedSince": "Punito almeno fino al",
+        "FilterPunishedBefore": "punito fino a",
+        "ExecuteSearch": "Ricerca",
+        "ExcludePermanent": "Escludi punizioni permanenti",
+        "UseAdvancedFilter": "Usa il filtro avanzato",
+        "CreateNewCase": "Crea nuovo caso",
+        "Search": "Cerca (utente, id, descrizione...)",
+        "FailedToLoad": "Impossibile caricare i casi.",
+        "NoMatches": "Nessun caso corrisponde alla tua ricerca."
+    },
+    "ScheduleMessageCard": {
+        "Created": "Creato:",
+        "Edited": "Modificato:",
+        "Edit": "Modifica",
+        "Delete": "Elimina"
+    },
+    "ModCaseCard": {
+        "ViewDetailsButton": "Visualizza dettagli",
+        "Created": "Creato:",
+        "Until": "Fino a quando:",
+        "Delete": "Elimina:"
+    },
+    "ModCaseView": {
+        "Suspect": "Sospettare",
+        "ID": "ID",
+        "Moderator": "Moderatore",
+        "Punishment": "Punizione",
+        "Guild": "Gilda",
+        "PunishedUntil": "Punito fino a:",
+        "PunishedForever": "Punito per sempre",
+        "Deactivated": {
+            "Success": "Il caso è stato disattivato.",
+            "Failed": "Impossibile disattivare la custodia."
+        },
+        "Activated": {
+            "Success": "Il caso è stato attivato.",
+            "Failed": "Impossibile attivare il caso."
+        },
+        "PunishmentExpired": "La pena è scaduta.",
+        "CaseInactive": "Modcase non è attivo.",
+        "CreatedAt": "Creato a",
+        "EditedAt": "Modificato a",
+        "LastEditModerator": "Ultima modifica del moderatore",
+        "Description": "Descrizione",
+        "UploadedFiles": "File caricati",
+        "Upload": "Caricamento",
+        "Comments": "Commenti",
+        "NewComment": "Nuovo commento",
+        "LockComments": "Blocca i commenti",
+        "UnlockComments": "Sblocca i commenti",
+        "PostComment": "Posta un commento",
+        "CaseMarkedToDelete": "Contrassegnato per essere eliminato - {{user}}",
+        "CommentsLocked": "Commenti bloccati - {{user}}",
+        "Restore": "Ristabilire",
+        "View": "Visualizzazione",
+        "Delete": "Elimina",
+        "Moderators": "Moderatori",
+        "FailedToLoad": {
+            "Punishments": "Impossibile caricare le punizioni disponibili.",
+            "Files": "Impossibile caricare i file.",
+            "Guild": "Impossibile caricare le informazioni sulla gilda.",
+            "Case": "Impossibile caricare il caso."
+        },
+        "DeleteCase": {
+            "Deleted": "Caso contrassegnato per essere eliminato.",
+            "ForceDeleted": "Caso eliminato.",
+            "Failed": "Impossibile eliminare il caso."
+        },
+        "RestoreCase": {
+            "Restored": "Cassa restaurata.",
+            "Failed": "Impossibile ripristinare il caso."
+        },
+        "FileUpload": {
+            "Uploaded": "File caricato.",
+            "Failed": "Impossibile caricare il file."
+        },
+        "FileDelete": {
+            "Deleted": "File eliminato.",
+            "Failed": "Impossibile eliminare il file"
+        },
+        "CommentDelete": {
+            "Deleted": "Commento cancellato.",
+            "Failed": "Impossibile eliminare il commento"
+        },
+        "CommentLock": {
+            "Locked": "Commenti bloccati.",
+            "Failed": "Impossibile bloccare i commenti"
+        },
+        "CommentUnlock": {
+            "Unlocked": "Commenti sbloccati.",
+            "Failed": "Impossibile sbloccare i commenti"
+        },
+        "CommentPost": {
+            "Posted": "Commento pubblicato.",
+            "Failed": "Impossibile pubblicare il commento"
+        },
+        "CommentUpdate": {
+            "Updated": "Commento aggiornato.",
+            "Failed": "Impossibile aggiornare il commento"
+        }
+    },
+    "Scanning": {
+        "EnterUserOrInvite": "Inserisci un ID utente o un codice di invito",
+        "Userscan": "Gli utenti possono",
+        "Invitescan": "invitare",
+        "UserscanDescription": "Inserisci un ID utente per ottenere una rapida panoramica di un membro o delle relazioni con altri membri. Questo tiene traccia anche degli inviti utilizzati da un nuovo membro in modo da poter individuare rapidamente gli account alternativi. Usa un doppio clic per visualizzare altre risorse come un modcase.",
+        "InvitescanDescription": "Inserisci un codice di invito o un link per ottenere una rapida panoramica di un invito o delle relazioni con altri membri. Utilizzare un doppio clic per visualizzare altre risorse come un altro utente.",
+        "FailedToLoad": {
+            "Scan": "Impossibile caricare le informazioni di scansione.",
+            "Invite": "Impossibile caricare le informazioni di scansione.",
+            "InvalidInvite": "Nessuna informazione per questo invito trovata."
+        },
+        "JoinedAt": "Iscritto a",
+        "OccuredAt": "Si è verificato a",
+        "CreatedAt": "Creato a"
+    }
+}
