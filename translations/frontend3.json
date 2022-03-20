@@ -1,0 +1,14 @@
+{
+    "nav": {
+        "logout": {
+            "description": "logout button",
+            "en": "Logout",
+            "de": "Abmelden",
+            "at": "Abmelden",
+            "fr": "Se déconnecter",
+            "es": "Cerrar sesión",
+            "ru": "Выйти",
+            "it": "Disconnettersi"
+        }
+    }
+}

@@ -1,4 +1,5 @@
 <script lang="ts">
+    import NavItem from "./../components/nav/NavItem.svelte";
     import { goto, url } from "@roxi/routify";
     import { shortcut } from "../utils/shortcut.js";
     import {
@@ -23,7 +24,6 @@
     import SettingsAdjust20 from "carbon-icons-svelte/lib/SettingsAdjust20";
     import UserIcon from "../components/discord/UserIcon.svelte";
     import { showUserSettings } from "../components/nav/store";
-    import { Truncate } from "carbon-components-svelte";
     import Usersettings from "../components/nav/usersettings.svelte";
     import { APP_NAME, APP_VERSION } from "../config";
     import type { IDiscordGuild } from "../models/discord/IDiscordGuild";
@@ -31,7 +31,9 @@
     import { currentParams } from "../stores/currentParams";
     import Star24 from "carbon-icons-svelte/lib/Star24";
     import StarFilled24 from "carbon-icons-svelte/lib/StarFilled24";
+    import Logout24 from "carbon-icons-svelte/lib/Logout24";
     import { favoriteGuild } from "../stores/favoriteGuild";
+    import { _ } from "svelte-i18n";
 
     if (window.location.pathname !== "/login" && !$isLoggedIn) {
         $goto("/login", { returnUrl: window.location.pathname });
@@ -43,18 +45,10 @@
 
     let guilds: IDiscordGuild[] = [];
     $: guilds =
-        $authUser?.adminGuilds?.concat(
-            $authUser?.modGuilds,
-            $authUser?.memberGuilds,
-            $authUser?.bannedGuilds
-        ) || [];
+        $authUser?.adminGuilds?.concat($authUser?.modGuilds, $authUser?.memberGuilds, $authUser?.bannedGuilds) || [];
 
-    function removeFavorite(guildId: string) {
-        favoriteGuild.set("");
-    }
-
-    function changeFavorite(guildId: string) {
-        favoriteGuild.set(guildId);
+    function toggleFavorite(guildId: string) {
+        favoriteGuild.set($favoriteGuild === guildId ? "" : guildId);
     }
 
     const data = [];
@@ -74,10 +68,7 @@
     $: results =
         value.length > 0
             ? data.filter((item) => {
-                  return (
-                      item.text.toLowerCase().includes(lowerCaseValue) ||
-                      item.description.includes(lowerCaseValue)
-                  );
+                  return item.text.toLowerCase().includes(lowerCaseValue) || item.description.includes(lowerCaseValue);
               })
             : [];
 
@@ -85,6 +76,10 @@
         if ($isLoggedIn) {
             searchActive = true;
         }
+    }
+
+    function logout() {
+        console.log("logout");
     }
 </script>
 
@@ -95,8 +90,7 @@
     use:shortcut={{ control: true, code: "KeyK" }}
     use:shortcut={{ shift: true, code: "KeyK" }}
     use:shortcut={{ control: true, code: "KeyF" }}
-    use:shortcut={{ shift: true, code: "KeyF" }}
-/>
+    use:shortcut={{ shift: true, code: "KeyF" }} />
 <Header company={APP_NAME} platformName={APP_VERSION} bind:isSideNavOpen>
     <svelte:fragment slot="skip-to-content">
         <SkipToContent />
@@ -110,57 +104,35 @@
                 {results}
                 on:select={(e) => {
                     console.log("hi", e);
-                }}
-            />
+                }} />
         {/if}
         <HeaderGlobalAction
             aria-label="Settings"
             icon={SettingsAdjust20}
             on:click={() => {
                 showUserSettings.set(true);
-            }}
-        />
+            }} />
         {#if $isLoggedIn}
             <HeaderAction bind:isOpen={userIsOpen} icon={UserIcon}>
                 <HeaderPanelLinks>
-                    <HeaderPanelLink>Switcher item 1</HeaderPanelLink>
+                    <NavItem item={Logout24} text={$_("nav.logout")} on:click={logout} />
                 </HeaderPanelLinks>
             </HeaderAction>
             <HeaderAction bind:isOpen={switcherIsOpen}>
                 <HeaderPanelLinks>
-                    <HeaderPanelLink href={$url("/guilds")}>
-                        All guilds
-                    </HeaderPanelLink>
+                    <HeaderPanelLink href={$url("/guilds")}>All guilds</HeaderPanelLink>
                     <HeaderPanelDivider />
                     {#each guilds as guild (guild.id)}
-                        <HeaderPanelLink
+                        <NavItem
+                            item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
+                            text={guild.name}
+                            on:iconClick={(e) => {
+                                toggleFavorite(guild.id);
+                                e.stopPropagation();
+                            }}
                             on:click={() => {
                                 $goto(`/guilds/${guild.id}`);
-                            }}
-                        >
-                            <div class="flex flex-row flex-nowrap">
-                                {#if $favoriteGuild === guild.id}
-                                    <StarFilled24
-                                        class="mr-1"
-                                        on:click={(e) => {
-                                            removeFavorite(guild.id);
-                                            e.stopPropagation();
-                                        }}
-                                    />
-                                {:else}
-                                    <Star24
-                                        class="mr-1"
-                                        on:click={(e) => {
-                                            changeFavorite(guild.id);
-                                            e.stopPropagation();
-                                        }}
-                                    />
-                                {/if}
-                                <Truncate>
-                                    {guild.name}
-                                </Truncate>
-                            </div>
-                        </HeaderPanelLink>
+                            }} />
                     {/each}
                 </HeaderPanelLinks>
             </HeaderAction>
@@ -185,8 +157,6 @@
     </SideNav>
 {/if}
 
-<Content
-    style="min-height: 100vh; padding-top: 5rem; margin-top: unset; display: flex; flex-direction: column"
->
+<Content style="min-height: 100vh; padding-top: 5rem; margin-top: unset; display: flex; flex-direction: column">
     <slot />
 </Content>
