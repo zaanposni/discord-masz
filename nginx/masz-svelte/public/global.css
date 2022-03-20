@@ -27,7 +27,8 @@ body {
 }
 
 .login-gradient {
-    background-image: linear-gradient(135deg, #646464 0%, rgb(32, 32, 32) 100%) !important;
+    /*background-image: linear-gradient(135deg, #646464 0%, rgb(32, 32, 32) 100%) !important;*/
+    background: url("/img/login_background.png") !important;
 }
 
 .masz-card {
