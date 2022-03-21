@@ -5,12 +5,13 @@
     import GuildIcon from "../discord/GuildIcon.svelte";
 
     export let guild: IDiscordGuild;
+    export let privileged: boolean = false;
 </script>
 
 <div
     class="flex flex-row flex-nowrap masz-card cursor-pointer"
     on:click={() => {
-        $goto(`/guilds/${guild.id}`);
+        $goto(privileged ? `/guilds/${guild.id}` : `/guilds/${guild.id}/cases`);
     }}>
     <div class="shrink-0">
         <GuildIcon {guild} />

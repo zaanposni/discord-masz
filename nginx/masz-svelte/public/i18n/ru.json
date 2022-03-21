@@ -3,7 +3,27 @@
         "allguilds": "Все гильдии",
         "patchnotes": "Изменения версии",
         "community": "Сообщество",
-        "admin": "Админ",
+        "admin": {
+            "base": "Админ",
+            "dashboard": "Панель управления",
+            "settings": "Настройки",
+            "tokens": "Токены"
+        },
+        "guild": {
+            "dashboard": "Панель управления",
+            "cases": "Дела",
+            "automods": "Автомоды",
+            "appeals": "Обращения",
+            "usernotes": "Заметки пользователя",
+            "usermaps": "Карты пользователя",
+            "messages": "Сообщения",
+            "settings": {
+                "motd": "MotD",
+                "auditlog": "Auditlog",
+                "automod": "Автомод",
+                "base": "Настройки"
+            }
+        },
         "logout": "Выйти"
     }
 }

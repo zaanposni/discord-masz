@@ -3,7 +3,27 @@
         "allguilds": "Toutes les Guildes",
         "patchnotes": "Notes de version",
         "community": "Communauté",
-        "admin": "Admin",
+        "admin": {
+            "base": "Admin",
+            "dashboard": "Tableau de bord",
+            "settings": "Paramètres",
+            "tokens": "Jeton"
+        },
+        "guild": {
+            "dashboard": "Tableau de bord",
+            "cases": "Cas",
+            "automods": "Automods",
+            "appeals": "Appel",
+            "usernotes": "Notes d'utilisateur",
+            "usermaps": "Cartes d'utilisateur",
+            "messages": "Messages",
+            "settings": {
+                "motd": "MotD",
+                "auditlog": "Auditlog",
+                "automod": "Automod",
+                "base": "Paramètres"
+            }
+        },
         "logout": "Se déconnecter"
     }
 }

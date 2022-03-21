@@ -1,13 +1,11 @@
 <script lang="ts">
     import NavItem from "./../components/nav/NavItem.svelte";
-    import { goto, url } from "@roxi/routify";
+    import { goto, isActive, url } from "@roxi/routify";
     import { shortcut } from "../utils/shortcut.js";
     import {
         Header,
         SideNav,
         SideNavItems,
-        SideNavMenu,
-        SideNavMenuItem,
         SideNavLink,
         SideNavDivider,
         SkipToContent,
@@ -20,13 +18,11 @@
         HeaderPanelDivider,
         HeaderSearch,
     } from "carbon-components-svelte";
-    import Fade16 from "carbon-icons-svelte/lib/Fade16";
     import SettingsAdjust20 from "carbon-icons-svelte/lib/SettingsAdjust20";
     import UserIcon from "../components/discord/UserIcon.svelte";
     import { showUserSettings } from "../components/nav/store";
     import Usersettings from "../components/nav/usersettings.svelte";
     import { APP_NAME, APP_VERSION } from "../config";
-    import type { IDiscordGuild } from "../models/discord/IDiscordGuild";
     import { anyGuilds, authUser, isLoggedIn } from "../stores/auth";
     import { currentParams } from "../stores/currentParams";
     import Star24 from "carbon-icons-svelte/lib/Star24";
@@ -34,6 +30,7 @@
     import Logout24 from "carbon-icons-svelte/lib/Logout24";
     import { favoriteGuild } from "../stores/favoriteGuild";
     import { _ } from "svelte-i18n";
+    import { navConfig } from "../stores/nav";
 
     if (window.location.pathname !== "/login" && !$isLoggedIn) {
         $goto("/login", { returnUrl: window.location.pathname });
@@ -42,9 +39,6 @@
     let isSideNavOpen = false;
     let userIsOpen = false;
     let switcherIsOpen = false;
-
-    let guilds: IDiscordGuild[] = [];
-    $: guilds = $authUser?.adminGuilds?.concat($authUser?.modGuilds, $authUser?.memberGuilds, $authUser?.bannedGuilds) || [];
 
     function toggleFavorite(guildId: string) {
         favoriteGuild.set($favoriteGuild === guildId ? "" : guildId);
@@ -120,7 +114,7 @@
             <HeaderAction bind:isOpen={switcherIsOpen}>
                 <HeaderPanelLinks>
                     {#if $authUser.isAdmin}
-                        <HeaderPanelLink href={$url("/admin")}>{$_("nav.admin")}</HeaderPanelLink>
+                        <HeaderPanelLink href={$url("/admin")}>{$_("nav.admin.base")}</HeaderPanelLink>
                         <HeaderPanelDivider />
                     {/if}
                     <HeaderPanelLink href={$url("/patchnotes")}>{$_("nav.patchnotes")}</HeaderPanelLink>
@@ -129,7 +123,7 @@
                     <HeaderPanelLink href={$url("/guilds")}>{$_("nav.allguilds")}</HeaderPanelLink>
                     {#if $anyGuilds}
                         <HeaderPanelDivider />
-                        {#each guilds as guild (guild.id)}
+                        {#each $authUser.adminGuilds as guild (guild.id)}
                             <NavItem
                                 item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
                                 text={guild.name}
@@ -141,6 +135,42 @@
                                     $goto(`/guilds/${guild.id}`);
                                 }} />
                         {/each}
+                        {#each $authUser.modGuilds as guild (guild.id)}
+                            <NavItem
+                                item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
+                                text={guild.name}
+                                on:iconClick={(e) => {
+                                    toggleFavorite(guild.id);
+                                    e.stopPropagation();
+                                }}
+                                on:click={() => {
+                                    $goto(`/guilds/${guild.id}`);
+                                }} />
+                        {/each}
+                        {#each $authUser.memberGuilds as guild (guild.id)}
+                            <NavItem
+                                item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
+                                text={guild.name}
+                                on:iconClick={(e) => {
+                                    toggleFavorite(guild.id);
+                                    e.stopPropagation();
+                                }}
+                                on:click={() => {
+                                    $goto(`/guilds/${guild.id}/cases`);
+                                }} />
+                        {/each}
+                        {#each $authUser.bannedGuilds as guild (guild.id)}
+                            <NavItem
+                                item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
+                                text={guild.name}
+                                on:iconClick={(e) => {
+                                    toggleFavorite(guild.id);
+                                    e.stopPropagation();
+                                }}
+                                on:click={() => {
+                                    $goto(`/guilds/${guild.id}/cases`);
+                                }} />
+                        {/each}
                     {/if}
                 </HeaderPanelLinks>
             </HeaderAction>
@@ -148,19 +178,29 @@
     </HeaderUtilities>
 </Header>
 
-{#if $isLoggedIn && $currentParams.guildId}
+{#if $isLoggedIn && $navConfig.enabled}
     <SideNav bind:isOpen={isSideNavOpen} rail>
         <SideNavItems>
-            <SideNavLink icon={Fade16} text="Link 1" href="/" isSelected />
-            <SideNavLink icon={Fade16} text="Link 2" href="/" />
-            <SideNavLink icon={Fade16} text="Link 3" href="/" />
-            <SideNavMenu icon={Fade16} text="Menu">
-                <SideNavMenuItem href="/" text="Link 1" />
-                <SideNavMenuItem href="/" text="Link 2" />
-                <SideNavMenuItem href="/" text="Link 3" />
-            </SideNavMenu>
-            <SideNavDivider />
-            <SideNavLink icon={Fade16} text="Link 4" href="/" />
+            {#each $navConfig.items as item (item.titleKey)}
+                {#if item?.isAllowedToView ? item.isAllowedToView($authUser, $currentParams) : true}
+                    {#if item.isDivider}
+                        <SideNavDivider />
+                    {:else if item.href}
+                        <SideNavLink
+                            icon={item.icon}
+                            href={$url(item.href)}
+                            text={$_("nav." + item.titleKey)}
+                            isSelected={$isActive(item?.checkSelected ?? item.href, {}, { strict: true })} />
+                    {:else}
+                        <SideNavLink
+                            class="cursor-pointer"
+                            icon={item.icon}
+                            on:click={item.onClick}
+                            text={$_("nav." + item.titleKey)}
+                            isSelected={$isActive(item?.checkSelected ?? item.href, {}, { strict: true })} />
+                    {/if}
+                {/if}
+            {/each}
         </SideNavItems>
     </SideNav>
 {/if}

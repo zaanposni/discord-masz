@@ -31,6 +31,7 @@
             "it": "Comunità"
         },
         "admin": {
+            "base": {
             "description": "Admin",
             "en": "Admin",
             "de": "Admin",
@@ -39,6 +40,151 @@
             "es": "Admin",
             "ru": "Админ",
             "it": "Admin"
+            },
+            "dashboard": {
+                "description": "Dashboard",
+                "en": "Dashboard",
+                "de": "Dashboard",
+                "at": "Dashboard",
+                "fr": "Tableau de bord",
+                "es": "Tablero",
+                "ru": "Панель управления",
+                "it": "Cruscotto"
+            },
+            "settings": {
+                "description": "Settings",
+                "en": "Settings",
+                "de": "Einstellungen",
+                "at": "Einstellungen",
+                "fr": "Paramètres",
+                "es": "Ajustes",
+                "ru": "Настройки",
+                "it": "Impostazioni"
+            },
+            "tokens": {
+                "description": "Tokens",
+                "en": "Tokens",
+                "de": "Tokens",
+                "at": "Tokens",
+                "fr": "Jeton",
+                "es": "Fichas",
+                "ru": "Токены",
+                "it": "Token"
+            }
+        },
+        "guild": {
+            "dashboard": {
+                "description": "Dashboard",
+                "en": "Dashboard",
+                "de": "Dashboard",
+                "at": "Dashboard",
+                "fr": "Tableau de bord",
+                "es": "Tablero",
+                "ru": "Панель управления",
+                "it": "Cruscotto"
+            },
+            "cases": {
+                "description": "Cases",
+                "en": "Cases",
+                "de": "Vorfälle",
+                "at": "Vorfälle",
+                "fr": "Cas",
+                "es": "Casos",
+                "ru": "Дела",
+                "it": "Casi"
+            },
+            "automods": {
+                "description": "Automods",
+                "en": "Automods",
+                "de": "Automods",
+                "at": "Automods",
+                "fr": "Automods",
+                "es": "Automods",
+                "ru": "Автомоды",
+                "it": "Automods"
+            },
+            "appeals": {
+                "description": "Appeals",
+                "en": "Appeals",
+                "de": "Entbannungsanträge",
+                "at": "Entbannungsanträge",
+                "fr": "Appel",
+                "es": "Apelaciones",
+                "ru": "Обращения",
+                "it": "Appelli"
+            },
+            "usernotes": {
+                "description": "User Notes",
+                "en": "User Notes",
+                "de": "Benutzernotizen",
+                "at": "Benutzernotizen",
+                "fr": "Notes d'utilisateur",
+                "es": "Notas de usuario",
+                "ru": "Заметки пользователя",
+                "it": "Note utente"
+            },
+            "usermaps": {
+                "description": "User Maps",
+                "en": "Usermaps",
+                "de": "Benutzerbeziehungen",
+                "at": "Benutzerbeziehungen",
+                "fr": "Cartes d'utilisateur",
+                "es": "Mapas de usuario",
+                "ru": "Карты пользователя",
+                "it": "Mappe utente"
+            },
+            "messages": {
+                "description": "Messages",
+                "en": "Messages",
+                "de": "Nachrichten",
+                "at": "Nachrichten",
+                "fr": "Messages",
+                "es": "Mensajes",
+                "ru": "Сообщения",
+                "it": "Messaggi"
+            },
+            "settings": {
+                "motd": {
+                    "description": "MOTD",
+                    "en": "MotD",
+                    "de": "MotD",
+                    "at": "MotD",
+                    "fr": "MotD",
+                    "es": "MotD",
+                    "ru": "MotD",
+                    "it": "MotD"
+                },
+                "auditlog": {
+                    "description": "Audit Log",
+                    "en": "Auditlog",
+                    "de": "Auditlog",
+                    "at": "Auditlog",
+                    "fr": "Auditlog",
+                    "es": "Auditlog",
+                    "ru": "Auditlog",
+                    "it": "Auditlog"
+                },
+                "automod": {
+                    "description": "Automod",
+                    "en": "Automod",
+                    "de": "Automod",
+                    "at": "Automod",
+                    "fr": "Automod",
+                    "es": "Automod",
+                    "ru": "Автомод",
+                    "it": "Automod"
+                },
+                "base": {
+                    "description": "Base",
+                    "en": "Settings",
+                    "de": "Einstellungen",
+                    "at": "Einstellungen",
+                    "fr": "Paramètres",
+                    "es": "Ajustes",
+                    "ru": "Настройки",
+                    "it": "Impostazioni"
+                }
+            }
         },
         "logout": {
             "description": "logout button",

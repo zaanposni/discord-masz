@@ -1,6 +1,12 @@
 <script lang="ts">
     import GuildCards from "../../components/guilds/GuildCards.svelte";
     import { authUser, anyGuilds } from "../../stores/auth";
+    import { navConfig } from "../../stores/nav";
+
+    navConfig.set({
+        enabled: false,
+        items: [],
+    });
 </script>
 
 <style>
@@ -19,11 +25,11 @@
 {:else if $authUser}
     {#if $authUser.adminGuilds.length > 0}
         <h2>Admin guilds ({$authUser.adminGuilds?.length ?? 0})</h2>
-        <GuildCards guilds={$authUser.adminGuilds} />
+        <GuildCards guilds={$authUser.adminGuilds} privileged />
     {/if}
     {#if $authUser.modGuilds.length > 0}
         <h2>Moderator guilds ({$authUser.modGuilds?.length ?? 0})</h2>
-        <GuildCards guilds={$authUser.modGuilds} />
+        <GuildCards guilds={$authUser.modGuilds} privileged />
     {/if}
     {#if $authUser.memberGuilds.length > 0}
         <h2>Guilds ({$authUser.memberGuilds?.length ?? 0})</h2>

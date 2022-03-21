@@ -3,7 +3,27 @@
         "allguilds": "Todas las Hermandades",
         "patchnotes": "Notas de la versión",
         "community": "Comunidad",
-        "admin": "Admin",
+        "admin": {
+            "base": "Admin",
+            "dashboard": "Tablero",
+            "settings": "Ajustes",
+            "tokens": "Fichas"
+        },
+        "guild": {
+            "dashboard": "Tablero",
+            "cases": "Casos",
+            "automods": "Automods",
+            "appeals": "Apelaciones",
+            "usernotes": "Notas de usuario",
+            "usermaps": "Mapas de usuario",
+            "messages": "Mensajes",
+            "settings": {
+                "motd": "MotD",
+                "auditlog": "Auditlog",
+                "automod": "Automod",
+                "base": "Ajustes"
+            }
+        },
         "logout": "Cerrar sesión"
     }
 }

@@ -3,7 +3,27 @@
         "allguilds": "Tutte le Gilde",
         "patchnotes": "Note della versione",
         "community": "Comunità",
-        "admin": "Admin",
+        "admin": {
+            "base": "Admin",
+            "dashboard": "Cruscotto",
+            "settings": "Impostazioni",
+            "tokens": "Token"
+        },
+        "guild": {
+            "dashboard": "Cruscotto",
+            "cases": "Casi",
+            "automods": "Automods",
+            "appeals": "Appelli",
+            "usernotes": "Note utente",
+            "usermaps": "Mappe utente",
+            "messages": "Messaggi",
+            "settings": {
+                "motd": "MotD",
+                "auditlog": "Auditlog",
+                "automod": "Automod",
+                "base": "Impostazioni"
+            }
+        },
         "logout": "Disconnettersi"
     }
 }

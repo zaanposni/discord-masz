@@ -3,7 +3,27 @@
         "allguilds": "All Guilds",
         "patchnotes": "Patchnotes",
         "community": "Community",
-        "admin": "Admin",
+        "admin": {
+            "base": "Admin",
+            "dashboard": "Dashboard",
+            "settings": "Settings",
+            "tokens": "Tokens"
+        },
+        "guild": {
+            "dashboard": "Dashboard",
+            "cases": "Cases",
+            "automods": "Automods",
+            "appeals": "Appeals",
+            "usernotes": "User Notes",
+            "usermaps": "Usermaps",
+            "messages": "Messages",
+            "settings": {
+                "motd": "MotD",
+                "auditlog": "Auditlog",
+                "automod": "Automod",
+                "base": "Settings"
+            }
+        },
         "logout": "Logout"
     }
 }

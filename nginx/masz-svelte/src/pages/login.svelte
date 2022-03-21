@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { goto, params } from '@roxi/routify';
+    import { goto, params } from "@roxi/routify";
     import { authUser } from "./../stores/auth";
     import { Button } from "carbon-components-svelte";
     import { onDestroy, onMount } from "svelte";
@@ -9,6 +9,7 @@
     import API from "../services/api/api";
     import type { IAuthUser } from "../models/IAuthUser";
     import { toastError } from "../services/toast/store";
+    import { navConfig } from "../stores/nav";
 
     let loggingIn: boolean = false;
 
@@ -18,15 +19,15 @@
     }
 
     onMount(() => {
-        document
-            .getElementsByTagName("main")[0]
-            .classList.add("login-gradient");
+        navConfig.set({
+            enabled: false,
+            items: [],
+        });
+        document.getElementsByTagName("main")[0].classList.add("login-gradient");
     });
 
     onDestroy(() => {
-        document
-            .getElementsByTagName("main")[0]
-            .classList.remove("login-gradient");
+        document.getElementsByTagName("main")[0].classList.remove("login-gradient");
     });
 
     function testLogin() {
@@ -53,28 +54,15 @@
 
 <div class="flex flex-col justify-center items-center grow">
     <div class="flex flex-col">
-        <div
-            class="flex flex-col pt-4"
-            style="background: var(--cds-ui-02, #ffffff)"
-        >
+        <div class="flex flex-col pt-4" style="background: var(--cds-ui-02, #ffffff)">
             <!-- add headline with ibm typography -->
             <h2 class="px-4">Login</h2>
             <div style="height: var(--cds-spacing-04)" />
-            <span class="px-4"
-                >Don't have an account? <Link
-                    href="https://discord.com/register"
-                    >Create a Discord account</Link
-                ></span
-            >
+            <span class="px-4">Don't have an account? <Link href="https://discord.com/register">Create a Discord account</Link></span>
             <div style="height: var(--cds-spacing-11)" />
             <div class="flex flex-row">
                 <div class="grow" />
-                <Button
-                    skeleton={loggingIn}
-                    class="grow"
-                    icon={ArrowRight32}
-                    on:click={login}>Login</Button
-                >
+                <Button skeleton={loggingIn} class="grow" icon={ArrowRight32} on:click={login}>Login</Button>
             </div>
         </div>
         <div style="height: var(--cds-spacing-02)" />
