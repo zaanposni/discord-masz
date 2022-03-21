@@ -1,5 +1,45 @@
 {
     "nav": {
+        "allguilds": {
+            "description": "All Guilds",
+            "en": "All Guilds",
+            "de": "Alle Gilden",
+            "at": "Alle Gilden",
+            "fr": "Toutes les Guildes",
+            "es": "Todas las Hermandades",
+            "ru": "Все гильдии",
+            "it": "Tutte le Gilde"
+        },
+        "patchnotes": {
+            "description": "Patchnotes",
+            "en": "Patchnotes",
+            "de": "Patchnotizen",
+            "at": "Patchnotizen",
+            "fr": "Notes de version",
+            "es": "Notas de la versión",
+            "ru": "Изменения версии",
+            "it": "Note della versione"
+        },
+        "community": {
+            "description": "Community",
+            "en": "Community",
+            "de": "Community",
+            "at": "Community",
+            "fr": "Communauté",
+            "es": "Comunidad",
+            "ru": "Сообщество",
+            "it": "Comunità"
+        },
+        "admin": {
+            "description": "Admin",
+            "en": "Admin",
+            "de": "Admin",
+            "at": "Admin",
+            "fr": "Admin",
+            "es": "Admin",
+            "ru": "Админ",
+            "it": "Admin"
+        },
         "logout": {
             "description": "logout button",
             "en": "Logout",

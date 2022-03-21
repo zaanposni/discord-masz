@@ -1,5 +1,9 @@
 {
     "nav": {
+        "allguilds": "All Guilds",
+        "patchnotes": "Patchnotes",
+        "community": "Community",
+        "admin": "Admin",
         "logout": "Logout"
     }
 }

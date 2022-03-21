@@ -3,6 +3,7 @@
     import { goto } from "@roxi/routify";
     import { favoriteGuild, firstVisitOnGuildList } from "../../stores/favoriteGuild";
     import { authUser } from "../../stores/auth";
+
     function checkForFavoriteGuild() {
         if ($favoriteGuild) {
             const guild =
@@ -15,6 +16,7 @@
             }
         }
     }
+
     $firstVisitOnGuildList ? checkForFavoriteGuild() : firstVisitOnGuildList.set(false);
 </script>
 

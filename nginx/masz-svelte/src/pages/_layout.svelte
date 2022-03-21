@@ -27,7 +27,7 @@
     import Usersettings from "../components/nav/usersettings.svelte";
     import { APP_NAME, APP_VERSION } from "../config";
     import type { IDiscordGuild } from "../models/discord/IDiscordGuild";
-    import { authUser, isLoggedIn } from "../stores/auth";
+    import { anyGuilds, authUser, isLoggedIn } from "../stores/auth";
     import { currentParams } from "../stores/currentParams";
     import Star24 from "carbon-icons-svelte/lib/Star24";
     import StarFilled24 from "carbon-icons-svelte/lib/StarFilled24";
@@ -44,8 +44,7 @@
     let switcherIsOpen = false;
 
     let guilds: IDiscordGuild[] = [];
-    $: guilds =
-        $authUser?.adminGuilds?.concat($authUser?.modGuilds, $authUser?.memberGuilds, $authUser?.bannedGuilds) || [];
+    $: guilds = $authUser?.adminGuilds?.concat($authUser?.modGuilds, $authUser?.memberGuilds, $authUser?.bannedGuilds) || [];
 
     function toggleFavorite(guildId: string) {
         favoriteGuild.set($favoriteGuild === guildId ? "" : guildId);
@@ -120,20 +119,29 @@
             </HeaderAction>
             <HeaderAction bind:isOpen={switcherIsOpen}>
                 <HeaderPanelLinks>
-                    <HeaderPanelLink href={$url("/guilds")}>All guilds</HeaderPanelLink>
+                    {#if $authUser.isAdmin}
+                        <HeaderPanelLink href={$url("/admin")}>{$_("nav.admin")}</HeaderPanelLink>
+                        <HeaderPanelDivider />
+                    {/if}
+                    <HeaderPanelLink href={$url("/patchnotes")}>{$_("nav.patchnotes")}</HeaderPanelLink>
+                    <HeaderPanelLink href="https://discord.gg/5zjpzw6h3S" target="_blank">{$_("nav.community")}</HeaderPanelLink>
                     <HeaderPanelDivider />
-                    {#each guilds as guild (guild.id)}
-                        <NavItem
-                            item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
-                            text={guild.name}
-                            on:iconClick={(e) => {
-                                toggleFavorite(guild.id);
-                                e.stopPropagation();
-                            }}
-                            on:click={() => {
-                                $goto(`/guilds/${guild.id}`);
-                            }} />
-                    {/each}
+                    <HeaderPanelLink href={$url("/guilds")}>{$_("nav.allguilds")}</HeaderPanelLink>
+                    {#if $anyGuilds}
+                        <HeaderPanelDivider />
+                        {#each guilds as guild (guild.id)}
+                            <NavItem
+                                item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
+                                text={guild.name}
+                                on:iconClick={(e) => {
+                                    toggleFavorite(guild.id);
+                                    e.stopPropagation();
+                                }}
+                                on:click={() => {
+                                    $goto(`/guilds/${guild.id}`);
+                                }} />
+                        {/each}
+                    {/if}
                 </HeaderPanelLinks>
             </HeaderAction>
         {/if}

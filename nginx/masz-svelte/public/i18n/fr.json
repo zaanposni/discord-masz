@@ -1,5 +1,9 @@
 {
     "nav": {
+        "allguilds": "Toutes les Guildes",
+        "patchnotes": "Notes de version",
+        "community": "Communauté",
+        "admin": "Admin",
         "logout": "Se déconnecter"
     }
 }

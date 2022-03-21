@@ -1,5 +1,9 @@
 {
     "nav": {
+        "allguilds": "Tutte le Gilde",
+        "patchnotes": "Note della versione",
+        "community": "Comunità",
+        "admin": "Admin",
         "logout": "Disconnettersi"
     }
 }

@@ -1,13 +1,6 @@
 <script lang="ts">
     import GuildCards from "../../components/guilds/GuildCards.svelte";
-    import { authUser } from "../../stores/auth";
-
-    let noGuilds: boolean = false;
-    $: noGuilds =
-        $authUser?.adminGuilds?.length === 0 &&
-        $authUser?.modGuilds?.length === 0 &&
-        $authUser?.memberGuilds?.length === 0 &&
-        $authUser?.bannedGuilds?.length === 0;
+    import { authUser, anyGuilds } from "../../stores/auth";
 </script>
 
 <style>
@@ -21,7 +14,7 @@
     }
 </style>
 
-{#if noGuilds}
+{#if !$anyGuilds}
     no guilds
 {:else if $authUser}
     {#if $authUser.adminGuilds.length > 0}

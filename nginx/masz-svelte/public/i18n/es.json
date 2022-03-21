@@ -1,5 +1,9 @@
 {
     "nav": {
+        "allguilds": "Todas las Hermandades",
+        "patchnotes": "Notas de la versión",
+        "community": "Comunidad",
+        "admin": "Admin",
         "logout": "Cerrar sesión"
     }
 }
