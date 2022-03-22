@@ -81,9 +81,7 @@
 <div
     on:click={activateSearch}
     use:shortcut={{ control: true, code: "KeyK" }}
-    use:shortcut={{ shift: true, code: "KeyK" }}
-    use:shortcut={{ control: true, code: "KeyF" }}
-    use:shortcut={{ shift: true, code: "KeyF" }} />
+    use:shortcut={{ control: true, code: "KeyF" }} />
 <Header company={APP_NAME} platformName={APP_VERSION} bind:isSideNavOpen on:click={() => { $isLoggedIn ? $goto("/guilds") : undefined }}>
     <svelte:fragment slot="skip-to-content">
         <SkipToContent />

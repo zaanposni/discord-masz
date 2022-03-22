@@ -58,6 +58,11 @@
                     isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId) || user.modGuilds.map(x => x.id).includes(params.guildId))
                 },
                 {
+                    titleKey: 'placeholder02',
+                    isDivider: true,
+                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId))
+                },
+                {
                     titleKey: "guild.settings.motd",
                     href: `/guilds/${$currentParams.guildId}/motd`,
                     icon: ChatOperational16,
@@ -73,11 +78,6 @@
                     titleKey: "guild.settings.automod",
                     href: `/guilds/${$currentParams.guildId}/automodconfig`,
                     icon: Police16,
-                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId))
-                },
-                {
-                    titleKey: 'placeholder02',
-                    isDivider: true,
                     isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId))
                 },
                 {
