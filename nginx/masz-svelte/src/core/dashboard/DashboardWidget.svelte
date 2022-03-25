@@ -13,6 +13,7 @@
     export let title: string = "Title";
     export let link: string | null = null;
     export let linkHref: string | null = null;
+    export let lowPaddingMode: boolean = false;
 </script>
 
 <style>
@@ -43,6 +44,15 @@
 
     .dash-widget .dash-widget-content {
         padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-shrink: 0;
+        height: calc(100% - 2.5rem);
+    }
+
+    .dash-widget .dash-widget-content.padding-low {
+        padding: 0 0.5rem 0.2rem 0.5rem;
     }
 
     .dash-widget.unnormal .dash-widget-content {
@@ -66,7 +76,7 @@
                     </Link>
                 {/if}
             </div>
-            <div class="dash-widget-content">
+            <div class="dash-widget-content" class:padding-low={lowPaddingMode}>
                 {#if state === WidgetState.Normal}
                     <slot>Content</slot>
                 {/if}

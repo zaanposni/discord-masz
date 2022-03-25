@@ -11,7 +11,6 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
-    "@carbon/charts-svelte": "^0.54.13",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
@@ -19,6 +18,7 @@
     "@rollup/plugin-typescript": "^8.0.0",
     "@roxi/routify": "^2.18.5",
     "@tsconfig/svelte": "^2.0.0",
+    "apexcharts": "^3.33.2",
     "autoprefixer": "^10.4.2",
     "axios": "^0.26.1",
     "carbon-components-svelte": "^0.61.1",

@@ -8,6 +8,55 @@
     import DashboardWidget from "../../../core/dashboard/DashboardWidget.svelte";
     import { WidgetMode } from "../../../core/dashboard/WidgetMode";
     import { WidgetState } from "../../../core/dashboard/WidgetState";
+    import { chart } from "../../../core/charts/chart.js";
+    import { isDarkMode } from "../../../stores/theme";
+
+    let options;
+    $: options = {
+        chart: {
+            type: "bar",
+            height: '100%',
+            width: '100%',
+            toolbar: {
+                show: false
+            },
+            foreColor: 'var(--cds-text-01)',
+            background: 'var(--cds-ui-01)',
+        },
+        plotOptions: {
+            bar: {
+                horizontal: true
+            }
+        },
+        theme: {
+            mode: $isDarkMode ? 'dark' : 'light',
+            monochrome: {
+                enabled: false
+            }
+        },
+        grid: {
+            show: false
+        },
+        series: [
+            {
+                name: "sales",
+                data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+            },
+        ],
+        dataLabels: {
+            enabled: false
+        },
+        yaxis: {
+            opposite: true
+        },
+        xaxis: {
+            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+            axisBorder: {
+                show: false
+            },
+            tickPlacement: 'on'
+        },
+    };
 
     function checkForModOrHigher(user: IAuthUser, params: IRouteParams) {
         if (user && params?.guildId) {
@@ -23,18 +72,23 @@
     <DashboardWidget link="test" linkHref="/guilds/748943581523345639/cases">wadwdawdaw</DashboardWidget>
     <DashboardWidget>hi</DashboardWidget>
     <DashboardWidget state={WidgetState.Permission}>hi</DashboardWidget>
-    <DashboardWidget link="test" linkHref="/guilds/748943581523345639/cases" mode={WidgetMode.x2_1}>hi</DashboardWidget>
+    <DashboardWidget lowPaddingMode link="test" linkHref="/guilds/748943581523345639/cases" mode={WidgetMode.x2_1}>
+        <div style="visibility: hidden" id="test" use:chart={options} />
+    </DashboardWidget>
     <DashboardWidget state={WidgetState.Error}>hi</DashboardWidget>
     <DashboardWidget state={WidgetState.Loading}>hi</DashboardWidget>
     <DashboardWidget link="test" linkHref="/guilds/748943581523345639/cases" state={WidgetState.Empty}>hi</DashboardWidget>
     <DashboardWidget>hi</DashboardWidget>
     <DashboardWidget>hi</DashboardWidget>
     <DashboardWidget mode={WidgetMode.x2_1}>hi</DashboardWidget>
-    <DashboardWidget link="test" linkHref="/guilds/748943581523345639/cases" mode={WidgetMode.x2_1} state={WidgetState.Error}>hi</DashboardWidget>
+    <DashboardWidget link="test" linkHref="/guilds/748943581523345639/cases" mode={WidgetMode.x2_1} state={WidgetState.Error}>
+        <div style="visibility: hidden" id="test" use:chart={options} /></DashboardWidget>
     <DashboardWidget>hi</DashboardWidget>
     <DashboardWidget>hi</DashboardWidget>
-    <DashboardWidget link="test" linkHref="/guilds/748943581523345639/cases" mode={WidgetMode.x2_1} state={WidgetState.Empty}>hi</DashboardWidget>
-    <DashboardWidget mode={WidgetMode.x2_1}>hi</DashboardWidget>
+    <DashboardWidget link="test" linkHref="/guilds/748943581523345639/cases" mode={WidgetMode.x2_1} state={WidgetState.Empty}>
+        <div style="visibility: hidden" id="test" use:chart={options} /></DashboardWidget>
+    <DashboardWidget lowPaddingMode mode={WidgetMode.x2_1}>
+        <div style="visibility: hidden" id="test" use:chart={options} /></DashboardWidget>
     <DashboardWidget>hi</DashboardWidget>
     <DashboardWidget>hi</DashboardWidget>
 </div>
