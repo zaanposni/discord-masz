@@ -26,12 +26,6 @@
         flex-direction: column;
     }
 
-    .dash-widget.unnormal {
-        color: var(--cds-text-02, #5a6872);
-        font-size: 0.75rem;
-        text-align: center;
-    }
-
     .dash-widget .dash-widget-title {
         border-bottom: 1px solid var(--cds-ui-03, #f0f3f6);
         height: 2.5rem;
@@ -49,10 +43,12 @@
         flex-grow: 1;
         flex-shrink: 0;
         height: calc(100% - 2.5rem);
+        overflow: auto;
     }
 
     .dash-widget .dash-widget-content.padding-low {
         padding: 0 0.5rem 0.2rem 0.5rem;
+        overflow: unset;
     }
 
     .dash-widget.unnormal .dash-widget-content {
@@ -60,6 +56,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        color: var(--cds-text-02, #5a6872);
+        font-size: 0.75rem;
+        text-align: center;
     }
 </style>
 

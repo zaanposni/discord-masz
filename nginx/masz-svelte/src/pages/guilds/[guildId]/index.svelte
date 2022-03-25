@@ -15,27 +15,27 @@
     $: options = {
         chart: {
             type: "bar",
-            height: '100%',
-            width: '100%',
+            height: "100%",
+            width: "100%",
             toolbar: {
-                show: false
+                show: false,
             },
-            foreColor: 'var(--cds-text-01)',
-            background: 'var(--cds-ui-01)',
+            foreColor: "var(--cds-text-01)",
+            background: "var(--cds-ui-01)",
         },
         plotOptions: {
             bar: {
-                horizontal: true
-            }
+                horizontal: true,
+            },
         },
         theme: {
-            mode: $isDarkMode ? 'dark' : 'light',
+            mode: $isDarkMode ? "dark" : "light",
             monochrome: {
-                enabled: false
-            }
+                enabled: false,
+            },
         },
         grid: {
-            show: false
+            show: false,
         },
         series: [
             {
@@ -44,17 +44,17 @@
             },
         ],
         dataLabels: {
-            enabled: false
+            enabled: false,
         },
         yaxis: {
-            opposite: true
+            opposite: true,
         },
         xaxis: {
             categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
             axisBorder: {
-                show: false
+                show: false,
             },
-            tickPlacement: 'on'
+            tickPlacement: "on",
         },
     };
 
@@ -69,7 +69,40 @@
 </script>
 
 <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 3xl:grid-cols-12 guilds-list">
-    <DashboardWidget link="test" linkHref="/guilds/748943581523345639/cases">wadwdawdaw</DashboardWidget>
+    <DashboardWidget link="test" linkHref="/guilds/748943581523345639/cases">
+        <div>
+            DashboardWidgetawd<br />
+            ArrowRight32aw<br />
+            lwaysawd<br />
+                alwaysawdawd<br />
+                awd
+
+                alwaysawdawd<br />
+                alwaysawdawd<br />
+                awd<br />
+                awd<br />
+
+                alwaysawdawd<br />
+                awd<br />
+                awd<br />
+                awd<br />
+
+                alwaysawdawd<br />
+                awd<br />
+                awd<br />
+                awd<br />
+
+                alwaysawdawd<br />
+                awd<br />
+                awd<br />
+                awd<br />
+
+                alwaysawdawd<br />
+                awd<br />
+                awd<br />
+                awd
+        </div>
+    </DashboardWidget>
     <DashboardWidget>hi</DashboardWidget>
     <DashboardWidget state={WidgetState.Permission}>hi</DashboardWidget>
     <DashboardWidget lowPaddingMode link="test" linkHref="/guilds/748943581523345639/cases" mode={WidgetMode.x2_1}>
