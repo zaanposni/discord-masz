@@ -122,7 +122,7 @@ with console.status("[bold green]Generating frontend...") as status:
         global NEW_SPLITTED_DATA
         if "description" not in node:
             for key, value in node.items():
-                generate_frontend_node(value, prevKeys + [key])
+                generate_frontend_node(value, prevKeys + [key.lower()])
         else:
             console.log(f"Generating {'.'.join(prevKeys)}...")
             TRANSLATION_NODES += 1
@@ -134,7 +134,10 @@ with console.status("[bold green]Generating frontend...") as status:
                 nested_set(NEW_SPLITTED_DATA, [lang] + prevKeys, t)
 
     for key, value in FRONTEND_DATA.items():
-        generate_frontend_node(value, [key])
+        generate_frontend_node(value, [key.lower()])
+
+    for key, value in BACKEND_DATA.items():
+        generate_frontend_node(value, ['enums', key.lower()])
 
     for lang, value in NEW_SPLITTED_DATA.items():
         console.log(f"Saving {lang}.json")

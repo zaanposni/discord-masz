@@ -30,5 +30,146 @@
         "latestcases": {
             "title": "Derniers cas"
         }
+    },
+    "enums": {
+        "punishmenttype": {
+            "mute": "Muet",
+            "ban": "Interdire",
+            "kick": "Coup",
+            "warn": "Avertir"
+        },
+        "viewpermission": {
+            "self": "Soi",
+            "guild": "Guilde",
+            "global": "Global"
+        },
+        "automoderationaction": {
+            "none": "Pas d'action",
+            "contentdeleted": "Contenu supprimé",
+            "casecreated": "Cas créé",
+            "contentdeletedandcasecreated": "Contenu supprimé et dossier créé",
+            "timeout": "Timeout"
+        },
+        "automoderationtype": {
+            "inviteposted": "Invitation publiée",
+            "toomanyemotes": "Trop d'émoticônes utilisées",
+            "toomanymentions": "Trop d'utilisateurs mentionnés",
+            "toomanyattachments": "Trop de pièces jointes utilisées",
+            "toomanyembeds": "Trop d'intégrations utilisées",
+            "toomanyautomoderations": "Trop de modérations automatiques",
+            "customwordfilter": "Filtre de mots personnalisé déclenché",
+            "toomanymessages": "Trop de messages",
+            "toomanyduplicatedcharacters": "Trop de caractères dupliqués utilisés",
+            "toomanylinks": "Trop de liens utilisés"
+        },
+        "apierror": {
+            "unknown": "Erreur inconnue",
+            "invaliddiscorduser": "Utilisateur discord invalide",
+            "protectedmodcasesuspect": "L'utilisateur est protégé",
+            "protectedmodcasesuspectisbot": "L'utilisateur est protégé. C'est un robot.",
+            "protectedmodcasesuspectissiteadmin": "L'utilisateur est protégé. Il est administrateur du site.",
+            "protectedmodcasesuspectisteam": "L'utilisateur est protégé. Il est membre de l'équipe.",
+            "resourcenotfound": "Ressource introuvable",
+            "invalididentity": "Identité invalide",
+            "guildunregistered": "La guilde n'est pas enregistrée",
+            "unauthorized": "Non autorisé",
+            "guildundefinedmutedroles": "La guilde n'a pas de rôle défini pour la punition muette.",
+            "modcaseismarkedtobedeleted": "Modcase est marqué pour être supprimé",
+            "modcaseisnotmarkedtobedeleted": "Modcase n'est pas marqué pour être supprimé",
+            "guildalreadyregistered": "La guilde est déjà enregistrée",
+            "notallowedindemomode": "Cette action n'est pas autorisée en mode démo",
+            "rolenotfound": "Rôle introuvable",
+            "tokencannotmanagethisresource": "Les jetons ne peuvent pas gérer cette ressource",
+            "tokenalreadyregistered": "Le jeton est déjà enregistré",
+            "cannotbesameuser": "Les deux utilisateurs sont les mêmes.",
+            "resourcealreadyexists": "La ressource existe déjà",
+            "modcasedoesnotallowcomments": "Les commentaires sont verrouillés pour ce modcase",
+            "lastcommentalreadyfromsuspect": "Le dernier commentaire était déjà du suspect.",
+            "invalidautomoderationaction": "Action de modération automatique non valide",
+            "invalidautomoderationtype": "Type d'automodération non valide",
+            "toomanytemplates": "L'utilisateur a atteint la limite maximale de modèles",
+            "invalidfilepath": "Chemin de fichier invalide",
+            "noguildsregistered": "Il n'y a pas de guildes enregistrées",
+            "onlyusableinaguild": "Cette action n'est utilisable que dans une guilde",
+            "invalidauditlogevent": "Type d'événement auditlog non valide",
+            "protectedscheduledmessage": "Le message planifié est protégé et ne peut pas être supprimé.",
+            "invaliddateforscheduledmessage": "La date d'exécution doit être au moins une minute dans le futur."
+        },
+        "casecreationtype": {
+            "default": "Défaut",
+            "automoderation": "Le cas est automodéré.",
+            "imported": "Le cas est importé.",
+            "bycommand": "Cas créé par commande."
+        },
+        "language": {
+            "en": "Anglais",
+            "de": "Allemand",
+            "fr": "français",
+            "es": "Espagnol",
+            "it": "italien",
+            "at": "autrichien",
+            "ru": "Russe"
+        },
+        "automoderationchannelnotificationbehavior": {
+            "sendnotification": "Notification de chaîne",
+            "sendnotificationanddelete": "Notification de chaîne temporaire",
+            "nonotification": "Aucune notification de chaîne"
+        },
+        "editstatus": {
+            "none": "Rien",
+            "unedited": "Non édité",
+            "edited": "Édité"
+        },
+        "lockedcommentstatus": {
+            "none": "Rien",
+            "locked": "Fermé à clé",
+            "unlocked": "Débloqué"
+        },
+        "markedtodeletestatus": {
+            "none": "Rien",
+            "marked": "Marqué à supprimer",
+            "unmarked": "Non marqué pour supprimer"
+        },
+        "punishmentactivestatus": {
+            "none": "Rien",
+            "active": "actif",
+            "inactive": "Inactif"
+        },
+        "guildauditlogevent": {
+            "messagesent": "Message envoyé",
+            "messageupdated": "Message mis à jour",
+            "messagedeleted": "Message supprimé",
+            "usernameupdated": "Nom d'utilisateur mis à jour",
+            "avatarupdated": "Avatar mis à jour",
+            "nicknameupdated": "Pseudo mis à jour",
+            "memberrolesupdated": "Rôles des membres mis à jour",
+            "memberjoined": "Membre rejoint",
+            "memberremoved": "Membre supprimé",
+            "banadded": "Membre banni",
+            "banremoved": "Membre non banni",
+            "invitecreated": "Invitation créée",
+            "invitedeleted": "Invitation supprimée",
+            "threadcreated": "Fil créé",
+            "voicejoined": "Membre rejoint le salon vocal",
+            "voiceleft": "Membre a quitté le salon vocal",
+            "voicemoved": "Membre a déplacé le salon vocal",
+            "reactionadded": "Réaction ajoutée",
+            "reactionremoved": "Réaction supprimée"
+        },
+        "scheduledmessagefailurereason": {
+            "unknown": "Erreur inconnue",
+            "channelnotfound": "Canal introuvable",
+            "insufficientpermission": "Permission insuffisante"
+        },
+        "scheduledmessagestatus": {
+            "pending": "En attente",
+            "sent": "Envoyé",
+            "failed": "Échec"
+        },
+        "appealstatus": {
+            "pending": "En attente",
+            "approved": "Approuvé",
+            "declined": "Refusé"
+        }
     }
 }

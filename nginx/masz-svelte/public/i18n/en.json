@@ -30,5 +30,146 @@
         "latestcases": {
             "title": "Latest Cases"
         }
+    },
+    "enums": {
+        "punishmenttype": {
+            "mute": "Mute",
+            "ban": "Ban",
+            "kick": "Kick",
+            "warn": "Warn"
+        },
+        "viewpermission": {
+            "self": "Self",
+            "guild": "Guild",
+            "global": "Global"
+        },
+        "automoderationaction": {
+            "none": "No action",
+            "contentdeleted": "Content deleted",
+            "casecreated": "Case created",
+            "contentdeletedandcasecreated": "Content deleted and case created",
+            "timeout": "Timeout"
+        },
+        "automoderationtype": {
+            "inviteposted": "Invite posted",
+            "toomanyemotes": "Too many emotes used",
+            "toomanymentions": "Too many users mentioned",
+            "toomanyattachments": "Too many attachments used",
+            "toomanyembeds": "Too many embeds used",
+            "toomanyautomoderations": "Too many auto-moderations",
+            "customwordfilter": "Custom wordfilter triggered",
+            "toomanymessages": "Too many messages",
+            "toomanyduplicatedcharacters": "Too many duplicated characters used",
+            "toomanylinks": "Too many links used"
+        },
+        "apierror": {
+            "unknown": "Unknown error",
+            "invaliddiscorduser": "Invalid discord user",
+            "protectedmodcasesuspect": "User is protected",
+            "protectedmodcasesuspectisbot": "User is protected. He is a bot.",
+            "protectedmodcasesuspectissiteadmin": "User is protected. He is a site admin.",
+            "protectedmodcasesuspectisteam": "User is protected. He is a team member.",
+            "resourcenotfound": "Resource not found",
+            "invalididentity": "Invalid identity",
+            "guildunregistered": "Guild is not registered",
+            "unauthorized": "Unauthorized",
+            "guildundefinedmutedroles": "Guild has no roles for mute punishment defined.",
+            "modcaseismarkedtobedeleted": "Modcase is marked to be deleted",
+            "modcaseisnotmarkedtobedeleted": "Modcase is not marked to be deleted",
+            "guildalreadyregistered": "Guild is already registered",
+            "notallowedindemomode": "This action is not allowed in demo mode",
+            "rolenotfound": "Role not found",
+            "tokencannotmanagethisresource": "Tokens cannot manage this resource",
+            "tokenalreadyregistered": "Token is already registered",
+            "cannotbesameuser": "Both users are the same.",
+            "resourcealreadyexists": "Resource already exists",
+            "modcasedoesnotallowcomments": "Comments are locked for this modcase",
+            "lastcommentalreadyfromsuspect": "The last comment was already from the suspect.",
+            "invalidautomoderationaction": "Invalid automoderation action",
+            "invalidautomoderationtype": "Invalid automoderation type",
+            "toomanytemplates": "User has reached the max limit of templates",
+            "invalidfilepath": "Invalid file path",
+            "noguildsregistered": "There are no guilds registered",
+            "onlyusableinaguild": "This action is only usable in a guild",
+            "invalidauditlogevent": "Invalid auditlogevent type",
+            "protectedscheduledmessage": "The scheduled message is protected and cannot be deleted.",
+            "invaliddateforscheduledmessage": "The execution date has to be at least one minute in the future."
+        },
+        "casecreationtype": {
+            "default": "Default",
+            "automoderation": "Case is automoderated.",
+            "imported": "Case is imported.",
+            "bycommand": "Case created by command."
+        },
+        "language": {
+            "en": "English",
+            "de": "German",
+            "fr": "French",
+            "es": "Spanish",
+            "it": "Italian",
+            "at": "Austrian",
+            "ru": "Russian"
+        },
+        "automoderationchannelnotificationbehavior": {
+            "sendnotification": "Channel notification",
+            "sendnotificationanddelete": "Temporary channel notification",
+            "nonotification": "No channel notification"
+        },
+        "editstatus": {
+            "none": "None",
+            "unedited": "Not edited",
+            "edited": "Edited"
+        },
+        "lockedcommentstatus": {
+            "none": "None",
+            "locked": "Locked",
+            "unlocked": "Unlocked"
+        },
+        "markedtodeletestatus": {
+            "none": "None",
+            "marked": "Marked to delete",
+            "unmarked": "Not marked to delete"
+        },
+        "punishmentactivestatus": {
+            "none": "None",
+            "active": "Active",
+            "inactive": "Inactive"
+        },
+        "guildauditlogevent": {
+            "messagesent": "Message sent",
+            "messageupdated": "Message updated",
+            "messagedeleted": "Message deleted",
+            "usernameupdated": "Username updated",
+            "avatarupdated": "Avatar updated",
+            "nicknameupdated": "Nickname updated",
+            "memberrolesupdated": "Member roles updated",
+            "memberjoined": "Member joined",
+            "memberremoved": "Member removed",
+            "banadded": "Member banned",
+            "banremoved": "Member unbanned",
+            "invitecreated": "Invite created",
+            "invitedeleted": "Invite deleted",
+            "threadcreated": "Thread created",
+            "voicejoined": "Member joined voice channel",
+            "voiceleft": "Member left voice channel",
+            "voicemoved": "Member moved voice channel",
+            "reactionadded": "Reaction added",
+            "reactionremoved": "Reaction removed"
+        },
+        "scheduledmessagefailurereason": {
+            "unknown": "Unknown error",
+            "channelnotfound": "Channel not found",
+            "insufficientpermission": "Insufficient permission"
+        },
+        "scheduledmessagestatus": {
+            "pending": "Pending",
+            "sent": "Sent",
+            "failed": "Failed"
+        },
+        "appealstatus": {
+            "pending": "Pending",
+            "approved": "Approved",
+            "declined": "Declined"
+        }
     }
 }

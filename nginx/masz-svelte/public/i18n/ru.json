@@ -30,5 +30,146 @@
         "latestcases": {
             "title": "Последние дела"
         }
+    },
+    "enums": {
+        "punishmenttype": {
+            "mute": "Немой",
+            "ban": "Запретить",
+            "kick": "Пинать",
+            "warn": "Предупреждать"
+        },
+        "viewpermission": {
+            "self": "Себя",
+            "guild": "Гильдия",
+            "global": "Глобальный"
+        },
+        "automoderationaction": {
+            "none": "Бездействие",
+            "contentdeleted": "Контент удален",
+            "casecreated": "Дело создано",
+            "contentdeletedandcasecreated": "Контент удален, а дело создано",
+            "timeout": "Таймаут"
+        },
+        "automoderationtype": {
+            "inviteposted": "Приглашение опубликовано",
+            "toomanyemotes": "Использовано слишком много эмоций",
+            "toomanymentions": "Упомянуто слишком много пользователей",
+            "toomanyattachments": "Использовано слишком много вложений",
+            "toomanyembeds": "Использовано слишком много закладных",
+            "toomanyautomoderations": "Слишком много автоматических модераций",
+            "customwordfilter": "Пользовательский фильтр слов активирован",
+            "toomanymessages": "Слишком много сообщений",
+            "toomanyduplicatedcharacters": "Использовано слишком много повторяющихся символов",
+            "toomanylinks": "Использовано слишком много ссылок"
+        },
+        "apierror": {
+            "unknown": "Неизвестная ошибка",
+            "invaliddiscorduser": "Недействительный пользователь Discord",
+            "protectedmodcasesuspect": "Пользователь защищен",
+            "protectedmodcasesuspectisbot": "Пользователь защищен. Он бот.",
+            "protectedmodcasesuspectissiteadmin": "Пользователь защищен. Он администратор сайта.",
+            "protectedmodcasesuspectisteam": "Пользователь защищен. Он член команды.",
+            "resourcenotfound": "Ресурс не найден",
+            "invalididentity": "Неверная личность",
+            "guildunregistered": "Гильдия не зарегистрирована",
+            "unauthorized": "Неавторизованный",
+            "guildundefinedmutedroles": "У гильдии нет определенных ролей для немого наказания.",
+            "modcaseismarkedtobedeleted": "Modcase отмечен для удаления",
+            "modcaseisnotmarkedtobedeleted": "Modcase не отмечен для удаления",
+            "guildalreadyregistered": "Гильдия уже зарегистрирована",
+            "notallowedindemomode": "Это действие запрещено в демонстрационном режиме.",
+            "rolenotfound": "Роль не найдена",
+            "tokencannotmanagethisresource": "Лексемы не могут управлять этим ресурсом",
+            "tokenalreadyregistered": "Токен уже зарегистрирован",
+            "cannotbesameuser": "Оба пользователя одинаковые.",
+            "resourcealreadyexists": "Ресурс уже существует",
+            "modcasedoesnotallowcomments": "Комментарии заблокированы для этого мода",
+            "lastcommentalreadyfromsuspect": "Последний комментарий уже был от подозреваемого.",
+            "invalidautomoderationaction": "Недопустимое действие автомодерации",
+            "invalidautomoderationtype": "Неверный тип автомодерации.",
+            "toomanytemplates": "Пользователь достиг максимального предела шаблонов",
+            "invalidfilepath": "Неверный путь к файлу",
+            "noguildsregistered": "Нет зарегистрированных гильдий",
+            "onlyusableinaguild": "Это действие доступно только в гильдии.",
+            "invalidauditlogevent": "Неверный тип auditlogevent",
+            "protectedscheduledmessage": "Запланированное сообщение защищено и не может быть удалено.",
+            "invaliddateforscheduledmessage": "Дата выполнения должна быть не менее одной минуты в будущем."
+        },
+        "casecreationtype": {
+            "default": "Дефолт",
+            "automoderation": "Корпус автоматический.",
+            "imported": "Корпус импортный.",
+            "bycommand": "Дело создано командой."
+        },
+        "language": {
+            "en": "английский",
+            "de": "Немецкий",
+            "fr": "французкий язык",
+            "es": "испанский",
+            "it": "Итальянский",
+            "at": "Австрийский",
+            "ru": "Русский"
+        },
+        "automoderationchannelnotificationbehavior": {
+            "sendnotification": "Уведомление канала",
+            "sendnotificationanddelete": "Уведомление о временном канале",
+            "nonotification": "Уведомление о канале отсутствует"
+        },
+        "editstatus": {
+            "none": "Никто",
+            "unedited": "Не редактировалось",
+            "edited": "Отредактировано"
+        },
+        "lockedcommentstatus": {
+            "none": "Никто",
+            "locked": "Заблокировано",
+            "unlocked": "Разблокирован"
+        },
+        "markedtodeletestatus": {
+            "none": "Никто",
+            "marked": "Отмечено для удаления",
+            "unmarked": "Не отмечен для удаления"
+        },
+        "punishmentactivestatus": {
+            "none": "Никто",
+            "active": "Активный",
+            "inactive": "Неактивный"
+        },
+        "guildauditlogevent": {
+            "messagesent": "Сообщение отправлено",
+            "messageupdated": "Сообщение обновлено",
+            "messagedeleted": "Сообщение удалено",
+            "usernameupdated": "Имя пользователя обновлено",
+            "avatarupdated": "Аватар обновлен",
+            "nicknameupdated": "Псевдоним обновлен",
+            "memberrolesupdated": "Роли участников обновлены",
+            "memberjoined": "Участник присоединился",
+            "memberremoved": "Участник удален",
+            "banadded": "Участник забанен",
+            "banremoved": "Участник разблокирован",
+            "invitecreated": "Приглашение создано",
+            "invitedeleted": "Приглашение удалено",
+            "threadcreated": "Тема создана",
+            "voicejoined": "Участник присоединился к голосовому каналу",
+            "voiceleft": "Участник покинул голосовой канал",
+            "voicemoved": "Участник переместился в другой голосовой канал",
+            "reactionadded": "Реакция добавлена",
+            "reactionremoved": "Реакция удалена"
+        },
+        "scheduledmessagefailurereason": {
+            "unknown": "Неизвестная ошибка",
+            "channelnotfound": "Канал не найден",
+            "insufficientpermission": "Недостаточно прав"
+        },
+        "scheduledmessagestatus": {
+            "pending": "Ожидается",
+            "sent": "Отправлено",
+            "failed": "Не удалось отправить"
+        },
+        "appealstatus": {
+            "pending": "Ожидается",
+            "approved": "Утвержден",
+            "declined": "Отклонен"
+        }
     }
 }

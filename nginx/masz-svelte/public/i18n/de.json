@@ -30,5 +30,146 @@
         "latestcases": {
             "title": "Neueste Vorfälle"
         }
+    },
+    "enums": {
+        "punishmenttype": {
+            "mute": "Stummschaltung",
+            "ban": "Bann",
+            "kick": "Kick",
+            "warn": "Verwarnung"
+        },
+        "viewpermission": {
+            "self": "Privat",
+            "guild": "Gilde",
+            "global": "Global"
+        },
+        "automoderationaction": {
+            "none": "Keine Aktion",
+            "contentdeleted": "Nachricht gelöscht",
+            "casecreated": "Vorfall erstellt",
+            "contentdeletedandcasecreated": "Nachricht gelöscht und Vorfall erstellt",
+            "timeout": "Timeout"
+        },
+        "automoderationtype": {
+            "inviteposted": "Einladung gesendet",
+            "toomanyemotes": "Zu viele Emojis verwendet",
+            "toomanymentions": "Zu viele Benutzer erwähnt",
+            "toomanyattachments": "Zu viele Anhänge verwendet",
+            "toomanyembeds": "Zu viele Einbettungen verwendet",
+            "toomanyautomoderations": "Zu viele automatische Moderationen",
+            "customwordfilter": "Benutzerdefinierter Wortfilter ausgelöst",
+            "toomanymessages": "Zu viele Nachrichten",
+            "toomanyduplicatedcharacters": "Zu viele wiederholende Buchstaben verwendet",
+            "toomanylinks": "Zu viele Links verwendet"
+        },
+        "apierror": {
+            "unknown": "Unbekannter Fehler",
+            "invaliddiscorduser": "Ungültiger Discordbenutzer",
+            "protectedmodcasesuspect": "Benutzer ist geschützt",
+            "protectedmodcasesuspectisbot": "Benutzer ist geschützt. Er ist ein Bot.",
+            "protectedmodcasesuspectissiteadmin": "Benutzer ist geschützt. Er ist ein Seitenadministrator.",
+            "protectedmodcasesuspectisteam": "Benutzer ist geschützt. Er ist ein Teammitglied.",
+            "resourcenotfound": "Ressource nicht gefunden",
+            "invalididentity": "Ungültige Identität",
+            "guildunregistered": "Gilde ist nicht registriert",
+            "unauthorized": "Nicht berechtigt",
+            "guildundefinedmutedroles": "Gilde hat keine Rollen für Stummschaltungen definiert.",
+            "modcaseismarkedtobedeleted": "Modcase ist zum Löschen markiert",
+            "modcaseisnotmarkedtobedeleted": "Modcase ist nicht zum Löschen markiert",
+            "guildalreadyregistered": "Gilde ist bereits registriert",
+            "notallowedindemomode": "Diese Aktion ist in der Demo-Version nicht erlaubt",
+            "rolenotfound": "Rolle nicht gefunden",
+            "tokencannotmanagethisresource": "Tokens können diese Ressource nicht verwalten",
+            "tokenalreadyregistered": "Token ist bereits registriert",
+            "cannotbesameuser": "Beide Benutzer sind gleich.",
+            "resourcealreadyexists": "Ressource existiert bereits",
+            "modcasedoesnotallowcomments": "Kommentare sind für diesen Vorfall gesperrt",
+            "lastcommentalreadyfromsuspect": "Der letzte Kommentar war schon von dem Beschuldigten.",
+            "invalidautomoderationaction": "Ungültige automoderationsaktion",
+            "invalidautomoderationtype": "Ungültiger automoderationstyp",
+            "toomanytemplates": "Benutzer hat die maximale Anzahl an Templates erreicht",
+            "invalidfilepath": "Ungültiger Dateipfad",
+            "noguildsregistered": "Es sind keine Gilden registriert",
+            "onlyusableinaguild": "Diese Aktion ist nur in einer Gilde nutzbar",
+            "invalidauditlogevent": "Ungültiger Auditlogeventstyp",
+            "protectedscheduledmessage": "Die geplante Nachricht ist geschützt und kann nicht gelöscht werden.",
+            "invaliddateforscheduledmessage": "Das Ausführungsdatum muss mindestens eine Minute in der Zukunft liegen."
+        },
+        "casecreationtype": {
+            "default": "Default",
+            "automoderation": "Automoderiert.",
+            "imported": "Importiert.",
+            "bycommand": "Durch Befehl erstellt."
+        },
+        "language": {
+            "en": "Englisch",
+            "de": "Deutsch",
+            "fr": "Französisch",
+            "es": "Spanisch",
+            "it": "Italienisch",
+            "at": "Österreich",
+            "ru": "Russisch"
+        },
+        "automoderationchannelnotificationbehavior": {
+            "sendnotification": "Kanalbenachrichtigung",
+            "sendnotificationanddelete": "Temporäre Kanalbenachrichtigung",
+            "nonotification": "Keine Kanalbenachrichtigung"
+        },
+        "editstatus": {
+            "none": "Unbestimmt",
+            "unedited": "Nicht bearbeitet",
+            "edited": "Bearbeitet"
+        },
+        "lockedcommentstatus": {
+            "none": "Unbestimmt",
+            "locked": "Gesperrt",
+            "unlocked": "Entsperrt"
+        },
+        "markedtodeletestatus": {
+            "none": "Unbestimmt",
+            "marked": "Zu löschen markiert",
+            "unmarked": "Nicht zu löschen markiert"
+        },
+        "punishmentactivestatus": {
+            "none": "Unbestimmt",
+            "active": "Aktiv",
+            "inactive": "Inaktiv"
+        },
+        "guildauditlogevent": {
+            "messagesent": "Nachricht gesendet",
+            "messageupdated": "Nachricht aktualisiert",
+            "messagedeleted": "Nachricht gelöscht",
+            "usernameupdated": "Benutzername aktualisiert",
+            "avatarupdated": "Avatar aktualisiert",
+            "nicknameupdated": "Nickname aktualisiert",
+            "memberrolesupdated": "Mitgliederrollen aktualisiert",
+            "memberjoined": "Mitglied beigetreten",
+            "memberremoved": "Mitglied entfernt",
+            "banadded": "Mitglied gebannt",
+            "banremoved": "Mitglied entsperrt",
+            "invitecreated": "Einladung erstellt",
+            "invitedeleted": "Einladung gelöscht",
+            "threadcreated": "Thema erstellt",
+            "voicejoined": "Mitglied ist in einem Sprachkanal beigetreten",
+            "voiceleft": "Mitglied hat einen Sprachkanal verlassen",
+            "voicemoved": "Mitglied hat sich in einen anderen Sprachkanal bewegt",
+            "reactionadded": "Reaktion hinzugefügt",
+            "reactionremoved": "Reaktion entfernt"
+        },
+        "scheduledmessagefailurereason": {
+            "unknown": "Unbekannter Fehler",
+            "channelnotfound": "Kanal nicht gefunden",
+            "insufficientpermission": "Unzureichende Berechtigung"
+        },
+        "scheduledmessagestatus": {
+            "pending": "Ausstehend",
+            "sent": "Gesendet",
+            "failed": "Fehlgeschlagen"
+        },
+        "appealstatus": {
+            "pending": "Ausstehend",
+            "approved": "Genehmigt",
+            "declined": "Abgelehnt"
+        }
     }
 }

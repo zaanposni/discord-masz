@@ -30,5 +30,146 @@
         "latestcases": {
             "title": "Neueste Vorfälle"
         }
+    },
+    "enums": {
+        "punishmenttype": {
+            "mute": "Stummschoitung",
+            "ban": "Rauswuaf",
+            "kick": "Tritt",
+            "warn": "Verwoarnt"
+        },
+        "viewpermission": {
+            "self": "Privot",
+            "guild": "Güde",
+            "global": "Globoi"
+        },
+        "automoderationaction": {
+            "none": "Nix tuan",
+            "contentdeleted": "Nochricht glescht",
+            "casecreated": "Vorfoi erstöt",
+            "contentdeletedandcasecreated": "Nochricht glescht und Vorfoi erstöt",
+            "timeout": "Timeout"
+        },
+        "automoderationtype": {
+            "inviteposted": "Eiladung gsendet",
+            "toomanyemotes": "Zu vü Emojis san vawendt woan",
+            "toomanymentions": "Zu vü Nutza san erwähnt woan",
+            "toomanyattachments": "Zu vü Ohäng san verwendt woan",
+            "toomanyembeds": "Zu vü Eibettungen san vawendt woan",
+            "toomanyautomoderations": "Zu vü automatische Modarationen",
+            "customwordfilter": "Eigena Wortfüta is ausglest woan",
+            "toomanymessages": "Zu vü Nochrichtn",
+            "toomanyduplicatedcharacters": "Zu vü wiedaholende Buchstobn vawendet",
+            "toomanylinks": "Zu vü Links vawendet"
+        },
+        "apierror": {
+            "unknown": "Unbekonnta Föhla",
+            "invaliddiscorduser": "Ungütiga Discordbenutza",
+            "protectedmodcasesuspect": "Benutza is gschützt",
+            "protectedmodcasesuspectisbot": "Benutza is gschützt, es is a Bot.",
+            "protectedmodcasesuspectissiteadmin": "Benutza is gschützt, er is a Seitenadministraotr.",
+            "protectedmodcasesuspectisteam": "Benutza is gschützt, er is a Teammitglied.",
+            "resourcenotfound": "Ressource ned gfundn.",
+            "invalididentity": "Ungütige Identität",
+            "guildunregistered": "Güde is ned registriat",
+            "unauthorized": "Ned berechtigt",
+            "guildundefinedmutedroles": "Güde hot kane Roin fia de Stummschoitung definiat.",
+            "modcaseismarkedtobedeleted": "Modcase is zum Löscha markiat",
+            "modcaseisnotmarkedtobedeleted": "Modcase is ned zum Lösche markiat",
+            "guildalreadyregistered": "Güde is bereits registriat",
+            "notallowedindemomode": "De Aktion is in da Demo-Version ned erlaubt",
+            "rolenotfound": "Rolle ned gfundn",
+            "tokencannotmanagethisresource": "Tokns kennan de Ressourcen ned vawoitn",
+            "tokenalreadyregistered": "Tokn is bereits registriat",
+            "cannotbesameuser": "Beide Benutza san gleich.",
+            "resourcealreadyexists": "De Ressource gibts bereits",
+            "modcasedoesnotallowcomments": "Kommentare san fia den Vorfoi gsperrt",
+            "lastcommentalreadyfromsuspect": "Da letzte Kommentar woa scho vom Beschuldigten.",
+            "invalidautomoderationaction": "Ned gütige automodarationsaktion",
+            "invalidautomoderationtype": "Ungütiga automodarationstyp",
+            "toomanytemplates": "Benutza hod de maximale Onzoi vo de Templates erreicht",
+            "invalidfilepath": "Ungütiga Dateipfad",
+            "noguildsregistered": "Es san kane Güdn registriat",
+            "onlyusableinaguild": "De Aktion is nua in ana Güdn nutzboa",
+            "invalidauditlogevent": "Ungütiga oduitlogeventstyp",
+            "protectedscheduledmessage": "Dé geplanten Nachricht ist geschützt und kann nicht gelöscht werden.",
+            "invaliddateforscheduledmessage": "Des Ausführungsdatum muas mindestens a Minutn in da Zukunft liagn."
+        },
+        "casecreationtype": {
+            "default": "Standard",
+            "automoderation": "Automodariat.",
+            "imported": "Importiat",
+            "bycommand": "Durch an Beföh erstöt."
+        },
+        "language": {
+            "en": "Englisch",
+            "de": "Piefchinesisch",
+            "fr": "Franzesisch",
+            "es": "Spanisch",
+            "it": "Italienisch",
+            "at": "Esterreichisch",
+            "ru": "Rusisch"
+        },
+        "automoderationchannelnotificationbehavior": {
+            "sendnotification": "Kanalbenochrichtung",
+            "sendnotificationanddelete": "Temporäre Kanalbenochrichtigung",
+            "nonotification": "Kane Kanalbenochrichtigung"
+        },
+        "editstatus": {
+            "none": "Unbekonnt",
+            "unedited": "Ned beorbeitet.",
+            "edited": "Beorbeitet"
+        },
+        "lockedcommentstatus": {
+            "none": "Unbekonnt",
+            "locked": "Gsperrt",
+            "unlocked": "Entspeat"
+        },
+        "markedtodeletestatus": {
+            "none": "Unbekonnt",
+            "marked": "Zum löschn markiat",
+            "unmarked": "Ned zum löschn markiat"
+        },
+        "punishmentactivestatus": {
+            "none": "Unbekonnt",
+            "active": "Aktiv",
+            "inactive": "Inaktiv"
+        },
+        "guildauditlogevent": {
+            "messagesent": "Nochricht gsendet",
+            "messageupdated": "Nochricht aktualisiat",
+            "messagedeleted": "Nochricht glescht",
+            "usernameupdated": "Benutzaname aktualisiat",
+            "avatarupdated": "Avatar aktualisiat",
+            "nicknameupdated": "Nickname aktualisiat",
+            "memberrolesupdated": "Mitgliedarollen aktualisiat",
+            "memberjoined": "Mitglied beitretn",
+            "memberremoved": "Mitglied entfeant",
+            "banadded": "Mitglied ausgsperrt",
+            "banremoved": "Mitglied nimma ausgsperrt",
+            "invitecreated": "Eiladung erstöt",
+            "invitedeleted": "Einladung glescht",
+            "threadcreated": "Fadn erstöt",
+            "voicejoined": "Mitglied ist in einem Sprachkanal beitretn",
+            "voiceleft": "Mitglied hat einen Sprachkanal verlassn",
+            "voicemoved": "Mitglied hot sich in an ondaren Sprachkanal bewegt",
+            "reactionadded": "Reaktion hinzugfügt",
+            "reactionremoved": "Reaktion entfeant"
+        },
+        "scheduledmessagefailurereason": {
+            "unknown": "Unbekannta Föhla",
+            "channelnotfound": "Kanal ned gfundn",
+            "insufficientpermission": "Unzureichnde Berechtigung"
+        },
+        "scheduledmessagestatus": {
+            "pending": "Ausstehnd",
+            "sent": "Gsendet",
+            "failed": "Fehlgschlogn"
+        },
+        "appealstatus": {
+            "pending": "Ausstehend",
+            "approved": "Gnehmigt",
+            "declined": "Obglehnt"
+        }
     }
 }
