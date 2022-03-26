@@ -1,14 +1,31 @@
 import axios from "axios";
-import { API_CACHE_CLEAR_LIFETIME, API_CACHE_ENABLE, API_CACHE_LIFETIME, API_URL, ENABLE_CORS } from "../../config";
+import { API_CACHE_CLEAR_LIFETIME, API_CACHE_ENABLE, API_CACHE_LIFETIME, API_URL, APP_BASE_URL, ENABLE_CORS } from "../../config";
 import { CacheMode } from "./CacheMode";
 
 const axiosAPI = axios.create({
     baseURL: API_URL,
 });
+const axiosStaticAPI = axios.create({
+    baseURL: APP_BASE_URL
+});
 const axiosAssetAPI = axios.create();
 
 const getAsset = (url) => {
     return axiosAssetAPI({
+        url,
+        method: "GET",
+    })
+        .then((res) => {
+            return Promise.resolve(res.data);
+        })
+        .catch((err) => {
+            console.error(err);
+            return Promise.reject(err);
+        });
+};
+
+const getStatic = (url) => {
+    return axiosStaticAPI({
         url,
         method: "GET",
     })
@@ -123,6 +140,7 @@ const patch = (url, data) => apirequest("patch", url, data);
 const API = {
     clearCache,
     getAsset,
+    getStatic,
     get,
     deleteData,
     post,

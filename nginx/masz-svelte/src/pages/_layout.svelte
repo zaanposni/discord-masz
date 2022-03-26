@@ -34,6 +34,9 @@
     import deleteCookie from "../services/cookie/deleteCookie";
     import API from "../services/api/api";
     import Launch20 from "carbon-icons-svelte/lib/Launch20";
+    import { showCredits } from "../components/nav/credits/store";
+    import Credits from "../components/nav/credits/Credits.svelte";
+    import Help20 from "carbon-icons-svelte/lib/Help20";
 
     if (window.location.pathname !== "/login" && !$isLoggedIn) {
         $goto("/login", { returnUrl: window.location.pathname });
@@ -84,8 +87,9 @@
 </script>
 
 <Usersettings />
+<Credits />
 
-<div on:click={activateSearch} use:shortcut={{ control: true, code: "KeyK" }} use:shortcut={{ control: true, code: "KeyF" }} />
+<div on:click={activateSearch} use:shortcut={{ control: true, code: "KeyK" }} />
 <Header
     company={APP_NAME}
     platformName={APP_VERSION}
@@ -107,6 +111,12 @@
                     console.log("hi", e);
                 }} />
         {/if}
+        <HeaderGlobalAction
+            aria-label="Credits"
+            icon={Help20}
+            on:click={() => {
+                showCredits.set(true);
+            }} />
         <HeaderGlobalAction
             aria-label="Settings"
             icon={SettingsAdjust20}
