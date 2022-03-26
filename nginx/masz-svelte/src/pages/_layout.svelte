@@ -33,6 +33,7 @@
     import { navConfig } from "../stores/nav";
     import deleteCookie from "../services/cookie/deleteCookie";
     import API from "../services/api/api";
+    import Launch20 from "carbon-icons-svelte/lib/Launch20";
 
     if (window.location.pathname !== "/login" && !$isLoggedIn) {
         $goto("/login", { returnUrl: window.location.pathname });
@@ -125,7 +126,12 @@
                         <HeaderPanelDivider />
                     {/if}
                     <HeaderPanelLink href={$url("/patchnotes")}>{$_("nav.patchnotes")}</HeaderPanelLink>
-                    <HeaderPanelLink href="https://discord.gg/5zjpzw6h3S" target="_blank">{$_("nav.community")}</HeaderPanelLink>
+                    <HeaderPanelLink href="https://discord.gg/5zjpzw6h3S" target="_blank">
+                        <div class="flex flex-row flex-nowrap">
+                            {$_("nav.community")}
+                            <Launch20 class="ml-1" />
+                        </div>
+                    </HeaderPanelLink>
                     <HeaderPanelDivider />
                     <HeaderPanelLink href={$url("/guilds")}>{$_("nav.allguilds")}</HeaderPanelLink>
                     {#if $anyGuilds}
