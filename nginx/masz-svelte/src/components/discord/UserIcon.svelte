@@ -10,7 +10,6 @@
     let src = srcFallBack;
     let alt = "user avatar";
 
-    $: $authUser?.discordUser && !user ? calculateImage($authUser.discordUser) : undefined;
     function calculateImage(newUser) {
         user = newUser;
         if (newUser && typeof newUser === "object") {

@@ -12,7 +12,6 @@
     import PunishmentTag from "../../api/PunishmentTag.svelte";
     import UserIcon from "../../discord/UserIcon.svelte";
     import { Launch20 } from "carbon-icons-svelte";
-    import { url } from "@roxi/routify";
     import MediaQuery from "../../../core/MediaQuery.svelte";
 
     export let dashboardItem: IDashboardItem;
@@ -46,8 +45,8 @@
                 {#if matches}
                     <PunishmentTag class="grow shrink-0 mr-1" modCase={entry.modCase} />
                 {/if}
-                <Truncate>
-                    {entry.modCase.title}dawdh aiwudh auiwdh uiawhd uaiwdh uiawhdauiwhdiu
+                <Truncate title={entry.modCase.title}>
+                    {entry.modCase.title}
                 </Truncate>
                 <Link href={`/guilds/${entry.modCase.guildId}/case/${entry.modCase.caseId}`} icon={Launch20} class="align-end" />
             </div>

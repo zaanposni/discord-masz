@@ -19,7 +19,6 @@
         HeaderSearch,
     } from "carbon-components-svelte";
     import SettingsAdjust20 from "carbon-icons-svelte/lib/SettingsAdjust20";
-    import UserIcon from "../components/discord/UserIcon.svelte";
     import { showUserSettings } from "../components/nav/store";
     import Usersettings from "../components/nav/usersettings.svelte";
     import { APP_NAME, APP_VERSION } from "../config";
@@ -37,6 +36,7 @@
     import { showCredits } from "../components/nav/credits/store";
     import Credits from "../components/nav/credits/Credits.svelte";
     import Help20 from "carbon-icons-svelte/lib/Help20";
+    import CurrentUserIcon from "../components/discord/CurrentUserIcon.svelte";
 
     if (window.location.pathname !== "/login" && !$isLoggedIn) {
         $goto("/login", { returnUrl: window.location.pathname });
@@ -124,7 +124,7 @@
                 showUserSettings.set(true);
             }} />
         {#if $isLoggedIn}
-            <HeaderAction bind:isOpen={userIsOpen} icon={UserIcon}>
+            <HeaderAction bind:isOpen={userIsOpen} icon={CurrentUserIcon}>
                 <HeaderPanelLinks>
                     <NavItem item={Logout24} text={$_("nav.logout")} on:click={logout} />
                 </HeaderPanelLinks>
