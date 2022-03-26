@@ -29,10 +29,14 @@
     },
     "widgets": {
         "latestcases": {
-            "title": "Últimos casos"
+            "title": "Últimos casos",
+            "widgetdescription": "Este widget muestra los últimos casos de tu hermandad."
         },
         "dashboardconfig": {
-            "title": "Configuración del tablero"
+            "title": "Configuración del tablero",
+            "widgetdescription": "Este widget te ayuda a configurar tu tablero de mando.",
+            "available": "Widgets disponibles",
+            "enabled": "Widgets activados"
         }
     },
     "enums": {

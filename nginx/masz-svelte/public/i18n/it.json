@@ -29,10 +29,14 @@
     },
     "widgets": {
         "latestcases": {
-            "title": "Ultimi casi"
+            "title": "Ultimi casi",
+            "widgetdescription": "Questo widget mostra gli ultimi casi della tua gilda."
         },
         "dashboardconfig": {
-            "title": "Configurazione cruscotto"
+            "title": "Configurazione cruscotto",
+            "widgetdescription": "Questo widget ti aiuta a configurare il cruscotto.",
+            "available": "Widget disponibili",
+            "enabled": "Widget abilitati"
         }
     },
     "enums": {

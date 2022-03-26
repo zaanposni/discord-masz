@@ -218,6 +218,16 @@
                 "es": "Últimos casos",
                 "ru": "Последние дела",
                 "it": "Ultimi casi"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows the latest cases in your guild.",
+                "de": "Dieses Widget zeigt die neuesten Vorfälle in deiner Gilde.",
+                "at": "Dieses Widget zeigt die neuesten Vorfälle in deiner Gilde.",
+                "fr": "Ce widget affiche les derniers cas de votre guilde.",
+                "es": "Este widget muestra los últimos casos de tu hermandad.",
+                "ru": "Этот виджет показывает последние дела в вашей гильдии.",
+                "it": "Questo widget mostra gli ultimi casi della tua gilda."
             }
         },
         "dashboardconfig": {
@@ -230,6 +240,36 @@
                 "es": "Configuración del tablero",
                 "ru": "Конфигурация панели управления",
                 "it": "Configurazione cruscotto"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget helps you to configure your dashboard.",
+                "de": "Dieses Widget hilft dir, dein Dashboard zu konfigurieren.",
+                "at": "Dieses Widget hilft dir, dein Dashboard zu konfigurieren.",
+                "fr": "Ce widget vous aide à configurer votre tableau de bord.",
+                "es": "Este widget te ayuda a configurar tu tablero de mando.",
+                "ru": "Этот виджет поможет вам настроить панель управления.",
+                "it": "Questo widget ti aiuta a configurare il cruscotto."
+            },
+            "available": {
+                "description": "Available",
+                "en": "Available widgets",
+                "de": "Verfügbare Widgets",
+                "at": "Verfügbare Widgets",
+                "fr": "Widgets disponibles",
+                "es": "Widgets disponibles",
+                "ru": "Доступные виджеты",
+                "it": "Widget disponibili"
+            },
+            "enabled": {
+                "description": "Enabled",
+                "en": "Enabled widgets",
+                "de": "Aktivierte Widgets",
+                "at": "Aktivierte Widgets",
+                "fr": "Widgets activés",
+                "es": "Widgets activados",
+                "ru": "Включенные виджеты",
+                "it": "Widget abilitati"
             }
         }
     }

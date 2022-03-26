@@ -29,10 +29,14 @@
     },
     "widgets": {
         "latestcases": {
-            "title": "Derniers cas"
+            "title": "Derniers cas",
+            "widgetdescription": "Ce widget affiche les derniers cas de votre guilde."
         },
         "dashboardconfig": {
-            "title": "Configuration du tableau de bord"
+            "title": "Configuration du tableau de bord",
+            "widgetdescription": "Ce widget vous aide à configurer votre tableau de bord.",
+            "available": "Widgets disponibles",
+            "enabled": "Widgets activés"
         }
     },
     "enums": {

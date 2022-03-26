@@ -29,10 +29,14 @@
     },
     "widgets": {
         "latestcases": {
-            "title": "Neueste Vorfälle"
+            "title": "Neueste Vorfälle",
+            "widgetdescription": "Dieses Widget zeigt die neuesten Vorfälle in deiner Gilde."
         },
         "dashboardconfig": {
-            "title": "Dashboardkonfiguration"
+            "title": "Dashboardkonfiguration",
+            "widgetdescription": "Dieses Widget hilft dir, dein Dashboard zu konfigurieren.",
+            "available": "Verfügbare Widgets",
+            "enabled": "Aktivierte Widgets"
         }
     },
     "enums": {

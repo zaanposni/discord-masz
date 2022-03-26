@@ -29,10 +29,14 @@
     },
     "widgets": {
         "latestcases": {
-            "title": "Latest Cases"
+            "title": "Latest Cases",
+            "widgetdescription": "This widget shows the latest cases in your guild."
         },
         "dashboardconfig": {
-            "title": "Dashboard config"
+            "title": "Dashboard config",
+            "widgetdescription": "This widget helps you to configure your dashboard.",
+            "available": "Available widgets",
+            "enabled": "Enabled widgets"
         }
     },
     "enums": {
