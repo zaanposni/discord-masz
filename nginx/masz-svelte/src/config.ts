@@ -13,6 +13,10 @@ export const LOCAL_STORAGE_KEY_FAVORITE_GUILD = "__masz-favorite-guild";
 export const APP_NAME = "MASZ";
 export const APP_VERSION = "v3.0";
 
+export const API_CACHE_ENABLE = !DEV_MODE;
+export const API_CACHE_LIFETIME = 1000 * 60 * 60;
+export const API_CACHE_CLEAR_LIFETIME = 1000 * 60;
+
 export const LANGUAGES: ILanguageSelect[] = [
     {
         language: "en",

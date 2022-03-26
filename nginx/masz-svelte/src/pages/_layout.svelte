@@ -32,6 +32,7 @@
     import { _ } from "svelte-i18n";
     import { navConfig } from "../stores/nav";
     import deleteCookie from "../services/cookie/deleteCookie";
+    import API from "../services/api/api";
 
     if (window.location.pathname !== "/login" && !$isLoggedIn) {
         $goto("/login", { returnUrl: window.location.pathname });
@@ -77,6 +78,8 @@
         authUser.set(null);
         $goto("/login", { returnUrl: window.location.pathname });
     }
+
+    console.log("Cleared cache from previous session: " + API.clearCache());
 </script>
 
 <Usersettings />
