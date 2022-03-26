@@ -30,6 +30,9 @@
     "widgets": {
         "latestcases": {
             "title": "Últimos casos"
+        },
+        "dashboardconfig": {
+            "title": "Configuración del tablero"
         }
     },
     "enums": {

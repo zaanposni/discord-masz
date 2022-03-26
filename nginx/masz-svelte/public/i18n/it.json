@@ -30,6 +30,9 @@
     "widgets": {
         "latestcases": {
             "title": "Ultimi casi"
+        },
+        "dashboardconfig": {
+            "title": "Configurazione cruscotto"
         }
     },
     "enums": {

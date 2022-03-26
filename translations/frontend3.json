@@ -219,6 +219,18 @@
                 "ru": "Последние дела",
                 "it": "Ultimi casi"
             }
+        },
+        "dashboardconfig": {
+            "title": {
+                "description": "Title",
+                "en": "Dashboard config",
+                "de": "Dashboardkonfiguration",
+                "at": "Dashboardkonfiguration",
+                "fr": "Configuration du tableau de bord",
+                "es": "Configuración del tablero",
+                "ru": "Конфигурация панели управления",
+                "it": "Configurazione cruscotto"
+            }
         }
     }
 }

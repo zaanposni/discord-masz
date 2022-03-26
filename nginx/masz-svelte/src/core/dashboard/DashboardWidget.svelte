@@ -6,7 +6,6 @@
     import BugVirusMalware from "carbon-pictograms-svelte/lib/BugVirusMalware.svelte";
     import Robot from "carbon-pictograms-svelte/lib/Robot.svelte";
     import MediaQuery from "../MediaQuery.svelte";
-    import { flip } from 'svelte/animate';
 
     export let mode: WidgetMode = WidgetMode.x1_1;
     export let state: WidgetState = WidgetState.Normal;

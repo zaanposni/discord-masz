@@ -30,6 +30,9 @@
     "widgets": {
         "latestcases": {
             "title": "Derniers cas"
+        },
+        "dashboardconfig": {
+            "title": "Configuration du tableau de bord"
         }
     },
     "enums": {

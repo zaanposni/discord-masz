@@ -30,6 +30,9 @@
     "widgets": {
         "latestcases": {
             "title": "Последние дела"
+        },
+        "dashboardconfig": {
+            "title": "Конфигурация панели управления"
         }
     },
     "enums": {

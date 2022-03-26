@@ -6,25 +6,32 @@
     import type { IRouteParams } from "../../../models/IRouteParams";
     import { goto } from "@roxi/routify";
     import { authUser } from "../../../stores/auth";
-    import DashboardWidget from "../../../core/dashboard/DashboardWidget.svelte";
     import { dndzone } from "svelte-dnd-action";
     import { WidgetMode } from "../../../core/dashboard/WidgetMode";
-    import { WidgetState } from "../../../core/dashboard/WidgetState";
-    import { toastError } from "../../../services/toast/store";
     import type { IDashboardItem } from "../../../models/IDashboardItem";
     import LatestModcases from "../../../components/guilds/dashboard/LatestModcases.svelte";
+    import { guildDashboardItems, visibleGuildDashboardItems } from "../../../stores/dashboardItems";
+    import DashboardConfig from "../../../components/guilds/dashboard/DashboardConfig.svelte";
 
     let dragDisabled = true;
-    let items: IDashboardItem[] = [
+    let items: IDashboardItem[] = [];
+    const flipDurationMs = 300;
+
+    guildDashboardItems.set([
         {
-            id: 1,
-            title: "Latest Cases",
-            description: "This widget shows the latest cases",
+            id: "latest-modcases",
+            translationKey: "latestmodcases",
             component: LatestModcases,
             mode: WidgetMode.x2_1,
         },
-    ];
-    const flipDurationMs = 300;
+        {
+            id: "dashboard-config",
+            translationKey: "dashboard-config",
+            component: DashboardConfig,
+            mode: WidgetMode.x1_1,
+            fix: true
+        }
+    ]);
 
     function handleDndConsider(e) {
         items = e.detail.items;
@@ -40,20 +47,25 @@
             }
         }
     }
+
     $: checkForModOrHigher($authUser, $currentParams);
+    $: items = $visibleGuildDashboardItems;
 </script>
 
 <section
     use:dndzone={{ items, flipDurationMs, dragDisabled, dropTargetStyle: {} }}
     on:consider={handleDndConsider}
     on:finalize={handleDndFinalize}
-    class="grid gap-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 3xl:grid-cols-12 guilds-list">
+    class="grid gap-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 3xl:grid-cols-12">
     {#each items as item (item.id)}
         <div animate:flip={{ duration: 300 }} class={item.mode === WidgetMode.x1_1 ? "col-span-1" : "col-span-1 md:col-span-2"}>
             <svelte:component this={item.component} dashboardItem={item} />
         </div>
     {/each}
 </section>
-<div on:click={() => { dragDisabled = !dragDisabled }}>
+<div
+    on:click={() => {
+        dragDisabled = !dragDisabled;
+    }}>
     Edit this dashboard.
 </div>
