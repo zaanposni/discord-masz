@@ -31,6 +31,7 @@
     import { favoriteGuild } from "../stores/favoriteGuild";
     import { _ } from "svelte-i18n";
     import { navConfig } from "../stores/nav";
+    import deleteCookie from "../services/cookie/deleteCookie";
 
     if (window.location.pathname !== "/login" && !$isLoggedIn) {
         $goto("/login", { returnUrl: window.location.pathname });
@@ -72,17 +73,22 @@
     }
 
     function logout() {
-        console.log("logout");
+        deleteCookie("masz_access_token");
+        authUser.set(null);
+        $goto("/login", { returnUrl: window.location.pathname });
     }
 </script>
 
 <Usersettings />
 
-<div
-    on:click={activateSearch}
-    use:shortcut={{ control: true, code: "KeyK" }}
-    use:shortcut={{ control: true, code: "KeyF" }} />
-<Header company={APP_NAME} platformName={APP_VERSION} bind:isSideNavOpen on:click={() => { $isLoggedIn ? $goto("/guilds") : undefined }}>
+<div on:click={activateSearch} use:shortcut={{ control: true, code: "KeyK" }} use:shortcut={{ control: true, code: "KeyF" }} />
+<Header
+    company={APP_NAME}
+    platformName={APP_VERSION}
+    bind:isSideNavOpen
+    on:click={() => {
+        $isLoggedIn ? $goto("/guilds") : undefined;
+    }}>
     <svelte:fragment slot="skip-to-content">
         <SkipToContent />
     </svelte:fragment>
