@@ -2,6 +2,8 @@
     import type { IDiscordUser } from "../../models/discord/IDiscordUser";
     import { authUser } from "../../stores/auth";
 
+    let classes;
+    export { classes as class };
     export let user: IDiscordUser | string | null = null;
 
     const srcFallBack = "https://cdn.discordapp.com/embed/avatars/1.png";
@@ -29,7 +31,7 @@
 <img
     height="32"
     width="32"
-    class="rounded-full"
+    class="rounded-full {classes}"
     {alt}
     {src}
     on:error={() => {

@@ -37,6 +37,10 @@
         flex-shrink: 0;
     }
 
+    :global(.dash-widget .dash-widget-content .dash-widget-list-border:not(:last-child)) {
+        border-bottom: 1px solid var(--cds-ui-03, #f0f3f6);
+    }
+
     .dash-widget .dash-widget-content {
         padding: 1.5rem;
         display: flex;
@@ -66,7 +70,7 @@
 <!-- If we are on a small screen the aspect ratio should always be 1x1 to prevent "smaller neighbors" -->
 <MediaQuery query="(min-width: 768px)" let:matches>
     <AspectRatio ratio={matches ? mode : "1x1"}>
-        <div class="flex flex-col dash-widget h-full" class:unnormal={state !== WidgetState.Normal}>
+        <div class="flex flex-col dash-widget h-full" class:unnormal={state !== WidgetState.Normal && state !== WidgetState.Loading}>
             <div class="dash-widget-title">
                 {title}
                 <div class="grow" />
