@@ -20,6 +20,16 @@
             "ru": "Изменения версии",
             "it": "Note della versione"
         },
+        "credits": {
+            "description": "Credits",
+            "en": "Credits",
+            "de": "Credits",
+            "at": "Credits",
+            "fr": "Crédits",
+            "es": "Créditos",
+            "ru": "Благодарности",
+            "it": "Crediti"
+        },
         "community": {
             "description": "Community",
             "en": "Community",

@@ -136,6 +136,12 @@
                         <HeaderPanelDivider />
                     {/if}
                     <HeaderPanelLink href={$url("/patchnotes")}>{$_("nav.patchnotes")}</HeaderPanelLink>
+                    <HeaderPanelLink
+                        on:click={() => {
+                            showCredits.set(true);
+                        }}>
+                        {$_("nav.credits")}
+                    </HeaderPanelLink>
                     <HeaderPanelLink href="https://discord.gg/5zjpzw6h3S" target="_blank">
                         <div class="flex flex-row flex-nowrap">
                             {$_("nav.community")}
