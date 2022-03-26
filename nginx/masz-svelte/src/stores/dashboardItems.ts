@@ -21,7 +21,7 @@ export const visibleGuildDashboardItems: Readable<IDashboardItem[]> = derived(
         toggledItems = toggledItems.sort((a, b) => a.sortOrder - b.sortOrder);
 
         for (let item of toggledItems) {
-            const entry = items.find((x) => x.id === item.id);
+            const entry = items.find((x) => x.id === item.id && item.enabled);
             if (entry) {
                 result.push(entry);
             }

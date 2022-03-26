@@ -37,14 +37,15 @@
 
     function widgetIsToggled(toggled: boolean, item: IDashboardItem) {
         guildDashboardToggledItems.update((n) => {
-            if (toggled) {
+            const index = n.findIndex((x) => x.id === item.id);
+            if (index === -1) {
                 n.unshift({
                     id: item.id,
-                    enabled: true,
+                    enabled: toggled,
                     sortOrder: -1,
                 });
             } else {
-                n = n.filter((x) => x.id !== item.id);
+                n[index].enabled = toggled;
             }
             return n;
         });
