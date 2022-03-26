@@ -1,62 +1,40 @@
 <script lang="ts">
     import { currentParams } from "./../../../stores/currentParams";
-    import { _, locale } from "svelte-i18n";
+    import { flip } from "svelte/animate";
+    import { _ } from "svelte-i18n";
     import type { IAuthUser } from "../../../models/IAuthUser";
     import type { IRouteParams } from "../../../models/IRouteParams";
     import { goto } from "@roxi/routify";
     import { authUser } from "../../../stores/auth";
     import DashboardWidget from "../../../core/dashboard/DashboardWidget.svelte";
+    import { dndzone } from "svelte-dnd-action";
     import { WidgetMode } from "../../../core/dashboard/WidgetMode";
-    import { WidgetState } from "../../../core/dashboard/WidgetState";
-    import { chart } from "../../../core/charts/chart.js";
-    import { isDarkMode } from "../../../stores/theme";
 
-    let options;
-    $: options = {
-        chart: {
-            type: "bar",
-            height: "100%",
-            width: "100%",
-            toolbar: {
-                show: false,
-            },
-            foreColor: "var(--cds-text-01)",
-            background: "var(--cds-ui-01)",
-        },
-        plotOptions: {
-            bar: {
-                horizontal: true,
-            },
-        },
-        theme: {
-            mode: $isDarkMode ? "dark" : "light",
-            monochrome: {
-                enabled: false,
-            },
-        },
-        grid: {
-            show: false,
-        },
-        series: [
-            {
-                name: "sales",
-                data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
-            },
-        ],
-        dataLabels: {
-            enabled: false,
-        },
-        yaxis: {
-            opposite: true,
-        },
-        xaxis: {
-            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
-            axisBorder: {
-                show: false,
-            },
-            tickPlacement: "on",
-        },
-    };
+    let dragDisabled = false;
+    let items = [
+        { id: 1, name: "item1" },
+        { id: 2, name: "item2" },
+        { id: 3, name: "item3" },
+        { id: 4, name: "item4" },
+        { id: 5, name: "item4" },
+        { id: 6, name: "item4" },
+        { id: 7, name: "item4" },
+        { id: 8, name: "item4" },
+        { id: 9, name: "item4" },
+        { id: 10, name: "item4" },
+        { id: 11, name: "item4" },
+        { id: 12, name: "item4" },
+        { id: 13, name: "item4" },
+        { id: 14, name: "item4" },
+    ];
+    const flipDurationMs = 300;
+
+    function handleDndConsider(e) {
+        items = e.detail.items;
+    }
+    function handleDndFinalize(e) {
+        items = e.detail.items;
+    }
 
     function checkForModOrHigher(user: IAuthUser, params: IRouteParams) {
         if (user && params?.guildId) {
@@ -68,60 +46,14 @@
     $: checkForModOrHigher($authUser, $currentParams);
 </script>
 
-<div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 3xl:grid-cols-12 guilds-list">
-    <DashboardWidget link="test" linkHref="/guilds/748943581523345639/cases">
-        <div>
-            DashboardWidgetawd<br />
-            ArrowRight32aw<br />
-            lwaysawd<br />
-                alwaysawdawd<br />
-                awd
-
-                alwaysawdawd<br />
-                alwaysawdawd<br />
-                awd<br />
-                awd<br />
-
-                alwaysawdawd<br />
-                awd<br />
-                awd<br />
-                awd<br />
-
-                alwaysawdawd<br />
-                awd<br />
-                awd<br />
-                awd<br />
-
-                alwaysawdawd<br />
-                awd<br />
-                awd<br />
-                awd<br />
-
-                alwaysawdawd<br />
-                awd<br />
-                awd<br />
-                awd
+<section
+    use:dndzone={{ items, flipDurationMs, dragDisabled, dropTargetStyle: {} }}
+    on:consider={handleDndConsider}
+    on:finalize={handleDndFinalize}
+    class="grid gap-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 3xl:grid-cols-12 guilds-list">
+    {#each items as item (item.id)}
+        <div animate:flip="{{duration: 300}}" class={item.id % 4 ? "col-span-1" : "col-span-1 md:col-span-2"}>
+            <DashboardWidget mode={item.id % 4 ? WidgetMode.x1_1 : WidgetMode.x2_1}>hi</DashboardWidget>
         </div>
-    </DashboardWidget>
-    <DashboardWidget>hi</DashboardWidget>
-    <DashboardWidget state={WidgetState.Permission}>hi</DashboardWidget>
-    <DashboardWidget lowPaddingMode link="test" linkHref="/guilds/748943581523345639/cases" mode={WidgetMode.x2_1}>
-        <div style="visibility: hidden" id="test" use:chart={options} />
-    </DashboardWidget>
-    <DashboardWidget state={WidgetState.Error}>hi</DashboardWidget>
-    <DashboardWidget state={WidgetState.Loading}>hi</DashboardWidget>
-    <DashboardWidget link="test" linkHref="/guilds/748943581523345639/cases" state={WidgetState.Empty}>hi</DashboardWidget>
-    <DashboardWidget>hi</DashboardWidget>
-    <DashboardWidget>hi</DashboardWidget>
-    <DashboardWidget mode={WidgetMode.x2_1}>hi</DashboardWidget>
-    <DashboardWidget link="test" linkHref="/guilds/748943581523345639/cases" mode={WidgetMode.x2_1} state={WidgetState.Error}>
-        <div style="visibility: hidden" id="test" use:chart={options} /></DashboardWidget>
-    <DashboardWidget>hi</DashboardWidget>
-    <DashboardWidget>hi</DashboardWidget>
-    <DashboardWidget link="test" linkHref="/guilds/748943581523345639/cases" mode={WidgetMode.x2_1} state={WidgetState.Empty}>
-        <div style="visibility: hidden" id="test" use:chart={options} /></DashboardWidget>
-    <DashboardWidget lowPaddingMode mode={WidgetMode.x2_1}>
-        <div style="visibility: hidden" id="test" use:chart={options} /></DashboardWidget>
-    <DashboardWidget>hi</DashboardWidget>
-    <DashboardWidget>hi</DashboardWidget>
-</div>
+    {/each}
+</section>

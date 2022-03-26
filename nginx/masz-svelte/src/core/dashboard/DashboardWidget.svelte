@@ -6,6 +6,7 @@
     import BugVirusMalware from "carbon-pictograms-svelte/lib/BugVirusMalware.svelte";
     import Robot from "carbon-pictograms-svelte/lib/Robot.svelte";
     import MediaQuery from "../MediaQuery.svelte";
+    import { flip } from 'svelte/animate';
 
     export let mode: WidgetMode = WidgetMode.x1_1;
     export let state: WidgetState = WidgetState.Normal;
@@ -64,7 +65,7 @@
 
 <!-- If we are on a small screen the aspect ratio should always be 1x1 to prevent "smaller neighbors" -->
 <MediaQuery query="(min-width: 768px)" let:matches>
-    <AspectRatio ratio={matches ? mode : "1x1"} class={mode === WidgetMode.x2_1 ? "col-span-1 md:col-span-2" : "col-span-1"}>
+    <AspectRatio ratio={matches ? mode : "1x1"}>
         <div class="flex flex-col dash-widget h-full" class:unnormal={state !== WidgetState.Normal}>
             <div class="dash-widget-title">
                 {title}
