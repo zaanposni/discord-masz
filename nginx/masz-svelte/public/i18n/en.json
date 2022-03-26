@@ -25,5 +25,10 @@
             }
         },
         "logout": "Logout"
+    },
+    "widgets": {
+        "latestcases": {
+            "title": "Latest Cases"
+        }
     }
 }

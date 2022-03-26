@@ -25,5 +25,10 @@
             }
         },
         "logout": "Выйти"
+    },
+    "widgets": {
+        "latestcases": {
+            "title": "Последние дела"
+        }
     }
 }

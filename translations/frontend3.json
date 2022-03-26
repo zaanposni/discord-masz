@@ -196,5 +196,19 @@
             "ru": "Выйти",
             "it": "Disconnettersi"
         }
+    },
+    "widgets": {
+        "latestcases": {
+            "title": {
+                "description": "Title",
+                "en": "Latest Cases",
+                "de": "Neueste Vorfälle",
+                "at": "Neueste Vorfälle",
+                "fr": "Derniers cas",
+                "es": "Últimos casos",
+                "ru": "Последние дела",
+                "it": "Ultimi casi"
+            }
+        }
     }
 }
