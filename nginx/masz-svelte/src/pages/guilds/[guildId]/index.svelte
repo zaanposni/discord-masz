@@ -58,9 +58,7 @@
     on:finalize={handleDndFinalize}
     class="grid gap-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 3xl:grid-cols-12">
     {#each items as item (item.id)}
-        <div animate:flip={{ duration: 300 }} class={item.mode === WidgetMode.x1_1 ? "col-span-1" : "col-span-1 md:col-span-2"}>
-            <svelte:component this={item.component} dashboardItem={item} />
-        </div>
+        <svelte:component this={item.component} dashboardItem={item} />
     {/each}
 </section>
 <div

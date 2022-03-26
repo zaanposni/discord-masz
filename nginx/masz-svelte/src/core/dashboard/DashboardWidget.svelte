@@ -68,7 +68,7 @@
 
 <!-- If we are on a small screen the aspect ratio should always be 1x1 to prevent "smaller neighbors" -->
 <MediaQuery query="(min-width: 768px)" let:matches>
-    <AspectRatio ratio={matches ? mode : "1x1"}>
+    <AspectRatio ratio={matches ? mode : "1x1"} class={mode === WidgetMode.x1_1 ? "col-span-1" : "col-span-1 md:col-span-2"}>
         <div class="flex flex-col dash-widget h-full" class:unnormal={state !== WidgetState.Normal && state !== WidgetState.Loading}>
             <div class="dash-widget-title">
                 {title}
