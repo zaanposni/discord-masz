@@ -13,6 +13,11 @@
         labelText: "Theme",
     };
 
+    // default to g90
+    if (localStorage.getItem(LOCAL_STORAGE_KEY_THEME) === null) {
+        localStorage.setItem(LOCAL_STORAGE_KEY_THEME, "g90");
+    }
+
     function onModalClose() {
         currentTheme.set(localStorage.getItem(LOCAL_STORAGE_KEY_THEME));
         showUserSettings.set(false);
