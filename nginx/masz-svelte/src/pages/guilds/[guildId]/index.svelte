@@ -1,43 +1,62 @@
 <script lang="ts">
+    import LatestModcases from "./../../../components/guilds/dashboard/LatestModcases.svelte";
     import { currentParams } from "./../../../stores/currentParams";
-    import { flip } from "svelte/animate";
     import { _ } from "svelte-i18n";
     import type { IAuthUser } from "../../../models/IAuthUser";
     import type { IRouteParams } from "../../../models/IRouteParams";
     import { goto } from "@roxi/routify";
     import { authUser } from "../../../stores/auth";
-    import { dndzone } from "svelte-dnd-action";
     import { WidgetMode } from "../../../core/dashboard/WidgetMode";
-    import type { IDashboardItem } from "../../../models/IDashboardItem";
-    import LatestModcases from "../../../components/guilds/dashboard/LatestModcases.svelte";
-    import { guildDashboardItems, visibleGuildDashboardItems } from "../../../stores/dashboardItems";
+    import {
+        guildDashboardItems,
+        guildDashboardToggledItems,
+        visibleGuildDashboardItems,
+        guildDashboardEnableDragging,
+    } from "../../../stores/dashboardItems";
     import DashboardConfig from "../../../components/guilds/dashboard/DashboardConfig.svelte";
-
-    let dragDisabled = true;
-    let items: IDashboardItem[] = [];
-    const flipDurationMs = 300;
+    import { flip } from "svelte/animate";
+    import { dndzone } from "svelte-dnd-action";
+    import type { IDashboardItem } from "../../../models/IDashboardItem";
 
     guildDashboardItems.set([
         {
             id: "latest-modcases",
-            translationKey: "latestmodcases",
+            translationKey: "latestcases",
             component: LatestModcases,
             mode: WidgetMode.x2_1,
         },
         {
             id: "dashboard-config",
-            translationKey: "dashboard-config",
+            translationKey: "dashboardconfig",
             component: DashboardConfig,
             mode: WidgetMode.x1_1,
-            fix: true
-        }
+            fix: true,
+        },
     ]);
 
+    let localItems: IDashboardItem[];
+    const flipDurationMs = 300;
     function handleDndConsider(e) {
-        items = e.detail.items;
+        localItems = e.detail.items;
     }
+
     function handleDndFinalize(e) {
-        items = e.detail.items;
+        localItems = e.detail.items;
+        guildDashboardToggledItems.set(
+            e.detail.items.map((item, index) => {
+                return {
+                    id: item.id,
+                    enabled: true,
+                    sortOrder: index,
+                };
+            })
+        );
+    }
+
+    function receiveRemoteUpdates(data) {
+        if (!$guildDashboardEnableDragging) {
+            localItems = data;
+        }
     }
 
     function checkForModOrHigher(user: IAuthUser, params: IRouteParams) {
@@ -49,21 +68,23 @@
     }
 
     $: checkForModOrHigher($authUser, $currentParams);
-    $: items = $visibleGuildDashboardItems;
+    $: receiveRemoteUpdates($visibleGuildDashboardItems);
 </script>
 
 <section
-    use:dndzone={{ items, flipDurationMs, dragDisabled, dropTargetStyle: {} }}
+    class="grid gap-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 3xl:grid-cols-12"
+    use:dndzone={{ items: localItems, flipDurationMs, dropTargetStyle: {}, morphDisabled: true, dragDisabled: !$guildDashboardEnableDragging }}
     on:consider={handleDndConsider}
-    on:finalize={handleDndFinalize}
-    class="grid gap-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 3xl:grid-cols-12">
-    {#each items as item (item.id)}
-        <svelte:component this={item.component} dashboardItem={item} />
-    {/each}
+    on:finalize={handleDndFinalize}>
+    {#if $guildDashboardEnableDragging}
+        {#each localItems as item (item.id)}
+            <div animate:flip={{ duration: flipDurationMs }} class={item.mode === WidgetMode.x1_1 ? "col-span-1" : "col-span-1 md:col-span-2"}>
+                <svelte:component this={item.component} dashboardItem={item} />
+            </div>
+        {/each}
+    {:else}
+        {#each localItems as item (item.id)}
+            <svelte:component this={item.component} dashboardItem={item} />
+        {/each}
+    {/if}
 </section>
-<div
-    on:click={() => {
-        dragDisabled = !dragDisabled;
-    }}>
-    Edit this dashboard.
-</div>

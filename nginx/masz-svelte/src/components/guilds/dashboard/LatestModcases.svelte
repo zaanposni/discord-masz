@@ -13,11 +13,12 @@
     import UserIcon from "../../discord/UserIcon.svelte";
     import { Launch20 } from "carbon-icons-svelte";
     import MediaQuery from "../../../core/MediaQuery.svelte";
+    import { guildDashboardEnableDragging } from "../../../stores/dashboardItems";
 
     export let dashboardItem: IDashboardItem;
     let widgetState = WidgetState.Loading;
 
-    $: $currentParams?.guildId ? loadData() : null;
+    $: $currentParams?.guildId && !$guildDashboardEnableDragging ? loadData() : null;
     let cases: ICompactCaseView[] = [];
     function loadData() {
         widgetState = WidgetState.Loading;
@@ -36,7 +37,7 @@
     <DashboardWidget
         title={$_("widgets.latestcases.title")}
         mode={dashboardItem.mode === WidgetMode.x1_1 ? WidgetMode.x1_1 : WidgetMode.x2_1}
-        state={widgetState}>
+        state={$guildDashboardEnableDragging ? WidgetState.Loading : widgetState}>
         {#each cases as entry}
             <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2.5rem">
                 <div class="grow shrink-0 mr-1">

@@ -4,7 +4,12 @@
     import { WidgetState } from "../../../core/dashboard/WidgetState";
     import type { IDashboardItem } from "../../../models/IDashboardItem";
     import { _ } from "svelte-i18n";
-    import { guildDashboardItems, guildDashboardToggledItems, visibleGuildDashboardItems } from "../../../stores/dashboardItems";
+    import {
+        guildDashboardEnableDragging,
+        guildDashboardItems,
+        guildDashboardToggledItems,
+        visibleGuildDashboardItems,
+    } from "../../../stores/dashboardItems";
     import type { Writable } from "svelte/store";
     import { writable } from "svelte/store";
     import { Modal } from "carbon-components-svelte";
@@ -19,6 +24,7 @@
     function openModal() {
         showModal.set(true);
         localItems = $guildDashboardItems;
+        guildDashboardEnableDragging.set(false);
     }
 
     function onModalClose() {
@@ -54,7 +60,7 @@
             {$_("widgets.dashboardconfig.available")}
         </div>
         <div class="self-end">
-            {$guildDashboardItems.length}
+            {$guildDashboardItems.filter(x => !x.fix).length}
         </div>
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
@@ -62,10 +68,11 @@
             {$_("widgets.dashboardconfig.enabled")}
         </div>
         <div class="self-end">
-            {$visibleGuildDashboardItems.length}
+            {$visibleGuildDashboardItems.filter(x => !x.fix).length}
         </div>
     </div>
     <div on:click={openModal}>open</div>
+    <Toggle size="sm" labelText="" toggled={$guildDashboardEnableDragging} on:toggle={(e) => guildDashboardEnableDragging.set(e.detail.toggled)} />
 </DashboardWidget>
 
 <Modal size="sm" open={$showModal} modalHeading="Widgets" passiveModal on:close={onModalClose} on:submit={onModalClose}>
@@ -74,6 +81,7 @@
             <div class="flex flex-row border-2 border-bottom mb-4">
                 <div class="flex justify-center align-center mr-10 shrink-0">
                     <Toggle
+                        title={item.fix ? 'This widget cannot be disabled.' : ''}
                         disabled={item.fix}
                         labelText=""
                         toggled={item.fix ? true : widgetIsActivated(item)}
