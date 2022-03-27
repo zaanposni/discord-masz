@@ -59,6 +59,10 @@
             "usermaps": "Mapas de usuario",
             "banappeals": "Quejas de Baneo"
         },
+        "guildautomodsplit": {
+            "title": "División automod",
+            "widgetdescription": "Este widget muestra la división de automod de tu hermandad."
+        },
         "guildpunishmentstats": {
             "title": "Estadísticas de castigos",
             "widgetdescription": "Este widget muestra las estadísticas de castigos de tu hermandad.",

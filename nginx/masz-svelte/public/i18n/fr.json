@@ -59,6 +59,10 @@
             "usermaps": "Cartes d'utilisateur",
             "banappeals": "Appels de bannissement"
         },
+        "guildautomodsplit": {
+            "title": "Séparation automod",
+            "widgetdescription": "Ce widget affiche les automodérations de votre guilde."
+        },
         "guildpunishmentstats": {
             "title": "Statistiques de punition",
             "widgetdescription": "Ce widget affiche les statistiques de punition de votre guilde.",

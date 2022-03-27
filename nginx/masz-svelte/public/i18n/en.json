@@ -59,6 +59,10 @@
             "usermaps": "Usermaps",
             "banappeals": "Ban Appeals"
         },
+        "guildautomodsplit": {
+            "title": "Automod Split",
+            "widgetdescription": "This widget shows the automod split of your guild."
+        },
         "guildpunishmentstats": {
             "title": "Punishment Stats",
             "widgetdescription": "This widget shows the punishment stats of your guild.",

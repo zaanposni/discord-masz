@@ -59,6 +59,10 @@
             "usermaps": "Mappe utente",
             "banappeals": "Appelli di banno"
         },
+        "guildautomodsplit": {
+            "title": "Divisione automod",
+            "widgetdescription": "Questo widget mostra la divisione dell'automod della tua gilda."
+        },
         "guildpunishmentstats": {
             "title": "Statistiche del castigo",
             "widgetdescription": "Questo widget mostra le statistiche del castigo della tua gilda.",

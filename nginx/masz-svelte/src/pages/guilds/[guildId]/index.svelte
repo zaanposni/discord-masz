@@ -19,6 +19,7 @@
     import type { IDashboardItem } from "../../../models/IDashboardItem";
     import GuildPunishmentStats from "../../../components/guilds/dashboard/GuildPunishmentStats.svelte";
     import GuildStats from "../../../components/guilds/dashboard/GuildStats.svelte";
+    import GuildAutomodSplit from "../../../components/guilds/dashboard/GuildAutomodSplit.svelte";
 
     guildDashboardItems.set([
         {
@@ -37,6 +38,12 @@
             id: "guild-stats",
             translationKey: "guildstats",
             component: GuildStats,
+            mode: WidgetMode.x1_1,
+        },
+        {
+            id: "guild-automodsplit",
+            translationKey: "guildautomodsplit",
+            component: GuildAutomodSplit,
             mode: WidgetMode.x1_1,
         },
         {

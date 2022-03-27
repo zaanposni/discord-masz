@@ -59,6 +59,10 @@
             "usermaps": "Benutzerbeziehungen",
             "banappeals": "Bann-Anfragen"
         },
+        "guildautomodsplit": {
+            "title": "Automodaufteilung",
+            "widgetdescription": "Dieses Widget zeigt die Aufteilung der Automoderationen in deiner Gilde."
+        },
         "guildpunishmentstats": {
             "title": "Bestrafungsstatistiken",
             "widgetdescription": "Dieses Widget zeigt die Bestrafungsstatistiken deiner Gilde.",

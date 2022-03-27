@@ -428,6 +428,28 @@
                 "it": "Appelli di banno"
             }
         },
+        "guildautomodsplit": {
+            "title": {
+                "description": "Title",
+                "en": "Automod Split",
+                "de": "Automodaufteilung",
+                "at": "Automodaufteilung",
+                "fr": "Séparation automod",
+                "es": "División automod",
+                "ru": "Разделение автомодерации",
+                "it": "Divisione automod"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows the automod split of your guild.",
+                "de": "Dieses Widget zeigt die Aufteilung der Automoderationen in deiner Gilde.",
+                "at": "Dieses Widget zeigt die Aufteilung der Automoderationen in deiner Gilde.",
+                "fr": "Ce widget affiche les automodérations de votre guilde.",
+                "es": "Este widget muestra la división de automod de tu hermandad.",
+                "ru": "Этот виджет показывает раздел автомодерации в вашей гильдии.",
+                "it": "Questo widget mostra la divisione dell'automod della tua gilda."
+            }
+        },
         "guildpunishmentstats": {
             "title": {
                 "description": "Title",
