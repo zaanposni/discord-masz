@@ -14,6 +14,7 @@
     import { writable } from "svelte/store";
     import { Modal } from "carbon-components-svelte";
     import { Toggle } from "carbon-components-svelte";
+    import { SettingsAdjust20 } from "carbon-icons-svelte";
 
     export let dashboardItem: IDashboardItem;
     let widgetState = WidgetState.Normal;
@@ -60,20 +61,38 @@
         <div class="grow">
             {$_("widgets.dashboardconfig.available")}
         </div>
-        <div class="self-end">
-            {$guildDashboardItems.filter(x => !x.fix).length}
+        <div>
+            {$guildDashboardItems.filter((x) => !x.fix).length}
         </div>
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
             {$_("widgets.dashboardconfig.enabled")}
         </div>
-        <div class="self-end">
-            {$visibleGuildDashboardItems.filter(x => !x.fix).length}
+        <div>
+            {$visibleGuildDashboardItems.filter((x) => !x.fix).length}
         </div>
     </div>
-    <div on:click={openModal}>open</div>
-    <Toggle size="sm" labelText="" toggled={$guildDashboardEnableDragging} on:toggle={(e) => guildDashboardEnableDragging.set(e.detail.toggled)} />
+    <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
+        <div class="grow">
+            {$_("widgets.dashboardconfig.configurewidgets")}
+        </div>
+        <SettingsAdjust20 class={$guildDashboardEnableDragging ? "" : "cursor-pointer"} on:click={openModal} />
+    </div>
+    <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
+        <div class="grow">
+            {$_("widgets.dashboardconfig.enabledragging")}
+        </div>
+        <div>
+            <Toggle
+                size="sm"
+                labelText=""
+                labelA=""
+                labelB=""
+                toggled={$guildDashboardEnableDragging}
+                on:toggle={(e) => guildDashboardEnableDragging.set(e.detail.toggled)} />
+        </div>
+    </div>
 </DashboardWidget>
 
 <Modal size="sm" open={$showModal} modalHeading="Widgets" passiveModal on:close={onModalClose} on:submit={onModalClose}>
@@ -82,7 +101,7 @@
             <div class="flex flex-row border-2 border-bottom mb-4">
                 <div class="flex justify-center align-center mr-10 shrink-0">
                     <Toggle
-                        title={item.fix ? 'This widget cannot be disabled.' : ''}
+                        title={item.fix ? "This widget cannot be disabled." : ""}
                         disabled={item.fix}
                         labelText=""
                         toggled={item.fix ? true : widgetIsActivated(item)}

@@ -36,7 +36,9 @@
             "title": "Dashboard config",
             "widgetdescription": "This widget helps you to configure your dashboard.",
             "available": "Available widgets",
-            "enabled": "Enabled widgets"
+            "enabled": "Enabled widgets",
+            "enabledragging": "Enable dragging",
+            "configurewidgets": "Configure widgets"
         }
     },
     "enums": {

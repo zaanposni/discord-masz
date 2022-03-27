@@ -36,7 +36,9 @@
             "title": "Configurazione cruscotto",
             "widgetdescription": "Questo widget ti aiuta a configurare il cruscotto.",
             "available": "Widget disponibili",
-            "enabled": "Widget abilitati"
+            "enabled": "Widget abilitati",
+            "enabledragging": "Abilita il trascinamento",
+            "configurewidgets": "Configura i widget"
         }
     },
     "enums": {

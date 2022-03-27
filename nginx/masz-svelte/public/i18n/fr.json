@@ -36,7 +36,9 @@
             "title": "Configuration du tableau de bord",
             "widgetdescription": "Ce widget vous aide à configurer votre tableau de bord.",
             "available": "Widgets disponibles",
-            "enabled": "Widgets activés"
+            "enabled": "Widgets activés",
+            "enabledragging": "Activer le glisser",
+            "configurewidgets": "Configurer les widgets"
         }
     },
     "enums": {

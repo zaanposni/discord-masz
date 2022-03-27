@@ -36,7 +36,9 @@
             "title": "Configuración del tablero",
             "widgetdescription": "Este widget te ayuda a configurar tu tablero de mando.",
             "available": "Widgets disponibles",
-            "enabled": "Widgets activados"
+            "enabled": "Widgets activados",
+            "enabledragging": "Activar arrastrar",
+            "configurewidgets": "Configurar widgets"
         }
     },
     "enums": {

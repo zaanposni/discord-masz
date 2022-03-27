@@ -39,3 +39,7 @@ body {
 .masz-card:hover {
 	filter: brightness(.9);
 }
+
+span.bx--toggle__switch {
+    margin-top: unset!important;
+}

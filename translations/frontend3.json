@@ -270,6 +270,26 @@
                 "es": "Widgets activados",
                 "ru": "Включенные виджеты",
                 "it": "Widget abilitati"
+            },
+            "enabledragging": {
+                "description": "Enable dragging",
+                "en": "Enable dragging",
+                "de": "Ziehen aktivieren",
+                "at": "Ziehen aktivieren",
+                "fr": "Activer le glisser",
+                "es": "Activar arrastrar",
+                "ru": "Включить перетаскивание",
+                "it": "Abilita il trascinamento"
+            },
+            "configurewidgets": {
+                "description": "Configure widgets",
+                "en": "Configure widgets",
+                "de": "Widgets konfigurieren",
+                "at": "Widgets konfigurieren",
+                "fr": "Configurer les widgets",
+                "es": "Configurar widgets",
+                "ru": "Настроить виджеты",
+                "it": "Configura i widget"
             }
         }
     }

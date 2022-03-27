@@ -36,7 +36,9 @@
             "title": "Dashboardkonfiguration",
             "widgetdescription": "Dieses Widget hilft dir, dein Dashboard zu konfigurieren.",
             "available": "Verfügbare Widgets",
-            "enabled": "Aktivierte Widgets"
+            "enabled": "Aktivierte Widgets",
+            "enabledragging": "Ziehen aktivieren",
+            "configurewidgets": "Widgets konfigurieren"
         }
     },
     "enums": {
