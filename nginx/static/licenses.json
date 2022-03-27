@@ -402,15 +402,18 @@
     },
     "carbon-components-svelte@0.61.1": {
       "licenses": "Apache-2.0",
-      "repository": "https://github.com/carbon-design-system/carbon-components-svelte"
+      "repository": "https://github.com/carbon-design-system/carbon-components-svelte",
+      "publisher": "IBM"
     },
     "carbon-icons-svelte@10.45.0": {
       "licenses": "Apache-2.0",
-      "repository": "https://github.com/carbon-design-system/carbon-icons-svelte"
+      "repository": "https://github.com/carbon-design-system/carbon-icons-svelte",
+      "publisher": "IBM"
     },
     "carbon-pictograms-svelte@12.0.2": {
       "licenses": "Apache-2.0",
-      "repository": "https://github.com/carbon-design-system/carbon-pictograms-svelte"
+      "repository": "https://github.com/carbon-design-system/carbon-pictograms-svelte",
+      "publisher": "IBM"
     },
     "carbon-preprocess-svelte@0.6.0": {
       "licenses": "Apache-2.0",
