@@ -18,10 +18,10 @@
             type = "red";
             return;
         } else if (modCase.punishmentType === PunishmentType.Mute) {
-            type = "purple";
+            type = "magenta";
             return;
         } else if (modCase.punishmentType === PunishmentType.Kick) {
-            type = "teal";
+            type = "purple";
             return;
         }
         type = "purple";
