@@ -42,6 +42,16 @@
             "title": "Derniers cas",
             "widgetdescription": "Ce widget affiche les derniers cas de votre guilde."
         },
+        "guildpunishmentstats": {
+            "title": "Statistiques de punition",
+            "widgetdescription": "Ce widget affiche les statistiques de punition de votre guilde.",
+            "warns": "Avertissements",
+            "mutes": "Mutes",
+            "activemutes": "Mutes actifs",
+            "kicks": "Expulsions",
+            "bans": "Bannissements",
+            "activebans": "Bannissements actifs"
+        },
         "dashboardconfig": {
             "title": "Configuration du tableau de bord",
             "widgetdescription": "Ce widget vous aide à configurer votre tableau de bord.",

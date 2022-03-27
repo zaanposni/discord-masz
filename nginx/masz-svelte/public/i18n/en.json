@@ -42,6 +42,16 @@
             "title": "Latest Cases",
             "widgetdescription": "This widget shows the latest cases in your guild."
         },
+        "guildpunishmentstats": {
+            "title": "Punishment Stats",
+            "widgetdescription": "This widget shows the punishment stats of your guild.",
+            "warns": "Warns",
+            "mutes": "Mutes",
+            "activemutes": "Active Mutes",
+            "kicks": "Kicks",
+            "bans": "Bans",
+            "activebans": "Active Bans"
+        },
         "dashboardconfig": {
             "title": "Dashboard config",
             "widgetdescription": "This widget helps you to configure your dashboard.",

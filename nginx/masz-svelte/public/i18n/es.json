@@ -42,6 +42,16 @@
             "title": "Últimos casos",
             "widgetdescription": "Este widget muestra los últimos casos de tu hermandad."
         },
+        "guildpunishmentstats": {
+            "title": "Estadísticas de castigos",
+            "widgetdescription": "Este widget muestra las estadísticas de castigos de tu hermandad.",
+            "warns": "Advertencias",
+            "mutes": "Mutes",
+            "activemutes": "Mutes activos",
+            "kicks": "Expulsions",
+            "bans": "Bans",
+            "activebans": "Bans activos"
+        },
         "dashboardconfig": {
             "title": "Configuración del tablero",
             "widgetdescription": "Este widget te ayuda a configurar tu tablero de mando.",

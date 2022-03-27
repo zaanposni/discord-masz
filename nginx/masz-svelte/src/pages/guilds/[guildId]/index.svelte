@@ -17,13 +17,20 @@
     import { flip } from "svelte/animate";
     import { dndzone } from "svelte-dnd-action";
     import type { IDashboardItem } from "../../../models/IDashboardItem";
+    import GuildPunishmentStats from "../../../components/guilds/dashboard/GuildPunishmentStats.svelte";
 
     guildDashboardItems.set([
         {
             id: "latest-modcases",
             translationKey: "latestcases",
             component: LatestModcases,
-            mode: WidgetMode.x2_1,
+            mode: WidgetMode.x2_1
+        },
+        {
+            id: "guild-punishment-stats",
+            translationKey: "guildpunishmentstats",
+            component: GuildPunishmentStats,
+            mode: WidgetMode.x1_1
         },
         {
             id: "dashboard-config",

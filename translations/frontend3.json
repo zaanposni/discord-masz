@@ -312,6 +312,88 @@
                 "it": "Questo widget mostra gli ultimi casi della tua gilda."
             }
         },
+        "guildpunishmentstats": {
+            "title": {
+                "description": "Title",
+                "en": "Punishment Stats",
+                "de": "Bestrafungsstatistiken",
+                "at": "Bestrafungsstatistiken",
+                "fr": "Statistiques de punition",
+                "es": "Estadísticas de castigos",
+                "ru": "Статистика наказаний",
+                "it": "Statistiche del castigo"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows the punishment stats of your guild.",
+                "de": "Dieses Widget zeigt die Bestrafungsstatistiken deiner Gilde.",
+                "at": "Dieses Widget zeigt die Bestrafungsstatistiken deiner Gilde.",
+                "fr": "Ce widget affiche les statistiques de punition de votre guilde.",
+                "es": "Este widget muestra las estadísticas de castigos de tu hermandad.",
+                "ru": "Этот виджет показывает статистику наказаний в вашей гильдии.",
+                "it": "Questo widget mostra le statistiche del castigo della tua gilda."
+            },
+            "warns": {
+                "description": "Warns",
+                "en": "Warns",
+                "de": "Warnungen",
+                "at": "Warnungen",
+                "fr": "Avertissements",
+                "es": "Advertencias",
+                "ru": "Предупреждения",
+                "it": "Avvertimenti"
+            },
+            "mutes": {
+                "description": "Mutes",
+                "en": "Mutes",
+                "de": "Stummschaltungen",
+                "at": "Stummschaltungen",
+                "fr": "Mutes",
+                "es": "Mutes",
+                "ru": "Муты",
+                "it": "Mute"
+            },
+            "activemutes": {
+                "description": "Active Mutes",
+                "en": "Active Mutes",
+                "de": "Aktive Stummschaltungen",
+                "at": "Aktive Stummschaltungen",
+                "fr": "Mutes actifs",
+                "es": "Mutes activos",
+                "ru": "Активные муты",
+                "it": "Mute attivo"
+            },
+            "kicks": {
+                "description": "Kicks",
+                "en": "Kicks",
+                "de": "Kicks",
+                "at": "Kicks",
+                "fr": "Expulsions",
+                "es": "Expulsions",
+                "ru": "Кики",
+                "it": "Kick"
+            },
+            "bans": {
+                "description": "Bans",
+                "en": "Bans",
+                "de": "Banns",
+                "at": "Banns",
+                "fr": "Bannissements",
+                "es": "Bans",
+                "ru": "Баны",
+                "it": "Ban"
+            },
+            "activebans": {
+                "description": "Active Bans",
+                "en": "Active Bans",
+                "de": "Aktive Banns",
+                "at": "Aktive Banns",
+                "fr": "Bannissements actifs",
+                "es": "Bans activos",
+                "ru": "Активные баны",
+                "it": "Ban attivo"
+            }
+        },
         "dashboardconfig": {
             "title": {
                 "description": "Title",

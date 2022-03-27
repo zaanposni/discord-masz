@@ -42,6 +42,16 @@
             "title": "Neueste Vorfälle",
             "widgetdescription": "Dieses Widget zeigt die neuesten Vorfälle in deiner Gilde."
         },
+        "guildpunishmentstats": {
+            "title": "Bestrafungsstatistiken",
+            "widgetdescription": "Dieses Widget zeigt die Bestrafungsstatistiken deiner Gilde.",
+            "warns": "Warnungen",
+            "mutes": "Stummschaltungen",
+            "activemutes": "Aktive Stummschaltungen",
+            "kicks": "Kicks",
+            "bans": "Banns",
+            "activebans": "Aktive Banns"
+        },
         "dashboardconfig": {
             "title": "Dashboardkonfiguration",
             "widgetdescription": "Dieses Widget hilft dir, dein Dashboard zu konfigurieren.",

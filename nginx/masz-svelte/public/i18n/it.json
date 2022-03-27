@@ -42,6 +42,16 @@
             "title": "Ultimi casi",
             "widgetdescription": "Questo widget mostra gli ultimi casi della tua gilda."
         },
+        "guildpunishmentstats": {
+            "title": "Statistiche del castigo",
+            "widgetdescription": "Questo widget mostra le statistiche del castigo della tua gilda.",
+            "warns": "Avvertimenti",
+            "mutes": "Mute",
+            "activemutes": "Mute attivo",
+            "kicks": "Kick",
+            "bans": "Ban",
+            "activebans": "Ban attivo"
+        },
         "dashboardconfig": {
             "title": "Configurazione cruscotto",
             "widgetdescription": "Questo widget ti aiuta a configurare il cruscotto.",
