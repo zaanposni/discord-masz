@@ -43,3 +43,10 @@ body {
 span.bx--toggle__switch {
     margin-top: unset!important;
 }
+
+/** only on small screens */
+@media (max-width: 768px) {
+    .bx--header__name {
+        padding-right: 0!important;
+    }
+}

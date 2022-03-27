@@ -38,6 +38,7 @@
     import Help20 from "carbon-icons-svelte/lib/Help20";
     import CurrentUserIcon from "../components/discord/CurrentUserIcon.svelte";
     import { applicationInfo, privacyPolicyUrl, termsOfServiceUrl } from "../stores/applicationInfo";
+    import MediaQuery from "../core/MediaQuery.svelte";
 
     if (window.location.pathname !== "/login" && !$isLoggedIn) {
         $goto("/login", { returnUrl: window.location.pathname });
@@ -91,77 +92,45 @@
 <Credits />
 
 <div on:click={activateSearch} use:shortcut={{ control: true, code: "KeyK" }} />
-<Header
-    company={$applicationInfo?.name ?? APP_NAME}
-    platformName={APP_VERSION}
-    bind:isSideNavOpen
-    on:click={() => {
-        $isLoggedIn ? $goto("/guilds") : undefined;
-    }}>
-    <svelte:fragment slot="skip-to-content">
-        <SkipToContent />
-    </svelte:fragment>
-    <HeaderUtilities>
-        {#if $isLoggedIn}
-            <HeaderSearch
-                bind:value
-                bind:active={searchActive}
-                placeholder="Search services"
-                {results}
-                on:select={(e) => {
-                    console.log("hi", e);
+
+<MediaQuery query="(min-width: 1000px)" let:matches>
+    <Header
+        company={$applicationInfo?.name ?? APP_NAME}
+        platformName={matches ? APP_VERSION : ""}
+        bind:isSideNavOpen
+        on:click={() => {
+            $isLoggedIn ? $goto("/guilds") : undefined;
+        }}>
+        <svelte:fragment slot="skip-to-content">
+            <SkipToContent />
+        </svelte:fragment>
+        <HeaderUtilities>
+            {#if matches}
+                {#if $isLoggedIn}
+                    <HeaderSearch
+                        bind:value
+                        bind:active={searchActive}
+                        placeholder="Search services"
+                        {results}
+                        on:select={(e) => {
+                            console.log("hi", e);
+                        }} />
+                {/if}
+                <HeaderGlobalAction
+                    aria-label="Credits"
+                    icon={Help20}
+                    on:click={() => {
+                        showCredits.set(true);
+                    }} />
+            {/if}
+            <HeaderGlobalAction
+                aria-label="Settings"
+                icon={SettingsAdjust20}
+                on:click={() => {
+                    showUserSettings.set(true);
                 }} />
-        {/if}
-        <HeaderGlobalAction
-            aria-label="Credits"
-            icon={Help20}
-            on:click={() => {
-                showCredits.set(true);
-            }} />
-        <HeaderGlobalAction
-            aria-label="Settings"
-            icon={SettingsAdjust20}
-            on:click={() => {
-                showUserSettings.set(true);
-            }} />
-        {#if $isLoggedIn}
-            <HeaderAction bind:isOpen={userIsOpen} icon={CurrentUserIcon}>
-                <HeaderPanelLink href={$termsOfServiceUrl} target="_blank">
-                    <div class="flex flex-row flex-nowrap">
-                        {$_("nav.terms")}
-                        <Launch20 class="ml-1" />
-                    </div>
-                </HeaderPanelLink>
-                <HeaderPanelLink href={$privacyPolicyUrl} target="_blank">
-                    <div class="flex flex-row flex-nowrap">
-                        {$_("nav.privacy")}
-                        <Launch20 class="ml-1" />
-                    </div>
-                </HeaderPanelLink>
-                <HeaderPanelDivider />
-                <HeaderPanelLinks>
-                    <NavItem item={Logout24} text={$_("nav.logout")} on:click={logout} />
-                </HeaderPanelLinks>
-            </HeaderAction>
-            <HeaderAction bind:isOpen={switcherIsOpen}>
-                <HeaderPanelLinks>
-                    {#if $authUser.isAdmin}
-                        <HeaderPanelLink href={$url("/admin")}>{$_("nav.admin.base")}</HeaderPanelLink>
-                        <HeaderPanelDivider />
-                    {/if}
-                    <HeaderPanelLink href={$url("/patchnotes")}>{$_("nav.patchnotes")}</HeaderPanelLink>
-                    <HeaderPanelLink
-                        on:click={() => {
-                            showCredits.set(true);
-                        }}>
-                        {$_("nav.credits")}
-                    </HeaderPanelLink>
-                    <HeaderPanelLink href="https://discord.gg/5zjpzw6h3S" target="_blank">
-                        <div class="flex flex-row flex-nowrap">
-                            {$_("nav.community")}
-                            <Launch20 class="ml-1" />
-                        </div>
-                    </HeaderPanelLink>
+            {#if $isLoggedIn}
+                <HeaderAction bind:isOpen={userIsOpen} icon={CurrentUserIcon}>
                     <HeaderPanelLink href={$termsOfServiceUrl} target="_blank">
                         <div class="flex flex-row flex-nowrap">
                             {$_("nav.terms")}
@@ -175,63 +144,100 @@
                         </div>
                     </HeaderPanelLink>
                     <HeaderPanelDivider />
-                    <HeaderPanelLink href={$url("/guilds")}>{$_("nav.allguilds")}</HeaderPanelLink>
-                    {#if $anyGuilds}
+                    <HeaderPanelLinks>
+                        <NavItem item={Logout24} text={$_("nav.logout")} on:click={logout} />
+                    </HeaderPanelLinks>
+                </HeaderAction>
+                <HeaderAction bind:isOpen={switcherIsOpen}>
+                    <HeaderPanelLinks>
+                        {#if $authUser.isAdmin}
+                            <HeaderPanelLink href={$url("/admin")}>{$_("nav.admin.base")}</HeaderPanelLink>
+                            <HeaderPanelDivider />
+                        {/if}
+                        <HeaderPanelLink href={$url("/patchnotes")}>{$_("nav.patchnotes")}</HeaderPanelLink>
+                        <HeaderPanelLink
+                            on:click={() => {
+                                showCredits.set(true);
+                            }}>
+                            {$_("nav.credits")}
+                        </HeaderPanelLink>
+                        <HeaderPanelLink href="https://discord.gg/5zjpzw6h3S" target="_blank">
+                            <div class="flex flex-row flex-nowrap">
+                                {$_("nav.community")}
+                                <Launch20 class="ml-1" />
+                            </div>
+                        </HeaderPanelLink>
+                        <HeaderPanelLink href={$termsOfServiceUrl} target="_blank">
+                            <div class="flex flex-row flex-nowrap">
+                                {$_("nav.terms")}
+                                <Launch20 class="ml-1" />
+                            </div>
+                        </HeaderPanelLink>
+                        <HeaderPanelLink href={$privacyPolicyUrl} target="_blank">
+                            <div class="flex flex-row flex-nowrap">
+                                {$_("nav.privacy")}
+                                <Launch20 class="ml-1" />
+                            </div>
+                        </HeaderPanelLink>
                         <HeaderPanelDivider />
-                        {#each $authUser.adminGuilds as guild (guild.id)}
-                            <NavItem
-                                item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
-                                text={guild.name}
-                                on:iconClick={(e) => {
-                                    toggleFavorite(guild.id);
-                                    e.stopPropagation();
-                                }}
-                                on:click={() => {
-                                    $goto(`/guilds/${guild.id}`);
-                                }} />
-                        {/each}
-                        {#each $authUser.modGuilds as guild (guild.id)}
-                            <NavItem
-                                item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
-                                text={guild.name}
-                                on:iconClick={(e) => {
-                                    toggleFavorite(guild.id);
-                                    e.stopPropagation();
-                                }}
-                                on:click={() => {
-                                    $goto(`/guilds/${guild.id}`);
-                                }} />
-                        {/each}
-                        {#each $authUser.memberGuilds as guild (guild.id)}
-                            <NavItem
-                                item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
-                                text={guild.name}
-                                on:iconClick={(e) => {
-                                    toggleFavorite(guild.id);
-                                    e.stopPropagation();
-                                }}
-                                on:click={() => {
-                                    $goto(`/guilds/${guild.id}/cases`);
-                                }} />
-                        {/each}
-                        {#each $authUser.bannedGuilds as guild (guild.id)}
-                            <NavItem
-                                item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
-                                text={guild.name}
-                                on:iconClick={(e) => {
-                                    toggleFavorite(guild.id);
-                                    e.stopPropagation();
-                                }}
-                                on:click={() => {
-                                    $goto(`/guilds/${guild.id}/cases`);
-                                }} />
-                        {/each}
-                    {/if}
-                </HeaderPanelLinks>
-            </HeaderAction>
-        {/if}
-    </HeaderUtilities>
-</Header>
+                        <HeaderPanelLink href={$url("/guilds")}>{$_("nav.allguilds")}</HeaderPanelLink>
+                        {#if $anyGuilds}
+                            <HeaderPanelDivider />
+                            {#each $authUser.adminGuilds as guild (guild.id)}
+                                <NavItem
+                                    item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
+                                    text={guild.name}
+                                    on:iconClick={(e) => {
+                                        toggleFavorite(guild.id);
+                                        e.stopPropagation();
+                                    }}
+                                    on:click={() => {
+                                        $goto(`/guilds/${guild.id}`);
+                                    }} />
+                            {/each}
+                            {#each $authUser.modGuilds as guild (guild.id)}
+                                <NavItem
+                                    item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
+                                    text={guild.name}
+                                    on:iconClick={(e) => {
+                                        toggleFavorite(guild.id);
+                                        e.stopPropagation();
+                                    }}
+                                    on:click={() => {
+                                        $goto(`/guilds/${guild.id}`);
+                                    }} />
+                            {/each}
+                            {#each $authUser.memberGuilds as guild (guild.id)}
+                                <NavItem
+                                    item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
+                                    text={guild.name}
+                                    on:iconClick={(e) => {
+                                        toggleFavorite(guild.id);
+                                        e.stopPropagation();
+                                    }}
+                                    on:click={() => {
+                                        $goto(`/guilds/${guild.id}/cases`);
+                                    }} />
+                            {/each}
+                            {#each $authUser.bannedGuilds as guild (guild.id)}
+                                <NavItem
+                                    item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
+                                    text={guild.name}
+                                    on:iconClick={(e) => {
+                                        toggleFavorite(guild.id);
+                                        e.stopPropagation();
+                                    }}
+                                    on:click={() => {
+                                        $goto(`/guilds/${guild.id}/cases`);
+                                    }} />
+                            {/each}
+                        {/if}
+                    </HeaderPanelLinks>
+                </HeaderAction>
+            {/if}
+        </HeaderUtilities>
+    </Header>
+</MediaQuery>
 
 {#if $isLoggedIn && $navConfig.enabled}
     <SideNav bind:isOpen={isSideNavOpen} rail>
