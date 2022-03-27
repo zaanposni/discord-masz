@@ -39,6 +39,7 @@
     import CurrentUserIcon from "../components/discord/CurrentUserIcon.svelte";
     import { applicationInfo, privacyPolicyUrl, termsOfServiceUrl } from "../stores/applicationInfo";
     import MediaQuery from "../core/MediaQuery.svelte";
+    import ConfirmDialog from "../core/confirmDialog/ConfirmDialog.svelte";
 
     if (window.location.pathname !== "/login" && !$isLoggedIn) {
         $goto("/login", { returnUrl: window.location.pathname });
@@ -90,6 +91,7 @@
 
 <Usersettings />
 <Credits />
+<ConfirmDialog />
 
 <div on:click={activateSearch} use:shortcut={{ control: true, code: "KeyK" }} />
 

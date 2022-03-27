@@ -1,4 +1,48 @@
 {
+    "dialog": {
+        "confirm": {
+            "title": {
+                "description": "Confirm",
+                "en": "Confirm",
+                "de": "Bestätigen",
+                "at": "Bestätigen",
+                "fr": "Confirmer",
+                "es": "Confirmar",
+                "ru": "Подтвердить",
+                "it": "Conferma"
+            },
+            "message": {
+                "description": "Are you sure?",
+                "en": "Are you sure?",
+                "de": "Sind Sie sicher?",
+                "at": "Sind Sie sicher?",
+                "fr": "Êtes-vous sûr?",
+                "es": "¿Está seguro?",
+                "ru": "Вы уверены?",
+                "it": "Sei sicuro?"
+            },
+            "confirm": {
+                "description": "Confirm",
+                "en": "Confirm",
+                "de": "Bestätigen",
+                "at": "Bestätigen",
+                "fr": "Confirmer",
+                "es": "Confirmar",
+                "ru": "Подтвердить",
+                "it": "Conferma"
+            },
+            "cancel": {
+                "description": "Cancel",
+                "en": "Cancel",
+                "de": "Abbrechen",
+                "at": "Abbrechen",
+                "fr": "Annuler",
+                "es": "Cancelar",
+                "ru": "Отмена",
+                "it": "Annulla"
+            }
+        }
+    },
     "login": {
         "title": {
             "description": "Login",
@@ -329,7 +373,7 @@
                 "de": "Dieses Widget zeigt die Gildenstatistiken.",
                 "at": "Dieses Widget zeigt die Gildenstatistiken.",
                 "fr": "Ce widget affiche les statistiques de votre guilde.",
-                "es": "Este widget muestra las estadísticas de tu hermandad.",
+                "es": "Este widgetshowConfirmDialog muestra las estadísticas de tu hermandad.",
                 "ru": "Этот виджет показывает статистику гильдии.",
                 "it": "Questo widget mostra le statistiche della tua gilda."
             },
@@ -516,6 +560,36 @@
                 "es": "Activar arrastrar",
                 "ru": "Включить перетаскивание",
                 "it": "Abilita il trascinamento"
+            },
+            "clearcache": {
+                "description": "Clear cache",
+                "en": "Clear cache",
+                "de": "Cache leeren",
+                "at": "Cache leeren",
+                "fr": "Effacer le cache",
+                "es": "Limpiar caché",
+                "ru": "Очистить кэш",
+                "it": "Cancella cache"
+            },
+            "clearcacheconfirm": {
+                "description": "Are you sure you want to clear the cache?",
+                "en": "Are you sure you want to clear the cache? This may impact the performance of your dashboard.",
+                "de": "Bist du sicher, dass du den Cache leeren möchtest? Dies kann die Leistung deines Dashboards beeinträchtigen.",
+                "at": "Bist du sicher, dass du den Cache leeren möchtest? Dies kann die Leistung deines Dashboards beeinträchtigen.",
+                "fr": "Êtes-vous sûr de vouloir effacer le cache? Cela peut affecter le rendement de votre tableau de bord.",
+                "es": "¿Estás seguro de que quieres limpiar el caché? Esto puede afectar el rendimiento de tu tablero de mando.",
+                "ru": "Вы уверены, что хотите очистить кэш? Это может повлиять на производительность вашего панели управления.",
+                "it": "Sei sicuro di voler cancellare la cache? Questo potrebbe influire sulle prestazioni del cruscotto."
+            },
+            "clearcachesuccess": {
+                "description": "Cache cleared",
+                "en": "Cleared {count} cache entries.",
+                "de": "{count} Cacheeinträge gelöscht.",
+                "at": "{count} Cacheeinträge gelöscht.",
+                "fr": "Effacé {count} entrées du cache.",
+                "es": "Limpiado {count} entradas de caché.",
+                "ru": "Очищено {count} записей кэша.",
+                "it": "Cache cancellata {count}."
             },
             "configurewidgets": {
                 "description": "Configure widgets",

@@ -3,6 +3,7 @@ import type { Readable, Writable } from "svelte/store";
 import type { IDashboardItem } from "../models/IDashboardItem";
 import { LOCAL_STORAGE_KEY_GUILD_DASHBOARD_ITEMS } from "../config";
 
+export const guildDashboardClearingCache: Writable<boolean> = writable(false);
 export const guildDashboardEnableDragging: Writable<boolean> = writable(false);
 export const guildDashboardItems: Writable<IDashboardItem[]> = writable([]);
 export const guildDashboardToggledItems: Writable<{ id: string; enabled: boolean, sortOrder: number }[]> = writable(

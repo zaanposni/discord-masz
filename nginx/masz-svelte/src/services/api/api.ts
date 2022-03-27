@@ -75,8 +75,13 @@ function getResponseFromCache(method, url) {
 }
 
 // clear all entries older than API_CACHE_CLEAR_LIFETIME from the api cache
-function clearCache(): number {
+// use force = true to clear all entries
+// this will return the number of entries cleared
+function clearCache(force: boolean = false): number {
     let count = 0;
+    const toRemove = [];  // save the keys to remove
+
+    // iterate and check for expired entries
     for (var i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key.startsWith("apicache:")) {
@@ -84,17 +89,27 @@ function clearCache(): number {
             const item = localStorage.getItem(key);
             if (item) {
                 const json = JSON.parse(item);
-                if (Date.now() - json.timestamp > API_CACHE_CLEAR_LIFETIME) {
+                if ((Date.now() - json.timestamp > API_CACHE_CLEAR_LIFETIME) || force) {
                     count++;
-                    localStorage.removeItem(key);
+                    toRemove.push(key);
                 }
             } else {
                 count++;
-                localStorage.removeItem(key);
+                toRemove.push(key);
             }
         }
     }
+
+    // remove all expired entries
+    for (const key of toRemove) {
+        localStorage.removeItem(key);
+    }
+
     return count;
+}
+
+function clearCacheEntry(method, url) {
+    localStorage.removeItem(`apicache:${method}:${url}`);
 }
 
 const get = (url, cacheMode: CacheMode = CacheMode.API_ONLY, saveInCache: boolean = false) => {
@@ -139,6 +154,7 @@ const patch = (url, data) => apirequest("patch", url, data);
 
 const API = {
     clearCache,
+    clearCacheEntry,
     getAsset,
     getStatic,
     get,

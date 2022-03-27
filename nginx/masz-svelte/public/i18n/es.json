@@ -1,4 +1,12 @@
 {
+    "dialog": {
+        "confirm": {
+            "title": "Confirmar",
+            "message": "¿Está seguro?",
+            "confirm": "Confirmar",
+            "cancel": "Cancelar"
+        }
+    },
     "login": {
         "title": "Iniciar sesión",
         "noaccount": "¿No tienes una cuenta?",
@@ -44,7 +52,7 @@
         },
         "guildstats": {
             "title": "Estadísticas de hermandad",
-            "widgetdescription": "Este widget muestra las estadísticas de tu hermandad.",
+            "widgetdescription": "Este widgetshowConfirmDialog muestra las estadísticas de tu hermandad.",
             "automods": "Automod",
             "invites": "Invitaciones",
             "usernotes": "Notas de usuario",
@@ -67,6 +75,9 @@
             "available": "Widgets disponibles",
             "enabled": "Widgets activados",
             "enabledragging": "Activar arrastrar",
+            "clearcache": "Limpiar caché",
+            "clearcacheconfirm": "¿Estás seguro de que quieres limpiar el caché? Esto puede afectar el rendimiento de tu tablero de mando.",
+            "clearcachesuccess": "Limpiado {count} entradas de caché.",
             "configurewidgets": "Configurar widgets"
         }
     },

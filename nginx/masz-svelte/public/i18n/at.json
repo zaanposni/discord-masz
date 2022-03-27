@@ -1,4 +1,12 @@
 {
+    "dialog": {
+        "confirm": {
+            "title": "Bestätigen",
+            "message": "Sind Sie sicher?",
+            "confirm": "Bestätigen",
+            "cancel": "Abbrechen"
+        }
+    },
     "login": {
         "title": "Anmelden",
         "noaccount": "Du hast keinen Account?",
@@ -67,6 +75,9 @@
             "available": "Verfügbare Widgets",
             "enabled": "Aktivierte Widgets",
             "enabledragging": "Ziehen aktivieren",
+            "clearcache": "Cache leeren",
+            "clearcacheconfirm": "Bist du sicher, dass du den Cache leeren möchtest? Dies kann die Leistung deines Dashboards beeinträchtigen.",
+            "clearcachesuccess": "{count} Cacheeinträge gelöscht.",
             "configurewidgets": "Widgets konfigurieren"
         }
     },

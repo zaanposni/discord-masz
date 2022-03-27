@@ -1,4 +1,12 @@
 {
+    "dialog": {
+        "confirm": {
+            "title": "Conferma",
+            "message": "Sei sicuro?",
+            "confirm": "Conferma",
+            "cancel": "Annulla"
+        }
+    },
     "login": {
         "title": "Accedi",
         "noaccount": "Non hai un account?",
@@ -67,6 +75,9 @@
             "available": "Widget disponibili",
             "enabled": "Widget abilitati",
             "enabledragging": "Abilita il trascinamento",
+            "clearcache": "Cancella cache",
+            "clearcacheconfirm": "Sei sicuro di voler cancellare la cache? Questo potrebbe influire sulle prestazioni del cruscotto.",
+            "clearcachesuccess": "Cache cancellata {count}.",
             "configurewidgets": "Configura i widget"
         }
     },

@@ -1,4 +1,12 @@
 {
+    "dialog": {
+        "confirm": {
+            "title": "Confirmer",
+            "message": "Êtes-vous sûr?",
+            "confirm": "Confirmer",
+            "cancel": "Annuler"
+        }
+    },
     "login": {
         "title": "Connexion",
         "noaccount": "Pas encore de compte ?",
@@ -67,6 +75,9 @@
             "available": "Widgets disponibles",
             "enabled": "Widgets activés",
             "enabledragging": "Activer le glisser",
+            "clearcache": "Effacer le cache",
+            "clearcacheconfirm": "Êtes-vous sûr de vouloir effacer le cache? Cela peut affecter le rendement de votre tableau de bord.",
+            "clearcachesuccess": "Effacé {count} entrées du cache.",
             "configurewidgets": "Configurer les widgets"
         }
     },

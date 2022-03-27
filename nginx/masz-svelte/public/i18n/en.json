@@ -1,4 +1,12 @@
 {
+    "dialog": {
+        "confirm": {
+            "title": "Confirm",
+            "message": "Are you sure?",
+            "confirm": "Confirm",
+            "cancel": "Cancel"
+        }
+    },
     "login": {
         "title": "Login",
         "noaccount": "Don't have an account?",
@@ -67,6 +75,9 @@
             "available": "Available widgets",
             "enabled": "Enabled widgets",
             "enabledragging": "Enable dragging",
+            "clearcache": "Clear cache",
+            "clearcacheconfirm": "Are you sure you want to clear the cache? This may impact the performance of your dashboard.",
+            "clearcachesuccess": "Cleared {count} cache entries.",
             "configurewidgets": "Configure widgets"
         }
     },
