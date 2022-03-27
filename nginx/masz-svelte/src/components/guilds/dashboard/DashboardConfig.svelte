@@ -97,7 +97,7 @@
         <div class="grow">
             {$_("widgets.dashboardconfig.enabled")}
         </div>
-        <div>
+        <div class="mr-1">
             {$visibleGuildDashboardItems.filter((x) => !x.fix).length}
         </div>
         <CircleSolid16 style="fill: var(--cds-ui-04)" />
