@@ -37,7 +37,7 @@
     import Credits from "../components/nav/credits/Credits.svelte";
     import Help20 from "carbon-icons-svelte/lib/Help20";
     import CurrentUserIcon from "../components/discord/CurrentUserIcon.svelte";
-import { privacyPolicyUrl, termsOfServiceUrl } from "../stores/applicationInfo";
+    import { applicationInfo, privacyPolicyUrl, termsOfServiceUrl } from "../stores/applicationInfo";
 
     if (window.location.pathname !== "/login" && !$isLoggedIn) {
         $goto("/login", { returnUrl: window.location.pathname });
@@ -92,7 +92,7 @@ import { privacyPolicyUrl, termsOfServiceUrl } from "../stores/applicationInfo";
 
 <div on:click={activateSearch} use:shortcut={{ control: true, code: "KeyK" }} />
 <Header
-    company={APP_NAME}
+    company={$applicationInfo?.name ?? APP_NAME}
     platformName={APP_VERSION}
     bind:isSideNavOpen
     on:click={() => {

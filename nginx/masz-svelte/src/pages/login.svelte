@@ -1,10 +1,9 @@
 <script lang="ts">
     import { goto, params } from "@roxi/routify";
     import { authUser } from "./../stores/auth";
-    import { Button } from "carbon-components-svelte";
+    import { Button, OutboundLink } from "carbon-components-svelte";
     import { onDestroy, onMount } from "svelte";
     import ArrowRight32 from "carbon-icons-svelte/lib/ArrowRight32";
-    import { Link } from "carbon-components-svelte";
     import Cookies from "../services/cookie";
     import API from "../services/api/api";
     import type { IAuthUser } from "../models/IAuthUser";
@@ -60,7 +59,7 @@
             <!-- add headline with ibm typography -->
             <h2 class="px-4">{$_("login.title")}</h2>
             <div style="height: var(--cds-spacing-04)" />
-            <span class="px-4">{$_("login.noaccount")} <Link href="https://discord.com/register">{$_("login.createaccount")}</Link></span>
+            <span class="px-4">{$_("login.noaccount")} <OutboundLink href="https://discord.com/register">{$_("login.createaccount")}</OutboundLink></span>
             <div style="height: var(--cds-spacing-11)" />
             <div class="flex flex-row">
                 <div class="grow" />
@@ -69,9 +68,9 @@
         </div>
         <div style="height: var(--cds-spacing-02)" />
         <div style="color: white">
-            <Link href={$termsOfServiceUrl}>{$_("login.terms")}</Link>
+            <OutboundLink inline href={$termsOfServiceUrl}>{$_("login.terms")}</OutboundLink>
             {$_("login.and")}
-            <Link href={$termsOfServiceUrl}>{$_("login.privacy")}</Link>
+            <OutboundLink inline href={$privacyPolicyUrl}>{$_("login.privacy")}</OutboundLink>
         </div>
     </div>
 </div>

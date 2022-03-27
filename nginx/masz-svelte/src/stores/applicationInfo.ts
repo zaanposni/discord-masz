@@ -9,3 +9,14 @@ export const termsOfServiceUrl: Readable<string> = derived(applicationInfo, (inf
 export const privacyPolicyUrl: Readable<string> = derived(applicationInfo, (info) => {
     return info?.privacyPolicyUrl ?? "privacy.html";
 }, "privacy.html");
+
+applicationInfo.subscribe((data) => {
+    let element = document.getElementById("tabtitle");
+    if (element) {
+        element.innerText = data?.name ?? "MASZ";
+    }
+    element = document.getElementById("tabicon");
+    if (element && data?.iconUrl?.length) {
+        element.setAttribute("href", data.iconUrl)
+    }
+})
