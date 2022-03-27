@@ -42,6 +42,15 @@
             "title": "Derniers cas",
             "widgetdescription": "Ce widget affiche les derniers cas de votre guilde."
         },
+        "guildstats": {
+            "title": "Statistiques de guilde",
+            "widgetdescription": "Ce widget affiche les statistiques de votre guilde.",
+            "automods": "Automod",
+            "invites": "Invitations",
+            "usernotes": "Notes d'utilisateur",
+            "usermaps": "Cartes d'utilisateur",
+            "banappeals": "Appels de bannissement"
+        },
         "guildpunishmentstats": {
             "title": "Statistiques de punition",
             "widgetdescription": "Ce widget affiche les statistiques de punition de votre guilde.",

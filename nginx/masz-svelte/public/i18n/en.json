@@ -42,6 +42,15 @@
             "title": "Latest Cases",
             "widgetdescription": "This widget shows the latest cases in your guild."
         },
+        "guildstats": {
+            "title": "Guild Stats",
+            "widgetdescription": "This widget shows the guild stats.",
+            "automods": "Automods",
+            "invites": "Invites",
+            "usernotes": "Usernotes",
+            "usermaps": "Usermaps",
+            "banappeals": "Ban Appeals"
+        },
         "guildpunishmentstats": {
             "title": "Punishment Stats",
             "widgetdescription": "This widget shows the punishment stats of your guild.",

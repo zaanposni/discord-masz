@@ -42,6 +42,15 @@
             "title": "Últimos casos",
             "widgetdescription": "Este widget muestra los últimos casos de tu hermandad."
         },
+        "guildstats": {
+            "title": "Estadísticas de hermandad",
+            "widgetdescription": "Este widget muestra las estadísticas de tu hermandad.",
+            "automods": "Automod",
+            "invites": "Invitaciones",
+            "usernotes": "Notas de usuario",
+            "usermaps": "Mapas de usuario",
+            "banappeals": "Quejas de Baneo"
+        },
         "guildpunishmentstats": {
             "title": "Estadísticas de castigos",
             "widgetdescription": "Este widget muestra las estadísticas de castigos de tu hermandad.",

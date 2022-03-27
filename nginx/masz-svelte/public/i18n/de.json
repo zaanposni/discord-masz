@@ -42,6 +42,15 @@
             "title": "Neueste Vorfälle",
             "widgetdescription": "Dieses Widget zeigt die neuesten Vorfälle in deiner Gilde."
         },
+        "guildstats": {
+            "title": "Gildenstatistiken",
+            "widgetdescription": "Dieses Widget zeigt die Gildenstatistiken.",
+            "automods": "Automoderationen",
+            "invites": "Einladungen",
+            "usernotes": "Benutzernotizen",
+            "usermaps": "Benutzerbeziehungen",
+            "banappeals": "Bann-Anfragen"
+        },
         "guildpunishmentstats": {
             "title": "Bestrafungsstatistiken",
             "widgetdescription": "Dieses Widget zeigt die Bestrafungsstatistiken deiner Gilde.",

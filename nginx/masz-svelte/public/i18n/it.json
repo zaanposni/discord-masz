@@ -42,6 +42,15 @@
             "title": "Ultimi casi",
             "widgetdescription": "Questo widget mostra gli ultimi casi della tua gilda."
         },
+        "guildstats": {
+            "title": "Statistiche della gilda",
+            "widgetdescription": "Questo widget mostra le statistiche della tua gilda.",
+            "automods": "Automod",
+            "invites": "Inviti",
+            "usernotes": "Note utente",
+            "usermaps": "Mappe utente",
+            "banappeals": "Appelli di banno"
+        },
         "guildpunishmentstats": {
             "title": "Statistiche del castigo",
             "widgetdescription": "Questo widget mostra le statistiche del castigo della tua gilda.",

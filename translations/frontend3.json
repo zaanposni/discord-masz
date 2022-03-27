@@ -312,6 +312,78 @@
                 "it": "Questo widget mostra gli ultimi casi della tua gilda."
             }
         },
+        "guildstats": {
+            "title": {
+                "description": "Title",
+                "en": "Guild Stats",
+                "de": "Gildenstatistiken",
+                "at": "Gildenstatistiken",
+                "fr": "Statistiques de guilde",
+                "es": "Estadísticas de hermandad",
+                "ru": "Статистика гильдии",
+                "it": "Statistiche della gilda"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows the guild stats.",
+                "de": "Dieses Widget zeigt die Gildenstatistiken.",
+                "at": "Dieses Widget zeigt die Gildenstatistiken.",
+                "fr": "Ce widget affiche les statistiques de votre guilde.",
+                "es": "Este widget muestra las estadísticas de tu hermandad.",
+                "ru": "Этот виджет показывает статистику гильдии.",
+                "it": "Questo widget mostra le statistiche della tua gilda."
+            },
+            "automods": {
+                "description": "Automod",
+                "en": "Automods",
+                "de": "Automoderationen",
+                "at": "Automoderationen",
+                "fr": "Automod",
+                "es": "Automod",
+                "ru": "Автомодерация",
+                "it": "Automod"
+            },
+            "invites": {
+                "description": "Invites",
+                "en": "Invites",
+                "de": "Einladungen",
+                "at": "Einladungen",
+                "fr": "Invitations",
+                "es": "Invitaciones",
+                "ru": "Приглашения",
+                "it": "Inviti"
+            },
+            "usernotes": {
+                "description": "User Notes",
+                "en": "Usernotes",
+                "de": "Benutzernotizen",
+                "at": "Benutzernotizen",
+                "fr": "Notes d'utilisateur",
+                "es": "Notas de usuario",
+                "ru": "Заметки пользователя",
+                "it": "Note utente"
+            },
+            "usermaps": {
+                "description": "User Maps",
+                "en": "Usermaps",
+                "de": "Benutzerbeziehungen",
+                "at": "Benutzerbeziehungen",
+                "fr": "Cartes d'utilisateur",
+                "es": "Mapas de usuario",
+                "ru": "Карты пользователя",
+                "it": "Mappe utente"
+            },
+            "banappeals": {
+                "description": "Ban Appeals",
+                "en": "Ban Appeals",
+                "de": "Bann-Anfragen",
+                "at": "Bann-Anfragen",
+                "fr": "Appels de bannissement",
+                "es": "Quejas de Baneo",
+                "ru": "Жалобы на бан",
+                "it": "Appelli di banno"
+            }
+        },
         "guildpunishmentstats": {
             "title": {
                 "description": "Title",
