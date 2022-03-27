@@ -37,6 +37,7 @@
     import Credits from "../components/nav/credits/Credits.svelte";
     import Help20 from "carbon-icons-svelte/lib/Help20";
     import CurrentUserIcon from "../components/discord/CurrentUserIcon.svelte";
+import { privacyPolicyUrl, termsOfServiceUrl } from "../stores/applicationInfo";
 
     if (window.location.pathname !== "/login" && !$isLoggedIn) {
         $goto("/login", { returnUrl: window.location.pathname });
@@ -125,6 +126,19 @@
             }} />
         {#if $isLoggedIn}
             <HeaderAction bind:isOpen={userIsOpen} icon={CurrentUserIcon}>
+                <HeaderPanelLink href={$termsOfServiceUrl} target="_blank">
+                    <div class="flex flex-row flex-nowrap">
+                        {$_("nav.terms")}
+                        <Launch20 class="ml-1" />
+                    </div>
+                </HeaderPanelLink>
+                <HeaderPanelLink href={$privacyPolicyUrl} target="_blank">
+                    <div class="flex flex-row flex-nowrap">
+                        {$_("nav.privacy")}
+                        <Launch20 class="ml-1" />
+                    </div>
+                </HeaderPanelLink>
+                <HeaderPanelDivider />
                 <HeaderPanelLinks>
                     <NavItem item={Logout24} text={$_("nav.logout")} on:click={logout} />
                 </HeaderPanelLinks>
@@ -145,6 +159,18 @@
                     <HeaderPanelLink href="https://discord.gg/5zjpzw6h3S" target="_blank">
                         <div class="flex flex-row flex-nowrap">
                             {$_("nav.community")}
+                            <Launch20 class="ml-1" />
+                        </div>
+                    </HeaderPanelLink>
+                    <HeaderPanelLink href={$termsOfServiceUrl} target="_blank">
+                        <div class="flex flex-row flex-nowrap">
+                            {$_("nav.terms")}
+                            <Launch20 class="ml-1" />
+                        </div>
+                    </HeaderPanelLink>
+                    <HeaderPanelLink href={$privacyPolicyUrl} target="_blank">
+                        <div class="flex flex-row flex-nowrap">
+                            {$_("nav.privacy")}
                             <Launch20 class="ml-1" />
                         </div>
                     </HeaderPanelLink>

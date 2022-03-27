@@ -1,9 +1,19 @@
 {
+    "login": {
+        "title": "Login",
+        "noaccount": "Don't have an account?",
+        "createaccount": "Create a Discord account",
+        "terms": "Terms",
+        "and": "and",
+        "privacy": "Privacy Policy"
+    },
     "nav": {
         "allguilds": "All Guilds",
         "patchnotes": "Patchnotes",
         "credits": "Credits",
         "community": "Community",
+        "terms": "Terms",
+        "privacy": "Privacy Policy",
         "admin": {
             "base": "Admin",
             "dashboard": "Dashboard",

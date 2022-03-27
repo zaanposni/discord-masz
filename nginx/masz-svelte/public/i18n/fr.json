@@ -1,9 +1,19 @@
 {
+    "login": {
+        "title": "Connexion",
+        "noaccount": "Pas encore de compte ?",
+        "createaccount": "Créer un compte Discord",
+        "terms": "Conditions d'utilisation",
+        "and": "et",
+        "privacy": "Politique de confidentialité"
+    },
     "nav": {
         "allguilds": "Toutes les Guildes",
         "patchnotes": "Notes de version",
         "credits": "Crédits",
         "community": "Communauté",
+        "terms": "Conditions d'utilisation",
+        "privacy": "Politique de confidentialité",
         "admin": {
             "base": "Admin",
             "dashboard": "Tableau de bord",

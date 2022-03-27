@@ -1,4 +1,66 @@
 {
+    "login": {
+        "title": {
+            "description": "Login",
+            "en": "Login",
+            "de": "Anmelden",
+            "at": "Anmelden",
+            "fr": "Connexion",
+            "es": "Iniciar sesión",
+            "ru": "Вход",
+            "it": "Accedi"
+        },
+        "noaccount": {
+            "description": "No account?",
+            "en": "Don't have an account?",
+            "de": "Du hast keinen Account?",
+            "at": "Du hast keinen Account?",
+            "fr": "Pas encore de compte ?",
+            "es": "¿No tienes una cuenta?",
+            "ru": "У вас нет аккаунта?",
+            "it": "Non hai un account?"
+        },
+        "createaccount": {
+            "description": "Create account",
+            "en": "Create a Discord account",
+            "de": "Erstelle einen Discordaccount",
+            "at": "Erstelle einen Discordaccount",
+            "fr": "Créer un compte Discord",
+            "es": "Crear una cuenta de Discord",
+            "ru": "Создать аккаунт Discord",
+            "it": "Crea un account Discord"
+        },
+        "terms": {
+            "description": "Terms of Service",
+            "en": "Terms",
+            "de": "Nutzungsbedingungen",
+            "at": "Nutzungsbedingungen",
+            "fr": "Conditions d'utilisation",
+            "es": "Términos de servicio",
+            "ru": "Условия использования",
+            "it": "Termini di servizio"
+        },
+        "and": {
+            "description": "and",
+            "en": "and",
+            "de": "und",
+            "at": "und",
+            "fr": "et",
+            "es": "y",
+            "ru": "и",
+            "it": "e"
+        },
+        "privacy": {
+            "description": "Privacy Policy",
+            "en": "Privacy Policy",
+            "de": "Datenschutzerklärung",
+            "at": "Datenschutzerklärung",
+            "fr": "Politique de confidentialité",
+            "es": "Política de privacidad",
+            "ru": "Политика конфиденциальности",
+            "it": "Informativa sulla privacy"
+        }
+    },
     "nav": {
         "allguilds": {
             "description": "All Guilds",
@@ -39,6 +101,26 @@
             "es": "Comunidad",
             "ru": "Сообщество",
             "it": "Comunità"
+        },
+        "terms": {
+            "description": "Terms of Service",
+            "en": "Terms",
+            "de": "Nutzungsbedingungen",
+            "at": "Nutzungsbedingungen",
+            "fr": "Conditions d'utilisation",
+            "es": "Términos de servicio",
+            "ru": "Условия использования",
+            "it": "Termini di servizio"
+        },
+        "privacy": {
+            "description": "Privacy Policy",
+            "en": "Privacy Policy",
+            "de": "Datenschutzerklärung",
+            "at": "Datenschutzerklärung",
+            "fr": "Politique de confidentialité",
+            "es": "Política de privacidad",
+            "ru": "Политика конфиденциальности",
+            "it": "Informativa sulla privacy"
         },
         "admin": {
             "base": {

@@ -1,9 +1,19 @@
 {
+    "login": {
+        "title": "Anmelden",
+        "noaccount": "Du hast keinen Account?",
+        "createaccount": "Erstelle einen Discordaccount",
+        "terms": "Nutzungsbedingungen",
+        "and": "und",
+        "privacy": "Datenschutzerklärung"
+    },
     "nav": {
         "allguilds": "Alle Gilden",
         "patchnotes": "Patchnotizen",
         "credits": "Credits",
         "community": "Community",
+        "terms": "Nutzungsbedingungen",
+        "privacy": "Datenschutzerklärung",
         "admin": {
             "base": "Admin",
             "dashboard": "Dashboard",

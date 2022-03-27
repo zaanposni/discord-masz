@@ -10,6 +10,8 @@
     import type { IAuthUser } from "../models/IAuthUser";
     import { toastError } from "../services/toast/store";
     import { navConfig } from "../stores/nav";
+    import { termsOfServiceUrl, privacyPolicyUrl } from "../stores/applicationInfo";
+    import { _ } from "svelte-i18n";
 
     let loggingIn: boolean = false;
 
@@ -56,18 +58,20 @@
     <div class="flex flex-col">
         <div class="flex flex-col pt-4" style="background: var(--cds-ui-02, #ffffff)">
             <!-- add headline with ibm typography -->
-            <h2 class="px-4">Login</h2>
+            <h2 class="px-4">{$_("login.title")}</h2>
             <div style="height: var(--cds-spacing-04)" />
-            <span class="px-4">Don't have an account? <Link href="https://discord.com/register">Create a Discord account</Link></span>
+            <span class="px-4">{$_("login.noaccount")} <Link href="https://discord.com/register">{$_("login.createaccount")}</Link></span>
             <div style="height: var(--cds-spacing-11)" />
             <div class="flex flex-row">
                 <div class="grow" />
-                <Button skeleton={loggingIn} class="grow" icon={ArrowRight32} on:click={login}>Login</Button>
+                <Button skeleton={loggingIn} class="grow" icon={ArrowRight32} on:click={login}>{$_("login.title")}</Button>
             </div>
         </div>
         <div style="height: var(--cds-spacing-02)" />
         <div style="color: white">
-            <Link href="https://discord.com/terms">Terms and Guidelines</Link>
+            <Link href={$termsOfServiceUrl}>{$_("login.terms")}</Link>
+            {$_("login.and")}
+            <Link href={$termsOfServiceUrl}>{$_("login.privacy")}</Link>
         </div>
     </div>
 </div>

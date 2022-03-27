@@ -6,9 +6,11 @@
     import Toasts from "./services/toast/toasts.svelte";
     import { currentTheme } from "./stores/theme";
     import API from "./services/api/api";
-
     import { register, init as initI18N, getLocaleFromNavigator, isLoading, locale } from "svelte-i18n";
     import { currentLanguage } from "./stores/currentLanguage";
+    import { applicationInfo } from "./stores/applicationInfo";
+    import { CacheMode } from "./services/api/CacheMode";
+
     register("en", () => {
         return API.getAsset("/i18n/en.json");
     });
@@ -61,6 +63,10 @@
     initI18N({
         fallbackLocale: "en",
         initialLocale: localStorage.getItem(LOCAL_STORAGE_KEY_LANGUAGE) || getLocaleFromNavigator() || "en",
+    });
+
+    API.get("/meta/application", CacheMode.PREFER_CACHE, true).then((data) => {
+        applicationInfo.set(data);
     });
 </script>
 

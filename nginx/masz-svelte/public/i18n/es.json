@@ -1,9 +1,19 @@
 {
+    "login": {
+        "title": "Iniciar sesión",
+        "noaccount": "¿No tienes una cuenta?",
+        "createaccount": "Crear una cuenta de Discord",
+        "terms": "Términos de servicio",
+        "and": "y",
+        "privacy": "Política de privacidad"
+    },
     "nav": {
         "allguilds": "Todas las Hermandades",
         "patchnotes": "Notas de la versión",
         "credits": "Créditos",
         "community": "Comunidad",
+        "terms": "Términos de servicio",
+        "privacy": "Política de privacidad",
         "admin": {
             "base": "Admin",
             "dashboard": "Tablero",

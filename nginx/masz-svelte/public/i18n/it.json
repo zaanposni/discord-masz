@@ -1,9 +1,19 @@
 {
+    "login": {
+        "title": "Accedi",
+        "noaccount": "Non hai un account?",
+        "createaccount": "Crea un account Discord",
+        "terms": "Termini di servizio",
+        "and": "e",
+        "privacy": "Informativa sulla privacy"
+    },
     "nav": {
         "allguilds": "Tutte le Gilde",
         "patchnotes": "Note della versione",
         "credits": "Crediti",
         "community": "Comunità",
+        "terms": "Termini di servizio",
+        "privacy": "Informativa sulla privacy",
         "admin": {
             "base": "Admin",
             "dashboard": "Cruscotto",
