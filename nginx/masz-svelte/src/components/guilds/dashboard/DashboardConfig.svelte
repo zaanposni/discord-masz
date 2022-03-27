@@ -14,7 +14,7 @@
     import { writable } from "svelte/store";
     import { Modal } from "carbon-components-svelte";
     import { Toggle } from "carbon-components-svelte";
-    import { SettingsAdjust20 } from "carbon-icons-svelte";
+    import { CircleSolid16, SettingsAdjust20 } from "carbon-icons-svelte";
 
     export let dashboardItem: IDashboardItem;
     let widgetState = WidgetState.Normal;
@@ -61,23 +61,29 @@
         <div class="grow">
             {$_("widgets.dashboardconfig.available")}
         </div>
-        <div>
+        <div class="mr-1">
             {$guildDashboardItems.filter((x) => !x.fix).length}
         </div>
+        <CircleSolid16 style="fill: var(--cds-ui-04)" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
             {$_("widgets.dashboardconfig.enabled")}
         </div>
-        <div>
+        <div class="mr-1">
             {$visibleGuildDashboardItems.filter((x) => !x.fix).length}
         </div>
+        <CircleSolid16 style="fill: var(--cds-ui-04)"/>
     </div>
-    <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
+    <div
+        class="dash-widget-list-border flex flex-row items-center py-2"
+        class:cursor-pointer={!$guildDashboardEnableDragging}
+        style="height: 2rem"
+        on:click={openModal}>
         <div class="grow">
             {$_("widgets.dashboardconfig.configurewidgets")}
         </div>
-        <SettingsAdjust20 class={$guildDashboardEnableDragging ? "" : "cursor-pointer"} on:click={openModal} />
+        <SettingsAdjust20 />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
