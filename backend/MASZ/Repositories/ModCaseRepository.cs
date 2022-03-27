@@ -345,6 +345,10 @@ namespace MASZ.Repositories
         {
             return await Database.CountAllActivePunishmentsForGuild(guildId);
         }
+        public async Task<int> CountAllPunishmentsForGuild(ulong guildId, PunishmentType type)
+        {
+            return await Database.CountAllPunishmentsForGuild(guildId, type);
+        }
         public async Task<int> CountAllActiveMutesForGuild(ulong guildId)
         {
             return await Database.CountAllActivePunishmentsForGuild(guildId, PunishmentType.Mute);

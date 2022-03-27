@@ -68,8 +68,12 @@ namespace MASZ.Controllers
             ModCaseRepository modCaseRepo = ModCaseRepository.CreateDefault(_serviceProvider, identity);
             int modCases = await modCaseRepo.CountAllCasesForGuild(guildId);
             int activePunishments = await modCaseRepo.CountAllPunishmentsForGuild(guildId);
+            int allBans = await modCaseRepo.CountAllPunishmentsForGuild(guildId, PunishmentType.Ban);
             int activeBans = await modCaseRepo.CountAllActiveBansForGuild(guildId);
+            int allMutes = await modCaseRepo.CountAllPunishmentsForGuild(guildId, PunishmentType.Mute);
             int activeMutes = await modCaseRepo.CountAllActiveMutesForGuild(guildId);
+            int allKicks = await modCaseRepo.CountAllPunishmentsForGuild(guildId, PunishmentType.Kick);
+            int allWarns = await modCaseRepo.CountAllPunishmentsForGuild(guildId, PunishmentType.Warn);
             int autoModerations = await AutoModerationEventRepository.CreateDefault(_serviceProvider).CountEventsByGuild(guildId);
             int trackedInvites = await InviteRepository.CreateDefault(_serviceProvider).CountInvitesForGuild(guildId);
             int userMappings = await UserMapRepository.CreateDefault(_serviceProvider, identity).CountAllUserMapsByGuild(guildId);
@@ -81,8 +85,12 @@ namespace MASZ.Controllers
             {
                 caseCount = modCases,
                 activeCount = activePunishments,
+                banCount = allBans,
                 activeBanCount = activeBans,
+                muteCount = allMutes,
                 activeMuteCount = activeMutes,
+                kickCount = allKicks,
+                warnCount = allWarns,
                 moderationCount = autoModerations,
                 trackedInvites,
                 userMappings,

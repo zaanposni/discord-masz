@@ -199,6 +199,11 @@ namespace MASZ.Data
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.PunishmentActive == true).CountAsync();
         }
 
+        public async Task<int> CountAllPunishmentsForGuild(ulong guildId, PunishmentType type)
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.PunishmentType == type).CountAsync();
+        }
+
         public async Task<int> CountAllActivePunishmentsForGuild(ulong guildId, PunishmentType type)
         {
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.PunishmentActive == true && x.PunishmentType == type).CountAsync();
