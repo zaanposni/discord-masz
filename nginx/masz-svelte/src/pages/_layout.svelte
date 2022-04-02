@@ -40,6 +40,8 @@
     import { applicationInfo, privacyPolicyUrl, termsOfServiceUrl } from "../stores/applicationInfo";
     import MediaQuery from "../core/MediaQuery.svelte";
     import ConfirmDialog from "../core/confirmDialog/ConfirmDialog.svelte";
+	import type { ISearchEntry } from './../components/nav/search/ISearchEntry';
+    import { searchValue, showSearch, searchResults } from "../components/nav/search/store";
 
     if (window.location.pathname !== "/login" && !$isLoggedIn) {
         $goto("/login", { returnUrl: window.location.pathname });
@@ -53,30 +55,13 @@
         favoriteGuild.set($favoriteGuild === guildId ? "" : guildId);
     }
 
-    const data = [];
-    for (let i = 0; i < 100; i++) {
-        data.push({
-            href: "/",
-            text: "Kubernetes Service",
-            description:
-                "Deploy secure, highly available apps in a native Kubernetes experience. IBM Cloud Kubernetes Service creates a cluster of compute hosts and deploys highly available containers.",
-        });
+    function onSearchSelect(e: { detail: { selectedResult: any }}) {
+        e.detail.selectedResult.onSelect($goto);
     }
-
-    let value = "";
-    let searchActive = false;
-
-    $: lowerCaseValue = value.toLowerCase();
-    $: results =
-        value.length > 0
-            ? data.filter((item) => {
-                  return item.text.toLowerCase().includes(lowerCaseValue) || item.description.includes(lowerCaseValue);
-              })
-            : [];
 
     function activateSearch() {
         if ($isLoggedIn) {
-            searchActive = true;
+            showSearch.set(true);
         }
     }
 
@@ -110,13 +95,11 @@
             {#if matches}
                 {#if $isLoggedIn}
                     <HeaderSearch
-                        bind:value
-                        bind:active={searchActive}
+                        bind:value={$searchValue}
+                        bind:active={$showSearch}
                         placeholder="Search services"
-                        {results}
-                        on:select={(e) => {
-                            console.log("hi", e);
-                        }} />
+                        results={$searchResults}
+                        on:select={onSearchSelect} />
                 {/if}
                 <HeaderGlobalAction
                     aria-label="Credits"
