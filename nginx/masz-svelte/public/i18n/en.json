@@ -47,7 +47,7 @@
             "cases": "Cases",
             "automods": "Automods",
             "appeals": "Appeals",
-            "usernotes": "User Notes",
+            "usernotes": "Usernotes",
             "usermaps": "Usermaps",
             "messages": "Messages",
             "settings": {
@@ -95,7 +95,7 @@
             "activebans": "Active Bans"
         },
         "guildquicksearch": {
-            "title": "Quick Search",
+            "title": "Quicksearch",
             "widgetdescription": "This widget allows you to quickly search for a case, user or other resources.",
             "placeholder": "Quicksearch users, cases, punishments, ...",
             "searchhistory": "Search history",

@@ -87,20 +87,22 @@
             {#if searchResults?.cases?.length != 0 || searchResults?.userMappingViews?.length != 0 || searchResults?.userNoteView != null}
                 <!-- TODO: show usernote -->
                 <!-- TODO: show usermaps -->
-                {#each searchResults.cases as entry (entry.modCase.id)}
-                    <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2.5rem">
-                        <div class="grow shrink-0 mr-1">
-                            <UserIcon user={entry.suspect} />
+                <div class="flex flex-col mt-4">
+                    {#each searchResults.cases as entry (entry.modCase.id)}
+                        <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2.5rem">
+                            <div class="grow shrink-0 mr-1">
+                                <UserIcon user={entry.suspect} />
+                            </div>
+                            {#if matches}
+                                <PunishmentTag class="grow shrink-0 mr-1" modCase={entry.modCase} />
+                            {/if}
+                            <Truncate title={entry.modCase.title}>
+                                {entry.modCase.title}
+                            </Truncate>
+                            <Link href={`/guilds/${entry.modCase.guildId}/case/${entry.modCase.caseId}`} icon={Launch20} class="align-end" />
                         </div>
-                        {#if matches}
-                            <PunishmentTag class="grow shrink-0 mr-1" modCase={entry.modCase} />
-                        {/if}
-                        <Truncate title={entry.modCase.title}>
-                            {entry.modCase.title}
-                        </Truncate>
-                        <Link href={`/guilds/${entry.modCase.guildId}/case/${entry.modCase.caseId}`} icon={Launch20} class="align-end" />
-                    </div>
-                {/each}
+                    {/each}
+                </div>
             {:else if $searchHistory && !searchValue}
                 <div class="flex flex-row my-4 pb-2" style="border-bottom: 1px solid var(--cds-ui-03, #f0f3f6);">
                     <div>{$_('widgets.guildquicksearch.searchhistory')} ({$searchHistory.length})</div>
@@ -135,7 +137,7 @@
                 </div>
             {/if}
         {:else}
-            <div class="dash-widget-list-border flex items-center" style="height: 2.5rem">
+            <div class="dash-widget-list-border flex items-center mt-4" style="height: 2.5rem">
                 <SkeletonText />
             </div>
             <div class="dash-widget-list-border flex items-center" style="height: 2.5rem">

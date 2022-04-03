@@ -372,8 +372,8 @@
                 "it": "Appelli"
             },
             "usernotes": {
-                "description": "User Notes",
-                "en": "User Notes",
+                "description": "Usernotes",
+                "en": "Usernotes",
                 "de": "Benutzernotizen",
                 "at": "Benutzernotizen",
                 "fr": "Notes d'utilisateur",
@@ -709,7 +709,7 @@
         "guildquicksearch": {
             "title": {
                 "description": "Title",
-                "en": "Quick Search",
+                "en": "Quicksearch",
                 "de": "Schnellsuche",
                 "at": "Schnellsuche",
                 "fr": "Recherche rapide",
