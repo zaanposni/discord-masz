@@ -10,9 +10,12 @@ export const LOCAL_STORAGE_KEY_THEME = "__carbon-theme";
 export const LOCAL_STORAGE_KEY_LANGUAGE = "__masz-language";
 export const LOCAL_STORAGE_KEY_FAVORITE_GUILD = "__masz-favorite-guild";
 export const LOCAL_STORAGE_KEY_GUILD_DASHBOARD_ITEMS = "__masz-guild-dashboard-items";
+export const LOCAL_STORAGE_KEY_GUILD_QUICKSEARCH_HISTORY = "__masz-guild-quicksearch-history";
 
 export const APP_NAME = "MASZ";
 export const APP_VERSION = "v3.0";
+
+export const GUILD_QUICKSEARCH_MAX_HISTORY_ENTRIES = 10;
 
 export const API_CACHE_ENABLE = !DEV_MODE;
 export const API_CACHE_LIFETIME = 1000 * 60 * 60;
