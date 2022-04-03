@@ -66,6 +66,11 @@
             "title": "Últimos casos",
             "widgetdescription": "Este widget muestra los últimos casos de tu hermandad."
         },
+        "guildmoderatorcases": {
+            "title": "Casos por moderador",
+            "widgetdescription": "Este widget muestra todos los casos por moderador de tu hermandad.",
+            "cases": "Casos"
+        },
         "guildstats": {
             "title": "Estadísticas de hermandad",
             "widgetdescription": "Este widgetshowConfirmDialog muestra las estadísticas de tu hermandad.",

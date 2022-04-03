@@ -66,6 +66,11 @@
             "title": "Derniers cas",
             "widgetdescription": "Ce widget affiche les derniers cas de votre guilde."
         },
+        "guildmoderatorcases": {
+            "title": "Cas par modérateur",
+            "widgetdescription": "Ce widget affiche tous les cas par modérateur de votre guilde.",
+            "cases": "Cas"
+        },
         "guildstats": {
             "title": "Statistiques de guilde",
             "widgetdescription": "Ce widget affiche les statistiques de votre guilde.",

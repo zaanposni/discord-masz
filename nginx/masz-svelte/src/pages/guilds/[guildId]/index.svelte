@@ -20,6 +20,7 @@
     import GuildPunishmentStats from "../../../components/guilds/dashboard/GuildPunishmentStats.svelte";
     import GuildStats from "../../../components/guilds/dashboard/GuildStats.svelte";
     import GuildAutomodSplit from "../../../components/guilds/dashboard/GuildAutomodSplit.svelte";
+    import ModeratorCaseChart from "../../../components/guilds/dashboard/ModeratorCaseChart.svelte";
 
     guildDashboardItems.set([
         {
@@ -47,10 +48,17 @@
             mode: WidgetMode.x1_1,
         },
         {
-            id: "dashboard-config",
+            id: "guild-dashboard-config",
             translationKey: "dashboardconfig",
             component: DashboardConfig,
             mode: WidgetMode.x1_1,
+            fix: true,
+        },
+        {
+            id: "guild-moderator-cases",
+            translationKey: "guildmoderatorcases",
+            component: ModeratorCaseChart,
+            mode: WidgetMode.x2_1,
             fix: true,
         },
         {

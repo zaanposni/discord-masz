@@ -66,6 +66,11 @@
             "title": "Neueste Vorfälle",
             "widgetdescription": "Dieses Widget zeigt die neuesten Vorfälle in deiner Gilde."
         },
+        "guildmoderatorcases": {
+            "title": "Vorfälle nach Moderator",
+            "widgetdescription": "Dieses Widget zeigt alle Vorfälle nach Moderator in deiner Gilde.",
+            "cases": "Vorfälle"
+        },
         "guildstats": {
             "title": "Gildenstatistiken",
             "widgetdescription": "Dieses Widget zeigt die Gildenstatistiken.",

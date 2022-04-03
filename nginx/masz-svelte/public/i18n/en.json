@@ -66,6 +66,11 @@
             "title": "Latest Cases",
             "widgetdescription": "This widget shows the latest cases in your guild."
         },
+        "guildmoderatorcases": {
+            "title": "Cases by moderator",
+            "widgetdescription": "This widget shows all cases by moderator in your guild.",
+            "cases": "Cases"
+        },
         "guildstats": {
             "title": "Guild Stats",
             "widgetdescription": "This widget shows the guild stats.",

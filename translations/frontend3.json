@@ -498,6 +498,38 @@
                 "it": "Questo widget mostra gli ultimi casi della tua gilda."
             }
         },
+        "guildmoderatorcases": {
+            "title": {
+                "description": "Title",
+                "en": "Cases by moderator",
+                "de": "Vorfälle nach Moderator",
+                "at": "Vorfälle nach Moderator",
+                "fr": "Cas par modérateur",
+                "es": "Casos por moderador",
+                "ru": "Дела по модератору",
+                "it": "Casi per moderatore"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows all cases by moderator in your guild.",
+                "de": "Dieses Widget zeigt alle Vorfälle nach Moderator in deiner Gilde.",
+                "at": "Dieses Widget zeigt alle Vorfälle nach Moderator in deiner Gilde.",
+                "fr": "Ce widget affiche tous les cas par modérateur de votre guilde.",
+                "es": "Este widget muestra todos los casos por moderador de tu hermandad.",
+                "ru": "Этот виджет показывает все дела по модератору в вашей гильдии.",
+                "it": "Questo widget mostra tutti i casi per moderatore della tua gilda."
+            },
+            "cases": {
+                "description": "Cases",
+                "en": "Cases",
+                "de": "Vorfälle",
+                "at": "Vorfälle",
+                "fr": "Cas",
+                "es": "Casos",
+                "ru": "Дела",
+                "it": "Casi"
+            }
+        },
         "guildstats": {
             "title": {
                 "description": "Title",
