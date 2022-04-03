@@ -168,38 +168,16 @@ namespace MASZ.Controllers
                 return Ok(new List<string>());
             }
 
-            List<IQuickSearchEntry> entries = new();
+            List<ModCaseTableEntry> entries = new();
 
             foreach (ModCase item in await ModCaseRepository.CreateDefault(_serviceProvider, identity).SearchCases(guildId, search))
             {
-                entries.Add(new QuickSearchEntry<CaseExpandedView>
-                {
-                    Entry = new CaseExpandedView(
-                        item,
-                        await _discordAPI.FetchUserInfo(item.ModId, CacheBehavior.OnlyCache),
-                        await _discordAPI.FetchUserInfo(item.LastEditedByModId, CacheBehavior.OnlyCache),
-                        await _discordAPI.FetchUserInfo(item.UserId, CacheBehavior.OnlyCache),
-                        new List<CommentExpandedView>(),
-                        null
-                    ),
-                    CreatedAt = item.CreatedAt,
-                    QuickSearchEntryType = QuickSearchEntryType.ModCase
-                });
+                entries.Add(new ModCaseTableEntry(
+                    item,
+                    await _discordAPI.FetchUserInfo(item.ModId, CacheBehavior.OnlyCache),
+                    await _discordAPI.FetchUserInfo(item.UserId, CacheBehavior.OnlyCache)
+                ));
             }
-
-            foreach (AutoModerationEvent item in await AutoModerationEventRepository.CreateDefault(_serviceProvider).SearchInGuild(guildId, search))
-            {
-                entries.Add(new QuickSearchEntry<AutoModerationEventExpandedView>
-                {
-                    Entry = new AutoModerationEventExpandedView(
-                        item,
-                        await _discordAPI.FetchUserInfo(item.UserId, CacheBehavior.OnlyCache)
-                    ),
-                    CreatedAt = item.CreatedAt,
-                    QuickSearchEntryType = QuickSearchEntryType.AutoModeration
-                });
-            }
-
 
             UserNoteExpandedView userNote = null;
             try
@@ -239,7 +217,7 @@ namespace MASZ.Controllers
 
             return Ok(new
             {
-                searchEntries = entries.OrderByDescending(x => x.CreatedAt).ToList(),
+                cases = entries.ToList(),
                 userNoteView = userNote,
                 userMappingViews
             });

@@ -357,12 +357,16 @@ namespace MASZ.Repositories
         {
             return await Database.CountAllActivePunishmentsForGuild(guildId, PunishmentType.Ban);
         }
-        public async Task<List<ModCase>> SearchCases(ulong guildId, string searchString)
+        public async Task<List<ModCase>> SearchCases(ulong guildId, string searchString, int limit=10)
         {
             List<ModCase> modCases = await Database.SelectAllModCasesForGuild(guildId);
             List<ModCase> filteredModCases = new();
             foreach (var c in modCases)
             {
+                if (filteredModCases.Count >= limit)
+                {
+                    break;
+                }
                 var entry = new ModCaseTableEntry(
                     c,
                     await DiscordAPI.FetchUserInfo(c.ModId, CacheBehavior.OnlyCache),
