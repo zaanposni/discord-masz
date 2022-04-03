@@ -221,6 +221,12 @@ namespace MASZ.Data
             .GroupBy(x => new { x.OccuredAt.Month, x.OccuredAt.Year }).Select(x => new DbCount { Year = x.Key.Year, Month = x.Key.Month, Count = x.Count() }).OrderByDescending(x => x.Year).ThenByDescending(x => x.Month).ToListAsync();
         }
 
+        public async Task<List<ModeratorCaseCount>> GetModeratorCaseCountGraph(ulong guildId)
+        {
+            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId)
+                .GroupBy(x => new { Type = x.ModId }).Select(x => new ModeratorCaseCount { ModId = x.Key.Type, Count = x.Count() }).ToListAsync();
+        }
+
         public async Task DeleteAllModCasesForGuild(ulong guildId)
         {
             var cases = await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
@@ -268,9 +274,9 @@ namespace MASZ.Data
             return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId && x.CreatedAt > since)
                 .GroupBy(x => new { x.CreatedAt.Month, x.CreatedAt.Year }).Select(x => new DbCount { Year = x.Key.Year, Month = x.Key.Month, Count = x.Count() }).OrderByDescending(x => x.Year).ThenByDescending(x => x.Month).ToListAsync();
         }
-        public async Task<List<AutoModerationTypeSplit>> GetModerationSplitGraph(ulong guildId, DateTime since)
+        public async Task<List<AutoModerationTypeSplit>> GetModerationSplitGraph(ulong guildId)
         {
-            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId && x.CreatedAt > since)
+            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId)
                 .GroupBy(x => new { Type = x.AutoModerationType }).Select(x => new AutoModerationTypeSplit { Type = x.Key.Type, Count = x.Count() }).ToListAsync();
         }
 

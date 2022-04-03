@@ -123,9 +123,9 @@ namespace MASZ.Repositories
         {
             return await Database.GetModerationCountGraph(guildId, since);
         }
-        public async Task<List<AutoModerationTypeSplit>> GetCountsByType(ulong guildId, DateTime since)
+        public async Task<List<AutoModerationTypeSplit>> GetCountsByType(ulong guildId)
         {
-            return await Database.GetModerationSplitGraph(guildId, since);
+            return await Database.GetModerationSplitGraph(guildId);
         }
         public async Task<List<AutoModerationEvent>> SearchInGuild(ulong guildId, string searchString)
         {

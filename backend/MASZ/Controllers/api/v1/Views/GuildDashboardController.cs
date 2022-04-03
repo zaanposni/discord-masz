@@ -1,3 +1,4 @@
+using Discord;
 using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.Models;
@@ -44,19 +45,40 @@ namespace MASZ.Controllers
         }
 
         [HttpGet("automodchart")]
-        public async Task<IActionResult> GetAutomodSplitChart([FromRoute] ulong guildId, [FromQuery] long? since = null)
+        public async Task<IActionResult> GetAutomodSplitChart([FromRoute] ulong guildId)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            DateTime sinceTime = DateTime.UtcNow.AddYears(-1);
-            if (since != null)
-            {
-                sinceTime = epoch.AddSeconds(since.Value);
-            }
-
             AutoModerationEventRepository automodRepo = AutoModerationEventRepository.CreateDefault(_serviceProvider);
 
-            return Ok(await automodRepo.GetCountsByType(guildId, sinceTime));
+            return Ok(await automodRepo.GetCountsByType(guildId));
+        }
+
+        [HttpGet("moderatorcases")]
+        public async Task<IActionResult> GetModeratorCasesChart([FromRoute] ulong guildId)
+        {
+            await RequirePermission(guildId, DiscordPermission.Moderator);
+
+            ModCaseRepository modCaseRepo = ModCaseRepository.CreateWithBotIdentity(_serviceProvider);
+
+            List<ModeratorCaseCount> counts = await modCaseRepo.GetModeratorCasesCount(guildId);
+            List<ModeratorCaseCountView> countsWithNames = new();
+
+            foreach (ModeratorCaseCount item in counts)
+            {
+                IUser user = await _discordAPI.FetchUserInfo(item.ModId, CacheBehavior.OnlyCache);
+                if (user != null)
+                {
+                    countsWithNames.Add(new ModeratorCaseCountView
+                    {
+                        ModId = item.ModId.ToString(),
+                        ModName = user.Username,
+                        Count = item.Count
+                    });
+                }
+            }
+
+            return Ok(countsWithNames);
         }
 
         [HttpGet("stats")]

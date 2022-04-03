@@ -452,6 +452,10 @@ namespace MASZ.Repositories
         {
             return await Database.GetPunishmentCountGraph(guildId, since);
         }
+        public async Task<List<ModeratorCaseCount>> GetModeratorCasesCount(ulong guildId)
+        {
+            return await Database.GetModeratorCaseCountGraph(guildId);
+        }
         public async Task<ModCase> ActivateModCase(ulong guildId, int caseId)
         {
             ModCase modCase = await GetModCase(guildId, caseId);
