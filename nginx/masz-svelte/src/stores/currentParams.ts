@@ -18,6 +18,12 @@ export const currentParams: Readable<IRouteParams> = derived([params, authUser],
                 guildId: rParams.guildId,
                 guild: currentUser.memberGuilds.find(g => g.id === rParams.guildId) || currentUser.adminGuilds.find(g => g.id === rParams.guildId) || currentUser.modGuilds.find(g => g.id === rParams.guildId) || currentUser.bannedGuilds.find(g => g.id === rParams.guildId) || null
             });
+        } else {
+            lastGuildId = null;
+            set({
+                guildId: null,
+                guild: null
+            });
         }
     }
 }, {});
