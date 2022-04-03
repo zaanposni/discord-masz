@@ -41,6 +41,7 @@ export const guildStaticSearchEntriesTranslated: Readable<ISearchEntry[]> = deri
     ([entries, i18n, currentParams], set) => {
         if (!currentParams.guild) {
             set([]);
+            return;
         }
 
         set(
@@ -128,36 +129,6 @@ export const allStaticSearchResults: Readable<ISearchEntry[]> = derived(
     }
 );
 
-let remoteSearchDebounce;
-export const remoteSearchResults: Writable<ISearchEntry[]> = writable([]);
-searchValue.subscribe((value) => {
-    if (value.length > 3) {
-        if (remoteSearchDebounce) {
-            clearTimeout(remoteSearchDebounce);
-        }
-        remoteSearchDebounce = setTimeout(() => {
-            let promise = new Promise((resolve) => {
-                remoteSearchDebounce = setTimeout(() => {
-                    resolve([
-                        {
-                            text: "remote example",
-                            description: "remote example",
-                            onSelect: () => {
-                                console.log("hi2");
-                            },
-                        },
-                    ]);
-                }, 5000);
-            });
-            promise.then((results) => {
-                remoteSearchResults.set(results as any);
-            });
-        }, 200);
-    } else {
-        remoteSearchResults.set([]);
-    }
-});
-
 export const accessibleGuildsResults: Readable<ISearchEntry[]> = derived(
     [authUser, searchValue],
     ([currentUser, value], set) => {
@@ -218,19 +189,17 @@ export const accessibleGuildsResults: Readable<ISearchEntry[]> = derived(
 );
 
 export const searchResults: Readable<ISearchEntry[]> = derived(
-    [allStaticSearchResults, accessibleGuildsResults, remoteSearchResults, authUser],
-    ([staticResults, guildsResults, remoteResults, currentUser]) => {
+    [allStaticSearchResults, accessibleGuildsResults, authUser],
+    ([staticResults, guildsResults, currentUser]) => {
         const filtered = staticResults.filter((x) => (x?.allowedToView ? x.allowedToView(currentUser) : true));
 
-        return remoteResults.concat(guildsResults).concat(filtered).slice(0, 30);
+        return guildsResults.concat(filtered).slice(0, 30);
     }
 );
 
 showSearch.subscribe((value) => {
     // correctly reset search results
-    // also reset on search open to erase search results that came in async after the last close
     searchValue.set("");
-    remoteSearchResults.set([]);
 });
 
 // INIT
@@ -244,6 +213,16 @@ adminStaticSearchEntries.set([
         },
     },
 ]);
+
+guildStaticSearchEntries.set([
+    {
+        textKey: "Guild specific",
+        descriptionKey: "Guild specific.",
+        onSelect: () => {
+            console.log("guild");
+        },
+    },
+])
 
 staticSearchEntries.set([
     {
