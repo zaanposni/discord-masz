@@ -6,7 +6,10 @@ import fuzzysort from "fuzzysort";
 import { currentParams } from "../../../stores/currentParams";
 import { authUser } from "../../../stores/auth";
 import type { GotoHelper } from "@roxi/routify";
-
+import type { IRouteParams } from "../../../models/IRouteParams";
+import type { IAuthUser } from "../../../models/IAuthUser";
+import { showCredits } from "../credits/store";
+import { showUserSettings } from "../store";
 
 export const showSearch: Writable<boolean> = writable(false);
 export const searchValue: Writable<string> = writable("");
@@ -21,6 +24,7 @@ const staticsearchEntriesTranslated: Readable<ISearchEntry[]> = derived(
                     onSelect: entry.onSelect,
                     allowedToView: entry.allowedToView,
                     href: entry.href ?? "",
+                    hidePerDefault: entry.hidePerDefault,
                     text: i18n(entry.textKey),
                     description: entry.descriptionKey ? i18n(entry.descriptionKey) : null,
                     additionalSearch: entry.additionalSearchKeys ? entry.additionalSearchKeys.map((key) => i18n(key)).join(" ") : null,
@@ -50,6 +54,7 @@ export const guildStaticSearchEntriesTranslated: Readable<ISearchEntry[]> = deri
                     onSelect: entry.onSelect,
                     allowedToView: entry.allowedToView,
                     href: entry.href ?? "",
+                    hidePerDefault: entry.hidePerDefault,
                     text: i18n(entry.textKey),
                     description: entry.descriptionKey ? i18n(entry.descriptionKey) : null,
                     additionalSearch: entry.additionalSearchKeys ? entry.additionalSearchKeys.map((key) => i18n(key)).join(" ") : null,
@@ -75,6 +80,7 @@ export const adminStaticSearchEntriesTranslated: Readable<ISearchEntry[]> = deri
                         onSelect: entry.onSelect,
                         allowedToView: entry.allowedToView,
                         href: entry.href ?? "",
+                        hidePerDefault: entry.hidePerDefault,
                         text: i18n(entry.textKey),
                         description: entry.descriptionKey ? i18n(entry.descriptionKey) : null,
                         additionalSearch: entry.additionalSearchKeys ? entry.additionalSearchKeys.map((key) => i18n(key)).join(" ") : null,
@@ -94,7 +100,11 @@ export const allStaticSearchResults: Readable<ISearchEntry[]> = derived(
     [staticsearchEntriesTranslated, guildStaticSearchEntriesTranslated, adminStaticSearchEntriesTranslated, searchValue],
     ([staticEntries, guildEntries, adminEntries, value], set) => {
         if (!value) {
-            set([...adminEntries.slice(0, 5), ...guildEntries.slice(0, 10), ...staticEntries.slice(0, 8)]);
+            set([
+                ...adminEntries.filter((x) => !x?.hidePerDefault).slice(0, 5),
+                ...guildEntries.filter((x) => !x?.hidePerDefault).slice(0, 10),
+                ...staticEntries.filter((x) => !x?.hidePerDefault).slice(0, 8),
+            ]);
             return;
         }
 
@@ -130,8 +140,8 @@ export const allStaticSearchResults: Readable<ISearchEntry[]> = derived(
 );
 
 export const accessibleGuildsResults: Readable<ISearchEntry[]> = derived(
-    [authUser, searchValue],
-    ([currentUser, value], set) => {
+    [authUser, searchValue, _],
+    ([currentUser, value, i18n], set) => {
         if (currentUser?.adminGuilds != null) {
             if (!value) {
                 const guilds = currentUser.adminGuilds
@@ -140,12 +150,12 @@ export const accessibleGuildsResults: Readable<ISearchEntry[]> = derived(
                     .concat(currentUser.bannedGuilds);
 
                 set(
-                    guilds.slice(0, 5).map((g) => {
+                    guilds.slice(0, 3).map((g) => {
                         return {
-                            text: `Guild: ${g.name}`,
+                            text: `${i18n("nav.guild.base")}: ${g.name}`,
                             href: `/guild/${g.id}`,
                             description: g.id,
-                            onSelect: (gotoHelper: GotoHelper) => {
+                            onSelect: (gotoHelper: GotoHelper, currentParams: IRouteParams) => {
                                 gotoHelper(`/guilds/${g.id}`);
                             },
                         };
@@ -158,10 +168,10 @@ export const accessibleGuildsResults: Readable<ISearchEntry[]> = derived(
             value = value.toLocaleLowerCase();
 
             const options = {
-                limit: 5,
+                limit: 3,
                 allowTypo: true,
                 threshold: -10000,
-                keys: ["name"],
+                keys: ["name", "id"],
             };
 
             const adminResults = fuzzysort.go(value, currentUser.adminGuilds, options).map((result) => result.obj);
@@ -172,12 +182,12 @@ export const accessibleGuildsResults: Readable<ISearchEntry[]> = derived(
             const guilds = adminResults.concat(moderatorResults).concat(memberResults).concat(bannedResults);
 
             set(
-                guilds.slice(0, 5).map((g) => {
+                guilds.slice(0, 3).map((g) => {
                     return {
-                        text: `Guild: ${g.name}`,
+                        text: `${i18n("nav.guild.base")}: ${g.name}`,
                         href: `/guild/${g.id}`,
                         description: g.id,
-                        onSelect: (gotoHelper: GotoHelper) => {
+                        onSelect: (gotoHelper: GotoHelper, currentParams: IRouteParams) => {
                             gotoHelper(`/guilds/${g.id}`);
                         },
                     };
@@ -189,9 +199,9 @@ export const accessibleGuildsResults: Readable<ISearchEntry[]> = derived(
 );
 
 export const searchResults: Readable<ISearchEntry[]> = derived(
-    [allStaticSearchResults, accessibleGuildsResults, authUser],
-    ([staticResults, guildsResults, currentUser]) => {
-        const filtered = staticResults.filter((x) => (x?.allowedToView ? x.allowedToView(currentUser) : true));
+    [allStaticSearchResults, accessibleGuildsResults, authUser, currentParams],
+    ([staticResults, guildsResults, currentUser, params]) => {
+        const filtered = staticResults.filter((x) => (x?.allowedToView ? x.allowedToView(currentUser, params) : true));
 
         return guildsResults.concat(filtered).slice(0, 30);
     }
@@ -204,49 +214,171 @@ showSearch.subscribe((value) => {
 
 // INIT
 
-adminStaticSearchEntries.set([
+guildStaticSearchEntries.set([
     {
-        textKey: "admin",
-        descriptionKey: "admin.",
-        onSelect: () => {
-            console.log("admin");
+        textKey: "nav.guild.dashboard",
+        allowedToView: (user: IAuthUser, params: IRouteParams) =>
+            user &&
+            params?.guildId &&
+            (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId) || user.modGuilds.map((x) => x.id).includes(params.guildId)),
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            gotoHelper(`/guilds/${params.guildId}`);
+        },
+    },
+    {
+        textKey: "nav.guild.cases",
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            gotoHelper(`/guilds/${params.guildId}/cases`);
+        },
+    },
+    {
+        textKey: "nav.guild.automods",
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            gotoHelper(`/guilds/${params.guildId}/automods`);
+        },
+    },
+    {
+        textKey: "nav.guild.appeals",
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            gotoHelper(`/guilds/${params.guildId}/appeals`);
+        },
+    },
+    {
+        textKey: "nav.guild.usernotes",
+        allowedToView: (user: IAuthUser, params: IRouteParams) =>
+            user &&
+            params?.guildId &&
+            (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId) || user.modGuilds.map((x) => x.id).includes(params.guildId)),
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            gotoHelper(`/guilds/${params.guildId}/usernotes`);
+        },
+    },
+    {
+        textKey: "nav.guild.usermaps",
+        allowedToView: (user: IAuthUser, params: IRouteParams) =>
+            user &&
+            params?.guildId &&
+            (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId) || user.modGuilds.map((x) => x.id).includes(params.guildId)),
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            gotoHelper(`/guilds/${params.guildId}/usermaps`);
+        },
+    },
+    {
+        textKey: "nav.guild.messages",
+        allowedToView: (user: IAuthUser, params: IRouteParams) =>
+            user &&
+            params?.guildId &&
+            (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId) || user.modGuilds.map((x) => x.id).includes(params.guildId)),
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            gotoHelper(`/guilds/${params.guildId}/messages`);
+        },
+    },
+    {
+        textKey: "nav.guild.settings.motd",
+        allowedToView: (user: IAuthUser, params: IRouteParams) =>
+            user &&
+            params?.guildId &&
+            (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            gotoHelper(`/guilds/${params.guildId}/motd`);
+        },
+    },
+    {
+        textKey: "nav.guild.settings.auditlog",
+        allowedToView: (user: IAuthUser, params: IRouteParams) =>
+            user &&
+            params?.guildId &&
+            (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            gotoHelper(`/guilds/${params.guildId}/auditlog`);
+        },
+    },
+    {
+        textKey: "nav.guild.settings.automod",
+        allowedToView: (user: IAuthUser, params: IRouteParams) =>
+            user &&
+            params?.guildId &&
+            (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            gotoHelper(`/guilds/${params.guildId}/automodconfig`);
+        },
+    },
+    {
+        textKey: "nav.guild.settings.search",
+        descriptionKey: "nav.guild.settings.searchdetails",
+        allowedToView: (user: IAuthUser, params: IRouteParams) =>
+            user &&
+            params?.guildId &&
+            (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            console.log("TODO open guildconfig"); // TODO
         },
     },
 ]);
 
-guildStaticSearchEntries.set([
+adminStaticSearchEntries.set([
     {
-        textKey: "Guild specific",
-        descriptionKey: "Guild specific.",
-        onSelect: () => {
-            console.log("guild");
+        textKey: "nav.admin.base",
+        descriptionKey: "nav.admin.searchdescription",
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            gotoHelper(`/admin`);
         },
     },
-])
+]);
 
 staticSearchEntries.set([
     {
-        textKey: "Kubernetes Service",
-        descriptionKey: "Deploy secure.",
-        onSelect: () => {
-            console.log("hi");
-        },
-        allowedToView: () => {
-            return false;
+        textKey: "nav.allguilds",
+        descriptionKey: "",
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            gotoHelper(`/guilds`);
         },
     },
     {
-        textKey: "google Service",
-        descriptionKey: "Deploy secure.",
-        onSelect: () => {
-            console.log("hi");
+        textKey: "settings.base",
+        descriptionKey: "settings.basedetails",
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            showUserSettings.set(true);
+        },
+        hidePerDefault: true,
+    },
+    {
+        textKey: "settings.theme",
+        descriptionKey: "settings.themedetails",
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            showUserSettings.set(true);
         },
     },
     {
-        textKey: "facebook Service",
-        descriptionKey: "Deploy secure.",
-        onSelect: () => {
-            console.log("hi");
+        textKey: "settings.language",
+        descriptionKey: "settings.languagedetails",
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            showUserSettings.set(true);
         },
+        hidePerDefault: true,
+    },
+    {
+        textKey: "nav.patchnotes",
+        descriptionKey: "nav.patchnotesdetails",
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            gotoHelper(`/patchnotes`);
+        },
+    },
+    {
+        textKey: "nav.credits",
+        descriptionKey: "nav.creditsdetails",
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            showCredits.set(true);
+        },
+        hidePerDefault: true,
+    },
+    {
+        textKey: "nav.community",
+        href: "https://discord.gg/5zjpzw6h3S",
+        descriptionKey: "nav.communitydetails",
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            window.open("https://discord.gg/5zjpzw6h3S", "_blank").focus();
+        },
+        hidePerDefault: true,
     },
 ]);

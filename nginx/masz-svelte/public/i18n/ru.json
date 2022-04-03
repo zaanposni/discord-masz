@@ -15,20 +15,34 @@
         "and": "и",
         "privacy": "Политика конфиденциальности"
     },
+    "settings": {
+        "base": "Настройки",
+        "basedetails": "Настройки MASZ.",
+        "theme": "Тема",
+        "themedetails": "Выберите, как MASZ вас видит.",
+        "language": "Язык",
+        "languagedetails": "Изменить язык",
+        "autosave": "Все настройки сохраняются автоматически."
+    },
     "nav": {
         "allguilds": "Все гильдии",
         "patchnotes": "Изменения версии",
+        "patchnotesdetails": "Просмотреть последние изменения версии MASZ.",
         "credits": "Благодарности",
+        "creditsdetails": "Просмотреть благодарности MASZ.",
         "community": "Сообщество",
+        "communitydetails": "Посетите сообщество MASZ.",
         "terms": "Условия использования",
         "privacy": "Политика конфиденциальности",
         "admin": {
             "base": "Админ",
+            "searchdescription": "Просмотреть отчеты о вашей приложении",
             "dashboard": "Панель управления",
             "settings": "Настройки",
             "tokens": "Токены"
         },
         "guild": {
+            "base": "Гильдия",
             "dashboard": "Панель управления",
             "cases": "Дела",
             "automods": "Автомоды",
@@ -40,7 +54,9 @@
                 "motd": "MotD",
                 "auditlog": "Auditlog",
                 "automod": "Автомод",
-                "base": "Настройки"
+                "base": "Настройки",
+                "search": "Настройки гильдии",
+                "searchdetails": "Изменить настройки этой гильдии."
             }
         },
         "logout": "Выйти"

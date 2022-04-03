@@ -56,7 +56,7 @@
     }
 
     function onSearchSelect(e: { detail: { selectedResult: any }}) {
-        e.detail.selectedResult.onSelect($goto);
+        e.detail.selectedResult.onSelect($goto, $currentParams);
     }
 
     function activateSearch() {

@@ -15,20 +15,34 @@
         "and": "et",
         "privacy": "Politique de confidentialité"
     },
+    "settings": {
+        "base": "Paramètres",
+        "basedetails": "Ajustez vos paramètres MASZ.",
+        "theme": "Thème",
+        "themedetails": "Choisissez comment MASZ vous apparence.",
+        "language": "Langue",
+        "languagedetails": "Changer la langue",
+        "autosave": "Tous les paramètres sont automatiquement enregistrés."
+    },
     "nav": {
         "allguilds": "Toutes les Guildes",
         "patchnotes": "Notes de version",
+        "patchnotesdetails": "Voir les notes de version les plus récentes de MASZ.",
         "credits": "Crédits",
+        "creditsdetails": "Voir les crédits de MASZ.",
         "community": "Communauté",
+        "communitydetails": "Visitez la communauté discord de MASZ.",
         "terms": "Conditions d'utilisation",
         "privacy": "Politique de confidentialité",
         "admin": {
             "base": "Admin",
+            "searchdescription": "Afficher les statistiques de votre application",
             "dashboard": "Tableau de bord",
             "settings": "Paramètres",
             "tokens": "Jeton"
         },
         "guild": {
+            "base": "Guilde",
             "dashboard": "Tableau de bord",
             "cases": "Cas",
             "automods": "Automods",
@@ -40,7 +54,9 @@
                 "motd": "MotD",
                 "auditlog": "Auditlog",
                 "automod": "Automod",
-                "base": "Paramètres"
+                "base": "Paramètres",
+                "search": "Paramètres de guilde",
+                "searchdetails": "Modifiez les paramètres de cette guilde."
             }
         },
         "logout": "Se déconnecter"

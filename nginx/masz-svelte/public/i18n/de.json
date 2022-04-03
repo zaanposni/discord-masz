@@ -15,20 +15,34 @@
         "and": "und",
         "privacy": "Datenschutzerklärung"
     },
+    "settings": {
+        "base": "Einstellungen",
+        "basedetails": "Passen Sie Ihre MASZ-Einstellungen an.",
+        "theme": "Thema",
+        "themedetails": "Wähle, wie MASZ dir angezeigt wird.",
+        "language": "Sprache",
+        "languagedetails": "Sprache ändern",
+        "autosave": "Alle Einstellungen werden automatisch gespeichert."
+    },
     "nav": {
         "allguilds": "Alle Gilden",
         "patchnotes": "Patchnotizen",
+        "patchnotesdetails": "Zeige die letzten Patchnotizen von MASZ.",
         "credits": "Credits",
+        "creditsdetails": "Zeige die Credits von MASZ.",
         "community": "Community",
+        "communitydetails": "Besuche den Community-Discord von MASZ.",
         "terms": "Nutzungsbedingungen",
         "privacy": "Datenschutzerklärung",
         "admin": {
             "base": "Admin",
+            "searchdescription": "Erhalte Statistiken zu deiner Anwendung",
             "dashboard": "Dashboard",
             "settings": "Einstellungen",
             "tokens": "Tokens"
         },
         "guild": {
+            "base": "Gilde",
             "dashboard": "Dashboard",
             "cases": "Vorfälle",
             "automods": "Automods",
@@ -40,7 +54,9 @@
                 "motd": "MotD",
                 "auditlog": "Auditlog",
                 "automod": "Automod",
-                "base": "Einstellungen"
+                "base": "Einstellungen",
+                "search": "Gildeneinstellungen",
+                "searchdetails": "Bearbeiten Sie die Einstellungen dieser Gilde."
             }
         },
         "logout": "Abmelden"

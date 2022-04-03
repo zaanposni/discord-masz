@@ -15,20 +15,34 @@
         "and": "and",
         "privacy": "Privacy Policy"
     },
+    "settings": {
+        "base": "Settings",
+        "basedetails": "Adjust your MASZ settings.",
+        "theme": "Theme",
+        "themedetails": "Choose how MASZ looks to you.",
+        "language": "Language",
+        "languagedetails": "Change the language",
+        "autosave": "All settings are automatically saved."
+    },
     "nav": {
         "allguilds": "All Guilds",
         "patchnotes": "Patchnotes",
+        "patchnotesdetails": "view the latest patchnotes of MASZ.",
         "credits": "Credits",
+        "creditsdetails": "view the credits of MASZ.",
         "community": "Community",
+        "communitydetails": "visit the community discord of MASZ.",
         "terms": "Terms",
         "privacy": "Privacy Policy",
         "admin": {
             "base": "Admin",
+            "searchdescription": "View insights of your application",
             "dashboard": "Dashboard",
             "settings": "Settings",
             "tokens": "Tokens"
         },
         "guild": {
+            "base": "Guild",
             "dashboard": "Dashboard",
             "cases": "Cases",
             "automods": "Automods",
@@ -40,7 +54,9 @@
                 "motd": "MotD",
                 "auditlog": "Auditlog",
                 "automod": "Automod",
-                "base": "Settings"
+                "base": "Settings",
+                "search": "Guildsettings",
+                "searchdetails": "Edit the settings of this guild."
             }
         },
         "logout": "Logout"

@@ -15,20 +15,34 @@
         "and": "y",
         "privacy": "Política de privacidad"
     },
+    "settings": {
+        "base": "Ajustes",
+        "basedetails": "Ajuste tus ajustes de MASZ.",
+        "theme": "Tema",
+        "themedetails": "Elige cómo MASZ te va a parecer.",
+        "language": "Idioma",
+        "languagedetails": "Cambiar el idioma",
+        "autosave": "Todos los ajustes se guardan automáticamente."
+    },
     "nav": {
         "allguilds": "Todas las Hermandades",
         "patchnotes": "Notas de la versión",
+        "patchnotesdetails": "Ver las últimas notas de la versión de MASZ.",
         "credits": "Créditos",
+        "creditsdetails": "Ver los créditos de MASZ.",
         "community": "Comunidad",
+        "communitydetails": "Visite la comunidad de Discord de MASZ.",
         "terms": "Términos de servicio",
         "privacy": "Política de privacidad",
         "admin": {
             "base": "Admin",
+            "searchdescription": "Ver insights de tu aplicación",
             "dashboard": "Tablero",
             "settings": "Ajustes",
             "tokens": "Fichas"
         },
         "guild": {
+            "base": "Hermandad",
             "dashboard": "Tablero",
             "cases": "Casos",
             "automods": "Automods",
@@ -40,7 +54,9 @@
                 "motd": "MotD",
                 "auditlog": "Auditlog",
                 "automod": "Automod",
-                "base": "Ajustes"
+                "base": "Ajustes",
+                "search": "Ajustes de hermandad",
+                "searchdetails": "Editar los ajustes de esta hermandad."
             }
         },
         "logout": "Cerrar sesión"

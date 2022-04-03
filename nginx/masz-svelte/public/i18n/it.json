@@ -15,20 +15,34 @@
         "and": "e",
         "privacy": "Informativa sulla privacy"
     },
+    "settings": {
+        "base": "Impostazioni",
+        "basedetails": "Impostazioni MASZ.",
+        "theme": "Tema",
+        "themedetails": "Scegli come MASZ ti appare.",
+        "language": "Lingua",
+        "languagedetails": "Cambia la lingua",
+        "autosave": "Tutte le impostazioni vengono salvate automaticamente."
+    },
     "nav": {
         "allguilds": "Tutte le Gilde",
         "patchnotes": "Note della versione",
+        "patchnotesdetails": "Visualizza le ultime note della versione di MASZ.",
         "credits": "Crediti",
+        "creditsdetails": "Visualizza i crediti di MASZ.",
         "community": "Comunità",
+        "communitydetails": "Visita la comunità di MASZ.",
         "terms": "Termini di servizio",
         "privacy": "Informativa sulla privacy",
         "admin": {
             "base": "Admin",
+            "searchdescription": "Visualizza le statistiche della tua applicazione",
             "dashboard": "Cruscotto",
             "settings": "Impostazioni",
             "tokens": "Token"
         },
         "guild": {
+            "base": "Gilda",
             "dashboard": "Cruscotto",
             "cases": "Casi",
             "automods": "Automods",
@@ -40,7 +54,9 @@
                 "motd": "MotD",
                 "auditlog": "Auditlog",
                 "automod": "Automod",
-                "base": "Impostazioni"
+                "base": "Impostazioni",
+                "search": "Impostazioni gilda",
+                "searchdetails": "Modificare le impostazioni di questa gilda."
             }
         },
         "logout": "Disconnettersi"

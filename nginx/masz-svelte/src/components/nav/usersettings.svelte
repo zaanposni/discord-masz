@@ -5,7 +5,7 @@
     import { LANGUAGES, LOCAL_STORAGE_KEY_LANGUAGE, LOCAL_STORAGE_KEY_THEME } from "../../config";
     import { currentTheme } from "../../stores/theme";
     import { Select, SelectItem } from "carbon-components-svelte";
-    import { locale } from "svelte-i18n";
+    import { locale, _ } from "svelte-i18n";
     import { currentLanguage } from "../../stores/currentLanguage";
 
     const themeSettings = {
@@ -39,13 +39,15 @@
 
 <Modal
     size="sm"
+    selectorPrimaryFocus="#initialfocus"
     open={$showUserSettings}
-    modalHeading="Settings"
-    primaryButtonText="Save"
+    passiveModal
+    modalHeading="{$_('settings.base')}"
     on:close={onModalClose}
     on:submit={onModalClose}>
+    <div id="initialfocus" class="mb-2">{$_('settings.autosave')}</div>
     <Theme select={themeSettings} render="select" persist persistKey={LOCAL_STORAGE_KEY_THEME} />
-    <Select class="mt-4" labelText="Language" on:change={onLanguageSelect} selected={selectedLanguage}>
+    <Select class="mt-2" labelText="{$_('settings.language')}" on:change={onLanguageSelect} selected={selectedLanguage}>
         {#each LANGUAGES as language}
             <SelectItem value={language.language} text={language.displayName} />
         {/each}

@@ -17,8 +17,8 @@ import { APP_VERSION } from "../../../config";
     });
 </script>
 
-<Modal size="sm" open={$showCredits} modalHeading="Credits" passiveModal on:close={onModalClose} on:submit={onModalClose}>
-    <div>MASZ by zaanposni</div>
+<Modal size="sm" open={$showCredits} selectorPrimaryFocus="#maszbyzaanposni" modalHeading="Credits" passiveModal on:close={onModalClose} on:submit={onModalClose}>
+    <div id="maszbyzaanposni">MASZ by zaanposni</div>
     <div>Current version: {APP_VERSION}</div>
     <OutboundLink href="https://github.com/zaanposni/discord-masz">GitHub</OutboundLink>
 

@@ -105,6 +105,78 @@
             "it": "Informativa sulla privacy"
         }
     },
+    "settings": {
+        "base": {
+            "description": "Settings",
+            "en": "Settings",
+            "de": "Einstellungen",
+            "at": "Einstellungen",
+            "fr": "Paramètres",
+            "es": "Ajustes",
+            "ru": "Настройки",
+            "it": "Impostazioni"
+        },
+        "basedetails": {
+            "description": "Settings",
+            "en": "Adjust your MASZ settings.",
+            "de": "Passen Sie Ihre MASZ-Einstellungen an.",
+            "at": "Passen Sie Ihre MASZ-Einstellungen an.",
+            "fr": "Ajustez vos paramètres MASZ.",
+            "es": "Ajuste tus ajustes de MASZ.",
+            "ru": "Настройки MASZ.",
+            "it": "Impostazioni MASZ."
+        },
+        "theme": {
+            "description": "Theme",
+            "en": "Theme",
+            "de": "Thema",
+            "at": "Thema",
+            "fr": "Thème",
+            "es": "Tema",
+            "ru": "Тема",
+            "it": "Tema"
+        },
+        "themedetails": {
+            "description": "Theme details",
+            "en": "Choose how MASZ looks to you.",
+            "de": "Wähle, wie MASZ dir angezeigt wird.",
+            "at": "Wähle, wie MASZ dir angezeigt wird.",
+            "fr": "Choisissez comment MASZ vous apparence.",
+            "es": "Elige cómo MASZ te va a parecer.",
+            "ru": "Выберите, как MASZ вас видит.",
+            "it": "Scegli come MASZ ti appare."
+        },
+        "language": {
+            "description": "Language",
+            "en": "Language",
+            "de": "Sprache",
+            "at": "Sprache",
+            "fr": "Langue",
+            "es": "Idioma",
+            "ru": "Язык",
+            "it": "Lingua"
+        },
+        "languagedetails": {
+            "description": "Language details",
+            "en": "Change the language",
+            "de": "Sprache ändern",
+            "at": "Sprache ändern",
+            "fr": "Changer la langue",
+            "es": "Cambiar el idioma",
+            "ru": "Изменить язык",
+            "it": "Cambia la lingua"
+        },
+        "autosave": {
+            "description": "Autosave",
+            "en": "All settings are automatically saved.",
+            "de": "Alle Einstellungen werden automatisch gespeichert.",
+            "at": "Alle Einstellungen werden automatisch gespeichert.",
+            "fr": "Tous les paramètres sont automatiquement enregistrés.",
+            "es": "Todos los ajustes se guardan automáticamente.",
+            "ru": "Все настройки сохраняются автоматически.",
+            "it": "Tutte le impostazioni vengono salvate automaticamente."
+        }
+    },
     "nav": {
         "allguilds": {
             "description": "All Guilds",
@@ -126,6 +198,16 @@
             "ru": "Изменения версии",
             "it": "Note della versione"
         },
+        "patchnotesdetails": {
+            "description": "Patchnotes",
+            "en": "view the latest patchnotes of MASZ.",
+            "de": "Zeige die letzten Patchnotizen von MASZ.",
+            "at": "Zeige die letzten Patchnotizen von MASZ.",
+            "fr": "Voir les notes de version les plus récentes de MASZ.",
+            "es": "Ver las últimas notas de la versión de MASZ.",
+            "ru": "Просмотреть последние изменения версии MASZ.",
+            "it": "Visualizza le ultime note della versione di MASZ."
+        },
         "credits": {
             "description": "Credits",
             "en": "Credits",
@@ -136,6 +218,16 @@
             "ru": "Благодарности",
             "it": "Crediti"
         },
+        "creditsdetails": {
+            "description": "Credits",
+            "en": "view the credits of MASZ.",
+            "de": "Zeige die Credits von MASZ.",
+            "at": "Zeige die Credits von MASZ.",
+            "fr": "Voir les crédits de MASZ.",
+            "es": "Ver los créditos de MASZ.",
+            "ru": "Просмотреть благодарности MASZ.",
+            "it": "Visualizza i crediti di MASZ."
+        },
         "community": {
             "description": "Community",
             "en": "Community",
@@ -145,6 +237,16 @@
             "es": "Comunidad",
             "ru": "Сообщество",
             "it": "Comunità"
+        },
+        "communitydetails": {
+            "description": "Community",
+            "en": "visit the community discord of MASZ.",
+            "de": "Besuche den Community-Discord von MASZ.",
+            "at": "Besuche den Community-Discord von MASZ.",
+            "fr": "Visitez la communauté discord de MASZ.",
+            "es": "Visite la comunidad de Discord de MASZ.",
+            "ru": "Посетите сообщество MASZ.",
+            "it": "Visita la comunità di MASZ."
         },
         "terms": {
             "description": "Terms of Service",
@@ -168,14 +270,24 @@
         },
         "admin": {
             "base": {
-            "description": "Admin",
-            "en": "Admin",
-            "de": "Admin",
-            "at": "Admin",
-            "fr": "Admin",
-            "es": "Admin",
-            "ru": "Админ",
-            "it": "Admin"
+                "description": "Admin",
+                "en": "Admin",
+                "de": "Admin",
+                "at": "Admin",
+                "fr": "Admin",
+                "es": "Admin",
+                "ru": "Админ",
+                "it": "Admin"
+            },
+            "searchdescription": {
+                "description": "Search",
+                "en": "View insights of your application",
+                "de": "Erhalte Statistiken zu deiner Anwendung",
+                "at": "Erhalte Statistiken zu deiner Anwendung",
+                "fr": "Afficher les statistiques de votre application",
+                "es": "Ver insights de tu aplicación",
+                "ru": "Просмотреть отчеты о вашей приложении",
+                "it": "Visualizza le statistiche della tua applicazione"
             },
             "dashboard": {
                 "description": "Dashboard",
@@ -209,6 +321,16 @@
             }
         },
         "guild": {
+            "base": {
+                "description": "Guild",
+                "en": "Guild",
+                "de": "Gilde",
+                "at": "Gilde",
+                "fr": "Guilde",
+                "es": "Hermandad",
+                "ru": "Гильдия",
+                "it": "Gilda"
+            },
             "dashboard": {
                 "description": "Dashboard",
                 "en": "Dashboard",
@@ -319,6 +441,26 @@
                     "es": "Ajustes",
                     "ru": "Настройки",
                     "it": "Impostazioni"
+                },
+                "search": {
+                    "description": "Search",
+                    "en": "Guildsettings",
+                    "de": "Gildeneinstellungen",
+                    "at": "Gildeneinstellungen",
+                    "fr": "Paramètres de guilde",
+                    "es": "Ajustes de hermandad",
+                    "ru": "Настройки гильдии",
+                    "it": "Impostazioni gilda"
+                },
+                "searchdetails": {
+                    "description": "Search Details",
+                    "en": "Edit the settings of this guild.",
+                    "de": "Bearbeiten Sie die Einstellungen dieser Gilde.",
+                    "at": "Bearbeiten Sie die Einstellungen dieser Gilde.",
+                    "fr": "Modifiez les paramètres de cette guilde.",
+                    "es": "Editar los ajustes de esta hermandad.",
+                    "ru": "Изменить настройки этой гильдии.",
+                    "it": "Modificare le impostazioni di questa gilda."
                 }
             }
         },
@@ -433,7 +575,7 @@
                 "description": "Title",
                 "en": "Automod Split",
                 "de": "Automodaufteilung",
-                "at": "Automodaufteilung",
+                "at": "Automodaufteilung ",
                 "fr": "Séparation automod",
                 "es": "División automod",
                 "ru": "Разделение автомодерации",
