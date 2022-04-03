@@ -94,6 +94,14 @@
             "bans": "Banns",
             "activebans": "Aktive Banns"
         },
+        "guildquicksearch": {
+            "title": "Schnellsuche",
+            "widgetdescription": "Dieses Widget erlaubt dir, schnell nach einem Vorfall, Benutzer oder anderen Ressourcen zu suchen.",
+            "placeholder": "Schnellsuche Benutzer, Vorfälle, Bestrafungen, ...",
+            "searchhistory": "Suchverlauf",
+            "clearhistory": "Verlauf löschen",
+            "noresults": "Keine Ergebnisse gefunden."
+        },
         "dashboardconfig": {
             "title": "Dashboardkonfiguration",
             "widgetdescription": "Dieses Widget hilft dir, dein Dashboard zu konfigurieren.",

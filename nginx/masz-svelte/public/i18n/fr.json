@@ -94,6 +94,14 @@
             "bans": "Bannissements",
             "activebans": "Bannissements actifs"
         },
+        "guildquicksearch": {
+            "title": "Recherche rapide",
+            "widgetdescription": "Ce widget permet de rechercher rapidement un cas, un utilisateur ou d'autres ressources.",
+            "placeholder": "Quicksearch utilisateurs, modcases, punitions, ...",
+            "searchhistory": "Historique de recherche",
+            "clearhistory": "Effacer l'historique",
+            "noresults": "Aucun résultat trouvé."
+        },
         "dashboardconfig": {
             "title": "Configuration du tableau de bord",
             "widgetdescription": "Ce widget vous aide à configurer votre tableau de bord.",

@@ -94,6 +94,14 @@
             "bans": "Ban",
             "activebans": "Ban attivo"
         },
+        "guildquicksearch": {
+            "title": "Ricerca rapida",
+            "widgetdescription": "Questo widget ti permette di cercare rapidamente un caso, un utente o altre risorse.",
+            "placeholder": "Utenti Quicksearch, modcase, punizioni, ...",
+            "searchhistory": "Cronologia della ricerca",
+            "clearhistory": "Cancella cronologia",
+            "noresults": "Nessun risultato trovato."
+        },
         "dashboardconfig": {
             "title": "Configurazione cruscotto",
             "widgetdescription": "Questo widget ti aiuta a configurare il cruscotto.",

@@ -706,6 +706,68 @@
                 "it": "Ban attivo"
             }
         },
+        "guildquicksearch": {
+            "title": {
+                "description": "Title",
+                "en": "Quick Search",
+                "de": "Schnellsuche",
+                "at": "Schnellsuche",
+                "fr": "Recherche rapide",
+                "es": "Búsqueda rápida",
+                "ru": "Быстрый поиск",
+                "it": "Ricerca rapida"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget allows you to quickly search for a case, user or other resources.",
+                "de": "Dieses Widget erlaubt dir, schnell nach einem Vorfall, Benutzer oder anderen Ressourcen zu suchen.",
+                "at": "Dieses Widget erlaubt dir, schnell nach einem Vorfall, Benutzer oder anderen Ressourcen zu suchen.",
+                "fr": "Ce widget permet de rechercher rapidement un cas, un utilisateur ou d'autres ressources.",
+                "es": "Este widget te permite buscar rápidamente un caso, un usuario o otra recurso.",
+                "ru": "Этот виджет позволяет быстро найти случай, пользователя или другие ресурсы.",
+                "it": "Questo widget ti permette di cercare rapidamente un caso, un utente o altre risorse."
+            },
+            "placeholder": {
+                "description": "Placeholder for the search field",
+                "en": "Quicksearch users, cases, punishments, ...",
+                "de": "Schnellsuche Benutzer, Vorfälle, Bestrafungen, ...",
+                "at": "Schnösuche Benutza, Vorfälle, Bestrofungen, ...",
+                "fr": "Quicksearch utilisateurs, modcases, punitions, ...",
+                "es": "Usuarios de Quicksearch, modcases, castigos, ...",
+                "ru": "Пользователи Quicksearch, модкейсы, наказания, ...",
+                "it": "Utenti Quicksearch, modcase, punizioni, ..."
+            },
+            "searchhistory": {
+                "description": "Search History",
+                "en": "Search history",
+                "de": "Suchverlauf",
+                "at": "Suchverlauf",
+                "fr": "Historique de recherche",
+                "es": "Historial de búsqueda",
+                "ru": "История поиска",
+                "it": "Cronologia della ricerca"
+            },
+            "clearhistory": {
+                "description": "Clear History",
+                "en": "Clear history",
+                "de": "Verlauf löschen",
+                "at": "Verlauf löschen",
+                "fr": "Effacer l'historique",
+                "es": "Limpiar historial",
+                "ru": "Очистить историю",
+                "it": "Cancella cronologia"
+            },
+            "noresults": {
+                "description": "No results found",
+                "en": "No results found.",
+                "de": "Keine Ergebnisse gefunden.",
+                "at": "Keine Ergebnisse gefunden.",
+                "fr": "Aucun résultat trouvé.",
+                "es": "No se encontraron resultados.",
+                "ru": "Ничего не найдено.",
+                "it": "Nessun risultato trovato."
+            }
+        },
         "dashboardconfig": {
             "title": {
                 "description": "Title",

@@ -94,6 +94,14 @@
             "bans": "Bans",
             "activebans": "Bans activos"
         },
+        "guildquicksearch": {
+            "title": "Búsqueda rápida",
+            "widgetdescription": "Este widget te permite buscar rápidamente un caso, un usuario o otra recurso.",
+            "placeholder": "Usuarios de Quicksearch, modcases, castigos, ...",
+            "searchhistory": "Historial de búsqueda",
+            "clearhistory": "Limpiar historial",
+            "noresults": "No se encontraron resultados."
+        },
         "dashboardconfig": {
             "title": "Configuración del tablero",
             "widgetdescription": "Este widget te ayuda a configurar tu tablero de mando.",
