@@ -87,7 +87,7 @@
 <DashboardWidget
     lowPaddingMode
     title={$_("widgets.guildautomodsplit.title")}
-    mode={dashboardItem.mode === WidgetMode.x1_1 ? WidgetMode.x1_1 : WidgetMode.x2_1}
+    mode={dashboardItem.mode}
     state={$guildDashboardEnableDragging ? WidgetState.Loading : widgetState}>
     <div style="visibility: hidden" use:chart={options} />
     <div slot="loading">

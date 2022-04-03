@@ -53,6 +53,13 @@
             mode: WidgetMode.x1_1,
             fix: true,
         },
+        {
+            id: "test",
+            translationKey: "test",
+            component: LatestModcases,
+            mode: WidgetMode.x2_2,
+            fix: true,
+        },
     ]);
 
     let localItems: IDashboardItem[];
@@ -99,7 +106,7 @@
     on:finalize={handleDndFinalize}>
     {#if $guildDashboardEnableDragging}
         {#each localItems as item (item.id)}
-            <div animate:flip={{ duration: flipDurationMs }} class={item.mode === WidgetMode.x1_1 ? "col-span-1" : "col-span-1 md:col-span-2"}>
+            <div animate:flip={{ duration: flipDurationMs }} class={item.mode}>
                 <svelte:component this={item.component} dashboardItem={item} />
             </div>
         {/each}

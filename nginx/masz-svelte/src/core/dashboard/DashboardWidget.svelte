@@ -9,6 +9,15 @@
 
     export let mode: WidgetMode = WidgetMode.x1_1;
     export let state: WidgetState = WidgetState.Normal;
+    let ratio;
+    $: switch(mode) {
+        case WidgetMode.x2_1:
+            ratio = "2x1";
+            break;
+        default:
+            ratio = "1x1";
+            break;
+    }
 
     export let title: string = "Title";
     export let link: string | null = null;
@@ -68,7 +77,7 @@
 
 <!-- If we are on a small screen the aspect ratio should always be 1x1 to prevent "smaller neighbors" -->
 <MediaQuery query="(min-width: 768px)" let:matches>
-    <AspectRatio ratio={matches ? mode : "1x1"} class={mode === WidgetMode.x1_1 ? "col-span-1" : "col-span-1 md:col-span-2"}>
+    <AspectRatio ratio={matches ? ratio : "1x1"} class={mode}>
         <div class="flex flex-col dash-widget h-full" class:unnormal={state !== WidgetState.Normal && state !== WidgetState.Loading}>
             <div class="dash-widget-title">
                 {title}

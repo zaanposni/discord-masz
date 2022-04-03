@@ -32,7 +32,7 @@
 
 <DashboardWidget
     title={$_("widgets.guildstats.title")}
-    mode={dashboardItem.mode === WidgetMode.x1_1 ? WidgetMode.x1_1 : WidgetMode.x2_1}
+    mode={dashboardItem.mode}
     state={$guildDashboardEnableDragging ? WidgetState.Loading : widgetState}>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">

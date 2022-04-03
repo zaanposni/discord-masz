@@ -36,7 +36,7 @@
 <MediaQuery query="(min-width: 768px)" let:matches>
     <DashboardWidget
         title={$_("widgets.latestcases.title")}
-        mode={dashboardItem.mode === WidgetMode.x1_1 ? WidgetMode.x1_1 : WidgetMode.x2_1}
+        mode={dashboardItem.mode}
         state={$guildDashboardEnableDragging ? WidgetState.Loading : widgetState}>
         {#each cases as entry}
             <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2.5rem">
