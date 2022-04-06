@@ -39,10 +39,10 @@
             {$_("widgets.guildpunishmentstats.warns")}
         </div>
         <div class="flex flex-row items-center">
-            <div class="mr-1" title={`${stats?.warnCount} ${$_('widgets.guildpunishmentstats.warns')}`}>
+            <div class="mr-1" title={`${stats?.warnCount} ${$_("widgets.guildpunishmentstats.warns")}`}>
                 {stats?.warnCount}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.warnCount} ${$_('widgets.guildpunishmentstats.warns')}`} />
+            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.warnCount} ${$_("widgets.guildpunishmentstats.warns")}`} />
         </div>
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
@@ -50,14 +50,19 @@
             {$_("widgets.guildpunishmentstats.mutes")}
         </div>
         <div class="flex flex-row items-center">
-            <div class="mr-1" title={`${stats?.activeMuteCount} ${$_('widgets.guildpunishmentstats.activemutes')}`}>
-                {stats?.activeMuteCount}
-            </div>
-            <CheckmarkFilled16 class="mr-3" style="fill: var(--cds-support-success)" title={`${stats?.activeMuteCount} ${$_('widgets.guildpunishmentstats.activemutes')}`} />
-            <div class="mr-1" title={`${stats?.muteCount} ${$_('widgets.guildpunishmentstats.mutes')}`}>
+            {#if stats?.activeMuteCount}
+                <div class="mr-1" title={`${stats?.activeMuteCount} ${$_("widgets.guildpunishmentstats.activemutes")}`}>
+                    {stats?.activeMuteCount}
+                </div>
+                <CheckmarkFilled16
+                    class="mr-3"
+                    style="fill: var(--cds-support-success)"
+                    title={`${stats?.activeMuteCount} ${$_("widgets.guildpunishmentstats.activemutes")}`} />
+            {/if}
+            <div class="mr-1" title={`${stats?.muteCount} ${$_("widgets.guildpunishmentstats.mutes")}`}>
                 {stats?.muteCount}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.muteCount} ${$_('widgets.guildpunishmentstats.mutes')}`} />
+            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.muteCount} ${$_("widgets.guildpunishmentstats.mutes")}`} />
         </div>
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
@@ -65,10 +70,10 @@
             {$_("widgets.guildpunishmentstats.kicks")}
         </div>
         <div class="flex flex-row items-center">
-            <div class="mr-1" title={`${stats?.kickCount} ${$_('widgets.guildpunishmentstats.kicks')}`}>
+            <div class="mr-1" title={`${stats?.kickCount} ${$_("widgets.guildpunishmentstats.kicks")}`}>
                 {stats?.kickCount}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.kickCount} ${$_('widgets.guildpunishmentstats.kicks')}`} />
+            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.kickCount} ${$_("widgets.guildpunishmentstats.kicks")}`} />
         </div>
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
@@ -76,14 +81,19 @@
             {$_("widgets.guildpunishmentstats.bans")}
         </div>
         <div class="flex flex-row items-center">
-            <div class="mr-1" title={`${stats?.activeBanCount} ${$_('widgets.guildpunishmentstats.activebans')}`}>
-                {stats?.activeBanCount}
-            </div>
-            <CheckmarkFilled16 class="mr-3" style="fill: var(--cds-support-success)" title={`${stats?.activeBanCount} ${$_('widgets.guildpunishmentstats.activebans')}`} />
-            <div class="mr-1" title={`${stats?.banCount} ${$_('widgets.guildpunishmentstats.bans')}`}>
+            {#if stats?.activeBanCount}
+                <div class="mr-1" title={`${stats?.activeBanCount} ${$_("widgets.guildpunishmentstats.activebans")}`}>
+                    {stats?.activeBanCount}
+                </div>
+                <CheckmarkFilled16
+                    class="mr-3"
+                    style="fill: var(--cds-support-success)"
+                    title={`${stats?.activeBanCount} ${$_("widgets.guildpunishmentstats.activebans")}`} />
+            {/if}
+            <div class="mr-1" title={`${stats?.banCount} ${$_("widgets.guildpunishmentstats.bans")}`}>
                 {stats?.banCount}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.banCount} ${$_('widgets.guildpunishmentstats.bans')}`} />
+            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.banCount} ${$_("widgets.guildpunishmentstats.bans")}`} />
         </div>
     </div>
     <div slot="loading">
