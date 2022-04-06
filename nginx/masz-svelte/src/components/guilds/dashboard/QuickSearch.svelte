@@ -53,6 +53,7 @@
                     .catch((err) => {
                         toastError("Something went wrong.");
                         searching = false;
+                        searchDone = true;
                     });
             }, 500);
         } else {
