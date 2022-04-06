@@ -100,7 +100,9 @@
             "placeholder": "Quicksearch utilisateurs, modcases, punitions, ...",
             "searchhistory": "Historique de recherche",
             "clearhistory": "Effacer l'historique",
-            "noresults": "Aucun résultat trouvé."
+            "noresults": "Aucun résultat trouvé.",
+            "searching": "Recherche en cours...",
+            "searchfailed": "La recherche a échoué."
         },
         "dashboardconfig": {
             "title": "Configuration du tableau de bord",
@@ -114,6 +116,7 @@
             "configurewidgets": "Configurer les widgets"
         }
     },
+    "error": "Erreur",
     "enums": {
         "punishmenttype": {
             "mute": "Muet",

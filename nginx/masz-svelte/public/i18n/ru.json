@@ -100,7 +100,9 @@
             "placeholder": "Пользователи Quicksearch, модкейсы, наказания, ...",
             "searchhistory": "История поиска",
             "clearhistory": "Очистить историю",
-            "noresults": "Ничего не найдено."
+            "noresults": "Ничего не найдено.",
+            "searching": "Поиск...",
+            "searchfailed": "Поиск не удался."
         },
         "dashboardconfig": {
             "title": "Конфигурация панели управления",
@@ -114,6 +116,7 @@
             "configurewidgets": "Настроить виджеты"
         }
     },
+    "error": "Ошибка",
     "enums": {
         "punishmenttype": {
             "mute": "Немой",

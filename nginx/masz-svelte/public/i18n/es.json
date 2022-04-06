@@ -100,7 +100,9 @@
             "placeholder": "Usuarios de Quicksearch, modcases, castigos, ...",
             "searchhistory": "Historial de búsqueda",
             "clearhistory": "Limpiar historial",
-            "noresults": "No se encontraron resultados."
+            "noresults": "No se encontraron resultados.",
+            "searching": "Buscando...",
+            "searchfailed": "La búsqueda falló."
         },
         "dashboardconfig": {
             "title": "Configuración del tablero",
@@ -114,6 +116,7 @@
             "configurewidgets": "Configurar widgets"
         }
     },
+    "error": "Error",
     "enums": {
         "punishmenttype": {
             "mute": "Silencio",

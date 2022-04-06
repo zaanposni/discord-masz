@@ -766,6 +766,26 @@
                 "es": "No se encontraron resultados.",
                 "ru": "Ничего не найдено.",
                 "it": "Nessun risultato trovato."
+            },
+            "searching": {
+                "description": "Searching...",
+                "en": "Searching...",
+                "de": "Suche...",
+                "at": "Suche...",
+                "fr": "Recherche en cours...",
+                "es": "Buscando...",
+                "ru": "Поиск...",
+                "it": "Ricerca in corso..."
+            },
+            "searchfailed": {
+                "description": "Search failed",
+                "en": "Search failed.",
+                "de": "Suche fehlgeschlagen.",
+                "at": "Suche fehlgeschlagen.",
+                "fr": "La recherche a échoué.",
+                "es": "La búsqueda falló.",
+                "ru": "Поиск не удался.",
+                "it": "La ricerca non è riuscita."
             }
         },
         "dashboardconfig": {
@@ -860,5 +880,15 @@
                 "it": "Configura i widget"
             }
         }
+    },
+    "error": {
+        "description": "Error",
+        "en": "Error",
+        "de": "Fehler",
+        "at": "Fehler",
+        "fr": "Erreur",
+        "es": "Error",
+        "ru": "Ошибка",
+        "it": "Errore"
     }
 }

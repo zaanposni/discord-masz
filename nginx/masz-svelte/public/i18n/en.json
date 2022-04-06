@@ -100,7 +100,9 @@
             "placeholder": "Quicksearch users, cases, punishments, ...",
             "searchhistory": "Search history",
             "clearhistory": "Clear history",
-            "noresults": "No results found."
+            "noresults": "No results found.",
+            "searching": "Searching...",
+            "searchfailed": "Search failed."
         },
         "dashboardconfig": {
             "title": "Dashboard config",
@@ -114,6 +116,7 @@
             "configurewidgets": "Configure widgets"
         }
     },
+    "error": "Error",
     "enums": {
         "punishmenttype": {
             "mute": "Mute",

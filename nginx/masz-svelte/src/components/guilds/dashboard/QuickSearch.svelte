@@ -6,7 +6,7 @@
     import API from "../../../services/api/api";
     import { currentParams } from "../../../stores/currentParams";
     import { CacheMode } from "../../../services/api/CacheMode";
-    import { Link, SkeletonText, Truncate } from "carbon-components-svelte";
+    import { InlineLoading, InlineNotification, Link, SkeletonText, Truncate } from "carbon-components-svelte";
     import PunishmentTag from "../../api/PunishmentTag.svelte";
     import UserIcon from "../../discord/UserIcon.svelte";
     import { Launch20 } from "carbon-icons-svelte";
@@ -87,7 +87,8 @@
             {#if searchResults?.cases?.length != 0 || searchResults?.userMappingViews?.length != 0 || searchResults?.userNoteView != null}
                 <!-- TODO: show usernote -->
                 <!-- TODO: show usermaps -->
-                <div class="flex flex-col mt-4">
+
+                <div class="flex flex-col">
                     {#each searchResults.cases as entry (entry.modCase.id)}
                         <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2.5rem">
                             <div class="grow shrink-0 mr-1">
@@ -105,7 +106,7 @@
                 </div>
             {:else if $searchHistory && !searchValue}
                 <div class="flex flex-row my-4 pb-2" style="border-bottom: 1px solid var(--cds-ui-03, #f0f3f6);">
-                    <div>{$_('widgets.guildquicksearch.searchhistory')} ({$searchHistory.length})</div>
+                    <div>{$_("widgets.guildquicksearch.searchhistory")} ({$searchHistory.length})</div>
                     <div class="grow" />
                     {#if $searchHistory.length}
                         <div
@@ -113,7 +114,7 @@
                             on:click={() => {
                                 clearSearchHistory($currentParams.guildId);
                             }}>
-                            {$_('widgets.guildquicksearch.clearhistory')}
+                            {$_("widgets.guildquicksearch.clearhistory")}
                         </div>
                     {/if}
                 </div>
@@ -130,14 +131,19 @@
                     </div>
                 {/each}
             {:else if searchDone && searchValue}
-                <div class="flex flex-col items-center justify-center w-full h-full">
-                    <Robot />
-                    <div class="h-4" />
-                    <div>{$_('widgets.guildquicksearch.noresults')}</div>
+                <div class="flex flex-row my-4 pb-2" style="border-bottom: 1px solid var(--cds-ui-03, #f0f3f6);">
+                    <InlineLoading status="error" description={$_("widgets.guildquicksearch.searchfailed")} />
                 </div>
+                <InlineNotification
+                  title={$_("error")}
+                  subtitle={$_("widgets.guildquicksearch.noresults")}
+                />
             {/if}
         {:else}
-            <div class="dash-widget-list-border flex items-center mt-4" style="height: 2.5rem">
+            <div class="flex flex-row my-4 pb-2" style="border-bottom: 1px solid var(--cds-ui-03, #f0f3f6);">
+                <InlineLoading description={$_("widgets.guildquicksearch.searching")} />
+            </div>
+            <div class="dash-widget-list-border flex items-center" style="height: 2.5rem">
                 <SkeletonText />
             </div>
             <div class="dash-widget-list-border flex items-center" style="height: 2.5rem">

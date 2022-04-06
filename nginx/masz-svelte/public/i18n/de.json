@@ -100,7 +100,9 @@
             "placeholder": "Schnellsuche Benutzer, Vorfälle, Bestrafungen, ...",
             "searchhistory": "Suchverlauf",
             "clearhistory": "Verlauf löschen",
-            "noresults": "Keine Ergebnisse gefunden."
+            "noresults": "Keine Ergebnisse gefunden.",
+            "searching": "Suche...",
+            "searchfailed": "Suche fehlgeschlagen."
         },
         "dashboardconfig": {
             "title": "Dashboardkonfiguration",
@@ -114,6 +116,7 @@
             "configurewidgets": "Widgets konfigurieren"
         }
     },
+    "error": "Fehler",
     "enums": {
         "punishmenttype": {
             "mute": "Stummschaltung",

@@ -100,7 +100,9 @@
             "placeholder": "Utenti Quicksearch, modcase, punizioni, ...",
             "searchhistory": "Cronologia della ricerca",
             "clearhistory": "Cancella cronologia",
-            "noresults": "Nessun risultato trovato."
+            "noresults": "Nessun risultato trovato.",
+            "searching": "Ricerca in corso...",
+            "searchfailed": "La ricerca non è riuscita."
         },
         "dashboardconfig": {
             "title": "Configurazione cruscotto",
@@ -114,6 +116,7 @@
             "configurewidgets": "Configura i widget"
         }
     },
+    "error": "Errore",
     "enums": {
         "punishmenttype": {
             "mute": "Muto",
