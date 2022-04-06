@@ -21,13 +21,20 @@
     import GuildStats from "../../../components/guilds/dashboard/GuildStats.svelte";
     import GuildAutomodSplit from "../../../components/guilds/dashboard/GuildAutomodSplit.svelte";
     import ModeratorCaseChart from "../../../components/guilds/dashboard/ModeratorCaseChart.svelte";
-import QuickSearch from "../../../components/guilds/dashboard/QuickSearch.svelte";
+    import QuickSearch from "../../../components/guilds/dashboard/QuickSearch.svelte";
+    import LatestAppeals from "../../../components/guilds/dashboard/LatestAppeals.svelte";
 
     guildDashboardItems.set([
         {
             id: "latest-modcases",
             translationKey: "latestcases",
             component: LatestModcases,
+            mode: WidgetMode.x2_1,
+        },
+        {
+            id: "latest-appeals",
+            translationKey: "latestappeals",
+            component: LatestAppeals,
             mode: WidgetMode.x2_1,
         },
         {
@@ -58,7 +65,7 @@ import QuickSearch from "../../../components/guilds/dashboard/QuickSearch.svelte
             id: "guild-quicksearch",
             translationKey: "guildquicksearch",
             component: QuickSearch,
-            mode: WidgetMode.x2_2
+            mode: WidgetMode.x2_2,
         },
         {
             id: "guild-dashboard-config",

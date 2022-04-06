@@ -66,6 +66,10 @@
             "title": "Ultimi casi",
             "widgetdescription": "Questo widget mostra gli ultimi casi della tua gilda."
         },
+        "latestappeals": {
+            "title": "Ultimi appelli",
+            "widgetdescription": "Questo widget mostra gli ultimi appelli della tua gilda."
+        },
         "guildmoderatorcases": {
             "title": "Casi per moderatore",
             "widgetdescription": "Questo widget mostra tutti i casi per moderatore della tua gilda.",

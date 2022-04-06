@@ -66,6 +66,10 @@
             "title": "Últimos casos",
             "widgetdescription": "Este widget muestra los últimos casos de tu hermandad."
         },
+        "latestappeals": {
+            "title": "Últimos apelaciones",
+            "widgetdescription": "Este widget muestra los últimos apelaciones de tu hermandad."
+        },
         "guildmoderatorcases": {
             "title": "Casos por moderador",
             "widgetdescription": "Este widget muestra todos los casos por moderador de tu hermandad.",

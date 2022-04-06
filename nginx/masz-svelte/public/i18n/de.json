@@ -66,6 +66,10 @@
             "title": "Neueste Vorfälle",
             "widgetdescription": "Dieses Widget zeigt die neuesten Vorfälle in deiner Gilde."
         },
+        "latestappeals": {
+            "title": "Neueste Entbannungsanträge",
+            "widgetdescription": "Dieses Widget zeigt die neuesten Entbannungsanträge in deiner Gilde."
+        },
         "guildmoderatorcases": {
             "title": "Vorfälle nach Moderator",
             "widgetdescription": "Dieses Widget zeigt alle Vorfälle nach Moderator in deiner Gilde.",

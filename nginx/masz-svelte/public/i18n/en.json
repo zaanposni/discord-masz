@@ -66,6 +66,10 @@
             "title": "Latest Cases",
             "widgetdescription": "This widget shows the latest cases in your guild."
         },
+        "latestappeals": {
+            "title": "Latest appeals",
+            "widgetdescription": "This widget shows the latest appeals in your guild."
+        },
         "guildmoderatorcases": {
             "title": "Cases by moderator",
             "widgetdescription": "This widget shows all cases by moderator in your guild.",

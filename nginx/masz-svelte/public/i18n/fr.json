@@ -66,6 +66,10 @@
             "title": "Derniers cas",
             "widgetdescription": "Ce widget affiche les derniers cas de votre guilde."
         },
+        "latestappeals": {
+            "title": "Derniers appels",
+            "widgetdescription": "Ce widget affiche les derniers appels de votre guilde."
+        },
         "guildmoderatorcases": {
             "title": "Cas par modérateur",
             "widgetdescription": "Ce widget affiche tous les cas par modérateur de votre guilde.",

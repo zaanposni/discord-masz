@@ -498,6 +498,28 @@
                 "it": "Questo widget mostra gli ultimi casi della tua gilda."
             }
         },
+        "latestappeals": {
+            "title": {
+                "description": "Title",
+                "en": "Latest appeals",
+                "de": "Neueste Entbannungsanträge",
+                "at": "Neueste Entbannungsanträge",
+                "fr": "Derniers appels",
+                "es": "Últimos apelaciones",
+                "ru": "Последние обращения",
+                "it": "Ultimi appelli"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows the latest appeals in your guild.",
+                "de": "Dieses Widget zeigt die neuesten Entbannungsanträge in deiner Gilde.",
+                "at": "Dieses Widget zeigt die neuesten Entbannungsanträge in deiner Gilde.",
+                "fr": "Ce widget affiche les derniers appels de votre guilde.",
+                "es": "Este widget muestra los últimos apelaciones de tu hermandad.",
+                "ru": "Этот виджет показывает последние обращения в вашей гильдии.",
+                "it": "Questo widget mostra gli ultimi appelli della tua gilda."
+            }
+        },
         "guildmoderatorcases": {
             "title": {
                 "description": "Title",
