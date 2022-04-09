@@ -49,8 +49,8 @@
                 enabled: true,
             },
         },
-        series: [],
-        labels: [],
+        series: localData.map((entry) => entry.count),
+        labels: localData.map((entry) => getAutomodNameByTypeId(entry.type)),
         dataLabels: {
             enabled: false,
         },
@@ -76,12 +76,6 @@
                 widgetState = WidgetState.Error;
             });
     }
-
-    $: $currentLanguage && localData.length ? applyLocalData() : undefined;
-    function applyLocalData() {
-        options.series = localData.map((entry) => entry.count);
-        options.labels = localData.map((entry) => getAutomodNameByTypeId(entry.type));
-    }
 </script>
 
 <DashboardWidget
@@ -89,7 +83,7 @@
     title={$_("widgets.guildautomodsplit.title")}
     mode={dashboardItem.mode}
     state={$guildDashboardEnableDragging ? WidgetState.Loading : widgetState}>
-    <div style="visibility: hidden" use:chart={options} />
+    <div style="" use:chart={options} />
     <div slot="loading">
         <div class="dash-widget-list-border flex items-center" style="height: 2rem">
             <SkeletonText />
