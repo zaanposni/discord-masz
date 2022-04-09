@@ -70,11 +70,14 @@ index_html = index_html.replace(
 with open("public/index.html", "w") as fh:
     fh.write(index_html)
 
-console.log("Writing languages hashes to bundle.js and bundle.js.map ...")
+console.log("Writing hashes to bundle.js and bundle.js.map ...")
 for lang in languages_hashes:
     main_js = main_js.replace(
         f"/i18n/{lang}.json", f"/i18n/{lang}-{languages_hashes[lang]}.json"
+    ).replace(
+        "sourceMappingURL=bundle.js.map", f"sourceMappingURL=bundle-{main_js_map_hash}.js.map"
     )
+
     main_js_map = main_js_map.replace(
         f"/i18n/{lang}.json", f"/i18n/{lang}-{languages_hashes[lang]}.json"
     )
