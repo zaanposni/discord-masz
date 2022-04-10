@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 import { API_CACHE_CLEAR_LIFETIME, API_CACHE_ENABLE, API_CACHE_LIFETIME, API_URL, APP_BASE_URL, ENABLE_CORS } from "../../config";
 import { CacheMode } from "./CacheMode";
 
@@ -9,6 +10,30 @@ const axiosStaticAPI = axios.create({
     baseURL: APP_BASE_URL
 });
 const axiosAssetAPI = axios.create();
+
+const isoDateFormat = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.[\dZ]*)?$/;
+
+function isIsoDateString(value: any): boolean {
+  return value && typeof value === "string" && isoDateFormat.test(value);
+}
+
+const utfOffset = new Date().getTimezoneOffset() * -1;
+
+export function handleDates(body: any) {
+  if (body === null || body === undefined || typeof body !== "object")
+    return body;
+
+  for (const key of Object.keys(body)) {
+    const value = body[key];
+    if (isIsoDateString(value)) body[key] = moment(value).utc(value.indexOf('Z') < 1).utcOffset(utfOffset);
+    else if (typeof value === "object") handleDates(value);
+  }
+}
+
+axiosAPI.interceptors.response.use(originalResponse => {
+    handleDates(originalResponse.data);
+    return originalResponse;
+});
 
 const getAsset = (url) => {
     return axiosAssetAPI({
@@ -66,7 +91,9 @@ function getResponseFromCache(method, url) {
     if (item) {
         const json = JSON.parse(item);
         if (Date.now() - json.timestamp < API_CACHE_LIFETIME) {
-            return json.response;
+            let rep = json.response;
+            handleDates(rep);
+            return rep;
         } else {
             localStorage.removeItem(`apicache:${method}:${url}`);
         }
