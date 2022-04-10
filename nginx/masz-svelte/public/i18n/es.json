@@ -92,6 +92,10 @@
             "title": "Resumen de casos",
             "widgetdescription": "Este widget muestra el resumen de los casos de tu hermandad."
         },
+        "guildappealcountchart": {
+            "title": "Resumen de quejas",
+            "widgetdescription": "Este widget muestra el resumen de las quejas de tu hermandad."
+        },
         "guildpunishmentstats": {
             "title": "Estadísticas de castigos",
             "widgetdescription": "Este widget muestra las estadísticas de castigos de tu hermandad.",

@@ -668,6 +668,28 @@
                 "it": "Questo widget mostra la panoramica dei casi della tua gilda."
             }
         },
+        "guildappealcountchart": {
+            "title": {
+                "description": "Title",
+                "en": "Appeal overview",
+                "de": "Entbannungsantragsübersicht",
+                "at": "Entbannungsantragsübersicht",
+                "fr": "Aperçu des appels",
+                "es": "Resumen de quejas",
+                "ru": "Обзор жалоб",
+                "it": "Panoramica appelli"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows the appeal overview of your guild.",
+                "de": "Dieses Widget zeigt die Übersicht der Entbannungsanträge in deiner Gilde.",
+                "at": "Dieses Widget zeigt die Übersicht der Entbannungsanträge in deiner Gilde.",
+                "fr": "Ce widget affiche l'aperçu des appels de votre guilde.",
+                "es": "Este widget muestra el resumen de las quejas de tu hermandad.",
+                "ru": "Этот виджет показывает обзор жалоб в вашей гильдии.",
+                "it": "Questo widget mostra la panoramica degli appelli della tua gilda."
+            }
+        },
         "guildpunishmentstats": {
             "title": {
                 "description": "Title",

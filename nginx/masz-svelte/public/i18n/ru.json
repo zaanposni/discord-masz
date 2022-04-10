@@ -92,6 +92,10 @@
             "title": "Обзор дел",
             "widgetdescription": "Этот виджет показывает обзор дел в вашей гильдии."
         },
+        "guildappealcountchart": {
+            "title": "Обзор жалоб",
+            "widgetdescription": "Этот виджет показывает обзор жалоб в вашей гильдии."
+        },
         "guildpunishmentstats": {
             "title": "Статистика наказаний",
             "widgetdescription": "Этот виджет показывает статистику наказаний в вашей гильдии.",

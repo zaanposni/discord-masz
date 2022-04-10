@@ -92,6 +92,10 @@
             "title": "Aperçu des cas",
             "widgetdescription": "Ce widget affiche l'aperçu des cas de votre guilde."
         },
+        "guildappealcountchart": {
+            "title": "Aperçu des appels",
+            "widgetdescription": "Ce widget affiche l'aperçu des appels de votre guilde."
+        },
         "guildpunishmentstats": {
             "title": "Statistiques de punition",
             "widgetdescription": "Ce widget affiche les statistiques de punition de votre guilde.",

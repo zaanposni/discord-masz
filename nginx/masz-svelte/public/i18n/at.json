@@ -92,6 +92,10 @@
             "title": "Vorfallsübersicht",
             "widgetdescription": "Dieses Widget zeigt die Übersicht der Vorfälle in deiner Gilde."
         },
+        "guildappealcountchart": {
+            "title": "Entbannungsantragsübersicht",
+            "widgetdescription": "Dieses Widget zeigt die Übersicht der Entbannungsanträge in deiner Gilde."
+        },
         "guildpunishmentstats": {
             "title": "Bestrafungsstatistiken",
             "widgetdescription": "Dieses Widget zeigt die Bestrafungsstatistiken deiner Gilde.",

@@ -92,6 +92,10 @@
             "title": "Case overview",
             "widgetdescription": "This widget shows the case overview of your guild."
         },
+        "guildappealcountchart": {
+            "title": "Appeal overview",
+            "widgetdescription": "This widget shows the appeal overview of your guild."
+        },
         "guildpunishmentstats": {
             "title": "Punishment Stats",
             "widgetdescription": "This widget shows the punishment stats of your guild.",
