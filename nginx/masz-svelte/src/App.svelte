@@ -10,7 +10,9 @@
     import { currentLanguage } from "./stores/currentLanguage";
     import { applicationInfo } from "./stores/applicationInfo";
     import { CacheMode } from "./services/api/CacheMode";
-
+    import moment from "moment";
+    import 'moment/min/locales';
+    
     register("en", () => {
         return API.getAsset("/i18n/en.json");
     });
@@ -51,6 +53,7 @@
         let language;
         if (languageLocalStorage) {
             locale.set(languageLocalStorage);
+            moment.locale(languageLocalStorage);
             language = LANGUAGES.find((l) => l.language === languageLocalStorage);
         } else {
             language = LANGUAGES.find((l) => l.language === $locale);

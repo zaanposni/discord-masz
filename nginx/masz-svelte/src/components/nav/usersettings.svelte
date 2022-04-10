@@ -7,6 +7,7 @@
     import { Select, SelectItem } from "carbon-components-svelte";
     import { locale, _ } from "svelte-i18n";
     import { currentLanguage } from "../../stores/currentLanguage";
+import moment from "moment";
 
     const themeSettings = {
         themes: ["white", "g10", "g90", "g100"],
@@ -30,6 +31,7 @@
             const language = LANGUAGES.find((l) => l.language === detail);
             if (language) {
                 locale.set(language.language);
+                moment.locale(language.language);
                 currentLanguage.set(language);
             }
         }

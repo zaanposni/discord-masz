@@ -712,6 +712,28 @@
                 "it": "Questo widget mostra la panoramica dell'automod della tua gilda."
             }
         },
+        "guildpendingmessages": {
+            "title": {
+                "description": "Title",
+                "en": "Pending messages",
+                "de": "Ausstehende Nachrichten",
+                "at": "Ausstehende Nachrichten",
+                "fr": "Messages en attente",
+                "es": "Mensajes pendientes",
+                "ru": "Ожидающие сообщения",
+                "it": "Messaggi in attesa"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows the pending messages of your guild.",
+                "de": "Dieses Widget zeigt die ausstehenden Nachrichten in deiner Gilde.",
+                "at": "Dieses Widget zeigt die ausstehenden Nachrichten in deiner Gilde.",
+                "fr": "Ce widget affiche les messages en attente de votre guilde.",
+                "es": "Este widget muestra los mensajes pendientes de tu hermandad.",
+                "ru": "Этот виджет показывает ожидающие сообщения в вашей гильдии.",
+                "it": "Questo widget mostra i messaggi in attesa della tua gilda."
+            }
+        },
         "guildpunishmentstats": {
             "title": {
                 "description": "Title",

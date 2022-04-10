@@ -100,6 +100,10 @@
             "title": "Automod overview",
             "widgetdescription": "This widget shows the automod overview of your guild."
         },
+        "guildpendingmessages": {
+            "title": "Pending messages",
+            "widgetdescription": "This widget shows the pending messages of your guild."
+        },
         "guildpunishmentstats": {
             "title": "Punishment Stats",
             "widgetdescription": "This widget shows the punishment stats of your guild.",

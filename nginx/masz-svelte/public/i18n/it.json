@@ -100,6 +100,10 @@
             "title": "Panoramica automod",
             "widgetdescription": "Questo widget mostra la panoramica dell'automod della tua gilda."
         },
+        "guildpendingmessages": {
+            "title": "Messaggi in attesa",
+            "widgetdescription": "Questo widget mostra i messaggi in attesa della tua gilda."
+        },
         "guildpunishmentstats": {
             "title": "Statistiche del castigo",
             "widgetdescription": "Questo widget mostra le statistiche del castigo della tua gilda.",

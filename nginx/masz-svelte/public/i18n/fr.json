@@ -100,6 +100,10 @@
             "title": "Aperçu des automodérations",
             "widgetdescription": "Ce widget affiche l'aperçu des automodérations de votre guilde."
         },
+        "guildpendingmessages": {
+            "title": "Messages en attente",
+            "widgetdescription": "Ce widget affiche les messages en attente de votre guilde."
+        },
         "guildpunishmentstats": {
             "title": "Statistiques de punition",
             "widgetdescription": "Ce widget affiche les statistiques de punition de votre guilde.",
