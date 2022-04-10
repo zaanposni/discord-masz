@@ -966,7 +966,7 @@ namespace MASZ.Services
 
         public async Task HandleThreadCreated(SocketThreadChannel thread)
         {
-            if (await CheckForIgnoredChannel(thread.Guild.Id, GuildAuditLogEvent.MessageUpdated, thread.ParentChannel.Id))
+            if (await CheckForIgnoredChannel(thread.Guild.Id, GuildAuditLogEvent.ThreadCreated, thread.ParentChannel.Id))
             {
                 return;
             }
@@ -979,7 +979,7 @@ namespace MASZ.Services
             StringBuilder description = new();
             description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {thread.Name} - {thread.Mention}");
             description.AppendLine($"> **{translator.T().GuildAuditLogThreadCreatedParent()}:** {thread.ParentChannel.Name} - <#{thread.ParentChannel.Id}>");
-            description.AppendLine($"> **{translator.T().GuildAuditLogThreadCreatedCreator()}:** <@{thread.Owner}>");
+            description.AppendLine($"> **{translator.T().GuildAuditLogThreadCreatedCreator()}:** {thread.Owner.Mention}");
 
             var embed = new EmbedBuilder()
                  .WithTitle(translator.T().GuildAuditLogThreadCreatedTitle())
