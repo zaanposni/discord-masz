@@ -978,7 +978,7 @@ namespace MASZ.Services
 
             StringBuilder description = new();
             description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {thread.Name} - {thread.Mention}");
-            description.AppendLine($"> **{translator.T().GuildAuditLogThreadCreatedParent()}:** {thread.ParentChannel.Name} - {thread.ParentChannel.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogThreadCreatedParent()}:** {thread.ParentChannel.Name} - <#{thread.ParentChannel.Id}>");
             description.AppendLine($"> **{translator.T().GuildAuditLogThreadCreatedCreator()}:** <@{thread.Owner}>");
 
             var embed = new EmbedBuilder()
