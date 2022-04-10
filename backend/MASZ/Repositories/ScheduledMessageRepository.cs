@@ -24,6 +24,11 @@ namespace MASZ.Repositories
             return await Database.GetDueMessages();
         }
 
+        public async Task<List<ScheduledMessage>> GetPendingMessages(ulong guildId)
+        {
+            return await Database.GetPendingMessages(guildId);
+        }
+
         public async Task<List<ScheduledMessage>> GetAllMessages(ulong guildId, int page = 0)
         {
             return await Database.GetScheduledMessages(guildId, page);

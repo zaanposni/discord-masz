@@ -724,6 +724,11 @@ namespace MASZ.Data
             return await context.ScheduledMessages.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.Id).Skip(page * 20).Take(20).ToListAsync();
         }
 
+        public async Task<List<ScheduledMessage>> GetPendingMessages(ulong guildId)
+        {
+            return await context.ScheduledMessages.AsQueryable().Where(x => x.Status == ScheduledMessageStatus.Pending && x.GuildId == guildId).OrderByDescending(x => x.ScheduledFor).ToListAsync();
+        }
+
         public async Task<List<ScheduledMessage>> GetDueMessages()
         {
             return await context.ScheduledMessages.AsQueryable().Where(x => x.Status == ScheduledMessageStatus.Pending && x.ScheduledFor < DateTime.UtcNow).ToListAsync();
