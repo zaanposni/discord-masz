@@ -36,18 +36,18 @@
     state={$guildDashboardEnableDragging ? WidgetState.Loading : widgetState}>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
-            {$_("widgets.warns")}
+            {$_("warns")}
         </div>
         <div class="flex flex-row items-center">
-            <div class="mr-1" title={`${stats?.warnCount} ${$_("widgets.warns")}`}>
+            <div class="mr-1" title={`${stats?.warnCount} ${$_("warns")}`}>
                 {stats?.warnCount}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.warnCount} ${$_("widgets.warns")}`} />
+            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.warnCount} ${$_("warns")}`} />
         </div>
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
-            {$_("widgets.mutes")}
+            {$_("mutes")}
         </div>
         <div class="flex flex-row items-center">
             {#if stats?.activeMuteCount}
@@ -59,26 +59,26 @@
                     style="fill: var(--cds-support-success)"
                     title={`${stats?.activeMuteCount} ${$_("widgets.guildpunishmentstats.activemutes")}`} />
             {/if}
-            <div class="mr-1" title={`${stats?.muteCount} ${$_("widgets.mutes")}`}>
+            <div class="mr-1" title={`${stats?.muteCount} ${$_("mutes")}`}>
                 {stats?.muteCount}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.muteCount} ${$_("widgets.mutes")}`} />
+            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.muteCount} ${$_("mutes")}`} />
         </div>
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
-            {$_("widgets.kicks")}
+            {$_("kicks")}
         </div>
         <div class="flex flex-row items-center">
-            <div class="mr-1" title={`${stats?.kickCount} ${$_("widgets.kicks")}`}>
+            <div class="mr-1" title={`${stats?.kickCount} ${$_("kicks")}`}>
                 {stats?.kickCount}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.kickCount} ${$_("widgets.kicks")}`} />
+            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.kickCount} ${$_("kicks")}`} />
         </div>
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
-            {$_("widgets.bans")}
+            {$_("bans")}
         </div>
         <div class="flex flex-row items-center">
             {#if stats?.activeBanCount}
@@ -90,10 +90,10 @@
                     style="fill: var(--cds-support-success)"
                     title={`${stats?.activeBanCount} ${$_("widgets.guildpunishmentstats.activebans")}`} />
             {/if}
-            <div class="mr-1" title={`${stats?.banCount} ${$_("widgets.bans")}`}>
+            <div class="mr-1" title={`${stats?.banCount} ${$_("bans")}`}>
                 {stats?.banCount}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.banCount} ${$_("widgets.bans")}`} />
+            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.banCount} ${$_("bans")}`} />
         </div>
     </div>
     <div slot="loading">
