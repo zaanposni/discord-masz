@@ -88,14 +88,14 @@
             "title": "Разделение автомодерации",
             "widgetdescription": "Этот виджет показывает раздел автомодерации в вашей гильдии."
         },
+        "guildmodcasecountchart": {
+            "title": "Обзор дел",
+            "widgetdescription": "Этот виджет показывает обзор дел в вашей гильдии."
+        },
         "guildpunishmentstats": {
             "title": "Статистика наказаний",
             "widgetdescription": "Этот виджет показывает статистику наказаний в вашей гильдии.",
-            "warns": "Предупреждения",
-            "mutes": "Муты",
             "activemutes": "Активные муты",
-            "kicks": "Кики",
-            "bans": "Баны",
             "activebans": "Активные баны"
         },
         "guildquicksearch": {
@@ -121,6 +121,10 @@
         }
     },
     "error": "Ошибка",
+    "warns": "Предупреждения",
+    "mutes": "Муты",
+    "kicks": "Кики",
+    "bans": "Баны",
     "enums": {
         "punishmenttype": {
             "mute": "Немой",

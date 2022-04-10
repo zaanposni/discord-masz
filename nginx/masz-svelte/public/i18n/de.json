@@ -88,14 +88,14 @@
             "title": "Automodaufteilung",
             "widgetdescription": "Dieses Widget zeigt die Aufteilung der Automoderationen in deiner Gilde."
         },
+        "guildmodcasecountchart": {
+            "title": "Vorfallsübersicht",
+            "widgetdescription": "Dieses Widget zeigt die Übersicht der Vorfälle in deiner Gilde."
+        },
         "guildpunishmentstats": {
             "title": "Bestrafungsstatistiken",
             "widgetdescription": "Dieses Widget zeigt die Bestrafungsstatistiken deiner Gilde.",
-            "warns": "Warnungen",
-            "mutes": "Stummschaltungen",
             "activemutes": "Aktive Stummschaltungen",
-            "kicks": "Kicks",
-            "bans": "Banns",
             "activebans": "Aktive Banns"
         },
         "guildquicksearch": {
@@ -121,6 +121,10 @@
         }
     },
     "error": "Fehler",
+    "warns": "Warnungen",
+    "mutes": "Stummschaltungen",
+    "kicks": "Kicks",
+    "bans": "Banns",
     "enums": {
         "punishmenttype": {
             "mute": "Stummschaltung",

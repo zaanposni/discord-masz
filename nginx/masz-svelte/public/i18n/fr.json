@@ -88,14 +88,14 @@
             "title": "Séparation automod",
             "widgetdescription": "Ce widget affiche les automodérations de votre guilde."
         },
+        "guildmodcasecountchart": {
+            "title": "Aperçu des cas",
+            "widgetdescription": "Ce widget affiche l'aperçu des cas de votre guilde."
+        },
         "guildpunishmentstats": {
             "title": "Statistiques de punition",
             "widgetdescription": "Ce widget affiche les statistiques de punition de votre guilde.",
-            "warns": "Avertissements",
-            "mutes": "Mutes",
             "activemutes": "Mutes actifs",
-            "kicks": "Expulsions",
-            "bans": "Bannissements",
             "activebans": "Bannissements actifs"
         },
         "guildquicksearch": {
@@ -121,6 +121,10 @@
         }
     },
     "error": "Erreur",
+    "warns": "Avertissements",
+    "mutes": "Mutes",
+    "kicks": "Expulsions",
+    "bans": "Bannissements",
     "enums": {
         "punishmenttype": {
             "mute": "Muet",

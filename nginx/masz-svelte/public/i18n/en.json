@@ -88,14 +88,14 @@
             "title": "Automod Split",
             "widgetdescription": "This widget shows the automod split of your guild."
         },
+        "guildmodcasecountchart": {
+            "title": "Case overview",
+            "widgetdescription": "This widget shows the case overview of your guild."
+        },
         "guildpunishmentstats": {
             "title": "Punishment Stats",
             "widgetdescription": "This widget shows the punishment stats of your guild.",
-            "warns": "Warns",
-            "mutes": "Mutes",
             "activemutes": "Active Mutes",
-            "kicks": "Kicks",
-            "bans": "Bans",
             "activebans": "Active Bans"
         },
         "guildquicksearch": {
@@ -121,6 +121,10 @@
         }
     },
     "error": "Error",
+    "warns": "Warns",
+    "mutes": "Mutes",
+    "kicks": "Kicks",
+    "bans": "Bans",
     "enums": {
         "punishmenttype": {
             "mute": "Mute",

@@ -88,14 +88,14 @@
             "title": "Divisione automod",
             "widgetdescription": "Questo widget mostra la divisione dell'automod della tua gilda."
         },
+        "guildmodcasecountchart": {
+            "title": "Panoramica casi",
+            "widgetdescription": "Questo widget mostra la panoramica dei casi della tua gilda."
+        },
         "guildpunishmentstats": {
             "title": "Statistiche del castigo",
             "widgetdescription": "Questo widget mostra le statistiche del castigo della tua gilda.",
-            "warns": "Avvertimenti",
-            "mutes": "Mute",
             "activemutes": "Mute attivo",
-            "kicks": "Kick",
-            "bans": "Ban",
             "activebans": "Ban attivo"
         },
         "guildquicksearch": {
@@ -121,6 +121,10 @@
         }
     },
     "error": "Errore",
+    "warns": "Avvertimenti",
+    "mutes": "Mute",
+    "kicks": "Kick",
+    "bans": "Ban",
     "enums": {
         "punishmenttype": {
             "mute": "Muto",

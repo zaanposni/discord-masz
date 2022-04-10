@@ -646,6 +646,28 @@
                 "it": "Questo widget mostra la divisione dell'automod della tua gilda."
             }
         },
+        "guildmodcasecountchart": {
+            "title": {
+                "description": "Title",
+                "en": "Case overview",
+                "de": "Vorfallsübersicht",
+                "at": "Vorfallsübersicht",
+                "fr": "Aperçu des cas",
+                "es": "Resumen de casos",
+                "ru": "Обзор дел",
+                "it": "Panoramica casi"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows the case overview of your guild.",
+                "de": "Dieses Widget zeigt die Übersicht der Vorfälle in deiner Gilde.",
+                "at": "Dieses Widget zeigt die Übersicht der Vorfälle in deiner Gilde.",
+                "fr": "Ce widget affiche l'aperçu des cas de votre guilde.",
+                "es": "Este widget muestra el resumen de los casos de tu hermandad.",
+                "ru": "Этот виджет показывает обзор дел в вашей гильдии.",
+                "it": "Questo widget mostra la panoramica dei casi della tua gilda."
+            }
+        },
         "guildpunishmentstats": {
             "title": {
                 "description": "Title",
@@ -667,26 +689,6 @@
                 "ru": "Этот виджет показывает статистику наказаний в вашей гильдии.",
                 "it": "Questo widget mostra le statistiche del castigo della tua gilda."
             },
-            "warns": {
-                "description": "Warns",
-                "en": "Warns",
-                "de": "Warnungen",
-                "at": "Warnungen",
-                "fr": "Avertissements",
-                "es": "Advertencias",
-                "ru": "Предупреждения",
-                "it": "Avvertimenti"
-            },
-            "mutes": {
-                "description": "Mutes",
-                "en": "Mutes",
-                "de": "Stummschaltungen",
-                "at": "Stummschaltungen",
-                "fr": "Mutes",
-                "es": "Mutes",
-                "ru": "Муты",
-                "it": "Mute"
-            },
             "activemutes": {
                 "description": "Active Mutes",
                 "en": "Active Mutes",
@@ -696,26 +698,6 @@
                 "es": "Mutes activos",
                 "ru": "Активные муты",
                 "it": "Mute attivo"
-            },
-            "kicks": {
-                "description": "Kicks",
-                "en": "Kicks",
-                "de": "Kicks",
-                "at": "Kicks",
-                "fr": "Expulsions",
-                "es": "Expulsions",
-                "ru": "Кики",
-                "it": "Kick"
-            },
-            "bans": {
-                "description": "Bans",
-                "en": "Bans",
-                "de": "Banns",
-                "at": "Banns",
-                "fr": "Bannissements",
-                "es": "Bans",
-                "ru": "Баны",
-                "it": "Ban"
             },
             "activebans": {
                 "description": "Active Bans",
@@ -912,5 +894,45 @@
         "es": "Error",
         "ru": "Ошибка",
         "it": "Errore"
+    },
+    "warns": {
+        "description": "Warns",
+        "en": "Warns",
+        "de": "Warnungen",
+        "at": "Warnungen",
+        "fr": "Avertissements",
+        "es": "Advertencias",
+        "ru": "Предупреждения",
+        "it": "Avvertimenti"
+    },
+    "mutes": {
+        "description": "Mutes",
+        "en": "Mutes",
+        "de": "Stummschaltungen",
+        "at": "Stummschaltungen",
+        "fr": "Mutes",
+        "es": "Mutes",
+        "ru": "Муты",
+        "it": "Mute"
+    },
+    "kicks": {
+        "description": "Kicks",
+        "en": "Kicks",
+        "de": "Kicks",
+        "at": "Kicks",
+        "fr": "Expulsions",
+        "es": "Expulsions",
+        "ru": "Кики",
+        "it": "Kick"
+    },
+    "bans": {
+        "description": "Bans",
+        "en": "Bans",
+        "de": "Banns",
+        "at": "Banns",
+        "fr": "Bannissements",
+        "es": "Bans",
+        "ru": "Баны",
+        "it": "Ban"
     }
 }

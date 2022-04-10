@@ -23,6 +23,7 @@
     import ModeratorCaseChart from "../../../components/guilds/dashboard/ModeratorCaseChart.svelte";
     import QuickSearch from "../../../components/guilds/dashboard/QuickSearch.svelte";
     import LatestAppeals from "../../../components/guilds/dashboard/LatestAppeals.svelte";
+    import ModCaseCountChart from "../../../components/guilds/dashboard/ModCaseCountChart.svelte";
 
     guildDashboardItems.set([
         {
@@ -66,6 +67,12 @@
             translationKey: "guildquicksearch",
             component: QuickSearch,
             mode: WidgetMode.x2_2,
+        },
+        {
+            id: "guild-modcasecountchart",
+            translationKey: "guildmodcasecountchart",
+            component: ModCaseCountChart,
+            mode: WidgetMode.x2_1,
         },
         {
             id: "guild-dashboard-config",

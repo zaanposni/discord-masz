@@ -88,14 +88,14 @@
             "title": "División automod",
             "widgetdescription": "Este widget muestra la división de automod de tu hermandad."
         },
+        "guildmodcasecountchart": {
+            "title": "Resumen de casos",
+            "widgetdescription": "Este widget muestra el resumen de los casos de tu hermandad."
+        },
         "guildpunishmentstats": {
             "title": "Estadísticas de castigos",
             "widgetdescription": "Este widget muestra las estadísticas de castigos de tu hermandad.",
-            "warns": "Advertencias",
-            "mutes": "Mutes",
             "activemutes": "Mutes activos",
-            "kicks": "Expulsions",
-            "bans": "Bans",
             "activebans": "Bans activos"
         },
         "guildquicksearch": {
@@ -121,6 +121,10 @@
         }
     },
     "error": "Error",
+    "warns": "Advertencias",
+    "mutes": "Mutes",
+    "kicks": "Expulsions",
+    "bans": "Bans",
     "enums": {
         "punishmenttype": {
             "mute": "Silencio",
