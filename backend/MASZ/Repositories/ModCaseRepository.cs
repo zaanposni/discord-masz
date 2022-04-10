@@ -448,13 +448,9 @@ namespace MASZ.Repositories
 
             return modCase;
         }
-        public async Task<List<DbCount>> GetCounts(ulong guildId, DateTime since)
+        public async Task<List<CaseCount>> GetCounts(ulong guildId, DateTime since)
         {
             return await Database.GetCaseCountGraph(guildId, since);
-        }
-        public async Task<List<DbCount>> GetPunishmentCounts(ulong guildId, DateTime since)
-        {
-            return await Database.GetPunishmentCountGraph(guildId, since);
         }
         public async Task<List<ModeratorCaseCount>> GetModeratorCasesCount(ulong guildId)
         {

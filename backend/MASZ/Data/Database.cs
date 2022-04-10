@@ -209,16 +209,22 @@ namespace MASZ.Data
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.PunishmentActive == true && x.PunishmentType == type).CountAsync();
         }
 
-        public async Task<List<DbCount>> GetCaseCountGraph(ulong guildId, DateTime since)
+        public async Task<List<CaseCount>> GetCaseCountGraph(ulong guildId, DateTime since)
         {
-            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.OccuredAt > since)
-            .GroupBy(x => new { x.OccuredAt.Month, x.OccuredAt.Year }).Select(x => new DbCount { Year = x.Key.Year, Month = x.Key.Month, Count = x.Count() }).OrderByDescending(x => x.Year).ThenByDescending(x => x.Month).ToListAsync();
-        }
-
-        public async Task<List<DbCount>> GetPunishmentCountGraph(ulong guildId, DateTime since)
-        {
-            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId && x.OccuredAt > since && x.PunishmentType != PunishmentType.Warn)
-            .GroupBy(x => new { x.OccuredAt.Month, x.OccuredAt.Year }).Select(x => new DbCount { Year = x.Key.Year, Month = x.Key.Month, Count = x.Count() }).OrderByDescending(x => x.Year).ThenByDescending(x => x.Month).ToListAsync();
+            return await context.ModCases.AsQueryable()
+            .Where(x => x.GuildId == guildId && x.OccuredAt > since)
+            .GroupBy(x => new { x.OccuredAt.Month, x.OccuredAt.Year })
+            .Select(x => new CaseCount {
+                Month = x.Key.Month,
+                Year = x.Key.Year,
+                WarnCount = x.Count(y => y.PunishmentType == PunishmentType.Warn),
+                MuteCount = x.Count(y => y.PunishmentType == PunishmentType.Mute),
+                KickCount = x.Count(y => y.PunishmentType == PunishmentType.Kick),
+                BanCount = x.Count(y => y.PunishmentType == PunishmentType.Ban),
+            })
+            .OrderByDescending(x => x.Year)
+            .ThenByDescending(x => x.Month)
+            .ToListAsync();
         }
 
         public async Task<List<ModeratorCaseCount>> GetModeratorCaseCountGraph(ulong guildId)
@@ -822,10 +828,21 @@ namespace MASZ.Data
             return await context.Appeals.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.Id).ToListAsync();
         }
 
-        public async Task<List<DbCount>> GetAppealCount(ulong guildId, DateTime since)
+        public async Task<List<AppealCount>> GetAppealCount(ulong guildId, DateTime since)
         {
-            return await context.Appeals.AsQueryable().Where(x => x.GuildId == guildId && x.CreatedAt > since)
-            .GroupBy(x => new { x.CreatedAt.Month, x.CreatedAt.Year }).Select(x => new DbCount { Year = x.Key.Year, Month = x.Key.Month, Count = x.Count() }).OrderByDescending(x => x.Year).ThenByDescending(x => x.Month).ToListAsync();
+            return await context.Appeals.AsQueryable()
+            .Where(x => x.GuildId == guildId && x.CreatedAt > since)
+            .GroupBy(x => new { x.CreatedAt.Month, x.CreatedAt.Year })
+            .Select(x => new AppealCount {
+                Year = x.Key.Year,
+                Month = x.Key.Month,
+                PendingCount = x.Count(y => y.Status == AppealStatus.Pending),
+                ApprovedCount = x.Count(y => y.Status == AppealStatus.Approved),
+                DeclinedCount = x.Count(y => y.Status == AppealStatus.Declined),
+            })
+            .OrderByDescending(x => x.Year)
+            .ThenByDescending(x => x.Month)
+            .ToListAsync();
         }
 
         public void SaveAppeal(Appeal appeal)

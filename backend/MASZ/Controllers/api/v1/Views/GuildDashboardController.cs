@@ -19,8 +19,8 @@ namespace MASZ.Controllers
         {
         }
 
-        [HttpGet("chart")]
-        public async Task<IActionResult> GetModCaseGrid([FromRoute] ulong guildId, [FromQuery] long? since = null)
+        [HttpGet("casecountchart")]
+        public async Task<IActionResult> GetModCaseCountChart([FromRoute] ulong guildId, [FromQuery] long? since = null)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
             Identity identity = await GetIdentity();
@@ -35,13 +35,41 @@ namespace MASZ.Controllers
             AutoModerationEventRepository automodRepo = AutoModerationEventRepository.CreateDefault(_serviceProvider);
             AppealRepository appealRepo = AppealRepository.CreateDefault(_serviceProvider);
 
-            return Ok(new
+            return Ok(await modCaseRepo.GetCounts(guildId, sinceTime));
+        }
+
+        [HttpGet("automodcountchart")]
+        public async Task<IActionResult> GetAutomodCountChart([FromRoute] ulong guildId, [FromQuery] long? since = null)
+        {
+            await RequirePermission(guildId, DiscordPermission.Moderator);
+            Identity identity = await GetIdentity();
+
+            DateTime sinceTime = DateTime.UtcNow.AddYears(-1);
+            if (since != null)
             {
-                modCases = await modCaseRepo.GetCounts(guildId, sinceTime),
-                punishments = await modCaseRepo.GetPunishmentCounts(guildId, sinceTime),
-                appeals = await appealRepo.GetCounts(guildId, sinceTime),
-                autoModerations = await automodRepo.GetCounts(guildId, sinceTime)
-            });
+                sinceTime = epoch.AddSeconds(since.Value);
+            }
+
+            AutoModerationEventRepository automodRepo = AutoModerationEventRepository.CreateDefault(_serviceProvider);
+
+            return Ok(await automodRepo.GetCounts(guildId, sinceTime));
+        }
+
+        [HttpGet("appealcountchart")]
+        public async Task<IActionResult> GetAppealCountChart([FromRoute] ulong guildId, [FromQuery] long? since = null)
+        {
+            await RequirePermission(guildId, DiscordPermission.Moderator);
+            Identity identity = await GetIdentity();
+
+            DateTime sinceTime = DateTime.UtcNow.AddYears(-1);
+            if (since != null)
+            {
+                sinceTime = epoch.AddSeconds(since.Value);
+            }
+
+            AppealRepository appealRepo = AppealRepository.CreateDefault(_serviceProvider);
+
+            return Ok(await appealRepo.GetCounts(guildId, sinceTime));
         }
 
         [HttpGet("automodchart")]
