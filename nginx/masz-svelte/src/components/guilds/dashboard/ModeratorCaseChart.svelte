@@ -72,6 +72,15 @@
                         y: data.count,
                     };
                 });
+
+                // fill in array if there are less than 8 entries
+                for (let i = response.length; i < 8; i++) {
+                    localData.push({
+                        x: "",
+                        y: 0,
+                    });
+                }
+
                 widgetState = response.length ? WidgetState.Normal : WidgetState.Empty;
             })
             .catch(() => {
