@@ -216,6 +216,7 @@ namespace MASZ.Services
                 true
             );
             embed.AddField(
+                translator.T().GuildAuditLogNew(),
                 newU.GetAvatarOrDefaultUrl(),
                 true
             );
