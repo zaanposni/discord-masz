@@ -24,7 +24,8 @@
     import QuickSearch from "../../../components/guilds/dashboard/QuickSearch.svelte";
     import LatestAppeals from "../../../components/guilds/dashboard/LatestAppeals.svelte";
     import ModCaseCountChart from "../../../components/guilds/dashboard/ModCaseCountChart.svelte";
-import AppealCountChart from "../../../components/guilds/dashboard/AppealCountChart.svelte";
+    import AppealCountChart from "../../../components/guilds/dashboard/AppealCountChart.svelte";
+    import AutomodCountChart from "../../../components/guilds/dashboard/AutomodCountChart.svelte";
 
     guildDashboardItems.set([
         {
@@ -79,6 +80,12 @@ import AppealCountChart from "../../../components/guilds/dashboard/AppealCountCh
             id: "guild-modcasecountchart",
             translationKey: "guildmodcasecountchart",
             component: AppealCountChart,
+            mode: WidgetMode.x2_1,
+        },
+        {
+            id: "guild-guildautomodcountchart",
+            translationKey: "guildautomodcountchart",
+            component: AutomodCountChart,
             mode: WidgetMode.x2_1,
         },
         {

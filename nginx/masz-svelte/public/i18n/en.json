@@ -96,6 +96,10 @@
             "title": "Appeal overview",
             "widgetdescription": "This widget shows the appeal overview of your guild."
         },
+        "guildautomodcountchart": {
+            "title": "Automod overview",
+            "widgetdescription": "This widget shows the automod overview of your guild."
+        },
         "guildpunishmentstats": {
             "title": "Punishment Stats",
             "widgetdescription": "This widget shows the punishment stats of your guild.",

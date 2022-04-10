@@ -96,6 +96,10 @@
             "title": "Panoramica appelli",
             "widgetdescription": "Questo widget mostra la panoramica degli appelli della tua gilda."
         },
+        "guildautomodcountchart": {
+            "title": "Panoramica automod",
+            "widgetdescription": "Questo widget mostra la panoramica dell'automod della tua gilda."
+        },
         "guildpunishmentstats": {
             "title": "Statistiche del castigo",
             "widgetdescription": "Questo widget mostra le statistiche del castigo della tua gilda.",

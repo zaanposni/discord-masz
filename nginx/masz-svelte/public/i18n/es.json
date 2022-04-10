@@ -96,6 +96,10 @@
             "title": "Resumen de quejas",
             "widgetdescription": "Este widget muestra el resumen de las quejas de tu hermandad."
         },
+        "guildautomodcountchart": {
+            "title": "Resumen de automod",
+            "widgetdescription": "Este widget muestra el resumen de las automod de tu hermandad."
+        },
         "guildpunishmentstats": {
             "title": "Estadísticas de castigos",
             "widgetdescription": "Este widget muestra las estadísticas de castigos de tu hermandad.",

@@ -690,6 +690,28 @@
                 "it": "Questo widget mostra la panoramica degli appelli della tua gilda."
             }
         },
+        "guildautomodcountchart": {
+            "title": {
+                "description": "Title",
+                "en": "Automod overview",
+                "de": "Automoderationsübersicht",
+                "at": "Automoderationsübersicht",
+                "fr": "Aperçu des automodérations",
+                "es": "Resumen de automod",
+                "ru": "Обзор автомодерации",
+                "it": "Panoramica automod"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows the automod overview of your guild.",
+                "de": "Dieses Widget zeigt die Übersicht der Automoderationen in deiner Gilde.",
+                "at": "Dieses Widget zeigt die Übersicht der Automoderationen in deiner Gilde.",
+                "fr": "Ce widget affiche l'aperçu des automodérations de votre guilde.",
+                "es": "Este widget muestra el resumen de las automod de tu hermandad.",
+                "ru": "Этот виджет показывает обзор автомодерации в вашей гильдии.",
+                "it": "Questo widget mostra la panoramica dell'automod della tua gilda."
+            }
+        },
         "guildpunishmentstats": {
             "title": {
                 "description": "Title",

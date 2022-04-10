@@ -96,6 +96,10 @@
             "title": "Aperçu des appels",
             "widgetdescription": "Ce widget affiche l'aperçu des appels de votre guilde."
         },
+        "guildautomodcountchart": {
+            "title": "Aperçu des automodérations",
+            "widgetdescription": "Ce widget affiche l'aperçu des automodérations de votre guilde."
+        },
         "guildpunishmentstats": {
             "title": "Statistiques de punition",
             "widgetdescription": "Ce widget affiche les statistiques de punition de votre guilde.",
