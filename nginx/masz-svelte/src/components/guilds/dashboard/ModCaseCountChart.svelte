@@ -46,19 +46,19 @@
         },
         series: [
             {
-                name: $_("warns"),
+                name: $_("enums.punishmenttype.warn"),
                 data: localWarns,
             },
             {
-                name: $_("mutes"),
+                name: $_("enums.punishmenttype.mute"),
                 data: localMutes,
             },
             {
-                name: $_("kicks"),
+                name: $_("enums.punishmenttype.kick"),
                 data: localKicks,
             },
             {
-                name: $_("bans"),
+                name: $_("enums.punishmenttype.ban"),
                 data: localBans,
             },
         ],
@@ -98,6 +98,18 @@
                     // create moment from item.year and item.month
                     localCategories.push(moment(`${item.year}-${item.month}`, "YYYY-MM"));
                 });
+
+
+                // fill in missing months with 0 if there are less than 12 months
+                if (response.length < 12) {
+                    for (let i = response.length; i < 12; i++) {
+                        localCategories.unshift(moment().subtract(i + 1, "months"));
+                        localWarns.unshift(0);
+                        localMutes.unshift(0);
+                        localKicks.unshift(0);
+                        localBans.unshift(0);
+                    }
+                }
 
                 widgetState = response.length ? WidgetState.Normal : WidgetState.Empty;
             })
