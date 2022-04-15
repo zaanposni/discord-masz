@@ -21,6 +21,8 @@
     import MarkedToDeleteStatus from "../../../services/enums/MarkedToDeleteStatus";
     import PunishmentActiveStatus from "../../../services/enums/PunishmentActiveStatus";
     import type { IDiscordUser } from "../../../models/discord/IDiscordUser";
+    import Warning_02 from "carbon-pictograms-svelte/lib/Warning_02.svelte";
+    import { toastError } from "../../../services/toast/store";
 
     let cases: ICompactCaseView[] = [];
     let initialLoading: boolean = true;
@@ -89,6 +91,7 @@
             .catch(() => {
                 loading = false;
                 initialLoading = false;
+                toastError($_("guilds.modcasetable.failedtoload"));
             });
     }
 
@@ -135,6 +138,11 @@
         currentPage = 1;
         loadData(currentPage);
     }
+
+    function toggleFilter() {
+        filterOpened = !filterOpened;
+        filter = {};
+    }
 </script>
 
 <style>
@@ -154,12 +162,7 @@
             {#if $authUser?.adminGuilds?.find((x) => x.id === $currentParams.guildId) || $authUser?.modGuilds?.find((x) => x.id === $currentParams.guildId)}
                 <Button class="!mr-2" icon={Add32} href={$url(`/guilds/${$currentParams.guildId}/cases/new`)}>New case</Button>
             {/if}
-            <Button
-                iconDescription="Open or hide filter"
-                icon={Filter24}
-                on:click={() => {
-                    filterOpened = !filterOpened;
-                }} />
+            <Button iconDescription="Open or hide filter" icon={Filter24} on:click={toggleFilter} />
         </div>
         {#if filterOpened}
             <div
@@ -249,8 +252,8 @@
         <Pagination class="mb-4" disabled={loading} bind:page={currentPage} pageSize={20} totalItems={fullSize} pageSizeInputDisabled />
     {/if}
     <!-- Table -->
-    <div class="grid gap-1 grid-cols-1">
-        {#if loading}
+    {#if loading}
+        <div class="grid gap-1 grid-cols-1">
             {#each { length: 3 } as _, i}
                 <Tile class="mb-2">
                     <div class="flex flex-row items-center">
@@ -273,7 +276,15 @@
                     </div>
                 </Tile>
             {/each}
-        {:else}
+        </div>
+    {:else if fullSize === 0}
+        <div class="flex flex-col ml-2" class:items-center={!matches}>
+            <Warning_02 />
+            <div class="text-lg font-bold">{$_("guilds.modcasetable.nomatches")}</div>
+            <div class="text-md">{$_("guilds.modcasetable.nomatchesdescription")}</div>
+        </div>
+    {:else}
+        <div class="grid gap-1 grid-cols-1">
             {#each cases as caseView}
                 <a href={$url(`/guilds/${caseView.modCase.guildId}/cases/${caseView.modCase.caseId}`)}>
                     <Tile class="cursor-pointer mb-2">
@@ -314,6 +325,6 @@
                     </Tile>
                 </a>
             {/each}
-        {/if}
-    </div>
+        </div>
+    {/if}
 </MediaQuery>

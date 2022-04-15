@@ -151,7 +151,8 @@
             "createnewcase": "Crea nuovo caso",
             "search": "Cerca (utente, id, descrizione...)",
             "failedtoload": "Impossibile caricare i casi.",
-            "nomatches": "Nessun caso corrisponde alla tua ricerca."
+            "nomatches": "Nessun caso corrisponde alla tua ricerca.",
+            "nomatchesdescription": "Potrebbe non essere ancora nessun caso in questo server. Tuttavia, è possibile provare a regolare i filtri in alto per trovare alcuni casi."
         }
     },
     "error": "Errore",

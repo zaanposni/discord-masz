@@ -151,7 +151,8 @@
             "createnewcase": "Neuen Vorfall erstellen",
             "search": "Suche (Benutzer, ID, Beschreibung...)",
             "failedtoload": "Vorfälle konnten nicht geladen werden.",
-            "nomatches": "Keine Vorfälle passen zu deiner Suche."
+            "nomatches": "Keine Vorfälle passen zu deiner Suche.",
+            "nomatchesdescription": "Es könnte noch keine Vorfälle in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Vorfälle zu finden."
         }
     },
     "error": "Fehler",

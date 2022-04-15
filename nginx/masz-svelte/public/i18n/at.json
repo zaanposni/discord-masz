@@ -151,7 +151,8 @@
             "createnewcase": "Neichn Vorfoi erstön",
             "search": "Suach (Benutza, ID, Beschreibung ...)",
             "failedtoload": "Vorfälle konntn ned glodn wean.",
-            "nomatches": "Kane Vorfälle passn zu deina Suach."
+            "nomatches": "Kane Vorfälle passn zu deina Suach.",
+            "nomatchesdescription": "Kannn Vorfälle in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Vorfälle zu findn."
         }
     },
     "error": "Fehler",

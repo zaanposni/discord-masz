@@ -151,7 +151,8 @@
             "createnewcase": "Créer un nouveau cas",
             "search": "Recherche (utilisateur, identifiant, description...)",
             "failedtoload": "Échec du chargement des cas.",
-            "nomatches": "Aucun cas ne correspond à votre recherche."
+            "nomatches": "Aucun cas ne correspond à votre recherche.",
+            "nomatchesdescription": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas."
         }
     },
     "error": "Erreur",

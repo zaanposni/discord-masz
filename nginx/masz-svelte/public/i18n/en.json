@@ -151,7 +151,8 @@
             "createnewcase": "Create new case",
             "search": "Search (user, id, description...)",
             "failedtoload": "Failed to load cases.",
-            "nomatches": "No case matches your search."
+            "nomatches": "No case matches your search.",
+            "nomatchesdescription": "There may be no cases yet in this guild. However, you can try to adjust your filters above to find some cases."
         }
     },
     "error": "Error",
