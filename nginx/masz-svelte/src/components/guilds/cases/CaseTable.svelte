@@ -148,7 +148,7 @@
     <!-- Header -->
     <div class="flex flex-col mb-4">
         <h2 class="font-weight-bold mb-4">
-            {$_('nav.guild.cases')}
+            {$_("nav.guild.cases")}
         </h2>
         <div class="flex flex-row">
             {#if $authUser?.adminGuilds?.find((x) => x.id === $currentParams.guildId) || $authUser?.modGuilds?.find((x) => x.id === $currentParams.guildId)}
@@ -235,7 +235,7 @@
                         on:select={(e) => onSelect("punishmentActive", e.detail.selectedId === "0" ? undefined : e.detail.selectedId !== "1")} />
                 </div>
                 <div>
-                    <TextInput bind:value={searchValue} labelText={$_('guilds.modcasetable.search')} placeholder={$_('guilds.modcasetable.search')} />
+                    <TextInput bind:value={searchValue} labelText={$_("guilds.modcasetable.search")} placeholder={$_("guilds.modcasetable.search")} />
                 </div>
                 <div class="self-end">
                     <Button icon={Search32} on:click={executeSearch}>{$_("guilds.modcasetable.executesearch")}</Button>
@@ -288,12 +288,12 @@
                                         <div class="flex flex-col flex-shink">
                                             <div class="flex flex-row items-center">
                                                 <PunishmentTag class="grow-0 shrink-0 !ml-0 mr-1" modCase={caseView.modCase} />
-                                                <div class="font-bold">
+                                                <div class="font-bold" style="word-wrap: anywhere">
                                                     {caseView.suspect?.username ?? caseView.modCase.username}#{caseView.suspect?.discriminator ??
                                                         caseView.modCase.discriminator}
                                                 </div>
                                             </div>
-                                            <div class="font-bold" title={caseView.modCase.title}>
+                                            <div class="font-bold" style="word-wrap: anywhere" title={caseView.modCase.title}>
                                                 #{caseView.modCase.caseId} - {caseView.modCase.title.length > 100
                                                     ? caseView.modCase.title.substring(0, 100) + " [...]"
                                                     : caseView.modCase.title}
@@ -301,9 +301,9 @@
                                         </div>
                                     </div>
                                     <div class="mt-2">
-                                        <div title={caseView.modCase.description}>
-                                            {caseView.modCase.description.length > 200
-                                                ? caseView.modCase.description.substring(0, 200) + " [...]"
+                                        <div title={caseView.modCase.description} style="word-wrap: anywhere">
+                                            {caseView.modCase.description.length > (matches ? 1000 : 200)
+                                                ? caseView.modCase.description.substring(0, matches ? 1000 : 200) + " [...]"
                                                 : caseView.modCase.description}
                                         </div>
                                     </div>
