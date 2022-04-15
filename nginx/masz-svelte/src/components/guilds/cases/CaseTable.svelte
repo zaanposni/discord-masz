@@ -35,6 +35,11 @@
     let filter: any = {};
     let enums = {};
 
+    $: forwardText = $_("core.pagination.forwardtext");
+    $: backwardText = $_("core.pagination.backwardtext");
+    $: itemRangeText = (min, max, total) => $_("core.pagination.itemrangetext", { values: { min, max, total } });
+    $: pageRangeText = (current, total) => $_(`core.pagination.pagerangetext${total === 1 ? "" : "plural"}`, { values: { total } });
+
     $: enums = {
         casecreationtype: CaseCreationType.getAll().map((x) => ({
             id: x.id.toString(),
@@ -152,7 +157,7 @@
     }
 
     :global(.case-label-list .bx--tag:not(:first-child)) {
-        margin-left: .25rem;
+        margin-left: 0.25rem;
     }
     :global(.case-label-list .bx--tag) {
         margin-right: 0;
@@ -167,9 +172,10 @@
         </h2>
         <div class="flex flex-row">
             {#if $authUser?.adminGuilds?.find((x) => x.id === $currentParams.guildId) || $authUser?.modGuilds?.find((x) => x.id === $currentParams.guildId)}
-                <Button class="!mr-2" icon={Add32} href={$url(`/guilds/${$currentParams.guildId}/cases/new`)}>New case</Button>
+                <Button class="!mr-2" icon={Add32} href={$url(`/guilds/${$currentParams.guildId}/cases/new`)}
+                    >{$_("guilds.modcasetable.createnewcase")}</Button>
             {/if}
-            <Button iconDescription="Open or hide filter" icon={Filter24} on:click={toggleFilter} />
+            <Button iconDescription={$_("guilds.modcasetable.useadvancedfilter")} icon={Filter24} on:click={toggleFilter} />
         </div>
         {#if filterOpened}
             <div
@@ -256,7 +262,17 @@
     {#if initialLoading}
         <PaginationSkeleton class="mb-4" />
     {:else}
-        <Pagination class="mb-4" disabled={loading} bind:page={currentPage} pageSize={20} totalItems={fullSize} pageSizeInputDisabled />
+        <Pagination
+            class="mb-4"
+            disabled={loading}
+            bind:page={currentPage}
+            pageSize={20}
+            totalItems={fullSize}
+            pageSizeInputDisabled
+            {forwardText}
+            {backwardText}
+            {itemRangeText}
+            {pageRangeText} />
     {/if}
     <!-- Table -->
     {#if loading}

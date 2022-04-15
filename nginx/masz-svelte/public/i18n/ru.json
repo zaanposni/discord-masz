@@ -160,6 +160,15 @@
     "mutes": "Муты",
     "kicks": "Кики",
     "bans": "Баны",
+    "core": {
+        "pagination": {
+            "forwardtext": "Следующая страница",
+            "backwardtext": "Предыдущая страница",
+            "itemrangetext": "{min}-{max} из {total} элементов",
+            "pagerangetext": "из {total} страницы",
+            "pagerangetextplural": "из {total} страниц"
+        }
+    },
     "enums": {
         "punishmenttype": {
             "mute": "Немой",

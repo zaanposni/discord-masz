@@ -160,6 +160,15 @@
     "mutes": "Mute",
     "kicks": "Kick",
     "bans": "Ban",
+    "core": {
+        "pagination": {
+            "forwardtext": "Pagina successiva",
+            "backwardtext": "Pagina precedente",
+            "itemrangetext": "{min}-{max} di {total} elementi",
+            "pagerangetext": "di {total} pagina",
+            "pagerangetextplural": "di {total} pagine"
+        }
+    },
     "enums": {
         "punishmenttype": {
             "mute": "Muto",

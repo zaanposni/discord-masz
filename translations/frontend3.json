@@ -1194,5 +1194,59 @@
         "es": "Bans",
         "ru": "Баны",
         "it": "Ban"
+    },
+    "core": {
+        "pagination": {
+            "forwardtext": {
+                "description": "Forward text",
+                "en": "Next page",
+                "de": "Nächste Seite",
+                "at": "Nächste Seite",
+                "fr": "Page suivante",
+                "es": "Página siguiente",
+                "ru": "Следующая страница",
+                "it": "Pagina successiva"
+            },
+            "backwardtext": {
+                "description": "Backward text",
+                "en": "Previous page",
+                "de": "Vorherige Seite",
+                "at": "Vorherige Seite",
+                "fr": "Page précédente",
+                "es": "Página anterior",
+                "ru": "Предыдущая страница",
+                "it": "Pagina precedente"
+            },
+            "itemrangetext": {
+                "description": "Item range text",
+                "en": "{min}-{max} of {total} items",
+                "de": "{min}-{max} von {total} Elementen",
+                "at": "{min}-{max} von {total} Elementen",
+                "fr": "{min}-{max} de {total} éléments",
+                "es": "{min}-{max} de {total} elementos",
+                "ru": "{min}-{max} из {total} элементов",
+                "it": "{min}-{max} di {total} elementi"
+            },
+            "pagerangetext": {
+                "description": "Page range text",
+                "en": "of {total} page",
+                "de": "von einer {total} Seite",
+                "at": "{von einer {total} Seite",
+                "fr": "{de {total} page",
+                "es": "de {total} página",
+                "ru": "из {total} страницы",
+                "it": "di {total} pagina"
+            },
+            "pagerangetextplural": {
+                "description": "Page range text",
+                "en": "of {total} pages",
+                "de": "von {total} Seiten",
+                "at": "{von {total} Seiten",
+                "fr": "{de {total} pages",
+                "es": "de {total} páginas",
+                "ru": "из {total} страниц",
+                "it": "di {total} pagine"
+            }
+        }
     }
 }
