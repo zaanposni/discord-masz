@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Launch20, Add32, Filter24, Search32 } from "carbon-icons-svelte";
-    import { Button, ComboBox, Link, MultiSelect, SkeletonPlaceholder, SkeletonText, TextInput, Tile } from "carbon-components-svelte";
+    import { Button, ComboBox, Link, MultiSelect, SkeletonPlaceholder, SkeletonText, Tag, TextInput, Tile } from "carbon-components-svelte";
     import type { ICompactCaseView } from "../../../models/api/ICompactCaseView";
     import API from "../../../services/api/api";
     import { CacheMode } from "../../../services/api/CacheMode";
@@ -149,6 +149,13 @@
     a {
         color: unset;
         text-decoration: unset;
+    }
+
+    :global(.case-label-list .bx--tag:not(:first-child)) {
+        margin-left: .25rem;
+    }
+    :global(.case-label-list .bx--tag) {
+        margin-right: 0;
     }
 </style>
 
@@ -311,6 +318,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {#if caseView.modCase.labels}
+                                        <div class="flex flex-row flex-wrap items-center mt-2 case-label-list">
+                                            {#each caseView.modCase.labels as label}
+                                                <Tag type="outline">{label}</Tag>
+                                            {/each}
+                                        </div>
+                                    {/if}
                                     <div class="mt-2">
                                         <div title={caseView.modCase.description} style="word-wrap: anywhere">
                                             {caseView.modCase.description.length > (matches ? 1000 : 200)
