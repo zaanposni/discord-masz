@@ -101,7 +101,7 @@
                             <Truncate title={entry.modCase.title}>
                                 {entry.modCase.title}
                             </Truncate>
-                            <Link href={`/guilds/${entry.modCase.guildId}/case/${entry.modCase.caseId}`} icon={Launch20} class="align-end" />
+                            <Link href={`/guilds/${entry.modCase.guildId}/cases/${entry.modCase.caseId}`} icon={Launch20} class="align-end" />
                         </div>
                     {/each}
                 </div>

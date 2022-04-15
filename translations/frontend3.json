@@ -951,6 +951,190 @@
             }
         }
     },
+    "guilds": {
+        "modcasetable": {
+            "selectmembers": {
+                "description": "Select members",
+                "en": "Members",
+                "de": "Mitglieder",
+                "at": "Mitglieda",
+                "fr": "Membres",
+                "es": "Miembros",
+                "ru": "Члены",
+                "it": "Membri"
+            },
+            "selectmoderators": {
+                "description": "Select moderator",
+                "en": "Moderators",
+                "de": "Moderatoren",
+                "at": "Modaratoren",
+                "fr": "Modérateurs",
+                "es": "Moderadores",
+                "ru": "Модераторы",
+                "it": "Moderatori"
+            },
+            "selectcreationtypes": {
+                "description": "Select creation types",
+                "en": "Creation types",
+                "de": "Erstellungsarten",
+                "at": "Erstöllungsoartn",
+                "fr": "Types de création",
+                "es": "Tipos de creación",
+                "ru": "Типы создания",
+                "it": "Tipi di creazione"
+            },
+            "selectpunishments": {
+                "description": "Select punishments",
+                "en": "Punishments",
+                "de": "Bestrafungen",
+                "at": "Bestrofungen",
+                "fr": "Les sanctions",
+                "es": "Castigos",
+                "ru": "Наказания",
+                "it": "punizioni"
+            },
+            "selectedited": {
+                "description": "Select edited",
+                "en": "Edit status",
+                "de": "Bearbeitet-Status",
+                "at": "Beorbeitet-Status",
+                "fr": "Modifier le statut",
+                "es": "Editar estado",
+                "ru": "Изменить статус",
+                "it": "Modifica stato"
+            },
+            "selectlocked": {
+                "description": "Select locked",
+                "en": "Lock status",
+                "de": "Sperr-Status",
+                "at": "Sperr-Status",
+                "fr": "État de verrouillage",
+                "es": "Estado de bloqueo",
+                "ru": "Статус блокировки",
+                "it": "Stato di blocco"
+            },
+            "selectdelete": {
+                "description": "Select delete",
+                "en": "Delete status",
+                "de": "Lösch-Status",
+                "at": "Lösch-Status",
+                "fr": "Supprimer le statut",
+                "es": "Eliminar estado",
+                "ru": "Удалить статус",
+                "it": "Elimina stato"
+            },
+            "selectactive": {
+                "description": "Select active",
+                "en": "Active status",
+                "de": "Aktiv-Status",
+                "at": "Aktiv-Status",
+                "fr": "Statut actif",
+                "es": "Estado activo",
+                "ru": "Активный статус",
+                "it": "Stato attivo"
+            },
+            "filtersince": {
+                "description": "Filter since",
+                "en": "Created since",
+                "de": "Erstellt ab",
+                "at": "Erstöt vo",
+                "fr": "Créé depuis",
+                "es": "Creado desde",
+                "ru": "Создано с",
+                "it": "Creato da"
+            },
+            "filteruntil": {
+                "description": "Filter until",
+                "en": "Created until",
+                "de": "Erstellt bis",
+                "at": "Erstöt bis",
+                "fr": "Créé jusqu'au",
+                "es": "Creado hasta",
+                "ru": "Создано до",
+                "it": "Creato fino al"
+            },
+            "filterpunishedsince": {
+                "description": "Filter punished since",
+                "en": "Punished at least until",
+                "de": "Bestraft bis mindestens",
+                "at": "Bestroft bis mindastens",
+                "fr": "Puni au moins jusqu'à",
+                "es": "Castigado al menos hasta",
+                "ru": "Наказан как минимум до",
+                "it": "Punito almeno fino al"
+            },
+            "filterpunishedbefore": {
+                "description": "Filter punished before",
+                "en": "Punished until",
+                "de": "Bestraft bis",
+                "at": "Bestroft bis",
+                "fr": "Puni jusqu'à",
+                "es": "Castigado hasta",
+                "ru": "Наказан до",
+                "it": "punito fino a"
+            },
+            "executesearch": {
+                "description": "execute search button to use advanced filters",
+                "en": "Search",
+                "de": "Suche ausführen",
+                "at": "Suche startn",
+                "fr": "Chercher",
+                "es": "Búsqueda",
+                "ru": "Поиск",
+                "it": "Ricerca"
+            },
+            "useadvancedfilter": {
+                "description": "use advanced filter on current table",
+                "en": "Toggle advanced filter.",
+                "de": "Erweiterte Filter ein-/ausblenden.",
+                "at": "Erweiterte Filter ein-/ausblenden.",
+                "fr": "Basculer le filtre avancé.",
+                "es": "Alternar filtro avanzado.",
+                "ru": "Переключить расширенный фильтр.",
+                "it": "Attiva filtro avanzato."
+            },
+            "createnewcase": {
+                "description": "Create a new case button",
+                "en": "Create new case",
+                "de": "Neuen Vorfall erstellen",
+                "at": "Neichn Vorfoi erstön",
+                "fr": "Créer un nouveau cas",
+                "es": "Crear nuevo caso",
+                "ru": "Создать новое дело",
+                "it": "Crea nuovo caso"
+            },
+            "search": {
+                "description": "Search button",
+                "en": "Search (user, id, description...)",
+                "de": "Suche (Benutzer, ID, Beschreibung...)",
+                "at": "Suach (Benutza, ID, Beschreibung ...)",
+                "fr": "Recherche (utilisateur, identifiant, description...)",
+                "es": "Búsqueda (usuario, id, descripción ...)",
+                "ru": "Поиск (пользователь, идентификатор, описание ...)",
+                "it": "Cerca (utente, id, descrizione...)"
+            },
+            "failedtoload": {
+                "description": "Failed to load case table",
+                "en": "Failed to load cases.",
+                "de": "Vorfälle konnten nicht geladen werden.",
+                "at": "Vorfälle konntn ned glodn wean.",
+                "fr": "Échec du chargement des cas.",
+                "es": "No se pudieron cargar los casos.",
+                "ru": "Не удалось загрузить кейсы.",
+                "it": "Impossibile caricare i casi."
+            },
+            "nomatches": {
+                "description": "No matches for search string found.",
+                "en": "No case matches your search.",
+                "de": "Keine Vorfälle passen zu deiner Suche.",
+                "at": "Kane Vorfälle passn zu deina Suach.",
+                "fr": "Aucun cas ne correspond à votre recherche.",
+                "es": "Ningún caso coincide con su búsqueda.",
+                "ru": "По вашему запросу не найдено ни одного случая.",
+                "it": "Nessun caso corrisponde alla tua ricerca."
+            }
+        }
+    },
     "error": {
         "description": "Error",
         "en": "Error",

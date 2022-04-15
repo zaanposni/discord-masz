@@ -132,6 +132,28 @@
             "configurewidgets": "Настроить виджеты"
         }
     },
+    "guilds": {
+        "modcasetable": {
+            "selectmembers": "Члены",
+            "selectmoderators": "Модераторы",
+            "selectcreationtypes": "Типы создания",
+            "selectpunishments": "Наказания",
+            "selectedited": "Изменить статус",
+            "selectlocked": "Статус блокировки",
+            "selectdelete": "Удалить статус",
+            "selectactive": "Активный статус",
+            "filtersince": "Создано с",
+            "filteruntil": "Создано до",
+            "filterpunishedsince": "Наказан как минимум до",
+            "filterpunishedbefore": "Наказан до",
+            "executesearch": "Поиск",
+            "useadvancedfilter": "Переключить расширенный фильтр.",
+            "createnewcase": "Создать новое дело",
+            "search": "Поиск (пользователь, идентификатор, описание ...)",
+            "failedtoload": "Не удалось загрузить кейсы.",
+            "nomatches": "По вашему запросу не найдено ни одного случая."
+        }
+    },
     "error": "Ошибка",
     "warns": "Предупреждения",
     "mutes": "Муты",

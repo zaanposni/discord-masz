@@ -59,5 +59,3 @@
 	on:select={onSelect}
 	on:keydown={onKeyDown}
 />
-{value}
-{selectedId}

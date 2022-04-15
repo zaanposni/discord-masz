@@ -132,6 +132,28 @@
             "configurewidgets": "Configurer les widgets"
         }
     },
+    "guilds": {
+        "modcasetable": {
+            "selectmembers": "Membres",
+            "selectmoderators": "Modérateurs",
+            "selectcreationtypes": "Types de création",
+            "selectpunishments": "Les sanctions",
+            "selectedited": "Modifier le statut",
+            "selectlocked": "État de verrouillage",
+            "selectdelete": "Supprimer le statut",
+            "selectactive": "Statut actif",
+            "filtersince": "Créé depuis",
+            "filteruntil": "Créé jusqu'au",
+            "filterpunishedsince": "Puni au moins jusqu'à",
+            "filterpunishedbefore": "Puni jusqu'à",
+            "executesearch": "Chercher",
+            "useadvancedfilter": "Basculer le filtre avancé.",
+            "createnewcase": "Créer un nouveau cas",
+            "search": "Recherche (utilisateur, identifiant, description...)",
+            "failedtoload": "Échec du chargement des cas.",
+            "nomatches": "Aucun cas ne correspond à votre recherche."
+        }
+    },
     "error": "Erreur",
     "warns": "Avertissements",
     "mutes": "Mutes",

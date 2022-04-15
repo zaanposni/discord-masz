@@ -3,11 +3,11 @@ import type { IBaseEnum, IMASZEnum } from "./IBaseEnum";
 const enums: IMASZEnum[] = [
     {
         "id": 0,
-        "translationKey": "enums.punishmenttype.mute"
+        "translationKey": "enums.punishmenttype.warn"
     },
     {
         "id": 1,
-        "translationKey": "enums.punishmenttype.ban"
+        "translationKey": "enums.punishmenttype.mute"
     },
     {
         "id": 2,
@@ -15,7 +15,7 @@ const enums: IMASZEnum[] = [
     },
     {
         "id": 3,
-        "translationKey": "enums.punishmenttype.warn"
+        "translationKey": "enums.punishmenttype.ban"
     }
 ]
 

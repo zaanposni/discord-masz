@@ -132,6 +132,28 @@
             "configurewidgets": "Configurar widgets"
         }
     },
+    "guilds": {
+        "modcasetable": {
+            "selectmembers": "Miembros",
+            "selectmoderators": "Moderadores",
+            "selectcreationtypes": "Tipos de creación",
+            "selectpunishments": "Castigos",
+            "selectedited": "Editar estado",
+            "selectlocked": "Estado de bloqueo",
+            "selectdelete": "Eliminar estado",
+            "selectactive": "Estado activo",
+            "filtersince": "Creado desde",
+            "filteruntil": "Creado hasta",
+            "filterpunishedsince": "Castigado al menos hasta",
+            "filterpunishedbefore": "Castigado hasta",
+            "executesearch": "Búsqueda",
+            "useadvancedfilter": "Alternar filtro avanzado.",
+            "createnewcase": "Crear nuevo caso",
+            "search": "Búsqueda (usuario, id, descripción ...)",
+            "failedtoload": "No se pudieron cargar los casos.",
+            "nomatches": "Ningún caso coincide con su búsqueda."
+        }
+    },
     "error": "Error",
     "warns": "Advertencias",
     "mutes": "Mutes",

@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { currentParams } from './../../../stores/currentParams';
+    import CaseTable from "../../../components/guilds/cases/CaseTable.svelte";
 </script>
 
-{$currentParams.guildId} cases
-{$currentParams.guild?.name}
+<CaseTable />

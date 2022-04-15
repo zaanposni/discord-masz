@@ -132,6 +132,28 @@
             "configurewidgets": "Widgets konfigurieren"
         }
     },
+    "guilds": {
+        "modcasetable": {
+            "selectmembers": "Mitglieda",
+            "selectmoderators": "Modaratoren",
+            "selectcreationtypes": "Erstöllungsoartn",
+            "selectpunishments": "Bestrofungen",
+            "selectedited": "Beorbeitet-Status",
+            "selectlocked": "Sperr-Status",
+            "selectdelete": "Lösch-Status",
+            "selectactive": "Aktiv-Status",
+            "filtersince": "Erstöt vo",
+            "filteruntil": "Erstöt bis",
+            "filterpunishedsince": "Bestroft bis mindastens",
+            "filterpunishedbefore": "Bestroft bis",
+            "executesearch": "Suche startn",
+            "useadvancedfilter": "Erweiterte Filter ein-/ausblenden.",
+            "createnewcase": "Neichn Vorfoi erstön",
+            "search": "Suach (Benutza, ID, Beschreibung ...)",
+            "failedtoload": "Vorfälle konntn ned glodn wean.",
+            "nomatches": "Kane Vorfälle passn zu deina Suach."
+        }
+    },
     "error": "Fehler",
     "warns": "Warnungen",
     "mutes": "Stummschaltungen",

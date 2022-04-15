@@ -7,11 +7,11 @@ const enums: IMASZEnum[] = [
     },
     {
         "id": 1,
-        "translationKey": "enums.punishmentactivestatus.active"
+        "translationKey": "enums.punishmentactivestatus.inactive"
     },
     {
         "id": 2,
-        "translationKey": "enums.punishmentactivestatus.inactive"
+        "translationKey": "enums.punishmentactivestatus.active"
     }
 ]
 

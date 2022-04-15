@@ -132,6 +132,28 @@
             "configurewidgets": "Configure widgets"
         }
     },
+    "guilds": {
+        "modcasetable": {
+            "selectmembers": "Members",
+            "selectmoderators": "Moderators",
+            "selectcreationtypes": "Creation types",
+            "selectpunishments": "Punishments",
+            "selectedited": "Edit status",
+            "selectlocked": "Lock status",
+            "selectdelete": "Delete status",
+            "selectactive": "Active status",
+            "filtersince": "Created since",
+            "filteruntil": "Created until",
+            "filterpunishedsince": "Punished at least until",
+            "filterpunishedbefore": "Punished until",
+            "executesearch": "Search",
+            "useadvancedfilter": "Toggle advanced filter.",
+            "createnewcase": "Create new case",
+            "search": "Search (user, id, description...)",
+            "failedtoload": "Failed to load cases.",
+            "nomatches": "No case matches your search."
+        }
+    },
     "error": "Error",
     "warns": "Warns",
     "mutes": "Mutes",

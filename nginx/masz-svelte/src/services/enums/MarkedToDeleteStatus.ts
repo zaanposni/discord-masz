@@ -7,11 +7,11 @@ const enums: IMASZEnum[] = [
     },
     {
         "id": 1,
-        "translationKey": "enums.markedtodeletestatus.marked"
+        "translationKey": "enums.markedtodeletestatus.unmarked"
     },
     {
         "id": 2,
-        "translationKey": "enums.markedtodeletestatus.unmarked"
+        "translationKey": "enums.markedtodeletestatus.marked"
     }
 ]
 
