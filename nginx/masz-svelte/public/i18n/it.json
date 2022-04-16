@@ -133,6 +133,41 @@
         }
     },
     "guilds": {
+        "caseview": {
+            "attachmentuploadfailed": "Caricamento allegato non riuscito"
+        },
+        "casedialog": {
+            "createcase": "Crea caso",
+            "caseexplain": "Utilizza un caso per registrare infrazioni e punizioni nella tua gilda.",
+            "caseexplain2": "MASZ gestisce automaticamente la tua punizione e notifica l'utente e la tua gilda se configurato.",
+            "importtemplate": "Importa modello",
+            "templateexplain": "Nessun modello che corrisponda ai tuoi requisiti? Crea uno alla fine di questa finestra di dialogo!",
+            "selecttemplate": "Seleziona modello",
+            "notemplatesfound": "Nessun modello trovato",
+            "member": "Seleziona membro",
+            "memberexplain": "Seleziona il membro che vuoi punire o inserisci un ID se il membro non è nella lista.",
+            "nomembersfound": "Nessun membro trovato",
+            "reason": "Motivo",
+            "title": "Titolo",
+            "titleplaceholder": "Titolo (max 100 caratteri)",
+            "titleinvalid": "Il campo Titolo è obbligatorio e può contenere solo 100 caratteri.",
+            "descriptionfield": "Descrizione",
+            "labels": "Etichette",
+            "labelsplaceholder": "Nuova etichetta",
+            "punishment": "Punizione",
+            "punishmentexplained": "MASZ gestisce automaticamente la tua punizione e la rimuoverà dopo il tempo specificato. Puoi anche cambiare la punizione più tardi.",
+            "punishmentexplained2": "Se non inserisci un tempo, la punizione sarà permanente.",
+            "formatisrequired": "Si prega di rispettare il formato: {format}",
+            "senddmnotification": "Invia notifica DM",
+            "executepunishment": "Esegui punizione",
+            "sendpublicnotification": "Invia notifica pubblica",
+            "files": "File",
+            "filesexplain": "Puoi caricare file a MASZ come prova, tieni presente che l'utente sarà in grado di vederli",
+            "filesbutton": "Seleziona file",
+            "createtemplate": "Crea modello",
+            "submitting": "Invio...",
+            "casecreated": "Caso #{id} creato"
+        },
         "modcasetable": {
             "selectmembers": "Membri",
             "selectmoderators": "Moderatori",

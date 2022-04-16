@@ -133,6 +133,42 @@
         }
     },
     "guilds": {
+        "caseview": {
+            "attachmentuploadfailed": "Échec de l'envoi de pièce jointe"
+        },
+        "casedialog": {
+            "createcase": "Créer un cas",
+            "caseexplain": "Utilisez un cas pour journaliser des infractions et des punitions dans votre guilde.",
+            "caseexplain2": "MASZ va automatiquement gérer votre punition et notifier l'utilisateur et votre guilde si configuré.",
+            "importtemplate": "Importer un modèle",
+            "templateexplain": "Aucun modèle ne correspond à vos besoins? Créez-en un à la fin de cette boîte de dialogue!",
+            "selecttemplate": "Sélectionnez un modèle",
+            "notemplatesfound": "Aucun modèle trouvé",
+            "member": "Sélectionnez un membre",
+            "memberexplain": "Sélectionnez le membre que vous voulez punir ou entrez une ID si le membre n'est pas dans la liste.",
+            "nomembersfound": "Aucun membre trouvé",
+            "reason": "Raison",
+            "title": "Titre",
+            "titleplaceholder": "Titre (max 100 caractères)",
+            "titleinvalid": "Le champ Titre est obligatoire et ne peut contenir plus de 100 caractères.",
+            "descriptionfield": "Description",
+            "labels": "Étiquettes",
+            "labelsplaceholder": "Nouvelle étiquette",
+            "punishment": "Punition",
+            "punishmentexplained": "MASZ va gérer automatiquement votre punition et la supprimer après le temps spécifié. Vous pouvez également changer la punition plus tard.",
+            "punishmentexplained2": "Si vous n'entrez pas de temps, la punition sera permanente.",
+            "punisheduntil": "Punition jusqu'à",
+            "formatisrequired": "Veuillez respecter le format: {format}",
+            "senddmnotification": "Envoyer une notification DM",
+            "executepunishment": "Exécuter la punition",
+            "sendpublicnotification": "Envoyer une notification publique",
+            "files": "Fichiers",
+            "filesexplain": "Vous pouvez télécharger des fichiers à MASZ comme preuve, sachez que l'utilisateur pourra aussi les voir",
+            "filesbutton": "Sélectionnez les fichiers",
+            "createtemplate": "Créer un modèle",
+            "submitting": "Soumission...",
+            "casecreated": "Cas #{id} créé"
+        },
         "modcasetable": {
             "selectmembers": "Membres",
             "selectmoderators": "Modérateurs",

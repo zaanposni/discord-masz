@@ -133,6 +133,42 @@
         }
     },
     "guilds": {
+        "caseview": {
+            "attachmentuploadfailed": "Anhang hochladen fehlgeschlagen"
+        },
+        "casedialog": {
+            "createcase": "Vorfall erstellen",
+            "caseexplain": "Benutze Vorfälle, um Verstöße und Strafen in deiner Gilde zu protokollieren.",
+            "caseexplain2": "MASZ wird automatisch deine Strafe verwalten und den Benutzer und deine Gilde benachrichtigen, wenn konfiguriert.",
+            "importtemplate": "Vorlage importieren",
+            "templateexplain": "Keine Vorlage, die deine Anforderungen entspricht? Erstelle eine am Ende dieses Dialogs!",
+            "selecttemplate": "Vorlage auswählen",
+            "notemplatesfound": "Keine Vorlagen gefunden",
+            "member": "Mitglied auswählen",
+            "memberexplain": "Wähle das Mitglied aus, das du bestrafen möchtest oder gib eine ID ein, wenn das Mitglied nicht in der Liste ist.",
+            "nomembersfound": "Keine Mitglieder gefunden",
+            "reason": "Grund",
+            "title": "Titel",
+            "titleplaceholder": "Titel (maximal 100 Zeichen)",
+            "titleinvalid": "Titelfeld ist erforderlich und darf nur 100 Zeichen lang sein.",
+            "descriptionfield": "Beschreibung",
+            "labels": "Labels",
+            "labelsplaceholder": "Neue Label",
+            "punishment": "Bestrafung",
+            "punishmentexplained": "MASZ wird automatisch deine Bestrafung verwalten und sie nach der angegebenen Zeit entfernen. Du kannst die Bestrafung auch später ändern.",
+            "punishmentexplained2": "Wenn du keine Zeit eingibst, wird die Bestrafung permanent sein.",
+            "punisheduntil": "Bestraft bis",
+            "formatisrequired": "Bitte beachte das Format: {format}",
+            "senddmnotification": "Sende DM Benachrichtigung",
+            "executepunishment": "Bestrafung ausführen",
+            "sendpublicnotification": "Sende öffentliche Benachrichtigung",
+            "files": "Dateien",
+            "filesexplain": "Du kannst Dateien zu MASZ hochladen, bitte beachte, dass der Benutzer diese auch sehen kann",
+            "filesbutton": "Dateien auswählen",
+            "createtemplate": "Vorlage erstellen",
+            "submitting": "Senden...",
+            "casecreated": "Fall #{id} erstellt"
+        },
         "modcasetable": {
             "selectmembers": "Mitglieda",
             "selectmoderators": "Modaratoren",

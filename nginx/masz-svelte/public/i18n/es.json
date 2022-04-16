@@ -133,6 +133,42 @@
         }
     },
     "guilds": {
+        "caseview": {
+            "attachmentuploadfailed": "Subida de adjunto falló"
+        },
+        "casedialog": {
+            "createcase": "Crear caso",
+            "caseexplain": "Utiliza un caso para registrar infracciones y sanciones en tu hermandad.",
+            "caseexplain2": "MASZ gestionará automáticamente tu sanción y notificará al usuario y tu hermandad si está configurado.",
+            "importtemplate": "Importar plantilla",
+            "templateexplain": "¿No hay una plantilla que coincida con tus requisitos? ¡Crea una al final de este diálogo!",
+            "selecttemplate": "Seleccionar plantilla",
+            "notemplatesfound": "No se encontraron plantillas",
+            "member": "Seleccionar miembro",
+            "memberexplain": "Seleccione el miembro que desea sanción o ingrese una ID si el miembro no está en la lista.",
+            "nomembersfound": "No se encontraron miembros",
+            "reason": "Razón",
+            "title": "Título",
+            "titleplaceholder": "Título (max 100 caracteres)",
+            "titleinvalid": "El campo Título es obligatorio y sólo puede contener 100 caracteres.",
+            "descriptionfield": "Descripción",
+            "labels": "Etiquetas",
+            "labelsplaceholder": "Nueva etiqueta",
+            "punishment": "Sancion",
+            "punishmentexplained": "MASZ gestionará automáticamente tu sanción y la eliminará después del tiempo especificado. También puedes cambiar la sanción más tarde.",
+            "punishmentexplained2": "Si no ingresas un tiempo, la sanción será permanente.",
+            "punisheduntil": "Sancionado hasta",
+            "formatisrequired": "Por favor, respeta el formato: {format}",
+            "senddmnotification": "Enviar notificación DM",
+            "executepunishment": "Ejecutar sanción",
+            "sendpublicnotification": "Enviar notificación pública",
+            "files": "Archivos",
+            "filesexplain": "Puedes subir archivos a MASZ como prueba, ten en cuenta que el usuario también podrá ver esos",
+            "filesbutton": "Seleccionar archivos",
+            "createtemplate": "Crear plantilla",
+            "submitting": "Enviando...",
+            "casecreated": "Caso #{id} creado"
+        },
         "modcasetable": {
             "selectmembers": "Miembros",
             "selectmoderators": "Moderadores",

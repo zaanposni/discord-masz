@@ -1,3 +1,4 @@
+import type moment from "moment";
 import { PunishmentType } from "./PunishmentType";
 
 export interface ICase {
@@ -11,21 +12,21 @@ export interface ICase {
     discriminator?: string;
     nickname?: string;
     modId?: string;
-    createdAt: Date;
-    occuredAt: Date;
-    lastEditedAt: Date;
+    createdAt: moment.Moment;
+    occuredAt: moment.Moment;
+    lastEditedAt: moment.Moment;
     lastEditedByModId?: string;
     labels: string[];
     others?: string;
     valid: boolean;
     creationType: number;
     punishmentType: PunishmentType;
-    punishedUntil: Date;
+    punishedUntil: moment.Moment;
     punishmentActive: boolean;
     allowComments: boolean;
-    lockedAt: Date;
+    lockedAt: moment.Moment;
     lockedByUserId: string;
-    markedToDeleteAt?: Date;
+    markedToDeleteAt?: moment.Moment;
     deletedByUserId?: string;
     comments: [];
 }

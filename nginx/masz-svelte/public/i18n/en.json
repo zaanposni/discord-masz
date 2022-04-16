@@ -133,6 +133,42 @@
         }
     },
     "guilds": {
+        "caseview": {
+            "attachmentuploadfailed": "Attachment upload failed"
+        },
+        "casedialog": {
+            "createcase": "Create case",
+            "caseexplain": "Use cases to log infractions and punishments in your guild.",
+            "caseexplain2": "MASZ will automatically manage your punishment and notify the user and your guild if configured.",
+            "importtemplate": "Import template",
+            "templateexplain": "No template that matches your requirements? Create one at the end of this dialog!",
+            "selecttemplate": "Select template",
+            "notemplatesfound": "No templates found",
+            "member": "Select member",
+            "memberexplain": "Select the member you want to punish or enter an ID if the member is not in the list.",
+            "nomembersfound": "No members found",
+            "reason": "Reason",
+            "title": "Title",
+            "titleplaceholder": "Title (max 100 characters)",
+            "titleinvalid": "Title field is required and can only be 100 characters long.",
+            "descriptionfield": "Description",
+            "labels": "Labels",
+            "labelsplaceholder": "New label",
+            "punishment": "Punishment",
+            "punishmentexplained": "MASZ will automatically manage your punishment and remove it after the specified time. You can also change the punishment later on.",
+            "punishmentexplained2": "If you do not enter a time, the punishment will be permanent.",
+            "punisheduntil": "Punished until",
+            "formatisrequired": "Please respect the format: {format}",
+            "senddmnotification": "Send DM notification",
+            "executepunishment": "Execute punishment",
+            "sendpublicnotification": "Send public notification",
+            "files": "Files",
+            "filesexplain": "You can upload files to MASZ as a prove, please be advised that the user will also be able to see those",
+            "filesbutton": "Select files",
+            "createtemplate": "Create template",
+            "submitting": "Submitting...",
+            "casecreated": "Case #{id} created"
+        },
         "modcasetable": {
             "selectmembers": "Members",
             "selectmoderators": "Moderators",

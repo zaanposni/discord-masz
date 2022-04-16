@@ -952,6 +952,329 @@
         }
     },
     "guilds": {
+        "caseview": {
+            "attachmentuploadfailed": {
+                "description": "Attachment upload failed",
+                "en": "Attachment upload failed",
+                "de": "Anhang hochladen fehlgeschlagen",
+                "at": "Anhang hochladen fehlgeschlagen",
+                "fr": "Échec de l'envoi de pièce jointe",
+                "es": "Subida de adjunto falló",
+                "ru": "Загрузка вложения не удалась",
+                "it": "Caricamento allegato non riuscito"
+            }
+        },
+        "casedialog": {
+            "createcase": {
+                "description": "Create case",
+                "en": "Create case",
+                "de": "Vorfall erstellen",
+                "at": "Vorfall erstellen",
+                "fr": "Créer un cas",
+                "es": "Crear caso",
+                "ru": "Создать случай",
+                "it": "Crea caso"
+            },
+            "caseexplain": {
+                "description": "Case explanation",
+                "en": "Use cases to log infractions and punishments in your guild.",
+                "de": "Benutze Vorfälle, um Verstöße und Strafen in deiner Gilde zu protokollieren.",
+                "at": "Benutze Vorfälle, um Verstöße und Strafen in deiner Gilde zu protokollieren.",
+                "fr": "Utilisez un cas pour journaliser des infractions et des punitions dans votre guilde.",
+                "es": "Utiliza un caso para registrar infracciones y sanciones en tu hermandad.",
+                "ru": "Используйте случай, чтобы записывать нарушения и наказания в вашей гильдии.",
+                "it": "Utilizza un caso per registrare infrazioni e punizioni nella tua gilda."
+            },
+            "caseexplain2": {
+                "description": "Case explanation",
+                "en": "MASZ will automatically manage your punishment and notify the user and your guild if configured.",
+                "de": "MASZ wird automatisch deine Strafe verwalten und den Benutzer und deine Gilde benachrichtigen, wenn konfiguriert.",
+                "at": "MASZ wird automatisch deine Strafe verwalten und den Benutzer und deine Gilde benachrichtigen, wenn konfiguriert.",
+                "fr": "MASZ va automatiquement gérer votre punition et notifier l'utilisateur et votre guilde si configuré.",
+                "es": "MASZ gestionará automáticamente tu sanción y notificará al usuario y tu hermandad si está configurado.",
+                "ru": "MASZ будет автоматически управлять вашей наказанием и уведомлять пользователя и вашу гильдию, если настроено.",
+                "it": "MASZ gestisce automaticamente la tua punizione e notifica l'utente e la tua gilda se configurato."
+            },
+            "importtemplate": {
+                "description": "Import template",
+                "en": "Import template",
+                "de": "Vorlage importieren",
+                "at": "Vorlage importieren",
+                "fr": "Importer un modèle",
+                "es": "Importar plantilla",
+                "ru": "Импортировать шаблон",
+                "it": "Importa modello"
+            },
+            "templateexplain": {
+                "description": "Template explanation",
+                "en": "No template that matches your requirements? Create one at the end of this dialog!",
+                "de": "Keine Vorlage, die deine Anforderungen entspricht? Erstelle eine am Ende dieses Dialogs!",
+                "at": "Keine Vorlage, die deine Anforderungen entspricht? Erstelle eine am Ende dieses Dialogs!",
+                "fr": "Aucun modèle ne correspond à vos besoins? Créez-en un à la fin de cette boîte de dialogue!",
+                "es": "¿No hay una plantilla que coincida con tus requisitos? ¡Crea una al final de este diálogo!",
+                "ru": "Нет шаблона, соответствующего вашим требованиям? Создайте его в конце этого диалога!",
+                "it": "Nessun modello che corrisponda ai tuoi requisiti? Crea uno alla fine di questa finestra di dialogo!"
+            },
+            "selecttemplate": {
+                "description": "Select template",
+                "en": "Select template",
+                "de": "Vorlage auswählen",
+                "at": "Vorlage auswählen",
+                "fr": "Sélectionnez un modèle",
+                "es": "Seleccionar plantilla",
+                "ru": "Выберите шаблон",
+                "it": "Seleziona modello"
+            },
+            "notemplatesfound": {
+                "description": "No templates found",
+                "en": "No templates found",
+                "de": "Keine Vorlagen gefunden",
+                "at": "Keine Vorlagen gefunden",
+                "fr": "Aucun modèle trouvé",
+                "es": "No se encontraron plantillas",
+                "ru": "Шаблоны не найдены",
+                "it": "Nessun modello trovato"
+            },
+            "member": {
+                "description": "member",
+                "en": "Select member",
+                "de": "Mitglied auswählen",
+                "at": "Mitglied auswählen",
+                "fr": "Sélectionnez un membre",
+                "es": "Seleccionar miembro",
+                "ru": "Выберите участника",
+                "it": "Seleziona membro"
+            },
+            "memberexplain": {
+                "description": "Member explanation",
+                "en": "Select the member you want to punish or enter an ID if the member is not in the list.",
+                "de": "Wähle das Mitglied aus, das du bestrafen möchtest oder gib eine ID ein, wenn das Mitglied nicht in der Liste ist.",
+                "at": "Wähle das Mitglied aus, das du bestrafen möchtest oder gib eine ID ein, wenn das Mitglied nicht in der Liste ist.",
+                "fr": "Sélectionnez le membre que vous voulez punir ou entrez une ID si le membre n'est pas dans la liste.",
+                "es": "Seleccione el miembro que desea sanción o ingrese una ID si el miembro no está en la lista.",
+                "ru": "Выберите участника, которого вы хотите наказать или введите ID, если участник не в списке.",
+                "it": "Seleziona il membro che vuoi punire o inserisci un ID se il membro non è nella lista."
+            },
+            "nomembersfound": {
+                "description": "No members found",
+                "en": "No members found",
+                "de": "Keine Mitglieder gefunden",
+                "at": "Keine Mitglieder gefunden",
+                "fr": "Aucun membre trouvé",
+                "es": "No se encontraron miembros",
+                "ru": "Участников не найдено",
+                "it": "Nessun membro trovato"
+            },
+            "reason": {
+                "description": "Reason",
+                "en": "Reason",
+                "de": "Grund",
+                "at": "Grund",
+                "fr": "Raison",
+                "es": "Razón",
+                "ru": "Причина",
+                "it": "Motivo"
+            },
+            "title": {
+                "description": "Title",
+                "en": "Title",
+                "de": "Titel",
+                "at": "Titel",
+                "fr": "Titre",
+                "es": "Título",
+                "ru": "Название",
+                "it": "Titolo"
+            },
+            "titleplaceholder": {
+                "description": "Title",
+                "en": "Title (max 100 characters)",
+                "de": "Titel (maximal 100 Zeichen)",
+                "at": "Titel (maximal 100 Zeichen)",
+                "fr": "Titre (max 100 caractères)",
+                "es": "Título (max 100 caracteres)",
+                "ru": "Название (макс. 100 символов)",
+                "it": "Titolo (max 100 caratteri)"
+            },
+            "titleinvalid": {
+                "description": "Title is invalid",
+                "en": "Title field is required and can only be 100 characters long.",
+                "de": "Titelfeld ist erforderlich und darf nur 100 Zeichen lang sein.",
+                "at": "Titelfeld ist erforderlich und darf nur 100 Zeichen lang sein.",
+                "fr": "Le champ Titre est obligatoire et ne peut contenir plus de 100 caractères.",
+                "es": "El campo Título es obligatorio y sólo puede contener 100 caracteres.",
+                "ru": "Поле Название является обязательным и может содержать не более 100 символов.",
+                "it": "Il campo Titolo è obbligatorio e può contenere solo 100 caratteri."
+            },
+            "descriptionfield": {
+                "description": "Description",
+                "en": "Description",
+                "de": "Beschreibung",
+                "at": "Beschreibung",
+                "fr": "Description",
+                "es": "Descripción",
+                "ru": "Описание",
+                "it": "Descrizione"
+            },
+            "labels": {
+                "description": "Labels",
+                "en": "Labels",
+                "de": "Labels",
+                "at": "Labels",
+                "fr": "Étiquettes",
+                "es": "Etiquetas",
+                "ru": "Метки",
+                "it": "Etichette"
+            },
+            "labelsplaceholder": {
+                "description": "Labels",
+                "en": "New label",
+                "de": "Neue Label",
+                "at": "Neue Label",
+                "fr": "Nouvelle étiquette",
+                "es": "Nueva etiqueta",
+                "ru": "Новая метка",
+                "it": "Nuova etichetta"
+            },
+            "punishment": {
+                "description": "Punishment",
+                "en": "Punishment",
+                "de": "Bestrafung",
+                "at": "Bestrafung",
+                "fr": "Punition",
+                "es": "Sancion",
+                "ru": "Наказание",
+                "it": "Punizione"
+            },
+            "punishmentexplained": {
+                "description": "Punishment explanation",
+                "en": "MASZ will automatically manage your punishment and remove it after the specified time. You can also change the punishment later on.",
+                "de": "MASZ wird automatisch deine Bestrafung verwalten und sie nach der angegebenen Zeit entfernen. Du kannst die Bestrafung auch später ändern.",
+                "at": "MASZ wird automatisch deine Bestrafung verwalten und sie nach der angegebenen Zeit entfernen. Du kannst die Bestrafung auch später ändern.",
+                "fr": "MASZ va gérer automatiquement votre punition et la supprimer après le temps spécifié. Vous pouvez également changer la punition plus tard.",
+                "es": "MASZ gestionará automáticamente tu sanción y la eliminará después del tiempo especificado. También puedes cambiar la sanción más tarde.",
+                "ru": "MASZ будет автоматически управлять вашим наказанием и удалить его после указанного времени. Вы также можете изменить наказание позже.",
+                "it": "MASZ gestisce automaticamente la tua punizione e la rimuoverà dopo il tempo specificato. Puoi anche cambiare la punizione più tardi."
+            },
+            "punishmentexplained2": {
+                "description": "Punishment explanation",
+                "en": "If you do not enter a time, the punishment will be permanent.",
+                "de": "Wenn du keine Zeit eingibst, wird die Bestrafung permanent sein.",
+                "at": "Wenn du keine Zeit eingibst, wird die Bestrafung permanent sein.",
+                "fr": "Si vous n'entrez pas de temps, la punition sera permanente.",
+                "es": "Si no ingresas un tiempo, la sanción será permanente.",
+                "ru": "Если вы не введете время, наказание будет постоянным.",
+                "it": "Se non inserisci un tempo, la punizione sarà permanente."
+            },
+            "punisheduntil": {
+                "description": "Punished until",
+                "en": "Punished until",
+                "de": "Bestraft bis",
+                "at": "Bestraft bis",
+                "fr": "Punition jusqu'à",
+                "es": "Sancionado hasta",
+                "ru": "Наказано до"
+            },
+            "formatisrequired": {
+                "description": "Format is required",
+                "en": "Please respect the format: {format}",
+                "de": "Bitte beachte das Format: {format}",
+                "at": "Bitte beachte das Format: {format}",
+                "fr": "Veuillez respecter le format: {format}",
+                "es": "Por favor, respeta el formato: {format}",
+                "ru": "Пожалуйста, соблюдайте формат: {format}",
+                "it": "Si prega di rispettare il formato: {format}"
+            },
+            "senddmnotification": {
+                "description": "Send DM notification",
+                "en": "Send DM notification",
+                "de": "Sende DM Benachrichtigung",
+                "at": "Sende DM Benachrichtigung",
+                "fr": "Envoyer une notification DM",
+                "es": "Enviar notificación DM",
+                "ru": "Отправить уведомление в ЛС",
+                "it": "Invia notifica DM"
+            },
+            "executepunishment": {
+                "description": "Execute punishment",
+                "en": "Execute punishment",
+                "de": "Bestrafung ausführen",
+                "at": "Bestrafung ausführen",
+                "fr": "Exécuter la punition",
+                "es": "Ejecutar sanción",
+                "ru": "Выполнить наказание",
+                "it": "Esegui punizione"
+            },
+            "sendpublicnotification": {
+                "description": "Send public notification",
+                "en": "Send public notification",
+                "de": "Sende öffentliche Benachrichtigung",
+                "at": "Sende öffentliche Benachrichtigung",
+                "fr": "Envoyer une notification publique",
+                "es": "Enviar notificación pública",
+                "ru": "Отправить публичное уведомление",
+                "it": "Invia notifica pubblica"
+            },
+            "files": {
+                "description": "Files",
+                "en": "Files",
+                "de": "Dateien",
+                "at": "Dateien",
+                "fr": "Fichiers",
+                "es": "Archivos",
+                "ru": "Файлы",
+                "it": "File"
+            },
+            "filesexplain": {
+                "description": "Files explanation",
+                "en": "You can upload files to MASZ as a prove, please be advised that the user will also be able to see those",
+                "de": "Du kannst Dateien zu MASZ hochladen, bitte beachte, dass der Benutzer diese auch sehen kann",
+                "at": "Du kannst Dateien zu MASZ hochladen, bitte beachte, dass der Benutzer diese auch sehen kann",
+                "fr": "Vous pouvez télécharger des fichiers à MASZ comme preuve, sachez que l'utilisateur pourra aussi les voir",
+                "es": "Puedes subir archivos a MASZ como prueba, ten en cuenta que el usuario también podrá ver esos",
+                "ru": "Вы можете загрузить файлы в MASZ как доказательство, обратите внимание, что пользователь также сможет видеть эти",
+                "it": "Puoi caricare file a MASZ come prova, tieni presente che l'utente sarà in grado di vederli"
+            },
+            "filesbutton": {
+                "description": "Files button",
+                "en": "Select files",
+                "de": "Dateien auswählen",
+                "at": "Dateien auswählen",
+                "fr": "Sélectionnez les fichiers",
+                "es": "Seleccionar archivos",
+                "ru": "Выберите файлы",
+                "it": "Seleziona file"
+            },
+            "createtemplate": {
+                "description": "Create template",
+                "en": "Create template",
+                "de": "Vorlage erstellen",
+                "at": "Vorlage erstellen",
+                "fr": "Créer un modèle",
+                "es": "Crear plantilla",
+                "ru": "Создать шаблон",
+                "it": "Crea modello"
+            },
+            "submitting": {
+                "description": "Submitting",
+                "en": "Submitting...",
+                "de": "Senden...",
+                "at": "Senden...",
+                "fr": "Soumission...",
+                "es": "Enviando...",
+                "ru": "Отправка...",
+                "it": "Invio..."
+            },
+            "casecreated": {
+                "description": "Case created",
+                "en": "Case #{id} created",
+                "de": "Fall #{id} erstellt",
+                "at": "Fall #{id} erstellt",
+                "fr": "Cas #{id} créé",
+                "es": "Caso #{id} creado",
+                "ru": "Случай #{id} создан",
+                "it": "Caso #{id} creato"
+            }
+        },
         "modcasetable": {
             "selectmembers": {
                 "description": "Select members",
