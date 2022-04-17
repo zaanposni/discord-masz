@@ -32,9 +32,9 @@
     import { currentLanguage } from "../../../stores/currentLanguage";
     import moment from "moment";
     import type { ILanguageSelect } from "../../../models/ILanguageSelect";
-    import { exec } from "apexcharts";
     import { goto } from "@roxi/routify";
     import { toastSuccess, toastWarning } from "../../../services/toast/store";
+    import { slide } from "svelte/transition";
 
     const utfOffset = new Date().getTimezoneOffset() * -1;
 
@@ -247,7 +247,7 @@
             </div>
             <div class="mb-2">
                 {#if $selectedLabels}
-                    <div class="flex flex-row flex-wrap mb-2">
+                    <div class="flex flex-row flex-wrap mb-2" transition:slide|local>
                         {#each $selectedLabels as label (label)}
                             <Tag
                                 type="outline"
@@ -284,7 +284,7 @@
             <!-- Temporary punishment -->
 
             {#if modCase.punishmentType == PunishmentType.Mute || modCase.punishmentType == PunishmentType.Ban}
-                <div class="flex flex-row mt-2" class:flex-wrap={!matches}>
+                <div class="flex flex-row mt-2" class:flex-wrap={!matches} transition:slide|local>
                     <DatePicker
                         class="!grow-0 !shrink mr-4"
                         bind:value={inputPunishedUntilDate}
@@ -319,7 +319,7 @@
             <Checkbox labelText={$_("guilds.casedialog.senddmnotification")} bind:checked={sendDmNotification} />
         </div>
         {#if modCase.punishmentType == PunishmentType.Mute || modCase.punishmentType == PunishmentType.Ban}
-            <div>
+            <div transition:slide|local>
                 <Checkbox labelText={$_("guilds.casedialog.executepunishment")} bind:checked={executePunishment} />
             </div>
         {/if}
