@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { flatPickrLocales } from "carbon-components-svelte/node_modules/flatpickr/dist/types/locale";
     import type { ILabelUsage } from "./../../../models/api/ILabelUsage";
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import { _ } from "svelte-i18n";
@@ -132,7 +131,7 @@
     function calculatePunishedUntil(date: string, time: string, language?: ILanguageSelect) {
         if (language) {
             date
-                ? (modCase.punishedUntil = moment(`${date} ${time ? time : "00:00"}`)
+                ? (modCase.punishedUntil = moment(`${date} ${time ? time : "00:00"}`, `${language.momentDateFormat} ${language.momentTimeFormat}`)
                       .utc(false)
                       .utcOffset(utfOffset))
                 : (modCase.punishedUntil = null);
@@ -336,6 +335,7 @@
                         modCase.title === undefined ||
                         modCase.title === null ||
                         (modCase.title?.length ?? 0) === 0 ||
+                        (modCase.title?.length ?? 0) > 100 ||
                         modCase.punishmentType === undefined ||
                         modCase.punishmentType === null}
                     on:click={() => {
@@ -351,6 +351,7 @@
                         disabled={modCase.title === undefined ||
                             modCase.title === null ||
                             (modCase.title?.length ?? 0) === 0 ||
+                            (modCase.title?.length ?? 0) > 100 ||
                             modCase.userId === undefined ||
                             modCase.userId === null ||
                             modCase.punishmentType === undefined ||
