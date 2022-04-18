@@ -3,8 +3,11 @@
     import { API_URL } from "../../../config";
     import {
         Button,
+        Checkbox,
         CopyButton,
         InlineNotification,
+        Loading,
+        Modal,
         OverflowMenu,
         OverflowMenuItem,
         ProgressBar,
@@ -42,13 +45,13 @@
     import { toastError, toastSuccess } from "../../../services/toast/store";
     import type { Writable } from "svelte/store";
     import { writable } from "svelte/store";
-    import type { ICommentView } from "../../../models/api/ICommentView";
-    import MarkedToDeleteStatus from "../../../services/enums/MarkedToDeleteStatus";
-    import { goto, url } from "@roxi/routify";
-    import App from "../../../App.svelte";
+    import { goto } from "@roxi/routify";
     import { confirmDialogReturnFunction, showConfirmDialog } from "../../../core/confirmDialog/store";
     import moment from "moment";
     import { PunishmentType } from "../../../models/api/PunishmentType";
+    import { _ } from "svelte-i18n";
+    import type { ICase } from "../../../models/api/ICase";
+    import MarkedToDeleteStatus from "../../../services/enums/MarkedToDeleteStatus";
 
     const preloadFileExtensions = ["img", "png", "jpg", "jpeg", "gif", "webp"];
 
@@ -63,6 +66,15 @@
     let renderedDescription: string = "";
 
     let newComment: string = "";
+    let editCommentModal: Writable<boolean> = writable(false);
+    let editCommentId: Writable<number> = writable(null);
+    let editCommentValue: Writable<string> = writable("");
+    let editCommentSubmitting: Writable<boolean> = writable(false);
+
+    let deleteCaseModalOpen: Writable<boolean> = writable(false);
+    let deleteCaseSubmitting: Writable<boolean> = writable(false);
+    let deleteCaseModalPublicNotification: Writable<boolean> = writable(false);
+    let deleteCaseModalForceDelete: Writable<boolean> = writable(false);
 
     $: $currentParams?.guildId && $currentParams?.caseId ? loadData() : null;
     function loadData() {
@@ -129,10 +141,6 @@
 
     function linkCase() {
         console.log("linkCase");
-    }
-
-    function editComment(comment: IComment) {
-        console.log("editComment", comment);
     }
 
     function deleteComment(id: number) {
@@ -278,8 +286,46 @@
             });
     }
 
+    function onDeleteCaseModalClose() {
+        deleteCaseModalOpen.set(false);
+        deleteCaseModalForceDelete.set(false);
+        deleteCaseModalPublicNotification.set(false);
+        deleteCaseSubmitting.set(false);
+    }
+
+    function deleteCaseModal() {
+        deleteCaseModalForceDelete.set(false);
+        deleteCaseModalPublicNotification.set(false);
+        deleteCaseSubmitting.set(false);
+        deleteCaseModalOpen.set(true);
+    }
+
     function deleteCase() {
-        console.log("delete | open dialog with force delete and publicnotification question");
+        deleteCaseSubmitting.set(true);
+        API.deleteData(
+            `/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}?sendnotification=${$deleteCaseModalPublicNotification}&forceDelete=${$deleteCaseModalForceDelete}`,
+            {}
+        )
+            .then((res: ICase) => {
+                clearCaseCache();
+                if ($deleteCaseModalForceDelete) {
+                    $goto("/guilds/" + $currentParams.guildId + "/cases");
+                    toastSuccess("Case deleted");
+                } else {
+                    modCase.update((x) => {
+                        x.modCase.markedToDeleteAt = res.markedToDeleteAt;
+                        x.modCase.deletedByUserId = res.deletedByUserId;
+                        x.deletedBy = $authUser.discordUser;
+                        return x;
+                    });
+                    toastSuccess("Case marked to be deleted");
+                }
+                onDeleteCaseModalClose();
+            })
+            .catch(() => {
+                deleteCaseSubmitting.set(false);
+                toastError("Failed to delete case");
+            });
     }
 
     function restoreCase() {
@@ -298,6 +344,44 @@
                 toastError("Failed to restore case");
             });
     }
+
+    function onEditCommentModalClose() {
+        editCommentModal.set(false);
+        editCommentSubmitting.set(false);
+        editCommentId.set(null);
+        editCommentValue.set(null);
+    }
+
+    function editCommentModalOpen(comment: IComment) {
+        editCommentSubmitting.set(false);
+        editCommentId.set(comment.id);
+        editCommentValue.set(comment.message);
+        editCommentModal.set(true);
+    }
+
+    function editComment() {
+        editCommentSubmitting.set(true);
+        const data = {
+            message: $editCommentValue,
+        };
+        API.put(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/comments/${$editCommentId}`, data)
+            .then(() => {
+                toastSuccess("Comment edited");
+                modCase.update((n) => {
+                    const index = n.comments.findIndex((x) => x.comment.id === $editCommentId);
+                    if (index !== -1) {
+                        n.comments[index].comment.message = $editCommentValue;
+                    }
+                    return n;
+                });
+                onEditCommentModalClose();
+                clearCaseCache();
+            })
+            .catch(() => {
+                editCommentSubmitting.set(false);
+                toastError("Failed to edit comment");
+            });
+    }
 </script>
 
 <style>
@@ -311,6 +395,51 @@
         margin-left: 0;
     }
 </style>
+
+<!-- Edit comment modal -->
+<Modal
+    size="sm"
+    open={$editCommentModal}
+    selectorPrimaryFocus="#commentvalue"
+    modalHeading={$_("guilds.casedialog.createtemplate")}
+    primaryButtonText={$_("guilds.casedialog.createtemplate")}
+    secondaryButtonText={$_("dialog.confirm.cancel")}
+    primaryButtonDisabled={$editCommentValue !== undefined && $editCommentValue !== null && ($editCommentValue?.length ?? 0) > 300}
+    on:close={onEditCommentModalClose}
+    on:click:button--secondary={onEditCommentModalClose}
+    on:submit={editComment}>
+    <Loading active={$editCommentSubmitting} />
+    <div class="mb-4">
+        <TextInput
+            id="commentvalue"
+            bind:value={$editCommentValue}
+            labelText={$_("guilds.casedialog.title")}
+            placeholder={$_("guilds.casedialog.titleplaceholder")}
+            required
+            invalid={$editCommentValue !== undefined && $editCommentValue !== null && ($editCommentValue?.length ?? 0) > 300}
+            invalidText={$_("guilds.casedialog.titleinvalid")} />
+    </div>
+</Modal>
+
+<!-- Delete case modal -->
+<Modal
+    size="sm"
+    danger
+    open={$deleteCaseModalOpen}
+    selectorPrimaryFocus="#publicnotification"
+    modalHeading={$_("guilds.casedialog.createtemplate")}
+    primaryButtonText={$_("guilds.casedialog.createtemplate")}
+    secondaryButtonText={$_("dialog.confirm.cancel")}
+    primaryButtonDisabled={$deleteCaseSubmitting}
+    on:close={onDeleteCaseModalClose}
+    on:click:button--secondary={onDeleteCaseModalClose}
+    on:submit={deleteCase}>
+    <Loading active={$deleteCaseSubmitting} />
+    <div class="mb-4">
+        <Checkbox id="publicnotification" labelText="Send public notification" bind:checked={$deleteCaseModalPublicNotification} />
+        <Checkbox labelText="Force delete" bind:checked={$deleteCaseModalForceDelete} />
+    </div>
+</Modal>
 
 <MediaQuery query="(min-width: 1024px)" let:matches>
     <div class="flex flex-col">
@@ -403,7 +532,7 @@
                                 </div>
                                 {#if $modCase.modCase.markedToDeleteAt === null}
                                     <div class="mr-2 mb-2">
-                                        <Button size="small" kind="danger" icon={TrashCan24} on:click={deleteCase}>Delete</Button>
+                                        <Button size="small" kind="danger" icon={TrashCan24} on:click={deleteCaseModal}>Delete</Button>
                                     </div>
                                 {:else}
                                     <div class="mr-2 mb-2">
@@ -439,7 +568,7 @@
                                         $goto(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/edit`);
                                     }} />
                                 {#if $modCase.modCase.markedToDeleteAt === null}
-                                    <OverflowMenuItem text="Delete" danger on:click={deleteCase} />
+                                    <OverflowMenuItem text="Delete" danger on:click={deleteCaseModal} />
                                 {:else}
                                     <OverflowMenuItem text="Restore" on:click={restoreCase} />
                                 {/if}
@@ -452,6 +581,16 @@
         <div class="flex flex-col lg:flex-row grow">
             <!-- Case content -->
             <div class="flex flex-col grow shrink-0 {matches ? 'pr-4 w-2/3' : ''}">
+                {#if $modCase?.modCase?.markedToDeleteAt}
+                    <InlineNotification
+                        kind="info"
+                        title="This case has been marked to be deleted at {$modCase?.modCase?.markedToDeleteAt?.format(
+                            $currentLanguage?.momentDateTimeFormat ?? 'DD/MM/YYYY HH:mm'
+                        )}"
+                        subtitle={$modCase?.deletedBy
+                            ? `Deleted by ${$modCase?.deletedBy?.username}#${$modCase?.deletedBy?.discriminator}`
+                            : "Deleted by a moderator"} />
+                {/if}
                 {#if caseLoading}
                     <SkeletonText paragraph />
                 {:else}
@@ -638,7 +777,7 @@
                                                             text="Edit"
                                                             disabled={!$modCase.modCase.allowComments}
                                                             on:click={() => {
-                                                                editComment(comment.comment);
+                                                                editCommentModalOpen(comment.comment);
                                                             }} />
                                                     {/if}
                                                     {#if $authUser.discordUser.id === comment.comment.userId || isModeratorInGuild($authUser, $currentParams.guildId)}
@@ -671,11 +810,13 @@
                                             invalid={(newComment?.length ?? 0) > 300}
                                             invalidText="Comment must be less than 300 characters"
                                             disabled={!$modCase.modCase.allowComments ||
+                                                $modCase.modCase.markedToDeleteAt !== null ||
                                                 ($modCase?.comments?.at(-1)?.comment?.userId === $authUser?.discordUser?.id &&
                                                     !isModeratorInGuild($authUser, $currentParams.guildId))} />
                                     </div>
                                     <Send24
                                         class={!$modCase.modCase.allowComments ||
+                                        $modCase.modCase.markedToDeleteAt !== null ||
                                         newComment?.trim()?.length === 0 ||
                                         (newComment?.trim()?.length ?? 0) > 300 ||
                                         ($modCase?.comments?.at(-1)?.comment?.userId === $authUser?.discordUser?.id &&
@@ -685,7 +826,7 @@
                                         on:click={sendComment} />
                                 </div>
                                 {#if !$modCase.modCase.allowComments}
-                                    <InlineNotification title="Locked:" subtitle="You cannot comment since this case is locked." />
+                                    <InlineNotification kind="info" title="Locked:" subtitle="You cannot comment since this case is locked." />
                                 {/if}
                             {/if}
                         </div>
@@ -708,25 +849,6 @@
                         <SkeletonText width={"30%"} />
                     </div>
                 {:else}
-                    <div class="flex flex-col mb-6">
-                        <div class="font-bold mb-2">Violator</div>
-                        <div class="flex flex-row items-center">
-                            <UserIcon class="mr-2" user={$modCase.suspect} />
-                            <div class="flex flex-row flex-wrap items-center">
-                                <div class="mr-2">
-                                    {$modCase.suspect?.username ?? $modCase.modCase.username}#{$modCase.suspect?.discriminator ??
-                                        $modCase.modCase.discriminator}
-                                </div>
-                                <div class="mr-2" style="color: var(--cds-text-02)">
-                                    ({$modCase.modCase.userId})
-                                </div>
-                            </div>
-                            <div class="grow" />
-                            <div>
-                                <CopyButton text={$modCase.modCase.userId} feedback="Copied to clipboard" />
-                            </div>
-                        </div>
-                    </div>
                     {#if !matches}
                         <div class="flex flex-row justify-end mb-6">
                             <Button
@@ -740,6 +862,25 @@
                     {/if}
                     {#if matches || openFurtherDetails}
                         <div class="flex flex-col grow shrink-0" transition:slide|local>
+                            <div class="flex flex-col mb-6">
+                                <div class="font-bold mb-2">Violator</div>
+                                <div class="flex flex-row items-center">
+                                    <UserIcon class="mr-2" user={$modCase.suspect} />
+                                    <div class="flex flex-row flex-wrap items-center">
+                                        <div class="mr-2">
+                                            {$modCase.suspect?.username ?? $modCase.modCase.username}#{$modCase.suspect?.discriminator ??
+                                                $modCase.modCase.discriminator}
+                                        </div>
+                                        <div class="mr-2" style="color: var(--cds-text-02)">
+                                            ({$modCase.modCase.userId})
+                                        </div>
+                                    </div>
+                                    <div class="grow" />
+                                    <div>
+                                        <CopyButton text={$modCase.modCase.userId} feedback="Copied to clipboard" />
+                                    </div>
+                                </div>
+                            </div>
                             <div class="flex flex-col mb-6">
                                 <div class="font-bold mb-2">Punishment {$modCase.modCase.punishmentActive ? "" : "(inactive)"}</div>
                                 <div>
@@ -766,6 +907,14 @@
                                                 ) ?? "Permanent"}
                                             </div>
                                         {/if}
+                                    </div>
+                                </div>
+                            {/if}
+                            {#if $modCase?.userNote?.userNote}
+                                <div class="flex flex-col mb-6">
+                                    <div class="font-bold mb-2">Usernote</div>
+                                    <div style="white-space: pre-wrap; word-wrap: anywhere;">
+                                        {$modCase.userNote.userNote.description}
                                     </div>
                                 </div>
                             {/if}
