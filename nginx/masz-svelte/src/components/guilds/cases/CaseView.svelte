@@ -51,7 +51,6 @@
     import { PunishmentType } from "../../../models/api/PunishmentType";
     import { _ } from "svelte-i18n";
     import type { ICase } from "../../../models/api/ICase";
-    import MarkedToDeleteStatus from "../../../services/enums/MarkedToDeleteStatus";
 
     const preloadFileExtensions = ["img", "png", "jpg", "jpeg", "gif", "webp"];
 
