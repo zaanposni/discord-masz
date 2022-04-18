@@ -11,10 +11,24 @@
         SkeletonPlaceholder,
         SkeletonText,
         Tag,
+        TextArea,
         TextInput,
         Tile,
     } from "carbon-components-svelte";
-    import { Add24, ChevronDown24, ChevronUp24, List24, Locked24, Power24, Send24, Share24, TrashCan24, Upload24 } from "carbon-icons-svelte";
+    import {
+        Add24,
+        ChevronDown24,
+        ChevronUp24,
+        Edit24,
+        List24,
+        Locked24,
+        Power24,
+        Send24,
+        Share24,
+        TrashCan24,
+        Upload24,
+        WatsonHealthAiStatusComplete24,
+    } from "carbon-icons-svelte";
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import type { ICaseView } from "../../../models/api/ICaseView";
     import API from "../../../services/api/api";
@@ -29,18 +43,24 @@
     import type { Writable } from "svelte/store";
     import { writable } from "svelte/store";
     import type { ICommentView } from "../../../models/api/ICommentView";
+    import MarkedToDeleteStatus from "../../../services/enums/MarkedToDeleteStatus";
+    import { goto, url } from "@roxi/routify";
+    import App from "../../../App.svelte";
+    import { confirmDialogReturnFunction, showConfirmDialog } from "../../../core/confirmDialog/store";
+    import moment from "moment";
+    import { PunishmentType } from "../../../models/api/PunishmentType";
 
     const preloadFileExtensions = ["img", "png", "jpg", "jpeg", "gif", "webp"];
 
     let openFurtherDetails: boolean = false;
 
-    let caseLoading: boolean = true;
-    let modCase: ICaseView;
-    let filesLoading: boolean = true;
-    let files: { fullName: string; fileName: string }[] = [];
-    let renderedDescription: string = "";
+    let fileUploadRef: HTMLInputElement | null = null;
 
-    let comments: Writable<ICommentView[]> = writable([]);
+    let caseLoading: boolean = true;
+    let modCase: Writable<ICaseView> = writable(null);
+    let filesLoading: boolean = true;
+    let files: Writable<{ fullName: string; fileName: string }[]> = writable([]);
+    let renderedDescription: string = "";
 
     let newComment: string = "";
 
@@ -50,12 +70,11 @@
         filesLoading = true;
         API.get(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/view`, CacheMode.PREFER_CACHE, true)
             .then((response: ICaseView) => {
-                modCase = response;
-                modCase.linkedCases = [{ ...response.modCase }, { ...response.modCase }, { ...response.modCase }];
-                modCase.linkedCases[0].title += response.modCase.title;
-                modCase.linkedCases[1].title = "lol";
-                renderDescription(modCase?.modCase?.description ?? "");
-                comments.set(modCase?.comments ?? []);
+                response.linkedCases = [{ ...response.modCase }, { ...response.modCase }, { ...response.modCase }];
+                response.linkedCases[0].title += response.modCase.title;
+                response.linkedCases[1].title = "lol";
+                modCase.set(response);
+                renderDescription(response?.modCase?.description ?? "");
                 caseLoading = false;
             })
             .catch(() => {
@@ -63,11 +82,13 @@
             });
         API.get(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/files`, CacheMode.PREFER_CACHE, true)
             .then((response: { names: string[] }) => {
-                files = response.names.map((x) => {
-                    const fileName = x.split("_").slice(2).join("_");
-                    const fullName = x;
-                    return { fullName, fileName };
-                });
+                files.set(
+                    response.names.map((x) => {
+                        const fileName = x.split("_").slice(2).join("_");
+                        const fullName = x;
+                        return { fullName, fileName };
+                    })
+                );
                 filesLoading = false;
             })
             .catch(() => {
@@ -80,6 +101,10 @@
         API.clearCacheEntryLike("post", `/guilds/${$currentParams.guildId}/modcasetable`);
     }
 
+    function clearFileCache() {
+        API.clearCacheEntry("get", `/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/files`);
+    }
+
     function renderDescription(description: string) {
         let value = description.replace("<", "&lt;").replace(">", "&gt;").replace(/\n/g, "<br>");
         value = value.replace(/#([\d]+)/g, `<a href=/guilds/${$currentParams.guildId}/cases/$1>#$1</a>`);
@@ -87,7 +112,15 @@
     }
 
     function deleteFile(file: string) {
-        console.log("deleteFile", file);
+        API.deleteData(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/files/${file}`, {})
+            .then(() => {
+                toastSuccess("File deleted");
+                clearFileCache();
+                files.update((x) => x.filter((y) => y.fullName !== file));
+            })
+            .catch(() => {
+                toastError("Failed to delete file");
+            });
     }
 
     function unlinkCase(caseId: number) {
@@ -106,7 +139,10 @@
         API.deleteData(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/comments/${id}`, {})
             .then(() => {
                 toastSuccess("Comment deleted");
-                comments.update((x) => x.filter((y) => y.comment.id !== id));
+                modCase.update((x) => {
+                    x.comments = x.comments.filter((y) => y.comment.id !== id);
+                    return x;
+                });
                 clearCaseCache();
             })
             .catch(() => {
@@ -123,18 +159,143 @@
         API.post(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/comments`, data, CacheMode.API_ONLY, false)
             .then((res: IComment) => {
                 newComment = "";
-                comments.update((x) => [
-                    ...x,
-                    {
+                modCase.update((x) => {
+                    x.comments.push({
                         commentor: $authUser.discordUser,
                         comment: res,
-                    },
-                ]);
+                    });
+                    return x;
+                });
                 toastSuccess("Comment added!");
                 clearCaseCache();
             })
             .catch(() => {
                 toastError("Failed to add comment");
+            });
+    }
+
+    function shareCase() {
+        navigator.clipboard
+            .writeText(window.location.toString())
+            .then(() => {
+                toastSuccess("Link copied to clipboard");
+            })
+            .catch((e) => console.error(e));
+    }
+
+    function uploadFile() {
+        fileUploadRef.onchange = () => {
+            for (let index = 0; index < fileUploadRef.files.length; index++) {
+                const file = fileUploadRef.files[index];
+                const formData = new FormData();
+                formData.append("file", file);
+                API.post(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/files`, formData, CacheMode.API_ONLY, false)
+                    .then((res: { path: string }) => {
+                        const fileName = res.path.split("_").slice(2).join("_");
+                        const fullName = res.path;
+                        files.update((n) => {
+                            n.push({
+                                fullName,
+                                fileName,
+                            });
+                            return n;
+                        });
+                        toastSuccess("File uploaded!");
+                        clearFileCache();
+                    })
+                    .catch(() => {
+                        toastError("Failed to upload file");
+                    });
+            }
+        };
+        fileUploadRef.click();
+    }
+
+    function handleActivation() {
+        const handleActivationInternal = (confirmed) => {
+            if (confirmed) {
+                if ($modCase.modCase.punishmentActive) {
+                    API.deleteData(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/active`, {})
+                        .then(() => {
+                            modCase.update((x) => {
+                                x.modCase.punishmentActive = false;
+                                return x;
+                            });
+                            toastSuccess("Punishment deactivated");
+                            clearCaseCache();
+                        })
+                        .catch(() => {
+                            toastError("Failed to deactivate punishment");
+                        });
+                } else {
+                    API.post(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/active`, {}, CacheMode.API_ONLY, false)
+                        .then(() => {
+                            modCase.update((x) => {
+                                x.modCase.punishmentActive = true;
+                                return x;
+                            });
+                            toastSuccess("Punishment activated");
+                            clearCaseCache();
+                        })
+                        .catch(() => {
+                            toastError("Failed to activate punishment");
+                        });
+                }
+            }
+        };
+
+        confirmDialogReturnFunction.set(handleActivationInternal);
+        showConfirmDialog.set(true);
+    }
+
+    function lockComments() {
+        API.post(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/lock`, {}, CacheMode.API_ONLY, false)
+            .then(() => {
+                modCase.update((x) => {
+                    x.modCase.allowComments = false;
+                    return x;
+                });
+                toastSuccess("Comments locked");
+                clearCaseCache();
+            })
+            .catch(() => {
+                toastError("Failed to lock comments");
+            });
+    }
+
+    function unlockComments() {
+        API.deleteData(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/lock`, {})
+            .then(() => {
+                modCase.update((x) => {
+                    x.modCase.allowComments = true;
+                    return x;
+                });
+                toastSuccess("Comments unlocked");
+                clearCaseCache();
+            })
+            .catch(() => {
+                toastError("Failed to unlock comments");
+            });
+    }
+
+    function deleteCase() {
+        console.log("delete | open dialog with force delete and publicnotification question");
+    }
+
+    function restoreCase() {
+        API.deleteData(`/guilds/${$currentParams.guildId}/bin/${$currentParams.caseId}/restore`, {})
+            .then(() => {
+                modCase.update((x) => {
+                    x.modCase.markedToDeleteAt = null;
+                    x.modCase.deletedByUserId = null;
+                    x.modCase.deletedByUserId = null;
+                    return x;
+                });
+                toastSuccess("Case restored");
+                clearCaseCache();
+            })
+            .catch(() => {
+                toastError("Failed to restore case");
             });
     }
 </script>
@@ -173,11 +334,11 @@
                         <SkeletonText heading paragraph lines={2} />
                     {:else}
                         <h2 class="font-black" style="word-wrap: anywhere">
-                            {modCase?.modCase?.title}
+                            {$modCase?.modCase?.title}
                         </h2>
                     {/if}
                 </div>
-                <div class="flex flex-row flex-wrap">
+                <div class="flex flex-row flex-wrap items-center">
                     {#if caseLoading}
                         <div class="mr-2 mb-2">
                             <Button size="small" skeleton />
@@ -189,22 +350,100 @@
                             <Button size="small" skeleton />
                         </div>
                     {:else}
-                        <div class="mr-2 mb-2">
-                            <Button size="small" kind="secondary" icon={Share24}>Share case</Button>
+                        <div class:mb-2={matches && isModeratorInGuild($authUser, $currentParams.guildId)} class:mr-2={matches}>
+                            <Button size="small" kind="secondary" icon={Share24} on:click={shareCase}>Share case</Button>
                         </div>
-                        {#if isModeratorInGuild($authUser, $currentParams.guildId)}
-                            <div class="mr-2 mb-2">
-                                <Button size="small" kind="secondary" icon={Upload24}>Upload file</Button>
-                            </div>
-                            <div class="mr-2 mb-2">
-                                <Button size="small" kind="secondary" icon={Power24}>Deactivate</Button>
-                            </div>
-                            <div class="mr-2 mb-2">
-                                <Button size="small" kind="secondary" icon={Locked24}>Lock comments</Button>
-                            </div>
-                            <div class="mr-2 mb-2">
-                                <Button size="small" kind="danger" icon={TrashCan24}>Delete</Button>
-                            </div>
+                        <input type="file" bind:this={fileUploadRef} name="fileUpload" multiple={true} accept="image/*" style="display:none;" />
+                        {#if matches}
+                            {#if isModeratorInGuild($authUser, $currentParams.guildId)}
+                                <div class="mr-2 mb-2">
+                                    <Button
+                                        size="small"
+                                        kind="secondary"
+                                        icon={Upload24}
+                                        disabled={$modCase.modCase.markedToDeleteAt !== null}
+                                        on:click={uploadFile}>Upload file</Button>
+                                </div>
+                                {#if ($modCase.modCase.punishedUntil === null || $modCase?.modCase?.punishedUntil?.isAfter(moment())) && ($modCase.modCase.punishmentType == PunishmentType.Ban || $modCase.modCase.punishmentType == PunishmentType.Mute)}
+                                    <div class="mr-2 mb-2">
+                                        <Button
+                                            size="small"
+                                            kind="secondary"
+                                            icon={Power24}
+                                            disabled={$modCase.modCase.markedToDeleteAt !== null}
+                                            on:click={handleActivation}>{$modCase.modCase.punishmentActive ? 'Deactivate' : 'Activate'}</Button>
+                                    </div>
+                                {/if}
+                                <div class="mr-2 mb-2">
+                                    {#if $modCase.modCase.allowComments}
+                                        <Button
+                                            size="small"
+                                            kind="secondary"
+                                            icon={Locked24}
+                                            disabled={$modCase.modCase.markedToDeleteAt !== null}
+                                            on:click={lockComments}>Lock comments</Button>
+                                    {:else}
+                                        <Button
+                                            size="small"
+                                            kind="secondary"
+                                            icon={Locked24}
+                                            disabled={$modCase.modCase.markedToDeleteAt !== null}
+                                            on:click={unlockComments}>Unlock comments</Button>
+                                    {/if}
+                                </div>
+                                <div class="mr-2 mb-2">
+                                    <Button
+                                        size="small"
+                                        kind="secondary"
+                                        icon={Edit24}
+                                        disabled={$modCase.modCase.markedToDeleteAt !== null}
+                                        on:click={() => {
+                                            $goto(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/edit`);
+                                        }}>Edit</Button>
+                                </div>
+                                {#if $modCase.modCase.markedToDeleteAt === null}
+                                    <div class="mr-2 mb-2">
+                                        <Button size="small" kind="danger" icon={TrashCan24} on:click={deleteCase}>Delete</Button>
+                                    </div>
+                                {:else}
+                                    <div class="mr-2 mb-2">
+                                        <Button size="small" icon={WatsonHealthAiStatusComplete24} on:click={restoreCase}>Restore</Button>
+                                    </div>
+                                {/if}
+                            {/if}
+                        {:else}
+                            <div class="grow" />
+                            <OverflowMenu flipped>
+                                <OverflowMenuItem text="Upload file" disabled={$modCase.modCase.markedToDeleteAt !== null} on:click={uploadFile} />
+                                {#if ($modCase.modCase.punishedUntil === null || $modCase?.modCase?.punishedUntil?.isAfter(moment())) && ($modCase.modCase.punishmentType == PunishmentType.Ban || $modCase.modCase.punishmentType == PunishmentType.Mute)}
+                                    <OverflowMenuItem
+                                        text="Deactivate"
+                                        disabled={$modCase.modCase.markedToDeleteAt !== null}
+                                        on:click={handleActivation} />
+                                {/if}
+                                {#if $modCase.modCase.allowComments}
+                                    <OverflowMenuItem
+                                        text="Lock comments"
+                                        disabled={$modCase.modCase.markedToDeleteAt !== null}
+                                        on:click={lockComments} />
+                                {:else}
+                                    <OverflowMenuItem
+                                        text="Unlock comments"
+                                        disabled={$modCase.modCase.markedToDeleteAt !== null}
+                                        on:click={unlockComments} />
+                                {/if}
+                                <OverflowMenuItem
+                                    text="Edit"
+                                    disabled={$modCase.modCase.markedToDeleteAt !== null}
+                                    on:click={() => {
+                                        $goto(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/edit`);
+                                    }} />
+                                {#if $modCase.modCase.markedToDeleteAt === null}
+                                    <OverflowMenuItem text="Delete" danger on:click={deleteCase} />
+                                {:else}
+                                    <OverflowMenuItem text="Restore" on:click={restoreCase} />
+                                {/if}
+                            </OverflowMenu>
                         {/if}
                     {/if}
                 </div>
@@ -232,11 +471,11 @@
                             <SkeletonPlaceholder />
                         </div>
                     </div>
-                {:else if files}
+                {:else if ($files?.length ?? 0) !== 0}
                     <div class="mb-4">
                         <div class="mb-2 font-bold">Attachments</div>
                         <div class="flex flex-row overflow-x-auto overflow-y-clip pb-2">
-                            {#each files as file}
+                            {#each $files as file}
                                 <div class="grow shrink-0 h-80 max-h-80">
                                     {#if preloadFileExtensions.includes(file.fileName.split(".").pop())}
                                         <Tile class="flex flex-col overflow-hidden h-full p-4 mr-2">
@@ -314,7 +553,7 @@
                             {/if}
                         </div>
                         <div class="flex flex-col" id="linkedcases">
-                            {#each modCase?.linkedCases as linked}
+                            {#each $modCase?.linkedCases ?? [] as linked}
                                 <Tile class="mb-2">
                                     <div class="flex flex-row grow-0 w-full max-w-full items-center">
                                         <List24 class="shrink-0 mr-2" />
@@ -370,7 +609,7 @@
                             <div class="font-bold">Comments</div>
                         </div>
                         <div class="flex flex-col" id="linkedcases">
-                            {#each $comments as comment (comment.comment.id)}
+                            {#each $modCase?.comments ?? [] as comment (comment.comment.id)}
                                 <Tile class="mb-2">
                                     <div class="flex flex-row grow-0 w-full max-w-full">
                                         <UserIcon user={comment.commentor} class="self-start mr-2" />
@@ -383,7 +622,7 @@
                                                     )}
                                                 </div>
                                             </div>
-                                            <div class="grow">
+                                            <div class="grow" style="white-space: pre-wrap; word-wrap: anywhere;">
                                                 {comment.comment.message}
                                             </div>
                                         </div>
@@ -392,7 +631,7 @@
                                                 {#if $authUser.discordUser.id === comment.commentor.id}
                                                     <OverflowMenuItem
                                                         text="Edit"
-                                                        disabled={!modCase.modCase.allowComments}
+                                                        disabled={!$modCase.modCase.allowComments}
                                                         on:click={() => {
                                                             editComment(comment.comment);
                                                         }} />
@@ -400,7 +639,7 @@
                                                 {#if $authUser.discordUser.id === comment.commentor.id || isModeratorInGuild($authUser, $currentParams.guildId)}
                                                     <OverflowMenuItem
                                                         text="Delete"
-                                                        disabled={!modCase.modCase.allowComments}
+                                                        disabled={!$modCase.modCase.allowComments}
                                                         on:click={() => {
                                                             deleteComment(comment.comment.id);
                                                         }} />
@@ -411,7 +650,7 @@
                                 </Tile>
                             {/each}
 
-                            {#if $comments?.length}
+                            {#if $modCase?.comments?.length}
                                 <hr class="mb-2" style="border-color: var(--cds-ui-04)" />
                             {/if}
 
@@ -419,23 +658,27 @@
                                 <div class="flex flex-row items-center">
                                     <UserIcon user={$authUser.discordUser} class="mr-2" />
                                     <div class="mr-2 grow">
-                                        <TextInput
+                                        <TextArea
+                                            rows={2}
                                             bind:value={newComment}
-                                            placeholder="Add a comment..."
-                                            disabled={!modCase.modCase.allowComments ||
-                                                ($comments.at(-1)?.comment?.userId === $authUser?.discordUser?.id &&
+                                            placeholder="Add a comment... (max 300 characters)"
+                                            invalid={(newComment?.length ?? 0) > 300}
+                                            invalidText="Comment must be less than 300 characters"
+                                            disabled={!$modCase.modCase.allowComments ||
+                                                ($modCase?.comments?.at(-1)?.comment?.userId === $authUser?.discordUser?.id &&
                                                     !isModeratorInGuild($authUser, $currentParams.guildId))} />
                                     </div>
                                     <Send24
-                                        class={!modCase.modCase.allowComments ||
+                                        class={!$modCase.modCase.allowComments ||
                                         newComment?.trim()?.length === 0 ||
-                                        ($comments.at(-1)?.comment?.userId === $authUser?.discordUser?.id &&
+                                        (newComment?.trim()?.length ?? 0) > 300 ||
+                                        ($modCase?.comments?.at(-1)?.comment?.userId === $authUser?.discordUser?.id &&
                                             !isModeratorInGuild($authUser, $currentParams.guildId))
                                             ? ""
                                             : "cursor-pointer"}
                                         on:click={sendComment} />
                                 </div>
-                                {#if !modCase.modCase.allowComments}
+                                {#if !$modCase.modCase.allowComments}
                                     <InlineNotification title="Locked:" subtitle="You cannot comment since this case is locked." />
                                 {/if}
                             {/if}
@@ -460,19 +703,21 @@
                     </div>
                 {:else}
                     <div class="flex flex-col mb-6">
-                        <div class="font-bold mb-2">Suspect</div>
-                        <div class="flex flex-row flex-wrap items-center">
-                            <UserIcon class="mr-2" user={modCase.suspect} />
-                            <div class="mr-2">
-                                {modCase.suspect?.username ?? modCase.modCase.username}#{modCase.suspect?.discriminator ??
-                                    modCase.modCase.discriminator}
-                            </div>
-                            <div class="mr-2" style="color: var(--cds-text-02)">
-                                ({modCase.modCase.userId})
+                        <div class="font-bold mb-2">Violator</div>
+                        <div class="flex flex-row items-center">
+                            <UserIcon class="mr-2" user={$modCase.suspect} />
+                            <div class="flex flex-row flex-wrap items-center">
+                                <div class="mr-2">
+                                    {$modCase.suspect?.username ?? $modCase.modCase.username}#{$modCase.suspect?.discriminator ??
+                                        $modCase.modCase.discriminator}
+                                </div>
+                                <div class="mr-2" style="color: var(--cds-text-02)">
+                                    ({$modCase.modCase.userId})
+                                </div>
                             </div>
                             <div class="grow" />
                             <div>
-                                <CopyButton text={modCase.modCase.userId} feedback="Copied to clipboard" />
+                                <CopyButton text={$modCase.modCase.userId} feedback="Copied to clipboard" />
                             </div>
                         </div>
                     </div>
@@ -490,27 +735,27 @@
                     {#if matches || openFurtherDetails}
                         <div class="flex flex-col grow shrink-0" transition:slide|local>
                             <div class="flex flex-col mb-6">
-                                <div class="font-bold mb-2">Punishment {modCase.modCase.punishmentActive ? "" : "(inactive)"}</div>
+                                <div class="font-bold mb-2">Punishment {$modCase.modCase.punishmentActive ? "" : "(inactive)"}</div>
                                 <div>
-                                    <PunishmentTag modCase={modCase.modCase} />
+                                    <PunishmentTag modCase={$modCase.modCase} />
                                 </div>
                             </div>
                             <div class="flex flex-col mb-6">
                                 <div class="font-bold mb-2">Labels</div>
                                 <div class="flex flex-row flex-wrap" id="caseview-labelist">
-                                    {#each modCase.modCase.labels as label}
+                                    {#each $modCase.modCase.labels as label}
                                         <Tag type="outline">{label}</Tag>
                                     {/each}
                                 </div>
                             </div>
-                            {#if modCase.modCase.punishedUntil}
+                            {#if $modCase.modCase.punishedUntil}
                                 <div class="flex flex-col mb-6">
                                     <div class="font-bold mb-2">Punished until</div>
                                     <div class="flex flex-col">
-                                        {#if modCase.modCase.punishedUntil}
-                                            <ProgressBar class="mb-2" value={modCase.punishmentProgress ?? 100} />
+                                        {#if $modCase.modCase.punishedUntil}
+                                            <ProgressBar class="mb-2" value={$modCase.punishmentProgress ?? 100} />
                                             <div>
-                                                {modCase.modCase.punishedUntil?.format(
+                                                {$modCase.modCase.punishedUntil?.format(
                                                     $currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss"
                                                 ) ?? "Permanent"}
                                             </div>
@@ -520,43 +765,47 @@
                             {/if}
                             <div class="flex flex-col mb-6">
                                 <div class="font-bold mb-2">Moderator</div>
-                                {#if modCase.modCase.modId}
-                                    <div class="flex flex-row flex-wrap items-center">
-                                        <UserIcon class="mr-2" user={modCase.moderator} />
-                                        {#if modCase.moderator}
-                                            <div class="mr-2">
-                                                {modCase.moderator?.username}#{modCase.moderator?.discriminator}
+                                {#if $modCase.modCase.modId}
+                                    <div class="flex flex-row items-center">
+                                        <UserIcon class="mr-2" user={$modCase.moderator} />
+                                        <div class="flex flex-row flex-wrap">
+                                            {#if $modCase.moderator}
+                                                <div class="mr-2">
+                                                    {$modCase.moderator?.username}#{$modCase.moderator?.discriminator}
+                                                </div>
+                                            {/if}
+                                            <div class="mr-2" style="color: var(--cds-text-02)">
+                                                ({$modCase.modCase.modId})
                                             </div>
-                                        {/if}
-                                        <div class="mr-2" style="color: var(--cds-text-02)">
-                                            ({modCase.modCase.modId})
                                         </div>
                                         <div class="grow" />
                                         <div>
-                                            <CopyButton text={modCase.modCase.modId} feedback="Copied to clipboard" />
+                                            <CopyButton text={$modCase.modCase.modId} feedback="Copied to clipboard" />
                                         </div>
                                     </div>
                                 {:else}
                                     Unknown or hidden.
                                 {/if}
                             </div>
-                            {#if !modCase.modCase.createdAt.isSame(modCase.modCase.lastEditedAt)}
+                            {#if !$modCase.modCase.createdAt.isSame($modCase.modCase.lastEditedAt)}
                                 <div class="flex flex-col mb-6">
                                     <div class="font-bold mb-2">Last edit by moderator</div>
-                                    {#if modCase.modCase.lastEditedByModId}
-                                        <div class="flex flex-row flex-wrap items-center">
-                                            <UserIcon class="mr-2" user={modCase.lastModerator} />
-                                            {#if modCase.lastModerator}
-                                                <div class="mr-2">
-                                                    {modCase.lastModerator?.username}#{modCase.lastModerator?.discriminator}
+                                    {#if $modCase.modCase.lastEditedByModId}
+                                        <div class="flex flex-row items-center">
+                                            <UserIcon class="mr-2" user={$modCase.lastModerator} />
+                                            <div class="flex flex-row flex-wrap">
+                                                {#if $modCase.lastModerator}
+                                                    <div class="mr-2">
+                                                        {$modCase.lastModerator?.username}#{$modCase.lastModerator?.discriminator}
+                                                    </div>
+                                                {/if}
+                                                <div class="mr-2" style="color: var(--cds-text-02)">
+                                                    ({$modCase.modCase.lastEditedByModId})
                                                 </div>
-                                            {/if}
-                                            <div class="mr-2" style="color: var(--cds-text-02)">
-                                                ({modCase.modCase.lastEditedByModId})
                                             </div>
                                             <div class="grow" />
                                             <div>
-                                                <CopyButton text={modCase.modCase.lastEditedByModId} feedback="Copied to clipboard" />
+                                                <CopyButton text={$modCase.modCase.lastEditedByModId} feedback="Copied to clipboard" />
                                             </div>
                                         </div>
                                     {:else}
@@ -568,15 +817,15 @@
                             <div class="flex flex-row mb-2" style="color: var(--cds-text-02)">
                                 <div class="mr-2">Created</div>
                                 <div>
-                                    {modCase.modCase.createdAt?.format($currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss") ??
+                                    {$modCase.modCase.createdAt?.format($currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss") ??
                                         "Unknown"}
                                 </div>
                             </div>
-                            {#if !modCase.modCase.createdAt.isSame(modCase.modCase.lastEditedAt)}
+                            {#if !$modCase.modCase.createdAt.isSame($modCase.modCase.lastEditedAt)}
                                 <div class="flex flex-row" style="color: var(--cds-text-02)">
                                     <div class="mr-2">Updated</div>
                                     <div>
-                                        {modCase.modCase.lastEditedAt?.format($currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss") ??
+                                        {$modCase.modCase.lastEditedAt?.format($currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss") ??
                                             "Unknown"}
                                     </div>
                                 </div>

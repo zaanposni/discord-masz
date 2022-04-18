@@ -5,7 +5,7 @@
 
     function onModalClose() {
         showConfirmDialog.set(false);
-        confirmDialogMessageKey.set("");
+        confirmDialogMessageKey.set("dialog.confirm.message");
         if ($confirmDialogReturnFunction) {
             $confirmDialogReturnFunction(false);
         }
@@ -14,7 +14,7 @@
 
     function onModalSubmit() {
         showConfirmDialog.set(false);
-        confirmDialogMessageKey.set("");
+        confirmDialogMessageKey.set("dialog.confirm.message");
         if ($confirmDialogReturnFunction) {
             $confirmDialogReturnFunction(true);
         }
