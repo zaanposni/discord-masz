@@ -5,13 +5,14 @@
     import { PunishmentType } from "../../models/api/PunishmentType";
 
     let classes: string = "";
+    export let defaultColor: string = "gray";
     export { classes as class };
     export let modCase: ICase;
     let type: string;
 
     function selectType() {
         if (!modCase.punishmentActive) {
-            type = "gray";
+            type = defaultColor;
             return;
         }
         if (modCase.punishmentType === PunishmentType.Ban) {

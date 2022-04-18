@@ -24,8 +24,8 @@ export interface ICase {
     punishedUntil: moment.Moment;
     punishmentActive: boolean;
     allowComments: boolean;
-    lockedAt: moment.Moment;
-    lockedByUserId: string;
+    lockedAt?: moment.Moment;
+    lockedByUserId?: string;
     markedToDeleteAt?: moment.Moment;
     deletedByUserId?: string;
     comments: [];

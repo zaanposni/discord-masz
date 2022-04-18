@@ -1,0 +1,590 @@
+<script lang="ts">
+    import { slide } from "svelte/transition";
+    import { API_URL } from "../../../config";
+    import {
+        Button,
+        CopyButton,
+        InlineNotification,
+        OverflowMenu,
+        OverflowMenuItem,
+        ProgressBar,
+        SkeletonPlaceholder,
+        SkeletonText,
+        Tag,
+        TextInput,
+        Tile,
+    } from "carbon-components-svelte";
+    import { Add24, ChevronDown24, ChevronUp24, List24, Locked24, Power24, Send24, Share24, TrashCan24, Upload24 } from "carbon-icons-svelte";
+    import MediaQuery from "../../../core/MediaQuery.svelte";
+    import type { ICaseView } from "../../../models/api/ICaseView";
+    import API from "../../../services/api/api";
+    import { CacheMode } from "../../../services/api/CacheMode";
+    import { authUser, isModeratorInGuild } from "../../../stores/auth";
+    import { currentParams } from "../../../stores/currentParams";
+    import PunishmentTag from "../../api/PunishmentTag.svelte";
+    import type { IComment } from "../../../models/api/IComment";
+    import UserIcon from "../../discord/UserIcon.svelte";
+    import { currentLanguage } from "../../../stores/currentLanguage";
+    import { toastError, toastSuccess } from "../../../services/toast/store";
+    import type { Writable } from "svelte/store";
+    import { writable } from "svelte/store";
+    import type { ICommentView } from "../../../models/api/ICommentView";
+
+    const preloadFileExtensions = ["img", "png", "jpg", "jpeg", "gif", "webp"];
+
+    let openFurtherDetails: boolean = false;
+
+    let caseLoading: boolean = true;
+    let modCase: ICaseView;
+    let filesLoading: boolean = true;
+    let files: { fullName: string; fileName: string }[] = [];
+    let renderedDescription: string = "";
+
+    let comments: Writable<ICommentView[]> = writable([]);
+
+    let newComment: string = "";
+
+    $: $currentParams?.guildId && $currentParams?.caseId ? loadData() : null;
+    function loadData() {
+        caseLoading = true;
+        filesLoading = true;
+        API.get(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/view`, CacheMode.PREFER_CACHE, true)
+            .then((response: ICaseView) => {
+                modCase = response;
+                modCase.linkedCases = [{ ...response.modCase }, { ...response.modCase }, { ...response.modCase }];
+                modCase.linkedCases[0].title += response.modCase.title;
+                modCase.linkedCases[1].title = "lol";
+                renderDescription(modCase?.modCase?.description ?? "");
+                comments.set(modCase?.comments ?? []);
+                caseLoading = false;
+            })
+            .catch(() => {
+                caseLoading = false;
+            });
+        API.get(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/files`, CacheMode.PREFER_CACHE, true)
+            .then((response: { names: string[] }) => {
+                files = response.names.map((x) => {
+                    const fileName = x.split("_").slice(2).join("_");
+                    const fullName = x;
+                    return { fullName, fileName };
+                });
+                filesLoading = false;
+            })
+            .catch(() => {
+                filesLoading = false;
+            });
+    }
+
+    function clearCaseCache() {
+        API.clearCacheEntry("get", `/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/view`);
+        API.clearCacheEntryLike("post", `/guilds/${$currentParams.guildId}/modcasetable`);
+    }
+
+    function renderDescription(description: string) {
+        let value = description.replace("<", "&lt;").replace(">", "&gt;").replace(/\n/g, "<br>");
+        value = value.replace(/#([\d]+)/g, `<a href=/guilds/${$currentParams.guildId}/cases/$1>#$1</a>`);
+        renderedDescription = value;
+    }
+
+    function deleteFile(file: string) {
+        console.log("deleteFile", file);
+    }
+
+    function unlinkCase(caseId: number) {
+        console.log("unlinkCase", caseId);
+    }
+
+    function linkCase() {
+        console.log("linkCase");
+    }
+
+    function editComment(comment: IComment) {
+        console.log("editComment", comment);
+    }
+
+    function deleteComment(id: number) {
+        API.deleteData(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/comments/${id}`, {})
+            .then(() => {
+                toastSuccess("Comment deleted");
+                comments.update((x) => x.filter((y) => y.comment.id !== id));
+                clearCaseCache();
+            })
+            .catch(() => {
+                toastError("Failed to delete comment");
+            });
+    }
+
+    function sendComment() {
+        if ((newComment?.trim()?.length ?? 0) === 0) return;
+        const data = {
+            message: newComment,
+        };
+
+        API.post(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/comments`, data, CacheMode.API_ONLY, false)
+            .then((res: IComment) => {
+                newComment = "";
+                comments.update((x) => [
+                    ...x,
+                    {
+                        commentor: $authUser.discordUser,
+                        comment: res,
+                    },
+                ]);
+                toastSuccess("Comment added!");
+                clearCaseCache();
+            })
+            .catch(() => {
+                toastError("Failed to add comment");
+            });
+    }
+</script>
+
+<style>
+    :global(#casedescription a) {
+        color: var(--cds-link-01) !important;
+    }
+    :global(#linkedcases .bx--tile) {
+        display: flex;
+    }
+    :global(#caseview-labelist .bx--tag:first-child) {
+        margin-left: 0;
+    }
+</style>
+
+<MediaQuery query="(min-width: 1024px)" let:matches>
+    <div class="flex flex-col">
+        <!-- Header -->
+        <div class="flex flex-col">
+            <!-- Icon -->
+            <div class="flex flex-row grow items-center" style="color: var(--cds-text-02)">
+                <List24 class="mr-2" />
+                {#if $currentParams?.guild?.name && $currentParams?.caseId && !caseLoading}
+                    <div class="flex flex-row items-center">
+                        {$currentParams.guild?.name}-{$currentParams.caseId}
+                    </div>
+                {:else}
+                    <SkeletonText class="!mb-0" width="100px" />
+                {/if}
+            </div>
+            <!-- Title -->
+            <div class="flex flex-col mb-4">
+                <div class="mb-4">
+                    {#if caseLoading}
+                        <SkeletonText heading paragraph lines={2} />
+                    {:else}
+                        <h2 class="font-black" style="word-wrap: anywhere">
+                            {modCase?.modCase?.title}
+                        </h2>
+                    {/if}
+                </div>
+                <div class="flex flex-row flex-wrap">
+                    {#if caseLoading}
+                        <div class="mr-2 mb-2">
+                            <Button size="small" skeleton />
+                        </div>
+                        <div class="mr-2 mb-2">
+                            <Button size="small" skeleton />
+                        </div>
+                        <div class="mr-2 mb-2">
+                            <Button size="small" skeleton />
+                        </div>
+                    {:else}
+                        <div class="mr-2 mb-2">
+                            <Button size="small" kind="secondary" icon={Share24}>Share case</Button>
+                        </div>
+                        {#if isModeratorInGuild($authUser, $currentParams.guildId)}
+                            <div class="mr-2 mb-2">
+                                <Button size="small" kind="secondary" icon={Upload24}>Upload file</Button>
+                            </div>
+                            <div class="mr-2 mb-2">
+                                <Button size="small" kind="secondary" icon={Power24}>Deactivate</Button>
+                            </div>
+                            <div class="mr-2 mb-2">
+                                <Button size="small" kind="secondary" icon={Locked24}>Lock comments</Button>
+                            </div>
+                            <div class="mr-2 mb-2">
+                                <Button size="small" kind="danger" icon={TrashCan24}>Delete</Button>
+                            </div>
+                        {/if}
+                    {/if}
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col lg:flex-row grow">
+            <!-- Case content -->
+            <div class="flex flex-col grow shrink-0 {matches ? 'pr-4 w-2/3' : ''}">
+                {#if caseLoading}
+                    <SkeletonText paragraph />
+                {:else}
+                    <div class="mb-4" id="casedescription">{@html renderedDescription}</div>
+                {/if}
+                <!-- Files -->
+                {#if filesLoading}
+                    <SkeletonText />
+                    <div class="flex flex-row">
+                        <div class="m-2">
+                            <SkeletonPlaceholder />
+                        </div>
+                        <div class="m-2">
+                            <SkeletonPlaceholder />
+                        </div>
+                        <div class="m-2">
+                            <SkeletonPlaceholder />
+                        </div>
+                    </div>
+                {:else if files}
+                    <div class="mb-4">
+                        <div class="mb-2 font-bold">Attachments</div>
+                        <div class="flex flex-row overflow-x-auto overflow-y-clip pb-2">
+                            {#each files as file}
+                                <div class="grow shrink-0 h-80 max-h-80">
+                                    {#if preloadFileExtensions.includes(file.fileName.split(".").pop())}
+                                        <Tile class="flex flex-col overflow-hidden h-full p-4 mr-2">
+                                            {#if isModeratorInGuild($authUser, $currentParams.guildId)}
+                                                <div class="flex flex-row justify-end w-full mb-2">
+                                                    <div
+                                                        class="cursor-pointer"
+                                                        on:click={() => {
+                                                            deleteFile(file.fullName);
+                                                        }}>
+                                                        <TrashCan24 />
+                                                    </div>
+                                                </div>
+                                            {/if}
+                                            <img
+                                                src={`${API_URL}/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/files/${file.fullName}`}
+                                                alt="uploaded file {file.fileName}"
+                                                style="max-height: {isModeratorInGuild($authUser, $currentParams.guildId) ? '90%' : '100%'};" />
+                                        </Tile>
+                                    {:else}
+                                        <Tile class="flex flex-col overflow-hidden h-full p-4 mr-2">
+                                            {#if isModeratorInGuild($authUser, $currentParams.guildId)}
+                                                <div class="flex flex-row justify-end w-full mb-2">
+                                                    <div
+                                                        class="cursor-pointer"
+                                                        on:click={() => {
+                                                            deleteFile(file.fullName);
+                                                        }}>
+                                                        <TrashCan24 />
+                                                    </div>
+                                                </div>
+                                            {/if}
+                                            <a
+                                                href={`${API_URL}/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/files/${file.fullName}`}
+                                                target="_blank"
+                                                class="w-full">
+                                                <div style="word-wrap: anywhere">
+                                                    {file.fileName}
+                                                </div>
+                                            </a>
+                                        </Tile>
+                                    {/if}
+                                </div>
+                            {/each}
+                        </div>
+                    </div>
+                {/if}
+
+                <!-- Linked cases -->
+
+                {#if caseLoading}
+                    <div class="flex flex-row">
+                        <SkeletonText width={"30%"} />
+                        <div class="grow" />
+                        <SkeletonText width={"5%"} />
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="m-2">
+                            <SkeletonText />
+                        </div>
+                        <div class="m-2">
+                            <SkeletonText />
+                        </div>
+                        <div class="m-2">
+                            <SkeletonText />
+                        </div>
+                    </div>
+                {:else}
+                    <div class="mb-4">
+                        <div class="flex flex-row mb-2">
+                            <div class="font-bold self-end">Linked cases</div>
+                            <div class="grow" />
+                            {#if isModeratorInGuild($authUser, $currentParams.guildId)}
+                                <Add24 class="cursor-pointer" on:click={linkCase} />
+                            {/if}
+                        </div>
+                        <div class="flex flex-col" id="linkedcases">
+                            {#each modCase?.linkedCases as linked}
+                                <Tile class="mb-2">
+                                    <div class="flex flex-row grow-0 w-full max-w-full items-center">
+                                        <List24 class="shrink-0 mr-2" />
+                                        <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
+                                            #{linked.caseId}
+                                        </div>
+                                        <div class="grow truncate">
+                                            {linked.title}
+                                        </div>
+                                        <div class="grow" />
+                                        <div class="shrink-0">
+                                            <PunishmentTag modCase={linked} />
+                                        </div>
+                                        <div>
+                                            <OverflowMenu flipped>
+                                                <OverflowMenuItem
+                                                    text="Show case"
+                                                    href={`/guilds/${$currentParams.guildId}/cases/${linked.caseId}`} />
+                                                <OverflowMenuItem
+                                                    text="Unlink case"
+                                                    on:click={() => {
+                                                        unlinkCase(linked.caseId);
+                                                    }} />
+                                            </OverflowMenu>
+                                        </div>
+                                    </div>
+                                </Tile>
+                            {/each}
+                        </div>
+                    </div>
+                {/if}
+
+                <!-- Comments -->
+
+                {#if caseLoading}
+                    <div class="flex flex-row">
+                        <SkeletonText width={"30%"} />
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="m-2">
+                            <SkeletonText />
+                        </div>
+                        <div class="m-2">
+                            <SkeletonText />
+                        </div>
+                        <div class="m-2">
+                            <SkeletonText />
+                        </div>
+                    </div>
+                {:else}
+                    <div class="mb-4">
+                        <div class="flex flex-row mb-2">
+                            <div class="font-bold">Comments</div>
+                        </div>
+                        <div class="flex flex-col" id="linkedcases">
+                            {#each $comments as comment (comment.comment.id)}
+                                <Tile class="mb-2">
+                                    <div class="flex flex-row grow-0 w-full max-w-full">
+                                        <UserIcon user={comment.commentor} class="self-start mr-2" />
+                                        <div class="flex flex-col grow" style="min-width: 0;">
+                                            <div class="flex flex-row grow mb-2">
+                                                <div class="font-bold">{comment.commentor.username}#{comment.commentor.discriminator}</div>
+                                                <div class="ml-2" style="color: var(--cds-text-02)">
+                                                    {comment.comment.createdAt.format(
+                                                        $currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss"
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <div class="grow">
+                                                {comment.comment.message}
+                                            </div>
+                                        </div>
+                                        <div class="shrink-0">
+                                            <OverflowMenu flipped>
+                                                {#if $authUser.discordUser.id === comment.commentor.id}
+                                                    <OverflowMenuItem
+                                                        text="Edit"
+                                                        disabled={!modCase.modCase.allowComments}
+                                                        on:click={() => {
+                                                            editComment(comment.comment);
+                                                        }} />
+                                                {/if}
+                                                {#if $authUser.discordUser.id === comment.commentor.id || isModeratorInGuild($authUser, $currentParams.guildId)}
+                                                    <OverflowMenuItem
+                                                        text="Delete"
+                                                        disabled={!modCase.modCase.allowComments}
+                                                        on:click={() => {
+                                                            deleteComment(comment.comment.id);
+                                                        }} />
+                                                {/if}
+                                            </OverflowMenu>
+                                        </div>
+                                    </div>
+                                </Tile>
+                            {/each}
+
+                            {#if $comments?.length}
+                                <hr class="mb-2" style="border-color: var(--cds-ui-04)" />
+                            {/if}
+
+                            {#if !caseLoading}
+                                <div class="flex flex-row items-center">
+                                    <UserIcon user={$authUser.discordUser} class="mr-2" />
+                                    <div class="mr-2 grow">
+                                        <TextInput
+                                            bind:value={newComment}
+                                            placeholder="Add a comment..."
+                                            disabled={!modCase.modCase.allowComments ||
+                                                ($comments.at(-1)?.comment?.userId === $authUser?.discordUser?.id &&
+                                                    !isModeratorInGuild($authUser, $currentParams.guildId))} />
+                                    </div>
+                                    <Send24
+                                        class={!modCase.modCase.allowComments ||
+                                        newComment?.trim()?.length === 0 ||
+                                        ($comments.at(-1)?.comment?.userId === $authUser?.discordUser?.id &&
+                                            !isModeratorInGuild($authUser, $currentParams.guildId))
+                                            ? ""
+                                            : "cursor-pointer"}
+                                        on:click={sendComment} />
+                                </div>
+                                {#if !modCase.modCase.allowComments}
+                                    <InlineNotification title="Locked:" subtitle="You cannot comment since this case is locked." />
+                                {/if}
+                            {/if}
+                        </div>
+                    </div>
+                {/if}
+            </div>
+            <!-- Meta data -->
+            <div class="flex flex-col grow shrink-0 {matches ? 'pl-4 w-1/3' : ''}" class:-order-1={!matches}>
+                {#if caseLoading}
+                    <div class="flex flex-row lg:flex-col">
+                        <SkeletonText width={"10%"} />
+                        <SkeletonText width={"30%"} />
+                    </div>
+                    <div class="flex flex-row lg:flex-col">
+                        <SkeletonText width={"10%"} />
+                        <SkeletonText width={"30%"} />
+                    </div>
+                    <div class="flex flex-row lg:flex-col">
+                        <SkeletonText width={"10%"} />
+                        <SkeletonText width={"30%"} />
+                    </div>
+                {:else}
+                    <div class="flex flex-col mb-6">
+                        <div class="font-bold mb-2">Suspect</div>
+                        <div class="flex flex-row flex-wrap items-center">
+                            <UserIcon class="mr-2" user={modCase.suspect} />
+                            <div class="mr-2">
+                                {modCase.suspect?.username ?? modCase.modCase.username}#{modCase.suspect?.discriminator ??
+                                    modCase.modCase.discriminator}
+                            </div>
+                            <div class="mr-2" style="color: var(--cds-text-02)">
+                                ({modCase.modCase.userId})
+                            </div>
+                            <div class="grow" />
+                            <div>
+                                <CopyButton text={modCase.modCase.userId} feedback="Copied to clipboard" />
+                            </div>
+                        </div>
+                    </div>
+                    {#if !matches}
+                        <div class="flex flex-row justify-end mb-6">
+                            <Button
+                                size="small"
+                                iconDescription=""
+                                icon={openFurtherDetails ? ChevronUp24 : ChevronDown24}
+                                on:click={() => {
+                                    openFurtherDetails = !openFurtherDetails;
+                                }} />
+                        </div>
+                    {/if}
+                    {#if matches || openFurtherDetails}
+                        <div class="flex flex-col grow shrink-0" transition:slide|local>
+                            <div class="flex flex-col mb-6">
+                                <div class="font-bold mb-2">Punishment {modCase.modCase.punishmentActive ? "" : "(inactive)"}</div>
+                                <div>
+                                    <PunishmentTag modCase={modCase.modCase} />
+                                </div>
+                            </div>
+                            <div class="flex flex-col mb-6">
+                                <div class="font-bold mb-2">Labels</div>
+                                <div class="flex flex-row flex-wrap" id="caseview-labelist">
+                                    {#each modCase.modCase.labels as label}
+                                        <Tag type="outline">{label}</Tag>
+                                    {/each}
+                                </div>
+                            </div>
+                            {#if modCase.modCase.punishedUntil}
+                                <div class="flex flex-col mb-6">
+                                    <div class="font-bold mb-2">Punished until</div>
+                                    <div class="flex flex-col">
+                                        {#if modCase.modCase.punishedUntil}
+                                            <ProgressBar class="mb-2" value={modCase.punishmentProgress ?? 100} />
+                                            <div>
+                                                {modCase.modCase.punishedUntil?.format(
+                                                    $currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss"
+                                                ) ?? "Permanent"}
+                                            </div>
+                                        {/if}
+                                    </div>
+                                </div>
+                            {/if}
+                            <div class="flex flex-col mb-6">
+                                <div class="font-bold mb-2">Moderator</div>
+                                {#if modCase.modCase.modId}
+                                    <div class="flex flex-row flex-wrap items-center">
+                                        <UserIcon class="mr-2" user={modCase.moderator} />
+                                        {#if modCase.moderator}
+                                            <div class="mr-2">
+                                                {modCase.moderator?.username}#{modCase.moderator?.discriminator}
+                                            </div>
+                                        {/if}
+                                        <div class="mr-2" style="color: var(--cds-text-02)">
+                                            ({modCase.modCase.modId})
+                                        </div>
+                                        <div class="grow" />
+                                        <div>
+                                            <CopyButton text={modCase.modCase.modId} feedback="Copied to clipboard" />
+                                        </div>
+                                    </div>
+                                {:else}
+                                    Unknown or hidden.
+                                {/if}
+                            </div>
+                            {#if !modCase.modCase.createdAt.isSame(modCase.modCase.lastEditedAt)}
+                                <div class="flex flex-col mb-6">
+                                    <div class="font-bold mb-2">Last edit by moderator</div>
+                                    {#if modCase.modCase.lastEditedByModId}
+                                        <div class="flex flex-row flex-wrap items-center">
+                                            <UserIcon class="mr-2" user={modCase.lastModerator} />
+                                            {#if modCase.lastModerator}
+                                                <div class="mr-2">
+                                                    {modCase.lastModerator?.username}#{modCase.lastModerator?.discriminator}
+                                                </div>
+                                            {/if}
+                                            <div class="mr-2" style="color: var(--cds-text-02)">
+                                                ({modCase.modCase.lastEditedByModId})
+                                            </div>
+                                            <div class="grow" />
+                                            <div>
+                                                <CopyButton text={modCase.modCase.lastEditedByModId} feedback="Copied to clipboard" />
+                                            </div>
+                                        </div>
+                                    {:else}
+                                        Unknown or hidden.
+                                    {/if}
+                                </div>
+                            {/if}
+                            <hr class="mb-6" style="border-color: var(--cds-ui-04)" />
+                            <div class="flex flex-row mb-2" style="color: var(--cds-text-02)">
+                                <div class="mr-2">Created</div>
+                                <div>
+                                    {modCase.modCase.createdAt?.format($currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss") ??
+                                        "Unknown"}
+                                </div>
+                            </div>
+                            {#if !modCase.modCase.createdAt.isSame(modCase.modCase.lastEditedAt)}
+                                <div class="flex flex-row" style="color: var(--cds-text-02)">
+                                    <div class="mr-2">Updated</div>
+                                    <div>
+                                        {modCase.modCase.lastEditedAt?.format($currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss") ??
+                                            "Unknown"}
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                    {/if}
+                {/if}
+            </div>
+        </div>
+    </div>
+</MediaQuery>

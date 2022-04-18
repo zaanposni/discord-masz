@@ -29,6 +29,7 @@ export const LANGUAGES: ILanguageSelect[] = [
         momentDateFormat: "MM/DD/YYYY",
         timeFormat: "hh:mm",
         momentTimeFormat: "HH:mm",
+        momentDateTimeFormat: "MM/DD/YYYY HH:mm",
         apiValue: 0,
     },
     {
@@ -38,6 +39,7 @@ export const LANGUAGES: ILanguageSelect[] = [
         momentDateFormat: "DD.MM.YYYY",
         timeFormat: "hh:mm",
         momentTimeFormat: "HH:mm",
+        momentDateTimeFormat: "DD.MM.YYYY HH:mm",
         apiValue: 1,
     },
     {
@@ -47,6 +49,7 @@ export const LANGUAGES: ILanguageSelect[] = [
         momentDateFormat: "DD/MM/YYYY",
         timeFormat: "hh:mm",
         momentTimeFormat: "HH:mm",
+        momentDateTimeFormat: "DD/MM/YYYY HH:mm",
         apiValue: 2,
     },
     {
@@ -56,6 +59,7 @@ export const LANGUAGES: ILanguageSelect[] = [
         momentDateFormat: "DD/MM/YYYY",
         timeFormat: "hh:mm",
         momentTimeFormat: "HH:mm",
+        momentDateTimeFormat: "DD/MM/YYYY HH:mm",
         apiValue: 3,
     },
     {
@@ -65,6 +69,7 @@ export const LANGUAGES: ILanguageSelect[] = [
         momentDateFormat: "DD/MM/YYYY",
         timeFormat: "hh:mm",
         momentTimeFormat: "HH:mm",
+        momentDateTimeFormat: "DD/MM/YYYY HH:mm",
         apiValue: 4,
     },
     {
@@ -74,6 +79,7 @@ export const LANGUAGES: ILanguageSelect[] = [
         momentDateFormat: "DD.MM.YYYY",
         timeFormat: "hh:mm",
         momentTimeFormat: "HH:mm",
+        momentDateTimeFormat: "DD.MM.YYYY HH:mm",
         apiValue: 5,
     },
     {
@@ -83,6 +89,7 @@ export const LANGUAGES: ILanguageSelect[] = [
         momentDateFormat: "DD.MM.YYYY",
         timeFormat: "hh:mm",
         momentTimeFormat: "HH:mm",
+        momentDateTimeFormat: "DD.MM.YYYY HH:mm",
         apiValue: 6,
     },
 ];

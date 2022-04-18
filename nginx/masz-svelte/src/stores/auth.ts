@@ -16,3 +16,11 @@ export const anyGuilds: Readable<boolean> = derived(
     },
     false
 );
+
+export function isModeratorInGuild(user: IAuthUser, guildId: string): boolean {
+    return user?.isAdmin || user?.adminGuilds?.find(x => x.id === guildId) !== undefined || user?.modGuilds?.find(x => x.id === guildId) !== undefined;
+}
+
+export function isAdminInGuild(user: IAuthUser, guildId: string): boolean {
+    return user?.isAdmin || user?.adminGuilds?.find(x => x.id === guildId) !== undefined;
+}

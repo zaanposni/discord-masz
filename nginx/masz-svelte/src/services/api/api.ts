@@ -7,30 +7,32 @@ const axiosAPI = axios.create({
     baseURL: API_URL,
 });
 const axiosStaticAPI = axios.create({
-    baseURL: APP_BASE_URL
+    baseURL: APP_BASE_URL,
 });
 const axiosAssetAPI = axios.create();
 
 const isoDateFormat = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.[\dZ]*)?$/;
 
 function isIsoDateString(value: any): boolean {
-  return value && typeof value === "string" && isoDateFormat.test(value);
+    return value && typeof value === "string" && isoDateFormat.test(value);
 }
 
 const utfOffset = new Date().getTimezoneOffset() * -1;
 
 export function handleDates(body: any) {
-  if (body === null || body === undefined || typeof body !== "object")
-    return body;
+    if (body === null || body === undefined || typeof body !== "object") return body;
 
-  for (const key of Object.keys(body)) {
-    const value = body[key];
-    if (isIsoDateString(value)) body[key] = moment(value).utc(value.indexOf('Z') < 1).utcOffset(utfOffset);
-    else if (typeof value === "object") handleDates(value);
-  }
+    for (const key of Object.keys(body)) {
+        const value = body[key];
+        if (isIsoDateString(value))
+            body[key] = moment(value)
+                .utc(value.indexOf("Z") < 1)
+                .utcOffset(utfOffset);
+        else if (typeof value === "object") handleDates(value);
+    }
 }
 
-axiosAPI.interceptors.response.use(originalResponse => {
+axiosAPI.interceptors.response.use((originalResponse) => {
     handleDates(originalResponse.data);
     return originalResponse;
 });
@@ -80,10 +82,13 @@ const apirequest = (method, url, data) => {
 };
 
 function saveResponseInCache(method, url, response) {
-    localStorage.setItem(`apicache:${method}:${url}`, JSON.stringify({
-        response,
-        timestamp: Date.now(),
-    }));
+    localStorage.setItem(
+        `apicache:${method}:${url}`,
+        JSON.stringify({
+            response,
+            timestamp: Date.now(),
+        })
+    );
 }
 
 function getResponseFromCache(method, url) {
@@ -106,7 +111,7 @@ function getResponseFromCache(method, url) {
 // this will return the number of entries cleared
 function clearCache(force: boolean = false): number {
     let count = 0;
-    const toRemove = [];  // save the keys to remove
+    const toRemove = []; // save the keys to remove
 
     // iterate and check for expired entries
     for (var i = 0; i < localStorage.length; i++) {
@@ -116,7 +121,7 @@ function clearCache(force: boolean = false): number {
             const item = localStorage.getItem(key);
             if (item) {
                 const json = JSON.parse(item);
-                if ((Date.now() - json.timestamp > API_CACHE_CLEAR_LIFETIME) || force) {
+                if (Date.now() - json.timestamp > API_CACHE_CLEAR_LIFETIME || force) {
                     count++;
                     toRemove.push(key);
                 }
@@ -139,6 +144,19 @@ function clearCacheEntry(method, url) {
     localStorage.removeItem(`apicache:${method}:${url}`);
 }
 
+function clearCacheEntryLike(method, url) {
+    const key = `apicache:${method}:${url}`;
+    const toRemove = []; // save the keys to remove
+    for (var i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i).startsWith(key)) {
+            toRemove.push(localStorage.key(i));
+        }
+    }
+    for (const key of toRemove) {
+        localStorage.removeItem(key);
+    }
+}
+
 const get = (url, cacheMode: CacheMode = CacheMode.API_ONLY, saveInCache: boolean = false) => {
     if ((cacheMode === CacheMode.CACHE_ONLY || cacheMode === CacheMode.PREFER_CACHE) && API_CACHE_ENABLE) {
         const response = getResponseFromCache("get", url);
@@ -156,7 +174,7 @@ const get = (url, cacheMode: CacheMode = CacheMode.API_ONLY, saveInCache: boolea
         }
         return response;
     });
-}
+};
 const deleteData = (url, data) => apirequest("delete", url, data);
 const post = (url, data, cacheMode: CacheMode = CacheMode.API_ONLY, saveInCache: boolean = false) => {
     if ((cacheMode === CacheMode.CACHE_ONLY || cacheMode === CacheMode.PREFER_CACHE) && API_CACHE_ENABLE) {
@@ -175,13 +193,14 @@ const post = (url, data, cacheMode: CacheMode = CacheMode.API_ONLY, saveInCache:
         }
         return response;
     });
-}
+};
 const put = (url, data) => apirequest("put", url, data);
 const patch = (url, data) => apirequest("patch", url, data);
 
 const API = {
     clearCache,
     clearCacheEntry,
+    clearCacheEntryLike,
     getAsset,
     getStatic,
     get,
