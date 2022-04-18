@@ -40,7 +40,7 @@ namespace MASZ.Controllers
                 }
             }
 
-            ModCaseComment createdComment = await ModCaseCommentRepository.CreateDefault(_serviceProvider, currentIdentity).CreateComment(guildId, caseId, comment.Message);
+            ModCaseComment createdComment = await ModCaseCommentRepository.CreateDefault(_serviceProvider, currentIdentity).CreateComment(guildId, caseId, comment.Message.Trim());
 
             return StatusCode(201, new CommentsView(createdComment));
         }
@@ -61,7 +61,7 @@ namespace MASZ.Controllers
                 throw new UnauthorizedException();
             }
 
-            ModCaseComment createdComment = await repo.UpdateComment(guildId, caseId, commentId, newValue.Message);
+            ModCaseComment createdComment = await repo.UpdateComment(guildId, caseId, commentId, newValue.Message.Trim());
 
             return Ok(new CommentsView(createdComment));
         }
