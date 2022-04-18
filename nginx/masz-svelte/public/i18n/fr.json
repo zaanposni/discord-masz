@@ -167,7 +167,12 @@
             "filesbutton": "Sélectionnez les fichiers",
             "createtemplate": "Créer un modèle",
             "submitting": "Soumission...",
-            "casecreated": "Cas #{id} créé"
+            "casecreated": "Cas #{id} créé",
+            "casecreatefailed": "Échec de la création du cas",
+            "templateapplied": "Modèle appliqué",
+            "templatesaved": "Modèle enregistré",
+            "templatesavefailed": "Échec de l'enregistrement du modèle",
+            "visibility": "Visibilité"
         },
         "modcasetable": {
             "selectmembers": "Membres",

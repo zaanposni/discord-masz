@@ -16,6 +16,7 @@
         FileUploader,
         InlineLoading,
         Loading,
+        Modal,
         SelectSkeleton,
         Tag,
         TextArea,
@@ -27,13 +28,14 @@
     import { writable } from "svelte/store";
     import type { Writable } from "svelte/store";
     import PunishmentTypes from "../../../services/enums/PunishmentType";
+    import ViewPermissions from "../../../services/enums/ViewPermission";
     import { PunishmentType } from "../../../models/api/PunishmentType";
     import { currentFlatpickrLocale } from "../../../stores/currentLanguage";
     import { currentLanguage } from "../../../stores/currentLanguage";
     import moment from "moment";
     import type { ILanguageSelect } from "../../../models/ILanguageSelect";
     import { goto } from "@roxi/routify";
-    import { toastSuccess, toastWarning } from "../../../services/toast/store";
+    import { toastError, toastSuccess, toastWarning } from "../../../services/toast/store";
     import { slide } from "svelte/transition";
 
     const utfOffset = new Date().getTimezoneOffset() * -1;
@@ -43,6 +45,12 @@
     let membersLoading: boolean = true;
     let members: { id: string; text: string }[] = [];
     let labels: { id: string; text: string }[] = [];
+
+    let templateRef;
+    let templateModalOpen: Writable<boolean> = writable(false);
+    let templateModalTitle: string = "";
+    let templateModalVisibility: string = "-1";
+    let templateSubmitting: boolean = false;
 
     let labelRef;
     let selectedLabels: Writable<string[]> = writable([]);
@@ -168,6 +176,7 @@
                 });
             })
             .catch((err) => {
+                toastError($_("guilds.casedialog.casecreatefailed"));
                 submitting = false;
             });
     }
@@ -180,7 +189,106 @@
             toastSuccess($_("guilds.caseview.attachmentuploadfailed"));
         });
     }
+
+    function applyTemplate(e: { detail: { selectedItem: { obj: ITemplateView } } }) {
+        modCase.title = e.detail.selectedItem.obj.caseTemplate.caseTitle;
+        modCase.description = e.detail.selectedItem.obj.caseTemplate.caseDescription;
+        selectedLabels.update((n) => {
+            n = e.detail.selectedItem.obj.caseTemplate.caseLabels;
+            return n;
+        });
+        modCase.punishmentType = e.detail.selectedItem.obj.caseTemplate.casePunishmentType.toString();
+        modCase.punishedUntil = e.detail.selectedItem.obj.caseTemplate.casePunishedUntil;
+
+        sendDmNotification = e.detail.selectedItem.obj.caseTemplate.announceDm;
+        executePunishment = e.detail.selectedItem.obj.caseTemplate.handlePunishment;
+        sendPublicNotification = e.detail.selectedItem.obj.caseTemplate.sendPublicNotification;
+
+        templateRef.clear({ focus: false });
+
+        toastSuccess($_("guilds.casedialog.templateapplied"));
+    }
+
+    function onTemplateModalOpen() {
+        templateModalOpen.set(true);
+        templateModalTitle = "";
+        templateModalVisibility = "-1";
+        templateSubmitting = false;
+    }
+
+    function onTemplateModalClose() {
+        templateModalOpen.set(false);
+        templateModalTitle = "";
+        templateModalVisibility = "-1";
+        templateSubmitting = false;
+    }
+
+    function saveAsTemplate() {
+        templateSubmitting = true;
+
+        let body = {
+            templateName: templateModalTitle,
+            viewPermission: templateModalVisibility,
+            title: modCase.title,
+            description: modCase.description ? modCase.description : modCase.title,
+            labels: $selectedLabels ?? [],
+            punishmentType: modCase.punishmentType,
+            punishedUntil:
+                modCase.punishmentType == PunishmentType.Mute || modCase.punishmentType == PunishmentType.Ban
+                    ? modCase.punishedUntil?.toISOString()
+                    : null,
+            announceDm: sendDmNotification,
+            handlePunishment: executePunishment,
+            sendPublicNotification: sendPublicNotification,
+        };
+
+        API.post(`/templates?guildId=${$currentParams.guildId}`, body, CacheMode.API_ONLY, false)
+            .then(() => {
+                toastSuccess($_("guilds.casedialog.templatesaved"));
+                templateSubmitting = false;
+                onTemplateModalClose();
+            })
+            .catch((err) => {
+                toastError($_("guilds.casedialog.templatesavefailed"));
+                templateSubmitting = false;
+            });
+    }
 </script>
+
+<Modal
+    size="sm"
+    open={$templateModalOpen}
+    selectorPrimaryFocus="#templatename"
+    modalHeading={$_("guilds.casedialog.createtemplate")}
+    primaryButtonText={$_("guilds.casedialog.createtemplate")}
+    secondaryButtonText={$_("dialog.confirm.cancel")}
+    primaryButtonDisabled={templateSubmitting || (templateModalTitle?.length ?? 0) < 1 || !templateModalVisibility}
+    on:close={onTemplateModalClose}
+    on:click:button--secondary={onTemplateModalClose}
+    on:submit={saveAsTemplate}>
+    <Loading active={templateSubmitting} />
+    <div class="mb-4">
+        <TextInput
+            id="templatename"
+            bind:value={templateModalTitle}
+            labelText={$_("guilds.casedialog.title")}
+            placeholder={$_("guilds.casedialog.titleplaceholder")}
+            required
+            invalid={templateModalTitle !== undefined && templateModalTitle !== null && (templateModalTitle?.length ?? 0) > 100}
+            invalidText={$_("guilds.casedialog.titleinvalid")} />
+    </div>
+    <div>
+        <ComboBox
+            items={ViewPermissions.getAll().map((x) => ({
+                id: x.id.toString(),
+                text: $_(x.translationKey),
+            }))}
+            direction="top"
+            bind:selectedId={templateModalVisibility}
+            titleText={$_("guilds.casedialog.visibility")}
+            placeholder={$_("guilds.casedialog.visibility")} />
+    </div>
+</Modal>
 
 <Loading active={submitting} />
 <MediaQuery query="(min-width: 768px)" let:matches>
@@ -201,6 +309,8 @@
                 <SelectSkeleton hideLabel />
             {:else}
                 <ComboBox
+                    bind:this={templateRef}
+                    on:select={applyTemplate}
                     placeholder={$_("guilds.casedialog.selecttemplate")}
                     items={templates}
                     shouldFilterItem={shouldFilterTemplate}
@@ -243,7 +353,10 @@
                     invalidText={$_("guilds.casedialog.titleinvalid")} />
             </div>
             <div class="mb-2">
-                <TextArea labelText={$_("guilds.casedialog.descriptionfield")} placeholder={$_("guilds.casedialog.descriptionfield")} />
+                <TextArea
+                    bind:value={modCase.description}
+                    labelText={$_("guilds.casedialog.descriptionfield")}
+                    placeholder={$_("guilds.casedialog.descriptionfield")} />
             </div>
             <div class="mb-2">
                 {#if $selectedLabels}
@@ -338,9 +451,7 @@
                         (modCase.title?.length ?? 0) > 100 ||
                         modCase.punishmentType === undefined ||
                         modCase.punishmentType === null}
-                    on:click={() => {
-                        toastWarning("todo");
-                    }}>{$_("guilds.casedialog.createtemplate")}</Button>
+                    on:click={onTemplateModalOpen}>{$_("guilds.casedialog.createtemplate")}</Button>
             </div>
             <div>
                 {#if submitting}

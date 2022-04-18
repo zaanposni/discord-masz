@@ -167,7 +167,12 @@
             "filesbutton": "Dateien auswählen",
             "createtemplate": "Vorlage erstellen",
             "submitting": "Senden...",
-            "casecreated": "Fall #{id} erstellt"
+            "casecreated": "Fall #{id} erstellt",
+            "casecreatefailed": "Fall konnte nicht erstellt werden",
+            "templateapplied": "Vorlage angewendet",
+            "templatesaved": "Vorlage gespeichert",
+            "templatesavefailed": "Fehler beim Speichern der Vorlage",
+            "visibility": "Sichtbarkeit"
         },
         "modcasetable": {
             "selectmembers": "Mitglieder",

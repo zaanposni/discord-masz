@@ -167,7 +167,12 @@
             "filesbutton": "Выберите файлы",
             "createtemplate": "Создать шаблон",
             "submitting": "Отправка...",
-            "casecreated": "Случай #{id} создан"
+            "casecreated": "Случай #{id} создан",
+            "casecreatefailed": "Не удалось создать случай",
+            "templateapplied": "Шаблон применен",
+            "templatesaved": "Шаблон сохранен",
+            "templatesavefailed": "Не удалось сохранить шаблон",
+            "visibility": "Видимость"
         },
         "modcasetable": {
             "selectmembers": "Члены",

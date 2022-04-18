@@ -167,7 +167,12 @@
             "filesbutton": "Seleccionar archivos",
             "createtemplate": "Crear plantilla",
             "submitting": "Enviando...",
-            "casecreated": "Caso #{id} creado"
+            "casecreated": "Caso #{id} creado",
+            "casecreatefailed": "Falla al crear caso",
+            "templateapplied": "Plantilla aplicada",
+            "templatesaved": "Plantilla guardada",
+            "templatesavefailed": "Error al guardar plantilla",
+            "visibility": "Visibilidad"
         },
         "modcasetable": {
             "selectmembers": "Miembros",

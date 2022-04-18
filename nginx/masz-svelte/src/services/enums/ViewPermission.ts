@@ -3,7 +3,7 @@ import type { IBaseEnum, IMASZEnum } from "./IBaseEnum";
 const enums: IMASZEnum[] = [
     {
         "id": 0,
-        "translationKey": "enums.viewpermission.self"
+        "translationKey": "enums.viewpermission.global"
     },
     {
         "id": 1,
@@ -11,7 +11,7 @@ const enums: IMASZEnum[] = [
     },
     {
         "id": 2,
-        "translationKey": "enums.viewpermission.global"
+        "translationKey": "enums.viewpermission.self"
     }
 ]
 

@@ -167,7 +167,12 @@
             "filesbutton": "Select files",
             "createtemplate": "Create template",
             "submitting": "Submitting...",
-            "casecreated": "Case #{id} created"
+            "casecreated": "Case #{id} created",
+            "casecreatefailed": "Failed to create case",
+            "templateapplied": "Template applied",
+            "templatesaved": "Template saved",
+            "templatesavefailed": "Failed to save template",
+            "visibility": "Visibility"
         },
         "modcasetable": {
             "selectmembers": "Members",

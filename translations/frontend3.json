@@ -1172,7 +1172,8 @@
                 "at": "Bestraft bis",
                 "fr": "Punition jusqu'à",
                 "es": "Sancionado hasta",
-                "ru": "Наказано до"
+                "ru": "Наказано до",
+                "it": "Punito fino a"
             },
             "formatisrequired": {
                 "description": "Format is required",
@@ -1273,6 +1274,56 @@
                 "es": "Caso #{id} creado",
                 "ru": "Случай #{id} создан",
                 "it": "Caso #{id} creato"
+            },
+            "casecreatefailed": {
+                "description": "Case creation failed",
+                "en": "Failed to create case",
+                "de": "Fall konnte nicht erstellt werden",
+                "at": "Fall konnte nicht erstellt werden",
+                "fr": "Échec de la création du cas",
+                "es": "Falla al crear caso",
+                "ru": "Не удалось создать случай",
+                "it": "Fallito creare caso"
+            },
+            "templateapplied": {
+                "description": "Template applied",
+                "en": "Template applied",
+                "de": "Vorlage angewendet",
+                "at": "Vorlage angewendet",
+                "fr": "Modèle appliqué",
+                "es": "Plantilla aplicada",
+                "ru": "Шаблон применен",
+                "it": "Modello applicato"
+            },
+            "templatesaved": {
+                "description": "Template saved",
+                "en": "Template saved",
+                "de": "Vorlage gespeichert",
+                "at": "Vorlage gespeichert",
+                "fr": "Modèle enregistré",
+                "es": "Plantilla guardada",
+                "ru": "Шаблон сохранен",
+                "it": "Modello salvato"
+            },
+            "templatesavefailed": {
+                "description": "Template save failed",
+                "en": "Failed to save template",
+                "de": "Fehler beim Speichern der Vorlage",
+                "at": "Fehler beim Speichern der Vorlage",
+                "fr": "Échec de l'enregistrement du modèle",
+                "es": "Error al guardar plantilla",
+                "ru": "Не удалось сохранить шаблон",
+                "it": "Errore durante il salvataggio del modello"
+            },
+            "visibility": {
+                "description": "Visibility",
+                "en": "Visibility",
+                "de": "Sichtbarkeit",
+                "at": "Sichtbarkeit",
+                "fr": "Visibilité",
+                "es": "Visibilidad",
+                "ru": "Видимость",
+                "it": "Visibilità"
             }
         },
         "modcasetable": {

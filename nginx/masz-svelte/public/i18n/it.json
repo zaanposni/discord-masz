@@ -157,6 +157,7 @@
             "punishment": "Punizione",
             "punishmentexplained": "MASZ gestisce automaticamente la tua punizione e la rimuoverà dopo il tempo specificato. Puoi anche cambiare la punizione più tardi.",
             "punishmentexplained2": "Se non inserisci un tempo, la punizione sarà permanente.",
+            "punisheduntil": "Punito fino a",
             "formatisrequired": "Si prega di rispettare il formato: {format}",
             "senddmnotification": "Invia notifica DM",
             "executepunishment": "Esegui punizione",
@@ -166,7 +167,12 @@
             "filesbutton": "Seleziona file",
             "createtemplate": "Crea modello",
             "submitting": "Invio...",
-            "casecreated": "Caso #{id} creato"
+            "casecreated": "Caso #{id} creato",
+            "casecreatefailed": "Fallito creare caso",
+            "templateapplied": "Modello applicato",
+            "templatesaved": "Modello salvato",
+            "templatesavefailed": "Errore durante il salvataggio del modello",
+            "visibility": "Visibilità"
         },
         "modcasetable": {
             "selectmembers": "Membri",
