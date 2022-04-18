@@ -394,6 +394,9 @@
     :global(#caseview-labelist .bx--tag:first-child) {
         margin-left: 0;
     }
+    :global(#caseview-punishment .bx--tag) {
+        margin-left: 0;
+    }
 </style>
 
 <!-- Edit comment modal -->
@@ -753,13 +756,13 @@
                                     <div class="flex flex-row grow-0 w-full max-w-full">
                                         <UserIcon user={comment.commentor} class="self-start mr-2" />
                                         <div class="flex flex-col grow" style="min-width: 0;">
-                                            <div class="flex flex-row grow mb-2">
+                                            <div class="flex flex-col md:flex-row grow mb-2">
                                                 {#if comment.commentor}
                                                     <div class="font-bold">{comment.commentor.username}#{comment.commentor.discriminator}</div>
                                                 {:else}
                                                     <div class="font-bold">The moderators</div>
                                                 {/if}
-                                                <div class="ml-2" style="color: var(--cds-text-02)">
+                                                <div class="md:ml-2" style="color: var(--cds-text-02)">
                                                     {comment.comment.createdAt.format(
                                                         $currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss"
                                                     )}
@@ -883,18 +886,20 @@
                             </div>
                             <div class="flex flex-col mb-6">
                                 <div class="font-bold mb-2">Punishment {$modCase.modCase.punishmentActive ? "" : "(inactive)"}</div>
-                                <div>
+                                <div id="caseview-punishment">
                                     <PunishmentTag modCase={$modCase.modCase} />
                                 </div>
                             </div>
-                            <div class="flex flex-col mb-6">
-                                <div class="font-bold mb-2">Labels</div>
-                                <div class="flex flex-row flex-wrap" id="caseview-labelist">
-                                    {#each $modCase.modCase.labels as label}
-                                        <Tag type="outline">{label}</Tag>
-                                    {/each}
+                            {#if $modCase.modCase.labels.length !== 0}
+                                <div class="flex flex-col mb-6">
+                                    <div class="font-bold mb-2">Labels</div>
+                                    <div class="flex flex-row flex-wrap" id="caseview-labelist">
+                                        {#each $modCase.modCase.labels as label}
+                                            <Tag type="outline">{label}</Tag>
+                                        {/each}
+                                    </div>
                                 </div>
-                            </div>
+                            {/if}
                             {#if $modCase.modCase.punishedUntil}
                                 <div class="flex flex-col mb-6">
                                     <div class="font-bold mb-2">Punished until</div>
