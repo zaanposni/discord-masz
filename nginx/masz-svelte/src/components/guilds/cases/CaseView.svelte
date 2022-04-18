@@ -90,7 +90,8 @@
                 caseLoading = false;
             })
             .catch(() => {
-                caseLoading = false;
+                $goto("/guilds/" + $currentParams.guildId + "/cases");
+                toastError("Case not found.");
             });
         API.get(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/files`, CacheMode.PREFER_CACHE, true)
             .then((response: { names: string[] }) => {
