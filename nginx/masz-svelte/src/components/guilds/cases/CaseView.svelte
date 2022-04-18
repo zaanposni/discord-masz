@@ -371,7 +371,7 @@
                                             kind="secondary"
                                             icon={Power24}
                                             disabled={$modCase.modCase.markedToDeleteAt !== null}
-                                            on:click={handleActivation}>{$modCase.modCase.punishmentActive ? 'Deactivate' : 'Activate'}</Button>
+                                            on:click={handleActivation}>{$modCase.modCase.punishmentActive ? "Deactivate" : "Activate"}</Button>
                                     </div>
                                 {/if}
                                 <div class="mr-2 mb-2">
@@ -615,7 +615,11 @@
                                         <UserIcon user={comment.commentor} class="self-start mr-2" />
                                         <div class="flex flex-col grow" style="min-width: 0;">
                                             <div class="flex flex-row grow mb-2">
-                                                <div class="font-bold">{comment.commentor.username}#{comment.commentor.discriminator}</div>
+                                                {#if comment.commentor}
+                                                    <div class="font-bold">{comment.commentor.username}#{comment.commentor.discriminator}</div>
+                                                {:else}
+                                                    <div class="font-bold">The moderators</div>
+                                                {/if}
                                                 <div class="ml-2" style="color: var(--cds-text-02)">
                                                     {comment.comment.createdAt.format(
                                                         $currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss"
@@ -626,26 +630,28 @@
                                                 {comment.comment.message}
                                             </div>
                                         </div>
-                                        <div class="shrink-0">
-                                            <OverflowMenu flipped>
-                                                {#if $authUser.discordUser.id === comment.commentor.id}
-                                                    <OverflowMenuItem
-                                                        text="Edit"
-                                                        disabled={!$modCase.modCase.allowComments}
-                                                        on:click={() => {
-                                                            editComment(comment.comment);
-                                                        }} />
-                                                {/if}
-                                                {#if $authUser.discordUser.id === comment.commentor.id || isModeratorInGuild($authUser, $currentParams.guildId)}
-                                                    <OverflowMenuItem
-                                                        text="Delete"
-                                                        disabled={!$modCase.modCase.allowComments}
-                                                        on:click={() => {
-                                                            deleteComment(comment.comment.id);
-                                                        }} />
-                                                {/if}
-                                            </OverflowMenu>
-                                        </div>
+                                        {#if $authUser.discordUser.id === comment.comment.userId || isModeratorInGuild($authUser, $currentParams.guildId)}
+                                            <div class="shrink-0">
+                                                <OverflowMenu flipped>
+                                                    {#if $authUser.discordUser.id === comment.comment.userId}
+                                                        <OverflowMenuItem
+                                                            text="Edit"
+                                                            disabled={!$modCase.modCase.allowComments}
+                                                            on:click={() => {
+                                                                editComment(comment.comment);
+                                                            }} />
+                                                    {/if}
+                                                    {#if $authUser.discordUser.id === comment.comment.userId || isModeratorInGuild($authUser, $currentParams.guildId)}
+                                                        <OverflowMenuItem
+                                                            text="Delete"
+                                                            disabled={!$modCase.modCase.allowComments}
+                                                            on:click={() => {
+                                                                deleteComment(comment.comment.id);
+                                                            }} />
+                                                    {/if}
+                                                </OverflowMenu>
+                                            </div>
+                                        {/if}
                                     </div>
                                 </Tile>
                             {/each}
