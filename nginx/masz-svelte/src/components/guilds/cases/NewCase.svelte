@@ -17,6 +17,8 @@
         InlineLoading,
         Loading,
         Modal,
+        Select,
+        SelectItem,
         SelectSkeleton,
         Tag,
         TextArea,
@@ -62,7 +64,9 @@
 
     let filesToUpload: File[] = [];
 
-    let modCase: ICase = {} as ICase;
+    let modCase: ICase = {
+        punishmentType: PunishmentType.None,
+    } as ICase;
 
     let sendDmNotification: boolean = true;
     let executePunishment: boolean = true;
@@ -75,7 +79,9 @@
         members = [];
         templates = [];
         labels = [];
-        modCase = {} as ICase;
+        modCase = {
+            punishmentType: PunishmentType.None,
+        } as ICase;
         API.get(`/discord/guilds/${$currentParams.guildId}/members`, CacheMode.PREFER_CACHE, true)
             .then((response: IDiscordUser[]) => {
                 members = response.map((x) => ({
@@ -365,6 +371,7 @@
                             <Tag
                                 type="outline"
                                 filter
+                                title={$_('guilds.casedialog.clearlabel')}
                                 on:close={() => {
                                     onLabelRemove(label);
                                 }}>{label}</Tag>
@@ -386,13 +393,11 @@
             <div class="text-lg font-bold mb-2">{$_("guilds.casedialog.punishment")}</div>
             <div class="text-md">{$_("guilds.casedialog.punishmentexplained")}</div>
             <div class="text-md mb-4">{$_("guilds.casedialog.punishmentexplained2")}</div>
-            <ComboBox
-                items={PunishmentTypes.getAll().map((x) => ({
-                    id: x.id.toString(),
-                    text: $_(x.translationKey),
-                }))}
-                bind:selectedId={modCase.punishmentType}
-                placeholder={$_("guilds.casedialog.punishment")} />
+            <Select bind:selected={modCase.punishmentType}>
+                {#each PunishmentTypes.getAll() as type (type)}
+                    <SelectItem value={type.id.toString()} text={$_(type.translationKey)} />
+                {/each}
+            </Select>
 
             <!-- Temporary punishment -->
 

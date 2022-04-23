@@ -213,6 +213,7 @@
             "titleinvalid": "Titelfeld ist erforderlich und darf nur 100 Zeichen lang sein.",
             "descriptionfield": "Beschreibung",
             "labels": "Labels",
+            "clearlabel": "Label löschen",
             "labelsplaceholder": "Neue Label",
             "punishment": "Bestrafung",
             "punishmentexplained": "MASZ wird automatisch deine Bestrafung verwalten und sie nach der angegebenen Zeit entfernen. Du kannst die Bestrafung auch später ändern.",

@@ -213,6 +213,7 @@
             "titleinvalid": "Title field is required and can only be 100 characters long.",
             "descriptionfield": "Description",
             "labels": "Labels",
+            "clearlabel": "Clear label",
             "labelsplaceholder": "New label",
             "punishment": "Punishment",
             "punishmentexplained": "MASZ will automatically manage your punishment and remove it after the specified time. You can also change the punishment later on.",

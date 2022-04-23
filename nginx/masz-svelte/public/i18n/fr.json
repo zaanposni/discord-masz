@@ -213,6 +213,7 @@
             "titleinvalid": "Le champ Titre est obligatoire et ne peut contenir plus de 100 caractères.",
             "descriptionfield": "Description",
             "labels": "Étiquettes",
+            "clearlabel": "Effacer l'étiquette",
             "labelsplaceholder": "Nouvelle étiquette",
             "punishment": "Punition",
             "punishmentexplained": "MASZ va gérer automatiquement votre punition et la supprimer après le temps spécifié. Vous pouvez également changer la punition plus tard.",

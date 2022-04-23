@@ -213,6 +213,7 @@
             "titleinvalid": "El campo Título es obligatorio y sólo puede contener 100 caracteres.",
             "descriptionfield": "Descripción",
             "labels": "Etiquetas",
+            "clearlabel": "Etiqueta clara",
             "labelsplaceholder": "Nueva etiqueta",
             "punishment": "Sancion",
             "punishmentexplained": "MASZ gestionará automáticamente tu sanción y la eliminará después del tiempo especificado. También puedes cambiar la sanción más tarde.",

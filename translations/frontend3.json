@@ -1725,6 +1725,16 @@
                 "ru": "Метки",
                 "it": "Etichette"
             },
+            "clearlabel": {
+                "description": "Clear label",
+                "en": "Clear label",
+                "de": "Label löschen",
+                "at": "Label löschen",
+                "fr": "Effacer l'étiquette",
+                "es": "Etiqueta clara",
+                "ru": "Очистить метку",
+                "it": "Etichetta chiara"
+            },
             "labelsplaceholder": {
                 "description": "Labels",
                 "en": "New label",
