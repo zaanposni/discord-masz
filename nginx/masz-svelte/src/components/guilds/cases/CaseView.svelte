@@ -90,7 +90,7 @@
             })
             .catch(() => {
                 $goto("/guilds/" + $currentParams.guildId + "/cases");
-                toastError("Case not found.");
+                toastError($_("guilds.caseview.casenotfound"));
             });
         API.get(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/files`, CacheMode.PREFER_CACHE, true)
             .then((response: { names: string[] }) => {
@@ -126,12 +126,12 @@
     function deleteFile(file: string) {
         API.deleteData(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/files/${file}`, {})
             .then(() => {
-                toastSuccess("File deleted");
+                toastSuccess($_("guilds.caseview.filedeleted"));
                 clearFileCache();
                 files.update((x) => x.filter((y) => y.fullName !== file));
             })
             .catch(() => {
-                toastError("Failed to delete file");
+                toastError($_("guilds.caseview.filedeletefailed"));
             });
     }
 
@@ -146,7 +146,7 @@
     function deleteComment(id: number) {
         API.deleteData(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/comments/${id}`, {})
             .then(() => {
-                toastSuccess("Comment deleted");
+                toastSuccess($_("guilds.caseview.commentdeleted"));
                 modCase.update((x) => {
                     x.comments = x.comments.filter((y) => y.comment.id !== id);
                     return x;
@@ -154,7 +154,7 @@
                 clearCaseCache();
             })
             .catch(() => {
-                toastError("Failed to delete comment");
+                toastError($_("guilds.caseview.commentdeletefailed"));
             });
     }
 
@@ -174,11 +174,11 @@
                     });
                     return x;
                 });
-                toastSuccess("Comment added!");
+                toastSuccess($_("guilds.caseview.commentadded"));
                 clearCaseCache();
             })
             .catch(() => {
-                toastError("Failed to add comment");
+                toastError($_("guidsl.caseview.commentaddfailed"));
             });
     }
 
@@ -186,7 +186,7 @@
         navigator.clipboard
             .writeText(window.location.toString())
             .then(() => {
-                toastSuccess("Link copied to clipboard");
+                toastSuccess($_("guilds.caseview.linkcopied"));
             })
             .catch((e) => console.error(e));
     }
@@ -208,11 +208,11 @@
                             });
                             return n;
                         });
-                        toastSuccess("File uploaded!");
+                        toastSuccess($_("guilds.caseview.fileuploaded"));
                         clearFileCache();
                     })
                     .catch(() => {
-                        toastError("Failed to upload file");
+                        toastError($_("guilds.caseview.fileuploadfailed"));
                     });
             }
         };
@@ -229,11 +229,11 @@
                                 x.modCase.punishmentActive = false;
                                 return x;
                             });
-                            toastSuccess("Punishment deactivated");
+                            toastSuccess($_("guilds.caseview.punishmentdeactivated"));
                             clearCaseCache();
                         })
                         .catch(() => {
-                            toastError("Failed to deactivate punishment");
+                            toastError($_("guilds.caseview.punishmentdeactivatefailed"));
                         });
                 } else {
                     API.post(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/active`, {}, CacheMode.API_ONLY, false)
@@ -242,11 +242,11 @@
                                 x.modCase.punishmentActive = true;
                                 return x;
                             });
-                            toastSuccess("Punishment activated");
+                            toastSuccess($_("guilds.caseview.punishmentactivated"));
                             clearCaseCache();
                         })
                         .catch(() => {
-                            toastError("Failed to activate punishment");
+                            toastError($_("guilds.caseview.punishmentactivatefailed"));
                         });
                 }
             }
@@ -263,11 +263,11 @@
                     x.modCase.allowComments = false;
                     return x;
                 });
-                toastSuccess("Comments locked");
+                toastSuccess($_("guilds.caseview.commentslocked"));
                 clearCaseCache();
             })
             .catch(() => {
-                toastError("Failed to lock comments");
+                toastError($_("guilds.caseview.commentslockfailed"));
             });
     }
 
@@ -278,11 +278,11 @@
                     x.modCase.allowComments = true;
                     return x;
                 });
-                toastSuccess("Comments unlocked");
+                toastSuccess($_("guilds.caseview.commentsunlocked"));
                 clearCaseCache();
             })
             .catch(() => {
-                toastError("Failed to unlock comments");
+                toastError($_("guilds.caseview.commentsunlockfailed"));
             });
     }
 
@@ -310,7 +310,7 @@
                 clearCaseCache();
                 if ($deleteCaseModalForceDelete) {
                     $goto("/guilds/" + $currentParams.guildId + "/cases");
-                    toastSuccess("Case deleted");
+                    toastSuccess($_("guilds.caseview.deletedcase"));
                 } else {
                     modCase.update((x) => {
                         x.modCase.markedToDeleteAt = res.markedToDeleteAt;
@@ -318,13 +318,13 @@
                         x.deletedBy = $authUser.discordUser;
                         return x;
                     });
-                    toastSuccess("Case marked to be deleted");
+                    toastSuccess($_("guilds.caseview.markeddeletecase"));
                 }
                 onDeleteCaseModalClose();
             })
             .catch(() => {
                 deleteCaseSubmitting.set(false);
-                toastError("Failed to delete case");
+                toastError($_("guilds.caseview.deletecasefailed"));
             });
     }
 
@@ -337,11 +337,11 @@
                     x.modCase.deletedByUserId = null;
                     return x;
                 });
-                toastSuccess("Case restored");
+                toastSuccess($_("guilds.caseview.caserestored"));
                 clearCaseCache();
             })
             .catch(() => {
-                toastError("Failed to restore case");
+                toastError($_("guilds.caseview.caserestorefailed"));
             });
     }
 
@@ -366,7 +366,7 @@
         };
         API.put(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/comments/${$editCommentId}`, data)
             .then(() => {
-                toastSuccess("Comment edited");
+                toastSuccess($_("guilds.caseview.commentedited"));
                 modCase.update((n) => {
                     const index = n.comments.findIndex((x) => x.comment.id === $editCommentId);
                     if (index !== -1) {
@@ -379,7 +379,7 @@
             })
             .catch(() => {
                 editCommentSubmitting.set(false);
-                toastError("Failed to edit comment");
+                toastError($_("guilds.caseview.commenteditfailed"));
             });
     }
 </script>
@@ -404,8 +404,8 @@
     size="sm"
     open={$editCommentModal}
     selectorPrimaryFocus="#commentvalue"
-    modalHeading={$_("guilds.casedialog.createtemplate")}
-    primaryButtonText={$_("guilds.casedialog.createtemplate")}
+    modalHeading={$_("guilds.caseview.editcomment")}
+    primaryButtonText={$_("guilds.caseview.editcomment")}
     secondaryButtonText={$_("dialog.confirm.cancel")}
     primaryButtonDisabled={$editCommentValue !== undefined && $editCommentValue !== null && ($editCommentValue?.length ?? 0) > 300}
     on:close={onEditCommentModalClose}
@@ -416,11 +416,11 @@
         <TextInput
             id="commentvalue"
             bind:value={$editCommentValue}
-            labelText={$_("guilds.casedialog.title")}
-            placeholder={$_("guilds.casedialog.titleplaceholder")}
+            labelText={$_("guilds.caseview.editcommentfield")}
+            placeholder={$_("guilds.caseview.editcommentfield")}
             required
             invalid={$editCommentValue !== undefined && $editCommentValue !== null && ($editCommentValue?.length ?? 0) > 300}
-            invalidText={$_("guilds.casedialog.titleinvalid")} />
+            invalidText={$_("guilds.caseview.editcommentfieldinvalid")} />
     </div>
 </Modal>
 
@@ -430,8 +430,8 @@
     danger
     open={$deleteCaseModalOpen}
     selectorPrimaryFocus="#publicnotification"
-    modalHeading={$_("guilds.casedialog.createtemplate")}
-    primaryButtonText={$_("guilds.casedialog.createtemplate")}
+    modalHeading={$_("guilds.caseview.deletecase")}
+    primaryButtonText={$_("guilds.caseview.deletecase")}
     secondaryButtonText={$_("dialog.confirm.cancel")}
     primaryButtonDisabled={$deleteCaseSubmitting}
     on:close={onDeleteCaseModalClose}
@@ -439,8 +439,13 @@
     on:submit={deleteCase}>
     <Loading active={$deleteCaseSubmitting} />
     <div class="mb-4">
-        <Checkbox id="publicnotification" labelText="Send public notification" bind:checked={$deleteCaseModalPublicNotification} />
-        <Checkbox labelText="Force delete" bind:checked={$deleteCaseModalForceDelete} />
+        <Checkbox
+            id="publicnotification"
+            labelText={$_("guilds.caseview.sendpublicnotification")}
+            bind:checked={$deleteCaseModalPublicNotification} />
+        {#if $authUser?.isAdmin}
+            <Checkbox labelText={$_("guilds.caseview.forcedelete")} bind:checked={$deleteCaseModalForceDelete} />
+        {/if}
     </div>
 </Modal>
 
@@ -483,7 +488,7 @@
                         </div>
                     {:else}
                         <div class:mb-2={matches && isModeratorInGuild($authUser, $currentParams.guildId)} class:mr-2={matches}>
-                            <Button size="small" kind="secondary" icon={Share24} on:click={shareCase}>Share case</Button>
+                            <Button size="small" kind="secondary" icon={Share24} on:click={shareCase}>{$_("guilds.caseview.sharecase")}</Button>
                         </div>
                         <input type="file" bind:this={fileUploadRef} name="fileUpload" multiple={true} accept="image/*" style="display:none;" />
                         {#if matches}
@@ -494,7 +499,7 @@
                                         kind="secondary"
                                         icon={Upload24}
                                         disabled={$modCase.modCase.markedToDeleteAt !== null}
-                                        on:click={uploadFile}>Upload file</Button>
+                                        on:click={uploadFile}>{$_("guilds.caseview.uploadfile")}</Button>
                                 </div>
                                 {#if ($modCase.modCase.punishedUntil === null || $modCase?.modCase?.punishedUntil?.isAfter(moment())) && ($modCase.modCase.punishmentType == PunishmentType.Ban || $modCase.modCase.punishmentType == PunishmentType.Mute)}
                                     <div class="mr-2 mb-2">
@@ -503,7 +508,10 @@
                                             kind="secondary"
                                             icon={Power24}
                                             disabled={$modCase.modCase.markedToDeleteAt !== null}
-                                            on:click={handleActivation}>{$modCase.modCase.punishmentActive ? "Deactivate" : "Activate"}</Button>
+                                            on:click={handleActivation}
+                                            >{$modCase.modCase.punishmentActive
+                                                ? $_("guilds.caseview.deactivate")
+                                                : $_("guilds.caseview.activate")}</Button>
                                     </div>
                                 {/if}
                                 <div class="mr-2 mb-2">
@@ -513,14 +521,14 @@
                                             kind="secondary"
                                             icon={Locked24}
                                             disabled={$modCase.modCase.markedToDeleteAt !== null}
-                                            on:click={lockComments}>Lock comments</Button>
+                                            on:click={lockComments}>{$_("guilds.caseview.lockcomments")}</Button>
                                     {:else}
                                         <Button
                                             size="small"
                                             kind="secondary"
                                             icon={Locked24}
                                             disabled={$modCase.modCase.markedToDeleteAt !== null}
-                                            on:click={unlockComments}>Unlock comments</Button>
+                                            on:click={unlockComments}>{$_("guilds.caseview.unlockcomments")}</Button>
                                     {/if}
                                 </div>
                                 <div class="mr-2 mb-2">
@@ -531,49 +539,54 @@
                                         disabled={$modCase.modCase.markedToDeleteAt !== null}
                                         on:click={() => {
                                             $goto(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/edit`);
-                                        }}>Edit</Button>
+                                        }}>{$_("guilds.caseview.edit")}</Button>
                                 </div>
                                 {#if $modCase.modCase.markedToDeleteAt === null}
                                     <div class="mr-2 mb-2">
-                                        <Button size="small" kind="danger" icon={TrashCan24} on:click={deleteCaseModal}>Delete</Button>
+                                        <Button size="small" kind="danger" icon={TrashCan24} on:click={deleteCaseModal}
+                                            >{$_("guilds.caseview.delete")}</Button>
                                     </div>
                                 {:else}
                                     <div class="mr-2 mb-2">
-                                        <Button size="small" icon={WatsonHealthAiStatusComplete24} on:click={restoreCase}>Restore</Button>
+                                        <Button size="small" icon={WatsonHealthAiStatusComplete24} on:click={restoreCase}
+                                            >{$_("guilds.caseview.restore")}</Button>
                                     </div>
                                 {/if}
                             {/if}
                         {:else}
                             <div class="grow" />
                             <OverflowMenu flipped>
-                                <OverflowMenuItem text="Upload file" disabled={$modCase.modCase.markedToDeleteAt !== null} on:click={uploadFile} />
+                                <OverflowMenuItem
+                                    text={$_("guilds.caseview.sharecase")}
+                                    disabled={$modCase.modCase.markedToDeleteAt !== null}
+                                    on:click={uploadFile} />
                                 {#if ($modCase.modCase.punishedUntil === null || $modCase?.modCase?.punishedUntil?.isAfter(moment())) && ($modCase.modCase.punishmentType == PunishmentType.Ban || $modCase.modCase.punishmentType == PunishmentType.Mute)}
                                     <OverflowMenuItem
-                                        text="Deactivate"
+                                        text={$modCase.modCase.punishmentActive ? $_("guilds.caseview.deactivate") : $_("guilds.caseview.activate")}
                                         disabled={$modCase.modCase.markedToDeleteAt !== null}
                                         on:click={handleActivation} />
                                 {/if}
                                 {#if $modCase.modCase.allowComments}
                                     <OverflowMenuItem
-                                        text="Lock comments"
+                                        text={$_("guilds.caseview.lockcomments")}
                                         disabled={$modCase.modCase.markedToDeleteAt !== null}
                                         on:click={lockComments} />
                                 {:else}
                                     <OverflowMenuItem
-                                        text="Unlock comments"
+                                        text={$_("guilds.caseview.unlockcomments")}
                                         disabled={$modCase.modCase.markedToDeleteAt !== null}
                                         on:click={unlockComments} />
                                 {/if}
                                 <OverflowMenuItem
-                                    text="Edit"
+                                    text={$_("guilds.caseview.edit")}
                                     disabled={$modCase.modCase.markedToDeleteAt !== null}
                                     on:click={() => {
                                         $goto(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/edit`);
                                     }} />
                                 {#if $modCase.modCase.markedToDeleteAt === null}
-                                    <OverflowMenuItem text="Delete" danger on:click={deleteCaseModal} />
+                                    <OverflowMenuItem text={$_("guilds.caseview.delete")} danger on:click={deleteCaseModal} />
                                 {:else}
-                                    <OverflowMenuItem text="Restore" on:click={restoreCase} />
+                                    <OverflowMenuItem text={$_("guilds.caseview.restore")} on:click={restoreCase} />
                                 {/if}
                             </OverflowMenu>
                         {/if}
@@ -587,12 +600,18 @@
                 {#if $modCase?.modCase?.markedToDeleteAt}
                     <InlineNotification
                         kind="info"
-                        title="This case has been marked to be deleted at {$modCase?.modCase?.markedToDeleteAt?.format(
-                            $currentLanguage?.momentDateTimeFormat ?? 'DD/MM/YYYY HH:mm'
-                        )}"
+                        title={$_("guilds.caseview.markedtodelete", {
+                            values: {
+                                time: $modCase?.modCase?.markedToDeleteAt?.format($currentLanguage?.momentDateTimeFormat ?? "DD/MM/YYYY HH:mm"),
+                            },
+                        })}
                         subtitle={$modCase?.deletedBy
-                            ? `Deleted by ${$modCase?.deletedBy?.username}#${$modCase?.deletedBy?.discriminator}`
-                            : "Deleted by a moderator"} />
+                            ? $_("guilds.caseview.markedtodeletesubtitle", {
+                                  values: {
+                                      user: $modCase?.deletedBy?.username + "#" + $modCase?.deletedBy?.discriminator,
+                                  },
+                              })
+                            : ""} />
                 {/if}
                 {#if caseLoading}
                     <SkeletonText paragraph />
@@ -615,7 +634,7 @@
                     </div>
                 {:else if ($files?.length ?? 0) !== 0}
                     <div class="mb-4">
-                        <div class="mb-2 font-bold">Attachments</div>
+                        <div class="mb-2 font-bold">{$_("guilds.caseview.attachments")}</div>
                         <div class="flex flex-row overflow-x-auto overflow-y-clip pb-2">
                             {#each $files as file}
                                 <div class="grow shrink-0 h-80 max-h-80">
@@ -748,7 +767,7 @@
                 {:else}
                     <div class="mb-4">
                         <div class="flex flex-row mb-2">
-                            <div class="font-bold">Comments</div>
+                            <div class="font-bold">{$_("guilds.caseview.comments")}</div>
                         </div>
                         <div class="flex flex-col" id="linkedcases">
                             {#each $modCase?.comments ?? [] as comment (comment.comment.id)}
@@ -777,7 +796,7 @@
                                                 <OverflowMenu flipped>
                                                     {#if $authUser.discordUser.id === comment.comment.userId}
                                                         <OverflowMenuItem
-                                                            text="Edit"
+                                                            text={$_("guilds.caseview.edit")}
                                                             disabled={!$modCase.modCase.allowComments}
                                                             on:click={() => {
                                                                 editCommentModalOpen(comment.comment);
@@ -785,7 +804,7 @@
                                                     {/if}
                                                     {#if $authUser.discordUser.id === comment.comment.userId || isModeratorInGuild($authUser, $currentParams.guildId)}
                                                         <OverflowMenuItem
-                                                            text="Delete"
+                                                            text={$_("guilds.caseview.delete")}
                                                             disabled={!$modCase.modCase.allowComments}
                                                             on:click={() => {
                                                                 deleteComment(comment.comment.id);
@@ -809,9 +828,9 @@
                                         <TextArea
                                             rows={2}
                                             bind:value={newComment}
-                                            placeholder="Add a comment... (max 300 characters)"
+                                            placeholder={$_("guilds.caseview.addacomment")}
                                             invalid={(newComment?.length ?? 0) > 300}
-                                            invalidText="Comment must be less than 300 characters"
+                                            invalidText={$_("guilds.caseview.addacommenterror")}
                                             disabled={!$modCase.modCase.allowComments ||
                                                 $modCase.modCase.markedToDeleteAt !== null ||
                                                 ($modCase?.comments?.at(-1)?.comment?.userId === $authUser?.discordUser?.id &&
@@ -829,7 +848,7 @@
                                         on:click={sendComment} />
                                 </div>
                                 {#if !$modCase.modCase.allowComments}
-                                    <InlineNotification kind="info" title="Locked:" subtitle="You cannot comment since this case is locked." />
+                                    <InlineNotification kind="info" title={$_("guilds.caseview.caseislocked")} />
                                 {/if}
                             {/if}
                         </div>
@@ -866,7 +885,7 @@
                     {#if matches || openFurtherDetails}
                         <div class="flex flex-col grow shrink-0" transition:slide|local>
                             <div class="flex flex-col mb-6">
-                                <div class="font-bold mb-2">Violator</div>
+                                <div class="font-bold mb-2">{$_("guilds.caseview.violator")}</div>
                                 <div class="flex flex-row items-center">
                                     <UserIcon class="mr-2" user={$modCase.suspect} />
                                     <div class="flex flex-row flex-wrap items-center">
@@ -880,19 +899,22 @@
                                     </div>
                                     <div class="grow" />
                                     <div>
-                                        <CopyButton text={$modCase.modCase.userId} feedback="Copied to clipboard" />
+                                        <CopyButton text={$modCase.modCase.userId} feedback={$_("core.copiedtoclipboard")} />
                                     </div>
                                 </div>
                             </div>
                             <div class="flex flex-col mb-6">
-                                <div class="font-bold mb-2">Punishment {$modCase.modCase.punishmentActive ? "" : "(inactive)"}</div>
+                                <div class="font-bold mb-2">
+                                    {$_("guilds.caseview.punishment")}
+                                    {$modCase.modCase.punishmentActive ? "" : `(${$_("guilds.caseview.punishmentinactive")})`}
+                                </div>
                                 <div id="caseview-punishment">
                                     <PunishmentTag modCase={$modCase.modCase} />
                                 </div>
                             </div>
                             {#if $modCase.modCase.labels.length !== 0}
                                 <div class="flex flex-col mb-6">
-                                    <div class="font-bold mb-2">Labels</div>
+                                    <div class="font-bold mb-2">{$_("guilds.caseview.labels")}</div>
                                     <div class="flex flex-row flex-wrap" id="caseview-labelist">
                                         {#each $modCase.modCase.labels as label}
                                             <Tag type="outline">{label}</Tag>
@@ -902,14 +924,14 @@
                             {/if}
                             {#if $modCase.modCase.punishedUntil}
                                 <div class="flex flex-col mb-6">
-                                    <div class="font-bold mb-2">Punished until</div>
+                                    <div class="font-bold mb-2">{$_("guilds.caseview.punisheduntil")}</div>
                                     <div class="flex flex-col">
                                         {#if $modCase.modCase.punishedUntil}
                                             <ProgressBar class="mb-2" value={$modCase.punishmentProgress ?? 100} />
                                             <div>
                                                 {$modCase.modCase.punishedUntil?.format(
                                                     $currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss"
-                                                ) ?? "Permanent"}
+                                                ) ?? $_("guilds.caseview.punisheduntilpermanent")}
                                             </div>
                                         {/if}
                                     </div>
@@ -917,14 +939,14 @@
                             {/if}
                             {#if $modCase?.userNote?.userNote}
                                 <div class="flex flex-col mb-6">
-                                    <div class="font-bold mb-2">Usernote</div>
+                                    <div class="font-bold mb-2">{$_("guilds.caseview.usernote")}</div>
                                     <div style="white-space: pre-wrap; word-wrap: anywhere;">
                                         {$modCase.userNote.userNote.description}
                                     </div>
                                 </div>
                             {/if}
                             <div class="flex flex-col mb-6">
-                                <div class="font-bold mb-2">Moderator</div>
+                                <div class="font-bold mb-2">{$_("guilds.caseview.moderator")}</div>
                                 {#if $modCase.modCase.modId}
                                     <div class="flex flex-row items-center">
                                         <UserIcon class="mr-2" user={$modCase.moderator} />
@@ -940,16 +962,16 @@
                                         </div>
                                         <div class="grow" />
                                         <div>
-                                            <CopyButton text={$modCase.modCase.modId} feedback="Copied to clipboard" />
+                                            <CopyButton text={$modCase.modCase.modId} feedback={$_("core.copiedtoclipboard")} />
                                         </div>
                                     </div>
                                 {:else}
-                                    Unknown or hidden.
+                                    {$_("guilds.caseview.moderatorunknown")}
                                 {/if}
                             </div>
                             {#if !$modCase.modCase.createdAt.isSame($modCase.modCase.lastEditedAt)}
                                 <div class="flex flex-col mb-6">
-                                    <div class="font-bold mb-2">Last edit by moderator</div>
+                                    <div class="font-bold mb-2">{$_("guilds.caseview.lasteditmoderator")}</div>
                                     {#if $modCase.modCase.lastEditedByModId}
                                         <div class="flex flex-row items-center">
                                             <UserIcon class="mr-2" user={$modCase.lastModerator} />
@@ -965,28 +987,28 @@
                                             </div>
                                             <div class="grow" />
                                             <div>
-                                                <CopyButton text={$modCase.modCase.lastEditedByModId} feedback="Copied to clipboard" />
+                                                <CopyButton text={$modCase.modCase.lastEditedByModId} feedback={$_("core.copiedtoclipboard")} />
                                             </div>
                                         </div>
                                     {:else}
-                                        Unknown or hidden.
+                                        {$_("guilds.caseview.moderatorunknown")}
                                     {/if}
                                 </div>
                             {/if}
                             <hr class="mb-6" style="border-color: var(--cds-ui-04)" />
                             <div class="flex flex-row mb-2" style="color: var(--cds-text-02)">
-                                <div class="mr-2">Created</div>
+                                <div class="mr-2">{$_("guilds.caseview.created")}</div>
                                 <div>
                                     {$modCase.modCase.createdAt?.format($currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss") ??
-                                        "Unknown"}
+                                        $_("guilds.caseview.unknown")}
                                 </div>
                             </div>
                             {#if !$modCase.modCase.createdAt.isSame($modCase.modCase.lastEditedAt)}
                                 <div class="flex flex-row" style="color: var(--cds-text-02)">
-                                    <div class="mr-2">Updated</div>
+                                    <div class="mr-2">{$_("guilds.caseview.updated")}</div>
                                     <div>
                                         {$modCase.modCase.lastEditedAt?.format($currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss") ??
-                                            "Unknown"}
+                                            $_("guilds.caseview.unknown")}
                                     </div>
                                 </div>
                             {/if}

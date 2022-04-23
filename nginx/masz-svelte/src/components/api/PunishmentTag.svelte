@@ -10,7 +10,7 @@
     export let modCase: ICase;
     let type: string;
 
-    function selectType() {
+    function selectType(m: ICase) {
         if (!modCase.punishmentActive) {
             type = defaultColor;
             return;
@@ -27,7 +27,7 @@
         }
         type = "purple";
     }
-    selectType();
+    $: selectType(modCase);
 </script>
 
 <Tag size="default" {type} class={classes}>

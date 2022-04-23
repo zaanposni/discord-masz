@@ -962,6 +962,606 @@
                 "es": "Subida de adjunto falló",
                 "ru": "Загрузка вложения не удалась",
                 "it": "Caricamento allegato non riuscito"
+            },
+            "casenotfound": {
+                "description": "Case not found",
+                "en": "Case not found",
+                "de": "Vorfall nicht gefunden",
+                "at": "Vorfall nicht gefunden",
+                "fr": "Cas non trouvé",
+                "es": "Caso no encontrado",
+                "ru": "Дело не найдено",
+                "it": "Caso non trovato"
+            },
+            "filedeleted": {
+                "description": "File deleted",
+                "en": "File deleted",
+                "de": "Datei gelöscht",
+                "at": "Datei gelöscht",
+                "fr": "Fichier supprimé",
+                "es": "Archivo eliminado",
+                "ru": "Файл удален",
+                "it": "File eliminato"
+            },
+            "filedeletefailed": {
+                "description": "File delete failed",
+                "en": "Failed to delete file",
+                "de": "Fehler beim Löschen der Datei",
+                "at": "Fehler beim Löschen der Datei",
+                "fr": "Échec de la suppression du fichier",
+                "es": "Eliminación de archivo falló",
+                "ru": "Не удалось удалить файл",
+                "it": "Eliminazione file non riuscita"
+            },
+            "commentdeleted": {
+                "description": "Comment deleted",
+                "en": "Comment deleted",
+                "de": "Kommentar gelöscht",
+                "at": "Kommentar gelöscht",
+                "fr": "Commentaire supprimé",
+                "es": "Comentario eliminado",
+                "ru": "Комментарий удален",
+                "it": "Commento eliminato"
+            },
+            "commentdeletefailed": {
+                "description": "Comment delete failed",
+                "en": "Failed to delete comment",
+                "de": "Fehler beim Löschen des Kommentars",
+                "at": "Fehler beim Löschen des Kommentars",
+                "fr": "Échec de la suppression du commentaire",
+                "es": "Eliminación de comentario falló",
+                "ru": "Не удалось удалить комментарий",
+                "it": "Eliminazione commento non riuscita"
+            },
+            "commentadded": {
+                "description": "Comment added",
+                "en": "Comment added",
+                "de": "Kommentar hinzugefügt",
+                "at": "Kommentar hinzugefügt",
+                "fr": "Commentaire ajouté",
+                "es": "Comentario añadido",
+                "ru": "Комментарий добавлен",
+                "it": "Commento aggiunto"
+            },
+            "commentaddfailed": {
+                "description": "Comment add failed",
+                "en": "Failed to add comment",
+                "de": "Fehler beim Hinzufügen des Kommentars",
+                "at": "Fehler beim Hinzufügen des Kommentars",
+                "fr": "Échec de l'ajout du commentaire",
+                "es": "Fallo al añadir comentario",
+                "ru": "Не удалось добавить комментарий",
+                "it": "Inserimento commento non riuscito"
+            },
+            "linkcopied": {
+                "description": "Link copied",
+                "en": "Link copied to clipboard",
+                "de": "Link in Zwischenablage kopiert",
+                "at": "Link in Zwischenablage kopiert",
+                "fr": "Lien copié dans le presse-papiers",
+                "es": "Enlace copiado al portapapeles",
+                "ru": "Ссылка скопирована в буфер обмена",
+                "it": "Link copiato negli appunti"
+            },
+            "fileuploaded": {
+                "description": "File uploaded",
+                "en": "File uploaded",
+                "de": "Datei hochgeladen",
+                "at": "Datei hochgeladen",
+                "fr": "Fichier téléchargé",
+                "es": "Archivo subido",
+                "ru": "Файл загружен",
+                "it": "File caricato"
+            },
+            "fileuploadfailed": {
+                "description": "File upload failed",
+                "en": "Failed to upload file",
+                "de": "Fehler beim Hochladen der Datei",
+                "at": "Fehler beim Hochladen der Datei",
+                "fr": "Échec de la téléchargement du fichier",
+                "es": "Fallo al subir archivo",
+                "ru": "Не удалось загрузить файл",
+                "it": "Caricamento file non riuscito"
+            },
+            "punishmentactivated": {
+                "description": "Punishment activated",
+                "en": "Punishment activated",
+                "de": "Bestrafung aktiviert",
+                "at": "Bestrafung aktiviert",
+                "fr": "Pardon activé",
+                "es": "Pena activada",
+                "ru": "Штраф активирован",
+                "it": "Punizione attivata"
+            },
+            "punishmentdeactivated": {
+                "description": "Punishment deactivated",
+                "en": "Punishment deactivated",
+                "de": "Bestrafung deaktiviert",
+                "at": "Bestrafung deaktiviert",
+                "fr": "Pardon désactivé",
+                "es": "Pena desactivada",
+                "ru": "Штраф деактивирован",
+                "it": "Punizione disattivata"
+            },
+            "punishmentactivatefailed": {
+                "description": "Punishment activate failed",
+                "en": "Failed to activate punishment",
+                "de": "Fehler beim Aktivieren der Bestrafung",
+                "at": "Fehler beim Aktivieren der Bestrafung",
+                "fr": "Échec de l'activation du pardon",
+                "es": "Fallo al activar la penalización",
+                "ru": "Не удалось активировать штраф",
+                "it": "Fallimento dell'attivazione della punizione"
+            },
+            "punishmentdeactivatefailed": {
+                "description": "Punishment deactivate failed",
+                "en": "Failed to deactivate punishment",
+                "de": "Fehler beim Deaktivieren der Bestrafung",
+                "at": "Fehler beim Deaktivieren der Bestrafung",
+                "fr": "Échec de la désactivation du pardon",
+                "es": "Fallo al desactivar la penalización",
+                "ru": "Не удалось деактивировать штраф",
+                "it": "Fallimento della disattivazione della punizione"
+            },
+            "commentslocked": {
+                "description": "Comments locked",
+                "en": "Comments locked",
+                "de": "Kommentare gesperrt",
+                "at": "Kommentare gesperrt",
+                "fr": "Commentaires verrouillés",
+                "es": "Comentarios bloqueados",
+                "ru": "Комментарии заблокированы",
+                "it": "Commenti bloccati"
+            },
+            "commentslockfailed": {
+                "description": "Comments lock failed",
+                "en": "Failed to lock comments",
+                "de": "Fehler beim Sperren der Kommentare",
+                "at": "Fehler beim Sperren der Kommentare",
+                "fr": "Échec du verrouillage des commentaires",
+                "es": "Fallo al bloquear comentarios",
+                "ru": "Не удалось заблокировать комментарии",
+                "it": "Fallimento del blocco dei commenti"
+            },
+            "commentsunlocked": {
+                "description": "Comments unlocked",
+                "en": "Comments unlocked",
+                "de": "Kommentare entsperrt",
+                "at": "Kommentare entsperrt",
+                "fr": "Commentaires déverrouillés",
+                "es": "Comentarios desbloqueados",
+                "ru": "Комментарии разблокированы",
+                "it": "Commenti sbloccati"
+            },
+            "commentsunlockfailed": {
+                "description": "Comments unlock failed",
+                "en": "Failed to unlock comments",
+                "de": "Fehler beim Entsperren der Kommentare",
+                "at": "Fehler beim Entsperren der Kommentare",
+                "fr": "Échec du déverrouillage des commentaires",
+                "es": "Fallo al desbloquear comentarios",
+                "ru": "Не удалось разблокировать комментарии",
+                "it": "Fallimento dello sblocco dei commenti"
+            },
+            "deletedcase": {
+                "description": "Case deleted",
+                "en": "Case deleted",
+                "de": "Vorfall gelöscht",
+                "at": "Vorfall gelöscht",
+                "fr": "Cas supprimé",
+                "es": "Caso eliminado",
+                "ru": "Дело удалено",
+                "it": "Caso eliminato"
+            },
+            "markeddeletecase": {
+                "description": "Case marked for deletion",
+                "en": "Case marked for deletion",
+                "de": "Vorfall zum Löschen markiert",
+                "at": "Vorfall zum Löschen markiert",
+                "fr": "Cas marqué pour suppression",
+                "es": "Caso marcado para eliminación",
+                "ru": "Дело помечено на удаление",
+                "it": "Caso contrassegnato per l'eliminazione"
+            },
+            "deletecasefailed": {
+                "description": "Failed to delete case",
+                "en": "Failed to delete case",
+                "de": "Fehler beim Löschen des Vorfalls",
+                "at": "Fehler beim Löschen des Vorfalls",
+                "fr": "Échec de la suppression du cas",
+                "es": "Fallo al eliminar caso",
+                "ru": "Не удалось удалить дело",
+                "it": "Fallimento dell'eliminazione del caso"
+            },
+            "caserestored": {
+                "description": "Case restored",
+                "en": "Case restored",
+                "de": "Vorfall wiederhergestellt",
+                "at": "Vorfall wiederhergestellt",
+                "fr": "Cas restauré",
+                "es": "Caso restaurado",
+                "ru": "Дело восстановлено",
+                "it": "Caso ripristinato"
+            },
+            "caserestorefailed": {
+                "description": "Failed to restore case",
+                "en": "Failed to restore case",
+                "de": "Fehler beim Wiederherstellen des Vorfalls",
+                "at": "Fehler beim Wiederherstellen des Vorfalls",
+                "fr": "Échec de la restauration du cas",
+                "es": "Fallo al restaurar caso",
+                "ru": "Не удалось восстановить дело",
+                "it": "Fallimento della ripristinazione del caso"
+            },
+            "commentedited": {
+                "description": "Comment edited",
+                "en": "Comment edited",
+                "de": "Kommentar bearbeitet",
+                "at": "Kommentar bearbeitet",
+                "fr": "Commentaire modifié",
+                "es": "Comentario editado",
+                "ru": "Комментарий отредактирован",
+                "it": "Commento modificato"
+            },
+            "commenteditfailed": {
+                "description": "Failed to edit comment",
+                "en": "Failed to edit comment",
+                "de": "Fehler beim Bearbeiten des Kommentars",
+                "at": "Fehler beim Bearbeiten des Kommentars",
+                "fr": "Échec de la modification du commentaire",
+                "es": "Fallo al editar comentario",
+                "ru": "Не удалось отредактировать комментарий",
+                "it": "Fallimento della modifica del commento"
+            },
+            "deletecase": {
+                "description": "Delete case",
+                "en": "Delete case",
+                "de": "Vorfall löschen",
+                "at": "Vorfall löschen",
+                "fr": "Supprimer le cas",
+                "es": "Eliminar caso",
+                "ru": "Удалить дело",
+                "it": "Elimina caso"
+            },
+            "sendpublicnotification": {
+                "description": "Send public notification",
+                "en": "Send public notification",
+                "de": "Öffentliche Benachrichtigung senden",
+                "at": "Öffentliche Benachrichtigung senden",
+                "fr": "Envoyer une notification publique",
+                "es": "Enviar notificación pública",
+                "ru": "Отправить публичную уведомление",
+                "it": "Invia notifica pubblica"
+            },
+            "forcedelete": {
+                "description": "Force delete",
+                "en": "Force delete",
+                "de": "Löschen erzwingen",
+                "at": "Löschen erzwingen",
+                "fr": "Supprimer",
+                "es": "Eliminar",
+                "ru": "Удалить",
+                "it": "Elimina"
+            },
+            "editcomment": {
+                "description": "Edit comment",
+                "en": "Edit comment",
+                "de": "Kommentar bearbeiten",
+                "at": "Kommentar bearbeiten",
+                "fr": "Modifier le commentaire",
+                "es": "Editar comentario",
+                "ru": "Редактировать комментарий",
+                "it": "Modifica commento"
+            },
+            "editcommentfield": {
+                "description": "Edit comment field",
+                "en": "Comment",
+                "de": "Kommentar",
+                "at": "Kommentar",
+                "fr": "Commentaire",
+                "es": "Comentario",
+                "ru": "Комментарий",
+                "it": "Commento"
+            },
+            "editcommentfieldinvalid": {
+                "description": "Comment field is invalid",
+                "en": "Comment must be less than 300 characters",
+                "de": "Kommentar muss weniger als 300 Zeichen lang sein",
+                "at": "Kommentar muss weniger als 300 Zeichen lang sein",
+                "fr": "Commentaire doit être moins de 300 caractères",
+                "es": "Comentario debe ser menos de 300 caracteres",
+                "ru": "Комментарий должен быть меньше 300 символов",
+                "it": "Il commento deve essere più corto di 300 caratteri"
+            },
+            "sharecase": {
+                "description": "Share case",
+                "en": "Share case",
+                "de": "Vorfall teilen",
+                "at": "Vorfall teilen",
+                "fr": "Partager le cas",
+                "es": "Compartir caso",
+                "ru": "Поделиться делом",
+                "it": "Condividi caso"
+            },
+            "uploadfile": {
+                "description": "Upload file",
+                "en": "Upload file",
+                "de": "Datei hochladen",
+                "at": "Datei hochladen",
+                "fr": "Télécharger un fichier",
+                "es": "Subir archivo",
+                "ru": "Загрузить файл",
+                "it": "Carica file"
+            },
+            "activate": {
+                "description": "Activate",
+                "en": "Activate",
+                "de": "Aktivieren",
+                "at": "Aktivieren",
+                "fr": "Activer",
+                "es": "Activar",
+                "ru": "Активировать",
+                "it": "Attiva"
+            },
+            "deactivate": {
+                "description": "Deactivate",
+                "en": "Deactivate",
+                "de": "Deaktivieren",
+                "at": "Deaktivieren",
+                "fr": "Désactiver",
+                "es": "Desactivar",
+                "ru": "Деактивировать",
+                "it": "Disattiva"
+            },
+            "unlockcomments": {
+                "description": "Unlock comments",
+                "en": "Unlock comments",
+                "de": "Kommentare entsperren",
+                "at": "Kommentare entsperren",
+                "fr": "Déverrouiller les commentaires",
+                "es": "Desbloquear comentarios",
+                "ru": "Разблокировать комментарии",
+                "it": "Sblocca commenti"
+            },
+            "lockcomments": {
+                "description": "Lock comments",
+                "en": "Lock comments",
+                "de": "Kommentare sperren",
+                "at": "Kommentare sperren",
+                "fr": "Verrouiller les commentaires",
+                "es": "Bloquear comentarios",
+                "ru": "Заблокировать комментарии",
+                "it": "Blocca commenti"
+            },
+            "edit": {
+                "description": "Edit",
+                "en": "Edit",
+                "de": "Bearbeiten",
+                "at": "Bearbeiten",
+                "fr": "Modifier",
+                "es": "Editar",
+                "ru": "Редактировать",
+                "it": "Modifica"
+            },
+            "delete": {
+                "description": "Delete",
+                "en": "Delete",
+                "de": "Löschen",
+                "at": "Löschen",
+                "fr": "Supprimer",
+                "es": "Eliminar",
+                "ru": "Удалить",
+                "it": "Elimina"
+            },
+            "restore": {
+                "description": "Restore",
+                "en": "Restore",
+                "de": "Wiederherstellen",
+                "at": "Wiederherstellen",
+                "fr": "Restaurer",
+                "es": "Restaurar",
+                "ru": "Восстановить",
+                "it": "Ripristina"
+            },
+            "markedtodelete": {
+                "description": "Marked to delete",
+                "en": "This case has been marked to be deleted at {time}",
+                "de": "Dieser Fall wurde zum Löschen markiert am {time}",
+                "at": "Dieser Fall wurde zum Löschen markiert am {time}",
+                "fr": "Ce cas a été marqué pour être supprimé à {time}",
+                "es": "Este caso ha sido marcado para ser eliminado a las {time}",
+                "ru": "Это дело было помечено на удаление в {time}",
+                "it": "Questo caso è stato contrassegnato per essere eliminato a {time}"
+            },
+            "markedtodeletesubtitle": {
+                "description": "Marked to delete subtitle",
+                "en": "Deleted by {user}",
+                "de": "Gelöscht von {user}",
+                "at": "Gelöscht von {user}",
+                "fr": "Supprimé par {user}",
+                "es": "Eliminado por {user}",
+                "ru": "Удалено пользователем {user}",
+                "it": "Eliminato da {user}"
+            },
+            "attachments": {
+                "description": "Attachments",
+                "en": "Attachments",
+                "de": "Anhänge",
+                "at": "Anhänge",
+                "fr": "Pièces jointes",
+                "es": "Adjuntos",
+                "ru": "Вложения",
+                "it": "Allegati"
+            },
+            "comments": {
+                "description": "Comments",
+                "en": "Comments",
+                "de": "Kommentare",
+                "at": "Kommentare",
+                "fr": "Commentaires",
+                "es": "Comentarios",
+                "ru": "Комментарии",
+                "it": "Commenti"
+            },
+            "addacomment": {
+                "description": "Add a comment",
+                "en": "Add a comment... (max 300 characters)",
+                "de": "Kommentar hinzufügen... (max. 300 Zeichen)",
+                "at": "Kommentar hinzufügen... (max. 300 Zeichen)",
+                "fr": "Ajouter un commentaire... (max. 300 caractères)",
+                "es": "Añadir un comentario... (max. 300 caracteres)",
+                "ru": "Добавить комментарий... (макс. 300 символов)",
+                "it": "Aggiungi un commento... (max. 300 caratteri)"
+            },
+            "addacommenterror": {
+                "description": "Add a comment error",
+                "en": "Comment must be less than 300 characters",
+                "de": "Kommentar muss weniger als 300 Zeichen lang sein",
+                "at": "Kommentar muss weniger als 300 Zeichen lang sein",
+                "fr": "Commentaire doit être moins de 300 caractères",
+                "es": "Comentario debe ser menos de 300 caracteres",
+                "ru": "Комментарий должен быть меньше 300 символов",
+                "it": "Il commento deve essere più corto di 300 caratteri"
+            },
+            "caseislocked": {
+                "description": "Case is locked",
+                "en": "You cannot comment since this case is locked.",
+                "de": "Sie können keine Kommentare hinzufügen, da dieser Fall gesperrt ist.",
+                "at": "Sie können keine Kommentare hinzufügen, da dieser Fall gesperrt ist.",
+                "fr": "Vous ne pouvez pas commenter car ce cas est verrouillé.",
+                "es": "No puede comentar porque este caso está bloqueado.",
+                "ru": "Вы не можете добавлять комментарии, потому что это дело заблокировано.",
+                "it": "Non puoi commentare perché questo caso è bloccato."
+            },
+            "violator": {
+                "description": "Violator",
+                "en": "Violator",
+                "de": "Beschuldigter",
+                "at": "Beschuldigter",
+                "fr": "Violateur",
+                "es": "Violador",
+                "ru": "Преступник",
+                "it": "Violatore"
+            },
+            "punishment": {
+                "description": "Punishment",
+                "en": "Punishment",
+                "de": "Bestrafung",
+                "at": "Bestrafung",
+                "fr": "Punition",
+                "es": "Castigo",
+                "ru": "Наказание",
+                "it": "Punizione"
+            },
+            "punishmentinactive": {
+                "description": "Punishment inactive",
+                "en": "inactive",
+                "de": "inaktiv",
+                "at": "inaktiv",
+                "fr": "inactif",
+                "es": "inactivo",
+                "ru": "неактивный",
+                "it": "inattivo"
+            },
+            "labels": {
+                "description": "Labels",
+                "en": "Labels",
+                "de": "Labels",
+                "at": "Labels",
+                "fr": "Étiquettes",
+                "es": "Etiquetas",
+                "ru": "Метки",
+                "it": "Etichette"
+            },
+            "punisheduntil": {
+                "description": "Punished until",
+                "en": "Punished until",
+                "de": "Bestraft bis",
+                "at": "Bestraft bis",
+                "fr": "Punition jusqu'à",
+                "es": "Castigado hasta",
+                "ru": "Наказан до",
+                "it": "Punito fino a"
+            },
+            "punisheduntilpermanent": {
+                "description": "Punished until permanent",
+                "en": "Punished until permanent",
+                "de": "Bestraft bis permanent",
+                "at": "Bestraft bis permanent",
+                "fr": "Punition jusqu'à la durée indéterminée",
+                "es": "Castigado hasta permanente",
+                "ru": "Наказан до постоянного",
+                "it": "Punito fino a permanente"
+            },
+            "usernote": {
+                "description": "User note",
+                "en": "Usernote",
+                "de": "Benutzernotiz",
+                "at": "Benutzernotiz",
+                "fr": "Note utilisateur",
+                "es": "Nota de usuario",
+                "ru": "Пользовательская заметка",
+                "it": "Nota utente"
+            },
+            "moderator": {
+                "description": "Moderator",
+                "en": "Moderator",
+                "de": "Moderator",
+                "at": "Moderator",
+                "fr": "Modérateur",
+                "es": "Moderador",
+                "ru": "Модератор",
+                "it": "Moderatore"
+            },
+            "lasteditmoderator": {
+                "description": "Last edit moderator",
+                "en": "Last edit moderator",
+                "de": "Letzter Bearbeiter",
+                "at": "Letzter Bearbeiter",
+                "fr": "Dernier modérateur",
+                "es": "Último moderador",
+                "ru": "Последний модератор",
+                "it": "Ultimo moderatore"
+            },
+            "moderatorunknown": {
+                "description": "Moderator unknown",
+                "en": "Unknown or hidden",
+                "de": "Unbekannt oder versteckt",
+                "at": "Unbekannt oder versteckt",
+                "fr": "Inconnu ou caché",
+                "es": "Desconocido o oculto",
+                "ru": "Неизвестный или скрытый",
+                "it": "Sconosciuto o nascosto"
+            },
+            "created": {
+                "description": "Created",
+                "en": "Created",
+                "de": "Erstellt",
+                "at": "Erstellt",
+                "fr": "Créé",
+                "es": "Creado",
+                "ru": "Создан",
+                "it": "Creato"
+            },
+            "updated": {
+                "description": "Updated",
+                "en": "Updated",
+                "de": "Aktualisiert",
+                "at": "Aktualisiert",
+                "fr": "Mis à jour",
+                "es": "Actualizado",
+                "ru": "Обновлен",
+                "it": "Aggiornato"
+            },
+            "unknown": {
+                "description": "Unknown",
+                "en": "Unknown",
+                "de": "Unbekannt",
+                "at": "Unbekannt",
+                "fr": "Inconnu",
+                "es": "Desconocido",
+                "ru": "Неизвестный",
+                "it": "Sconosciuto"
             }
         },
         "casedialog": {
@@ -1570,6 +2170,16 @@
         "it": "Ban"
     },
     "core": {
+        "copiedtoclipboard": {
+            "description": "Copied to clipboard",
+            "en": "Copied to clipboard",
+            "de": "In die Zwischenablage kopiert",
+            "at": "In die Zwischenablage kopiert",
+            "fr": "Copié dans le presse-papier",
+            "es": "Copiado al portapapeles",
+            "ru": "Скопировано в буфер обмена",
+            "it": "Copiato negli appunti"
+        },
         "pagination": {
             "forwardtext": {
                 "description": "Forward text",
