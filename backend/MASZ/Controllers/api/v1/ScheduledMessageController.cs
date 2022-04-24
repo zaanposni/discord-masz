@@ -25,10 +25,11 @@ namespace MASZ.Controllers
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            List<ScheduledMessage> messages = await ScheduledMessageRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetAllMessages(guildId, page);
+            ScheduledMessageRepository repo = ScheduledMessageRepository.CreateDefault(_serviceProvider, await GetIdentity());
+            List<ScheduledMessage> messages = await repo.GetAllMessages(guildId, page);
+            int fullSize = await repo.CountMessages(guildId);
 
             List<ScheduledMessageView> results = new();
-
             foreach (ScheduledMessage message in messages)
             {
                 results.Add(new ScheduledMessageView(message,
@@ -37,7 +38,10 @@ namespace MASZ.Controllers
                                                      _discordAPI.FetchGuildChannels(guildId, CacheBehavior.OnlyCache).FirstOrDefault(x => x.Id == message.ChannelId)));
             }
 
-            return Ok(results);
+            return Ok(new {
+                items = results,
+                fullSize
+            });
         }
 
         [HttpGet("pending")]

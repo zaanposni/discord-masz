@@ -757,6 +757,11 @@ namespace MASZ.Data
             return await context.ScheduledMessages.AsQueryable().CountAsync();
         }
 
+        public async Task<int> CountMessages(ulong guildId)
+        {
+            return await context.ScheduledMessages.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
+        }
+
         public void DeleteMessage(ScheduledMessage message)
         {
             context.ScheduledMessages.Remove(message);

@@ -74,6 +74,11 @@ namespace MASZ.Repositories
             return await Database.CountMessages();
         }
 
+        public async Task<int> CountMessages(ulong guildId)
+        {
+            return await Database.CountMessages(guildId);
+        }
+
         public async Task<ScheduledMessage> SetMessageAsSent(int id)
         {
             ScheduledMessage message = await GetMessage(id);
