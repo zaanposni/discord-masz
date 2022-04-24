@@ -594,7 +594,7 @@
                 "it": "Inviti"
             },
             "usernotes": {
-                "description": "User Notes",
+                "description": "Usernotes",
                 "en": "Usernotes",
                 "de": "Benutzernotizen",
                 "at": "Benutzernotizen",
@@ -1494,7 +1494,7 @@
                 "it": "Punito fino a permanente"
             },
             "usernote": {
-                "description": "User note",
+                "description": "Usernote",
                 "en": "Usernote",
                 "de": "Benutzernotiz",
                 "at": "Benutzernotiz",
@@ -2239,6 +2239,118 @@
                 "ru": "Возможно, в этом сервере еще нет кейсов. Однако, вы можете попробовать изменить фильтры выше, чтобы найти кейсы.",
                 "it": "Potrebbe non essere ancora nessun caso in questo server. Tuttavia, è possibile provare a regolare i filtri in alto per trovare alcuni casi."
             }
+        },
+        "usernote": {
+            "createusernote": {
+                "description": "Create usernote",
+                "en": "Create usernote",
+                "de": "Benutzernotiz erstellen",
+                "at": "Benutzernotiz erstellen",
+                "fr": "Créer une note utilisateur",
+                "es": "Crear nota de usuario",
+                "ru": "Создать пользовательскую заметку",
+                "it": "Crea nota utente"
+            },
+            "createusernotedescription": {
+                "description": "Create usernote",
+                "en": "Description",
+                "de": "Beschreibung",
+                "at": "Beschreibung",
+                "fr": "Description",
+                "es": "Descripción",
+                "ru": "Описание",
+                "it": "Descrizione"
+            },
+            "member": {
+                "description": "Member",
+                "en": "Member",
+                "de": "Mitglied",
+                "at": "Mitglied",
+                "fr": "Membre",
+                "es": "Miembro",
+                "ru": "Участник",
+                "it": "Membro"
+            },
+            "nomembersfound": {
+                "description": "No members found",
+                "en": "No members found",
+                "de": "Keine Mitglieder gefunden",
+                "at": "Keine Mitglieder gefunden",
+                "fr": "Aucun membre trouvé",
+                "es": "No se encontraron miembros",
+                "ru": "Участников не найдено",
+                "it": "Nessun membro trovato"
+            },
+            "usernotecreated": {
+                "description": "Usernote created",
+                "en": "Usernote created",
+                "de": "Benutzernotiz erstellt",
+                "at": "Benutzernotiz erstellt",
+                "fr": "Note utilisateur créée",
+                "es": "Nota de usuario creada",
+                "ru": "Пользовательская заметка создана",
+                "it": "Nota utente creata"
+            },
+            "usernotecreatefailed": {
+                "description": "Failed to create usernote",
+                "en": "Failed to create usernote",
+                "de": "Benutzernotiz konnte nicht erstellt werden",
+                "at": "Benutzernotiz konnte nicht erstellt werden",
+                "fr": "Échec de la création de la note utilisateur",
+                "es": "No se pudo crear la nota de usuario",
+                "ru": "Не удалось создать пользовательскую заметку",
+                "it": "Impossibile creare nota utente"
+            },
+            "usernoteupdated": {
+                "description": "Usernote updated",
+                "en": "Usernote updated",
+                "de": "Benutzernotiz aktualisiert",
+                "at": "Benutzernotiz aktualisiert",
+                "fr": "Note utilisateur mise à jour",
+                "es": "Nota de usuario actualizada",
+                "ru": "Пользовательская заметка обновлена",
+                "it": "Nota utente aggiornata"
+            },
+            "usernotedeleted": {
+                "description": "Usernote deleted",
+                "en": "Usernote deleted",
+                "de": "Benutzernotiz gelöscht",
+                "at": "Benutzernotiz gelöscht",
+                "fr": "Note utilisateur supprimée",
+                "es": "Nota de usuario eliminada",
+                "ru": "Пользовательская заметка удалена",
+                "it": "Nota utente eliminata"
+            },
+            "usernotedeletefailed": {
+                "description": "Failed to delete usernote",
+                "en": "Failed to delete usernote",
+                "de": "Benutzernotiz konnte nicht gelöscht werden",
+                "at": "Benutzernotiz konnte nicht gelöscht werden",
+                "fr": "Échec de la suppression de la note utilisateur",
+                "es": "No se pudo eliminar la nota de usuario",
+                "ru": "Не удалось удалить пользовательскую заметку",
+                "it": "Impossibile eliminare nota utente"
+            },
+            "nomatches": {
+                "description": "No matches for search string found.",
+                "en": "No usernote matches your search.",
+                "de": "Keine Benutzernotizen passen zu Ihrer Suche.",
+                "at": "Keine Benutzernotizen passen zu Ihrer Suche.",
+                "fr": "Aucune note utilisateur ne correspond à votre recherche.",
+                "es": "No se encontraron notas de usuario que coincidan con su búsqueda.",
+                "ru": "Нет пользовательских заметок, соответствующих вашему поиску.",
+                "it": "Nessuna nota utente corrisponde alla tua ricerca."
+            },
+            "nomatchesdescription": {
+                "description": "No matches for search string found.",
+                "en": "There may be no usernotes yet in this guild. You can create one by using the button above.",
+                "de": "Es könnten noch keine Benutzernotizen in dieser Gilde geben. Sie können eine Benutzernotiz erstellen, indem Sie oben auf den Button klicken.",
+                "at": "Es könnten noch keine Benutzernotizen in dieser Gilde geben. Sie können eine Benutzernotiz erstellen, indem Sie oben auf den Button klicken.",
+                "fr": "Il n'y a peut-être pas encore de notes utilisateur dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus.",
+                "es": "Puede que no haya notas de usuario todavía en este servidor. Puede crear una nota de usuario usando el botón de arriba.",
+                "ru": "Возможно, в этом сервере еще нет пользовательских заметок. Вы можете создать пользовательскую заметку, используя кнопку выше.",
+                "it": "Potrebbe non essere ancora presente nessuna nota utente in questo server. Puoi crearne una usando il pulsante in alto."
+            }
         }
     },
     "error": {
@@ -2301,6 +2413,26 @@
             "es": "Copiado al portapapeles",
             "ru": "Скопировано в буфер обмена",
             "it": "Copiato negli appunti"
+        },
+        "edit": {
+            "description": "Edit",
+            "en": "Edit",
+            "de": "Bearbeiten",
+            "at": "Bearbeiten",
+            "fr": "Modifier",
+            "es": "Editar",
+            "ru": "Редактировать",
+            "it": "Modifica"
+        },
+        "delete": {
+            "description": "Delete",
+            "en": "Delete",
+            "de": "Löschen",
+            "at": "Löschen",
+            "fr": "Supprimer",
+            "es": "Eliminar",
+            "ru": "Удалить",
+            "it": "Elimina"
         },
         "pagination": {
             "forwardtext": {

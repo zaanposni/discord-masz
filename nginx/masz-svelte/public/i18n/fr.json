@@ -268,6 +268,19 @@
             "failedtoload": "Échec du chargement des automod.",
             "nomatches": "Aucun automod ne correspond à votre recherche.",
             "nomatchesdescription": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas."
+        },
+        "usernote": {
+            "createusernote": "Créer une note utilisateur",
+            "createusernotedescription": "Description",
+            "member": "Membre",
+            "nomembersfound": "Aucun membre trouvé",
+            "usernotecreated": "Note utilisateur créée",
+            "usernotecreatefailed": "Échec de la création de la note utilisateur",
+            "usernoteupdated": "Note utilisateur mise à jour",
+            "usernotedeleted": "Note utilisateur supprimée",
+            "usernotedeletefailed": "Échec de la suppression de la note utilisateur",
+            "nomatches": "Aucune note utilisateur ne correspond à votre recherche.",
+            "nomatchesdescription": "Il n'y a peut-être pas encore de notes utilisateur dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus."
         }
     },
     "error": "Erreur",
@@ -277,6 +290,8 @@
     "bans": "Bannissements",
     "core": {
         "copiedtoclipboard": "Copié dans le presse-papier",
+        "edit": "Modifier",
+        "delete": "Supprimer",
         "pagination": {
             "forwardtext": "Page suivante",
             "backwardtext": "Page précédente",

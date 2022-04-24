@@ -268,6 +268,19 @@
             "failedtoload": "Automoderationen konntn ned glodn wean.",
             "nomatches": "Kane Automoderationen passn zu deina Suach.",
             "nomatchesdescription": "Kannn Automoderationen in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Automoderationen zu findn."
+        },
+        "usernote": {
+            "createusernote": "Benutzernotiz erstellen",
+            "createusernotedescription": "Beschreibung",
+            "member": "Mitglied",
+            "nomembersfound": "Keine Mitglieder gefunden",
+            "usernotecreated": "Benutzernotiz erstellt",
+            "usernotecreatefailed": "Benutzernotiz konnte nicht erstellt werden",
+            "usernoteupdated": "Benutzernotiz aktualisiert",
+            "usernotedeleted": "Benutzernotiz gelöscht",
+            "usernotedeletefailed": "Benutzernotiz konnte nicht gelöscht werden",
+            "nomatches": "Keine Benutzernotizen passen zu Ihrer Suche.",
+            "nomatchesdescription": "Es könnten noch keine Benutzernotizen in dieser Gilde geben. Sie können eine Benutzernotiz erstellen, indem Sie oben auf den Button klicken."
         }
     },
     "error": "Fehler",
@@ -277,6 +290,8 @@
     "bans": "Banns",
     "core": {
         "copiedtoclipboard": "In die Zwischenablage kopiert",
+        "edit": "Bearbeiten",
+        "delete": "Löschen",
         "pagination": {
             "forwardtext": "Nächste Seite",
             "backwardtext": "Vorherige Seite",

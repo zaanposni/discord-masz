@@ -268,6 +268,19 @@
             "failedtoload": "No se pudieron cargar las automod.",
             "nomatches": "Ningún automod coincide con su búsqueda.",
             "nomatchesdescription": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos."
+        },
+        "usernote": {
+            "createusernote": "Crear nota de usuario",
+            "createusernotedescription": "Descripción",
+            "member": "Miembro",
+            "nomembersfound": "No se encontraron miembros",
+            "usernotecreated": "Nota de usuario creada",
+            "usernotecreatefailed": "No se pudo crear la nota de usuario",
+            "usernoteupdated": "Nota de usuario actualizada",
+            "usernotedeleted": "Nota de usuario eliminada",
+            "usernotedeletefailed": "No se pudo eliminar la nota de usuario",
+            "nomatches": "No se encontraron notas de usuario que coincidan con su búsqueda.",
+            "nomatchesdescription": "Puede que no haya notas de usuario todavía en este servidor. Puede crear una nota de usuario usando el botón de arriba."
         }
     },
     "error": "Error",
@@ -277,6 +290,8 @@
     "bans": "Bans",
     "core": {
         "copiedtoclipboard": "Copiado al portapapeles",
+        "edit": "Editar",
+        "delete": "Eliminar",
         "pagination": {
             "forwardtext": "Página siguiente",
             "backwardtext": "Página anterior",

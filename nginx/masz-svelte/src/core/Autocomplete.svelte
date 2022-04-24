@@ -1,6 +1,7 @@
 <script lang="ts">
     import { ComboBox } from "carbon-components-svelte";
 
+    export let id = "";
     export let autoSelect: boolean = true;
     export let warnText = "";
     export let invalidText = "";
@@ -53,6 +54,7 @@
 </script>
 
 <ComboBox
+    {id}
 	bind:this={ref}
     {titleText}
     {placeholder}

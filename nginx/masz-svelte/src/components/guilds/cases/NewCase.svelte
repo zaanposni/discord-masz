@@ -341,7 +341,7 @@
                     valueMatchCustomValue={(value) => {
                         return !isNaN(parseFloat(value)) && !isNaN(value - 0);
                     }}
-                    warnText={members.length === 0 ? $_("guilds.casedialog.noemembersfound") : ""} />
+                    warnText={members.length === 0 ? $_("guilds.casedialog.nomembersfound") : ""} />
             {/if}
         </div>
 

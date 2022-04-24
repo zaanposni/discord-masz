@@ -268,6 +268,19 @@
             "failedtoload": "Failed to load automods.",
             "nomatches": "No automod matches your search.",
             "nomatchesdescription": "There may be no automods yet in this guild. However, you can try to adjust your filters above to find some automods."
+        },
+        "usernote": {
+            "createusernote": "Create usernote",
+            "createusernotedescription": "Description",
+            "member": "Member",
+            "nomembersfound": "No members found",
+            "usernotecreated": "Usernote created",
+            "usernotecreatefailed": "Failed to create usernote",
+            "usernoteupdated": "Usernote updated",
+            "usernotedeleted": "Usernote deleted",
+            "usernotedeletefailed": "Failed to delete usernote",
+            "nomatches": "No usernote matches your search.",
+            "nomatchesdescription": "There may be no usernotes yet in this guild. You can create one by using the button above."
         }
     },
     "error": "Error",
@@ -277,6 +290,8 @@
     "bans": "Bans",
     "core": {
         "copiedtoclipboard": "Copied to clipboard",
+        "edit": "Edit",
+        "delete": "Delete",
         "pagination": {
             "forwardtext": "Next page",
             "backwardtext": "Previous page",
