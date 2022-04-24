@@ -258,6 +258,16 @@
             "failedtoload": "Failed to load cases.",
             "nomatches": "No case matches your search.",
             "nomatchesdescription": "There may be no cases yet in this guild. However, you can try to adjust your filters above to find some cases."
+        },
+        "automodtable": {
+            "selectmembers": "Members",
+            "selecttypes": "Moderation types",
+            "selectactions": "Actions",
+            "executesearch": "Search",
+            "useadvancedfilter": "Toggle advanced filter.",
+            "failedtoload": "Failed to load automods.",
+            "nomatches": "No automod matches your search.",
+            "nomatchesdescription": "There may be no automods yet in this guild. However, you can try to adjust your filters above to find some automods."
         }
     },
     "error": "Error",

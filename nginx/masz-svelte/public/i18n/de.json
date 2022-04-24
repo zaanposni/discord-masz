@@ -258,6 +258,16 @@
             "failedtoload": "Vorfälle konnten nicht geladen werden.",
             "nomatches": "Keine Vorfälle passen zu deiner Suche.",
             "nomatchesdescription": "Es könnte noch keine Vorfälle in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Vorfälle zu finden."
+        },
+        "automodtable": {
+            "selectmembers": "Mitglieder",
+            "selecttypes": "Moderationsarten",
+            "selectactions": "Aktionen",
+            "executesearch": "Suche ausführen",
+            "useadvancedfilter": "Erweiterte Filter ein-/ausblenden.",
+            "failedtoload": "Automoderationen konnten nicht geladen werden.",
+            "nomatches": "Keine Automoderationen passen zu deiner Suche.",
+            "nomatchesdescription": "Es könnten noch keine Automoderationen in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Automoderationen zu finden."
         }
     },
     "error": "Fehler",

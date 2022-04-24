@@ -2157,6 +2157,88 @@
                 "ru": "Возможно, в этом сервере еще нет кейсов. Однако, вы можете попробовать изменить фильтры выше, чтобы найти кейсы.",
                 "it": "Potrebbe non essere ancora nessun caso in questo server. Tuttavia, è possibile provare a regolare i filtri in alto per trovare alcuni casi."
             }
+        },
+        "automodtable": {
+            "selectmembers": {
+                "description": "Select members",
+                "en": "Members",
+                "de": "Mitglieder",
+                "at": "Mitglieda",
+                "fr": "Membres",
+                "es": "Miembros",
+                "ru": "Члены",
+                "it": "Membri"
+            },
+            "selecttypes": {
+                "description": "Select types",
+                "en": "Moderation types",
+                "de": "Moderationsarten",
+                "at": "Moderationsarten",
+                "fr": "Types de modération",
+                "es": "Tipos de moderación",
+                "ru": "Типы модерации",
+                "it": "Tipi di moderazione"
+            },
+            "selectactions": {
+                "description": "Select actions",
+                "en": "Actions",
+                "de": "Aktionen",
+                "at": "Aktiona",
+                "fr": "Actions",
+                "es": "Acciones",
+                "ru": "Действия",
+                "it": "Azioni"
+            },
+            "executesearch": {
+                "description": "execute search button to use advanced filters",
+                "en": "Search",
+                "de": "Suche ausführen",
+                "at": "Suche startn",
+                "fr": "Chercher",
+                "es": "Búsqueda",
+                "ru": "Поиск",
+                "it": "Ricerca"
+            },
+            "useadvancedfilter": {
+                "description": "use advanced filter on current table",
+                "en": "Toggle advanced filter.",
+                "de": "Erweiterte Filter ein-/ausblenden.",
+                "at": "Erweiterte Filter ein-/ausblenden.",
+                "fr": "Basculer le filtre avancé.",
+                "es": "Alternar filtro avanzado.",
+                "ru": "Переключить расширенный фильтр.",
+                "it": "Attiva filtro avanzato."
+            },
+            "failedtoload": {
+                "description": "Failed to load automod table",
+                "en": "Failed to load automods.",
+                "de": "Automoderationen konnten nicht geladen werden.",
+                "at": "Automoderationen konntn ned glodn wean.",
+                "fr": "Échec du chargement des automod.",
+                "es": "No se pudieron cargar las automod.",
+                "ru": "Не удалось загрузить автомодерации.",
+                "it": "Impossibile caricare le automod."
+            },
+            "nomatches": {
+                "description": "No matches for search string found.",
+                "en": "No automod matches your search.",
+                "de": "Keine Automoderationen passen zu deiner Suche.",
+                "at": "Kane Automoderationen passn zu deina Suach.",
+                "fr": "Aucun automod ne correspond à votre recherche.",
+                "es": "Ningún automod coincide con su búsqueda.",
+                "ru": "По вашему запросу не найдено ни одной автомодерации.",
+                "it": "Nessuna automod corrisponde alla tua ricerca."
+            },
+            "nomatchesdescription": {
+                "description": "No matches for search string found.",
+                "en": "There may be no automods yet in this guild. However, you can try to adjust your filters above to find some automods.",
+                "de": "Es könnten noch keine Automoderationen in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Automoderationen zu finden.",
+                "at": "Kannn Automoderationen in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Automoderationen zu findn.",
+                "fr": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas.",
+                "es": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos.",
+                "ru": "Возможно, в этом сервере еще нет кейсов. Однако, вы можете попробовать изменить фильтры выше, чтобы найти кейсы.",
+                "it": "Potrebbe non essere ancora nessun caso in questo server. Tuttavia, è possibile provare a regolare i filtri in alto per trovare alcuni casi."
+            }
         }
     },
     "error": {

@@ -258,6 +258,16 @@
             "failedtoload": "Impossibile caricare i casi.",
             "nomatches": "Nessun caso corrisponde alla tua ricerca.",
             "nomatchesdescription": "Potrebbe non essere ancora nessun caso in questo server. Tuttavia, è possibile provare a regolare i filtri in alto per trovare alcuni casi."
+        },
+        "automodtable": {
+            "selectmembers": "Membri",
+            "selecttypes": "Tipi di moderazione",
+            "selectactions": "Azioni",
+            "executesearch": "Ricerca",
+            "useadvancedfilter": "Attiva filtro avanzato.",
+            "failedtoload": "Impossibile caricare le automod.",
+            "nomatches": "Nessuna automod corrisponde alla tua ricerca.",
+            "nomatchesdescription": "Potrebbe non essere ancora nessun caso in questo server. Tuttavia, è possibile provare a regolare i filtri in alto per trovare alcuni casi."
         }
     },
     "error": "Errore",

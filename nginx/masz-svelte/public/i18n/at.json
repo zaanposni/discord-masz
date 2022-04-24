@@ -258,6 +258,16 @@
             "failedtoload": "Vorfälle konntn ned glodn wean.",
             "nomatches": "Kane Vorfälle passn zu deina Suach.",
             "nomatchesdescription": "Kannn Vorfälle in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Vorfälle zu findn."
+        },
+        "automodtable": {
+            "selectmembers": "Mitglieda",
+            "selecttypes": "Moderationsarten",
+            "selectactions": "Aktiona",
+            "executesearch": "Suche startn",
+            "useadvancedfilter": "Erweiterte Filter ein-/ausblenden.",
+            "failedtoload": "Automoderationen konntn ned glodn wean.",
+            "nomatches": "Kane Automoderationen passn zu deina Suach.",
+            "nomatchesdescription": "Kannn Automoderationen in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Automoderationen zu findn."
         }
     },
     "error": "Fehler",

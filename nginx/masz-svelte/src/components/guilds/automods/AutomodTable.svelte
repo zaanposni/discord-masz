@@ -1,4 +1,5 @@
 <script lang="ts">
+    import type { IDiscordUser } from "./../../../models/discord/IDiscordUser";
     import {
         Launch20,
         Email20,
@@ -11,8 +12,10 @@
         AnalyticsCustom20,
         TextScale20,
         Link20,
+        Search32,
+        Filter24,
     } from "carbon-icons-svelte";
-    import { Link, SkeletonPlaceholder, SkeletonText, Tag, Tile } from "carbon-components-svelte";
+    import { Button, Link, MultiSelect, SkeletonText, Tag, Tile } from "carbon-components-svelte";
     import API from "../../../services/api/api";
     import { CacheMode } from "../../../services/api/CacheMode";
     import { currentParams } from "./../../../stores/currentParams";
@@ -20,6 +23,7 @@
     import { Pagination } from "carbon-components-svelte";
     import { PaginationSkeleton } from "carbon-components-svelte";
     import { _ } from "svelte-i18n";
+    import { slide } from "svelte/transition";
     import Warning_02 from "carbon-pictograms-svelte/lib/Warning_02.svelte";
     import { toastError } from "../../../services/toast/store";
     import type { IAutomodEntry } from "../../../models/api/IAutomodEntry";
@@ -34,6 +38,22 @@
     let fullSize: number = 0;
     let currentPage: number = 1;
 
+    let members: { id: string; text: string }[] = [];
+    let filterOpened: boolean = false;
+    let filter: any = {};
+    let enums = {};
+
+    $: enums = {
+        automodType: AutomoderationTypes.getAll().map((x) => ({
+            id: x.id.toString(),
+            text: $_(x.translationKey),
+        })),
+        automodAction: AutomoderationActions.getAll().map((x) => ({
+            id: x.id.toString(),
+            text: $_(x.translationKey),
+        })),
+    };
+
     $: forwardText = $_("core.pagination.forwardtext");
     $: backwardText = $_("core.pagination.backwardtext");
     $: itemRangeText = (min, max, total) => $_("core.pagination.itemrangetext", { values: { min, max, total } });
@@ -47,10 +67,18 @@
             // reset on guild change
             currentPage = 1;
             page = 1;
+            filterOpened = false;
+            filter = {};
             events = [];
         }
         lastUsedGuildId = $currentParams?.guildId;
-        API.get(`/guilds/${$currentParams.guildId}/automoderations?startPage=${page - 1}`, CacheMode.PREFER_CACHE, true)
+        let filterIsSet = Object.keys(filter).length > 0;
+        API.post(
+            `/guilds/${$currentParams.guildId}/automoderations?startPage=${page - 1}`,
+            filter,
+            filterIsSet ? CacheMode.API_ONLY : CacheMode.PREFER_CACHE,
+            !filterIsSet
+        )
             .then((response: { events: IAutomodEntry[]; count: number }) => {
                 events = response.events;
                 fullSize = response.count;
@@ -60,8 +88,34 @@
             .catch(() => {
                 loading = false;
                 initialLoading = false;
-                toastError($_("guilds.modcasetable.failedtoload"));
+                toastError($_("guilds.automodtable.failedtoload"));
             });
+    }
+
+    $: $currentParams?.guildId ? loadGuildData() : null;
+    function loadGuildData() {
+        API.get(`/discord/guilds/${$currentParams.guildId}/members`, CacheMode.PREFER_CACHE, true).then((response: IDiscordUser[]) => {
+            members = response.map((x) => ({
+                id: x.id,
+                text: `${x.username}#${x.discriminator}`,
+            }));
+        });
+    }
+
+    function onSelect(prop: string, value: any) {
+        if (Array.isArray(value)) {
+            if (value.length === 0) {
+                delete filter[prop];
+            } else {
+                filter[prop] = value;
+            }
+        } else {
+            if (value === undefined) {
+                delete filter[prop];
+            } else {
+                filter[prop] = value;
+            }
+        }
     }
 
     function getIconByAutomodType(type: AutomodType) {
@@ -88,6 +142,19 @@
                 return Link20;
         }
     }
+
+    function executeSearch() {
+        loading = true;
+        events = [];
+        fullSize = 0;
+        currentPage = 1;
+        loadData(currentPage);
+    }
+
+    function toggleFilter() {
+        filterOpened = !filterOpened;
+        filter = {};
+    }
 </script>
 
 <style>
@@ -100,6 +167,51 @@
 </style>
 
 <MediaQuery query="(min-width: 768px)" let:matches>
+    <!-- Header -->
+    <div class="flex flex-col mb-4">
+        <h2 class="font-weight-bold mb-4">
+            {$_("nav.guild.automods")}
+        </h2>
+        <div class="flex flex-row">
+            <Button iconDescription={$_("guilds.automodtable.useadvancedfilter")} icon={Filter24} on:click={toggleFilter} />
+        </div>
+        {#if filterOpened}
+            <div
+                class="grid gap-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 3xl:grid-cols-12 mt-4"
+                id="filter-parent"
+                transition:slide|local>
+                <div>
+                    <MultiSelect
+                        spellcheck="false"
+                        filterable
+                        titleText={$_("guilds.automodtable.selectmembers")}
+                        label={$_("guilds.automodtable.selectmembers")}
+                        items={members}
+                        on:clear={() => onSelect("userIds", [])}
+                        on:select={(e) => onSelect("userIds", e.detail.selectedIds)} />
+                </div>
+                <div>
+                    <MultiSelect
+                        titleText={$_("guilds.automodtable.selecttypes")}
+                        label={$_("guilds.automodtable.selecttypes")}
+                        items={enums["automodType"]}
+                        on:clear={() => onSelect("types", [])}
+                        on:select={(e) => onSelect("types", e.detail.selectedIds)} />
+                </div>
+                <div>
+                    <MultiSelect
+                        titleText={$_("guilds.automodtable.selectactions")}
+                        label={$_("guilds.automodtable.selectactions")}
+                        items={enums["automodAction"]}
+                        on:clear={() => onSelect("actions", [])}
+                        on:select={(e) => onSelect("actions", e.detail.selectedIds)} />
+                </div>
+                <div class="self-end">
+                    <Button icon={Search32} on:click={executeSearch}>{$_("guilds.automodtable.executesearch")}</Button>
+                </div>
+            </div>
+        {/if}
+    </div>
     {#if initialLoading}
         <PaginationSkeleton class="mb-4" />
     {:else}
@@ -138,8 +250,8 @@
     {:else if fullSize === 0}
         <div class="flex flex-col ml-2" class:items-center={!matches}>
             <Warning_02 />
-            <div class="text-lg font-bold">{$_("guilds.modcasetable.nomatches")}</div>
-            <div class="text-md">{$_("guilds.modcasetable.nomatchesdescription")}</div>
+            <div class="text-lg font-bold">{$_("guilds.automodtable.nomatches")}</div>
+            <div class="text-md">{$_("guilds.automodtable.nomatchesdescription")}</div>
         </div>
     {:else}
         <div class="grid gap-1 grid-cols-1">
@@ -156,7 +268,7 @@
                                                 {event.username}#{event.discriminator}
                                             </div>
                                             <div>
-                                                {event.createdAt.format($currentLanguage.momentDateTimeFormat)}
+                                                {event.createdAt?.format($currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss")}
                                             </div>
                                         </div>
                                         <div class="flex flex-row flex-wrap items-center automodevent-tag-list mt-2">
