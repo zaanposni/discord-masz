@@ -19,24 +19,6 @@ namespace MASZ.Controllers
         {
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetUserMap([FromRoute] ulong guildId)
-        {
-            await RequirePermission(guildId, DiscordPermission.Moderator);
-
-            List<UserMapping> userMappings = await UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetUserMapsByGuild(guildId);
-            return Ok(userMappings.Select(x => new UserMappingView(x)));
-        }
-
-        [HttpGet("{userId}")]
-        public async Task<IActionResult> GetUserMaps([FromRoute] ulong guildId, [FromRoute] ulong userId)
-        {
-            await RequirePermission(guildId, DiscordPermission.Moderator);
-
-            List<UserMapping> userMappings = await UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetUserMapsByGuildAndUser(guildId, userId);
-            return Ok(userMappings.Select(x => new UserMappingView(x)));
-        }
-
         [HttpPost]
         public async Task<IActionResult> CreateUserMap([FromRoute] ulong guildId, [FromBody] UserMappingForCreateDto userMapDto)
         {
