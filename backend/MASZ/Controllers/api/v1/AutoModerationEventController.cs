@@ -1,3 +1,4 @@
+using MASZ.Dtos.AutoModerationEvent;
 using MASZ.Enums;
 using MASZ.Models;
 using MASZ.Repositories;
@@ -17,8 +18,8 @@ namespace MASZ.Controllers
         {
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllItems([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage = 0)
+        [HttpPost]
+        public async Task<IActionResult> GetAllItems([FromRoute] ulong guildId, [FromBody] AutomoderationEventFilterDto filter = null, [FromQuery][Range(0, int.MaxValue)] int startPage = 0)
         {
             Identity currentIdentity = await GetIdentity();
             await GetRegisteredGuild(guildId);
@@ -31,23 +32,34 @@ namespace MASZ.Controllers
 
             AutoModerationEventRepository repo = AutoModerationEventRepository.CreateDefault(_serviceProvider);
 
-            List<AutoModerationEvent> events = null;
-            int eventsCount = 0;
+            IEnumerable<AutoModerationEvent> events = null;
             if (userOnly == 0)
             {
-                events = await repo.GetPagination(guildId, startPage);
-                eventsCount = await repo.CountEventsByGuild(guildId);
+                events = await repo.GetAllEventsForGuild(guildId);
             }
             else
             {
-                events = await repo.GetPaginationFilteredForUser(guildId, userOnly, startPage);
-                eventsCount = await repo.CountEventsByGuildAndUser(guildId, userOnly);
+                events = await repo.GetAllEventsForUserAndGuild(guildId, userOnly);
+            }
+
+            // WHERE
+            if (filter?.UserIds != null && filter.UserIds.Count > 0)
+            {
+                events = events.Where(x => filter.UserIds.Contains(x.UserId.ToString()));
+            }
+            if (filter?.types != null && filter.types.Count > 0)
+            {
+                events = events.Where(x => filter.types.Contains(x.AutoModerationType));
+            }
+            if (filter?.actions != null && filter.actions.Count > 0)
+            {
+                events = events.Where(x => filter.actions.Contains(x.AutoModerationAction));
             }
 
             return Ok(new
             {
-                events = events.Select(x => new AutoModerationEventView(x)),
-                count = eventsCount
+                events = events.Skip(startPage*20).Take(20).Select(x => new AutoModerationEventView(x)),
+                count = events.Count()
             });
         }
     }
