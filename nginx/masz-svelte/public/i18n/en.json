@@ -198,6 +198,7 @@
         },
         "casedialog": {
             "createcase": "Create case",
+            "editcase": "Edit case",
             "caseexplain": "Use cases to log infractions and punishments in your guild.",
             "caseexplain2": "MASZ will automatically manage your punishment and notify the user and your guild if configured.",
             "importtemplate": "Import template",
@@ -230,6 +231,8 @@
             "submitting": "Submitting...",
             "casecreated": "Case #{id} created",
             "casecreatefailed": "Failed to create case",
+            "caseedited": "Case #{id} edited",
+            "caseeditfailed": "Failed to edit case",
             "templateapplied": "Template applied",
             "templatesaved": "Template saved",
             "templatesavefailed": "Failed to save template",

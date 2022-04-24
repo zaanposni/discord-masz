@@ -198,6 +198,7 @@
         },
         "casedialog": {
             "createcase": "Crea caso",
+            "editcase": "Modifica caso",
             "caseexplain": "Utilizza un caso per registrare infrazioni e punizioni nella tua gilda.",
             "caseexplain2": "MASZ gestisce automaticamente la tua punizione e notifica l'utente e la tua gilda se configurato.",
             "importtemplate": "Importa modello",
@@ -230,6 +231,8 @@
             "submitting": "Invio...",
             "casecreated": "Caso #{id} creato",
             "casecreatefailed": "Fallito creare caso",
+            "caseedited": "Caso #{id} modificato",
+            "caseeditfailed": "Fallito modificare caso",
             "templateapplied": "Modello applicato",
             "templatesaved": "Modello salvato",
             "templatesavefailed": "Errore durante il salvataggio del modello",

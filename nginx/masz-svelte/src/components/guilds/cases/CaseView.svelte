@@ -109,7 +109,7 @@
     }
 
     function clearCaseCache() {
-        API.clearCacheEntry("get", `/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/view`);
+        API.clearCacheEntryLike("get", `/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}`);
         API.clearCacheEntryLike("post", `/guilds/${$currentParams.guildId}/modcasetable`);
     }
 

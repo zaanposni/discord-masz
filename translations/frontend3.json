@@ -1366,8 +1366,8 @@
             "markedtodelete": {
                 "description": "Marked to delete",
                 "en": "This case has been marked to be deleted at {time}",
-                "de": "Dieser Fall wurde zum Löschen markiert am {time}",
-                "at": "Dieser Fall wurde zum Löschen markiert am {time}",
+                "de": "Dieser Vorfall wurde zum Löschen markiert am {time}",
+                "at": "Dieser Vorfall wurde zum Löschen markiert am {time}",
                 "fr": "Ce cas a été marqué pour être supprimé à {time}",
                 "es": "Este caso ha sido marcado para ser eliminado a las {time}",
                 "ru": "Это дело было помечено на удаление в {time}",
@@ -1426,8 +1426,8 @@
             "caseislocked": {
                 "description": "Case is locked",
                 "en": "You cannot comment since this case is locked.",
-                "de": "Sie können keine Kommentare hinzufügen, da dieser Fall gesperrt ist.",
-                "at": "Sie können keine Kommentare hinzufügen, da dieser Fall gesperrt ist.",
+                "de": "Sie können keine Kommentare hinzufügen, da dieser Vorfall gesperrt ist.",
+                "at": "Sie können keine Kommentare hinzufügen, da dieser Vorfall gesperrt ist.",
                 "fr": "Vous ne pouvez pas commenter car ce cas est verrouillé.",
                 "es": "No puede comentar porque este caso está bloqueado.",
                 "ru": "Вы не можете добавлять комментарии, потому что это дело заблокировано.",
@@ -1574,6 +1574,16 @@
                 "es": "Crear caso",
                 "ru": "Создать случай",
                 "it": "Crea caso"
+            },
+            "editcase": {
+                "description": "Edit case",
+                "en": "Edit case",
+                "de": "Vorfall bearbeiten",
+                "at": "Vorfall bearbeiten",
+                "fr": "Modifier le cas",
+                "es": "Editar caso",
+                "ru": "Редактировать случай",
+                "it": "Modifica caso"
             },
             "caseexplain": {
                 "description": "Case explanation",
@@ -1878,8 +1888,8 @@
             "casecreated": {
                 "description": "Case created",
                 "en": "Case #{id} created",
-                "de": "Fall #{id} erstellt",
-                "at": "Fall #{id} erstellt",
+                "de": "Vorfall #{id} erstellt",
+                "at": "Vorfall #{id} erstellt",
                 "fr": "Cas #{id} créé",
                 "es": "Caso #{id} creado",
                 "ru": "Случай #{id} создан",
@@ -1888,12 +1898,32 @@
             "casecreatefailed": {
                 "description": "Case creation failed",
                 "en": "Failed to create case",
-                "de": "Fall konnte nicht erstellt werden",
-                "at": "Fall konnte nicht erstellt werden",
+                "de": "Vorfall konnte nicht erstellt werden",
+                "at": "Vorfall konnte nicht erstellt werden",
                 "fr": "Échec de la création du cas",
                 "es": "Falla al crear caso",
                 "ru": "Не удалось создать случай",
                 "it": "Fallito creare caso"
+            },
+            "caseedited": {
+                "description": "Case created",
+                "en": "Case #{id} edited",
+                "de": "Vorfall #{id} aktualisiert",
+                "at": "Vorfall #{id} aktualisiert",
+                "fr": "Cas #{id} édité",
+                "es": "Caso #{id} editado",
+                "ru": "Случай #{id} отредактирован",
+                "it": "Caso #{id} modificato"
+            },
+            "caseeditfailed": {
+                "description": "Case creation failed",
+                "en": "Failed to edit case",
+                "de": "Vorfall konnte nicht aktualisiert werden",
+                "at": "Vorfall konnte nicht aktualisiert werden",
+                "fr": "Échec de la modification du cas",
+                "es": "Falla al editar caso",
+                "ru": "Не удалось отредактировать случай",
+                "it": "Fallito modificare caso"
             },
             "templateapplied": {
                 "description": "Template applied",

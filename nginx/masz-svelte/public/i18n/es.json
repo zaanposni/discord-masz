@@ -198,6 +198,7 @@
         },
         "casedialog": {
             "createcase": "Crear caso",
+            "editcase": "Editar caso",
             "caseexplain": "Utiliza un caso para registrar infracciones y sanciones en tu hermandad.",
             "caseexplain2": "MASZ gestionará automáticamente tu sanción y notificará al usuario y tu hermandad si está configurado.",
             "importtemplate": "Importar plantilla",
@@ -230,6 +231,8 @@
             "submitting": "Enviando...",
             "casecreated": "Caso #{id} creado",
             "casecreatefailed": "Falla al crear caso",
+            "caseedited": "Caso #{id} editado",
+            "caseeditfailed": "Falla al editar caso",
             "templateapplied": "Plantilla aplicada",
             "templatesaved": "Plantilla guardada",
             "templatesavefailed": "Error al guardar plantilla",

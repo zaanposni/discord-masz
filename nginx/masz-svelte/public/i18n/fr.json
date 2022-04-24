@@ -198,6 +198,7 @@
         },
         "casedialog": {
             "createcase": "Créer un cas",
+            "editcase": "Modifier le cas",
             "caseexplain": "Utilisez un cas pour journaliser des infractions et des punitions dans votre guilde.",
             "caseexplain2": "MASZ va automatiquement gérer votre punition et notifier l'utilisateur et votre guilde si configuré.",
             "importtemplate": "Importer un modèle",
@@ -230,6 +231,8 @@
             "submitting": "Soumission...",
             "casecreated": "Cas #{id} créé",
             "casecreatefailed": "Échec de la création du cas",
+            "caseedited": "Cas #{id} édité",
+            "caseeditfailed": "Échec de la modification du cas",
             "templateapplied": "Modèle appliqué",
             "templatesaved": "Modèle enregistré",
             "templatesavefailed": "Échec de l'enregistrement du modèle",
