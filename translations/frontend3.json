@@ -2351,6 +2351,118 @@
                 "ru": "Возможно, в этом сервере еще нет пользовательских заметок. Вы можете создать пользовательскую заметку, используя кнопку выше.",
                 "it": "Potrebbe non essere ancora presente nessuna nota utente in questo server. Puoi crearne una usando il pulsante in alto."
             }
+        },
+        "usermap": {
+            "createusermap": {
+                "description": "Create usernote",
+                "en": "Create usermap",
+                "de": "Benutzerbeziehung erstellen",
+                "at": "Benutzerbeziehung erstellen",
+                "fr": "Créer une carte utilisateur",
+                "es": "Crear mapa de usuario",
+                "ru": "Создать пользовательскую карту",
+                "it": "Crea mappa utente"
+            },
+            "createusermapdescription": {
+                "description": "usermap description",
+                "en": "Description",
+                "de": "Beschreibung",
+                "at": "Beschreibung",
+                "fr": "Description",
+                "es": "Descripción",
+                "ru": "Описание",
+                "it": "Descrizione"
+            },
+            "member": {
+                "description": "Member",
+                "en": "Member",
+                "de": "Mitglied",
+                "at": "Mitglied",
+                "fr": "Membre",
+                "es": "Miembro",
+                "ru": "Участник",
+                "it": "Membro"
+            },
+            "nomembersfound": {
+                "description": "No members found",
+                "en": "No members found",
+                "de": "Keine Mitglieder gefunden",
+                "at": "Keine Mitglieder gefunden",
+                "fr": "Aucun membre trouvé",
+                "es": "No se encontraron miembros",
+                "ru": "Участников не найдено",
+                "it": "Nessun membro trovato"
+            },
+            "usermapcreated": {
+                "description": "Usermap created",
+                "en": "Usermap created",
+                "de": "Benutzerbeziehung erstellt",
+                "at": "Benutzerbeziehung erstellt",
+                "fr": "Carte utilisateur créée",
+                "es": "Mapa de usuario creado",
+                "ru": "Пользовательская карта создана",
+                "it": "Mappa utente creata"
+            },
+            "usermapcreatefailed": {
+                "description": "Failed to create usermap",
+                "en": "Failed to create usermap",
+                "de": "Benutzerbeziehung konnte nicht erstellt werden",
+                "at": "Benutzerbeziehung konnte nicht erstellt werden",
+                "fr": "Échec de la création de la carte utilisateur",
+                "es": "No se pudo crear el mapa de usuario",
+                "ru": "Не удалось создать пользовательскую карту",
+                "it": "Impossibile creare mappa utente"
+            },
+            "usermapupdated": {
+                "description": "usermap updated",
+                "en": "Usermap updated",
+                "de": "Benutzerbeziehung aktualisiert",
+                "at": "Benutzerbeziehung aktualisiert",
+                "fr": "Carte utilisateur mise à jour",
+                "es": "Mapa de usuario actualizado",
+                "ru": "Пользовательская карта обновлена",
+                "it": "Mappa utente aggiornata"
+            },
+            "usermapdeleted": {
+                "description": "Usermap deleted",
+                "en": "Usermap deleted",
+                "de": "Benutzerbeziehung gelöscht",
+                "at": "Benutzerbeziehung gelöscht",
+                "fr": "Carte utilisateur supprimée",
+                "es": "Mapa de usuario eliminado",
+                "ru": "Пользовательская карта удалена",
+                "it": "Mappa utente eliminata"
+            },
+            "usermapdeletefailed": {
+                "description": "Failed to delete usermap",
+                "en": "Failed to delete usermap",
+                "de": "Benutzerbeziehung konnte nicht gelöscht werden",
+                "at": "Benutzerbeziehung konnte nicht gelöscht werden",
+                "fr": "Échec de la suppression de la carte utilisateur",
+                "es": "No se pudo eliminar el mapa de usuario",
+                "ru": "Не удалось удалить пользовательскую карту",
+                "it": "Impossibile eliminare mappa utente"
+            },
+            "nomatches": {
+                "description": "No matches for search string found.",
+                "en": "No usermap matches your search.",
+                "de": "Keine Benutzerbeziehungen passen zu deinem Suchbegriff.",
+                "at": "Keine Benutzerbeziehungen passen zu deinem Suchbegriff.",
+                "fr": "Aucune carte utilisateur ne correspond à votre recherche.",
+                "es": "No se encontraron mapas de usuario que coincidan con su búsqueda.",
+                "ru": "Нет пользовательских карт, соответствующих вашему поисковому запросу.",
+                "it": "Nessuna mappa utente corrisponde alla tua ricerca."
+            },
+            "nomatchesdescription": {
+                "description": "No matches for search string found.",
+                "en": "There may be no usermaps yet in this guild. You can create one by using the button above.",
+                "de": "Es könnten noch keine Benutzerbeziehungen in dieser Gilde geben. Du kannst eine erstellen, indem du den Button oben benutzt.",
+                "at": "Es könnten noch keine Benutzerbeziehungen in dieser Gilde geben. Du kannst eine erstellen, indem du den Button oben benutzt.",
+                "fr": "Il n'y a peut-être pas encore de cartes utilisateur dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus.",
+                "es": "Puede que no haya mapas de usuario todavía en este servidor. Puede crear uno usando el botón de arriba.",
+                "ru": "Возможно, в этом сервере еще нет пользовательских карт. Вы можете создать ее, используя кнопку выше.",
+                "it": "Potrebbe non esserci ancora nessuna mappa utente in questo server. Puoi crearne uno usando il pulsante in alto."
+            }
         }
     },
     "error": {

@@ -281,6 +281,19 @@
             "usernotedeletefailed": "Failed to delete usernote",
             "nomatches": "No usernote matches your search.",
             "nomatchesdescription": "There may be no usernotes yet in this guild. You can create one by using the button above."
+        },
+        "usermap": {
+            "createusermap": "Create usermap",
+            "createusermapdescription": "Description",
+            "member": "Member",
+            "nomembersfound": "No members found",
+            "usermapcreated": "Usermap created",
+            "usermapcreatefailed": "Failed to create usermap",
+            "usermapupdated": "Usermap updated",
+            "usermapdeleted": "Usermap deleted",
+            "usermapdeletefailed": "Failed to delete usermap",
+            "nomatches": "No usermap matches your search.",
+            "nomatchesdescription": "There may be no usermaps yet in this guild. You can create one by using the button above."
         }
     },
     "error": "Error",

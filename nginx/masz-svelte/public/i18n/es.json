@@ -281,6 +281,19 @@
             "usernotedeletefailed": "No se pudo eliminar la nota de usuario",
             "nomatches": "No se encontraron notas de usuario que coincidan con su búsqueda.",
             "nomatchesdescription": "Puede que no haya notas de usuario todavía en este servidor. Puede crear una nota de usuario usando el botón de arriba."
+        },
+        "usermap": {
+            "createusermap": "Crear mapa de usuario",
+            "createusermapdescription": "Descripción",
+            "member": "Miembro",
+            "nomembersfound": "No se encontraron miembros",
+            "usermapcreated": "Mapa de usuario creado",
+            "usermapcreatefailed": "No se pudo crear el mapa de usuario",
+            "usermapupdated": "Mapa de usuario actualizado",
+            "usermapdeleted": "Mapa de usuario eliminado",
+            "usermapdeletefailed": "No se pudo eliminar el mapa de usuario",
+            "nomatches": "No se encontraron mapas de usuario que coincidan con su búsqueda.",
+            "nomatchesdescription": "Puede que no haya mapas de usuario todavía en este servidor. Puede crear uno usando el botón de arriba."
         }
     },
     "error": "Error",

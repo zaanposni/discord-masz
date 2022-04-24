@@ -281,6 +281,19 @@
             "usernotedeletefailed": "Échec de la suppression de la note utilisateur",
             "nomatches": "Aucune note utilisateur ne correspond à votre recherche.",
             "nomatchesdescription": "Il n'y a peut-être pas encore de notes utilisateur dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus."
+        },
+        "usermap": {
+            "createusermap": "Créer une carte utilisateur",
+            "createusermapdescription": "Description",
+            "member": "Membre",
+            "nomembersfound": "Aucun membre trouvé",
+            "usermapcreated": "Carte utilisateur créée",
+            "usermapcreatefailed": "Échec de la création de la carte utilisateur",
+            "usermapupdated": "Carte utilisateur mise à jour",
+            "usermapdeleted": "Carte utilisateur supprimée",
+            "usermapdeletefailed": "Échec de la suppression de la carte utilisateur",
+            "nomatches": "Aucune carte utilisateur ne correspond à votre recherche.",
+            "nomatchesdescription": "Il n'y a peut-être pas encore de cartes utilisateur dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus."
         }
     },
     "error": "Erreur",

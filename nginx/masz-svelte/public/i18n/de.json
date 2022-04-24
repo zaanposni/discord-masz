@@ -281,6 +281,19 @@
             "usernotedeletefailed": "Benutzernotiz konnte nicht gelöscht werden",
             "nomatches": "Keine Benutzernotizen passen zu Ihrer Suche.",
             "nomatchesdescription": "Es könnten noch keine Benutzernotizen in dieser Gilde geben. Sie können eine Benutzernotiz erstellen, indem Sie oben auf den Button klicken."
+        },
+        "usermap": {
+            "createusermap": "Benutzerbeziehung erstellen",
+            "createusermapdescription": "Beschreibung",
+            "member": "Mitglied",
+            "nomembersfound": "Keine Mitglieder gefunden",
+            "usermapcreated": "Benutzerbeziehung erstellt",
+            "usermapcreatefailed": "Benutzerbeziehung konnte nicht erstellt werden",
+            "usermapupdated": "Benutzerbeziehung aktualisiert",
+            "usermapdeleted": "Benutzerbeziehung gelöscht",
+            "usermapdeletefailed": "Benutzerbeziehung konnte nicht gelöscht werden",
+            "nomatches": "Keine Benutzerbeziehungen passen zu deinem Suchbegriff.",
+            "nomatchesdescription": "Es könnten noch keine Benutzerbeziehungen in dieser Gilde geben. Du kannst eine erstellen, indem du den Button oben benutzt."
         }
     },
     "error": "Fehler",
