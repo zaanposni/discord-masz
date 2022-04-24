@@ -25,7 +25,10 @@ namespace MASZ.Controllers
 
             UserNote createdUserNote = await UserNoteRepository.CreateDefault(_serviceProvider, await GetIdentity()).CreateOrUpdateUserNote(guildId, userNote.UserId, userNote.Description);
 
-            return StatusCode(201, new UserNoteView(createdUserNote));
+            return StatusCode(201, new UserNoteExpandedView(
+                createdUserNote,
+                await _discordAPI.FetchUserInfo(createdUserNote.UserId, CacheBehavior.OnlyCache),
+                await _discordAPI.FetchUserInfo(createdUserNote.CreatorId, CacheBehavior.OnlyCache)));
         }
 
         [HttpDelete("{userId}")]
