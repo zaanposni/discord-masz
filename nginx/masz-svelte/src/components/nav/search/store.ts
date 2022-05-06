@@ -31,7 +31,7 @@ const staticsearchEntriesTranslated: Readable<ISearchEntry[]> = derived(
                 };
                 newEntry.preparedText = fuzzysort.prepare(newEntry.text);
                 newEntry.preparedDescription = newEntry.description ? fuzzysort.prepare(newEntry.description) : null;
-                newEntry.preparedAdditionalSearch = newEntry.additionalSearch ? newEntry.additionalSearch.map(fuzzysort.prepare) : null;
+                newEntry.preparedAdditionalSearch = newEntry.additionalSearch ? fuzzysort.prepare(newEntry.additionalSearch) : null;
                 return newEntry;
             })
         );
@@ -61,7 +61,7 @@ export const guildStaticSearchEntriesTranslated: Readable<ISearchEntry[]> = deri
                 };
                 newEntry.preparedText = fuzzysort.prepare(newEntry.text);
                 newEntry.preparedDescription = newEntry.description ? fuzzysort.prepare(newEntry.description) : null;
-                newEntry.preparedAdditionalSearch = newEntry.additionalSearch ? newEntry.additionalSearch.map(fuzzysort.prepare) : null;
+                newEntry.preparedAdditionalSearch = newEntry.additionalSearch ? fuzzysort.prepare(newEntry.additionalSearch) : null;
                 return newEntry;
             })
         );
@@ -87,7 +87,7 @@ export const adminStaticSearchEntriesTranslated: Readable<ISearchEntry[]> = deri
                     };
                     newEntry.preparedText = fuzzysort.prepare(newEntry.text);
                     newEntry.preparedDescription = newEntry.description ? fuzzysort.prepare(newEntry.description) : null;
-                    newEntry.preparedAdditionalSearch = newEntry.additionalSearch ? newEntry.additionalSearch.map(fuzzysort.prepare) : null;
+                    newEntry.preparedAdditionalSearch = newEntry.additionalSearch ? fuzzysort.prepare(newEntry.additionalSearch) : null;
                     return newEntry;
                 })
             );
@@ -115,6 +115,8 @@ export const allStaticSearchResults: Readable<ISearchEntry[]> = derived(
             threshold: -10000,
             keys: ["preparedText", "preparedDescription", "preparedAdditionalSearch"],
         };
+
+        console.log("scanning guildentries", guildEntries);
 
         const adminResults = fuzzysort
             .go(value, adminEntries, {
@@ -265,6 +267,7 @@ guildStaticSearchEntries.set([
     },
     {
         textKey: "nav.guild.messages",
+        additionalSearchKeys: ["schedule"],
         allowedToView: (user: IAuthUser, params: IRouteParams) =>
             user &&
             params?.guildId &&
