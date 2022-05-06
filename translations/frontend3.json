@@ -2463,6 +2463,108 @@
                 "ru": "Возможно, в этом сервере еще нет пользовательских карт. Вы можете создать ее, используя кнопку выше.",
                 "it": "Potrebbe non esserci ancora nessuna mappa utente in questo server. Puoi crearne uno usando il pulsante in alto."
             }
+        },
+        "motd": {
+            "title": {
+                "description": "Title of the message of the day",
+                "en": "Message of the day",
+                "de": "Nachricht des Tages",
+                "at": "Nachricht des Tages",
+                "fr": "Message du jour",
+                "es": "Mensaje del día",
+                "ru": "Сообщение дня",
+                "it": "Messaggio del giorno"
+            },
+            "explain": {
+                "description": "Explaination of the message of the day",
+                "en": "Use a MotD to pin a message on the guilds dashboard that all your moderators will see.",
+                "de": "Benutze eine Nachricht des Tages, um eine Nachricht auf dem Dashboard der Gilden zu verankern, die alle Moderatoren sehen.",
+                "at": "Benutze eine Nachricht des Tages, um eine Nachricht auf dem Dashboard der Gilden zu verankern, die alle Moderatoren sehen.",
+                "fr": "Utilisez un message du jour pour épingler un message sur le tableau de bord des serveurs que tous les modérateurs verront.",
+                "es": "Utilice un mensaje del día para fijar un mensaje en el panel de control de los servidores que todos los moderadores verán.",
+                "ru": "Используйте сообщение дня, чтобы привязать сообщение на дашборде гильдии, которое все ваши модераторы будут видеть.",
+                "it": "Usa un MotD per fissare un messaggio sulla dashboard della gilda che tutti i moderatori vedranno."
+            },
+            "explain2": {
+                "description": "Explaination of the message of the day",
+                "en": "This might include instructions on how to format cases or upload images as proof.",
+                "de": "Dies könnte einige Anweisungen zum Formatieren von Fällen enthalten oder Bilder als Beweis hochzuladen.",
+                "at": "Dies könnte einige Anweisungen zum Formatieren von Fällen enthalten oder Bilder als Beweis hochzuladen.",
+                "fr": "Cela pourrait inclure des instructions sur la façon de formater des cas ou d'envoyer des images comme preuve.",
+                "es": "Esto puede incluir instrucciones sobre cómo formatear casos o subir imágenes como prueba.",
+                "ru": "Это может включать инструкции по форматированию дел или загрузке изображений как доказательства.",
+                "it": "Questo potrebbe includere istruzioni su come formattare casi o caricare immagini come prova."
+            },
+            "noresult": {
+                "description": "No result for search string found.",
+                "en": "Could not load motd.",
+                "de": "Konnte Nachricht des Tages nicht laden.",
+                "at": "Konnte Nachricht des Tages nicht laden.",
+                "fr": "Impossible de charger le message du jour.",
+                "es": "No se pudo cargar el mensaje del día.",
+                "ru": "Не удалось загрузить сообщение дня.",
+                "it": "Impossibile caricare il motd."
+            },
+            "enabled": {
+                "description": "Is motd enabled?",
+                "en": "Enable motd in guild dashboard",
+                "de": "Nachricht des Tages auf dem Dashboard der Gilde aktivieren",
+                "at": "Nachricht des Tages auf dem Dashboard der Gilde aktivieren",
+                "fr": "Activer le message du jour sur le tableau de bord de la guilde",
+                "es": "Habilitar mensaje del día en el panel de control de la guilda",
+                "ru": "Включить сообщение дня на дашборде гильдии",
+                "it": "Abilita motd nella dashboard della gilda"
+            },
+            "message": {
+                "description": "Message of the day",
+                "en": "Message of the day",
+                "de": "Nachricht des Tages",
+                "at": "Nachricht des Tages",
+                "fr": "Message du jour",
+                "es": "Mensaje del día",
+                "ru": "Сообщение дня",
+                "it": "Messaggio del giorno"
+            },
+            "save": {
+                "description": "Save the message of the day",
+                "en": "Save",
+                "de": "Speichern",
+                "at": "Speichern",
+                "fr": "Enregistrer",
+                "es": "Guardar",
+                "ru": "Сохранить",
+                "it": "Salva"
+            },
+            "submitting": {
+                "description": "Submitting message of the day",
+                "en": "Submitting...",
+                "de": "Sende...",
+                "at": "Sende...",
+                "fr": "Envoi...",
+                "es": "Enviando...",
+                "ru": "Отправка...",
+                "it": "Invio..."
+            },
+            "saved": {
+                "description": "Message of the day saved",
+                "en": "Message of the day saved",
+                "de": "Nachricht des Tages gespeichert",
+                "at": "Nachricht des Tages gespeichert",
+                "fr": "Message du jour enregistré",
+                "es": "Mensaje del día guardado",
+                "ru": "Сообщение дня сохранено",
+                "it": "Messaggio del giorno salvato"
+            },
+            "failedtosave": {
+                "description": "Failed to save message of the day",
+                "en": "Failed to save message of the day",
+                "de": "Konnte Nachricht des Tages nicht speichern",
+                "at": "Konnte Nachricht des Tages nicht speichern",
+                "fr": "Impossible d'enregistrer le message du jour",
+                "es": "No se pudo guardar el mensaje del día",
+                "ru": "Не удалось сохранить сообщение дня",
+                "it": "Impossibile salvare il messaggio del giorno"
+            }
         }
     },
     "error": {

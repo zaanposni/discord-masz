@@ -294,6 +294,18 @@
             "usermapdeletefailed": "Benutzerbeziehung konnte nicht gelöscht werden",
             "nomatches": "Keine Benutzerbeziehungen passen zu deinem Suchbegriff.",
             "nomatchesdescription": "Es könnten noch keine Benutzerbeziehungen in dieser Gilde geben. Du kannst eine erstellen, indem du den Button oben benutzt."
+        },
+        "motd": {
+            "title": "Nachricht des Tages",
+            "explain": "Benutze eine Nachricht des Tages, um eine Nachricht auf dem Dashboard der Gilden zu verankern, die alle Moderatoren sehen.",
+            "explain2": "Dies könnte einige Anweisungen zum Formatieren von Fällen enthalten oder Bilder als Beweis hochzuladen.",
+            "noresult": "Konnte Nachricht des Tages nicht laden.",
+            "enabled": "Nachricht des Tages auf dem Dashboard der Gilde aktivieren",
+            "message": "Nachricht des Tages",
+            "save": "Speichern",
+            "submitting": "Sende...",
+            "saved": "Nachricht des Tages gespeichert",
+            "failedtosave": "Konnte Nachricht des Tages nicht speichern"
         }
     },
     "error": "Fehler",

@@ -294,6 +294,18 @@
             "usermapdeletefailed": "No se pudo eliminar el mapa de usuario",
             "nomatches": "No se encontraron mapas de usuario que coincidan con su búsqueda.",
             "nomatchesdescription": "Puede que no haya mapas de usuario todavía en este servidor. Puede crear uno usando el botón de arriba."
+        },
+        "motd": {
+            "title": "Mensaje del día",
+            "explain": "Utilice un mensaje del día para fijar un mensaje en el panel de control de los servidores que todos los moderadores verán.",
+            "explain2": "Esto puede incluir instrucciones sobre cómo formatear casos o subir imágenes como prueba.",
+            "noresult": "No se pudo cargar el mensaje del día.",
+            "enabled": "Habilitar mensaje del día en el panel de control de la guilda",
+            "message": "Mensaje del día",
+            "save": "Guardar",
+            "submitting": "Enviando...",
+            "saved": "Mensaje del día guardado",
+            "failedtosave": "No se pudo guardar el mensaje del día"
         }
     },
     "error": "Error",

@@ -278,6 +278,7 @@ guildStaticSearchEntries.set([
     },
     {
         textKey: "nav.guild.settings.motd",
+        additionalSearchKeys: ["message of the day"],
         allowedToView: (user: IAuthUser, params: IRouteParams) =>
             user &&
             params?.guildId &&

@@ -294,6 +294,18 @@
             "usermapdeletefailed": "Failed to delete usermap",
             "nomatches": "No usermap matches your search.",
             "nomatchesdescription": "There may be no usermaps yet in this guild. You can create one by using the button above."
+        },
+        "motd": {
+            "title": "Message of the day",
+            "explain": "Use a MotD to pin a message on the guilds dashboard that all your moderators will see.",
+            "explain2": "This might include instructions on how to format cases or upload images as proof.",
+            "noresult": "Could not load motd.",
+            "enabled": "Enable motd in guild dashboard",
+            "message": "Message of the day",
+            "save": "Save",
+            "submitting": "Submitting...",
+            "saved": "Message of the day saved",
+            "failedtosave": "Failed to save message of the day"
         }
     },
     "error": "Error",

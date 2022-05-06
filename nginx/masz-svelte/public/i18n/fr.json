@@ -294,6 +294,18 @@
             "usermapdeletefailed": "Échec de la suppression de la carte utilisateur",
             "nomatches": "Aucune carte utilisateur ne correspond à votre recherche.",
             "nomatchesdescription": "Il n'y a peut-être pas encore de cartes utilisateur dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus."
+        },
+        "motd": {
+            "title": "Message du jour",
+            "explain": "Utilisez un message du jour pour épingler un message sur le tableau de bord des serveurs que tous les modérateurs verront.",
+            "explain2": "Cela pourrait inclure des instructions sur la façon de formater des cas ou d'envoyer des images comme preuve.",
+            "noresult": "Impossible de charger le message du jour.",
+            "enabled": "Activer le message du jour sur le tableau de bord de la guilde",
+            "message": "Message du jour",
+            "save": "Enregistrer",
+            "submitting": "Envoi...",
+            "saved": "Message du jour enregistré",
+            "failedtosave": "Impossible d'enregistrer le message du jour"
         }
     },
     "error": "Erreur",

@@ -294,6 +294,18 @@
             "usermapdeletefailed": "Impossibile eliminare mappa utente",
             "nomatches": "Nessuna mappa utente corrisponde alla tua ricerca.",
             "nomatchesdescription": "Potrebbe non esserci ancora nessuna mappa utente in questo server. Puoi crearne uno usando il pulsante in alto."
+        },
+        "motd": {
+            "title": "Messaggio del giorno",
+            "explain": "Usa un MotD per fissare un messaggio sulla dashboard della gilda che tutti i moderatori vedranno.",
+            "explain2": "Questo potrebbe includere istruzioni su come formattare casi o caricare immagini come prova.",
+            "noresult": "Impossibile caricare il motd.",
+            "enabled": "Abilita motd nella dashboard della gilda",
+            "message": "Messaggio del giorno",
+            "save": "Salva",
+            "submitting": "Invio...",
+            "saved": "Messaggio del giorno salvato",
+            "failedtosave": "Impossibile salvare il messaggio del giorno"
         }
     },
     "error": "Errore",
