@@ -8,7 +8,7 @@
     import type { IMotdView } from "../../../models/api/IMotdView";
     import API from "../../../services/api/api";
     import { CacheMode } from "../../../services/api/CacheMode";
-    import { toastSuccess } from "../../../services/toast/store";
+    import { toastError, toastSuccess } from "../../../services/toast/store";
     import { currentParams } from "../../../stores/currentParams";
 
     const loading: Writable<boolean> = writable(false);
@@ -53,7 +53,7 @@
                     submitting.set(false);
                 })
                 .catch(() => {
-                    toastSuccess($_("guilds.motd.failedtosave"));
+                    toastError($_("guilds.motd.failedtosave"));
                     submitting.set(false);
                 });
         }
@@ -72,7 +72,7 @@
                 submitting.set(false);
             })
             .catch(() => {
-                toastSuccess($_("guilds.motd.failedtosave"));
+                toastError($_("guilds.motd.failedtosave"));
                 submitting.set(false);
             });
     }
