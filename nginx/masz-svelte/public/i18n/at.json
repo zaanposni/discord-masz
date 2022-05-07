@@ -306,6 +306,17 @@
             "submitting": "Sende...",
             "saved": "Nachricht des Tages gespeichert",
             "failedtosave": "Konnte Nachricht des Tages nicht speichern"
+        },
+        "auditlog": {
+            "title": "AuditLog",
+            "explain": "Benutze AuditLogs um bestimmte Ereignisse in deiner Gilde zu loggen.",
+            "explain2": "Auf bestimmten Ereignissen kannst du Ereignisse basierend auf Kanälen oder Rollen filtern.",
+            "targetchannel": "Zielkanal",
+            "pingrole": "Ping-Rolle",
+            "excluderoles": "Rollen ausschließen",
+            "excludechannels": "Kanäle ausschließen",
+            "saved": "AuditLog gespeichert",
+            "failedtosave": "Konnte AuditLog nicht speichern"
         }
     },
     "error": "Fehler",

@@ -2565,6 +2565,98 @@
                 "ru": "Не удалось сохранить сообщение дня",
                 "it": "Impossibile salvare il messaggio del giorno"
             }
+        },
+        "auditlog": {
+            "title": {
+                "description": "Title of the audit log",
+                "en": "AuditLog",
+                "de": "AuditLog",
+                "at": "AuditLog",
+                "fr": "AuditLog",
+                "es": "AuditLog",
+                "ru": "AuditLog",
+                "it": "AuditLog"
+            },
+            "explain": {
+                "description": "Explaination of the audit log",
+                "en": "Use auditlogs to log certain events in your guild.",
+                "de": "Benutze AuditLogs um bestimmte Ereignisse in deiner Gilde zu loggen.",
+                "at": "Benutze AuditLogs um bestimmte Ereignisse in deiner Gilde zu loggen.",
+                "fr": "Utilisez les auditlogs pour enregistrer certains événements dans votre guilde.",
+                "es": "Utilice auditlogs para registrar ciertos eventos en su guilda.",
+                "ru": "Используйте auditlogs для записи событий в вашей гильдии.",
+                "it": "Utilizza auditlogs per registrare alcuni eventi nella tua gilda."
+            },
+            "explain2": {
+                "description": "Explaination of the audit log",
+                "en": "On certain events you can filter events based on channels or roles.",
+                "de": "Auf bestimmten Ereignissen kannst du Ereignisse basierend auf Kanälen oder Rollen filtern.",
+                "at": "Auf bestimmten Ereignissen kannst du Ereignisse basierend auf Kanälen oder Rollen filtern.",
+                "fr": "Sur certains événements, vous pouvez filtrer les événements basés sur des canaux ou des rôles.",
+                "es": "En ciertos eventos, puede filtrar eventos basados en canales o roles.",
+                "ru": "На определенных событиях вы можете фильтровать события, основанные на каналах или ролях.",
+                "it": "Su certi eventi puoi filtrare eventi basati su canali o ruoli."
+            },
+            "targetchannel": {
+                "description": "Target channel",
+                "en": "Target channel",
+                "de": "Zielkanal",
+                "at": "Zielkanal",
+                "fr": "Canal cible",
+                "es": "Canal objetivo",
+                "ru": "Целевой канал",
+                "it": "Canale di destinazione"
+            },
+            "pingrole": {
+                "description": "Ping role",
+                "en": "Ping role",
+                "de": "Ping-Rolle",
+                "at": "Ping-Rolle",
+                "fr": "Rôle ping",
+                "es": "Rol ping",
+                "ru": "Роль пинга",
+                "it": "Ping ruolo"
+            },
+            "excluderoles": {
+                "description": "Exclude roles",
+                "en": "Exclude roles",
+                "de": "Rollen ausschließen",
+                "at": "Rollen ausschließen",
+                "fr": "Exclure les rôles",
+                "es": "Excluir roles",
+                "ru": "Исключить роли",
+                "it": "Escludere ruoli"
+            },
+            "excludechannels": {
+                "description": "Exclude channels",
+                "en": "Exclude channels",
+                "de": "Kanäle ausschließen",
+                "at": "Kanäle ausschließen",
+                "fr": "Exclure les canaux",
+                "es": "Excluir canales",
+                "ru": "Исключить каналы",
+                "it": "Escludere canali"
+            },
+            "saved": {
+                "description": "Audit log saved",
+                "en": "AuditLog saved",
+                "de": "AuditLog gespeichert",
+                "at": "AuditLog gespeichert",
+                "fr": "AuditLog enregistré",
+                "es": "AuditLog guardado",
+                "ru": "AuditLog сохранен",
+                "it": "AuditLog salvato"
+            },
+            "failedtosave": {
+                "description": "Failed to save audit log",
+                "en": "Failed to save audit log",
+                "de": "Konnte AuditLog nicht speichern",
+                "at": "Konnte AuditLog nicht speichern",
+                "fr": "Impossible d'enregistrer l'auditlog",
+                "es": "No se pudo guardar el auditlog",
+                "ru": "Не удалось сохранить auditlog",
+                "it": "Impossibile salvare auditlog"
+            }
         }
     },
     "error": {

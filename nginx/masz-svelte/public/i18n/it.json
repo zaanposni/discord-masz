@@ -306,6 +306,17 @@
             "submitting": "Invio...",
             "saved": "Messaggio del giorno salvato",
             "failedtosave": "Impossibile salvare il messaggio del giorno"
+        },
+        "auditlog": {
+            "title": "AuditLog",
+            "explain": "Utilizza auditlogs per registrare alcuni eventi nella tua gilda.",
+            "explain2": "Su certi eventi puoi filtrare eventi basati su canali o ruoli.",
+            "targetchannel": "Canale di destinazione",
+            "pingrole": "Ping ruolo",
+            "excluderoles": "Escludere ruoli",
+            "excludechannels": "Escludere canali",
+            "saved": "AuditLog salvato",
+            "failedtosave": "Impossibile salvare auditlog"
         }
     },
     "error": "Errore",

@@ -306,6 +306,17 @@
             "submitting": "Enviando...",
             "saved": "Mensaje del día guardado",
             "failedtosave": "No se pudo guardar el mensaje del día"
+        },
+        "auditlog": {
+            "title": "AuditLog",
+            "explain": "Utilice auditlogs para registrar ciertos eventos en su guilda.",
+            "explain2": "En ciertos eventos, puede filtrar eventos basados en canales o roles.",
+            "targetchannel": "Canal objetivo",
+            "pingrole": "Rol ping",
+            "excluderoles": "Excluir roles",
+            "excludechannels": "Excluir canales",
+            "saved": "AuditLog guardado",
+            "failedtosave": "No se pudo guardar el auditlog"
         }
     },
     "error": "Error",

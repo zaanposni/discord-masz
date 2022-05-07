@@ -306,6 +306,17 @@
             "submitting": "Submitting...",
             "saved": "Message of the day saved",
             "failedtosave": "Failed to save message of the day"
+        },
+        "auditlog": {
+            "title": "AuditLog",
+            "explain": "Use auditlogs to log certain events in your guild.",
+            "explain2": "On certain events you can filter events based on channels or roles.",
+            "targetchannel": "Target channel",
+            "pingrole": "Ping role",
+            "excluderoles": "Exclude roles",
+            "excludechannels": "Exclude channels",
+            "saved": "AuditLog saved",
+            "failedtosave": "Failed to save audit log"
         }
     },
     "error": "Error",

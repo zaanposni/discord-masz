@@ -306,6 +306,17 @@
             "submitting": "Envoi...",
             "saved": "Message du jour enregistré",
             "failedtosave": "Impossible d'enregistrer le message du jour"
+        },
+        "auditlog": {
+            "title": "AuditLog",
+            "explain": "Utilisez les auditlogs pour enregistrer certains événements dans votre guilde.",
+            "explain2": "Sur certains événements, vous pouvez filtrer les événements basés sur des canaux ou des rôles.",
+            "targetchannel": "Canal cible",
+            "pingrole": "Rôle ping",
+            "excluderoles": "Exclure les rôles",
+            "excludechannels": "Exclure les canaux",
+            "saved": "AuditLog enregistré",
+            "failedtosave": "Impossible d'enregistrer l'auditlog"
         }
     },
     "error": "Erreur",
