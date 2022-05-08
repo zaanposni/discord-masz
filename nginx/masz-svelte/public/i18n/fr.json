@@ -295,6 +295,21 @@
             "nomatches": "Aucune carte utilisateur ne correspond à votre recherche.",
             "nomatchesdescription": "Il n'y a peut-être pas encore de cartes utilisateur dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus."
         },
+        "messages": {
+            "createnew": "Créer un nouveau message",
+            "nomessages": "Aucun message trouvé.",
+            "nomessagesdescription": "Il n'y a peut-être pas encore de messages dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus.",
+            "title": "Titre",
+            "channel": "Canal",
+            "content": "Message",
+            "savemessage": "Sauvegarder le message",
+            "editmessage": "Modifier le message",
+            "savedmessage": "Message sauvegardé",
+            "failedtosavemessage": "Échec de la sauvegarde du message",
+            "failedtoload": "Échec du chargement des messages",
+            "messagedeleted": "Message supprimé",
+            "failedtodelete": "Impossible de supprimer le message"
+        },
         "motd": {
             "title": "Message du jour",
             "explain": "Utilisez un message du jour pour épingler un message sur le tableau de bord des serveurs que tous les modérateurs verront.",

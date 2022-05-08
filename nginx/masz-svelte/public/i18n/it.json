@@ -295,6 +295,21 @@
             "nomatches": "Nessuna mappa utente corrisponde alla tua ricerca.",
             "nomatchesdescription": "Potrebbe non esserci ancora nessuna mappa utente in questo server. Puoi crearne uno usando il pulsante in alto."
         },
+        "messages": {
+            "createnew": "Crea nuovo messaggio",
+            "nomessages": "Nessun messaggio trovato.",
+            "nomessagesdescription": "Potrebbe non esserci ancora nessun messaggio in questo server. Puoi crearne uno usando il pulsante in alto.",
+            "title": "Titolo",
+            "channel": "Canale",
+            "content": "Messaggio",
+            "savemessage": "Salva messaggio",
+            "editmessage": "Modifica messaggio",
+            "savedmessage": "Messaggio salvato",
+            "failedtosavemessage": "Impossibile salvare messaggio",
+            "failedtoload": "Impossibile caricare messaggi",
+            "messagedeleted": "Messaggio eliminato",
+            "failedtodelete": "Impossibile eliminare il messaggio"
+        },
         "motd": {
             "title": "Messaggio del giorno",
             "explain": "Usa un MotD per fissare un messaggio sulla dashboard della gilda che tutti i moderatori vedranno.",

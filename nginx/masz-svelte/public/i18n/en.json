@@ -295,6 +295,21 @@
             "nomatches": "No usermap matches your search.",
             "nomatchesdescription": "There may be no usermaps yet in this guild. You can create one by using the button above."
         },
+        "messages": {
+            "createnew": "Create new message",
+            "nomessages": "No messages found.",
+            "nomessagesdescription": "There may be no messages yet in this guild. You can create one by using the button above.",
+            "title": "Title",
+            "channel": "Channel",
+            "content": "Message",
+            "savemessage": "Save message",
+            "editmessage": "Edit message",
+            "savedmessage": "Saved message",
+            "failedtosavemessage": "Failed to save message",
+            "failedtoload": "Failed to load messages",
+            "messagedeleted": "Message deleted",
+            "failedtodelete": "Failed to delete message"
+        },
         "motd": {
             "title": "Message of the day",
             "explain": "Use a MotD to pin a message on the guilds dashboard that all your moderators will see.",

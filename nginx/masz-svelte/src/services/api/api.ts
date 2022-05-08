@@ -11,7 +11,7 @@ const axiosStaticAPI = axios.create({
 });
 const axiosAssetAPI = axios.create();
 
-const isoDateFormat = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.[\dZ]*)?$/;
+const isoDateFormat = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.?[\dZ]*)?$/;
 
 function isIsoDateString(value: any): boolean {
     return value && typeof value === "string" && isoDateFormat.test(value);

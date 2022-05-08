@@ -295,6 +295,21 @@
             "nomatches": "Keine Benutzerbeziehungen passen zu deinem Suchbegriff.",
             "nomatchesdescription": "Es könnten noch keine Benutzerbeziehungen in dieser Gilde geben. Du kannst eine erstellen, indem du den Button oben benutzt."
         },
+        "messages": {
+            "createnew": "Neue Nachricht erstellen",
+            "nomessages": "Keine Nachrichten gefunden.",
+            "nomessagesdescription": "Es könnten noch keine Nachrichten in dieser Gilde geben. Du kannst eine erstellen, indem du den Button oben benutzt.",
+            "title": "Titel",
+            "channel": "Kanal",
+            "content": "Nachricht",
+            "savemessage": "Nachricht speichern",
+            "editmessage": "Nachricht bearbeiten",
+            "savedmessage": "Gespeicherte Nachricht",
+            "failedtosavemessage": "Nachricht konnte nicht gespeichert werden",
+            "failedtoload": "Nachrichten konnten nicht geladen werden",
+            "messagedeleted": "Nachricht gelöscht",
+            "failedtodelete": "Konnte Nachricht nicht löschen"
+        },
         "motd": {
             "title": "Nachricht des Tages",
             "explain": "Benutze eine Nachricht des Tages, um eine Nachricht auf dem Dashboard der Gilden zu verankern, die alle Moderatoren sehen.",

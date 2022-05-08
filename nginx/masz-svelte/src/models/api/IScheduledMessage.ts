@@ -23,7 +23,7 @@ export interface IScheduledMessage {
 }
 
 
-export function getI18NPunishment(message: IScheduledMessage) {
+export function getI18NMessageStatus(message: IScheduledMessage) {
     switch(message.status) {
         case ScheduledMessageStatus.Sent:
             return "enums.scheduledmessagestatus.sent";

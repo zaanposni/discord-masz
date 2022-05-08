@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Tag } from "carbon-components-svelte";
     import { _ } from "svelte-i18n";
-    import { getI18NPunishment, IScheduledMessage } from "../../models/api/IScheduledMessage";
+    import { getI18NMessageStatus, IScheduledMessage } from "../../models/api/IScheduledMessage";
     import { ScheduledMessageStatus } from "../../models/api/ScheduledMessageStatus";
 
     let classes: string = "";
@@ -9,19 +9,21 @@
     export let message: IScheduledMessage;
     let type: string;
 
-    function selectType() {
+    function selectType(m: IScheduledMessage) {
         switch (message.status) {
             case ScheduledMessageStatus.Sent:
                 type = "green";
+                break;
             case ScheduledMessageStatus.Failed:
                 type = "red";
+                break;
             default:
                 type = "cyan";
         }
     }
-    selectType();
+    $: selectType(message);
 </script>
 
 <Tag size="default" {type} class={classes}>
-    {$_(getI18NPunishment(message))}
+    {$_(getI18NMessageStatus(message))}
 </Tag>

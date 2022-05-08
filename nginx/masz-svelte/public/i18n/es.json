@@ -295,6 +295,21 @@
             "nomatches": "No se encontraron mapas de usuario que coincidan con su búsqueda.",
             "nomatchesdescription": "Puede que no haya mapas de usuario todavía en este servidor. Puede crear uno usando el botón de arriba."
         },
+        "messages": {
+            "createnew": "Crear un nuevo mensaje",
+            "nomessages": "No se encontraron mensajes.",
+            "nomessagesdescription": "Puede que no haya mensajes todavía en este servidor. Puede crear uno usando el botón de arriba.",
+            "title": "Título",
+            "channel": "Canal",
+            "content": "Mensaje",
+            "savemessage": "Guardar mensaje",
+            "editmessage": "Editar mensaje",
+            "savedmessage": "Mensaje guardado",
+            "failedtosavemessage": "No se pudo guardar el mensaje",
+            "failedtoload": "No se pudo cargar los mensajes",
+            "messagedeleted": "Mensaje eliminado",
+            "failedtodelete": "No se pudo eliminar el mensaje"
+        },
         "motd": {
             "title": "Mensaje del día",
             "explain": "Utilice un mensaje del día para fijar un mensaje en el panel de control de los servidores que todos los moderadores verán.",

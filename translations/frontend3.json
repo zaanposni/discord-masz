@@ -2464,6 +2464,138 @@
                 "it": "Potrebbe non esserci ancora nessuna mappa utente in questo server. Puoi crearne uno usando il pulsante in alto."
             }
         },
+        "messages": {
+            "createnew": {
+                "description": "Create new message",
+                "en": "Create new message",
+                "de": "Neue Nachricht erstellen",
+                "at": "Neue Nachricht erstellen",
+                "fr": "Créer un nouveau message",
+                "es": "Crear un nuevo mensaje",
+                "ru": "Создать новое сообщение",
+                "it": "Crea nuovo messaggio"
+            },
+            "nomessages": {
+                "description": "No messages found.",
+                "en": "No messages found.",
+                "de": "Keine Nachrichten gefunden.",
+                "at": "Keine Nachrichten gefunden.",
+                "fr": "Aucun message trouvé.",
+                "es": "No se encontraron mensajes.",
+                "ru": "Сообщения не найдены.",
+                "it": "Nessun messaggio trovato."
+            },
+            "nomessagesdescription": {
+                "description": "No messages found.",
+                "en": "There may be no messages yet in this guild. You can create one by using the button above.",
+                "de": "Es könnten noch keine Nachrichten in dieser Gilde geben. Du kannst eine erstellen, indem du den Button oben benutzt.",
+                "at": "Es könnten noch keine Nachrichten in dieser Gilde geben. Du kannst eine erstellen, indem du den Button oben benutzt.",
+                "fr": "Il n'y a peut-être pas encore de messages dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus.",
+                "es": "Puede que no haya mensajes todavía en este servidor. Puede crear uno usando el botón de arriba.",
+                "ru": "Возможно, в этом сервере еще нет сообщений. Вы можете создать его, используя кнопку выше.",
+                "it": "Potrebbe non esserci ancora nessun messaggio in questo server. Puoi crearne uno usando il pulsante in alto."
+            },
+            "title": {
+                "description": "Title",
+                "en": "Title",
+                "de": "Titel",
+                "at": "Titel",
+                "fr": "Titre",
+                "es": "Título",
+                "ru": "Название",
+                "it": "Titolo"
+            },
+            "channel": {
+                "description": "Channel",
+                "en": "Channel",
+                "de": "Kanal",
+                "at": "Kanal",
+                "fr": "Canal",
+                "es": "Canal",
+                "ru": "Канал",
+                "it": "Canale"
+            },
+            "content": {
+                "description": "Content",
+                "en": "Message",
+                "de": "Nachricht",
+                "at": "Nachricht",
+                "fr": "Message",
+                "es": "Mensaje",
+                "ru": "Сообщение",
+                "it": "Messaggio"
+            },
+            "savemessage": {
+                "description": "Save message",
+                "en": "Save message",
+                "de": "Nachricht speichern",
+                "at": "Nachricht speichern",
+                "fr": "Sauvegarder le message",
+                "es": "Guardar mensaje",
+                "ru": "Сохранить сообщение",
+                "it": "Salva messaggio"
+            },
+            "editmessage": {
+                "description": "Edit message",
+                "en": "Edit message",
+                "de": "Nachricht bearbeiten",
+                "at": "Nachricht bearbeiten",
+                "fr": "Modifier le message",
+                "es": "Editar mensaje",
+                "ru": "Редактировать сообщение",
+                "it": "Modifica messaggio"
+            },
+            "savedmessage": {
+                "description": "Saved message",
+                "en": "Saved message",
+                "de": "Gespeicherte Nachricht",
+                "at": "Gespeicherte Nachricht",
+                "fr": "Message sauvegardé",
+                "es": "Mensaje guardado",
+                "ru": "Сохраненное сообщение",
+                "it": "Messaggio salvato"
+            },
+            "failedtosavemessage": {
+                "description": "Failed to save message",
+                "en": "Failed to save message",
+                "de": "Nachricht konnte nicht gespeichert werden",
+                "at": "Nachricht konnte nicht gespeichert werden",
+                "fr": "Échec de la sauvegarde du message",
+                "es": "No se pudo guardar el mensaje",
+                "ru": "Не удалось сохранить сообщение",
+                "it": "Impossibile salvare messaggio"
+            },
+            "failedtoload": {
+                "description": "Failed to load message",
+                "en": "Failed to load messages",
+                "de": "Nachrichten konnten nicht geladen werden",
+                "at": "Nachrichten konnten nicht geladen werden",
+                "fr": "Échec du chargement des messages",
+                "es": "No se pudo cargar los mensajes",
+                "ru": "Не удалось загрузить сообщения",
+                "it": "Impossibile caricare messaggi"
+            },
+            "messagedeleted": {
+                "description": "Message deleted",
+                "en": "Message deleted",
+                "de": "Nachricht gelöscht",
+                "at": "Nachricht gelöscht",
+                "fr": "Message supprimé",
+                "es": "Mensaje eliminado",
+                "ru": "Сообщение удалено",
+                "it": "Messaggio eliminato"
+            },
+            "failedtodelete": {
+                "description": "Failed to delete message",
+                "en": "Failed to delete message",
+                "de": "Konnte Nachricht nicht löschen",
+                "at": "Konnte Nachricht nicht löschen",
+                "fr": "Impossible de supprimer le message",
+                "es": "No se pudo eliminar el mensaje",
+                "ru": "Не удалось удалить сообщение",
+                "it": "Impossibile eliminare il messaggio"
+            }
+        },
         "motd": {
             "title": {
                 "description": "Title of the message of the day",
