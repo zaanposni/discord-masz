@@ -74,7 +74,6 @@
 
     function onCheck(rule: IAutoModRuleDefinition, checked: boolean) {
         if (!$loading) {
-            console.log(rule, checked);
             if (checked) {
                 onEdit(rule);
             } else {
@@ -135,7 +134,6 @@
             autoModerationAction: $editModalConfig.autoModerationAction ?? AutomodAction.None,
         })
             .then((res) => {
-                console.log(res);
                 automods.update((n) => {
                     const index = n.findIndex((x) => x.autoModerationType === $editModalConfig.autoModerationType);
                     if (index === -1) {
