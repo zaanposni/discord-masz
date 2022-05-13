@@ -1,8 +1,7 @@
-export enum AutomodAction
-    {
-        None,
-        ContentDeleted,
-        CaseCreated,
-        ContentDeletedAndCaseCreated,
-        Timeout
-    }
+export enum AutomodAction {
+    None,
+    ContentDeleted,
+    CaseCreated,
+    ContentDeletedAndCaseCreated,
+    Timeout,
+}

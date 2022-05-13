@@ -332,6 +332,61 @@
             "excludechannels": "Excluir canales",
             "saved": "AuditLog guardado",
             "failedtosave": "No se pudo guardar el auditlog"
+        },
+        "automods": {
+            "title": "Configuración automod",
+            "explain": "Utilice automods para eliminar automáticamente mensajes en canales o castigar a los miembros en eventos.",
+            "explain2": "También puede definir filtros para cada evento para ajustar su automod.",
+            "timelimitfield": "Límite de tiempo (segundos)",
+            "limitfield": "Límite superior",
+            "config": "Configuración",
+            "filter": "Filtro",
+            "filterchannels": "Filtrar canales",
+            "filterroles": "Filtrar roles",
+            "punishmentduration": "Duración en minutos",
+            "action": "Acción",
+            "saved": "Configuración de automod guardada",
+            "failedtosave": "No se pudo guardar la configuración de automod",
+            "deactivated": "Automod desactivado",
+            "failedtodeactivate": "No se pudo desactivar automod",
+            "invites": {
+                "details": "Un mensaje en tu gremio coincide con el patrón de invitación. Se ignorarán las invitaciones a este gremio.",
+                "customwordfield": "Ignorar gremios (ingrese ID divididos por líneas nuevas)"
+            },
+            "emotes": {
+                "details": "Un mensaje en tu gremio contiene demasiados gestos."
+            },
+            "mentions": {
+                "details": "Un mensaje en tu gremio contiene demasiadas menciones."
+            },
+            "attachments": {
+                "details": "Un mensaje en tu gremio contiene demasiados archivos adjuntos."
+            },
+            "embeds": {
+                "details": "Un mensaje en tu gremio contiene demasiadas incrustaciones."
+            },
+            "automoderations": {
+                "details": "Un usuario desencadena demasiadas automovilizaciones en un período de tiempo definido."
+            },
+            "customfilter": {
+                "title": "Filtro personalizado",
+                "details": "Un usuario usa demasiadas palabras definidas en su lista.",
+                "tooltip": "Las palabras se comprueban línea por línea sin distinción entre mayúsculas y minúsculas.",
+                "linktext": "Ejemplo",
+                "customwordfield": "Palabras personalizadas (patrón de expresiones regulares dividido por nueva línea)"
+            },
+            "spam": {
+                "details": "Un usuario de tu gremio envía demasiados mensajes en un lapso de tiempo.",
+                "timelimitmessage": "Límite de tiempo (segundos)"
+            },
+            "duplicatedchars": {
+                "details": "Un mensaje en tu gremio contiene demasiados personajes duplicados."
+            },
+            "link": {
+                "details": "Un mensaje en tu gremio contiene demasiados enlaces.",
+                "customwordfield": "Ignorar enlaces (ingresar patrones de expresiones regulares divididos por líneas nuevas)",
+                "linktext": "Ejemplo"
+            }
         }
     },
     "error": "Error",

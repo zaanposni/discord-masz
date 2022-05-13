@@ -332,6 +332,61 @@
             "excludechannels": "Kanäle ausschließen",
             "saved": "AuditLog gespeichert",
             "failedtosave": "Konnte AuditLog nicht speichern"
+        },
+        "automods": {
+            "title": "Automod-Konfiguration",
+            "explain": "Benutze die Automoderation um Nachrichten in bestimmten Kanälen automatisch zu löschen oder Mitglieder auf bestimmten Ereignissen zu strafen.",
+            "explain2": "Du kannst auch Filter für jedes Ereignis festlegen, um deine automod-Einstellungen zu feinjustieren.",
+            "timelimitfield": "Zeitlimit (Sekunden)",
+            "limitfield": "Obere Grenze",
+            "config": "Konfiguration",
+            "filter": "Filter",
+            "filterchannels": "Kanäle filtern",
+            "filterroles": "Rollen filtern",
+            "punishmentduration": "Dauer in Minuten",
+            "action": "Aktion",
+            "saved": "Automod-Konfiguration gespeichert",
+            "failedtosave": "Automod-Konfiguration konnte nicht gespeichert werden",
+            "deactivated": "Automod deaktiviert",
+            "failedtodeactivate": "Automod konnte nicht deaktiviert werden",
+            "invites": {
+                "details": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta. Eiladunga zu dem Serva wera ignohriert.",
+                "customwordfield": "Ignorierte Güdn-IDs (getrennt durch an Zeilenumbruch"
+            },
+            "emotes": {
+                "details": "A Nochricht aufm Serva hot zvü Emojis"
+            },
+            "mentions": {
+                "details": "A Nochricht aufm Serva hot zvü Erwähnungen."
+            },
+            "attachments": {
+                "details": "A Nochricht aufm Serva hot zvü Ohäng"
+            },
+            "embeds": {
+                "details": "A Nochricht aufm Serva hot zvü Eibettungen. "
+            },
+            "automoderations": {
+                "details": "A Benutza hot zvü Automodarationen in am bestimmtn Zeitraum ausglest."
+            },
+            "customfilter": {
+                "title": "Benutzadefinirta Füta",
+                "details": "A Nutza nutzt zvü Wörta aus dana Listn.",
+                "tooltip": "Wörta wean zeitweis ohne da Beachtung vo da Groß- und Kleischreibung prüft.",
+                "linktext": "Beispü",
+                "customwordfield": "Eigene Wörta (Regepxpattern getrennt durch an Zeilnumbruch)"
+            },
+            "spam": {
+                "details": "A Nutze aufm Serva send zvü Nochricht in am bestimmt Zeitraum.",
+                "timelimitmessage": "Zeitlimit (Sekundn)"
+            },
+            "duplicatedchars": {
+                "details": "A Nochricht aufm Server enthöt zvü wiedaholende Buchstobn."
+            },
+            "link": {
+                "details": "A Nochricht aufm Server hod zvü Valinkungen",
+                "customwordfield": "Ignorierte Links (getrennte Links mit am Zeilenumbruch)",
+                "linktext": "Beispü"
+            }
         }
     },
     "error": "Fehler",

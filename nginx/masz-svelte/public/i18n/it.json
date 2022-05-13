@@ -332,6 +332,61 @@
             "excludechannels": "Escludere canali",
             "saved": "AuditLog salvato",
             "failedtosave": "Impossibile salvare auditlog"
+        },
+        "automods": {
+            "title": "Configurazione automods",
+            "explain": "Utilizza automods per eliminare automaticamente i messaggi in determinati canali o punire i membri su determinati eventi.",
+            "explain2": "È anche possibile definire dei filtri per ogni evento per regolare la moderazione automatica.",
+            "timelimitfield": "Tempo limite (secondi)",
+            "limitfield": "Limite superiore",
+            "config": "Configurazione",
+            "filter": "Filtro",
+            "filterchannels": "Filtra canali",
+            "filterroles": "Filtra ruoli",
+            "punishmentduration": "Durata in minuti",
+            "action": "Azione",
+            "saved": "Configurazione automod salvata",
+            "failedtosave": "Impossibile salvare la configurazione automod",
+            "deactivated": "Automod disattivato",
+            "failedtodeactivate": "Impossibile disattivare automod",
+            "invites": {
+                "details": "Un messaggio sulla tua gilda corrisponde al modello di invito. Gli inviti a questa gilda verranno ignorati.",
+                "customwordfield": "Ignora le gilde (inserisci gli ID divisi per newline)"
+            },
+            "emotes": {
+                "details": "Un messaggio sulla tua gilda contiene troppe emote."
+            },
+            "mentions": {
+                "details": "Un messaggio sulla tua gilda contiene troppe menzioni."
+            },
+            "attachments": {
+                "details": "Un messaggio sulla tua gilda contiene troppi allegati."
+            },
+            "embeds": {
+                "details": "Un messaggio sulla tua gilda contiene troppi incorporamenti."
+            },
+            "automoderations": {
+                "details": "Un utente attiva troppe moderazioni automatiche in un intervallo di tempo definito."
+            },
+            "customfilter": {
+                "title": "Filtro personalizzato",
+                "details": "Un utente utilizza troppe parole definite nell'elenco.",
+                "tooltip": "Le parole vengono controllate riga per riga senza distinzione tra maiuscole e minuscole.",
+                "linktext": "Esempio",
+                "customwordfield": "Parole personalizzate (modello regex diviso per newline)"
+            },
+            "spam": {
+                "details": "Un utente della tua gilda invia troppi messaggi in un intervallo di tempo.",
+                "timelimitmessage": "Limite di tempo (secondi)"
+            },
+            "duplicatedchars": {
+                "details": "Un messaggio sulla tua gilda contiene troppi caratteri duplicati."
+            },
+            "link": {
+                "details": "Un messaggio sulla tua gilda contiene troppi link.",
+                "customwordfield": "Ignora collegamenti (inserisci modelli regex divisi per newline)",
+                "linktext": "Esempio"
+            }
         }
     },
     "error": "Errore",

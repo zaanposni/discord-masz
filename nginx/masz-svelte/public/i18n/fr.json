@@ -332,6 +332,61 @@
             "excludechannels": "Exclure les canaux",
             "saved": "AuditLog enregistré",
             "failedtosave": "Impossible d'enregistrer l'auditlog"
+        },
+        "automods": {
+            "title": "Configuration automod",
+            "explain": "Utilisez automods pour supprimer automatiquement des messages dans certains canaux ou punir les membres sur certains événements.",
+            "explain2": "Vous pouvez également définir des filtres pour chaque événement pour ajuster votre automod.",
+            "timelimitfield": "Limite de temps (secondes)",
+            "limitfield": "Limite supérieure",
+            "config": "Configuration",
+            "filter": "Filtre",
+            "filterchannels": "Filtrer les canaux",
+            "filterroles": "Filtrer les rôles",
+            "punishmentduration": "Durée en minutes",
+            "action": "Action",
+            "saved": "Configuration automod sauvegardée",
+            "failedtosave": "Échec de la sauvegarde de la configuration automod",
+            "deactivated": "Automod désactivé",
+            "failedtodeactivate": "Échec de la désactivation de automod",
+            "invites": {
+                "details": "Un message sur votre guilde correspond au modèle d'invitation. Les invitations à cette guilde seront ignorées.",
+                "customwordfield": "Ignorer les guildes (entrez les identifiants divisés par des sauts de ligne)"
+            },
+            "emotes": {
+                "details": "Un message sur votre guilde contient trop d'émoticônes."
+            },
+            "mentions": {
+                "details": "Un message sur votre guilde contient trop de mentions."
+            },
+            "attachments": {
+                "details": "Un message sur votre guilde contient trop de pièces jointes."
+            },
+            "embeds": {
+                "details": "Un message sur votre guilde contient trop d'intégrations."
+            },
+            "automoderations": {
+                "details": "Un utilisateur déclenche trop d'automodérations dans un laps de temps défini."
+            },
+            "customfilter": {
+                "title": "Filtre personnalisé",
+                "details": "Un utilisateur utilise trop de mots définis dans votre liste.",
+                "tooltip": "Les mots sont vérifiés ligne par ligne sans tenir compte de la casse.",
+                "linktext": "Exemple",
+                "customwordfield": "Mots personnalisés (modèle regex divisé par une nouvelle ligne)"
+            },
+            "spam": {
+                "details": "Un utilisateur de votre guilde envoie trop de messages dans un laps de temps.",
+                "timelimitmessage": "Limite de temps (secondes)"
+            },
+            "duplicatedchars": {
+                "details": "Un message sur votre guilde contient trop de caractères dupliqués."
+            },
+            "link": {
+                "details": "Un message sur votre guilde contient trop de liens.",
+                "customwordfield": "Ignorer les liens (entrer les modèles regex divisés par des nouvelles lignes)",
+                "linktext": "Exemple"
+            }
         }
     },
     "error": "Erreur",

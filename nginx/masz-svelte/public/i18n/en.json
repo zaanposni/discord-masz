@@ -332,6 +332,61 @@
             "excludechannels": "Exclude channels",
             "saved": "AuditLog saved",
             "failedtosave": "Failed to save audit log"
+        },
+        "automods": {
+            "title": "Automod configuration",
+            "explain": "Use automoderation to automatically delete messages in certain channels or punish members on certain events",
+            "explain2": "You can also define filters for each event to fine tune your automoderation.",
+            "timelimitfield": "Time limit (seconds)",
+            "limitfield": "Upper limit",
+            "config": "Configuration",
+            "filter": "Filter",
+            "filterchannels": "Filter channels",
+            "filterroles": "Filter roles",
+            "punishmentduration": "Duration in minutes",
+            "action": "Action",
+            "saved": "Automod config saved",
+            "failedtosave": "Failed to save automod config",
+            "deactivated": "Automod deactivated",
+            "failedtodeactivate": "Failed to deactivate automod",
+            "invites": {
+                "details": "A message on your guild matches the invite pattern. Invites to this guild will be ignored.",
+                "customwordfield": "Ignore guilds (enter IDs divided by newlines)"
+            },
+            "emotes": {
+                "details": "A message on your guild contains too many emotes."
+            },
+            "mentions": {
+                "details": "A message on your guild contains too many mentions."
+            },
+            "attachments": {
+                "details": "A message on your guild contains too many attachments."
+            },
+            "embeds": {
+                "details": "A message on your guild contains too many embeds."
+            },
+            "automoderations": {
+                "details": "A user triggers too many automoderations in a defined timespan."
+            },
+            "customfilter": {
+                "title": "Custom filter",
+                "details": "A user uses too many words defined in your list.",
+                "tooltip": "Words are checked line by line case insensitive.",
+                "linktext": "Example",
+                "customwordfield": "Custom words (regex pattern divided by newline)"
+            },
+            "spam": {
+                "details": "A user on your guild sends too many messages in a timespan.",
+                "timelimitmessage": "Time limit (seconds)"
+            },
+            "duplicatedchars": {
+                "details": "A message on your guild contains too many duplicated characters."
+            },
+            "link": {
+                "details": "A message on your guild contains too many links.",
+                "customwordfield": "Ignore links (enter regex patterns divided by newlines)",
+                "linktext": "Example"
+            }
         }
     },
     "error": "Error",

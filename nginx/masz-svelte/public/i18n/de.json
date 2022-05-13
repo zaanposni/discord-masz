@@ -332,6 +332,61 @@
             "excludechannels": "Kanäle ausschließen",
             "saved": "AuditLog gespeichert",
             "failedtosave": "Konnte AuditLog nicht speichern"
+        },
+        "automods": {
+            "title": "Automod-Konfiguration",
+            "explain": "Benutze die Automoderation um Nachrichten in bestimmten Kanälen automatisch zu löschen oder Mitglieder auf bestimmten Ereignissen zu strafen.",
+            "explain2": "Du kannst auch Filter für jedes Ereignis festlegen, um deine automod-Einstellungen zu feinjustieren.",
+            "timelimitfield": "Zeitlimit (Sekunden)",
+            "limitfield": "Obere Grenze",
+            "config": "Konfiguration",
+            "filter": "Filter",
+            "filterchannels": "Kanäle filtern",
+            "filterroles": "Rollen filtern",
+            "punishmentduration": "Dauer in Minuten",
+            "action": "Aktion",
+            "saved": "Automod-Konfiguration gespeichert",
+            "failedtosave": "Automod-Konfiguration konnte nicht gespeichert werden",
+            "deactivated": "Automod deaktiviert",
+            "failedtodeactivate": "Automod konnte nicht deaktiviert werden",
+            "invites": {
+                "details": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster. Einladungen zu dieser Gilde werden ignoriert.",
+                "customwordfield": "Ignorierte Gilden-IDs (getrennt durch Zeilenumbruch)"
+            },
+            "emotes": {
+                "details": "Eine Nachricht auf deinem Server enthält zu viele Emoticons."
+            },
+            "mentions": {
+                "details": "Eine Nachricht auf deinem Server enthält zu viele Erwähnungen."
+            },
+            "attachments": {
+                "details": "Eine Nachricht auf deinem Server enthält zu viele Anhänge."
+            },
+            "embeds": {
+                "details": "Eine Nachricht auf deinem Server enthält zu viele Einbettungen."
+            },
+            "automoderations": {
+                "details": "Ein Benutzer löst zu viele Automoderationen in einem definierten Zeitraum aus."
+            },
+            "customfilter": {
+                "title": "Benutzerdefinierter Filter",
+                "details": "Ein Benutzer benutzt zu viele Wörter aus deiner Liste.",
+                "tooltip": "Wörter werden zeilenweise ohne Beachtung der Groß- und Kleinschreibung überprüft.",
+                "linktext": "Beispiel",
+                "customwordfield": "Eigene Wörter (Regexpattern getrennt durch Zeilenumbruch)"
+            },
+            "spam": {
+                "details": "Ein Benutzer auf deinem Server sendet zu viele Nachrichten in einem definierten Zeitraum.",
+                "timelimitmessage": "Zeitlimit (Sekunden)"
+            },
+            "duplicatedchars": {
+                "details": "Eine Nachricht auf deinem Server enthält zu viele wiederholende Buchstaben."
+            },
+            "link": {
+                "details": "Eine Nachricht auf deinem Server enthält zu viele Verlinkungen.",
+                "customwordfield": "Ignorierte Links (getrennte Regexpatterns durch Zeilenumbruch)",
+                "linktext": "Beispiel"
+            }
         }
     },
     "error": "Fehler",
