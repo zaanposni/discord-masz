@@ -269,6 +269,18 @@
             "nomatches": "Aucun automod ne correspond à votre recherche.",
             "nomatchesdescription": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas."
         },
+        "appealtable": {
+            "createnewappeal": "Créer une nouvelle demande",
+            "disabledexplained": "Vous ne pouvez pas créer une nouvelle demande de bannissement car vous en avez créé une récemment ou votre punition a été créée récemment ou ce serveur n'a pas de demandes de bannissement configurées.",
+            "configureappeal": "Configurer la demande",
+            "useadvancedfilter": "Basculer le filtre avancé.",
+            "selectmembers": "Sélectionner les membres",
+            "statustype": "Statut",
+            "executesearch": "Exécuter la recherche",
+            "nomatches": "Aucune demande ne correspond à votre recherche.",
+            "nomatchesdescription": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas.",
+            "failedtoload": "Échec du chargement des demandes"
+        },
         "usernote": {
             "createusernote": "Créer une note utilisateur",
             "createusernotedescription": "Description",

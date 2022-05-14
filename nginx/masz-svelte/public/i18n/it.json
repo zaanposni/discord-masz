@@ -269,6 +269,18 @@
             "nomatches": "Nessuna automod corrisponde alla tua ricerca.",
             "nomatchesdescription": "Potrebbe non essere ancora nessun caso in questo server. Tuttavia, è possibile provare a regolare i filtri in alto per trovare alcuni casi."
         },
+        "appealtable": {
+            "createnewappeal": "Crea un nuovo reclamo",
+            "disabledexplained": "Non puoi creare un nuovo reclamo perché hai creato uno recentemente o la tua punizione è stata creata recentemente o questo server non ha configurato reclami di ban",
+            "configureappeal": "Configura reclamo",
+            "useadvancedfilter": "Attiva filtro avanzato.",
+            "selectmembers": "Seleziona membri",
+            "statustype": "Stato",
+            "executesearch": "Esegui ricerca",
+            "nomatches": "Nessun reclamo corrisponde alla tua ricerca.",
+            "nomatchesdescription": "Potrebbe non essere ancora nessun caso in questo server. Tuttavia, è possibile provare a regolare i filtri in alto per trovare alcuni casi.",
+            "failedtoload": "Impossibile caricare reclami"
+        },
         "usernote": {
             "createusernote": "Crea nota utente",
             "createusernotedescription": "Descrizione",

@@ -2240,6 +2240,108 @@
                 "it": "Potrebbe non essere ancora nessun caso in questo server. Tuttavia, è possibile provare a regolare i filtri in alto per trovare alcuni casi."
             }
         },
+        "appealtable": {
+            "createnewappeal": {
+                "description": "Create new appeal",
+                "en": "Create new appeal",
+                "de": "Neue Entbannungsanfrage erstellen",
+                "at": "Neue Entbannungsanfrage erstelln",
+                "fr": "Créer une nouvelle demande",
+                "es": "Crear una nueva queja",
+                "ru": "Создать новое обращение",
+                "it": "Crea un nuovo reclamo"
+            },
+            "disabledexplained": {
+                "description": "Disabled explanation",
+                "en": "You cannot create a new appeal since you have created one recently or your punishment was created recently or this guild has no ban appeals configured",
+                "de": "Du kannst keine neue Entbannungsanfrage erstellen, da du eine früher erstellt hast oder deine Verbanung früher erstellt wurde oder diese Gilde keine Entbannungsanfragen konfiguriert hat.",
+                "at": "Du kannst keine neue Entbannungsanfrage erstellen, da du eine früher erstellt hast oder deine Verbanung früher erstellt wurde oder diese Gilde keine Entbannungsanfragen konfiguriert hat.",
+                "fr": "Vous ne pouvez pas créer une nouvelle demande de bannissement car vous en avez créé une récemment ou votre punition a été créée récemment ou ce serveur n'a pas de demandes de bannissement configurées.",
+                "es": "No puedes crear una nueva queja porque has creado una recientemente o tu castigo fue creado recientemente o este servidor no tiene configuradas quejas de expulsión.",
+                "ru": "Вы не можете создать новое обращение, потому что создали недавно или ваш предупреждение было создано недавно или этот сервер не имеет настроенных обращений в бан.",
+                "it": "Non puoi creare un nuovo reclamo perché hai creato uno recentemente o la tua punizione è stata creata recentemente o questo server non ha configurato reclami di ban"
+            },
+            "configureappeal": {
+                "description": "Configure appeal",
+                "en": "Configure appeal",
+                "de": "Anfrage konfigurieren",
+                "at": "Anfrage konfigurieren",
+                "fr": "Configurer la demande",
+                "es": "Configurar la queja",
+                "ru": "Настроить обращение",
+                "it": "Configura reclamo"
+            },
+            "useadvancedfilter": {
+                "description": "use advanced filter on current table",
+                "en": "Toggle advanced filter.",
+                "de": "Erweiterte Filter ein-/ausblenden.",
+                "at": "Erweiterte Filter ein-/ausblenden.",
+                "fr": "Basculer le filtre avancé.",
+                "es": "Alternar filtro avanzado.",
+                "ru": "Переключить расширенный фильтр.",
+                "it": "Attiva filtro avanzato."
+            },
+            "selectmembers": {
+                "description": "Select members",
+                "en": "Select members",
+                "de": "Mitglieder auswählen",
+                "at": "Mitglieder auswählen",
+                "fr": "Sélectionner les membres",
+                "es": "Seleccionar miembros",
+                "ru": "Выбрать участников",
+                "it": "Seleziona membri"
+            },
+            "statustype": {
+                "description": "Status type",
+                "en": "Status",
+                "de": "Status",
+                "at": "Status",
+                "fr": "Statut",
+                "es": "Estado",
+                "ru": "Статус",
+                "it": "Stato"
+            },
+            "executesearch": {
+                "description": "Execute search",
+                "en": "Execute search",
+                "de": "Suche ausführen",
+                "at": "Suche ausführen",
+                "fr": "Exécuter la recherche",
+                "es": "Ejecutar la búsqueda",
+                "ru": "Выполнить поиск",
+                "it": "Esegui ricerca"
+            },
+            "nomatches": {
+                "description": "No matches for search string found.",
+                "en": "No appeals match your search.",
+                "de": "Keine Entbannungsanfragen passen zu deiner Suche.",
+                "at": "Kane Entbannungsanfragen passn zu deina Suach.",
+                "fr": "Aucune demande ne correspond à votre recherche.",
+                "es": "Ningún reclamo coincide con su búsqueda.",
+                "ru": "По вашему запросу не найдено ни одного обращения.",
+                "it": "Nessun reclamo corrisponde alla tua ricerca."
+            },
+            "nomatchesdescription": {
+                "description": "No appeals match your search.",
+                "en": "There may be no appeals yet in this guild. However, you can try to adjust your filters above to find some appeals.",
+                "de": "Es könnten noch keine Entbannungsanfragen in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Entbannungsanfragen zu finden.",
+                "at": "Kannn Entbannungsanfragen in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Entbannungsanfragen zu findn.",
+                "fr": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas.",
+                "es": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos.",
+                "ru": "Возможно, в этом сервере еще нет кейсов. Однако, вы можете попробовать изменить фильтры выше, чтобы найти кейсы.",
+                "it": "Potrebbe non essere ancora nessun caso in questo server. Tuttavia, è possibile provare a regolare i filtri in alto per trovare alcuni casi."
+            },
+            "failedtoload": {
+                "description": "Failed to load appeals",
+                "en": "Failed to load appeals",
+                "de": "Entbannungsanfragen konnten nicht geladen werden",
+                "at": "Entbannungsanfragen konnten nicht geladen werden",
+                "fr": "Échec du chargement des demandes",
+                "es": "No se pudo cargar las quejas",
+                "ru": "Не удалось загрузить обращения",
+                "it": "Impossibile caricare reclami"
+            }
+        },
         "usernote": {
             "createusernote": {
                 "description": "Create usernote",

@@ -269,6 +269,18 @@
             "nomatches": "No automod matches your search.",
             "nomatchesdescription": "There may be no automods yet in this guild. However, you can try to adjust your filters above to find some automods."
         },
+        "appealtable": {
+            "createnewappeal": "Create new appeal",
+            "disabledexplained": "You cannot create a new appeal since you have created one recently or your punishment was created recently or this guild has no ban appeals configured",
+            "configureappeal": "Configure appeal",
+            "useadvancedfilter": "Toggle advanced filter.",
+            "selectmembers": "Select members",
+            "statustype": "Status",
+            "executesearch": "Execute search",
+            "nomatches": "No appeals match your search.",
+            "nomatchesdescription": "There may be no appeals yet in this guild. However, you can try to adjust your filters above to find some appeals.",
+            "failedtoload": "Failed to load appeals"
+        },
         "usernote": {
             "createusernote": "Create usernote",
             "createusernotedescription": "Description",

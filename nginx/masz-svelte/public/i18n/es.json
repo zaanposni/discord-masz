@@ -269,6 +269,18 @@
             "nomatches": "Ningún automod coincide con su búsqueda.",
             "nomatchesdescription": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos."
         },
+        "appealtable": {
+            "createnewappeal": "Crear una nueva queja",
+            "disabledexplained": "No puedes crear una nueva queja porque has creado una recientemente o tu castigo fue creado recientemente o este servidor no tiene configuradas quejas de expulsión.",
+            "configureappeal": "Configurar la queja",
+            "useadvancedfilter": "Alternar filtro avanzado.",
+            "selectmembers": "Seleccionar miembros",
+            "statustype": "Estado",
+            "executesearch": "Ejecutar la búsqueda",
+            "nomatches": "Ningún reclamo coincide con su búsqueda.",
+            "nomatchesdescription": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos.",
+            "failedtoload": "No se pudo cargar las quejas"
+        },
         "usernote": {
             "createusernote": "Crear nota de usuario",
             "createusernotedescription": "Descripción",

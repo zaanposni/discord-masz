@@ -269,6 +269,18 @@
             "nomatches": "Kane Automoderationen passn zu deina Suach.",
             "nomatchesdescription": "Kannn Automoderationen in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Automoderationen zu findn."
         },
+        "appealtable": {
+            "createnewappeal": "Neue Entbannungsanfrage erstelln",
+            "disabledexplained": "Du kannst keine neue Entbannungsanfrage erstellen, da du eine früher erstellt hast oder deine Verbanung früher erstellt wurde oder diese Gilde keine Entbannungsanfragen konfiguriert hat.",
+            "configureappeal": "Anfrage konfigurieren",
+            "useadvancedfilter": "Erweiterte Filter ein-/ausblenden.",
+            "selectmembers": "Mitglieder auswählen",
+            "statustype": "Status",
+            "executesearch": "Suche ausführen",
+            "nomatches": "Kane Entbannungsanfragen passn zu deina Suach.",
+            "nomatchesdescription": "Kannn Entbannungsanfragen in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Entbannungsanfragen zu findn.",
+            "failedtoload": "Entbannungsanfragen konnten nicht geladen werden"
+        },
         "usernote": {
             "createusernote": "Benutzernotiz erstellen",
             "createusernotedescription": "Beschreibung",

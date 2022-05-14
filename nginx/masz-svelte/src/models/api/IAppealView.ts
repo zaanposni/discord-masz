@@ -3,6 +3,7 @@ import type { IAppealStructure } from "./IAppealStructure";
 import type { IAppealAnswer } from "./IAppealAnswer";
 import type { IDiscordUser } from "../discord/IDiscordUser";
 import type { ICompactCaseView } from "./ICompactCaseView";
+import type moment from "moment";
 
 export interface IAppealView {
     id: number;
@@ -15,10 +16,10 @@ export interface IAppealView {
     status: AppealStatus;
     moderatorComment: string;
     lastModerator?: IDiscordUser;
-    createdAt: Date;
-    updatedAt: Date;
-    userCanCreateNewAppeals?: Date;
-    invalidDueToLaterRejoinAt?: Date;
+    createdAt: moment.Moment;
+    updatedAt: moment.Moment;
+    userCanCreateNewAppeals?: moment.Moment;
+    invalidDueToLaterRejoinAt?: moment.Moment;
     answers: IAppealAnswer[];
     structures: IAppealStructure[];
     latestCases: ICompactCaseView[];

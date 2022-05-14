@@ -269,6 +269,18 @@
             "nomatches": "Keine Automoderationen passen zu deiner Suche.",
             "nomatchesdescription": "Es könnten noch keine Automoderationen in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Automoderationen zu finden."
         },
+        "appealtable": {
+            "createnewappeal": "Neue Entbannungsanfrage erstellen",
+            "disabledexplained": "Du kannst keine neue Entbannungsanfrage erstellen, da du eine früher erstellt hast oder deine Verbanung früher erstellt wurde oder diese Gilde keine Entbannungsanfragen konfiguriert hat.",
+            "configureappeal": "Anfrage konfigurieren",
+            "useadvancedfilter": "Erweiterte Filter ein-/ausblenden.",
+            "selectmembers": "Mitglieder auswählen",
+            "statustype": "Status",
+            "executesearch": "Suche ausführen",
+            "nomatches": "Keine Entbannungsanfragen passen zu deiner Suche.",
+            "nomatchesdescription": "Es könnten noch keine Entbannungsanfragen in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Entbannungsanfragen zu finden.",
+            "failedtoload": "Entbannungsanfragen konnten nicht geladen werden"
+        },
         "usernote": {
             "createusernote": "Benutzernotiz erstellen",
             "createusernotedescription": "Beschreibung",
