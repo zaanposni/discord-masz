@@ -274,7 +274,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <Link href={`/guilds/${appeal.guildId}/cases/${appeal.id}`} icon={Launch20} class="align-end" />
+                            <Link href={`/guilds/${appeal.guildId}/appeals/${appeal.id}`} icon={Launch20} class="align-end" />
                         </div>
                     </Tile>
                 </a>
