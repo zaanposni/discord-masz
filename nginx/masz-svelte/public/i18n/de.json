@@ -279,7 +279,8 @@
             "executesearch": "Suche ausführen",
             "nomatches": "Keine Entbannungsanfragen passen zu deiner Suche.",
             "nomatchesdescription": "Es könnten noch keine Entbannungsanfragen in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Entbannungsanfragen zu finden.",
-            "failedtoload": "Entbannungsanfragen konnten nicht geladen werden"
+            "failedtoload": "Entbannungsanfragen konnten nicht geladen werden",
+            "hasanswered": "Benutzer hat {count} Fragen beantwortet"
         },
         "usernote": {
             "createusernote": "Benutzernotiz erstellen",

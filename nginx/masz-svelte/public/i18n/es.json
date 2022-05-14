@@ -279,7 +279,8 @@
             "executesearch": "Ejecutar la búsqueda",
             "nomatches": "Ningún reclamo coincide con su búsqueda.",
             "nomatchesdescription": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos.",
-            "failedtoload": "No se pudo cargar las quejas"
+            "failedtoload": "No se pudo cargar las quejas",
+            "hasanswered": "El usuario ha respondido {count} preguntas"
         },
         "usernote": {
             "createusernote": "Crear nota de usuario",

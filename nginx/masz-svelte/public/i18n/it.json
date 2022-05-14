@@ -279,7 +279,8 @@
             "executesearch": "Esegui ricerca",
             "nomatches": "Nessun reclamo corrisponde alla tua ricerca.",
             "nomatchesdescription": "Potrebbe non essere ancora nessun caso in questo server. Tuttavia, è possibile provare a regolare i filtri in alto per trovare alcuni casi.",
-            "failedtoload": "Impossibile caricare reclami"
+            "failedtoload": "Impossibile caricare reclami",
+            "hasanswered": "L'utente ha risposto a {count} domande"
         },
         "usernote": {
             "createusernote": "Crea nota utente",

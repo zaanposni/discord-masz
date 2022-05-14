@@ -279,7 +279,8 @@
             "executesearch": "Exécuter la recherche",
             "nomatches": "Aucune demande ne correspond à votre recherche.",
             "nomatchesdescription": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas.",
-            "failedtoload": "Échec du chargement des demandes"
+            "failedtoload": "Échec du chargement des demandes",
+            "hasanswered": "L'utilisateur a répondu à {count} questions"
         },
         "usernote": {
             "createusernote": "Créer une note utilisateur",

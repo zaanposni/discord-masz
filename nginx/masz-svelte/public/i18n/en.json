@@ -279,7 +279,8 @@
             "executesearch": "Execute search",
             "nomatches": "No appeals match your search.",
             "nomatchesdescription": "There may be no appeals yet in this guild. However, you can try to adjust your filters above to find some appeals.",
-            "failedtoload": "Failed to load appeals"
+            "failedtoload": "Failed to load appeals",
+            "hasanswered": "User has answered {count} questions"
         },
         "usernote": {
             "createusernote": "Create usernote",

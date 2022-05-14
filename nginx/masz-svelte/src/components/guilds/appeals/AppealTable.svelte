@@ -164,7 +164,12 @@
                 <Button class="!mr-2" icon={Settings32} href={$url(`/guilds/${$currentParams.guildId}/appeals/config`)}
                     >{$_("guilds.appealtable.configureappeal")}</Button>
             {:else if !$authUser?.memberGuilds?.find((x) => x.id === $currentParams.guildId)}
-                <Button class="!mr-2" icon={Add32} href={$url(`/guilds/${$currentParams.guildId}/appeals/new`)} disabled={!$allowedToCreateAppeal} title={!$allowedToCreateAppeal ? $_("guilds.appealtable.disabledexplained") : null}
+                <Button
+                    class="!mr-2"
+                    icon={Add32}
+                    href={$url(`/guilds/${$currentParams.guildId}/appeals/new`)}
+                    disabled={!$allowedToCreateAppeal}
+                    title={!$allowedToCreateAppeal ? $_("guilds.appealtable.disabledexplained") : null}
                     >{$_("guilds.appealtable.createnewappeal")}</Button>
             {/if}
             <Button iconDescription={$_("guilds.appealtable.useadvancedfilter")} icon={Filter24} on:click={toggleFilter} />
@@ -269,7 +274,7 @@
                                     </div>
                                     <div class="mt-2">
                                         <div style="word-wrap: anywhere">
-                                            User has answered {appeal.answers.length} questions.
+                                            {$_("guilds.appealtable.hasanswered", { values: { count: appeal.answers.length } })}
                                         </div>
                                     </div>
                                 </div>
