@@ -197,8 +197,8 @@
             {#each { length: 3 } as _, i}
                 <Tile class="mb-2">
                     <div class="flex flex-row items-center">
-                        <div class="grow flex-shink">
-                            <div class="flex flex-col grow flex-shink">
+                        <div class="grow flex-shrink">
+                            <div class="flex flex-col grow flex-shrink">
                                 <div class="flex flex-row items-center">
                                     <SkeletonText width={"5%"} />
                                     <div class="mr-5" />
@@ -222,8 +222,8 @@
             {#each $notes as note (note.userNote.id)}
                 <Tile class="mb-2">
                     <div class="flex flex-row items-center">
-                        <div class="grow flex-shink">
-                            <div class="flex flex-col grow flex-shink">
+                        <div class="grow flex-shrink">
+                            <div class="flex flex-col grow flex-shrink">
                                 <div class="flex flex-row items-center">
                                     <UserIcon user={note.user} />
                                     <div class="flex flex-col md:flex-row">

@@ -312,11 +312,11 @@
             {#each { length: 3 } as _, i}
                 <Tile class="mb-2">
                     <div class="flex flex-row items-center">
-                        <div class="grow flex-shink">
-                            <div class="flex flex-col grow flex-shink">
+                        <div class="grow flex-shrink">
+                            <div class="flex flex-col grow flex-shrink">
                                 <div class="flex flex-row">
                                     <SkeletonPlaceholder class="mr-3" style="height: 4rem; width: 4rem" />
-                                    <div class="flex grow flex-col flex-shink">
+                                    <div class="flex grow flex-col flex-shrink">
                                         <div class="flex flex-row items-center">
                                             <SkeletonText width={"5%"} />
                                             <div class="mr-5" />
@@ -343,14 +343,14 @@
             {#each $messages as message (message.id)}
                 <Tile class="mb-2">
                     <div class="flex flex-row items-center">
-                        <div class="grow flex-shink">
-                            <div class="flex flex-col grow flex-shink">
+                        <div class="grow flex-shrink">
+                            <div class="flex flex-col grow flex-shrink">
                                 <div class="flex flex-row">
                                     <UserIcon
                                         size={matches ? 48 : 32}
                                         class="{matches ? 'self-center' : 'self-start'} mr-3"
                                         user={message.lastEdited} />
-                                    <div class="flex flex-col flex-shink">
+                                    <div class="flex flex-col flex-shrink">
                                         <div class="flex flex-row items-center flex-wrap mb-1">
                                             <ScheduledMessageStatusTag class="grow-0 shrink-0 !ml-0 mr-1" {message} />
                                             {#if message.status === ScheduledMessageStatus.Failed}

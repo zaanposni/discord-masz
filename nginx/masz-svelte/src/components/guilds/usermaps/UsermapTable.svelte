@@ -215,8 +215,8 @@
             {#each { length: 3 } as _, i}
                 <Tile class="mb-2">
                     <div class="flex flex-row items-center">
-                        <div class="grow flex-shink">
-                            <div class="flex flex-col grow flex-shink">
+                        <div class="grow flex-shrink">
+                            <div class="flex flex-col grow flex-shrink">
                                 <div class="flex flex-row items-center">
                                     <SkeletonText width={"5%"} />
                                     <div class="mr-5" />
@@ -240,8 +240,8 @@
             {#each $mappings as usermap (usermap.userMapping.id)}
                 <Tile class="mb-2">
                     <div class="flex flex-row items-center">
-                        <div class="grow flex-shink">
-                            <div class="flex flex-col grow flex-shink">
+                        <div class="grow flex-shrink">
+                            <div class="flex flex-col grow flex-shrink">
                                 <div class="flex flex-row items-center">
                                     <div class="mr-2">
                                         <UserIcon user={usermap.userA} />

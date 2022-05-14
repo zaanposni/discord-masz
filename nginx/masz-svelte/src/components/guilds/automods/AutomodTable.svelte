@@ -233,8 +233,8 @@
             {#each { length: 3 } as _, i}
                 <Tile class="mb-2">
                     <div class="flex flex-row items-center">
-                        <div class="grow flex-shink">
-                            <div class="flex flex-col grow flex-shink">
+                        <div class="grow flex-shrink">
+                            <div class="flex flex-col grow flex-shrink">
                                 <div class="flex flex-row items-center">
                                     <SkeletonText width={"5%"} />
                                     <div class="mr-5" />
@@ -258,8 +258,8 @@
             {#each events as event}
                 <Tile class="mb-2">
                     <div class="flex flex-row items-center">
-                        <div class="grow flex-shink">
-                            <div class="flex flex-col grow flex-shink">
+                        <div class="grow flex-shrink">
+                            <div class="flex flex-col grow flex-shrink">
                                 <div class="flex flex-row">
                                     <div class="flex flex-col">
                                         <div class="flex flex-row flex-wrap items-center">
