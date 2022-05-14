@@ -192,7 +192,7 @@
                 <div style="word-wrap: break-word;">
                     {$_(`guilds.automods.${$editModalRule?.key}.details`)}
                 </div>
-                <div class="grid grid-cols-2 gap-4 w-full">
+                <div class="grid grid-cols-2 gap-4 w-full mt-2">
                     {#if $editModalRule.showLimitField}
                         <TextInput
                             required={true}
