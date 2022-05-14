@@ -312,7 +312,7 @@
         {#each Array.from(types) as rule}
             <div class="p-4 automod-widget">
                 <div class="flex flex-row items-center">
-                    <div>
+                    <div class="self-start">
                         <Checkbox
                             checked={$automods.find((x) => x.autoModerationType === rule.type) !== undefined}
                             on:check={(e) => {
