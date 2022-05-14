@@ -144,13 +144,6 @@
         color: unset;
         text-decoration: unset;
     }
-
-    :global(.case-label-list .bx--tag:not(:first-child)) {
-        margin-left: 0.25rem;
-    }
-    :global(.case-label-list .bx--tag) {
-        margin-right: 0;
-    }
 </style>
 
 <MediaQuery query="(min-width: 768px)" let:matches>
@@ -160,10 +153,10 @@
             {$_("nav.guild.appeals")}
         </h2>
         <div class="flex flex-row">
-            {#if $authUser?.adminGuilds?.find((x) => x.id === $currentParams.guildId) || $authUser?.modGuilds?.find((x) => x.id === $currentParams.guildId)}
+            {#if $authUser?.adminGuilds?.find((x) => x.id === $currentParams.guildId)}
                 <Button class="!mr-2" icon={Settings32} href={$url(`/guilds/${$currentParams.guildId}/appeals/config`)}
                     >{$_("guilds.appealtable.configureappeal")}</Button>
-            {:else if !$authUser?.memberGuilds?.find((x) => x.id === $currentParams.guildId)}
+            {:else if !$authUser?.memberGuilds?.find((x) => x.id === $currentParams.guildId) && !$authUser?.modGuilds?.find((x) => x.id === $currentParams.guildId)}
                 <Button
                     class="!mr-2"
                     icon={Add32}
