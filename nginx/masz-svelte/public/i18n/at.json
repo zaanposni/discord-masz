@@ -282,6 +282,21 @@
             "failedtoload": "Entbannungsanfragen konnten nicht geladen werden",
             "hasanswered": "Benutzer hat {count} Fragen beantwortet"
         },
+        "appealconfig": {
+            "title": "Entbannungsanfrage-Struktur",
+            "explain": "Konfiguriere des Formular fia dein Entbannungsantrag der Güde.",
+            "explain2": "Benutzer können Frodn übaspringen, wenns woin.",
+            "explain3": "Wenns a Frog löschn, wiad die Frog weitahin in den oitn Entbannungsanträgen sichtboa sei.",
+            "explain4": "Wenns keine Frogn konfiguriat hobn, kennan Benutzer kane Entbannungsanträge mehr stön.",
+            "failedtoreorder": "Fehler beim Neuordnen der Frodn",
+            "deleted": "Frog gelöscht",
+            "failedtodelete": "Fehler beim Löschen der Frog",
+            "saved": "Frog gespeichert",
+            "failedtosave": "Fehler beim Speichern der Frog",
+            "editquestion": "Frog bearbeiten",
+            "question": "Frog",
+            "addquestion": "Frog hinzufügen"
+        },
         "usernote": {
             "createusernote": "Benutzernotiz erstellen",
             "createusernotedescription": "Beschreibung",

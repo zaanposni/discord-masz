@@ -282,6 +282,21 @@
             "failedtoload": "Impossibile caricare reclami",
             "hasanswered": "L'utente ha risposto a {count} domande"
         },
+        "appealconfig": {
+            "title": "Struttura reclami banno",
+            "explain": "Configura il modulo per l'appello della gilda.",
+            "explain2": "Gli utenti possono saltare le domande se vogliono.",
+            "explain3": "Se si elimina una domanda, sarà ancora visibile nei precedenti appelli.",
+            "explain4": "Se non hai domande configurate, gli utenti non potranno richiedere appelli.",
+            "failedtoreorder": "Impossibile riordinare le domande",
+            "deleted": "Domanda eliminata",
+            "failedtodelete": "Impossibile eliminare la domanda",
+            "saved": "Domanda salvata",
+            "failedtosave": "Impossibile salvare la domanda",
+            "editquestion": "Modifica domanda",
+            "question": "Domanda",
+            "addquestion": "Aggiungi domanda"
+        },
         "usernote": {
             "createusernote": "Crea nota utente",
             "createusernotedescription": "Descrizione",

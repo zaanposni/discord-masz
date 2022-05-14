@@ -2352,6 +2352,138 @@
                 "it": "L'utente ha risposto a {count} domande"
             }
         },
+        "appealconfig": {
+            "title": {
+                "description": "Title",
+                "en": "Ban appeal structure",
+                "de": "Entbannungsanfrage-Struktur",
+                "at": "Entbannungsanfrage-Struktur",
+                "fr": "Structure de la demande de bannissement",
+                "es": "Estructura de reclamo de prohibición",
+                "ru": "Структура обращения за бан",
+                "it": "Struttura reclami banno"
+            },
+            "explain": {
+                "description": "Configure",
+                "en": "Configure the form for the guild's ban appeal.",
+                "de": "Konfiguriere das Formular für den Entbannungsantrag der Gilde.",
+                "at": "Konfiguriere des Formular fia dein Entbannungsantrag der Güde.",
+                "fr": "Configurer le formulaire pour l'appel d'embargo de la guilde.",
+                "es": "Configurar el formulario para el apelante de la gildia.",
+                "ru": "Настройте форму для обращения в гильдию.",
+                "it": "Configura il modulo per l'appello della gilda."
+            },
+            "explain2": {
+                "description": "Skip",
+                "en": "Users can skip questions if they want to.",
+                "de": "Benutzer können Fragen überspringen, wenn sie möchten.",
+                "at": "Benutzer können Frodn übaspringen, wenns woin.",
+                "fr": "Les utilisateurs peuvent sauter des questions si ils le souhaitent.",
+                "es": "Los usuarios pueden omitir las preguntas si quieren.",
+                "ru": "Пользователи могут пропустить вопросы, если хотят.",
+                "it": "Gli utenti possono saltare le domande se vogliono."
+            },
+            "explain3": {
+                "description": "Delete",
+                "en": "If you delete a question it will still be visible in old ban appeals.",
+                "de": "Wenn Sie eine Frage löschen, wird sie weiterhin in alten Entbannungsanträgen sichtbar sein.",
+                "at": "Wenns a Frog löschn, wiad die Frog weitahin in den oitn Entbannungsanträgen sichtboa sei.",
+                "fr": "Si vous supprimez une question, elle sera toujours visible dans les appels d'embargo antérieurs.",
+                "es": "Si elimina una pregunta, permanecerá visible en los apelantes de la gildia.",
+                "ru": "Если удалите вопрос, он будет все еще видим в старых обращениях.",
+                "it": "Se si elimina una domanda, sarà ancora visibile nei precedenti appelli."
+            },
+            "explain4": {
+                "description": "Not configured",
+                "en": "If you have no questions configured, users will not be able to appeal bans.",
+                "de": "Wenn Sie keine Fragen konfiguriert haben, können Benutzer keine Entbannungsanträge mehr stellen.",
+                "at": "Wenns keine Frogn konfiguriat hobn, kennan Benutzer kane Entbannungsanträge mehr stön.",
+                "fr": "Si vous n'avez pas de questions configurées, les utilisateurs ne pourront pas appeler d'embargo.",
+                "es": "Si no tiene preguntas configuradas, los usuarios no podrán hacer apelantes.",
+                "ru": "Если у вас нет вопросов, пользователи не смогут подать обращения.",
+                "it": "Se non hai domande configurate, gli utenti non potranno richiedere appelli."
+            },
+            "failedtoreorder": {
+                "description": "Failed to reorder",
+                "en": "Failed to reorder questions",
+                "de": "Fehler beim Neuordnen der Fragen",
+                "at": "Fehler beim Neuordnen der Frodn",
+                "fr": "Échec de la réorganisation des questions",
+                "es": "No se pudo reordenar las preguntas",
+                "ru": "Не удалось переместить вопросы",
+                "it": "Impossibile riordinare le domande"
+            },
+            "deleted": {
+                "description": "Deleted",
+                "en": "Question deleted",
+                "de": "Frage gelöscht",
+                "at": "Frog gelöscht",
+                "fr": "Question supprimée",
+                "es": "Pregunta eliminada",
+                "ru": "Вопрос удален",
+                "it": "Domanda eliminata"
+            },
+            "failedtodelete": {
+                "description": "Failed to delete",
+                "en": "Failed to delete question",
+                "de": "Fehler beim Löschen der Frage",
+                "at": "Fehler beim Löschen der Frog",
+                "fr": "Échec de la suppression de la question",
+                "es": "No se pudo eliminar la pregunta",
+                "ru": "Не удалось удалить вопрос",
+                "it": "Impossibile eliminare la domanda"
+            },
+            "saved": {
+                "description": "Saved",
+                "en": "Question saved",
+                "de": "Frage gespeichert",
+                "at": "Frog gespeichert",
+                "fr": "Question enregistrée",
+                "es": "Pregunta guardada",
+                "ru": "Вопрос сохранен",
+                "it": "Domanda salvata"
+            },
+            "failedtosave": {
+                "description": "Failed to save",
+                "en": "Failed to save question",
+                "de": "Fehler beim Speichern der Frage",
+                "at": "Fehler beim Speichern der Frog",
+                "fr": "Échec de l'enregistrement de la question",
+                "es": "No se pudo guardar la pregunta",
+                "ru": "Не удалось сохранить вопрос",
+                "it": "Impossibile salvare la domanda"
+            },
+            "editquestion": {
+                "description": "Edit question",
+                "en": "Edit question",
+                "de": "Frage bearbeiten",
+                "at": "Frog bearbeiten",
+                "fr": "Modifier la question",
+                "es": "Editar pregunta",
+                "ru": "Редактировать вопрос",
+                "it": "Modifica domanda"
+            },
+            "question": {
+                "description": "Question",
+                "en": "Question",
+                "de": "Frage",
+                "at": "Frog",
+                "fr": "Question",
+                "es": "Pregunta",
+                "ru": "Вопрос",
+                "it": "Domanda"
+            },
+            "addquestion": {
+                "description": "Add question",
+                "en": "Add question",
+                "de": "Frage hinzufügen",
+                "at": "Frog hinzufügen",
+                "fr": "Ajouter une question",
+                "es": "Añadir pregunta",
+                "ru": "Добавить вопрос",
+                "it": "Aggiungi domanda"
+            }
+        },
         "usernote": {
             "createusernote": {
                 "description": "Create usernote",

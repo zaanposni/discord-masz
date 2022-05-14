@@ -282,6 +282,21 @@
             "failedtoload": "Failed to load appeals",
             "hasanswered": "User has answered {count} questions"
         },
+        "appealconfig": {
+            "title": "Ban appeal structure",
+            "explain": "Configure the form for the guild's ban appeal.",
+            "explain2": "Users can skip questions if they want to.",
+            "explain3": "If you delete a question it will still be visible in old ban appeals.",
+            "explain4": "If you have no questions configured, users will not be able to appeal bans.",
+            "failedtoreorder": "Failed to reorder questions",
+            "deleted": "Question deleted",
+            "failedtodelete": "Failed to delete question",
+            "saved": "Question saved",
+            "failedtosave": "Failed to save question",
+            "editquestion": "Edit question",
+            "question": "Question",
+            "addquestion": "Add question"
+        },
         "usernote": {
             "createusernote": "Create usernote",
             "createusernotedescription": "Description",

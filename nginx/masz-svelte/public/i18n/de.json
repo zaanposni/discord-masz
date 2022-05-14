@@ -282,6 +282,21 @@
             "failedtoload": "Entbannungsanfragen konnten nicht geladen werden",
             "hasanswered": "Benutzer hat {count} Fragen beantwortet"
         },
+        "appealconfig": {
+            "title": "Entbannungsanfrage-Struktur",
+            "explain": "Konfiguriere das Formular für den Entbannungsantrag der Gilde.",
+            "explain2": "Benutzer können Fragen überspringen, wenn sie möchten.",
+            "explain3": "Wenn Sie eine Frage löschen, wird sie weiterhin in alten Entbannungsanträgen sichtbar sein.",
+            "explain4": "Wenn Sie keine Fragen konfiguriert haben, können Benutzer keine Entbannungsanträge mehr stellen.",
+            "failedtoreorder": "Fehler beim Neuordnen der Fragen",
+            "deleted": "Frage gelöscht",
+            "failedtodelete": "Fehler beim Löschen der Frage",
+            "saved": "Frage gespeichert",
+            "failedtosave": "Fehler beim Speichern der Frage",
+            "editquestion": "Frage bearbeiten",
+            "question": "Frage",
+            "addquestion": "Frage hinzufügen"
+        },
         "usernote": {
             "createusernote": "Benutzernotiz erstellen",
             "createusernotedescription": "Beschreibung",

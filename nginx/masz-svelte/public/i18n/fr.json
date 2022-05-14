@@ -282,6 +282,21 @@
             "failedtoload": "Échec du chargement des demandes",
             "hasanswered": "L'utilisateur a répondu à {count} questions"
         },
+        "appealconfig": {
+            "title": "Structure de la demande de bannissement",
+            "explain": "Configurer le formulaire pour l'appel d'embargo de la guilde.",
+            "explain2": "Les utilisateurs peuvent sauter des questions si ils le souhaitent.",
+            "explain3": "Si vous supprimez une question, elle sera toujours visible dans les appels d'embargo antérieurs.",
+            "explain4": "Si vous n'avez pas de questions configurées, les utilisateurs ne pourront pas appeler d'embargo.",
+            "failedtoreorder": "Échec de la réorganisation des questions",
+            "deleted": "Question supprimée",
+            "failedtodelete": "Échec de la suppression de la question",
+            "saved": "Question enregistrée",
+            "failedtosave": "Échec de l'enregistrement de la question",
+            "editquestion": "Modifier la question",
+            "question": "Question",
+            "addquestion": "Ajouter une question"
+        },
         "usernote": {
             "createusernote": "Créer une note utilisateur",
             "createusernotedescription": "Description",

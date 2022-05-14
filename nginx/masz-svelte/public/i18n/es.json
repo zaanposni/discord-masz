@@ -282,6 +282,21 @@
             "failedtoload": "No se pudo cargar las quejas",
             "hasanswered": "El usuario ha respondido {count} preguntas"
         },
+        "appealconfig": {
+            "title": "Estructura de reclamo de prohibición",
+            "explain": "Configurar el formulario para el apelante de la gildia.",
+            "explain2": "Los usuarios pueden omitir las preguntas si quieren.",
+            "explain3": "Si elimina una pregunta, permanecerá visible en los apelantes de la gildia.",
+            "explain4": "Si no tiene preguntas configuradas, los usuarios no podrán hacer apelantes.",
+            "failedtoreorder": "No se pudo reordenar las preguntas",
+            "deleted": "Pregunta eliminada",
+            "failedtodelete": "No se pudo eliminar la pregunta",
+            "saved": "Pregunta guardada",
+            "failedtosave": "No se pudo guardar la pregunta",
+            "editquestion": "Editar pregunta",
+            "question": "Pregunta",
+            "addquestion": "Añadir pregunta"
+        },
         "usernote": {
             "createusernote": "Crear nota de usuario",
             "createusernotedescription": "Descripción",
