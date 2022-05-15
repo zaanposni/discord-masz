@@ -309,6 +309,15 @@
             "newappealat": "El usuario está permitido crear un nuevo reclamo a",
             "edit": "Editar"
         },
+        "appealnew": {
+            "answer": "Responda a estas preguntas para completar su solicitud de exclusión.",
+            "skip": "Puede saltar las preguntas si lo desea.",
+            "view": "Podrá ver el estado de su solicitud de exclusión en esta página web cada vez que lo desee.",
+            "saved": "Su solicitud de exclusión ha sido guardada.",
+            "failedtosave": "Su solicitud de exclusión no pudo ser guardada.",
+            "save": "Guardar",
+            "answerplaceholder": "Respuesta"
+        },
         "usernote": {
             "createusernote": "Crear nota de usuario",
             "createusernotedescription": "Descripción",

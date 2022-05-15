@@ -24,7 +24,7 @@
                 break;
         }
     }
-    $: selectType(+appeal.status);
+    $: appeal != null ? selectType(+appeal.status) : undefined;
 </script>
 
 <Tag size="default" {type} class={classes}>

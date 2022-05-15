@@ -309,6 +309,15 @@
             "newappealat": "Benutzer darf einen neuen Antrag erstellen am",
             "edit": "Bearbeiten"
         },
+        "appealnew": {
+            "answer": "Antworte auf diese Fragen, um deinen Entbannungsantrag abzuschließen.",
+            "skip": "Du kannst die Fragen überspringen, wenn du willst.",
+            "view": "Du kannst jederzeit auf dieser Website den Status deines Entbannungsantrags einsehen.",
+            "saved": "Dein Entbannungsantrag wurde gespeichert.",
+            "failedtosave": "Dein Entbannungsantrag konnte nicht gespeichert werden.",
+            "save": "Speichern",
+            "answerplaceholder": "Antwort"
+        },
         "usernote": {
             "createusernote": "Benutzernotiz erstellen",
             "createusernotedescription": "Beschreibung",

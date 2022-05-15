@@ -309,6 +309,15 @@
             "newappealat": "L'utilisateur est autorisé à créer un nouvel appel à",
             "edit": "Modifier"
         },
+        "appealnew": {
+            "answer": "Répondez aux questions pour compléter votre demande d'exclusion.",
+            "skip": "Vous pouvez ignorer les questions si vous le souhaitez.",
+            "view": "Vous pourrez consulter le statut de votre demande d'exclusion sur ce site toutes les fois.",
+            "saved": "Votre demande d'exclusion a été enregistrée.",
+            "failedtosave": "Votre demande d'exclusion n'a pas pu être enregistrée.",
+            "save": "Enregistrer",
+            "answerplaceholder": "Réponse"
+        },
         "usernote": {
             "createusernote": "Créer une note utilisateur",
             "createusernotedescription": "Description",

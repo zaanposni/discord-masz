@@ -309,6 +309,15 @@
             "newappealat": "L'utente può creare un nuovo appello il",
             "edit": "Modifica"
         },
+        "appealnew": {
+            "answer": "Rispondi a queste domande per completare il tuo appello al ban.",
+            "skip": "Puoi saltare le domande se vuoi.",
+            "view": "Potrai visualizzare lo stato del tuo appello al ban su questo sito ogni volta.",
+            "saved": "Il tuo appello è stato salvato.",
+            "failedtosave": "Il tuo appello non può essere salvato.",
+            "save": "Salva",
+            "answerplaceholder": "Risposta"
+        },
         "usernote": {
             "createusernote": "Crea nota utente",
             "createusernotedescription": "Descrizione",

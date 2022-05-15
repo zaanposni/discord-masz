@@ -2586,6 +2586,78 @@
                 "it": "Modifica"
             }
         },
+        "appealnew": {
+            "answer": {
+                "description": "Answer",
+                "en": "Answer these questions to complete your ban appeal.",
+                "de": "Antworte auf diese Fragen, um deinen Entbannungsantrag abzuschließen.",
+                "at": "Beantworte die Frogn, um dein Entbannungsantrag abzuschließn.",
+                "fr": "Répondez aux questions pour compléter votre demande d'exclusion.",
+                "es": "Responda a estas preguntas para completar su solicitud de exclusión.",
+                "ru": "Ответьте на эти вопросы, чтобы завершить ваше обращение к бану.",
+                "it": "Rispondi a queste domande per completare il tuo appello al ban."
+            },
+            "skip": {
+                "description": "Skip",
+                "en": "You can skip questions if you want to.",
+                "de": "Du kannst die Fragen überspringen, wenn du willst.",
+                "at": "Du konnst de Frog übaspringen, wennst wüst.",
+                "fr": "Vous pouvez ignorer les questions si vous le souhaitez.",
+                "es": "Puede saltar las preguntas si lo desea.",
+                "ru": "Вы можете пропустить вопросы, если хотите.",
+                "it": "Puoi saltare le domande se vuoi."
+            },
+            "view": {
+                "description": "View",
+                "en": "You will be able to view the status of your appeal on this website everytime.",
+                "de": "Du kannst jederzeit auf dieser Website den Status deines Entbannungsantrags einsehen.",
+                "at": "Du konnst jedazeit auf dea Website den Status vo deim Entbannungsantrag eisehn.",
+                "fr": "Vous pourrez consulter le statut de votre demande d'exclusion sur ce site toutes les fois.",
+                "es": "Podrá ver el estado de su solicitud de exclusión en esta página web cada vez que lo desee.",
+                "ru": "Вы сможете просмотреть статус вашего обращения к бану на этом сайте всегда.",
+                "it": "Potrai visualizzare lo stato del tuo appello al ban su questo sito ogni volta."
+            },
+            "saved": {
+                "description": "Saved",
+                "en": "Your appeal has been saved.",
+                "de": "Dein Entbannungsantrag wurde gespeichert.",
+                "at": "Dein Entbannungsantrag wurde gespeichert.",
+                "fr": "Votre demande d'exclusion a été enregistrée.",
+                "es": "Su solicitud de exclusión ha sido guardada.",
+                "ru": "Ваше обращение к бану было сохранено.",
+                "it": "Il tuo appello è stato salvato."
+            },
+            "failedtosave": {
+                "description": "Failed to save",
+                "en": "Your appeal could not be saved.",
+                "de": "Dein Entbannungsantrag konnte nicht gespeichert werden.",
+                "at": "Dein Entbannungsantrag konnte nicht gespeichert werden.",
+                "fr": "Votre demande d'exclusion n'a pas pu être enregistrée.",
+                "es": "Su solicitud de exclusión no pudo ser guardada.",
+                "ru": "Ваше обращение к бану не может быть сохранено.",
+                "it": "Il tuo appello non può essere salvato."
+            },
+            "save": {
+                "description": "Save",
+                "en": "Save",
+                "de": "Speichern",
+                "at": "Speichern",
+                "fr": "Enregistrer",
+                "es": "Guardar",
+                "ru": "Сохранить",
+                "it": "Salva"
+            },
+            "answerplaceholder": {
+                "description": "Answer placeholder",
+                "en": "Answer",
+                "de": "Antwort",
+                "at": "Antwort",
+                "fr": "Réponse",
+                "es": "Respuesta",
+                "ru": "Ответ",
+                "it": "Risposta"
+            }
+        },
         "usernote": {
             "createusernote": {
                 "description": "Create usernote",

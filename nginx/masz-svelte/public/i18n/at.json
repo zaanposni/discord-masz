@@ -309,6 +309,15 @@
             "newappealat": "Benutzer darf einen neuen Antrag erstellen am",
             "edit": "Bearbeiten"
         },
+        "appealnew": {
+            "answer": "Beantworte die Frogn, um dein Entbannungsantrag abzuschließn.",
+            "skip": "Du konnst de Frog übaspringen, wennst wüst.",
+            "view": "Du konnst jedazeit auf dea Website den Status vo deim Entbannungsantrag eisehn.",
+            "saved": "Dein Entbannungsantrag wurde gespeichert.",
+            "failedtosave": "Dein Entbannungsantrag konnte nicht gespeichert werden.",
+            "save": "Speichern",
+            "answerplaceholder": "Antwort"
+        },
         "usernote": {
             "createusernote": "Benutzernotiz erstellen",
             "createusernotedescription": "Beschreibung",

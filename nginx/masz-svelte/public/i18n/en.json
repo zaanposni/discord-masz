@@ -309,6 +309,15 @@
             "newappealat": "User is allowed to create new appeal at",
             "edit": "Edit"
         },
+        "appealnew": {
+            "answer": "Answer these questions to complete your ban appeal.",
+            "skip": "You can skip questions if you want to.",
+            "view": "You will be able to view the status of your appeal on this website everytime.",
+            "saved": "Your appeal has been saved.",
+            "failedtosave": "Your appeal could not be saved.",
+            "save": "Save",
+            "answerplaceholder": "Answer"
+        },
         "usernote": {
             "createusernote": "Create usernote",
             "createusernotedescription": "Description",
