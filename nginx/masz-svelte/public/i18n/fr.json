@@ -299,6 +299,7 @@
         },
         "appealview": {
             "saved": "Décision enregistrée",
+            "noanswer": "Pas de réponse",
             "failedtosave": "Échec de l'enregistrement de la décision",
             "createdat": "Créé le",
             "updatedat": "Mis à jour le",

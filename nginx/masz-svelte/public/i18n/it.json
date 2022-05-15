@@ -299,6 +299,7 @@
         },
         "appealview": {
             "saved": "Decisione salvata",
+            "noanswer": "Nessuna risposta",
             "failedtosave": "Impossibile salvare la decisione",
             "createdat": "Creato il",
             "updatedat": "Aggiornato il",

@@ -299,6 +299,7 @@
         },
         "appealview": {
             "saved": "Решение сохранено",
+            "noanswer": "Нет ответа",
             "failedtosave": "Не удалось сохранить решение",
             "createdat": "Создано",
             "updatedat": "Обновлено",

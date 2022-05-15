@@ -2495,6 +2495,16 @@
                 "ru": "Решение сохранено",
                 "it": "Decisione salvata"
             },
+            "noanswer": {
+                "description": "No answer",
+                "en": "No answer",
+                "de": "Keine Antwort",
+                "at": "Keine Antwort",
+                "fr": "Pas de réponse",
+                "es": "Sin respuesta",
+                "ru": "Нет ответа",
+                "it": "Nessuna risposta"
+            },
             "failedtosave": {
                 "description": "Failed to save",
                 "en": "Failed to save decision",

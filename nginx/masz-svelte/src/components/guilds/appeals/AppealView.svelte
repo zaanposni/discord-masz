@@ -147,7 +147,7 @@
                                     </div>
                                     <hr class="mt-4 mb-2" />
                                     <div class="whitespace-pre-wrap" style="word-wrap: anywhere;">
-                                        {answer.answer ? answer.answer : $_("No answer")}
+                                        {answer.answer ? answer.answer : $_("guilds.appealview.noanswer")}
                                     </div>
                                 </div>
                             </Tile>

@@ -299,6 +299,7 @@
         },
         "appealview": {
             "saved": "Entscheidung gespeichert",
+            "noanswer": "Keine Antwort",
             "failedtosave": "Fehler beim Speichern der Entscheidung",
             "createdat": "Erstellt am",
             "updatedat": "Aktualisiert am",
