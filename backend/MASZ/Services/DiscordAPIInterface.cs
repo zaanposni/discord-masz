@@ -101,7 +101,7 @@ namespace MASZ.Services
             try
             {
                 SocketGuild guild = _client.GetGuild(guildId);
-                bans = (await guild.GetBansAsync()).Select(x => x as IBan).ToList();
+                bans = (await guild.GetBansAsync().FlattenAsync()).Select(x => x as IBan).ToList();
             }
             catch (Exception e)
             {
