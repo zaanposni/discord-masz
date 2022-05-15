@@ -272,7 +272,7 @@
                             {/if}
                             <div class="flex flex-row mt-2">
                                 <div class="grow" />
-                                <Button class="justify-self-end" disabled={$submitting} on:click={saveAppeal}
+                                <Button class="justify-self-end" disabled={$submitting || !$appeal.moderatorComment} on:click={saveAppeal}
                                     >{$_("guilds.appealview.edit")}</Button>
                             </div>
                         </div>
