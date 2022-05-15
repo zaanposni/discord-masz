@@ -7,7 +7,7 @@
     import type { IAppealStructure } from "../../../models/api/IAppealStructure";
     import { currentParams } from "../../../stores/currentParams";
     import API from "../../../services/api/api";
-    import { Button, Modal, TextArea, Tile } from "carbon-components-svelte";
+    import { Button, Modal, SkeletonText, TextArea, TextAreaSkeleton, Tile } from "carbon-components-svelte";
     import { flip } from "svelte/animate";
     import { dndzone } from "svelte-dnd-action";
     import { toastError, toastSuccess } from "../../../services/toast/store";
@@ -167,10 +167,18 @@
         <div class="text-md">{$_("guilds.appealconfig.explain3")}</div>
         <div class="text-md mb-4">{$_("guilds.appealconfig.explain4")}</div>
     </div>
-    {#if $loading}
-        <div class="flex flex-col" />
-    {:else}
-        <div class="w-full md:w-1/2">
+    <div class="w-full md:w-1/2">
+        {#if $loading}
+            <SkeletonText class="!mb-6" paragraph lines={2} />
+            <SkeletonText class="!mb-6" paragraph lines={2} />
+            <SkeletonText class="!mb-6" paragraph lines={2} />
+            <hr class="my-2" />
+            <TextAreaSkeleton />
+            <div class="flex flex-row mt-2">
+                <div class="grow" />
+                <Button class="justify-self-end" skeleton />
+            </div>
+        {:else}
             <section
                 class="grid gap-1 grid-cols-1"
                 use:dndzone={{ items: $appealStructures, flipDurationMs, dropTargetStyle: {}, morphDisabled: true, dragDisabled: false }}
@@ -213,6 +221,6 @@
                     <Button class="justify-self-end" disabled={!$newQuestion} on:click={addQuestion}>{$_("guilds.appealconfig.addquestion")}</Button>
                 </div>
             </section>
-        </div>
-    {/if}
+        {/if}
+    </div>
 </MediaQuery>

@@ -118,7 +118,7 @@
             <!-- Metadata -->
             <div class="flex flex-col mb-4">
                 {#if $loading}
-                    <SkeletonText class="!mb-0" width="300px" lines={2} />
+                    <SkeletonText class="!mb-0" width="300px" />
                 {:else}
                     <div class="grid grid-cols-2 gap-2 lg:w-1/4">
                         <div>{$_("guilds.appealview.createdat")}:</div>
@@ -133,23 +133,25 @@
 
             <!-- Appeal -->
             <div class="w-full xl:w-1/2">
-                <Tile>
                     {#if $loading}
-                        <div />
+                        <SkeletonText class="!mb-6" paragraph lines={2} />
+                        <SkeletonText class="!mb-6" paragraph lines={2} />
+                        <SkeletonText class="!mb-6" paragraph lines={2} />
                     {:else}
                         {#each $appeal.answers as answer (answer.id)}
-                            <div class="flex flex-col">
-                                <div class="text-2xl whitespace-pre-wrap" style="word-wrap: anywhere;">
-                                    {$appeal.structures.find((s) => s.id === answer.questionId)?.question ?? "Unknown"}
+                            <Tile>
+                                <div class="flex flex-col">
+                                    <div class="text-2xl whitespace-pre-wrap" style="word-wrap: anywhere;">
+                                        {$appeal.structures.find((s) => s.id === answer.questionId)?.question ?? "Unknown"}
+                                    </div>
+                                    <hr class="mt-4 mb-2" />
+                                    <div class="whitespace-pre-wrap" style="word-wrap: anywhere;">
+                                        {answer.answer ? answer.answer : $_("No answer")}
+                                    </div>
                                 </div>
-                                <hr class="mt-4 mb-2" />
-                                <div class="whitespace-pre-wrap" style="word-wrap: anywhere;">
-                                    {answer.answer ? answer.answer : $_("No answer")}
-                                </div>
-                            </div>
+                            </Tile>
                         {/each}
                     {/if}
-                </Tile>
 
                 <hr class="my-4" />
 
@@ -157,7 +159,16 @@
                 <Tile>
                     <div class="flex flex-col">
                         {#if $loading}
-                            <div />
+                            <SkeletonText />
+                            <div class="flex flex-row w-full mb-6">
+                                <div class="grow" />
+                                <SkeletonText />
+                                <div class="grow" />
+                            </div>
+                            <SkeletonText heading />
+                            <SkeletonText class="!mb-6" />
+                            <SkeletonText heading />
+                            <SkeletonText class="!mb-6" />
                         {:else}
                             {#if $appeal.status != AppealStatus.Pending}
                                 <div class="text-2xl font-semibold">
@@ -223,35 +234,39 @@
                                     placeholder={$_("guilds.appealview.moderatorcomment")}
                                     readonly={$submitting} />
                             </div>
-                            <div class="xl:w-1/2 mt-4">
-                                <Checkbox
-                                    checked={$appeal.userCanCreateNewAppeals === null}
-                                    labelText={$_("guilds.appealview.newappealnever")}
-                                    readonly={$submitting}
-                                    on:check={(e) => {
-                                        appeal.update((n) => {
-                                            n.userCanCreateNewAppeals = e.detail ? null : moment();
-                                            return n;
-                                        });
-                                        if (!e.detail) {
-                                            inputPunishedUntilDate = moment($appeal.userCanCreateNewAppeals).format(
-                                                $currentLanguage?.momentDateFormat ?? "YYYY-MM-DD"
-                                            );
-                                        }
-                                    }} />
-                            </div>
-                            {#if $appeal.userCanCreateNewAppeals !== null}
-                                <div class="xl:w-1/2 mt-4" class:flex-wrap={!matches} transition:slide|local>
-                                    <DatePicker
-                                        bind:value={inputPunishedUntilDate}
-                                        datePickerType="single"
-                                        locale={$currentFlatpickrLocale ?? "en"}
-                                        dateFormat={$currentLanguage.dateFormat}
-                                        on:change>
-                                        <DatePickerInput
-                                            labelText={$_("guilds.casedialog.punisheduntil")}
-                                            placeholder={$currentLanguage.dateFormat} />
-                                    </DatePicker>
+                            {#if $appeal.status == AppealStatus.Denied}
+                                <div transition:slide|local>
+                                    <div class="xl:w-1/2 mt-4">
+                                        <Checkbox
+                                            checked={$appeal.userCanCreateNewAppeals === null}
+                                            labelText={$_("guilds.appealview.newappealnever")}
+                                            readonly={$submitting}
+                                            on:check={(e) => {
+                                                appeal.update((n) => {
+                                                    n.userCanCreateNewAppeals = e.detail ? null : moment();
+                                                    return n;
+                                                });
+                                                if (!e.detail) {
+                                                    inputPunishedUntilDate = moment($appeal.userCanCreateNewAppeals).format(
+                                                        $currentLanguage?.momentDateFormat ?? "YYYY-MM-DD"
+                                                    );
+                                                }
+                                            }} />
+                                    </div>
+                                    {#if $appeal.userCanCreateNewAppeals !== null}
+                                        <div class="xl:w-1/2 mt-4" class:flex-wrap={!matches} transition:slide|local>
+                                            <DatePicker
+                                                bind:value={inputPunishedUntilDate}
+                                                datePickerType="single"
+                                                locale={$currentFlatpickrLocale ?? "en"}
+                                                dateFormat={$currentLanguage?.dateFormat ?? "YYYY-MM-DD"}
+                                                on:change>
+                                                <DatePickerInput
+                                                    labelText={$_("guilds.casedialog.punisheduntil")}
+                                                    placeholder={$currentLanguage?.dateFormat ?? "YYYY-MM-DD"} />
+                                            </DatePicker>
+                                        </div>
+                                    {/if}
                                 </div>
                             {/if}
                             <div class="flex flex-row mt-2">
