@@ -48,6 +48,7 @@
     }
 
     function clearCache() {
+        API.clearCacheEntryLike('post', `/guilds/${$currentParams.guildId}/appeal`);
         API.clearCacheEntry("get", `/guilds/${$currentParams.guildId}/appeal/${$currentParams.appealId}`);
     }
 
@@ -139,7 +140,7 @@
                         <SkeletonText class="!mb-6" paragraph lines={2} />
                     {:else}
                         {#each $appeal.answers as answer (answer.id)}
-                            <Tile>
+                            <Tile class="mb-2">
                                 <div class="flex flex-col">
                                     <div class="text-2xl whitespace-pre-wrap" style="word-wrap: anywhere;">
                                         {$appeal.structures.find((s) => s.id === answer.questionId)?.question ?? "Unknown"}

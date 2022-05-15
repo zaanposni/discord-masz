@@ -10,8 +10,8 @@
     import { currentParams } from "../../../stores/currentParams";
     import { toastError, toastSuccess } from "../../../services/toast/store";
     import type { IAppealStructure } from "../../../models/api/IAppealStructure";
-import type { IAppealView } from "../../../models/api/IAppealView";
-import { goto } from "@roxi/routify";
+    import type { IAppealView } from "../../../models/api/IAppealView";
+    import { goto } from "@roxi/routify";
 
     const loading: Writable<boolean> = writable(true);
     const submitting: Writable<boolean> = writable(false);
@@ -35,11 +35,16 @@ import { goto } from "@roxi/routify";
             });
     }
 
+    function clearCache() {
+        API.clearCacheEntryLike('post', `/guilds/${$currentParams.guildId}/appeal`);
+    }
+
     function saveAppeal() {
         submitting.set(true);
 
         API.post(`/guilds/${$currentParams.guildId}/appeal`, { answers: $answers })
             .then((res: IAppealView) => {
+                clearCache();
                 toastSuccess($_("guilds.appealnew.saved"));
                 submitting.set(false);
                 $goto(`/guilds/${$currentParams.guildId}/appeals/${res.id}`);
