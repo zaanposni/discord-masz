@@ -11,8 +11,8 @@
     export let appeal: IAppealView;
     let type: string;
 
-    function selectType() {
-        switch (appeal.status) {
+    function selectType(status: AppealStatus) {
+        switch (status) {
             case AppealStatus.Approved:
                 type = "green";
                 break;
@@ -24,7 +24,7 @@
                 break;
         }
     }
-    selectType();
+    $: selectType(+appeal.status);
 </script>
 
 <Tag size="default" {type} class={classes}>

@@ -297,6 +297,18 @@
             "question": "Question",
             "addquestion": "Ajouter une question"
         },
+        "appealview": {
+            "saved": "Décision enregistrée",
+            "failedtosave": "Échec de l'enregistrement de la décision",
+            "createdat": "Créé le",
+            "updatedat": "Mis à jour le",
+            "decisionat": "Décision le",
+            "moderatorcomment": "Commentaire du modérateur",
+            "newappeal": "Nouvel appel",
+            "newappealnever": "L'utilisateur n'est jamais autorisé à créer un nouvel appel",
+            "newappealat": "L'utilisateur est autorisé à créer un nouvel appel à",
+            "edit": "Modifier"
+        },
         "usernote": {
             "createusernote": "Créer une note utilisateur",
             "createusernotedescription": "Description",

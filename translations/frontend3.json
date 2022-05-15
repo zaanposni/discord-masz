@@ -2484,6 +2484,108 @@
                 "it": "Aggiungi domanda"
             }
         },
+        "appealview": {
+            "saved": {
+                "description": "Saved",
+                "en": "Decision saved",
+                "de": "Entscheidung gespeichert",
+                "at": "Entscheidung gespeichert",
+                "fr": "Décision enregistrée",
+                "es": "Decisión guardada",
+                "ru": "Решение сохранено",
+                "it": "Decisione salvata"
+            },
+            "failedtosave": {
+                "description": "Failed to save",
+                "en": "Failed to save decision",
+                "de": "Fehler beim Speichern der Entscheidung",
+                "at": "Fehler beim Speichern der Entscheidung",
+                "fr": "Échec de l'enregistrement de la décision",
+                "es": "No se pudo guardar la decisión",
+                "ru": "Не удалось сохранить решение",
+                "it": "Impossibile salvare la decisione"
+            },
+            "createdat": {
+                "description": "Created at",
+                "en": "Created at",
+                "de": "Erstellt am",
+                "at": "Erstellt am",
+                "fr": "Créé le",
+                "es": "Creado el",
+                "ru": "Создано",
+                "it": "Creato il"
+            },
+            "updatedat": {
+                "description": "Updated at",
+                "en": "Updated at",
+                "de": "Aktualisiert am",
+                "at": "Aktualisiert am",
+                "fr": "Mis à jour le",
+                "es": "Actualizado el",
+                "ru": "Обновлено",
+                "it": "Aggiornato il"
+            },
+            "decisionat": {
+                "description": "Decision at",
+                "en": "Decision at",
+                "de": "Entscheidung am",
+                "at": "Entscheidung am",
+                "fr": "Décision le",
+                "es": "Decisión el",
+                "ru": "Решение",
+                "it": "Decisione il"
+            },
+            "moderatorcomment": {
+                "description": "Moderator comment",
+                "en": "Moderator comment",
+                "de": "Moderator Kommentar",
+                "at": "Moderator Kommentar",
+                "fr": "Commentaire du modérateur",
+                "es": "Comentario del moderador",
+                "ru": "Комментарий модератора",
+                "it": "Commento del moderatore"
+            },
+            "newappeal": {
+                "description": "New appeal",
+                "en": "New appeal",
+                "de": "Neuer Antrag",
+                "at": "Neuer Antrag",
+                "fr": "Nouvel appel",
+                "es": "Nuevo reclamo",
+                "ru": "Новое обращение",
+                "it": "Nuovo appello"
+            },
+            "newappealnever": {
+                "description": "New appeal never",
+                "en": "User is never allowed to create a new appeal again",
+                "de": "Benutzer darf nie erneut einen neuen Antrag erstellen",
+                "at": "Benutzer darf nie erneut einen neuen Antrag erstellen",
+                "fr": "L'utilisateur n'est jamais autorisé à créer un nouvel appel",
+                "es": "El usuario nunca está permitido crear un nuevo reclamo",
+                "ru": "Пользователь никогда не может создать новое обращение",
+                "it": "L'utente non può più creare un nuovo appello"
+            },
+            "newappealat": {
+                "description": "New appeal at",
+                "en": "User is allowed to create new appeal at",
+                "de": "Benutzer darf einen neuen Antrag erstellen am",
+                "at": "Benutzer darf einen neuen Antrag erstellen am",
+                "fr": "L'utilisateur est autorisé à créer un nouvel appel à",
+                "es": "El usuario está permitido crear un nuevo reclamo a",
+                "ru": "Пользователь может создать новое обращение в",
+                "it": "L'utente può creare un nuovo appello il"
+            },
+            "edit": {
+                "description": "Edit",
+                "en": "Edit",
+                "de": "Bearbeiten",
+                "at": "Bearbeiten",
+                "fr": "Modifier",
+                "es": "Editar",
+                "ru": "Редактировать",
+                "it": "Modifica"
+            }
+        },
         "usernote": {
             "createusernote": {
                 "description": "Create usernote",

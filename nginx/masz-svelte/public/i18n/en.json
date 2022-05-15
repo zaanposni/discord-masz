@@ -297,6 +297,18 @@
             "question": "Question",
             "addquestion": "Add question"
         },
+        "appealview": {
+            "saved": "Decision saved",
+            "failedtosave": "Failed to save decision",
+            "createdat": "Created at",
+            "updatedat": "Updated at",
+            "decisionat": "Decision at",
+            "moderatorcomment": "Moderator comment",
+            "newappeal": "New appeal",
+            "newappealnever": "User is never allowed to create a new appeal again",
+            "newappealat": "User is allowed to create new appeal at",
+            "edit": "Edit"
+        },
         "usernote": {
             "createusernote": "Create usernote",
             "createusernotedescription": "Description",

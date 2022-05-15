@@ -26,7 +26,7 @@ export interface IAppealView {
 }
 
 export function getI18NStatus(appeal: IAppealView) {
-    switch(appeal.status) {
+    switch(+appeal.status) {
         case AppealStatus.Approved:
             return "enums.appealstatus.approved";
         case AppealStatus.Denied:

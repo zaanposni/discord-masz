@@ -297,6 +297,18 @@
             "question": "Вопрос",
             "addquestion": "Добавить вопрос"
         },
+        "appealview": {
+            "saved": "Решение сохранено",
+            "failedtosave": "Не удалось сохранить решение",
+            "createdat": "Создано",
+            "updatedat": "Обновлено",
+            "decisionat": "Решение",
+            "moderatorcomment": "Комментарий модератора",
+            "newappeal": "Новое обращение",
+            "newappealnever": "Пользователь никогда не может создать новое обращение",
+            "newappealat": "Пользователь может создать новое обращение в",
+            "edit": "Редактировать"
+        },
         "usernote": {
             "createusernote": "Создать пользовательскую заметку",
             "createusernotedescription": "Описание",

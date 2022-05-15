@@ -297,6 +297,18 @@
             "question": "Frage",
             "addquestion": "Frage hinzufügen"
         },
+        "appealview": {
+            "saved": "Entscheidung gespeichert",
+            "failedtosave": "Fehler beim Speichern der Entscheidung",
+            "createdat": "Erstellt am",
+            "updatedat": "Aktualisiert am",
+            "decisionat": "Entscheidung am",
+            "moderatorcomment": "Moderator Kommentar",
+            "newappeal": "Neuer Antrag",
+            "newappealnever": "Benutzer darf nie erneut einen neuen Antrag erstellen",
+            "newappealat": "Benutzer darf einen neuen Antrag erstellen am",
+            "edit": "Bearbeiten"
+        },
         "usernote": {
             "createusernote": "Benutzernotiz erstellen",
             "createusernotedescription": "Beschreibung",

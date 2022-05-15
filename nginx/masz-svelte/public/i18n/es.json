@@ -297,6 +297,18 @@
             "question": "Pregunta",
             "addquestion": "Añadir pregunta"
         },
+        "appealview": {
+            "saved": "Decisión guardada",
+            "failedtosave": "No se pudo guardar la decisión",
+            "createdat": "Creado el",
+            "updatedat": "Actualizado el",
+            "decisionat": "Decisión el",
+            "moderatorcomment": "Comentario del moderador",
+            "newappeal": "Nuevo reclamo",
+            "newappealnever": "El usuario nunca está permitido crear un nuevo reclamo",
+            "newappealat": "El usuario está permitido crear un nuevo reclamo a",
+            "edit": "Editar"
+        },
         "usernote": {
             "createusernote": "Crear nota de usuario",
             "createusernotedescription": "Descripción",
