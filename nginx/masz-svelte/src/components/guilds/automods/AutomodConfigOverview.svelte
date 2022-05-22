@@ -33,6 +33,7 @@
 
     let roles;
     $: roles = ($currentParams?.guild?.roles ?? [])
+        .filter(g => g.id != $currentParams.guildId)
         .sort((a, b) => (a.position < b.position ? 1 : -1))
         .map((role) => ({
             id: role.id,
