@@ -27,6 +27,13 @@
                 loading.set(false);
             })
             .catch(() => {
+                motd.set({
+                    motd: {
+                        guildId: $currentParams.guildId,
+                        message: "",
+                        showMotd: false,
+                    }
+                } as any)
                 loading.set(false);
             });
     }
