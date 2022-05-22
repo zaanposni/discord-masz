@@ -53,7 +53,7 @@
     testLogin();
 
     const interval = setInterval(() => {
-        if (kofiWidgetOverlay && !$isLoading ) {
+        if (kofiWidgetOverlay && !$isLoading) {
             clearInterval(interval);
             drawKofi();
         }
@@ -69,10 +69,12 @@
     }
 
     onDestroy(() => {
-        const containers = document.getElementsByClassName("floatingchat-container-wrap");
-        if (containers.length > 0) {
-            containers[0].parentElement.remove();
-        }
+        setTimeout(() => {
+            const containers = document.getElementsByClassName("floatingchat-container-wrap");
+            if (containers.length > 0) {
+                containers[0].parentElement.remove();
+            }
+        }, 500);
     });
 </script>
 
