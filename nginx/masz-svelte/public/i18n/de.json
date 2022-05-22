@@ -497,6 +497,7 @@
             "pagerangetextplural": "von {total} Seiten"
         }
     },
+    "supportme": "Supporte mich",
     "enums": {
         "punishmenttype": {
             "mute": "Stummschaltung",

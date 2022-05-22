@@ -497,6 +497,7 @@
             "pagerangetextplural": "di {total} pagine"
         }
     },
+    "supportme": "Supportami",
     "enums": {
         "punishmenttype": {
             "mute": "Muto",

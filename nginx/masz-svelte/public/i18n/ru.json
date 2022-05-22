@@ -497,6 +497,7 @@
             "pagerangetextplural": "из {total} страниц"
         }
     },
+    "supportme": "Поддержите меня",
     "enums": {
         "punishmenttype": {
             "mute": "Немой",

@@ -4006,5 +4006,15 @@
                 "it": "di {total} pagine"
             }
         }
+    },
+    "supportme": {
+        "description": "Support me",
+        "en": "Support me",
+        "de": "Supporte mich",
+        "at": "Supporte mich",
+        "fr": "Soutenez-moi",
+        "es": "Apoya",
+        "ru": "Поддержите меня",
+        "it": "Supportami"
     }
 }

@@ -10,7 +10,7 @@
     import { toastError } from "../services/toast/store";
     import { navConfig } from "../stores/nav";
     import { termsOfServiceUrl, privacyPolicyUrl } from "../stores/applicationInfo";
-    import { _ } from "svelte-i18n";
+    import { _, isLoading } from "svelte-i18n";
 
     let loggingIn: boolean = false;
 
@@ -51,6 +51,29 @@
         }
     }
     testLogin();
+
+    const interval = setInterval(() => {
+        if (kofiWidgetOverlay && !$isLoading ) {
+            clearInterval(interval);
+            drawKofi();
+        }
+    }, 200);
+
+    function drawKofi() {
+        kofiWidgetOverlay.draw("zaanposni", {
+            type: "floating-chat",
+            "floating-chat.donateButton.text": $_("supportme"),
+            "floating-chat.donateButton.background-color": "#00b9fe",
+            "floating-chat.donateButton.text-color": "#fff",
+        });
+    }
+
+    onDestroy(() => {
+        const containers = document.getElementsByClassName("floatingchat-container-wrap");
+        if (containers.length > 0) {
+            containers[0].parentElement.remove();
+        }
+    });
 </script>
 
 <div class="flex flex-col justify-center items-center grow">
@@ -59,7 +82,8 @@
             <!-- add headline with ibm typography -->
             <h2 class="px-4">{$_("login.title")}</h2>
             <div style="height: var(--cds-spacing-04)" />
-            <span class="px-4">{$_("login.noaccount")} <OutboundLink href="https://discord.com/register">{$_("login.createaccount")}</OutboundLink></span>
+            <span class="px-4"
+                >{$_("login.noaccount")} <OutboundLink href="https://discord.com/register">{$_("login.createaccount")}</OutboundLink></span>
             <div style="height: var(--cds-spacing-11)" />
             <div class="flex flex-row">
                 <div class="grow" />
