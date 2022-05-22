@@ -4,14 +4,16 @@
     import {
         Button,
         Checkbox,
-        ComboBox,
         InlineLoading,
         MultiSelect,
         NumberInput,
+        NumberInputSkeleton,
         Select,
         SelectItem,
         SelectSkeleton,
+        SkeletonText,
         TextInput,
+        TextInputSkeleton,
         Tooltip,
     } from "carbon-components-svelte";
     import { derived, Writable } from "svelte/store";
@@ -19,10 +21,8 @@
     import { currentParams } from "../../../stores/currentParams";
     import API from "../../../services/api/api";
     import { CacheMode } from "../../../services/api/CacheMode";
-    import type { IGuildAuditlogConfig } from "../../../models/api/IGuildAuditlogConfig";
     import { toastError, toastSuccess } from "../../../services/toast/store";
     import type { IGuildConfig } from "../../../models/api/IGuildConfig";
-    import Languages from "../../../services/enums/Language";
     import Language from "../../../services/enums/Language";
 
     const loading: Writable<boolean> = writable(true);
@@ -96,7 +96,153 @@
     </div>
 
     {#if $loading}
-        skeleton
+    <div class="mt-4 {matches ? 'w-1/2' : ''}">
+        <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-4 gap-y-2 items-center">
+            <div class="lg:col-span-2">
+                <div class="flex flex-col">
+                    <div class="text-lg font-bold mb-2">
+                        <SkeletonText />
+                    </div>
+                    <div class="text-sm">
+                        <SkeletonText />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <SelectSkeleton />
+            </div>
+            <div>
+                <SelectSkeleton />
+            </div>
+            <div>
+                <NumberInputSkeleton />
+            </div>
+            {#if matches}
+                <div />
+            {/if}
+            <div class="flex flex-row items-center">
+                <div class="shrink-0">
+                    <Checkbox skeleton />
+                </div>
+                <div class="grow" />
+            </div>
+            {#if matches}
+                <div />
+            {/if}
+
+            <!-- ########################################################################### -->
+
+            <div class="lg:col-span-2 mt-4">
+                <div class="flex flex-col">
+                    <div class="text-lg font-bold mb-2">
+                        <SkeletonText />
+                    </div>
+                    <div class="text-sm">
+                        <SkeletonText />
+                    </div>
+                    <div class="text-sm">
+                        <SkeletonText />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <SelectSkeleton />
+            </div>
+            {#if matches}
+                <div />
+            {/if}
+
+            <!-- ########################################################################### -->
+
+            <div class="lg:col-span-2 mt-4">
+                <div class="flex flex-col">
+                    <div class="text-lg font-bold mb-2">
+                        <SkeletonText />
+                    </div>
+                    <div class="text-sm">
+                        <SkeletonText />
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2">
+                <TextInputSkeleton />
+            </div>
+            <div class="lg:col-span-2">
+                <TextInputSkeleton />
+            </div>
+
+            <!-- ########################################################################### -->
+
+            <div class="lg:col-span-2 mt-4">
+                <div class="flex flex-col">
+                    <div class="text-lg font-bold mb-2">
+                        <SkeletonText />
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="flex flex-row items-center">
+                    <div class="shrink-0">
+                        <Checkbox skeleton />
+                    </div>
+                    <div class="grow" />
+                </div>
+            </div>
+            {#if matches}
+                <div />
+            {/if}
+            <div>
+                <div class="flex flex-row items-center">
+                    <div class="shrink-0">
+                        <Checkbox skeleton />
+                    </div>
+                    <div class="grow" />
+                </div>
+            </div>
+            {#if matches}
+                <div />
+            {/if}
+
+            <!-- ########################################################################### -->
+
+            <div class="lg:col-span-2 mt-4">
+                <div class="flex flex-col">
+                    <div class="text-lg font-bold mb-2">
+                        <SkeletonText />
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="flex flex-row items-center">
+                    <div class="shrink-0">
+                        <Checkbox skeleton />
+                    </div>
+                    <div class="grow" />
+                </div>
+            </div>
+            {#if matches}
+                <div />
+            {/if}
+
+            <div>
+                <SelectSkeleton />
+            </div>
+            {#if matches}
+                <div />
+            {/if}
+        </div>
+
+        <!-- ########################################################################### -->
+
+        <div class="mt-4 flex flex-row justify-end">
+            <div>
+                <Button skeleton></Button>
+            </div>
+        </div>
+    </div>
     {:else if $data}
         <div class="mt-4 {matches ? 'w-1/2' : ''}">
             <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-4 gap-y-2 items-center">
