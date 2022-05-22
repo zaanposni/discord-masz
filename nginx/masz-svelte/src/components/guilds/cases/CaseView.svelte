@@ -557,7 +557,7 @@
                             <div class="grow" />
                             <OverflowMenu flipped>
                                 <OverflowMenuItem
-                                    text={$_("guilds.caseview.sharecase")}
+                                    text={$_("guilds.caseview.uploadfile")}
                                     disabled={$modCase.modCase.markedToDeleteAt !== null}
                                     on:click={uploadFile} />
                                 {#if ($modCase.modCase.punishedUntil === null || $modCase?.modCase?.punishedUntil?.isAfter(moment())) && ($modCase.modCase.punishmentType == PunishmentType.Ban || $modCase.modCase.punishmentType == PunishmentType.Mute)}
@@ -906,7 +906,10 @@
                             <div class="flex flex-col mb-6">
                                 <div class="font-bold mb-2">
                                     {$_("guilds.caseview.punishment")}
-                                    {$modCase.modCase.punishmentActive ? "" : `(${$_("guilds.caseview.punishmentinactive")})`}
+                                    {$modCase.modCase.punishmentActive &&
+                                    ($modCase.modCase.punishmentType == PunishmentType.Mute || $modCase.modCase.punishmentType == PunishmentType.Ban)
+                                        ? ""
+                                        : `(${$_("guilds.caseview.punishmentinactive")})`}
                                 </div>
                                 <div id="caseview-punishment">
                                     <PunishmentTag modCase={$modCase.modCase} />

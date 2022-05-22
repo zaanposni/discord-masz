@@ -173,6 +173,7 @@
             false
         )
             .then((res: { caseId: number }) => {
+                API.clearCacheEntryLike("post", `/guilds/${$currentParams.guildId}/modcasetable`);
                 submitting = false;
                 toastSuccess($_("guilds.casedialog.casecreated", { values: { id: res.caseId } }));
                 $goto(`/guilds/${$currentParams.guildId}/cases/${res.caseId}`);
