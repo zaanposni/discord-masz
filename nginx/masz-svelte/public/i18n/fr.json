@@ -133,6 +133,17 @@
         }
     },
     "guilds": {
+        "add": {
+            "button": "Ajouter une guilde",
+            "invitefirst": "Veuillez d'abord inviter le bot à cette guilde",
+            "windowfailed": "Échec de l'ouverture de la fenêtre"
+        },
+        "list": {
+            "admin": "Guildes admin",
+            "mod": "Guildes mod",
+            "guild": "Guildes",
+            "banned": "Guildes bannis"
+        },
         "caseview": {
             "attachmentuploadfailed": "Échec de l'envoi de pièce jointe",
             "casenotfound": "Cas non trouvé",

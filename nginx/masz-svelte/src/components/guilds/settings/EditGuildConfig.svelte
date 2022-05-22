@@ -24,10 +24,27 @@
     import { toastError, toastSuccess } from "../../../services/toast/store";
     import type { IGuildConfig } from "../../../models/api/IGuildConfig";
     import Language from "../../../services/enums/Language";
+    import { goto } from "@roxi/routify";
+    import { authUser } from "../../../stores/auth";
+    import type { IAuthUser } from "../../../models/IAuthUser";
 
-    const loading: Writable<boolean> = writable(true);
-    const submitting: Writable<boolean> = writable(true);
-    const data: Writable<IGuildConfig> = writable(null);
+    export let addMode = false;
+    export let guildId: string;
+
+    const loading: Writable<boolean> = writable(!addMode);
+    const submitting: Writable<boolean> = writable(!addMode);
+    const data: Writable<IGuildConfig> = writable(
+        addMode
+            ? ({
+                  guildId,
+                  modRoles: [],
+                  adminRoles: [],
+                  mutedRoles: [],
+                  allowBanAppealAfterDays: 0,
+                  preferredLanguage: 0,
+              } as any)
+            : null
+    );
     const webhookRegex = new RegExp("^https://discord(app)?.com/api/webhooks/.*$");
 
     const publicWebhookInvalid = derived(data, ($data) => {
@@ -40,13 +57,18 @@
     });
 
     let roles;
-    $: roles = ($currentParams?.guild?.roles ?? [])
-        .filter((g) => g.id != $currentParams.guildId)
-        .sort((a, b) => (a.position < b.position ? 1 : -1))
-        .map((role) => ({
-            id: role.id,
-            text: role.name,
-        }));
+
+    if (addMode) {
+        API.get(`/discord/guilds/${guildId}`, CacheMode.API_ONLY, false).then((res) => {
+            roles = res.roles
+                .filter((g) => g.id != guildId)
+                .sort((a, b) => (a.position < b.position ? 1 : -1))
+                .map((role) => ({
+                    id: role.id,
+                    text: role.name,
+                }));
+        });
+    }
 
     $: $currentParams?.guildId ? loadGuildData() : null;
     function loadGuildData() {
@@ -61,6 +83,14 @@
             });
             loading.set(false);
         });
+
+        roles = ($currentParams?.guild?.roles ?? [])
+            .filter((g) => g.id != $currentParams.guildId)
+            .sort((a, b) => (a.position < b.position ? 1 : -1))
+            .map((role) => ({
+                id: role.id,
+                text: role.name,
+            }));
     }
 
     function clearCache() {
@@ -74,16 +104,34 @@
             modInternalNotificationWebhook: $data.modInternalNotificationWebhook?.trim() != "" ? $data.modInternalNotificationWebhook : null,
             modPublicNotificationWebhook: $data.modPublicNotificationWebhook?.trim() != "" ? $data.modPublicNotificationWebhook : null,
         };
-        API.put(`/guilds/${$currentParams.guildId}`, dto)
-            .then(() => {
-                toastSuccess($_("guilds.config.saved"));
-                clearCache();
-                submitting.set(false);
-            })
-            .catch((e) => {
-                toastError($_("guilds.config.failedtosave"));
-                submitting.set(false);
-            });
+        if (addMode) {
+            API.post(`/guilds`, dto, CacheMode.API_ONLY, false)
+                .then(() => {
+                    toastSuccess($_("guilds.config.saved"));
+                    clearCache();
+                    submitting.set(false);
+
+                    API.get("discord/users/@me").then((res: IAuthUser) => {
+                        authUser.set(res);
+                        $goto(`/guilds/${guildId}`);
+                    });
+                })
+                .catch((e) => {
+                    toastError($_("guilds.config.failedtosave"));
+                    submitting.set(false);
+                });
+        } else {
+            API.put(`/guilds/${$currentParams.guildId}`, dto)
+                .then(() => {
+                    toastSuccess($_("guilds.config.saved"));
+                    clearCache();
+                    submitting.set(false);
+                })
+                .catch((e) => {
+                    toastError($_("guilds.config.failedtosave"));
+                    submitting.set(false);
+                });
+        }
     }
 </script>
 
@@ -96,153 +144,153 @@
     </div>
 
     {#if $loading}
-    <div class="mt-4 {matches ? 'w-1/2' : ''}">
-        <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-4 gap-y-2 items-center">
-            <div class="lg:col-span-2">
-                <div class="flex flex-col">
-                    <div class="text-lg font-bold mb-2">
-                        <SkeletonText />
-                    </div>
-                    <div class="text-sm">
-                        <SkeletonText />
-                    </div>
-                </div>
-            </div>
-            <div>
-                <SelectSkeleton />
-            </div>
-            <div>
-                <SelectSkeleton />
-            </div>
-            <div>
-                <NumberInputSkeleton />
-            </div>
-            {#if matches}
-                <div />
-            {/if}
-            <div class="flex flex-row items-center">
-                <div class="shrink-0">
-                    <Checkbox skeleton />
-                </div>
-                <div class="grow" />
-            </div>
-            {#if matches}
-                <div />
-            {/if}
-
-            <!-- ########################################################################### -->
-
-            <div class="lg:col-span-2 mt-4">
-                <div class="flex flex-col">
-                    <div class="text-lg font-bold mb-2">
-                        <SkeletonText />
-                    </div>
-                    <div class="text-sm">
-                        <SkeletonText />
-                    </div>
-                    <div class="text-sm">
-                        <SkeletonText />
+        <div class="mt-4 {matches ? 'w-1/2' : ''}">
+            <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-4 gap-y-2 items-center">
+                <div class="lg:col-span-2">
+                    <div class="flex flex-col">
+                        <div class="text-lg font-bold mb-2">
+                            <SkeletonText />
+                        </div>
+                        <div class="text-sm">
+                            <SkeletonText />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <SelectSkeleton />
-            </div>
-            {#if matches}
-                <div />
-            {/if}
-
-            <!-- ########################################################################### -->
-
-            <div class="lg:col-span-2 mt-4">
-                <div class="flex flex-col">
-                    <div class="text-lg font-bold mb-2">
-                        <SkeletonText />
-                    </div>
-                    <div class="text-sm">
-                        <SkeletonText />
-                    </div>
+                <div>
+                    <SelectSkeleton />
                 </div>
-            </div>
-
-            <div class="lg:col-span-2">
-                <TextInputSkeleton />
-            </div>
-            <div class="lg:col-span-2">
-                <TextInputSkeleton />
-            </div>
-
-            <!-- ########################################################################### -->
-
-            <div class="lg:col-span-2 mt-4">
-                <div class="flex flex-col">
-                    <div class="text-lg font-bold mb-2">
-                        <SkeletonText />
-                    </div>
+                <div>
+                    <SelectSkeleton />
                 </div>
-            </div>
-
-            <div>
+                <div>
+                    <NumberInputSkeleton />
+                </div>
+                {#if matches}
+                    <div />
+                {/if}
                 <div class="flex flex-row items-center">
                     <div class="shrink-0">
                         <Checkbox skeleton />
                     </div>
                     <div class="grow" />
                 </div>
-            </div>
-            {#if matches}
-                <div />
-            {/if}
-            <div>
-                <div class="flex flex-row items-center">
-                    <div class="shrink-0">
-                        <Checkbox skeleton />
+                {#if matches}
+                    <div />
+                {/if}
+
+                <!-- ########################################################################### -->
+
+                <div class="lg:col-span-2 mt-4">
+                    <div class="flex flex-col">
+                        <div class="text-lg font-bold mb-2">
+                            <SkeletonText />
+                        </div>
+                        <div class="text-sm">
+                            <SkeletonText />
+                        </div>
+                        <div class="text-sm">
+                            <SkeletonText />
+                        </div>
                     </div>
-                    <div class="grow" />
                 </div>
+                <div>
+                    <SelectSkeleton />
+                </div>
+                {#if matches}
+                    <div />
+                {/if}
+
+                <!-- ########################################################################### -->
+
+                <div class="lg:col-span-2 mt-4">
+                    <div class="flex flex-col">
+                        <div class="text-lg font-bold mb-2">
+                            <SkeletonText />
+                        </div>
+                        <div class="text-sm">
+                            <SkeletonText />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2">
+                    <TextInputSkeleton />
+                </div>
+                <div class="lg:col-span-2">
+                    <TextInputSkeleton />
+                </div>
+
+                <!-- ########################################################################### -->
+
+                <div class="lg:col-span-2 mt-4">
+                    <div class="flex flex-col">
+                        <div class="text-lg font-bold mb-2">
+                            <SkeletonText />
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex flex-row items-center">
+                        <div class="shrink-0">
+                            <Checkbox skeleton />
+                        </div>
+                        <div class="grow" />
+                    </div>
+                </div>
+                {#if matches}
+                    <div />
+                {/if}
+                <div>
+                    <div class="flex flex-row items-center">
+                        <div class="shrink-0">
+                            <Checkbox skeleton />
+                        </div>
+                        <div class="grow" />
+                    </div>
+                </div>
+                {#if matches}
+                    <div />
+                {/if}
+
+                <!-- ########################################################################### -->
+
+                <div class="lg:col-span-2 mt-4">
+                    <div class="flex flex-col">
+                        <div class="text-lg font-bold mb-2">
+                            <SkeletonText />
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex flex-row items-center">
+                        <div class="shrink-0">
+                            <Checkbox skeleton />
+                        </div>
+                        <div class="grow" />
+                    </div>
+                </div>
+                {#if matches}
+                    <div />
+                {/if}
+
+                <div>
+                    <SelectSkeleton />
+                </div>
+                {#if matches}
+                    <div />
+                {/if}
             </div>
-            {#if matches}
-                <div />
-            {/if}
 
             <!-- ########################################################################### -->
 
-            <div class="lg:col-span-2 mt-4">
-                <div class="flex flex-col">
-                    <div class="text-lg font-bold mb-2">
-                        <SkeletonText />
-                    </div>
+            <div class="mt-4 flex flex-row justify-end">
+                <div>
+                    <Button skeleton />
                 </div>
             </div>
-
-            <div>
-                <div class="flex flex-row items-center">
-                    <div class="shrink-0">
-                        <Checkbox skeleton />
-                    </div>
-                    <div class="grow" />
-                </div>
-            </div>
-            {#if matches}
-                <div />
-            {/if}
-
-            <div>
-                <SelectSkeleton />
-            </div>
-            {#if matches}
-                <div />
-            {/if}
         </div>
-
-        <!-- ########################################################################### -->
-
-        <div class="mt-4 flex flex-row justify-end">
-            <div>
-                <Button skeleton></Button>
-            </div>
-        </div>
-    </div>
     {:else if $data}
         <div class="mt-4 {matches ? 'w-1/2' : ''}">
             <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-4 gap-y-2 items-center">

@@ -8,11 +8,7 @@
     export let privileged: boolean = false;
 </script>
 
-<div
-    class="flex flex-row flex-nowrap masz-card cursor-pointer"
-    on:click={() => {
-        $goto(privileged ? `/guilds/${guild.id}` : `/guilds/${guild.id}/cases`);
-    }}>
+<div class="flex flex-row flex-nowrap masz-card cursor-pointer" on:click>
     <div class="shrink-0">
         <GuildIcon {guild} />
     </div>

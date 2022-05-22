@@ -133,6 +133,17 @@
         }
     },
     "guilds": {
+        "add": {
+            "button": "Aggiungi gilda",
+            "invitefirst": "Per favore invita il bot prima a questa gilda",
+            "windowfailed": "Impossibile aprire la finestra"
+        },
+        "list": {
+            "admin": "Gilde amministrative",
+            "mod": "Gilde moderative",
+            "guild": "Gilde",
+            "banned": "Gilde bloccate"
+        },
         "caseview": {
             "attachmentuploadfailed": "Caricamento allegato non riuscito",
             "casenotfound": "Caso non trovato",

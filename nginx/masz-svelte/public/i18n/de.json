@@ -133,6 +133,17 @@
         }
     },
     "guilds": {
+        "add": {
+            "button": "Gilde hinzufügen",
+            "invitefirst": "Bitte lade den Bot zuerst in diese Gilde ein",
+            "windowfailed": "Fenster konnte nicht geöffnet werden"
+        },
+        "list": {
+            "admin": "Admin-Gilden",
+            "mod": "Moderatoren-Gilden",
+            "guild": "Gilden",
+            "banned": "Gesperrte Gilden"
+        },
         "caseview": {
             "attachmentuploadfailed": "Anhang hochladen fehlgeschlagen",
             "casenotfound": "Vorfall nicht gefunden",

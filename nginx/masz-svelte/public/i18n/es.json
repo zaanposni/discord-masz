@@ -133,6 +133,17 @@
         }
     },
     "guilds": {
+        "add": {
+            "button": "Añadir una hermandad",
+            "invitefirst": "Por favor, invita al bot a esta hermandad primero",
+            "windowfailed": "Fallo al abrir la ventana"
+        },
+        "list": {
+            "admin": "Gildes administradores",
+            "mod": "Gildes moderadores",
+            "guild": "Gildes",
+            "banned": "Gildes prohibidas"
+        },
         "caseview": {
             "attachmentuploadfailed": "Subida de adjunto falló",
             "casenotfound": "Caso no encontrado",

@@ -133,6 +133,17 @@
         }
     },
     "guilds": {
+        "add": {
+            "button": "Add guild",
+            "invitefirst": "Please invite the bot to this guild first",
+            "windowfailed": "Failed to open window"
+        },
+        "list": {
+            "admin": "Admin guilds",
+            "mod": "Moderator guilds",
+            "guild": "Guilds",
+            "banned": "Banned guilds"
+        },
         "caseview": {
             "attachmentuploadfailed": "Attachment upload failed",
             "casenotfound": "Case not found",
