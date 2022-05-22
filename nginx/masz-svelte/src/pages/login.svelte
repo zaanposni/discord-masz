@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { goto, params } from "@roxi/routify";
+    import { goto, isActive, params } from "@roxi/routify";
     import { authUser } from "./../stores/auth";
     import { Button, OutboundLink } from "carbon-components-svelte";
     import { onDestroy, onMount } from "svelte";
@@ -37,6 +37,7 @@
             API.get("discord/users/@me")
                 .then((res: IAuthUser) => {
                     authUser.set(res);
+                    removeKofi();
                     if ($params.returnUrl && $params.returnUrl !== "/") {
                         $goto($params.returnUrl);
                     } else {
@@ -53,11 +54,15 @@
     testLogin();
 
     const interval = setInterval(() => {
-        if (kofiWidgetOverlay && !$isLoading) {
+        if (kofiWidgetOverlay && !$isLoading && $isActive("/login")) {
             clearInterval(interval);
             drawKofi();
         }
     }, 200);
+
+    onDestroy(() => {
+        setTimeout(removeKofi, 500);
+    });
 
     function drawKofi() {
         kofiWidgetOverlay.draw("zaanposni", {
@@ -68,14 +73,13 @@
         });
     }
 
-    onDestroy(() => {
-        setTimeout(() => {
-            const containers = document.getElementsByClassName("floatingchat-container-wrap");
-            if (containers.length > 0) {
-                containers[0].parentElement.remove();
-            }
-        }, 500);
-    });
+    function removeKofi() {
+        clearInterval(interval);
+        const containers = document.getElementsByClassName("floatingchat-container-wrap");
+        if (containers.length > 0) {
+            containers[0].parentElement.remove();
+        }
+    }
 </script>
 
 <div class="flex flex-col justify-center items-center grow">
