@@ -437,6 +437,47 @@
                 "customwordfield": "Ignora collegamenti (inserisci modelli regex divisi per newline)",
                 "linktext": "Esempio"
             }
+        },
+        "config": {
+            "title": "Configurazione della gilda",
+            "permissions": {
+                "title": "Permessi",
+                "explain": "Qui puoi definire quali ruoli avranno accesso a MASZ.",
+                "adminroles": "Ruoli amministratore",
+                "modroles": "Ruoli moderatore",
+                "appealafterxdays": "Permetti reclamo banno dopo x giorni",
+                "strictpermissions": "Controllo stretto dei permessi",
+                "strictpermissionsexplained": "Se abilitato, i moderatori devono avere un ruolo con permessi di ban per creare casi di moderazione di ban"
+            },
+            "mutedroles": {
+                "title": "Ruoli mutati",
+                "explain": "Qui puoi definire quali ruoli saranno usati per mutare gli utenti.",
+                "explain2": "Se non è definito nessuno, MASZ userà la funzionalità timeout Discord."
+            },
+            "notifications": {
+                "title": "Notifiche",
+                "explain": "Usa questi webhooks per notificare gli utenti o i membri dello staff sugli eventi MASZ.",
+                "internal": "Webhook interno",
+                "public": "Webhook pubblico",
+                "invalid": "Webhook non valido"
+            },
+            "information": {
+                "title": "Informazioni",
+                "publicembedmode": "Modalità di integrazione pubblica",
+                "publicembedmodeexplained": "Questa modalità consente di incorporare dettagliati quando si collega un caso nel discord. Questo permetterà di divulgare informazioni private come il sospettato, le punizioni, ecc.",
+                "publishmod": "Pubblicare le informazioni del moderatore",
+                "publishmodexplained": "Un sospetto sarà in grado di vedere quale moderatore lo ha punito."
+            },
+            "misc": {
+                "title": "Varie",
+                "whois": "Esegui whois sulla presenza di un membro",
+                "whoisexplained": "Invia automaticamente le informazioni sull'utente iscritto al tuo webhook interno.",
+                "language": "Lingua"
+            },
+            "save": "Salva",
+            "submitting": "Invio...",
+            "saved": "Salvato",
+            "failedtosave": "Salvataggio fallito"
         }
     },
     "error": "Errore",

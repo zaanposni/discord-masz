@@ -437,6 +437,47 @@
                 "customwordfield": "Ignorar enlaces (ingresar patrones de expresiones regulares divididos por líneas nuevas)",
                 "linktext": "Ejemplo"
             }
+        },
+        "config": {
+            "title": "Configuración de la hermandad",
+            "permissions": {
+                "title": "Permisos",
+                "explain": "Aquí puedes definir qué roles tendrán acceso a MASZ.",
+                "adminroles": "Roles de administrador",
+                "modroles": "Roles de moderador",
+                "appealafterxdays": "Permitir que los usuarios puedan presentar una reclamación de expulsión después de x días",
+                "strictpermissions": "Comprobación estricta de permisos",
+                "strictpermissionsexplained": "Si está activado, los moderadores necesitan tener un rol con permisos de expulsión para crear casos de moderación de expulsión"
+            },
+            "mutedroles": {
+                "title": "Roles silenciados",
+                "explain": "Aquí puedes definir qué roles se usarán para silenciar a los usuarios.",
+                "explain2": "Si no se define ninguno, MASZ usará la funcionalidad de timeout de Discord."
+            },
+            "notifications": {
+                "title": "Notificaciones",
+                "explain": "Utiliza estos webhooks para notificar a tus usuarios o a tus miembros del personal sobre eventos MASZ.",
+                "internal": "Webhook interno",
+                "public": "Webhook público",
+                "invalid": "Webhook inválido"
+            },
+            "information": {
+                "title": "Información",
+                "publicembedmode": "Modo de integración pública",
+                "publicembedmodeexplained": "Este modo permite incrustar detalles cuando se vincula un caso en discord. Esto hará públicas las informaciones privadas como el sujeto, las sanciones, etc.",
+                "publishmod": "Publicar información del moderador",
+                "publishmodexplained": "Un sospechoso podrá ver qué moderador lo castigó."
+            },
+            "misc": {
+                "title": "Varios",
+                "whois": "Ejecutar whois en la presencia de un miembro",
+                "whoisexplained": "Envía automáticamente información sobre el usuario unido a su webhook interno.",
+                "language": "Idioma"
+            },
+            "save": "Guardar",
+            "submitting": "Enviando...",
+            "saved": "Guardado",
+            "failedtosave": "Error al guardar"
         }
     },
     "error": "Error",

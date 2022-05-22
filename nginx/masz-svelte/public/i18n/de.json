@@ -437,6 +437,47 @@
                 "customwordfield": "Ignorierte Links (getrennte Regexpatterns durch Zeilenumbruch)",
                 "linktext": "Beispiel"
             }
+        },
+        "config": {
+            "title": "Gildenkonfiguration",
+            "permissions": {
+                "title": "Berechtigungen",
+                "explain": "Hier kannst du festlegen, welche Rollen erweiterte Zugriffsrechte in MASZ haben sollen.",
+                "adminroles": "Administrator-Rollen",
+                "modroles": "Moderator-Rollen",
+                "appealafterxdays": "Entbannungsantrag nach x Tagen erlauben",
+                "strictpermissions": "Strenge Berechtigungsprüfung",
+                "strictpermissionsexplained": "Wenn aktiviert, müssen Moderatoren eine Rolle mit Banrechten haben, um Bann-Vorfälle zu erstellen"
+            },
+            "mutedroles": {
+                "title": "Stummschaltungsrollen",
+                "explain": "Hier kannst du festlegen, welche Rollen benutzt werden soll, um Benutzer stummzuschalten.",
+                "explain2": "Wenn keine festgelegt werden, wird MASZ stattdessen die Discord-Timeout-Funktionalität verwenden."
+            },
+            "notifications": {
+                "title": "Benachrichtigungen",
+                "explain": "Benutze diese Webhooks, um Benutzer oder Mitarbeiter über MASZ-Ereignisse zu benachrichtigen.",
+                "internal": "Interner Webhook",
+                "public": "Öffentlicher Webhook",
+                "invalid": "Ungültiger Webhook"
+            },
+            "information": {
+                "title": "Informationen",
+                "publicembedmode": "Öffentlicher Embed-Modus",
+                "publicembedmodeexplained": "Dieser Modus ermöglicht detaillierte Einbettungen, wenn Vorfälle in Discord verlinkt werden. Dies wird private Informationen wie den Verdächtigen, die Strafen, etc. offenbaren.",
+                "publishmod": "Moderatorinformationen veröffentlichen",
+                "publishmodexplained": "Ein Verdächtiger wird in der Lage sein, zu sehen, welcher Moderator ihn verurteilt hat."
+            },
+            "misc": {
+                "title": "Verschiedenes",
+                "whois": "Whois bei Mitgliederbeitritt ausführen",
+                "whoisexplained": "Sendet automatisch Informationen über den neuen Benutzer an deinen internen Webhook.",
+                "language": "Sprache"
+            },
+            "save": "Speichern",
+            "submitting": "Senden...",
+            "saved": "Gespeichert",
+            "failedtosave": "Fehlgeschlagen"
         }
     },
     "error": "Fehler",

@@ -82,7 +82,7 @@
                 },
                 {
                     titleKey: "guild.settings.base",
-                    onClick: () => { console.log("open settings"); },
+                    href: `/guilds/${$currentParams.guildId}/settings`,
                     icon: Settings16,
                     isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId))
                 },

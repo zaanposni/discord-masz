@@ -437,6 +437,47 @@
                 "customwordfield": "Ignore links (enter regex patterns divided by newlines)",
                 "linktext": "Example"
             }
+        },
+        "config": {
+            "title": "Guild config",
+            "permissions": {
+                "title": "Permissions",
+                "explain": "Here you can define which roles should have further access in MASZ.",
+                "adminroles": "Admin roles",
+                "modroles": "Moderator roles",
+                "appealafterxdays": "Allow ban appeal after x days",
+                "strictpermissions": "Strict permission check",
+                "strictpermissionsexplained": "If enabled, moderators need a discord role with ban permission to create ban modcases"
+            },
+            "mutedroles": {
+                "title": "Muted roles",
+                "explain": "Here you can define which roles should be used to mute users.",
+                "explain2": "If none are defined, MASZ will use Discord's timeout functionality instead."
+            },
+            "notifications": {
+                "title": "Notifications",
+                "explain": "Use these webhooks to notify your users or staff on MASZ events",
+                "internal": "Internal webhook",
+                "public": "Public webhook",
+                "invalid": "Invalid webhook"
+            },
+            "information": {
+                "title": "Information",
+                "publicembedmode": "Public embed mode",
+                "publicembedmodeexplained": "This mode enables detailed embeds when linking modcases in discord. This will disclose private information like the suspect, punishments, etc.",
+                "publishmod": "Publish moderator information",
+                "publishmodexplained": "A suspect will be able to see which moderator punished him."
+            },
+            "misc": {
+                "title": "Miscellaneous",
+                "whois": "Execute whois on member join",
+                "whoisexplained": "Automatically sends information about the joined user to your internal webhook.",
+                "language": "Language"
+            },
+            "save": "Save",
+            "submitting": "Submitting...",
+            "saved": "Saved",
+            "failedtosave": "Failed to save"
         }
     },
     "error": "Error",

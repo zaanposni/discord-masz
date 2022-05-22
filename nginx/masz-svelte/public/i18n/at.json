@@ -437,6 +437,47 @@
                 "customwordfield": "Ignorierte Links (getrennte Links mit am Zeilenumbruch)",
                 "linktext": "Beispü"
             }
+        },
+        "config": {
+            "title": "Gildenkonfiguration",
+            "permissions": {
+                "title": "Berechtigungen",
+                "explain": "Hier kannst du festlegen, welche Rollen erweiterte Zugriffsrechte in MASZ haben sollen.",
+                "adminroles": "Administrator-Rollen",
+                "modroles": "Moderator-Rollen",
+                "appealafterxdays": "Entbannungsantrag nach x Tagen erlauben",
+                "strictpermissions": "Strenge Berechtigungsprüfung",
+                "strictpermissionsexplained": "Wenn aktiviert, müssen Moderatoren eine Rolle mit Banrechten haben, um Bann-Vorfälle zu erstellen"
+            },
+            "mutedroles": {
+                "title": "Stummschaltungsrollen",
+                "explain": "Hier kannst du festlegen, welche Rollen benutzt werden soll, um Benutzer stummzuschalten.",
+                "explain2": "Wenn keine festgelegt werden, wird MASZ stattdessen die Discord-Timeout-Funktionalität verwenden."
+            },
+            "notifications": {
+                "title": "Benachrichtigungen",
+                "explain": "Benutze diese Webhooks, um Benutzer oder Mitarbeiter über MASZ-Ereignisse zu benachrichtigen.",
+                "internal": "Interner Webhook",
+                "public": "Öffentlicher Webhook",
+                "invalid": "Ungültiger Webhook"
+            },
+            "information": {
+                "title": "Informationen",
+                "publicembedmode": "Öffentlicher Embed-Modus",
+                "publicembedmodeexplained": "Dea Modus ermöglicht detaillierte Eibettungen, wenn Vorfälle in Discord valinkt wean. Des wiad private Informationen wia den Vadächtigen, die Strofn, etc. offenboarn.",
+                "publishmod": "Moderatorinformationen veröffentlichen",
+                "publishmodexplained": "A Verdächtiga wird de Meglichkeit hom, zum schaun, wöchana Modarator erm verurtoit hot."
+            },
+            "misc": {
+                "title": "Verschiedenes",
+                "whois": "Whois bei Mitgliederbeitritt ausführen",
+                "whoisexplained": "Tua automatisch Infos üba an neichn Nutza on dein internan Webhook schickn.",
+                "language": "Sprache"
+            },
+            "save": "Speichern",
+            "submitting": "Senden...",
+            "saved": "Gespeichert",
+            "failedtosave": "Fehlgeschlagen"
         }
     },
     "error": "Fehler",

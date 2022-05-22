@@ -437,6 +437,47 @@
                 "customwordfield": "Ignorer les liens (entrer les modèles regex divisés par des nouvelles lignes)",
                 "linktext": "Exemple"
             }
+        },
+        "config": {
+            "title": "Configuration de la guilde",
+            "permissions": {
+                "title": "Permissions",
+                "explain": "Ici, vous pouvez définir les rôles qui auront accès à MASZ.",
+                "adminroles": "Rôles d'administrateur",
+                "modroles": "Rôles de modérateur",
+                "appealafterxdays": "Autoriser l'appel de bannissement après x jours",
+                "strictpermissions": "Vérification stricte des permissions",
+                "strictpermissionsexplained": "Si activé, les modérateurs doivent avoir un rôle avec la permission de bannir pour créer des cas de modération de bannissement"
+            },
+            "mutedroles": {
+                "title": "Rôles muets",
+                "explain": "Ici, vous pouvez définir les rôles qui seront utilisés pour rendre muets les utilisateurs.",
+                "explain2": "Si aucun n'est défini, MASZ utilisera la fonctionnalité de timeout Discord."
+            },
+            "notifications": {
+                "title": "Notifications",
+                "explain": "Utilisez ces webhooks pour notifier vos utilisateurs ou vos membres de l'équipe sur les événements MASZ.",
+                "internal": "Webhook interne",
+                "public": "Webhook public",
+                "invalid": "Webhook invalide"
+            },
+            "information": {
+                "title": "Information",
+                "publicembedmode": "Mode d'intégration publique",
+                "publicembedmodeexplained": "Ce mode permet d'intégrer des informations détaillées lorsque vous liez des cas dans le discord. Cela rendra les informations privées comme le suspect, les punitions, etc. accessibles.",
+                "publishmod": "Publier les informations du modérateur",
+                "publishmodexplained": "Un suspect pourra voir quel modérateur l'a puni."
+            },
+            "misc": {
+                "title": "Divers",
+                "whois": "Exécuter whois sur la présence d'un membre",
+                "whoisexplained": "Envoie automatiquement des informations sur l'utilisateur rejoint à votre webhook interne.",
+                "language": "Langue"
+            },
+            "save": "Sauvegarder",
+            "submitting": "Soumission...",
+            "saved": "Sauvegardé",
+            "failedtosave": "Échec de la sauvegarde"
         }
     },
     "error": "Erreur",

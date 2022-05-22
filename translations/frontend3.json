@@ -3569,6 +3569,308 @@
                     "it": "Esempio"
                 }
             }
+        },
+        "config": {
+            "title": {
+                "description": "title of the config page",
+                "en": "Guild config",
+                "de": "Gildenkonfiguration",
+                "at": "Gildenkonfiguration",
+                "fr": "Configuration de la guilde",
+                "es": "Configuración de la hermandad",
+                "ru": "Настройки гильдии",
+                "it": "Configurazione della gilda"
+            },
+            "permissions": {
+                "title": {
+                    "description": "title of the permissions section",
+                    "en": "Permissions",
+                    "de": "Berechtigungen",
+                    "at": "Berechtigungen",
+                    "fr": "Permissions",
+                    "es": "Permisos",
+                    "ru": "Разрешения",
+                    "it": "Permessi"
+                },
+                "explain": {
+                    "description": "description of the permissions section",
+                    "en": "Here you can define which roles should have further access in MASZ.",
+                    "de": "Hier kannst du festlegen, welche Rollen erweiterte Zugriffsrechte in MASZ haben sollen.",
+                    "at": "Hier kannst du festlegen, welche Rollen erweiterte Zugriffsrechte in MASZ haben sollen.",
+                    "fr": "Ici, vous pouvez définir les rôles qui auront accès à MASZ.",
+                    "es": "Aquí puedes definir qué roles tendrán acceso a MASZ.",
+                    "ru": "Здесь вы можете определить, какие роли имеют доступ к MASZ.",
+                    "it": "Qui puoi definire quali ruoli avranno accesso a MASZ."
+                },
+                "adminroles": {
+                    "description": "description of the adminroles field",
+                    "en": "Admin roles",
+                    "de": "Administrator-Rollen",
+                    "at": "Administrator-Rollen",
+                    "fr": "Rôles d'administrateur",
+                    "es": "Roles de administrador",
+                    "ru": "Роли администратора",
+                    "it": "Ruoli amministratore"
+                },
+                "modroles": {
+                    "description": "description of the modroles field",
+                    "en": "Moderator roles",
+                    "de": "Moderator-Rollen",
+                    "at": "Moderator-Rollen",
+                    "fr": "Rôles de modérateur",
+                    "es": "Roles de moderador",
+                    "ru": "Роли модератора",
+                    "it": "Ruoli moderatore"
+                },
+                "appealafterxdays": {
+                    "description": "description of the appealafterxdays field",
+                    "en": "Allow ban appeal after x days",
+                    "de": "Entbannungsantrag nach x Tagen erlauben",
+                    "at": "Entbannungsantrag nach x Tagen erlauben",
+                    "fr": "Autoriser l'appel de bannissement après x jours",
+                    "es": "Permitir que los usuarios puedan presentar una reclamación de expulsión después de x días",
+                    "ru": "Разрешить обращение в бан после x дней",
+                    "it": "Permetti reclamo banno dopo x giorni"
+                },
+                "strictpermissions": {
+                    "description": "description of the strictPermissions field",
+                    "en": "Strict permission check",
+                    "de": "Strenge Berechtigungsprüfung",
+                    "at": "Strenge Berechtigungsprüfung",
+                    "fr": "Vérification stricte des permissions",
+                    "es": "Comprobación estricta de permisos",
+                    "ru": "Строгая проверка разрешений",
+                    "it": "Controllo stretto dei permessi"
+                },
+                "strictpermissionsexplained": {
+                    "description": "description of the strictPermissionsExplained field",
+                    "en": "If enabled, moderators need a discord role with ban permission to create ban modcases",
+                    "de": "Wenn aktiviert, müssen Moderatoren eine Rolle mit Banrechten haben, um Bann-Vorfälle zu erstellen",
+                    "at": "Wenn aktiviert, müssen Moderatoren eine Rolle mit Banrechten haben, um Bann-Vorfälle zu erstellen",
+                    "fr": "Si activé, les modérateurs doivent avoir un rôle avec la permission de bannir pour créer des cas de modération de bannissement",
+                    "es": "Si está activado, los moderadores necesitan tener un rol con permisos de expulsión para crear casos de moderación de expulsión",
+                    "ru": "Если включено, то модераторы должны иметь роль с разрешением на бан, чтобы создать модкейсы бана",
+                    "it": "Se abilitato, i moderatori devono avere un ruolo con permessi di ban per creare casi di moderazione di ban"
+                }
+            },
+            "mutedroles": {
+                "title": {
+                    "description": "title of the mutedrole section",
+                    "en": "Muted roles",
+                    "de": "Stummschaltungsrollen",
+                    "at": "Stummschaltungsrollen",
+                    "fr": "Rôles muets",
+                    "es": "Roles silenciados",
+                    "ru": "Роли тихого",
+                    "it": "Ruoli mutati"
+                },
+                "explain": {
+                    "description": "description of the mutedrole section",
+                    "en": "Here you can define which roles should be used to mute users.",
+                    "de": "Hier kannst du festlegen, welche Rollen benutzt werden soll, um Benutzer stummzuschalten.",
+                    "at": "Hier kannst du festlegen, welche Rollen benutzt werden soll, um Benutzer stummzuschalten.",
+                    "fr": "Ici, vous pouvez définir les rôles qui seront utilisés pour rendre muets les utilisateurs.",
+                    "es": "Aquí puedes definir qué roles se usarán para silenciar a los usuarios.",
+                    "ru": "Здесь вы можете определить, какие роли будут использоваться для мута пользователей.",
+                    "it": "Qui puoi definire quali ruoli saranno usati per mutare gli utenti."
+                },
+                "explain2": {
+                    "description": "description of the mutedrole section",
+                    "en": "If none are defined, MASZ will use Discord's timeout functionality instead.",
+                    "de": "Wenn keine festgelegt werden, wird MASZ stattdessen die Discord-Timeout-Funktionalität verwenden.",
+                    "at": "Wenn keine festgelegt werden, wird MASZ stattdessen die Discord-Timeout-Funktionalität verwenden.",
+                    "fr": "Si aucun n'est défini, MASZ utilisera la fonctionnalité de timeout Discord.",
+                    "es": "Si no se define ninguno, MASZ usará la funcionalidad de timeout de Discord.",
+                    "ru": "Если ни одна не определена, MASZ будет использовать функциональность блокировки Discord.",
+                    "it": "Se non è definito nessuno, MASZ userà la funzionalità timeout Discord."
+                }
+            },
+            "notifications": {
+                "title": {
+                    "description": "title of the notifications section",
+                    "en": "Notifications",
+                    "de": "Benachrichtigungen",
+                    "at": "Benachrichtigungen",
+                    "fr": "Notifications",
+                    "es": "Notificaciones",
+                    "ru": "Уведомления",
+                    "it": "Notifiche"
+                },
+                "explain": {
+                    "description": "description of the notifications section",
+                    "en": "Use these webhooks to notify your users or staff on MASZ events",
+                    "de": "Benutze diese Webhooks, um Benutzer oder Mitarbeiter über MASZ-Ereignisse zu benachrichtigen.",
+                    "at": "Benutze diese Webhooks, um Benutzer oder Mitarbeiter über MASZ-Ereignisse zu benachrichtigen.",
+                    "fr": "Utilisez ces webhooks pour notifier vos utilisateurs ou vos membres de l'équipe sur les événements MASZ.",
+                    "es": "Utiliza estos webhooks para notificar a tus usuarios o a tus miembros del personal sobre eventos MASZ.",
+                    "ru": "Используйте эти вебхуки для уведомления пользователей или сотрудников о событиях MASZ.",
+                    "it": "Usa questi webhooks per notificare gli utenti o i membri dello staff sugli eventi MASZ."
+                },
+                "internal": {
+                    "description": "description of the internal field",
+                    "en": "Internal webhook",
+                    "de": "Interner Webhook",
+                    "at": "Interner Webhook",
+                    "fr": "Webhook interne",
+                    "es": "Webhook interno",
+                    "ru": "Внутренний вебхук",
+                    "it": "Webhook interno"
+                },
+                "public": {
+                    "description": "description of the public field",
+                    "en": "Public webhook",
+                    "de": "Öffentlicher Webhook",
+                    "at": "Öffentlicher Webhook",
+                    "fr": "Webhook public",
+                    "es": "Webhook público",
+                    "ru": "Публичный вебхук",
+                    "it": "Webhook pubblico"
+                },
+                "invalid": {
+                    "description": "description of the invalid field",
+                    "en": "Invalid webhook",
+                    "de": "Ungültiger Webhook",
+                    "at": "Ungültiger Webhook",
+                    "fr": "Webhook invalide",
+                    "es": "Webhook inválido",
+                    "ru": "Неверный вебхук",
+                    "it": "Webhook non valido"
+                }
+            },
+            "information": {
+                "title": {
+                    "description": "title of the information section",
+                    "en": "Information",
+                    "de": "Informationen",
+                    "at": "Informationen",
+                    "fr": "Information",
+                    "es": "Información",
+                    "ru": "Информация",
+                    "it": "Informazioni"
+                },
+                "publicembedmode": {
+                    "description": "description of the publicembedmode field",
+                    "en": "Public embed mode",
+                    "de": "Öffentlicher Embed-Modus",
+                    "at": "Öffentlicher Embed-Modus",
+                    "fr": "Mode d'intégration publique",
+                    "es": "Modo de integración pública",
+                    "ru": "Публичный режим встраивания",
+                    "it": "Modalità di integrazione pubblica"
+                },
+                "publicembedmodeexplained": {
+                    "description": "public embed mode explained",
+                    "en": "This mode enables detailed embeds when linking modcases in discord. This will disclose private information like the suspect, punishments, etc.",
+                    "de": "Dieser Modus ermöglicht detaillierte Einbettungen, wenn Vorfälle in Discord verlinkt werden. Dies wird private Informationen wie den Verdächtigen, die Strafen, etc. offenbaren.",
+                    "at": "Dea Modus ermöglicht detaillierte Eibettungen, wenn Vorfälle in Discord valinkt wean. Des wiad private Informationen wia den Vadächtigen, die Strofn, etc. offenboarn.",
+                    "fr": "Ce mode permet d'intégrer des informations détaillées lorsque vous liez des cas dans le discord. Cela rendra les informations privées comme le suspect, les punitions, etc. accessibles.",
+                    "es": "Este modo permite incrustar detalles cuando se vincula un caso en discord. Esto hará públicas las informaciones privadas como el sujeto, las sanciones, etc.",
+                    "ru": "Этот режим позволяет встраивать детальные вкладки при ссылке на преступление в дискорде. Это позволит открыть личную информацию, такую как подозреваемого, наказания и т.д.",
+                    "it": "Questa modalità consente di incorporare dettagliati quando si collega un caso nel discord. Questo permetterà di divulgare informazioni private come il sospettato, le punizioni, ecc."
+                },
+                "publishmod": {
+                    "description": "description of the publishmod field",
+                    "en": "Publish moderator information",
+                    "de": "Moderatorinformationen veröffentlichen",
+                    "at": "Moderatorinformationen veröffentlichen",
+                    "fr": "Publier les informations du modérateur",
+                    "es": "Publicar información del moderador",
+                    "ru": "Публиковать информацию о модераторе",
+                    "it": "Pubblicare le informazioni del moderatore"
+                },
+                "publishmodexplained": {
+                    "description": "details of publish moderator mode",
+                    "en": "A suspect will be able to see which moderator punished him.",
+                    "de": "Ein Verdächtiger wird in der Lage sein, zu sehen, welcher Moderator ihn verurteilt hat.",
+                    "at": "A Verdächtiga wird de Meglichkeit hom, zum schaun, wöchana Modarator erm verurtoit hot.",
+                    "fr": "Un suspect pourra voir quel modérateur l'a puni.",
+                    "es": "Un sospechoso podrá ver qué moderador lo castigó.",
+                    "ru": "Подозреваемый сможет увидеть, какой модератор его наказал.",
+                    "it": "Un sospetto sarà in grado di vedere quale moderatore lo ha punito."
+                }
+            },
+            "misc": {
+                "title": {
+                    "description": "title of the misc section",
+                    "en": "Miscellaneous",
+                    "de": "Verschiedenes",
+                    "at": "Verschiedenes",
+                    "fr": "Divers",
+                    "es": "Varios",
+                    "ru": "Разное",
+                    "it": "Varie"
+                },
+                "whois": {
+                    "description": "description of the whois field",
+                    "en": "Execute whois on member join",
+                    "de": "Whois bei Mitgliederbeitritt ausführen",
+                    "at": "Whois bei Mitgliederbeitritt ausführen",
+                    "fr": "Exécuter whois sur la présence d'un membre",
+                    "es": "Ejecutar whois en la presencia de un miembro",
+                    "ru": "Выполнять whois при присоединении пользователя",
+                    "it": "Esegui whois sulla presenza di un membro"
+                },
+                "whoisexplained": {
+                    "description": "details of whois mode",
+                    "en": "Automatically sends information about the joined user to your internal webhook.",
+                    "de": "Sendet automatisch Informationen über den neuen Benutzer an deinen internen Webhook.",
+                    "at": "Tua automatisch Infos üba an neichn Nutza on dein internan Webhook schickn.",
+                    "fr": "Envoie automatiquement des informations sur l'utilisateur rejoint à votre webhook interne.",
+                    "es": "Envía automáticamente información sobre el usuario unido a su webhook interno.",
+                    "ru": "Автоматически отправляет информацию о присоединенном пользователе на ваш внутренний веб-перехватчик.",
+                    "it": "Invia automaticamente le informazioni sull'utente iscritto al tuo webhook interno."
+                },
+                "language": {
+                    "description": "description of the language field",
+                    "en": "Language",
+                    "de": "Sprache",
+                    "at": "Sprache",
+                    "fr": "Langue",
+                    "es": "Idioma",
+                    "ru": "Язык",
+                    "it": "Lingua"
+                }
+            },
+            "save": {
+                "description": "description of the save button",
+                "en": "Save",
+                "de": "Speichern",
+                "at": "Speichern",
+                "fr": "Sauvegarder",
+                "es": "Guardar",
+                "ru": "Сохранить",
+                "it": "Salva"
+            },
+            "submitting": {
+                "description": "Submitting",
+                "en": "Submitting...",
+                "de": "Senden...",
+                "at": "Senden...",
+                "fr": "Soumission...",
+                "es": "Enviando...",
+                "ru": "Отправка...",
+                "it": "Invio..."
+            },
+            "saved": {
+                "description": "Saved",
+                "en": "Saved",
+                "de": "Gespeichert",
+                "at": "Gespeichert",
+                "fr": "Sauvegardé",
+                "es": "Guardado",
+                "ru": "Сохранено",
+                "it": "Salvato"
+            },
+            "failedtosave": {
+                "description": "Failed to save",
+                "en": "Failed to save",
+                "de": "Fehlgeschlagen",
+                "at": "Fehlgeschlagen",
+                "fr": "Échec de la sauvegarde",
+                "es": "Error al guardar",
+                "ru": "Не удалось сохранить",
+                "it": "Salvataggio fallito"
+            }
         }
     },
     "error": {
