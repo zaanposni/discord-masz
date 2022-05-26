@@ -68,6 +68,7 @@
     function logout() {
         deleteCookie("masz_access_token");
         authUser.set(null);
+        console.log("Cleared cache from previous session: " + API.clearCache());
         $goto("/login", { returnUrl: window.location.pathname });
     }
 
