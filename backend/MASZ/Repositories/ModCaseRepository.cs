@@ -357,7 +357,7 @@ namespace MASZ.Repositories
         {
             return await Database.CountAllActivePunishmentsForGuild(guildId, PunishmentType.Ban);
         }
-        public async Task<List<ModCase>> SearchCases(ulong guildId, string searchString, int limit=10)
+        public async Task<List<ModCase>> SearchCases(ulong guildId, string searchString, int limit = 10)
         {
             List<ModCase> modCases = await Database.SelectAllModCasesForGuild(guildId);
             List<ModCase> filteredModCases = new();
@@ -430,6 +430,14 @@ namespace MASZ.Repositories
             ModCase modCase = await GetModCase(guildId, caseId);
             modCase.MarkedToDeleteAt = null;
             modCase.DeletedByUserId = 0;
+            if (modCase.PunishmentType == PunishmentType.Warn || modCase.PunishmentType == PunishmentType.Kick)
+            {
+                modCase.PunishmentActive = false;
+            }
+            else
+            {
+                modCase.PunishmentActive = modCase.PunishedUntil == null || modCase.PunishedUntil > DateTime.UtcNow;
+            }
 
             Database.UpdateModCase(modCase);
             await Database.SaveChangesAsync();

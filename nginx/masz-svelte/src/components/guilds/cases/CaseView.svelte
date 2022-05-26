@@ -315,6 +315,7 @@
                     modCase.update((x) => {
                         x.modCase.markedToDeleteAt = res.markedToDeleteAt;
                         x.modCase.deletedByUserId = res.deletedByUserId;
+                        x.modCase.punishmentActive = false;
                         x.deletedBy = $authUser.discordUser;
                         return x;
                     });
@@ -330,11 +331,9 @@
 
     function restoreCase() {
         API.deleteData(`/guilds/${$currentParams.guildId}/bin/${$currentParams.caseId}/restore`, {})
-            .then(() => {
+            .then((res: ICase) => {
                 modCase.update((x) => {
-                    x.modCase.markedToDeleteAt = null;
-                    x.modCase.deletedByUserId = null;
-                    x.modCase.deletedByUserId = null;
+                    x.modCase = res;
                     return x;
                 });
                 toastSuccess($_("guilds.caseview.caserestored"));
