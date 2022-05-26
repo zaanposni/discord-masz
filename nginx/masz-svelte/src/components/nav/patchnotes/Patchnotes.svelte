@@ -100,7 +100,7 @@
                             {#each patchnote?.features ?? [] as entry}
                                 <div class="flex flex-row col-span-7">
                                     <div>
-                                        <StarFilled24 style="fill: var(--cds-support-success-inverse)" />
+                                        <StarFilled24 style="fill: var(--cds-support-warning-inverse)" />
                                     </div>
                                     <div class="flex flex-col px-4">
                                         <div class="text-lg font-semibold">{entry.title}</div>
@@ -116,7 +116,7 @@
                             {#each patchnote?.fixes ?? [] as entry}
                                 <div class="flex flex-row col-span-7">
                                     <div>
-                                        <CheckmarkFilled24 style="fill: var(--cds-support-warning-inverse)" />
+                                        <CheckmarkFilled24 style="fill: var(--cds-support-success-inverse)" />
                                     </div>
                                     <div class="flex flex-col px-4">
                                         <div class="text-lg font-semibold">{entry.title}</div>
