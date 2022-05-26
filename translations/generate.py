@@ -112,7 +112,7 @@ def nested_set(dic, keys, value):
     dic[keys[-1]] = value
 
 with console.status("[bold green]Generating frontend...") as status:
-    with open("frontend3.json", "r", encoding="utf-8") as f:
+    with open("frontend.json", "r", encoding="utf-8") as f:
         FRONTEND_DATA = json.load(f)
     NEW_SPLITTED_DATA = dict()
 

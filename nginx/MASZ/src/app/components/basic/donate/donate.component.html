@@ -1,6 +1,0 @@
-<div class="d-flex flex-row flex-wrap justify-content-center align-items-center h-100">
-    <app-epiclist [loading]="loading" [items]="items"></app-epiclist>
-    <ng-container *ngIf="!this.loading && this.items.length === 0">
-        <img src="/assets/img/notfound.svg" class="w-50 align-self-center"/>
-    </ng-container>
-</div>
