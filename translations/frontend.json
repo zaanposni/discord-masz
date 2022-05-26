@@ -4160,6 +4160,16 @@
                 "es": "Esta es tu clave única y no se puede recuperar. Si pierdes esta clave API, tendrás que reiniciarla.",
                 "ru": "Это ваш уникальный токен и он не может быть восстановлен. Если вы потеряете этот ключ API, вам придется его восстановить.",
                 "it": "Questo è il tuo token unico e non può essere ripristinato. Se perdi questa API key, dovrai ripristinarla."
+            },
+            "onlyone": {
+                "description": "onlyone of the tokens section",
+                "en": "Currently you can only create one token.",
+                "de": "Du kannst momentan nur einen API-Schlüssel erstellen.",
+                "at": "Du kannst momentan nur einen API-Schlüssel erstellen.",
+                "fr": "Actuellement, vous ne pouvez créer qu'une clé API.",
+                "es": "Actualmente solo puedes crear una clave API.",
+                "ru": "В настоящее время вы можете создать только один токен.",
+                "it": "Attualmente puoi creare solo un token."
             }
         }
     },

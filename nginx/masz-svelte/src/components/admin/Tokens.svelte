@@ -127,6 +127,11 @@
 
 <MediaQuery query="(min-width: 1024px)" let:matches>
     <div class="w-full lg:w-1/2">
+        {#if $tokens.length !== 0}
+            <div>
+                <InlineNotification kind="info" subtitle={$_("admin.tokens.onlyone")} />
+            </div>
+        {/if}
         <DataTable zebra title={$_("admin.tokens.title")} description={$_("admin.tokens.tabledescription")} {headers} bind:rows={$tokens}>
             <Toolbar>
                 <ToolbarContent>

@@ -515,7 +515,8 @@
             "cancel": "Cancelar",
             "powerful": "Una clave API es muy poderosa y puede controlar todo en MASZ!",
             "generate": "Generar",
-            "unique": "Esta es tu clave única y no se puede recuperar. Si pierdes esta clave API, tendrás que reiniciarla."
+            "unique": "Esta es tu clave única y no se puede recuperar. Si pierdes esta clave API, tendrás que reiniciarla.",
+            "onlyone": "Actualmente solo puedes crear una clave API."
         }
     },
     "error": "Error",

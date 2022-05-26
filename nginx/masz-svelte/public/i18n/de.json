@@ -515,7 +515,8 @@
             "cancel": "Abbrechen",
             "powerful": "Ein API-Schlüssel ist sehr mächtig und kann alles auf MASZ steuern!",
             "generate": "Generieren",
-            "unique": "Dies ist dein einzigartiger API-Schlüssel und er kann nicht wiederhergestellt werden. Wenn du ihn verlierst, musst du ihn zurücksetzen."
+            "unique": "Dies ist dein einzigartiger API-Schlüssel und er kann nicht wiederhergestellt werden. Wenn du ihn verlierst, musst du ihn zurücksetzen.",
+            "onlyone": "Du kannst momentan nur einen API-Schlüssel erstellen."
         }
     },
     "error": "Fehler",

@@ -515,7 +515,8 @@
             "cancel": "Cancel",
             "powerful": "An API key is very powerful and can control everything on MASZ!",
             "generate": "Generate",
-            "unique": "This is your unique token and it is non-recoverable. If you lose this API key, you will have to reset it."
+            "unique": "This is your unique token and it is non-recoverable. If you lose this API key, you will have to reset it.",
+            "onlyone": "Currently you can only create one token."
         }
     },
     "error": "Error",
