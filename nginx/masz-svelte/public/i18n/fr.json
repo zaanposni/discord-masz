@@ -120,6 +120,10 @@
             "searching": "Recherche en cours...",
             "searchfailed": "La recherche a échoué."
         },
+        "guildmotd": {
+            "title": "MotD",
+            "widgetdescription": "Ce widget affiche le message du jour actuel."
+        },
         "dashboardconfig": {
             "title": "Configuration du tableau de bord",
             "widgetdescription": "Ce widget vous aide à configurer votre tableau de bord.",

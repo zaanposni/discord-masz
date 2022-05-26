@@ -120,6 +120,10 @@
             "searching": "Ricerca in corso...",
             "searchfailed": "La ricerca non è riuscita."
         },
+        "guildmotd": {
+            "title": "MotD",
+            "widgetdescription": "Questo widget mostra il messaggio del giorno attuale."
+        },
         "dashboardconfig": {
             "title": "Configurazione cruscotto",
             "widgetdescription": "Questo widget ti aiuta a configurare il cruscotto.",

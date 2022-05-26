@@ -120,6 +120,10 @@
             "searching": "Поиск...",
             "searchfailed": "Поиск не удался."
         },
+        "guildmotd": {
+            "title": "MotD",
+            "widgetdescription": "Этот виджет показывает текущее сообщение дня."
+        },
         "dashboardconfig": {
             "title": "Конфигурация панели управления",
             "widgetdescription": "Этот виджет поможет вам настроить панель управления.",

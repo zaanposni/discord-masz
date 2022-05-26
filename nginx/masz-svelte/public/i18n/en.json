@@ -120,6 +120,10 @@
             "searching": "Searching...",
             "searchfailed": "Search failed."
         },
+        "guildmotd": {
+            "title": "MotD",
+            "widgetdescription": "This widget shows the current message of the day."
+        },
         "dashboardconfig": {
             "title": "Dashboard config",
             "widgetdescription": "This widget helps you to configure your dashboard.",

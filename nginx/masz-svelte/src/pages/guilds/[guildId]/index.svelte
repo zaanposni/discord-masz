@@ -26,7 +26,8 @@
     import ModCaseCountChart from "../../../components/guilds/dashboard/ModCaseCountChart.svelte";
     import AppealCountChart from "../../../components/guilds/dashboard/AppealCountChart.svelte";
     import AutomodCountChart from "../../../components/guilds/dashboard/AutomodCountChart.svelte";
-import PendingMessages from "../../../components/guilds/dashboard/PendingMessages.svelte";
+    import PendingMessages from "../../../components/guilds/dashboard/PendingMessages.svelte";
+    import MotdDisplay from "../../../components/guilds/dashboard/MotdDisplay.svelte";
 
     guildDashboardItems.set([
         {
@@ -94,6 +95,12 @@ import PendingMessages from "../../../components/guilds/dashboard/PendingMessage
             translationKey: "guildpendingmessages",
             component: PendingMessages,
             mode: WidgetMode.x2_1,
+        },
+        {
+            id: "guildmotd",
+            translationKey: "guildmotd",
+            component: MotdDisplay,
+            mode: WidgetMode.x1_1,
         },
         {
             id: "guild-dashboard-config",

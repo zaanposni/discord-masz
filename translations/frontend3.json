@@ -403,7 +403,7 @@
             },
             "settings": {
                 "motd": {
-                    "description": "MOTD",
+                    "description": "MotD",
                     "en": "MotD",
                     "de": "MotD",
                     "at": "MotD",
@@ -856,6 +856,28 @@
                 "es": "La búsqueda falló.",
                 "ru": "Поиск не удался.",
                 "it": "La ricerca non è riuscita."
+            }
+        },
+        "guildmotd": {
+            "title": {
+                "description": "Title",
+                "en": "MotD",
+                "de": "MotD",
+                "at": "MotD",
+                "fr": "MotD",
+                "es": "MotD",
+                "ru": "MotD",
+                "it": "MotD"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows the current message of the day.",
+                "de": "Dieses Widget zeigt das aktuelle Nachrichtenthema.",
+                "at": "Dieses Widget zeigt das aktuelle Nachrichtenthema.",
+                "fr": "Ce widget affiche le message du jour actuel.",
+                "es": "Este widget muestra el mensaje del día actual.",
+                "ru": "Этот виджет показывает текущее сообщение дня.",
+                "it": "Questo widget mostra il messaggio del giorno attuale."
             }
         },
         "dashboardconfig": {

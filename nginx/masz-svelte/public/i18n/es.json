@@ -120,6 +120,10 @@
             "searching": "Buscando...",
             "searchfailed": "La búsqueda falló."
         },
+        "guildmotd": {
+            "title": "MotD",
+            "widgetdescription": "Este widget muestra el mensaje del día actual."
+        },
         "dashboardconfig": {
             "title": "Configuración del tablero",
             "widgetdescription": "Este widget te ayuda a configurar tu tablero de mando.",
