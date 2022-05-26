@@ -20,7 +20,7 @@
 
     let roles;
     $: roles = ($currentParams?.guild?.roles ?? [])
-        .filter(g => g.id != $currentParams.guildId)
+        .filter((g) => g.id != $currentParams.guildId)
         .sort((a, b) => (a.position < b.position ? 1 : -1))
         .map((role) => ({
             id: role.id,
@@ -165,7 +165,7 @@
         {#if $loading}
             {#each new Array(20) as _}
                 <div class="col-span-5" class:!col-span-1={matches}>
-                    <Checkbox skeleton/>
+                    <Checkbox skeleton />
                 </div>
                 <div class="grid grid-cols-4 gap-2 items-center col-span-5" class:!col-span-4={matches} style={matches ? "grid-auto-rows: 1fr;" : ""}>
                     <div class="grid grid-cols-4 gap-2 items-center col-span-4">
@@ -199,6 +199,9 @@
                         <div class="grid grid-cols-4 gap-2 items-center col-span-4">
                             <div class:!col-span-2={!matches}>
                                 <ComboBox
+                                    shouldFilterItem={(item, value) => {
+                                        return `#${item.text.toLowerCase()}`.includes(value.toLowerCase());
+                                    }}
                                     titleText={$_("guilds.auditlog.targetchannel")}
                                     items={$channels}
                                     selectedId={$data.get(auditlog.type)?.channelId ?? undefined}

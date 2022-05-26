@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ScheduledMessageFailureReasons from './../../../services/enums/ScheduledMessageFailureReason';
+    import ScheduledMessageFailureReasons from "./../../../services/enums/ScheduledMessageFailureReason";
     import { Add32, Edit20, Delete20 } from "carbon-icons-svelte";
     import {
         Button,
@@ -254,7 +254,13 @@
         <TextInput id="messagetitleselection" bind:value={$modalTitle} placeholder={$_("guilds.messages.title")} />
     </div>
     <div class="mb-4">
-        <ComboBox items={$channels} bind:selectedId={$modalChannel} placeholder={$_("guilds.messages.channel")} />
+        <ComboBox
+            items={$channels}
+            bind:selectedId={$modalChannel}
+            placeholder={$_("guilds.messages.channel")}
+            shouldFilterItem={(item, value) => {
+                return `#${item.text.toLowerCase()}`.includes(value.toLowerCase());
+            }} />
     </div>
     <div class="flex flex-row mb-4">
         <DatePicker
@@ -354,9 +360,9 @@
                                         <div class="flex flex-row items-center flex-wrap mb-1">
                                             <ScheduledMessageStatusTag class="grow-0 shrink-0 !ml-0 mr-1" {message} />
                                             {#if message.status === ScheduledMessageStatus.Failed}
-                                            <div class="mr-2">
-                                                {$_(ScheduledMessageFailureReasons.getById(message.failureReason))}
-                                            </div>
+                                                <div class="mr-2">
+                                                    {$_(ScheduledMessageFailureReasons.getById(message.failureReason))}
+                                                </div>
                                             {/if}
                                             <div class="font-bold mr-2" style="word-wrap: anywhere">
                                                 {message.lastEdited?.username}#{message.lastEdited?.discriminator}
