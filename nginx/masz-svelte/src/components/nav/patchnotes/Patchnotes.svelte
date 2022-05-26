@@ -33,6 +33,8 @@
 <style>
     .contributors:hover > a {
         margin-right: 0.2rem;
+    }
+    .contributors > a {
         transform: scale(1);
         transition: 0.5s all ease;
     }
