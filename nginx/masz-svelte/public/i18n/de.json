@@ -495,6 +495,29 @@
             "failedtosave": "Fehlgeschlagen"
         }
     },
+    "admin": {
+        "tokens": {
+            "title": "Tokens",
+            "tabledescription": "Als Seitenadministrator kannst du die MASZ API nutzen, um deine eigenen benutzerdefinierten Skripte zu implementieren und Sachen automatisch auf MASZ zu erledigen. Erstelle einen API-Schlüssel unterhalb, um dich zu authentifizieren, während du Web-Anfragen machst. Füge Tokens im \"Authorization\"-Header mit einem \"Bearer \"-Präfix ein.",
+            "createnew": "Neuen Token erstellen",
+            "documentation": "Dokumentation",
+            "support": "Support",
+            "deleteall": "Alle Tokens löschen",
+            "delete": "Löschen",
+            "deleted": "Token gelöscht",
+            "failedtodelete": "Löschen fehlgeschlagen",
+            "failedtoload": "Laden fehlgeschlagen",
+            "name": "Name",
+            "createdat": "Erstellt am",
+            "validuntil": "Gültig bis",
+            "action": "Aktion",
+            "copy": "Kopieren",
+            "cancel": "Abbrechen",
+            "powerful": "Ein API-Schlüssel ist sehr mächtig und kann alles auf MASZ steuern!",
+            "generate": "Generieren",
+            "unique": "Dies ist dein einzigartiger API-Schlüssel und er kann nicht wiederhergestellt werden. Wenn du ihn verlierst, musst du ihn zurücksetzen."
+        }
+    },
     "error": "Fehler",
     "warns": "Warnungen",
     "mutes": "Stummschaltungen",

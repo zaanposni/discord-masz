@@ -495,6 +495,29 @@
             "failedtosave": "Échec de la sauvegarde"
         }
     },
+    "admin": {
+        "tokens": {
+            "title": "Jetons",
+            "tabledescription": "En tant que administrateur du site, vous pouvez utiliser l'API MASZ pour implémenter vos propres scripts personnalisés et automatiser des choses sur MASZ. Créez un jeton ci-dessous pour vous authentifier contre l'API pendant que vous effectuez des requêtes Web. Incluez les jetons dans l'en-tête \"Authorization\" avec un préfixe \"Bearer \".",
+            "createnew": "Créer un nouveau jeton",
+            "documentation": "Documentation",
+            "support": "Soutien",
+            "deleteall": "Supprimer tous les jetons",
+            "delete": "Supprimer",
+            "deleted": "Jeton supprimé",
+            "failedtodelete": "Échec de la suppression",
+            "failedtoload": "Échec du chargement",
+            "name": "Nom",
+            "createdat": "Créé le",
+            "validuntil": "Valide jusqu'au",
+            "action": "Action",
+            "copy": "Copier",
+            "cancel": "Annuler",
+            "powerful": "Un clé API est très puissante et peut contrôler tout sur MASZ!",
+            "generate": "Générer",
+            "unique": "Ceci est votre clé unique et elle ne peut pas être récupérée. Si vous perdez cette clé API, vous devrez la réinitialiser."
+        }
+    },
     "error": "Erreur",
     "warns": "Avertissements",
     "mutes": "Mutes",

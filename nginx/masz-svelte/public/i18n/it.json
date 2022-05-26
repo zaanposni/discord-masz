@@ -495,6 +495,29 @@
             "failedtosave": "Salvataggio fallito"
         }
     },
+    "admin": {
+        "tokens": {
+            "title": "Fogli",
+            "tabledescription": "Come amministratore del sito, è possibile utilizzare le API MASZ per implementare i propri script personalizzati e automatizzare cose su MASZ. Crea una chiave API qui sotto per autenticarsi controllando l'API durante le richieste web. Includi i token nell'intestazione \"Authorization\" con un prefisso \"Bearer \".",
+            "createnew": "Crea nuovo token",
+            "documentation": "Documentazione",
+            "support": "Supporto",
+            "deleteall": "Elimina tutti i token",
+            "delete": "Elimina",
+            "deleted": "Token eliminato",
+            "failedtodelete": "Impossibile eliminare",
+            "failedtoload": "Impossibile caricare",
+            "name": "Nome",
+            "createdat": "Creato il",
+            "validuntil": "Valido fino al",
+            "action": "Azione",
+            "copy": "Copia",
+            "cancel": "Annulla",
+            "powerful": "Una API key è molto potente e può controllare tutto su MASZ!",
+            "generate": "Genera",
+            "unique": "Questo è il tuo token unico e non può essere ripristinato. Se perdi questa API key, dovrai ripristinarla."
+        }
+    },
     "error": "Errore",
     "warns": "Avvertimenti",
     "mutes": "Mute",

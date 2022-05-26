@@ -3969,6 +3969,200 @@
             }
         }
     },
+    "admin": {
+        "tokens": {
+            "title": {
+                "description": "title of the tokens section",
+                "en": "Tokens",
+                "de": "Tokens",
+                "at": "Tokens",
+                "fr": "Jetons",
+                "es": "Fichas",
+                "ru": "Токены",
+                "it": "Fogli"
+            },
+            "tabledescription": {
+                "description": "description of the table",
+                "en": "As a siteadmin you can use the MASZ API to implement your own custom scripts and automate stuff on MASZ. Create an API key below to authorize yourself against the API while making web requests. Include tokens in the \"Authorization\" header with a \"Bearer \" prefix.",
+                "de": "Als Seitenadministrator kannst du die MASZ API nutzen, um deine eigenen benutzerdefinierten Skripte zu implementieren und Sachen automatisch auf MASZ zu erledigen. Erstelle einen API-Schlüssel unterhalb, um dich zu authentifizieren, während du Web-Anfragen machst. Füge Tokens im \"Authorization\"-Header mit einem \"Bearer \"-Präfix ein.",
+                "at": "Als Seitenadministrator kannst du die MASZ API nutzen, um deine eigenen benutzerdefinierten Skripte zu implementieren und Sachen automatisch auf MASZ zu erledigen. Erstelle einen API-Schlüssel unterhalb, um dich zu authentifizieren, während du Web-Anfragen machst. Füge Tokens im \"Authorization\"-Header mit einem \"Bearer \"-Präfix ein.",
+                "fr": "En tant que administrateur du site, vous pouvez utiliser l'API MASZ pour implémenter vos propres scripts personnalisés et automatiser des choses sur MASZ. Créez un jeton ci-dessous pour vous authentifier contre l'API pendant que vous effectuez des requêtes Web. Incluez les jetons dans l'en-tête \"Authorization\" avec un préfixe \"Bearer \".",
+                "es": "Como administrador de sitio, puedes usar la API MASZ para implementar tus propios scripts personalizados y automatizar cosas en MASZ. Crea una clave API debajo para autorizar a ti mismo contra la API mientras haces peticiones web. Incluye tokens en la cabecera \"Authorization\" con un prefijo \"Bearer \".",
+                "ru": "Как администратор сайта, вы можете использовать методы API MASZ для реализации своих пользовательских скриптов и автоматизации всего на MASZ. Создайте ключ API ниже, чтобы авторизоваться против API при помощи запросов веб. Включите токены в заголовок \"Authorization\" с префиксом \"Bearer \".",
+                "it": "Come amministratore del sito, è possibile utilizzare le API MASZ per implementare i propri script personalizzati e automatizzare cose su MASZ. Crea una chiave API qui sotto per autenticarsi controllando l'API durante le richieste web. Includi i token nell'intestazione \"Authorization\" con un prefisso \"Bearer \"."
+            },
+            "createnew": {
+                "description": "description of the create new button",
+                "en": "Create new token",
+                "de": "Neuen Token erstellen",
+                "at": "Neuen Token erstellen",
+                "fr": "Créer un nouveau jeton",
+                "es": "Crear nueva ficha",
+                "ru": "Создать новый токен",
+                "it": "Crea nuovo token"
+            },
+            "documentation": {
+                "description": "description of the documentation button",
+                "en": "Documentation",
+                "de": "Dokumentation",
+                "at": "Dokumentation",
+                "fr": "Documentation",
+                "es": "Documentación",
+                "ru": "Документация",
+                "it": "Documentazione"
+            },
+            "support": {
+                "description": "description of the support button",
+                "en": "Support",
+                "de": "Support",
+                "at": "Support",
+                "fr": "Soutien",
+                "es": "Apoyo",
+                "ru": "Поддержка",
+                "it": "Supporto"
+            },
+            "deleteall": {
+                "description": "description of the delete all button",
+                "en": "Delete all tokens",
+                "de": "Alle Tokens löschen",
+                "at": "Alle Tokens löschen",
+                "fr": "Supprimer tous les jetons",
+                "es": "Eliminar todas las fichas",
+                "ru": "Удалить все токены",
+                "it": "Elimina tutti i token"
+            },
+            "delete": {
+                "description": "description of the delete button",
+                "en": "Delete",
+                "de": "Löschen",
+                "at": "Löschen",
+                "fr": "Supprimer",
+                "es": "Eliminar",
+                "ru": "Удалить",
+                "it": "Elimina"
+            },
+            "deleted": {
+                "description": "description of the deleted message",
+                "en": "Token deleted",
+                "de": "Token gelöscht",
+                "at": "Token gelöscht",
+                "fr": "Jeton supprimé",
+                "es": "Ficha eliminada",
+                "ru": "Токен удален",
+                "it": "Token eliminato"
+            },
+            "failedtodelete": {
+                "description": "description of the failed to delete message",
+                "en": "Failed to delete",
+                "de": "Löschen fehlgeschlagen",
+                "at": "Löschen fehlgeschlagen",
+                "fr": "Échec de la suppression",
+                "es": "Error al eliminar",
+                "ru": "Не удалось удалить",
+                "it": "Impossibile eliminare"
+            },
+            "failedtoload": {
+                "description": "description of the failed to load message",
+                "en": "Failed to load",
+                "de": "Laden fehlgeschlagen",
+                "at": "Laden fehlgeschlagen",
+                "fr": "Échec du chargement",
+                "es": "Error al cargar",
+                "ru": "Не удалось загрузить",
+                "it": "Impossibile caricare"
+            },
+            "name": {
+                "description": "name of the tokens section",
+                "en": "Name",
+                "de": "Name",
+                "at": "Name",
+                "fr": "Nom",
+                "es": "Nombre",
+                "ru": "Имя",
+                "it": "Nome"
+            },
+            "createdat": {
+                "description": "created at of the tokens section",
+                "en": "Created at",
+                "de": "Erstellt am",
+                "at": "Erstellt am",
+                "fr": "Créé le",
+                "es": "Creado el",
+                "ru": "Создано",
+                "it": "Creato il"
+            },
+            "validuntil": {
+                "description": "valid until of the tokens section",
+                "en": "Valid until",
+                "de": "Gültig bis",
+                "at": "Gültig bis",
+                "fr": "Valide jusqu'au",
+                "es": "Válido hasta",
+                "ru": "Действителен до",
+                "it": "Valido fino al"
+            },
+            "action": {
+                "description": "action of the tokens section",
+                "en": "Action",
+                "de": "Aktion",
+                "at": "Aktion",
+                "fr": "Action",
+                "es": "Acción",
+                "ru": "Действие",
+                "it": "Azione"
+            },
+            "copy": {
+                "description": "copy of the tokens section",
+                "en": "Copy",
+                "de": "Kopieren",
+                "at": "Kopieren",
+                "fr": "Copier",
+                "es": "Copiar",
+                "ru": "Копировать",
+                "it": "Copia"
+            },
+            "cancel": {
+                "description": "cancel of the tokens section",
+                "en": "Cancel",
+                "de": "Abbrechen",
+                "at": "Abbrechen",
+                "fr": "Annuler",
+                "es": "Cancelar",
+                "ru": "Отменить",
+                "it": "Annulla"
+            },
+            "powerful": {
+                "description": "powerful of the tokens section",
+                "en": "An API key is very powerful and can control everything on MASZ!",
+                "de": "Ein API-Schlüssel ist sehr mächtig und kann alles auf MASZ steuern!",
+                "at": "Ein API-Schlüssel ist sehr mächtig und kann alles auf MASZ steuern!",
+                "fr": "Un clé API est très puissante et peut contrôler tout sur MASZ!",
+                "es": "Una clave API es muy poderosa y puede controlar todo en MASZ!",
+                "ru": "Ключ API очень мощный и может контролировать все на MASZ!",
+                "it": "Una API key è molto potente e può controllare tutto su MASZ!"
+            },
+            "generate": {
+                "description": "generate of the tokens section",
+                "en": "Generate",
+                "de": "Generieren",
+                "at": "Generieren",
+                "fr": "Générer",
+                "es": "Generar",
+                "ru": "Создать",
+                "it": "Genera"
+            },
+            "unique": {
+                "description": "unique of the tokens section",
+                "en": "This is your unique token and it is non-recoverable. If you lose this API key, you will have to reset it.",
+                "de": "Dies ist dein einzigartiger API-Schlüssel und er kann nicht wiederhergestellt werden. Wenn du ihn verlierst, musst du ihn zurücksetzen.",
+                "at": "Dies ist dein einzigartiger API-Schlüssel und er kann nicht wiederhergestellt werden. Wenn du ihn verlierst, musst du ihn zurücksetzen.",
+                "fr": "Ceci est votre clé unique et elle ne peut pas être récupérée. Si vous perdez cette clé API, vous devrez la réinitialiser.",
+                "es": "Esta es tu clave única y no se puede recuperar. Si pierdes esta clave API, tendrás que reiniciarla.",
+                "ru": "Это ваш уникальный токен и он не может быть восстановлен. Если вы потеряете этот ключ API, вам придется его восстановить.",
+                "it": "Questo è il tuo token unico e non può essere ripristinato. Se perdi questa API key, dovrai ripristinarla."
+            }
+        }
+    },
     "error": {
         "description": "Error",
         "en": "Error",

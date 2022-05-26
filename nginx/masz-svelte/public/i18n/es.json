@@ -495,6 +495,29 @@
             "failedtosave": "Error al guardar"
         }
     },
+    "admin": {
+        "tokens": {
+            "title": "Fichas",
+            "tabledescription": "Como administrador de sitio, puedes usar la API MASZ para implementar tus propios scripts personalizados y automatizar cosas en MASZ. Crea una clave API debajo para autorizar a ti mismo contra la API mientras haces peticiones web. Incluye tokens en la cabecera \"Authorization\" con un prefijo \"Bearer \".",
+            "createnew": "Crear nueva ficha",
+            "documentation": "Documentación",
+            "support": "Apoyo",
+            "deleteall": "Eliminar todas las fichas",
+            "delete": "Eliminar",
+            "deleted": "Ficha eliminada",
+            "failedtodelete": "Error al eliminar",
+            "failedtoload": "Error al cargar",
+            "name": "Nombre",
+            "createdat": "Creado el",
+            "validuntil": "Válido hasta",
+            "action": "Acción",
+            "copy": "Copiar",
+            "cancel": "Cancelar",
+            "powerful": "Una clave API es muy poderosa y puede controlar todo en MASZ!",
+            "generate": "Generar",
+            "unique": "Esta es tu clave única y no se puede recuperar. Si pierdes esta clave API, tendrás que reiniciarla."
+        }
+    },
     "error": "Error",
     "warns": "Advertencias",
     "mutes": "Mutes",

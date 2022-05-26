@@ -495,6 +495,29 @@
             "failedtosave": "Failed to save"
         }
     },
+    "admin": {
+        "tokens": {
+            "title": "Tokens",
+            "tabledescription": "As a siteadmin you can use the MASZ API to implement your own custom scripts and automate stuff on MASZ. Create an API key below to authorize yourself against the API while making web requests. Include tokens in the \"Authorization\" header with a \"Bearer \" prefix.",
+            "createnew": "Create new token",
+            "documentation": "Documentation",
+            "support": "Support",
+            "deleteall": "Delete all tokens",
+            "delete": "Delete",
+            "deleted": "Token deleted",
+            "failedtodelete": "Failed to delete",
+            "failedtoload": "Failed to load",
+            "name": "Name",
+            "createdat": "Created at",
+            "validuntil": "Valid until",
+            "action": "Action",
+            "copy": "Copy",
+            "cancel": "Cancel",
+            "powerful": "An API key is very powerful and can control everything on MASZ!",
+            "generate": "Generate",
+            "unique": "This is your unique token and it is non-recoverable. If you lose this API key, you will have to reset it."
+        }
+    },
     "error": "Error",
     "warns": "Warns",
     "mutes": "Mutes",
