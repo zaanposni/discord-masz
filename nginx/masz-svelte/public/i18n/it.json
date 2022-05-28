@@ -124,6 +124,12 @@
             "title": "MotD",
             "widgetdescription": "Questo widget mostra il messaggio del giorno attuale."
         },
+        "adminversion": {
+            "title": "Informazioni sulla versione",
+            "widgetdescription": "Questo widget mostra la versione attualmente installata e le aggiornamenti disponibili.",
+            "current": "Versione attuale",
+            "new": "Aggiornamento disponibile"
+        },
         "dashboardconfig": {
             "title": "Configurazione cruscotto",
             "widgetdescription": "Questo widget ti aiuta a configurare il cruscotto.",

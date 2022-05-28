@@ -880,6 +880,48 @@
                 "it": "Questo widget mostra il messaggio del giorno attuale."
             }
         },
+        "adminversion": {
+            "title": {
+                "description": "Title",
+                "en": "Version info",
+                "de": "Versionsinfo",
+                "at": "Versionsinfo",
+                "fr": "Version info",
+                "es": "Información de la versión",
+                "ru": "Информация о версии",
+                "it": "Informazioni sulla versione"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows the currently installed version and available updates",
+                "de": "Dieses Widget zeigt die aktuell installierte Version und verfügbare Updates.",
+                "at": "Dieses Widget zeigt die aktuell installierte Version und verfügbare Updates.",
+                "fr": "Ce widget affiche la version actuellement installée et les mises à jour disponibles.",
+                "es": "Este widget muestra la versión actualmente instalada y las actualizaciones disponibles.",
+                "ru": "Этот виджет показывает текущую установленную версию и доступные обновления.",
+                "it": "Questo widget mostra la versione attualmente installata e le aggiornamenti disponibili."
+            },
+            "current": {
+                "description": "Current version",
+                "en": "Current version",
+                "de": "Aktuelle Version",
+                "at": "Aktuelle Version",
+                "fr": "Version actuelle",
+                "es": "Versión actual",
+                "ru": "Текущая версия",
+                "it": "Versione attuale"
+            },
+            "new": {
+                "description": "New version",
+                "en": "Available update",
+                "de": "Verfügbares Update",
+                "at": "Verfügbares Update",
+                "fr": "Mise à jour disponible",
+                "es": "Actualización disponible",
+                "ru": "Доступное обновление",
+                "it": "Aggiornamento disponibile"
+            }
+        },
         "dashboardconfig": {
             "title": {
                 "description": "Title",

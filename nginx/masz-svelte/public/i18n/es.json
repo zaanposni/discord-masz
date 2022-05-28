@@ -124,6 +124,12 @@
             "title": "MotD",
             "widgetdescription": "Este widget muestra el mensaje del día actual."
         },
+        "adminversion": {
+            "title": "Información de la versión",
+            "widgetdescription": "Este widget muestra la versión actualmente instalada y las actualizaciones disponibles.",
+            "current": "Versión actual",
+            "new": "Actualización disponible"
+        },
         "dashboardconfig": {
             "title": "Configuración del tablero",
             "widgetdescription": "Este widget te ayuda a configurar tu tablero de mando.",

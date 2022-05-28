@@ -124,6 +124,12 @@
             "title": "MotD",
             "widgetdescription": "This widget shows the current message of the day."
         },
+        "adminversion": {
+            "title": "Version info",
+            "widgetdescription": "This widget shows the currently installed version and available updates",
+            "current": "Current version",
+            "new": "Available update"
+        },
         "dashboardconfig": {
             "title": "Dashboard config",
             "widgetdescription": "This widget helps you to configure your dashboard.",

@@ -124,6 +124,12 @@
             "title": "MotD",
             "widgetdescription": "Ce widget affiche le message du jour actuel."
         },
+        "adminversion": {
+            "title": "Version info",
+            "widgetdescription": "Ce widget affiche la version actuellement installée et les mises à jour disponibles.",
+            "current": "Version actuelle",
+            "new": "Mise à jour disponible"
+        },
         "dashboardconfig": {
             "title": "Configuration du tableau de bord",
             "widgetdescription": "Ce widget vous aide à configurer votre tableau de bord.",

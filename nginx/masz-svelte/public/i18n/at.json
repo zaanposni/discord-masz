@@ -124,6 +124,12 @@
             "title": "MotD",
             "widgetdescription": "Dieses Widget zeigt das aktuelle Nachrichtenthema."
         },
+        "adminversion": {
+            "title": "Versionsinfo",
+            "widgetdescription": "Dieses Widget zeigt die aktuell installierte Version und verfügbare Updates.",
+            "current": "Aktuelle Version",
+            "new": "Verfügbares Update"
+        },
         "dashboardconfig": {
             "title": "Dashboardkonfiguration",
             "widgetdescription": "Dieses Widget hilft dir, dein Dashboard zu konfigurieren.",
