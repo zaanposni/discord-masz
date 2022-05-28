@@ -3970,6 +3970,232 @@
         }
     },
     "admin": {
+        "settings": {
+            "failedtoload": {
+                "description": "Failed to load settings",
+                "en": "Failed to load settings",
+                "de": "Fehler beim Laden der Einstellungen",
+                "at": "Fehler beim Laden der Einstellungen",
+                "fr": "Impossible de charger les paramètres",
+                "es": "Error al cargar la configuración",
+                "ru": "Не удалось загрузить настройки",
+                "it": "Impossibile caricare le impostazioni"
+            },
+            "title": {
+                "description": "title of the settings section",
+                "en": "Settings",
+                "de": "Einstellungen",
+                "at": "Einstellungen",
+                "fr": "Paramètres",
+                "es": "Configuración",
+                "ru": "Настройки",
+                "it": "Impostazioni"
+            },
+            "save": {
+                "description": "description of the save button",
+                "en": "Save",
+                "de": "Speichern",
+                "at": "Speichern",
+                "fr": "Sauvegarder",
+                "es": "Guardar",
+                "ru": "Сохранить",
+                "it": "Salva"
+            },
+            "submitting": {
+                "description": "Submitting",
+                "en": "Submitting...",
+                "de": "Senden...",
+                "at": "Senden...",
+                "fr": "Soumission...",
+                "es": "Enviando...",
+                "ru": "Отправка...",
+                "it": "Invio..."
+            },
+            "failedtosave": {
+                "description": "Failed to save",
+                "en": "Failed to save",
+                "de": "Fehler beim Speichern",
+                "at": "Fehler beim Speichern",
+                "fr": "Échec de la sauvegarde",
+                "es": "Error al guardar",
+                "ru": "Не удалось сохранить",
+                "it": "Salvataggio fallito"
+            },
+            "saved": {
+                "description": "Saved",
+                "en": "Saved",
+                "de": "Gespeichert",
+                "at": "Gespeichert",
+                "fr": "Sauvegardé",
+                "es": "Guardado",
+                "ru": "Сохранено",
+                "it": "Salvato"
+            },
+            "embed": {
+                "title": {
+                    "description": "title of the embed section",
+                    "en": "Embed",
+                    "de": "Einbettung",
+                    "at": "Einbettung",
+                    "fr": "Intégration",
+                    "es": "Integración",
+                    "ru": "Встраивание",
+                    "it": "Incorporamento"
+                },
+                "explained": {
+                    "description": "This setting will change the content of the embed when your MASZ instance is linked in Discord.",
+                    "en": "This setting will change the content of the embed when your MASZ instance is linked in Discord.",
+                    "de": "Diese Einstellung ändert den Inhalt der Einbettung, wenn deine MASZ-Instanz in Discord verknüpft ist.",
+                    "at": "Die Eistellung ändat den Inhoit da Eibettung, wenn dei MASZ-Instanz in Discord vaknüpft is.",
+                    "fr": "Ce paramètre modifiera le contenu de l'encart lorsque votre instance MASZ est liée dans Discord.",
+                    "es": "Esta configuración cambiará el contenido del anuncio cuando tu instancia MASZ esté vinculada en Discord.",
+                    "ru": "Этот параметр изменит содержание встроенного контента, когда ваша страница MASZ будет привязана к Discord.",
+                    "it": "Questa impostazione cambierà il contenuto dell'embed quando il tuo istanza MASZ è collegata in Discord."
+                },
+                "explained2": {
+                    "description": "Please note that this might take up to one hour to update in discord.",
+                    "en": "Please note that this might take up to one hour to update in discord.",
+                    "de": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird.",
+                    "at": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird",
+                    "fr": "Veuillez noter que cela peut prendre jusqu'à une heure pour mettre à jour.",
+                    "es": "Por favor tenga en cuenta que esto puede tomar hasta una hora para actualizar.",
+                    "ru": "Обратите внимание, что это может занять до одного часа для обновления.",
+                    "it": "Si prega di notare che questo può richiedere fino a un'ora per aggiornare."
+                },
+                "titlefield": {
+                    "description": "title of the title field",
+                    "en": "Title",
+                    "de": "Titel",
+                    "at": "Titel",
+                    "fr": "Titre",
+                    "es": "Título",
+                    "ru": "Заголовок",
+                    "it": "Titolo"
+                },
+                "descriptionfield": {
+                    "description": "title of the description field",
+                    "en": "Description",
+                    "de": "Beschreibung",
+                    "at": "Beschreibung",
+                    "fr": "Description",
+                    "es": "Descripción",
+                    "ru": "Описание",
+                    "it": "Descrizione"
+                },
+                "titleinvalid": {
+                    "description": "title of the invalid title error",
+                    "en": "The title field is required and has to be less than 256 characters long.",
+                    "de": "Das Titelfeld ist erforderlich und muss weniger als 256 Zeichen lang sein.",
+                    "at": "Das Titelfeld ist erforderlich und muss weniger als 256 Zeichen lang sein.",
+                    "fr": "Le champ titre est obligatoire et doit être moins de 256 caractères.",
+                    "es": "El campo título es obligatorio y debe tener menos de 256 caracteres.",
+                    "ru": "Поле заголовка является обязательным и должно быть меньше чем 256 символов.",
+                    "it": "Il campo titolo è obbligatorio e deve essere più corto di 256 caratteri."
+                },
+                "descriptioninvalid": {
+                    "description": "title of the invalid description error",
+                    "en": "The description field is required and has to be less than 4096 characters long.",
+                    "de": "Das Beschreibungsfeld ist erforderlich und muss weniger als 4096 Zeichen lang sein.",
+                    "at": "Das Beschreibungsfeld ist erforderlich und muss weniger als 4096 Zeichen lang sein.",
+                    "fr": "Le champ description est obligatoire et doit être moins de 4096 caractères.",
+                    "es": "El campo descripción es obligatorio y debe tener menos de 4096 caracteres.",
+                    "ru": "Поле описания является обязательным и должно быть меньше чем 4096 символов.",
+                    "it": "Il campo descrizione è obbligatorio e deve essere più corto di 4096 caratteri."
+                },
+                "iconfield": {
+                    "description": "This setting will show the application's icon in the embed when your MASZ instance is linked in Discord.",
+                    "en": "Show application's icon in embed.",
+                    "de": "Zeige das Icon der Anwendung in der Einbettung.",
+                    "at": "Zeig des Icon da Anwendung in da Eibettung.",
+                    "fr": "Afficher l'icône de l'application dans l'encart.",
+                    "es": "Mostrar el icono de la aplicación en el anuncio.",
+                    "ru": "Показать иконку приложения в встроенном контенте, когда ваша страница MASZ будет привязана к Discord.",
+                    "it": "Mostra l'icona dell'applicazione nell'embed quando il tuo istanza MASZ è collegata in Discord."
+                }
+            },
+            "infrastructure": {
+                "title": {
+                    "description": "title of the infrastructure section",
+                    "en": "Infrastructure",
+                    "de": "Infrastruktur",
+                    "at": "Infrastruktur",
+                    "fr": "Infrastructure",
+                    "es": "Infraestructura",
+                    "ru": "Инфраструктура",
+                    "it": "Infrastruttura"
+                },
+                "explained": {
+                    "description": "default language explained",
+                    "en": "MASZ will use this language as the default language whenever possible. However, possibly only an english version is available for certain texts. Guild specific settings overwrite this setting.",
+                    "de": "MASZ wird diese Sprache als Standard verwenden, wenn möglich. Jedoch ist es möglich, dass nur eine englische Version verfügbar ist für bestimmte Texte. Gilden-spezifische Einstellungen überschreiben diese Einstellung.",
+                    "at": "MASZ wiad de Sproch ois Standard vawendn, wenns geht. Jedoch ists möglich, dass nua a englische Version fia monche Texte vafügbar is. Güdn-spezifische Eistellungen wean diese Eistellung übaschreibn.",
+                    "fr": "MASZ utilisera cette langue comme langue par défaut lorsque cela est possible. Cependant, il est possible que seule une version anglaise soit disponible pour certains textes. Les paramètres de guilde remplacent cette option.",
+                    "es": "MASZ utilizará este idioma como idioma predeterminado cuando sea posible. Sin embargo, es posible que solo una versión inglesa esté disponible para algunos textos. Los ajustes de la hermandad sobrescriben esta configuración.",
+                    "ru": "MASZ будет использовать этот язык по умолчанию, если это возможно. Однако, возможно, только английская версия доступна для некоторых текстов. Настройки гильдии перезаписывают этот параметр.",
+                    "it": "MASZ userà questa lingua come lingua predefinita quando possibile. Tuttavia, è possibile che solo una versione inglese sia disponibile per alcuni testi. Le impostazioni della gilda sovrascrivono questa impostazione."
+                },
+                "languagefield": {
+                    "description": "title of the language field",
+                    "en": "Standard language",
+                    "de": "Standard-Sprache",
+                    "at": "Standard-Sproch",
+                    "fr": "Langue standard",
+                    "es": "Idioma predeterminado",
+                    "ru": "Стандартный язык",
+                    "it": "Lingua predefinita"
+                },
+                "explained2": {
+                    "description": "AuditlogWebhookurl explained",
+                    "en": "Use a private webhook accessible for siteadmins only since it may log sensitive information.",
+                    "de": "Verwenden Sie einen privaten Webhook, der nur für Siteadmins zugänglich ist, da es sensible Informationen protokollieren könnte.",
+                    "at": "Vawendns an privaten Webhook, dea nua fia Siteadmins zugänglich is, da dea sensible Infos protokollieren kenntat.",
+                    "fr": "Utilisez un webhook privé accessible uniquement pour les administrateurs du site, car il peut enregistrer des informations sensibles.",
+                    "es": "Utilice un webhook privado accesible solo para los administradores del sitio, ya que puede registrar información sensible.",
+                    "ru": "Используйте приватный вебхук, который доступен только для администраторов сайта, потому что он может записывать конфиденциальную информацию.",
+                    "it": "Utilizzare un webhook privato accessibile solo per gli amministratori del sito, poiché può registrare informazioni sensibili."
+                },
+                "webhookfield": {
+                    "description": "title of the webhook field",
+                    "en": "Auditlog Webhook URL",
+                    "de": "Auditlog Webhook URL",
+                    "at": "Auditlog Webhook URL",
+                    "fr": "URL du webhook d'audit",
+                    "es": "URL del webhook de auditoría",
+                    "ru": "URL вебхука аудита",
+                    "it": "URL webhook audit"
+                },
+                "invalidwebhook": {
+                    "description": "invalid webhook error",
+                    "en": "The webhook URL is invalid.",
+                    "de": "Die Webhook-URL ist ungültig.",
+                    "at": "Die Webhook-URL ist ungültig.",
+                    "fr": "L'URL du webhook est invalide.",
+                    "es": "La URL del webhook no es válida.",
+                    "ru": "URL вебхука недействительна.",
+                    "it": "L'URL webhook non è valido."
+                },
+                "explained3": {
+                    "description": "PublicFileMode explained",
+                    "en": "Enable this to allow public access to all uploaded files.",
+                    "de": "Aktivieren Sie dies, um den öffentlichen Zugriff auf alle hochgeladenen Dateien zu ermöglichen.",
+                    "at": "Aktivians des, um den öffentlichn Zugriff auf olle hochglodane Dateien zua ermöglichn.",
+                    "fr": "Activez ceci pour autoriser l'accès public à tous les fichiers téléchargés.",
+                    "es": "Habilite esto para permitir el acceso público a todos los archivos subidos.",
+                    "ru": "Включите это, чтобы разрешить общий доступ ко всем загруженным файлам.",
+                    "it": "Abilitare questo per consentire l'accesso pubblico a tutti i file caricati."
+                },
+                "filemodefield": {
+                    "description": "title of the filemode field",
+                    "en": "Public file mode",
+                    "de": "Öffentlicher Datei-Modus",
+                    "at": "Öffentlicher Datei-Modus",
+                    "fr": "Mode de fichier public",
+                    "es": "Modo de archivo público",
+                    "ru": "Общий режим файла",
+                    "it": "Modalità file pubblica"
+                }
+            }
+        },
         "tokens": {
             "title": {
                 "description": "title of the tokens section",

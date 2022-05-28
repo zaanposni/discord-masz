@@ -496,6 +496,34 @@
         }
     },
     "admin": {
+        "settings": {
+            "failedtoload": "Impossible de charger les paramètres",
+            "title": "Paramètres",
+            "save": "Sauvegarder",
+            "submitting": "Soumission...",
+            "failedtosave": "Échec de la sauvegarde",
+            "saved": "Sauvegardé",
+            "embed": {
+                "title": "Intégration",
+                "explained": "Ce paramètre modifiera le contenu de l'encart lorsque votre instance MASZ est liée dans Discord.",
+                "explained2": "Veuillez noter que cela peut prendre jusqu'à une heure pour mettre à jour.",
+                "titlefield": "Titre",
+                "descriptionfield": "Description",
+                "titleinvalid": "Le champ titre est obligatoire et doit être moins de 256 caractères.",
+                "descriptioninvalid": "Le champ description est obligatoire et doit être moins de 4096 caractères.",
+                "iconfield": "Afficher l'icône de l'application dans l'encart."
+            },
+            "infrastructure": {
+                "title": "Infrastructure",
+                "explained": "MASZ utilisera cette langue comme langue par défaut lorsque cela est possible. Cependant, il est possible que seule une version anglaise soit disponible pour certains textes. Les paramètres de guilde remplacent cette option.",
+                "languagefield": "Langue standard",
+                "explained2": "Utilisez un webhook privé accessible uniquement pour les administrateurs du site, car il peut enregistrer des informations sensibles.",
+                "webhookfield": "URL du webhook d'audit",
+                "invalidwebhook": "L'URL du webhook est invalide.",
+                "explained3": "Activez ceci pour autoriser l'accès public à tous les fichiers téléchargés.",
+                "filemodefield": "Mode de fichier public"
+            }
+        },
         "tokens": {
             "title": "Jetons",
             "tabledescription": "En tant que administrateur du site, vous pouvez utiliser l'API MASZ pour implémenter vos propres scripts personnalisés et automatiser des choses sur MASZ. Créez un jeton ci-dessous pour vous authentifier contre l'API pendant que vous effectuez des requêtes Web. Incluez les jetons dans l'en-tête \"Authorization\" avec un préfixe \"Bearer \".",

@@ -496,6 +496,34 @@
         }
     },
     "admin": {
+        "settings": {
+            "failedtoload": "Error al cargar la configuración",
+            "title": "Configuración",
+            "save": "Guardar",
+            "submitting": "Enviando...",
+            "failedtosave": "Error al guardar",
+            "saved": "Guardado",
+            "embed": {
+                "title": "Integración",
+                "explained": "Esta configuración cambiará el contenido del anuncio cuando tu instancia MASZ esté vinculada en Discord.",
+                "explained2": "Por favor tenga en cuenta que esto puede tomar hasta una hora para actualizar.",
+                "titlefield": "Título",
+                "descriptionfield": "Descripción",
+                "titleinvalid": "El campo título es obligatorio y debe tener menos de 256 caracteres.",
+                "descriptioninvalid": "El campo descripción es obligatorio y debe tener menos de 4096 caracteres.",
+                "iconfield": "Mostrar el icono de la aplicación en el anuncio."
+            },
+            "infrastructure": {
+                "title": "Infraestructura",
+                "explained": "MASZ utilizará este idioma como idioma predeterminado cuando sea posible. Sin embargo, es posible que solo una versión inglesa esté disponible para algunos textos. Los ajustes de la hermandad sobrescriben esta configuración.",
+                "languagefield": "Idioma predeterminado",
+                "explained2": "Utilice un webhook privado accesible solo para los administradores del sitio, ya que puede registrar información sensible.",
+                "webhookfield": "URL del webhook de auditoría",
+                "invalidwebhook": "La URL del webhook no es válida.",
+                "explained3": "Habilite esto para permitir el acceso público a todos los archivos subidos.",
+                "filemodefield": "Modo de archivo público"
+            }
+        },
         "tokens": {
             "title": "Fichas",
             "tabledescription": "Como administrador de sitio, puedes usar la API MASZ para implementar tus propios scripts personalizados y automatizar cosas en MASZ. Crea una clave API debajo para autorizar a ti mismo contra la API mientras haces peticiones web. Incluye tokens en la cabecera \"Authorization\" con un prefijo \"Bearer \".",

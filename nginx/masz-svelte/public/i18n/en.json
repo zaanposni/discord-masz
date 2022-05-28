@@ -496,6 +496,34 @@
         }
     },
     "admin": {
+        "settings": {
+            "failedtoload": "Failed to load settings",
+            "title": "Settings",
+            "save": "Save",
+            "submitting": "Submitting...",
+            "failedtosave": "Failed to save",
+            "saved": "Saved",
+            "embed": {
+                "title": "Embed",
+                "explained": "This setting will change the content of the embed when your MASZ instance is linked in Discord.",
+                "explained2": "Please note that this might take up to one hour to update in discord.",
+                "titlefield": "Title",
+                "descriptionfield": "Description",
+                "titleinvalid": "The title field is required and has to be less than 256 characters long.",
+                "descriptioninvalid": "The description field is required and has to be less than 4096 characters long.",
+                "iconfield": "Show application's icon in embed."
+            },
+            "infrastructure": {
+                "title": "Infrastructure",
+                "explained": "MASZ will use this language as the default language whenever possible. However, possibly only an english version is available for certain texts. Guild specific settings overwrite this setting.",
+                "languagefield": "Standard language",
+                "explained2": "Use a private webhook accessible for siteadmins only since it may log sensitive information.",
+                "webhookfield": "Auditlog Webhook URL",
+                "invalidwebhook": "The webhook URL is invalid.",
+                "explained3": "Enable this to allow public access to all uploaded files.",
+                "filemodefield": "Public file mode"
+            }
+        },
         "tokens": {
             "title": "Tokens",
             "tabledescription": "As a siteadmin you can use the MASZ API to implement your own custom scripts and automate stuff on MASZ. Create an API key below to authorize yourself against the API while making web requests. Include tokens in the \"Authorization\" header with a \"Bearer \" prefix.",

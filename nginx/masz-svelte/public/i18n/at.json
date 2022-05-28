@@ -496,6 +496,34 @@
         }
     },
     "admin": {
+        "settings": {
+            "failedtoload": "Fehler beim Laden der Einstellungen",
+            "title": "Einstellungen",
+            "save": "Speichern",
+            "submitting": "Senden...",
+            "failedtosave": "Fehler beim Speichern",
+            "saved": "Gespeichert",
+            "embed": {
+                "title": "Einbettung",
+                "explained": "Die Eistellung ändat den Inhoit da Eibettung, wenn dei MASZ-Instanz in Discord vaknüpft is.",
+                "explained2": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird",
+                "titlefield": "Titel",
+                "descriptionfield": "Beschreibung",
+                "titleinvalid": "Das Titelfeld ist erforderlich und muss weniger als 256 Zeichen lang sein.",
+                "descriptioninvalid": "Das Beschreibungsfeld ist erforderlich und muss weniger als 4096 Zeichen lang sein.",
+                "iconfield": "Zeig des Icon da Anwendung in da Eibettung."
+            },
+            "infrastructure": {
+                "title": "Infrastruktur",
+                "explained": "MASZ wiad de Sproch ois Standard vawendn, wenns geht. Jedoch ists möglich, dass nua a englische Version fia monche Texte vafügbar is. Güdn-spezifische Eistellungen wean diese Eistellung übaschreibn.",
+                "languagefield": "Standard-Sproch",
+                "explained2": "Vawendns an privaten Webhook, dea nua fia Siteadmins zugänglich is, da dea sensible Infos protokollieren kenntat.",
+                "webhookfield": "Auditlog Webhook URL",
+                "invalidwebhook": "Die Webhook-URL ist ungültig.",
+                "explained3": "Aktivians des, um den öffentlichn Zugriff auf olle hochglodane Dateien zua ermöglichn.",
+                "filemodefield": "Öffentlicher Datei-Modus"
+            }
+        },
         "tokens": {
             "title": "Tokens",
             "tabledescription": "Als Seitenadministrator kannst du die MASZ API nutzen, um deine eigenen benutzerdefinierten Skripte zu implementieren und Sachen automatisch auf MASZ zu erledigen. Erstelle einen API-Schlüssel unterhalb, um dich zu authentifizieren, während du Web-Anfragen machst. Füge Tokens im \"Authorization\"-Header mit einem \"Bearer \"-Präfix ein.",
