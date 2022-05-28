@@ -537,5 +537,56 @@ namespace MASZ.Repositories
                 }
             }
         }
+
+        public async Task LinkCases(ulong guildId, int caseAId, int caseBId)
+        {
+            ModCase caseA = await GetModCase(guildId, caseAId);
+            ModCase caseB = await GetModCase(guildId, caseBId);
+
+            ModCaseMapping existing = await Database.GetModCaseMapping(caseA.Id, caseB.Id);
+            if (existing != null)
+            {
+                throw new BaseAPIException("Cases are already linked.");
+            }
+
+            existing = await Database.GetModCaseMapping(caseB.Id, caseA.Id);
+            if (existing != null)
+            {
+                throw new BaseAPIException("Cases are already linked.");
+            }
+
+            ModCaseMapping mapping = new ModCaseMapping()
+            {
+                CaseA = caseA,
+                CaseB = caseB
+            };
+
+            Database.CreateModCaseMapping(mapping);
+            await Database.SaveChangesAsync();
+        }
+
+        public async Task UnlinkCases(ulong guildId, int caseAId, int caseBId)
+        {
+            ModCase caseA = await GetModCase(guildId, caseAId);
+            ModCase caseB = await GetModCase(guildId, caseBId);
+
+            ModCaseMapping mapping = await Database.GetModCaseMapping(caseA.Id, caseB.Id);
+
+            if (mapping != null)
+            {
+                Database.DeleteModCaseMapping(mapping);
+                await Database.SaveChangesAsync();
+                return;
+            }
+
+            mapping = await Database.GetModCaseMapping(caseB.Id, caseA.Id);
+            if (mapping == null)
+            {
+                throw new BaseAPIException("Cases are not linked.");
+            }
+
+            Database.DeleteModCaseMapping(mapping);
+            await Database.SaveChangesAsync();
+        }
     }
 }

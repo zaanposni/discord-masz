@@ -906,5 +906,26 @@ namespace MASZ.Data
         {
             context.AppealAnswers.Add(answer);
         }
+
+        // ==================================================================================
+        //
+        // AppealAnswer
+        //
+        // ==================================================================================
+
+        public async Task<ModCaseMapping> GetModCaseMapping(int caseA, int caseB)
+        {
+            return await context.ModCaseMappings.AsQueryable().Where(x => x.CaseA.Id == caseA && x.CaseB.Id == caseB).FirstOrDefaultAsync();
+        }
+
+        public void CreateModCaseMapping(ModCaseMapping mapping)
+        {
+            context.ModCaseMappings.Add(mapping);
+        }
+
+        public void DeleteModCaseMapping(ModCaseMapping mapping)
+        {
+            context.ModCaseMappings.Remove(mapping);
+        }
     }
 }
