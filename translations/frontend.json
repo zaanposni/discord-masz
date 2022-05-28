@@ -984,6 +984,28 @@
                 "it": "Cache"
             }
         },
+        "adminloggedin": {
+            "title": {
+                "description": "Title",
+                "en": "Logged in users",
+                "de": "Angemeldete Benutzer",
+                "at": "Angemeldete Benutzer",
+                "fr": "Utilisateurs connectés",
+                "es": "Usuarios conectados",
+                "ru": "Зарегистрированные пользователи",
+                "it": "Utenti connessi"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows the currently logged in users",
+                "de": "Dieses Widget zeigt die aktuell angemeldeten Benutzer.",
+                "at": "Dieses Widget zeigt die aktuell angemeldeten Benutzer.",
+                "fr": "Ce widget affiche les utilisateurs actuellement connectés.",
+                "es": "Este widget muestra los usuarios actualmente conectados.",
+                "ru": "Этот виджет показывает текущих пользователей.",
+                "it": "Questo widget mostra gli utenti attualmente collegati."
+            }
+        },
         "dashboardconfig": {
             "title": {
                 "description": "Title",

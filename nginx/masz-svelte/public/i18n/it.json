@@ -138,6 +138,10 @@
             "db": "Database",
             "cache": "Cache"
         },
+        "adminloggedin": {
+            "title": "Utenti connessi",
+            "widgetdescription": "Questo widget mostra gli utenti attualmente collegati."
+        },
         "dashboardconfig": {
             "title": "Configurazione cruscotto",
             "widgetdescription": "Questo widget ti aiuta a configurare il cruscotto.",

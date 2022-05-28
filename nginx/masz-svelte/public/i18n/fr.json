@@ -138,6 +138,10 @@
             "db": "Base de données",
             "cache": "Cache"
         },
+        "adminloggedin": {
+            "title": "Utilisateurs connectés",
+            "widgetdescription": "Ce widget affiche les utilisateurs actuellement connectés."
+        },
         "dashboardconfig": {
             "title": "Configuration du tableau de bord",
             "widgetdescription": "Ce widget vous aide à configurer votre tableau de bord.",

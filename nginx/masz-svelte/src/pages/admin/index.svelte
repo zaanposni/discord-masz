@@ -13,6 +13,7 @@
     import type { IDashboardItem } from "../../models/IDashboardItem";
     import VersionDisplay from "../../components/admin/dashboard/VersionDisplay.svelte";
     import Monitoring from "../../components/admin/dashboard/Monitoring.svelte";
+    import CurrentlyLoggedIn from "../../components/admin/dashboard/CurrentlyLoggedIn.svelte";
 
     adminDashboardItems.set([
         {
@@ -25,6 +26,12 @@
             id: "admin-status",
             translationKey: "adminstatus",
             component: Monitoring,
+            mode: WidgetMode.x1_1,
+        },
+        {
+            id: "admin-loggedin",
+            translationKey: "adminloggedin",
+            component: CurrentlyLoggedIn,
             mode: WidgetMode.x1_1,
         },
         {

@@ -138,6 +138,10 @@
             "db": "Datenbank",
             "cache": "Cache"
         },
+        "adminloggedin": {
+            "title": "Angemeldete Benutzer",
+            "widgetdescription": "Dieses Widget zeigt die aktuell angemeldeten Benutzer."
+        },
         "dashboardconfig": {
             "title": "Dashboardkonfiguration",
             "widgetdescription": "Dieses Widget hilft dir, dein Dashboard zu konfigurieren.",

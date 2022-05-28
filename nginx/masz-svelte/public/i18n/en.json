@@ -138,6 +138,10 @@
             "db": "Database",
             "cache": "Cache"
         },
+        "adminloggedin": {
+            "title": "Logged in users",
+            "widgetdescription": "This widget shows the currently logged in users"
+        },
         "dashboardconfig": {
             "title": "Dashboard config",
             "widgetdescription": "This widget helps you to configure your dashboard.",
