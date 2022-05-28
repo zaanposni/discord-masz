@@ -16,6 +16,7 @@
     import CurrentlyLoggedIn from "../../components/admin/dashboard/CurrentlyLoggedIn.svelte";
     import ResourceStats from "../../components/admin/dashboard/ResourceStats.svelte";
     import CacheVisualization from "../../components/admin/dashboard/CacheVisualization.svelte";
+    import Feedback from "../../components/api/Feedback.svelte";
 
     adminDashboardItems.set([
         {
@@ -101,3 +102,5 @@
         {/each}
     {/if}
 </section>
+
+<Feedback />

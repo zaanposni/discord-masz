@@ -592,6 +592,15 @@
             "onlyone": "Actualmente solo puedes crear una clave API."
         }
     },
+    "feedback": {
+        "title": "¿Cómo te gusta MASZ?",
+        "experience": "Valora tu experiencia",
+        "comment": "Dejar un comentario (opcional)",
+        "commenttoolong": "Tu comentario debe tener 4096 caracteres o menos",
+        "cancel": "Cancelar",
+        "submit": "Enviar",
+        "thanks": "¡Gracias por tu opinión!"
+    },
     "error": "Error",
     "warns": "Advertencias",
     "mutes": "Mutes",

@@ -4759,6 +4759,78 @@
             }
         }
     },
+    "feedback": {
+        "title": {
+            "description": "title of the feedback section",
+            "en": "How do you like MASZ?",
+            "de": "Wie gefällt dir MASZ?",
+            "at": "Wie gefällt dir MASZ?",
+            "fr": "Comment aimez-vous MASZ?",
+            "es": "¿Cómo te gusta MASZ?",
+            "ru": "Как вам MASZ?",
+            "it": "Come ti piace MASZ?"
+        },
+        "experience": {
+            "description": "experience of the feedback section",
+            "en": "Rate your experience",
+            "de": "Bewerten Sie Ihre Erfahrung",
+            "at": "Bewerten Sie Ihre Erfahrung",
+            "fr": "Évaluez votre expérience",
+            "es": "Valora tu experiencia",
+            "ru": "Оцените вашу опытность",
+            "it": "Valuta la tua esperienza"
+        },
+        "comment": {
+            "description": "comment of the feedback section",
+            "en": "Leave a comment (optional)",
+            "de": "Kommentar hinterlassen (optional)",
+            "at": "Kommentar hinterlassen (optional)",
+            "fr": "Laisser un commentaire (optionnel)",
+            "es": "Dejar un comentario (opcional)",
+            "ru": "Оставить комментарий (необязательно)",
+            "it": "Lascia un commento (opzionale)"
+        },
+        "commenttoolong": {
+            "description": "commenttoolong of the feedback section",
+            "en": "Your comment needs to be 4096 characters or less",
+            "de": "Dein Kommentar muss 4096 Zeichen oder weniger haben",
+            "at": "Dein Kommentar muss 4096 Zeichen oder weniger haben",
+            "fr": "Votre commentaire doit être de 4096 caractères ou moins",
+            "es": "Tu comentario debe tener 4096 caracteres o menos",
+            "ru": "Ваш комментарий должен быть 4096 символов или меньше",
+            "it": "Il tuo commento deve essere 4096 caratteri o meno"
+        },
+        "cancel": {
+            "description": "cancel of the feedback section",
+            "en": "Cancel",
+            "de": "Abbrechen",
+            "at": "Abbrechen",
+            "fr": "Annuler",
+            "es": "Cancelar",
+            "ru": "Отменить",
+            "it": "Annulla"
+        },
+        "submit": {
+            "description": "submit of the feedback section",
+            "en": "Submit",
+            "de": "Senden",
+            "at": "Senden",
+            "fr": "Soumettre",
+            "es": "Enviar",
+            "ru": "Отправить",
+            "it": "Invia"
+        },
+        "thanks": {
+            "description": "thanks of the feedback section",
+            "en": "Thanks for your feedback!",
+            "de": "Danke für dein Feedback!",
+            "at": "Danke für dein Feedback!",
+            "fr": "Merci pour votre avis!",
+            "es": "¡Gracias por tu opinión!",
+            "ru": "Спасибо за ваш отзыв!",
+            "it": "Grazie per il tuo feedback!"
+        }
+    },
     "error": {
         "description": "Error",
         "en": "Error",

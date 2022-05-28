@@ -592,6 +592,15 @@
             "onlyone": "Du kannst momentan nur einen API-Schlüssel erstellen."
         }
     },
+    "feedback": {
+        "title": "Wie gefällt dir MASZ?",
+        "experience": "Bewerten Sie Ihre Erfahrung",
+        "comment": "Kommentar hinterlassen (optional)",
+        "commenttoolong": "Dein Kommentar muss 4096 Zeichen oder weniger haben",
+        "cancel": "Abbrechen",
+        "submit": "Senden",
+        "thanks": "Danke für dein Feedback!"
+    },
     "error": "Fehler",
     "warns": "Warnungen",
     "mutes": "Stummschaltungen",

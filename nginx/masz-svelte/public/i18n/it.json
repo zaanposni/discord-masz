@@ -592,6 +592,15 @@
             "onlyone": "Attualmente puoi creare solo un token."
         }
     },
+    "feedback": {
+        "title": "Come ti piace MASZ?",
+        "experience": "Valuta la tua esperienza",
+        "comment": "Lascia un commento (opzionale)",
+        "commenttoolong": "Il tuo commento deve essere 4096 caratteri o meno",
+        "cancel": "Annulla",
+        "submit": "Invia",
+        "thanks": "Grazie per il tuo feedback!"
+    },
     "error": "Errore",
     "warns": "Avvertimenti",
     "mutes": "Mute",

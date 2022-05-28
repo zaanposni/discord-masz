@@ -28,6 +28,7 @@
     import AutomodCountChart from "../../../components/guilds/dashboard/AutomodCountChart.svelte";
     import PendingMessages from "../../../components/guilds/dashboard/PendingMessages.svelte";
     import MotdDisplay from "../../../components/guilds/dashboard/MotdDisplay.svelte";
+    import Feedback from "../../../components/api/Feedback.svelte";
 
     guildDashboardItems.set([
         {
@@ -165,3 +166,5 @@
         {/each}
     {/if}
 </section>
+
+<Feedback />
