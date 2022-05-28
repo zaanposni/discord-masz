@@ -37,7 +37,7 @@
     import moment from "moment";
     import type { ILanguageSelect } from "../../../models/ILanguageSelect";
     import { goto } from "@roxi/routify";
-    import { toastError, toastSuccess, toastWarning } from "../../../services/toast/store";
+    import { toastError, toastSuccess } from "../../../services/toast/store";
     import { slide } from "svelte/transition";
 
     const utfOffset = new Date().getTimezoneOffset() * -1;
@@ -62,7 +62,7 @@
     let inputPunishedUntilDate: any;
     let inputPunishedUntilTime: any;
 
-    let filesToUpload: File[] = [];
+    const filesToUpload: Writable<File[]> = writable([]);
 
     let modCase: ICase = {
         punishmentType: PunishmentType.None,
@@ -178,7 +178,7 @@
                 toastSuccess($_("guilds.casedialog.casecreated", { values: { id: res.caseId } }));
                 $goto(`/guilds/${$currentParams.guildId}/cases/${res.caseId}`);
 
-                filesToUpload.forEach((file) => {
+                $filesToUpload.forEach((file) => {
                     uploadFile(file, res.caseId);
                 });
             })
@@ -260,6 +260,26 @@
                 templateSubmitting = false;
             });
     }
+
+    document.addEventListener("paste", (e: ClipboardEvent) => {
+        if (e.clipboardData) {
+            const items = e.clipboardData.items;
+            if (items) {
+                for (let i = 0; i < items.length; i++) {
+                    if (items[i].type.indexOf("image") !== -1) {
+                        e.preventDefault();
+                        const blob = items[i].getAsFile();
+                        if (blob) {
+                            filesToUpload.update(n => {
+                                n.push(blob);
+                                return n;
+                            });
+                        }
+                    }
+                }
+            }
+        }
+    });
 </script>
 
 <Modal
@@ -372,7 +392,7 @@
                             <Tag
                                 type="outline"
                                 filter
-                                title={$_('guilds.casedialog.clearlabel')}
+                                title={$_("guilds.casedialog.clearlabel")}
                                 on:close={() => {
                                     onLabelRemove(label);
                                 }}>{label}</Tag>
@@ -429,7 +449,7 @@
         <div class="flex flex-col mb-4">
             <div class="text-lg font-bold mb-2">{$_("guilds.casedialog.files")}</div>
             <div class="text-md">{$_("guilds.casedialog.filesexplain")}</div>
-            <FileUploader bind:files={filesToUpload} multiple buttonLabel={$_("guilds.casedialog.filesbutton")} status="complete" />
+            <FileUploader bind:files={$filesToUpload} multiple buttonLabel={$_("guilds.casedialog.filesbutton")} status="complete" />
         </div>
 
         <!-- Submit -->
