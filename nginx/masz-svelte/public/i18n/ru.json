@@ -187,6 +187,13 @@
             "banned": "Заблокированные гильдии"
         },
         "caseview": {
+            "unlinked": "Ссылка удалена",
+            "unlinkfailed": "Не удалось разорвать ссылку",
+            "linked": "Ссылка создана",
+            "linkfailed": "Не удалось создать ссылку",
+            "linkcase": "Ссылка на кейс",
+            "search": "Поиск",
+            "nocasesfound": "Нет кейсов",
             "attachmentuploadfailed": "Загрузка вложения не удалась",
             "casenotfound": "Дело не найдено",
             "filedeleted": "Файл удален",

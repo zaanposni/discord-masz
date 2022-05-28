@@ -187,6 +187,13 @@
             "banned": "Banned guilds"
         },
         "caseview": {
+            "unlinked": "Caselink deleted",
+            "unlinkfailed": "Failed to unlink case",
+            "linked": "Caselink created",
+            "linkfailed": "Failed to link case",
+            "linkcase": "Link case",
+            "search": "Search",
+            "nocasesfound": "No cases found",
             "attachmentuploadfailed": "Attachment upload failed",
             "casenotfound": "Case not found",
             "filedeleted": "File deleted",

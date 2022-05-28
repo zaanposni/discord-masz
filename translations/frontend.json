@@ -1339,6 +1339,76 @@
             }
         },
         "caseview": {
+            "unlinked": {
+                "description": "Unlinked",
+                "en": "Caselink deleted",
+                "de": "Caselink gelöscht",
+                "at": "Caselink gelöscht",
+                "fr": "Caselink supprimé",
+                "es": "Caselink eliminado",
+                "ru": "Ссылка удалена",
+                "it": "Caselink eliminato"
+            },
+            "unlinkfailed": {
+                "description": "Unlink failed",
+                "en": "Failed to unlink case",
+                "de": "Konnte Caselink nicht lösen",
+                "at": "Konnte Caselink nicht lösen",
+                "fr": "Échec de la suppression du caselink",
+                "es": "Fallo al desvincular caselink",
+                "ru": "Не удалось разорвать ссылку",
+                "it": "Impossibile scollegare il caso"
+            },
+            "linked": {
+                "description": "Linked",
+                "en": "Caselink created",
+                "de": "Caselink erstellt",
+                "at": "Caselink erstellt",
+                "fr": "Caselink créé",
+                "es": "Caselink creado",
+                "ru": "Ссылка создана",
+                "it": "Caselink creato"
+            },
+            "linkfailed": {
+                "description": "Link failed",
+                "en": "Failed to link case",
+                "de": "Konnte Caselink nicht erstellen",
+                "at": "Konnte Caselink nicht erstellen",
+                "fr": "Échec de la création du caselink",
+                "es": "Fallo al vincular caselink",
+                "ru": "Не удалось создать ссылку",
+                "it": "Impossibile collegare il caso"
+            },
+            "linkcase": {
+                "description": "Link case",
+                "en": "Link case",
+                "de": "Fall verlinken",
+                "at": "Fall verlinken",
+                "fr": "Lier le cas",
+                "es": "Vincular caso",
+                "ru": "Ссылка на кейс",
+                "it": "Collega il caso"
+            },
+            "search": {
+                "description": "Search",
+                "en": "Search",
+                "de": "Suche",
+                "at": "Suche",
+                "fr": "Recherche",
+                "es": "Buscar",
+                "ru": "Поиск",
+                "it": "Cerca"
+            },
+            "nocasesfound": {
+                "description": "No cases found",
+                "en": "No cases found",
+                "de": "Keine Fälle gefunden",
+                "at": "Keine Fälle gefunden",
+                "fr": "Aucun cas trouvé",
+                "es": "No se encontraron casos",
+                "ru": "Нет кейсов",
+                "it": "Nessun caso trovato"
+            },
             "attachmentuploadfailed": {
                 "description": "Attachment upload failed",
                 "en": "Attachment upload failed",

@@ -187,6 +187,13 @@
             "banned": "Gilde bloccate"
         },
         "caseview": {
+            "unlinked": "Caselink eliminato",
+            "unlinkfailed": "Impossibile scollegare il caso",
+            "linked": "Caselink creato",
+            "linkfailed": "Impossibile collegare il caso",
+            "linkcase": "Collega il caso",
+            "search": "Cerca",
+            "nocasesfound": "Nessun caso trovato",
             "attachmentuploadfailed": "Caricamento allegato non riuscito",
             "casenotfound": "Caso non trovato",
             "filedeleted": "File eliminato",

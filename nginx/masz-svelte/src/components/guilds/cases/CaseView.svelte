@@ -5,6 +5,7 @@
         Button,
         Checkbox,
         CopyButton,
+        InlineLoading,
         InlineNotification,
         Loading,
         Modal,
@@ -19,7 +20,6 @@
         Tile,
     } from "carbon-components-svelte";
     import {
-        Add24,
         ChevronDown24,
         ChevronUp24,
         Edit24,
@@ -30,6 +30,7 @@
         Share24,
         TrashCan24,
         Upload24,
+        CopyLink24,
         WatsonHealthAiStatusComplete24,
     } from "carbon-icons-svelte";
     import MediaQuery from "../../../core/MediaQuery.svelte";
@@ -51,6 +52,7 @@
     import { PunishmentType } from "../../../models/api/PunishmentType";
     import { _ } from "svelte-i18n";
     import type { ICase } from "../../../models/api/ICase";
+    import type { ICompactCaseView } from "../../../models/api/ICompactCaseView";
 
     const preloadFileExtensions = ["img", "png", "jpg", "jpeg", "gif", "webp"];
 
@@ -75,15 +77,18 @@
     let deleteCaseModalPublicNotification: Writable<boolean> = writable(false);
     let deleteCaseModalForceDelete: Writable<boolean> = writable(false);
 
+    let linkCaseModalOpen: Writable<boolean> = writable(false);
+    let linkCaseSubmitting: Writable<boolean> = writable(false);
+    let linkCaseSearchString: Writable<string> = writable("");
+    let linkCaseSearching: Writable<boolean> = writable(false);
+    let linkCaseSearchResults: Writable<ICompactCaseView[]> = writable([]);
+
     $: $currentParams?.guildId && $currentParams?.caseId ? loadData() : null;
     function loadData() {
         caseLoading = true;
         filesLoading = true;
         API.get(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/view`, CacheMode.PREFER_CACHE, true)
             .then((response: ICaseView) => {
-                response.linkedCases = [{ ...response.modCase }, { ...response.modCase }, { ...response.modCase }];
-                response.linkedCases[0].title += response.modCase.title;
-                response.linkedCases[1].title = "lol";
                 modCase.set(response);
                 renderDescription(response?.modCase?.description ?? "");
                 caseLoading = false;
@@ -137,10 +142,81 @@
 
     function unlinkCase(caseId: number) {
         console.log("unlinkCase", caseId);
+        API.deleteData(`/guilds/${$currentParams.guildId}/casemapping/${caseId}/${$modCase.modCase.caseId}`, {})
+            .then(() => {
+                modCase.update((n) => {
+                    n.linkedCases = n.linkedCases.filter((x) => x.caseId !== caseId);
+                    return n;
+                });
+                toastSuccess($_("guilds.caseview.unlinked"));
+                clearCaseCache();
+            })
+            .catch(() => {
+                toastError($_("guilds.caseview.unlinkfailed"));
+            });
     }
 
-    function linkCase() {
-        console.log("linkCase");
+    function linkCase(secondCase: ICase) {
+        linkCaseSubmitting.set(true);
+
+        API.post(`/guilds/${$currentParams.guildId}/casemapping/${$modCase.modCase.caseId}/${secondCase.caseId}`, {}, CacheMode.API_ONLY, false)
+            .then(() => {
+                modCase.update((n) => {
+                    n.linkedCases.push(secondCase);
+                    return n;
+                });
+                toastSuccess($_("guilds.caseview.linked"));
+                onLinkCaseModalClose();
+                clearCaseCache();
+            })
+            .catch(() => {
+                toastError($_("guilds.caseview.linkfailed"));
+            })
+            .finally(() => {
+                linkCaseSubmitting.set(false);
+            });
+    }
+
+    let linkCaseDebouncer;
+    function searchCases(search: string) {
+        if (linkCaseDebouncer) {
+            clearTimeout(linkCaseDebouncer);
+        }
+
+        if (search) {
+            linkCaseSearching.set(true);
+            linkCaseSearchResults.set([]);
+
+            const data = {
+                customTextFilter: search,
+            };
+
+            linkCaseDebouncer = setTimeout(() => {
+                API.post(`/guilds/${$currentParams.guildId}/modcasetable?startPage=0`, data, CacheMode.API_ONLY, false)
+                    .then((response: { cases: ICompactCaseView[]; fullSize: number }) => {
+                        linkCaseSearchResults.set(
+                            response.cases.filter(
+                                (c) => c.modCase.caseId != $modCase.modCase.caseId && !$modCase.linkedCases.some((x) => x.caseId == c.modCase.caseId)
+                            )
+                        );
+                        linkCaseSearching.set(false);
+                    })
+                    .catch(() => {
+                        linkCaseSearching.set(false);
+                    });
+            }, 500);
+        }
+    }
+    $: searchCases($linkCaseSearchString);
+
+    function onLinkCaseModalClose() {
+        linkCaseModalOpen.set(false);
+        setTimeout(() => {
+            linkCaseSubmitting.set(false);
+            linkCaseSearchString.set("");
+            linkCaseSearching.set(false);
+            linkCaseSearchResults.set([]);
+        }, 200);
     }
 
     function deleteComment(id: number) {
@@ -398,6 +474,56 @@
     }
 </style>
 
+<!-- Link case modal -->
+<Modal
+    size="sm"
+    open={$linkCaseModalOpen}
+    selectorPrimaryFocus="#commentvalue"
+    modalHeading={$_("guilds.caseview.linkcase")}
+    passiveModal
+    on:close={onLinkCaseModalClose}>
+    <Loading active={$linkCaseSubmitting} />
+    <div class="mb-2">
+        <TextInput
+            disabled={$linkCaseSubmitting}
+            labelText={$_("guilds.caseview.search")}
+            placeholder={$_("guilds.caseview.search")}
+            bind:value={$linkCaseSearchString} />
+    </div>
+    {#if $linkCaseSearching}
+        <div>
+            <InlineLoading />
+        </div>
+    {:else}
+        <div class="flex flex-col">
+            {#each $linkCaseSearchResults as modCase}
+                <Tile class="mb-2" light>
+                    <div class="flex flex-row grow-0 w-full max-w-full items-center">
+                        <List24 class="shrink-0 mr-2" />
+                        <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
+                            #{modCase.modCase.caseId}
+                        </div>
+                        <div class="grow truncate">
+                            {modCase.modCase.title}
+                        </div>
+                        <div class="grow" />
+                        <div class="shrink-0">
+                            <PunishmentTag modCase={modCase.modCase} />
+                        </div>
+                        <div class="cursor-pointer">
+                            <CopyLink24 class="mr-2" on:click={() => linkCase(modCase.modCase)} />
+                        </div>
+                    </div>
+                </Tile>
+            {:else}
+                {#if $linkCaseSearchString}
+                    {$_("guilds.caseview.nocasesfound")}
+                {/if}
+            {/each}
+        </div>
+    {/if}
+</Modal>
+
 <!-- Edit comment modal -->
 <Modal
     size="sm"
@@ -500,6 +626,16 @@
                                         disabled={$modCase.modCase.markedToDeleteAt !== null}
                                         on:click={uploadFile}>{$_("guilds.caseview.uploadfile")}</Button>
                                 </div>
+                                <div class="mr-2 mb-2">
+                                    <Button
+                                        size="small"
+                                        kind="secondary"
+                                        icon={CopyLink24}
+                                        disabled={$modCase.modCase.markedToDeleteAt !== null}
+                                        on:click={() => {
+                                            linkCaseModalOpen.set(true);
+                                        }}>{$_("guilds.caseview.linkcase")}</Button>
+                                </div>
                                 {#if ($modCase.modCase.punishedUntil === null || $modCase?.modCase?.punishedUntil?.isAfter(moment())) && ($modCase.modCase.punishmentType == PunishmentType.Ban || $modCase.modCase.punishmentType == PunishmentType.Mute)}
                                     <div class="mr-2 mb-2">
                                         <Button
@@ -559,6 +695,12 @@
                                     text={$_("guilds.caseview.uploadfile")}
                                     disabled={$modCase.modCase.markedToDeleteAt !== null}
                                     on:click={uploadFile} />
+                                <OverflowMenuItem
+                                    text={$_("guilds.caseview.linkcase")}
+                                    disabled={$modCase.modCase.markedToDeleteAt !== null}
+                                    on:click={() => {
+                                        linkCaseModalOpen.set(true);
+                                    }} />
                                 {#if ($modCase.modCase.punishedUntil === null || $modCase?.modCase?.punishedUntil?.isAfter(moment())) && ($modCase.modCase.punishmentType == PunishmentType.Ban || $modCase.modCase.punishmentType == PunishmentType.Mute)}
                                     <OverflowMenuItem
                                         text={$modCase.modCase.punishmentActive ? $_("guilds.caseview.deactivate") : $_("guilds.caseview.activate")}
@@ -703,14 +845,10 @@
                             <SkeletonText />
                         </div>
                     </div>
-                {:else}
+                {:else if isModeratorInGuild($authUser, $currentParams.guildId) && ($modCase?.linkedCases?.length ?? 0) !== 0}
                     <div class="mb-4">
                         <div class="flex flex-row mb-2">
-                            <div class="font-bold self-end">Linked cases</div>
-                            <div class="grow" />
-                            {#if isModeratorInGuild($authUser, $currentParams.guildId)}
-                                <Add24 class="cursor-pointer" on:click={linkCase} />
-                            {/if}
+                            <div class="font-bold">Linked cases</div>
                         </div>
                         <div class="flex flex-col" id="linkedcases">
                             {#each $modCase?.linkedCases ?? [] as linked}
@@ -733,6 +871,7 @@
                                                     text="Show case"
                                                     href={`/guilds/${$currentParams.guildId}/cases/${linked.caseId}`} />
                                                 <OverflowMenuItem
+                                                    danger
                                                     text="Unlink case"
                                                     on:click={() => {
                                                         unlinkCase(linked.caseId);

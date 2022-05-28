@@ -187,6 +187,13 @@
             "banned": "Gildes prohibidas"
         },
         "caseview": {
+            "unlinked": "Caselink eliminado",
+            "unlinkfailed": "Fallo al desvincular caselink",
+            "linked": "Caselink creado",
+            "linkfailed": "Fallo al vincular caselink",
+            "linkcase": "Vincular caso",
+            "search": "Buscar",
+            "nocasesfound": "No se encontraron casos",
             "attachmentuploadfailed": "Subida de adjunto falló",
             "casenotfound": "Caso no encontrado",
             "filedeleted": "Archivo eliminado",

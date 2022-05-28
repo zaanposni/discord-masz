@@ -187,6 +187,13 @@
             "banned": "Guildes bannis"
         },
         "caseview": {
+            "unlinked": "Caselink supprimé",
+            "unlinkfailed": "Échec de la suppression du caselink",
+            "linked": "Caselink créé",
+            "linkfailed": "Échec de la création du caselink",
+            "linkcase": "Lier le cas",
+            "search": "Recherche",
+            "nocasesfound": "Aucun cas trouvé",
             "attachmentuploadfailed": "Échec de l'envoi de pièce jointe",
             "casenotfound": "Cas non trouvé",
             "filedeleted": "Fichier supprimé",

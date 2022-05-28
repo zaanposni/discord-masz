@@ -187,6 +187,13 @@
             "banned": "Gesperrte Gilden"
         },
         "caseview": {
+            "unlinked": "Caselink gelöscht",
+            "unlinkfailed": "Konnte Caselink nicht lösen",
+            "linked": "Caselink erstellt",
+            "linkfailed": "Konnte Caselink nicht erstellen",
+            "linkcase": "Fall verlinken",
+            "search": "Suche",
+            "nocasesfound": "Keine Fälle gefunden",
             "attachmentuploadfailed": "Anhang hochladen fehlgeschlagen",
             "casenotfound": "Vorfall nicht gefunden",
             "filedeleted": "Datei gelöscht",
