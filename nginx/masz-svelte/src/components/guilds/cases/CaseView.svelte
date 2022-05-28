@@ -97,7 +97,17 @@
                 $goto("/guilds/" + $currentParams.guildId + "/cases");
                 toastError($_("guilds.caseview.casenotfound"));
             });
-        API.get(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/files`, CacheMode.PREFER_CACHE, true)
+        reloadFiles();
+        setTimeout(() => {
+            reloadFiles(false);
+        }, 5000);
+        setTimeout(() => {
+            reloadFiles(false);
+        }, 10000);
+    }
+
+    function reloadFiles(cache: boolean = true) {
+        API.get(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/files`, cache ? CacheMode.PREFER_CACHE : CacheMode.API_ONLY, true)
             .then((response: { names: string[] }) => {
                 files.set(
                     response.names.map((x) => {
