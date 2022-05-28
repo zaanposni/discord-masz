@@ -47,38 +47,6 @@ namespace MASZ.Commands
                 missingBasicPermissions.Append($"\n- {X_CHECK} {Translator.T().CmdFeaturesBanPermissionNotGranted()}");
             }
 
-            // mute
-            if (featureTest.HasManagedRolePermission())
-            {
-                missingBasicPermissions.Append($"\n- {CHECK} {Translator.T().CmdFeaturesManageRolePermissionGranted()}");
-            }
-            else
-            {
-                missingBasicPermissions.Append($"\n- {X_CHECK} {Translator.T().CmdFeaturesManageRolePermissionNotGranted()}");
-            }
-
-            // muted role
-            if (!featureTest.HasMutedRolesDefined())
-            {
-                missingBasicPermissions.Append($"\n- {X_CHECK} {Translator.T().CmdFeaturesMutedRoleUndefined()}");
-            }
-            else
-            {
-                switch (featureTest.HasManagableMutedRoles())
-                {
-                    case GuildFeatureTestResult.Ok:
-                        missingBasicPermissions.Append($"\n- {CHECK} {Translator.T().CmdFeaturesMutedRoleDefined()}");
-                        break;
-                    case GuildFeatureTestResult.RoleTooHigh:
-                        missingBasicPermissions.Append($"\n- {X_CHECK} {Translator.T().CmdFeaturesMutedRoleDefinedButTooHigh()}");
-                        break;
-                    default:
-                        missingBasicPermissions.Append($"\n- {X_CHECK} {Translator.T().CmdFeaturesMutedRoleDefinedButInvalid()}");
-                        break;
-                }
-            }
-
-
             // basic punishment feature
             if (featureTest.FeaturePunishmentExecution())
             {

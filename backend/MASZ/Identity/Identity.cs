@@ -115,7 +115,7 @@ namespace MASZ.Models
                         GuildPermission x = GuildPermission.CreateInstantInvite;
                         if (modCase.PunishmentType == PunishmentType.Kick) x = GuildPermission.KickMembers;
                         if (modCase.PunishmentType == PunishmentType.Ban) x = GuildPermission.BanMembers;
-                        if (modCase.PunishmentType == PunishmentType.Mute) x = GuildPermission.ManageRoles;
+                        if (modCase.PunishmentType == PunishmentType.Mute) x = GuildPermission.ModerateMembers;
                         if (await HasPermissionOnGuild(DiscordPermission.Admin, modCase.GuildId))
                         {
                             return true;
