@@ -40,7 +40,7 @@
     import { applicationInfo, privacyPolicyUrl, termsOfServiceUrl } from "../stores/applicationInfo";
     import MediaQuery from "../core/MediaQuery.svelte";
     import ConfirmDialog from "../core/confirmDialog/ConfirmDialog.svelte";
-	import type { ISearchEntry } from './../components/nav/search/ISearchEntry';
+    import type { ISearchEntry } from "./../components/nav/search/ISearchEntry";
     import { searchValue, showSearch, searchResults } from "../components/nav/search/store";
 
     if (window.location.pathname !== "/login" && !$isLoggedIn) {
@@ -55,7 +55,7 @@
         favoriteGuild.set($favoriteGuild === guildId ? "" : guildId);
     }
 
-    function onSearchSelect(e: { detail: { selectedResult: any }}) {
+    function onSearchSelect(e: { detail: { selectedResult: any } }) {
         e.detail.selectedResult.onSelect($goto, $currentParams);
     }
 
@@ -67,9 +67,11 @@
 
     function logout() {
         deleteCookie("masz_access_token");
-        authUser.set(null);
-        console.log("Cleared cache: " + API.clearCache());
         $goto("/login", { returnUrl: window.location.pathname });
+        setTimeout(() => {
+            authUser.set(null);
+            console.log("Cleared cache: " + API.clearCache());
+        }, 200);
     }
 
     console.log("Cleared cache from previous session: " + API.clearCache());
