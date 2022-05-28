@@ -131,7 +131,6 @@
                     disabled={$submitting || !$motd?.motd?.showMotd}
                     placeholder={$_("guilds.motd.message")}
                     on:change={(e) => {
-                        console.log(e);
                         motd.update((n) => {
                             n.motd.message = e.target.value;
                             return n;

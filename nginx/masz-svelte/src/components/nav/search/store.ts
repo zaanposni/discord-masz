@@ -116,8 +116,6 @@ export const allStaticSearchResults: Readable<ISearchEntry[]> = derived(
             keys: ["preparedText", "preparedDescription", "preparedAdditionalSearch"],
         };
 
-        console.log("scanning guildentries", guildEntries);
-
         const adminResults = fuzzysort
             .go(value, adminEntries, {
                 ...options,
@@ -280,9 +278,7 @@ guildStaticSearchEntries.set([
         textKey: "nav.guild.settings.motd",
         additionalSearchKeys: ["message of the day"],
         allowedToView: (user: IAuthUser, params: IRouteParams) =>
-            user &&
-            params?.guildId &&
-            (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
+            user && params?.guildId && (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
         onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
             gotoHelper(`/guilds/${params.guildId}/motd`);
         },
@@ -290,9 +286,7 @@ guildStaticSearchEntries.set([
     {
         textKey: "nav.guild.settings.auditlog",
         allowedToView: (user: IAuthUser, params: IRouteParams) =>
-            user &&
-            params?.guildId &&
-            (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
+            user && params?.guildId && (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
         onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
             gotoHelper(`/guilds/${params.guildId}/auditlog`);
         },
@@ -300,9 +294,7 @@ guildStaticSearchEntries.set([
     {
         textKey: "nav.guild.settings.automod",
         allowedToView: (user: IAuthUser, params: IRouteParams) =>
-            user &&
-            params?.guildId &&
-            (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
+            user && params?.guildId && (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
         onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
             gotoHelper(`/guilds/${params.guildId}/automodconfig`);
         },
@@ -311,9 +303,7 @@ guildStaticSearchEntries.set([
         textKey: "nav.guild.settings.search",
         descriptionKey: "nav.guild.settings.searchdetails",
         allowedToView: (user: IAuthUser, params: IRouteParams) =>
-            user &&
-            params?.guildId &&
-            (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
+            user && params?.guildId && (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
         onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
             gotoHelper(`/guilds/${params.guildId}/settings`);
         },

@@ -139,7 +139,6 @@
                         <ToolbarSearch
                             persistent
                             shouldFilterRows={(row, value) => {
-                                console.log(row, value);
                                 return row.name.toLowerCase().includes(value.toLowerCase());
                             }} />
                     {/if}
