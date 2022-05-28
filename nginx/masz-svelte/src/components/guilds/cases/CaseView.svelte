@@ -37,7 +37,7 @@
     import type { ICaseView } from "../../../models/api/ICaseView";
     import API from "../../../services/api/api";
     import { CacheMode } from "../../../services/api/CacheMode";
-    import { authUser, isModeratorInGuild } from "../../../stores/auth";
+    import { authUser, isAdminInGuild, isModeratorInGuild } from "../../../stores/auth";
     import { currentParams } from "../../../stores/currentParams";
     import PunishmentTag from "../../api/PunishmentTag.svelte";
     import type { IComment } from "../../../models/api/IComment";
@@ -568,7 +568,7 @@
             id="publicnotification"
             labelText={$_("guilds.caseview.sendpublicnotification")}
             bind:checked={$deleteCaseModalPublicNotification} />
-        {#if $authUser?.isAdmin}
+        {#if isAdminInGuild($authUser, $currentParams.guildId)}
             <Checkbox labelText={$_("guilds.caseview.forcedelete")} bind:checked={$deleteCaseModalForceDelete} />
         {/if}
     </div>

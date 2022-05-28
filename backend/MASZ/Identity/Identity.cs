@@ -98,7 +98,7 @@ namespace MASZ.Models
                 case APIActionPermission.Delete:
                     return await HasPermissionOnGuild(DiscordPermission.Moderator, modCase.GuildId);
                 case APIActionPermission.ForceDelete:
-                    return false;  // only siteadmin
+                    return await HasPermissionOnGuild(DiscordPermission.Admin, modCase.GuildId);
                 case APIActionPermission.Edit:
                     GuildConfig guildConfig;
                     try
