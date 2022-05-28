@@ -14,6 +14,7 @@
     import VersionDisplay from "../../components/admin/dashboard/VersionDisplay.svelte";
     import Monitoring from "../../components/admin/dashboard/Monitoring.svelte";
     import CurrentlyLoggedIn from "../../components/admin/dashboard/CurrentlyLoggedIn.svelte";
+import ResourceStats from "../../components/admin/dashboard/ResourceStats.svelte";
 
     adminDashboardItems.set([
         {
@@ -32,6 +33,12 @@
             id: "admin-loggedin",
             translationKey: "adminloggedin",
             component: CurrentlyLoggedIn,
+            mode: WidgetMode.x1_1,
+        },
+        {
+            id: "admin-resources",
+            translationKey: "adminresources",
+            component: ResourceStats,
             mode: WidgetMode.x1_1,
         },
         {

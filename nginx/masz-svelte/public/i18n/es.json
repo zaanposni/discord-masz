@@ -142,6 +142,16 @@
             "title": "Usuarios conectados",
             "widgetdescription": "Este widget muestra los usuarios actualmente conectados."
         },
+        "adminresources": {
+            "title": "Recursos",
+            "widgetdescription": "Este widget muestra la cantidad actual de recursos creados en su base de datos.",
+            "guilds": "Hermandades",
+            "cases": "Casos",
+            "automods": "Automod",
+            "usernotes": "Notas de usuario",
+            "usermaps": "Mapas de usuario",
+            "invites": "Invitaciones"
+        },
         "dashboardconfig": {
             "title": "Configuración del tablero",
             "widgetdescription": "Este widget te ayuda a configurar tu tablero de mando.",

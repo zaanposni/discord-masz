@@ -1006,6 +1006,88 @@
                 "it": "Questo widget mostra gli utenti attualmente collegati."
             }
         },
+        "adminresources": {
+            "title": {
+                "description": "Title",
+                "en": "Resources",
+                "de": "Ressourcen",
+                "at": "Ressourcen",
+                "fr": "Ressources",
+                "es": "Recursos",
+                "ru": "Ресурсы",
+                "it": "Risorse"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows the current amount of created resources in your database.",
+                "de": "Dieses Widget zeigt die aktuelle Anzahl an erstellten Ressourcen in Ihrer Datenbank.",
+                "at": "Dieses Widget zeigt die aktuelle Anzahl an erstellten Ressourcen in Ihrer Datenbank.",
+                "fr": "Ce widget affiche le nombre actuel de ressources créées dans votre base de données.",
+                "es": "Este widget muestra la cantidad actual de recursos creados en su base de datos.",
+                "ru": "Этот виджет показывает текущее количество созданных ресурсов в базе данных.",
+                "it": "Questo widget mostra la quantità attuale di risorse create nel database."
+            },
+            "guilds": {
+                "description": "Guilds",
+                "en": "Guilds",
+                "de": "Gilden",
+                "at": "Gilden",
+                "fr": "Guildes",
+                "es": "Hermandades",
+                "ru": "Гильдии",
+                "it": "Gilde"
+            },
+            "cases": {
+                "description": "Cases",
+                "en": "Cases",
+                "de": "Fälle",
+                "at": "Fälle",
+                "fr": "Cas",
+                "es": "Casos",
+                "ru": "Дела",
+                "it": "Casi"
+            },
+            "automods": {
+                "description": "Automod",
+                "en": "Automod",
+                "de": "Automod",
+                "at": "Automod",
+                "fr": "Automod",
+                "es": "Automod",
+                "ru": "Автомод",
+                "it": "Automod"
+            },
+            "usernotes": {
+                "description": "User notes",
+                "en": "Usernotes",
+                "de": "Benutzernotizen",
+                "at": "Benutzernotizen",
+                "fr": "Notes d'utilisateur",
+                "es": "Notas de usuario",
+                "ru": "Заметки пользователя",
+                "it": "Note utente"
+            },
+            "usermaps": {
+                "description": "User maps",
+                "en": "Usermaps",
+                "de": "Benutzerbeziehungen",
+                "at": "Benutzerbeziehungen",
+                "fr": "Cartes d'utilisateur",
+                "es": "Mapas de usuario",
+                "ru": "Карты пользователя",
+                "it": "Mappe utente"
+            },
+            "invites": {
+                "description": "Invites",
+                "en": "Invites",
+                "de": "Einladungen",
+                "at": "Einladungen",
+                "fr": "Invitations",
+                "es": "Invitaciones",
+                "ru": "Приглашения",
+                "it": "Inviti"
+            }
+        },
         "dashboardconfig": {
             "title": {
                 "description": "Title",

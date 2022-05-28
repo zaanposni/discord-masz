@@ -142,6 +142,16 @@
             "title": "Angemeldete Benutzer",
             "widgetdescription": "Dieses Widget zeigt die aktuell angemeldeten Benutzer."
         },
+        "adminresources": {
+            "title": "Ressourcen",
+            "widgetdescription": "Dieses Widget zeigt die aktuelle Anzahl an erstellten Ressourcen in Ihrer Datenbank.",
+            "guilds": "Gilden",
+            "cases": "Fälle",
+            "automods": "Automod",
+            "usernotes": "Benutzernotizen",
+            "usermaps": "Benutzerbeziehungen",
+            "invites": "Einladungen"
+        },
         "dashboardconfig": {
             "title": "Dashboardkonfiguration",
             "widgetdescription": "Dieses Widget hilft dir, dein Dashboard zu konfigurieren.",

@@ -11,8 +11,6 @@
     import type { IAdminStats } from "../../../models/api/IAdminStats";
     import API from "../../../services/api/api";
     import { CacheMode } from "../../../services/api/CacheMode";
-    import type { IStatusDetail } from "../../../models/api/IStatusDetail";
-
     export let dashboardItem: IDashboardItem;
     let widgetState = WidgetState.Loading;
 
@@ -26,69 +24,65 @@
         .catch(() => {
             widgetState = WidgetState.Error;
         });
-
-    function calcColor(status: IStatusDetail, warningLimit: number, errorLimit: number) {
-        if (!status.online) {
-            return "--cds-ui-04";
-        }
-        if (status.responseTime < warningLimit) {
-            return "--cds-support-success-inverse";
-        } else if (status.responseTime < errorLimit) {
-            return "--cds-support-warning-inverse";
-        } else {
-            return "--cds-support-error-inverse";
-        }
-    }
 </script>
 
 <DashboardWidget
-    title={$_("widgets.adminstatus.title")}
+    title={$_("widgets.adminresources.title")}
     mode={dashboardItem.mode}
     state={$adminDashboardEnableDragging ? WidgetState.Loading : widgetState}>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
-            {$_("widgets.adminstatus.bot")}
+            {$_("widgets.adminresources.guilds")}
         </div>
         <div class="mr-1">
-            {#if $adminStats.botStatus.online}
-                {$adminStats.botStatus.responseTime.toFixed(0)}ms
-            {:else if $adminStats.botStatus.message}
-                {$adminStats.botStatus.message}
-            {:else}
-                {$_("widgets.adminstatus.offline")}
-            {/if}
+            {$adminStats.guilds}
         </div>
-        <CircleSolid16 style="fill: var({calcColor($adminStats.botStatus, 200, 400)})" />
+        <CircleSolid16 style="fill: var(--cds-ui-04)" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
-            {$_("widgets.adminstatus.db")}
+            {$_("widgets.adminresources.cases")}
         </div>
         <div class="mr-1">
-            {#if $adminStats.dbStatus.online}
-                {$adminStats.dbStatus.responseTime.toFixed(0)}ms
-            {:else if $adminStats.dbStatus.message}
-                {$adminStats.dbStatus.message}
-            {:else}
-                {$_("widgets.adminstatus.offline")}
-            {/if}
+            {$adminStats.modCases}
         </div>
-        <CircleSolid16 style="fill: var({calcColor($adminStats.dbStatus, 30, 60)})" />
+        <CircleSolid16 style="fill: var(--cds-ui-04)" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
-            {$_("widgets.adminstatus.cache")}
+            {$_("widgets.adminresources.automods")}
         </div>
         <div class="mr-1">
-            {#if $adminStats.cacheStatus.online}
-                {$adminStats.cacheStatus.responseTime.toFixed(0)}ms
-            {:else if $adminStats.cacheStatus.message}
-                {$adminStats.cacheStatus.message}
-            {:else}
-                {$_("widgets.adminstatus.offline")}
-            {/if}
+            {$adminStats.automodEvents}
         </div>
-        <CircleSolid16 style="fill: var({calcColor($adminStats.cacheStatus, 1, 5)})" />
+        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+    </div>
+    <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
+        <div class="grow">
+            {$_("widgets.adminresources.usernotes")}
+        </div>
+        <div class="mr-1">
+            {$adminStats.userNotes}
+        </div>
+        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+    </div>
+    <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
+        <div class="grow">
+            {$_("widgets.adminresources.usermaps")}
+        </div>
+        <div class="mr-1">
+            {$adminStats.userMappings}
+        </div>
+        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+    </div>
+    <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
+        <div class="grow">
+            {$_("widgets.adminresources.invites")}
+        </div>
+        <div class="mr-1">
+            {$adminStats.trackedInvites}
+        </div>
+        <CircleSolid16 style="fill: var(--cds-ui-04)" />
     </div>
     <div slot="loading">
         <div class="dash-widget-list-border flex items-center" style="height: 2rem">

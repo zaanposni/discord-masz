@@ -142,6 +142,16 @@
             "title": "Logged in users",
             "widgetdescription": "This widget shows the currently logged in users"
         },
+        "adminresources": {
+            "title": "Resources",
+            "widgetdescription": "This widget shows the current amount of created resources in your database.",
+            "guilds": "Guilds",
+            "cases": "Cases",
+            "automods": "Automod",
+            "usernotes": "Usernotes",
+            "usermaps": "Usermaps",
+            "invites": "Invites"
+        },
         "dashboardconfig": {
             "title": "Dashboard config",
             "widgetdescription": "This widget helps you to configure your dashboard.",

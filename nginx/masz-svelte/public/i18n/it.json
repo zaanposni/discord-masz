@@ -142,6 +142,16 @@
             "title": "Utenti connessi",
             "widgetdescription": "Questo widget mostra gli utenti attualmente collegati."
         },
+        "adminresources": {
+            "title": "Risorse",
+            "widgetdescription": "Questo widget mostra la quantità attuale di risorse create nel database.",
+            "guilds": "Gilde",
+            "cases": "Casi",
+            "automods": "Automod",
+            "usernotes": "Note utente",
+            "usermaps": "Mappe utente",
+            "invites": "Inviti"
+        },
         "dashboardconfig": {
             "title": "Configurazione cruscotto",
             "widgetdescription": "Questo widget ti aiuta a configurare il cruscotto.",

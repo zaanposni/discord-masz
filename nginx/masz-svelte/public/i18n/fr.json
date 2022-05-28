@@ -142,6 +142,16 @@
             "title": "Utilisateurs connectés",
             "widgetdescription": "Ce widget affiche les utilisateurs actuellement connectés."
         },
+        "adminresources": {
+            "title": "Ressources",
+            "widgetdescription": "Ce widget affiche le nombre actuel de ressources créées dans votre base de données.",
+            "guilds": "Guildes",
+            "cases": "Cas",
+            "automods": "Automod",
+            "usernotes": "Notes d'utilisateur",
+            "usermaps": "Cartes d'utilisateur",
+            "invites": "Invitations"
+        },
         "dashboardconfig": {
             "title": "Configuration du tableau de bord",
             "widgetdescription": "Ce widget vous aide à configurer votre tableau de bord.",
