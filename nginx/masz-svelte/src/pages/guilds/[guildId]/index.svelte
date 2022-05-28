@@ -91,13 +91,13 @@
             mode: WidgetMode.x2_1,
         },
         {
-            id: "guildpendingmessages",
+            id: "guild-pendingmessages",
             translationKey: "guildpendingmessages",
             component: PendingMessages,
             mode: WidgetMode.x2_1,
         },
         {
-            id: "guildmotd",
+            id: "guild-motd",
             translationKey: "guildmotd",
             component: MotdDisplay,
             mode: WidgetMode.x1_1,

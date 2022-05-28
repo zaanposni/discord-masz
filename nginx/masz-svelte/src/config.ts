@@ -9,6 +9,7 @@ export const ENABLE_CORS = DEV_MODE;
 export const LOCAL_STORAGE_KEY_THEME = "__carbon-theme";
 export const LOCAL_STORAGE_KEY_LANGUAGE = "__masz-language";
 export const LOCAL_STORAGE_KEY_FAVORITE_GUILD = "__masz-favorite-guild";
+export const LOCAL_STORAGE_KEY_ADMIN_DASHBOARD_ITEMS = "__masz-admin-dashboard-items";
 export const LOCAL_STORAGE_KEY_GUILD_DASHBOARD_ITEMS = "__masz-guild-dashboard-items";
 export const LOCAL_STORAGE_KEY_GUILD_QUICKSEARCH_HISTORY = "__masz-guild-quicksearch-history";
 
