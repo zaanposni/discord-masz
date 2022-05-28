@@ -495,26 +495,28 @@
             <InlineLoading />
         </div>
     {:else}
-        <div class="flex flex-col">
+        <div class="flex flex-col" transition:slide|local>
             {#each $linkCaseSearchResults as modCase}
-                <Tile class="mb-2" light>
-                    <div class="flex flex-row grow-0 w-full max-w-full items-center">
-                        <List24 class="shrink-0 mr-2" />
-                        <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
-                            #{modCase.modCase.caseId}
+                <div transition:slide|local>
+                    <Tile class="mb-2" light>
+                        <div class="flex flex-row grow-0 w-full max-w-full items-center">
+                            <List24 class="shrink-0 mr-2" />
+                            <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
+                                #{modCase.modCase.caseId}
+                            </div>
+                            <div class="grow truncate">
+                                {modCase.modCase.title}
+                            </div>
+                            <div class="grow" />
+                            <div class="shrink-0">
+                                <PunishmentTag modCase={modCase.modCase} />
+                            </div>
+                            <div class="cursor-pointer">
+                                <CopyLink24 class="mr-2" on:click={() => linkCase(modCase.modCase)} />
+                            </div>
                         </div>
-                        <div class="grow truncate">
-                            {modCase.modCase.title}
-                        </div>
-                        <div class="grow" />
-                        <div class="shrink-0">
-                            <PunishmentTag modCase={modCase.modCase} />
-                        </div>
-                        <div class="cursor-pointer">
-                            <CopyLink24 class="mr-2" on:click={() => linkCase(modCase.modCase)} />
-                        </div>
-                    </div>
-                </Tile>
+                    </Tile>
+                </div>
             {:else}
                 {#if $linkCaseSearchString}
                     {$_("guilds.caseview.nocasesfound")}
