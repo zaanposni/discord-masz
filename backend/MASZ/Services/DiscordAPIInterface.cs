@@ -468,6 +468,29 @@ namespace MASZ.Services
             return true;
         }
 
+        public async Task<bool> RemoveTimeoutGuildUser(ulong guildId, ulong userId, string reason = null)
+        {
+            // request ---------------------------
+            try
+            {
+                SocketGuild guild = _client.GetGuild(guildId);
+                IGuildUser member = await FetchMemberInfo(guildId, userId, CacheBehavior.Default);
+                if (member == null) return false;
+
+                RequestOptions options = new();
+                if (! string.IsNullOrEmpty(reason))
+                    options.AuditLogReason = reason;
+
+                await member.RemoveTimeOutAsync(options);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"Failed to remove timeout user '{userId}' from guild '{guildId}'.");
+                return false;
+            }
+            return true;
+        }
+
         public async Task<bool> GrantGuildUserRole(ulong guildId, ulong userId, ulong roleId, string reason = null)
         {
             // request ---------------------------
