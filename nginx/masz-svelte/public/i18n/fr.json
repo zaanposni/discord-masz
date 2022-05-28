@@ -152,6 +152,16 @@
             "usermaps": "Cartes d'utilisateur",
             "invites": "Invitations"
         },
+        "admincache": {
+            "title": "Cache",
+            "widgetdescription": "Ce widget affiche le nombre actuel de ressources mises en cache.",
+            "users": "Utilisateurs",
+            "guilds": "Guildes",
+            "bans": "Banns",
+            "members": "Membres",
+            "dmchannels": "Canaux DM",
+            "tokens": "Connexions par jetons"
+        },
         "dashboardconfig": {
             "title": "Configuration du tableau de bord",
             "widgetdescription": "Ce widget vous aide à configurer votre tableau de bord.",

@@ -152,6 +152,16 @@
             "usermaps": "Benutzerbeziehungen",
             "invites": "Einladungen"
         },
+        "admincache": {
+            "title": "Cache",
+            "widgetdescription": "Dieses Widget zeigt die aktuelle Anzahl an gecacheten Ressourcen.",
+            "users": "Benutzer",
+            "guilds": "Gilden",
+            "bans": "Banns",
+            "members": "Mitglieder",
+            "dmchannels": "DM-Kanäle",
+            "tokens": "Token-Logins"
+        },
         "dashboardconfig": {
             "title": "Dashboardkonfiguration",
             "widgetdescription": "Dieses Widget hilft dir, dein Dashboard zu konfigurieren.",

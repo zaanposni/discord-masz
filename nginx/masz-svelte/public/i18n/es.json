@@ -152,6 +152,16 @@
             "usermaps": "Mapas de usuario",
             "invites": "Invitaciones"
         },
+        "admincache": {
+            "title": "Caché",
+            "widgetdescription": "Este widget muestra la cantidad actual de recursos en caché.",
+            "users": "Usuarios",
+            "guilds": "Hermandades",
+            "bans": "Bans",
+            "members": "Miembros",
+            "dmchannels": "Canales DM",
+            "tokens": "Inicios de sesión con token"
+        },
         "dashboardconfig": {
             "title": "Configuración del tablero",
             "widgetdescription": "Este widget te ayuda a configurar tu tablero de mando.",

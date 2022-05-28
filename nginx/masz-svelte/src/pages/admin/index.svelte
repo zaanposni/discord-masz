@@ -14,7 +14,8 @@
     import VersionDisplay from "../../components/admin/dashboard/VersionDisplay.svelte";
     import Monitoring from "../../components/admin/dashboard/Monitoring.svelte";
     import CurrentlyLoggedIn from "../../components/admin/dashboard/CurrentlyLoggedIn.svelte";
-import ResourceStats from "../../components/admin/dashboard/ResourceStats.svelte";
+    import ResourceStats from "../../components/admin/dashboard/ResourceStats.svelte";
+    import CacheVisualization from "../../components/admin/dashboard/CacheVisualization.svelte";
 
     adminDashboardItems.set([
         {
@@ -39,6 +40,12 @@ import ResourceStats from "../../components/admin/dashboard/ResourceStats.svelte
             id: "admin-resources",
             translationKey: "adminresources",
             component: ResourceStats,
+            mode: WidgetMode.x1_1,
+        },
+        {
+            id: "admin-cache",
+            translationKey: "admincache",
+            component: CacheVisualization,
             mode: WidgetMode.x1_1,
         },
         {

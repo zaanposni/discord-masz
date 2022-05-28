@@ -152,6 +152,16 @@
             "usermaps": "Mappe utente",
             "invites": "Inviti"
         },
+        "admincache": {
+            "title": "Cache",
+            "widgetdescription": "Questo widget mostra la quantità attuale di risorse memorizzate in cache.",
+            "users": "Utenti",
+            "guilds": "Gilde",
+            "bans": "Bannati",
+            "members": "Membri",
+            "dmchannels": "Canali DM",
+            "tokens": "Accesso con token"
+        },
         "dashboardconfig": {
             "title": "Configurazione cruscotto",
             "widgetdescription": "Questo widget ti aiuta a configurare il cruscotto.",

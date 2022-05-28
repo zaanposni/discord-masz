@@ -152,6 +152,16 @@
             "usermaps": "Usermaps",
             "invites": "Invites"
         },
+        "admincache": {
+            "title": "Cache",
+            "widgetdescription": "This widget shows the current amount of cached resources.",
+            "users": "Users",
+            "guilds": "Guilds",
+            "bans": "Bans",
+            "members": "Members",
+            "dmchannels": "DM channels",
+            "tokens": "Token logins"
+        },
         "dashboardconfig": {
             "title": "Dashboard config",
             "widgetdescription": "This widget helps you to configure your dashboard.",

@@ -1088,6 +1088,88 @@
                 "it": "Inviti"
             }
         },
+        "admincache": {
+            "title": {
+                "description": "Title",
+                "en": "Cache",
+                "de": "Cache",
+                "at": "Cache",
+                "fr": "Cache",
+                "es": "Caché",
+                "ru": "Кэш",
+                "it": "Cache"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows the current amount of cached resources.",
+                "de": "Dieses Widget zeigt die aktuelle Anzahl an gecacheten Ressourcen.",
+                "at": "Dieses Widget zeigt die aktuelle Anzahl an gecacheten Ressourcen.",
+                "fr": "Ce widget affiche le nombre actuel de ressources mises en cache.",
+                "es": "Este widget muestra la cantidad actual de recursos en caché.",
+                "ru": "Этот виджет показывает текущее количество кэшированных ресурсов.",
+                "it": "Questo widget mostra la quantità attuale di risorse memorizzate in cache."
+            },
+            "users": {
+                "description": "Users",
+                "en": "Users",
+                "de": "Benutzer",
+                "at": "Benutzer",
+                "fr": "Utilisateurs",
+                "es": "Usuarios",
+                "ru": "Пользователи",
+                "it": "Utenti"
+            },
+            "guilds": {
+                "description": "Guilds",
+                "en": "Guilds",
+                "de": "Gilden",
+                "at": "Gilden",
+                "fr": "Guildes",
+                "es": "Hermandades",
+                "ru": "Гильдии",
+                "it": "Gilde"
+            },
+            "bans": {
+                "description": "Bans",
+                "en": "Bans",
+                "de": "Banns",
+                "at": "Banns",
+                "fr": "Banns",
+                "es": "Bans",
+                "ru": "Баны",
+                "it": "Bannati"
+            },
+            "members": {
+                "description": "Members",
+                "en": "Members",
+                "de": "Mitglieder",
+                "at": "Mitglieder",
+                "fr": "Membres",
+                "es": "Miembros",
+                "ru": "Участники",
+                "it": "Membri"
+            },
+            "dmchannels": {
+                "description": "DM channels",
+                "en": "DM channels",
+                "de": "DM-Kanäle",
+                "at": "DM-Kanäle",
+                "fr": "Canaux DM",
+                "es": "Canales DM",
+                "ru": "Личные сообщения",
+                "it": "Canali DM"
+            },
+            "tokens": {
+                "description": "Tokens",
+                "en": "Token logins",
+                "de": "Token-Logins",
+                "at": "Token-Logins",
+                "fr": "Connexions par jetons",
+                "es": "Inicios de sesión con token",
+                "ru": "Вход с токеном",
+                "it": "Accesso con token"
+            }
+        },
         "dashboardconfig": {
             "title": {
                 "description": "Title",
