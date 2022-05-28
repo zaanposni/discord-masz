@@ -130,6 +130,14 @@
             "current": "Versione attuale",
             "new": "Aggiornamento disponibile"
         },
+        "adminstatus": {
+            "title": "Stato",
+            "widgetdescription": "Questo widget mostra il ping attuale dei componenti MASZ.",
+            "offline": "Offline",
+            "bot": "Bot",
+            "db": "Database",
+            "cache": "Cache"
+        },
         "dashboardconfig": {
             "title": "Configurazione cruscotto",
             "widgetdescription": "Questo widget ti aiuta a configurare il cruscotto.",

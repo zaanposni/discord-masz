@@ -12,6 +12,7 @@
     import { dndzone } from "svelte-dnd-action";
     import type { IDashboardItem } from "../../models/IDashboardItem";
     import VersionDisplay from "../../components/admin/dashboard/VersionDisplay.svelte";
+    import Monitoring from "../../components/admin/dashboard/Monitoring.svelte";
 
     adminDashboardItems.set([
         {
@@ -19,6 +20,12 @@
             translationKey: "adminversion",
             component: VersionDisplay,
             mode: WidgetMode.x2_1,
+        },
+        {
+            id: "admin-status",
+            translationKey: "adminstatus",
+            component: Monitoring,
+            mode: WidgetMode.x1_1,
         },
         {
             id: "admin-dashboard-config",

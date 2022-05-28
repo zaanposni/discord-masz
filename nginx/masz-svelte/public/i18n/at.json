@@ -130,6 +130,14 @@
             "current": "Aktuelle Version",
             "new": "Verfügbares Update"
         },
+        "adminstatus": {
+            "title": "Status",
+            "widgetdescription": "Dieses Widget zeigt den aktuellen Ping der MASZ-Komponenten.",
+            "offline": "Offline",
+            "bot": "Bot",
+            "db": "Datenbank",
+            "cache": "Cache"
+        },
         "dashboardconfig": {
             "title": "Dashboardkonfiguration",
             "widgetdescription": "Dieses Widget hilft dir, dein Dashboard zu konfigurieren.",

@@ -130,6 +130,14 @@
             "current": "Versión actual",
             "new": "Actualización disponible"
         },
+        "adminstatus": {
+            "title": "Estado",
+            "widgetdescription": "Este widget muestra el ping actual de los componentes MASZ.",
+            "offline": "Desconectado",
+            "bot": "Bot",
+            "db": "Base de datos",
+            "cache": "Caché"
+        },
         "dashboardconfig": {
             "title": "Configuración del tablero",
             "widgetdescription": "Este widget te ayuda a configurar tu tablero de mando.",

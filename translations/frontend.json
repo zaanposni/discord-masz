@@ -922,6 +922,68 @@
                 "it": "Aggiornamento disponibile"
             }
         },
+        "adminstatus": {
+            "title": {
+                "description": "Title",
+                "en": "Status",
+                "de": "Status",
+                "at": "Status",
+                "fr": "Statut",
+                "es": "Estado",
+                "ru": "Статус",
+                "it": "Stato"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows the current ping of MASZ' components",
+                "de": "Dieses Widget zeigt den aktuellen Ping der MASZ-Komponenten.",
+                "at": "Dieses Widget zeigt den aktuellen Ping der MASZ-Komponenten.",
+                "fr": "Ce widget affiche le ping actuel des composants MASZ.",
+                "es": "Este widget muestra el ping actual de los componentes MASZ.",
+                "ru": "Этот виджет показывает текущий пинг компонентов MASZ.",
+                "it": "Questo widget mostra il ping attuale dei componenti MASZ."
+            },
+            "offline": {
+                "description": "Offline",
+                "en": "Offline",
+                "de": "Offline",
+                "at": "Offline",
+                "fr": "Hors ligne",
+                "es": "Desconectado",
+                "ru": "Оффлайн",
+                "it": "Offline"
+            },
+            "bot": {
+                "description": "Bot",
+                "en": "Bot",
+                "de": "Bot",
+                "at": "Bot",
+                "fr": "Bot",
+                "es": "Bot",
+                "ru": "Бот",
+                "it": "Bot"
+            },
+            "db": {
+                "description": "Database",
+                "en": "Database",
+                "de": "Datenbank",
+                "at": "Datenbank",
+                "fr": "Base de données",
+                "es": "Base de datos",
+                "ru": "База данных",
+                "it": "Database"
+            },
+            "cache": {
+                "description": "Cache",
+                "en": "Cache",
+                "de": "Cache",
+                "at": "Cache",
+                "fr": "Cache",
+                "es": "Caché",
+                "ru": "Кэш",
+                "it": "Cache"
+            }
+        },
         "dashboardconfig": {
             "title": {
                 "description": "Title",

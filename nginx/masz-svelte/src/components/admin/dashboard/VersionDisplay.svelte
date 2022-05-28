@@ -9,7 +9,7 @@
     import { writable } from "svelte/store";
     import { compare } from "compare-versions";
     import { APP_VERSION } from "../../../config";
-    import { CircleSolid16, Launch20, LogoGithub20, NotificationFilled16 } from "carbon-icons-svelte";
+    import { CircleSolid16, Launch16, LogoGithub16, NotificationFilled16 } from "carbon-icons-svelte";
     import { currentLanguage } from "../../../stores/currentLanguage";
     import moment from "moment";
     import API from "../../../services/api/api";
@@ -58,11 +58,11 @@
         <div class="grow">
             {$_("nav.patchnotes")}
         </div>
-        <Link href={`/patchnotes`} icon={Launch20} class="align-end" />
+        <Link href={`/patchnotes`} icon={Launch16} class="align-end" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">GitHub</div>
-        <Link target="_blank" href={"https://github.com/zaanposni/discord-masz"} icon={LogoGithub20} class="align-end" />
+        <Link target="_blank" href={"https://github.com/zaanposni/discord-masz"} icon={LogoGithub16} class="align-end" />
     </div>
     {#if $newVersion}
         <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem; color: var(--cds-support-warning-inverse)">
