@@ -45,7 +45,7 @@
             toastSuccess($_("feedback.thanks"));
             onModalClear();
             providedFeedback = "true";
-            Cookies.setCookie(FEEDBACK_COOKIE_NAME, "true", 365);
+            Cookies.setCookie(FEEDBACK_COOKIE_NAME, "true", 90);
         });
     }
 </script>
