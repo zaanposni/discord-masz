@@ -57,7 +57,7 @@
     } as ICase;
 
     let sendDmNotification: boolean = false;
-    let executePunishment: boolean = false;
+    let executePunishment: boolean = true;
     let sendPublicNotification: boolean = false;
 
     $: $currentParams?.guildId ? loadGuildData() : null;
