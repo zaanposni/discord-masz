@@ -82,6 +82,16 @@
     }
 </script>
 
+<style>
+    :global(.floatingchat-container-wrap) {
+        max-width: 250px !important;
+    }
+
+    :global(.floatingchat-container-wrap > iframe) {
+        width: 250px !important;
+    }
+</style>
+
 <div class="flex flex-col justify-center items-center grow">
     <div class="flex flex-col">
         <div class="flex flex-col pt-4" style="background: var(--cds-ui-02, #ffffff)">
