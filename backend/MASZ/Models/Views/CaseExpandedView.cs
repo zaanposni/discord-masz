@@ -13,6 +13,7 @@ namespace MASZ.Models
             Suspect = DiscordUserView.CreateOrDefault(suspect);
             Comments = comments;
             UserNote = userNoteView;
+            LinkedCases = new List<CaseView>();
 
             if (modCase.PunishedUntil != null)
             {
@@ -33,6 +34,7 @@ namespace MASZ.Models
             }
         }
         public CaseView ModCase { get; set; }
+        public List<CaseView> LinkedCases { get; set; }
         public DiscordUserView Moderator { get; set; }
         public DiscordUserView LastModerator { get; set; }
         public DiscordUserView Suspect { get; set; }
@@ -48,6 +50,7 @@ namespace MASZ.Models
             LastModerator = null;
             LockedBy = null;
             DeletedBy = null;
+            LinkedCases.Clear();
             ModCase.RemoveModeratorInfo();
 
             foreach (var comment in Comments)

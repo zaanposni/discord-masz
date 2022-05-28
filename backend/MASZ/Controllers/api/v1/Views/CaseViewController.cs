@@ -71,7 +71,13 @@ namespace MASZ.Controllers
                 caseView.DeletedBy = DiscordUserView.CreateOrDefault(await _discordAPI.FetchUserInfo(modCase.DeletedByUserId, CacheBehavior.OnlyCache));
             }
 
-            if (!(await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId) || guildConfig.PublishModeratorInfo))
+            bool isMod = await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId);
+            if (isMod) {
+                caseView.LinkedCases = modCase.MappingsA.Select(mapping => new CaseView(mapping.CaseB)).ToList();
+                caseView.LinkedCases.AddRange(modCase.MappingsB.Select(mapping =>new CaseView(mapping.CaseA)));
+            }
+
+            if (!(isMod || guildConfig.PublishModeratorInfo))
             {
                 caseView.RemoveModeratorInfo();
             }

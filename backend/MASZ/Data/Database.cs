@@ -75,7 +75,7 @@ namespace MASZ.Data
         }
         public async Task<ModCase> SelectSpecificModCase(ulong guildId, int modCaseId)
         {
-            return await context.ModCases.Include(c => c.Comments).AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.CaseId == modCaseId);
+            return await context.ModCases.Include(c => c.Comments).Include(c => c.MappingsA).ThenInclude(m => m.CaseB).Include(c => c.MappingsB).ThenInclude(m => m.CaseA).AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.CaseId == modCaseId);
         }
 
         public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(ulong guildId, ulong userId)
@@ -214,7 +214,8 @@ namespace MASZ.Data
             return await context.ModCases.AsQueryable()
             .Where(x => x.GuildId == guildId && x.OccuredAt > since)
             .GroupBy(x => new { x.OccuredAt.Month, x.OccuredAt.Year })
-            .Select(x => new CaseCount {
+            .Select(x => new CaseCount
+            {
                 Month = x.Key.Month,
                 Year = x.Key.Year,
                 WarnCount = x.Count(y => y.PunishmentType == PunishmentType.Warn),
@@ -851,7 +852,8 @@ namespace MASZ.Data
             return await context.Appeals.AsQueryable()
             .Where(x => x.GuildId == guildId && x.CreatedAt > since)
             .GroupBy(x => new { x.CreatedAt.Month, x.CreatedAt.Year })
-            .Select(x => new AppealCount {
+            .Select(x => new AppealCount
+            {
                 Year = x.Key.Year,
                 Month = x.Key.Month,
                 PendingCount = x.Count(y => y.Status == AppealStatus.Pending),
