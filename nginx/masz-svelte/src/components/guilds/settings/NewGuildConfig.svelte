@@ -10,8 +10,8 @@
     import { _ } from "svelte-i18n";
     import { toastError } from "../../../services/toast/store";
     import EditGuildConfig from "./EditGuildConfig.svelte";
+    import { applicationInfo } from "../../../stores/applicationInfo";
 
-    const clientId: Writable<number> = writable(0);
     const guilds: Writable<IDiscordGuild[]> = writable([]);
     const selectedGuild: Writable<IDiscordGuild | null> = writable(null);
     const selectedGuildLoading: Writable<boolean> = writable(true);
@@ -19,10 +19,6 @@
 
     API.get("/discord/guilds", CacheMode.API_ONLY, false).then((res) => {
         guilds.set(res);
-    });
-
-    API.get("/meta/application", CacheMode.PREFER_CACHE, true).then((res) => {
-        clientId.set(res.id);
     });
 
     function selectGuild(guild: IDiscordGuild) {
@@ -40,7 +36,7 @@
 
     function invite() {
         var win = window.open(
-            `https://discord.com/oauth2/authorize?client_id=${$clientId}&permissions=8&scope=bot%20applications.commands&guild_id=${$selectedGuild.id}`,
+            `https://discord.com/oauth2/authorize?client_id=${$applicationInfo?.id}&permissions=8&scope=bot%20applications.commands&guild_id=${$selectedGuild.id}`,
             "Add bot to guild",
             "status=yes;width=150,height=400"
         );
