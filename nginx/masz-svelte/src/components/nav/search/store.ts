@@ -315,7 +315,7 @@ guildStaticSearchEntries.set([
             params?.guildId &&
             (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
         onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
-            console.log("TODO open guildconfig"); // TODO
+            gotoHelper(`/guilds/${params.guildId}/settings`);
         },
     },
 ]);
