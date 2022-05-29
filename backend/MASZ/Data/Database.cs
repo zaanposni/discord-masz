@@ -231,7 +231,7 @@ namespace MASZ.Data
         public async Task<List<ModeratorCaseCount>> GetModeratorCaseCountGraph(ulong guildId)
         {
             return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId)
-                .GroupBy(x => new { Type = x.ModId }).Select(x => new ModeratorCaseCount { ModId = x.Key.Type, Count = x.Count() }).ToListAsync();
+                .GroupBy(x => new { Type = x.ModId }).Select(x => new ModeratorCaseCount { ModId = x.Key.Type, Count = x.Count() }).OrderByDescending(x => x.Count).ToListAsync();
         }
 
         public async Task DeleteAllModCasesForGuild(ulong guildId)

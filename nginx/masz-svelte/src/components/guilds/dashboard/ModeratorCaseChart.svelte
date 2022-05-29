@@ -71,7 +71,7 @@
                         x: data.modName,
                         y: data.count,
                     };
-                });
+                }).slice(0, 12);
 
                 // fill in array if there are less than 8 entries
                 for (let i = response.length; i < 8; i++) {
