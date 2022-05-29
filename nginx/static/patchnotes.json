@@ -1,5 +1,41 @@
 [
   {
+    "title": "Version 3.0.0",
+    "version": "v3.0.0",
+    "released_at": "2022-06-05",
+    "contributors": [
+      {
+        "name": "Kye",
+        "link": "https://github.com/UponAnonymous",
+        "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
+      }
+    ],
+    "breaking": [
+      {
+        "title": "Admins can delete cases.",
+        "description": "Guild admins can now perma delete cases."
+      }
+    ],
+    "features": [
+      {
+        "title": "Completely reworked the frontend.",
+        "description": "MASZ now has a new UI using svelte, carbon design and tailwind. I guess it might be too much to summarize here."
+      },
+      {
+        "title": "Added timeouts.",
+        "description": "If no mute roles are defined, MASZ will use discords timeout functionality."
+      },
+      {
+        "title": "Paste images from clipboard to case.",
+        "description": "You can now paste files in your clipboard during case creation."
+      },
+      {
+        "title": "Filter for automods.",
+        "description": "You can now use filters in the automods table."
+      }
+    ]
+  },
+  {
     "title": "Version 2.7.0",
     "version": "v2.7.0",
     "released_at": "2022-03-12",
