@@ -618,6 +618,21 @@ an absolute waiver of all civil liability in connection with the
 Program, unless a warranty or assumption of liability accompanies a
 copy of the Program in return for a fee.
 
+                     ADDITION TO THIS LICENSE
+                     MASZ Copyright (C) 2019-2022 zaanposni
+
+All copies and modifications of MASZ have to fulfill the following requirements:
+
+- Include "MASZ by zaanposni" in the website's credit page or credit popup.
+  This can be changed to "Based on MASZ by zaanposni" if needed.
+  This note must link to the repository "discord-masz" from "zaanposni" on <github.com/>.
+
+- The website's credit page or credit popup must contain a link to the profile "zaanposni" on <ko-fi.com/>.
+
+- The website's credit page or credit popup must be directly accessible via the website's toolbar, footer, or similar.
+
+- The website's login page must contain a button that provides the possibility to donate to zaanposni via <ko-fi.com/>.
+
                      END OF TERMS AND CONDITIONS
 
     MASZ. A discord moderation bot.
@@ -636,11 +651,3 @@ copy of the Program in return for a fee.
 
     You should have received a copy of the GNU General Public License
     along with this program. If not, see <https://www.gnu.org/licenses/>.
-
-                     ADDITION TO THIS LICENSE
-                     MASZ Copyright (C) 2019-2022 zaanposni
-
-All copies and modifications of MASZ have to include "MASZ by zaanposni" in the website's credit page.
-This can be changed to "Based on MASZ by zaanposni" if needed.
-This note must link to the repository "discord-masz" from "zaanposni" on github.com
-The website's credit page should furthermore be directly accessible via the website's toolbar, footer or similar.
