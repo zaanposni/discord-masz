@@ -139,7 +139,7 @@
 
     function checkForModOrHigher(user: IAuthUser, params: IRouteParams) {
         if (user && params?.guildId) {
-            if (!user.adminGuilds.map((x) => x.id).includes(params.guildId) && !user.modGuilds.map((x) => x.id).includes(params.guildId)) {
+            if (!user.isAdmin && !user.adminGuilds.map((x) => x.id).includes(params.guildId) && !user.modGuilds.map((x) => x.id).includes(params.guildId)) {
                 $goto("/guilds/" + $currentParams.guildId + "/cases");
             }
         }
