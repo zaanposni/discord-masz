@@ -769,7 +769,7 @@
                 {#if caseLoading}
                     <SkeletonText paragraph />
                 {:else}
-                    <div class="mb-4" id="casedescription">{@html renderedDescription}</div>
+                    <div class="text-sm mb-4" id="casedescription">{@html renderedDescription}</div>
                 {/if}
                 <!-- Files -->
                 {#if filesLoading}
