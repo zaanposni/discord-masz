@@ -29,7 +29,7 @@
         const remoteVersion = versions[0].tag.replace("a", "-alpha");
         const localVersion = APP_VERSION;
 
-        if (compare(remoteVersion, localVersion, "<")) {
+        if (compare(remoteVersion, localVersion, ">")) {
             return versions[0];
         }
 
