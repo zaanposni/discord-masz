@@ -171,7 +171,7 @@
             {$_("nav.guild.cases")}
         </h2>
         <div class="flex flex-row">
-            {#if $authUser?.adminGuilds?.find((x) => x.id === $currentParams.guildId) || $authUser?.modGuilds?.find((x) => x.id === $currentParams.guildId)}
+            {#if $authUser?.isAdmin || $authUser?.adminGuilds?.find((x) => x.id === $currentParams.guildId) || $authUser?.modGuilds?.find((x) => x.id === $currentParams.guildId)}
                 <Button class="!mr-2" icon={Add32} href={$url(`/guilds/${$currentParams.guildId}/cases/new`)}
                     >{$_("guilds.modcasetable.createnewcase")}</Button>
             {/if}
