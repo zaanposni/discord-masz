@@ -21,7 +21,7 @@
     "apexcharts": "^3.33.2",
     "autoprefixer": "^10.4.2",
     "axios": "^0.26.1",
-    "carbon-components-svelte": "^0.64.2",
+    "carbon-components-svelte": "^0.64.3",
     "carbon-icons-svelte": "^10.45.0",
     "carbon-pictograms-svelte": "^12.0.2",
     "carbon-preprocess-svelte": "^0.9.0",
