@@ -307,11 +307,11 @@ namespace MASZ.Data
         }
         public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUserAndGuild(ulong guildId, ulong userId)
         {
-            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).ToListAsync();
+            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
         public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificGuild(ulong guildId)
         {
-            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            return await context.AutoModerationEvents.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
         public async Task<List<AutoModerationEvent>> SelectAllModerationEventsForSpecificUser(ulong userId, int minutes)
         {
