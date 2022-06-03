@@ -37,7 +37,7 @@
                         show: true,
                         total: {
                             show: true,
-                            showAlways: false,
+                            showAlways: true,
                         },
                     },
                 },
