@@ -247,7 +247,6 @@
             "punishmentinactive": "inattivo",
             "labels": "Etichette",
             "punisheduntil": "Punito fino a",
-            "punisheduntilpermanent": "Punito fino a permanente",
             "usernote": "Nota utente",
             "moderator": "Moderatore",
             "lasteditmoderator": "Ultimo moderatore",
@@ -309,8 +308,6 @@
             "selectactive": "Stato attivo",
             "filtersince": "Creato da",
             "filteruntil": "Creato fino al",
-            "filterpunishedsince": "Punito almeno fino al",
-            "filterpunishedbefore": "punito fino a",
             "executesearch": "Ricerca",
             "useadvancedfilter": "Attiva filtro avanzato.",
             "createnewcase": "Crea nuovo caso",
@@ -592,15 +589,6 @@
             "onlyone": "Attualmente puoi creare solo un token."
         }
     },
-    "feedback": {
-        "title": "Come ti piace MASZ?",
-        "experience": "Valuta la tua esperienza",
-        "comment": "Lascia un commento (opzionale)",
-        "commenttoolong": "Il tuo commento deve essere 4096 caratteri o meno",
-        "cancel": "Annulla",
-        "submit": "Invia",
-        "thanks": "Grazie per il tuo feedback!"
-    },
     "error": "Errore",
     "warns": "Avvertimenti",
     "mutes": "Mute",
@@ -617,6 +605,15 @@
             "pagerangetext": "di {total} pagina",
             "pagerangetextplural": "di {total} pagine"
         }
+    },
+    "feedback": {
+        "title": "Come ti piace MASZ?",
+        "experience": "Valuta la tua esperienza",
+        "comment": "Lascia un commento (opzionale)",
+        "commenttoolong": "Il tuo commento deve essere 4096 caratteri o meno",
+        "cancel": "Annulla",
+        "submit": "Invia",
+        "thanks": "Grazie per il tuo feedback!"
     },
     "supportme": "Supportami",
     "enums": {

@@ -247,7 +247,6 @@
             "punishmentinactive": "inaktiv",
             "labels": "Labels",
             "punisheduntil": "Bestraft bis",
-            "punisheduntilpermanent": "Bestraft bis permanent",
             "usernote": "Benutzernotiz",
             "moderator": "Moderator",
             "lasteditmoderator": "Letzter Bearbeiter",
@@ -309,8 +308,6 @@
             "selectactive": "Aktiv-Status",
             "filtersince": "Erstellt ab",
             "filteruntil": "Erstellt bis",
-            "filterpunishedsince": "Bestraft bis mindestens",
-            "filterpunishedbefore": "Bestraft bis",
             "executesearch": "Suche ausführen",
             "useadvancedfilter": "Erweiterte Filter ein-/ausblenden.",
             "createnewcase": "Neuen Vorfall erstellen",
@@ -592,15 +589,6 @@
             "onlyone": "Du kannst momentan nur einen API-Schlüssel erstellen."
         }
     },
-    "feedback": {
-        "title": "Wie gefällt dir MASZ?",
-        "experience": "Bewerten Sie Ihre Erfahrung",
-        "comment": "Kommentar hinterlassen (optional)",
-        "commenttoolong": "Dein Kommentar muss 4096 Zeichen oder weniger haben",
-        "cancel": "Abbrechen",
-        "submit": "Senden",
-        "thanks": "Danke für dein Feedback!"
-    },
     "error": "Fehler",
     "warns": "Warnungen",
     "mutes": "Stummschaltungen",
@@ -617,6 +605,15 @@
             "pagerangetext": "von einer {total} Seite",
             "pagerangetextplural": "von {total} Seiten"
         }
+    },
+    "feedback": {
+        "title": "Wie gefällt dir MASZ?",
+        "experience": "Bewerten Sie Ihre Erfahrung",
+        "comment": "Kommentar hinterlassen (optional)",
+        "commenttoolong": "Dein Kommentar muss 4096 Zeichen oder weniger haben",
+        "cancel": "Abbrechen",
+        "submit": "Senden",
+        "thanks": "Danke für dein Feedback!"
     },
     "supportme": "Supporte mich",
     "enums": {

@@ -247,7 +247,6 @@
             "punishmentinactive": "inactif",
             "labels": "Étiquettes",
             "punisheduntil": "Punition jusqu'à",
-            "punisheduntilpermanent": "Punition jusqu'à la durée indéterminée",
             "usernote": "Note utilisateur",
             "moderator": "Modérateur",
             "lasteditmoderator": "Dernier modérateur",
@@ -309,8 +308,6 @@
             "selectactive": "Statut actif",
             "filtersince": "Créé depuis",
             "filteruntil": "Créé jusqu'au",
-            "filterpunishedsince": "Puni au moins jusqu'à",
-            "filterpunishedbefore": "Puni jusqu'à",
             "executesearch": "Chercher",
             "useadvancedfilter": "Basculer le filtre avancé.",
             "createnewcase": "Créer un nouveau cas",
@@ -592,15 +589,6 @@
             "onlyone": "Actuellement, vous ne pouvez créer qu'une clé API."
         }
     },
-    "feedback": {
-        "title": "Comment aimez-vous MASZ?",
-        "experience": "Évaluez votre expérience",
-        "comment": "Laisser un commentaire (optionnel)",
-        "commenttoolong": "Votre commentaire doit être de 4096 caractères ou moins",
-        "cancel": "Annuler",
-        "submit": "Soumettre",
-        "thanks": "Merci pour votre avis!"
-    },
     "error": "Erreur",
     "warns": "Avertissements",
     "mutes": "Mutes",
@@ -617,6 +605,15 @@
             "pagerangetext": "{de {total} page",
             "pagerangetextplural": "{de {total} pages"
         }
+    },
+    "feedback": {
+        "title": "Comment aimez-vous MASZ?",
+        "experience": "Évaluez votre expérience",
+        "comment": "Laisser un commentaire (optionnel)",
+        "commenttoolong": "Votre commentaire doit être de 4096 caractères ou moins",
+        "cancel": "Annuler",
+        "submit": "Soumettre",
+        "thanks": "Merci pour votre avis!"
     },
     "supportme": "Soutenez-moi",
     "enums": {

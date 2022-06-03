@@ -247,7 +247,6 @@
             "punishmentinactive": "неактивный",
             "labels": "Метки",
             "punisheduntil": "Наказан до",
-            "punisheduntilpermanent": "Наказан до постоянного",
             "usernote": "Пользовательская заметка",
             "moderator": "Модератор",
             "lasteditmoderator": "Последний модератор",
@@ -309,8 +308,6 @@
             "selectactive": "Активный статус",
             "filtersince": "Создано с",
             "filteruntil": "Создано до",
-            "filterpunishedsince": "Наказан как минимум до",
-            "filterpunishedbefore": "Наказан до",
             "executesearch": "Поиск",
             "useadvancedfilter": "Переключить расширенный фильтр.",
             "createnewcase": "Создать новое дело",
@@ -592,15 +589,6 @@
             "onlyone": "В настоящее время вы можете создать только один токен."
         }
     },
-    "feedback": {
-        "title": "Как вам MASZ?",
-        "experience": "Оцените вашу опытность",
-        "comment": "Оставить комментарий (необязательно)",
-        "commenttoolong": "Ваш комментарий должен быть 4096 символов или меньше",
-        "cancel": "Отменить",
-        "submit": "Отправить",
-        "thanks": "Спасибо за ваш отзыв!"
-    },
     "error": "Ошибка",
     "warns": "Предупреждения",
     "mutes": "Муты",
@@ -617,6 +605,15 @@
             "pagerangetext": "из {total} страницы",
             "pagerangetextplural": "из {total} страниц"
         }
+    },
+    "feedback": {
+        "title": "Как вам MASZ?",
+        "experience": "Оцените вашу опытность",
+        "comment": "Оставить комментарий (необязательно)",
+        "commenttoolong": "Ваш комментарий должен быть 4096 символов или меньше",
+        "cancel": "Отменить",
+        "submit": "Отправить",
+        "thanks": "Спасибо за ваш отзыв!"
     },
     "supportme": "Поддержите меня",
     "enums": {

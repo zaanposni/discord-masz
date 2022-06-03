@@ -22,16 +22,16 @@
         "themedetails": "Choose how MASZ looks to you.",
         "language": "Language",
         "languagedetails": "Change the language",
-        "autosave": "All settings are automatically saved."
+        "autosave": "All settings are saved automatically."
     },
     "nav": {
         "allguilds": "All Guilds",
-        "patchnotes": "Patchnotes",
-        "patchnotesdetails": "view the latest patchnotes of MASZ.",
+        "patchnotes": "Patch Notes",
+        "patchnotesdetails": "View the latest Patch Notes of MASZ.",
         "credits": "Credits",
-        "creditsdetails": "view the credits of MASZ.",
+        "creditsdetails": "View the credits of MASZ.",
         "community": "Community",
-        "communitydetails": "visit the community discord of MASZ.",
+        "communitydetails": "Visit the Community Discord of MASZ.",
         "terms": "Terms",
         "privacy": "Privacy Policy",
         "admin": {
@@ -55,7 +55,7 @@
                 "auditlog": "Auditlog",
                 "automod": "Automod",
                 "base": "Settings",
-                "search": "Guildsettings",
+                "search": "Guild Settings",
                 "searchdetails": "Edit the settings of this guild."
             }
         },
@@ -64,20 +64,20 @@
     "widgets": {
         "latestcases": {
             "title": "Latest Cases",
-            "widgetdescription": "This widget shows the latest cases in your guild."
+            "widgetdescription": "Shows the latest cases in your guild."
         },
         "latestappeals": {
             "title": "Latest appeals",
-            "widgetdescription": "This widget shows the latest appeals in your guild."
+            "widgetdescription": "Shows the latest appeals in your guild."
         },
         "guildmoderatorcases": {
             "title": "Cases by moderator",
-            "widgetdescription": "This widget shows all cases by moderator in your guild.",
+            "widgetdescription": "Shows all cases by moderator in your guild.",
             "cases": "Cases"
         },
         "guildstats": {
             "title": "Guild Stats",
-            "widgetdescription": "This widget shows the guild stats.",
+            "widgetdescription": "Shows the guild stats.",
             "automods": "Automods",
             "invites": "Invites",
             "usernotes": "Usernotes",
@@ -86,34 +86,34 @@
         },
         "guildautomodsplit": {
             "title": "Automod Split",
-            "widgetdescription": "This widget shows the automod split of your guild."
+            "widgetdescription": "Shows the automod split of your guild."
         },
         "guildmodcasecountchart": {
             "title": "Case overview",
-            "widgetdescription": "This widget shows the case overview of your guild."
+            "widgetdescription": "Shows the case overview of your guild."
         },
         "guildappealcountchart": {
             "title": "Appeal overview",
-            "widgetdescription": "This widget shows the appeal overview of your guild."
+            "widgetdescription": "Shows the appeal overview of your guild."
         },
         "guildautomodcountchart": {
             "title": "Automod overview",
-            "widgetdescription": "This widget shows the automod overview of your guild."
+            "widgetdescription": "Shows the automod overview of your guild."
         },
         "guildpendingmessages": {
-            "title": "Pending messages",
-            "widgetdescription": "This widget shows the pending messages of your guild."
+            "title": "Pending scheduled messages",
+            "widgetdescription": "Shows the pending scheduled messages in your guild."
         },
         "guildpunishmentstats": {
             "title": "Punishment Stats",
-            "widgetdescription": "This widget shows the punishment stats of your guild.",
+            "widgetdescription": "Shows the punishment stats of your guild.",
             "activemutes": "Active Mutes",
             "activebans": "Active Bans"
         },
         "guildquicksearch": {
             "title": "Quicksearch",
-            "widgetdescription": "This widget allows you to quickly search for a case, user or other resources.",
-            "placeholder": "Quicksearch users, cases, punishments, ...",
+            "widgetdescription": "Enables quick search for cases, users or other resources.",
+            "placeholder": "Quicksearch users, cases and punishments...",
             "searchhistory": "Search history",
             "clearhistory": "Clear history",
             "noresults": "No results found.",
@@ -122,7 +122,7 @@
         },
         "guildmotd": {
             "title": "MotD",
-            "widgetdescription": "This widget shows the current message of the day."
+            "widgetdescription": "Shows the current message of the day."
         },
         "adminversion": {
             "title": "Version info",
@@ -164,12 +164,12 @@
         },
         "dashboardconfig": {
             "title": "Dashboard config",
-            "widgetdescription": "This widget helps you to configure your dashboard.",
+            "widgetdescription": "Helps you to configure your dashboard.",
             "available": "Available widgets",
             "enabled": "Enabled widgets",
             "enabledragging": "Enable dragging",
             "clearcache": "Clear cache",
-            "clearcacheconfirm": "Are you sure you want to clear the cache? This may impact the performance of your dashboard.",
+            "clearcacheconfirm": "Are you sure you want to clear the cache? This might impact the performance of your dashboard.",
             "clearcachesuccess": "Cleared {count} cache entries.",
             "configurewidgets": "Configure widgets"
         }
@@ -235,22 +235,21 @@
             "edit": "Edit",
             "delete": "Delete",
             "restore": "Restore",
-            "markedtodelete": "This case has been marked to be deleted at {time}",
+            "markedtodelete": "This case has been marked to be deleted on {time}",
             "markedtodeletesubtitle": "Deleted by {user}",
             "attachments": "Attachments",
             "comments": "Comments",
             "addacomment": "Add a comment... (max 300 characters)",
-            "addacommenterror": "Comment must be less than 300 characters",
+            "addacommenterror": "Comments must not exceed 300 characters!",
             "caseislocked": "You cannot comment since this case is locked.",
             "violator": "Violator",
             "punishment": "Punishment",
             "punishmentinactive": "inactive",
             "labels": "Labels",
             "punisheduntil": "Punished until",
-            "punisheduntilpermanent": "Punished until permanent",
             "usernote": "Usernote",
             "moderator": "Moderator",
-            "lasteditmoderator": "Last edit moderator",
+            "lasteditmoderator": "Last edit by moderator",
             "moderatorunknown": "Unknown or hidden",
             "created": "Created",
             "updated": "Updated",
@@ -260,13 +259,13 @@
             "createcase": "Create case",
             "editcase": "Edit case",
             "caseexplain": "Use cases to log infractions and punishments in your guild.",
-            "caseexplain2": "MASZ will automatically manage your punishment and notify the user and your guild if configured.",
+            "caseexplain2": "If your guild is configured, MASZ will automatically manage your punishment and notify both your guild and the user.",
             "importtemplate": "Import template",
-            "templateexplain": "No template that matches your requirements? Create one at the end of this dialog!",
+            "templateexplain": "No template that matches your requirements? Create one at the end of the dialog!",
             "selecttemplate": "Select template",
             "notemplatesfound": "No templates found",
             "member": "Select member",
-            "memberexplain": "Select the member you want to punish or enter an ID if the member is not in the list.",
+            "memberexplain": "Select the member you wish to punish or enter an ID, if the member is not in the list.",
             "nomembersfound": "No members found",
             "reason": "Reason",
             "title": "Title",
@@ -277,15 +276,15 @@
             "clearlabel": "Clear label",
             "labelsplaceholder": "New label",
             "punishment": "Punishment",
-            "punishmentexplained": "MASZ will automatically manage your punishment and remove it after the specified time. You can also change the punishment later on.",
-            "punishmentexplained2": "If you do not enter a time, the punishment will be permanent.",
+            "punishmentexplained": "MASZ will automatically manage your punishment and remove it after the specified time. You can also change the punishment if necessary.",
+            "punishmentexplained2": "The punishment will be permanent if no time is entered.",
             "punisheduntil": "Punished until",
             "formatisrequired": "Please respect the format: {format}",
             "senddmnotification": "Send DM notification",
             "executepunishment": "Execute punishment",
             "sendpublicnotification": "Send public notification",
             "files": "Files",
-            "filesexplain": "You can upload files to MASZ as a prove, please be advised that the user will also be able to see those",
+            "filesexplain": "You can upload files to MASZ as proof. Please note that everyone will be able to see them!",
             "filesbutton": "Select files",
             "createtemplate": "Create template",
             "submitting": "Submitting...",
@@ -309,15 +308,13 @@
             "selectactive": "Active status",
             "filtersince": "Created since",
             "filteruntil": "Created until",
-            "filterpunishedsince": "Punished at least until",
-            "filterpunishedbefore": "Punished until",
             "executesearch": "Search",
             "useadvancedfilter": "Toggle advanced filter.",
             "createnewcase": "Create new case",
             "search": "Search (user, id, description...)",
             "failedtoload": "Failed to load cases.",
-            "nomatches": "No case matches your search.",
-            "nomatchesdescription": "There may be no cases yet in this guild. However, you can try to adjust your filters above to find some cases."
+            "nomatches": "No cases match your search!",
+            "nomatchesdescription": "Try adjusting your filters above to fix this."
         },
         "automodtable": {
             "selectmembers": "Members",
@@ -326,19 +323,19 @@
             "executesearch": "Search",
             "useadvancedfilter": "Toggle advanced filter.",
             "failedtoload": "Failed to load automods.",
-            "nomatches": "No automod matches your search.",
-            "nomatchesdescription": "There may be no automods yet in this guild. However, you can try to adjust your filters above to find some automods."
+            "nomatches": "No cases match your search!",
+            "nomatchesdescription": "Try adjusting your filters above to fix this."
         },
         "appealtable": {
             "createnewappeal": "Create new appeal",
-            "disabledexplained": "You cannot create a new appeal since you have created one recently or your punishment was created recently or this guild has no ban appeals configured",
+            "disabledexplained": "You may not create a new appeal since either you created your last appeal recently, your punishment was recent, or this guild has not yet configured ban appeals",
             "configureappeal": "Configure appeal",
             "useadvancedfilter": "Toggle advanced filter.",
             "selectmembers": "Select members",
             "statustype": "Status",
             "executesearch": "Execute search",
-            "nomatches": "No appeals match your search.",
-            "nomatchesdescription": "There may be no appeals yet in this guild. However, you can try to adjust your filters above to find some appeals.",
+            "nomatches": "No appeals found!",
+            "nomatchesdescription": "Try adjusting your filters above to fix this.",
             "failedtoload": "Failed to load appeals",
             "hasanswered": "User has answered {count} questions"
         },
@@ -346,8 +343,8 @@
             "title": "Ban appeal structure",
             "explain": "Configure the form for the guild's ban appeal.",
             "explain2": "Users can skip questions if they want to.",
-            "explain3": "If you delete a question it will still be visible in old ban appeals.",
-            "explain4": "If you have no questions configured, users will not be able to appeal bans.",
+            "explain3": "Deleting a question will still be visible in existing ban appeals.",
+            "explain4": "Users cannot appeal bans if you have no questions configured.",
             "failedtoreorder": "Failed to reorder questions",
             "deleted": "Question deleted",
             "failedtodelete": "Failed to delete question",
@@ -361,13 +358,13 @@
             "saved": "Decision saved",
             "noanswer": "No answer",
             "failedtosave": "Failed to save decision",
-            "createdat": "Created at",
-            "updatedat": "Updated at",
-            "decisionat": "Decision at",
+            "createdat": "Created on",
+            "updatedat": "Updated on",
+            "decisionat": "Decision on",
             "moderatorcomment": "Moderator comment",
             "newappeal": "New appeal",
-            "newappealnever": "User is never allowed to create a new appeal again",
-            "newappealat": "User is allowed to create new appeal at",
+            "newappealnever": "No new appeals can be created by this user!",
+            "newappealat": "User can create new appeal on",
             "edit": "Edit"
         },
         "appealnew": {
@@ -389,8 +386,8 @@
             "usernoteupdated": "Usernote updated",
             "usernotedeleted": "Usernote deleted",
             "usernotedeletefailed": "Failed to delete usernote",
-            "nomatches": "No usernote matches your search.",
-            "nomatchesdescription": "There may be no usernotes yet in this guild. You can create one by using the button above."
+            "nomatches": "No usernotes match your search!",
+            "nomatchesdescription": "There may be no usernotes yet in this guild. Create one by using the button above."
         },
         "usermap": {
             "createusermap": "Create usermap",
@@ -402,13 +399,13 @@
             "usermapupdated": "Usermap updated",
             "usermapdeleted": "Usermap deleted",
             "usermapdeletefailed": "Failed to delete usermap",
-            "nomatches": "No usermap matches your search.",
-            "nomatchesdescription": "There may be no usermaps yet in this guild. You can create one by using the button above."
+            "nomatches": "No usermaps match your search!",
+            "nomatchesdescription": "No usermaps are in this guild! Create one by using the button above."
         },
         "messages": {
             "createnew": "Create new message",
-            "nomessages": "No messages found.",
-            "nomessagesdescription": "There may be no messages yet in this guild. You can create one by using the button above.",
+            "nomessages": "No results found!",
+            "nomessagesdescription": "No messages scheduled in this guild! Create one by using the button above.",
             "title": "Title",
             "channel": "Channel",
             "content": "Message",
@@ -516,7 +513,7 @@
             },
             "notifications": {
                 "title": "Notifications",
-                "explain": "Use these webhooks to notify your users or staff on MASZ events",
+                "explain": "Use these webhooks to notify users or staff on MASZ events",
                 "internal": "Internal webhook",
                 "public": "Public webhook",
                 "invalid": "Invalid webhook"
@@ -524,9 +521,9 @@
             "information": {
                 "title": "Information",
                 "publicembedmode": "Public embed mode",
-                "publicembedmodeexplained": "This mode enables detailed embeds when linking modcases in discord. This will disclose private information like the suspect, punishments, etc.",
+                "publicembedmodeexplained": "This mode enables detailed embeds when linking modcases in discord. This will disclose private information like the suspect, punishments etc.",
                 "publishmod": "Publish moderator information",
-                "publishmodexplained": "A suspect will be able to see which moderator punished him."
+                "publishmodexplained": "A suspect will be able to see which moderator punished them."
             },
             "misc": {
                 "title": "Miscellaneous",
@@ -592,15 +589,6 @@
             "onlyone": "Currently you can only create one token."
         }
     },
-    "feedback": {
-        "title": "How do you like MASZ?",
-        "experience": "Rate your experience",
-        "comment": "Leave a comment (optional)",
-        "commenttoolong": "Your comment needs to be 4096 characters or less",
-        "cancel": "Cancel",
-        "submit": "Submit",
-        "thanks": "Thanks for your feedback!"
-    },
     "error": "Error",
     "warns": "Warns",
     "mutes": "Mutes",
@@ -617,6 +605,15 @@
             "pagerangetext": "of {total} page",
             "pagerangetextplural": "of {total} pages"
         }
+    },
+    "feedback": {
+        "title": "How do you like MASZ?",
+        "experience": "Rate your experience",
+        "comment": "Leave a comment (optional)",
+        "commenttoolong": "Your comment needs to be 4096 characters or less",
+        "cancel": "Cancel",
+        "submit": "Submit",
+        "thanks": "Thanks for your feedback!"
     },
     "supportme": "Support me",
     "enums": {
