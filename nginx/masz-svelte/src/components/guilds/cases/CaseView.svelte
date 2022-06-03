@@ -134,7 +134,13 @@
 
     function renderDescription(description: string) {
         let value = description.replace("<", "&lt;").replace(">", "&gt;").replace(/\n/g, "<br>");
-        value = value.replace(/#([\d]+)/g, `<a href=/guilds/${$currentParams.guildId}/cases/$1>#$1</a>`);
+        value = value.replace(/#([\d]+)/g, (match) => {
+            const id = match.substring(1);
+            if (id == $modCase.modCase.discriminator || id == ($modCase.suspect?.discriminator ?? '')) {
+                return match;
+            }
+            return `<a href=/guilds/${$currentParams.guildId}/cases/${id}>#${id}</a>`
+        });
         renderedDescription = value;
     }
 
