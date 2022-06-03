@@ -19,19 +19,27 @@
     "features": [
       {
         "title": "Completely reworked the frontend.",
-        "description": "MASZ now has a new UI using svelte, carbon design and tailwind. I guess it might be too much to summarize here."
+        "description": "MASZ now has a new UI using svelte, carbon design and tailwind. I guess it might be too much to summarize here.",
+        "link": "https://ko-fi.com/zaanposni"
       },
       {
         "title": "Added timeouts.",
-        "description": "If no mute roles are defined, MASZ will use discords timeout functionality."
+        "description": "If no mute roles are defined, MASZ will use discords timeout functionality.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/476"
       },
       {
         "title": "Paste images from clipboard to case.",
-        "description": "You can now paste files in your clipboard during case creation."
+        "description": "You can now paste files in your clipboard during case creation.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/519"
       },
       {
         "title": "Filter for automods.",
         "description": "You can now use filters in the automods table."
+      },
+      {
+        "title": "Antiraid command.",
+        "description": "The slash command /antiraid allows you to quickly timeout a user and delete all his recent messages from the server.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/487"
       }
     ]
   },
