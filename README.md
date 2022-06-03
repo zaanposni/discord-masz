@@ -108,7 +108,7 @@ docker-compose up -d
 ### 🐾 First Steps
 
 - You can visit your application at `yourdomain.com` (or `127.0.0.1:5565`). You will see a login screen that will ask you to authenticate yourself using Discord OAuth2.
-- After authorizing your service to use your Discord account you will see your profile picture in the toolbar (this is hosted on `127.0.0.1:4200` when developing).
+- After authorizing your service to use your Discord account you will see your profile picture in the toolbar (this is hosted on `127.0.0.1:8080` when developing).
 - If you are logged in as a siteadmin, you can use the "register guild" (+) button to register your guilds and to get started.
 - Based on wanted features and functionalities you might have to grant your bot advanced permissions, read under `Enabling Restricted Features`.
 
@@ -124,6 +124,8 @@ Ensure that this header is set in your reverse proxy for best experience.
 If you want banned users to see their cases, grant your bot the `ban people` permission.\
 This way they can see the reason for their ban and comment or send an unban request.\
 Furthermore, make sure the bot is high enough in the role hierarchy to ban people below him.
+
+Additionally, if you want to enable unban requests ("ban appeals"), prepare questions in the "appeals" section of your guild dashboard.
 
 #### ⭐ Punishment feature
 
@@ -161,13 +163,13 @@ There are backup example scripts in the `scripts` directory to backup uploaded f
 
 ### .NET
 
-- If you're using an IDE like Visual Studio, you can copy and paste your ` launchSettingsExample.json` file inside `Properties` if your C# solution to `launchSettings.json`, replacing the values to your testing variables. On running the program, it will treat these as environmental variables.
+- If you're using an IDE like Visual Studio, you can copy and paste your `launchSettingsExample.json` file inside `Properties` if your C# solution to `launchSettings.json`, replacing the values to your testing variables. On running the program, it will treat these as environmental variables.
 
-### Angular
+### Svelte
 
-If you want to develop on the angular frontend, set the env var `ENABLE_CORS=true` for the backend container.
-To use the angular instance, please change the `APP_BASE_URL` and `ENABLE_CORS` values to their development alternatives in the ``config.ts`` file inside the ``src/app/config`` directory.
-Then use `ng serve` to get a hotload angular instance.
+If you want to develop on the svelte frontend, set the env var `ENABLE_CORS=true` for the backend container.
+To use the svelte instance, please change the `DEV_MODE` value to their development alternatives in the ``config.ts`` file inside the ``src/`` directory.
+Then use `npm run dev` to get a hotload svelte instance.
 
 ### MySQL Errors
 
