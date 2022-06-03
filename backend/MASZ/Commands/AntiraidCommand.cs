@@ -10,7 +10,7 @@ namespace MASZ.Commands
     public class AntiraidCommand : BaseCommand<AntiraidCommand>
     {
         [Require(RequireCheckEnum.GuildModerator)]
-        [SlashCommand("antiraid", "Timeout a specific user and delete all his messages in the last 2 weeks.")]
+        [SlashCommand("antiraid", "Timeout a specific user and delete all his messages in the last 2 hours.")]
         public async Task Antiraid(
             [Summary("user", "user to punish")] IUser user)
         {
@@ -19,7 +19,7 @@ namespace MASZ.Commands
             try
             {
                 member = Context.Guild.GetUser(user.Id);
-                await member.SetTimeOutAsync(TimeSpan.FromDays(14));
+                await member.SetTimeOutAsync(TimeSpan.FromDays(1));
             }
             catch (Exception) { }
 
@@ -29,7 +29,11 @@ namespace MASZ.Commands
             // delete messages in current channel first
             if (Context.Channel is ITextChannel ctxTxtChnl)
             {
-                deleted += await IterateAndDeleteChannel(ctxTxtChnl, Context.User, user.Id);
+                try
+                {
+                    deleted += await IterateAndDeleteChannel(ctxTxtChnl, Context.User, user.Id);
+                }
+                catch (HttpException) { }
             }
 
             // iterate over each channel
@@ -55,9 +59,15 @@ namespace MASZ.Commands
             List<IMessage> toDelete = new();
             var messages = channel.GetMessagesAsync();
 
-            foreach (IMessage message in await messages.FlattenAsync())
+            var flatten = await messages.FlattenAsync();
+            if (flatten.Count() == 0)
             {
-                if (message.CreatedAt.UtcDateTime.AddDays(14) < DateTime.UtcNow)
+                return 0;
+            }
+
+            foreach (IMessage message in flatten)
+            {
+                if (message.CreatedAt.UtcDateTime.AddHours(2) < DateTime.UtcNow)
                 {
                     if (toDelete.Count >= 2)
                     {
@@ -89,11 +99,12 @@ namespace MASZ.Commands
             {
                 messages = channel.GetMessagesAsync(lastId, Direction.Before, 100);
 
-                bool shouldBreakWhile = await messages.IsEmptyAsync();
-                foreach (IMessage message in await messages.FlattenAsync())
+                flatten = await messages.FlattenAsync();
+                bool shouldBreakWhile = flatten.Count() == 0;
+                foreach (IMessage message in flatten)
                 {
                     lastId = message.Id;
-                    if (message.CreatedAt.UtcDateTime.AddDays(14) < DateTime.UtcNow)
+                    if (message.CreatedAt.UtcDateTime.AddHours(2) < DateTime.UtcNow)
                     {
                         shouldBreakWhile = true;
                         break;
