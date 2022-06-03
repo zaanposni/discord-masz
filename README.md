@@ -52,11 +52,6 @@ Free hosting providers like replit or heroku **do not work**. You will have to u
 - App will be hosted on `127.0.0.1:5565`.
 - Read further for more information on different deployment methods and further steps.
 
-### Request logging and ratelimit
-
-MASZ uses the `X-Forwarded-For` http header for logging and ratelimit.\
-Ensure that this header is set in your reverse proxy for best experience.
-
 ### Discord OAuth
 
 Create your own OAuth application [here](https://discord.com/developers/applications).
@@ -116,6 +111,11 @@ docker-compose up -d
 - After authorizing your service to use your Discord account you will see your profile picture in the toolbar (this is hosted on `127.0.0.1:4200` when developing).
 - If you are logged in as a siteadmin, you can use the "register guild" (+) button to register your guilds and to get started.
 - Based on wanted features and functionalities you might have to grant your bot advanced permissions, read under `Enabling Restricted Features`.
+
+### Request logging and ratelimit
+
+MASZ uses the `X-Forwarded-For` http header for logging and ratelimit.\
+Ensure that this header is set in your reverse proxy for best experience.
 
 ### Enabling Restricted Features
 
