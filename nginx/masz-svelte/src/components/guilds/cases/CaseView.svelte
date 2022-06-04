@@ -1062,10 +1062,10 @@
                             <div class="flex flex-col mb-6">
                                 <div class="font-bold mb-2">
                                     {$_("guilds.caseview.punishment")}
-                                    {$modCase.modCase.punishmentActive &&
+                                    {!$modCase.modCase.punishmentActive &&
                                     ($modCase.modCase.punishmentType == PunishmentType.Mute || $modCase.modCase.punishmentType == PunishmentType.Ban)
-                                        ? ""
-                                        : `(${$_("guilds.caseview.punishmentinactive")})`}
+                                        ? `(${$_("guilds.caseview.punishmentinactive")})`
+                                        : ""}
                                 </div>
                                 <div id="caseview-punishment">
                                     <PunishmentTag modCase={$modCase.modCase} />
