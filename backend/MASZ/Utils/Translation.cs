@@ -853,7 +853,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Entbannungsantrag",
-                Language.at => "Entbannungsantrag",
+                Language.at => "Entbannungsontrog",
                 Language.fr => "appel de bannissement",
                 Language.es => "apelación de prohibición",
                 Language.ru => "заявка на бан",
