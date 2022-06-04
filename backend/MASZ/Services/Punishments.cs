@@ -26,19 +26,45 @@ namespace MASZ.Services
         {
             _logger.LogWarning("Starting action loop.");
 
-            Timer EventTimer = new(TimeSpan.FromMinutes(1).TotalMilliseconds)
+            Timer minuteTimer = new(TimeSpan.FromMinutes(1).TotalMilliseconds)
+            {
+                AutoReset = true,
+                Enabled = true
+            };
+            Timer dailyTimer = new(TimeSpan.FromDays(1).TotalMilliseconds)
             {
                 AutoReset = true,
                 Enabled = true
             };
 
-            EventTimer.Elapsed += (s, e) => CheckAllCurrentPunishments();
+            minuteTimer.Elapsed += (s, e) => CheckAllCurrentPunishments();
+            dailyTimer.Elapsed += (s, e) => CheckAllActiveTimeouts();
 
-            await Task.Run(() => EventTimer.Start());
+            await Task.Run(() => minuteTimer.Start());
+            await Task.Run(() => dailyTimer.Start());
 
             CheckAllCurrentPunishments();
+            CheckAllActiveTimeouts();
 
             _logger.LogWarning("Finished action loop.");
+        }
+
+        public async void CheckAllActiveTimeouts()
+        {
+            using var scope = _serviceProvider.CreateScope();
+            Database database = scope.ServiceProvider.GetRequiredService<Database>();
+            List<ModCase> cases = await database.SelectAllModCasesWithActivePunishments();
+
+            foreach (var element in cases)
+            {
+                if (element.PunishmentType == PunishmentType.Mute)
+                {
+                    if (element.PunishedUntil == null || element.PunishedUntil > DateTime.UtcNow)
+                    {
+                        await ExecutePunishment(element);
+                    }
+                }
+            }
         }
 
         public async void CheckAllCurrentPunishments()
@@ -56,7 +82,8 @@ namespace MASZ.Services
                         try
                         {
                             await UndoPunishment(element);
-                        } catch (Exception ex)
+                        }
+                        catch (Exception ex)
                         {
                             _logger.LogCritical(ex, $"Something went wrong while undoing punishment for modcase {element.GuildId}/{element.CaseId} ({element.Id}).");
                         }
@@ -107,7 +134,13 @@ namespace MASZ.Services
                     }
                     else
                     {
-                        _logger.LogInformation($"Cannot Mute User {modCase.UserId} in guild {modCase.GuildId} - mute role undefined.");
+                        _logger.LogInformation($"Timeout User {modCase.UserId} in guild {modCase.GuildId}");
+                        DateTime until = DateTime.UtcNow.AddDays(27);
+                        if (modCase.PunishedUntil.HasValue && modCase.PunishedUntil.Value < until)
+                        {
+                            until = modCase.PunishedUntil.Value;
+                        }
+                        await _discord.TimeoutGuildUser(modCase.GuildId, modCase.UserId, until, reason);
                     }
                     break;
                 case PunishmentType.Ban:
@@ -150,7 +183,8 @@ namespace MASZ.Services
             {
                 Translator translator = scope.ServiceProvider.GetRequiredService<Translator>();
                 reason = translator.T(guildConfig).NotificationDiscordAuditLogPunishmentsUndone(modCase.CaseId, modCase.Title.Truncate(400));
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 _logger.LogError(ex, $"Failed to resolve audit log reason string for case {modCase.GuildId}/{modCase.CaseId}");
             }
@@ -167,7 +201,8 @@ namespace MASZ.Services
                     }
                     else
                     {
-                        _logger.LogInformation($"Cannot Unmute User {modCase.UserId} in guild {modCase.GuildId} - mute role undefined.");
+                        _logger.LogInformation($"Remove timeout from user {modCase.UserId} in guild {modCase.GuildId}");
+                        await _discord.RemoveTimeoutGuildUser(modCase.GuildId, modCase.UserId, reason);
                     }
                     break;
                 case PunishmentType.Ban:

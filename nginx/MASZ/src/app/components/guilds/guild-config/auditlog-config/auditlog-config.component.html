@@ -1,6 +1,0 @@
-<div class="d-flex flex-column">
-    <span class="mat-h1 font-weight-bold mb-2">{{ 'GuildAuditLogConfig.AuditLog' | translate }}</span>
-    <ng-container *ngFor="let rule of this.types">
-        <app-auditlog-config-rule [guildChannels]="guildChannels" [guild]="guildInfo" [initialConfigs]="initialConfigs" [definition]="rule"></app-auditlog-config-rule>
-    </ng-container>
-</div>

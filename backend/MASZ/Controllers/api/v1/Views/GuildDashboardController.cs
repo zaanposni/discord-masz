@@ -1,3 +1,4 @@
+using Discord;
 using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.Models;
@@ -18,8 +19,8 @@ namespace MASZ.Controllers
         {
         }
 
-        [HttpGet("chart")]
-        public async Task<IActionResult> GetModCaseGrid([FromRoute] ulong guildId, [FromQuery] long? since = null)
+        [HttpGet("casecountchart")]
+        public async Task<IActionResult> GetModCaseCountChart([FromRoute] ulong guildId, [FromQuery] long? since = null)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
             Identity identity = await GetIdentity();
@@ -34,19 +35,14 @@ namespace MASZ.Controllers
             AutoModerationEventRepository automodRepo = AutoModerationEventRepository.CreateDefault(_serviceProvider);
             AppealRepository appealRepo = AppealRepository.CreateDefault(_serviceProvider);
 
-            return Ok(new
-            {
-                modCases = await modCaseRepo.GetCounts(guildId, sinceTime),
-                punishments = await modCaseRepo.GetPunishmentCounts(guildId, sinceTime),
-                appeals = await appealRepo.GetCounts(guildId, sinceTime),
-                autoModerations = await automodRepo.GetCounts(guildId, sinceTime)
-            });
+            return Ok(await modCaseRepo.GetCounts(guildId, sinceTime));
         }
 
-        [HttpGet("automodchart")]
-        public async Task<IActionResult> GetAutomodSplitChart([FromRoute] ulong guildId, [FromQuery] long? since = null)
+        [HttpGet("automodcountchart")]
+        public async Task<IActionResult> GetAutomodCountChart([FromRoute] ulong guildId, [FromQuery] long? since = null)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
+            Identity identity = await GetIdentity();
 
             DateTime sinceTime = DateTime.UtcNow.AddYears(-1);
             if (since != null)
@@ -56,7 +52,61 @@ namespace MASZ.Controllers
 
             AutoModerationEventRepository automodRepo = AutoModerationEventRepository.CreateDefault(_serviceProvider);
 
-            return Ok(await automodRepo.GetCountsByType(guildId, sinceTime));
+            return Ok(await automodRepo.GetCounts(guildId, sinceTime));
+        }
+
+        [HttpGet("appealcountchart")]
+        public async Task<IActionResult> GetAppealCountChart([FromRoute] ulong guildId, [FromQuery] long? since = null)
+        {
+            await RequirePermission(guildId, DiscordPermission.Moderator);
+            Identity identity = await GetIdentity();
+
+            DateTime sinceTime = DateTime.UtcNow.AddYears(-1);
+            if (since != null)
+            {
+                sinceTime = epoch.AddSeconds(since.Value);
+            }
+
+            AppealRepository appealRepo = AppealRepository.CreateDefault(_serviceProvider);
+
+            return Ok(await appealRepo.GetCounts(guildId, sinceTime));
+        }
+
+        [HttpGet("automodchart")]
+        public async Task<IActionResult> GetAutomodSplitChart([FromRoute] ulong guildId)
+        {
+            await RequirePermission(guildId, DiscordPermission.Moderator);
+
+            AutoModerationEventRepository automodRepo = AutoModerationEventRepository.CreateDefault(_serviceProvider);
+
+            return Ok(await automodRepo.GetCountsByType(guildId));
+        }
+
+        [HttpGet("moderatorcases")]
+        public async Task<IActionResult> GetModeratorCasesChart([FromRoute] ulong guildId)
+        {
+            await RequirePermission(guildId, DiscordPermission.Moderator);
+
+            ModCaseRepository modCaseRepo = ModCaseRepository.CreateWithBotIdentity(_serviceProvider);
+
+            List<ModeratorCaseCount> counts = await modCaseRepo.GetModeratorCasesCount(guildId);
+            List<ModeratorCaseCountView> countsWithNames = new();
+
+            foreach (ModeratorCaseCount item in counts)
+            {
+                IUser user = await _discordAPI.FetchUserInfo(item.ModId, CacheBehavior.OnlyCache);
+                if (user != null)
+                {
+                    countsWithNames.Add(new ModeratorCaseCountView
+                    {
+                        ModId = item.ModId.ToString(),
+                        ModName = user.Username,
+                        Count = item.Count
+                    });
+                }
+            }
+
+            return Ok(countsWithNames);
         }
 
         [HttpGet("stats")]
@@ -68,8 +118,12 @@ namespace MASZ.Controllers
             ModCaseRepository modCaseRepo = ModCaseRepository.CreateDefault(_serviceProvider, identity);
             int modCases = await modCaseRepo.CountAllCasesForGuild(guildId);
             int activePunishments = await modCaseRepo.CountAllPunishmentsForGuild(guildId);
+            int allBans = await modCaseRepo.CountAllPunishmentsForGuild(guildId, PunishmentType.Ban);
             int activeBans = await modCaseRepo.CountAllActiveBansForGuild(guildId);
+            int allMutes = await modCaseRepo.CountAllPunishmentsForGuild(guildId, PunishmentType.Mute);
             int activeMutes = await modCaseRepo.CountAllActiveMutesForGuild(guildId);
+            int allKicks = await modCaseRepo.CountAllPunishmentsForGuild(guildId, PunishmentType.Kick);
+            int allWarns = await modCaseRepo.CountAllPunishmentsForGuild(guildId, PunishmentType.Warn);
             int autoModerations = await AutoModerationEventRepository.CreateDefault(_serviceProvider).CountEventsByGuild(guildId);
             int trackedInvites = await InviteRepository.CreateDefault(_serviceProvider).CountInvitesForGuild(guildId);
             int userMappings = await UserMapRepository.CreateDefault(_serviceProvider, identity).CountAllUserMapsByGuild(guildId);
@@ -81,8 +135,12 @@ namespace MASZ.Controllers
             {
                 caseCount = modCases,
                 activeCount = activePunishments,
+                banCount = allBans,
                 activeBanCount = activeBans,
+                muteCount = allMutes,
                 activeMuteCount = activeMutes,
+                kickCount = allKicks,
+                warnCount = allWarns,
                 moderationCount = autoModerations,
                 trackedInvites,
                 userMappings,
@@ -138,38 +196,16 @@ namespace MASZ.Controllers
                 return Ok(new List<string>());
             }
 
-            List<IQuickSearchEntry> entries = new();
+            List<ModCaseTableEntry> entries = new();
 
             foreach (ModCase item in await ModCaseRepository.CreateDefault(_serviceProvider, identity).SearchCases(guildId, search))
             {
-                entries.Add(new QuickSearchEntry<CaseExpandedView>
-                {
-                    Entry = new CaseExpandedView(
-                        item,
-                        await _discordAPI.FetchUserInfo(item.ModId, CacheBehavior.OnlyCache),
-                        await _discordAPI.FetchUserInfo(item.LastEditedByModId, CacheBehavior.OnlyCache),
-                        await _discordAPI.FetchUserInfo(item.UserId, CacheBehavior.OnlyCache),
-                        new List<CommentExpandedView>(),
-                        null
-                    ),
-                    CreatedAt = item.CreatedAt,
-                    QuickSearchEntryType = QuickSearchEntryType.ModCase
-                });
+                entries.Add(new ModCaseTableEntry(
+                    item,
+                    await _discordAPI.FetchUserInfo(item.ModId, CacheBehavior.OnlyCache),
+                    await _discordAPI.FetchUserInfo(item.UserId, CacheBehavior.OnlyCache)
+                ));
             }
-
-            foreach (AutoModerationEvent item in await AutoModerationEventRepository.CreateDefault(_serviceProvider).SearchInGuild(guildId, search))
-            {
-                entries.Add(new QuickSearchEntry<AutoModerationEventExpandedView>
-                {
-                    Entry = new AutoModerationEventExpandedView(
-                        item,
-                        await _discordAPI.FetchUserInfo(item.UserId, CacheBehavior.OnlyCache)
-                    ),
-                    CreatedAt = item.CreatedAt,
-                    QuickSearchEntryType = QuickSearchEntryType.AutoModeration
-                });
-            }
-
 
             UserNoteExpandedView userNote = null;
             try
@@ -209,7 +245,7 @@ namespace MASZ.Controllers
 
             return Ok(new
             {
-                searchEntries = entries.OrderByDescending(x => x.CreatedAt).ToList(),
+                cases = entries.ToList(),
                 userNoteView = userNote,
                 userMappingViews
             });

@@ -1,5 +1,54 @@
 [
   {
+    "title": "Version 3.0.0",
+    "version": "v3.0.0",
+    "released_at": "2022-06-05",
+    "contributors": [
+      {
+        "name": "Kye",
+        "link": "https://github.com/UponAnonymous",
+        "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
+      },
+      {
+        "name": "Bricksmaster",
+        "link": "https://github.com/Bricksmaster",
+        "icon": "https://avatars.githubusercontent.com/u/47327755?v=4"
+      }
+    ],
+    "breaking": [
+      {
+        "title": "Admins can delete cases.",
+        "description": "Guild admins can now perma delete cases."
+      }
+    ],
+    "features": [
+      {
+        "title": "Completely reworked the frontend.",
+        "description": "MASZ now has a new UI using svelte, carbon design and tailwind. I guess it might be too much to summarize here.",
+        "link": "https://ko-fi.com/zaanposni"
+      },
+      {
+        "title": "Added timeouts.",
+        "description": "If no mute roles are defined, MASZ will use discords timeout functionality.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/476"
+      },
+      {
+        "title": "Paste images from clipboard to case.",
+        "description": "You can now paste files in your clipboard during case creation.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/519"
+      },
+      {
+        "title": "Filter for automods.",
+        "description": "You can now use filters in the automods table."
+      },
+      {
+        "title": "Antiraid command.",
+        "description": "The slash command /antiraid allows you to quickly timeout a user and delete all his recent messages from the server.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/487"
+      }
+    ]
+  },
+  {
     "title": "Version 2.7.0",
     "version": "v2.7.0",
     "released_at": "2022-03-12",

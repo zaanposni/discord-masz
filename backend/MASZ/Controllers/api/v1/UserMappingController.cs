@@ -19,58 +19,19 @@ namespace MASZ.Controllers
         {
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetUserMap([FromRoute] ulong guildId)
+        [HttpPut]
+        public async Task<IActionResult> UpdateUserMap([FromRoute] ulong guildId, [FromBody] UserMappingForUpdateDto userMapDto)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            List<UserMapping> userMappings = await UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetUserMapsByGuild(guildId);
-            return Ok(userMappings.Select(x => new UserMappingView(x)));
-        }
+            UserMapping result = await UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity())
+                                                        .CreateOrUpdateUserMap(guildId, userMapDto.UserA, userMapDto.UserB, userMapDto.Reason);
 
-        [HttpGet("{userId}")]
-        public async Task<IActionResult> GetUserMaps([FromRoute] ulong guildId, [FromRoute] ulong userId)
-        {
-            await RequirePermission(guildId, DiscordPermission.Moderator);
-
-            List<UserMapping> userMappings = await UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetUserMapsByGuildAndUser(guildId, userId);
-            return Ok(userMappings.Select(x => new UserMappingView(x)));
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateUserMap([FromRoute] ulong guildId, [FromBody] UserMappingForCreateDto userMapDto)
-        {
-            await RequirePermission(guildId, DiscordPermission.Moderator);
-
-            var repo = UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity());
-            try
-            {
-                await repo.GetUserMap(guildId, userMapDto.UserA, userMapDto.UserB);
-                throw new ResourceAlreadyExists();
-            }
-            catch (ResourceNotFoundException) { }
-
-            UserMapping userMap = await repo.CreateOrUpdateUserMap(guildId, userMapDto.UserA, userMapDto.UserB, userMapDto.Reason);
-
-            return StatusCode(201, new UserMappingView(userMap));
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUserMap([FromRoute] ulong guildId, [FromRoute] int id, [FromBody] UserMappingForUpdateDto userMapDto)
-        {
-            await RequirePermission(guildId, DiscordPermission.Moderator);
-
-            var repo = UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity());
-
-            UserMapping userMap = await repo.GetUserMap(id);
-            if (userMap.GuildId != guildId)
-            {
-                throw new ResourceNotFoundException();
-            }
-
-            UserMapping result = await repo.CreateOrUpdateUserMap(guildId, userMap.UserA, userMap.UserB, userMapDto.Reason);
-
-            return Ok(new UserMappingView(result));
+            return Ok(new UserMappingExpandedView(
+                result,
+                await _discordAPI.FetchUserInfo(result.UserA, CacheBehavior.OnlyCache),
+                await _discordAPI.FetchUserInfo(result.UserB, CacheBehavior.OnlyCache),
+                await _discordAPI.FetchUserInfo(result.CreatorUserId, CacheBehavior.OnlyCache)));
         }
 
 

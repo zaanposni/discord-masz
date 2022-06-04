@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using MASZ.Enums;
 using MASZ.Models;
 using MASZ.Repositories;
@@ -16,13 +17,16 @@ namespace MASZ.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetGuildUserNoteView([FromRoute] ulong guildId)
+        public async Task<IActionResult> GetGuildUserNoteView([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage = 0)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
 
             List<UserNote> userNotes = await UserNoteRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetUserNotesByGuild(guildId);
+
+            int fullSize = userNotes.Count;
+
             List<UserNoteExpandedView> userNoteViews = new();
-            foreach (UserNote userNote in userNotes)
+            foreach (UserNote userNote in userNotes.Skip(startPage * 20).Take(20))
             {
                 userNoteViews.Add(new UserNoteExpandedView(
                     userNote,
@@ -30,7 +34,11 @@ namespace MASZ.Controllers
                     await _discordAPI.FetchUserInfo(userNote.CreatorId, CacheBehavior.OnlyCache)));
             }
 
-            return Ok(userNoteViews);
+            return Ok(new
+            {
+                items = userNoteViews,
+                fullSize
+            });
         }
     }
 }

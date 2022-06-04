@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using RestSharp;
 using MASZ.Repositories;
 using Discord;
+using MASZ.Dtos;
 
 namespace MASZ.Controllers
 {
@@ -36,6 +37,21 @@ namespace MASZ.Controllers
                 Resource = "/api/v1/versions"
             };
             request.AddQueryParameter("name", "masz_backend");
+
+            var response = await restClient.ExecuteAsync(request);
+
+            return Ok(response.Content);
+        }
+
+        [HttpPost("feedback")]
+        public async Task<IActionResult> PostFeedback([FromBody] FeedbackDto feedback)
+        {
+            var restClient = new RestClient("https://maszindex.zaanposni.com/");
+            var request = new RestRequest(Method.Post)
+            {
+                Resource = "/api/v1/feedback"
+            };
+            request.AddJsonBody(feedback);
 
             var response = await restClient.ExecuteAsync(request);
 

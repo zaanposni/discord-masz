@@ -1,12 +1,14 @@
 FROM node:16 AS compile-frontend
-WORKDIR /angular
+WORKDIR /svelte
 
-COPY MASZ/ .
+COPY masz-svelte/ .
 
-RUN npm install -g @angular/cli
-RUN npm install --legacy-peer-deps
+RUN npm install
+RUN npm run build
 
-RUN ng build --configuration production --output-hashing=all
+RUN apt update && apt install -y python3-pip
+RUN python3 -m pip install rich
+RUN python3 hashbuild.py
 
 FROM nginx:alpine
 
@@ -14,10 +16,10 @@ RUN rm -rf /usr/share/nginx/html/*
 
 COPY static/ /var/www/data/static/
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=compile-frontend /angular/dist/masz/ /var/www/data/
+COPY --from=compile-frontend /svelte/public/ /var/www/data/
 
 # Set timezone
-ENV TZ=Europe/Berlin
+ENV TZ=UTC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 CMD ["nginx", "-g", "daemon off;"]

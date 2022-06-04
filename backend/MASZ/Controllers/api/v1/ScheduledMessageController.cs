@@ -25,12 +25,41 @@ namespace MASZ.Controllers
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            List<ScheduledMessage> messages = await ScheduledMessageRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetAllMessages(guildId, page);
+            ScheduledMessageRepository repo = ScheduledMessageRepository.CreateDefault(_serviceProvider, await GetIdentity());
+            List<ScheduledMessage> messages = await repo.GetAllMessages(guildId, page);
+            int fullSize = await repo.CountMessages(guildId);
+
+            List<ScheduledMessageView> results = new();
+            foreach (ScheduledMessage message in messages)
+            {
+                results.Add(new ScheduledMessageView(message,
+                                                     await _discordAPI.FetchUserInfo(message.CreatorId, CacheBehavior.OnlyCache),
+                                                     await _discordAPI.FetchUserInfo(message.LastEditedById, CacheBehavior.OnlyCache),
+                                                     _discordAPI.FetchGuildChannels(guildId, CacheBehavior.OnlyCache).FirstOrDefault(x => x.Id == message.ChannelId)));
+            }
+
+            return Ok(new {
+                items = results,
+                fullSize
+            });
+        }
+
+        [HttpGet("pending")]
+        public async Task<IActionResult> GetDueMessages([FromRoute] ulong guildId)
+        {
+            await RequirePermission(guildId, DiscordPermission.Moderator);
+
+            List<ScheduledMessage> messages = await ScheduledMessageRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetPendingMessages(guildId);
 
             List<ScheduledMessageView> results = new();
 
             foreach (ScheduledMessage message in messages)
             {
+                if (results.Count >= 10)
+                {
+                    break;
+                }
+
                 results.Add(new ScheduledMessageView(message,
                                                      await _discordAPI.FetchUserInfo(message.CreatorId, CacheBehavior.OnlyCache),
                                                      await _discordAPI.FetchUserInfo(message.LastEditedById, CacheBehavior.OnlyCache),
@@ -122,7 +151,7 @@ namespace MASZ.Controllers
             }
 
             // handled messages should only be deletable by an admin to prevent abuse
-            if (message.Status != ScheduledMessageStatus.Pending && ! (await identity.HasAdminRoleOnGuild(guildId)))
+            if (message.Status != ScheduledMessageStatus.Pending && !(await identity.HasAdminRoleOnGuild(guildId)))
             {
                 throw new ProtectedScheduledMessageException();
             }

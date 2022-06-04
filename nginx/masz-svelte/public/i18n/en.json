@@ -1,0 +1,766 @@
+{
+    "dialog": {
+        "confirm": {
+            "title": "Confirm",
+            "message": "Are you sure?",
+            "confirm": "Confirm",
+            "cancel": "Cancel"
+        }
+    },
+    "login": {
+        "title": "Login",
+        "noaccount": "Don't have an account?",
+        "createaccount": "Create a Discord account",
+        "terms": "Terms",
+        "and": "and",
+        "privacy": "Privacy Policy"
+    },
+    "settings": {
+        "base": "Settings",
+        "basedetails": "Adjust your MASZ settings.",
+        "theme": "Theme",
+        "themedetails": "Choose how MASZ looks to you.",
+        "language": "Language",
+        "languagedetails": "Change the language",
+        "autosave": "All settings are saved automatically."
+    },
+    "nav": {
+        "allguilds": "All Guilds",
+        "patchnotes": "Patch Notes",
+        "patchnotesdetails": "View the latest Patch Notes of MASZ.",
+        "credits": "Credits",
+        "creditsdetails": "View the credits of MASZ.",
+        "community": "Community",
+        "communitydetails": "Visit the Community Discord of MASZ.",
+        "terms": "Terms",
+        "privacy": "Privacy Policy",
+        "admin": {
+            "base": "Admin",
+            "searchdescription": "View insights of your application",
+            "dashboard": "Dashboard",
+            "settings": "Settings",
+            "tokens": "Tokens"
+        },
+        "guild": {
+            "base": "Guild",
+            "dashboard": "Dashboard",
+            "cases": "Cases",
+            "automods": "Automods",
+            "appeals": "Appeals",
+            "usernotes": "Usernotes",
+            "usermaps": "Usermaps",
+            "messages": "Messages",
+            "settings": {
+                "motd": "MotD",
+                "auditlog": "Auditlog",
+                "automod": "Automod",
+                "base": "Settings",
+                "search": "Guild Settings",
+                "searchdetails": "Edit the settings of this guild."
+            }
+        },
+        "logout": "Logout"
+    },
+    "widgets": {
+        "latestcases": {
+            "title": "Latest Cases",
+            "widgetdescription": "Shows the latest cases in your guild."
+        },
+        "latestappeals": {
+            "title": "Latest appeals",
+            "widgetdescription": "Shows the latest appeals in your guild."
+        },
+        "guildmoderatorcases": {
+            "title": "Cases by moderator",
+            "widgetdescription": "Shows all cases by moderator in your guild.",
+            "cases": "Cases"
+        },
+        "guildstats": {
+            "title": "Guild Stats",
+            "widgetdescription": "Shows the guild stats.",
+            "automods": "Automods",
+            "invites": "Invites",
+            "usernotes": "Usernotes",
+            "usermaps": "Usermaps",
+            "banappeals": "Ban Appeals"
+        },
+        "guildautomodsplit": {
+            "title": "Automod Split",
+            "widgetdescription": "Shows the automod split of your guild."
+        },
+        "guildmodcasecountchart": {
+            "title": "Case overview",
+            "widgetdescription": "Shows the case overview of your guild."
+        },
+        "guildappealcountchart": {
+            "title": "Appeal overview",
+            "widgetdescription": "Shows the appeal overview of your guild."
+        },
+        "guildautomodcountchart": {
+            "title": "Automod overview",
+            "widgetdescription": "Shows the automod overview of your guild."
+        },
+        "guildpendingmessages": {
+            "title": "Pending scheduled messages",
+            "widgetdescription": "Shows the pending scheduled messages in your guild."
+        },
+        "guildpunishmentstats": {
+            "title": "Punishment Stats",
+            "widgetdescription": "Shows the punishment stats of your guild.",
+            "activemutes": "Active Mutes",
+            "activebans": "Active Bans"
+        },
+        "guildquicksearch": {
+            "title": "Quicksearch",
+            "widgetdescription": "Enables quick search for cases, users or other resources.",
+            "placeholder": "Quicksearch users, cases and punishments...",
+            "searchhistory": "Search history",
+            "clearhistory": "Clear history",
+            "noresults": "No results found.",
+            "searching": "Searching...",
+            "searchfailed": "Search failed."
+        },
+        "guildmotd": {
+            "title": "MotD",
+            "widgetdescription": "Shows the current message of the day."
+        },
+        "adminversion": {
+            "title": "Version info",
+            "widgetdescription": "This widget shows the currently installed version and available updates",
+            "current": "Current version",
+            "new": "Available update"
+        },
+        "adminstatus": {
+            "title": "Status",
+            "widgetdescription": "This widget shows the current ping of MASZ' components",
+            "offline": "Offline",
+            "bot": "Bot",
+            "db": "Database",
+            "cache": "Cache"
+        },
+        "adminloggedin": {
+            "title": "Logged in users",
+            "widgetdescription": "This widget shows the currently logged in users"
+        },
+        "adminresources": {
+            "title": "Resources",
+            "widgetdescription": "This widget shows the current amount of created resources in your database.",
+            "guilds": "Guilds",
+            "cases": "Cases",
+            "automods": "Automod",
+            "usernotes": "Usernotes",
+            "usermaps": "Usermaps",
+            "invites": "Invites"
+        },
+        "admincache": {
+            "title": "Cache",
+            "widgetdescription": "This widget shows the current amount of cached resources.",
+            "users": "Users",
+            "guilds": "Guilds",
+            "bans": "Bans",
+            "members": "Members",
+            "dmchannels": "DM channels",
+            "tokens": "Token logins"
+        },
+        "dashboardconfig": {
+            "title": "Dashboard config",
+            "widgetdescription": "Helps you to configure your dashboard.",
+            "available": "Available widgets",
+            "enabled": "Enabled widgets",
+            "enabledragging": "Enable dragging",
+            "clearcache": "Clear cache",
+            "clearcacheconfirm": "Are you sure you want to clear the cache? This might impact the performance of your dashboard.",
+            "clearcachesuccess": "Cleared {count} cache entries.",
+            "configurewidgets": "Configure widgets"
+        }
+    },
+    "guilds": {
+        "add": {
+            "button": "Add guild",
+            "invitefirst": "Please invite the bot to this guild first",
+            "windowfailed": "Failed to open window"
+        },
+        "list": {
+            "admin": "Admin guilds",
+            "mod": "Moderator guilds",
+            "guild": "Guilds",
+            "banned": "Banned guilds"
+        },
+        "caseview": {
+            "unlinked": "Caselink deleted",
+            "unlinkfailed": "Failed to unlink case",
+            "linked": "Caselink created",
+            "linkfailed": "Failed to link case",
+            "linkcase": "Link case",
+            "search": "Search",
+            "nocasesfound": "No cases found",
+            "attachmentuploadfailed": "Attachment upload failed",
+            "casenotfound": "Case not found",
+            "filedeleted": "File deleted",
+            "filedeletefailed": "Failed to delete file",
+            "commentdeleted": "Comment deleted",
+            "commentdeletefailed": "Failed to delete comment",
+            "commentadded": "Comment added",
+            "commentaddfailed": "Failed to add comment",
+            "linkcopied": "Link copied to clipboard",
+            "fileuploaded": "File uploaded",
+            "fileuploadfailed": "Failed to upload file",
+            "punishmentactivated": "Punishment activated",
+            "punishmentdeactivated": "Punishment deactivated",
+            "punishmentactivatefailed": "Failed to activate punishment",
+            "punishmentdeactivatefailed": "Failed to deactivate punishment",
+            "commentslocked": "Comments locked",
+            "commentslockfailed": "Failed to lock comments",
+            "commentsunlocked": "Comments unlocked",
+            "commentsunlockfailed": "Failed to unlock comments",
+            "deletedcase": "Case deleted",
+            "markeddeletecase": "Case marked for deletion",
+            "deletecasefailed": "Failed to delete case",
+            "caserestored": "Case restored",
+            "caserestorefailed": "Failed to restore case",
+            "commentedited": "Comment edited",
+            "commenteditfailed": "Failed to edit comment",
+            "deletecase": "Delete case",
+            "sendpublicnotification": "Send public notification",
+            "forcedelete": "Force delete",
+            "editcomment": "Edit comment",
+            "editcommentfield": "Comment",
+            "editcommentfieldinvalid": "Comment must be less than 300 characters",
+            "sharecase": "Share case",
+            "uploadfile": "Upload file",
+            "activate": "Activate",
+            "deactivate": "Deactivate",
+            "unlockcomments": "Unlock comments",
+            "lockcomments": "Lock comments",
+            "edit": "Edit",
+            "delete": "Delete",
+            "restore": "Restore",
+            "markedtodelete": "This case has been marked to be deleted on {time}",
+            "markedtodeletesubtitle": "Deleted by {user}",
+            "attachments": "Attachments",
+            "comments": "Comments",
+            "addacomment": "Add a comment... (max 300 characters)",
+            "addacommenterror": "Comments must not exceed 300 characters!",
+            "caseislocked": "You cannot comment since this case is locked.",
+            "violator": "Violator",
+            "punishment": "Punishment",
+            "punishmentinactive": "inactive",
+            "labels": "Labels",
+            "punisheduntil": "Punished until",
+            "usernote": "Usernote",
+            "moderator": "Moderator",
+            "lasteditmoderator": "Last edit by moderator",
+            "moderatorunknown": "Unknown or hidden",
+            "created": "Created",
+            "updated": "Updated",
+            "unknown": "Unknown"
+        },
+        "casedialog": {
+            "createcase": "Create case",
+            "editcase": "Edit case",
+            "caseexplain": "Use cases to log infractions and punishments in your guild.",
+            "caseexplain2": "If your guild is configured, MASZ will automatically manage your punishment and notify both your guild and the user.",
+            "importtemplate": "Import template",
+            "templateexplain": "No template that matches your requirements? Create one at the end of the dialog!",
+            "selecttemplate": "Select template",
+            "notemplatesfound": "No templates found",
+            "member": "Select member",
+            "memberexplain": "Select the member you wish to punish or enter an ID, if the member is not in the list.",
+            "nomembersfound": "No members found",
+            "reason": "Reason",
+            "title": "Title",
+            "titleplaceholder": "Title (max 100 characters)",
+            "titleinvalid": "Title field is required and can only be 100 characters long.",
+            "descriptionfield": "Description",
+            "labels": "Labels",
+            "clearlabel": "Clear label",
+            "labelsplaceholder": "New label",
+            "punishment": "Punishment",
+            "punishmentexplained": "MASZ will automatically manage your punishment and remove it after the specified time. You can also change the punishment if necessary.",
+            "punishmentexplained2": "The punishment will be permanent if no time is entered.",
+            "punisheduntil": "Punished until",
+            "formatisrequired": "Please respect the format: {format}",
+            "senddmnotification": "Send DM notification",
+            "executepunishment": "Execute punishment",
+            "sendpublicnotification": "Send public notification",
+            "files": "Files",
+            "filesexplain": "You can upload files to MASZ as proof. Please note that everyone will be able to see them!",
+            "filesbutton": "Select files",
+            "createtemplate": "Create template",
+            "submitting": "Submitting...",
+            "casecreated": "Case #{id} created",
+            "casecreatefailed": "Failed to create case",
+            "caseedited": "Case #{id} edited",
+            "caseeditfailed": "Failed to edit case",
+            "templateapplied": "Template applied",
+            "templatesaved": "Template saved",
+            "templatesavefailed": "Failed to save template",
+            "visibility": "Visibility"
+        },
+        "modcasetable": {
+            "selectmembers": "Members",
+            "selectmoderators": "Moderators",
+            "selectcreationtypes": "Creation types",
+            "selectpunishments": "Punishments",
+            "selectedited": "Edit status",
+            "selectlocked": "Lock status",
+            "selectdelete": "Delete status",
+            "selectactive": "Active status",
+            "filtersince": "Created since",
+            "filteruntil": "Created until",
+            "executesearch": "Search",
+            "useadvancedfilter": "Toggle advanced filter.",
+            "createnewcase": "Create new case",
+            "search": "Search (user, id, description...)",
+            "failedtoload": "Failed to load cases.",
+            "nomatches": "No cases match your search!",
+            "nomatchesdescription": "Try adjusting your filters above to fix this."
+        },
+        "automodtable": {
+            "selectmembers": "Members",
+            "selecttypes": "Moderation types",
+            "selectactions": "Actions",
+            "executesearch": "Search",
+            "useadvancedfilter": "Toggle advanced filter.",
+            "failedtoload": "Failed to load automods.",
+            "nomatches": "No cases match your search!",
+            "nomatchesdescription": "Try adjusting your filters above to fix this."
+        },
+        "appealtable": {
+            "createnewappeal": "Create new appeal",
+            "disabledexplained": "You may not create a new appeal since either you created your last appeal recently, your punishment was recent, or this guild has not yet configured ban appeals",
+            "configureappeal": "Configure appeal",
+            "useadvancedfilter": "Toggle advanced filter.",
+            "selectmembers": "Select members",
+            "statustype": "Status",
+            "executesearch": "Execute search",
+            "nomatches": "No appeals found!",
+            "nomatchesdescription": "Try adjusting your filters above to fix this.",
+            "failedtoload": "Failed to load appeals",
+            "hasanswered": "User has answered {count} questions"
+        },
+        "appealconfig": {
+            "title": "Ban appeal structure",
+            "explain": "Configure the form for the guild's ban appeal.",
+            "explain2": "Users can skip questions if they want to.",
+            "explain3": "Deleting a question will still be visible in existing ban appeals.",
+            "explain4": "Users cannot appeal bans if you have no questions configured.",
+            "failedtoreorder": "Failed to reorder questions",
+            "deleted": "Question deleted",
+            "failedtodelete": "Failed to delete question",
+            "saved": "Question saved",
+            "failedtosave": "Failed to save question",
+            "editquestion": "Edit question",
+            "question": "Question",
+            "addquestion": "Add question"
+        },
+        "appealview": {
+            "saved": "Decision saved",
+            "noanswer": "No answer",
+            "failedtosave": "Failed to save decision",
+            "createdat": "Created on",
+            "updatedat": "Updated on",
+            "decisionat": "Decision on",
+            "moderatorcomment": "Moderator comment",
+            "newappeal": "New appeal",
+            "newappealnever": "No new appeals can be created by this user!",
+            "newappealat": "User can create new appeal on",
+            "edit": "Edit"
+        },
+        "appealnew": {
+            "answer": "Answer these questions to complete your ban appeal.",
+            "skip": "You can skip questions if you want to.",
+            "view": "You will be able to view the status of your appeal on this website everytime.",
+            "saved": "Your appeal has been saved.",
+            "failedtosave": "Your appeal could not be saved.",
+            "save": "Save",
+            "answerplaceholder": "Answer"
+        },
+        "usernote": {
+            "createusernote": "Create usernote",
+            "createusernotedescription": "Description",
+            "member": "Member",
+            "nomembersfound": "No members found",
+            "usernotecreated": "Usernote created",
+            "usernotecreatefailed": "Failed to create usernote",
+            "usernoteupdated": "Usernote updated",
+            "usernotedeleted": "Usernote deleted",
+            "usernotedeletefailed": "Failed to delete usernote",
+            "nomatches": "No usernotes match your search!",
+            "nomatchesdescription": "There may be no usernotes yet in this guild. Create one by using the button above."
+        },
+        "usermap": {
+            "createusermap": "Create usermap",
+            "createusermapdescription": "Description",
+            "member": "Member",
+            "nomembersfound": "No members found",
+            "usermapcreated": "Usermap created",
+            "usermapcreatefailed": "Failed to create usermap",
+            "usermapupdated": "Usermap updated",
+            "usermapdeleted": "Usermap deleted",
+            "usermapdeletefailed": "Failed to delete usermap",
+            "nomatches": "No usermaps match your search!",
+            "nomatchesdescription": "No usermaps are in this guild! Create one by using the button above."
+        },
+        "messages": {
+            "createnew": "Create new message",
+            "nomessages": "No results found!",
+            "nomessagesdescription": "No messages scheduled in this guild! Create one by using the button above.",
+            "title": "Title",
+            "channel": "Channel",
+            "content": "Message",
+            "savemessage": "Save message",
+            "editmessage": "Edit message",
+            "savedmessage": "Saved message",
+            "failedtosavemessage": "Failed to save message",
+            "failedtoload": "Failed to load messages",
+            "messagedeleted": "Message deleted",
+            "failedtodelete": "Failed to delete message"
+        },
+        "motd": {
+            "title": "Message of the day",
+            "explain": "Use a MotD to pin a message on the guilds dashboard that all your moderators will see.",
+            "explain2": "This might include instructions on how to format cases or upload images as proof.",
+            "noresult": "Could not load motd.",
+            "enabled": "Enable motd in guild dashboard",
+            "message": "Message of the day",
+            "save": "Save",
+            "submitting": "Submitting...",
+            "saved": "Message of the day saved",
+            "failedtosave": "Failed to save message of the day"
+        },
+        "auditlog": {
+            "title": "AuditLog",
+            "explain": "Use auditlogs to log certain events in your guild.",
+            "explain2": "On certain events you can filter events based on channels or roles.",
+            "targetchannel": "Target channel",
+            "pingrole": "Ping role",
+            "excluderoles": "Exclude roles",
+            "excludechannels": "Exclude channels",
+            "saved": "AuditLog saved",
+            "failedtosave": "Failed to save audit log"
+        },
+        "automods": {
+            "title": "Automod configuration",
+            "explain": "Use automoderation to automatically delete messages in certain channels or punish members on certain events",
+            "explain2": "You can also define filters for each event to fine tune your automoderation.",
+            "timelimitfield": "Time limit (seconds)",
+            "limitfield": "Upper limit",
+            "config": "Configuration",
+            "filter": "Filter",
+            "filterchannels": "Filter channels",
+            "filterroles": "Filter roles",
+            "punishmentduration": "Duration in minutes",
+            "action": "Action",
+            "saved": "Automod config saved",
+            "failedtosave": "Failed to save automod config",
+            "deactivated": "Automod deactivated",
+            "failedtodeactivate": "Failed to deactivate automod",
+            "invites": {
+                "details": "A message on your guild matches the invite pattern. Invites to this guild will be ignored.",
+                "customwordfield": "Ignore guilds (enter IDs divided by newlines)"
+            },
+            "emotes": {
+                "details": "A message on your guild contains too many emotes."
+            },
+            "mentions": {
+                "details": "A message on your guild contains too many mentions."
+            },
+            "attachments": {
+                "details": "A message on your guild contains too many attachments."
+            },
+            "embeds": {
+                "details": "A message on your guild contains too many embeds."
+            },
+            "automoderations": {
+                "details": "A user triggers too many automoderations in a defined timespan."
+            },
+            "customfilter": {
+                "title": "Custom filter",
+                "details": "A user uses too many words defined in your list.",
+                "tooltip": "Words are checked line by line case insensitive.",
+                "linktext": "Example",
+                "customwordfield": "Custom words (regex pattern divided by newline)"
+            },
+            "spam": {
+                "details": "A user on your guild sends too many messages in a timespan.",
+                "timelimitmessage": "Time limit (seconds)"
+            },
+            "duplicatedchars": {
+                "details": "A message on your guild contains too many duplicated characters."
+            },
+            "link": {
+                "details": "A message on your guild contains too many links.",
+                "customwordfield": "Ignore links (enter regex patterns divided by newlines)",
+                "linktext": "Example"
+            }
+        },
+        "config": {
+            "title": "Guild config",
+            "permissions": {
+                "title": "Permissions",
+                "explain": "Here you can define which roles should have further access in MASZ.",
+                "adminroles": "Admin roles",
+                "modroles": "Moderator roles",
+                "appealafterxdays": "Allow ban appeal after x days",
+                "strictpermissions": "Strict permission check",
+                "strictpermissionsexplained": "If enabled, moderators need a discord role with ban permission to create ban modcases"
+            },
+            "mutedroles": {
+                "title": "Muted roles",
+                "explain": "Here you can define which roles should be used to mute users.",
+                "explain2": "If none are defined, MASZ will use Discord's timeout functionality instead."
+            },
+            "notifications": {
+                "title": "Notifications",
+                "explain": "Use these webhooks to notify users or staff on MASZ events",
+                "internal": "Internal webhook",
+                "public": "Public webhook",
+                "invalid": "Invalid webhook"
+            },
+            "information": {
+                "title": "Information",
+                "publicembedmode": "Public embed mode",
+                "publicembedmodeexplained": "This mode enables detailed embeds when linking modcases in discord. This will disclose private information like the suspect, punishments etc.",
+                "publishmod": "Publish moderator information",
+                "publishmodexplained": "A suspect will be able to see which moderator punished them."
+            },
+            "misc": {
+                "title": "Miscellaneous",
+                "whois": "Execute whois on member join",
+                "whoisexplained": "Automatically sends information about the joined user to your internal webhook.",
+                "language": "Language"
+            },
+            "save": "Save",
+            "submitting": "Submitting...",
+            "saved": "Saved",
+            "failedtosave": "Failed to save",
+            "deleteguild": "Delete Guild",
+            "deleted": "Guild deleted",
+            "failedtodelete": "Failed to delete",
+            "deleteconfirm": "Confirm delete",
+            "deleteresources": "Delete all data (infractions, configs, event, files)",
+            "deleteundone": "This action is not reversible. The guild is deleted immediately."
+        }
+    },
+    "admin": {
+        "settings": {
+            "failedtoload": "Failed to load settings",
+            "title": "Settings",
+            "save": "Save",
+            "submitting": "Submitting...",
+            "failedtosave": "Failed to save",
+            "saved": "Saved",
+            "embed": {
+                "title": "Embed",
+                "explained": "This setting will change the content of the embed when your MASZ instance is linked in Discord.",
+                "explained2": "Please note that this might take up to one hour to update in discord.",
+                "titlefield": "Title",
+                "descriptionfield": "Description",
+                "titleinvalid": "The title field is required and has to be less than 256 characters long.",
+                "descriptioninvalid": "The description field is required and has to be less than 4096 characters long.",
+                "iconfield": "Show application's icon in embed."
+            },
+            "infrastructure": {
+                "title": "Infrastructure",
+                "explained": "MASZ will use this language as the default language whenever possible. However, possibly only an english version is available for certain texts. Guild specific settings overwrite this setting.",
+                "languagefield": "Standard language",
+                "explained2": "Use a private webhook accessible for siteadmins only since it may log sensitive information.",
+                "webhookfield": "Auditlog Webhook URL",
+                "invalidwebhook": "The webhook URL is invalid.",
+                "explained3": "Enable this to allow public access to all uploaded files.",
+                "filemodefield": "Public file mode"
+            }
+        },
+        "tokens": {
+            "title": "Tokens",
+            "tabledescription": "As a siteadmin you can use the MASZ API to implement your own custom scripts and automate stuff on MASZ. Create an API key below to authorize yourself against the API while making web requests. Include tokens in the \"Authorization\" header with a \"Bearer \" prefix.",
+            "createnew": "Create new token",
+            "documentation": "Documentation",
+            "support": "Support",
+            "deleteall": "Delete all tokens",
+            "delete": "Delete",
+            "deleted": "Token deleted",
+            "failedtodelete": "Failed to delete",
+            "failedtoload": "Failed to load",
+            "name": "Name",
+            "createdat": "Created at",
+            "validuntil": "Valid until",
+            "action": "Action",
+            "copy": "Copy",
+            "cancel": "Cancel",
+            "powerful": "An API key is very powerful and can control everything on MASZ!",
+            "generate": "Generate",
+            "unique": "This is your unique token and it is non-recoverable. If you lose this API key, you will have to reset it.",
+            "onlyone": "Currently you can only create one token."
+        }
+    },
+    "error": "Error",
+    "warns": "Warns",
+    "mutes": "Mutes",
+    "kicks": "Kicks",
+    "bans": "Bans",
+    "core": {
+        "copiedtoclipboard": "Copied to clipboard",
+        "edit": "Edit",
+        "delete": "Delete",
+        "pagination": {
+            "forwardtext": "Next page",
+            "backwardtext": "Previous page",
+            "itemrangetext": "{min}-{max} of {total} items",
+            "pagerangetext": "of {total} page",
+            "pagerangetextplural": "of {total} pages"
+        }
+    },
+    "feedback": {
+        "title": "How do you like MASZ?",
+        "experience": "Rate your experience",
+        "comment": "Leave a comment (optional)",
+        "commenttoolong": "Your comment needs to be 4096 characters or less",
+        "cancel": "Cancel",
+        "submit": "Submit",
+        "thanks": "Thanks for your feedback!"
+    },
+    "supportme": "Support me",
+    "enums": {
+        "punishmenttype": {
+            "mute": "Mute",
+            "ban": "Ban",
+            "kick": "Kick",
+            "warn": "Warn"
+        },
+        "viewpermission": {
+            "self": "Self",
+            "guild": "Guild",
+            "global": "Global"
+        },
+        "automoderationaction": {
+            "none": "No action",
+            "contentdeleted": "Content deleted",
+            "casecreated": "Case created",
+            "contentdeletedandcasecreated": "Content deleted and case created",
+            "timeout": "Timeout"
+        },
+        "automoderationtype": {
+            "inviteposted": "Invite posted",
+            "toomanyemotes": "Too many emotes used",
+            "toomanymentions": "Too many users mentioned",
+            "toomanyattachments": "Too many attachments used",
+            "toomanyembeds": "Too many embeds used",
+            "toomanyautomoderations": "Too many auto-moderations",
+            "customwordfilter": "Custom wordfilter triggered",
+            "toomanymessages": "Too many messages",
+            "toomanyduplicatedcharacters": "Too many duplicated characters used",
+            "toomanylinks": "Too many links used"
+        },
+        "apierror": {
+            "unknown": "Unknown error",
+            "invaliddiscorduser": "Invalid discord user",
+            "protectedmodcasesuspect": "User is protected",
+            "protectedmodcasesuspectisbot": "User is protected. He is a bot.",
+            "protectedmodcasesuspectissiteadmin": "User is protected. He is a site admin.",
+            "protectedmodcasesuspectisteam": "User is protected. He is a team member.",
+            "resourcenotfound": "Resource not found",
+            "invalididentity": "Invalid identity",
+            "guildunregistered": "Guild is not registered",
+            "unauthorized": "Unauthorized",
+            "guildundefinedmutedroles": "Guild has no roles for mute punishment defined.",
+            "modcaseismarkedtobedeleted": "Modcase is marked to be deleted",
+            "modcaseisnotmarkedtobedeleted": "Modcase is not marked to be deleted",
+            "guildalreadyregistered": "Guild is already registered",
+            "notallowedindemomode": "This action is not allowed in demo mode",
+            "rolenotfound": "Role not found",
+            "tokencannotmanagethisresource": "Tokens cannot manage this resource",
+            "tokenalreadyregistered": "Token is already registered",
+            "cannotbesameuser": "Both users are the same.",
+            "resourcealreadyexists": "Resource already exists",
+            "modcasedoesnotallowcomments": "Comments are locked for this modcase",
+            "lastcommentalreadyfromsuspect": "The last comment was already from the suspect.",
+            "invalidautomoderationaction": "Invalid automoderation action",
+            "invalidautomoderationtype": "Invalid automoderation type",
+            "toomanytemplates": "User has reached the max limit of templates",
+            "invalidfilepath": "Invalid file path",
+            "noguildsregistered": "There are no guilds registered",
+            "onlyusableinaguild": "This action is only usable in a guild",
+            "invalidauditlogevent": "Invalid auditlogevent type",
+            "protectedscheduledmessage": "The scheduled message is protected and cannot be deleted.",
+            "invaliddateforscheduledmessage": "The execution date has to be at least one minute in the future."
+        },
+        "casecreationtype": {
+            "default": "Default",
+            "automoderation": "Case is automoderated.",
+            "imported": "Case is imported.",
+            "bycommand": "Case created by command."
+        },
+        "language": {
+            "en": "English",
+            "de": "German",
+            "fr": "French",
+            "es": "Spanish",
+            "it": "Italian",
+            "at": "Austrian",
+            "ru": "Russian"
+        },
+        "automoderationchannelnotificationbehavior": {
+            "sendnotification": "Channel notification",
+            "sendnotificationanddelete": "Temporary channel notification",
+            "nonotification": "No channel notification"
+        },
+        "editstatus": {
+            "none": "None",
+            "unedited": "Not edited",
+            "edited": "Edited"
+        },
+        "lockedcommentstatus": {
+            "none": "None",
+            "locked": "Locked",
+            "unlocked": "Unlocked"
+        },
+        "markedtodeletestatus": {
+            "none": "None",
+            "marked": "Marked to delete",
+            "unmarked": "Not marked to delete"
+        },
+        "punishmentactivestatus": {
+            "none": "None",
+            "active": "Active",
+            "inactive": "Inactive"
+        },
+        "guildauditlogevent": {
+            "messagesent": "Message sent",
+            "messageupdated": "Message updated",
+            "messagedeleted": "Message deleted",
+            "usernameupdated": "Username updated",
+            "avatarupdated": "Avatar updated",
+            "nicknameupdated": "Nickname updated",
+            "memberrolesupdated": "Member roles updated",
+            "memberjoined": "Member joined",
+            "memberremoved": "Member removed",
+            "banadded": "Member banned",
+            "banremoved": "Member unbanned",
+            "invitecreated": "Invite created",
+            "invitedeleted": "Invite deleted",
+            "threadcreated": "Thread created",
+            "voicejoined": "Member joined voice channel",
+            "voiceleft": "Member left voice channel",
+            "voicemoved": "Member moved voice channel",
+            "reactionadded": "Reaction added",
+            "reactionremoved": "Reaction removed"
+        },
+        "scheduledmessagefailurereason": {
+            "unknown": "Unknown error",
+            "channelnotfound": "Channel not found",
+            "insufficientpermission": "Insufficient permission"
+        },
+        "scheduledmessagestatus": {
+            "pending": "Pending",
+            "sent": "Sent",
+            "failed": "Failed"
+        },
+        "appealstatus": {
+            "pending": "Pending",
+            "approved": "Approved",
+            "declined": "Declined"
+        }
+    }
+}

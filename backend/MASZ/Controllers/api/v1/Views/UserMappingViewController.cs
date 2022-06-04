@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using MASZ.Enums;
 using MASZ.Models;
 using MASZ.Repositories;
@@ -17,14 +18,16 @@ namespace MASZ.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetGuildUserNoteView([FromRoute] ulong guildId)
+        public async Task<IActionResult> GetGuildUserNoteView([FromRoute] ulong guildId, [FromQuery][Range(0, int.MaxValue)] int startPage = 0)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            UserMapRepository repository = UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity());
-            List<UserMapping> userMappings = await repository.GetUserMapsByGuild(guildId);
+            List<UserMapping> userMappings = await UserMapRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetUserMapsByGuild(guildId);
+
+            int fullSize = userMappings.Count;
+
             List<UserMappingExpandedView> userMappingViews = new();
-            foreach (UserMapping userMapping in userMappings)
+            foreach (UserMapping userMapping in userMappings.Skip(startPage * 20).Take(20))
             {
                 userMappingViews.Add(new UserMappingExpandedView(
                     userMapping,
@@ -34,7 +37,11 @@ namespace MASZ.Controllers
                 ));
             }
 
-            return Ok(userMappingViews);
+            return Ok(new
+            {
+                items = userMappingViews,
+                fullSize
+            });
         }
     }
 }

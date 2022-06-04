@@ -123,7 +123,7 @@ namespace MASZ.Repositories
             }
             return lastestAppeal.UserCanCreateNewAppeals.Value <= DateTime.UtcNow;
         }
-        public async Task<List<DbCount>> GetCounts(ulong guildId, DateTime since)
+        public async Task<List<AppealCount>> GetCounts(ulong guildId, DateTime since)
         {
             return await Database.GetAppealCount(guildId, since);
         }

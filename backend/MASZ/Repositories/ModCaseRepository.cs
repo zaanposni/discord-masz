@@ -345,6 +345,10 @@ namespace MASZ.Repositories
         {
             return await Database.CountAllActivePunishmentsForGuild(guildId);
         }
+        public async Task<int> CountAllPunishmentsForGuild(ulong guildId, PunishmentType type)
+        {
+            return await Database.CountAllPunishmentsForGuild(guildId, type);
+        }
         public async Task<int> CountAllActiveMutesForGuild(ulong guildId)
         {
             return await Database.CountAllActivePunishmentsForGuild(guildId, PunishmentType.Mute);
@@ -353,12 +357,16 @@ namespace MASZ.Repositories
         {
             return await Database.CountAllActivePunishmentsForGuild(guildId, PunishmentType.Ban);
         }
-        public async Task<List<ModCase>> SearchCases(ulong guildId, string searchString)
+        public async Task<List<ModCase>> SearchCases(ulong guildId, string searchString, int limit = 10)
         {
             List<ModCase> modCases = await Database.SelectAllModCasesForGuild(guildId);
             List<ModCase> filteredModCases = new();
             foreach (var c in modCases)
             {
+                if (filteredModCases.Count >= limit)
+                {
+                    break;
+                }
                 var entry = new ModCaseTableEntry(
                     c,
                     await DiscordAPI.FetchUserInfo(c.ModId, CacheBehavior.OnlyCache),
@@ -422,6 +430,14 @@ namespace MASZ.Repositories
             ModCase modCase = await GetModCase(guildId, caseId);
             modCase.MarkedToDeleteAt = null;
             modCase.DeletedByUserId = 0;
+            if (modCase.PunishmentType == PunishmentType.Warn || modCase.PunishmentType == PunishmentType.Kick)
+            {
+                modCase.PunishmentActive = false;
+            }
+            else
+            {
+                modCase.PunishmentActive = modCase.PunishedUntil == null || modCase.PunishedUntil > DateTime.UtcNow;
+            }
 
             Database.UpdateModCase(modCase);
             await Database.SaveChangesAsync();
@@ -440,13 +456,13 @@ namespace MASZ.Repositories
 
             return modCase;
         }
-        public async Task<List<DbCount>> GetCounts(ulong guildId, DateTime since)
+        public async Task<List<CaseCount>> GetCounts(ulong guildId, DateTime since)
         {
             return await Database.GetCaseCountGraph(guildId, since);
         }
-        public async Task<List<DbCount>> GetPunishmentCounts(ulong guildId, DateTime since)
+        public async Task<List<ModeratorCaseCount>> GetModeratorCasesCount(ulong guildId)
         {
-            return await Database.GetPunishmentCountGraph(guildId, since);
+            return await Database.GetModeratorCaseCountGraph(guildId);
         }
         public async Task<ModCase> ActivateModCase(ulong guildId, int caseId)
         {
@@ -520,6 +536,57 @@ namespace MASZ.Repositories
                     Logger.LogError(e, $"Failed to handle punishment for modcase {modCase.GuildId}/{modCase.CaseId}.");
                 }
             }
+        }
+
+        public async Task LinkCases(ulong guildId, int caseAId, int caseBId)
+        {
+            ModCase caseA = await GetModCase(guildId, caseAId);
+            ModCase caseB = await GetModCase(guildId, caseBId);
+
+            ModCaseMapping existing = await Database.GetModCaseMapping(caseA.Id, caseB.Id);
+            if (existing != null)
+            {
+                throw new BaseAPIException("Cases are already linked.");
+            }
+
+            existing = await Database.GetModCaseMapping(caseB.Id, caseA.Id);
+            if (existing != null)
+            {
+                throw new BaseAPIException("Cases are already linked.");
+            }
+
+            ModCaseMapping mapping = new ModCaseMapping()
+            {
+                CaseA = caseA,
+                CaseB = caseB
+            };
+
+            Database.CreateModCaseMapping(mapping);
+            await Database.SaveChangesAsync();
+        }
+
+        public async Task UnlinkCases(ulong guildId, int caseAId, int caseBId)
+        {
+            ModCase caseA = await GetModCase(guildId, caseAId);
+            ModCase caseB = await GetModCase(guildId, caseBId);
+
+            ModCaseMapping mapping = await Database.GetModCaseMapping(caseA.Id, caseB.Id);
+
+            if (mapping != null)
+            {
+                Database.DeleteModCaseMapping(mapping);
+                await Database.SaveChangesAsync();
+                return;
+            }
+
+            mapping = await Database.GetModCaseMapping(caseB.Id, caseA.Id);
+            if (mapping == null)
+            {
+                throw new BaseAPIException("Cases are not linked.");
+            }
+
+            Database.DeleteModCaseMapping(mapping);
+            await Database.SaveChangesAsync();
         }
     }
 }

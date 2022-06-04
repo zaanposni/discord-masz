@@ -1,0 +1,52 @@
+html,
+body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    color: #333;
+    margin: 0;
+    padding: 8px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
+        sans-serif;
+}
+
+/*
+	Fix vertical alginment for icons in header actions
+*/
+.bx--header__action svg,
+.bx--header__action img {
+    display: inline;
+}
+
+.bx--header__action img + svg {
+    display: none;
+}
+
+.login-gradient {
+    /*background-image: linear-gradient(135deg, #646464 0%, rgb(32, 32, 32) 100%) !important;*/
+    background: url("/img/login_background.png") !important;
+}
+
+.masz-card {
+    background-color: var(--cds-ui-01, #f4f4f4);
+    padding: var(--cds-spacing-06, 1rem);
+}
+
+.masz-card:hover {
+	filter: brightness(.9);
+}
+
+span.bx--toggle__switch {
+    margin-top: unset!important;
+}
+
+/** only on small screens */
+@media (max-width: 768px) {
+    .bx--header__name {
+        padding-right: 0!important;
+    }
+}

@@ -115,6 +115,14 @@ namespace MASZ.Repositories
         {
             return await Database.SelectAllModerationEventsForSpecificUser(userId);
         }
+        public async Task<List<AutoModerationEvent>> GetAllEventsForUserAndGuild(ulong guildId, ulong userId)
+        {
+            return await Database.SelectAllModerationEventsForSpecificUserAndGuild(guildId, userId);
+        }
+        public async Task<List<AutoModerationEvent>> GetAllEventsForGuild(ulong guildId)
+        {
+            return await Database.SelectAllModerationEventsForSpecificGuild(guildId);
+        }
         public async Task<List<AutoModerationEvent>> GetAllEventsForUserSinceMinutes(ulong userId, int minutes)
         {
             return await Database.SelectAllModerationEventsForSpecificUser(userId, minutes);
@@ -123,9 +131,9 @@ namespace MASZ.Repositories
         {
             return await Database.GetModerationCountGraph(guildId, since);
         }
-        public async Task<List<AutoModerationTypeSplit>> GetCountsByType(ulong guildId, DateTime since)
+        public async Task<List<AutoModerationTypeSplit>> GetCountsByType(ulong guildId)
         {
-            return await Database.GetModerationSplitGraph(guildId, since);
+            return await Database.GetModerationSplitGraph(guildId);
         }
         public async Task<List<AutoModerationEvent>> SearchInGuild(ulong guildId, string searchString)
         {

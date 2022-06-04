@@ -748,7 +748,7 @@
                 "description": "The word appeal",
                 "en": "Ban appeal",
                 "de": "Entbannungsantrag",
-                "at": "Entbannungsantrag",
+                "at": "Entbannungsontrog",
                 "fr": "appel de bannissement",
                 "es": "apelación de prohibición",
                 "ru": "заявка на бан",
@@ -1297,10 +1297,23 @@
             "en": "Deleted {count} messages in {channel.Mention}.",
             "de": "{count} Nachrichten in {channel.Mention} gelöscht.",
             "at": "{count} Nochrichtn in {channel.Mention} glescht.",
-            "fr": "{count} messages supprimés dans {channel.Mention}.",
+            "fr": "{count} messages supprimés dans {channel.Mention}.",
             "es": "Se eliminaron {count} mensajes en {channel.Mention}.",
             "ru": "Удалено {count} сообщений в {channel.Mention}.",
             "it": "Eliminati {count} messaggi in {channel.Mention}."
+        },
+        "Antiraid": {
+            "description": "antiraid response",
+            "var_types": {
+                "count": "int"
+            },
+            "en": "Deleted {count} messages.",
+            "de": "{count} Nachrichten gelöscht.",
+            "at": "{count} Nochrichtn glescht.",
+            "fr": "{count} messages supprimés.",
+            "es": "Se eliminaron {count} mensajes.",
+            "ru": "Удалено {count} сообщений.",
+            "it": "Eliminati {count} messaggi."
         },
         "Features": {
             "KickPermission": {

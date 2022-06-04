@@ -1,0 +1,766 @@
+{
+    "dialog": {
+        "confirm": {
+            "title": "Confirmar",
+            "message": "¿Está seguro?",
+            "confirm": "Confirmar",
+            "cancel": "Cancelar"
+        }
+    },
+    "login": {
+        "title": "Iniciar sesión",
+        "noaccount": "¿No tienes una cuenta?",
+        "createaccount": "Crear una cuenta de Discord",
+        "terms": "Términos de servicio",
+        "and": "y",
+        "privacy": "Política de privacidad"
+    },
+    "settings": {
+        "base": "Ajustes",
+        "basedetails": "Ajuste tus ajustes de MASZ.",
+        "theme": "Tema",
+        "themedetails": "Elige cómo MASZ te va a parecer.",
+        "language": "Idioma",
+        "languagedetails": "Cambiar el idioma",
+        "autosave": "Todos los ajustes se guardan automáticamente."
+    },
+    "nav": {
+        "allguilds": "Todas las Hermandades",
+        "patchnotes": "Notas de la versión",
+        "patchnotesdetails": "Ver las últimas notas de la versión de MASZ.",
+        "credits": "Créditos",
+        "creditsdetails": "Ver los créditos de MASZ.",
+        "community": "Comunidad",
+        "communitydetails": "Visite la comunidad de Discord de MASZ.",
+        "terms": "Términos de servicio",
+        "privacy": "Política de privacidad",
+        "admin": {
+            "base": "Admin",
+            "searchdescription": "Ver insights de tu aplicación",
+            "dashboard": "Tablero",
+            "settings": "Ajustes",
+            "tokens": "Fichas"
+        },
+        "guild": {
+            "base": "Hermandad",
+            "dashboard": "Tablero",
+            "cases": "Casos",
+            "automods": "Automods",
+            "appeals": "Apelaciones",
+            "usernotes": "Notas de usuario",
+            "usermaps": "Mapas de usuario",
+            "messages": "Mensajes",
+            "settings": {
+                "motd": "MotD",
+                "auditlog": "Auditlog",
+                "automod": "Automod",
+                "base": "Ajustes",
+                "search": "Ajustes de hermandad",
+                "searchdetails": "Editar los ajustes de esta hermandad."
+            }
+        },
+        "logout": "Cerrar sesión"
+    },
+    "widgets": {
+        "latestcases": {
+            "title": "Últimos casos",
+            "widgetdescription": "Este widget muestra los últimos casos de tu hermandad."
+        },
+        "latestappeals": {
+            "title": "Últimos apelaciones",
+            "widgetdescription": "Este widget muestra los últimos apelaciones de tu hermandad."
+        },
+        "guildmoderatorcases": {
+            "title": "Casos por moderador",
+            "widgetdescription": "Este widget muestra todos los casos por moderador de tu hermandad.",
+            "cases": "Casos"
+        },
+        "guildstats": {
+            "title": "Estadísticas de hermandad",
+            "widgetdescription": "Este widgetshowConfirmDialog muestra las estadísticas de tu hermandad.",
+            "automods": "Automod",
+            "invites": "Invitaciones",
+            "usernotes": "Notas de usuario",
+            "usermaps": "Mapas de usuario",
+            "banappeals": "Quejas de Baneo"
+        },
+        "guildautomodsplit": {
+            "title": "División automod",
+            "widgetdescription": "Este widget muestra la división de automod de tu hermandad."
+        },
+        "guildmodcasecountchart": {
+            "title": "Resumen de casos",
+            "widgetdescription": "Este widget muestra el resumen de los casos de tu hermandad."
+        },
+        "guildappealcountchart": {
+            "title": "Resumen de quejas",
+            "widgetdescription": "Este widget muestra el resumen de las quejas de tu hermandad."
+        },
+        "guildautomodcountchart": {
+            "title": "Resumen de automod",
+            "widgetdescription": "Este widget muestra el resumen de las automod de tu hermandad."
+        },
+        "guildpendingmessages": {
+            "title": "Mensajes pendientes",
+            "widgetdescription": "Este widget muestra los mensajes pendientes de tu hermandad."
+        },
+        "guildpunishmentstats": {
+            "title": "Estadísticas de castigos",
+            "widgetdescription": "Este widget muestra las estadísticas de castigos de tu hermandad.",
+            "activemutes": "Mutes activos",
+            "activebans": "Bans activos"
+        },
+        "guildquicksearch": {
+            "title": "Búsqueda rápida",
+            "widgetdescription": "Este widget te permite buscar rápidamente un caso, un usuario o otra recurso.",
+            "placeholder": "Usuarios de Quicksearch, modcases, castigos, ...",
+            "searchhistory": "Historial de búsqueda",
+            "clearhistory": "Limpiar historial",
+            "noresults": "No se encontraron resultados.",
+            "searching": "Buscando...",
+            "searchfailed": "La búsqueda falló."
+        },
+        "guildmotd": {
+            "title": "MotD",
+            "widgetdescription": "Este widget muestra el mensaje del día actual."
+        },
+        "adminversion": {
+            "title": "Información de la versión",
+            "widgetdescription": "Este widget muestra la versión actualmente instalada y las actualizaciones disponibles.",
+            "current": "Versión actual",
+            "new": "Actualización disponible"
+        },
+        "adminstatus": {
+            "title": "Estado",
+            "widgetdescription": "Este widget muestra el ping actual de los componentes MASZ.",
+            "offline": "Desconectado",
+            "bot": "Bot",
+            "db": "Base de datos",
+            "cache": "Caché"
+        },
+        "adminloggedin": {
+            "title": "Usuarios conectados",
+            "widgetdescription": "Este widget muestra los usuarios actualmente conectados."
+        },
+        "adminresources": {
+            "title": "Recursos",
+            "widgetdescription": "Este widget muestra la cantidad actual de recursos creados en su base de datos.",
+            "guilds": "Hermandades",
+            "cases": "Casos",
+            "automods": "Automod",
+            "usernotes": "Notas de usuario",
+            "usermaps": "Mapas de usuario",
+            "invites": "Invitaciones"
+        },
+        "admincache": {
+            "title": "Caché",
+            "widgetdescription": "Este widget muestra la cantidad actual de recursos en caché.",
+            "users": "Usuarios",
+            "guilds": "Hermandades",
+            "bans": "Bans",
+            "members": "Miembros",
+            "dmchannels": "Canales DM",
+            "tokens": "Inicios de sesión con token"
+        },
+        "dashboardconfig": {
+            "title": "Configuración del tablero",
+            "widgetdescription": "Este widget te ayuda a configurar tu tablero de mando.",
+            "available": "Widgets disponibles",
+            "enabled": "Widgets activados",
+            "enabledragging": "Activar arrastrar",
+            "clearcache": "Limpiar caché",
+            "clearcacheconfirm": "¿Estás seguro de que quieres limpiar el caché? Esto puede afectar el rendimiento de tu tablero de mando.",
+            "clearcachesuccess": "Limpiado {count} entradas de caché.",
+            "configurewidgets": "Configurar widgets"
+        }
+    },
+    "guilds": {
+        "add": {
+            "button": "Añadir una hermandad",
+            "invitefirst": "Por favor, invita al bot a esta hermandad primero",
+            "windowfailed": "Fallo al abrir la ventana"
+        },
+        "list": {
+            "admin": "Gildes administradores",
+            "mod": "Gildes moderadores",
+            "guild": "Gildes",
+            "banned": "Gildes prohibidas"
+        },
+        "caseview": {
+            "unlinked": "Caselink eliminado",
+            "unlinkfailed": "Fallo al desvincular caselink",
+            "linked": "Caselink creado",
+            "linkfailed": "Fallo al vincular caselink",
+            "linkcase": "Vincular caso",
+            "search": "Buscar",
+            "nocasesfound": "No se encontraron casos",
+            "attachmentuploadfailed": "Subida de adjunto falló",
+            "casenotfound": "Caso no encontrado",
+            "filedeleted": "Archivo eliminado",
+            "filedeletefailed": "Eliminación de archivo falló",
+            "commentdeleted": "Comentario eliminado",
+            "commentdeletefailed": "Eliminación de comentario falló",
+            "commentadded": "Comentario añadido",
+            "commentaddfailed": "Fallo al añadir comentario",
+            "linkcopied": "Enlace copiado al portapapeles",
+            "fileuploaded": "Archivo subido",
+            "fileuploadfailed": "Fallo al subir archivo",
+            "punishmentactivated": "Pena activada",
+            "punishmentdeactivated": "Pena desactivada",
+            "punishmentactivatefailed": "Fallo al activar la penalización",
+            "punishmentdeactivatefailed": "Fallo al desactivar la penalización",
+            "commentslocked": "Comentarios bloqueados",
+            "commentslockfailed": "Fallo al bloquear comentarios",
+            "commentsunlocked": "Comentarios desbloqueados",
+            "commentsunlockfailed": "Fallo al desbloquear comentarios",
+            "deletedcase": "Caso eliminado",
+            "markeddeletecase": "Caso marcado para eliminación",
+            "deletecasefailed": "Fallo al eliminar caso",
+            "caserestored": "Caso restaurado",
+            "caserestorefailed": "Fallo al restaurar caso",
+            "commentedited": "Comentario editado",
+            "commenteditfailed": "Fallo al editar comentario",
+            "deletecase": "Eliminar caso",
+            "sendpublicnotification": "Enviar notificación pública",
+            "forcedelete": "Eliminar",
+            "editcomment": "Editar comentario",
+            "editcommentfield": "Comentario",
+            "editcommentfieldinvalid": "Comentario debe ser menos de 300 caracteres",
+            "sharecase": "Compartir caso",
+            "uploadfile": "Subir archivo",
+            "activate": "Activar",
+            "deactivate": "Desactivar",
+            "unlockcomments": "Desbloquear comentarios",
+            "lockcomments": "Bloquear comentarios",
+            "edit": "Editar",
+            "delete": "Eliminar",
+            "restore": "Restaurar",
+            "markedtodelete": "Este caso ha sido marcado para ser eliminado a las {time}",
+            "markedtodeletesubtitle": "Eliminado por {user}",
+            "attachments": "Adjuntos",
+            "comments": "Comentarios",
+            "addacomment": "Añadir un comentario... (max. 300 caracteres)",
+            "addacommenterror": "Comentario debe ser menos de 300 caracteres",
+            "caseislocked": "No puede comentar porque este caso está bloqueado.",
+            "violator": "Violador",
+            "punishment": "Castigo",
+            "punishmentinactive": "inactivo",
+            "labels": "Etiquetas",
+            "punisheduntil": "Castigado hasta",
+            "usernote": "Nota de usuario",
+            "moderator": "Moderador",
+            "lasteditmoderator": "Último moderador",
+            "moderatorunknown": "Desconocido o oculto",
+            "created": "Creado",
+            "updated": "Actualizado",
+            "unknown": "Desconocido"
+        },
+        "casedialog": {
+            "createcase": "Crear caso",
+            "editcase": "Editar caso",
+            "caseexplain": "Utiliza un caso para registrar infracciones y sanciones en tu hermandad.",
+            "caseexplain2": "MASZ gestionará automáticamente tu sanción y notificará al usuario y tu hermandad si está configurado.",
+            "importtemplate": "Importar plantilla",
+            "templateexplain": "¿No hay una plantilla que coincida con tus requisitos? ¡Crea una al final de este diálogo!",
+            "selecttemplate": "Seleccionar plantilla",
+            "notemplatesfound": "No se encontraron plantillas",
+            "member": "Seleccionar miembro",
+            "memberexplain": "Seleccione el miembro que desea sanción o ingrese una ID si el miembro no está en la lista.",
+            "nomembersfound": "No se encontraron miembros",
+            "reason": "Razón",
+            "title": "Título",
+            "titleplaceholder": "Título (max 100 caracteres)",
+            "titleinvalid": "El campo Título es obligatorio y sólo puede contener 100 caracteres.",
+            "descriptionfield": "Descripción",
+            "labels": "Etiquetas",
+            "clearlabel": "Etiqueta clara",
+            "labelsplaceholder": "Nueva etiqueta",
+            "punishment": "Sancion",
+            "punishmentexplained": "MASZ gestionará automáticamente tu sanción y la eliminará después del tiempo especificado. También puedes cambiar la sanción más tarde.",
+            "punishmentexplained2": "Si no ingresas un tiempo, la sanción será permanente.",
+            "punisheduntil": "Sancionado hasta",
+            "formatisrequired": "Por favor, respeta el formato: {format}",
+            "senddmnotification": "Enviar notificación DM",
+            "executepunishment": "Ejecutar sanción",
+            "sendpublicnotification": "Enviar notificación pública",
+            "files": "Archivos",
+            "filesexplain": "Puedes subir archivos a MASZ como prueba, ten en cuenta que el usuario también podrá ver esos",
+            "filesbutton": "Seleccionar archivos",
+            "createtemplate": "Crear plantilla",
+            "submitting": "Enviando...",
+            "casecreated": "Caso #{id} creado",
+            "casecreatefailed": "Falla al crear caso",
+            "caseedited": "Caso #{id} editado",
+            "caseeditfailed": "Falla al editar caso",
+            "templateapplied": "Plantilla aplicada",
+            "templatesaved": "Plantilla guardada",
+            "templatesavefailed": "Error al guardar plantilla",
+            "visibility": "Visibilidad"
+        },
+        "modcasetable": {
+            "selectmembers": "Miembros",
+            "selectmoderators": "Moderadores",
+            "selectcreationtypes": "Tipos de creación",
+            "selectpunishments": "Castigos",
+            "selectedited": "Editar estado",
+            "selectlocked": "Estado de bloqueo",
+            "selectdelete": "Eliminar estado",
+            "selectactive": "Estado activo",
+            "filtersince": "Creado desde",
+            "filteruntil": "Creado hasta",
+            "executesearch": "Búsqueda",
+            "useadvancedfilter": "Alternar filtro avanzado.",
+            "createnewcase": "Crear nuevo caso",
+            "search": "Búsqueda (usuario, id, descripción ...)",
+            "failedtoload": "No se pudieron cargar los casos.",
+            "nomatches": "Ningún caso coincide con su búsqueda.",
+            "nomatchesdescription": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos."
+        },
+        "automodtable": {
+            "selectmembers": "Miembros",
+            "selecttypes": "Tipos de moderación",
+            "selectactions": "Acciones",
+            "executesearch": "Búsqueda",
+            "useadvancedfilter": "Alternar filtro avanzado.",
+            "failedtoload": "No se pudieron cargar las automod.",
+            "nomatches": "Ningún automod coincide con su búsqueda.",
+            "nomatchesdescription": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos."
+        },
+        "appealtable": {
+            "createnewappeal": "Crear una nueva queja",
+            "disabledexplained": "No puedes crear una nueva queja porque has creado una recientemente o tu castigo fue creado recientemente o este servidor no tiene configuradas quejas de expulsión.",
+            "configureappeal": "Configurar la queja",
+            "useadvancedfilter": "Alternar filtro avanzado.",
+            "selectmembers": "Seleccionar miembros",
+            "statustype": "Estado",
+            "executesearch": "Ejecutar la búsqueda",
+            "nomatches": "Ningún reclamo coincide con su búsqueda.",
+            "nomatchesdescription": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos.",
+            "failedtoload": "No se pudo cargar las quejas",
+            "hasanswered": "El usuario ha respondido {count} preguntas"
+        },
+        "appealconfig": {
+            "title": "Estructura de reclamo de prohibición",
+            "explain": "Configurar el formulario para el apelante de la gildia.",
+            "explain2": "Los usuarios pueden omitir las preguntas si quieren.",
+            "explain3": "Si elimina una pregunta, permanecerá visible en los apelantes de la gildia.",
+            "explain4": "Si no tiene preguntas configuradas, los usuarios no podrán hacer apelantes.",
+            "failedtoreorder": "No se pudo reordenar las preguntas",
+            "deleted": "Pregunta eliminada",
+            "failedtodelete": "No se pudo eliminar la pregunta",
+            "saved": "Pregunta guardada",
+            "failedtosave": "No se pudo guardar la pregunta",
+            "editquestion": "Editar pregunta",
+            "question": "Pregunta",
+            "addquestion": "Añadir pregunta"
+        },
+        "appealview": {
+            "saved": "Decisión guardada",
+            "noanswer": "Sin respuesta",
+            "failedtosave": "No se pudo guardar la decisión",
+            "createdat": "Creado el",
+            "updatedat": "Actualizado el",
+            "decisionat": "Decisión el",
+            "moderatorcomment": "Comentario del moderador",
+            "newappeal": "Nuevo reclamo",
+            "newappealnever": "El usuario nunca está permitido crear un nuevo reclamo",
+            "newappealat": "El usuario está permitido crear un nuevo reclamo a",
+            "edit": "Editar"
+        },
+        "appealnew": {
+            "answer": "Responda a estas preguntas para completar su solicitud de exclusión.",
+            "skip": "Puede saltar las preguntas si lo desea.",
+            "view": "Podrá ver el estado de su solicitud de exclusión en esta página web cada vez que lo desee.",
+            "saved": "Su solicitud de exclusión ha sido guardada.",
+            "failedtosave": "Su solicitud de exclusión no pudo ser guardada.",
+            "save": "Guardar",
+            "answerplaceholder": "Respuesta"
+        },
+        "usernote": {
+            "createusernote": "Crear nota de usuario",
+            "createusernotedescription": "Descripción",
+            "member": "Miembro",
+            "nomembersfound": "No se encontraron miembros",
+            "usernotecreated": "Nota de usuario creada",
+            "usernotecreatefailed": "No se pudo crear la nota de usuario",
+            "usernoteupdated": "Nota de usuario actualizada",
+            "usernotedeleted": "Nota de usuario eliminada",
+            "usernotedeletefailed": "No se pudo eliminar la nota de usuario",
+            "nomatches": "No se encontraron notas de usuario que coincidan con su búsqueda.",
+            "nomatchesdescription": "Puede que no haya notas de usuario todavía en este servidor. Puede crear una nota de usuario usando el botón de arriba."
+        },
+        "usermap": {
+            "createusermap": "Crear mapa de usuario",
+            "createusermapdescription": "Descripción",
+            "member": "Miembro",
+            "nomembersfound": "No se encontraron miembros",
+            "usermapcreated": "Mapa de usuario creado",
+            "usermapcreatefailed": "No se pudo crear el mapa de usuario",
+            "usermapupdated": "Mapa de usuario actualizado",
+            "usermapdeleted": "Mapa de usuario eliminado",
+            "usermapdeletefailed": "No se pudo eliminar el mapa de usuario",
+            "nomatches": "No se encontraron mapas de usuario que coincidan con su búsqueda.",
+            "nomatchesdescription": "Puede que no haya mapas de usuario todavía en este servidor. Puede crear uno usando el botón de arriba."
+        },
+        "messages": {
+            "createnew": "Crear un nuevo mensaje",
+            "nomessages": "No se encontraron mensajes.",
+            "nomessagesdescription": "Puede que no haya mensajes todavía en este servidor. Puede crear uno usando el botón de arriba.",
+            "title": "Título",
+            "channel": "Canal",
+            "content": "Mensaje",
+            "savemessage": "Guardar mensaje",
+            "editmessage": "Editar mensaje",
+            "savedmessage": "Mensaje guardado",
+            "failedtosavemessage": "No se pudo guardar el mensaje",
+            "failedtoload": "No se pudo cargar los mensajes",
+            "messagedeleted": "Mensaje eliminado",
+            "failedtodelete": "No se pudo eliminar el mensaje"
+        },
+        "motd": {
+            "title": "Mensaje del día",
+            "explain": "Utilice un mensaje del día para fijar un mensaje en el panel de control de los servidores que todos los moderadores verán.",
+            "explain2": "Esto puede incluir instrucciones sobre cómo formatear casos o subir imágenes como prueba.",
+            "noresult": "No se pudo cargar el mensaje del día.",
+            "enabled": "Habilitar mensaje del día en el panel de control de la guilda",
+            "message": "Mensaje del día",
+            "save": "Guardar",
+            "submitting": "Enviando...",
+            "saved": "Mensaje del día guardado",
+            "failedtosave": "No se pudo guardar el mensaje del día"
+        },
+        "auditlog": {
+            "title": "AuditLog",
+            "explain": "Utilice auditlogs para registrar ciertos eventos en su guilda.",
+            "explain2": "En ciertos eventos, puede filtrar eventos basados en canales o roles.",
+            "targetchannel": "Canal objetivo",
+            "pingrole": "Rol ping",
+            "excluderoles": "Excluir roles",
+            "excludechannels": "Excluir canales",
+            "saved": "AuditLog guardado",
+            "failedtosave": "No se pudo guardar el auditlog"
+        },
+        "automods": {
+            "title": "Configuración automod",
+            "explain": "Utilice automods para eliminar automáticamente mensajes en canales o castigar a los miembros en eventos.",
+            "explain2": "También puede definir filtros para cada evento para ajustar su automod.",
+            "timelimitfield": "Límite de tiempo (segundos)",
+            "limitfield": "Límite superior",
+            "config": "Configuración",
+            "filter": "Filtro",
+            "filterchannels": "Filtrar canales",
+            "filterroles": "Filtrar roles",
+            "punishmentduration": "Duración en minutos",
+            "action": "Acción",
+            "saved": "Configuración de automod guardada",
+            "failedtosave": "No se pudo guardar la configuración de automod",
+            "deactivated": "Automod desactivado",
+            "failedtodeactivate": "No se pudo desactivar automod",
+            "invites": {
+                "details": "Un mensaje en tu gremio coincide con el patrón de invitación. Se ignorarán las invitaciones a este gremio.",
+                "customwordfield": "Ignorar gremios (ingrese ID divididos por líneas nuevas)"
+            },
+            "emotes": {
+                "details": "Un mensaje en tu gremio contiene demasiados gestos."
+            },
+            "mentions": {
+                "details": "Un mensaje en tu gremio contiene demasiadas menciones."
+            },
+            "attachments": {
+                "details": "Un mensaje en tu gremio contiene demasiados archivos adjuntos."
+            },
+            "embeds": {
+                "details": "Un mensaje en tu gremio contiene demasiadas incrustaciones."
+            },
+            "automoderations": {
+                "details": "Un usuario desencadena demasiadas automovilizaciones en un período de tiempo definido."
+            },
+            "customfilter": {
+                "title": "Filtro personalizado",
+                "details": "Un usuario usa demasiadas palabras definidas en su lista.",
+                "tooltip": "Las palabras se comprueban línea por línea sin distinción entre mayúsculas y minúsculas.",
+                "linktext": "Ejemplo",
+                "customwordfield": "Palabras personalizadas (patrón de expresiones regulares dividido por nueva línea)"
+            },
+            "spam": {
+                "details": "Un usuario de tu gremio envía demasiados mensajes en un lapso de tiempo.",
+                "timelimitmessage": "Límite de tiempo (segundos)"
+            },
+            "duplicatedchars": {
+                "details": "Un mensaje en tu gremio contiene demasiados personajes duplicados."
+            },
+            "link": {
+                "details": "Un mensaje en tu gremio contiene demasiados enlaces.",
+                "customwordfield": "Ignorar enlaces (ingresar patrones de expresiones regulares divididos por líneas nuevas)",
+                "linktext": "Ejemplo"
+            }
+        },
+        "config": {
+            "title": "Configuración de la hermandad",
+            "permissions": {
+                "title": "Permisos",
+                "explain": "Aquí puedes definir qué roles tendrán acceso a MASZ.",
+                "adminroles": "Roles de administrador",
+                "modroles": "Roles de moderador",
+                "appealafterxdays": "Permitir que los usuarios puedan presentar una reclamación de expulsión después de x días",
+                "strictpermissions": "Comprobación estricta de permisos",
+                "strictpermissionsexplained": "Si está activado, los moderadores necesitan tener un rol con permisos de expulsión para crear casos de moderación de expulsión"
+            },
+            "mutedroles": {
+                "title": "Roles silenciados",
+                "explain": "Aquí puedes definir qué roles se usarán para silenciar a los usuarios.",
+                "explain2": "Si no se define ninguno, MASZ usará la funcionalidad de timeout de Discord."
+            },
+            "notifications": {
+                "title": "Notificaciones",
+                "explain": "Utiliza estos webhooks para notificar a tus usuarios o a tus miembros del personal sobre eventos MASZ.",
+                "internal": "Webhook interno",
+                "public": "Webhook público",
+                "invalid": "Webhook inválido"
+            },
+            "information": {
+                "title": "Información",
+                "publicembedmode": "Modo de integración pública",
+                "publicembedmodeexplained": "Este modo permite incrustar detalles cuando se vincula un caso en discord. Esto hará públicas las informaciones privadas como el sujeto, las sanciones, etc.",
+                "publishmod": "Publicar información del moderador",
+                "publishmodexplained": "Un sospechoso podrá ver qué moderador lo castigó."
+            },
+            "misc": {
+                "title": "Varios",
+                "whois": "Ejecutar whois en la presencia de un miembro",
+                "whoisexplained": "Envía automáticamente información sobre el usuario unido a su webhook interno.",
+                "language": "Idioma"
+            },
+            "save": "Guardar",
+            "submitting": "Enviando...",
+            "saved": "Guardado",
+            "failedtosave": "Error al guardar",
+            "deleteguild": "Eliminar el servidor",
+            "deleted": "Servidor eliminado",
+            "failedtodelete": "Error al eliminar el servidor",
+            "deleteconfirm": "Confirmar eliminación",
+            "deleteresources": "Eliminar todos los datos (infracciones, configuraciones, eventos, archivos)",
+            "deleteundone": "Esta acción no es reversible. El servidor se elimina inmediatamente."
+        }
+    },
+    "admin": {
+        "settings": {
+            "failedtoload": "Error al cargar la configuración",
+            "title": "Configuración",
+            "save": "Guardar",
+            "submitting": "Enviando...",
+            "failedtosave": "Error al guardar",
+            "saved": "Guardado",
+            "embed": {
+                "title": "Integración",
+                "explained": "Esta configuración cambiará el contenido del anuncio cuando tu instancia MASZ esté vinculada en Discord.",
+                "explained2": "Por favor tenga en cuenta que esto puede tomar hasta una hora para actualizar.",
+                "titlefield": "Título",
+                "descriptionfield": "Descripción",
+                "titleinvalid": "El campo título es obligatorio y debe tener menos de 256 caracteres.",
+                "descriptioninvalid": "El campo descripción es obligatorio y debe tener menos de 4096 caracteres.",
+                "iconfield": "Mostrar el icono de la aplicación en el anuncio."
+            },
+            "infrastructure": {
+                "title": "Infraestructura",
+                "explained": "MASZ utilizará este idioma como idioma predeterminado cuando sea posible. Sin embargo, es posible que solo una versión inglesa esté disponible para algunos textos. Los ajustes de la hermandad sobrescriben esta configuración.",
+                "languagefield": "Idioma predeterminado",
+                "explained2": "Utilice un webhook privado accesible solo para los administradores del sitio, ya que puede registrar información sensible.",
+                "webhookfield": "URL del webhook de auditoría",
+                "invalidwebhook": "La URL del webhook no es válida.",
+                "explained3": "Habilite esto para permitir el acceso público a todos los archivos subidos.",
+                "filemodefield": "Modo de archivo público"
+            }
+        },
+        "tokens": {
+            "title": "Fichas",
+            "tabledescription": "Como administrador de sitio, puedes usar la API MASZ para implementar tus propios scripts personalizados y automatizar cosas en MASZ. Crea una clave API debajo para autorizar a ti mismo contra la API mientras haces peticiones web. Incluye tokens en la cabecera \"Authorization\" con un prefijo \"Bearer \".",
+            "createnew": "Crear nueva ficha",
+            "documentation": "Documentación",
+            "support": "Apoyo",
+            "deleteall": "Eliminar todas las fichas",
+            "delete": "Eliminar",
+            "deleted": "Ficha eliminada",
+            "failedtodelete": "Error al eliminar",
+            "failedtoload": "Error al cargar",
+            "name": "Nombre",
+            "createdat": "Creado el",
+            "validuntil": "Válido hasta",
+            "action": "Acción",
+            "copy": "Copiar",
+            "cancel": "Cancelar",
+            "powerful": "Una clave API es muy poderosa y puede controlar todo en MASZ!",
+            "generate": "Generar",
+            "unique": "Esta es tu clave única y no se puede recuperar. Si pierdes esta clave API, tendrás que reiniciarla.",
+            "onlyone": "Actualmente solo puedes crear una clave API."
+        }
+    },
+    "error": "Error",
+    "warns": "Advertencias",
+    "mutes": "Mutes",
+    "kicks": "Expulsions",
+    "bans": "Bans",
+    "core": {
+        "copiedtoclipboard": "Copiado al portapapeles",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "pagination": {
+            "forwardtext": "Página siguiente",
+            "backwardtext": "Página anterior",
+            "itemrangetext": "{min}-{max} de {total} elementos",
+            "pagerangetext": "de {total} página",
+            "pagerangetextplural": "de {total} páginas"
+        }
+    },
+    "feedback": {
+        "title": "¿Cómo te gusta MASZ?",
+        "experience": "Valora tu experiencia",
+        "comment": "Dejar un comentario (opcional)",
+        "commenttoolong": "Tu comentario debe tener 4096 caracteres o menos",
+        "cancel": "Cancelar",
+        "submit": "Enviar",
+        "thanks": "¡Gracias por tu opinión!"
+    },
+    "supportme": "Apoya",
+    "enums": {
+        "punishmenttype": {
+            "mute": "Silencio",
+            "ban": "Prohibición",
+            "kick": "Patear",
+            "warn": "Advertir"
+        },
+        "viewpermission": {
+            "self": "Uno mismo",
+            "guild": "Gremio",
+            "global": "Global"
+        },
+        "automoderationaction": {
+            "none": "Ninguna acción",
+            "contentdeleted": "Contenido eliminado",
+            "casecreated": "Caso creado",
+            "contentdeletedandcasecreated": "Contenido eliminado y caso creado",
+            "timeout": "Timeout"
+        },
+        "automoderationtype": {
+            "inviteposted": "Invitación publicada",
+            "toomanyemotes": "Demasiados emotes usados",
+            "toomanymentions": "Demasiados usuarios mencionados",
+            "toomanyattachments": "Se han utilizado demasiados archivos adjuntos",
+            "toomanyembeds": "Se han utilizado demasiados elementos incrustados",
+            "toomanyautomoderations": "Demasiadas moderaciones automáticas",
+            "customwordfilter": "Filtro de palabras personalizado activado",
+            "toomanymessages": "Demasiados mensajes",
+            "toomanyduplicatedcharacters": "Se han utilizado demasiados caracteres duplicados",
+            "toomanylinks": "Se han utilizado demasiados enlaces"
+        },
+        "apierror": {
+            "unknown": "Error desconocido",
+            "invaliddiscorduser": "Usuario de discordia no válido",
+            "protectedmodcasesuspect": "El usuario está protegido",
+            "protectedmodcasesuspectisbot": "El usuario está protegido. El es un bot.",
+            "protectedmodcasesuspectissiteadmin": "El usuario está protegido. Es administrador de un sitio.",
+            "protectedmodcasesuspectisteam": "El usuario está protegido. Es un miembro del equipo.",
+            "resourcenotfound": "Recurso no encontrado",
+            "invalididentity": "Identidad inválida",
+            "guildunregistered": "El gremio no está registrado",
+            "unauthorized": "No autorizado",
+            "guildundefinedmutedroles": "El gremio no tiene roles definidos para el castigo mudo.",
+            "modcaseismarkedtobedeleted": "Modcase está marcado para ser eliminado",
+            "modcaseisnotmarkedtobedeleted": "Modcase no está marcado para ser eliminado",
+            "guildalreadyregistered": "El gremio ya está registrado",
+            "notallowedindemomode": "Esta acción no está permitida en el modo de demostración.",
+            "rolenotfound": "Rol no encontrado",
+            "tokencannotmanagethisresource": "Los tokens no pueden administrar este recurso",
+            "tokenalreadyregistered": "El token ya está registrado",
+            "cannotbesameuser": "Ambos usuarios son iguales.",
+            "resourcealreadyexists": "El recurso ya existe",
+            "modcasedoesnotallowcomments": "Los comentarios están bloqueados para este modcase",
+            "lastcommentalreadyfromsuspect": "El último comentario ya era del sospechoso.",
+            "invalidautomoderationaction": "Acción de automoderación no válida",
+            "invalidautomoderationtype": "Tipo de automoderación no válido",
+            "toomanytemplates": "El usuario ha alcanzado el límite máximo de plantillas",
+            "invalidfilepath": "Ruta de archivo no válida",
+            "noguildsregistered": "No hay gremios registrados",
+            "onlyusableinaguild": "Esta acción solo se puede usar en un gremio.",
+            "invalidauditlogevent": "Tipo de evento de auditoría no válido",
+            "protectedscheduledmessage": "El mensaje programado está protegido y no se puede eliminar.",
+            "invaliddateforscheduledmessage": "La fecha de ejecución debe ser al menos un minuto en el futuro."
+        },
+        "casecreationtype": {
+            "default": "Defecto",
+            "automoderation": "El caso está autoderado.",
+            "imported": "El caso es importado.",
+            "bycommand": "Caso creado por comando."
+        },
+        "language": {
+            "en": "inglés",
+            "de": "alemán",
+            "fr": "francés",
+            "es": "Español",
+            "it": "italiano",
+            "at": "austriaco",
+            "ru": "Ruso"
+        },
+        "automoderationchannelnotificationbehavior": {
+            "sendnotification": "Notificación de canal",
+            "sendnotificationanddelete": "Notificación de canal temporal",
+            "nonotification": "Sin notificación de canal"
+        },
+        "editstatus": {
+            "none": "Ninguna",
+            "unedited": "No editado",
+            "edited": "Editado"
+        },
+        "lockedcommentstatus": {
+            "none": "Ninguna",
+            "locked": "Bloqueado",
+            "unlocked": "Desbloqueado"
+        },
+        "markedtodeletestatus": {
+            "none": "Ninguna",
+            "marked": "Marcado para eliminar",
+            "unmarked": "No marcado para eliminar"
+        },
+        "punishmentactivestatus": {
+            "none": "Ninguna",
+            "active": "Activo",
+            "inactive": "Inactivo"
+        },
+        "guildauditlogevent": {
+            "messagesent": "Mensaje enviado",
+            "messageupdated": "Mensaje actualizado",
+            "messagedeleted": "Mensaje borrado",
+            "usernameupdated": "Nombre de usuario actualizado",
+            "avatarupdated": "Avatar actualizado",
+            "nicknameupdated": "Se actualizó el apodo",
+            "memberrolesupdated": "Se actualizaron las funciones de los miembros",
+            "memberjoined": "Miembro se unió",
+            "memberremoved": "Miembro eliminado",
+            "banadded": "Miembro prohibido",
+            "banremoved": "Miembro no prohibido",
+            "invitecreated": "Invitación creada",
+            "invitedeleted": "Invitación eliminada",
+            "threadcreated": "Hilo creado",
+            "voicejoined": "Miembro se unió al canal de voz",
+            "voiceleft": "Miembro dejó el canal de voz",
+            "voicemoved": "Miembro movió al canal de voz",
+            "reactionadded": "Reacción añadida",
+            "reactionremoved": "Reacción eliminada"
+        },
+        "scheduledmessagefailurereason": {
+            "unknown": "Error desconocido",
+            "channelnotfound": "Canal no encontrado",
+            "insufficientpermission": "Permiso insuficiente"
+        },
+        "scheduledmessagestatus": {
+            "pending": "Pendiente",
+            "sent": "Enviado",
+            "failed": "Falló"
+        },
+        "appealstatus": {
+            "pending": "Pendiente",
+            "approved": "Aprobado",
+            "declined": "Denegado"
+        }
+    }
+}

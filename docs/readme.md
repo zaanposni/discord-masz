@@ -1,12 +1,20 @@
 # Preview
 
+## Detailed view for single modcase
+
+![modcase](modcase.png)
+
 ## Dashboard
 
 ![dashboard](dashboard.png)
 
-## Userscan
+## Admin Dashboard
 
-![userscan](userscan.png)
+![admindashboard](admindashboard.png)
+
+## Choose look of your dashboard
+
+![dashboardsettings](dashboardsettings.png)
 
 ## Modcase overview
 
@@ -20,9 +28,21 @@
 
 ![auditlog](auditlog.png)
 
-## Detailed view for single modcase
+## Search function
 
-![modcase](modcase.png)
+![search](search.png)
+
+## Guild configuration
+
+![guildconfig](guildconfig.png)
+
+## Ban appeal
+
+![banappeal](banappeal.png)
+
+## MASZ admin settings
+
+![maszsettings](maszsettings.png)
 
 ## Commands to punish in discord
 

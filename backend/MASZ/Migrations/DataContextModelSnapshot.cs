@@ -528,6 +528,27 @@ namespace MASZ.Migrations
                     b.ToTable("ModCaseComments");
                 });
 
+            modelBuilder.Entity("MASZ.Models.ModCaseMapping", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CaseAId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CaseBId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CaseAId");
+
+                    b.HasIndex("CaseBId");
+
+                    b.ToTable("ModCaseMappings");
+                });
+
             modelBuilder.Entity("MASZ.Models.ScheduledMessage", b =>
                 {
                     b.Property<int>("Id")
@@ -687,9 +708,32 @@ namespace MASZ.Migrations
                     b.Navigation("ModCase");
                 });
 
+            modelBuilder.Entity("MASZ.Models.ModCaseMapping", b =>
+                {
+                    b.HasOne("MASZ.Models.ModCase", "CaseA")
+                        .WithMany("MappingsA")
+                        .HasForeignKey("CaseAId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MASZ.Models.ModCase", "CaseB")
+                        .WithMany("MappingsB")
+                        .HasForeignKey("CaseBId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CaseA");
+
+                    b.Navigation("CaseB");
+                });
+
             modelBuilder.Entity("MASZ.Models.ModCase", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("MappingsA");
+
+                    b.Navigation("MappingsB");
                 });
 #pragma warning restore 612, 618
         }

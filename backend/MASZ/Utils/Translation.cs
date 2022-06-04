@@ -853,7 +853,7 @@ namespace MASZ.Utils
             return PreferredLanguage switch
             {
                 Language.de => "Entbannungsantrag",
-                Language.at => "Entbannungsantrag",
+                Language.at => "Entbannungsontrog",
                 Language.fr => "appel de bannissement",
                 Language.es => "apelación de prohibición",
                 Language.ru => "заявка на бан",
@@ -1426,11 +1426,24 @@ namespace MASZ.Utils
             {
                 Language.de => $"{count} Nachrichten in {channel.Mention} gelöscht.",
                 Language.at => $"{count} Nochrichtn in {channel.Mention} glescht.",
-                Language.fr => $"{count} messages supprimés dans {channel.Mention}.",
+                Language.fr => $"{count} messages supprimés dans {channel.Mention}.",
                 Language.es => $"Se eliminaron {count} mensajes en {channel.Mention}.",
                 Language.ru => $"Удалено {count} сообщений в {channel.Mention}.",
                 Language.it => $"Eliminati {count} messaggi in {channel.Mention}.",
                 _ => $"Deleted {count} messages in {channel.Mention}.",
+            };
+        }
+        public string CmdAntiraid(int count)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"{count} Nachrichten gelöscht.",
+                Language.at => $"{count} Nochrichtn glescht.",
+                Language.fr => $"{count} messages supprimés.",
+                Language.es => $"Se eliminaron {count} mensajes.",
+                Language.ru => $"Удалено {count} сообщений.",
+                Language.it => $"Eliminati {count} messaggi.",
+                _ => $"Deleted {count} messages.",
             };
         }
         public string CmdFeaturesKickPermissionGranted()

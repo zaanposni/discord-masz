@@ -36,6 +36,9 @@ namespace MASZ.Models
         public DateTime? MarkedToDeleteAt { get; set; }
         public ulong DeletedByUserId { get; set; }
         public ICollection<ModCaseComment> Comments { get; set; }
+        public ICollection<ModCaseMapping> MappingsA { get; set; }
+        public ICollection<ModCaseMapping> MappingsB { get; set; }
+
 
         public object Clone()
         {

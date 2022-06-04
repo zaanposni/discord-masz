@@ -1,0 +1,766 @@
+{
+    "dialog": {
+        "confirm": {
+            "title": "Bestätign",
+            "message": "Sans sicha?",
+            "confirm": "Bestätign",
+            "cancel": "Obbrechn"
+        }
+    },
+    "login": {
+        "title": "Omödn",
+        "noaccount": "Du host kan Account?",
+        "createaccount": "Erstö an Discordaccount",
+        "terms": "Nutzungsbedingungen",
+        "and": "und",
+        "privacy": "Datnschutzerklärung"
+    },
+    "settings": {
+        "base": "Eistellungen",
+        "basedetails": "Passns Ihre MASZ-Eistellungen o.",
+        "theme": "Thema",
+        "themedetails": "Auswöhn, wie da MASZ ozeigt wird.",
+        "language": "Sproch",
+        "languagedetails": "Sproch ändan",
+        "autosave": "Alle Eistellungen werdn automatisch ogspeichat."
+    },
+    "nav": {
+        "allguilds": "Alle Güdn",
+        "patchnotes": "Patchnotizn",
+        "patchnotesdetails": "Zeig de letztn Patchnotizn vo MASZ.",
+        "credits": "Credits",
+        "creditsdetails": "Zeig de Credits vo MASZ.",
+        "community": "Community",
+        "communitydetails": "Besuch den Community-Discord vo MASZ.",
+        "terms": "Nutzungsbedingungen",
+        "privacy": "Datnschutzerklärung",
+        "admin": {
+            "base": "Admin",
+            "searchdescription": "Erhoit Statistikn zu deina Owendung",
+            "dashboard": "Deschboard",
+            "settings": "Eistellungen",
+            "tokens": "Tokns"
+        },
+        "guild": {
+            "base": "Güde",
+            "dashboard": "Deschboard",
+            "cases": "Vorfälle",
+            "automods": "Automods",
+            "appeals": "Entbannungsonträge",
+            "usernotes": "Benutzanotizen",
+            "usermaps": "Benutzabeziehungen",
+            "messages": "Nochrichtn",
+            "settings": {
+                "motd": "NvdT",
+                "auditlog": "Auditlog",
+                "automod": "Automod",
+                "base": "Eistellungen",
+                "search": "Güdneistellungen",
+                "searchdetails": "Beoarbeiten Sie de Eistellungen zua dea Güde."
+            }
+        },
+        "logout": "Omödn"
+    },
+    "widgets": {
+        "latestcases": {
+            "title": "Neiaste Vorfälle",
+            "widgetdescription": "Des Widget zeigt de neiasten Vorfälle in dea Güde o."
+        },
+        "latestappeals": {
+            "title": "Neiaste Entbannungsanträge",
+            "widgetdescription": "Des Widget zeigt de neiasten Entbannungsonträge in dea Güde o."
+        },
+        "guildmoderatorcases": {
+            "title": "Vorfälle noch Modarator",
+            "widgetdescription": "Des Widget zeigt olle Vorfälle noch dem Modarator in dea Güde o.",
+            "cases": "Vorfälle"
+        },
+        "guildstats": {
+            "title": "Güdenstatistikn",
+            "widgetdescription": "Des Widget zeigt de Güdenstatistikn o.",
+            "automods": "Automoderationen",
+            "invites": "Eiladungen",
+            "usernotes": "Benutzanotizn",
+            "usermaps": "Benutzabeziehungen",
+            "banappeals": "Bann-Anfragn"
+        },
+        "guildautomodsplit": {
+            "title": "Automodaufteilung ",
+            "widgetdescription": "Des Widget zeigt de Aufteilung vo da Automodaration in dea Güde o."
+        },
+        "guildmodcasecountchart": {
+            "title": "Vorfoisübasicht",
+            "widgetdescription": "Des Widget zeigt de Übasicht vo de Vorfälle in dea Güde o."
+        },
+        "guildappealcountchart": {
+            "title": "Entbannungsantragsübasicht",
+            "widgetdescription": "Des Widget zeigt de Übasicht dea Entbannungsonträge in dea Güde o."
+        },
+        "guildautomodcountchart": {
+            "title": "Automodarationsübasicht",
+            "widgetdescription": "Des Widget zeigt de Übasicht dea Automodarationen in dea Güde o."
+        },
+        "guildpendingmessages": {
+            "title": "Ausstehende Nochrichtn",
+            "widgetdescription": "Des Widget zeigt de ausstehenden Nochrichtn in dea Güde o."
+        },
+        "guildpunishmentstats": {
+            "title": "Bestrofungsstatistikn",
+            "widgetdescription": "Des Widget zeigt de Bestrofungsstatistikn in dea Güde o.",
+            "activemutes": "Aktive Stummschoitungen",
+            "activebans": "Aktive Banns"
+        },
+        "guildquicksearch": {
+            "title": "Schnösuche",
+            "widgetdescription": "Des Widget erlaubt dia, schö noch am Vorfoi, Benutza oder ondare Dinge zum suacha.",
+            "placeholder": "Schnösuche Benutza, Vorfälle, Bestrofungen, ...",
+            "searchhistory": "Suchverlauf",
+            "clearhistory": "Verlauf löschn",
+            "noresults": "Kane Ergebnisse gfundn.",
+            "searching": "Sucht...",
+            "searchfailed": "Suche fehlgschlogn."
+        },
+        "guildmotd": {
+            "title": "NvdT",
+            "widgetdescription": "Des Widget zeigt des aktuelle Nochrichtnthema."
+        },
+        "adminversion": {
+            "title": "Versionsinfo",
+            "widgetdescription": "Des Widget zeigt de aktuell installierte Version und verfügbare Updates.",
+            "current": "Aktuelle Version",
+            "new": "Verfügbares Update"
+        },
+        "adminstatus": {
+            "title": "Status",
+            "widgetdescription": "Des Widget zeigt den aktuellen Ping da MASZ-Komponenten.",
+            "offline": "Offline",
+            "bot": "Bot",
+            "db": "Datnbonk",
+            "cache": "Cache"
+        },
+        "adminloggedin": {
+            "title": "Ogmödete Benutza",
+            "widgetdescription": "Des Widget zeigt de aktuell angmeldeten Benutza."
+        },
+        "adminresources": {
+            "title": "Ressourcn",
+            "widgetdescription": "Des Widget zeigt de aktuelle Anzahl da Ressourcen in da Datnbonk.",
+            "guilds": "Güdn",
+            "cases": "Fälle",
+            "automods": "Automod",
+            "usernotes": "Benutzanotizn",
+            "usermaps": "Benutzabeziehungen",
+            "invites": "Eiladungen"
+        },
+        "admincache": {
+            "title": "Cache",
+            "widgetdescription": "Des Widget zeigt de aktuelle Anzahl an gecacheten Ressourcn o.",
+            "users": "Benutza",
+            "guilds": "Güdn",
+            "bans": "Banns",
+            "members": "Mitglieda",
+            "dmchannels": "DM-Kanäle",
+            "tokens": "Tokn-Logins"
+        },
+        "dashboardconfig": {
+            "title": "Deschboardkonfiguration",
+            "widgetdescription": "Des Widget hüft da, dei Deschboard zu konfigurian.",
+            "available": "Verfügbare Widgets",
+            "enabled": "Aktivierte Widgets",
+            "enabledragging": "Ziehen aktivian",
+            "clearcache": "Cache leeren",
+            "clearcacheconfirm": "Bist da sicha, dasst den Cache leeren wüst? Des ko de Leistung vo dam Deschboard beeinträchtigen.",
+            "clearcachesuccess": "{count} Cacheeinträge glöscht.",
+            "configurewidgets": "Widgets konfigurian"
+        }
+    },
+    "guilds": {
+        "add": {
+            "button": "Güde hinzufügn",
+            "invitefirst": "Bitte lad den Bot zuerst in de Güde ei",
+            "windowfailed": "Fenster konnt ned göffnet wean"
+        },
+        "list": {
+            "admin": "Admin-Güden",
+            "mod": "Moderatoren-Güdn",
+            "guild": "Güden",
+            "banned": "Gsperrte Güden"
+        },
+        "caseview": {
+            "unlinked": "Caselink glöscht",
+            "unlinkfailed": "Konnte Caselink ned lösn",
+            "linked": "Caselink erstöt",
+            "linkfailed": "Konnte Caselink ned erstön",
+            "linkcase": "Fall verlinkn",
+            "search": "Suche",
+            "nocasesfound": "Kane Fälle gfundn",
+            "attachmentuploadfailed": "Anhang hochlodn fehlgschlogn",
+            "casenotfound": "Vorfall ned gfundn",
+            "filedeleted": "Datei glöscht",
+            "filedeletefailed": "Fehler beim Löschen dea Datei",
+            "commentdeleted": "Kommentar glöscht",
+            "commentdeletefailed": "Fehler beim Löschen des Kommentars",
+            "commentadded": "Kommentar hinzugfügt",
+            "commentaddfailed": "Fehler beim Hinzufügen des Kommentars",
+            "linkcopied": "Link in de Zwischnoblog kopiat",
+            "fileuploaded": "Datei hochglodn",
+            "fileuploadfailed": "Fehler beim Hochlodn dea Datei",
+            "punishmentactivated": "Bestrofung aktiviat",
+            "punishmentdeactivated": "Bestrofung deaktiviat",
+            "punishmentactivatefailed": "Fehler beim Aktivian dea Bestrofung",
+            "punishmentdeactivatefailed": "Fehler beim Deaktivian dea Bestrofung",
+            "commentslocked": "Kommentare gsperrt",
+            "commentslockfailed": "Fehler beim Sperren dea Kommentare",
+            "commentsunlocked": "Kommentare entsperrt",
+            "commentsunlockfailed": "Fehler beim Entsperren der Kommentare",
+            "deletedcase": "Vorfoi glöscht",
+            "markeddeletecase": "Vorfoi zum Löschen markiat",
+            "deletecasefailed": "Fehler beim Löschen des Vorfois",
+            "caserestored": "Vorfoi wiederhergstöt",
+            "caserestorefailed": "Fehler beim Wiederherstön des Vorfoi",
+            "commentedited": "Kommentar beorbeitet",
+            "commenteditfailed": "Fehler beim Beorbeitn des Kommentars",
+            "deletecase": "Vorfall löschn",
+            "sendpublicnotification": "Öffentliche Benochrichtigung sendn",
+            "forcedelete": "Löschen erzwingan",
+            "editcomment": "Kommentar beorbeitn",
+            "editcommentfield": "Kommentar",
+            "editcommentfieldinvalid": "Kommentar muss weniga ois 300 Zeichn long sei",
+            "sharecase": "Vorfoi teiln",
+            "uploadfile": "Datei hochlodn",
+            "activate": "Aktivian",
+            "deactivate": "Deaktivian",
+            "unlockcomments": "Kommentare entspean",
+            "lockcomments": "Kommentare sperren",
+            "edit": "Beorbeitn",
+            "delete": "Löschn",
+            "restore": "Wiederherstön",
+            "markedtodelete": "Diesa Vorfoi wuad zum Löschn markiat am {time}",
+            "markedtodeletesubtitle": "Gelöscht vo {user}",
+            "attachments": "Anhänge",
+            "comments": "Kommentare",
+            "addacomment": "Kommentar hinzufügn... (max. 300 Zeichn)",
+            "addacommenterror": "Kommentar muss weniga ois 300 Zeichn long sei",
+            "caseislocked": "Sie kennan keine Kommentare hinzufün, weil dea Vorfoi gsperrt is.",
+            "violator": "Beschuldigta",
+            "punishment": "Bestrofung",
+            "punishmentinactive": "inaktiv",
+            "labels": "Labels",
+            "punisheduntil": "Bestroft bis",
+            "usernote": "Benutzanotiz",
+            "moderator": "Moderator",
+            "lasteditmoderator": "Letzta Beorbeita",
+            "moderatorunknown": "Unbekonnt oda vasteckt",
+            "created": "Erstöt",
+            "updated": "Aktualisiat",
+            "unknown": "Unbekonnt"
+        },
+        "casedialog": {
+            "createcase": "Vorfoi erstön",
+            "editcase": "Vorfoi beorbeitn",
+            "caseexplain": "Benutz an Vorfoi, um Verstöße und Strofn in deina Güde zu protokollian.",
+            "caseexplain2": "MASZ wiad automatisch dei Strof vawoitn und den Benutza und dei Güde benochrichtn, wenns konfiguriat is.",
+            "importtemplate": "Vorlog importian",
+            "templateexplain": "Ka Vorlog, die deina Ofoderung entspricht? Erstö eine am Ende vo dem Dialog!",
+            "selecttemplate": "Vorlog auswöhn",
+            "notemplatesfound": "Ka Vorlog gfundn",
+            "member": "Mitglied auswöhn",
+            "memberexplain": "Woh a Mitglied aus, dest du bestrofn mogst oda gib eine ID ei, wenn des Mitglied ned in da Listn is.",
+            "nomembersfound": "Kane Mitglieda gfundn",
+            "reason": "Grund",
+            "title": "Titl",
+            "titleplaceholder": "Titl (maximal 100 Zeichn)",
+            "titleinvalid": "Titlföd is erfordalich und deaf nua 100 Zeichn long sei.",
+            "descriptionfield": "Beschreibung",
+            "labels": "Labels",
+            "clearlabel": "Label löschn",
+            "labelsplaceholder": "Neichs Label",
+            "punishment": "Bestrofung",
+            "punishmentexplained": "MASZ wiad automatisch dei Bestrofung vawoitn und sie noch da ogebanen Zeit entfernan. Du konnst de Bestrofung auch später ändan.",
+            "punishmentexplained2": "Wennst ka Zeit eingibst, wird de Bestrofung permanent sei.",
+            "punisheduntil": "Bestroft bis",
+            "formatisrequired": "Bitte beachte des Format: {format}",
+            "senddmnotification": "Sende DM Benochrichtigung",
+            "executepunishment": "Bestrofung ausfüan",
+            "sendpublicnotification": "Sende öffentliche Benochrichtigung",
+            "files": "Datein",
+            "filesexplain": "Du konnst Datein zu MASZ hochloadn. Bitte beochte, dos dea Benutza diese auch sehen ko",
+            "filesbutton": "Datein auswöhn",
+            "createtemplate": "Vorlog erstön",
+            "submitting": "Sendn...",
+            "casecreated": "Vorfoi #{id} erstöt",
+            "casecreatefailed": "Vorfoi konnte ned erstöt wean",
+            "caseedited": "Vorfoi #{id} aktualisiat",
+            "caseeditfailed": "Vorfoi konnte ned aktualisiat wean",
+            "templateapplied": "Vorlog angwendet",
+            "templatesaved": "Vorlog gspeichat",
+            "templatesavefailed": "Fehla beim Speichan dea Vorlog",
+            "visibility": "Sichtboakeit"
+        },
+        "modcasetable": {
+            "selectmembers": "Mitglieda",
+            "selectmoderators": "Modaratoren",
+            "selectcreationtypes": "Erstöllungsoartn",
+            "selectpunishments": "Bestrofungen",
+            "selectedited": "Beorbeitet-Status",
+            "selectlocked": "Sperr-Status",
+            "selectdelete": "Lösch-Status",
+            "selectactive": "Aktiv-Status",
+            "filtersince": "Erstöt vo",
+            "filteruntil": "Erstöt bis",
+            "executesearch": "Suche startn",
+            "useadvancedfilter": "Erweitate Füta ei-/ausblendn.",
+            "createnewcase": "Neichn Vorfoi erstön",
+            "search": "Suach (Benutza, ID, Beschreibung ...)",
+            "failedtoload": "Vorfälle konntn ned glodn wean.",
+            "nomatches": "Kane Vorfälle passn zu deina Suach.",
+            "nomatchesdescription": "Kannn Vorfälle in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Vorfälle zu findn."
+        },
+        "automodtable": {
+            "selectmembers": "Mitglieda",
+            "selecttypes": "Modarationsortn",
+            "selectactions": "Aktiona",
+            "executesearch": "Suche startn",
+            "useadvancedfilter": "Erweitate Füta ei-/ausblendn.",
+            "failedtoload": "Automoderationen konntn ned glodn wean.",
+            "nomatches": "Kane Automoderationen passn zu deina Suach.",
+            "nomatchesdescription": "Kannn Automoderationen in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Automoderationen zu findn."
+        },
+        "appealtable": {
+            "createnewappeal": "Neue Entbannungsanfrage erstelln",
+            "disabledexplained": "Du konnst ka neiche Entbannungsanfrage erstöt, da du entweda eine früher erstöt host, dei Bann früher erstöt wurde oder de Güde kane Entbannungsanfragen konfiguriat hot.",
+            "configureappeal": "Anfrage konfigurian",
+            "useadvancedfilter": "Erweitate Füta ei-/ausblendn.",
+            "selectmembers": "Mitglieda auswöhn",
+            "statustype": "Status",
+            "executesearch": "Suche ausfüan",
+            "nomatches": "Kane Entbannungsanfragen passn zu deina Suach.",
+            "nomatchesdescription": "Kannn Entbannungsanfragen in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Entbannungsanfragen zu findn.",
+            "failedtoload": "Entbannungsanfragen konntn ned glodn wean",
+            "hasanswered": "Benutza hot {count} Frogn beantwortet"
+        },
+        "appealconfig": {
+            "title": "Entbannungsanfrage-Struktur",
+            "explain": "Konfiguriere des Formular fia dein Entbannungsantrag der Güde.",
+            "explain2": "Benutzer können Frodn übaspringen, wenns woin.",
+            "explain3": "Wenns a Frog löschn, wiad die Frog weitahin in den oitn Entbannungsanträgen sichtboa sei.",
+            "explain4": "Wenns keine Frogn konfiguriat hobn, kennan Benutzer kane Entbannungsanträge mehr stön.",
+            "failedtoreorder": "Fehler beim Neuordnen der Frodn",
+            "deleted": "Frog gelöscht",
+            "failedtodelete": "Fehler beim Löschen der Frog",
+            "saved": "Frog gespeichert",
+            "failedtosave": "Fehler beim Speichern der Frog",
+            "editquestion": "Frog bearbeiten",
+            "question": "Frog",
+            "addquestion": "Frog hinzufügen"
+        },
+        "appealview": {
+            "saved": "Entscheidung gspeichat",
+            "noanswer": "Ka Ontwort",
+            "failedtosave": "Fehla beim Speichan dea Entscheidung",
+            "createdat": "Erstöt am",
+            "updatedat": "Aktualisiat am",
+            "decisionat": "Entscheidung am",
+            "moderatorcomment": "Moderator Kommentar",
+            "newappeal": "Neicha Antrag",
+            "newappealnever": "Benutza deaf nie erneut ein neichn Antrag erstön",
+            "newappealat": "Benutza deaf ein neichn Antrag erstön am",
+            "edit": "Beorbeitn"
+        },
+        "appealnew": {
+            "answer": "Beantworte die Frogn, um dein Entbannungsantrag abzuschließn.",
+            "skip": "Du konnst de Frog übaspringen, wennst wüst.",
+            "view": "Du konnst jedazeit auf dea Website den Status vo deim Entbannungsantrag eisehn.",
+            "saved": "Dei Entbannungsantrag wuad gspeichat.",
+            "failedtosave": "Dei Entbannungsantrag konnte ned gspeichat wean.",
+            "save": "Speichan",
+            "answerplaceholder": "Antwort"
+        },
+        "usernote": {
+            "createusernote": "Benutzanotiz erstön",
+            "createusernotedescription": "Beschreibung",
+            "member": "Mitglied",
+            "nomembersfound": "Kane Mitglieder gfundn",
+            "usernotecreated": "Benutzanotiz erstöt",
+            "usernotecreatefailed": "Benutzanotiz konnte ned erstöt wean",
+            "usernoteupdated": "Benutzanotiz aktualisiat",
+            "usernotedeleted": "Benutzanotiz gelöscht",
+            "usernotedeletefailed": "Benutzanotiz konnte ned glöscht wean",
+            "nomatches": "Kane Benutzanotizn passen zu dana Suche.",
+            "nomatchesdescription": "Es kenntn no kane Benutzanotizen in dea Güde sei. Sie kennan a Benutzanotiz erstön, indem Sie obn auf den Button klickn."
+        },
+        "usermap": {
+            "createusermap": "Benutzabeziehung erstön",
+            "createusermapdescription": "Beschreibung",
+            "member": "Mitglied",
+            "nomembersfound": "Kane Mitglieder gfundn",
+            "usermapcreated": "Benutzabeziehung erstöt",
+            "usermapcreatefailed": "Benutzabeziehung konnte ned erstöt wean",
+            "usermapupdated": "Benutzabeziehung aktualisiat",
+            "usermapdeleted": "Benutzabeziehung glöscht",
+            "usermapdeletefailed": "Benutzabeziehung konnte ned glöscht wean",
+            "nomatches": "Kane Benutabeziehungen passn zu dam Suchbegriff.",
+            "nomatchesdescription": "Es kenntat no kane Benutzabeziehungen in dea Güde gebn. Du konnst ane erstön, indem du den Button obn vawendst."
+        },
+        "messages": {
+            "createnew": "Neue Nachricht erstön",
+            "nomessages": "Kane Nachrichtn gfundn.",
+            "nomessagesdescription": "Es kenntan no kane Nachrichtm in dea Güde gebn. Du konnst ane erstön, indem du den Button obn benutzt.",
+            "title": "Titl",
+            "channel": "Kanal",
+            "content": "Nochricht",
+            "savemessage": "Nochricht speichan",
+            "editmessage": "Nochricht beorbeitn",
+            "savedmessage": "Gspeichate Nachricht",
+            "failedtosavemessage": "Nochricht konnte ned gspeichat wean",
+            "failedtoload": "Nochrichten konnte ned glodn wean",
+            "messagedeleted": "Nochricht glöscht",
+            "failedtodelete": "Konnte Nochricht ned löschn"
+        },
+        "motd": {
+            "title": "Nochricht vo dem Tag",
+            "explain": "Benutze de Nochricht vo dem Tag, um eine Nochricht aufm Deschboad da Güde zu platzian, die olle Modaratoren sehn.",
+            "explain2": "Diese kenntn Oweisungen zum Formatian vo Fälle enthoin oda Büda ois Beweise hochzumlodn.",
+            "noresult": "Konnte Nochricht vo dem Tog ned lodn.",
+            "enabled": "Nochricht vo dem Tag aufm Deschboad da Güde aktivian",
+            "message": "Nochricht vo dem Tag",
+            "save": "Speichan",
+            "submitting": "Sende...",
+            "saved": "Nochricht vo dem Tag gspeichat",
+            "failedtosave": "Konnte Nochricht vo dem Tag ned speichan"
+        },
+        "auditlog": {
+            "title": "AuditLog",
+            "explain": "Benutz AuditLogs um bestimmte Ereignisse in deina Güde zu loggn.",
+            "explain2": "Auf bestimmten Ereignissen konnst du Ereignisse basierend auf Kanälen oda Rollen filtan.",
+            "targetchannel": "Zielkanal",
+            "pingrole": "Ping-Rolle",
+            "excluderoles": "Rollen ausschließn",
+            "excludechannels": "Kanäle ausschließn",
+            "saved": "AuditLog gspeichat",
+            "failedtosave": "Konnte AuditLog ned speichan"
+        },
+        "automods": {
+            "title": "Automod-Konfiguration",
+            "explain": "Benutz die Automodaration um Nochrichtn in bestimmtn Kanälen automatisch zu löschn oda Mitglieda wegen bestimmte Ereignisse zu strofn.",
+            "explain2": "Du konnst a Füta fia jeds Ereignis festlegn, um dei Automod-Eistellungen genaua anzupassn.",
+            "timelimitfield": "Zeitlimit (Sekundn)",
+            "limitfield": "Obare Grenze",
+            "config": "Konfiguration",
+            "filter": "Füta",
+            "filterchannels": "Kanäle fütan",
+            "filterroles": "Rollen fütan",
+            "punishmentduration": "Dauer in Minutn",
+            "action": "Aktion",
+            "saved": "Automod-Konfiguration gspeichat",
+            "failedtosave": "Automod-Konfiguration konnte ned gspeichat wean",
+            "deactivated": "Automod deaktiviat",
+            "failedtodeactivate": "Automod konnte ned deaktiviat wean",
+            "invites": {
+                "details": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta. Eiladunga zu dem Serva wera ignohriert.",
+                "customwordfield": "Ignorierte Güdn-IDs (getrennt durch an Zeilenumbruch"
+            },
+            "emotes": {
+                "details": "A Nochricht aufm Serva hot zvü Emojis"
+            },
+            "mentions": {
+                "details": "A Nochricht aufm Serva hot zvü Erwähnungen."
+            },
+            "attachments": {
+                "details": "A Nochricht aufm Serva hot zvü Ohäng"
+            },
+            "embeds": {
+                "details": "A Nochricht aufm Serva hot zvü Eibettungen. "
+            },
+            "automoderations": {
+                "details": "A Benutza hot zvü Automodarationen in am bestimmtn Zeitraum ausglest."
+            },
+            "customfilter": {
+                "title": "Benutzadefinirta Füta",
+                "details": "A Nutza nutzt zvü Wörta aus dana Listn.",
+                "tooltip": "Wörta wean zeitweis ohne da Beachtung vo da Groß- und Kleischreibung prüft.",
+                "linktext": "Beispü",
+                "customwordfield": "Eigene Wörta (Regepxpattern getrennt durch an Zeilnumbruch)"
+            },
+            "spam": {
+                "details": "A Nutze aufm Serva send zvü Nochricht in am bestimmt Zeitraum.",
+                "timelimitmessage": "Zeitlimit (Sekundn)"
+            },
+            "duplicatedchars": {
+                "details": "A Nochricht aufm Server enthöt zvü wiedaholende Buchstobn."
+            },
+            "link": {
+                "details": "A Nochricht aufm Server hod zvü Valinkungen",
+                "customwordfield": "Ignorierte Links (getrennte Links mit am Zeilenumbruch)",
+                "linktext": "Beispü"
+            }
+        },
+        "config": {
+            "title": "Güdnkonfiguration",
+            "permissions": {
+                "title": "Berechtigungen",
+                "explain": "Hier konnst du festlegn, wöchane Rollen erweitate Zugriffsrechte in MASZ hobn soin.",
+                "adminroles": "Administrator-Rollen",
+                "modroles": "Moderator-Rollen",
+                "appealafterxdays": "Entbannungsantrag noch x Tagn erlaubn",
+                "strictpermissions": "Strenge Berechtigungsprüfung",
+                "strictpermissionsexplained": "Wenn aktiviat, müssn Moderatoren ei Rolle mit Bannrechn hobn, um Bann-Vorfälle zu erstön"
+            },
+            "mutedroles": {
+                "title": "Stummschoitungsrollen",
+                "explain": "Hier konnst du festlegn, wöchane Rollen benutzt wean sollen, um Benuta stummzuschoitn.",
+                "explain2": "Wenn kane festlegt wiad, wird MASZ stattdessn de Discord-Timeout-Funktionalität vawendn."
+            },
+            "notifications": {
+                "title": "Benochrichtigungen",
+                "explain": "Benutz den Webhook, um Benutza oda Mitarbeita üba MASZ-Ereignisse zu benochrichtign.",
+                "internal": "Interna Webhook",
+                "public": "Öffentlicha Webhook",
+                "invalid": "Ungültiga Webhook"
+            },
+            "information": {
+                "title": "Informationen",
+                "publicembedmode": "Öffentlicha Embed-Modus",
+                "publicembedmodeexplained": "Dea Modus ermöglicht detaillierte Eibettungen, wenn Vorfälle in Discord valinkt wean. Des wiad private Informationen wia den Vadächtigen, die Strofn, etc. offenboarn.",
+                "publishmod": "Modaratorinformationen veröffentlichen",
+                "publishmodexplained": "A Verdächtiga wird de Meglichkeit hom, zum schaun, wöchana Modarator erm verurtoit hot."
+            },
+            "misc": {
+                "title": "Vaschiedenes",
+                "whois": "Whois bei Mitgliedabeitritt ausfüan",
+                "whoisexplained": "Tua automatisch Infos üba an neichn Nutza on dein internan Webhook schickn.",
+                "language": "Sproch"
+            },
+            "save": "Speichan",
+            "submitting": "Sendn...",
+            "saved": "Gspeichat",
+            "failedtosave": "Fehlgschlagn",
+            "deleteguild": "Güde löschn",
+            "deleted": "Güde glöscht",
+            "failedtodelete": "Fehla beim Löschn da Güde",
+            "deleteconfirm": "Löschn bestätign",
+            "deleteresources": "Alle Daten löschn (Verstöße, Konfigurationen, Ereignisse, Dateien)",
+            "deleteundone": "Diese Aktion is ned umkehrbar. Die Güde is sofort weg."
+        }
+    },
+    "admin": {
+        "settings": {
+            "failedtoload": "Fehla beim Ladn dea Eistellungen",
+            "title": "Eistellungen",
+            "save": "Speichan",
+            "submitting": "Sendn...",
+            "failedtosave": "Fehla beim Speichan",
+            "saved": "Gspeichat",
+            "embed": {
+                "title": "Eibettung",
+                "explained": "Die Eistellung ändat den Inhoit da Eibettung, wenn dei MASZ-Instanz in Discord vaknüpft is.",
+                "explained2": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird",
+                "titlefield": "Titel",
+                "descriptionfield": "Beschreibung",
+                "titleinvalid": "Des Titlföd is erfordalich und muss weniga ois 256 Zeichn long sei.",
+                "descriptioninvalid": "Des Beschreibungsföd is erfordalich und muss weniga oi 4096 Zeichn long sei.",
+                "iconfield": "Zeig des Icon da Anwendung in da Eibettung."
+            },
+            "infrastructure": {
+                "title": "Infrastruktur",
+                "explained": "MASZ wiad de Sproch ois Standard vawendn, wenns geht. Jedoch ists möglich, dass nua a englische Version fia monche Texte vafügbar is. Güdn-spezifische Eistellungen wean diese Eistellung übaschreibn.",
+                "languagefield": "Standard-Sproch",
+                "explained2": "Vawendns an privaten Webhook, dea nua fia Siteadmins zugänglich is, da dea sensible Infos protokollieren kenntat.",
+                "webhookfield": "Auditlog Webhook URL",
+                "invalidwebhook": "Die Webhook-URL ist ungültig.",
+                "explained3": "Aktivians des, um den öffentlichn Zugriff auf olle hochglodane Dateien zua ermöglichn.",
+                "filemodefield": "Öffentlicha Datei-Modus"
+            }
+        },
+        "tokens": {
+            "title": "Tokens",
+            "tabledescription": "Ois Seitnadministrator konnst du de MASZ API nutzn, um deine eiganan benutzadefinierten Skripte zu implementian und Sachn automatisch auf MASZ zu erledign. Erstö an API-Schlüssel unterhoib, um dich zu authentifizian, während du Web-Ofrogn mochst. Füg Tokens im \"Authorization\"-Header mit am \"Bearer \"-Präfix ei.",
+            "createnew": "Neuen Token erstön",
+            "documentation": "Dokumentation",
+            "support": "Support",
+            "deleteall": "Alle Tokens löschn",
+            "delete": "Löschn",
+            "deleted": "Token glöscht",
+            "failedtodelete": "Löschn fehlgschlagn",
+            "failedtoload": "Laden fehlgschlagn",
+            "name": "Name",
+            "createdat": "Erstöt am",
+            "validuntil": "Gültig bis",
+            "action": "Aktion",
+            "copy": "Kopian",
+            "cancel": "Obbrechn",
+            "powerful": "Ei API-Schlüssel is sehr mächtig und ko ois auf MASZ steian!",
+            "generate": "Generian",
+            "unique": "Des is dei einzigartiger API-Schlüssel und er ko ned wiederhergstöt wean. Wenst an valiast, musst ean zrucksetzn.",
+            "onlyone": "Du konnst momentan nua an API-Schlüssel erstön."
+        }
+    },
+    "error": "Fehler",
+    "warns": "Warnungen",
+    "mutes": "Stummschoitungen",
+    "kicks": "Kicks",
+    "bans": "Banns",
+    "core": {
+        "copiedtoclipboard": "In die Zwischenablage kopiat",
+        "edit": "Beorbeitn",
+        "delete": "Löschn",
+        "pagination": {
+            "forwardtext": "Nächste Seite",
+            "backwardtext": "Vorherige Seite",
+            "itemrangetext": "{min}-{max} vo {total} Elementn",
+            "pagerangetext": "{von einer {total} Seite",
+            "pagerangetextplural": "{von {total} Seiten"
+        }
+    },
+    "feedback": {
+        "title": "Wie gfoit da MASZ?",
+        "experience": "Tua dei Erfahrung bewertn",
+        "comment": "Kommentar hinterlassn (optional)",
+        "commenttoolong": "Dei Kommentar muss 4096 Zeichen oda weniga hobn",
+        "cancel": "Obbrechn",
+        "submit": "Sendn",
+        "thanks": "Danke fia dei Feedback!"
+    },
+    "supportme": "Tua mi Supportn",
+    "enums": {
+        "punishmenttype": {
+            "mute": "Stummschoitung",
+            "ban": "Rauswuaf",
+            "kick": "Tritt",
+            "warn": "Verwoarnt"
+        },
+        "viewpermission": {
+            "self": "Privot",
+            "guild": "Güde",
+            "global": "Globoi"
+        },
+        "automoderationaction": {
+            "none": "Nix tuan",
+            "contentdeleted": "Nochricht glescht",
+            "casecreated": "Vorfoi erstöt",
+            "contentdeletedandcasecreated": "Nochricht glescht und Vorfoi erstöt",
+            "timeout": "Timeout"
+        },
+        "automoderationtype": {
+            "inviteposted": "Eiladung gsendet",
+            "toomanyemotes": "Zu vü Emojis san vawendt woan",
+            "toomanymentions": "Zu vü Nutza san erwähnt woan",
+            "toomanyattachments": "Zu vü Ohäng san verwendt woan",
+            "toomanyembeds": "Zu vü Eibettungen san vawendt woan",
+            "toomanyautomoderations": "Zu vü automatische Modarationen",
+            "customwordfilter": "Eigena Wortfüta is ausglest woan",
+            "toomanymessages": "Zu vü Nochrichtn",
+            "toomanyduplicatedcharacters": "Zu vü wiedaholende Buchstobn vawendet",
+            "toomanylinks": "Zu vü Links vawendet"
+        },
+        "apierror": {
+            "unknown": "Unbekonnta Föhla",
+            "invaliddiscorduser": "Ungütiga Discordbenutza",
+            "protectedmodcasesuspect": "Benutza is gschützt",
+            "protectedmodcasesuspectisbot": "Benutza is gschützt, es is a Bot.",
+            "protectedmodcasesuspectissiteadmin": "Benutza is gschützt, er is a Seitenadministraotr.",
+            "protectedmodcasesuspectisteam": "Benutza is gschützt, er is a Teammitglied.",
+            "resourcenotfound": "Ressource ned gfundn.",
+            "invalididentity": "Ungütige Identität",
+            "guildunregistered": "Güde is ned registriat",
+            "unauthorized": "Ned berechtigt",
+            "guildundefinedmutedroles": "Güde hot kane Roin fia de Stummschoitung definiat.",
+            "modcaseismarkedtobedeleted": "Modcase is zum Löscha markiat",
+            "modcaseisnotmarkedtobedeleted": "Modcase is ned zum Lösche markiat",
+            "guildalreadyregistered": "Güde is bereits registriat",
+            "notallowedindemomode": "De Aktion is in da Demo-Version ned erlaubt",
+            "rolenotfound": "Rolle ned gfundn",
+            "tokencannotmanagethisresource": "Tokns kennan de Ressourcen ned vawoitn",
+            "tokenalreadyregistered": "Tokn is bereits registriat",
+            "cannotbesameuser": "Beide Benutza san gleich.",
+            "resourcealreadyexists": "De Ressource gibts bereits",
+            "modcasedoesnotallowcomments": "Kommentare san fia den Vorfoi gsperrt",
+            "lastcommentalreadyfromsuspect": "Da letzte Kommentar woa scho vom Beschuldigten.",
+            "invalidautomoderationaction": "Ned gütige automodarationsaktion",
+            "invalidautomoderationtype": "Ungütiga automodarationstyp",
+            "toomanytemplates": "Benutza hod de maximale Onzoi vo de Templates erreicht",
+            "invalidfilepath": "Ungütiga Dateipfad",
+            "noguildsregistered": "Es san kane Güdn registriat",
+            "onlyusableinaguild": "De Aktion is nua in ana Güdn nutzboa",
+            "invalidauditlogevent": "Ungütiga oduitlogeventstyp",
+            "protectedscheduledmessage": "Dé geplanten Nachricht ist geschützt und kann nicht gelöscht werden.",
+            "invaliddateforscheduledmessage": "Des Ausführungsdatum muas mindestens a Minutn in da Zukunft liagn."
+        },
+        "casecreationtype": {
+            "default": "Standard",
+            "automoderation": "Automodariat.",
+            "imported": "Importiat",
+            "bycommand": "Durch an Beföh erstöt."
+        },
+        "language": {
+            "en": "Englisch",
+            "de": "Piefchinesisch",
+            "fr": "Franzesisch",
+            "es": "Spanisch",
+            "it": "Italienisch",
+            "at": "Esterreichisch",
+            "ru": "Rusisch"
+        },
+        "automoderationchannelnotificationbehavior": {
+            "sendnotification": "Kanalbenochrichtung",
+            "sendnotificationanddelete": "Temporäre Kanalbenochrichtigung",
+            "nonotification": "Kane Kanalbenochrichtigung"
+        },
+        "editstatus": {
+            "none": "Unbekonnt",
+            "unedited": "Ned beorbeitet.",
+            "edited": "Beorbeitet"
+        },
+        "lockedcommentstatus": {
+            "none": "Unbekonnt",
+            "locked": "Gsperrt",
+            "unlocked": "Entspeat"
+        },
+        "markedtodeletestatus": {
+            "none": "Unbekonnt",
+            "marked": "Zum löschn markiat",
+            "unmarked": "Ned zum löschn markiat"
+        },
+        "punishmentactivestatus": {
+            "none": "Unbekonnt",
+            "active": "Aktiv",
+            "inactive": "Inaktiv"
+        },
+        "guildauditlogevent": {
+            "messagesent": "Nochricht gsendet",
+            "messageupdated": "Nochricht aktualisiat",
+            "messagedeleted": "Nochricht glescht",
+            "usernameupdated": "Benutzaname aktualisiat",
+            "avatarupdated": "Avatar aktualisiat",
+            "nicknameupdated": "Nickname aktualisiat",
+            "memberrolesupdated": "Mitgliedarollen aktualisiat",
+            "memberjoined": "Mitglied beitretn",
+            "memberremoved": "Mitglied entfeant",
+            "banadded": "Mitglied ausgsperrt",
+            "banremoved": "Mitglied nimma ausgsperrt",
+            "invitecreated": "Eiladung erstöt",
+            "invitedeleted": "Einladung glescht",
+            "threadcreated": "Fadn erstöt",
+            "voicejoined": "Mitglied ist in einem Sprachkanal beitretn",
+            "voiceleft": "Mitglied hat einen Sprachkanal verlassn",
+            "voicemoved": "Mitglied hot sich in an ondaren Sprachkanal bewegt",
+            "reactionadded": "Reaktion hinzugfügt",
+            "reactionremoved": "Reaktion entfeant"
+        },
+        "scheduledmessagefailurereason": {
+            "unknown": "Unbekannta Föhla",
+            "channelnotfound": "Kanal ned gfundn",
+            "insufficientpermission": "Unzureichnde Berechtigung"
+        },
+        "scheduledmessagestatus": {
+            "pending": "Ausstehnd",
+            "sent": "Gsendet",
+            "failed": "Fehlgschlogn"
+        },
+        "appealstatus": {
+            "pending": "Ausstehend",
+            "approved": "Gnehmigt",
+            "declined": "Obglehnt"
+        }
+    }
+}

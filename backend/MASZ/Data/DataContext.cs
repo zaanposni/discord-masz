@@ -27,6 +27,7 @@ namespace MASZ.Data
         public DbSet<Appeal> Appeals { get; set; }
         public DbSet<AppealStructure> AppealStructures { get; set; }
         public DbSet<AppealAnswer> AppealAnswers { get; set; }
+        public DbSet<ModCaseMapping> ModCaseMappings { get; set; }
 
         public void Configure(EntityTypeBuilder<ModCase> builder)
         {
@@ -80,6 +81,18 @@ namespace MASZ.Data
             modelBuilder.Entity<ModCaseComment>()
                 .HasOne(c => c.ModCase)
                 .WithMany(c => c.Comments)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ModCaseMapping>()
+                .HasOne(c => c.CaseA)
+                .WithMany(c => c.MappingsA)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ModCaseMapping>()
+                .HasOne(c => c.CaseB)
+                .WithMany(c => c.MappingsB)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
 

@@ -173,7 +173,7 @@ if (string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CORS")))
 {
     builder.Services.AddCors(o => o.AddPolicy("AngularDevCors", builder =>
     {
-        builder.WithOrigins("http://127.0.0.1:4200")
+        builder.WithOrigins("http://127.0.0.1:4200", "http://127.0.0.1:8080", "http://127.0.0.1:5500")
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials();

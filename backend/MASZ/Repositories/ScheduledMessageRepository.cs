@@ -24,6 +24,11 @@ namespace MASZ.Repositories
             return await Database.GetDueMessages();
         }
 
+        public async Task<List<ScheduledMessage>> GetPendingMessages(ulong guildId)
+        {
+            return await Database.GetPendingMessages(guildId);
+        }
+
         public async Task<List<ScheduledMessage>> GetAllMessages(ulong guildId, int page = 0)
         {
             return await Database.GetScheduledMessages(guildId, page);
@@ -67,6 +72,11 @@ namespace MASZ.Repositories
         public async Task<int> CountMessages()
         {
             return await Database.CountMessages();
+        }
+
+        public async Task<int> CountMessages(ulong guildId)
+        {
+            return await Database.CountMessages(guildId);
         }
 
         public async Task<ScheduledMessage> SetMessageAsSent(int id)
