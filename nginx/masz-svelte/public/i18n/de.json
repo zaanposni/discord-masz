@@ -328,7 +328,7 @@
         },
         "appealtable": {
             "createnewappeal": "Neue Entbannungsanfrage erstellen",
-            "disabledexplained": "Du kannst keine neue Entbannungsanfrage erstellen, da du eine früher erstellt hast oder deine Verbanung früher erstellt wurde oder diese Gilde keine Entbannungsanfragen konfiguriert hat.",
+            "disabledexplained": "Du kannst keine neue Entbannungsanfrage erstellen, da du eine früher erstellt hast oder dein Bann früher erstellt wurde oder diese Gilde keine Entbannungsanfragen konfiguriert hat.",
             "configureappeal": "Anfrage konfigurieren",
             "useadvancedfilter": "Erweiterte Filter ein-/ausblenden.",
             "selectmembers": "Mitglieder auswählen",
@@ -442,8 +442,8 @@
         },
         "automods": {
             "title": "Automod-Konfiguration",
-            "explain": "Benutze die Automoderation um Nachrichten in bestimmten Kanälen automatisch zu löschen oder Mitglieder auf bestimmten Ereignissen zu strafen.",
-            "explain2": "Du kannst auch Filter für jedes Ereignis festlegen, um deine automod-Einstellungen zu feinjustieren.",
+            "explain": "Benutze die Automoderation um Nachrichten in bestimmten Kanälen automatisch zu löschen oder Mitglieder wegen bestimmten Ereignissen zu strafen.",
+            "explain2": "Du kannst auch Filter für jedes Ereignis festlegen, um deine Automod-Einstellungen zu feinjustieren.",
             "timelimitfield": "Zeitlimit (Sekunden)",
             "limitfield": "Obere Grenze",
             "config": "Konfiguration",
@@ -504,7 +504,7 @@
                 "modroles": "Moderator-Rollen",
                 "appealafterxdays": "Entbannungsantrag nach x Tagen erlauben",
                 "strictpermissions": "Strenge Berechtigungsprüfung",
-                "strictpermissionsexplained": "Wenn aktiviert, müssen Moderatoren eine Rolle mit Banrechten haben, um Bann-Vorfälle zu erstellen"
+                "strictpermissionsexplained": "Wenn aktiviert, müssen Moderatoren eine Rolle mit Bannrechten haben, um Bann-Vorfälle zu erstellen"
             },
             "mutedroles": {
                 "title": "Stummschaltungsrollen",
