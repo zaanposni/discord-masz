@@ -488,6 +488,12 @@
     :global(#caseview-punishment .bx--tag) {
         margin-left: 0;
     }
+    :global(#furtherdetails-case-button .bx--assistive-text) {
+        display:none
+    }
+    :global(#furtherdetails-case-button::before) {
+        display:none
+    }
 </style>
 
 <!-- Link case modal -->
@@ -1030,6 +1036,7 @@
                     {#if !matches}
                         <div class="flex flex-row justify-end mb-6">
                             <Button
+                                id="furtherdetails-case-button"
                                 size="small"
                                 iconDescription=""
                                 icon={openFurtherDetails ? ChevronUp24 : ChevronDown24}
@@ -1170,6 +1177,9 @@
                                             $_("guilds.caseview.unknown")}
                                     </div>
                                 </div>
+                            {/if}
+                            {#if !matches}
+                                <hr class="my-6" style="border-color: var(--cds-ui-04)" />
                             {/if}
                         </div>
                     {/if}
