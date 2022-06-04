@@ -4296,6 +4296,66 @@
                 "es": "Error al guardar",
                 "ru": "Не удалось сохранить",
                 "it": "Salvataggio fallito"
+            },
+            "deleteguild": {
+                "description": "description of the delete guild button",
+                "en": "Delete Guild",
+                "de": "Gilde löschen",
+                "at": "Gilde löschen",
+                "fr": "Supprimer le serveur",
+                "es": "Eliminar el servidor",
+                "ru": "Удалить гильдию",
+                "it": "Elimina gilda"
+            },
+            "deleted": {
+                "description": "Deleted",
+                "en": "Guild deleted",
+                "de": "Gilde gelöscht",
+                "at": "Gilde gelöscht",
+                "fr": "Serveur supprimé",
+                "es": "Servidor eliminado",
+                "ru": "Гильдия удалена",
+                "it": "Gilda eliminata"
+            },
+            "failedtodelete": {
+                "description": "Failed to delete",
+                "en": "Failed to delete",
+                "de": "Fehler beim Löschen der Gilde",
+                "at": "Fehler beim Löschen der Gilde",
+                "fr": "Échec de la suppression du serveur",
+                "es": "Error al eliminar el servidor",
+                "ru": "Не удалось удалить гильдию",
+                "it": "Impossibile eliminare gilda"
+            },
+            "deleteconfirm": {
+                "description": "description of the delete confirm button",
+                "en": "Confirm delete",
+                "de": "Löschen bestätigen",
+                "at": "Löschen bestätigen",
+                "fr": "Confirmer la suppression",
+                "es": "Confirmar eliminación",
+                "ru": "Подтвердить удаление",
+                "it": "Conferma eliminazione"
+            },
+            "deleteresources": {
+                "description": "description of the delete resources button",
+                "en": "Delete all data (infractions, configs, event, files)",
+                "de": "Alle Daten löschen (Verstöße, Konfigurationen, Ereignisse, Dateien)",
+                "at": "Alle Daten löschen (Verstöße, Konfigurationen, Ereignisse, Dateien)",
+                "fr": "Supprimer toutes les données (infractions, configurations, événements, fichiers)",
+                "es": "Eliminar todos los datos (infracciones, configuraciones, eventos, archivos)",
+                "ru": "Удалить все данные (наказания, конфигурации, события, файлы)",
+                "it": "Elimina tutti i dati (infrazioni, configurazioni, eventi, file)"
+            },
+            "deleteundone": {
+                "description": "description of the delete undone button",
+                "en": "This action is not reversible. The guild is deleted immediately.",
+                "de": "Diese Aktion ist nicht umkehrbar. Die Gilde wird sofort gelöscht.",
+                "at": "Diese Aktion ist nicht umkehrbar. Die Gilde wird sofort gelöscht.",
+                "fr": "Cette action n'est pas réversible. Le serveur est supprimé immédiatement.",
+                "es": "Esta acción no es reversible. El servidor se elimina inmediatamente.",
+                "ru": "Это действие необратимо. Гильдия удаляется немедленно.",
+                "it": "Questa azione non è reversibile. La gilda viene cancellata immediatamente."
             }
         }
     },

@@ -534,7 +534,13 @@
             "save": "Guardar",
             "submitting": "Enviando...",
             "saved": "Guardado",
-            "failedtosave": "Error al guardar"
+            "failedtosave": "Error al guardar",
+            "deleteguild": "Eliminar el servidor",
+            "deleted": "Servidor eliminado",
+            "failedtodelete": "Error al eliminar el servidor",
+            "deleteconfirm": "Confirmar eliminación",
+            "deleteresources": "Eliminar todos los datos (infracciones, configuraciones, eventos, archivos)",
+            "deleteundone": "Esta acción no es reversible. El servidor se elimina inmediatamente."
         }
     },
     "admin": {

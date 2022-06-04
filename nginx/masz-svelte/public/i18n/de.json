@@ -534,7 +534,13 @@
             "save": "Speichern",
             "submitting": "Senden...",
             "saved": "Gespeichert",
-            "failedtosave": "Fehlgeschlagen"
+            "failedtosave": "Fehlgeschlagen",
+            "deleteguild": "Gilde löschen",
+            "deleted": "Gilde gelöscht",
+            "failedtodelete": "Fehler beim Löschen der Gilde",
+            "deleteconfirm": "Löschen bestätigen",
+            "deleteresources": "Alle Daten löschen (Verstöße, Konfigurationen, Ereignisse, Dateien)",
+            "deleteundone": "Diese Aktion ist nicht umkehrbar. Die Gilde wird sofort gelöscht."
         }
     },
     "admin": {

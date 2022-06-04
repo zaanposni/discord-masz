@@ -534,7 +534,13 @@
             "save": "Salva",
             "submitting": "Invio...",
             "saved": "Salvato",
-            "failedtosave": "Salvataggio fallito"
+            "failedtosave": "Salvataggio fallito",
+            "deleteguild": "Elimina gilda",
+            "deleted": "Gilda eliminata",
+            "failedtodelete": "Impossibile eliminare gilda",
+            "deleteconfirm": "Conferma eliminazione",
+            "deleteresources": "Elimina tutti i dati (infrazioni, configurazioni, eventi, file)",
+            "deleteundone": "Questa azione non è reversibile. La gilda viene cancellata immediatamente."
         }
     },
     "admin": {

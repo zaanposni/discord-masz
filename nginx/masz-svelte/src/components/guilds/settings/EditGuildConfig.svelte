@@ -5,6 +5,7 @@
         Button,
         Checkbox,
         InlineLoading,
+        Modal,
         MultiSelect,
         NumberInput,
         NumberInputSkeleton,
@@ -15,6 +16,7 @@
         TextInput,
         TextInputSkeleton,
         Tooltip,
+        Toggle,
     } from "carbon-components-svelte";
     import { derived, Writable } from "svelte/store";
     import { writable } from "svelte/store";
@@ -27,6 +29,7 @@
     import { goto } from "@roxi/routify";
     import { authUser } from "../../../stores/auth";
     import type { IAuthUser } from "../../../models/IAuthUser";
+    import { confirmDialogMessageKey, confirmDialogReturnFunction, showConfirmDialog } from "../../../core/confirmDialog/store";
 
     export let addMode = false;
     export let guildId: string;
@@ -55,6 +58,10 @@
         if (!$data) return true;
         return $data.modInternalNotificationWebhook && !webhookRegex.test($data.modInternalNotificationWebhook);
     });
+
+    const openDeleteDialog = writable(false);
+    const confirmDelete = writable(false);
+    const deleteAllResources = writable(false);
 
     let roles;
 
@@ -133,7 +140,63 @@
                 });
         }
     }
+
+    function cleanupDeleteDialogs() {
+        openDeleteDialog.set(false);
+        deleteAllResources.set(false);
+        showConfirmDialog.set(false);
+        confirmDelete.set(false);
+    }
+
+    function showDeleteConfirm() {
+        const deleteStore = $deleteAllResources;
+        openDeleteDialog.set(false);
+        setTimeout(() => {
+            confirmDialogMessageKey.set("guilds.config.deleteguild");
+            showConfirmDialog.set(true);
+            confirmDialogReturnFunction.set((confirmed) => {
+                if (confirmed) {
+                    API.deleteData(`/guilds/${$currentParams.guildId}?deleteData=${deleteStore}`, {})
+                        .then(() => {
+                            submitting.set(true);
+                            toastSuccess($_("guilds.config.deleted"));
+                            API.get("discord/users/@me").then((res: IAuthUser) => {
+                                authUser.set(res);
+                                API.clearCache(true);
+                                $goto(`/guilds`);
+                            });
+                        })
+                        .catch((e) => {
+                            console.error(e);
+                            toastError($_("guilds.config.failedtodelete"));
+                        })
+                        .finally(() => {
+                            cleanupDeleteDialogs();
+                        });
+                } else {
+                    cleanupDeleteDialogs();
+                }
+            });
+        }, 300);
+    }
 </script>
+
+<Modal
+    size="sm"
+    danger
+    open={$openDeleteDialog}
+    selectorPrimaryFocus="#usernotememberselection"
+    modalHeading={$_("guilds.config.deleteguild")}
+    primaryButtonDisabled={!$confirmDelete}
+    primaryButtonText={$_("guilds.config.deleteguild")}
+    secondaryButtonText={$_("dialog.confirm.cancel")}
+    on:close={cleanupDeleteDialogs}
+    on:click:button--secondary={cleanupDeleteDialogs}
+    on:submit={showDeleteConfirm}>
+    <div class="text-lg font-bold text-red-600 mb-2">{$_("guilds.config.deleteundone")}</div>
+    <Toggle class="mb-4" labelText={$_("guilds.config.deleteconfirm")} bind:toggled={$confirmDelete} />
+    <Checkbox bind:checked={$deleteAllResources} labelText={$_("guilds.config.deleteresources")} />
+</Modal>
 
 <MediaQuery query="(min-width: 1024px)" let:matches>
     <!-- Header -->
@@ -494,6 +557,17 @@
 
             <div class="mt-4 flex flex-row justify-end">
                 <div>
+                    {#if !addMode && $authUser?.isAdmin}
+                        <Button
+                            on:click={() => {
+                                openDeleteDialog.set(true);
+                            }}
+                            class="mr-2"
+                            kind="danger"
+                            disabled={$submitting}>
+                            {$_("guilds.config.deleteguild")}</Button
+                        >
+                    {/if}
                     {#if $submitting}
                         <InlineLoading status="active" description={$_("guilds.config.submitting")} />
                     {:else}

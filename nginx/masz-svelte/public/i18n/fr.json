@@ -534,7 +534,13 @@
             "save": "Sauvegarder",
             "submitting": "Soumission...",
             "saved": "Sauvegardé",
-            "failedtosave": "Échec de la sauvegarde"
+            "failedtosave": "Échec de la sauvegarde",
+            "deleteguild": "Supprimer le serveur",
+            "deleted": "Serveur supprimé",
+            "failedtodelete": "Échec de la suppression du serveur",
+            "deleteconfirm": "Confirmer la suppression",
+            "deleteresources": "Supprimer toutes les données (infractions, configurations, événements, fichiers)",
+            "deleteundone": "Cette action n'est pas réversible. Le serveur est supprimé immédiatement."
         }
     },
     "admin": {
