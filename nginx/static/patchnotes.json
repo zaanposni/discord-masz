@@ -1,5 +1,27 @@
 [
   {
+    "title": "Version 3.0.2",
+    "version": "v3.0.2",
+    "released_at": "2022-06-05",
+    "contributors": [
+      {
+        "name": "Kye",
+        "link": "https://github.com/UponAnonymous",
+        "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Use correct date format.",
+        "description": "A bug has been fixed that caused a wrong date format in case creation/edit, scheduled message dialog and appeal edit."
+      },
+      {
+        "title": "Filter and sort channels in scheduled message dialog.",
+        "description": "Guild channels are now filtered and sorted correctly. It could happen that voice channels were selectable in the scheduled message dialog."
+      }
+    ]
+  },
+  {
     "title": "Version 3.0.1",
     "version": "v3.0.1",
     "released_at": "2022-06-05",
