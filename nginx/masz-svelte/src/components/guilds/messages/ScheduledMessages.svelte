@@ -390,13 +390,14 @@
                         <div class="flex flex-col self-start">
                             {#if message.status === ScheduledMessageStatus.Pending}
                                 <Link
-                                    class="mb-2"
+                                    class="mb-2 cursor-pointer"
                                     icon={Edit20}
                                     on:click={() => {
                                         editMessage(message);
                                     }} />
                             {/if}
                             <Link
+                                class="cursor-pointer"
                                 icon={Delete20}
                                 on:click={() => {
                                     initDeleteModal(message);
