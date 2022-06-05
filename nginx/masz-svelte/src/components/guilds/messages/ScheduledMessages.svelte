@@ -93,7 +93,10 @@
     function loadGuildData() {
         API.get(`/discord/guilds/${$currentParams.guildId}/channels`, CacheMode.PREFER_CACHE, true).then((response: IDiscordChannel[]) => {
             channels.set(
-                response.map((x) => ({
+                response
+                    .filter((x) => x.type === 0)
+                    .sort((a, b) => (a.position > b.position ? 1 : -1))
+                    .map((x) => ({
                     id: x.id,
                     text: x.name,
                 }))
