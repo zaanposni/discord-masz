@@ -1,8 +1,26 @@
 [
   {
+    "title": "Version 3.0.1",
+    "version": "v3.0.1",
+    "released_at": "2022-06-05",
+    "contributors": [
+      {
+        "name": "Kye",
+        "link": "https://github.com/UponAnonymous",
+        "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Fixed a breaking bug in the creation and editing of cases.",
+        "description": "A bug that could have rendered the case creation useless has been fixed."
+      }
+    ]
+  },
+  {
     "title": "Version 3.0.0",
     "version": "v3.0.0",
-    "released_at": "2022-06-05",
+    "released_at": "2022-06-04",
     "contributors": [
       {
         "name": "Kye",
