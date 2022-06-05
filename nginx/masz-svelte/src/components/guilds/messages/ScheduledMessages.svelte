@@ -268,17 +268,17 @@
             bind:value={inputPunishedUntilDate}
             datePickerType="single"
             locale={$currentFlatpickrLocale ?? "en"}
-            dateFormat={$currentLanguage?.dateFormat ?? "YYYY-MM-DD"}
+            dateFormat={$currentLanguage?.dateFormat ?? "m/d/Y"}
             flatpickrProps={{ static: true }}
             on:change>
-            <DatePickerInput placeholder={$currentLanguage?.dateFormat ?? "YYYY-MM-DD"} />
+            <DatePickerInput placeholder={$currentLanguage?.dateFormat ?? "m/d/Y"} />
         </DatePicker>
         <TimePicker
             class="!grow-0"
             bind:value={inputPunishedUntilTime}
-            invalid={!!inputPunishedUntilTime && !/(1[012]|[1-9]):[0-5][0-9](\\s)?/.test(inputPunishedUntilTime)}
-            invalidText={$_("guilds.casedialog.formatisrequired", { values: { format: $currentLanguage?.timeFormat ?? "HH:mm" } })}
-            placeholder={$currentLanguage?.timeFormat ?? "HH:mm"} />
+            invalid={!!inputPunishedUntilTime && !/([01][012]|[1-9]):[0-5][0-9](\\s)?/.test(inputPunishedUntilTime)}
+            invalidText={$_("guilds.casedialog.formatisrequired", { values: { format: $currentLanguage?.timeFormat ?? "hh:MM" } })}
+            placeholder={$currentLanguage?.timeFormat ?? "hh:MM"} />
     </div>
     <div class="mb-4">
         <TextArea bind:value={$modalMessage} placeholder={$_("guilds.messages.content")} rows={6} />

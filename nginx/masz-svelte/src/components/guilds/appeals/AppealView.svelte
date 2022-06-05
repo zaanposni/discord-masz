@@ -260,11 +260,11 @@
                                                 bind:value={inputPunishedUntilDate}
                                                 datePickerType="single"
                                                 locale={$currentFlatpickrLocale ?? "en"}
-                                                dateFormat={$currentLanguage?.dateFormat ?? "YYYY-MM-DD"}
+                                                dateFormat={$currentLanguage?.dateFormat ?? "m/d/Y"}
                                                 on:change>
                                                 <DatePickerInput
                                                     labelText={$_("guilds.casedialog.punisheduntil")}
-                                                    placeholder={$currentLanguage?.dateFormat ?? "YYYY-MM-DD"} />
+                                                    placeholder={$currentLanguage?.dateFormat ?? "m/d/Y"} />
                                             </DatePicker>
                                         </div>
                                     {/if}

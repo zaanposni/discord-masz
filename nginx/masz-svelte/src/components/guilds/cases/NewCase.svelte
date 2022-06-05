@@ -429,17 +429,17 @@
                         bind:value={inputPunishedUntilDate}
                         datePickerType="single"
                         locale={$currentFlatpickrLocale ?? "en"}
-                        dateFormat={$currentLanguage?.dateFormat ?? "YYYY-MM-DD"}
+                        dateFormat={$currentLanguage?.dateFormat ?? "m/d/Y"}
                         on:change>
-                        <DatePickerInput labelText={$_("guilds.casedialog.punisheduntil")} placeholder={$currentLanguage?.dateFormat ?? "YYYY-MM-DD"} />
+                        <DatePickerInput labelText={$_("guilds.casedialog.punisheduntil")} placeholder={$currentLanguage?.dateFormat ?? "m/d/Y"} />
                     </DatePicker>
                     <TimePicker
                         class="!grow-0"
                         bind:value={inputPunishedUntilTime}
-                        invalid={!!inputPunishedUntilTime && !/(1[012]|[1-9]):[0-5][0-9](\\s)?/.test(inputPunishedUntilTime)}
-                        invalidText={$_("guilds.casedialog.formatisrequired", { values: { format: $currentLanguage?.timeFormat ?? "HH:mm"} })}
+                        invalid={!!inputPunishedUntilTime && !/([01][012]|[1-9]):[0-5][0-9](\\s)?/.test(inputPunishedUntilTime)}
+                        invalidText={$_("guilds.casedialog.formatisrequired", { values: { format: $currentLanguage?.timeFormat ?? "hh:MM"} })}
                         labelText={$_("guilds.casedialog.punisheduntil")}
-                        placeholder={$currentLanguage?.timeFormat ?? "HH:mm"} />
+                        placeholder={$currentLanguage?.timeFormat ?? "hh:MM"} />
                 </div>
             {/if}
         </div>
