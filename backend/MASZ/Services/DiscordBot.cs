@@ -13,7 +13,7 @@ using System.Reflection;
 
 namespace MASZ.Services
 {
-	public class DiscordBot : IEvent
+    public class DiscordBot : IEvent
     {
         private readonly ILogger<DiscordBot> _logger;
         private readonly DiscordSocketClient _client;
@@ -26,7 +26,7 @@ namespace MASZ.Services
         private bool _isRunning = false;
         private DateTime? _lastDisconnect = null;
 
-        public DiscordBot(ILogger<DiscordBot> logger, DiscordSocketClient client, InternalConfiguration internalConfiguration, InteractionService interactions, IServiceProvider serviceProvider,  Scheduler scheduler, Punishments punishments)
+        public DiscordBot(ILogger<DiscordBot> logger, DiscordSocketClient client, InternalConfiguration internalConfiguration, InteractionService interactions, IServiceProvider serviceProvider, Scheduler scheduler, Punishments punishments)
         {
             _logger = logger;
             _client = client;
@@ -145,7 +145,8 @@ namespace MASZ.Services
             try
             {
                 await _client.BulkOverwriteGlobalApplicationCommandsAsync(Array.Empty<ApplicationCommandProperties>());
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 _logger.LogError(ex, "Something went wrong while overwriting global application commands.");
             }
@@ -154,7 +155,8 @@ namespace MASZ.Services
                 try
                 {
                     await JoinGuild(guild);
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     _logger.LogError(ex, $"Something went wrong while handling guild join for {guild.Id}.");
                 }
@@ -166,14 +168,16 @@ namespace MASZ.Services
                 try
                 {
                     await _scheduler.ExecuteAsync();
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     _logger.LogCritical(ex, "Something went wrong while starting the scheduler timer.");
                 }
                 try
                 {
                     await _punishments.ExecuteAsync();
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     _logger.LogCritical(ex, "Something went wrong while starting the punishmenthandling timer.");
                 }
@@ -547,6 +551,13 @@ namespace MASZ.Services
                         catch (TimeoutException)
                         {
                             await context.Channel.SendMessageAsync(embed: builder.Build());
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            await context.Interaction.ModifyOriginalResponseAsync(m => {
+                                m.Content = "";
+                                m.Embed = builder.Build();
+                            });
                         }
                     }
                     else
