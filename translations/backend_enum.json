@@ -947,7 +947,7 @@
         "ThreadCreated": {
             "description": "A thread was created.",
             "en": "Thread created",
-            "de": "Thema erstellt",
+            "de": "Thread erstellt",
             "at": "Fadn erstöt",
             "fr": "Fil créé",
             "es": "Hilo creado",
