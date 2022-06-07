@@ -1,5 +1,23 @@
 [
   {
+    "title": "Version 3.0.3",
+    "version": "v3.0.3",
+    "released_at": "2022-06-07",
+    "contributors": [
+      {
+        "name": "FlixProd",
+        "link": "https://github.com/FlixProd",
+        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Correctly respond to slash commands.",
+        "description": "A bug has been fixed that caused slash command responses to fail."
+      }
+    ]
+  },
+  {
     "title": "Version 3.0.2",
     "version": "v3.0.2",
     "released_at": "2022-06-05",
