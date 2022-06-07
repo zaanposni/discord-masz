@@ -5,7 +5,7 @@ on:
 
 jobs:
   DockerPRPublish:
-    if: github.repository_owner  == 'zaanposni'
+    if: "! github.event.pull_request.head.repo.fork "
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
