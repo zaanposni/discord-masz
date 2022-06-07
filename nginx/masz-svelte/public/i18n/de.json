@@ -191,7 +191,7 @@
             "unlinkfailed": "Konnte Caselink nicht lösen",
             "linked": "Caselink erstellt",
             "linkfailed": "Konnte Caselink nicht erstellen",
-            "linkcase": "Fall verlinken",
+            "linkcase": "Anderen Fall verlinken",
             "search": "Suche",
             "nocasesfound": "Keine Fälle gefunden",
             "attachmentuploadfailed": "Anhang hochladen fehlgeschlagen",
@@ -324,7 +324,7 @@
             "useadvancedfilter": "Erweiterte Filter ein-/ausblenden.",
             "failedtoload": "Automoderationen konnten nicht geladen werden.",
             "nomatches": "Keine Automoderationen passen zu deiner Suche.",
-            "nomatchesdescription": "Es könnten noch keine Automoderationen in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Automoderationen zu finden."
+            "nomatchesdescription": "Es gibt noch keine Automoderationen in dieser Gilde, die dem Filter entspricht. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Automoderationen zu finden."
         },
         "appealtable": {
             "createnewappeal": "Neue Entbannungsanfrage erstellen",
@@ -335,7 +335,7 @@
             "statustype": "Status",
             "executesearch": "Suche ausführen",
             "nomatches": "Keine Entbannungsanfragen passen zu deiner Suche.",
-            "nomatchesdescription": "Es könnten noch keine Entbannungsanfragen in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Entbannungsanfragen zu finden.",
+            "nomatchesdescription": "Es gibt noch keine Entbannungsanfragen in dieser Gilde, die dem Filter entsprechen. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Entbannungsanfragen zu finden.",
             "failedtoload": "Entbannungsanfragen konnten nicht geladen werden",
             "hasanswered": "Benutzer hat {count} Fragen beantwortet"
         },
@@ -387,7 +387,7 @@
             "usernotedeleted": "Benutzernotiz gelöscht",
             "usernotedeletefailed": "Benutzernotiz konnte nicht gelöscht werden",
             "nomatches": "Keine Benutzernotizen passen zu Ihrer Suche.",
-            "nomatchesdescription": "Es könnten noch keine Benutzernotizen in dieser Gilde geben. Sie können eine Benutzernotiz erstellen, indem Sie oben auf den Button klicken."
+            "nomatchesdescription": "Es gibt noch keine Benutzernotizen in dieser Gilde, die dem Filter entsprechen. Sie können eine Benutzernotiz erstellen, indem Sie oben auf den Button klicken."
         },
         "usermap": {
             "createusermap": "Benutzerbeziehung erstellen",
@@ -400,12 +400,12 @@
             "usermapdeleted": "Benutzerbeziehung gelöscht",
             "usermapdeletefailed": "Benutzerbeziehung konnte nicht gelöscht werden",
             "nomatches": "Keine Benutzerbeziehungen passen zu deinem Suchbegriff.",
-            "nomatchesdescription": "Es könnten noch keine Benutzerbeziehungen in dieser Gilde geben. Du kannst eine erstellen, indem du den Button oben benutzt."
+            "nomatchesdescription": "Es gibt noch keine Benutzerbeziehungen in dieser Gilde, die dem Filter entsprechen. Du kannst eine erstellen, indem du den Button oben benutzt."
         },
         "messages": {
             "createnew": "Neue Nachricht erstellen",
             "nomessages": "Keine Nachrichten gefunden.",
-            "nomessagesdescription": "Es könnten noch keine Nachrichten in dieser Gilde geben. Du kannst eine erstellen, indem du den Button oben benutzt.",
+            "nomessagesdescription": "Es gibt noch keine Nachrichten in dieser Gilde, die dem Filter entsprechen. Du kannst eine erstellen, indem du den Button oben benutzt.",
             "title": "Titel",
             "channel": "Kanal",
             "content": "Nachricht",
@@ -419,7 +419,7 @@
         },
         "motd": {
             "title": "Nachricht des Tages",
-            "explain": "Benutze eine Nachricht des Tages, um eine Nachricht auf dem Dashboard der Gilden zu verankern, die alle Moderatoren sehen.",
+            "explain": "Benutze eine Nachricht des Tages, um eine Nachricht auf dem Dashboard der Gilde einzublenden, die alle Moderatoren sehen können.",
             "explain2": "Dies könnte einige Anweisungen zum Formatieren von Fällen enthalten oder Bilder als Beweis hochzuladen.",
             "noresult": "Konnte Nachricht des Tages nicht laden.",
             "enabled": "Nachricht des Tages auf dem Dashboard der Gilde aktivieren",
@@ -442,8 +442,8 @@
         },
         "automods": {
             "title": "Automod-Konfiguration",
-            "explain": "Benutze die Automoderation um Nachrichten in bestimmten Kanälen automatisch zu löschen oder Mitglieder wegen bestimmten Ereignissen zu strafen.",
-            "explain2": "Du kannst auch Filter für jedes Ereignis festlegen, um deine Automod-Einstellungen zu feinjustieren.",
+            "explain": "Benutze die Automoderation um Nachrichten in bestimmten Kanälen automatisch zu löschen oder Mitglieder wegen bestimmten Ereignissen zu bestrafen.",
+            "explain2": "Du kannst auch Filter für jedes Ereignis festlegen, um deine Automod-Einstellungen zu verfeinern.",
             "timelimitfield": "Zeitlimit (Sekunden)",
             "limitfield": "Obere Grenze",
             "config": "Konfiguration",
@@ -553,19 +553,19 @@
             "saved": "Gespeichert",
             "embed": {
                 "title": "Einbettung",
-                "explained": "Diese Einstellung ändert den Inhalt der Einbettung, wenn deine MASZ-Instanz in Discord verknüpft ist.",
+                "explained": "Diese Einstellung ändert den Inhalt der Einbettung, die in Discord unter dem Link zum Dashboard angezeigt wird.",
                 "explained2": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird.",
                 "titlefield": "Titel",
                 "descriptionfield": "Beschreibung",
                 "titleinvalid": "Das Titelfeld ist erforderlich und muss weniger als 256 Zeichen lang sein.",
                 "descriptioninvalid": "Das Beschreibungsfeld ist erforderlich und muss weniger als 4096 Zeichen lang sein.",
-                "iconfield": "Zeige das Icon der Anwendung in der Einbettung."
+                "iconfield": "Zeige das Logo des Bots in der Einbettung."
             },
             "infrastructure": {
                 "title": "Infrastruktur",
-                "explained": "MASZ wird diese Sprache als Standard verwenden, wenn möglich. Jedoch ist es möglich, dass nur eine englische Version verfügbar ist für bestimmte Texte. Gilden-spezifische Einstellungen überschreiben diese Einstellung.",
+                "explained": "MASZ wird diese Sprache wenn möglich als Standard verwenden. Wenn für den Text keine entsprechende Übersetzung vorhanden ist, wird die englische Version angezeigt. Gilden-spezifische Einstellungen überschreiben diese Einstellung.",
                 "languagefield": "Standard-Sprache",
-                "explained2": "Verwenden Sie einen privaten Webhook, der nur für Siteadmins zugänglich ist, da es sensible Informationen protokollieren könnte.",
+                "explained2": "Verwenden Sie einen privaten Webhook, der nur für Siteadmins zugänglich ist, da darüber sensible Daten versendet werden.",
                 "webhookfield": "Auditlog Webhook URL",
                 "invalidwebhook": "Die Webhook-URL ist ungültig.",
                 "explained3": "Aktivieren Sie dies, um den öffentlichen Zugriff auf alle hochgeladenen Dateien zu ermöglichen.",
@@ -737,11 +737,11 @@
             "memberjoined": "Mitglied beigetreten",
             "memberremoved": "Mitglied entfernt",
             "banadded": "Mitglied gebannt",
-            "banremoved": "Mitglied entsperrt",
+            "banremoved": "Mitglied entbannt",
             "invitecreated": "Einladung erstellt",
             "invitedeleted": "Einladung gelöscht",
-            "threadcreated": "Thema erstellt",
-            "voicejoined": "Mitglied ist in einem Sprachkanal beigetreten",
+            "threadcreated": "Thread erstellt",
+            "voicejoined": "Mitglied ist einem Sprachkanal beigetreten",
             "voiceleft": "Mitglied hat einen Sprachkanal verlassen",
             "voicemoved": "Mitglied hat sich in einen anderen Sprachkanal bewegt",
             "reactionadded": "Reaktion hinzugefügt",
