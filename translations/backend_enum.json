@@ -917,7 +917,7 @@
         "BanRemoved": {
             "description": "A member was unbanned from the guild.",
             "en": "Member unbanned",
-            "de": "Mitglied entsperrt",
+            "de": "Mitglied entbannt",
             "at": "Mitglied nimma ausgsperrt",
             "fr": "Membre non banni",
             "es": "Miembro no prohibido",
@@ -947,7 +947,7 @@
         "ThreadCreated": {
             "description": "A thread was created.",
             "en": "Thread created",
-            "de": "Thema erstellt",
+            "de": "Thread erstellt",
             "at": "Fadn erstöt",
             "fr": "Fil créé",
             "es": "Hilo creado",
@@ -957,8 +957,8 @@
         "VoiceJoined": {
             "description": "A member joined a voice channel.",
             "en": "Member joined voice channel",
-            "de": "Mitglied ist in einem Sprachkanal beigetreten",
-            "at": "Mitglied ist in einem Sprachkanal beitretn",
+            "de": "Mitglied ist einem Sprachkanal beigetreten",
+            "at": "Mitglied ist einem Sprachkanal beitretn",
             "fr": "Membre rejoint le salon vocal",
             "es": "Miembro se unió al canal de voz",
             "ru": "Участник присоединился к голосовому каналу",

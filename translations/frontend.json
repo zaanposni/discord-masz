@@ -1382,7 +1382,7 @@
             "linkcase": {
                 "description": "Link case",
                 "en": "Link case",
-                "de": "Fall verlinken",
+                "de": "Anderen Fall verlinken",
                 "at": "Fall verlinkn",
                 "fr": "Lier le cas",
                 "es": "Vincular caso",
@@ -2658,7 +2658,7 @@
             "nomatchesdescription": {
                 "description": "No matches for search string found.",
                 "en": "Try adjusting your filters above to fix this.",
-                "de": "Es könnten noch keine Automoderationen in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Automoderationen zu finden.",
+                "de": "Es gibt noch keine Automoderationen in dieser Gilde, die dem Filter entspricht. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Automoderationen zu finden.",
                 "at": "Kannn Automoderationen in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Automoderationen zu findn.",
                 "fr": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas.",
                 "es": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos.",
@@ -2750,7 +2750,7 @@
             "nomatchesdescription": {
                 "description": "No appeals match your search.",
                 "en": "Try adjusting your filters above to fix this.",
-                "de": "Es könnten noch keine Entbannungsanfragen in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Entbannungsanfragen zu finden.",
+                "de": "Es gibt noch keine Entbannungsanfragen in dieser Gilde, die dem Filter entsprechen. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Entbannungsanfragen zu finden.",
                 "at": "Kannn Entbannungsanfragen in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Entbannungsanfragen zu findn.",
                 "fr": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas.",
                 "es": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos.",
@@ -3198,7 +3198,7 @@
             "nomatchesdescription": {
                 "description": "No matches for search string found.",
                 "en": "There may be no usernotes yet in this guild. Create one by using the button above.",
-                "de": "Es könnten noch keine Benutzernotizen in dieser Gilde geben. Sie können eine Benutzernotiz erstellen, indem Sie oben auf den Button klicken.",
+                "de": "Es gibt noch keine Benutzernotizen in dieser Gilde, die dem Filter entsprechen. Sie können eine Benutzernotiz erstellen, indem Sie oben auf den Button klicken.",
                 "at": "Es kenntn no kane Benutzanotizen in dea Güde sei. Sie kennan a Benutzanotiz erstön, indem Sie obn auf den Button klickn.",
                 "fr": "Il n'y a peut-être pas encore de notes utilisateur dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus.",
                 "es": "Puede que no haya notas de usuario todavía en este servidor. Puede crear una nota de usuario usando el botón de arriba.",
@@ -3310,7 +3310,7 @@
             "nomatchesdescription": {
                 "description": "No matches for search string found.",
                 "en": "No usermaps are in this guild! Create one by using the button above.",
-                "de": "Es könnten noch keine Benutzerbeziehungen in dieser Gilde geben. Du kannst eine erstellen, indem du den Button oben benutzt.",
+                "de": "Es gibt noch keine Benutzerbeziehungen in dieser Gilde, die dem Filter entsprechen. Du kannst eine erstellen, indem du den Button oben benutzt.",
                 "at": "Es kenntat no kane Benutzabeziehungen in dea Güde gebn. Du konnst ane erstön, indem du den Button obn vawendst.",
                 "fr": "Il n'y a peut-être pas encore de cartes utilisateur dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus.",
                 "es": "Puede que no haya mapas de usuario todavía en este servidor. Puede crear uno usando el botón de arriba.",
@@ -3342,7 +3342,7 @@
             "nomessagesdescription": {
                 "description": "No messages found.",
                 "en": "No messages scheduled in this guild! Create one by using the button above.",
-                "de": "Es könnten noch keine Nachrichten in dieser Gilde geben. Du kannst eine erstellen, indem du den Button oben benutzt.",
+                "de": "Es gibt noch keine Nachrichten in dieser Gilde, die dem Filter entsprechen. Du kannst eine erstellen, indem du den Button oben benutzt.",
                 "at": "Es kenntan no kane Nachrichtm in dea Güde gebn. Du konnst ane erstön, indem du den Button obn benutzt.",
                 "fr": "Il n'y a peut-être pas encore de messages dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus.",
                 "es": "Puede que no haya mensajes todavía en este servidor. Puede crear uno usando el botón de arriba.",
@@ -3464,7 +3464,7 @@
             "explain": {
                 "description": "Explaination of the message of the day",
                 "en": "Use a MotD to pin a message on the guilds dashboard that all your moderators will see.",
-                "de": "Benutze eine Nachricht des Tages, um eine Nachricht auf dem Dashboard der Gilden zu verankern, die alle Moderatoren sehen.",
+                "de": "Benutze eine Nachricht des Tages, um eine Nachricht auf dem Dashboard der Gilde einzublenden, die alle Moderatoren sehen können.",
                 "at": "Benutze de Nochricht vo dem Tag, um eine Nochricht aufm Deschboad da Güde zu platzian, die olle Modaratoren sehn.",
                 "fr": "Utilisez un message du jour pour épingler un message sur le tableau de bord des serveurs que tous les modérateurs verront.",
                 "es": "Utilice un mensaje del día para fijar un mensaje en el panel de control de los servidores que todos los moderadores verán.",
@@ -3658,7 +3658,7 @@
             "explain": {
                 "description": "Explaination of the auto mods",
                 "en": "Use automoderation to automatically delete messages in certain channels or punish members on certain events",
-                "de": "Benutze die Automoderation um Nachrichten in bestimmten Kanälen automatisch zu löschen oder Mitglieder wegen bestimmten Ereignissen zu strafen.",
+                "de": "Benutze die Automoderation um Nachrichten in bestimmten Kanälen automatisch zu löschen oder Mitglieder wegen bestimmten Ereignissen zu bestrafen.",
                 "at": "Benutz die Automodaration um Nochrichtn in bestimmtn Kanälen automatisch zu löschn oda Mitglieda wegen bestimmte Ereignisse zu strofn.",
                 "fr": "Utilisez automods pour supprimer automatiquement des messages dans certains canaux ou punir les membres sur certains événements.",
                 "es": "Utilice automods para eliminar automáticamente mensajes en canales o castigar a los miembros en eventos.",
@@ -3668,7 +3668,7 @@
             "explain2": {
                 "description": "Explaination of the auto mods",
                 "en": "You can also define filters for each event to fine tune your automoderation.",
-                "de": "Du kannst auch Filter für jedes Ereignis festlegen, um deine Automod-Einstellungen zu feinjustieren.",
+                "de": "Du kannst auch Filter für jedes Ereignis festlegen, um deine Automod-Einstellungen zu verfeinern.",
                 "at": "Du konnst a Füta fia jeds Ereignis festlegn, um dei Automod-Eistellungen genaua anzupassn.",
                 "fr": "Vous pouvez également définir des filtres pour chaque événement pour ajuster votre automod.",
                 "es": "También puede definir filtros para cada evento para ajustar su automod.",
@@ -4435,7 +4435,7 @@
                 "explained": {
                     "description": "This setting will change the content of the embed when your MASZ instance is linked in Discord.",
                     "en": "This setting will change the content of the embed when your MASZ instance is linked in Discord.",
-                    "de": "Diese Einstellung ändert den Inhalt der Einbettung, wenn deine MASZ-Instanz in Discord verknüpft ist.",
+                    "de": "Diese Einstellung ändert den Inhalt der Einbettung, die in Discord unter dem Link zum Dashboard angezeigt wird.",
                     "at": "Die Eistellung ändat den Inhoit da Eibettung, wenn dei MASZ-Instanz in Discord vaknüpft is.",
                     "fr": "Ce paramètre modifiera le contenu de l'encart lorsque votre instance MASZ est liée dans Discord.",
                     "es": "Esta configuración cambiará el contenido del anuncio cuando tu instancia MASZ esté vinculada en Discord.",
@@ -4495,7 +4495,7 @@
                 "iconfield": {
                     "description": "This setting will show the application's icon in the embed when your MASZ instance is linked in Discord.",
                     "en": "Show application's icon in embed.",
-                    "de": "Zeige das Icon der Anwendung in der Einbettung.",
+                    "de": "Zeige das Logo des Bots in der Einbettung.",
                     "at": "Zeig des Icon da Anwendung in da Eibettung.",
                     "fr": "Afficher l'icône de l'application dans l'encart.",
                     "es": "Mostrar el icono de la aplicación en el anuncio.",
@@ -4517,7 +4517,7 @@
                 "explained": {
                     "description": "default language explained",
                     "en": "MASZ will use this language as the default language whenever possible. However, possibly only an english version is available for certain texts. Guild specific settings overwrite this setting.",
-                    "de": "MASZ wird diese Sprache als Standard verwenden, wenn möglich. Jedoch ist es möglich, dass nur eine englische Version verfügbar ist für bestimmte Texte. Gilden-spezifische Einstellungen überschreiben diese Einstellung.",
+                    "de": "MASZ wird diese Sprache wenn möglich als Standard verwenden. Wenn für den Text keine entsprechende Übersetzung vorhanden ist, wird die englische Version angezeigt. Gilden-spezifische Einstellungen überschreiben diese Einstellung.",
                     "at": "MASZ wiad de Sproch ois Standard vawendn, wenns geht. Jedoch ists möglich, dass nua a englische Version fia monche Texte vafügbar is. Güdn-spezifische Eistellungen wean diese Eistellung übaschreibn.",
                     "fr": "MASZ utilisera cette langue comme langue par défaut lorsque cela est possible. Cependant, il est possible que seule une version anglaise soit disponible pour certains textes. Les paramètres de guilde remplacent cette option.",
                     "es": "MASZ utilizará este idioma como idioma predeterminado cuando sea posible. Sin embargo, es posible que solo una versión inglesa esté disponible para algunos textos. Los ajustes de la hermandad sobrescriben esta configuración.",
@@ -4537,7 +4537,7 @@
                 "explained2": {
                     "description": "AuditlogWebhookurl explained",
                     "en": "Use a private webhook accessible for siteadmins only since it may log sensitive information.",
-                    "de": "Verwenden Sie einen privaten Webhook, der nur für Siteadmins zugänglich ist, da es sensible Informationen protokollieren könnte.",
+                    "de": "Verwenden Sie einen privaten Webhook, der nur für Siteadmins zugänglich ist, da darüber sensible Daten versendet werden.",
                     "at": "Vawendns an privaten Webhook, dea nua fia Siteadmins zugänglich is, da dea sensible Infos protokollieren kenntat.",
                     "fr": "Utilisez un webhook privé accessible uniquement pour les administrateurs du site, car il peut enregistrer des informations sensibles.",
                     "es": "Utilice un webhook privado accesible solo para los administradores del sitio, ya que puede registrar información sensible.",

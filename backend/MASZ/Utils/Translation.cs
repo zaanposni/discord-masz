@@ -2256,7 +2256,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entsperren zu lassen?",
+                Language.de => $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entbannen zu lassen?",
                 Language.at => $"Es san `{caseCount}` aktive Fälle gfundn woan. Möchtest olle deaktivian oda löschn, damit da Nutza entsperrt bleibt?",
                 Language.fr => $"`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour annuler l'interdiction de l'utilisateur ?",
                 Language.es => $"Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para desbloquear al usuario?",
@@ -4012,7 +4012,7 @@ namespace MASZ.Utils
                 },
                 GuildAuditLogEvent.BanRemoved => PreferredLanguage switch
                 {
-                    Language.de => "Mitglied entsperrt",
+                    Language.de => "Mitglied entbannt",
                     Language.at => "Mitglied nimma ausgsperrt",
                     Language.fr => "Membre non banni",
                     Language.es => "Miembro no prohibido",
@@ -4042,7 +4042,7 @@ namespace MASZ.Utils
                 },
                 GuildAuditLogEvent.ThreadCreated => PreferredLanguage switch
                 {
-                    Language.de => "Thema erstellt",
+                    Language.de => "Thread erstellt",
                     Language.at => "Fadn erstöt",
                     Language.fr => "Fil créé",
                     Language.es => "Hilo creado",
@@ -4052,8 +4052,8 @@ namespace MASZ.Utils
                 },
                 GuildAuditLogEvent.VoiceJoined => PreferredLanguage switch
                 {
-                    Language.de => "Mitglied ist in einem Sprachkanal beigetreten",
-                    Language.at => "Mitglied ist in einem Sprachkanal beitretn",
+                    Language.de => "Mitglied ist einem Sprachkanal beigetreten",
+                    Language.at => "Mitglied ist einem Sprachkanal beitretn",
                     Language.fr => "Membre rejoint le salon vocal",
                     Language.es => "Miembro se unió al canal de voz",
                     Language.ru => "Участник присоединился к голосовому каналу",
