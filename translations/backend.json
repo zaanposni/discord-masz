@@ -2023,7 +2023,7 @@
                         "caseCount": "int"
                     },
                     "en": "Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unban the user?",
-                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entsperren zu lassen?",
+                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entbannen zu lassen?",
                     "at": "Es san `{caseCount}` aktive Fälle gfundn woan. Möchtest olle deaktivian oda löschn, damit da Nutza entsperrt bleibt?",
                     "fr": "`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour annuler l'interdiction de l'utilisateur ?",
                     "es": "Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para desbloquear al usuario?",
