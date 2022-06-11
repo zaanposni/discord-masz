@@ -31,19 +31,19 @@
 {#if !$anyGuilds}
     no guilds
 {:else if $authUser}
-    {#if $authUser.adminGuilds.length > 0}
+    {#if $authUser?.adminGuilds?.length ?? 0 !== 0}
         <h2>{$_('guilds.list.admin')} ({$authUser.adminGuilds?.length ?? 0})</h2>
         <GuildCards guilds={$authUser.adminGuilds} privileged />
     {/if}
-    {#if $authUser.modGuilds.length > 0}
+    {#if $authUser?.modGuilds?.length ?? 0 !== 0}
         <h2>{$_('guilds.list.mod')} ({$authUser.modGuilds?.length ?? 0})</h2>
         <GuildCards guilds={$authUser.modGuilds} privileged />
     {/if}
-    {#if $authUser.memberGuilds.length > 0}
+    {#if $authUser?.memberGuilds?.length ?? 0 !== 0}
         <h2>{$_('guilds.list.guild')} ({$authUser.memberGuilds?.length ?? 0})</h2>
         <GuildCards guilds={$authUser.memberGuilds} />
     {/if}
-    {#if $authUser.bannedGuilds.length > 0}
+    {#if $authUser?.bannedGuilds?.length ?? 0 !== 0}
         <h2>{$_('guilds.list.banned')} ({$authUser.bannedGuilds?.length ?? 0})</h2>
         <GuildCards guilds={$authUser.bannedGuilds} />
     {/if}
