@@ -496,6 +496,16 @@
                 "es": "Este widget muestra los últimos casos de tu hermandad.",
                 "ru": "Этот виджет показывает последние дела в вашей гильдии.",
                 "it": "Questo widget mostra gli ultimi casi della tua gilda."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No cases found.",
+                "de": "Keine Vorfälle gefunden.",
+                "at": "Keine Vorfälle gefunden.",
+                "fr": "Aucun cas trouvé.",
+                "es": "No se encontraron casos.",
+                "ru": "Дела не найдены.",
+                "it": "Nessun caso trovato."
             }
         },
         "latestappeals": {
@@ -518,6 +528,16 @@
                 "es": "Este widget muestra los últimos apelaciones de tu hermandad.",
                 "ru": "Этот виджет показывает последние обращения в вашей гильдии.",
                 "it": "Questo widget mostra gli ultimi appelli della tua gilda."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No appeals found.",
+                "de": "Keine Entbannungsanträge gefunden.",
+                "at": "Keine Entbannungsanträge gefunden.",
+                "fr": "Aucun appel trouvé.",
+                "es": "No se encontraron apelaciones.",
+                "ru": "Обращения не найдены.",
+                "it": "Nessun appello trovato."
             }
         },
         "guildmoderatorcases": {
@@ -550,6 +570,16 @@
                 "es": "Casos",
                 "ru": "Дела",
                 "it": "Casi"
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No cases found.",
+                "de": "Keine Vorfälle gefunden.",
+                "at": "Keine Vorfälle gefunden.",
+                "fr": "Aucun cas trouvé.",
+                "es": "No se encontraron casos.",
+                "ru": "Дела не найдены.",
+                "it": "Nessun caso trovato."
             }
         },
         "guildstats": {
@@ -622,6 +652,16 @@
                 "es": "Quejas de Baneo",
                 "ru": "Жалобы на бан",
                 "it": "Appelli di banno"
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No stats found.",
+                "de": "Keine Statistiken gefunden.",
+                "at": "Keine Statistikn gefunden.",
+                "fr": "Aucune statistique trouvée.",
+                "es": "No se encontraron estadísticas.",
+                "ru": "Статистики не найдены.",
+                "it": "Nessuna statistica trovata."
             }
         },
         "guildautomodsplit": {
@@ -644,6 +684,16 @@
                 "es": "Este widget muestra la división de automod de tu hermandad.",
                 "ru": "Этот виджет показывает раздел автомодерации в вашей гильдии.",
                 "it": "Questo widget mostra la divisione dell'automod della tua gilda."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No automod split found.",
+                "de": "Keine Automodaufteilung gefunden.",
+                "at": "Keine Automodaufteilung gefunden.",
+                "fr": "Aucune séparation automod trouvée.",
+                "es": "No se encontró división automod.",
+                "ru": "Разделение автомодерации не найдено.",
+                "it": "Nessuna divisione automod trovata."
             }
         },
         "guildmodcasecountchart": {
@@ -666,6 +716,16 @@
                 "es": "Este widget muestra el resumen de los casos de tu hermandad.",
                 "ru": "Этот виджет показывает обзор дел в вашей гильдии.",
                 "it": "Questo widget mostra la panoramica dei casi della tua gilda."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No cases found.",
+                "de": "Keine Vorfälle gefunden.",
+                "at": "Keine Vorfälle gefunden.",
+                "fr": "Aucun cas trouvé.",
+                "es": "No se encontraron casos.",
+                "ru": "Дела не найдены.",
+                "it": "Nessun caso trovato."
             }
         },
         "guildappealcountchart": {
@@ -688,6 +748,16 @@
                 "es": "Este widget muestra el resumen de las quejas de tu hermandad.",
                 "ru": "Этот виджет показывает обзор жалоб в вашей гильдии.",
                 "it": "Questo widget mostra la panoramica degli appelli della tua gilda."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No appeals found.",
+                "de": "Keine Entbannungsanträge gefunden.",
+                "at": "Keine Entbannungsanträge gefunden.",
+                "fr": "Aucun appel trouvé.",
+                "es": "No se encontraron quejas.",
+                "ru": "Жалобы не найдены.",
+                "it": "Nessun appello trovato."
             }
         },
         "guildautomodcountchart": {
@@ -710,6 +780,16 @@
                 "es": "Este widget muestra el resumen de las automod de tu hermandad.",
                 "ru": "Этот виджет показывает обзор автомодерации в вашей гильдии.",
                 "it": "Questo widget mostra la panoramica dell'automod della tua gilda."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No automods found.",
+                "de": "Keine Automoderationen gefunden.",
+                "at": "Keine Automoderationen gefunden.",
+                "fr": "Aucune automodération trouvée.",
+                "es": "No se encontraron automod.",
+                "ru": "Автомодерации не найдены.",
+                "it": "Nessuna automod trovata."
             }
         },
         "guildpendingmessages": {
@@ -732,6 +812,16 @@
                 "es": "Este widget muestra los mensajes pendientes de tu hermandad.",
                 "ru": "Этот виджет показывает ожидающие сообщения в вашей гильдии.",
                 "it": "Questo widget mostra i messaggi in attesa della tua gilda."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No pending messages found.",
+                "de": "Keine ausstehenden Nachrichten gefunden.",
+                "at": "Keine ausstehenden Nochrichtn gefunden.",
+                "fr": "Aucun message en attente trouvé.",
+                "es": "No se encontraron mensajes pendientes.",
+                "ru": "Нет ожидающих сообщений.",
+                "it": "Nessun messaggio in attesa trovato."
             }
         },
         "guildpunishmentstats": {
@@ -774,6 +864,16 @@
                 "es": "Bans activos",
                 "ru": "Активные баны",
                 "it": "Ban attivo"
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No punishments found.",
+                "de": "Keine Bestrafungen gefunden.",
+                "at": "Keine Bestrofungsstatistikn gefunden.",
+                "fr": "Aucune punition trouvée.",
+                "es": "No se encontraron castigos.",
+                "ru": "Нет наказаний.",
+                "it": "Nessun castigo trovato."
             }
         },
         "guildquicksearch": {
@@ -878,6 +978,16 @@
                 "es": "Este widget muestra el mensaje del día actual.",
                 "ru": "Этот виджет показывает текущее сообщение дня.",
                 "it": "Questo widget mostra il messaggio del giorno attuale."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No message of the day.",
+                "de": "Kein Nachrichtenthema.",
+                "at": "Kane Nochrichtenthema.",
+                "fr": "Aucun message du jour.",
+                "es": "No hay mensaje del día.",
+                "ru": "Нет сообщения дня.",
+                "it": "Nessun messaggio del giorno."
             }
         },
         "adminversion": {
@@ -920,6 +1030,16 @@
                 "es": "Actualización disponible",
                 "ru": "Доступное обновление",
                 "it": "Aggiornamento disponibile"
+            },
+            "empty": {
+                "description": "No update available",
+                "en": "No update available",
+                "de": "Kein Update verfügbar",
+                "at": "Kane Update verfügbar",
+                "fr": "Aucune mise à jour disponible",
+                "es": "No hay actualización disponible",
+                "ru": "Нет доступных обновлений",
+                "it": "Nessun aggiornamento disponibile"
             }
         },
         "adminstatus": {
@@ -982,6 +1102,16 @@
                 "es": "Caché",
                 "ru": "Кэш",
                 "it": "Cache"
+            },
+            "empty": {
+                "description": "No status available",
+                "en": "No status available",
+                "de": "Kein Status verfügbar",
+                "at": "Kane Status verfügbar",
+                "fr": "Aucun statut disponible",
+                "es": "No hay estado disponible",
+                "ru": "Нет статуса",
+                "it": "Nessuno stato disponibile"
             }
         },
         "adminloggedin": {
@@ -1004,6 +1134,16 @@
                 "es": "Este widget muestra los usuarios actualmente conectados.",
                 "ru": "Этот виджет показывает текущих пользователей.",
                 "it": "Questo widget mostra gli utenti attualmente collegati."
+            },
+            "empty": {
+                "description": "No logged in users",
+                "en": "No logged in users",
+                "de": "Keine angemeldeten Benutzer",
+                "at": "Kane angemeldeten Benutza",
+                "fr": "Aucun utilisateur connecté",
+                "es": "No hay usuarios conectados",
+                "ru": "Нет зарегистрированных пользователей",
+                "it": "Nessun utente connesso"
             }
         },
         "adminresources": {
@@ -1086,6 +1226,16 @@
                 "es": "Invitaciones",
                 "ru": "Приглашения",
                 "it": "Inviti"
+            },
+            "empty": {
+                "description": "No resources",
+                "en": "No resources",
+                "de": "Keine Ressourcen",
+                "at": "Keine Ressourcn",
+                "fr": "Aucune ressource",
+                "es": "No hay recursos",
+                "ru": "Нет ресурсов",
+                "it": "Nessuna risorsa"
             }
         },
         "admincache": {
@@ -1168,6 +1318,16 @@
                 "es": "Inicios de sesión con token",
                 "ru": "Вход с токеном",
                 "it": "Accesso con token"
+            },
+            "empty": {
+                "description": "No resources",
+                "en": "No resources",
+                "de": "Keine Ressourcen",
+                "at": "Keine Ressourcn",
+                "fr": "Aucune ressource",
+                "es": "No hay recursos",
+                "ru": "Нет ресурсов",
+                "it": "Nessuna risorsa"
             }
         },
         "dashboardconfig": {

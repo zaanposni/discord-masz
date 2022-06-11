@@ -72,5 +72,8 @@
                 <SkeletonText />
             </div>
         </div>
+        <div slot="empty">
+            {$_("widgets.guildpendingmessages.empty")}
+        </div>
     </DashboardWidget>
 </MediaQuery>

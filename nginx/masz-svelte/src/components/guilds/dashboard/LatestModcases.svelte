@@ -69,5 +69,8 @@
                 <SkeletonText />
             </div>
         </div>
+        <div slot="empty">
+            {$_("widgets.latestcases.empty")}
+        </div>
     </DashboardWidget>
 </MediaQuery>

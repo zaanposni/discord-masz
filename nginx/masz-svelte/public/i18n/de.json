@@ -64,16 +64,19 @@
     "widgets": {
         "latestcases": {
             "title": "Neueste Vorfälle",
-            "widgetdescription": "Dieses Widget zeigt die neuesten Vorfälle in deiner Gilde."
+            "widgetdescription": "Dieses Widget zeigt die neuesten Vorfälle in deiner Gilde.",
+            "empty": "Keine Vorfälle gefunden."
         },
         "latestappeals": {
             "title": "Neueste Entbannungsanträge",
-            "widgetdescription": "Dieses Widget zeigt die neuesten Entbannungsanträge in deiner Gilde."
+            "widgetdescription": "Dieses Widget zeigt die neuesten Entbannungsanträge in deiner Gilde.",
+            "empty": "Keine Entbannungsanträge gefunden."
         },
         "guildmoderatorcases": {
             "title": "Vorfälle nach Moderator",
             "widgetdescription": "Dieses Widget zeigt alle Vorfälle nach Moderator in deiner Gilde.",
-            "cases": "Vorfälle"
+            "cases": "Vorfälle",
+            "empty": "Keine Vorfälle gefunden."
         },
         "guildstats": {
             "title": "Gildenstatistiken",
@@ -82,33 +85,40 @@
             "invites": "Einladungen",
             "usernotes": "Benutzernotizen",
             "usermaps": "Benutzerbeziehungen",
-            "banappeals": "Bann-Anfragen"
+            "banappeals": "Bann-Anfragen",
+            "empty": "Keine Statistiken gefunden."
         },
         "guildautomodsplit": {
             "title": "Automodaufteilung",
-            "widgetdescription": "Dieses Widget zeigt die Aufteilung der Automoderationen in deiner Gilde."
+            "widgetdescription": "Dieses Widget zeigt die Aufteilung der Automoderationen in deiner Gilde.",
+            "empty": "Keine Automodaufteilung gefunden."
         },
         "guildmodcasecountchart": {
             "title": "Vorfallsübersicht",
-            "widgetdescription": "Dieses Widget zeigt die Übersicht der Vorfälle in deiner Gilde."
+            "widgetdescription": "Dieses Widget zeigt die Übersicht der Vorfälle in deiner Gilde.",
+            "empty": "Keine Vorfälle gefunden."
         },
         "guildappealcountchart": {
             "title": "Entbannungsantragsübersicht",
-            "widgetdescription": "Dieses Widget zeigt die Übersicht der Entbannungsanträge in deiner Gilde."
+            "widgetdescription": "Dieses Widget zeigt die Übersicht der Entbannungsanträge in deiner Gilde.",
+            "empty": "Keine Entbannungsanträge gefunden."
         },
         "guildautomodcountchart": {
             "title": "Automoderationsübersicht",
-            "widgetdescription": "Dieses Widget zeigt die Übersicht der Automoderationen in deiner Gilde."
+            "widgetdescription": "Dieses Widget zeigt die Übersicht der Automoderationen in deiner Gilde.",
+            "empty": "Keine Automoderationen gefunden."
         },
         "guildpendingmessages": {
             "title": "Ausstehende Nachrichten",
-            "widgetdescription": "Dieses Widget zeigt die ausstehenden Nachrichten in deiner Gilde."
+            "widgetdescription": "Dieses Widget zeigt die ausstehenden Nachrichten in deiner Gilde.",
+            "empty": "Keine ausstehenden Nachrichten gefunden."
         },
         "guildpunishmentstats": {
             "title": "Bestrafungsstatistiken",
             "widgetdescription": "Dieses Widget zeigt die Bestrafungsstatistiken deiner Gilde.",
             "activemutes": "Aktive Stummschaltungen",
-            "activebans": "Aktive Banns"
+            "activebans": "Aktive Banns",
+            "empty": "Keine Bestrafungen gefunden."
         },
         "guildquicksearch": {
             "title": "Schnellsuche",
@@ -122,13 +132,15 @@
         },
         "guildmotd": {
             "title": "MotD",
-            "widgetdescription": "Dieses Widget zeigt das aktuelle Nachrichtenthema."
+            "widgetdescription": "Dieses Widget zeigt das aktuelle Nachrichtenthema.",
+            "empty": "Kein Nachrichtenthema."
         },
         "adminversion": {
             "title": "Versionsinfo",
             "widgetdescription": "Dieses Widget zeigt die aktuell installierte Version und verfügbare Updates.",
             "current": "Aktuelle Version",
-            "new": "Verfügbares Update"
+            "new": "Verfügbares Update",
+            "empty": "Kein Update verfügbar"
         },
         "adminstatus": {
             "title": "Status",
@@ -136,11 +148,13 @@
             "offline": "Offline",
             "bot": "Bot",
             "db": "Datenbank",
-            "cache": "Cache"
+            "cache": "Cache",
+            "empty": "Kein Status verfügbar"
         },
         "adminloggedin": {
             "title": "Angemeldete Benutzer",
-            "widgetdescription": "Dieses Widget zeigt die aktuell angemeldeten Benutzer."
+            "widgetdescription": "Dieses Widget zeigt die aktuell angemeldeten Benutzer.",
+            "empty": "Keine angemeldeten Benutzer"
         },
         "adminresources": {
             "title": "Ressourcen",
@@ -150,7 +164,8 @@
             "automods": "Automod",
             "usernotes": "Benutzernotizen",
             "usermaps": "Benutzerbeziehungen",
-            "invites": "Einladungen"
+            "invites": "Einladungen",
+            "empty": "Keine Ressourcen"
         },
         "admincache": {
             "title": "Cache",
@@ -160,7 +175,8 @@
             "bans": "Banns",
             "members": "Mitglieder",
             "dmchannels": "DM-Kanäle",
-            "tokens": "Token-Logins"
+            "tokens": "Token-Logins",
+            "empty": "Keine Ressourcen"
         },
         "dashboardconfig": {
             "title": "Dashboardkonfiguration",

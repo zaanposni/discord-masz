@@ -64,16 +64,19 @@
     "widgets": {
         "latestcases": {
             "title": "Latest Cases",
-            "widgetdescription": "Shows the latest cases in your guild."
+            "widgetdescription": "Shows the latest cases in your guild.",
+            "empty": "No cases found."
         },
         "latestappeals": {
             "title": "Latest appeals",
-            "widgetdescription": "Shows the latest appeals in your guild."
+            "widgetdescription": "Shows the latest appeals in your guild.",
+            "empty": "No appeals found."
         },
         "guildmoderatorcases": {
             "title": "Cases by moderator",
             "widgetdescription": "Shows all cases by moderator in your guild.",
-            "cases": "Cases"
+            "cases": "Cases",
+            "empty": "No cases found."
         },
         "guildstats": {
             "title": "Guild Stats",
@@ -82,33 +85,40 @@
             "invites": "Invites",
             "usernotes": "Usernotes",
             "usermaps": "Usermaps",
-            "banappeals": "Ban Appeals"
+            "banappeals": "Ban Appeals",
+            "empty": "No stats found."
         },
         "guildautomodsplit": {
             "title": "Automod Split",
-            "widgetdescription": "Shows the automod split of your guild."
+            "widgetdescription": "Shows the automod split of your guild.",
+            "empty": "No automod split found."
         },
         "guildmodcasecountchart": {
             "title": "Case overview",
-            "widgetdescription": "Shows the case overview of your guild."
+            "widgetdescription": "Shows the case overview of your guild.",
+            "empty": "No cases found."
         },
         "guildappealcountchart": {
             "title": "Appeal overview",
-            "widgetdescription": "Shows the appeal overview of your guild."
+            "widgetdescription": "Shows the appeal overview of your guild.",
+            "empty": "No appeals found."
         },
         "guildautomodcountchart": {
             "title": "Automod overview",
-            "widgetdescription": "Shows the automod overview of your guild."
+            "widgetdescription": "Shows the automod overview of your guild.",
+            "empty": "No automods found."
         },
         "guildpendingmessages": {
             "title": "Pending scheduled messages",
-            "widgetdescription": "Shows the pending scheduled messages in your guild."
+            "widgetdescription": "Shows the pending scheduled messages in your guild.",
+            "empty": "No pending messages found."
         },
         "guildpunishmentstats": {
             "title": "Punishment Stats",
             "widgetdescription": "Shows the punishment stats of your guild.",
             "activemutes": "Active Mutes",
-            "activebans": "Active Bans"
+            "activebans": "Active Bans",
+            "empty": "No punishments found."
         },
         "guildquicksearch": {
             "title": "Quicksearch",
@@ -122,13 +132,15 @@
         },
         "guildmotd": {
             "title": "MotD",
-            "widgetdescription": "Shows the current message of the day."
+            "widgetdescription": "Shows the current message of the day.",
+            "empty": "No message of the day."
         },
         "adminversion": {
             "title": "Version info",
             "widgetdescription": "This widget shows the currently installed version and available updates",
             "current": "Current version",
-            "new": "Available update"
+            "new": "Available update",
+            "empty": "No update available"
         },
         "adminstatus": {
             "title": "Status",
@@ -136,11 +148,13 @@
             "offline": "Offline",
             "bot": "Bot",
             "db": "Database",
-            "cache": "Cache"
+            "cache": "Cache",
+            "empty": "No status available"
         },
         "adminloggedin": {
             "title": "Logged in users",
-            "widgetdescription": "This widget shows the currently logged in users"
+            "widgetdescription": "This widget shows the currently logged in users",
+            "empty": "No logged in users"
         },
         "adminresources": {
             "title": "Resources",
@@ -150,7 +164,8 @@
             "automods": "Automod",
             "usernotes": "Usernotes",
             "usermaps": "Usermaps",
-            "invites": "Invites"
+            "invites": "Invites",
+            "empty": "No resources"
         },
         "admincache": {
             "title": "Cache",
@@ -160,7 +175,8 @@
             "bans": "Bans",
             "members": "Members",
             "dmchannels": "DM channels",
-            "tokens": "Token logins"
+            "tokens": "Token logins",
+            "empty": "No resources"
         },
         "dashboardconfig": {
             "title": "Dashboard config",

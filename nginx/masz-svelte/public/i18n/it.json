@@ -64,16 +64,19 @@
     "widgets": {
         "latestcases": {
             "title": "Ultimi casi",
-            "widgetdescription": "Questo widget mostra gli ultimi casi della tua gilda."
+            "widgetdescription": "Questo widget mostra gli ultimi casi della tua gilda.",
+            "empty": "Nessun caso trovato."
         },
         "latestappeals": {
             "title": "Ultimi appelli",
-            "widgetdescription": "Questo widget mostra gli ultimi appelli della tua gilda."
+            "widgetdescription": "Questo widget mostra gli ultimi appelli della tua gilda.",
+            "empty": "Nessun appello trovato."
         },
         "guildmoderatorcases": {
             "title": "Casi per moderatore",
             "widgetdescription": "Questo widget mostra tutti i casi per moderatore della tua gilda.",
-            "cases": "Casi"
+            "cases": "Casi",
+            "empty": "Nessun caso trovato."
         },
         "guildstats": {
             "title": "Statistiche della gilda",
@@ -82,33 +85,40 @@
             "invites": "Inviti",
             "usernotes": "Note utente",
             "usermaps": "Mappe utente",
-            "banappeals": "Appelli di banno"
+            "banappeals": "Appelli di banno",
+            "empty": "Nessuna statistica trovata."
         },
         "guildautomodsplit": {
             "title": "Divisione automod",
-            "widgetdescription": "Questo widget mostra la divisione dell'automod della tua gilda."
+            "widgetdescription": "Questo widget mostra la divisione dell'automod della tua gilda.",
+            "empty": "Nessuna divisione automod trovata."
         },
         "guildmodcasecountchart": {
             "title": "Panoramica casi",
-            "widgetdescription": "Questo widget mostra la panoramica dei casi della tua gilda."
+            "widgetdescription": "Questo widget mostra la panoramica dei casi della tua gilda.",
+            "empty": "Nessun caso trovato."
         },
         "guildappealcountchart": {
             "title": "Panoramica appelli",
-            "widgetdescription": "Questo widget mostra la panoramica degli appelli della tua gilda."
+            "widgetdescription": "Questo widget mostra la panoramica degli appelli della tua gilda.",
+            "empty": "Nessun appello trovato."
         },
         "guildautomodcountchart": {
             "title": "Panoramica automod",
-            "widgetdescription": "Questo widget mostra la panoramica dell'automod della tua gilda."
+            "widgetdescription": "Questo widget mostra la panoramica dell'automod della tua gilda.",
+            "empty": "Nessuna automod trovata."
         },
         "guildpendingmessages": {
             "title": "Messaggi in attesa",
-            "widgetdescription": "Questo widget mostra i messaggi in attesa della tua gilda."
+            "widgetdescription": "Questo widget mostra i messaggi in attesa della tua gilda.",
+            "empty": "Nessun messaggio in attesa trovato."
         },
         "guildpunishmentstats": {
             "title": "Statistiche del castigo",
             "widgetdescription": "Questo widget mostra le statistiche del castigo della tua gilda.",
             "activemutes": "Mute attivo",
-            "activebans": "Ban attivo"
+            "activebans": "Ban attivo",
+            "empty": "Nessun castigo trovato."
         },
         "guildquicksearch": {
             "title": "Ricerca rapida",
@@ -122,13 +132,15 @@
         },
         "guildmotd": {
             "title": "MotD",
-            "widgetdescription": "Questo widget mostra il messaggio del giorno attuale."
+            "widgetdescription": "Questo widget mostra il messaggio del giorno attuale.",
+            "empty": "Nessun messaggio del giorno."
         },
         "adminversion": {
             "title": "Informazioni sulla versione",
             "widgetdescription": "Questo widget mostra la versione attualmente installata e le aggiornamenti disponibili.",
             "current": "Versione attuale",
-            "new": "Aggiornamento disponibile"
+            "new": "Aggiornamento disponibile",
+            "empty": "Nessun aggiornamento disponibile"
         },
         "adminstatus": {
             "title": "Stato",
@@ -136,11 +148,13 @@
             "offline": "Offline",
             "bot": "Bot",
             "db": "Database",
-            "cache": "Cache"
+            "cache": "Cache",
+            "empty": "Nessuno stato disponibile"
         },
         "adminloggedin": {
             "title": "Utenti connessi",
-            "widgetdescription": "Questo widget mostra gli utenti attualmente collegati."
+            "widgetdescription": "Questo widget mostra gli utenti attualmente collegati.",
+            "empty": "Nessun utente connesso"
         },
         "adminresources": {
             "title": "Risorse",
@@ -150,7 +164,8 @@
             "automods": "Automod",
             "usernotes": "Note utente",
             "usermaps": "Mappe utente",
-            "invites": "Inviti"
+            "invites": "Inviti",
+            "empty": "Nessuna risorsa"
         },
         "admincache": {
             "title": "Cache",
@@ -160,7 +175,8 @@
             "bans": "Bannati",
             "members": "Membri",
             "dmchannels": "Canali DM",
-            "tokens": "Accesso con token"
+            "tokens": "Accesso con token",
+            "empty": "Nessuna risorsa"
         },
         "dashboardconfig": {
             "title": "Configurazione cruscotto",
