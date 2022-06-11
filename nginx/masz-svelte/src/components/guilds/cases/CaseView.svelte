@@ -808,7 +808,7 @@
                                             {#if isModeratorInGuild($authUser, $currentParams.guildId)}
                                                 <div class="flex flex-row justify-end w-full mb-2">
                                                     <div
-                                                        class="cursor-pointer"
+                                                        class="cursor-pointer hover:text-red-500"
                                                         on:click={() => {
                                                             deleteFile(file.fullName);
                                                         }}>
