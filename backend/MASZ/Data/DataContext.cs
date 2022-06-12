@@ -28,6 +28,7 @@ namespace MASZ.Data
         public DbSet<AppealStructure> AppealStructures { get; set; }
         public DbSet<AppealAnswer> AppealAnswers { get; set; }
         public DbSet<ModCaseMapping> ModCaseMappings { get; set; }
+        public DbSet<ZalgoConfig> ZalgoConfigs { get; set; }
 
         public void Configure(EntityTypeBuilder<ModCase> builder)
         {
