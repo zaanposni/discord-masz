@@ -10,15 +10,18 @@
         TextInput,
         TextInputSkeleton,
     } from "carbon-components-svelte";
+    import { ArrowRight20 } from "carbon-icons-svelte";
     import Warning_02 from "carbon-pictograms-svelte/lib/Warning_02.svelte";
     import { _ } from "svelte-i18n";
     import { writable, Writable } from "svelte/store";
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import type { IZalgoConfig } from "../../../models/api/IZalgoConfig";
+    import type { IDiscordUser } from "../../../models/discord/IDiscordUser";
     import API from "../../../services/api/api";
     import { CacheMode } from "../../../services/api/CacheMode";
     import { toastError, toastSuccess } from "../../../services/toast/store";
     import { currentParams } from "../../../stores/currentParams";
+    import UserIcon from "../../discord/UserIcon.svelte";
 
     const loading: Writable<boolean> = writable(false);
     const submitting: Writable<boolean> = writable(false);
@@ -26,7 +29,7 @@
 
     const showModal: Writable<boolean> = writable(false);
     const modalSubmitting: Writable<boolean> = writable(false);
-    const simulateResult: Writable<Map<number, { old: string; new: string }>> = writable("");
+    const simulateResult: Writable<{ oldName: string; newName: string; user: IDiscordUser }[]> = writable([]);
 
     $: $currentParams?.guildId ? loadGuildData() : null;
     function loadGuildData() {
@@ -46,7 +49,7 @@
                     enabled: false,
                     percentage: 0,
                     renameNormal: false,
-                    renameFallback: "zalgo",
+                    renameFallback: "zalgo user",
                     logToModChannel: false,
                 });
                 loading.set(false);
@@ -98,14 +101,24 @@
     }
 
     function onSimulate() {
+        modalSubmitting.set(true);
         showModal.set(true);
+        API.post(`/guilds/${$currentParams.guildId}/zalgo`, $zalgo, CacheMode.API_ONLY, false)
+            .then((res: { oldName: string; newName: string; user: IDiscordUser }[]) => {
+                simulateResult.update(() => {
+                    return res;
+                });
+            })
+            .finally(() => {
+                modalSubmitting.set(false);
+            });
     }
 
     function onModalClose() {
         showModal.set(false);
         setTimeout(() => {
             modalSubmitting.set(false);
-            simulateResult.set(new Map());
+            simulateResult.set([]);
         }, 400);
     }
 </script>
@@ -119,7 +132,16 @@
     shouldSubmitOnEnter={false}
     on:close={onModalClose}>
     <Loading active={$modalSubmitting} />
-    dawdaw
+    {#each $simulateResult as result}
+        <div class="flex flex-row items-center mb-2 w-full">
+            <UserIcon class="mr-2" user={result.user} />
+            <div>{result.oldName}</div>
+            <div class="mx-2">
+                <ArrowRight20 />
+            </div>
+            <div>{result.newName}</div>
+        </div>
+    {/each}
 </Modal>
 
 <MediaQuery query="(min-width: 768px)" let:matches>

@@ -4247,6 +4247,16 @@
                 "ru": "Симулировать",
                 "it": "Simula"
             },
+            "simulateresults": {
+                "description": "",
+                "en": "Simulation results",
+                "de": "Simulationsergebnisse",
+                "at": "Simulationsergebnisse",
+                "fr": "Résultats de la simulation",
+                "es": "Resultados de la simulación",
+                "ru": "Результаты симуляции",
+                "it": "Risultati della simulazione"
+            },
             "noresult": {
                 "description": "",
                 "en": "Failed to load zalgo config",

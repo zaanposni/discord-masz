@@ -521,6 +521,7 @@
             "allowedpercentage": "Erlaubter Prozentsatz von Zalgozeichen in einem Benutzernamen oder Nicknamen",
             "logtomodchannel": "Alle Zalgo Moderationen in den internen Webhook aufzeichnen",
             "simulate": "Simulieren",
+            "simulateresults": "Simulationsergebnisse",
             "noresult": "Zalgo-Konfiguration konnte nicht geladen werden",
             "save": "Speichern",
             "submitting": "Sende...",

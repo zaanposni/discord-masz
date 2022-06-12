@@ -521,6 +521,7 @@
             "allowedpercentage": "Pourcentage autorisé de caractères zalgo dans un nom d'utilisateur ou un pseudo",
             "logtomodchannel": "Journaliser toutes les modérations zalgo dans le webhook interne",
             "simulate": "Simuler",
+            "simulateresults": "Résultats de la simulation",
             "noresult": "Échec du chargement de la configuration zalgo",
             "save": "Enregistrer",
             "submitting": "Envoi...",
