@@ -53,6 +53,7 @@
             "settings": {
                 "motd": "MotD",
                 "auditlog": "Auditlog",
+                "zalgo": "Zalgo",
                 "automod": "Automod",
                 "base": "Ajustes",
                 "search": "Ajustes de hermandad",
@@ -510,6 +511,21 @@
                 "customwordfield": "Ignorar enlaces (ingresar patrones de expresiones regulares divididos por líneas nuevas)",
                 "linktext": "Ejemplo"
             }
+        },
+        "zalgo": {
+            "title": "Zalgo",
+            "explain": "Utiliza esta función para renombrar automáticamente a los usuarios que utilicen zalgo en su nombre de usuario o en su apodo.",
+            "enable": "Habilitar la moderación zalgo en este servidor",
+            "renamenormal": "Intenta renombrar a los usuarios con zalgo a texto normal que sigue su nombre de usuario",
+            "renamefallback": "Utiliza esta cadena como opción de renombrado",
+            "allowedpercentage": "Porcentaje permitido de caracteres zalgo en un nombre de usuario o un apodo",
+            "logtomodchannel": "Registrar todas las moderaciones zalgo en el webhook interno",
+            "simulate": "Simular",
+            "noresult": "No se pudo cargar la configuración zalgo",
+            "save": "Guardar",
+            "submitting": "Enviando...",
+            "saved": "Configuración zalgo guardada",
+            "failedtosave": "No se pudo guardar la configuración zalgo"
         },
         "config": {
             "title": "Configuración de la hermandad",

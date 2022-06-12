@@ -422,6 +422,16 @@
                     "ru": "Auditlog",
                     "it": "Auditlog"
                 },
+                "zalgo": {
+                    "description": "Zalgo",
+                    "en": "Zalgo",
+                    "de": "Zalgo",
+                    "at": "Zalgo",
+                    "fr": "Zalgo",
+                    "es": "Zalgo",
+                    "ru": "Zalgo",
+                    "it": "Zalgo"
+                },
                 "automod": {
                     "description": "Automod",
                     "en": "Automod",
@@ -4154,6 +4164,139 @@
                     "ru": "Пример",
                     "it": "Esempio"
                 }
+            }
+        },
+        "zalgo": {
+            "title": {
+                "description": "",
+                "en": "Zalgo",
+                "de": "Zalgo",
+                "at": "Zalgo",
+                "fr": "Zalgo",
+                "es": "Zalgo",
+                "ru": "Zalgo",
+                "it": "Zalgo"
+            },
+            "explain": {
+                "description": "",
+                "en": "Use this feature to automatically rename users who use zalgo in their username or nickname.",
+                "de": "Benutze diese Funktion, um automatisch Benutzernamen und Nicknamen zu ändern, die zalgo verwenden.",
+                "at": "Benutze diese Funktion, um automatisch Benutzernamen und Nicknamen zu ändern, die zalgo verwenden.",
+                "fr": "Utilisez cette fonctionnalité pour renommer automatiquement les utilisateurs qui utilisent zalgo dans leur nom d'utilisateur ou leur pseudo.",
+                "es": "Utiliza esta función para renombrar automáticamente a los usuarios que utilicen zalgo en su nombre de usuario o en su apodo.",
+                "ru": "Используйте эту функцию для автоматического переименования пользователей, которые используют zalgo в их имени пользователя или никнейме.",
+                "it": "Usa questa funzione per rinominare automaticamente gli utenti che usano zalgo nel loro nome utente o nel loro nickname."
+            },
+            "enable": {
+                "description": "",
+                "en": "Enable zalgo moderation in this guild",
+                "de": "Zalgo Moderation in diesem Server aktivieren",
+                "at": "Zalgo Moderation in diesem Server aktivieren",
+                "fr": "Activer la modération zalgo dans ce serveur",
+                "es": "Habilitar la moderación zalgo en este servidor",
+                "ru": "Включить модерацию zalgo в этой гильдии",
+                "it": "Abilita la moderazione zalgo in questa gilda"
+            },
+            "renamenormal": {
+                "description": "",
+                "en": "Try to rename users with zalgo to normal text that still sounds like their username",
+                "de": "Versuche Benutzernamen mit zalgo zu ändern, in Text, der noch wie der Benutzername aussieht",
+                "at": "Versuche Benutzernamen mit zalgo zu ändern, in Text, der noch wie der Benutzername aussieht",
+                "fr": "Essaye de renommer les utilisateurs avec zalgo en texte normal qui ressemble à leur nom d'utilisateur",
+                "es": "Intenta renombrar a los usuarios con zalgo a texto normal que sigue su nombre de usuario",
+                "ru": "Попытайтесь переименовать пользователей с zalgo в нормальный текст, который все еще произносится как имя пользователя",
+                "it": "Prova a rinominare gli utenti con zalgo in testo normale che ancora suona come il loro nome utente"
+            },
+            "renamefallback": {
+                "description": "",
+                "en": "Fallback to this string as rename option",
+                "de": "Benutze folgenden Namen beim Umbennen als Backupoption",
+                "at": "Benutze folgenden Namen beim Umbennen als Backupoption",
+                "fr": "Utilisez cette chaîne comme option de renommage",
+                "es": "Utiliza esta cadena como opción de renombrado",
+                "ru": "Восстановление как опция переименования",
+                "it": "Rinomina in questo testo come opzione"
+            },
+            "allowedpercentage": {
+                "description": "",
+                "en": "Allowed percentage of zalgo characters in a username or nickname",
+                "de": "Erlaubter Prozentsatz von Zalgozeichen in einem Benutzernamen oder Nicknamen",
+                "at": "Erlaubter Prozentsatz von Zalgozeichen in einem Benutzernamen oder Nicknamen",
+                "fr": "Pourcentage autorisé de caractères zalgo dans un nom d'utilisateur ou un pseudo",
+                "es": "Porcentaje permitido de caracteres zalgo en un nombre de usuario o un apodo",
+                "ru": "Разрешенный процент залиго в имени пользователя или никнейме",
+                "it": "Percentuale consentita di caratteri zalgo in un nome utente o nickname"
+            },
+            "logtomodchannel": {
+                "description": "",
+                "en": "Log all zalgo moderations to the internal webhook",
+                "de": "Alle Zalgo Moderationen in den internen Webhook aufzeichnen",
+                "at": "Alle Zalgo Moderationen in den internen Webhook aufzeichnen",
+                "fr": "Journaliser toutes les modérations zalgo dans le webhook interne",
+                "es": "Registrar todas las moderaciones zalgo en el webhook interno",
+                "ru": "Записывать все модерации zalgo в внутренний вебхук",
+                "it": "Registra tutte le moderazioni zalgo nel webhook interno"
+            },
+            "simulate": {
+                "description": "",
+                "en": "Simulate",
+                "de": "Simulieren",
+                "at": "Simulieren",
+                "fr": "Simuler",
+                "es": "Simular",
+                "ru": "Симулировать",
+                "it": "Simula"
+            },
+            "noresult": {
+                "description": "",
+                "en": "Failed to load zalgo config",
+                "de": "Zalgo-Konfiguration konnte nicht geladen werden",
+                "at": "Zalgo-Konfiguration konnte nicht geladen werden",
+                "fr": "Échec du chargement de la configuration zalgo",
+                "es": "No se pudo cargar la configuración zalgo",
+                "ru": "Не удалось загрузить конфигурацию zalgo",
+                "it": "Impossibile caricare la configurazione zalgo"
+            },
+            "save": {
+                "description": "Save",
+                "en": "Save",
+                "de": "Speichern",
+                "at": "Speichan",
+                "fr": "Enregistrer",
+                "es": "Guardar",
+                "ru": "Сохранить",
+                "it": "Salva"
+            },
+            "submitting": {
+                "description": "Submitting",
+                "en": "Submitting...",
+                "de": "Sende...",
+                "at": "Sende...",
+                "fr": "Envoi...",
+                "es": "Enviando...",
+                "ru": "Отправка...",
+                "it": "Invio..."
+            },
+            "saved": {
+                "description": "saved",
+                "en": "Zalgo config saved",
+                "de": "Zalgo-Konfiguration gespeichert",
+                "at": "Zalgo-Konfiguration gespeichert",
+                "fr": "Configuration zalgo enregistrée",
+                "es": "Configuración zalgo guardada",
+                "ru": "Настройки zalgo сохранены",
+                "it": "Configurazione zalgo salvata"
+
+            },
+            "failedtosave": {
+                "description": "Failed to save",
+                "en": "Failed to save zalgo config",
+                "de": "Zalgo-Konfiguration konnte nicht gespeichert werden",
+                "at": "Zalgo-Konfiguration konnte nicht gespeichert werden",
+                "fr": "Échec de l'enregistrement de la configuration zalgo",
+                "es": "No se pudo guardar la configuración zalgo",
+                "ru": "Не удалось сохранить настройки zalgo",
+                "it": "Impossibile salvare la configurazione zalgo"
             }
         },
         "config": {

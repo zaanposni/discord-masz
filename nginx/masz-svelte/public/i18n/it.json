@@ -53,6 +53,7 @@
             "settings": {
                 "motd": "MotD",
                 "auditlog": "Auditlog",
+                "zalgo": "Zalgo",
                 "automod": "Automod",
                 "base": "Impostazioni",
                 "search": "Impostazioni gilda",
@@ -510,6 +511,21 @@
                 "customwordfield": "Ignora collegamenti (inserisci modelli regex divisi per newline)",
                 "linktext": "Esempio"
             }
+        },
+        "zalgo": {
+            "title": "Zalgo",
+            "explain": "Usa questa funzione per rinominare automaticamente gli utenti che usano zalgo nel loro nome utente o nel loro nickname.",
+            "enable": "Abilita la moderazione zalgo in questa gilda",
+            "renamenormal": "Prova a rinominare gli utenti con zalgo in testo normale che ancora suona come il loro nome utente",
+            "renamefallback": "Rinomina in questo testo come opzione",
+            "allowedpercentage": "Percentuale consentita di caratteri zalgo in un nome utente o nickname",
+            "logtomodchannel": "Registra tutte le moderazioni zalgo nel webhook interno",
+            "simulate": "Simula",
+            "noresult": "Impossibile caricare la configurazione zalgo",
+            "save": "Salva",
+            "submitting": "Invio...",
+            "saved": "Configurazione zalgo salvata",
+            "failedtosave": "Impossibile salvare la configurazione zalgo"
         },
         "config": {
             "title": "Configurazione della gilda",

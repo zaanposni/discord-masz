@@ -53,6 +53,7 @@
             "settings": {
                 "motd": "NvdT",
                 "auditlog": "Auditlog",
+                "zalgo": "Zalgo",
                 "automod": "Automod",
                 "base": "Eistellungen",
                 "search": "Güdneistellungen",
@@ -510,6 +511,21 @@
                 "customwordfield": "Ignorierte Links (getrennte Links mit am Zeilenumbruch)",
                 "linktext": "Beispü"
             }
+        },
+        "zalgo": {
+            "title": "Zalgo",
+            "explain": "Benutze diese Funktion, um automatisch Benutzernamen und Nicknamen zu ändern, die zalgo verwenden.",
+            "enable": "Zalgo Moderation in diesem Server aktivieren",
+            "renamenormal": "Versuche Benutzernamen mit zalgo zu ändern, in Text, der noch wie der Benutzername aussieht",
+            "renamefallback": "Benutze folgenden Namen beim Umbennen als Backupoption",
+            "allowedpercentage": "Erlaubter Prozentsatz von Zalgozeichen in einem Benutzernamen oder Nicknamen",
+            "logtomodchannel": "Alle Zalgo Moderationen in den internen Webhook aufzeichnen",
+            "simulate": "Simulieren",
+            "noresult": "Zalgo-Konfiguration konnte nicht geladen werden",
+            "save": "Speichan",
+            "submitting": "Sende...",
+            "saved": "Zalgo-Konfiguration gespeichert",
+            "failedtosave": "Zalgo-Konfiguration konnte nicht gespeichert werden"
         },
         "config": {
             "title": "Güdnkonfiguration",

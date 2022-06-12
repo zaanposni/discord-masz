@@ -53,6 +53,7 @@
             "settings": {
                 "motd": "MotD",
                 "auditlog": "Auditlog",
+                "zalgo": "Zalgo",
                 "automod": "Automod",
                 "base": "Settings",
                 "search": "Guild Settings",
@@ -510,6 +511,21 @@
                 "customwordfield": "Ignore links (enter regex patterns divided by newlines)",
                 "linktext": "Example"
             }
+        },
+        "zalgo": {
+            "title": "Zalgo",
+            "explain": "Use this feature to automatically rename users who use zalgo in their username or nickname.",
+            "enable": "Enable zalgo moderation in this guild",
+            "renamenormal": "Try to rename users with zalgo to normal text that still sounds like their username",
+            "renamefallback": "Fallback to this string as rename option",
+            "allowedpercentage": "Allowed percentage of zalgo characters in a username or nickname",
+            "logtomodchannel": "Log all zalgo moderations to the internal webhook",
+            "simulate": "Simulate",
+            "noresult": "Failed to load zalgo config",
+            "save": "Save",
+            "submitting": "Submitting...",
+            "saved": "Zalgo config saved",
+            "failedtosave": "Failed to save zalgo config"
         },
         "config": {
             "title": "Guild config",

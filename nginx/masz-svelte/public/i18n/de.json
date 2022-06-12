@@ -53,6 +53,7 @@
             "settings": {
                 "motd": "MotD",
                 "auditlog": "Auditlog",
+                "zalgo": "Zalgo",
                 "automod": "Automod",
                 "base": "Einstellungen",
                 "search": "Gildeneinstellungen",
@@ -510,6 +511,21 @@
                 "customwordfield": "Ignorierte Links (getrennte Regexpatterns durch Zeilenumbruch)",
                 "linktext": "Beispiel"
             }
+        },
+        "zalgo": {
+            "title": "Zalgo",
+            "explain": "Benutze diese Funktion, um automatisch Benutzernamen und Nicknamen zu ändern, die zalgo verwenden.",
+            "enable": "Zalgo Moderation in diesem Server aktivieren",
+            "renamenormal": "Versuche Benutzernamen mit zalgo zu ändern, in Text, der noch wie der Benutzername aussieht",
+            "renamefallback": "Benutze folgenden Namen beim Umbennen als Backupoption",
+            "allowedpercentage": "Erlaubter Prozentsatz von Zalgozeichen in einem Benutzernamen oder Nicknamen",
+            "logtomodchannel": "Alle Zalgo Moderationen in den internen Webhook aufzeichnen",
+            "simulate": "Simulieren",
+            "noresult": "Zalgo-Konfiguration konnte nicht geladen werden",
+            "save": "Speichern",
+            "submitting": "Sende...",
+            "saved": "Zalgo-Konfiguration gespeichert",
+            "failedtosave": "Zalgo-Konfiguration konnte nicht gespeichert werden"
         },
         "config": {
             "title": "Gildenkonfiguration",

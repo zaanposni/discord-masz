@@ -53,6 +53,7 @@
             "settings": {
                 "motd": "MotD",
                 "auditlog": "Auditlog",
+                "zalgo": "Zalgo",
                 "automod": "Automod",
                 "base": "Paramètres",
                 "search": "Paramètres de guilde",
@@ -510,6 +511,21 @@
                 "customwordfield": "Ignorer les liens (entrer les modèles regex divisés par des nouvelles lignes)",
                 "linktext": "Exemple"
             }
+        },
+        "zalgo": {
+            "title": "Zalgo",
+            "explain": "Utilisez cette fonctionnalité pour renommer automatiquement les utilisateurs qui utilisent zalgo dans leur nom d'utilisateur ou leur pseudo.",
+            "enable": "Activer la modération zalgo dans ce serveur",
+            "renamenormal": "Essaye de renommer les utilisateurs avec zalgo en texte normal qui ressemble à leur nom d'utilisateur",
+            "renamefallback": "Utilisez cette chaîne comme option de renommage",
+            "allowedpercentage": "Pourcentage autorisé de caractères zalgo dans un nom d'utilisateur ou un pseudo",
+            "logtomodchannel": "Journaliser toutes les modérations zalgo dans le webhook interne",
+            "simulate": "Simuler",
+            "noresult": "Échec du chargement de la configuration zalgo",
+            "save": "Enregistrer",
+            "submitting": "Envoi...",
+            "saved": "Configuration zalgo enregistrée",
+            "failedtosave": "Échec de l'enregistrement de la configuration zalgo"
         },
         "config": {
             "title": "Configuration de la guilde",

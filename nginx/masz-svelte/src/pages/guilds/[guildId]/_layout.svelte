@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Catalog16, Chat16, ChatOperational16, Dashboard16, Flash16, Group16, List16, Police16, ScalesTipped16, Settings16, UserIdentification16 } from "carbon-icons-svelte";
+    import { Catalog16, Chat16, ChatOperational16, Dashboard16, Flash16, Group16, List16, Police16, ScalesTipped16, Settings16, TextFootnote16, UserIdentification16 } from "carbon-icons-svelte";
     import { currentParams } from "../../../stores/currentParams";
     import { navConfig } from "../../../stores/nav";
 
@@ -78,6 +78,12 @@
                     titleKey: "guild.settings.automod",
                     href: `/guilds/${$currentParams.guildId}/automodconfig`,
                     icon: Police16,
+                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId))
+                },
+                {
+                    titleKey: "guild.settings.zalgo",
+                    href: `/guilds/${$currentParams.guildId}/zalgo`,
+                    icon: TextFootnote16,
                     isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId))
                 },
                 {
