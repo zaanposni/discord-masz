@@ -3,6 +3,7 @@ using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.Extensions;
 using MASZ.Models;
+using MASZ.Models.Views;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -83,8 +84,10 @@ namespace MASZ.Repositories
                 string newName = zalgoConfig.renameFallback;
                 if (zalgoConfig.renameNormal)
                 {
-                    Regex replaceSpaces = new(@"%C(C|D)(%[A-Z0-9]{2})+%20", RegexOptions.IgnoreCase);
+                    Regex replaceSpaces = new(@"%C(C|D)(%[A-Z0-9]{2})+(%20|\+)", RegexOptions.IgnoreCase);
                     Regex replaceChars = new(@"%C(C|D)(%[A-Z0-9]{2})+(\w)", RegexOptions.IgnoreCase);
+
+                    Logger.LogWarning(HttpUtility.UrlEncode(content));
 
                     newName = HttpUtility.UrlDecode(
                         replaceChars.Replace(
@@ -123,7 +126,7 @@ namespace MASZ.Repositories
                         {
                             oldName = current,
                             newName = newName,
-                            userImage = member.GetAvatarOrDefaultUrl(size: 512)
+                            user = DiscordUserView.CreateOrDefault(member)
                         });
 
                         if (rename)
