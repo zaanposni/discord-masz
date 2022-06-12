@@ -263,7 +263,7 @@ namespace MASZ.Services
             return Task.CompletedTask;
         }
 
-        private Task GuildMemberUpdatedHandler(Cacheable<SocketGuildUser, ulong> oldUsrCached, SocketGuildUser newUsr)
+        private async Task GuildMemberUpdatedHandler(Cacheable<SocketGuildUser, ulong> oldUsrCached, SocketGuildUser newUsr)
         {
             using var scope = _serviceProvider.CreateScope();
 
@@ -277,11 +277,23 @@ namespace MASZ.Services
                 }
             }
 
+            // Check zalgo
+            ZalgoRepository repo = ZalgoRepository.CreateWithBotIdentity(scope.ServiceProvider);
+            try
+            {
+                ZalgoConfig zalgoConfig = await repo.GetZalgo(newUsr.Guild.Id);
+                await repo.CheckZalgoForMember(newUsr.Guild.Id, zalgoConfig, newUsr, true);
+            } catch (ResourceNotFoundException) { }
+              catch (Exception ex)
+            {
+                _logger.LogError(ex, "Something went wrong while checking zalgo for member.");
+            }
+
             // Refresh member cache
             DiscordAPIInterface discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
             discordAPI.AddOrUpdateCache(CacheKey.GuildMember(newUsr.Id, newUsr.Id), new CacheApiResponse(newUsr));
 
-            return Task.CompletedTask;
+            return;
         }
 
         private async Task ThreadCreatedHandler(SocketThreadChannel channel)
@@ -492,6 +504,19 @@ namespace MASZ.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Failed to handle appeal on member join.");
+            }
+
+
+            // Check zalgo
+            ZalgoRepository repo = ZalgoRepository.CreateWithBotIdentity(scope.ServiceProvider);
+            try
+            {
+                ZalgoConfig zalgoConfig = await repo.GetZalgo(member.Guild.Id);
+                await repo.CheckZalgoForMember(member.Guild.Id, zalgoConfig, member, true);
+            } catch (ResourceNotFoundException) { }
+              catch (Exception ex)
+            {
+                _logger.LogError(ex, "Something went wrong while checking zalgo for member.");
             }
         }
 

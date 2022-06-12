@@ -67,6 +67,12 @@ namespace MASZ.Repositories
                 _eventHandler.OnZalgoConfigUpdatedEvent.InvokeAsync(zalgo, _currentUser);
             }
 
+            Task task = new(async () =>
+            {
+                await CheckZalgoForAllMembers(guildId, zalgo, true);
+            });
+            task.Start();
+
             return zalgo;
         }
 
@@ -77,32 +83,70 @@ namespace MASZ.Repositories
             return regex.Matches(HttpUtility.UrlEncode(content)).Count / content.Length > percentage / 100;
         }
 
-        public string CalculateZalgo(string content, ZalgoConfig zalgoConfig)
+        public string CalculateZalgo(string content, int percentage, string fallback, bool renameNormal)
         {
-            if (ContainsZalgo(content, zalgoConfig.Percentage))
+            if (ContainsZalgo(content, percentage))
             {
-                string newName = zalgoConfig.renameFallback;
-                if (zalgoConfig.renameNormal)
+                string newName = fallback;
+                if (renameNormal)
                 {
+                    Regex replaceEndOfString = new(@"%C(C|D)(%[A-Z0-9]{2})+$", RegexOptions.IgnoreCase);
                     Regex replaceSpaces = new(@"%C(C|D)(%[A-Z0-9]{2})+(%20|\+)", RegexOptions.IgnoreCase);
                     Regex replaceChars = new(@"%C(C|D)(%[A-Z0-9]{2})+(\w)", RegexOptions.IgnoreCase);
 
-                    Logger.LogWarning(HttpUtility.UrlEncode(content));
-
                     newName = HttpUtility.UrlDecode(
-                        replaceChars.Replace(
-                            replaceSpaces.Replace(
-                                HttpUtility.UrlEncode(content),
-                                " "
+                        replaceEndOfString.Replace(
+                            replaceChars.Replace(
+                                replaceSpaces.Replace(
+                                    HttpUtility.UrlEncode(content),
+                                    " "
+                                ),
+                                "$3"
                             ),
-                            "$3"
+                            ""
                         )
                     );
 
-                    newName = newName.Trim().Length == 0 ? zalgoConfig.renameFallback : newName;
+                    if (newName.Trim().Length == 0 || ContainsZalgo(newName, percentage))
+                    {
+                        newName = fallback;
+                    }
                 }
 
                 return newName;
+            }
+
+            return null;
+        }
+
+        public async Task<ZalgoSimulation> CheckZalgoForMember(ulong guildId, ZalgoConfig zalgoConfig, IGuildUser member, bool rename = false)
+        {
+            string current = member.DisplayName;
+            string newName = CalculateZalgo(current, zalgoConfig.Percentage, zalgoConfig.renameFallback, zalgoConfig.renameNormal);
+            if (newName != null)
+            {
+                if (rename)
+                {
+                    try
+                    {
+                        await DiscordAPI.RenameUser(member, newName);
+                        if (zalgoConfig.logToModChannel)
+                        {
+                            _eventHandler.OnZalgoNicknameRenameEvent.InvokeAsync(zalgoConfig, member.Id, current, newName);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.LogError(e, $"Failed to rename zalgo user {member.Id} in guild {guildId}.");
+                    }
+                }
+
+                return new ZalgoSimulation
+                {
+                    oldName = current,
+                    newName = newName,
+                    user = DiscordUserView.CreateOrDefault(member)
+                };
             }
 
             return null;
@@ -118,28 +162,10 @@ namespace MASZ.Repositories
 
                 foreach (IGuildUser member in members)
                 {
-                    string current = member.DisplayName;
-                    string newName = CalculateZalgo(current, zalgoConfig);
-                    if (newName != null)
+                    ZalgoSimulation res = await CheckZalgoForMember(guildId, zalgoConfig, member, rename);
+                    if (res != null)
                     {
-                        zalgoSimulations.Add(new ZalgoSimulation
-                        {
-                            oldName = current,
-                            newName = newName,
-                            user = DiscordUserView.CreateOrDefault(member)
-                        });
-
-                        if (rename)
-                        {
-                            try
-                            {
-                                await DiscordAPI.RenameUser(member, newName);
-                            }
-                            catch (Exception e)
-                            {
-                                Logger.LogError(e, $"Failed to rename zalgo user {member.Id} in guild {guildId}.");
-                            }
-                        }
+                        zalgoSimulations.Add(res);
                     }
                 }
             }
