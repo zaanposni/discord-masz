@@ -149,6 +149,7 @@ namespace MASZ.Repositories
                 await Database.DeleteMessagesForGuild(guildId);
                 await Database.DeleteAppealsForGuild(guildId);
                 await Database.DeleteAppealStructuresForGuild(guildId);
+                await Database.DeleteZalgoConfigForGuild(guildId);
             }
 
             Database.DeleteSpecificGuildConfig(guildConfig);

@@ -393,5 +393,21 @@ namespace MASZ.Services
         }
 
         internal readonly AsyncEvent<Func<Appeal, IUser, IUser, Task>> OnAppealUpdatedEvent = new("OnAppealUpdatedEvent");
+
+        public event Func<ZalgoConfig, IUser, Task> OnZalgoConfigCreated
+        {
+            add { OnZalgoConfigCreatedEvent.Add(value); }
+            remove { OnZalgoConfigCreatedEvent.Remove(value); }
+        }
+
+        internal readonly AsyncEvent<Func<ZalgoConfig, IUser, Task>> OnZalgoConfigCreatedEvent = new("OnZalgoConfigCreatedEvent");
+
+        public event Func<ZalgoConfig, IUser, Task> OnZalgoConfigUpdated
+        {
+            add { OnZalgoConfigUpdatedEvent.Add(value); }
+            remove { OnZalgoConfigUpdatedEvent.Remove(value); }
+        }
+
+        internal readonly AsyncEvent<Func<ZalgoConfig, IUser, Task>> OnZalgoConfigUpdatedEvent = new("OnZalgoConfigUpdatedEvent");
     }
 }
