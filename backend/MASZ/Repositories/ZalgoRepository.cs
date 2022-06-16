@@ -121,32 +121,35 @@ namespace MASZ.Repositories
 
         public async Task<ZalgoSimulation> CheckZalgoForMember(ulong guildId, ZalgoConfig zalgoConfig, IGuildUser member, bool rename = false)
         {
-            string current = member.DisplayName;
-            string newName = CalculateZalgo(current, zalgoConfig.Percentage, zalgoConfig.renameFallback, zalgoConfig.renameNormal);
-            if (newName != null)
+            if (zalgoConfig.Enabled)
             {
-                if (rename)
+                string current = member.DisplayName;
+                string newName = CalculateZalgo(current, zalgoConfig.Percentage, zalgoConfig.renameFallback, zalgoConfig.renameNormal);
+                if (newName != null)
                 {
-                    try
+                    if (rename)
                     {
-                        await DiscordAPI.RenameUser(member, newName);
-                        if (zalgoConfig.logToModChannel)
+                        try
                         {
-                            _eventHandler.OnZalgoNicknameRenameEvent.InvokeAsync(zalgoConfig, member.Id, current, newName);
+                            await DiscordAPI.RenameUser(member, newName);
+                            if (zalgoConfig.logToModChannel)
+                            {
+                                _eventHandler.OnZalgoNicknameRenameEvent.InvokeAsync(zalgoConfig, member.Id, current, newName);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Logger.LogError(e, $"Failed to rename zalgo user {member.Id} in guild {guildId}.");
                         }
                     }
-                    catch (Exception e)
-                    {
-                        Logger.LogError(e, $"Failed to rename zalgo user {member.Id} in guild {guildId}.");
-                    }
-                }
 
-                return new ZalgoSimulation
-                {
-                    oldName = current,
-                    newName = newName,
-                    user = DiscordUserView.CreateOrDefault(member)
-                };
+                    return new ZalgoSimulation
+                    {
+                        oldName = current,
+                        newName = newName,
+                        user = DiscordUserView.CreateOrDefault(member)
+                    };
+                }
             }
 
             return null;
