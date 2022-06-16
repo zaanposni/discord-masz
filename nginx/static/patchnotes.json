@@ -21,6 +21,11 @@
         "title": "Improved error message on empty state of dashboard widgets.",
         "description": "Dashboard widgets will now show a detailed error instead of \"This is not the widget you are looking for\".",
         "link": "https://github.com/zaanposni/discord-masz/issues/529"
+      },
+      {
+        "title": "Update cache on channel updates.",
+        "description": "Even more changes in Discord (channel create, channel update, channel delete) are now transferred to MASZ' cache.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/527"
       }
     ]
   },
