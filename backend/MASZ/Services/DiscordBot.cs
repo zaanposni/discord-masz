@@ -68,6 +68,9 @@ namespace MASZ.Services
             _client.UserBanned += GuildBanAdded;
             _client.UserUnbanned += GuildBanRemoved;
             _client.GuildUpdated += GuildUpdatedHandler;
+            _client.ChannelCreated += ChannelCreatedHandler;
+            _client.ChannelUpdated += ChannelUpdatedHandler;
+            _client.ChannelDestroyed += ChannelDestroyedHandler;
             _client.GuildAvailable += GuildAvailableHandler;
             _client.ThreadCreated += ThreadCreatedHandler;
 
@@ -283,8 +286,9 @@ namespace MASZ.Services
             {
                 ZalgoConfig zalgoConfig = await repo.GetZalgo(newUsr.Guild.Id);
                 await repo.CheckZalgoForMember(newUsr.Guild.Id, zalgoConfig, newUsr, true);
-            } catch (ResourceNotFoundException) { }
-              catch (Exception ex)
+            }
+            catch (ResourceNotFoundException) { }
+            catch (Exception ex)
             {
                 _logger.LogError(ex, "Something went wrong while checking zalgo for member.");
             }
@@ -294,6 +298,83 @@ namespace MASZ.Services
             discordAPI.AddOrUpdateCache(CacheKey.GuildMember(newUsr.Id, newUsr.Id), new CacheApiResponse(newUsr));
 
             return;
+        }
+
+        private Task ChannelDestroyedHandler(SocketChannel arg)
+        {
+            if (arg is IGuildChannel channel)
+            {
+                using var scope = _serviceProvider.CreateScope();
+
+                // Refresh channel cache
+                DiscordAPIInterface discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
+
+                List<IGuildChannel> channels = discordAPI.GetFromCache<List<IGuildChannel>>(CacheKey.GuildChannels(channel.GuildId));
+                if (channels == null)
+                {
+                    channels = new List<IGuildChannel>();
+                }
+
+                channels.Remove(channel);
+
+                discordAPI.AddOrUpdateCache(CacheKey.GuildChannels(channel.GuildId), new CacheApiResponse(channels));
+            }
+
+            return Task.CompletedTask;
+        }
+
+        private Task ChannelUpdatedHandler(SocketChannel arg1, SocketChannel arg2)
+        {
+            if (arg2 is IGuildChannel channel)
+            {
+                using var scope = _serviceProvider.CreateScope();
+
+                // Refresh channel cache
+                DiscordAPIInterface discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
+
+                List<IGuildChannel> channels = discordAPI.GetFromCache<List<IGuildChannel>>(CacheKey.GuildChannels(channel.GuildId));
+                if (channels == null)
+                {
+                    channels = new List<IGuildChannel>();
+                }
+
+                int index = channels.FindIndex(x => x.Id == channel.Id);
+                if (index != -1)
+                {
+                    channels[index] = channel;
+                }
+                else
+                {
+                    channels.Add(channel);
+                }
+
+                discordAPI.AddOrUpdateCache(CacheKey.GuildChannels(channel.GuildId), new CacheApiResponse(channels));
+            }
+
+            return Task.CompletedTask;
+        }
+
+        private Task ChannelCreatedHandler(SocketChannel arg)
+        {
+            if (arg is IGuildChannel channel)
+            {
+                using var scope = _serviceProvider.CreateScope();
+
+                // Refresh channel cache
+                DiscordAPIInterface discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
+
+                List<IGuildChannel> channels = discordAPI.GetFromCache<List<IGuildChannel>>(CacheKey.GuildChannels(channel.GuildId));
+                if (channels == null)
+                {
+                    channels = new List<IGuildChannel>();
+                }
+
+                channels.Add(channel);
+
+                discordAPI.AddOrUpdateCache(CacheKey.GuildChannels(channel.GuildId), new CacheApiResponse(channels));
+            }
+
+            return Task.CompletedTask;
         }
 
         private async Task ThreadCreatedHandler(SocketThreadChannel channel)
@@ -513,8 +594,9 @@ namespace MASZ.Services
             {
                 ZalgoConfig zalgoConfig = await repo.GetZalgo(member.Guild.Id);
                 await repo.CheckZalgoForMember(member.Guild.Id, zalgoConfig, member, true);
-            } catch (ResourceNotFoundException) { }
-              catch (Exception ex)
+            }
+            catch (ResourceNotFoundException) { }
+            catch (Exception ex)
             {
                 _logger.LogError(ex, "Something went wrong while checking zalgo for member.");
             }
@@ -522,6 +604,8 @@ namespace MASZ.Services
 
         private async Task GuildUpdatedHandler(SocketGuild oldG, SocketGuild newG)
         {
+            using var scope = _serviceProvider.CreateScope();
+
             IInviteMetadata invite = null;
 
             try
@@ -534,6 +618,10 @@ namespace MASZ.Services
             {
                 InviteTracker.AddInvite(invite.Guild.Id, new TrackedInvite(invite.Guild.Id, invite.Code, invite.Uses.GetValueOrDefault()));
             }
+
+            // Refresh role cache
+            DiscordAPIInterface discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
+            discordAPI.AddOrUpdateCache(CacheKey.Guild(newG.Id), new CacheApiResponse(newG));
         }
 
         private Task InviteCreatedHandler(SocketInvite invite)
@@ -579,7 +667,8 @@ namespace MASZ.Services
                         }
                         catch (InvalidOperationException)
                         {
-                            await context.Interaction.ModifyOriginalResponseAsync(m => {
+                            await context.Interaction.ModifyOriginalResponseAsync(m =>
+                            {
                                 m.Content = "";
                                 m.Embed = builder.Build();
                             });
