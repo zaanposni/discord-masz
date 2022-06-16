@@ -1,5 +1,30 @@
 [
   {
+    "title": "Version 3.1.0",
+    "version": "v3.0.3",
+    "released_at": "2022-06-18",
+    "contributors": [ ],
+    "features": [
+      {
+        "title": "Delete files in case creation",
+        "description": "You can now remove files if you choose to upload them accidentally.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/530"
+      },
+      {
+        "title": "Added zalgo mode",
+        "description": "Guild admins can enable the zalgo mode. This mode will automatically rename everyone with zalgo characters to improve readability on your server.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/524"
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Improved error message on empty state of dashboard widgets.",
+        "description": "Dashboard widgets will now show a detailed error instead of \"This is not the widget you are looking for\".",
+        "link": "https://github.com/zaanposni/discord-masz/issues/529"
+      }
+    ]
+  },
+  {
     "title": "Version 3.0.3",
     "version": "v3.0.3",
     "released_at": "2022-06-07",
