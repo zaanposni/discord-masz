@@ -248,6 +248,26 @@
             "ru": "Посетите сообщество MASZ.",
             "it": "Visita la comunità di MASZ."
         },
+        "reportabug": {
+            "description": "reportabug",
+            "en": "Report a bug",
+            "de": "Fehler melden",
+            "at": "Fehler melden",
+            "fr": "Signaler un bug",
+            "es": "Reportar un error",
+            "ru": "Сообщить об ошибке",
+            "it": "Segnala un errore"
+        },
+        "reportabugdetails": {
+            "description": "Report a bug",
+            "en": "Report bugs on GitHub",
+            "de": "Fehler melden",
+            "at": "Fehler melden",
+            "fr": "Signaler un bug",
+            "es": "Reportar un error",
+            "ru": "Сообщить об ошибке",
+            "it": "Segnala un errore"
+        },
         "terms": {
             "description": "Terms of Service",
             "en": "Terms",

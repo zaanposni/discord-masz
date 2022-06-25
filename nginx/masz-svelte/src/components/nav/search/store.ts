@@ -383,4 +383,13 @@ staticSearchEntries.set([
         },
         hidePerDefault: true,
     },
+    {
+        textKey: "nav.reportabug",
+        href: "https://github.com/zaanposni/discord-masz/issues/new/choose",
+        descriptionKey: "nav.reportabugdetails",
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            window.open("https://github.com/zaanposni/discord-masz/issues/new/choose", "_blank").focus();
+        },
+        hidePerDefault: true,
+    },
 ]);

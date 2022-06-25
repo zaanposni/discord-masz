@@ -32,6 +32,8 @@
         "creditsdetails": "View the credits of MASZ.",
         "community": "Community",
         "communitydetails": "Visit the Community Discord of MASZ.",
+        "reportabug": "Report a bug",
+        "reportabugdetails": "Report bugs on GitHub",
         "terms": "Terms",
         "privacy": "Privacy Policy",
         "admin": {
