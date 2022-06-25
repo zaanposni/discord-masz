@@ -1119,3 +1119,7 @@ webinterface/app/composer.lock
 .deployment/*
 .vscode/settings.json
 /backend/MASZ/Properties/launchSettings.json
+
+release.py
+discord.txt
+github.txt
