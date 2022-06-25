@@ -300,6 +300,14 @@ guildStaticSearchEntries.set([
         },
     },
     {
+        textKey: "nav.guild.settings.zalgo",
+        allowedToView: (user: IAuthUser, params: IRouteParams) =>
+            user && params?.guildId && (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            gotoHelper(`/guilds/${params.guildId}/zalgo`);
+        },
+    },
+    {
         textKey: "nav.guild.settings.search",
         descriptionKey: "nav.guild.settings.searchdetails",
         allowedToView: (user: IAuthUser, params: IRouteParams) =>
