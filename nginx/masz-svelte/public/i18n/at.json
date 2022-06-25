@@ -32,6 +32,8 @@
         "creditsdetails": "Zeig de Credits vo MASZ.",
         "community": "Community",
         "communitydetails": "Besuch den Community-Discord vo MASZ.",
+        "reportabug": "Fehler melden",
+        "reportabugdetails": "Fehler melden",
         "terms": "Nutzungsbedingungen",
         "privacy": "Datnschutzerklärung",
         "admin": {
@@ -53,6 +55,7 @@
             "settings": {
                 "motd": "NvdT",
                 "auditlog": "Auditlog",
+                "zalgo": "Zalgo",
                 "automod": "Automod",
                 "base": "Eistellungen",
                 "search": "Güdneistellungen",
@@ -64,16 +67,19 @@
     "widgets": {
         "latestcases": {
             "title": "Neiaste Vorfälle",
-            "widgetdescription": "Des Widget zeigt de neiasten Vorfälle in dea Güde o."
+            "widgetdescription": "Des Widget zeigt de neiasten Vorfälle in dea Güde o.",
+            "empty": "Keine Vorfälle gefunden."
         },
         "latestappeals": {
             "title": "Neiaste Entbannungsanträge",
-            "widgetdescription": "Des Widget zeigt de neiasten Entbannungsonträge in dea Güde o."
+            "widgetdescription": "Des Widget zeigt de neiasten Entbannungsonträge in dea Güde o.",
+            "empty": "Keine Entbannungsanträge gefunden."
         },
         "guildmoderatorcases": {
             "title": "Vorfälle noch Modarator",
             "widgetdescription": "Des Widget zeigt olle Vorfälle noch dem Modarator in dea Güde o.",
-            "cases": "Vorfälle"
+            "cases": "Vorfälle",
+            "empty": "Keine Vorfälle gefunden."
         },
         "guildstats": {
             "title": "Güdenstatistikn",
@@ -82,33 +88,40 @@
             "invites": "Eiladungen",
             "usernotes": "Benutzanotizn",
             "usermaps": "Benutzabeziehungen",
-            "banappeals": "Bann-Anfragn"
+            "banappeals": "Bann-Anfragn",
+            "empty": "Keine Statistikn gefunden."
         },
         "guildautomodsplit": {
             "title": "Automodaufteilung ",
-            "widgetdescription": "Des Widget zeigt de Aufteilung vo da Automodaration in dea Güde o."
+            "widgetdescription": "Des Widget zeigt de Aufteilung vo da Automodaration in dea Güde o.",
+            "empty": "Keine Automodaufteilung gefunden."
         },
         "guildmodcasecountchart": {
             "title": "Vorfoisübasicht",
-            "widgetdescription": "Des Widget zeigt de Übasicht vo de Vorfälle in dea Güde o."
+            "widgetdescription": "Des Widget zeigt de Übasicht vo de Vorfälle in dea Güde o.",
+            "empty": "Keine Vorfälle gefunden."
         },
         "guildappealcountchart": {
             "title": "Entbannungsantragsübasicht",
-            "widgetdescription": "Des Widget zeigt de Übasicht dea Entbannungsonträge in dea Güde o."
+            "widgetdescription": "Des Widget zeigt de Übasicht dea Entbannungsonträge in dea Güde o.",
+            "empty": "Keine Entbannungsanträge gefunden."
         },
         "guildautomodcountchart": {
             "title": "Automodarationsübasicht",
-            "widgetdescription": "Des Widget zeigt de Übasicht dea Automodarationen in dea Güde o."
+            "widgetdescription": "Des Widget zeigt de Übasicht dea Automodarationen in dea Güde o.",
+            "empty": "Keine Automoderationen gefunden."
         },
         "guildpendingmessages": {
             "title": "Ausstehende Nochrichtn",
-            "widgetdescription": "Des Widget zeigt de ausstehenden Nochrichtn in dea Güde o."
+            "widgetdescription": "Des Widget zeigt de ausstehenden Nochrichtn in dea Güde o.",
+            "empty": "Keine ausstehenden Nochrichtn gefunden."
         },
         "guildpunishmentstats": {
             "title": "Bestrofungsstatistikn",
             "widgetdescription": "Des Widget zeigt de Bestrofungsstatistikn in dea Güde o.",
             "activemutes": "Aktive Stummschoitungen",
-            "activebans": "Aktive Banns"
+            "activebans": "Aktive Banns",
+            "empty": "Keine Bestrofungsstatistikn gefunden."
         },
         "guildquicksearch": {
             "title": "Schnösuche",
@@ -122,13 +135,15 @@
         },
         "guildmotd": {
             "title": "NvdT",
-            "widgetdescription": "Des Widget zeigt des aktuelle Nochrichtnthema."
+            "widgetdescription": "Des Widget zeigt des aktuelle Nochrichtnthema.",
+            "empty": "Kane Nochrichtenthema."
         },
         "adminversion": {
             "title": "Versionsinfo",
             "widgetdescription": "Des Widget zeigt de aktuell installierte Version und verfügbare Updates.",
             "current": "Aktuelle Version",
-            "new": "Verfügbares Update"
+            "new": "Verfügbares Update",
+            "empty": "Kane Update verfügbar"
         },
         "adminstatus": {
             "title": "Status",
@@ -136,11 +151,13 @@
             "offline": "Offline",
             "bot": "Bot",
             "db": "Datnbonk",
-            "cache": "Cache"
+            "cache": "Cache",
+            "empty": "Kane Status verfügbar"
         },
         "adminloggedin": {
             "title": "Ogmödete Benutza",
-            "widgetdescription": "Des Widget zeigt de aktuell angmeldeten Benutza."
+            "widgetdescription": "Des Widget zeigt de aktuell angmeldeten Benutza.",
+            "empty": "Kane angemeldeten Benutza"
         },
         "adminresources": {
             "title": "Ressourcn",
@@ -150,7 +167,8 @@
             "automods": "Automod",
             "usernotes": "Benutzanotizn",
             "usermaps": "Benutzabeziehungen",
-            "invites": "Eiladungen"
+            "invites": "Eiladungen",
+            "empty": "Keine Ressourcn"
         },
         "admincache": {
             "title": "Cache",
@@ -160,7 +178,8 @@
             "bans": "Banns",
             "members": "Mitglieda",
             "dmchannels": "DM-Kanäle",
-            "tokens": "Tokn-Logins"
+            "tokens": "Tokn-Logins",
+            "empty": "Keine Ressourcn"
         },
         "dashboardconfig": {
             "title": "Deschboardkonfiguration",
@@ -494,6 +513,22 @@
                 "customwordfield": "Ignorierte Links (getrennte Links mit am Zeilenumbruch)",
                 "linktext": "Beispü"
             }
+        },
+        "zalgo": {
+            "title": "Zalgo",
+            "explain": "Benutze diese Funktion, um automatisch Benutzernamen und Nicknamen zu ändern, die zalgo verwenden.",
+            "enable": "Zalgo Moderation in diesem Server aktivieren",
+            "renamenormal": "Versuche Benutzernamen mit zalgo zu ändern, in Text, der noch wie der Benutzername aussieht",
+            "renamefallback": "Benutze folgenden Namen beim Umbennen als Backupoption",
+            "allowedpercentage": "Erlaubter Prozentsatz von Zalgozeichen in einem Benutzernamen oder Nicknamen",
+            "logtomodchannel": "Alle Zalgo Moderationen in den internen Webhook aufzeichnen",
+            "simulate": "Simulieren",
+            "simulateresults": "Simulationsergebnisse",
+            "noresult": "Zalgo-Konfiguration konnte nicht geladen werden",
+            "save": "Speichan",
+            "submitting": "Sende...",
+            "saved": "Zalgo-Konfiguration gespeichert",
+            "failedtosave": "Zalgo-Konfiguration konnte nicht gespeichert werden"
         },
         "config": {
             "title": "Güdnkonfiguration",

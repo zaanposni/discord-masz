@@ -10,7 +10,7 @@
     export let mode: WidgetMode = WidgetMode.x1_1;
     export let state: WidgetState = WidgetState.Normal;
     let ratio;
-    $: switch(mode) {
+    $: switch (mode) {
         case WidgetMode.x2_1:
             ratio = "2x1";
             break;
@@ -103,7 +103,9 @@
                 {#if state === WidgetState.Empty}
                     <Robot />
                     <div class="h-4" />
-                    <div>This is not the widget you are looking for.</div>
+                    <slot name="empty">
+                        <div>This is not the widget you are looking for.</div>
+                    </slot>
                 {/if}
                 {#if state === WidgetState.Permission}
                     <UserSearch />

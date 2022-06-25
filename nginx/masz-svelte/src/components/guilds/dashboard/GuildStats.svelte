@@ -106,4 +106,7 @@
             <SkeletonText />
         </div>
     </div>
+    <div slot="empty">
+        {$_("widgets.guildstats.empty")}
+    </div>
 </DashboardWidget>

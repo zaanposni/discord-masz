@@ -100,4 +100,7 @@
             <SkeletonText />
         </div>
     </div>
+    <div slot="empty">
+        {$_("widgets.guildmoderatorcases.empty")}
+    </div>
 </DashboardWidget>

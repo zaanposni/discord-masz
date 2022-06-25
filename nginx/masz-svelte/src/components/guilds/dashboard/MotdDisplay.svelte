@@ -22,8 +22,8 @@
                 motd = response;
                 widgetState = response?.motd?.showMotd ? WidgetState.Normal : WidgetState.Empty;
             })
-            .catch(() => {
-                widgetState = WidgetState.Error;
+            .catch((err) => {
+                widgetState = err?.response?.status === 404 ? WidgetState.Empty : WidgetState.Error;
             });
     }
 </script>
@@ -37,5 +37,8 @@
     </div>
     <div slot="loading">
         <SkeletonText paragraph rows={3} />
+    </div>
+    <div slot="empty">
+        {$_("widgets.guildmotd.empty")}
     </div>
 </DashboardWidget>

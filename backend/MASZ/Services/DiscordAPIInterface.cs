@@ -563,6 +563,25 @@ namespace MASZ.Services
             return true;
         }
 
+        public async Task<bool> RenameUser(IGuildUser member, string nickname, string reason = null)
+        {
+            // request ---------------------------
+            try
+            {
+                RequestOptions options = new();
+                if (!string.IsNullOrEmpty(reason))
+                    options.AuditLogReason = reason;
+
+                await member.ModifyAsync(x => x.Nickname = nickname, options);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"Failed to rename user '{member.Id}' to '{nickname}'.");
+                return false;
+            }
+            return true;
+        }
+
         public async Task<RestDMChannel> CreateDmChannel(ulong userId)
         {
             // do cache stuff --------------------

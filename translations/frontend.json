@@ -248,6 +248,26 @@
             "ru": "Посетите сообщество MASZ.",
             "it": "Visita la comunità di MASZ."
         },
+        "reportabug": {
+            "description": "reportabug",
+            "en": "Report a bug",
+            "de": "Fehler melden",
+            "at": "Fehler melden",
+            "fr": "Signaler un bug",
+            "es": "Reportar un error",
+            "ru": "Сообщить об ошибке",
+            "it": "Segnala un errore"
+        },
+        "reportabugdetails": {
+            "description": "Report a bug",
+            "en": "Report bugs on GitHub",
+            "de": "Fehler melden",
+            "at": "Fehler melden",
+            "fr": "Signaler un bug",
+            "es": "Reportar un error",
+            "ru": "Сообщить об ошибке",
+            "it": "Segnala un errore"
+        },
         "terms": {
             "description": "Terms of Service",
             "en": "Terms",
@@ -422,6 +442,16 @@
                     "ru": "Auditlog",
                     "it": "Auditlog"
                 },
+                "zalgo": {
+                    "description": "Zalgo",
+                    "en": "Zalgo",
+                    "de": "Zalgo",
+                    "at": "Zalgo",
+                    "fr": "Zalgo",
+                    "es": "Zalgo",
+                    "ru": "Zalgo",
+                    "it": "Zalgo"
+                },
                 "automod": {
                     "description": "Automod",
                     "en": "Automod",
@@ -496,6 +526,16 @@
                 "es": "Este widget muestra los últimos casos de tu hermandad.",
                 "ru": "Этот виджет показывает последние дела в вашей гильдии.",
                 "it": "Questo widget mostra gli ultimi casi della tua gilda."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No cases found.",
+                "de": "Keine Vorfälle gefunden.",
+                "at": "Keine Vorfälle gefunden.",
+                "fr": "Aucun cas trouvé.",
+                "es": "No se encontraron casos.",
+                "ru": "Дела не найдены.",
+                "it": "Nessun caso trovato."
             }
         },
         "latestappeals": {
@@ -518,6 +558,16 @@
                 "es": "Este widget muestra los últimos apelaciones de tu hermandad.",
                 "ru": "Этот виджет показывает последние обращения в вашей гильдии.",
                 "it": "Questo widget mostra gli ultimi appelli della tua gilda."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No appeals found.",
+                "de": "Keine Entbannungsanträge gefunden.",
+                "at": "Keine Entbannungsanträge gefunden.",
+                "fr": "Aucun appel trouvé.",
+                "es": "No se encontraron apelaciones.",
+                "ru": "Обращения не найдены.",
+                "it": "Nessun appello trovato."
             }
         },
         "guildmoderatorcases": {
@@ -550,6 +600,16 @@
                 "es": "Casos",
                 "ru": "Дела",
                 "it": "Casi"
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No cases found.",
+                "de": "Keine Vorfälle gefunden.",
+                "at": "Keine Vorfälle gefunden.",
+                "fr": "Aucun cas trouvé.",
+                "es": "No se encontraron casos.",
+                "ru": "Дела не найдены.",
+                "it": "Nessun caso trovato."
             }
         },
         "guildstats": {
@@ -622,6 +682,16 @@
                 "es": "Quejas de Baneo",
                 "ru": "Жалобы на бан",
                 "it": "Appelli di banno"
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No stats found.",
+                "de": "Keine Statistiken gefunden.",
+                "at": "Keine Statistikn gefunden.",
+                "fr": "Aucune statistique trouvée.",
+                "es": "No se encontraron estadísticas.",
+                "ru": "Статистики не найдены.",
+                "it": "Nessuna statistica trovata."
             }
         },
         "guildautomodsplit": {
@@ -644,6 +714,16 @@
                 "es": "Este widget muestra la división de automod de tu hermandad.",
                 "ru": "Этот виджет показывает раздел автомодерации в вашей гильдии.",
                 "it": "Questo widget mostra la divisione dell'automod della tua gilda."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No automod split found.",
+                "de": "Keine Automodaufteilung gefunden.",
+                "at": "Keine Automodaufteilung gefunden.",
+                "fr": "Aucune séparation automod trouvée.",
+                "es": "No se encontró división automod.",
+                "ru": "Разделение автомодерации не найдено.",
+                "it": "Nessuna divisione automod trovata."
             }
         },
         "guildmodcasecountchart": {
@@ -666,6 +746,16 @@
                 "es": "Este widget muestra el resumen de los casos de tu hermandad.",
                 "ru": "Этот виджет показывает обзор дел в вашей гильдии.",
                 "it": "Questo widget mostra la panoramica dei casi della tua gilda."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No cases found.",
+                "de": "Keine Vorfälle gefunden.",
+                "at": "Keine Vorfälle gefunden.",
+                "fr": "Aucun cas trouvé.",
+                "es": "No se encontraron casos.",
+                "ru": "Дела не найдены.",
+                "it": "Nessun caso trovato."
             }
         },
         "guildappealcountchart": {
@@ -688,6 +778,16 @@
                 "es": "Este widget muestra el resumen de las quejas de tu hermandad.",
                 "ru": "Этот виджет показывает обзор жалоб в вашей гильдии.",
                 "it": "Questo widget mostra la panoramica degli appelli della tua gilda."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No appeals found.",
+                "de": "Keine Entbannungsanträge gefunden.",
+                "at": "Keine Entbannungsanträge gefunden.",
+                "fr": "Aucun appel trouvé.",
+                "es": "No se encontraron quejas.",
+                "ru": "Жалобы не найдены.",
+                "it": "Nessun appello trovato."
             }
         },
         "guildautomodcountchart": {
@@ -710,6 +810,16 @@
                 "es": "Este widget muestra el resumen de las automod de tu hermandad.",
                 "ru": "Этот виджет показывает обзор автомодерации в вашей гильдии.",
                 "it": "Questo widget mostra la panoramica dell'automod della tua gilda."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No automods found.",
+                "de": "Keine Automoderationen gefunden.",
+                "at": "Keine Automoderationen gefunden.",
+                "fr": "Aucune automodération trouvée.",
+                "es": "No se encontraron automod.",
+                "ru": "Автомодерации не найдены.",
+                "it": "Nessuna automod trovata."
             }
         },
         "guildpendingmessages": {
@@ -732,6 +842,16 @@
                 "es": "Este widget muestra los mensajes pendientes de tu hermandad.",
                 "ru": "Этот виджет показывает ожидающие сообщения в вашей гильдии.",
                 "it": "Questo widget mostra i messaggi in attesa della tua gilda."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No pending messages found.",
+                "de": "Keine ausstehenden Nachrichten gefunden.",
+                "at": "Keine ausstehenden Nochrichtn gefunden.",
+                "fr": "Aucun message en attente trouvé.",
+                "es": "No se encontraron mensajes pendientes.",
+                "ru": "Нет ожидающих сообщений.",
+                "it": "Nessun messaggio in attesa trovato."
             }
         },
         "guildpunishmentstats": {
@@ -774,6 +894,16 @@
                 "es": "Bans activos",
                 "ru": "Активные баны",
                 "it": "Ban attivo"
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No punishments found.",
+                "de": "Keine Bestrafungen gefunden.",
+                "at": "Keine Bestrofungsstatistikn gefunden.",
+                "fr": "Aucune punition trouvée.",
+                "es": "No se encontraron castigos.",
+                "ru": "Нет наказаний.",
+                "it": "Nessun castigo trovato."
             }
         },
         "guildquicksearch": {
@@ -878,6 +1008,16 @@
                 "es": "Este widget muestra el mensaje del día actual.",
                 "ru": "Этот виджет показывает текущее сообщение дня.",
                 "it": "Questo widget mostra il messaggio del giorno attuale."
+            },
+            "empty": {
+                "description": "Empty",
+                "en": "No message of the day.",
+                "de": "Kein Nachrichtenthema.",
+                "at": "Kane Nochrichtenthema.",
+                "fr": "Aucun message du jour.",
+                "es": "No hay mensaje del día.",
+                "ru": "Нет сообщения дня.",
+                "it": "Nessun messaggio del giorno."
             }
         },
         "adminversion": {
@@ -920,6 +1060,16 @@
                 "es": "Actualización disponible",
                 "ru": "Доступное обновление",
                 "it": "Aggiornamento disponibile"
+            },
+            "empty": {
+                "description": "No update available",
+                "en": "No update available",
+                "de": "Kein Update verfügbar",
+                "at": "Kane Update verfügbar",
+                "fr": "Aucune mise à jour disponible",
+                "es": "No hay actualización disponible",
+                "ru": "Нет доступных обновлений",
+                "it": "Nessun aggiornamento disponibile"
             }
         },
         "adminstatus": {
@@ -982,6 +1132,16 @@
                 "es": "Caché",
                 "ru": "Кэш",
                 "it": "Cache"
+            },
+            "empty": {
+                "description": "No status available",
+                "en": "No status available",
+                "de": "Kein Status verfügbar",
+                "at": "Kane Status verfügbar",
+                "fr": "Aucun statut disponible",
+                "es": "No hay estado disponible",
+                "ru": "Нет статуса",
+                "it": "Nessuno stato disponibile"
             }
         },
         "adminloggedin": {
@@ -1004,6 +1164,16 @@
                 "es": "Este widget muestra los usuarios actualmente conectados.",
                 "ru": "Этот виджет показывает текущих пользователей.",
                 "it": "Questo widget mostra gli utenti attualmente collegati."
+            },
+            "empty": {
+                "description": "No logged in users",
+                "en": "No logged in users",
+                "de": "Keine angemeldeten Benutzer",
+                "at": "Kane angemeldeten Benutza",
+                "fr": "Aucun utilisateur connecté",
+                "es": "No hay usuarios conectados",
+                "ru": "Нет зарегистрированных пользователей",
+                "it": "Nessun utente connesso"
             }
         },
         "adminresources": {
@@ -1086,6 +1256,16 @@
                 "es": "Invitaciones",
                 "ru": "Приглашения",
                 "it": "Inviti"
+            },
+            "empty": {
+                "description": "No resources",
+                "en": "No resources",
+                "de": "Keine Ressourcen",
+                "at": "Keine Ressourcn",
+                "fr": "Aucune ressource",
+                "es": "No hay recursos",
+                "ru": "Нет ресурсов",
+                "it": "Nessuna risorsa"
             }
         },
         "admincache": {
@@ -1168,6 +1348,16 @@
                 "es": "Inicios de sesión con token",
                 "ru": "Вход с токеном",
                 "it": "Accesso con token"
+            },
+            "empty": {
+                "description": "No resources",
+                "en": "No resources",
+                "de": "Keine Ressourcen",
+                "at": "Keine Ressourcn",
+                "fr": "Aucune ressource",
+                "es": "No hay recursos",
+                "ru": "Нет ресурсов",
+                "it": "Nessuna risorsa"
             }
         },
         "dashboardconfig": {
@@ -3994,6 +4184,149 @@
                     "ru": "Пример",
                     "it": "Esempio"
                 }
+            }
+        },
+        "zalgo": {
+            "title": {
+                "description": "",
+                "en": "Zalgo",
+                "de": "Zalgo",
+                "at": "Zalgo",
+                "fr": "Zalgo",
+                "es": "Zalgo",
+                "ru": "Zalgo",
+                "it": "Zalgo"
+            },
+            "explain": {
+                "description": "",
+                "en": "Use this feature to automatically rename users who use zalgo in their username or nickname.",
+                "de": "Benutze diese Funktion, um automatisch Benutzernamen und Nicknamen zu ändern, die zalgo verwenden.",
+                "at": "Benutze diese Funktion, um automatisch Benutzernamen und Nicknamen zu ändern, die zalgo verwenden.",
+                "fr": "Utilisez cette fonctionnalité pour renommer automatiquement les utilisateurs qui utilisent zalgo dans leur nom d'utilisateur ou leur pseudo.",
+                "es": "Utiliza esta función para renombrar automáticamente a los usuarios que utilicen zalgo en su nombre de usuario o en su apodo.",
+                "ru": "Используйте эту функцию для автоматического переименования пользователей, которые используют zalgo в их имени пользователя или никнейме.",
+                "it": "Usa questa funzione per rinominare automaticamente gli utenti che usano zalgo nel loro nome utente o nel loro nickname."
+            },
+            "enable": {
+                "description": "",
+                "en": "Enable zalgo moderation in this guild",
+                "de": "Zalgo Moderation in diesem Server aktivieren",
+                "at": "Zalgo Moderation in diesem Server aktivieren",
+                "fr": "Activer la modération zalgo dans ce serveur",
+                "es": "Habilitar la moderación zalgo en este servidor",
+                "ru": "Включить модерацию zalgo в этой гильдии",
+                "it": "Abilita la moderazione zalgo in questa gilda"
+            },
+            "renamenormal": {
+                "description": "",
+                "en": "Try to rename users with zalgo to normal text that still sounds like their username",
+                "de": "Versuche Benutzernamen mit zalgo zu ändern, in Text, der noch wie der Benutzername aussieht",
+                "at": "Versuche Benutzernamen mit zalgo zu ändern, in Text, der noch wie der Benutzername aussieht",
+                "fr": "Essaye de renommer les utilisateurs avec zalgo en texte normal qui ressemble à leur nom d'utilisateur",
+                "es": "Intenta renombrar a los usuarios con zalgo a texto normal que sigue su nombre de usuario",
+                "ru": "Попытайтесь переименовать пользователей с zalgo в нормальный текст, который все еще произносится как имя пользователя",
+                "it": "Prova a rinominare gli utenti con zalgo in testo normale che ancora suona come il loro nome utente"
+            },
+            "renamefallback": {
+                "description": "",
+                "en": "Fallback to this string as rename option",
+                "de": "Benutze folgenden Namen beim Umbennen als Backupoption",
+                "at": "Benutze folgenden Namen beim Umbennen als Backupoption",
+                "fr": "Utilisez cette chaîne comme option de renommage",
+                "es": "Utiliza esta cadena como opción de renombrado",
+                "ru": "Восстановление как опция переименования",
+                "it": "Rinomina in questo testo come opzione"
+            },
+            "allowedpercentage": {
+                "description": "",
+                "en": "Allowed percentage of zalgo characters in a username or nickname",
+                "de": "Erlaubter Prozentsatz von Zalgozeichen in einem Benutzernamen oder Nicknamen",
+                "at": "Erlaubter Prozentsatz von Zalgozeichen in einem Benutzernamen oder Nicknamen",
+                "fr": "Pourcentage autorisé de caractères zalgo dans un nom d'utilisateur ou un pseudo",
+                "es": "Porcentaje permitido de caracteres zalgo en un nombre de usuario o un apodo",
+                "ru": "Разрешенный процент залиго в имени пользователя или никнейме",
+                "it": "Percentuale consentita di caratteri zalgo in un nome utente o nickname"
+            },
+            "logtomodchannel": {
+                "description": "",
+                "en": "Log all zalgo moderations to the internal webhook",
+                "de": "Alle Zalgo Moderationen in den internen Webhook aufzeichnen",
+                "at": "Alle Zalgo Moderationen in den internen Webhook aufzeichnen",
+                "fr": "Journaliser toutes les modérations zalgo dans le webhook interne",
+                "es": "Registrar todas las moderaciones zalgo en el webhook interno",
+                "ru": "Записывать все модерации zalgo в внутренний вебхук",
+                "it": "Registra tutte le moderazioni zalgo nel webhook interno"
+            },
+            "simulate": {
+                "description": "",
+                "en": "Simulate",
+                "de": "Simulieren",
+                "at": "Simulieren",
+                "fr": "Simuler",
+                "es": "Simular",
+                "ru": "Симулировать",
+                "it": "Simula"
+            },
+            "simulateresults": {
+                "description": "",
+                "en": "Simulation results",
+                "de": "Simulationsergebnisse",
+                "at": "Simulationsergebnisse",
+                "fr": "Résultats de la simulation",
+                "es": "Resultados de la simulación",
+                "ru": "Результаты симуляции",
+                "it": "Risultati della simulazione"
+            },
+            "noresult": {
+                "description": "",
+                "en": "Failed to load zalgo config",
+                "de": "Zalgo-Konfiguration konnte nicht geladen werden",
+                "at": "Zalgo-Konfiguration konnte nicht geladen werden",
+                "fr": "Échec du chargement de la configuration zalgo",
+                "es": "No se pudo cargar la configuración zalgo",
+                "ru": "Не удалось загрузить конфигурацию zalgo",
+                "it": "Impossibile caricare la configurazione zalgo"
+            },
+            "save": {
+                "description": "Save",
+                "en": "Save",
+                "de": "Speichern",
+                "at": "Speichan",
+                "fr": "Enregistrer",
+                "es": "Guardar",
+                "ru": "Сохранить",
+                "it": "Salva"
+            },
+            "submitting": {
+                "description": "Submitting",
+                "en": "Submitting...",
+                "de": "Sende...",
+                "at": "Sende...",
+                "fr": "Envoi...",
+                "es": "Enviando...",
+                "ru": "Отправка...",
+                "it": "Invio..."
+            },
+            "saved": {
+                "description": "saved",
+                "en": "Zalgo config saved",
+                "de": "Zalgo-Konfiguration gespeichert",
+                "at": "Zalgo-Konfiguration gespeichert",
+                "fr": "Configuration zalgo enregistrée",
+                "es": "Configuración zalgo guardada",
+                "ru": "Настройки zalgo сохранены",
+                "it": "Configurazione zalgo salvata"
+
+            },
+            "failedtosave": {
+                "description": "Failed to save",
+                "en": "Failed to save zalgo config",
+                "de": "Zalgo-Konfiguration konnte nicht gespeichert werden",
+                "at": "Zalgo-Konfiguration konnte nicht gespeichert werden",
+                "fr": "Échec de l'enregistrement de la configuration zalgo",
+                "es": "No se pudo guardar la configuración zalgo",
+                "ru": "Не удалось сохранить настройки zalgo",
+                "it": "Impossibile salvare la configurazione zalgo"
             }
         },
         "config": {

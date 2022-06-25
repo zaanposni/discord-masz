@@ -300,6 +300,14 @@ guildStaticSearchEntries.set([
         },
     },
     {
+        textKey: "nav.guild.settings.zalgo",
+        allowedToView: (user: IAuthUser, params: IRouteParams) =>
+            user && params?.guildId && (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            gotoHelper(`/guilds/${params.guildId}/zalgo`);
+        },
+    },
+    {
         textKey: "nav.guild.settings.search",
         descriptionKey: "nav.guild.settings.searchdetails",
         allowedToView: (user: IAuthUser, params: IRouteParams) =>
@@ -372,6 +380,15 @@ staticSearchEntries.set([
         descriptionKey: "nav.communitydetails",
         onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
             window.open("https://discord.gg/5zjpzw6h3S", "_blank").focus();
+        },
+        hidePerDefault: true,
+    },
+    {
+        textKey: "nav.reportabug",
+        href: "https://github.com/zaanposni/discord-masz/issues/new/choose",
+        descriptionKey: "nav.reportabugdetails",
+        onSelect: (gotoHelper: GotoHelper, params: IRouteParams) => {
+            window.open("https://github.com/zaanposni/discord-masz/issues/new/choose", "_blank").focus();
         },
         hidePerDefault: true,
     },

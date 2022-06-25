@@ -468,6 +468,27 @@ namespace MASZ.Data
             context.GuildMotds.RemoveRange(motd);
         }
 
+
+        // ==================================================================================
+        //
+        // Zalgo
+        //
+        // ==================================================================================
+
+        public async Task<ZalgoConfig> GetZalgoConfigForGuild(ulong guildId)
+        {
+            return await context.ZalgoConfigs.AsQueryable().Where(x => x.GuildId == guildId).FirstOrDefaultAsync();
+        }
+        public void SaveZalgoConfig(ZalgoConfig zalgo)
+        {
+            context.ZalgoConfigs.Update(zalgo);
+        }
+        public async Task DeleteZalgoConfigForGuild(ulong guildId)
+        {
+            var zalgo = await context.ZalgoConfigs.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            context.ZalgoConfigs.RemoveRange(zalgo);
+        }
+
         // ==================================================================================
         //
         // Tokens

@@ -149,6 +149,12 @@
                             }}>
                             {$_("nav.credits")}
                         </HeaderPanelLink>
+                        <HeaderPanelLink href="https://github.com/zaanposni/discord-masz/issues/new/choose" target="_blank">
+                            <div class="flex flex-row flex-nowrap">
+                                {$_("nav.reportabug")}
+                                <Launch20 class="ml-1" />
+                            </div>
+                        </HeaderPanelLink>
                         <HeaderPanelLink href="https://discord.gg/5zjpzw6h3S" target="_blank">
                             <div class="flex flex-row flex-nowrap">
                                 {$_("nav.community")}

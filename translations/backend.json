@@ -1225,6 +1225,21 @@
                 "ru": "Журнал аудита на уровне гильдии",
                 "it": "Registro di controllo a livello di gilda"
             }
+        },
+        "Zalgo": {
+            "description": "zalgo",
+            "var_types": {
+                "id": "ulong",
+                "oldName": "string",
+                "newName": "string"
+            },
+            "en": "User <@{id}> has been renamed from '{oldName}' to '{newName}'.",
+            "de": "Benutzer <@{id}> wurde von '{oldName}' zu '{newName}' umbenannt.",
+            "at": "Benutzer <@{id}> wuad von '{oldName}' zu '{newName}' umbenannt.",
+            "fr": "L'utilisateur <@{id}> a été renommé de '{oldName}' à '{newName}'.",
+            "es": "El usuario <@{id}> ha sido renombrado de '{oldName}' a '{newName}'.",
+            "ru": "Пользователь <@{id}> был переименован '{oldName}' на '{newName}'.",
+            "it": "L'utente <@{id}> è stato rinominato da '{oldName}' a '{newName}'."
         }
     },
     "Cmd": {

@@ -1342,6 +1342,19 @@ namespace MASZ.Utils
                 _ => "Guild-level audit log",
             };
         }
+        public string NotificationZalgo(ulong id, string oldName, string newName)
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => $"Benutzer <@{id}> wurde von '{oldName}' zu '{newName}' umbenannt.",
+                Language.at => $"Benutzer <@{id}> wuad von '{oldName}' zu '{newName}' umbenannt.",
+                Language.fr => $"L'utilisateur <@{id}> a été renommé de '{oldName}' à '{newName}'.",
+                Language.es => $"El usuario <@{id}> ha sido renombrado de '{oldName}' a '{newName}'.",
+                Language.ru => $"Пользователь <@{id}> был переименован '{oldName}' на '{newName}'.",
+                Language.it => $"L'utente <@{id}> è stato rinominato da '{oldName}' a '{newName}'.",
+                _ => $"User <@{id}> has been renamed from '{oldName}' to '{newName}'.",
+            };
+        }
         public string CmdOnlyTextChannel()
         {
             return PreferredLanguage switch

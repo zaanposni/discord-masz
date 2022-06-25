@@ -32,6 +32,8 @@
         "creditsdetails": "Ver los créditos de MASZ.",
         "community": "Comunidad",
         "communitydetails": "Visite la comunidad de Discord de MASZ.",
+        "reportabug": "Reportar un error",
+        "reportabugdetails": "Reportar un error",
         "terms": "Términos de servicio",
         "privacy": "Política de privacidad",
         "admin": {
@@ -53,6 +55,7 @@
             "settings": {
                 "motd": "MotD",
                 "auditlog": "Auditlog",
+                "zalgo": "Zalgo",
                 "automod": "Automod",
                 "base": "Ajustes",
                 "search": "Ajustes de hermandad",
@@ -64,16 +67,19 @@
     "widgets": {
         "latestcases": {
             "title": "Últimos casos",
-            "widgetdescription": "Este widget muestra los últimos casos de tu hermandad."
+            "widgetdescription": "Este widget muestra los últimos casos de tu hermandad.",
+            "empty": "No se encontraron casos."
         },
         "latestappeals": {
             "title": "Últimos apelaciones",
-            "widgetdescription": "Este widget muestra los últimos apelaciones de tu hermandad."
+            "widgetdescription": "Este widget muestra los últimos apelaciones de tu hermandad.",
+            "empty": "No se encontraron apelaciones."
         },
         "guildmoderatorcases": {
             "title": "Casos por moderador",
             "widgetdescription": "Este widget muestra todos los casos por moderador de tu hermandad.",
-            "cases": "Casos"
+            "cases": "Casos",
+            "empty": "No se encontraron casos."
         },
         "guildstats": {
             "title": "Estadísticas de hermandad",
@@ -82,33 +88,40 @@
             "invites": "Invitaciones",
             "usernotes": "Notas de usuario",
             "usermaps": "Mapas de usuario",
-            "banappeals": "Quejas de Baneo"
+            "banappeals": "Quejas de Baneo",
+            "empty": "No se encontraron estadísticas."
         },
         "guildautomodsplit": {
             "title": "División automod",
-            "widgetdescription": "Este widget muestra la división de automod de tu hermandad."
+            "widgetdescription": "Este widget muestra la división de automod de tu hermandad.",
+            "empty": "No se encontró división automod."
         },
         "guildmodcasecountchart": {
             "title": "Resumen de casos",
-            "widgetdescription": "Este widget muestra el resumen de los casos de tu hermandad."
+            "widgetdescription": "Este widget muestra el resumen de los casos de tu hermandad.",
+            "empty": "No se encontraron casos."
         },
         "guildappealcountchart": {
             "title": "Resumen de quejas",
-            "widgetdescription": "Este widget muestra el resumen de las quejas de tu hermandad."
+            "widgetdescription": "Este widget muestra el resumen de las quejas de tu hermandad.",
+            "empty": "No se encontraron quejas."
         },
         "guildautomodcountchart": {
             "title": "Resumen de automod",
-            "widgetdescription": "Este widget muestra el resumen de las automod de tu hermandad."
+            "widgetdescription": "Este widget muestra el resumen de las automod de tu hermandad.",
+            "empty": "No se encontraron automod."
         },
         "guildpendingmessages": {
             "title": "Mensajes pendientes",
-            "widgetdescription": "Este widget muestra los mensajes pendientes de tu hermandad."
+            "widgetdescription": "Este widget muestra los mensajes pendientes de tu hermandad.",
+            "empty": "No se encontraron mensajes pendientes."
         },
         "guildpunishmentstats": {
             "title": "Estadísticas de castigos",
             "widgetdescription": "Este widget muestra las estadísticas de castigos de tu hermandad.",
             "activemutes": "Mutes activos",
-            "activebans": "Bans activos"
+            "activebans": "Bans activos",
+            "empty": "No se encontraron castigos."
         },
         "guildquicksearch": {
             "title": "Búsqueda rápida",
@@ -122,13 +135,15 @@
         },
         "guildmotd": {
             "title": "MotD",
-            "widgetdescription": "Este widget muestra el mensaje del día actual."
+            "widgetdescription": "Este widget muestra el mensaje del día actual.",
+            "empty": "No hay mensaje del día."
         },
         "adminversion": {
             "title": "Información de la versión",
             "widgetdescription": "Este widget muestra la versión actualmente instalada y las actualizaciones disponibles.",
             "current": "Versión actual",
-            "new": "Actualización disponible"
+            "new": "Actualización disponible",
+            "empty": "No hay actualización disponible"
         },
         "adminstatus": {
             "title": "Estado",
@@ -136,11 +151,13 @@
             "offline": "Desconectado",
             "bot": "Bot",
             "db": "Base de datos",
-            "cache": "Caché"
+            "cache": "Caché",
+            "empty": "No hay estado disponible"
         },
         "adminloggedin": {
             "title": "Usuarios conectados",
-            "widgetdescription": "Este widget muestra los usuarios actualmente conectados."
+            "widgetdescription": "Este widget muestra los usuarios actualmente conectados.",
+            "empty": "No hay usuarios conectados"
         },
         "adminresources": {
             "title": "Recursos",
@@ -150,7 +167,8 @@
             "automods": "Automod",
             "usernotes": "Notas de usuario",
             "usermaps": "Mapas de usuario",
-            "invites": "Invitaciones"
+            "invites": "Invitaciones",
+            "empty": "No hay recursos"
         },
         "admincache": {
             "title": "Caché",
@@ -160,7 +178,8 @@
             "bans": "Bans",
             "members": "Miembros",
             "dmchannels": "Canales DM",
-            "tokens": "Inicios de sesión con token"
+            "tokens": "Inicios de sesión con token",
+            "empty": "No hay recursos"
         },
         "dashboardconfig": {
             "title": "Configuración del tablero",
@@ -494,6 +513,22 @@
                 "customwordfield": "Ignorar enlaces (ingresar patrones de expresiones regulares divididos por líneas nuevas)",
                 "linktext": "Ejemplo"
             }
+        },
+        "zalgo": {
+            "title": "Zalgo",
+            "explain": "Utiliza esta función para renombrar automáticamente a los usuarios que utilicen zalgo en su nombre de usuario o en su apodo.",
+            "enable": "Habilitar la moderación zalgo en este servidor",
+            "renamenormal": "Intenta renombrar a los usuarios con zalgo a texto normal que sigue su nombre de usuario",
+            "renamefallback": "Utiliza esta cadena como opción de renombrado",
+            "allowedpercentage": "Porcentaje permitido de caracteres zalgo en un nombre de usuario o un apodo",
+            "logtomodchannel": "Registrar todas las moderaciones zalgo en el webhook interno",
+            "simulate": "Simular",
+            "simulateresults": "Resultados de la simulación",
+            "noresult": "No se pudo cargar la configuración zalgo",
+            "save": "Guardar",
+            "submitting": "Enviando...",
+            "saved": "Configuración zalgo guardada",
+            "failedtosave": "No se pudo guardar la configuración zalgo"
         },
         "config": {
             "title": "Configuración de la hermandad",

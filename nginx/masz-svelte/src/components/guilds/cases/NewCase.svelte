@@ -449,7 +449,7 @@
         <div class="flex flex-col mb-4">
             <div class="text-lg font-bold mb-2">{$_("guilds.casedialog.files")}</div>
             <div class="text-md">{$_("guilds.casedialog.filesexplain")}</div>
-            <FileUploader bind:files={$filesToUpload} multiple buttonLabel={$_("guilds.casedialog.filesbutton")} status="complete" />
+            <FileUploader bind:files={$filesToUpload} multiple buttonLabel={$_("guilds.casedialog.filesbutton")} status="edit" />
         </div>
 
         <!-- Submit -->

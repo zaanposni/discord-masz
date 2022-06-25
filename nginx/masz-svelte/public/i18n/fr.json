@@ -32,6 +32,8 @@
         "creditsdetails": "Voir les crédits de MASZ.",
         "community": "Communauté",
         "communitydetails": "Visitez la communauté discord de MASZ.",
+        "reportabug": "Signaler un bug",
+        "reportabugdetails": "Signaler un bug",
         "terms": "Conditions d'utilisation",
         "privacy": "Politique de confidentialité",
         "admin": {
@@ -53,6 +55,7 @@
             "settings": {
                 "motd": "MotD",
                 "auditlog": "Auditlog",
+                "zalgo": "Zalgo",
                 "automod": "Automod",
                 "base": "Paramètres",
                 "search": "Paramètres de guilde",
@@ -64,16 +67,19 @@
     "widgets": {
         "latestcases": {
             "title": "Derniers cas",
-            "widgetdescription": "Ce widget affiche les derniers cas de votre guilde."
+            "widgetdescription": "Ce widget affiche les derniers cas de votre guilde.",
+            "empty": "Aucun cas trouvé."
         },
         "latestappeals": {
             "title": "Derniers appels",
-            "widgetdescription": "Ce widget affiche les derniers appels de votre guilde."
+            "widgetdescription": "Ce widget affiche les derniers appels de votre guilde.",
+            "empty": "Aucun appel trouvé."
         },
         "guildmoderatorcases": {
             "title": "Cas par modérateur",
             "widgetdescription": "Ce widget affiche tous les cas par modérateur de votre guilde.",
-            "cases": "Cas"
+            "cases": "Cas",
+            "empty": "Aucun cas trouvé."
         },
         "guildstats": {
             "title": "Statistiques de guilde",
@@ -82,33 +88,40 @@
             "invites": "Invitations",
             "usernotes": "Notes d'utilisateur",
             "usermaps": "Cartes d'utilisateur",
-            "banappeals": "Appels de bannissement"
+            "banappeals": "Appels de bannissement",
+            "empty": "Aucune statistique trouvée."
         },
         "guildautomodsplit": {
             "title": "Séparation automod",
-            "widgetdescription": "Ce widget affiche les automodérations de votre guilde."
+            "widgetdescription": "Ce widget affiche les automodérations de votre guilde.",
+            "empty": "Aucune séparation automod trouvée."
         },
         "guildmodcasecountchart": {
             "title": "Aperçu des cas",
-            "widgetdescription": "Ce widget affiche l'aperçu des cas de votre guilde."
+            "widgetdescription": "Ce widget affiche l'aperçu des cas de votre guilde.",
+            "empty": "Aucun cas trouvé."
         },
         "guildappealcountchart": {
             "title": "Aperçu des appels",
-            "widgetdescription": "Ce widget affiche l'aperçu des appels de votre guilde."
+            "widgetdescription": "Ce widget affiche l'aperçu des appels de votre guilde.",
+            "empty": "Aucun appel trouvé."
         },
         "guildautomodcountchart": {
             "title": "Aperçu des automodérations",
-            "widgetdescription": "Ce widget affiche l'aperçu des automodérations de votre guilde."
+            "widgetdescription": "Ce widget affiche l'aperçu des automodérations de votre guilde.",
+            "empty": "Aucune automodération trouvée."
         },
         "guildpendingmessages": {
             "title": "Messages en attente",
-            "widgetdescription": "Ce widget affiche les messages en attente de votre guilde."
+            "widgetdescription": "Ce widget affiche les messages en attente de votre guilde.",
+            "empty": "Aucun message en attente trouvé."
         },
         "guildpunishmentstats": {
             "title": "Statistiques de punition",
             "widgetdescription": "Ce widget affiche les statistiques de punition de votre guilde.",
             "activemutes": "Mutes actifs",
-            "activebans": "Bannissements actifs"
+            "activebans": "Bannissements actifs",
+            "empty": "Aucune punition trouvée."
         },
         "guildquicksearch": {
             "title": "Recherche rapide",
@@ -122,13 +135,15 @@
         },
         "guildmotd": {
             "title": "MotD",
-            "widgetdescription": "Ce widget affiche le message du jour actuel."
+            "widgetdescription": "Ce widget affiche le message du jour actuel.",
+            "empty": "Aucun message du jour."
         },
         "adminversion": {
             "title": "Version info",
             "widgetdescription": "Ce widget affiche la version actuellement installée et les mises à jour disponibles.",
             "current": "Version actuelle",
-            "new": "Mise à jour disponible"
+            "new": "Mise à jour disponible",
+            "empty": "Aucune mise à jour disponible"
         },
         "adminstatus": {
             "title": "Statut",
@@ -136,11 +151,13 @@
             "offline": "Hors ligne",
             "bot": "Bot",
             "db": "Base de données",
-            "cache": "Cache"
+            "cache": "Cache",
+            "empty": "Aucun statut disponible"
         },
         "adminloggedin": {
             "title": "Utilisateurs connectés",
-            "widgetdescription": "Ce widget affiche les utilisateurs actuellement connectés."
+            "widgetdescription": "Ce widget affiche les utilisateurs actuellement connectés.",
+            "empty": "Aucun utilisateur connecté"
         },
         "adminresources": {
             "title": "Ressources",
@@ -150,7 +167,8 @@
             "automods": "Automod",
             "usernotes": "Notes d'utilisateur",
             "usermaps": "Cartes d'utilisateur",
-            "invites": "Invitations"
+            "invites": "Invitations",
+            "empty": "Aucune ressource"
         },
         "admincache": {
             "title": "Cache",
@@ -160,7 +178,8 @@
             "bans": "Banns",
             "members": "Membres",
             "dmchannels": "Canaux DM",
-            "tokens": "Connexions par jetons"
+            "tokens": "Connexions par jetons",
+            "empty": "Aucune ressource"
         },
         "dashboardconfig": {
             "title": "Configuration du tableau de bord",
@@ -494,6 +513,22 @@
                 "customwordfield": "Ignorer les liens (entrer les modèles regex divisés par des nouvelles lignes)",
                 "linktext": "Exemple"
             }
+        },
+        "zalgo": {
+            "title": "Zalgo",
+            "explain": "Utilisez cette fonctionnalité pour renommer automatiquement les utilisateurs qui utilisent zalgo dans leur nom d'utilisateur ou leur pseudo.",
+            "enable": "Activer la modération zalgo dans ce serveur",
+            "renamenormal": "Essaye de renommer les utilisateurs avec zalgo en texte normal qui ressemble à leur nom d'utilisateur",
+            "renamefallback": "Utilisez cette chaîne comme option de renommage",
+            "allowedpercentage": "Pourcentage autorisé de caractères zalgo dans un nom d'utilisateur ou un pseudo",
+            "logtomodchannel": "Journaliser toutes les modérations zalgo dans le webhook interne",
+            "simulate": "Simuler",
+            "simulateresults": "Résultats de la simulation",
+            "noresult": "Échec du chargement de la configuration zalgo",
+            "save": "Enregistrer",
+            "submitting": "Envoi...",
+            "saved": "Configuration zalgo enregistrée",
+            "failedtosave": "Échec de l'enregistrement de la configuration zalgo"
         },
         "config": {
             "title": "Configuration de la guilde",

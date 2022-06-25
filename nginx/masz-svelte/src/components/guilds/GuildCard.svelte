@@ -5,7 +5,6 @@
     import GuildIcon from "../discord/GuildIcon.svelte";
 
     export let guild: IDiscordGuild;
-    export let privileged: boolean = false;
 </script>
 
 <div class="flex flex-row flex-nowrap masz-card cursor-pointer" on:click>

@@ -128,4 +128,7 @@
             <SkeletonText />
         </div>
     </div>
+    <div slot="empty">
+        {$_("widgets.guildmodcasecountchart.empty")}
+    </div>
 </DashboardWidget>

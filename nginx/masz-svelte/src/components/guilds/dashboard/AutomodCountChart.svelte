@@ -102,4 +102,7 @@
             <SkeletonText />
         </div>
     </div>
+    <div slot="empty">
+        {$_("widgets.guildautomodcountchart.empty")}
+    </div>
 </DashboardWidget>

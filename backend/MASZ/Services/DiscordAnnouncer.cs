@@ -63,6 +63,8 @@ namespace MASZ.Services
 
             _eventHandler.OnAppealCreated += async (a, b) => await AnnounceNewAppeal(a, b);
             _eventHandler.OnAppealUpdated += async (a, b, c) => await AnnounceUpdatedAppeal(a, b, c);
+
+            _eventHandler.OnZalgoNicknameRename += async (a, b, c, d) => await AnnounceZalgoRename(a, b, c, d);
         }
 
         private async Task AnnounceTipsInNewGuild(GuildConfig guildConfig, bool importExistingBans)
@@ -461,6 +463,30 @@ namespace MASZ.Services
                 catch (Exception e)
                 {
                     _logger.LogError(e, $"Error while announcing guild auditlog {config.GuildId}/{config.GuildAuditLogEvent} ({config.Id}) to {guildConfig.ModInternalNotificationWebhook}.");
+                }
+            }
+        }
+
+        private async Task AnnounceZalgoRename(ZalgoConfig config, ulong id, string oldName, string newName)
+        {
+            using var scope = _serviceProvider.CreateScope();
+
+            _logger.LogInformation($"Announcing zalgo rename {config.GuildId}/{id}.");
+
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(config.GuildId);
+
+            if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+            {
+                _logger.LogInformation($"Sending internal webhook for zalgo rename {config.GuildId}/{id} to {guildConfig.ModInternalNotificationWebhook}.");
+
+                try
+                {
+                    Translator translator = scope.ServiceProvider.GetRequiredService<Translator>();
+                    await _discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, content: translator.T(guildConfig).NotificationZalgo(id, oldName, newName));
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError(e, $"Errow while announcing internal webhook for zalgo rename {config.GuildId}/{id} to {guildConfig.ModInternalNotificationWebhook}.");
                 }
             }
         }

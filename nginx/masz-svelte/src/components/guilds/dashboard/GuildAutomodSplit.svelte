@@ -89,4 +89,7 @@
             <SkeletonText />
         </div>
     </div>
+    <div slot="empty">
+        {$_("widgets.guildautomodsplit.empty")}
+    </div>
 </DashboardWidget>
