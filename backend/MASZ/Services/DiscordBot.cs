@@ -580,11 +580,10 @@ namespace MASZ.Services
                 try
                 {
                     List<TrackedInvite> newInvites = await FetchInvites(member.Guild);
+
+                    TrackedInvite usedInvite = InviteTracker.GetUsedInvite(member.Guild.Id, newInvites);
+
                     InviteTracker.AddInvites(member.Guild.Id, newInvites);
-
-                    TrackedInvite usedInvite = null;
-
-                    usedInvite = InviteTracker.GetUsedInvite(member.Guild.Id, newInvites);
 
                     if (usedInvite != null)
                     {
