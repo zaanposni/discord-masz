@@ -486,24 +486,41 @@ namespace MASZ.Services
         {
             using var scope = _serviceProvider.CreateScope();
 
-            var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            DiscordAPIInterface discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
+            Translator translator = scope.ServiceProvider.GetRequiredService<Translator>();
+
             await translator.SetContext(member.Guild.Id);
 
+            _logger.LogDebug("here");
             // =========================================================================================================================================
             // Refresh identity memberships
-            IdentityManager identityManager = scope.ServiceProvider.GetRequiredService<IdentityManager>();
-            foreach (Identity identity in identityManager.GetCurrentIdentities())
+            try
             {
-                if (identity.GetCurrentUser().Id == member.Id)
+                IdentityManager identityManager = scope.ServiceProvider.GetRequiredService<IdentityManager>();
+                foreach (Identity identity in identityManager.GetCurrentIdentities())
                 {
-                    identity.AddGuildMembership(member);
+                    if (identity.GetCurrentUser().Id == member.Id)
+                    {
+                        identity.AddGuildMembership(member);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to refresh identity memberships.");
+            }
 
+            _logger.LogDebug("here2");
             // =========================================================================================================================================
             // Refresh member cache
-            DiscordAPIInterface discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
-            discordAPI.AddOrUpdateCache(CacheKey.GuildMember(member.Guild.Id, member.Id), new CacheApiResponse(member));
+            try
+            {
+                discordAPI.AddOrUpdateCache(CacheKey.GuildMember(member.Guild.Id, member.Id), new CacheApiResponse(member));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to refresh member cache.");
+            }
 
             GuildConfig guildConfig;
             try
@@ -515,6 +532,7 @@ namespace MASZ.Services
                 return;
             }
 
+            _logger.LogDebug("here3");
             // =========================================================================================================================================
             // Punishment handling
             try
@@ -532,6 +550,7 @@ namespace MASZ.Services
                 return;
             }
 
+            _logger.LogDebug("here4");
             // =========================================================================================================================================
             // Invitetracking
             try
@@ -581,6 +600,7 @@ namespace MASZ.Services
                 _logger.LogError(ex, "Failed to get used invite.");
             }
 
+            _logger.LogDebug("here5");
             // =========================================================================================================================================
             // Appeal handling
             try
