@@ -484,25 +484,13 @@ namespace MASZ.Services
 
         private async Task GuildMemberAddedHandler(SocketGuildUser member)
         {
-            _logger.LogInformation("here0");
-            DiscordAPIInterface discordAPI;
-            Translator translator;
             using var scope = _serviceProvider.CreateScope();
-            _logger.LogInformation("here0.5");
-            try
-            {
 
-                discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
-                translator = scope.ServiceProvider.GetRequiredService<Translator>();
+            DiscordAPIInterface discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
+            Translator translator = scope.ServiceProvider.GetRequiredService<Translator>();
 
-                await translator.SetContext(member.Guild.Id);
-                }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "something went big wrong.");
-            }
+            await translator.SetContext(member.Guild.Id);
 
-            return;
             _logger.LogInformation("here");
             // =========================================================================================================================================
             // Refresh identity memberships
