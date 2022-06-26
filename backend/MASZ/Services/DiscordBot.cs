@@ -489,6 +489,7 @@ namespace MASZ.Services
             var translator = scope.ServiceProvider.GetRequiredService<Translator>();
             await translator.SetContext(member.Guild.Id);
 
+            // =========================================================================================================================================
             // Refresh identity memberships
             IdentityManager identityManager = scope.ServiceProvider.GetRequiredService<IdentityManager>();
             foreach (Identity identity in identityManager.GetCurrentIdentities())
@@ -499,6 +500,7 @@ namespace MASZ.Services
                 }
             }
 
+            // =========================================================================================================================================
             // Refresh member cache
             DiscordAPIInterface discordAPI = scope.ServiceProvider.GetRequiredService<DiscordAPIInterface>();
             discordAPI.AddOrUpdateCache(CacheKey.GuildMember(member.Guild.Id, member.Id), new CacheApiResponse(member));
@@ -513,6 +515,7 @@ namespace MASZ.Services
                 return;
             }
 
+            // =========================================================================================================================================
             // Punishment handling
             try
             {
@@ -529,54 +532,56 @@ namespace MASZ.Services
                 return;
             }
 
+            // =========================================================================================================================================
             // Invitetracking
-            List<TrackedInvite> newInvites = await FetchInvites(member.Guild);
-            TrackedInvite usedInvite = null;
             try
             {
+                List<TrackedInvite> newInvites = await FetchInvites(member.Guild);
+                InviteTracker.AddInvites(member.Guild.Id, newInvites);
+
+                TrackedInvite usedInvite = null;
+
                 usedInvite = InviteTracker.GetUsedInvite(member.Guild.Id, newInvites);
+
+                if (usedInvite != null)
+                {
+                    UserInvite invite = new()
+                    {
+                        GuildId = member.Guild.Id,
+                        JoinedUserId = member.Id,
+                        JoinedAt = DateTime.UtcNow,
+                        InviteIssuerId = usedInvite.CreatorId,
+                        InviteCreatedAt = usedInvite.CreatedAt,
+                        TargetChannelId = usedInvite.TargetChannelId,
+                        UsedInvite = $"https://discord.gg/{usedInvite.Code}"
+                    };
+
+                    _logger.LogInformation($"User {member.Username}#{member.Discriminator} joined guild {member.Guild.Name} with ID: {member.Guild.Id} using invite {usedInvite.Code}");
+
+                    if (guildConfig.ExecuteWhoisOnJoin && !string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+                    {
+                        string message;
+                        if (invite.InviteIssuerId != 0 && invite.InviteCreatedAt != null)
+                        {
+                            message = translator.T().NotificationAutoWhoisJoinWithAndFrom(member, invite.InviteIssuerId, invite.InviteCreatedAt.Value, member.CreatedAt.DateTime, invite.UsedInvite);
+                        }
+                        else
+                        {
+                            message = translator.T().NotificationAutoWhoisJoinWith(member, member.CreatedAt.DateTime, invite.UsedInvite);
+                        }
+
+                        await discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, null, message, AllowedMentions.None);
+                    }
+
+                    await InviteRepository.CreateDefault(scope.ServiceProvider).CreateInvite(invite);
+                }
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Failed to get used invite.");
             }
 
-            InviteTracker.AddInvites(member.Guild.Id, newInvites);
-
-            if (usedInvite != null)
-            {
-                UserInvite invite = new()
-                {
-                    GuildId = member.Guild.Id,
-                    JoinedUserId = member.Id,
-                    JoinedAt = DateTime.UtcNow,
-                    InviteIssuerId = usedInvite.CreatorId,
-                    InviteCreatedAt = usedInvite.CreatedAt,
-                    TargetChannelId = usedInvite.TargetChannelId,
-                    UsedInvite = $"https://discord.gg/{usedInvite.Code}"
-                };
-
-                _logger.LogInformation($"User {member.Username}#{member.Discriminator} joined guild {member.Guild.Name} with ID: {member.Guild.Id} using invite {usedInvite.Code}");
-
-                if (guildConfig.ExecuteWhoisOnJoin && !string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
-                {
-                    string message;
-
-                    if (invite.InviteIssuerId != 0 && invite.InviteCreatedAt != null)
-                    {
-                        message = translator.T().NotificationAutoWhoisJoinWithAndFrom(member, invite.InviteIssuerId, invite.InviteCreatedAt.Value, member.CreatedAt.DateTime, invite.UsedInvite);
-                    }
-                    else
-                    {
-                        message = translator.T().NotificationAutoWhoisJoinWith(member, member.CreatedAt.DateTime, invite.UsedInvite);
-                    }
-
-                    await discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, null, message, AllowedMentions.None);
-                }
-
-                await InviteRepository.CreateDefault(scope.ServiceProvider).CreateInvite(invite);
-            }
-
+            // =========================================================================================================================================
             // Appeal handling
             try
             {
@@ -587,7 +592,7 @@ namespace MASZ.Services
                 _logger.LogError(ex, "Failed to handle appeal on member join.");
             }
 
-
+            // =========================================================================================================================================
             // Check zalgo
             ZalgoRepository repo = ZalgoRepository.CreateWithBotIdentity(scope.ServiceProvider);
             try
