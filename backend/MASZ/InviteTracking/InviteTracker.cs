@@ -8,6 +8,17 @@ namespace MASZ.InviteTracking
         {
             if (GuildInvites.ContainsKey(guildId))
             {
+                Console.WriteLine("current invites");
+                foreach (var invite in currentInvites)
+                {
+                    Console.WriteLine($"{invite.Code} {invite.Uses} {invite.MaxUses} {invite.ExpiresAt}");
+                }
+                Console.WriteLine("saved invites");
+                foreach (var invite in GuildInvites[guildId])
+                {
+                    Console.WriteLine($"{invite.Code} {invite.Uses} {invite.MaxUses} {invite.ExpiresAt}");
+                }
+
                 List<TrackedInvite> invites = GuildInvites[guildId];
                 List<TrackedInvite> changedInvites = invites.Where(x =>
                     (currentInvites.Find(c => c.Code == x.Code) != null && x.HasNewUses(currentInvites.Find(c => c.Code == x.Code).Uses)) ||  // where invite is in current invites and has new uses
