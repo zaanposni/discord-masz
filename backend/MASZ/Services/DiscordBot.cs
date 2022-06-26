@@ -484,7 +484,7 @@ namespace MASZ.Services
 
         private async Task GuildMemberAddedHandler(SocketGuildUser member)
         {
-            _logger.LogDebug("here0");
+            _logger.LogInformation("here0");
             DiscordAPIInterface discordAPI;
             Translator translator;
             using var scope = _serviceProvider.CreateScope();
@@ -502,7 +502,7 @@ namespace MASZ.Services
             }
 
             return;
-            _logger.LogDebug("here");
+            _logger.LogInformation("here");
             // =========================================================================================================================================
             // Refresh identity memberships
             try
@@ -521,7 +521,7 @@ namespace MASZ.Services
                 _logger.LogError(ex, "Failed to refresh identity memberships.");
             }
 
-            _logger.LogDebug("here2");
+            _logger.LogInformation("here2");
             // =========================================================================================================================================
             // Refresh member cache
             try
@@ -543,7 +543,7 @@ namespace MASZ.Services
                 return;
             }
 
-            _logger.LogDebug("here3");
+            _logger.LogInformation("here3");
             // =========================================================================================================================================
             // Punishment handling
             try
@@ -561,7 +561,7 @@ namespace MASZ.Services
                 return;
             }
 
-            _logger.LogDebug("here4");
+            _logger.LogInformation("here4");
             // =========================================================================================================================================
             // Invitetracking
             try
@@ -611,7 +611,7 @@ namespace MASZ.Services
                 _logger.LogError(ex, "Failed to get used invite.");
             }
 
-            _logger.LogDebug("here5");
+            _logger.LogInformation("here5");
             // =========================================================================================================================================
             // Appeal handling
             try
