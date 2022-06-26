@@ -14,12 +14,16 @@ namespace MASZ.InviteTracking
                     (x.MaxUses.GetValueOrDefault(0) - 1 == x.Uses && currentInvites.Find(c => c.Code == x.Code) == null)  // where invite is not in current invites and maybe expired via max uses
                 ).ToList();
 
+                Console.WriteLine("changed invites");
+                Console.WriteLine(string.Join(", ", changedInvites.Select(x => x.Code)));
                 if (changedInvites.Count == 1)
                 {
                     return changedInvites.First();
                 }
 
                 List<TrackedInvite> notExpiredInvites = changedInvites.Where(x => !x.IsExpired()).ToList();
+                Console.WriteLine("not expired invites");
+                Console.WriteLine(string.Join(", ", notExpiredInvites.Select(x => x.Code)));
                 if (notExpiredInvites.Count == 1)
                 {
                     return notExpiredInvites.First();
