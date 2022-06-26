@@ -574,55 +574,51 @@ namespace MASZ.Services
 
             // =========================================================================================================================================
             // Invitetracking
-            _ = Task.Run(async () =>
+            try
             {
-                await Task.Delay(5000); // wait for discord to refresh the usage counts
-                try
+                List<TrackedInvite> newInvites = await FetchInvites(member.Guild);
+
+                TrackedInvite usedInvite = InviteTracker.GetUsedInvite(member.Guild.Id, newInvites);
+
+                InviteTracker.AddInvites(member.Guild.Id, newInvites);
+
+                if (usedInvite != null)
                 {
-                    List<TrackedInvite> newInvites = await FetchInvites(member.Guild);
-
-                    TrackedInvite usedInvite = InviteTracker.GetUsedInvite(member.Guild.Id, newInvites);
-
-                    InviteTracker.AddInvites(member.Guild.Id, newInvites);
-
-                    if (usedInvite != null)
+                    UserInvite invite = new()
                     {
-                        UserInvite invite = new()
+                        GuildId = member.Guild.Id,
+                        JoinedUserId = member.Id,
+                        JoinedAt = DateTime.UtcNow,
+                        InviteIssuerId = usedInvite.CreatorId,
+                        InviteCreatedAt = usedInvite.CreatedAt,
+                        TargetChannelId = usedInvite.TargetChannelId,
+                        UsedInvite = $"https://discord.gg/{usedInvite.Code}"
+                    };
+
+                    _logger.LogInformation($"User {member.Username}#{member.Discriminator} joined guild {member.Guild.Name} with ID: {member.Guild.Id} using invite {usedInvite.Code}");
+
+                    if (guildConfig.ExecuteWhoisOnJoin && !string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+                    {
+                        string message;
+                        if (invite.InviteIssuerId != 0 && invite.InviteCreatedAt != null)
                         {
-                            GuildId = member.Guild.Id,
-                            JoinedUserId = member.Id,
-                            JoinedAt = DateTime.UtcNow,
-                            InviteIssuerId = usedInvite.CreatorId,
-                            InviteCreatedAt = usedInvite.CreatedAt,
-                            TargetChannelId = usedInvite.TargetChannelId,
-                            UsedInvite = $"https://discord.gg/{usedInvite.Code}"
-                        };
-
-                        _logger.LogInformation($"User {member.Username}#{member.Discriminator} joined guild {member.Guild.Name} with ID: {member.Guild.Id} using invite {usedInvite.Code}");
-
-                        if (guildConfig.ExecuteWhoisOnJoin && !string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+                            message = translator.T().NotificationAutoWhoisJoinWithAndFrom(member, invite.InviteIssuerId, invite.InviteCreatedAt.Value, member.CreatedAt.DateTime, invite.UsedInvite);
+                        }
+                        else
                         {
-                            string message;
-                            if (invite.InviteIssuerId != 0 && invite.InviteCreatedAt != null)
-                            {
-                                message = translator.T().NotificationAutoWhoisJoinWithAndFrom(member, invite.InviteIssuerId, invite.InviteCreatedAt.Value, member.CreatedAt.DateTime, invite.UsedInvite);
-                            }
-                            else
-                            {
-                                message = translator.T().NotificationAutoWhoisJoinWith(member, member.CreatedAt.DateTime, invite.UsedInvite);
-                            }
-
-                            await discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, null, message, AllowedMentions.None);
+                            message = translator.T().NotificationAutoWhoisJoinWith(member, member.CreatedAt.DateTime, invite.UsedInvite);
                         }
 
-                        await InviteRepository.CreateDefault(scope.ServiceProvider).CreateInvite(invite);
+                        await discordAPI.ExecuteWebhook(guildConfig.ModInternalNotificationWebhook, null, message, AllowedMentions.None);
                     }
+
+                    await InviteRepository.CreateDefault(scope.ServiceProvider).CreateInvite(invite);
                 }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Failed to get used invite.");
-                }
-            });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to get used invite.");
+            }
         }
 
         private async Task GuildUpdatedHandler(SocketGuild oldG, SocketGuild newG)
