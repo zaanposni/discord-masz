@@ -1,5 +1,17 @@
 [
   {
+    "title": "Version 3.1.1",
+    "version": "v3.1.1",
+    "released_at": "2022-06-26",
+    "contributors": [ ],
+    "fixes": [
+      {
+        "title": "Improve invite tracking.",
+        "description": "Failed invite tracking should now result in better logging."
+      }
+    ]
+  },
+  {
     "title": "Version 3.1.0",
     "version": "v3.1.0",
     "released_at": "2022-06-25",
