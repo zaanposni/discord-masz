@@ -488,6 +488,7 @@ namespace MASZ.Services
             DiscordAPIInterface discordAPI;
             Translator translator;
             using var scope = _serviceProvider.CreateScope();
+            _logger.LogInformation("here0.5");
             try
             {
 
