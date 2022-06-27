@@ -24,7 +24,7 @@ Furthermore, join the demo guild [https://discord.gg/7ubU6aWX9c](https://discord
 
 ![dashboard preview](/docs/dashboard.png)
 
-**Previews and examples can be found at:** [https://github.com/zaanposni/discord-masz/tree/master/docs](https://github.com/zaanposni/discord-masz/tree/master/docs)
+**Previews and examples can be found at:** [https://github.com/zaanposni/discord-masz/tree/master/docs](https://github.com/zaanposni/discord-masz/tree/master/docs#preview)
 
 ### 🤝 Support Server
 
