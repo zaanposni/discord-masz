@@ -8,6 +8,10 @@
       {
         "title": "Upgraded svelte package.",
         "description": "Upgraded the npm svelte package to a newer version to fix a vulnerability."
+      },
+      {
+        "title": "Upgraded moment package.",
+        "description": "Upgraded the npm moment package to a newer version to fix a vulnerability."
       }
     ]
   },
