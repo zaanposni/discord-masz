@@ -1,5 +1,17 @@
 [
   {
+    "title": "Version 3.1.2",
+    "version": "v3.1.2",
+    "released_at": "2022-07-16",
+    "contributors": [ ],
+    "technical": [
+      {
+        "title": "Upgraded svelte package.",
+        "description": "Upgraded the npm svelte package to a newer version to fix a vulnerability."
+      }
+    ]
+  },
+  {
     "title": "Version 3.1.1",
     "version": "v3.1.1",
     "released_at": "2022-06-26",
