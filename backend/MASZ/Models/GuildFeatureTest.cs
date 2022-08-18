@@ -1,5 +1,4 @@
 using Discord;
-using MASZ.Enums;
 
 namespace MASZ.Models
 {

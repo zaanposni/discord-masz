@@ -1,6 +1,6 @@
 using Discord;
-using MASZ.Extensions;
 using MASZ.Enums;
+using MASZ.Extensions;
 using MASZ.Models;
 
 namespace MASZ.Utils
@@ -529,7 +529,7 @@ namespace MASZ.Utils
             {
                 Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert.",
                 Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert woan.",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour par <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                 Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido actualizado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                 Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был обновлен <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                 Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato aggiornato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
@@ -555,7 +555,7 @@ namespace MASZ.Utils
             {
                 Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) gelöscht.",
                 Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is vo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) glescht woan.",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé par <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                 Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido eliminado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                 Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был удален <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                 Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
@@ -699,8 +699,8 @@ namespace MASZ.Utils
                 Language.de => $"Die Moderatoren von `{guild.Name}` haben dich temporär stummgeschalten bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont temporairement mis en sourdine jusqu'à {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
-                Language.es => $"Los moderadores del gremio `{guild.Name}` te han silenciado temporalmente hasta {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
-                Language.ru => $"Модераторы гильдии `{guild.Name}` временно отключили ваш звук до {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
+                Language.es => $"Los moderadores del gremio `{guild.Name}` te han silenciado temporalmente hasta {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
+                Language.ru => $"Модераторы гильдии `{guild.Name}` временно отключили ваш звук до {modCase.PunishedUntil.Value.ToDiscordTS()}.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
                 Language.it => $"I moderatori della gilda `{guild.Name}` ti hanno temporaneamente disattivato l'audio fino a {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
                 _ => $"The moderators of guild `{guild.Name}` have temporarily muted you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
             };
@@ -725,8 +725,8 @@ namespace MASZ.Utils
                 Language.de => $"Die Moderatoren von `{guild.Name}` haben dich temporär gebannt bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont temporairement banni jusqu'à {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
-                Language.es => $"Los moderadores del gremio `{guild.Name}` te han baneado temporalmente hasta el {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
-                Language.ru => $"Модераторы гильдии `{guild.Name}` временно заблокировали вас до {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
+                Language.es => $"Los moderadores del gremio `{guild.Name}` te han baneado temporalmente hasta el {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
+                Language.ru => $"Модераторы гильдии `{guild.Name}` временно заблокировали вас до {modCase.PunishedUntil.Value.ToDiscordTS()}.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
                 Language.it => $"I moderatori della gilda `{guild.Name}` ti hanno temporaneamente bannato fino al {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
                 _ => $"The moderators of guild `{guild.Name}` have temporarily banned you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
             };
@@ -1180,8 +1180,8 @@ namespace MASZ.Utils
                 Language.de => $"{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` beigetreten.",
                 Language.at => $"{user.Mention} (registriat {registered.ToDiscordTS()}) is mit da Eiladung `{invite}` beigetretn.",
                 Language.fr => $"{user.Mention} (enregistré {registered.ToDiscordTS()}) rejoint avec l'invitation `{invite}`.",
-                Language.es => $"{user.Mention} (registrado {registered.ToDiscordTS ()}) se unió con la invitación `{invite}`.",
-                Language.ru => $"{user.Mention} (зарегистрированный {registered.ToDiscordTS ()}) присоединился с приглашением `{invite}`.",
+                Language.es => $"{user.Mention} (registrado {registered.ToDiscordTS()}) se unió con la invitación `{invite}`.",
+                Language.ru => $"{user.Mention} (зарегистрированный {registered.ToDiscordTS()}) присоединился с приглашением `{invite}`.",
                 Language.it => $"{user.Mention} (registrato {registered.ToDiscordTS()}) si è unito con l'invito `{invite}`.",
                 _ => $"{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}`.",
             };
@@ -1934,8 +1934,8 @@ namespace MASZ.Utils
                 Language.de => $"`{inviteCode}` erstellt am {createdAt.ToDiscordTS()}.",
                 Language.at => $"`{inviteCode}` erstöt vo {createdAt.ToDiscordTS()}.",
                 Language.fr => $"`{inviteCode}` créé à {createdAt.ToDiscordTS()}.",
-                Language.es => $"`{inviteCode}` creado en {createdAt.ToDiscordTS ()}.",
-                Language.ru => $"`{inviteCode}` создан в {createdAt.ToDiscordTS ()}.",
+                Language.es => $"`{inviteCode}` creado en {createdAt.ToDiscordTS()}.",
+                Language.ru => $"`{inviteCode}` создан в {createdAt.ToDiscordTS()}.",
                 Language.it => $"`{inviteCode}` creato su {createdAt.ToDiscordTS()}.",
                 _ => $"`{inviteCode}` created at {createdAt.ToDiscordTS()}.",
             };
@@ -1960,8 +1960,8 @@ namespace MASZ.Utils
                 Language.de => $"`{inviteCode}` erstellt von {createdBy.Mention} am {createdAt.ToDiscordTS()}.",
                 Language.at => $"`{inviteCode}` erstöt vo {createdBy.Mention} om {createdAt.ToDiscordTS()}.",
                 Language.fr => $"`{inviteCode}` créé par {createdBy.Mention} à {createdAt.ToDiscordTS()}.",
-                Language.es => $"`{inviteCode}` creado por {createdBy.Mention} en {createdAt.ToDiscordTS ()}.",
-                Language.ru => $"`{inviteCode}` создан {createdBy.Mention} в {createdAt.ToDiscordTS ()}.",
+                Language.es => $"`{inviteCode}` creado por {createdBy.Mention} en {createdAt.ToDiscordTS()}.",
+                Language.ru => $"`{inviteCode}` создан {createdBy.Mention} в {createdAt.ToDiscordTS()}.",
                 Language.it => $"`{inviteCode}` creato da {createdBy.Mention} su {createdAt.ToDiscordTS()}.",
                 _ => $"`{inviteCode}` created by {createdBy.Mention} at {createdAt.ToDiscordTS()}.",
             };

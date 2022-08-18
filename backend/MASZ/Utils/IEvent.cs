@@ -1,9 +1,9 @@
 ﻿namespace MASZ.Utils
 {
-	public interface IEvent
-	{
+    public interface IEvent
+    {
 
-		public void RegisterEvents();
+        public void RegisterEvents();
 
-	}
+    }
 }

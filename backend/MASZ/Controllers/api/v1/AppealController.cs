@@ -1,13 +1,12 @@
-using MASZ.Models;
+using Discord;
+using MASZ.Dtos.Appeal;
 using MASZ.Enums;
+using MASZ.Models;
 using MASZ.Models.Views;
 using MASZ.Repositories;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using MASZ.Dtos.Appeal;
-using MASZ.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using Discord;
 
 namespace MASZ.Controllers
 {
@@ -167,7 +166,7 @@ namespace MASZ.Controllers
             }
 
             AppealRepository repo = AppealRepository.CreateDefault(_serviceProvider);
-            if (! await repo.UserIsAllowedToCreateNewAppeal(guildId, currentUser.Id))
+            if (!await repo.UserIsAllowedToCreateNewAppeal(guildId, currentUser.Id))
             {
                 return BadRequest();
             }

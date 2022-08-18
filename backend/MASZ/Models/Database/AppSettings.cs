@@ -21,7 +21,7 @@ namespace MASZ.Models
                         "<meta property=\"og:site_name\" content=\"MASZ by zaanposni\" />" +
                         "<meta property=\"og:title\" content=\"" + EmbedTitle + "\" />" +
                         "<meta property=\"og:url\" content=\"" + url + "\" />" +
-                        (EmbedShowIcon && ! string.IsNullOrWhiteSpace(iconUrl) ? "<meta property=\"og:image\" content=\"" + iconUrl + "\" />" : "") +
+                        (EmbedShowIcon && !string.IsNullOrWhiteSpace(iconUrl) ? "<meta property=\"og:image\" content=\"" + iconUrl + "\" />" : "") +
                         (string.IsNullOrWhiteSpace(EmbedContent) ? "" : "<meta property=\"og:description\" content=\"" + EmbedContent + "\" />") +
                     "</head>" +
                 "</html>";

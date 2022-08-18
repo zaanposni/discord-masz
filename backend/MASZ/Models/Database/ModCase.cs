@@ -1,8 +1,8 @@
+using Discord;
 using MASZ.Enums;
+using MASZ.Extensions;
 using MASZ.Services;
 using System.ComponentModel.DataAnnotations;
-using Discord;
-using MASZ.Extensions;
 
 namespace MASZ.Models
 {
@@ -87,7 +87,7 @@ namespace MASZ.Models
                         $"<meta property=\"og:title\" content=\"#{this.CaseId}: {this.Title}\" />" +
                         $"<meta property=\"og:url\" content=\"{baseUrl}/guilds/{this.GuildId}/cases/{this.CaseId}\" />" +
                         $"<meta property=\"og:description\" content=\"{this.GetPunishment(translator)}: {this.Description}\" />" +
-                        ( user != null ? $"<meta property=\"og:image\" content=\"{user.GetAvatarOrDefaultUrl()}\" />" : "") +
+                        (user != null ? $"<meta property=\"og:image\" content=\"{user.GetAvatarOrDefaultUrl()}\" />" : "") +
                     "</head>" +
                 "</html>";
         }

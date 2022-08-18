@@ -32,7 +32,8 @@ namespace MASZ.Commands
             RunCMDSetup().GetAwaiter().GetResult();
         }
 
-        private async Task RunCMDSetup() {
+        private async Task RunCMDSetup()
+        {
             if (Context.Guild != null)
             {
                 await Translator.SetContext(Context.Guild.Id);

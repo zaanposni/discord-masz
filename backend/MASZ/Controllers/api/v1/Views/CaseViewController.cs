@@ -72,9 +72,10 @@ namespace MASZ.Controllers
             }
 
             bool isMod = await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId);
-            if (isMod) {
+            if (isMod)
+            {
                 caseView.LinkedCases = modCase.MappingsA.Select(mapping => new CaseView(mapping.CaseB)).ToList();
-                caseView.LinkedCases.AddRange(modCase.MappingsB.Select(mapping =>new CaseView(mapping.CaseA)));
+                caseView.LinkedCases.AddRange(modCase.MappingsB.Select(mapping => new CaseView(mapping.CaseA)));
             }
 
             if (!(isMod || guildConfig.PublishModeratorInfo))

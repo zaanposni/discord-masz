@@ -3,7 +3,6 @@ using Discord.Interactions;
 using Discord.Net;
 using MASZ.Attributes;
 using MASZ.Enums;
-using System.Net;
 
 namespace MASZ.Commands
 {

@@ -455,10 +455,10 @@ namespace MASZ.Services
                 if (member == null) return false;
 
                 RequestOptions options = new();
-                if (! string.IsNullOrEmpty(reason))
+                if (!string.IsNullOrEmpty(reason))
                     options.AuditLogReason = reason;
 
-                await member.SetTimeOutAsync(until - DateTime.UtcNow ,options);
+                await member.SetTimeOutAsync(until - DateTime.UtcNow, options);
             }
             catch (Exception e)
             {
@@ -478,7 +478,7 @@ namespace MASZ.Services
                 if (member == null) return false;
 
                 RequestOptions options = new();
-                if (! string.IsNullOrEmpty(reason))
+                if (!string.IsNullOrEmpty(reason))
                     options.AuditLogReason = reason;
 
                 await member.RemoveTimeOutAsync(options);
@@ -503,7 +503,7 @@ namespace MASZ.Services
                 if (role == null) return false;
 
                 RequestOptions options = new();
-                if (! string.IsNullOrEmpty(reason))
+                if (!string.IsNullOrEmpty(reason))
                     options.AuditLogReason = reason;
 
                 await member.AddRoleAsync(role, options);

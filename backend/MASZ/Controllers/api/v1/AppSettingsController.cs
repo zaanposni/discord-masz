@@ -1,7 +1,4 @@
-using Discord;
 using MASZ.Dtos.AppSettings;
-using MASZ.Dtos.GuildMotd;
-using MASZ.Enums;
 using MASZ.Models;
 using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;

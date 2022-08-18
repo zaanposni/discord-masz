@@ -6,7 +6,7 @@ using MASZ.Models;
 namespace MASZ.Repositories
 {
 
-	public class FileRepository : BaseRepository<FileRepository>
+    public class FileRepository : BaseRepository<FileRepository>
     {
         private readonly Identity _identity;
         private FileRepository(IServiceProvider serviceProvider, Identity identity) : base(serviceProvider)

@@ -58,7 +58,7 @@ namespace MASZ.Controllers
 
             return Ok(new
             {
-                events = events.Skip(startPage*20).Take(20).Select(x => new AutoModerationEventView(x)),
+                events = events.Skip(startPage * 20).Take(20).Select(x => new AutoModerationEventView(x)),
                 count = events.Count()
             });
         }

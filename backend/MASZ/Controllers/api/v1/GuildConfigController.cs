@@ -1,11 +1,9 @@
-using Discord;
 using MASZ.Dtos.GuildConfig;
 using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.Models;
 using MASZ.Models.Views;
 using MASZ.Repositories;
-using MASZ.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

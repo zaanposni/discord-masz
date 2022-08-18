@@ -1,5 +1,4 @@
 ﻿using MASZ.Dtos;
-using MASZ.Dtos.UserNote;
 using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.Models;
@@ -38,7 +37,8 @@ namespace MASZ.Controllers
                                                      _discordAPI.FetchGuildChannels(guildId, CacheBehavior.OnlyCache).FirstOrDefault(x => x.Id == message.ChannelId)));
             }
 
-            return Ok(new {
+            return Ok(new
+            {
                 items = results,
                 fullSize
             });

@@ -77,7 +77,7 @@ namespace MASZ.Commands
         {
             ulong lastId = 0;
             int deleted = 0;
-            List<IMessage> toDelete = new ();
+            List<IMessage> toDelete = new();
             var messages = channel.GetMessagesAsync(Math.Min(limit, 100));
 
             if (await messages.CountAsync() < Math.Min(limit, 100))

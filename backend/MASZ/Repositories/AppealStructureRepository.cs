@@ -1,7 +1,4 @@
-using Discord;
-using MASZ.Enums;
 using MASZ.Exceptions;
-using MASZ.Extensions;
 using MASZ.Models;
 
 namespace MASZ.Repositories

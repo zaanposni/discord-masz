@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MASZ.Services
 {
-	public static class EmbedCreator
+    public static class EmbedCreator
     {
         private readonly static string CHECK = "\u2705";
         private readonly static string X_CHECK = "\u274C";

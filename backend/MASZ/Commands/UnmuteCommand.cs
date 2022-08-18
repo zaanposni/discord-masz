@@ -110,7 +110,7 @@ namespace MASZ.Commands
 
             var embed = castInteraction.Message.Embeds.FirstOrDefault().ToEmbedBuilder()
                 .WithColor(new Color(Convert.ToUInt32(int.Parse("7289da", NumberStyles.HexNumber))));  // discord blurple
-            
+
             embed.Fields = new()
             {
                 new EmbedFieldBuilder().WithName(Translator.T().CmdUndoResultTitle()).WithValue(Translator.T().CmdUndoUnmuteResultDeleted())

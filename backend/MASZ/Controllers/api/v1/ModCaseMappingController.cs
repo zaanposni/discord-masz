@@ -1,5 +1,4 @@
 using MASZ.Enums;
-using MASZ.Models;
 using MASZ.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

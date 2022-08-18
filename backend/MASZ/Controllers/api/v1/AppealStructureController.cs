@@ -1,11 +1,10 @@
-using MASZ.Models;
+using MASZ.Dtos.Appeal;
 using MASZ.Enums;
+using MASZ.Models;
 using MASZ.Models.Views;
 using MASZ.Repositories;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using MASZ.Dtos.Appeal;
-using MASZ.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MASZ.Controllers
 {

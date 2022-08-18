@@ -1,10 +1,7 @@
+using MASZ.Dtos;
 using MASZ.Models.Views;
-using MASZ.Models;
 using Microsoft.AspNetCore.Mvc;
 using RestSharp;
-using MASZ.Repositories;
-using Discord;
-using MASZ.Dtos;
 
 namespace MASZ.Controllers
 {

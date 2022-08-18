@@ -7,7 +7,7 @@ using MASZ.Utils;
 
 namespace MASZ.Services
 {
-	public class DiscordAnnouncer : IEvent
+    public class DiscordAnnouncer : IEvent
     {
         private readonly ILogger<DiscordAnnouncer> _logger;
         private readonly InternalConfiguration _config;

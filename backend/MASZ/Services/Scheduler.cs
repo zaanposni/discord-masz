@@ -117,7 +117,8 @@ namespace MASZ.Services
                     guild = _discordAPI.FetchGuildInfo(message.GuildId, CacheBehavior.OnlyCache);
                     if (guild == null)
                         throw new Exception();
-                } catch (Exception)
+                }
+                catch (Exception)
                 {
                     _logger.LogInformation($"Failed scheduled message {message.Id}. Reason unknown.");
                     await repo.SetMessageAsFailed(message.Id, ScheduledMessageFailureReason.Unknown);

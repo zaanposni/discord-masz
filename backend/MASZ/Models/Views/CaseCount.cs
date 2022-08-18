@@ -1,5 +1,3 @@
-using MASZ.Enums;
-
 namespace MASZ.Models
 {
     public class CaseCount

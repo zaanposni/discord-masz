@@ -1,9 +1,9 @@
-using MASZ.Enums;
-using MASZ.Models;
-using Microsoft.AspNetCore.Mvc;
-using MASZ.Exceptions;
-using MASZ.Repositories;
 using Discord;
+using MASZ.Enums;
+using MASZ.Exceptions;
+using MASZ.Models;
+using MASZ.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
 
 namespace MASZ.Controllers
@@ -21,7 +21,7 @@ namespace MASZ.Controllers
         [HttpGet]
         public async Task<IActionResult> GetOEmbedInfo([FromQuery] string url = "")
         {
-            if (! string.IsNullOrEmpty(url))
+            if (!string.IsNullOrEmpty(url))
             {
                 Match modCaseMatch = _modCaseRegex.Match(url);
                 if (modCaseMatch.Success)

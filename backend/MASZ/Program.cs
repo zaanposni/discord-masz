@@ -8,7 +8,6 @@ using MASZ.Middlewares;
 using MASZ.Plugins;
 using MASZ.Repositories;
 using MASZ.Services;
-using MASZ.Utils;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -25,13 +24,14 @@ builder.Logging.AddProvider(new LoggerProvider());
 builder.WebHost.UseUrls("http://0.0.0.0:80/");
 
 string connectionString =
-            $"Server={   Environment.GetEnvironmentVariable("MYSQL_HOST")};" +
-            $"Port={     Environment.GetEnvironmentVariable("MYSQL_PORT")};" +
-            $"Database={ Environment.GetEnvironmentVariable("MYSQL_DATABASE")};" +
-            $"Uid={      Environment.GetEnvironmentVariable("MYSQL_USER")};" +
-            $"Pwd={      Environment.GetEnvironmentVariable("MYSQL_PASSWORD")};";
+            $"Server={Environment.GetEnvironmentVariable("MYSQL_HOST")};" +
+            $"Port={Environment.GetEnvironmentVariable("MYSQL_PORT")};" +
+            $"Database={Environment.GetEnvironmentVariable("MYSQL_DATABASE")};" +
+            $"Uid={Environment.GetEnvironmentVariable("MYSQL_USER")};" +
+            $"Pwd={Environment.GetEnvironmentVariable("MYSQL_PASSWORD")};";
 
-if (false) {
+if (false)
+{
     connectionString =
             $"Server=localhost;" +
             $"Port=3306;" +

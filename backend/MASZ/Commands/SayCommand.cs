@@ -34,7 +34,7 @@ namespace MASZ.Commands
                 try
                 {
                     GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(ServiceProvider).GetGuildConfig(Context.Guild.Id);
-                    if (! string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
+                    if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
                     {
                         await DiscordAPI.ExecuteWebhook(
                             guildConfig.ModInternalNotificationWebhook,
@@ -47,7 +47,8 @@ namespace MASZ.Commands
                             AllowedMentions.None
                         );
                     }
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Logger.LogError(ex, $"Something went wrong while sending the internal notification for the say command by {Context.User.Id} in {Context.Guild.Id}/{Context.Channel.Id}.");
                 }
