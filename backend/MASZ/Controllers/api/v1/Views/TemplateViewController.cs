@@ -1,3 +1,4 @@
+using Discord;
 using MASZ.Enums;
 using MASZ.Models;
 using MASZ.Models.Views;
@@ -27,10 +28,14 @@ namespace MASZ.Controllers
             List<CaseTemplateExpandedView> templatesView = new();
             foreach (var template in templates.Where(x => x.UserId == userId || userId == 0))
             {
+                IGuild guild = _discordAPI.FetchGuildInfo(template.CreatedForGuildId, CacheBehavior.Default);
+                if (guild == null) {
+                    continue;
+                }
                 templatesView.Add(new CaseTemplateExpandedView(
                     template,
                     await _discordAPI.FetchUserInfo(template.UserId, CacheBehavior.OnlyCache),
-                    _discordAPI.FetchGuildInfo(template.CreatedForGuildId, CacheBehavior.Default)
+                    guild
                 ));
             }
 
