@@ -1,5 +1,29 @@
 [
   {
+    "title": "Version 3.1.3",
+    "version": "v3.1.3",
+    "released_at": "2022-08-20",
+    "contributors": [ ],
+    "features": [
+      {
+        "title": " Add the current guild to the header.",
+        "description": "The current guild is now displayed in the header while navigating through the dashbaord.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/540"
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Fixed templates endpoint.",
+        "description": "Templates failed to load if there was an unregistered guild in the database."
+      },
+      {
+        "title": "Too many attachments automod webhook failed.",
+        "description": "If the automoderated message had no content, the generated embed was invalid and thus the internal webhook failed.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/539"
+      }
+    ]
+  },
+  {
     "title": "Version 3.1.2",
     "version": "v3.1.2",
     "released_at": "2022-07-16",

@@ -328,11 +328,13 @@ namespace MASZ.Services
                 false
             );
 
-            embed.AddField(
-                translator.T().MessageContent(),
-                autoModerationEvent.MessageContent,
-                false
-            );
+            if (! string.IsNullOrWhiteSpace(autoModerationEvent.MessageContent)) {
+                embed.AddField(
+                    translator.T().MessageContent(),
+                    autoModerationEvent.MessageContent,
+                    false
+                );
+            }
 
             embed.AddField(
                 translator.T().Action(),

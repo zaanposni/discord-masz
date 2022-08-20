@@ -40,8 +40,9 @@
     import { applicationInfo, privacyPolicyUrl, termsOfServiceUrl } from "../stores/applicationInfo";
     import MediaQuery from "../core/MediaQuery.svelte";
     import ConfirmDialog from "../core/confirmDialog/ConfirmDialog.svelte";
-    import type { ISearchEntry } from "./../components/nav/search/ISearchEntry";
     import { searchValue, showSearch, searchResults } from "../components/nav/search/store";
+    import GuildIcon from "../components/discord/GuildIcon.svelte";
+    import { fade } from "svelte/transition";
 
     if (window.location.pathname !== "/login" && !$isLoggedIn) {
         $goto("/login", { returnUrl: window.location.pathname });
@@ -94,6 +95,20 @@
         <svelte:fragment slot="skip-to-content">
             <SkipToContent />
         </svelte:fragment>
+        <div slot="platform" class="flex flex-row items-center">
+            {#if matches}
+                {APP_VERSION}
+                {#if $currentParams?.guildId && $currentParams?.guild}
+                    <div class="flex flex-row items-center" transition:fade|local>
+                        <span class="font-normal mx-2">|</span>
+                        {#key $currentParams.guild}
+                            <GuildIcon class="max-h-[1.5rem] max-w-[1.5rem]" guild={$currentParams.guild} />
+                        {/key}
+                        <span class="font-normal ml-2">{$currentParams.guild.name}</span>
+                    </div>
+                {/if}
+            {/if}
+        </div>
         <HeaderUtilities>
             {#if matches}
                 {#if $isLoggedIn}
