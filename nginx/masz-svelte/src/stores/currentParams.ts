@@ -21,7 +21,7 @@ export const currentParams: Readable<IRouteParams> = derived(
             ...rParams,
         };
 
-        if (rParams.guildId !== lastGuildId && !lastGuild) {
+        if (rParams.guildId !== lastGuildId) {
             if (rParams.guildId) {
                 // search through all guilds of current user
                 res.guild =
