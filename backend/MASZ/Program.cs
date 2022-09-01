@@ -54,7 +54,7 @@ builder.Services
     AlwaysDownloadUsers = true,
     MessageCacheSize = 10240,
     LogLevel = LogSeverity.Debug,
-    GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.GuildMembers,
+    GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.GuildMembers | GatewayIntents.GuildMessages | GatewayIntents.DirectMessages,
     LogGatewayIntentWarnings = false
 })
 
