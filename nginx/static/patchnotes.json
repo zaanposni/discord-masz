@@ -1,13 +1,39 @@
 [
   {
+    "title": "Version 3.2.0",
+    "version": "v3.2.0",
+    "released_at": "2022-09-01",
+    "contributors": [ ],
+    "features": [
+      {
+        "title": "Support for voice text channels.",
+        "description": "MASZ now supports voice text channels for automoderation and audit logging.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/543"
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Correctly handle missing vanity url.",
+        "description": "In some cases, a missing vanity invite url, caused the invite tracking to fail. This has been fixed."
+      }
+    ],
+    "technical": [
+      {
+        "title": "Discord message content intent.",
+        "description": "Discords message content intent has been enabled today. MASZ should handle blank messages correctly, but if you want to use message related features just as audit logging or automoderation, make sure to enable the message content intent in your bots settings.",
+        "link": "https://discord.com/developers/applications"
+      }
+    ]
+  },
+  {
     "title": "Version 3.1.3",
     "version": "v3.1.3",
     "released_at": "2022-08-20",
     "contributors": [ ],
     "features": [
       {
-        "title": " Add the current guild to the header.",
-        "description": "The current guild is now displayed in the header while navigating through the dashbaord.",
+        "title": "Add the current guild to the header.",
+        "description": "The current guild is now displayed in the header while navigating through the dashboard.",
         "link": "https://github.com/zaanposni/discord-masz/issues/540"
       }
     ],
