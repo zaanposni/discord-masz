@@ -467,7 +467,9 @@ namespace MASZ.Services
                 var vanityInvite = await guild.GetVanityInviteAsync();
                 invites.Add(new TrackedInvite(guild.Id, vanityInvite.Code, vanityInvite.Uses.GetValueOrDefault()));
             }
-            catch (HttpException) { }
+            catch (Exception ex) {
+                _logger.LogError(ex, $"Failed to fetch vanity url for guild {guild.Id}.");
+            }
             return invites;
         }
 

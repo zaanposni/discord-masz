@@ -33,7 +33,7 @@
     </div>
     <div class="mt-4">
         <a href="https://ko-fi.com/Z8Z5CUDVV" target="_blank"
-            ><img height="36" style="border:0px;height:36px;" src="https://cdn.ko-fi.com/cdn/kofi2.png?v=3" alt={$_("supportme")} /></a>
+            ><img height="36" style="border:0px;height:36px;" src="/img/kofi2.webp" alt={$_("supportme")} /></a>
     </div>
 
     <Accordion class="mt-4">
