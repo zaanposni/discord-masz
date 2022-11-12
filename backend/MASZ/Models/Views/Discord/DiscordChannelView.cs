@@ -14,7 +14,14 @@ namespace MASZ.Models.Views
             Id = channel.Id.ToString();
             Name = channel.Name;
             Position = channel.Position;
-            Type = (int)channel.GetChannelType();
+            // forum channels currently throw an error, will be fixed in new d.net version that is not yet released
+            // https://github.com/discord-net/Discord.Net/pull/2469
+            try {
+                Type = (int)channel.GetChannelType();
+            }
+            catch(Exception) {
+                Type = -1;
+            }
         }
 
         public static DiscordChannelView CreateOrDefault(IGuildChannel channel)

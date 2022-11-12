@@ -43,7 +43,7 @@
         const channelPromise = API.get(`/discord/guilds/${$currentParams.guildId}/channels`, CacheMode.PREFER_CACHE, true).then((response) => {
             channels.set(
                 response
-                    .filter((x) => x.type === 0)
+                    .filter((x) => x.type === 0 || x.type === -1)
                     .sort((a, b) => (a.position > b.position ? 1 : -1))
                     .map((channel: IDiscordChannel) => ({
                         id: channel.id,

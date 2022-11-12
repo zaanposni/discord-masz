@@ -158,7 +158,7 @@ namespace MASZ.Services
             return await CheckForIgnoredRoles(guildId, eventType, roles.Select(role => role.Id).ToList());
         }
 
-        public async Task<bool> CheckForIgnoredChannel(ulong guildId, GuildAuditLogEvent eventType, ulong channelId)
+        public async Task<bool> CheckForIgnoredChannel(ulong guildId, GuildAuditLogEvent eventType, INestedChannel channel)
         {
             using var scope = _serviceProvider.CreateScope();
 
@@ -171,7 +171,17 @@ namespace MASZ.Services
                 {
                     return false;
                 }
-                return auditLogConfig.IgnoreChannels?.Contains(channelId) ?? false;
+
+                if (auditLogConfig.IgnoreChannels == null)
+                {
+                    return false;
+                }
+
+                if (channel.CategoryId.HasValue) {
+                    return auditLogConfig.IgnoreChannels.Contains(channel.Id) || auditLogConfig.IgnoreChannels.Contains(channel.CategoryId.Value);
+                } else {
+                    return auditLogConfig.IgnoreChannels.Contains(channel.Id);
+                }
             }
             catch (ResourceNotFoundException) { }
             return false;
@@ -333,10 +343,10 @@ namespace MASZ.Services
         {
             using var scope = _serviceProvider.CreateScope();
 
-            IGuildChannel guildChannel;
+            ITextChannel guildChannel;
             try
             {
-                guildChannel = (IGuildChannel)await _client.GetChannelAsync(channel.Id);
+                guildChannel = (ITextChannel)await _client.GetChannelAsync(channel.Id);
                 if (guildChannel == null)
                 {
                     return;
@@ -347,7 +357,7 @@ namespace MASZ.Services
                 return;
             }
 
-            if (await CheckForIgnoredChannel(guildChannel.GuildId, GuildAuditLogEvent.ReactionRemoved, guildChannel.Id))
+            if (await CheckForIgnoredChannel(guildChannel.GuildId, GuildAuditLogEvent.ReactionRemoved, guildChannel))
             {
                 return;
             }
@@ -385,10 +395,10 @@ namespace MASZ.Services
         {
             using var scope = _serviceProvider.CreateScope();
 
-            IGuildChannel guildChannel;
+            ITextChannel guildChannel;
             try
             {
-                guildChannel = (IGuildChannel)await _client.GetChannelAsync(channel.Id);
+                guildChannel = (ITextChannel)await _client.GetChannelAsync(channel.Id);
                 if (guildChannel == null)
                 {
                     return;
@@ -399,7 +409,7 @@ namespace MASZ.Services
                 return;
             }
 
-            if (await CheckForIgnoredChannel(guildChannel.GuildId, GuildAuditLogEvent.ReactionRemoved, guildChannel.Id))
+            if (await CheckForIgnoredChannel(guildChannel.GuildId, GuildAuditLogEvent.ReactionAdded, guildChannel))
             {
                 return;
             }
@@ -497,7 +507,7 @@ namespace MASZ.Services
 
             if (eventType == GuildAuditLogEvent.VoiceJoined)
             {
-                if (await CheckForIgnoredChannel(guildId, GuildAuditLogEvent.VoiceJoined, afterChannel.Id))
+                if (await CheckForIgnoredChannel(guildId, GuildAuditLogEvent.VoiceJoined, afterChannel))
                 {
                     return;
                 }
@@ -505,7 +515,7 @@ namespace MASZ.Services
             }
             else if (eventType == GuildAuditLogEvent.VoiceLeft)
             {
-                if (await CheckForIgnoredChannel(guildId, GuildAuditLogEvent.VoiceLeft, beforeChannel.Id))
+                if (await CheckForIgnoredChannel(guildId, GuildAuditLogEvent.VoiceLeft, beforeChannel))
                 {
                     return;
                 }
@@ -513,11 +523,11 @@ namespace MASZ.Services
             }
             else
             {
-                if (await CheckForIgnoredChannel(guildId, GuildAuditLogEvent.VoiceMoved, beforeChannel.Id))
+                if (await CheckForIgnoredChannel(guildId, GuildAuditLogEvent.VoiceMoved, beforeChannel))
                 {
                     return;
                 }
-                if (await CheckForIgnoredChannel(guildId, GuildAuditLogEvent.VoiceMoved, afterChannel.Id))
+                if (await CheckForIgnoredChannel(guildId, GuildAuditLogEvent.VoiceMoved, afterChannel))
                 {
                     return;
                 }
@@ -593,11 +603,10 @@ namespace MASZ.Services
             if (invite.Channel is ITextChannel tChannel)
             {
                 description.AppendLine($"> **{translator.T().GuildAuditLogInviteCreatedTargetChannel()}:** {tChannel.Name} - {tChannel.Mention}");
-            }
-
-            if (invite.GuildId.HasValue && await CheckForIgnoredChannel(invite.GuildId.Value, GuildAuditLogEvent.InviteCreated, invite.ChannelId))
-            {
-                return;
+                if (invite.GuildId.HasValue && await CheckForIgnoredChannel(invite.GuildId.Value, GuildAuditLogEvent.InviteCreated, tChannel))
+                {
+                    return;
+                }
             }
 
             embed.WithTitle(translator.T().GuildAuditLogInviteCreatedTitle())
@@ -645,11 +654,10 @@ namespace MASZ.Services
             if (channel is ITextChannel tChannel)
             {
                 description.AppendLine($"> **{translator.T().GuildAuditLogInviteCreatedTargetChannel()}:** {tChannel.Name} - {tChannel.Mention}");
-            }
-
-            if (await CheckForIgnoredChannel(invite.GuildId, GuildAuditLogEvent.InviteCreated, channel.Id))
-            {
-                return;
+                if (await CheckForIgnoredChannel(invite.GuildId, GuildAuditLogEvent.InviteCreated, tChannel))
+                {
+                    return;
+                }
             }
 
             embed.WithTitle(translator.T().GuildAuditLogInviteDeletedTitle())
@@ -711,7 +719,7 @@ namespace MASZ.Services
 
             if (message.Channel is ITextChannel tchannel)
             {
-                if (await CheckForIgnoredChannel(tchannel.GuildId, GuildAuditLogEvent.MessageDeleted, tchannel.Id))
+                if (await CheckForIgnoredChannel(tchannel.GuildId, GuildAuditLogEvent.MessageDeleted, tchannel))
                 {
                     return;
                 }
@@ -797,7 +805,7 @@ namespace MASZ.Services
             {
                 if (message.Channel is ITextChannel tchannel)
                 {
-                    if (await CheckForIgnoredChannel(tchannel.GuildId, GuildAuditLogEvent.MessageSent, tchannel.Id))
+                    if (await CheckForIgnoredChannel(tchannel.GuildId, GuildAuditLogEvent.MessageSent, tchannel))
                     {
                         return;
                     }
@@ -873,7 +881,7 @@ namespace MASZ.Services
             {
                 if (channel is ITextChannel tchannel)
                 {
-                    if (await CheckForIgnoredChannel(tchannel.GuildId, GuildAuditLogEvent.MessageUpdated, tchannel.Id))
+                    if (await CheckForIgnoredChannel(tchannel.GuildId, GuildAuditLogEvent.MessageUpdated, tchannel))
                     {
                         return;
                     }
@@ -967,9 +975,11 @@ namespace MASZ.Services
 
         public async Task HandleThreadCreated(SocketThreadChannel thread)
         {
-            if (await CheckForIgnoredChannel(thread.Guild.Id, GuildAuditLogEvent.ThreadCreated, thread.ParentChannel.Id))
-            {
-                return;
+            if (thread.ParentChannel is ITextChannel tChannel) {
+                if (await CheckForIgnoredChannel(thread.Guild.Id, GuildAuditLogEvent.ThreadCreated, tChannel))
+                {
+                    return;
+                }
             }
 
             using var scope = _serviceProvider.CreateScope();

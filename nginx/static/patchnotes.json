@@ -1,5 +1,37 @@
 [
   {
+    "title": "Version 3.2.1",
+    "version": "v3.2.1",
+    "released_at": "2022-11-12",
+    "contributors": [
+      {
+        "name": "FlixProd",
+        "link": "https://github.com/FlixProd",
+        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Fixed internal server error for channel API.",
+        "description": "A bug has been fixed that caused channel lists to be empty or fail, if the guild has a forum channel."
+      },
+      {
+        "title": "Fixed reaction added guild auditlog filter.",
+        "description": "The reaction added guild auditlog did not correctly respect the filtered channels."
+      }
+    ],
+    "technical": [
+      {
+        "title": "Correctly request message content intent.",
+        "description": "MASZ will now correctly use the message content intent when connecting to the Discord API."
+      },
+      {
+        "title": "Removed demo instance from readme and website.",
+        "description": "The demo instance of MASZ will be shut down soon. The links to the demo instance have been removed from the readme and website."
+      }
+    ]
+  },
+  {
     "title": "Version 3.2.0",
     "version": "v3.2.0",
     "released_at": "2022-09-01",

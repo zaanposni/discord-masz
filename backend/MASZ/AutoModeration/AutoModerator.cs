@@ -210,6 +210,13 @@ namespace MASZ.AutoModeration
                 return true;
             }
 
+            if (message.Channel is ITextChannel textChannel)
+            {
+                if (textChannel.CategoryId.HasValue) {
+                    return autoModerationConfig.IgnoreChannels.Contains(message.Channel.Id) || autoModerationConfig.IgnoreChannels.Contains(textChannel.CategoryId.Value);
+                }
+            }
+
             return autoModerationConfig.IgnoreChannels.Contains((message.Channel as ITextChannel).Id);
         }
 
