@@ -13,14 +13,7 @@
 ⭐ **A website and a discord bot** - to use MASZ\
 ⭐ **Full API and plugin support** - for custom scripts and automations
 
-### 🚀 Demo
-
-[![https://demomasz.zaanposni.com](https://img.shields.io/badge/demo-online-%234c1?style=for-the-badge)](https://demomasz.zaanposni.com)
-
-Visit [https://demomasz.zaanposni.com](https://demomasz.zaanposni.com) for a demo.\
-Furthermore, join the demo guild [https://discord.gg/7ubU6aWX9c](https://discord.gg/7ubU6aWX9c) to get the required permissions.
-
-### 👀 Preview
+## 👀 Preview
 
 ![dashboard preview](/docs/dashboard.png)
 

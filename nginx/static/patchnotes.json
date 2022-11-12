@@ -24,6 +24,10 @@
       {
         "title": "Correctly request message content intent.",
         "description": "MASZ will now correctly use the message content intent when connecting to the Discord API."
+      },
+      {
+        "title": "Removed demo instance from readme and website.",
+        "description": "The demo instance of MASZ will be shut down soon. The links to the demo instance have been removed from the readme and website."
       }
     ]
   },
