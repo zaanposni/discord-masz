@@ -46,18 +46,18 @@ namespace MASZ.Controllers
         }
 
         [HttpDelete("{caseId}")]
-        public async Task<IActionResult> DeleteSpecificItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true, [FromQuery] bool forceDelete = false)
+        public async Task<IActionResult> DeleteSpecificItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromQuery] bool sendPublicNotification = true, [FromQuery] bool handlePunishment = true, [FromQuery] bool forceDelete = false)
         {
             await RequirePermission(guildId, caseId, forceDelete ? APIActionPermission.ForceDelete : APIActionPermission.Delete);
 
             Identity currentIdentity = await GetIdentity();
-            ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).DeleteModCase(guildId, caseId, forceDelete, handlePunishment, sendNotification);
+            ModCase modCase = await ModCaseRepository.CreateDefault(_serviceProvider, currentIdentity).DeleteModCase(guildId, caseId, forceDelete, handlePunishment, sendPublicNotification);
 
             return Ok(modCase);
         }
 
         [HttpPut("{caseId}")]
-        public async Task<IActionResult> PutSpecificItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromBody] ModCaseForPutDto newValue, [FromQuery] bool sendNotification = true, [FromQuery] bool handlePunishment = true)
+        public async Task<IActionResult> PutSpecificItem([FromRoute] ulong guildId, [FromRoute] int caseId, [FromBody] ModCaseForPutDto newValue, [FromQuery] bool sendPublicNotification = true, [FromQuery] bool handlePunishment = true)
         {
             await RequirePermission(guildId, caseId, APIActionPermission.Edit);
             Identity currentIdentity = await GetIdentity();
@@ -83,7 +83,7 @@ namespace MASZ.Controllers
             modCase.PunishedUntil = newValue.PunishedUntil;
             modCase.LastEditedByModId = currentIdentity.GetCurrentUser().Id;
 
-            modCase = await repo.UpdateModCase(modCase, handlePunishment, sendNotification);
+            modCase = await repo.UpdateModCase(modCase, handlePunishment, sendPublicNotification);
 
             return Ok(modCase);
         }

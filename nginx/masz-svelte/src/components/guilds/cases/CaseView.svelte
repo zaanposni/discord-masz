@@ -395,7 +395,7 @@
     function deleteCase() {
         deleteCaseSubmitting.set(true);
         API.deleteData(
-            `/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}?sendnotification=${$deleteCaseModalPublicNotification}&forceDelete=${$deleteCaseModalForceDelete}`,
+            `/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}?sendPublicNotification=${$deleteCaseModalPublicNotification}&forceDelete=${$deleteCaseModalForceDelete}`,
             {}
         )
             .then((res: ICase) => {
