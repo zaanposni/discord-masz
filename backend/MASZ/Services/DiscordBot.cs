@@ -9,6 +9,7 @@ using MASZ.InviteTracking;
 using MASZ.Models;
 using MASZ.Repositories;
 using MASZ.Utils;
+using RestSharp;
 using System.Reflection;
 
 namespace MASZ.Services
@@ -22,11 +23,12 @@ namespace MASZ.Services
         private readonly Scheduler _scheduler;
         private readonly Punishments _punishments;
         private readonly IServiceProvider _serviceProvider;
+        private readonly InternalEventHandler _eventHandler;
         private bool _firstReady = true;
         private bool _isRunning = false;
         private DateTime? _lastDisconnect = null;
 
-        public DiscordBot(ILogger<DiscordBot> logger, DiscordSocketClient client, InternalConfiguration internalConfiguration, InteractionService interactions, IServiceProvider serviceProvider, Scheduler scheduler, Punishments punishments)
+        public DiscordBot(ILogger<DiscordBot> logger, DiscordSocketClient client, InternalConfiguration internalConfiguration, InteractionService interactions, IServiceProvider serviceProvider, Scheduler scheduler, Punishments punishments, InternalEventHandler eventHandler)
         {
             _logger = logger;
             _client = client;
@@ -35,6 +37,7 @@ namespace MASZ.Services
             _scheduler = scheduler;
             _punishments = punishments;
             _serviceProvider = serviceProvider;
+            _eventHandler = eventHandler;
         }
 
         public async Task ExecuteAsync()
@@ -86,11 +89,12 @@ namespace MASZ.Services
 
             _client.Log += (logLevel) => Log(logLevel, client_logger);
 
-            _client.JoinedGuild += JoinGuild;
-
             var interactions_logger = _serviceProvider.GetRequiredService<ILogger<InteractionService>>();
 
             _interactions.Log += (logLevel) => Log(logLevel, interactions_logger);
+
+            _eventHandler.OnGuildRegistered += GuildRegisteredHandler;
+            _eventHandler.OnGuildDeleted += GuildDeletedHandler;
         }
 
         private async Task HandleInteraction(SocketInteraction arg)
@@ -153,17 +157,6 @@ namespace MASZ.Services
             {
                 _logger.LogError(ex, "Something went wrong while overwriting global application commands.");
             }
-            foreach (var guild in _client.Guilds)
-            {
-                try
-                {
-                    await JoinGuild(guild);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, $"Something went wrong while handling guild join for {guild.Id}.");
-                }
-            }
 
             if (_firstReady)
             {
@@ -208,14 +201,43 @@ namespace MASZ.Services
             return Task.CompletedTask;
         }
 
-        private async Task JoinGuild(SocketGuild guild)
+        private async Task GuildRegisteredHandler(GuildConfig guild, bool importExistingStuff)
         {
             await _interactions.RegisterCommandsToGuildAsync(
-                guild.Id,
+                guild.GuildId,
                 true
             );
 
-            _logger.LogInformation($"Initialized guild commands for guild {guild.Name}.");
+            _logger.LogInformation($"Initialized guild commands for guild {guild.GuildId}.");
+
+        }
+
+        private async Task GuildDeletedHandler(GuildConfig guild)
+        {
+            var restClient = new RestClient($"https://discord.com");
+
+            var request = new RestRequest(Method.Put)
+            {
+                Resource = $"api/v8/applications/{_client.CurrentUser.Id}/guilds/{guild.GuildId}/commands",
+                RequestFormat = DataFormat.Json
+            };
+
+            request.AddJsonBody(Array.Empty<object>());
+
+            request.AddHeader("Authorization", $"Bot {_internalConfiguration.GetBotToken()}");
+
+            var response = await restClient.ExecuteAsync(request);
+
+            if (response.IsSuccessful)
+            {
+                _logger.LogInformation($"Deleted guild commands for guild {guild.GuildId}.");
+            }
+            else
+            {
+                _logger.LogError($"Unable to delete guild commands for guild {guild.GuildId}.");
+                _logger.LogError(response.StatusCode.ToString());
+                _logger.LogError(response.Content);
+            }
         }
 
         private Task GuildBanRemoved(SocketUser user, SocketGuild guild)
