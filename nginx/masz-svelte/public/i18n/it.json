@@ -196,6 +196,9 @@
     "guilds": {
         "add": {
             "button": "Aggiungi gilda",
+            "add": "Aggiungi",
+            "name": "Nome",
+            "id": "ID",
             "invitefirst": "Per favore invita il bot prima a questa gilda",
             "windowfailed": "Impossibile aprire la finestra"
         },

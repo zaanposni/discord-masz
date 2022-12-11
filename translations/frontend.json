@@ -1465,6 +1465,36 @@
                 "ru": "Добавить гильдию",
                 "it": "Aggiungi gilda"
             },
+            "add": {
+                "description": "Add",
+                "en": "Add",
+                "de": "Hinzufügen",
+                "at": "Hinzufügn",
+                "fr": "Ajouter",
+                "es": "Añadir",
+                "ru": "Добавить",
+                "it": "Aggiungi"
+            },
+            "name": {
+                "description": "Name",
+                "en": "Name",
+                "de": "Name",
+                "at": "Name",
+                "fr": "Nom",
+                "es": "Nombre",
+                "ru": "Имя",
+                "it": "Nome"
+            },
+            "id": {
+                "description": "ID",
+                "en": "ID",
+                "de": "ID",
+                "at": "ID",
+                "fr": "ID",
+                "es": "ID",
+                "ru": "ID",
+                "it": "ID"
+            },
             "invitefirst": {
                 "description": "Invite first",
                 "en": "Please invite the bot to this guild first",

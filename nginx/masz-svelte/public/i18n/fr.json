@@ -196,6 +196,9 @@
     "guilds": {
         "add": {
             "button": "Ajouter une guilde",
+            "add": "Ajouter",
+            "name": "Nom",
+            "id": "ID",
             "invitefirst": "Veuillez d'abord inviter le bot à cette guilde",
             "windowfailed": "Échec de l'ouverture de la fenêtre"
         },

@@ -196,6 +196,9 @@
     "guilds": {
         "add": {
             "button": "Add guild",
+            "add": "Add",
+            "name": "Name",
+            "id": "ID",
             "invitefirst": "Please invite the bot to this guild first",
             "windowfailed": "Failed to open window"
         },

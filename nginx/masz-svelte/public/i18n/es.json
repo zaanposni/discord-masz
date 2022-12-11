@@ -196,6 +196,9 @@
     "guilds": {
         "add": {
             "button": "Añadir una hermandad",
+            "add": "Añadir",
+            "name": "Nombre",
+            "id": "ID",
             "invitefirst": "Por favor, invita al bot a esta hermandad primero",
             "windowfailed": "Fallo al abrir la ventana"
         },

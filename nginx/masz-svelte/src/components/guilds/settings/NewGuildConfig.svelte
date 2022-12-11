@@ -1,21 +1,31 @@
 <script lang="ts">
-    import { Add32 } from "carbon-icons-svelte";
+    import GuildIcon from "./../../discord/GuildIcon.svelte";
+    import { Button, DataTable, Toolbar, ToolbarContent, ToolbarSearch, Loading, Row } from "carbon-components-svelte";
+    import moment from "moment";
+    import { Add32, Add24 } from "carbon-icons-svelte";
     import { writable, Writable } from "svelte/store";
     import type { IDiscordGuild } from "../../../models/discord/IDiscordGuild";
     import API from "../../../services/api/api";
     import { CacheMode } from "../../../services/api/CacheMode";
     import GuildCard from "../GuildCard.svelte";
     import { slide } from "svelte/transition";
-    import { Button, Loading } from "carbon-components-svelte";
     import { _ } from "svelte-i18n";
     import { toastError } from "../../../services/toast/store";
     import EditGuildConfig from "./EditGuildConfig.svelte";
     import { applicationInfo } from "../../../stores/applicationInfo";
+    import MediaQuery from "../../../core/MediaQuery.svelte";
 
     const guilds: Writable<IDiscordGuild[]> = writable([]);
     const selectedGuild: Writable<IDiscordGuild | null> = writable(null);
     const selectedGuildLoading: Writable<boolean> = writable(true);
     const selectedGuildError: Writable<boolean> = writable(true);
+
+    let headers = [];
+    $: headers = [
+        { key: "name", value: $_("guilds.add.name"), minWidth: "60px" },
+        { key: "id", value: $_("guilds.add.id"), minWidth: "60px" },
+        { key: "action", value: $_("guilds.add.add"), width: "100px" },
+    ];
 
     API.get("/discord/guilds", CacheMode.API_ONLY, false).then((res) => {
         guilds.set(res);
@@ -60,15 +70,35 @@
 </script>
 
 {#if !$selectedGuild}
-    <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 3xl:grid-cols-8" transition:slide|local>
-        {#each $guilds as guild (guild.id)}
-            <GuildCard
-                {guild}
-                on:click={() => {
-                    selectGuild(guild);
-                }} />
-        {/each}
-    </div>
+    <MediaQuery query="(min-width: 768px)" let:matches>
+        <div class="flex flex-col {matches ? 'w-1/2' : ''}">
+            <div transition:slide|local>
+                <DataTable zebra title={$_("guilds.add.button")} {headers} bind:rows={$guilds}>
+                    <Toolbar>
+                        <ToolbarContent>
+                            <ToolbarSearch
+                                persistent
+                                shouldFilterRows={(row, value) => {
+                                    return row.name.toLowerCase().includes(value.toLowerCase()) || row.id.toLowerCase().includes(value.toLowerCase());
+                                }} />
+                        </ToolbarContent>
+                    </Toolbar>
+                    <svelte:fragment slot="cell" let:row let:cell>
+                        {#if cell.key === "action"}
+                            <Button on:click={() => selectGuild(row)} icon={Add24} iconDescription={$_("guilds.add.button")} />
+                        {:else if cell.key === "name"}
+                            <div class="flex flex-row items-center">
+                                <GuildIcon guild={row} />
+                                <span class="ml-4">{cell.value}</span>
+                            </div>
+                        {:else}
+                            {cell.value}
+                        {/if}
+                    </svelte:fragment>
+                </DataTable>
+            </div>
+        </div>
+    </MediaQuery>
 {:else}
     <div transition:slide|local>
         <GuildCard guild={$selectedGuild} />

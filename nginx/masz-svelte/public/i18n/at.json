@@ -196,6 +196,9 @@
     "guilds": {
         "add": {
             "button": "Güde hinzufügn",
+            "add": "Hinzufügn",
+            "name": "Name",
+            "id": "ID",
             "invitefirst": "Bitte lad den Bot zuerst in de Güde ei",
             "windowfailed": "Fenster konnt ned göffnet wean"
         },
