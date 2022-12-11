@@ -102,9 +102,9 @@ namespace MASZ.Services
 
                 await _interactions.ExecuteCommandAsync(ctx, _serviceProvider);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine($"Unable to execute {arg.Type} in channel {arg.Channel}");
+                _logger.LogError(e, $"Unable to execute {arg.Type} in channel {arg.Channel}");
 
                 // If a Slash Command execution fails it is most likely that the original interaction acknowledgement will persist. It is a good idea to delete the original
                 // response, or at least let the user know that something went wrong during the command execution.
@@ -658,23 +658,23 @@ namespace MASZ.Services
             {
                 if (result is ExecuteResult eResult)
                 {
-                    if (eResult.Exception is BaseAPIException)
+                    if (eResult.Exception is BaseAPIException apiException)
                     {
                         _logger.LogError($"Command '{info.Name}' invoked by '{context.User.Username}#{context.User.Discriminator}' failed: {(eResult.Exception as BaseAPIException).Error}");
 
                         using var scope = _serviceProvider.CreateScope();
                         Translator translator = scope.ServiceProvider.GetRequiredService<Translator>();
-                        if (context.Guild != null)
+                        if (context.Guild != null && eResult.Exception is not UnregisteredGuildException)
                         {
                             await translator.SetContext(context.Guild.Id);
                         }
 
-                        string errorCode = "#" + ((int)(eResult.Exception as BaseAPIException).Error).ToString("D4");
+                        string errorCode = "#" + ((int)apiException.Error).ToString("D4");
 
                         EmbedBuilder builder = new EmbedBuilder()
                             .WithTitle(translator.T().SomethingWentWrong())
                             .WithColor(Color.Red)
-                            .WithDescription(translator.T().Enum((eResult.Exception as BaseAPIException).Error))
+                            .WithDescription(translator.T().Enum(apiException.Error))
                             .WithCurrentTimestamp()
                             .WithFooter($"{translator.T().Code()} {errorCode}");
 
