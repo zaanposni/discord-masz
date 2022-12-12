@@ -149,6 +149,24 @@ namespace MASZ.Services
             _logger.LogInformation("Client connected.");
             _isRunning = true;
 
+            using var scope = _serviceProvider.CreateScope();
+            try
+            {
+                var guilds = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetAllGuildConfigs();
+                foreach (var guild in guilds)
+                {
+                    await _interactions.RegisterCommandsToGuildAsync(
+                        guild.GuildId,
+                        true
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex, "Something went wrong while registering guild commands.");
+                scope.Dispose();
+            }
+
             try
             {
                 await _client.BulkOverwriteGlobalApplicationCommandsAsync(Array.Empty<ApplicationCommandProperties>());
@@ -500,10 +518,25 @@ namespace MASZ.Services
             InviteTracker.AddInvites(guild.Id, await FetchInvites(guild));
         }
 
-        private Task GuildCreatedHandler(SocketGuild guild)
+        private async Task GuildCreatedHandler(SocketGuild guild)
         {
             _logger.LogInformation($"I joined guild '{guild.Name}' with ID: '{guild.Id}'");
-            return Task.CompletedTask;
+
+            using var scope = _serviceProvider.CreateScope();
+
+            GuildConfig guildConfig;
+            try
+            {
+                guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guild.Id);
+                await _interactions.RegisterCommandsToGuildAsync(
+                    guild.Id,
+                    true
+                );
+            }
+            catch (ResourceNotFoundException)
+            {
+                return;
+            }
         }
 
         private async Task GuildMemberAddedHandler(SocketGuildUser member)
