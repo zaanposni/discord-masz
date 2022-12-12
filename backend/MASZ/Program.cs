@@ -68,7 +68,8 @@ builder.Services
 {
     DefaultRunMode = RunMode.Async,
     LogLevel = LogSeverity.Debug,
-    UseCompiledLambda = true
+    UseCompiledLambda = true,
+    LocalizationManager = new TranslationManager()
 })
 
 .AddSingleton<InteractionService>()
