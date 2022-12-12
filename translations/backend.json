@@ -1,4 +1,28 @@
 {
+    "Commands": {
+        "URL": {
+            "Name": {
+                "description": "The word 'URL'",
+                "en": "URL",
+                "de": "URL",
+                "at": "URL",
+                "fr": "URL",
+                "es": "URL",
+                "ru": "URL",
+                "it": "URL"
+            },
+            "Desc": {
+                "description": "The description of the 'URL' command",
+                "en": "Displays the URL MASZ is deployed on.",
+                "de": "Zeigt die URL an, auf der MASZ installiert ist.",
+                "at": "Zeigt die URL an, auf der MASZ installiert ist.",
+                "fr": "Affiche l'URL sur laquelle MASZ est déployé.",
+                "es": "Muestra la URL en la que se implementa MASZ.",
+                "ru": "Отображает URL, на котором развернут MASZ.",
+                "it": "Mostra l'URL su cui è installato MASZ."
+            }
+        }
+    },
     "Features": {
         "description": "The word 'features'",
         "en": "Features",

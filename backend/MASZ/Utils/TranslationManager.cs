@@ -1,5 +1,5 @@
 using Discord.Interactions;
-using MASZ.Services;
+using MASZ.Enums;
 
 namespace MASZ.Utils
 {
@@ -7,33 +7,48 @@ namespace MASZ.Utils
     {
         private readonly Translation _translation = Translation.Ctx();
 
-
-        //BASE_TYPE_CHOICES: Value must be one of ('zh-CN', 'no', 'it', 'fi', 'hr', 'th', 'pl', 'el',
-        // 'ar', 'ko', 'ru', 'fr', 'bg', 'he', 'en-US', 'lt', 'uk', 'hu', 'nl', 'sv-SE', 'vi', 'es-ES',
-        // 'de', 'hi', 'ja', 'id', 'da', 'cs', 'ro', 'zh-TW', 'en-GB', 'tr', 'pt-BR').
         public IDictionary<string, string> GetAllDescriptions(IList<string> key, LocalizationTarget destinationType)
         {
-            Console.WriteLine("GetAllDescriptions");
-            Console.WriteLine(String.Join(", ", key));
-            Console.WriteLine(destinationType);
+            IEnumerable<string> keys = key.Prepend("commands").Append("desc");
+            Dictionary<string, string> result = new Dictionary<string, string>();
 
-            if (key[0] == "url") {
-                return new Dictionary<string, string>() {
-                    { "en-US", "Displays the URL MASZ is deployed on." },
-                    { "de", "Zeigt die URL an, auf der MASZ bereitgestellt ist." }
-                };
+            // foreach language
+            foreach (Language language in (Language[]) Enum.GetValues(typeof(Language)))
+            {
+                _translation.PreferredLanguage = language;
+                string[] discordLocales = LocaleHelper.MASZLocaleToDiscordLocals(language);
+                foreach (string discordLocale in discordLocales)
+                {
+                    string translation = _translation.GetByJsonPath(String.Join(".", keys));
+                    if (translation != "Unknown") {
+                        result[discordLocale] = translation;
+                    }
+                }
             }
 
-            return new Dictionary<string, string>();
+            return result;
         }
 
         public IDictionary<string, string> GetAllNames(IList<string> key, LocalizationTarget destinationType)
         {
-            Console.WriteLine("GetAllNames");
-            Console.WriteLine(String.Join(", ", key));
-            Console.WriteLine(destinationType);
+            IEnumerable<string> keys = key.Prepend("commands").Append("name");
+            Dictionary<string, string> result = new Dictionary<string, string>();
 
-            return new Dictionary<string, string>();
+            // foreach language
+            foreach (Language language in (Language[]) Enum.GetValues(typeof(Language)))
+            {
+                _translation.PreferredLanguage = language;
+                string[] discordLocales = LocaleHelper.MASZLocaleToDiscordLocals(language);
+                foreach (string discordLocale in discordLocales)
+                {
+                    string translation = _translation.GetByJsonPath(String.Join(".", keys));
+                    if (translation != "Unknown") {
+                        result[discordLocale] = translation.ToLower();
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

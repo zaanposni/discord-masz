@@ -11,6 +11,8 @@ FRONTEND_OUTPUT_PATH = "../nginx/masz-svelte/public/i18n/"
 TRANSLATION_NODES = 0
 TRANSLATION_STATS = dict()
 
+BACKEND_TRANSLATION_NODES = []
+
 BACKEND_STRING = """using Discord;\nusing MASZ.Extensions;\nusing MASZ.Enums;\nusing MASZ.Models;\n\nnamespace MASZ.Utils
 {
     public class Translation
@@ -34,20 +36,28 @@ with console.status("[bold green]Generating backend...") as status:
     with open("backend.json", "r", encoding="utf-8") as f:
         BACKEND_DATA = json.load(f)
 
-    def generate_backend_node(node, prevKeys = ""):
+    def generate_backend_node(node, prevKeys = list()):
         global TRANSLATION_NODES
         global TRANSLATION_STATS
         global BACKEND_STRING
+        global BACKEND_TRANSLATION_NODES
         if "description" not in node:
             for key, value in node.items():
-                generate_backend_node(value, prevKeys + key)
+                generate_backend_node(value, prevKeys + [key])
         else:
-            console.log(f"Generating {prevKeys}...")
             TRANSLATION_NODES += 1
+            method_name = ''.join(prevKeys)
+            console.log(f"Generating {method_name}...")
+
             vars = [f"{v} {k}" for k, v in node.get("var_types", dict()).items()]
+
+            if vars == []:
+                BACKEND_TRANSLATION_NODES.append((prevKeys, method_name))
+
             insert_interpolation = "$" if vars else ""
-            generate = f"\t\tpublic string {prevKeys}({', '.join(vars)})" + "\n\t\t{\n"
+            generate = f"\t\tpublic string {method_name}({', '.join(vars)})" + "\n\t\t{\n"
             generate += "\t\t\treturn PreferredLanguage switch\n\t\t\t{\n"
+
             for lang, translation in node.items():
                 if lang.lower() in ["description", "var_types"]:
                     continue
@@ -56,6 +66,7 @@ with console.status("[bold green]Generating backend...") as status:
                     continue
                 t = translation.replace('\n', '\\n')
                 generate += f"\t\t\t\tLanguage.{lang.lower()} => {insert_interpolation}\"{t}\",\n"
+
             t = node['en'].replace('\n', '\\n')
             generate += f"\t\t\t\t_ => {insert_interpolation}\"{t}\",\n"
             generate += "\t\t\t};\n"
@@ -63,7 +74,15 @@ with console.status("[bold green]Generating backend...") as status:
             BACKEND_STRING += generate
 
     for key, value in BACKEND_DATA.items():
-        generate_backend_node(value, key)
+        generate_backend_node(value, [key])
+
+    BACKEND_STRING += "\t\tpublic string GetByJsonPath(string jsonPath)\n\t\t{\n"
+    BACKEND_STRING += "\t\t\treturn jsonPath.ToLower() switch\n\t\t\t{\n"
+    for keys, method_name in BACKEND_TRANSLATION_NODES:
+        BACKEND_STRING += f"\t\t\t\t\"{'.'.join(keys).lower()}\" => {method_name}(),\n"
+    BACKEND_STRING += "\t\t\t\t_ => \"Unknown\",\n"
+    BACKEND_STRING += "\t\t\t};\n"
+    BACKEND_STRING += "\t\t}\n"
 
     with open("backend_enum.json", "r", encoding="utf-8") as f:
         BACKEND_DATA = json.load(f)

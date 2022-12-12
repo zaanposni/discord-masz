@@ -29,5 +29,28 @@ namespace MASZ.Utils
                     return null;
             }
         }
+
+        public static string[] MASZLocaleToDiscordLocals(Language language)
+        {
+            switch (language)
+            {
+                case Language.en:
+                    return new string[] { "en-US", "en-GB" };
+                case Language.de:
+                    return new string[] { "de" };
+                case Language.fr:
+                    return new string[] { "fr" };
+                case Language.es:
+                    return new string[] { "es-ES" };
+                case Language.it:
+                    return new string[] { "it" };
+                case Language.at:
+                    return new string[] { "de" };  // discord does not have austria locale
+                case Language.ru:
+                    return new string[] { "ru" };
+                default:
+                    return new string[] { };
+            }
+        }
     }
 }
