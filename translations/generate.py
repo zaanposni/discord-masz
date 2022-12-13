@@ -46,7 +46,7 @@ with console.status("[bold green]Generating backend...") as status:
                 generate_backend_node(value, prevKeys + [key])
         else:
             TRANSLATION_NODES += 1
-            method_name = ''.join(prevKeys)
+            method_name = ''.join(prevKeys).replace(" ", "_").replace("-", "_")
             console.log(f"Generating {method_name}...")
 
             vars = [f"{v} {k}" for k, v in node.get("var_types", dict()).items()]
@@ -77,7 +77,8 @@ with console.status("[bold green]Generating backend...") as status:
         generate_backend_node(value, [key])
 
     BACKEND_STRING += "\t\tpublic string GetByJsonPath(string jsonPath)\n\t\t{\n"
-    BACKEND_STRING += "\t\t\treturn jsonPath.ToLower() switch\n\t\t\t{\n"
+    BACKEND_STRING += "\t\t\tjsonPath = jsonPath.ToLower();\n"
+    BACKEND_STRING += "\t\t\treturn jsonPath switch\n\t\t\t{\n"
     for keys, method_name in BACKEND_TRANSLATION_NODES:
         BACKEND_STRING += f"\t\t\t\t\"{'.'.join(keys).lower()}\" => {method_name}(),\n"
     BACKEND_STRING += "\t\t\t\t_ => \"Unknown\",\n"
