@@ -92,6 +92,8 @@ builder.Services
 
 .AddSingleton<Scheduler>()
 
+.AddSingleton<TelemetryService>()
+
 .AddSingleton<DiscordAnnouncer>()
 
 .AddSingleton<GuildAuditLogger>()

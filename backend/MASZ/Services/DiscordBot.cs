@@ -24,11 +24,12 @@ namespace MASZ.Services
         private readonly Punishments _punishments;
         private readonly IServiceProvider _serviceProvider;
         private readonly InternalEventHandler _eventHandler;
+        private readonly TelemetryService _telemetryService;
         private bool _firstReady = true;
         private bool _isRunning = false;
         private DateTime? _lastDisconnect = null;
 
-        public DiscordBot(ILogger<DiscordBot> logger, DiscordSocketClient client, InternalConfiguration internalConfiguration, InteractionService interactions, IServiceProvider serviceProvider, Scheduler scheduler, Punishments punishments, InternalEventHandler eventHandler)
+        public DiscordBot(ILogger<DiscordBot> logger, DiscordSocketClient client, InternalConfiguration internalConfiguration, InteractionService interactions, IServiceProvider serviceProvider, Scheduler scheduler, Punishments punishments, InternalEventHandler eventHandler, TelemetryService telemetryService)
         {
             _logger = logger;
             _client = client;
@@ -38,6 +39,7 @@ namespace MASZ.Services
             _punishments = punishments;
             _serviceProvider = serviceProvider;
             _eventHandler = eventHandler;
+            _telemetryService = telemetryService;
         }
 
         public async Task ExecuteAsync()
@@ -179,6 +181,14 @@ namespace MASZ.Services
             if (_firstReady)
             {
                 _firstReady = false;
+                try
+                {
+                    await _telemetryService.ExecuteAsync();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogCritical(ex, "Something went wrong while starting the telemetry timer.");
+                }
                 try
                 {
                     await _scheduler.ExecuteAsync();
