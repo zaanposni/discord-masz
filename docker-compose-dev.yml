@@ -52,6 +52,10 @@ services:
       - ENABLE_CUSTOM_PLUGINS=${ENABLE_CUSTOM_PLUGINS}
       - ABSOLUTE_PATH_TO_FILE_UPLOAD=/filehost/
       - ENABLE_CORS=${ENABLE_CORS}
+      - ENABLE_TELEMETRY=${ENABLE_TELEMETRY}
+      - DEBUG_COLORS=true
+      - TERM=xterm-256color
+      - COLORTERM=truecolor
     networks:
       - appnetwork
     volumes:

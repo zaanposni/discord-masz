@@ -36,5 +36,6 @@
     <PackageReference Include="RestSharp" Version="107.0.0-preview.12" />
     <PackageReference Include="Scrutor" Version="3.3.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.0" />
+    <PackageReference Include="Spectre.Console" Version="0.45.0" />
   </ItemGroup>
 </Project>

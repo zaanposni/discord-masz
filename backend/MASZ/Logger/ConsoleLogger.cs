@@ -1,4 +1,6 @@
-﻿namespace MASZ.Logger
+﻿using Spectre.Console;
+
+namespace MASZ.Logger
 {
     public class ConsoleLogger : ILogger
     {
@@ -22,37 +24,29 @@
 
             string message = formatter(state, exception);
 
-            string shortLogLevel;
-
-            switch (logLevel)
+            string shortLogLevel = logLevel.ToString().ToUpper();
+            switch(logLevel)
             {
                 case LogLevel.Trace:
-                    shortLogLevel = "T";
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    shortLogLevel = "[grey]T[/]";
                     break;
                 case LogLevel.Debug:
-                    shortLogLevel = "D";
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    shortLogLevel = "[grey]D[/]";
                     break;
                 case LogLevel.Information:
-                    shortLogLevel = "I";
-                    Console.ForegroundColor = ConsoleColor.White;
+                    shortLogLevel = "[blue]I[/]";
                     break;
                 case LogLevel.Warning:
-                    shortLogLevel = "W";
-                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    shortLogLevel = "[yellow]W[/]";
                     break;
                 case LogLevel.Error:
-                    shortLogLevel = "E";
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    shortLogLevel = "[red]E[/]";
                     break;
                 case LogLevel.Critical:
-                    shortLogLevel = "C";
-                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    shortLogLevel = "[red]C[/]";
                     break;
                 default:
                     shortLogLevel = "N";
-                    Console.ForegroundColor = ConsoleColor.Gray;
                     break;
             }
 
@@ -73,18 +67,15 @@
             }
 
             string currentTime = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
-            string prefix = $"[{currentTime}] [{shortLogLevel}] {_categoryName}[{eventId.Id}]: ";
 
-            Console.WriteLine($"{prefix}{message}");
+            AnsiConsole.Write($"[{currentTime}] [");
+            AnsiConsole.Markup(shortLogLevel);
+            AnsiConsole.WriteLine("] " + _categoryName + "[" + eventId.Id + "]: " + message);
+
             if (exception != null)
             {
-                Console.WriteLine(exception.Message);
-                if (exception.StackTrace != null)
-                {
-                    Console.WriteLine(exception.StackTrace);
-                }
+                AnsiConsole.WriteException(exception);
             }
-            Console.ResetColor();
         }
 
         public bool IsEnabled(LogLevel logLevel)
