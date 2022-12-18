@@ -1,3 +1,7 @@
+using System.Linq;
+using MASZ.Enums;
+using MASZ.Models;
+
 namespace MASZ.Dtos
 {
     public class TelemetryDataGuildFeatureUsageDto
@@ -113,5 +117,94 @@ namespace MASZ.Dtos
         // invites
 
         public int TrackedInvitesCount { get; set; }
+
+        public TelemetryDataGuildFeatureUsageDto(
+            string hashedServer,
+            string hashedGuildId,
+            MASZ.Models.GuildConfig guildConfig,
+            List<MASZ.Models.ModCase> modCases,
+            List<MASZ.Models.Appeal> appeals,
+            List<MASZ.Models.AppealStructure> appealStructures,
+            List<MASZ.Models.UserNote> userNotes,
+            List<MASZ.Models.UserMapping> userMappings,
+            List<MASZ.Models.ScheduledMessage> scheduledMessages,
+            MASZ.Models.GuildMotd guildMotd,
+            List<MASZ.Models.GuildLevelAuditLogConfig> auditLogConfigs,
+            List<MASZ.Models.AutoModerationConfig> automodConfigs,
+            List<MASZ.Models.AutoModerationEvent> automodEvents,
+            MASZ.Models.ZalgoConfig zalgoConfig,
+            int trackedInviteCount
+        )
+        {
+            HashedServer = hashedServer;
+            HashedGuildId = hashedGuildId;
+            AdminRolesCount = guildConfig.AdminRoles.Count();
+            ModRolesCount = guildConfig.ModRoles.Count();
+            StrictPermissionCheckEnabled = guildConfig.StrictModPermissionCheck;
+            MutedRolesCount = guildConfig.MutedRoles.Count();
+            InternalWebhookEnabled = guildConfig.ModInternalNotificationWebhook != null;
+            PublicWebhookEnabled = guildConfig.ModPublicNotificationWebhook != null;
+            PublicEmbedModeEnabled = guildConfig.PublicEmbedMode;
+            PublishModeratorInformationEnabled = guildConfig.PublishModeratorInfo;
+            ExecuteWhoisOnJoinEnabled = guildConfig.ExecuteWhoisOnJoin;
+            Language = guildConfig.PreferredLanguage.ToString();
+            ModCaseCount = modCases.Count();
+            ModCaseBanCount = modCases.Where(x => x.PunishmentType == PunishmentType.Ban).Count();
+            ModCaseKickCount = modCases.Where(x => x.PunishmentType == PunishmentType.Kick).Count();
+            ModCaseWarnCount = modCases.Where(x => x.PunishmentType == PunishmentType.Warn).Count();
+            ModCaseMuteCount = modCases.Where(x => x.PunishmentType == PunishmentType.Mute).Count();
+            UniqueLabelsCount = modCases.SelectMany(x => x.Labels).Distinct().Count();
+            ModCaseImportedCount = modCases.Where(x => x.CreationType == CaseCreationType.Imported).Count();
+            ModCaseAutomoderatedCount = modCases.Where(x => x.CreationType == CaseCreationType.AutoModeration).Count();
+            ModCaseByCommandCount = modCases.Where(x => x.CreationType == CaseCreationType.ByCommand).Count();
+            ModCaseWithCommentCount = modCases.Where(x => x.Comments.Count() > 0).Count();
+            CommentCount = modCases.Select(x => x.Comments.Count).Sum();
+            FileCount = -1;
+            FileAverageSize = -1;
+            FileAllSize = -1;
+            AutomodEventCount = automodEvents.Count();
+            AppealCount = appeals.Count();
+            AppealAcceptedCount = appeals.Where(x => x.Status == AppealStatus.Approved).Count();
+            AppealRejectedCount = appeals.Where(x => x.Status == AppealStatus.Declined).Count();
+            AppealPendingCount = appeals.Where(x => x.Status == AppealStatus.Pending).Count();
+            AppealQuestionsCount = appealStructures.Where(x => !x.Deleted).Count();
+            UsernoteCount = userNotes.Count();
+            UsermapCount = userMappings.Count();
+            MessageCount = scheduledMessages.Count();
+            LastMessage = scheduledMessages.Count() > 0 ? scheduledMessages.Where(x => x.Status == ScheduledMessageStatus.Sent).Max(x => x.ScheduledFor) : null;
+            MotdEnabled = guildMotd != null && guildMotd.ShowMotd;
+            AuditLogMessageSentEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.MessageSent) != null;
+            AuditLogMessageEditedEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.MessageUpdated) != null;
+            AuditLogMessageDeletedEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.MessageDeleted) != null;
+            AuditLogUsernameChangedEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.UsernameUpdated) != null;
+            AuditLogNicknameChangedEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.NicknameUpdated) != null;
+            AuditLogAvatarChangedEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.AvatarUpdated) != null;
+            AuditLogMemberRolesUpdatedEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.MemberRolesUpdated) != null;
+            AuditLogMemberJoinedEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.MemberJoined) != null;
+            AuditLogMemberLeftEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.MemberRemoved) != null;
+            AuditLogMemberBannedEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.BanAdded) != null;
+            AuditLogMemberUnbannedEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.BanRemoved) != null;
+            AuditLogInviteCreatedEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.InviteCreated) != null;
+            AuditLogInviteDeletedEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.InviteDeleted) != null;
+            AuditLogThreadCreatedEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.ThreadCreated) != null;
+            AuditLogMemberJoinedVoiceChannelEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.VoiceJoined) != null;
+            AuditLogMemberLeftVoiceChannelEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.VoiceLeft) != null;
+            AuditLogMemberSwitchedVoiceChannelEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.VoiceMoved) != null;
+            AuditLogReactionAddedEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.ReactionAdded) != null;
+            AuditLogReactionRemovedEnabled = auditLogConfigs.Find(x => x.GuildAuditLogEvent == GuildAuditLogEvent.ReactionRemoved) != null;
+            AutomodInviteEnabled = automodConfigs.Find(x => x.AutoModerationType == AutoModerationType.InvitePosted) != null;
+            AutomodEmotesEnabled = automodConfigs.Find(x => x.AutoModerationType == AutoModerationType.TooManyEmotes) != null;
+            AutomodMentionsEnabled = automodConfigs.Find(x => x.AutoModerationType == AutoModerationType.TooManyMentions) != null;
+            AutomodAttachmentsEnabled = automodConfigs.Find(x => x.AutoModerationType == AutoModerationType.TooManyAttachments) != null;
+            AutomodEmbedsEnabled = automodConfigs.Find(x => x.AutoModerationType == AutoModerationType.TooManyEmbeds) != null;
+            AutomodLimitsEnabled = automodConfigs.Find(x => x.AutoModerationType == AutoModerationType.TooManyAutoModerations) != null;
+            AutomodCustomWordsEnabled = automodConfigs.Find(x => x.AutoModerationType == AutoModerationType.CustomWordFilter) != null;
+            AutomodSpamEnabled = automodConfigs.Find(x => x.AutoModerationType == AutoModerationType.TooManyMessages) != null;
+            AutomodDuplicatesEnabled = automodConfigs.Find(x => x.AutoModerationType == AutoModerationType.TooManyDuplicatedCharacters) != null;
+            AutomodLinksEnabled = automodConfigs.Find(x => x.AutoModerationType == AutoModerationType.TooManyLinks) != null;
+            ZalgoEnabled = zalgoConfig != null && zalgoConfig.Enabled;
+            ZalgoTryRenameEnabled = zalgoConfig != null && zalgoConfig.renameNormal;
+            TrackedInvitesCount = trackedInviteCount;
+        }
     }
 }

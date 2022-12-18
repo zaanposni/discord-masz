@@ -95,7 +95,7 @@ namespace MASZ.Data
 
         public async Task<List<ModCase>> SelectAllModCasesForGuild(ulong guildId)
         {
-            return await context.ModCases.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CaseId).ToListAsync();
+            return await context.ModCases.Include(c => c.Comments).AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.CaseId).ToListAsync();
         }
 
         public async Task<List<ModCase>> SelectAllModCasesForGuild(ulong guildId, ModcaseTableType tableType)
@@ -749,6 +749,11 @@ namespace MASZ.Data
             return await context.ScheduledMessages.AsQueryable().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
+
+        public async Task<List<ScheduledMessage>> GetScheduledMessages(ulong guildId)
+        {
+            return await context.ScheduledMessages.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.Id).ToListAsync();
+        }
         public async Task<List<ScheduledMessage>> GetScheduledMessages(ulong guildId, int page = 0)
         {
             return await context.ScheduledMessages.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.Id).Skip(page * 20).Take(20).ToListAsync();

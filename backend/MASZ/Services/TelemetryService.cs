@@ -8,6 +8,7 @@ using Timer = System.Timers.Timer;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
+using MASZ.Exceptions;
 
 namespace MASZ.Services
 {
@@ -108,15 +109,17 @@ namespace MASZ.Services
         {
             _logger.LogInformation("Collecting weekly telemetry data.");
 
-            StatusRepository repo = StatusRepository.CreateDefault(_serviceProvider);
+            // =======================================================================================================
 
-            StatusDetail botDetails = repo.GetBotStatus();
-            StatusDetail dbDetails = await repo.GetDbStatus();
+            StatusRepository statusRepo = StatusRepository.CreateDefault(_serviceProvider);
+
+            StatusDetail botDetails = statusRepo.GetBotStatus();
+            StatusDetail dbDetails = await statusRepo.GetDbStatus();
 
             Process proc = Process.GetCurrentProcess();
             GCMemoryInfo gcMemoryInfo = GC.GetGCMemoryInfo();
 
-            TelemetryDataResourceDto dto = new TelemetryDataResourceDto() {
+            TelemetryDataResourceDto resourceDto = new TelemetryDataResourceDto() {
                 HashedServer = hashedServerIdentifier,
                 AllocatedMemory = proc.PrivateMemorySize64,
                 TotalMemory = gcMemoryInfo.TotalAvailableMemoryBytes,
@@ -126,7 +129,67 @@ namespace MASZ.Services
                 DiscordLatency = botDetails.ResponseTime ?? -1
             };
 
-            await SendTelemetryData<TelemetryDataResourceDto>("resource", dto);
+            await SendTelemetryData<TelemetryDataResourceDto>("resource", resourceDto);
+
+            // =======================================================================================================
+
+            List<GuildConfig> guildConfigs = await GuildConfigRepository.CreateDefault(_serviceProvider).GetAllGuildConfigs();
+            AppSettings appSettings = await AppSettingsRepository.CreateDefault(_serviceProvider).GetAppSettings();
+            List<APIToken> apiTokens = await TokenRepository.CreateDefault(_serviceProvider).GetAllTokens();
+
+            TelemetryDataGlobalFeatureUsageDto globalFeatureUsageDto = new TelemetryDataGlobalFeatureUsageDto {
+                HashedServer = hashedServerIdentifier,
+                GuildCount = guildConfigs.Count,
+                AuditLogEnabled = appSettings.AuditLogWebhookURL != null,
+                PublicFileMode = appSettings.PublicFileMode,
+                APITokenCount = apiTokens.Count
+            };
+
+            await SendTelemetryData<TelemetryDataGlobalFeatureUsageDto>("globalfeatureusage", globalFeatureUsageDto);
+
+            // =======================================================================================================
+
+            foreach (GuildConfig guild in guildConfigs)
+            {
+                byte[] guildBytes = Encoding.UTF8.GetBytes(guild.GuildId.ToString());
+                string hashedGuildId = "";
+                using (HMACSHA256 hmac = new HMACSHA256(hashKey))
+                {
+                    hashedGuildId = BitConverter.ToString(hmac.ComputeHash(guildBytes)).Replace("-", "").ToLower();
+                }
+
+                GuildMotd motd = null;
+                ZalgoConfig zalgoConfig = null;
+
+                try
+                {
+                    await GuildMotdRepository.CreateWithBotIdentity(_serviceProvider).GetMotd(guild.GuildId);
+                } catch (ResourceNotFoundException) { }
+                try
+                {
+                    zalgoConfig = await ZalgoRepository.CreateWithBotIdentity(_serviceProvider).GetZalgo(guild.GuildId);
+                } catch (ResourceNotFoundException) { }
+
+                TelemetryDataGuildFeatureUsageDto guildFeatureUsageDto = new TelemetryDataGuildFeatureUsageDto(
+                    hashedServerIdentifier,
+                    hashedGuildId,
+                    guild,
+                    await ModCaseRepository.CreateWithBotIdentity(_serviceProvider).GetCasesForGuild(guild.GuildId),
+                    await AppealRepository.CreateDefault(_serviceProvider).GetForGuild(guild.GuildId),
+                    await AppealStructureRepository.CreateDefault(_serviceProvider).GetForGuild(guild.GuildId),
+                    await UserNoteRepository.CreateWithBotIdentity(_serviceProvider).GetUserNotesByGuild(guild.GuildId),
+                    await UserMapRepository.CreateWithBotIdentity(_serviceProvider).GetUserMapsByGuild(guild.GuildId),
+                    await ScheduledMessageRepository.CreateWithBotIdentity(_serviceProvider).GetAllMessages(guild.GuildId),
+                    motd,
+                    await GuildLevelAuditLogConfigRepository.CreateWithBotIdentity(_serviceProvider).GetConfigsByGuild(guild.GuildId),
+                    await AutoModerationConfigRepository.CreateWithBotIdentity(_serviceProvider).GetConfigsByGuild(guild.GuildId),
+                    await AutoModerationEventRepository.CreateDefault(_serviceProvider).GetAllEventsForGuild(guild.GuildId),
+                    zalgoConfig,
+                    await InviteRepository.CreateDefault(_serviceProvider).CountInvitesForGuild(guild.GuildId)
+                );
+
+                await SendTelemetryData<TelemetryDataGuildFeatureUsageDto>("guildfeatureusage", guildFeatureUsageDto);
+            }
 
             _logger.LogInformation("Collected weekly telemetry data.");
         }
@@ -136,12 +199,19 @@ namespace MASZ.Services
             RestClient client = new RestClient(remoteUrl);
             RestRequest request = new RestRequest(resource, Method.Post);
             request.AddJsonBody(dto);
-            RestResponse response = await client.ExecuteAsync(request);
-            if (response.StatusCode != HttpStatusCode.OK)
+            try
             {
-                _logger.LogError($"Failed to send telemetry data to {remoteUrl}/{resource}: {response.StatusCode} - {response.Content}");
-            } else {
-                _logger.LogInformation($"Successfully sent telemetry data to {remoteUrl}/{resource}: {response.StatusCode}");
+                RestResponse response = await client.ExecuteAsync(request);
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    _logger.LogError($"Failed to send telemetry data to {remoteUrl}{resource}: {response.StatusCode} - {response.Content}");
+                } else {
+                    _logger.LogInformation($"Successfully sent telemetry data to {remoteUrl}{resource}: {response.StatusCode}");
+                }
+            } catch (Exception e)
+            {
+                _logger.LogError($"Failed to send telemetry data to {remoteUrl}{resource}: {e.Message}");
+                return;
             }
         }
     }
