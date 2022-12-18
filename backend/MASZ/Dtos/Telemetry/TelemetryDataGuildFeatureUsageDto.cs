@@ -1,7 +1,8 @@
-namespace masz.Dtos
+namespace MASZ.Dtos
 {
     public class TelemetryDataGuildFeatureUsageDto
     {
+        public string HashedServer { get; set; }
         public string HashedGuildId { get; set; }
 
         // config

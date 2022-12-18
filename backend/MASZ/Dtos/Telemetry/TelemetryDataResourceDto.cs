@@ -1,12 +1,13 @@
-namespace masz.Dtos
+namespace MASZ.Dtos
 {
     public class TelemetryDataResourceDto
     {
-        public int AllocatedMemory { get; set; }
-        public int FreeMemory { get; set; }
-        public int TotalMemory { get; set; }
-        public int CPUUsage { get; set; }
-        public int DiscordLatency { get; set; }
-        public int DatabaseLatency { get; set; }
+        public string HashedServer { get; set; }
+        public long AllocatedMemory { get; set; }
+        public long FreeMemory { get; set; }
+        public long TotalMemory { get; set; }
+        public double CPUUsage { get; set; }
+        public double DiscordLatency { get; set; }
+        public double DatabaseLatency { get; set; }
     }
 }

@@ -1,7 +1,8 @@
-namespace masz.Dtos
+namespace MASZ.Dtos
 {
     public class TelemetryDataConfigurationDto
     {
+        public string HashedServer { get; set; }
         public string DeploymentMode { get; set; }
         public string DeploymentVersion { get; set; }
         public string DefaultLanguage { get; set; }
