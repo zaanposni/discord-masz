@@ -200,19 +200,19 @@ namespace MASZ.Services
             return Task.CompletedTask;
         }
 
-        private Task OnGuildDeleted(GuildConfig guildConfig)
+        private Task OnGuildDeleted(GuildConfig guildConfig, IUser user)
         {
             QueueLog($"**Guild** `{guildConfig.GuildId}` deleted.");
             return Task.CompletedTask;
         }
 
-        private Task OnGuildUpdated(GuildConfig guildConfig)
+        private Task OnGuildUpdated(GuildConfig guildConfig, IUser user)
         {
             QueueLog($"**Guild** `{guildConfig.GuildId}` updated.");
             return Task.CompletedTask;
         }
 
-        private Task OnGuildRegistered(GuildConfig guildConfig, bool importExistingBans)
+        private Task OnGuildRegistered(GuildConfig guildConfig, IUser user, bool importExistingBans)
         {
             QueueLog($"**Guild** `{guildConfig.GuildId}` registered.");
             return Task.CompletedTask;

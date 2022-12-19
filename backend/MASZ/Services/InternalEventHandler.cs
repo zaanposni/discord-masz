@@ -113,29 +113,29 @@ namespace MASZ.Services
         /// </summary>
         /// <typeparam name="GuildConfig">The created guildconfig.</typeparam>
         /// <typeparam name="bool">Whether the user choosed a ban import for this register to run.</typeparam>
-        public event Func<GuildConfig, bool, Task> OnGuildRegistered
+        public event Func<GuildConfig, IUser, bool, Task> OnGuildRegistered
         {
             add { OnGuildRegisteredEvent.Add(value); }
             remove { OnGuildRegisteredEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildConfig, bool, Task>> OnGuildRegisteredEvent = new("OnGuildRegisteredEvent");
+        internal readonly AsyncEvent<Func<GuildConfig, IUser, bool, Task>> OnGuildRegisteredEvent = new("OnGuildRegisteredEvent");
 
-        public event Func<GuildConfig, Task> OnGuildUpdated
+        public event Func<GuildConfig, IUser, Task> OnGuildUpdated
         {
             add { OnGuildUpdatedEvent.Add(value); }
             remove { OnGuildUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildConfig, Task>> OnGuildUpdatedEvent = new("OnGuildUpdatedEvent");
+        internal readonly AsyncEvent<Func<GuildConfig, IUser, Task>> OnGuildUpdatedEvent = new("OnGuildUpdatedEvent");
 
-        public event Func<GuildConfig, Task> OnGuildDeleted
+        public event Func<GuildConfig, IUser, Task> OnGuildDeleted
         {
             add { OnGuildDeletedEvent.Add(value); }
             remove { OnGuildDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildConfig, Task>> OnGuildDeletedEvent = new("OnGuildDeletedEvent");
+        internal readonly AsyncEvent<Func<GuildConfig, IUser, Task>> OnGuildDeletedEvent = new("OnGuildDeletedEvent");
 
         public event Func<GuildMotd, IUser, Task> OnGuildMotdCreated
         {

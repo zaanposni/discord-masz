@@ -26,7 +26,7 @@ namespace MASZ.Services
 
         public void RegisterEvents()
         {
-            _eventHandler.OnGuildRegistered += async (a, b) => await AnnounceTipsInNewGuild(a, b);
+            _eventHandler.OnGuildRegistered += async (a, b, c) => await AnnounceTipsInNewGuild(a, b, c);
 
             _eventHandler.OnAutoModerationEventRegistered += async (a, b, c, d, e) => await AnnounceAutomoderation(a, b, c, d, e);
 
@@ -67,7 +67,7 @@ namespace MASZ.Services
             _eventHandler.OnZalgoNicknameRename += async (a, b, c, d) => await AnnounceZalgoRename(a, b, c, d);
         }
 
-        private async Task AnnounceTipsInNewGuild(GuildConfig guildConfig, bool importExistingBans)
+        private async Task AnnounceTipsInNewGuild(GuildConfig guildConfig, IUser user, bool importExistingBans)
         {
             if (!string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
             {

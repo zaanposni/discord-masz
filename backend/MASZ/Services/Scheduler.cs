@@ -39,7 +39,7 @@ namespace MASZ.Services
             _eventHandler.OnGuildRegistered += HandleGuildRegister;
         }
 
-        private async Task HandleGuildRegister(GuildConfig guildConfig, bool importExistingBans)
+        private async Task HandleGuildRegister(GuildConfig guildConfig, IUser user, bool importExistingBans)
         {
             using var scope = _serviceProvider.CreateScope();
 

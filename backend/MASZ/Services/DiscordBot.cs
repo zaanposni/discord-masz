@@ -229,7 +229,7 @@ namespace MASZ.Services
             return Task.CompletedTask;
         }
 
-        private async Task GuildRegisteredHandler(GuildConfig guild, bool importExistingStuff)
+        private async Task GuildRegisteredHandler(GuildConfig guild, IUser user, bool importExistingStuff)
         {
             await _interactions.RegisterCommandsToGuildAsync(
                 guild.GuildId,
@@ -240,7 +240,7 @@ namespace MASZ.Services
 
         }
 
-        private async Task GuildDeletedHandler(GuildConfig guild)
+        private async Task GuildDeletedHandler(GuildConfig guild, IUser user)
         {
             var restClient = new RestClient($"https://discord.com");
 
