@@ -131,7 +131,7 @@ namespace MASZ.Services
 
         private Task Connected()
         {
-            _logger.LogCritical("Client connected.");
+            _logger.LogInformation("Client connected.");
             _isRunning = true;
 
             return Task.CompletedTask;
