@@ -260,13 +260,13 @@ namespace MASZ.Services
 
         internal readonly AsyncEvent<Func<ModCase, IUser, bool, bool, Task>> OnModCaseMarkedToBeDeletedEvent = new("OnModCaseMarkedToBeDeletedEvent");
 
-        public event Func<ModCase, Task> OnModCaseRestored
+        public event Func<ModCase, IUser, Task> OnModCaseRestored
         {
             add { OnModCaseRestoredEvent.Add(value); }
             remove { OnModCaseRestoredEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCase, Task>> OnModCaseRestoredEvent = new("OnModCaseRestoredEvent");
+        internal readonly AsyncEvent<Func<ModCase, IUser, Task>> OnModCaseRestoredEvent = new("OnModCaseRestoredEvent");
 
         /// <summary>
         /// Invoked when a usermap is created

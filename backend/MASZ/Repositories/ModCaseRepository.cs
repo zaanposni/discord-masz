@@ -442,7 +442,7 @@ namespace MASZ.Repositories
             Database.UpdateModCase(modCase);
             await Database.SaveChangesAsync();
 
-            _eventHandler.OnModCaseRestoredEvent.InvokeAsync(modCase);
+            _eventHandler.OnModCaseRestoredEvent.InvokeAsync(modCase, _currentUser);
 
             try
             {
