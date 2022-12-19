@@ -9,6 +9,9 @@ using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 using MASZ.Exceptions;
+using Discord;
+using Newtonsoft.Json.Linq;
+using RestSharp.Serializers.NewtonsoftJson;
 
 namespace MASZ.Services
 {
@@ -39,7 +42,8 @@ namespace MASZ.Services
 
             _logger.LogWarning("Telemetry is enabled. This will send anonymous data to the MASZ developers.");
 
-            using (SHA256 sha256Hash = SHA256.Create())
+            byte[] clientSecret = Encoding.UTF8.GetBytes(_config.GetClientSecret());
+            using (HMACSHA256 hmac = new HMACSHA256(clientSecret))
             {
                 byte[] serverIdentifier;
                 if (_config.GetServiceDomain().Contains("http://localhost"))
@@ -52,7 +56,7 @@ namespace MASZ.Services
                     hashKey = Encoding.UTF8.GetBytes(_config.GetServiceDomain());
                 }
 
-                hashedServerIdentifier = BitConverter.ToString(sha256Hash.ComputeHash(serverIdentifier)).Replace("-", "").ToLower();
+                hashedServerIdentifier = BitConverter.ToString(hmac.ComputeHash(serverIdentifier)).Replace("-", "").ToLower();
 
                 _logger.LogInformation($"Using server identifier: \"{hashedServerIdentifier}\" for telemetry reporting.");
             }
@@ -60,6 +64,10 @@ namespace MASZ.Services
 
         public void RegisterEvents()
         {
+            if (! _config.IsTelemetryEnabled()) return;
+
+            _eventHandler.OnIdentityRegistered += async (a) => await OnIdentityRegistered(a);
+            _eventHandler.OnModCaseCreated += async (a, b, c, d) => await OnModCaseCreated(a, b);
         }
 
         public async Task ExecuteAsync()
@@ -151,12 +159,7 @@ namespace MASZ.Services
 
             foreach (GuildConfig guild in guildConfigs)
             {
-                byte[] guildBytes = Encoding.UTF8.GetBytes(guild.GuildId.ToString());
-                string hashedGuildId = "";
-                using (HMACSHA256 hmac = new HMACSHA256(hashKey))
-                {
-                    hashedGuildId = BitConverter.ToString(hmac.ComputeHash(guildBytes)).Replace("-", "").ToLower();
-                }
+                string hashedGuildId = HashStringWithPrivateKey(guild.GuildId.ToString());
 
                 GuildMotd motd = null;
                 ZalgoConfig zalgoConfig = null;
@@ -194,11 +197,31 @@ namespace MASZ.Services
             _logger.LogInformation("Collected weekly telemetry data.");
         }
 
-        private async Task SendTelemetryData<T>(string resource, T dto)
+        private string HashStringWithPrivateKey(string input)
         {
+            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+
+            HMACSHA256 hmac = new HMACSHA256(hashKey);
+            string output = BitConverter.ToString(hmac.ComputeHash(inputBytes)).Replace("-", "").ToLower();
+            hmac.Dispose();
+
+            return output;
+        }
+
+        private async Task SendTelemetryData<T>(string resource, T dto) where T : class
+        {
+            if (dto is TelemetryDataUsageDto usageDto)
+            {
+                if (usageDto.AdditionalData == null)
+                {
+                    usageDto.AdditionalData = new JObject();
+                }
+            }
+
             RestClient client = new RestClient(remoteUrl);
+            client.UseNewtonsoftJson();
             RestRequest request = new RestRequest(resource, Method.Post);
-            request.AddJsonBody(dto);
+            request.AddJsonBody<T>(dto);
             try
             {
                 RestResponse response = await client.ExecuteAsync(request);
@@ -206,13 +229,54 @@ namespace MASZ.Services
                 {
                     _logger.LogError($"Failed to send telemetry data to {remoteUrl}{resource}: {response.StatusCode} - {response.Content}");
                 } else {
-                    _logger.LogInformation($"Successfully sent telemetry data to {remoteUrl}{resource}: {response.StatusCode}");
+                    if (dto is TelemetryDataUsageDto telemetryDataUsageDto)
+                    {
+                        _logger.LogInformation($"Successfully sent telemetry data to {remoteUrl}{resource} usage {telemetryDataUsageDto.ActionType.ToString()}: {response.StatusCode}");
+                    } else
+                    {
+                        _logger.LogInformation($"Successfully sent telemetry data to {remoteUrl}{resource}: {response.StatusCode}");
+                    }
                 }
             } catch (Exception e)
             {
                 _logger.LogError($"Failed to send telemetry data to {remoteUrl}{resource}: {e.Message}");
                 return;
             }
+        }
+
+        public async Task OnIdentityRegistered(Identity identity)
+        {
+            TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
+                HashedServer = hashedServerIdentifier,
+                HashedUserId = HashStringWithPrivateKey(identity.GetCurrentUser().Id.ToString()),
+                HashedGuildId = null,
+                UserIsSiteAdmin = identity.IsSiteAdmin(),
+                UserIsToken = identity is TokenIdentity,
+                ActionType = Enums.TelemetryDataUsageActionType.LOGIN
+            };
+
+            await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
+        }
+
+        public async Task OnModCaseCreated(ModCase modCase, IUser user)
+        {
+            Identity identity = _identityManager.GetIdentityByUserId(user.Id);
+
+            TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
+                HashedServer = hashedServerIdentifier,
+                HashedUserId = HashStringWithPrivateKey(user.Id.ToString()),
+                HashedGuildId = null,
+                UserIsSiteAdmin = identity.IsSiteAdmin(),
+                UserIsToken = identity is TokenIdentity,
+                ActionType = Enums.TelemetryDataUsageActionType.MODCASE_CREATE,
+                AdditionalData = new JObject {
+                    { "punishmentType", (int) modCase.PunishmentType },
+                    { "labelCount", modCase.Labels.Count() },
+                    { "creationType", (int) modCase.CreationType }
+                }
+            };
+
+            await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
         }
     }
 }
