@@ -4,6 +4,7 @@ using MASZ.Enums;
 using MASZ.Models;
 using MASZ.Services;
 using MASZ.Utils;
+using MASZ.Extensions;
 
 namespace MASZ.Commands
 {
@@ -17,6 +18,7 @@ namespace MASZ.Commands
         public InternalConfiguration Config { get; set; }
         public DiscordAPIInterface DiscordAPI { get; set; }
         public IServiceProvider ServiceProvider { get; set; }
+        public InternalEventHandler eventHandler { get; set; }
 
         public Identity CurrentIdentity;
 
@@ -32,6 +34,11 @@ namespace MASZ.Commands
             }
 
             RunCMDSetup().GetAwaiter().GetResult();
+        }
+
+        public override void AfterExecute(ICommandInfo command)
+        {
+           eventHandler.OnApplicationCommandUsedEvent.InvokeAsync(command, Context.User);
         }
 
         private async Task RunCMDSetup() {

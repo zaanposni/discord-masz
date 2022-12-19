@@ -1,4 +1,5 @@
 using Discord;
+using Discord.Interactions;
 using MASZ.Models;
 using MASZ.Utils;
 
@@ -64,21 +65,21 @@ namespace MASZ.Services
 
         internal readonly AsyncEvent<Func<AutoModerationEvent, AutoModerationConfig, GuildConfig, ITextChannel, IUser, Task>> OnAutoModerationEventRegisteredEvent = new("OnAutoModerationEventRegisteredEvent");
 
-        public event Func<CaseTemplate, Task> OnCaseTemplateCreated
+        public event Func<CaseTemplate, IUser, Task> OnCaseTemplateCreated
         {
             add { OnCaseTemplateCreatedEvent.Add(value); }
             remove { OnCaseTemplateCreatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<CaseTemplate, Task>> OnCaseTemplateCreatedEvent = new("OnCaseTemplateCreatedEvent");
+        internal readonly AsyncEvent<Func<CaseTemplate, IUser, Task>> OnCaseTemplateCreatedEvent = new("OnCaseTemplateCreatedEvent");
 
-        public event Func<CaseTemplate, Task> OnCaseTemplateDeleted
+        public event Func<CaseTemplate, IUser, Task> OnCaseTemplateDeleted
         {
             add { OnCaseTemplateDeletedEvent.Add(value); }
             remove { OnCaseTemplateDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<CaseTemplate, Task>> OnCaseTemplateDeletedEvent = new("OnCaseTemplateDeletedEvent");
+        internal readonly AsyncEvent<Func<CaseTemplate, IUser, Task>> OnCaseTemplateDeletedEvent = new("OnCaseTemplateDeletedEvent");
 
         /// <summary>
         /// Invoked when a file is uploaded
@@ -417,5 +418,13 @@ namespace MASZ.Services
         }
 
         internal readonly AsyncEvent<Func<ZalgoConfig, ulong, string, string, Task>> OnZalgoNicknameRenameEvent = new("OnZalgoConfigUpdatedEvent");
+
+        public event Func<ICommandInfo, IUser, Task> OnApplicationCommandUsed
+        {
+            add { OnApplicationCommandUsedEvent.Add(value); }
+            remove { OnApplicationCommandUsedEvent.Remove(value); }
+        }
+
+        internal readonly AsyncEvent<Func<ICommandInfo, IUser, Task>> OnApplicationCommandUsedEvent = new("OnApplicationCommandUsedEvent");
     }
 }
