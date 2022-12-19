@@ -38,7 +38,7 @@ namespace MASZ.Commands
 
         public override void AfterExecute(ICommandInfo command)
         {
-           eventHandler.OnApplicationCommandUsedEvent.InvokeAsync(command, Context.User);
+            eventHandler.OnApplicationCommandUsedEvent.InvokeAsync(command, Context.User);
         }
 
         private async Task RunCMDSetup() {

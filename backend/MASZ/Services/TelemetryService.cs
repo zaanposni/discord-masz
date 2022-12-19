@@ -12,6 +12,8 @@ using MASZ.Exceptions;
 using Discord;
 using Newtonsoft.Json.Linq;
 using RestSharp.Serializers.NewtonsoftJson;
+using MASZ.Enums;
+using Discord.Interactions;
 
 namespace MASZ.Services
 {
@@ -67,7 +69,55 @@ namespace MASZ.Services
             if (! _config.IsTelemetryEnabled()) return;
 
             _eventHandler.OnIdentityRegistered += async (a) => await OnIdentityRegistered(a);
-            _eventHandler.OnModCaseCreated += async (a, b, c, d) => await OnModCaseCreated(a, b);
+            _eventHandler.OnModCaseCreated += async (a, b, c, d) => await OnModCaseEvent(a, b, TelemetryDataUsageActionType.MODCASE_CREATE);
+            _eventHandler.OnModCaseUpdated += async (a, b, c, d) => await OnModCaseEvent(a, b, TelemetryDataUsageActionType.MODCASE_UPDATE);
+            _eventHandler.OnModCaseDeleted += async (a, b, c, d) => await OnModCaseEvent(a, b, TelemetryDataUsageActionType.MODCASE_DELETE);
+            _eventHandler.OnModCaseRestored += async (a, b) => await OnModCaseEvent(a, b, TelemetryDataUsageActionType.MODCASE_RESTORE);
+
+            // TODO: on modcase link
+
+            _eventHandler.OnModCaseCommentCreated += async (a, b) => await OnCommentEvent(a, b, TelemetryDataUsageActionType.MODCASE_CREATE_COMMENT);
+            _eventHandler.OnModCaseCommentUpdated += async (a, b) => await OnCommentEvent(a, b, TelemetryDataUsageActionType.MODCASE_UPDATE_COMMENT);
+            _eventHandler.OnModCaseCommentDeleted += async (a, b) => await OnCommentEvent(a, b, TelemetryDataUsageActionType.MODCASE_DELETE_COMMENT);
+
+            // TODO: on comment lock
+
+            _eventHandler.OnFileUploaded += async (a, b, c) => await OnFileEvent(a, b, c, TelemetryDataUsageActionType.MODCASE_UPLOAD_ATTACHMENT);
+            _eventHandler.OnFileDeleted += async (a, b, c) => await OnFileEvent(a, b, c, TelemetryDataUsageActionType.MODCASE_DELETE_ATTACHMENT);
+
+            _eventHandler.OnAppealCreated += async (a, b) => await OnAppealCreated(a, b);
+            _eventHandler.OnAppealUpdated += async (a, b, c) => await OnAppealUpdated(a, b);
+
+            _eventHandler.OnUserNoteCreated += async (a, b) => await OnUserNoteEvent(a, b, TelemetryDataUsageActionType.USERNOTE_CREATE);
+            _eventHandler.OnUserNoteUpdated += async (a, b) => await OnUserNoteEvent(a, b, TelemetryDataUsageActionType.USERNOTE_UPDATE);
+            _eventHandler.OnUserNoteDeleted += async (a, b) => await OnUserNoteEvent(a, b, TelemetryDataUsageActionType.USERNOTE_DELETE);
+
+            _eventHandler.OnUserMapCreated += async (a, b) => await OnUserMapEvent(a, b, TelemetryDataUsageActionType.USERMAP_CREATE);
+            _eventHandler.OnUserMapUpdated += async (a, b) => await OnUserMapEvent(a, b, TelemetryDataUsageActionType.USERMAP_UPDATE);
+            _eventHandler.OnUserMapDeleted += async (a, b) => await OnUserMapEvent(a, b, TelemetryDataUsageActionType.USERMAP_DELETE);
+
+            // TODO: on scheduled messages
+
+            _eventHandler.OnGuildMotdCreated += async (a, b) => await OnMotdEvent(a, b);
+            _eventHandler.OnGuildMotdUpdated += async (a, b) => await OnMotdEvent(a, b);
+
+            _eventHandler.OnGuildLevelAuditLogConfigCreated += async (a, b) => await OnGuildLevelAuditLogConfigEvent(a, b);
+            _eventHandler.OnGuildLevelAuditLogConfigUpdated += async (a, b) => await OnGuildLevelAuditLogConfigEvent(a, b);
+
+            _eventHandler.OnAutoModerationConfigCreated += async (a, b) => await OnAutoModerationConfigEvent(a, b);
+            _eventHandler.OnAutoModerationConfigUpdated += async (a, b) => await OnAutoModerationConfigEvent(a, b);
+
+            _eventHandler.OnZalgoConfigUpdated += async (a, b) => await OnZalgoConfigEvent(a, b);
+
+            _eventHandler.OnGuildRegistered += async (a, b, c) => await OnGuildEvent(a, b, TelemetryDataUsageActionType.GUILD_ADDED);
+            _eventHandler.OnGuildUpdated += async (a, b) => await OnGuildEvent(a, b, TelemetryDataUsageActionType.GUILD_EDITED);
+            _eventHandler.OnGuildDeleted += async (a, b) => await OnGuildEvent(a, b, TelemetryDataUsageActionType.GUILD_REMOVED);
+
+            // TODO: on admin settings edited
+
+            _eventHandler.OnCaseTemplateCreated += async (a, b) => await OnCaseTemplateEvent(a, b, TelemetryDataUsageActionType.CASE_TEMPLATE_CREATE);
+
+            _eventHandler.OnApplicationCommandUsed += async (a, b) => await OnApplicationCommandUsed(a, b);
         }
 
         public async Task ExecuteAsync()
@@ -258,7 +308,7 @@ namespace MASZ.Services
             await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
         }
 
-        public async Task OnModCaseCreated(ModCase modCase, IUser user)
+        public async Task OnModCaseEvent(ModCase modCase, IUser user, TelemetryDataUsageActionType telemetryDataUsageActionType)
         {
             Identity identity = _identityManager.GetIdentityByUserId(user.Id);
 
@@ -268,11 +318,250 @@ namespace MASZ.Services
                 HashedGuildId = null,
                 UserIsSiteAdmin = identity.IsSiteAdmin(),
                 UserIsToken = identity is TokenIdentity,
-                ActionType = Enums.TelemetryDataUsageActionType.MODCASE_CREATE,
+                ActionType = telemetryDataUsageActionType,
                 AdditionalData = new JObject {
                     { "punishmentType", (int) modCase.PunishmentType },
                     { "labelCount", modCase.Labels.Count() },
                     { "creationType", (int) modCase.CreationType }
+                }
+            };
+
+            await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
+        }
+
+        public async Task OnCommentEvent(ModCaseComment comment, IUser user, TelemetryDataUsageActionType telemetryDataUsageActionType)
+        {
+            Identity identity = _identityManager.GetIdentityByUserId(user.Id);
+
+            TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
+                HashedServer = hashedServerIdentifier,
+                HashedUserId = HashStringWithPrivateKey(user.Id.ToString()),
+                HashedGuildId = null,
+                UserIsSiteAdmin = identity.IsSiteAdmin(),
+                UserIsToken = identity is TokenIdentity,
+                ActionType = telemetryDataUsageActionType
+            };
+
+            await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
+        }
+
+        public async Task OnFileEvent(UploadedFile file, ModCase modCase, IUser user, TelemetryDataUsageActionType telemetryDataUsageActionType)
+        {
+            Identity identity = _identityManager.GetIdentityByUserId(user.Id);
+
+            TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
+                HashedServer = hashedServerIdentifier,
+                HashedUserId = HashStringWithPrivateKey(user.Id.ToString()),
+                HashedGuildId = null,
+                UserIsSiteAdmin = identity.IsSiteAdmin(),
+                UserIsToken = identity is TokenIdentity,
+                ActionType = telemetryDataUsageActionType,
+                AdditionalData = new JObject {
+                    { "contentType", file.ContentType }
+                }
+            };
+
+            await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
+        }
+
+        public async Task OnAppealCreated(Appeal appeal, IUser user)
+        {
+            Identity identity = _identityManager.GetIdentityByUserId(user.Id);
+
+            TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
+                HashedServer = hashedServerIdentifier,
+                HashedUserId = HashStringWithPrivateKey(user.Id.ToString()),
+                HashedGuildId = null,
+                UserIsSiteAdmin = identity.IsSiteAdmin(),
+                UserIsToken = identity is TokenIdentity,
+                ActionType = TelemetryDataUsageActionType.APPEAL_CREATE
+            };
+
+            await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
+        }
+
+        public async Task OnAppealUpdated(Appeal appeal, IUser user)
+        {
+            Identity identity = _identityManager.GetIdentityByUserId(user.Id);
+
+            TelemetryDataUsageActionType telemetryDataUsageActionType = TelemetryDataUsageActionType.UNKNOWN;
+            if (appeal.Status == AppealStatus.Pending) return;
+            if (appeal.Status == AppealStatus.Approved) telemetryDataUsageActionType = TelemetryDataUsageActionType.APPEAL_ACCEPTED;
+            if (appeal.Status == AppealStatus.Declined) telemetryDataUsageActionType = TelemetryDataUsageActionType.APPEAL_DENIED;
+
+            TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
+                HashedServer = hashedServerIdentifier,
+                HashedUserId = HashStringWithPrivateKey(user.Id.ToString()),
+                HashedGuildId = null,
+                UserIsSiteAdmin = identity.IsSiteAdmin(),
+                UserIsToken = identity is TokenIdentity,
+                ActionType = telemetryDataUsageActionType
+            };
+
+            await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
+        }
+
+        public async Task OnUserNoteEvent(UserNote userNote, IUser user, TelemetryDataUsageActionType telemetryDataUsageActionType)
+        {
+            Identity identity = _identityManager.GetIdentityByUserId(user.Id);
+
+            TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
+                HashedServer = hashedServerIdentifier,
+                HashedUserId = HashStringWithPrivateKey(user.Id.ToString()),
+                HashedGuildId = null,
+                UserIsSiteAdmin = identity.IsSiteAdmin(),
+                UserIsToken = identity is TokenIdentity,
+                ActionType = telemetryDataUsageActionType,
+                AdditionalData = new JObject {
+                    { "length", userNote.Description.Length }
+                }
+            };
+
+            await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
+        }
+
+        public async Task OnUserMapEvent(UserMapping userMapping, IUser user, TelemetryDataUsageActionType telemetryDataUsageActionType)
+        {
+            Identity identity = _identityManager.GetIdentityByUserId(user.Id);
+
+            TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
+                HashedServer = hashedServerIdentifier,
+                HashedUserId = HashStringWithPrivateKey(user.Id.ToString()),
+                HashedGuildId = null,
+                UserIsSiteAdmin = identity.IsSiteAdmin(),
+                UserIsToken = identity is TokenIdentity,
+                ActionType = telemetryDataUsageActionType,
+                AdditionalData = new JObject {
+                    { "length", userMapping.Reason.Length }
+                }
+            };
+
+            await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
+        }
+
+        public async Task OnMotdEvent(GuildMotd motd, IUser user)
+        {
+            Identity identity = _identityManager.GetIdentityByUserId(user.Id);
+
+            TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
+                HashedServer = hashedServerIdentifier,
+                HashedUserId = HashStringWithPrivateKey(user.Id.ToString()),
+                HashedGuildId = null,
+                UserIsSiteAdmin = identity.IsSiteAdmin(),
+                UserIsToken = identity is TokenIdentity,
+                ActionType = TelemetryDataUsageActionType.MOTD_EDITED,
+                AdditionalData = new JObject {
+                    { "length", motd.Message.Length }
+                }
+            };
+
+            await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
+        }
+
+        public async Task OnGuildLevelAuditLogConfigEvent(GuildLevelAuditLogConfig auditLogConfig, IUser user)
+        {
+            Identity identity = _identityManager.GetIdentityByUserId(user.Id);
+
+            TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
+                HashedServer = hashedServerIdentifier,
+                HashedUserId = HashStringWithPrivateKey(user.Id.ToString()),
+                HashedGuildId = null,
+                UserIsSiteAdmin = identity.IsSiteAdmin(),
+                UserIsToken = identity is TokenIdentity,
+                ActionType = TelemetryDataUsageActionType.AUDITLOG_EDITED,
+                AdditionalData = new JObject {
+                    { "eventType", (int) auditLogConfig.GuildAuditLogEvent }
+                }
+            };
+
+            await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
+        }
+
+        public async Task OnAutoModerationConfigEvent(AutoModerationConfig autoModerationConfig, IUser user)
+        {
+            Identity identity = _identityManager.GetIdentityByUserId(user.Id);
+
+            TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
+                HashedServer = hashedServerIdentifier,
+                HashedUserId = HashStringWithPrivateKey(user.Id.ToString()),
+                HashedGuildId = null,
+                UserIsSiteAdmin = identity.IsSiteAdmin(),
+                UserIsToken = identity is TokenIdentity,
+                ActionType = TelemetryDataUsageActionType.AUTOMOD_EDITED,
+                AdditionalData = new JObject {
+                    { "eventType", (int) autoModerationConfig.AutoModerationType },
+                    { "actionType", (int) autoModerationConfig.AutoModerationAction }
+                }
+            };
+
+            await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
+        }
+
+        public async Task OnZalgoConfigEvent(ZalgoConfig zalgoConfig, IUser user)
+        {
+            Identity identity = _identityManager.GetIdentityByUserId(user.Id);
+
+            TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
+                HashedServer = hashedServerIdentifier,
+                HashedUserId = HashStringWithPrivateKey(user.Id.ToString()),
+                HashedGuildId = null,
+                UserIsSiteAdmin = identity.IsSiteAdmin(),
+                UserIsToken = identity is TokenIdentity,
+                ActionType = TelemetryDataUsageActionType.ZALGO_EDITED,
+                AdditionalData = new JObject {
+                    { "enabled", zalgoConfig.Enabled }
+                }
+            };
+
+            await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
+        }
+
+        public async Task OnGuildEvent(GuildConfig guildConfig, IUser user, TelemetryDataUsageActionType telemetryDataUsageActionType)
+        {
+            Identity identity = _identityManager.GetIdentityByUserId(user.Id);
+
+            TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
+                HashedServer = hashedServerIdentifier,
+                HashedUserId = HashStringWithPrivateKey(user.Id.ToString()),
+                HashedGuildId = HashStringWithPrivateKey(guildConfig.GuildId.ToString()),
+                UserIsSiteAdmin = identity.IsSiteAdmin(),
+                UserIsToken = identity is TokenIdentity,
+                ActionType = telemetryDataUsageActionType
+            };
+
+            await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
+        }
+
+        public async Task OnCaseTemplateEvent(CaseTemplate caseTemplate, IUser user, TelemetryDataUsageActionType telemetryDataUsageActionType)
+        {
+            Identity identity = _identityManager.GetIdentityByUserId(user.Id);
+
+            TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
+                HashedServer = hashedServerIdentifier,
+                HashedUserId = HashStringWithPrivateKey(user.Id.ToString()),
+                HashedGuildId = null,
+                UserIsSiteAdmin = identity.IsSiteAdmin(),
+                UserIsToken = identity is TokenIdentity,
+                ActionType = telemetryDataUsageActionType
+            };
+
+            await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
+        }
+
+        public async Task OnApplicationCommandUsed(ICommandInfo commandInfo, IUser user)
+        {
+            Identity identity = _identityManager.GetIdentityByUserId(user.Id);
+
+
+            TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
+                HashedServer = hashedServerIdentifier,
+                HashedUserId = HashStringWithPrivateKey(user.Id.ToString()),
+                HashedGuildId = null,
+                UserIsSiteAdmin = identity.IsSiteAdmin(),
+                UserIsToken = identity is TokenIdentity,
+                ActionType = TelemetryDataUsageActionType.APPLICATION_COMMAND_USED,
+                AdditionalData = new JObject {
+                    { "name", commandInfo.Name }
                 }
             };
 
