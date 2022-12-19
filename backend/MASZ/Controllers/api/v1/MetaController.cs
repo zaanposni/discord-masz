@@ -32,10 +32,7 @@ namespace MASZ.Controllers
         public async Task<IActionResult> GetReleases()
         {
             var restClient = new RestClient("https://maszindex.zaanposni.com/");
-            var request = new RestRequest(Method.Get)
-            {
-                Resource = "/api/v1/versions"
-            };
+            var request = new RestRequest("/api/v1/versions", Method.Get);
             request.AddQueryParameter("name", "masz_backend");
 
             var response = await restClient.ExecuteAsync(request);
@@ -47,10 +44,7 @@ namespace MASZ.Controllers
         public async Task<IActionResult> PostFeedback([FromBody] FeedbackDto feedback)
         {
             var restClient = new RestClient("https://maszindex.zaanposni.com/");
-            var request = new RestRequest(Method.Post)
-            {
-                Resource = "/api/v1/feedback"
-            };
+            var request = new RestRequest("/api/v1/feedback", Method.Post);
             request.AddJsonBody(feedback);
 
             var response = await restClient.ExecuteAsync(request);

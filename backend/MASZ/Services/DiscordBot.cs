@@ -244,14 +244,9 @@ namespace MASZ.Services
         {
             var restClient = new RestClient($"https://discord.com");
 
-            var request = new RestRequest(Method.Put)
-            {
-                Resource = $"api/v8/applications/{_client.CurrentUser.Id}/guilds/{guild.GuildId}/commands",
-                RequestFormat = DataFormat.Json
-            };
+            var request = new RestRequest($"api/v8/applications/{_client.CurrentUser.Id}/guilds/{guild.GuildId}/commands", Method.Put);
 
             request.AddJsonBody(Array.Empty<object>());
-
             request.AddHeader("Authorization", $"Bot {_internalConfiguration.GetBotToken()}");
 
             var response = await restClient.ExecuteAsync(request);
