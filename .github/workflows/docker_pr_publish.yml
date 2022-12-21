@@ -61,11 +61,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up Docker Buildx
-        uses: crazy-max/ghaction-docker-buildx@v1
-        with:
-          version: latest
-
       - name: Determine version
         env:
           PR_NUMBER: ${{ github.event.number }}
@@ -76,12 +71,12 @@ jobs:
       - name: Build backend
         run: |
           cd backend
-          docker buildx build --platform linux/arm64 -f Dockerfile_ARM -t ghcr.io/${{ github.repository_owner }}/masz_backend_pr:arm_${{ env.VERSION }} .
+          docker build --platform linux/arm64 -f Dockerfile_ARM -t ghcr.io/${{ github.repository_owner }}/masz_backend_pr:arm_${{ env.VERSION }} .
 
       - name: Build frontend
         run: |
           cd nginx
-          docker buildx build --platform linux/arm64 -f Dockerfile_ARM -t ghcr.io/${{ github.repository_owner }}/masz_nginx_pr:arm_${{ env.VERSION }} .
+          docker build --platform linux/arm64 -f Dockerfile_ARM -t ghcr.io/${{ github.repository_owner }}/masz_nginx_pr:arm_${{ env.VERSION }} .
 
       - name: Push images
         run: |
