@@ -29,6 +29,12 @@ namespace MASZ.Services
             _domainSources = new List<IDomainList>();
 
             _domainSources.Add(new DiscordPhishingList());
+
+            if (_config.IsLowMemoryPhishingListEnabled())
+            {
+                return;
+            }
+
             _domainSources.Add(new PiHoleList("https://blocklistproject.github.io/Lists/abuse.txt"));
             _domainSources.Add(new PiHoleList("https://blocklistproject.github.io/Lists/ads.txt"));
             _domainSources.Add(new PiHoleList("https://blocklistproject.github.io/Lists/crypto.txt"));
@@ -74,9 +80,15 @@ namespace MASZ.Services
             _domainList.Clear();
             foreach (IDomainList domainList in _domainSources)
             {
-                foreach (string domain in domainList.ReloadDomainList())
+                try
                 {
-                    _domainList.Add(domain);
+                    foreach (string domain in domainList.ReloadDomainList())
+                    {
+                        _domainList.Add(domain);
+                    }
+                } catch (Exception e)
+                {
+                    _logger.LogError(e, "Failed to load domains from phishing detection list");
                 }
             }
             _logger.LogInformation("Reloaded phishing detection domain list with count: " + _domainList.Count);

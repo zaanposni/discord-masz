@@ -22,6 +22,7 @@ namespace MASZ.Services
         private bool _telemetryEnabled;
         private string _deployMode;
         private string _discordBotStatus;
+        private bool _lowMemoryPhishingListEnabled;
 
         public InternalConfiguration(ILogger<InternalConfiguration> logger)
         {
@@ -56,6 +57,7 @@ namespace MASZ.Services
             _telemetryEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_TELEMETRY"));
             _deployMode = Environment.GetEnvironmentVariable("DEPLOY_MODE");
             _discordBotStatus = Environment.GetEnvironmentVariable("DISCORD_BOT_STATUS");
+            _lowMemoryPhishingListEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_LOW_MEMORY_PHISHING_LIST"));
         }
 
         public string GetBaseUrl()
@@ -161,6 +163,11 @@ namespace MASZ.Services
         public string GetDiscordBotStatus()
         {
             return _discordBotStatus;
+        }
+
+        public bool IsLowMemoryPhishingListEnabled()
+        {
+            return _lowMemoryPhishingListEnabled;
         }
     }
 }
