@@ -27,7 +27,8 @@ namespace MASZ.Controllers
                 EnumDto.Create((int) AutoModerationType.CustomWordFilter, _translator.T().Enum(AutoModerationType.CustomWordFilter)),
                 EnumDto.Create((int) AutoModerationType.TooManyMessages, _translator.T().Enum(AutoModerationType.TooManyMessages)),
                 EnumDto.Create((int) AutoModerationType.TooManyDuplicatedCharacters, _translator.T().Enum(AutoModerationType.TooManyDuplicatedCharacters)),
-                EnumDto.Create((int) AutoModerationType.TooManyLinks, _translator.T().Enum(AutoModerationType.TooManyLinks))
+                EnumDto.Create((int) AutoModerationType.TooManyLinks, _translator.T().Enum(AutoModerationType.TooManyLinks)),
+                EnumDto.Create((int) AutoModerationType.TooManyPhishingLinks, _translator.T().Enum(AutoModerationType.TooManyPhishingLinks))
             });
         }
     }

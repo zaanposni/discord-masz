@@ -5265,6 +5265,16 @@ namespace MASZ.Utils
                     Language.it => "Troppi link utilizzati",
                     _ => "Too many links used",
                 },
+                AutoModerationType.TooManyPhishingLinks => PreferredLanguage switch
+                {
+                    Language.de => "Zu viele Phishing-Links verwendet",
+                    Language.at => "Zu vü Phishing-Links vawendet",
+                    Language.fr => "Trop de liens de phishing utilisés",
+                    Language.es => "Se han utilizado demasiados enlaces de phishing",
+                    Language.ru => "Использовано слишком много ссылок на фишинг",
+                    Language.it => "Troppi link di phishing utilizzati",
+                    _ => "Too many phishing links used",
+                },
                 _ => "Unknown",
             };
         }

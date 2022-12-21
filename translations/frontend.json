@@ -4214,6 +4214,18 @@
                     "ru": "Пример",
                     "it": "Esempio"
                 }
+            },
+            "phishinglink": {
+                "details": {
+                    "description": "details of automod Link",
+                    "en": "A message on your guild contains too many phishing links.",
+                    "de": "Eine Nachricht auf deinem Server enthält zu viele Phishing-Links.",
+                    "at": "A Nochricht aufm Server hod zvü Phishing-Links",
+                    "fr": "Un message sur votre guilde contient trop de liens de phishing.",
+                    "es": "Un mensaje en tu gremio contiene demasiados enlaces de phishing.",
+                    "ru": "Сообщение о вашей гильдии содержит слишком много фишинговых ссылок.",
+                    "it": "Un messaggio sulla tua gilda contiene troppi link di phishing."
+                }
             }
         },
         "zalgo": {

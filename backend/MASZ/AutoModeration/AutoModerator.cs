@@ -115,6 +115,13 @@ namespace MASZ.AutoModeration
                     message,
                     LinkCheck.Check
                 )) return;
+
+            // phishing links
+            if (await CheckAutoMod(
+                    AutoModerationType.TooManyPhishingLinks,
+                    message,
+                    PhishingLinkCheck.Check
+                )) return;
         }
 
         private async Task<bool> CheckAutoMod(AutoModerationType autoModerationType, IMessage message, Func<IMessage, AutoModerationConfig, IDiscordClient, Task<bool>> predicate)

@@ -515,6 +515,9 @@
                 "details": "Un messaggio sulla tua gilda contiene troppi link.",
                 "customwordfield": "Ignora collegamenti (inserisci modelli regex divisi per newline)",
                 "linktext": "Esempio"
+            },
+            "phishinglink": {
+                "details": "Un messaggio sulla tua gilda contiene troppi link di phishing."
             }
         },
         "zalgo": {
@@ -689,7 +692,8 @@
             "customwordfilter": "Filtro parole personalizzato attivato",
             "toomanymessages": "Troppi messaggi",
             "toomanyduplicatedcharacters": "Troppi caratteri duplicati utilizzati",
-            "toomanylinks": "Troppi link utilizzati"
+            "toomanylinks": "Troppi link utilizzati",
+            "toomanyphishinglinks": "Troppi link di phishing utilizzati"
         },
         "apierror": {
             "unknown": "Errore sconosciuto",

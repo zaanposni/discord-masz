@@ -515,6 +515,9 @@
                 "details": "A message on your guild contains too many links.",
                 "customwordfield": "Ignore links (enter regex patterns divided by newlines)",
                 "linktext": "Example"
+            },
+            "phishinglink": {
+                "details": "A message on your guild contains too many phishing links."
             }
         },
         "zalgo": {
@@ -689,7 +692,8 @@
             "customwordfilter": "Custom wordfilter triggered",
             "toomanymessages": "Too many messages",
             "toomanyduplicatedcharacters": "Too many duplicated characters used",
-            "toomanylinks": "Too many links used"
+            "toomanylinks": "Too many links used",
+            "toomanyphishinglinks": "Too many phishing links used"
         },
         "apierror": {
             "unknown": "Unknown error",

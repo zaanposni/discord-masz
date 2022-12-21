@@ -515,6 +515,9 @@
                 "details": "Eine Nachricht auf deinem Server enthält zu viele Verlinkungen.",
                 "customwordfield": "Ignorierte Links (getrennte Regexpatterns durch Zeilenumbruch)",
                 "linktext": "Beispiel"
+            },
+            "phishinglink": {
+                "details": "Eine Nachricht auf deinem Server enthält zu viele Phishing-Links."
             }
         },
         "zalgo": {
@@ -689,7 +692,8 @@
             "customwordfilter": "Benutzerdefinierter Wortfilter ausgelöst",
             "toomanymessages": "Zu viele Nachrichten",
             "toomanyduplicatedcharacters": "Zu viele wiederholende Buchstaben verwendet",
-            "toomanylinks": "Zu viele Links verwendet"
+            "toomanylinks": "Zu viele Links verwendet",
+            "toomanyphishinglinks": "Zu viele Phishing-Links verwendet"
         },
         "apierror": {
             "unknown": "Unbekannter Fehler",

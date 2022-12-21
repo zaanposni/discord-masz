@@ -515,6 +515,9 @@
                 "details": "Un mensaje en tu gremio contiene demasiados enlaces.",
                 "customwordfield": "Ignorar enlaces (ingresar patrones de expresiones regulares divididos por líneas nuevas)",
                 "linktext": "Ejemplo"
+            },
+            "phishinglink": {
+                "details": "Un mensaje en tu gremio contiene demasiados enlaces de phishing."
             }
         },
         "zalgo": {
@@ -689,7 +692,8 @@
             "customwordfilter": "Filtro de palabras personalizado activado",
             "toomanymessages": "Demasiados mensajes",
             "toomanyduplicatedcharacters": "Se han utilizado demasiados caracteres duplicados",
-            "toomanylinks": "Se han utilizado demasiados enlaces"
+            "toomanylinks": "Se han utilizado demasiados enlaces",
+            "toomanyphishinglinks": "Se han utilizado demasiados enlaces de phishing"
         },
         "apierror": {
             "unknown": "Error desconocido",

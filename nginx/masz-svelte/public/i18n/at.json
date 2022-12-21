@@ -515,6 +515,9 @@
                 "details": "A Nochricht aufm Server hod zvü Valinkungen",
                 "customwordfield": "Ignorierte Links (getrennte Links mit am Zeilenumbruch)",
                 "linktext": "Beispü"
+            },
+            "phishinglink": {
+                "details": "A Nochricht aufm Server hod zvü Phishing-Links"
             }
         },
         "zalgo": {
@@ -689,7 +692,8 @@
             "customwordfilter": "Eigena Wortfüta is ausglest woan",
             "toomanymessages": "Zu vü Nochrichtn",
             "toomanyduplicatedcharacters": "Zu vü wiedaholende Buchstobn vawendet",
-            "toomanylinks": "Zu vü Links vawendet"
+            "toomanylinks": "Zu vü Links vawendet",
+            "toomanyphishinglinks": "Zu vü Phishing-Links vawendet"
         },
         "apierror": {
             "unknown": "Unbekonnta Föhla",
