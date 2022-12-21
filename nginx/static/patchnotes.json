@@ -1,5 +1,76 @@
 [
   {
+    "title": "Version 3.3.0",
+    "version": "v3.3.0",
+    "released_at": "2022-12-23",
+    "contributors": [
+      {
+        "name": "FlixProd",
+        "link": "https://github.com/FlixProd",
+        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+      },
+      {
+        "name": "Kye",
+        "link": "https://github.com/UponAnonymous",
+        "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
+      },
+      {
+        "name": "Sai-Tamazaki",
+        "link": "https://github.com/Sai-Tamazaki",
+        "icon": "https://avatars.githubusercontent.com/u/121161129?v=4"
+      }
+    ],
+    "features": [
+      {
+        "title": "Filter guilds on \"register guild\" dialog.",
+        "description": "The \"register guild\" dialog now has a search bar to filter guilds by name.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/547"
+      },
+      {
+        "title": "Better application command handling for unregistered guilds",
+        "description": "Application commands are now only registered for registered guilds. If you cannot use your application commands, try to readd the bot to your discord guild.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/551"
+      },
+      {
+        "title": "Translated slash commands",
+        "description": "The slash commands are now translated to the guilds language.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/556"
+      },
+      {
+        "title": "Custom bot status",
+        "description": "The server admin can now configure a custom bot status in their env file.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/563"
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Fixed public notification webhook when editing a modcase.",
+        "description": "Fixed a bug where the public notification would always be send when editing a modcase.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/550"
+      },
+      {
+        "title": "Fixed css bugs in auditlog configuration.",
+        "description": "Fixed a content shift css bug in the auditlog configuration.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/552"
+      },
+      {
+        "title": "Discord links are now whitelisted from the invite automod.",
+        "description": "Discord resources like \"discord.com/terms\" are now whitelisted from the invite automod.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/559"
+      }
+    ],
+    "technical": [
+      {
+        "title": "Added prebuild arm images.",
+        "description": "MASZ now comes prebuild for arm64 and armv7. This should make it easier to run MASZ on a Raspberry Pi or MAC."
+      },
+      {
+        "title": "Added telemetry service.",
+        "description": "This release adds a opt-in telemetry data collection. Data is collected anonymously and only used to improve MASZ. The server admin can opt-in to this by using \"ENABLE_TELEMETRY=true\" in their environment file."
+      }
+    ]
+  },
+  {
     "title": "Version 3.2.1",
     "version": "v3.2.1",
     "released_at": "2022-11-12",
