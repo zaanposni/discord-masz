@@ -1,5 +1,4 @@
 using Discord;
-using MASZ.Data;
 using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.Repositories;
@@ -15,7 +14,7 @@ namespace MASZ.Models
         public async static Task<DiscordCommandIdentity> Create(IUser user, IServiceProvider serviceProvider)
         {
             using var scope = serviceProvider.CreateScope();
-            Database database = scope.ServiceProvider.GetRequiredService<Database>();
+            Data.Database database = scope.ServiceProvider.GetRequiredService<Data.Database>();
             DiscordAPIInterface discordAPI = serviceProvider.GetRequiredService<DiscordAPIInterface>();
 
             List<GuildConfig> guildConfigs = await database.SelectAllGuildConfigs();
