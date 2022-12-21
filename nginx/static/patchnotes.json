@@ -61,10 +61,6 @@
     ],
     "technical": [
       {
-        "title": "Added prebuild arm images.",
-        "description": "MASZ now comes prebuild for arm64 and armv7. This should make it easier to run MASZ on a Raspberry Pi or MAC."
-      },
-      {
         "title": "Added telemetry service.",
         "description": "This release adds a opt-in telemetry data collection. Data is collected anonymously and only used to improve MASZ. The server admin can opt-in to this by using \"ENABLE_TELEMETRY=true\" in their environment file."
       }
