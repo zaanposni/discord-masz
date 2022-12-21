@@ -14,6 +14,7 @@ using Newtonsoft.Json.Linq;
 using RestSharp.Serializers.NewtonsoftJson;
 using MASZ.Enums;
 using Discord.Interactions;
+using MASZ.Plugins;
 
 namespace MASZ.Services
 {
@@ -157,10 +158,38 @@ namespace MASZ.Services
             _logger.LogWarning("Started telemetry schedule timers.");
         }
 
-        public Task CollectInitialData()
+        public async Task CollectInitialData()
         {
             _logger.LogInformation("Collecting initial telemetry data.");
-            return Task.CompletedTask;
+
+            int pluginCount = -1;
+
+            if (_config.IsCustomPluginModeEnabled())
+            {
+                pluginCount = AppDomain.CurrentDomain.GetAssemblies()
+                                .SelectMany(x => x.GetTypes())
+                                .Where(x => typeof(IBasePlugin).IsAssignableFrom(x) &&
+                                            !x.IsInterface &&
+                                            !x.IsAbstract &&
+                                            x.Namespace.Contains("MASZ.Plugins"))
+                                .Count();
+            }
+
+            TelemetryDataConfigurationDto configurationDto = new TelemetryDataConfigurationDto() {
+                HashedServer = hashedServerIdentifier,
+                DeploymentMode = string.IsNullOrEmpty(_config.GetDeployMode()) ? "unknown" : _config.GetDeployMode(),
+                DeploymentVersion = _config.GetVersion(),
+                DefaultLanguage = (int) _config.GetDefaultLanguage(),
+                PublicFileMode = _config.IsPublicFileEnabled(),
+                CustomPluginsEnabled = _config.IsCustomPluginModeEnabled(),
+                CustomPluginsCount = pluginCount,
+                SiteAdminsCount = _config.GetSiteAdmins().Count
+            };
+
+            await SendTelemetryData<TelemetryDataConfigurationDto>("configuration", configurationDto);
+
+
+            _logger.LogInformation("Collected initial telemetry data.");
         }
 
         public async Task CollectWeeklyData()

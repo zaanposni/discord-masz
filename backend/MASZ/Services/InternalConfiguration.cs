@@ -20,6 +20,7 @@ namespace MASZ.Services
         private bool _customPluginsEnabled;
         private bool _corsEnabled;
         private bool _telemetryEnabled;
+        private string _deployMode;
 
         public InternalConfiguration(ILogger<InternalConfiguration> logger)
         {
@@ -52,6 +53,7 @@ namespace MASZ.Services
             _customPluginsEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS"));
             _corsEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CORS"));
             _telemetryEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_TELEMETRY"));
+            _deployMode = Environment.GetEnvironmentVariable("DEPLOY_MODE");
         }
 
         public string GetBaseUrl()
@@ -142,6 +144,16 @@ namespace MASZ.Services
         public bool IsTelemetryEnabled()
         {
             return _telemetryEnabled;
+        }
+
+        public string GetDeployMode()
+        {
+            return _deployMode;
+        }
+
+        public string GetVersion()
+        {
+            return "v3.3.0";
         }
     }
 }
