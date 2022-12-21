@@ -14,6 +14,7 @@ namespace MASZ.AutoModeration
         private readonly InternalConfiguration _config;
         private readonly GuildConfig _guildConfig;
         private readonly List<AutoModerationConfig> _autoModerationConfigs;
+        private readonly PhishingDetectionService _phishingDetectionService;
 
         private AutoModerator(IDiscordClient client, IServiceProvider serviceProvider, GuildConfig guildConfig, List<AutoModerationConfig> autoModerationConfigs)
         {
@@ -21,6 +22,7 @@ namespace MASZ.AutoModeration
             _serviceProvider = serviceProvider;
             _logger = _serviceProvider.GetRequiredService<ILogger<AutoModerator>>();
             _config = _serviceProvider.GetRequiredService<InternalConfiguration>();
+            _phishingDetectionService = _serviceProvider.GetRequiredService<PhishingDetectionService>();
 
             _guildConfig = guildConfig;
             _autoModerationConfigs = autoModerationConfigs;
@@ -152,6 +154,28 @@ namespace MASZ.AutoModeration
             if (autoModerationConfig != null)
             {
                 if (predicate(message, autoModerationConfig, _client))
+                {
+                    if (!await IsProtectedByFilter(message, autoModerationConfig))
+                    {
+                        _logger.LogInformation($"U: {message.Author.Id} | C: {(message.Channel as ITextChannel).Id} | G: {(message.Channel as ITextChannel).Guild.Id} triggered {autoModerationConfig.AutoModerationType}.");
+                        await ExecutePunishment(message, autoModerationConfig);
+                        if (autoModerationConfig.AutoModerationType != AutoModerationType.TooManyAutoModerations)
+                        {
+                            await CheckAutoMod(AutoModerationType.TooManyAutoModerations, message, CheckMultipleEvents);
+                        }
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private async Task<bool> CheckAutoMod(AutoModerationType autoModerationType, IMessage message, Func<IMessage, AutoModerationConfig, IDiscordClient, PhishingDetectionService, bool> predicate)
+        {
+            AutoModerationConfig autoModerationConfig = _autoModerationConfigs.FirstOrDefault(x => x.AutoModerationType == autoModerationType);
+            if (autoModerationConfig != null)
+            {
+                if (predicate(message, autoModerationConfig, _client, _phishingDetectionService))
                 {
                     if (!await IsProtectedByFilter(message, autoModerationConfig))
                     {

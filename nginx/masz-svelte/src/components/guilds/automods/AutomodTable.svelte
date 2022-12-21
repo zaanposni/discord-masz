@@ -14,6 +14,7 @@
         Link20,
         Search32,
         Filter24,
+        Fish20,
     } from "carbon-icons-svelte";
     import { Button, Link, MultiSelect, SkeletonText, Tag, Tile } from "carbon-components-svelte";
     import API from "../../../services/api/api";
@@ -138,6 +139,8 @@
                 return AnalyticsCustom20;
             case AutomodType.TooManyDuplicatedCharacters:
                 return TextScale20;
+            case AutomodType.TooManyPhishingLinks:
+                return Fish20;
             default:
                 return Link20;
         }
