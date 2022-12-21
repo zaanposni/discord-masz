@@ -58,7 +58,17 @@ namespace MASZ.Services
 
             await _client.LoginAsync(TokenType.Bot, _internalConfiguration.GetBotToken());
             await _client.StartAsync();
-            await _client.SetGameAsync(_internalConfiguration.GetBaseUrl(), type: ActivityType.Watching);
+
+            string botStatus = _internalConfiguration.GetDiscordBotStatus();
+            if (string.IsNullOrWhiteSpace(botStatus))
+            {
+                await _client.SetGameAsync(_internalConfiguration.GetBaseUrl(), type: ActivityType.Watching);
+            } else if (botStatus == "none")
+            {
+                await _client.SetGameAsync(null);
+            } else {
+                await _client.SetGameAsync(botStatus);
+            }
         }
 
         public void RegisterEvents()

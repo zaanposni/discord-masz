@@ -21,6 +21,7 @@ namespace MASZ.Services
         private bool _corsEnabled;
         private bool _telemetryEnabled;
         private string _deployMode;
+        private string _discordBotStatus;
 
         public InternalConfiguration(ILogger<InternalConfiguration> logger)
         {
@@ -54,6 +55,7 @@ namespace MASZ.Services
             _corsEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CORS"));
             _telemetryEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_TELEMETRY"));
             _deployMode = Environment.GetEnvironmentVariable("DEPLOY_MODE");
+            _discordBotStatus = Environment.GetEnvironmentVariable("DISCORD_BOT_STATUS");
         }
 
         public string GetBaseUrl()
@@ -154,6 +156,11 @@ namespace MASZ.Services
         public string GetVersion()
         {
             return "v3.3.0";
+        }
+
+        public string GetDiscordBotStatus()
+        {
+            return _discordBotStatus;
         }
     }
 }
