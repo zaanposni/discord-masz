@@ -312,6 +312,47 @@ namespace MASZ.Migrations
                     b.ToTable("CaseTemplates");
                 });
 
+            modelBuilder.Entity("MASZ.Models.Database.ModCaseEvidenceMapping", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("EvidenceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ModCaseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EvidenceId");
+
+                    b.HasIndex("ModCaseId");
+
+                    b.ToTable("ModCaseEvidenceMappings");
+                });
+
+            modelBuilder.Entity("MASZ.Models.Database.VerifiedEvidence", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<ulong>("GuildId")
+                        .HasColumnType("bigint unsigned");
+
+                    b.Property<ulong>("MessageId")
+                        .HasColumnType("bigint unsigned");
+
+                    b.Property<string>("ReportedContent")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VerifiedEvidence");
+                });
+
             modelBuilder.Entity("MASZ.Models.GuildConfig", b =>
                 {
                     b.Property<int>("Id")
@@ -726,6 +767,23 @@ namespace MASZ.Migrations
                     b.Navigation("AppealQuestion");
                 });
 
+            modelBuilder.Entity("MASZ.Models.Database.ModCaseEvidenceMapping", b =>
+                {
+                    b.HasOne("MASZ.Models.Database.VerifiedEvidence", "Evidence")
+                        .WithMany("EvidenceMappings")
+                        .HasForeignKey("EvidenceId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MASZ.Models.ModCase", "ModCase")
+                        .WithMany("EvidenceMappings")
+                        .HasForeignKey("ModCaseId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Evidence");
+
+                    b.Navigation("ModCase");
+                });
+
             modelBuilder.Entity("MASZ.Models.ModCaseComment", b =>
                 {
                     b.HasOne("MASZ.Models.ModCase", "ModCase")
@@ -756,9 +814,16 @@ namespace MASZ.Migrations
                     b.Navigation("CaseB");
                 });
 
+            modelBuilder.Entity("MASZ.Models.Database.VerifiedEvidence", b =>
+                {
+                    b.Navigation("EvidenceMappings");
+                });
+
             modelBuilder.Entity("MASZ.Models.ModCase", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("EvidenceMappings");
 
                     b.Navigation("MappingsA");
 
