@@ -82,3 +82,52 @@ jobs:
                     "hash": "'"$hash"'"
                 }'
           fi
+  DockerPublishARM:
+    if: github.repository_owner  == 'zaanposni'
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Determine version
+        run: |
+          VERSION=$(cat nginx/static/version.json | jq -r '.version')$($(cat nginx/static/version.json | jq -r '.pre_release') && echo "-alpha" || :)
+          echo "I found version: $VERSION"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Build backend
+        run: |
+          cd backend
+          docker build --platform linux/arm64 -f Dockerfile_ARM -t ghcr.io/${{ github.repository_owner }}/masz_backend:arm_latest -t ghcr.io/${{ github.repository_owner }}/masz_backend:arm_${{ env.VERSION }} .
+
+      - name: Build frontend
+        run: |
+          cd nginx
+          docker build --platform linux/arm64 -f Dockerfile_ARM -t ghcr.io/${{ github.repository_owner }}/masz_nginx:arm_latest -t ghcr.io/${{ github.repository_owner }}/masz_nginx:arm_${{ env.VERSION }} .
+
+      - name: Push images
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u zaanposni --password-stdin
+          docker push ghcr.io/${{ github.repository_owner }}/masz_backend:arm_${{ env.VERSION }}
+          docker push ghcr.io/${{ github.repository_owner }}/masz_nginx:arm_${{ env.VERSION }}
+          if [[ ${{ env.VERSION }}  != *"alpha"* ]]
+          then
+            docker push ghcr.io/${{ github.repository_owner }}/masz_backend:arm_latest
+            docker push ghcr.io/${{ github.repository_owner }}/masz_nginx:arm_latest
+          fi
+
+      - name: Calculate image sizes
+        run: |
+          SIZE_ARM_BACKEND=$(docker image inspect ghcr.io/${{ github.repository_owner }}/masz_backend:arm_${{ env.VERSION }} | jq -r '.[0].Size' | numfmt --to=si)
+          SIZE_ARM_NGINX=$(docker image inspect ghcr.io/${{ github.repository_owner }}/masz_nginx:arm_${{ env.VERSION }} | jq -r '.[0].Size' | numfmt --to=si)
+          echo "I found backend arm size: $SIZE_ARM_BACKEND"
+          echo "I found nginx arm size: $SIZE_ARM_NGINX"
+          echo "SIZE_ARM_BACKEND=$SIZE_ARM_BACKEND" >> $GITHUB_ENV
+          echo "SIZE_ARM_NGINX=$SIZE_ARM_NGINX" >> $GITHUB_ENV
+
+      - name: Send discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: "🚀 Published `masz_nginx:arm_${{ env.VERSION }}` with `${{ env.SIZE_ARM_NGINX }}`\n🚀 Published `masz_backend:arm_${{ env.VERSION }}` with `${{ env.SIZE_ARM_BACKEND }}`"
