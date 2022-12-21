@@ -27,19 +27,24 @@
         "link": "https://github.com/zaanposni/discord-masz/issues/547"
       },
       {
-        "title": "Better application command handling for unregistered guilds",
+        "title": "Better application command handling for unregistered guilds.",
         "description": "Application commands are now only registered for registered guilds. If you cannot use your application commands, try to readd the bot to your discord guild.",
         "link": "https://github.com/zaanposni/discord-masz/issues/551"
       },
       {
-        "title": "Translated slash commands",
+        "title": "Translated slash commands.",
         "description": "The slash commands are now translated to the guilds language.",
         "link": "https://github.com/zaanposni/discord-masz/issues/556"
       },
       {
-        "title": "Custom bot status",
+        "title": "Custom bot status.",
         "description": "The server admin can now configure a custom bot status in their env file.",
         "link": "https://github.com/zaanposni/discord-masz/issues/563"
+      },
+      {
+        "title": "Added Phishing automod.",
+        "description": "Uses a popular phishing link collection and pihole lists to filter links in your guild. Not yet tested, use at your own risk, please report any problems to the MASZ developers.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/557"
       }
     ],
     "fixes": [
