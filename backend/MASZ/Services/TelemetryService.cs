@@ -118,7 +118,7 @@ namespace MASZ.Services
 
             _eventHandler.OnCaseTemplateCreated += async (a, b) => await OnCaseTemplateEvent(a, b, TelemetryDataUsageActionType.CASE_TEMPLATE_CREATE);
 
-            _eventHandler.OnApplicationCommandUsed += async (a, b) => await OnApplicationCommandUsed(a, b);
+            _eventHandler.OnApplicationCommandUsed += async (a, b, c) => await OnApplicationCommandUsed(a, b, c);
         }
 
         public async Task ExecuteAsync()
@@ -577,15 +577,19 @@ namespace MASZ.Services
             await SendTelemetryData<TelemetryDataUsageDto>("usage", dto);
         }
 
-        public async Task OnApplicationCommandUsed(ICommandInfo commandInfo, IUser user)
+        public async Task OnApplicationCommandUsed(ICommandInfo commandInfo, IUser user, IGuild guild)
         {
             Identity identity = _identityManager.GetIdentityByUserId(user.Id);
 
+            string hashedGuildId = null;
+            if (guild != null) {
+                hashedGuildId = HashStringWithPrivateKey(guild.Id.ToString());
+            }
 
             TelemetryDataUsageDto dto = new TelemetryDataUsageDto() {
                 HashedServer = hashedServerIdentifier,
                 HashedUserId = HashStringWithPrivateKey(user.Id.ToString()),
-                HashedGuildId = null,
+                HashedGuildId = hashedGuildId,
                 UserIsSiteAdmin = identity.IsSiteAdmin(),
                 UserIsToken = identity is TokenIdentity,
                 ActionType = TelemetryDataUsageActionType.APPLICATION_COMMAND_USED,
