@@ -238,6 +238,27 @@ namespace MASZ.Services
 
             foreach (GuildConfig guild in guildConfigs)
             {
+                IGuild discordGuild = _discordAPI.FetchGuildInfo(guild.GuildId, CacheBehavior.Default);
+                if (discordGuild == null) continue;
+
+                List<IGuildChannel> channels = _discordAPI.FetchGuildChannels(guild.GuildId, CacheBehavior.Default);
+                List<IGuildUser> members = await _discordAPI.FetchGuildMembers(guild.GuildId, CacheBehavior.OnlyCache);
+
+                TelemetryDataGuildSizeDto guildSizeDto = new TelemetryDataGuildSizeDto() {
+                    HashedServer = hashedServerIdentifier,
+                    HashedGuildId = HashStringWithPrivateKey(guild.GuildId.ToString()),
+                    MemberCount = members.Count,
+                    RoleCount = discordGuild.Roles.Count,
+                    ChannelCount = channels.Count,
+                };
+
+                await SendTelemetryData<TelemetryDataGuildSizeDto>("guildsize", guildSizeDto);
+            }
+
+            // =======================================================================================================
+
+            foreach (GuildConfig guild in guildConfigs)
+            {
                 string hashedGuildId = HashStringWithPrivateKey(guild.GuildId.ToString());
 
                 GuildMotd motd = null;
