@@ -241,7 +241,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <Link href={`/guilds/${evidenceView.verifiedEvidence.guildId}/cases/${evidenceView.verifiedEvidence.id}`} icon={Launch20} class="align-end" />
+                            <Link href={`/guilds/${evidenceView.verifiedEvidence.guildId}/evidence/${evidenceView.verifiedEvidence.id}`} icon={Launch20} class="align-end" />
                         </div>
                     </Tile>
                 </a>
