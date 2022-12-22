@@ -1072,6 +1072,38 @@
                 "it": "Nessun aggiornamento disponibile"
             }
         },
+        "admindiscordinvite": {
+            "title": {
+                "description": "Title",
+                "en": "Discord invite",
+                "de": "Discord Einladung",
+                "at": "Discord Einladung",
+                "fr": "Invitation Discord",
+                "es": "Invitación de Discord",
+                "ru": "Приглашение в Discord",
+                "it": "Invito Discord"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows an invite link for the MASZ community Discord.",
+                "de": "Dieses Widget zeigt einen Einladungslink für den MASZ Community Discord.",
+                "at": "Des Widget zeigt de Einladungslink für de MASZ Community Discord.",
+                "fr": "Ce widget affiche un lien d'invitation pour le Discord communautaire MASZ.",
+                "es": "Este widget muestra un enlace de invitación para el Discord de la comunidad MASZ.",
+                "ru": "Этот виджет показывает ссылку приглашения для Discord-сообщества MASZ.",
+                "it": "Questo widget mostra un link di invito per il Discord della comunità MASZ."
+            },
+            "message": {
+                "description": "Message",
+                "en": "Join the MASZ community Discord!",
+                "de": "Trete dem MASZ Community Discord bei!",
+                "at": "Trete de MASZ Community Discord bei!",
+                "fr": "Rejoignez le Discord communautaire MASZ!",
+                "es": "¡Únete al Discord de la comunidad MASZ!",
+                "ru": "Присоединяйтесь к серверу сообщества MASZ!",
+                "it": "Unisciti al Discord della comunità MASZ!"
+            }
+        },
         "adminstatus": {
             "title": {
                 "description": "Title",

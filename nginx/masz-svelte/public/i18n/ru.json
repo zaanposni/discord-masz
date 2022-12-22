@@ -145,6 +145,11 @@
             "new": "Доступное обновление",
             "empty": "Нет доступных обновлений"
         },
+        "admindiscordinvite": {
+            "title": "Приглашение в Discord",
+            "widgetdescription": "Этот виджет показывает ссылку приглашения для Discord-сообщества MASZ.",
+            "message": "Присоединяйтесь к серверу сообщества MASZ!"
+        },
         "adminstatus": {
             "title": "Статус",
             "widgetdescription": "Этот виджет показывает текущий пинг компонентов MASZ.",

@@ -145,6 +145,11 @@
             "new": "Verfügbares Update",
             "empty": "Kane Update verfügbar"
         },
+        "admindiscordinvite": {
+            "title": "Discord Einladung",
+            "widgetdescription": "Des Widget zeigt de Einladungslink für de MASZ Community Discord.",
+            "message": "Trete de MASZ Community Discord bei!"
+        },
         "adminstatus": {
             "title": "Status",
             "widgetdescription": "Des Widget zeigt den aktuellen Ping da MASZ-Komponenten.",

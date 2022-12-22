@@ -145,6 +145,11 @@
             "new": "Verfügbares Update",
             "empty": "Kein Update verfügbar"
         },
+        "admindiscordinvite": {
+            "title": "Discord Einladung",
+            "widgetdescription": "Dieses Widget zeigt einen Einladungslink für den MASZ Community Discord.",
+            "message": "Trete dem MASZ Community Discord bei!"
+        },
         "adminstatus": {
             "title": "Status",
             "widgetdescription": "Dieses Widget zeigt den aktuellen Ping der MASZ-Komponenten.",
