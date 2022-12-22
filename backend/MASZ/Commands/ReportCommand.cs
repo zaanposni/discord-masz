@@ -72,7 +72,7 @@ namespace MASZ.Commands
             try
             {
                 string reporterNickname = (await DiscordAPI.FetchMemberInfo(Context.Guild.Id, Context.User.Id, CacheBehavior.IgnoreButCacheOnError)).Nickname;
-                string reportedNickname = (await DiscordAPI.FetchMemberInfo(Context.Guild.Id, Context.User.Id, CacheBehavior.IgnoreButCacheOnError)).Nickname;
+                string reportedNickname = (await DiscordAPI.FetchMemberInfo(Context.Guild.Id, message.Author.Id, CacheBehavior.IgnoreButCacheOnError)).Nickname;
                 string content = message.Content.Truncate(1024);
                 // TODO
                 //IEnumerable<IAttachment> attachments = message.Attachments.Take(5);

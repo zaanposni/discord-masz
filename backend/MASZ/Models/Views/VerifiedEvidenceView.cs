@@ -27,7 +27,7 @@ namespace MASZ.Models.Views
             ReportedContent = evidence.ReportedContent;
             ReporterUserId = evidence.ReporterUserId.ToString();
             ReporterUsername = evidence.ReporterUsername;
-            ReporterNickname = evidence.ReportedNickname;
+            ReporterNickname = evidence.ReporterNickname;
             ReporterDiscriminator = evidence.ReporterDiscriminator;
             ReportedUserId = evidence.ReportedUserId.ToString();
             ReportedUsername = evidence.ReportedUsername;

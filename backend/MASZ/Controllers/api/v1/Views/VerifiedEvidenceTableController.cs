@@ -18,6 +18,7 @@ namespace MASZ.Controllers.api.v1.Views
         {
         }
 
+        [HttpPost("evidencetable")]
         public async Task<IActionResult> GetAllEvidence(
             [FromRoute] ulong guildId,
             [FromQuery][Range(0, int.MaxValue)] int startPage = 0,
