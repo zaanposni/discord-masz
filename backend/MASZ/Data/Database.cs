@@ -1,5 +1,6 @@
 ﻿using MASZ.Enums;
 using MASZ.Models;
+using MASZ.Models.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace MASZ.Data
@@ -952,6 +953,32 @@ namespace MASZ.Data
         public void DeleteModCaseMapping(ModCaseMapping mapping)
         {
             context.ModCaseMappings.Remove(mapping);
+        }
+
+        // ==================================================================================
+        //
+        // VerifiedEvidence
+        //
+        // ==================================================================================
+
+        public async Task<List<VerifiedEvidence>> GetAllEvidence(ulong guildId)
+        {
+            return await context.VerifiedEvidence.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+        }
+
+        public async Task<VerifiedEvidence> GetEvidence(ulong guildId, int evidenceId)
+        {
+            return await context.VerifiedEvidence.AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.Id == evidenceId);
+        }
+
+        public void DeleteEvidence(VerifiedEvidence evidence)
+        {
+            context.VerifiedEvidence.Remove(evidence);
+        }
+
+        public void CreateEvidence(VerifiedEvidence evidence)
+        {
+            context.Add(evidence);
         }
     }
 }
