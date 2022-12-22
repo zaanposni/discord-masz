@@ -51,7 +51,8 @@ while True:
     site_admin = Prompt.ask(f"{len(admins) + 1}. Admin | Enter '[bright_red]x[/bright_red]' if you are finished")
     if str(site_admin).lower() == "x":
         break
-    admins.append(site_admin)
+    if str(site_admin).strip():
+        admins.append(str(site_admin).strip())
 
 ENV_FILE["DISCORD_SITE_ADMINS"] = ','.join(admins)
 
