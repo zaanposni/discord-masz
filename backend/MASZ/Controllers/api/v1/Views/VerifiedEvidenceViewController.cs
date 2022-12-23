@@ -30,8 +30,10 @@ namespace MASZ.Controllers.api.v1.Views
             VerifiedEvidenceExpandedView view = new(evidence, reporter, reported);
 
             // TODO: mappings
-            view.LinkedCases = evidence.EvidenceMappings.Select(mapping => new CaseView(mapping.ModCase)).ToList();
-
+            if(evidence.EvidenceMappings != null)
+            {
+                view.LinkedCases = evidence.EvidenceMappings.Select(mapping => new CaseView(mapping.ModCase)).ToList();
+            }
             return Ok(view);
         }
     }

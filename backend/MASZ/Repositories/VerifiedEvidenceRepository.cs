@@ -23,9 +23,9 @@ namespace MASZ.Repositories
         public static VerifiedEvidenceRepository CreateDefault(IServiceProvider serviceProvider, IUser user) => new(serviceProvider, user);
         public static VerifiedEvidenceRepository CreateWithBotIdentity(IServiceProvider serviceProvider) => new(serviceProvider);
 
-        public async Task<List<VerifiedEvidence>> GetAllEvidence(ulong guildId)
+        public async Task<List<VerifiedEvidence>> GetEvidencePagination(ulong guildId, int page = 0, int pageSize = 20)
         {
-            return await Database.GetAllEvidence(guildId);
+            return await Database.GetEvidencePagination(guildId, page, pageSize);
         }
 
         public async Task<VerifiedEvidence> GetEvidence(ulong guildId, int evidenceId)

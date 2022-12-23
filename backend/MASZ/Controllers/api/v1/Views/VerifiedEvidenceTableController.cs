@@ -29,9 +29,9 @@ namespace MASZ.Controllers.api.v1.Views
 
         private async Task<VerifiedEvidenceTable> GenerateTable(ulong guildId, int startPage, VerifiedEvidenceTableFilterDto search)
         {
-            await RequirePermission(guildId, Enums.DiscordPermission.Moderator);
+            await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            List<VerifiedEvidence> evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetAllEvidence(guildId);
+            List<VerifiedEvidence> evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidencePagination(guildId, startPage);
 
             List<VerifiedEvidenceTableEntry> tmp = new();
             foreach(var e in evidence) 
@@ -76,7 +76,7 @@ namespace MASZ.Controllers.api.v1.Views
                 table = table.Where(x => search.ReportedIds.Contains(x.VerifiedEvidence.ReportedUserId));
             }
 
-            return new VerifiedEvidenceTable(table.Skip(startPage * 20).Take(20).ToList(), table.Count());
+            return new VerifiedEvidenceTable(table.ToList(), table.Count());
         }
 
         private static bool Contains(string obj, string search)

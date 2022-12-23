@@ -3,6 +3,7 @@ using MASZ.Repositories;
 using MASZ.Models.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using MASZ.Models.Views;
 
 namespace MASZ.Controllers.api.v1
 {
@@ -15,11 +16,11 @@ namespace MASZ.Controllers.api.v1
         {
         }
 
-        [HttpGet()]
-        public async Task<IActionResult> GetEvidence([FromRoute] ulong guildId)
+        [HttpGet]
+        public async Task<IActionResult> GetAllEvidence([FromRoute] ulong guildId, [FromQuery] int startPage = 0)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
-            List<VerifiedEvidence> evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetAllEvidence(guildId);
+            List<VerifiedEvidenceView> evidence = (await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidencePagination(guildId, startPage)).Select(x => new VerifiedEvidenceView(x)).ToList();
             if(evidence.Count == 0)
             {
                 return NotFound();
@@ -31,7 +32,7 @@ namespace MASZ.Controllers.api.v1
         public async Task<IActionResult> GetEvidence([FromRoute] ulong guildId, [FromRoute] int evidenceId)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
-            VerifiedEvidence evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidence(guildId, evidenceId);
+            VerifiedEvidenceView evidence = new(await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidence(guildId, evidenceId));
             if (evidence == default)
             {
                 return NotFound();

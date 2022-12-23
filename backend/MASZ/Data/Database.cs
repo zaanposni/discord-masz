@@ -961,14 +961,14 @@ namespace MASZ.Data
         //
         // ==================================================================================
 
-        public async Task<List<VerifiedEvidence>> GetAllEvidence(ulong guildId)
+        public async Task<List<VerifiedEvidence>> GetEvidencePagination(ulong guildId, int page, int pageSize)
         {
-            return await context.VerifiedEvidence.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            return await context.VerifiedEvidence.AsQueryable().Where(x => x.GuildId == guildId).OrderBy(x => x.Id).Skip(page * pageSize).Take(pageSize).ToListAsync();
         }
 
         public async Task<VerifiedEvidence> GetEvidence(ulong guildId, int evidenceId)
         {
-            return await context.VerifiedEvidence.AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.Id == evidenceId);
+            return await context.VerifiedEvidence.Include(x => x.EvidenceMappings).AsQueryable().OrderBy(x => x.Id).FirstOrDefaultAsync(x => x.GuildId == guildId && x.Id == evidenceId);
         }
 
         public void DeleteEvidence(VerifiedEvidence evidence)
