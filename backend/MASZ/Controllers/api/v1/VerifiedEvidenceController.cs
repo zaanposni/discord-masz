@@ -19,7 +19,7 @@ namespace MASZ.Controllers.api.v1
         public async Task<IActionResult> GetEvidence([FromRoute] ulong guildId)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
-            List<VerifiedEvidence> evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider).GetAllEvidence(guildId);
+            List<VerifiedEvidence> evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetAllEvidence(guildId);
             if(evidence.Count == 0)
             {
                 return NotFound();
@@ -31,7 +31,7 @@ namespace MASZ.Controllers.api.v1
         public async Task<IActionResult> GetEvidence([FromRoute] ulong guildId, [FromRoute] int evidenceId)
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
-            VerifiedEvidence evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider).GetEvidence(guildId, evidenceId);
+            VerifiedEvidence evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidence(guildId, evidenceId);
             if (evidence == default)
             {
                 return NotFound();
@@ -43,7 +43,7 @@ namespace MASZ.Controllers.api.v1
         public async Task<IActionResult> DeleteEvidence([FromRoute] ulong guildId, [FromRoute] int evidenceId)
         {
             await RequirePermission(guildId, DiscordPermission.Admin);
-            VerifiedEvidence deleted = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider).DeleteEvidence(guildId, evidenceId);
+            VerifiedEvidence deleted = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).DeleteEvidence(guildId, evidenceId);
             if(deleted == default) 
             {
                 return NotFound();

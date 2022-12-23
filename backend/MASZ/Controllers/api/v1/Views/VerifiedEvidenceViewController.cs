@@ -1,5 +1,6 @@
 ﻿using Discord;
 using MASZ.Enums;
+using MASZ.Models;
 using MASZ.Models.Database;
 using MASZ.Models.Views;
 using MASZ.Repositories;
@@ -21,7 +22,7 @@ namespace MASZ.Controllers.api.v1.Views
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            VerifiedEvidence evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider).GetEvidence(guildId, evidenceId);
+            VerifiedEvidence evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidence(guildId, evidenceId);
 
             IUser reporter = await _discordAPI.FetchUserInfo(evidence.ReporterUserId, CacheBehavior.OnlyCache);
             IUser reported = await _discordAPI.FetchUserInfo(evidence.ReportedUserId, CacheBehavior.OnlyCache);
@@ -29,6 +30,7 @@ namespace MASZ.Controllers.api.v1.Views
             VerifiedEvidenceExpandedView view = new(evidence, reporter, reported);
 
             // TODO: mappings
+            view.LinkedCases = evidence.EvidenceMappings.Select(mapping => new CaseView(mapping.ModCase)).ToList();
 
             return Ok(view);
         }

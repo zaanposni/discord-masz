@@ -95,7 +95,7 @@ namespace MASZ.Commands
                     ReportedDiscriminator = message.Author.DiscriminatorValue,
                 };
 
-                await VerifiedEvidenceRepository.CreateDefault(ServiceProvider).CreateEvidence(evidence);
+                await VerifiedEvidenceRepository.CreateDefault(ServiceProvider, Context.User).CreateEvidence(evidence);
             } catch (Exception e)
             {
                 Logger.LogError(e, "Failed to save evidence in database");

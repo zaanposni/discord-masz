@@ -31,7 +31,7 @@ namespace MASZ.Controllers.api.v1.Views
         {
             await RequirePermission(guildId, Enums.DiscordPermission.Moderator);
 
-            List<VerifiedEvidence> evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider).GetAllEvidence(guildId);
+            List<VerifiedEvidence> evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetAllEvidence(guildId);
 
             List<VerifiedEvidenceTableEntry> tmp = new();
             foreach(var e in evidence) 

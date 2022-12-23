@@ -978,7 +978,28 @@ namespace MASZ.Data
 
         public void CreateEvidence(VerifiedEvidence evidence)
         {
-            context.Add(evidence);
+            context.VerifiedEvidence.Add(evidence);
+        }
+
+        // ==================================================================================
+        //
+        // ModCaseEvidenceMapping
+        //
+        // ==================================================================================
+
+        public async Task<ModCaseEvidenceMapping> GetModCaseEvidenceMapping(int evidenceId, int caseId)
+        {
+            return await context.ModCaseEvidenceMappings.AsQueryable().FirstOrDefaultAsync(x => x.ModCase.Id == caseId && x.Evidence.Id == evidenceId);
+        }
+
+        public void CreateModCaseEvidenceMapping(ModCaseEvidenceMapping mapping)
+        {
+            context.ModCaseEvidenceMappings.Add(mapping);
+        }
+
+        public void DeleteModCaseEvidenceMapping(ModCaseEvidenceMapping mapping)
+        {
+            context.ModCaseEvidenceMappings.Remove(mapping);
         }
     }
 }
