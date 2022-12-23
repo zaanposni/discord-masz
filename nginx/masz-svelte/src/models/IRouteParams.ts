@@ -5,4 +5,5 @@ export interface IRouteParams {
     guild?: IDiscordGuild;
     caseId?: string;
     appealId?: string;
+    evidenceId?: string;
 }
