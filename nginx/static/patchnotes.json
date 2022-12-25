@@ -62,6 +62,11 @@
         "title": "Discord links are now whitelisted from the invite automod.",
         "description": "Discord resources like \"discord.com/terms\" are now whitelisted from the invite automod.",
         "link": "https://github.com/zaanposni/discord-masz/issues/559"
+      },
+      {
+        "title": "Fixed timestamp for deleted and updated messages guildauditlog.",
+        "description": "MASZ now correctly uses the UTC timestamp to display the message creation datetime.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/565"
       }
     ],
     "technical": [
