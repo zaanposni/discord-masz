@@ -14,4 +14,7 @@ export interface ICaseView {
     linkedCases: ICase[];
     userNote: IUserNoteView;
     punishmentProgress: number;
+    mentionedUsers: any;
+    mentionedRoles: any;
+    mentionedChannels: any;
 }

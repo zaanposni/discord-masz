@@ -90,12 +90,13 @@
         API.get(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/view`, CacheMode.PREFER_CACHE, true)
             .then((response: ICaseView) => {
                 modCase.set(response);
-                renderDescription(response?.modCase?.description ?? "");
+                renderDescription(response);
                 caseLoading = false;
             })
-            .catch(() => {
+            .catch((err) => {
                 $goto("/guilds/" + $currentParams.guildId + "/cases");
                 toastError($_("guilds.caseview.casenotfound"));
+                console.error(err);
             });
         reloadFiles();
         setTimeout(() => {
@@ -132,16 +133,30 @@
         API.clearCacheEntry("get", `/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/files`);
     }
 
-    function renderDescription(description: string) {
-        let value = description.replace("<", "&lt;").replace(">", "&gt;").replace(/\n/g, "<br>");
-        value = value.replace(/#([\d]+)/g, (match) => {
+    function renderDescription(modcase: ICaseView) {
+        renderedDescription = (modcase?.modCase?.description ?? "").replace(/<#([\d]+)>/gm, (match) => {
+            const id = match.substring(2, match.length - 1);
+            return modcase.mentionedChannels[id] ? `#${modcase.mentionedChannels[id]}` : match;
+        })
+        .replace(/<@([\d]+)>/gm, (match) => {
+            const id = match.substring(2, match.length - 1);
+            console.log(id);
+            return modcase.mentionedUsers[id] ? `@${modcase.mentionedUsers[id]}` : match;
+        })
+        .replace(/<@&([\d]+)>/gm, (match) => {
+            const id = match.substring(3, match.length - 1);
+            return modcase.mentionedRoles[id] ? `@${modcase.mentionedRoles[id]}` : match;
+        })
+        .replace(/</gm, "&lt;")
+        .replace(/>/gm, "&gt;")
+        .replace(/\n/gm, "<br/>")
+        .replace(/#([\d]+)/gm, (match) => {
             const id = match.substring(1);
             if (id == $modCase.modCase.discriminator || id == ($modCase.suspect?.discriminator ?? '')) {
                 return match;
             }
             return `<a href=/guilds/${$currentParams.guildId}/cases/${id}>#${id}</a>`
         });
-        renderedDescription = value;
     }
 
     function deleteFile(file: string) {
