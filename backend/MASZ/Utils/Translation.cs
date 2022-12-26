@@ -1307,8 +1307,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Entbanne einen Nutzer, indem du alle seine Modcases deaktivierst.",
-                Language.at => "Entbanne einen Nutzer, indem du alle seine Modcases deaktivierst.",
+                Language.de => "Hebe die Stummschaltung eines Nutzers auf, indem du alle seine Modcases deaktivierst.",
+                Language.at => "Hebe die Stummschaltung eines Nutzers auf, indem du alle seine Modcases deaktivierst.",
                 Language.fr => "Débannir un utilisateur en désactivant tous ses modcases.",
                 Language.es => "Desbanea a un usuario desactivando todos sus modcases.",
                 Language.ru => "Разбаньте пользователя, отключив все его модкейсы.",
@@ -1333,8 +1333,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Der Nutzer, der entbannt werden soll",
-                Language.at => "Der Nutzer, der entbannt werden soll",
+                Language.de => "Der Nutzer, dessen Stummschaltung aufgehoben werden soll",
+                Language.at => "Der Nutzer, dessen Stummschaltung aufgehoben werden soll",
                 Language.fr => "L'utilisateur à débannir",
                 Language.es => "El usuario a desbanear",
                 Language.ru => "Пользователь, которого нужно разбанить",

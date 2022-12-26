@@ -1100,10 +1100,10 @@
                 "it": "Smutare"
             },
             "Desc": {
-                "description": "The description of the 'Unban' command",
+                "description": "The description of the 'Unmute' command",
                 "en": "Unmute a user by deactivating all his modcases.",
-                "de": "Entbanne einen Nutzer, indem du alle seine Modcases deaktivierst.",
-                "at": "Entbanne einen Nutzer, indem du alle seine Modcases deaktivierst.",
+                "de": "Hebe die Stummschaltung eines Nutzers auf, indem du alle seine Modcases deaktivierst.",
+                "at": "Hebe die Stummschaltung eines Nutzers auf, indem du alle seine Modcases deaktivierst.",
                 "fr": "Débannir un utilisateur en désactivant tous ses modcases.",
                 "es": "Desbanea a un usuario desactivando todos sus modcases.",
                 "ru": "Разбаньте пользователя, отключив все его модкейсы.",
@@ -1123,8 +1123,8 @@
                 "Desc": {
                     "description": "The description of the 'User' argument",
                     "en": "The user to unban",
-                    "de": "Der Nutzer, der entbannt werden soll",
-                    "at": "Der Nutzer, der entbannt werden soll",
+                    "de": "Der Nutzer, dessen Stummschaltung aufgehoben werden soll",
+                    "at": "Der Nutzer, dessen Stummschaltung aufgehoben werden soll",
                     "fr": "L'utilisateur à débannir",
                     "es": "El usuario a desbanear",
                     "ru": "Пользователь, которого нужно разбанить",
