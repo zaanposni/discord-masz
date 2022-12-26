@@ -2633,7 +2633,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}",
+                Language.de => $"Hallo {user.Mention},\n\nDu hast gerade die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}",
                 Language.at => $"Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention} ausglest. Grund: {reason}\nAktion: {action}",
                 Language.fr => $"Salut {user.Mention},\n\nVous avez déclenché l'automodération dans {channel.Mention}.\nRaison : {reason}\nAction : {action}",
                 Language.es => $"Hola, {user.Mention}:\n\nActivó la automoderación en {channel.Mention}.\nMotivo: {reason}\nAcción: {action}",
@@ -2659,7 +2659,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Neue MotD wurde von {actor.Mention} erstellt.",
+                Language.de => $"Neue Nachricht des Tages wurde von {actor.Mention} erstellt.",
                 Language.at => $"A neiche MotD wuad vo {actor.Mention} erstöt. ",
                 Language.fr => $"Le nouveau MotD a été créé par {actor.Mention}.",
                 Language.es => $"El nuevo MotD ha sido creado por {actor.Mention}.",
@@ -2672,7 +2672,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"MotD wurde von {actor.Mention} bearbeitet.",
+                Language.de => $"Nachricht des Tages wurde von {actor.Mention} bearbeitet.",
                 Language.at => $"MotD is vo {actor.Mention} beorbeit woan.",
                 Language.fr => $"MotD a été édité par {actor.Mention}.",
                 Language.es => $"MotD ha sido editado por {actor.Mention}.",
@@ -2854,7 +2854,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` von <@{by}> (am {createdAt.ToDiscordTS()}) beigetreten.",
+                Language.de => $"{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` von <@{by}> (erstellt am {createdAt.ToDiscordTS()}) beigetreten.",
                 Language.at => $"{user.Mention} (registriert {registered.ToDiscordTS()}) is mit da Eiladung `{invite}` vo <@{by}> (am {createdAt.ToDiscordTS()}) beigetretn.",
                 Language.fr => $"{user.Mention} (enregistré {registered.ToDiscordTS()}) rejoint avec invite `{invite}` (créé {createdAt.ToDiscordTS()}) par <@{by}>.",
                 Language.es => $"{user.Mention} (registrado {registered.ToDiscordTS()}) se unió con la invitación `{invite}` (creado {createdAt.ToDiscordTS()}) por <@{by}>.",
@@ -3062,7 +3062,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "NutzerId",
+                Language.de => "ID des Nutzers",
                 Language.at => "NutzaId",
                 Language.fr => "Identifiant d'utilisateur",
                 Language.es => "User ID",
@@ -3088,7 +3088,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Dieser Server hat keinen internen Webhook für Benachrichtigungen konfiguriert.",
+                Language.de => "Dieser Server hat keinen Webhook für interne Benachrichtigungen konfiguriert.",
                 Language.at => "Da Serva hot kan internan Webhook fia Benochrichtigungen konfiguriat.",
                 Language.fr => "Cette guilde n'a pas configuré de webhook pour les notifications internes.",
                 Language.es => "Este gremio no tiene configurado ningún webhook para notificaciones internas.",
@@ -3153,7 +3153,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Ban-Berechtigung erteilt.",
+                Language.de => "Bann-Berechtigung erteilt.",
                 Language.at => "Ban-Berechtigung erteit.",
                 Language.fr => "Autorisation d'interdiction accordée.",
                 Language.es => "Prohibición concedida.",
@@ -3166,7 +3166,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Ban-Berechtigung nicht erteilt.",
+                Language.de => "Bann-Berechtigung nicht erteilt.",
                 Language.at => "Ban-Berechtigung ned erteit.",
                 Language.fr => "Autorisation d'interdiction non accordée.",
                 Language.es => "Prohibir permiso no concedido.",
@@ -3296,7 +3296,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.",
+                Language.de => "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese zu kommentieren.",
                 Language.at => "Erlaubt ausgsperrtn MASZ aufzuruafa, sich ernane Fälle ozumschaun und de zum kommentian.",
                 Language.fr => "Permet aux membres bannis de voir leurs cas et de les commenter pour les demandes de déban.",
                 Language.es => "Permite a los miembros prohibidos ver sus casos y comentarlos para las solicitudes de deshabilitación.",
@@ -3309,7 +3309,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.\nErteile diesem Bot die Ban-Berechtigung, um diese Funktion zu nutzen.",
+                Language.de => "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.\nErteile MASZ die Bann-Berechtigung, um diese Funktion zu nutzen.",
                 Language.at => "Erlaubt ausgsperrtn MASZ aufzurufa, sich ernane Fälle ozumschaun und de zum kommentian. \nErteil dem Bot die Ban-Berechtigung, um de Funktion nutza zu kenna.",
                 Language.fr => "Permet aux membres bannis de voir leurs cas et de les commenter pour les demandes de déban.\nAccordez à ce bot l'autorisation d'interdire l'utilisation de cette fonctionnalité.",
                 Language.es => "Permite a los miembros prohibidos ver sus casos y comentarlos para las solicitudes de deshabilitación.\nOtorga a este bot el permiso de prohibición para usar esta función.",
@@ -3387,7 +3387,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.\nErteile diesem Bot die Verwalten-Gilden-Berechtigung, um diese Funktion zu nutzen.",
+                Language.de => "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.\nErteile diesem Bot die Server-Verwalten-Berechtigung, um diese Funktion zu nutzen.",
                 Language.at => "Erlaubt MASZ, de Eiladungen vo neichn Mitglieda zu verfoign.\nErteil dem Bot die Verwoitn-Gilden-Berechtigung, um de Funktion nutzn zu kenna.",
                 Language.fr => "Permet à MASZ de suivre les invitations que les nouveaux membres utilisent.\nAccordez à ce bot l'autorisation de gestion de guilde pour utiliser cette fonctionnalité.",
                 Language.es => "Permite a MASZ realizar un seguimiento de las invitaciones que están utilizando los nuevos miembros.\nOtorga a este bot el permiso de gestión del gremio para usar esta función.",
@@ -3400,7 +3400,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Dein Bot auf diesem Server ist richtig konfiguriert.",
+                Language.de => "Dein Bot ist auf diesem Server richtig konfiguriert.",
                 Language.at => "Dei Bot auf dem Serva is richtig konfiguriat.",
                 Language.fr => "Votre bot sur cette guilde est correctement configuré.",
                 Language.es => "Tu bot en este gremio está configurado correctamente.",
@@ -3426,7 +3426,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Es gibt Funktionen von MASZ, die du jetzt nicht nutzen kannst.",
+                Language.de => "Es gibt Funktionen von MASZ, die du momentan nicht nutzen kannst.",
                 Language.at => "Es gibt Funktionen vo MASZ, die du jetzt ned nutzn konnst.",
                 Language.fr => "Il y a des fonctionnalités de MASZ que vous ne pouvez pas utiliser pour le moment.",
                 Language.es => "Hay funciones de MASZ que no puede utilizar en este momento.",
@@ -3478,7 +3478,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Interner Benachrichtigungsversand an Moderatoren für Meldebefehl fehlgeschlagen.",
+                Language.de => "Benachrichtigung der Moderatoren fehlgeschlagen.",
                 Language.at => "Interna Benochrichtigungsvasond on de Modaratoan fian Mödebefehl fehlgschlogn.",
                 Language.fr => "Échec de l'envoi de la notification interne aux modérateurs pour la commande de rapport.",
                 Language.es => "No se pudo enviar una notificación interna a los moderadores para el comando de informe.",
@@ -3660,7 +3660,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Bitte gib eine gültige Gilden-ID an.",
+                Language.de => "Bitte gib eine gültige Server-ID an.",
                 Language.at => "Bitte gib a gütige Güdn-ID o.",
                 Language.fr => "Veuillez spécifier un identifiant de guilde valide.",
                 Language.es => "Por favor, especifique un guildid válido.",
@@ -3673,7 +3673,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Du darfst diesen Fall nicht ansehen.",
+                Language.de => "Du bist nicht berechtigt diesen Case anzusehen.",
                 Language.at => "Du derfst da den Foi ned oschaun.",
                 Language.fr => "Vous n'êtes pas autorisé à voir ce cas.",
                 Language.es => "No se le permite ver este caso.",
@@ -3868,7 +3868,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer nicht mehr stummgeschaltet zu lassen?",
+                Language.de => $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um die Stummschaltung des Nutzers aufzuheben?",
                 Language.at => $"Es san `{caseCount}` aktive Fälle gfundn woan. Möchtest olle deaktivian oda löschn, damit da Nutza nimma stummgschoitn bleibt?",
                 Language.fr => $"`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour réactiver le son de l'utilisateur ?",
                 Language.es => $"Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para dejar de silenciar al usuario?",
@@ -3933,7 +3933,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entbannen zu lassen?",
+                Language.de => $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Nutzer zu entbannen?",
                 Language.at => $"Es san `{caseCount}` aktive Fälle gfundn woan. Möchtest olle deaktivian oda löschn, damit da Nutza entsperrt bleibt?",
                 Language.fr => $"`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour annuler l'interdiction de l'utilisateur ?",
                 Language.es => $"Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para desbloquear al usuario?",
@@ -3946,7 +3946,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Sperrungen gelöscht",
+                Language.de => "Banns gelöscht",
                 Language.at => "Sperrungen glescht",
                 Language.fr => "Interdictions supprimées",
                 Language.es => "Prohibiciones eliminadas",
@@ -3959,7 +3959,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Sperrungen deaktiviert",
+                Language.de => "Banns deaktiviert",
                 Language.at => "Sperrungen deaktiviat",
                 Language.fr => "Interdictions désactivées",
                 Language.es => "Prohibiciones desactivadas",
@@ -3972,7 +3972,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Sperrungen löschen",
+                Language.de => "Banns löschen",
                 Language.at => "Sperrungen löschn",
                 Language.fr => "Supprimer les bannissements",
                 Language.es => "Eliminar prohibiciones",
@@ -3985,7 +3985,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Sperrungen deaktivieren",
+                Language.de => "Banns deaktivieren",
                 Language.at => "Sperrungen deaktivian",
                 Language.fr => "Désactiver les interdictions",
                 Language.es => "Prohibiciones de desactivación",
@@ -4154,7 +4154,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "NutzerId",
+                Language.de => "ID des Nutzers",
                 Language.at => "NutzaId",
                 Language.fr => "Identifiant d'utilisateur",
                 Language.es => "User ID",

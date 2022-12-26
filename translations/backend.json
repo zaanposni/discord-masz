@@ -2276,7 +2276,7 @@
                     "action": "string"
                 },
                 "en": "Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}",
-                "de": "Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}",
+                "de": "Hallo {user.Mention},\n\nDu hast gerade die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}",
                 "at": "Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention} ausglest. Grund: {reason}\nAktion: {action}",
                 "fr": "Salut {user.Mention},\\n\\nVous avez déclenché l'automodération dans {channel.Mention}.\\nRaison : {reason}\\nAction : {action}",
                 "es": "Hola, {user.Mention}:\\n\\nActivó la automoderación en {channel.Mention}.\\nMotivo: {reason}\\nAcción: {action}",
@@ -2306,7 +2306,7 @@
                         "actor": "IUser"
                     },
                     "en": "New MotD has been created by {actor.Mention}.",
-                    "de": "Neue MotD wurde von {actor.Mention} erstellt.",
+                    "de": "Neue Nachricht des Tages wurde von {actor.Mention} erstellt.",
                     "at": "A neiche MotD wuad vo {actor.Mention} erstöt. ",
                     "fr": "Le nouveau MotD a été créé par {actor.Mention}.",
                     "es": "El nuevo MotD ha sido creado por {actor.Mention}.",
@@ -2319,7 +2319,7 @@
                         "actor": "IUser"
                     },
                     "en": "MotD has been edited by {actor.Mention}.",
-                    "de": "MotD wurde von {actor.Mention} bearbeitet.",
+                    "de": "Nachricht des Tages wurde von {actor.Mention} bearbeitet.",
                     "at": "MotD is vo {actor.Mention} beorbeit woan.",
                     "fr": "MotD a été édité par {actor.Mention}.",
                     "es": "MotD ha sido editado por {actor.Mention}.",
@@ -2483,7 +2483,7 @@
                 "it": "{user.Mention} (registrato {registered.ToDiscordTS()}) si è unito con l'invito `{invite}`."
             },
             "JoinWithAndFrom": {
-                "description": "A user joined with invite x",
+                "description": "A user joined with invite x from user y",
                 "var_types": {
                     "user": "IUser",
                     "by": "ulong",
@@ -2492,7 +2492,7 @@
                     "invite": "string"
                 },
                 "en": "{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}` (created {createdAt.ToDiscordTS()}) by <@{by}>.",
-                "de": "{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` von <@{by}> (am {createdAt.ToDiscordTS()}) beigetreten.",
+                "de": "{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` von <@{by}> (erstellt am {createdAt.ToDiscordTS()}) beigetreten.",
                 "at": "{user.Mention} (registriert {registered.ToDiscordTS()}) is mit da Eiladung `{invite}` vo <@{by}> (am {createdAt.ToDiscordTS()}) beigetretn.",
                 "fr": "{user.Mention} (enregistré {registered.ToDiscordTS()}) rejoint avec invite `{invite}` (créé {createdAt.ToDiscordTS()}) par <@{by}>.",
                 "es": "{user.Mention} (registrado {registered.ToDiscordTS()}) se unió con la invitación `{invite}` (creado {createdAt.ToDiscordTS()}) por <@{by}>.",
@@ -2696,7 +2696,7 @@
         "UserID": {
             "description": "User ID",
             "en": "User ID",
-            "de": "NutzerId",
+            "de": "ID des Nutzers",
             "at": "NutzaId",
             "fr": "Identifiant d'utilisateur",
             "es": "User ID",
@@ -2716,7 +2716,7 @@
         "NoWebhookConfigured": {
             "description": "No webhook configured.",
             "en": "This guild has no webhook for internal notifications configured.",
-            "de": "Dieser Server hat keinen internen Webhook für Benachrichtigungen konfiguriert.",
+            "de": "Dieser Server hat keinen Webhook für interne Benachrichtigungen konfiguriert.",
             "at": "Da Serva hot kan internan Webhook fia Benochrichtigungen konfiguriat.",
             "fr": "Cette guilde n'a pas configuré de webhook pour les notifications internes.",
             "es": "Este gremio no tiene configurado ningún webhook para notificaciones internas.",
@@ -2777,7 +2777,7 @@
                 "Granted": {
                     "description": "Ban permission granted.",
                     "en": "Ban permission granted.",
-                    "de": "Ban-Berechtigung erteilt.",
+                    "de": "Bann-Berechtigung erteilt.",
                     "at": "Ban-Berechtigung erteit.",
                     "fr": "Autorisation d'interdiction accordée.",
                     "es": "Prohibición concedida.",
@@ -2787,7 +2787,7 @@
                 "NotGranted": {
                     "description": "Ban permission not granted.",
                     "en": "Ban permission not granted.",
-                    "de": "Ban-Berechtigung nicht erteilt.",
+                    "de": "Bann-Berechtigung nicht erteilt.",
                     "at": "Ban-Berechtigung ned erteit.",
                     "fr": "Autorisation d'interdiction non accordée.",
                     "es": "Prohibir permiso no concedido.",
@@ -2893,7 +2893,7 @@
                 "Granted": {
                     "description": "Unban requests description",
                     "en": "Allows banned members to see their cases and comment on it for unban requests.",
-                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.",
+                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese zu kommentieren.",
                     "at": "Erlaubt ausgsperrtn MASZ aufzuruafa, sich ernane Fälle ozumschaun und de zum kommentian.",
                     "fr": "Permet aux membres bannis de voir leurs cas et de les commenter pour les demandes de déban.",
                     "es": "Permite a los miembros prohibidos ver sus casos y comentarlos para las solicitudes de deshabilitación.",
@@ -2903,7 +2903,7 @@
                 "NotGranted": {
                     "description": "Unban requests description",
                     "en": "Allows banned members to see their cases and comment on it for unban requests.\nGrant this bot the ban permission to use this feature.",
-                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.\nErteile diesem Bot die Ban-Berechtigung, um diese Funktion zu nutzen.",
+                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.\nErteile MASZ die Bann-Berechtigung, um diese Funktion zu nutzen.",
                     "at": "Erlaubt ausgsperrtn MASZ aufzurufa, sich ernane Fälle ozumschaun und de zum kommentian. \nErteil dem Bot die Ban-Berechtigung, um de Funktion nutza zu kenna.",
                     "fr": "Permet aux membres bannis de voir leurs cas et de les commenter pour les demandes de déban.\\nAccordez à ce bot l'autorisation d'interdire l'utilisation de cette fonctionnalité.",
                     "es": "Permite a los miembros prohibidos ver sus casos y comentarlos para las solicitudes de deshabilitación.\\nOtorga a este bot el permiso de prohibición para usar esta función.",
@@ -2967,7 +2967,7 @@
                 "NotGranted": {
                     "description": "Unban requests description",
                     "en": "Allows MASZ to track the invites new members are using.\nGrant this bot the manage guild permission to use this feature.",
-                    "de": "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.\nErteile diesem Bot die Verwalten-Gilden-Berechtigung, um diese Funktion zu nutzen.",
+                    "de": "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.\nErteile diesem Bot die Server-Verwalten-Berechtigung, um diese Funktion zu nutzen.",
                     "at": "Erlaubt MASZ, de Eiladungen vo neichn Mitglieda zu verfoign.\nErteil dem Bot die Verwoitn-Gilden-Berechtigung, um de Funktion nutzn zu kenna.",
                     "fr": "Permet à MASZ de suivre les invitations que les nouveaux membres utilisent.\\nAccordez à ce bot l'autorisation de gestion de guilde pour utiliser cette fonctionnalité.",
                     "es": "Permite a MASZ realizar un seguimiento de las invitaciones que están utilizando los nuevos miembros.\\nOtorga a este bot el permiso de gestión del gremio para usar esta función.",
@@ -2978,7 +2978,7 @@
             "SupportAllFeatures": {
                 "description": "Support all features",
                 "en": "Your bot on this guild is configured correctly.",
-                "de": "Dein Bot auf diesem Server ist richtig konfiguriert.",
+                "de": "Dein Bot ist auf diesem Server richtig konfiguriert.",
                 "at": "Dei Bot auf dem Serva is richtig konfiguriat.",
                 "fr": "Votre bot sur cette guilde est correctement configuré.",
                 "es": "Tu bot en este gremio está configurado correctamente.",
@@ -2998,7 +2998,7 @@
             "MissingFeatures": {
                 "description": "Missing features",
                 "en": "There are features of MASZ that you cannot use right now.",
-                "de": "Es gibt Funktionen von MASZ, die du jetzt nicht nutzen kannst.",
+                "de": "Es gibt Funktionen von MASZ, die du momentan nicht nutzen kannst.",
                 "at": "Es gibt Funktionen vo MASZ, die du jetzt ned nutzn konnst.",
                 "fr": "Il y a des fonctionnalités de MASZ que vous ne pouvez pas utiliser pour le moment.",
                 "es": "Hay funciones de MASZ que no puede utilizar en este momento.",
@@ -3047,7 +3047,7 @@
             "Failed": {
                 "description": "Report failed",
                 "en": "Failed to send internal notification to moderators for report command.",
-                "de": "Interner Benachrichtigungsversand an Moderatoren für Meldebefehl fehlgeschlagen.",
+                "de": "Benachrichtigung der Moderatoren fehlgeschlagen.",
                 "at": "Interna Benochrichtigungsvasond on de Modaratoan fian Mödebefehl fehlgschlogn.",
                 "fr": "Échec de l'envoi de la notification interne aux modérateurs pour la commande de rapport.",
                 "es": "No se pudo enviar una notificación interna a los moderadores para el comando de informe.",
@@ -3219,7 +3219,7 @@
             "InvalidGuildId": {
                 "description": "Invalid guild id",
                 "en": "Please specify a valid guildid.",
-                "de": "Bitte gib eine gültige Gilden-ID an.",
+                "de": "Bitte gib eine gültige Server-ID an.",
                 "at": "Bitte gib a gütige Güdn-ID o.",
                 "fr": "Veuillez spécifier un identifiant de guilde valide.",
                 "es": "Por favor, especifique un guildid válido.",
@@ -3229,7 +3229,7 @@
             "NotAllowedToView": {
                 "description": "Not allowed to view",
                 "en": "You are not allowed to view this case.",
-                "de": "Du darfst diesen Fall nicht ansehen.",
+                "de": "Du bist nicht berechtigt diesen Case anzusehen.",
                 "at": "Du derfst da den Foi ned oschaun.",
                 "fr": "Vous n'êtes pas autorisé à voir ce cas.",
                 "es": "No se le permite ver este caso.",
@@ -3399,7 +3399,7 @@
                         "caseCount": "int"
                     },
                     "en": "Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unmute the user?",
-                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer nicht mehr stummgeschaltet zu lassen?",
+                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um die Stummschaltung des Nutzers aufzuheben?",
                     "at": "Es san `{caseCount}` aktive Fälle gfundn woan. Möchtest olle deaktivian oda löschn, damit da Nutza nimma stummgschoitn bleibt?",
                     "fr": "`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour réactiver le son de l'utilisateur ?",
                     "es": "Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para dejar de silenciar al usuario?",
@@ -3458,7 +3458,7 @@
                         "caseCount": "int"
                     },
                     "en": "Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unban the user?",
-                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entbannen zu lassen?",
+                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Nutzer zu entbannen?",
                     "at": "Es san `{caseCount}` aktive Fälle gfundn woan. Möchtest olle deaktivian oda löschn, damit da Nutza entsperrt bleibt?",
                     "fr": "`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour annuler l'interdiction de l'utilisateur ?",
                     "es": "Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para desbloquear al usuario?",
@@ -3469,7 +3469,7 @@
                     "Deleted": {
                         "description": "someone approved",
                         "en": "Bans deleted",
-                        "de": "Sperrungen gelöscht",
+                        "de": "Banns gelöscht",
                         "at": "Sperrungen glescht",
                         "fr": "Interdictions supprimées",
                         "es": "Prohibiciones eliminadas",
@@ -3479,7 +3479,7 @@
                     "Deactivated": {
                         "description": "someone approved",
                         "en": "Bans deactivated",
-                        "de": "Sperrungen deaktiviert",
+                        "de": "Banns deaktiviert",
                         "at": "Sperrungen deaktiviat",
                         "fr": "Interdictions désactivées",
                         "es": "Prohibiciones desactivadas",
@@ -3491,7 +3491,7 @@
                     "Delete": {
                         "description": "Unban button to approve",
                         "en": "Delete Bans",
-                        "de": "Sperrungen löschen",
+                        "de": "Banns löschen",
                         "at": "Sperrungen löschn",
                         "fr": "Supprimer les bannissements",
                         "es": "Eliminar prohibiciones",
@@ -3501,7 +3501,7 @@
                     "Deactivate": {
                         "description": "Unban button to approve",
                         "en": "Deativate Bans",
-                        "de": "Sperrungen deaktivieren",
+                        "de": "Banns deaktivieren",
                         "at": "Sperrungen deaktivian",
                         "fr": "Désactiver les interdictions",
                         "es": "Prohibiciones de desactivación",
@@ -3641,7 +3641,7 @@
         "UserID": {
             "description": "User ID",
             "en": "User ID",
-            "de": "NutzerId",
+            "de": "ID des Nutzers",
             "at": "NutzaId",
             "fr": "Identifiant d'utilisateur",
             "es": "User ID",
