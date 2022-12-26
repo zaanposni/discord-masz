@@ -2100,8 +2100,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Importiert aus bestehenden Sperren",
-                Language.at => "Importiat aus vorhondane Sperren",
+                Language.de => "Importiert aus bestehenden Banns",
+                Language.at => "Importiat aus vorhondane Banns",
                 Language.fr => "Importé à partir des interdictions existantes",
                 Language.es => "Importado de prohibiciones existentes",
                 Language.ru => "Импортировано из существующих банов",
@@ -2347,7 +2347,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen oder einen Entbannungsantrag besuche: {serviceBaseUrl}",
+                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen besuche {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di verwoarnt.\nFia weitere Infos oda ein Entbannungsantrag schau bei {serviceBaseUrl} noch.",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont prévenu.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han advertido.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -2360,7 +2360,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich temporär stummgeschalten bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich bis zum {modCase.PunishedUntil.Value.ToDiscordTS()} temporär stummgeschalten.\nFür weitere Informationen besuche {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont temporairement mis en sourdine jusqu'à {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han silenciado temporalmente hasta {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -2373,7 +2373,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nFür weitere Informationen besuche {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont mis en sourdine.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han silenciado.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -2386,7 +2386,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich temporär gebannt bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich bis zum {modCase.PunishedUntil.Value.ToDiscordTS()} temporär gebannt.\nFür weitere Informationen oder zum Einreichen eines Entbannungsantrags besuche {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont temporairement banni jusqu'à {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han baneado temporalmente hasta el {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -2399,7 +2399,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich gebannt.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich gebannt.\nFür weitere Informationen oder zum Einreichen eines Entbannungsantrags besuche {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont banni.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han prohibido.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -2412,7 +2412,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich kickt.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich kickt.\nFür weitere Informationen besuche {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di rausgschmissn.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont viré.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han pateado.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -2542,7 +2542,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Vielen Dank für deine Registrierung.\nIm Folgenden wirst du einige nützliche Tipps zum Einrichten und Verwenden von **MASZ** erhalten.",
+                Language.de => "Vielen Dank für deine Registrierung.\nHier sind ein paar nützliche Tipps zum Einrichten und Verwenden von **MASZ**.",
                 Language.at => "Donksche fia dei Registrierung.\nDu siachst glei ei poar nützliche Tipps zum Eirichtn und Vawendn vo **MASZ**.",
                 Language.fr => "Merci d'avoir enregistré votre guilde.\nDans ce qui suit, vous apprendrez quelques conseils utiles pour configurer et utiliser **MASZ**.",
                 Language.es => "Gracias por registrar tu gremio.\nA continuación, aprenderá algunos consejos útiles para configurar y usar **MASZ**.",
@@ -2568,7 +2568,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"MASZ wird `{language}` als Standard-Sprache für diese Gilde verwenden, wenn möglich.",
+                Language.de => $"MASZ wird `{language}` als Standard-Sprache für diesen Server verwenden (wenn verfügbar).",
                 Language.at => $"Dei MASZ wiad `{language}` ois Standard-Sproch fia die Güde nehma, wenns geht.",
                 Language.fr => $"MASZ utilisera `{language}` comme langue par défaut pour cette guilde dans la mesure du possible.",
                 Language.es => $"MASZ usará `{language}` como idioma predeterminado para este gremio siempre que sea posible.",
@@ -2581,7 +2581,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Zeitzonen können kompliziert sein.\nMASZ benutzt ein Discord-Feature um Zeitstempel in der lokalen Zeitzone deines Computers/Handys anzuzeigen.",
+                Language.de => "Zeitzonen können kompliziert sein.\nMASZ verwendet Discords Zeitstempel um immer die lokale Zeitzone deines PCs/Smartphones zu verwenden.",
                 Language.at => "De Zeitzonen kennan a weng schwer san.\nMASZ nutzt a Discord-Feature um Zeitstempl in da lokalen Zeitzon vo deim PC/Handy ozumzeign.",
                 Language.fr => "Les fuseaux horaires peuvent être déroutants.\nMASZ utilise une fonction Discord pour afficher les horodatages dans le fuseau horaire local de votre ordinateur/téléphone.",
                 Language.es => "Las zonas horarias pueden resultar confusas.\nMASZ usa una función de Discord para mostrar marcas de tiempo en la zona horaria local de su computadora / teléfono.",
