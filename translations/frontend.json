@@ -2233,7 +2233,7 @@
             },
             "created": {
                 "description": "Created",
-                "en": "Created",
+                "en": "Created on",
                 "de": "Erstellt am",
                 "at": "Erstöt",
                 "fr": "Créé",
@@ -2243,7 +2243,7 @@
             },
             "updated": {
                 "description": "Updated",
-                "en": "Updated",
+                "en": "Updated on",
                 "de": "Aktualisiert am",
                 "at": "Aktualisiat",
                 "fr": "Mis à jour",
