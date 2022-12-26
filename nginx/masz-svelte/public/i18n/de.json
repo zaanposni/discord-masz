@@ -25,7 +25,7 @@
         "autosave": "Alle Einstellungen werden automatisch gespeichert."
     },
     "nav": {
-        "allguilds": "Alle Gilden",
+        "allguilds": "Alle Server",
         "patchnotes": "Patchnotizen",
         "patchnotesdetails": "Zeige die letzten Patchnotizen von MASZ.",
         "credits": "Credits",
@@ -58,8 +58,8 @@
                 "zalgo": "Zalgo",
                 "automod": "Automod",
                 "base": "Einstellungen",
-                "search": "Gildeneinstellungen",
-                "searchdetails": "Bearbeiten Sie die Einstellungen dieser Gilde."
+                "search": "Servereinstellungen",
+                "searchdetails": "Bearbeiten Sie die Einstellungen dieses Servers."
             }
         },
         "logout": "Abmelden"
@@ -93,7 +93,7 @@
         },
         "guildautomodsplit": {
             "title": "Automodaufteilung",
-            "widgetdescription": "Dieses Widget zeigt die Aufteilung der Automoderationen in deiner Gilde.",
+            "widgetdescription": "Dieses Widget zeigt die Aufteilung der Automoderationen auf deinem Server.",
             "empty": "Keine Automodaufteilung gefunden."
         },
         "guildmodcasecountchart": {
@@ -368,7 +368,7 @@
         },
         "appealconfig": {
             "title": "Aufbau der Entbannungsanträge",
-            "explain": "Konfiguriere das Formular für den Entbannungsantrag der Gilde.",
+            "explain": "Konfiguriere das Formular für den Entbannungsantrag des Servers.",
             "explain2": "Benutzer können Fragen überspringen, wenn sie möchten.",
             "explain3": "Wenn du eine Frage löscht wird sie weiterhin in alten Entbannungsanträgen sichtbar sein.",
             "explain4": "Wenn keine Fragen konfiguriert sind können Benutzer keine Entbannungsanträge mehr stellen.",
@@ -446,10 +446,10 @@
         },
         "motd": {
             "title": "Nachricht des Tages",
-            "explain": "Benutze eine Nachricht des Tages, um eine Nachricht auf dem Dashboard der Gilde einzublenden, die alle Moderatoren sehen können.",
+            "explain": "Benutze eine Nachricht des Tages, um eine Nachricht auf dem Dashboard des Servers einzublenden, die alle Moderatoren sehen können.",
             "explain2": "Dies könnte zum Beispiel Anweisungen zum Formatieren von Fällen enthalten oder Bilder als Beweis hochzuladen.",
             "noresult": "Konnte Nachricht des Tages nicht laden.",
-            "enabled": "Nachricht des Tages auf dem Dashboard der Gilde aktivieren",
+            "enabled": "Nachricht des Tages auf dem Dashboard des Servers aktivieren",
             "message": "Nachricht des Tages",
             "save": "Speichern",
             "submitting": "Sende...",
@@ -586,7 +586,7 @@
             "failedtodelete": "Fehler beim Löschen des Servers",
             "deleteconfirm": "Löschen bestätigen",
             "deleteresources": "Alle Daten löschen (Verstöße, Einstellungen, Ereignisse, Dateien)",
-            "deleteundone": "Diese Aktion kannn nicht rückgängig gemacht werden. Die Gilde wird sofort aus MASZgelöscht."
+            "deleteundone": "Diese Aktion kannn nicht rückgängig gemacht werden. Der Server wird sofort aus MASZ gelöscht."
         }
     },
     "admin": {
