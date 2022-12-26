@@ -85,8 +85,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Holen Sie sich den hochauflösenden Avatar eines Benutzers.",
-                Language.at => "Holen Sie sich den hochauflösenden Avatar eines Benutzers.",
+                Language.de => "Hochauflösendes Profilbild eines Nutzers anzeigen lassen.",
+                Language.at => "Hochauflösendes Profilbild eines Nutzers anzeigen lassen.",
                 Language.fr => "Obtenez l'avatar haute résolution d'un utilisateur.",
                 Language.es => "Obtenga el avatar de alta resolución de un usuario.",
                 Language.ru => "Получите высокое разрешение аватара пользователя.",
@@ -111,8 +111,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Benutzer, dessen Avatar abgerufen werden soll",
-                Language.at => "Benutzer, dessen Avatar abgerufen werden soll",
+                Language.de => "Benutzer, dessen Profilbild abgerufen werden soll",
+                Language.at => "Benutzer, dessen Profilbild abgerufen werden soll",
                 Language.fr => "Utilisateur dont vous souhaitez obtenir l'avatar",
                 Language.es => "Usuario del que desea obtener el avatar",
                 Language.ru => "Пользователь, аватар которого вы хотите получить",
@@ -241,8 +241,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Stunden, um den Benutzer zu bannen",
-                Language.at => "Stunden, um den Benutzer zu bannen",
+                Language.de => "Stunden, die der Nutzer gebannt sein soll",
+                Language.at => "Stunden, die der Nutzer gebannt sein soll",
                 Language.fr => "Heures pour bannir l'utilisateur",
                 Language.es => "Horas para prohibir al usuario",
                 Language.ru => "Часы, чтобы запретить пользователю",
@@ -254,8 +254,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Unlimitiert",
-                Language.at => "Unlimitiert",
+                Language.de => "Dauerhaft",
+                Language.at => "Dauerhaft",
                 Language.fr => "Illimité",
                 Language.es => "Ilimitado",
                 Language.ru => "Неограниченный",
@@ -319,8 +319,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "DM",
-                Language.at => "DM",
+                Language.de => "Direktnachricht",
+                Language.at => "Direktnachricht",
                 Language.fr => "DM",
                 Language.es => "DM",
                 Language.ru => "DM",
@@ -332,8 +332,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Ob eine DM Benachrichtigung gesendet werden soll",
-                Language.at => "Ob eine DM Benachrichtigung gesendet werden soll",
+                Language.de => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                Language.at => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
                 Language.fr => "Si une notification DM doit être envoyée",
                 Language.es => "Si se debe enviar una notificación DM",
                 Language.ru => "Отправлять ли уведомление DM",
@@ -514,8 +514,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "zusätzlicher Filter auf diesen Benutzer",
-                Language.at => "zusätzlicher Filter auf diesen Benutzer",
+                Language.de => "Nur Daten von diesem Nutzer entfernen",
+                Language.at => "Nur Daten von diesem Nutzer entfernen",
                 Language.fr => "filtre supplémentaire sur cet utilisateur",
                 Language.es => "filtro adicional en este usuario",
                 Language.ru => "дополнительный фильтр на этого пользователя",
@@ -618,8 +618,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Kicke einen Benutzer und erstelle einen Modfall",
-                Language.at => "Kicke einen Benutzer und erstelle einen Modfall",
+                Language.de => "Kicke einen Benutzer und erstelle einen Modcase",
+                Language.at => "Kicke einen Benutzer und erstelle einen Modcase",
                 Language.fr => "Expulsez un utilisateur et créez un cas de modération",
                 Language.es => "Expulsa a un usuario y crea un caso de moderación",
                 Language.ru => "Выгнать пользователя и создать модкейс",
@@ -709,8 +709,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "DM",
-                Language.at => "DM",
+                Language.de => "Direktnachricht",
+                Language.at => "Direktnachricht",
                 Language.fr => "DM",
                 Language.es => "DM",
                 Language.ru => "DM",
@@ -722,8 +722,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Ob eine DM Benachrichtigung gesendet werden soll",
-                Language.at => "Ob eine DM Benachrichtigung gesendet werden soll",
+                Language.de => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                Language.at => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
                 Language.fr => "Si une notification DM doit être envoyée",
                 Language.es => "Si se debe enviar una notificación DM",
                 Language.ru => "Отправлять ли уведомление DM",
@@ -800,8 +800,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Stummschalten eines Benutzers und erstellen eines Modcases",
-                Language.at => "Stummschalten eines Benutzers und erstellen eines Modcases",
+                Language.de => "Schaltet einen Benutzer stumm und erstellt einen Modcase",
+                Language.at => "Schaltet einen Benutzer stumm und erstellt einen Modcase",
                 Language.fr => "Muet un utilisateur et crée un cas de modération",
                 Language.es => "Silencia a un usuario y crea un caso de moderación",
                 Language.ru => "Заглушить пользователя и создать модкейс",
@@ -917,8 +917,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Unlimitiert",
-                Language.at => "Unlimitiert",
+                Language.de => "Dauerhaft",
+                Language.at => "Dauerhaft",
                 Language.fr => "Illimité",
                 Language.es => "Ilimitado",
                 Language.ru => "Неограниченный",
@@ -982,8 +982,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "DM",
-                Language.at => "DM",
+                Language.de => "Direktnachricht",
+                Language.at => "Direktnachricht",
                 Language.fr => "DM",
                 Language.es => "DM",
                 Language.ru => "DM",
@@ -995,8 +995,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Ob eine DM Benachrichtigung gesendet werden soll",
-                Language.at => "Ob eine DM Benachrichtigung gesendet werden soll",
+                Language.de => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                Language.at => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
                 Language.fr => "Si une notification DM doit être envoyée",
                 Language.es => "Si se debe enviar una notificación DM",
                 Language.ru => "Отправлять ли уведомление DM",
@@ -1060,8 +1060,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Melden an die Moderatoren",
-                Language.at => "Melden an die Moderatoren",
+                Language.de => "An Moderatoren melden",
+                Language.at => "An Moderatoren melden",
                 Language.fr => "Signaler aux",
                 Language.es => "Reportar a los moderadores",
                 Language.ru => "Сообщить модераторам",
@@ -1073,8 +1073,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Melden an die Moderatoren",
-                Language.at => "Melden an die Moderatoren",
+                Language.de => "An Moderatoren melden",
+                Language.at => "An Moderatoren melden",
                 Language.fr => "Signaler aux",
                 Language.es => "Reportar a los moderadores",
                 Language.ru => "Сообщить модераторам",
@@ -1151,8 +1151,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Kanal, in dem die Nachricht geschrieben werden soll, Standard ist der aktuelle",
-                Language.at => "Kanal, in dem die Nachricht geschrieben werden soll, Standard ist der aktuelle",
+                Language.de => "Kanal, in dem die Nachricht gesendet werden soll, Standard ist der aktuelle",
+                Language.at => "Kanal, in dem die Nachricht gesendet werden soll, Standard ist der aktuelle",
                 Language.fr => "canal dans lequel écrire le message, par défaut actuel",
                 Language.es => "canal en el que escribir el mensaje, predeterminado actual",
                 Language.ru => "канал для записи сообщения, по умолчанию текущий",
@@ -1177,8 +1177,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Siehe den aktuellen Status deiner Applikation.",
-                Language.at => "Siehe den aktuellen Status deiner Applikation.",
+                Language.de => "Siehe den aktuellen Status deines Systems.",
+                Language.at => "Siehe den aktuellen Status deines Systems.",
                 Language.fr => "Voir l'état actuel de votre application.",
                 Language.es => "Ver el estado actual de su aplicación.",
                 Language.ru => "Посмотрите текущий статус вашего приложения.",
@@ -1359,8 +1359,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Zeigt die URL an, auf der MASZ installiert ist.",
-                Language.at => "Zeigt die URL an, auf der MASZ installiert ist.",
+                Language.de => "Zeigt die URL zum MASZ Dashboard.",
+                Language.at => "Zeigt die URL zum MASZ Dashboard.",
                 Language.fr => "Affiche l'URL sur laquelle MASZ est déployé.",
                 Language.es => "Muestra la URL en la que se implementa MASZ.",
                 Language.ru => "Отображает URL, на котором развернут MASZ.",
@@ -1554,8 +1554,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "DM",
-                Language.at => "DM",
+                Language.de => "Direktnachricht",
+                Language.at => "Direktnachricht",
                 Language.fr => "DM",
                 Language.es => "DM",
                 Language.ru => "DM",
@@ -1567,8 +1567,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Ob eine DM Benachrichtigung gesendet werden soll",
-                Language.at => "Ob eine DM Benachrichtigung gesendet werden soll",
+                Language.de => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                Language.at => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
                 Language.fr => "Si une notification DM doit être envoyée",
                 Language.es => "Si se debe enviar una notificación DM",
                 Language.ru => "Отправлять ли уведомление DM",
@@ -1684,8 +1684,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Features",
-                Language.at => "Features",
+                Language.de => "Funktionen",
+                Language.at => "Funktionen",
                 Language.fr => "Caractéristiques",
                 Language.es => "Características",
                 Language.ru => "Функции",
@@ -2828,7 +2828,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Sende DM Nachricht",
+                Language.de => "Schicke eine Direktnachricht",
                 Language.at => "Schick a Direktnachricht",
                 Language.fr => "Envoyer une notification DM",
                 Language.es => "Enviar notificación DM",
