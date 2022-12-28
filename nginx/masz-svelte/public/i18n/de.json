@@ -17,7 +17,7 @@
     },
     "settings": {
         "base": "Einstellungen",
-        "basedetails": "Passen Sie Ihre MASZ-Einstellungen an.",
+        "basedetails": "Passe deine MASZ-Einstellungen an.",
         "theme": "Thema",
         "themedetails": "Wähle, wie MASZ dir angezeigt wird.",
         "language": "Sprache",
@@ -31,7 +31,7 @@
         "credits": "Credits",
         "creditsdetails": "Zeige die Credits von MASZ.",
         "community": "Community",
-        "communitydetails": "Besuche den Community-Discord von MASZ.",
+        "communitydetails": "Besuche die MASZ Discord Community.",
         "reportabug": "Fehler melden",
         "reportabugdetails": "Fehler melden",
         "terms": "Nutzungsbedingungen",
@@ -47,13 +47,13 @@
             "base": "Gilde",
             "dashboard": "Dashboard",
             "cases": "Vorfälle",
-            "automods": "Automods",
+            "automods": "Automoderation",
             "appeals": "Entbannungsanträge",
             "usernotes": "Benutzernotizen",
             "usermaps": "Benutzerbeziehungen",
             "messages": "Nachrichten",
             "settings": {
-                "motd": "MotD",
+                "motd": "Nachricht des Tages",
                 "auditlog": "Auditlog",
                 "zalgo": "Zalgo",
                 "automod": "Automod",
@@ -67,17 +67,17 @@
     "widgets": {
         "latestcases": {
             "title": "Neueste Vorfälle",
-            "widgetdescription": "Dieses Widget zeigt die neuesten Vorfälle in deiner Gilde.",
+            "widgetdescription": "Dieses Widget zeigt die neuesten Vorfälle auf deiner Gilde.",
             "empty": "Keine Vorfälle gefunden."
         },
         "latestappeals": {
             "title": "Neueste Entbannungsanträge",
-            "widgetdescription": "Dieses Widget zeigt die neuesten Entbannungsanträge in deiner Gilde.",
+            "widgetdescription": "Dieses Widget zeigt die neuesten Entbannungsanträge auf deiner Gilde.",
             "empty": "Keine Entbannungsanträge gefunden."
         },
         "guildmoderatorcases": {
             "title": "Vorfälle nach Moderator",
-            "widgetdescription": "Dieses Widget zeigt alle Vorfälle nach Moderator in deiner Gilde.",
+            "widgetdescription": "Dieses Widget zeigt alle Vorfälle nach Moderator auf deiner Gilde.",
             "cases": "Vorfälle",
             "empty": "Keine Vorfälle gefunden."
         },
@@ -88,32 +88,32 @@
             "invites": "Einladungen",
             "usernotes": "Benutzernotizen",
             "usermaps": "Benutzerbeziehungen",
-            "banappeals": "Bann-Anfragen",
+            "banappeals": "Entbannungsanträge",
             "empty": "Keine Statistiken gefunden."
         },
         "guildautomodsplit": {
             "title": "Automodaufteilung",
-            "widgetdescription": "Dieses Widget zeigt die Aufteilung der Automoderationen in deiner Gilde.",
+            "widgetdescription": "Dieses Widget zeigt die Aufteilung der Automoderationen auf deiner Gilde.",
             "empty": "Keine Automodaufteilung gefunden."
         },
         "guildmodcasecountchart": {
             "title": "Vorfallsübersicht",
-            "widgetdescription": "Dieses Widget zeigt die Übersicht der Vorfälle in deiner Gilde.",
+            "widgetdescription": "Dieses Widget zeigt die Übersicht der Vorfälle auf deiner Gilde.",
             "empty": "Keine Vorfälle gefunden."
         },
         "guildappealcountchart": {
             "title": "Entbannungsantragsübersicht",
-            "widgetdescription": "Dieses Widget zeigt die Übersicht der Entbannungsanträge in deiner Gilde.",
+            "widgetdescription": "Dieses Widget zeigt die Übersicht der Entbannungsanträge auf deiner Gilde.",
             "empty": "Keine Entbannungsanträge gefunden."
         },
         "guildautomodcountchart": {
             "title": "Automoderationsübersicht",
-            "widgetdescription": "Dieses Widget zeigt die Übersicht der Automoderationen in deiner Gilde.",
+            "widgetdescription": "Dieses Widget zeigt die Übersicht der Automoderationen auf deiner Gilde.",
             "empty": "Keine Automoderationen gefunden."
         },
         "guildpendingmessages": {
-            "title": "Ausstehende Nachrichten",
-            "widgetdescription": "Dieses Widget zeigt die ausstehenden Nachrichten in deiner Gilde.",
+            "title": "Ausstehende geplante Nachrichten",
+            "widgetdescription": "Dieses Widget zeigt die ausstehenden geplanten Nachrichten auf deiner Gilde.",
             "empty": "Keine ausstehenden Nachrichten gefunden."
         },
         "guildpunishmentstats": {
@@ -126,7 +126,7 @@
         "guildquicksearch": {
             "title": "Schnellsuche",
             "widgetdescription": "Dieses Widget erlaubt dir, schnell nach einem Vorfall, Benutzer oder anderen Ressourcen zu suchen.",
-            "placeholder": "Schnellsuche Benutzer, Vorfälle, Bestrafungen, ...",
+            "placeholder": "Suche nach Benutzern, Vorfällen, Bestrafungen, ...",
             "searchhistory": "Suchverlauf",
             "clearhistory": "Verlauf löschen",
             "noresults": "Keine Ergebnisse gefunden.",
@@ -134,8 +134,8 @@
             "searchfailed": "Suche fehlgeschlagen."
         },
         "guildmotd": {
-            "title": "MotD",
-            "widgetdescription": "Dieses Widget zeigt das aktuelle Nachrichtenthema.",
+            "title": "Nachricht des Tages",
+            "widgetdescription": "Dieses Widget zeigt die aktuelle Nachricht des Tages.",
             "empty": "Kein Nachrichtenthema."
         },
         "adminversion": {
@@ -152,7 +152,7 @@
         },
         "adminstatus": {
             "title": "Status",
-            "widgetdescription": "Dieses Widget zeigt den aktuellen Ping der MASZ-Komponenten.",
+            "widgetdescription": "Dieses Widget zeigt den aktuellen Reaktionszeit der MASZ-Systeme.",
             "offline": "Offline",
             "bot": "Bot",
             "db": "Datenbank",
@@ -167,9 +167,9 @@
         "adminresources": {
             "title": "Ressourcen",
             "widgetdescription": "Dieses Widget zeigt die aktuelle Anzahl an erstellten Ressourcen in Ihrer Datenbank.",
-            "guilds": "Gilden",
+            "guilds": "Gilde",
             "cases": "Fälle",
-            "automods": "Automod",
+            "automods": "Automoderationen",
             "usernotes": "Benutzernotizen",
             "usermaps": "Benutzerbeziehungen",
             "invites": "Einladungen",
@@ -204,7 +204,7 @@
             "add": "Hinzufügen",
             "name": "Name",
             "id": "ID",
-            "invitefirst": "Bitte lade den Bot zuerst in diese Gilde ein",
+            "invitefirst": "Bitte füge den Bot erst zu diesem Gilde hinzu.",
             "windowfailed": "Fenster konnte nicht geöffnet werden"
         },
         "list": {
@@ -214,14 +214,14 @@
             "banned": "Gesperrte Gilden"
         },
         "caseview": {
-            "unlinked": "Caselink gelöscht",
-            "unlinkfailed": "Konnte Caselink nicht lösen",
-            "linked": "Caselink erstellt",
-            "linkfailed": "Konnte Caselink nicht erstellen",
+            "unlinked": "Fallverlinkung gelöscht",
+            "unlinkfailed": "Fallverlinkung konnte nicht aufgelöst werden.",
+            "linked": "Fallverlinkung erstellt",
+            "linkfailed": "Fallverlinkung konnte nicht erstellt werden.",
             "linkcase": "Anderen Fall verlinken",
             "search": "Suche",
             "nocasesfound": "Keine Fälle gefunden",
-            "attachmentuploadfailed": "Anhang hochladen fehlgeschlagen",
+            "attachmentuploadfailed": "Hochladen des Anhangs fehlgeschlagen",
             "casenotfound": "Vorfall nicht gefunden",
             "filedeleted": "Datei gelöscht",
             "filedeletefailed": "Fehler beim Löschen der Datei",
@@ -262,56 +262,56 @@
             "edit": "Bearbeiten",
             "delete": "Löschen",
             "restore": "Wiederherstellen",
-            "markedtodelete": "Dieser Vorfall wurde zum Löschen markiert am {time}",
+            "markedtodelete": "Dieser Vorfall wurde am {time} zum Löschen markiert",
             "markedtodeletesubtitle": "Gelöscht von {user}",
             "attachments": "Anhänge",
             "comments": "Kommentare",
             "addacomment": "Kommentar hinzufügen... (max. 300 Zeichen)",
             "addacommenterror": "Kommentar muss weniger als 300 Zeichen lang sein",
-            "caseislocked": "Sie können keine Kommentare hinzufügen, da dieser Vorfall gesperrt ist.",
-            "violator": "Beschuldigter",
+            "caseislocked": "Du kannst keine Kommentare hinzufügen, da der Vorfall gesperrt ist.",
+            "violator": "Beschuldigter Nutzer",
             "punishment": "Bestrafung",
             "punishmentinactive": "inaktiv",
             "labels": "Labels",
             "punisheduntil": "Bestraft bis",
             "usernote": "Benutzernotiz",
             "moderator": "Moderator",
-            "lasteditmoderator": "Letzter Bearbeiter",
-            "moderatorunknown": "Unbekannt oder versteckt",
-            "created": "Erstellt",
-            "updated": "Aktualisiert",
+            "lasteditmoderator": "Zuletzt bearbeit von",
+            "moderatorunknown": "Unbekannt oder ausgeblendet",
+            "created": "Erstellt am",
+            "updated": "Aktualisiert am",
             "unknown": "Unbekannt"
         },
         "casedialog": {
             "createcase": "Vorfall erstellen",
             "editcase": "Vorfall bearbeiten",
-            "caseexplain": "Benutze Vorfälle, um Verstöße und Strafen in deiner Gilde zu protokollieren.",
-            "caseexplain2": "MASZ wird automatisch deine Strafe verwalten und den Benutzer und deine Gilde benachrichtigen, wenn konfiguriert.",
+            "caseexplain": "Benutze Vorfälle, um Regelverstöße und Strafen in deiner Gilde zu protokollieren.",
+            "caseexplain2": "MASZ wird automatisch deine Strafe verwalten und den Benutzer und deine Gilde zu benachrichtigen (wenn aktiviert).",
             "importtemplate": "Vorlage importieren",
-            "templateexplain": "Keine Vorlage, die deine Anforderungen entspricht? Erstelle eine am Ende dieses Dialogs!",
+            "templateexplain": "Keine Vorlage, die deine Anforderungen entspricht? Erstelle eine Neue am Ende dieses Dialogs!",
             "selecttemplate": "Vorlage auswählen",
             "notemplatesfound": "Keine Vorlagen gefunden",
             "member": "Mitglied auswählen",
-            "memberexplain": "Wähle das Mitglied aus, das du bestrafen möchtest oder gib eine ID ein, wenn das Mitglied nicht in der Liste ist.",
-            "nomembersfound": "Keine Mitglieder gefunden",
+            "memberexplain": "Wähle den Nutzer aus, den du bestrafen möchtest oder gib eine ID ein, wenn der Nutzer nicht in der Liste ist.",
+            "nomembersfound": "Keine Nutzer gefunden",
             "reason": "Grund",
             "title": "Titel",
             "titleplaceholder": "Titel (maximal 100 Zeichen)",
-            "titleinvalid": "Titelfeld ist erforderlich und darf nur 100 Zeichen lang sein.",
+            "titleinvalid": "Titelfeld ist erforderlich und darf maximal 100 Zeichen lang sein.",
             "descriptionfield": "Beschreibung",
             "labels": "Labels",
             "clearlabel": "Label löschen",
-            "labelsplaceholder": "Neue Label",
+            "labelsplaceholder": "Neues Label",
             "punishment": "Bestrafung",
             "punishmentexplained": "MASZ wird automatisch deine Bestrafung verwalten und sie nach der angegebenen Zeit entfernen. Du kannst die Bestrafung auch später ändern.",
-            "punishmentexplained2": "Wenn du keine Zeit eingibst, wird die Bestrafung permanent sein.",
+            "punishmentexplained2": "Wenn du keine Zeit eingibst, wird die Bestrafung dauerhaft sein.",
             "punisheduntil": "Bestraft bis",
             "formatisrequired": "Bitte beachte das Format: {format}",
-            "senddmnotification": "Sende DM Benachrichtigung",
+            "senddmnotification": "Sende Benachrichtigung per Direktnachricht",
             "executepunishment": "Bestrafung ausführen",
             "sendpublicnotification": "Sende öffentliche Benachrichtigung",
             "files": "Dateien",
-            "filesexplain": "Du kannst Dateien zu MASZ hochladen, bitte beachte, dass der Benutzer diese auch sehen kann",
+            "filesexplain": "Du kannst Dateien zu MASZ hochladen. Bitte beachte, dass auch der betroffene Benutzer diese sehen kann.",
             "filesbutton": "Dateien auswählen",
             "createtemplate": "Vorlage erstellen",
             "submitting": "Senden...",
@@ -327,21 +327,21 @@
         "modcasetable": {
             "selectmembers": "Mitglieder",
             "selectmoderators": "Moderatoren",
-            "selectcreationtypes": "Erstellungsarten",
+            "selectcreationtypes": "Erstellungstyp",
             "selectpunishments": "Bestrafungen",
-            "selectedited": "Bearbeitet-Status",
-            "selectlocked": "Sperr-Status",
-            "selectdelete": "Lösch-Status",
+            "selectedited": "Bearbeitungs-Status",
+            "selectlocked": "Sperrungs-Status",
+            "selectdelete": "Löschungs-Status",
             "selectactive": "Aktiv-Status",
             "filtersince": "Erstellt ab",
             "filteruntil": "Erstellt bis",
-            "executesearch": "Suche ausführen",
+            "executesearch": "Suchen",
             "useadvancedfilter": "Erweiterte Filter ein-/ausblenden.",
             "createnewcase": "Neuen Vorfall erstellen",
             "search": "Suche (Benutzer, ID, Beschreibung...)",
             "failedtoload": "Vorfälle konnten nicht geladen werden.",
-            "nomatches": "Keine Vorfälle passen zu deiner Suche.",
-            "nomatchesdescription": "Es könnte noch keine Vorfälle in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Vorfälle zu finden."
+            "nomatches": "Keine passenden Vorfälle gefunden.",
+            "nomatchesdescription": "Es könnte noch keine Vorfälle in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um mehr Vorfälle zu finden."
         },
         "automodtable": {
             "selectmembers": "Mitglieder",
@@ -351,27 +351,27 @@
             "useadvancedfilter": "Erweiterte Filter ein-/ausblenden.",
             "failedtoload": "Automoderationen konnten nicht geladen werden.",
             "nomatches": "Keine Automoderationen passen zu deiner Suche.",
-            "nomatchesdescription": "Es gibt noch keine Automoderationen in dieser Gilde, die dem Filter entspricht. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Automoderationen zu finden."
+            "nomatchesdescription": "Es gibt noch keine Automoderationen in dieser Gilde, die dem Filter entspricht. Du kannst versuchen, deine Filter oben zu anpassen, um mehr Automoderationen zu finden."
         },
         "appealtable": {
-            "createnewappeal": "Neue Entbannungsanfrage erstellen",
-            "disabledexplained": "Du kannst keine neue Entbannungsanfrage erstellen, da du eine früher erstellt hast oder dein Bann früher erstellt wurde oder diese Gilde keine Entbannungsanfragen konfiguriert hat.",
-            "configureappeal": "Anfrage konfigurieren",
+            "createnewappeal": "Neuen Entbannungsantrag erstellt",
+            "disabledexplained": "Du kannst keinen neuen Entbannungsantrag stellen, da du entweder bereits einen gestellt hast, dein Bann noch nicht lange genug her ist oder diese Gilde Entbannungsanträge nicht aktiviert hat.",
+            "configureappeal": "Anträge konfigurieren",
             "useadvancedfilter": "Erweiterte Filter ein-/ausblenden.",
             "selectmembers": "Mitglieder auswählen",
             "statustype": "Status",
             "executesearch": "Suche ausführen",
-            "nomatches": "Keine Entbannungsanfragen passen zu deiner Suche.",
-            "nomatchesdescription": "Es gibt noch keine Entbannungsanfragen in dieser Gilde, die dem Filter entsprechen. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Entbannungsanfragen zu finden.",
-            "failedtoload": "Entbannungsanfragen konnten nicht geladen werden",
+            "nomatches": "Keine passenden Entbannungsanträge gefunden.",
+            "nomatchesdescription": "Es gibt noch keine Entbannungsanträge in dieser Gilde, die dem Filter entsprechen. Du kannst aber versuchen, deine Filter oben zu anpassen, um mehr Entbannungsanträge zu finden.",
+            "failedtoload": "Entbannungsanträge konnten nicht geladen werden",
             "hasanswered": "Benutzer hat {count} Fragen beantwortet"
         },
         "appealconfig": {
-            "title": "Entbannungsanfrage-Struktur",
+            "title": "Aufbau der Entbannungsanträge",
             "explain": "Konfiguriere das Formular für den Entbannungsantrag der Gilde.",
             "explain2": "Benutzer können Fragen überspringen, wenn sie möchten.",
-            "explain3": "Wenn Sie eine Frage löschen, wird sie weiterhin in alten Entbannungsanträgen sichtbar sein.",
-            "explain4": "Wenn Sie keine Fragen konfiguriert haben, können Benutzer keine Entbannungsanträge mehr stellen.",
+            "explain3": "Wenn du eine Frage löscht wird sie weiterhin in alten Entbannungsanträgen sichtbar sein.",
+            "explain4": "Wenn keine Fragen konfiguriert sind können Benutzer keine Entbannungsanträge mehr stellen.",
             "failedtoreorder": "Fehler beim Neuordnen der Fragen",
             "deleted": "Frage gelöscht",
             "failedtodelete": "Fehler beim Löschen der Frage",
@@ -388,14 +388,14 @@
             "createdat": "Erstellt am",
             "updatedat": "Aktualisiert am",
             "decisionat": "Entscheidung am",
-            "moderatorcomment": "Moderator Kommentar",
+            "moderatorcomment": "Kommentar der Moderatoren",
             "newappeal": "Neuer Antrag",
-            "newappealnever": "Benutzer darf nie erneut einen neuen Antrag erstellen",
-            "newappealat": "Benutzer darf einen neuen Antrag erstellen am",
+            "newappealnever": "Dieser Benutzer darf keine erneuten Anträge stellen",
+            "newappealat": "Der Benutzer kann einen neuen Entbannungsantrag stellen am",
             "edit": "Bearbeiten"
         },
         "appealnew": {
-            "answer": "Antworte auf diese Fragen, um deinen Entbannungsantrag abzuschließen.",
+            "answer": "Beantworte diese Fragen, um deinen Entbannungsantrag abzuschließen.",
             "skip": "Du kannst die Fragen überspringen, wenn du willst.",
             "view": "Du kannst jederzeit auf dieser Website den Status deines Entbannungsantrags einsehen.",
             "saved": "Dein Entbannungsantrag wurde gespeichert.",
@@ -407,26 +407,26 @@
             "createusernote": "Benutzernotiz erstellen",
             "createusernotedescription": "Beschreibung",
             "member": "Mitglied",
-            "nomembersfound": "Keine Mitglieder gefunden",
+            "nomembersfound": "Keine Nutzer gefunden",
             "usernotecreated": "Benutzernotiz erstellt",
             "usernotecreatefailed": "Benutzernotiz konnte nicht erstellt werden",
             "usernoteupdated": "Benutzernotiz aktualisiert",
             "usernotedeleted": "Benutzernotiz gelöscht",
             "usernotedeletefailed": "Benutzernotiz konnte nicht gelöscht werden",
-            "nomatches": "Keine Benutzernotizen passen zu Ihrer Suche.",
-            "nomatchesdescription": "Es gibt noch keine Benutzernotizen in dieser Gilde, die dem Filter entsprechen. Sie können eine Benutzernotiz erstellen, indem Sie oben auf den Button klicken."
+            "nomatches": "Keine passende Benutzernotiz gefunden.",
+            "nomatchesdescription": "Es gibt noch keine Benutzernotizen in dieser Gilde, die dem Filter entsprechen. Klicke oben auf den Button um eine neue Benutzernotiz zu erstellen."
         },
         "usermap": {
             "createusermap": "Benutzerbeziehung erstellen",
             "createusermapdescription": "Beschreibung",
             "member": "Mitglied",
-            "nomembersfound": "Keine Mitglieder gefunden",
+            "nomembersfound": "Keine Nutzer gefunden",
             "usermapcreated": "Benutzerbeziehung erstellt",
             "usermapcreatefailed": "Benutzerbeziehung konnte nicht erstellt werden",
             "usermapupdated": "Benutzerbeziehung aktualisiert",
             "usermapdeleted": "Benutzerbeziehung gelöscht",
             "usermapdeletefailed": "Benutzerbeziehung konnte nicht gelöscht werden",
-            "nomatches": "Keine Benutzerbeziehungen passen zu deinem Suchbegriff.",
+            "nomatches": "Keine Benutzerbeziehungen passen zu deiner Suche.",
             "nomatchesdescription": "Es gibt noch keine Benutzerbeziehungen in dieser Gilde, die dem Filter entsprechen. Du kannst eine erstellen, indem du den Button oben benutzt."
         },
         "messages": {
@@ -438,7 +438,7 @@
             "content": "Nachricht",
             "savemessage": "Nachricht speichern",
             "editmessage": "Nachricht bearbeiten",
-            "savedmessage": "Gespeicherte Nachricht",
+            "savedmessage": "Nachricht speichern",
             "failedtosavemessage": "Nachricht konnte nicht gespeichert werden",
             "failedtoload": "Nachrichten konnten nicht geladen werden",
             "messagedeleted": "Nachricht gelöscht",
@@ -447,7 +447,7 @@
         "motd": {
             "title": "Nachricht des Tages",
             "explain": "Benutze eine Nachricht des Tages, um eine Nachricht auf dem Dashboard der Gilde einzublenden, die alle Moderatoren sehen können.",
-            "explain2": "Dies könnte einige Anweisungen zum Formatieren von Fällen enthalten oder Bilder als Beweis hochzuladen.",
+            "explain2": "Dies könnte zum Beispiel Anweisungen zum Formatieren von Fällen enthalten oder Bilder als Beweis hochzuladen.",
             "noresult": "Konnte Nachricht des Tages nicht laden.",
             "enabled": "Nachricht des Tages auf dem Dashboard der Gilde aktivieren",
             "message": "Nachricht des Tages",
@@ -459,11 +459,11 @@
         "auditlog": {
             "title": "AuditLog",
             "explain": "Benutze AuditLogs um bestimmte Ereignisse in deiner Gilde zu loggen.",
-            "explain2": "Auf bestimmten Ereignissen kannst du Ereignisse basierend auf Kanälen oder Rollen filtern.",
+            "explain2": "Bestimmte Ereignisse kannst du nach Kanälen oder Rollen filtern.",
             "targetchannel": "Zielkanal",
             "pingrole": "Ping-Rolle",
-            "excluderoles": "Rollen ausschließen",
-            "excludechannels": "Kanäle ausschließen",
+            "excluderoles": "Ignorierte Rollen",
+            "excludechannels": "Ignorierte Kanäle",
             "saved": "AuditLog gespeichert",
             "failedtosave": "Konnte AuditLog nicht speichern"
         },
@@ -472,69 +472,69 @@
             "explain": "Benutze die Automoderation um Nachrichten in bestimmten Kanälen automatisch zu löschen oder Mitglieder wegen bestimmten Ereignissen zu bestrafen.",
             "explain2": "Du kannst auch Filter für jedes Ereignis festlegen, um deine Automod-Einstellungen zu verfeinern.",
             "timelimitfield": "Zeitlimit (Sekunden)",
-            "limitfield": "Obere Grenze",
+            "limitfield": "Maximale Anzahl",
             "config": "Konfiguration",
             "filter": "Filter",
             "filterchannels": "Kanäle filtern",
             "filterroles": "Rollen filtern",
-            "punishmentduration": "Dauer in Minuten",
+            "punishmentduration": "Dauer (Minuten)",
             "action": "Aktion",
             "saved": "Automod-Konfiguration gespeichert",
             "failedtosave": "Automod-Konfiguration konnte nicht gespeichert werden",
             "deactivated": "Automod deaktiviert",
             "failedtodeactivate": "Automod konnte nicht deaktiviert werden",
             "invites": {
-                "details": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster. Einladungen zu dieser Gilde werden ignoriert.",
+                "details": "Eine Nachricht auf deiner Gilde beinhaltet einen Einladungslink zu einer anderen Gilde. Einladungen zu dieser Gilde werden ignoriert.",
                 "customwordfield": "Ignorierte Gilden-IDs (getrennt durch Zeilenumbruch)"
             },
             "emotes": {
-                "details": "Eine Nachricht auf deinem Server enthält zu viele Emoticons."
+                "details": "Eine Nachricht in deiner Gilde enthält zu viele Emojis."
             },
             "mentions": {
-                "details": "Eine Nachricht auf deinem Server enthält zu viele Erwähnungen."
+                "details": "Eine Nachricht in deiner Gilde  enthält zu viele Erwähnungen."
             },
             "attachments": {
-                "details": "Eine Nachricht auf deinem Server enthält zu viele Anhänge."
+                "details": "Eine Nachricht in deiner Gilde enthält zu viele Anhänge."
             },
             "embeds": {
-                "details": "Eine Nachricht auf deinem Server enthält zu viele Einbettungen."
+                "details": "Eine Nachricht in deiner Gilde enthält zu viele Einbettungen."
             },
             "automoderations": {
-                "details": "Ein Benutzer löst zu viele Automoderationen in einem definierten Zeitraum aus."
+                "details": "Ein Benutzer löst zu viele Automoderationen in einem bestimmten Zeitraum aus."
             },
             "customfilter": {
                 "title": "Benutzerdefinierter Filter",
-                "details": "Ein Benutzer benutzt zu viele Wörter aus deiner Liste.",
+                "details": "Ein Benutzer benutzt zu viele Wörter, die auf der Liste stehen.",
                 "tooltip": "Wörter werden zeilenweise ohne Beachtung der Groß- und Kleinschreibung überprüft.",
                 "linktext": "Beispiel",
                 "customwordfield": "Eigene Wörter (Regexpattern getrennt durch Zeilenumbruch)"
             },
             "spam": {
-                "details": "Ein Benutzer auf deinem Server sendet zu viele Nachrichten in einem definierten Zeitraum.",
+                "details": "Ein Benutzer in deiner Gilde sendet zu viele Nachrichten in einem definierten Zeitraum.",
                 "timelimitmessage": "Zeitlimit (Sekunden)"
             },
             "duplicatedchars": {
-                "details": "Eine Nachricht auf deinem Server enthält zu viele wiederholende Buchstaben."
+                "details": "Eine Nachricht in deiner Gilde enthält zu viele wiederholte Buchstaben."
             },
             "link": {
-                "details": "Eine Nachricht auf deinem Server enthält zu viele Verlinkungen.",
+                "details": "Eine Nachricht in deiner Gilde enthält zu viele Verlinkungen.",
                 "customwordfield": "Ignorierte Links (getrennte Regexpatterns durch Zeilenumbruch)",
                 "linktext": "Beispiel"
             },
             "phishinglink": {
-                "details": "Eine Nachricht auf deinem Server enthält zu viele Phishing-Links."
+                "details": "Eine Nachricht in deiner Gilde enthält zu viele Phishing-Links."
             }
         },
         "zalgo": {
             "title": "Zalgo",
-            "explain": "Benutze diese Funktion, um automatisch Benutzernamen und Nicknamen zu ändern, die zalgo verwenden.",
-            "enable": "Zalgo Moderation in diesem Server aktivieren",
-            "renamenormal": "Versuche Benutzernamen mit zalgo zu ändern, in Text, der noch wie der Benutzername aussieht",
+            "explain": "Benutze diese Funktion, um automatisch Benutzernamen und Nicknamen zu ändern, die Zalgo-Text verwenden.",
+            "enable": "Zalgo Moderation in dieser Gilde aktivieren",
+            "renamenormal": "Versuche Benutzernamen mit zalgo in normale Schrift umzuwandeln",
             "renamefallback": "Benutze folgenden Namen beim Umbennen als Backupoption",
             "allowedpercentage": "Erlaubter Prozentsatz von Zalgozeichen in einem Benutzernamen oder Nicknamen",
             "logtomodchannel": "Alle Zalgo Moderationen in den internen Webhook aufzeichnen",
-            "simulate": "Simulieren",
-            "simulateresults": "Simulationsergebnisse",
+            "simulate": "Ausprobieren",
+            "simulateresults": "Testergebnisse",
             "noresult": "Zalgo-Konfiguration konnte nicht geladen werden",
             "save": "Speichern",
             "submitting": "Sende...",
@@ -545,7 +545,7 @@
             "title": "Gildenkonfiguration",
             "permissions": {
                 "title": "Berechtigungen",
-                "explain": "Hier kannst du festlegen, welche Rollen erweiterte Zugriffsrechte in MASZ haben sollen.",
+                "explain": "Hier kannst du festlegen, welche Rollen erweiterte Berechtigungen in MASZ haben sollen.",
                 "adminroles": "Administrator-Rollen",
                 "modroles": "Moderator-Rollen",
                 "appealafterxdays": "Entbannungsantrag nach x Tagen erlauben",
@@ -554,12 +554,12 @@
             },
             "mutedroles": {
                 "title": "Stummschaltungsrollen",
-                "explain": "Hier kannst du festlegen, welche Rollen benutzt werden soll, um Benutzer stummzuschalten.",
-                "explain2": "Wenn keine festgelegt werden, wird MASZ stattdessen die Discord-Timeout-Funktionalität verwenden."
+                "explain": "Hier kannst du festlegen, welche Rollen vergeben werden soll, um Benutzer stummzuschalten.",
+                "explain2": "Wenn keine Rolle festgelegt ist, wird MASZ stattdessen die Discord-Timeout-Funktion verwenden."
             },
             "notifications": {
                 "title": "Benachrichtigungen",
-                "explain": "Benutze diese Webhooks, um Benutzer oder Mitarbeiter über MASZ-Ereignisse zu benachrichtigen.",
+                "explain": "Benutze diese Webhooks, um Benutzer oder Moderatoren über MASZ-Ereignisse zu benachrichtigen.",
                 "internal": "Interner Webhook",
                 "public": "Öffentlicher Webhook",
                 "invalid": "Ungültiger Webhook"
@@ -567,14 +567,14 @@
             "information": {
                 "title": "Informationen",
                 "publicembedmode": "Öffentlicher Embed-Modus",
-                "publicembedmodeexplained": "Dieser Modus ermöglicht detaillierte Einbettungen, wenn Vorfälle in Discord verlinkt werden. Dies wird private Informationen wie den Verdächtigen, die Strafen, etc. offenbaren.",
+                "publicembedmodeexplained": "Dieser Modus ermöglicht detaillierte Einbettungen, wenn Vorfälle in Nachrichten verlinkt werden. Dies wird private Informationen wie den Verdächtigen, die Strafen, etc. einsehbar machen.",
                 "publishmod": "Moderatorinformationen veröffentlichen",
-                "publishmodexplained": "Ein Verdächtiger wird in der Lage sein, zu sehen, welcher Moderator ihn verurteilt hat."
+                "publishmodexplained": "Ein Verdächtiger wird in der Lage sein, zu sehen, welcher Moderator ihn bestraft hat."
             },
             "misc": {
-                "title": "Verschiedenes",
+                "title": "Sonstiges",
                 "whois": "Whois bei Mitgliederbeitritt ausführen",
-                "whoisexplained": "Sendet automatisch Informationen über den neuen Benutzer an deinen internen Webhook.",
+                "whoisexplained": "Sendet automatisch Informationen über neue Mitglieder an deinen internen Webhook.",
                 "language": "Sprache"
             },
             "save": "Speichern",
@@ -585,8 +585,8 @@
             "deleted": "Gilde gelöscht",
             "failedtodelete": "Fehler beim Löschen der Gilde",
             "deleteconfirm": "Löschen bestätigen",
-            "deleteresources": "Alle Daten löschen (Verstöße, Konfigurationen, Ereignisse, Dateien)",
-            "deleteundone": "Diese Aktion ist nicht umkehrbar. Die Gilde wird sofort gelöscht."
+            "deleteresources": "Alle Daten löschen (Verstöße, Einstellungen, Ereignisse, Dateien)",
+            "deleteundone": "Diese Aktion kannn nicht rückgängig gemacht werden. Die Gilde wird sofort aus MASZ gelöscht."
         }
     },
     "admin": {
@@ -600,11 +600,11 @@
             "embed": {
                 "title": "Einbettung",
                 "explained": "Diese Einstellung ändert den Inhalt der Einbettung, die in Discord unter dem Link zum Dashboard angezeigt wird.",
-                "explained2": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird.",
+                "explained2": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis die Änderungen in Discord aktuallisiert werden.",
                 "titlefield": "Titel",
                 "descriptionfield": "Beschreibung",
-                "titleinvalid": "Das Titelfeld ist erforderlich und muss weniger als 256 Zeichen lang sein.",
-                "descriptioninvalid": "Das Beschreibungsfeld ist erforderlich und muss weniger als 4096 Zeichen lang sein.",
+                "titleinvalid": "Ein Titel ist erforderlich und muss weniger als 256 Zeichen lang sein.",
+                "descriptioninvalid": "Eine Beschreibung ist erforderlich und muss weniger als 4096 Zeichen lang sein.",
                 "iconfield": "Zeige das Logo des Bots in der Einbettung."
             },
             "infrastructure": {
@@ -620,7 +620,7 @@
         },
         "tokens": {
             "title": "Tokens",
-            "tabledescription": "Als Seitenadministrator kannst du die MASZ API nutzen, um deine eigenen benutzerdefinierten Skripte zu implementieren und Sachen automatisch auf MASZ zu erledigen. Erstelle einen API-Schlüssel unterhalb, um dich zu authentifizieren, während du Web-Anfragen machst. Füge Tokens im \"Authorization\"-Header mit einem \"Bearer \"-Präfix ein.",
+            "tabledescription": "Als Seitenadministrator kannst du die MASZ API nutzen, um deine eigenen benutzerdefinierten Skripte mit MASZ interagieren zu lassen und Prozesse zu automatisieren. Erstelle unten einen API-Key, um dich zu authentifizieren, während du Anfragen an die API sendest. Füge Tokens im \"Authorization\"-Header mit einem \"Bearer \"-Präfix ein.",
             "createnew": "Neuen Token erstellen",
             "documentation": "Dokumentation",
             "support": "Support",
@@ -635,9 +635,9 @@
             "action": "Aktion",
             "copy": "Kopieren",
             "cancel": "Abbrechen",
-            "powerful": "Ein API-Schlüssel ist sehr mächtig und kann alles auf MASZ steuern!",
+            "powerful": "Ein API-Key ist sehr mächtig und kann alles auf MASZ steuern!",
             "generate": "Generieren",
-            "unique": "Dies ist dein einzigartiger API-Schlüssel und er kann nicht wiederhergestellt werden. Wenn du ihn verlierst, musst du ihn zurücksetzen.",
+            "unique": "Dies ist dein einzigartiger API-Key und er kann nicht wiederhergestellt werden. Wenn du ihn verlierst, musst du ihn zurücksetzen.",
             "onlyone": "Du kannst momentan nur einen API-Schlüssel erstellen."
         }
     },
@@ -660,14 +660,14 @@
     },
     "feedback": {
         "title": "Wie gefällt dir MASZ?",
-        "experience": "Bewerten Sie Ihre Erfahrung",
+        "experience": "Bewerten deine Erfahrung",
         "comment": "Kommentar hinterlassen (optional)",
         "commenttoolong": "Dein Kommentar muss 4096 Zeichen oder weniger haben",
         "cancel": "Abbrechen",
         "submit": "Senden",
         "thanks": "Danke für dein Feedback!"
     },
-    "supportme": "Supporte mich",
+    "supportme": "Unterstütze mich",
     "enums": {
         "punishmenttype": {
             "mute": "Stummschaltung",

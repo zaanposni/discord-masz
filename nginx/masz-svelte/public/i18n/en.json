@@ -278,8 +278,8 @@
             "moderator": "Moderator",
             "lasteditmoderator": "Last edit by moderator",
             "moderatorunknown": "Unknown or hidden",
-            "created": "Created",
-            "updated": "Updated",
+            "created": "Created on",
+            "updated": "Updated on",
             "unknown": "Unknown"
         },
         "casedialog": {
@@ -462,8 +462,8 @@
             "explain2": "On certain events you can filter events based on channels or roles.",
             "targetchannel": "Target channel",
             "pingrole": "Ping role",
-            "excluderoles": "Exclude roles",
-            "excludechannels": "Exclude channels",
+            "excluderoles": "Excluded roles",
+            "excludechannels": "Excluded channels",
             "saved": "AuditLog saved",
             "failedtosave": "Failed to save audit log"
         },
@@ -477,7 +477,7 @@
             "filter": "Filter",
             "filterchannels": "Filter channels",
             "filterroles": "Filter roles",
-            "punishmentduration": "Duration in minutes",
+            "punishmentduration": "Duration (minutes)",
             "action": "Action",
             "saved": "Automod config saved",
             "failedtosave": "Failed to save automod config",
@@ -620,7 +620,7 @@
         },
         "tokens": {
             "title": "Tokens",
-            "tabledescription": "As a siteadmin you can use the MASZ API to implement your own custom scripts and automate stuff on MASZ. Create an API key below to authorize yourself against the API while making web requests. Include tokens in the \"Authorization\" header with a \"Bearer \" prefix.",
+            "tabledescription": "As a siteadmin you can use the MASZ API to let your own custom scripts interact with MASZ and automate stuff. Create an API key below to authorize yourself against the API while making web requests. Include tokens in the \"Authorization\" header with a \"Bearer \" prefix.",
             "createnew": "Create new token",
             "documentation": "Documentation",
             "support": "Support",
