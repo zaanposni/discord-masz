@@ -503,7 +503,7 @@
                 "details": "Ein Benutzer löst zu viele Automoderationen in einem bestimmten Zeitraum aus."
             },
             "customfilter": {
-                "title": "Wort-Filter",
+                "title": "Benutzerdefinierter Filter",
                 "details": "Ein Benutzer benutzt zu viele Wörter, die auf der Liste stehen.",
                 "tooltip": "Wörter werden zeilenweise ohne Beachtung der Groß- und Kleinschreibung überprüft.",
                 "linktext": "Beispiel",
@@ -531,7 +531,7 @@
             "enable": "Zalgo Moderation in dieser Gilde aktivieren",
             "renamenormal": "Versuche Benutzernamen mit zalgo in normale Schrift umzuwandeln",
             "renamefallback": "Benutze folgenden Namen beim Umbennen als Backupoption",
-            "allowedpercentage": "Erlaubter bestimmten Anteil von Zalgozeichen in einem Benutzernamen oder Nicknamen",
+            "allowedpercentage": "Erlaubter Prozentsatz von Zalgozeichen in einem Benutzernamen oder Nicknamen",
             "logtomodchannel": "Alle Zalgo Moderationen in den internen Webhook aufzeichnen",
             "simulate": "Ausprobieren",
             "simulateresults": "Testergebnisse",
@@ -567,7 +567,7 @@
             "information": {
                 "title": "Informationen",
                 "publicembedmode": "Öffentlicher Embed-Modus",
-                "publicembedmodeexplained": "Dieser Modus ermöglicht detailliertere Einbettungen, wenn Vorfälle in Nachrichten verlinkt werden. Dies wird private Informationen wie den Verdächtigen, die Strafen, etc. einsehbar machen.",
+                "publicembedmodeexplained": "Dieser Modus ermöglicht detaillierte Einbettungen, wenn Vorfälle in Nachrichten verlinkt werden. Dies wird private Informationen wie den Verdächtigen, die Strafen, etc. einsehbar machen.",
                 "publishmod": "Moderatorinformationen veröffentlichen",
                 "publishmodexplained": "Ein Verdächtiger wird in der Lage sein, zu sehen, welcher Moderator ihn bestraft hat."
             },
@@ -581,8 +581,8 @@
             "submitting": "Senden...",
             "saved": "Gespeichert",
             "failedtosave": "Fehlgeschlagen",
-            "deleteguild": "Gilde aus MASZ löschen",
-            "deleted": "Gilde aus MASZ gelöscht",
+            "deleteguild": "Gilde löschen",
+            "deleted": "Gilde gelöscht",
             "failedtodelete": "Fehler beim Löschen der Gilde",
             "deleteconfirm": "Löschen bestätigen",
             "deleteresources": "Alle Daten löschen (Verstöße, Einstellungen, Ereignisse, Dateien)",
@@ -605,7 +605,7 @@
                 "descriptionfield": "Beschreibung",
                 "titleinvalid": "Ein Titel ist erforderlich und muss weniger als 256 Zeichen lang sein.",
                 "descriptioninvalid": "Eine Beschreibung ist erforderlich und muss weniger als 4096 Zeichen lang sein.",
-                "iconfield": "Zeige das Logo von MASZ in der Einbettung."
+                "iconfield": "Zeige das Logo des Bots in der Einbettung."
             },
             "infrastructure": {
                 "title": "Infrastruktur",

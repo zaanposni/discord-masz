@@ -581,7 +581,7 @@
             "submitting": "Submitting...",
             "saved": "Saved",
             "failedtosave": "Failed to save",
-            "deleteguild": "Delete Guild in MASZ",
+            "deleteguild": "Delete Guild",
             "deleted": "Guild deleted",
             "failedtodelete": "Failed to delete",
             "deleteconfirm": "Confirm delete",

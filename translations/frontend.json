@@ -4133,7 +4133,7 @@
                 "title": {
                     "description": "title of automod custom filter",
                     "en": "Custom filter",
-                    "de": "Wort-Filter",
+                    "de": "Benutzerdefinierter Filter",
                     "at": "Benutzadefinirta Füta",
                     "fr": "Filtre personnalisé",
                     "es": "Filtro personalizado",
@@ -4314,7 +4314,7 @@
             "allowedpercentage": {
                 "description": "",
                 "en": "Allowed percentage of zalgo characters in a username or nickname",
-                "de": "Erlaubter bestimmten Anteil von Zalgozeichen in einem Benutzernamen oder Nicknamen",
+                "de": "Erlaubter Prozentsatz von Zalgozeichen in einem Benutzernamen oder Nicknamen",
                 "at": "Erlaubter Prozentsatz von Zalgozeichen in einem Benutzernamen oder Nicknamen",
                 "fr": "Pourcentage autorisé de caractères zalgo dans un nom d'utilisateur ou un pseudo",
                 "es": "Porcentaje permitido de caracteres zalgo en un nombre de usuario o un apodo",
@@ -4594,7 +4594,7 @@
                 "publicembedmodeexplained": {
                     "description": "public embed mode explained",
                     "en": "This mode enables detailed embeds when linking modcases in discord. This will disclose private information like the suspect, punishments etc.",
-                    "de": "Dieser Modus ermöglicht detailliertere Einbettungen, wenn Vorfälle in Nachrichten verlinkt werden. Dies wird private Informationen wie den Verdächtigen, die Strafen, etc. einsehbar machen.",
+                    "de": "Dieser Modus ermöglicht detaillierte Einbettungen, wenn Vorfälle in Nachrichten verlinkt werden. Dies wird private Informationen wie den Verdächtigen, die Strafen, etc. einsehbar machen.",
                     "at": "Dea Modus ermöglicht detaillierte Eibettungen, wenn Vorfälle in Discord valinkt wean. Des wiad private Informationen wia den Vadächtigen, die Strofn, etc. offenboarn.",
                     "fr": "Ce mode permet d'intégrer des informations détaillées lorsque vous liez des cas dans le discord. Cela rendra les informations privées comme le suspect, les punitions, etc. accessibles.",
                     "es": "Este modo permite incrustar detalles cuando se vincula un caso en discord. Esto hará públicas las informaciones privadas como el sujeto, las sanciones, etc.",
@@ -4706,8 +4706,8 @@
             },
             "deleteguild": {
                 "description": "description of the delete guild button",
-                "en": "Delete Guild in MASZ",
-                "de": "Gilde aus MASZ löschen",
+                "en": "Delete Guild",
+                "de": "Gilde löschen",
                 "at": "Güde löschn",
                 "fr": "Supprimer le serveur",
                 "es": "Eliminar el servidor",
@@ -4717,7 +4717,7 @@
             "deleted": {
                 "description": "Deleted",
                 "en": "Guild deleted",
-                "de": "Gilde aus MASZ gelöscht",
+                "de": "Gilde gelöscht",
                 "at": "Güde glöscht",
                 "fr": "Serveur supprimé",
                 "es": "Servidor eliminado",
@@ -4902,7 +4902,7 @@
                 "iconfield": {
                     "description": "This setting will show the application's icon in the embed when your MASZ instance is linked in Discord.",
                     "en": "Show application's icon in embed.",
-                    "de": "Zeige das Logo von MASZ in der Einbettung.",
+                    "de": "Zeige das Logo des Bots in der Einbettung.",
                     "at": "Zeig des Icon da Anwendung in da Eibettung.",
                     "fr": "Afficher l'icône de l'application dans l'encart.",
                     "es": "Mostrar el icono de la aplicación en el anuncio.",
