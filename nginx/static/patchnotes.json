@@ -18,6 +18,11 @@
         "name": "Sai-Tamazaki",
         "link": "https://github.com/Sai-Tamazaki",
         "icon": "https://avatars.githubusercontent.com/u/121161129?v=4"
+      },
+      {
+        "name": "Simply-Cods",
+        "link": "https://github.com/Simply-Cods",
+        "icon": "https://avatars.githubusercontent.com/u/79521176?v=4"
       }
     ],
     "features": [
@@ -72,6 +77,11 @@
         "title": "Fixed timestamp for deleted and updated messages guildauditlog.",
         "description": "MASZ now correctly uses the UTC timestamp to display the message creation datetime.",
         "link": "https://github.com/zaanposni/discord-masz/issues/565"
+      },
+      {
+        "title": "Improved german translations.",
+        "description": "The german translations have been greatly improved.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/569"
       }
     ],
     "technical": [
