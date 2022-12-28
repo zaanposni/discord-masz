@@ -1,4 +1,5 @@
 using Discord;
+using Discord.Interactions;
 using MASZ.Models;
 using MASZ.Utils;
 
@@ -64,21 +65,21 @@ namespace MASZ.Services
 
         internal readonly AsyncEvent<Func<AutoModerationEvent, AutoModerationConfig, GuildConfig, ITextChannel, IUser, Task>> OnAutoModerationEventRegisteredEvent = new("OnAutoModerationEventRegisteredEvent");
 
-        public event Func<CaseTemplate, Task> OnCaseTemplateCreated
+        public event Func<CaseTemplate, IUser, Task> OnCaseTemplateCreated
         {
             add { OnCaseTemplateCreatedEvent.Add(value); }
             remove { OnCaseTemplateCreatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<CaseTemplate, Task>> OnCaseTemplateCreatedEvent = new("OnCaseTemplateCreatedEvent");
+        internal readonly AsyncEvent<Func<CaseTemplate, IUser, Task>> OnCaseTemplateCreatedEvent = new("OnCaseTemplateCreatedEvent");
 
-        public event Func<CaseTemplate, Task> OnCaseTemplateDeleted
+        public event Func<CaseTemplate, IUser, Task> OnCaseTemplateDeleted
         {
             add { OnCaseTemplateDeletedEvent.Add(value); }
             remove { OnCaseTemplateDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<CaseTemplate, Task>> OnCaseTemplateDeletedEvent = new("OnCaseTemplateDeletedEvent");
+        internal readonly AsyncEvent<Func<CaseTemplate, IUser, Task>> OnCaseTemplateDeletedEvent = new("OnCaseTemplateDeletedEvent");
 
         /// <summary>
         /// Invoked when a file is uploaded
@@ -113,29 +114,29 @@ namespace MASZ.Services
         /// </summary>
         /// <typeparam name="GuildConfig">The created guildconfig.</typeparam>
         /// <typeparam name="bool">Whether the user choosed a ban import for this register to run.</typeparam>
-        public event Func<GuildConfig, bool, Task> OnGuildRegistered
+        public event Func<GuildConfig, IUser, bool, Task> OnGuildRegistered
         {
             add { OnGuildRegisteredEvent.Add(value); }
             remove { OnGuildRegisteredEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildConfig, bool, Task>> OnGuildRegisteredEvent = new("OnGuildRegisteredEvent");
+        internal readonly AsyncEvent<Func<GuildConfig, IUser, bool, Task>> OnGuildRegisteredEvent = new("OnGuildRegisteredEvent");
 
-        public event Func<GuildConfig, Task> OnGuildUpdated
+        public event Func<GuildConfig, IUser, Task> OnGuildUpdated
         {
             add { OnGuildUpdatedEvent.Add(value); }
             remove { OnGuildUpdatedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildConfig, Task>> OnGuildUpdatedEvent = new("OnGuildUpdatedEvent");
+        internal readonly AsyncEvent<Func<GuildConfig, IUser, Task>> OnGuildUpdatedEvent = new("OnGuildUpdatedEvent");
 
-        public event Func<GuildConfig, Task> OnGuildDeleted
+        public event Func<GuildConfig, IUser, Task> OnGuildDeleted
         {
             add { OnGuildDeletedEvent.Add(value); }
             remove { OnGuildDeletedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<GuildConfig, Task>> OnGuildDeletedEvent = new("OnGuildDeletedEvent");
+        internal readonly AsyncEvent<Func<GuildConfig, IUser, Task>> OnGuildDeletedEvent = new("OnGuildDeletedEvent");
 
         public event Func<GuildMotd, IUser, Task> OnGuildMotdCreated
         {
@@ -260,13 +261,13 @@ namespace MASZ.Services
 
         internal readonly AsyncEvent<Func<ModCase, IUser, bool, bool, Task>> OnModCaseMarkedToBeDeletedEvent = new("OnModCaseMarkedToBeDeletedEvent");
 
-        public event Func<ModCase, Task> OnModCaseRestored
+        public event Func<ModCase, IUser, Task> OnModCaseRestored
         {
             add { OnModCaseRestoredEvent.Add(value); }
             remove { OnModCaseRestoredEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ModCase, Task>> OnModCaseRestoredEvent = new("OnModCaseRestoredEvent");
+        internal readonly AsyncEvent<Func<ModCase, IUser, Task>> OnModCaseRestoredEvent = new("OnModCaseRestoredEvent");
 
         /// <summary>
         /// Invoked when a usermap is created
@@ -417,5 +418,13 @@ namespace MASZ.Services
         }
 
         internal readonly AsyncEvent<Func<ZalgoConfig, ulong, string, string, Task>> OnZalgoNicknameRenameEvent = new("OnZalgoConfigUpdatedEvent");
+
+        public event Func<ICommandInfo, IUser, IGuild, Task> OnApplicationCommandUsed
+        {
+            add { OnApplicationCommandUsedEvent.Add(value); }
+            remove { OnApplicationCommandUsedEvent.Remove(value); }
+        }
+
+        internal readonly AsyncEvent<Func<ICommandInfo, IUser, IGuild, Task>> OnApplicationCommandUsedEvent = new("OnApplicationCommandUsedEvent");
     }
 }

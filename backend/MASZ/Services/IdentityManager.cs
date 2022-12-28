@@ -183,9 +183,16 @@ namespace MASZ.Services
             _logger.LogInformation($"IdentityManager | Cleared {count} token identities.");
         }
 
-        public Task<Identity> GetIdentityByUserId(ulong userId)
+        public Identity GetIdentityByUserId(ulong userId)
         {
-            throw new NotImplementedException();
+            foreach (var identity in identities.Values)
+            {
+                if (identity.GetCurrentUser().Id == userId)
+                {
+                    return identity;
+                }
+            }
+            return null;
         }
     }
 }

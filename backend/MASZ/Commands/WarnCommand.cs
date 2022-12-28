@@ -15,7 +15,7 @@ namespace MASZ.Commands
         public async Task Warn(
             [Summary("title", "The title of the modcase")] string title,
             [Summary("user", "User to punish")] IUser user,
-            [Summary("description", "The description of the modcase")] string description = "",
+            [Summary("details", "The details of the modcase")] string details = "",
             [Summary("dm-notification", "Whether to send a dm notification")] bool sendDmNotification = true,
             [Summary("public-notification", "Whether to send a public webhook notification")] bool sendPublicNotification = true)
         {
@@ -27,13 +27,13 @@ namespace MASZ.Commands
                 UserId = user.Id,
                 ModId = CurrentIdentity.GetCurrentUser().Id
             };
-            if (string.IsNullOrEmpty(description))
+            if (string.IsNullOrEmpty(details))
             {
                 modCase.Description = title;
             }
             else
             {
-                modCase.Description = description;
+                modCase.Description = details;
             }
             modCase.PunishmentType = PunishmentType.Warn;
             modCase.PunishmentActive = true;

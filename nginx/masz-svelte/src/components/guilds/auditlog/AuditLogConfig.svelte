@@ -194,7 +194,7 @@
                             handleCheck(auditlog.type, e.detail);
                         }} />
                 </div>
-                <div class="grid grid-cols-4 gap-2 items-center col-span-5" class:!col-span-4={matches} style={matches ? "grid-auto-rows: 1fr;" : ""}>
+                <div class="grid grid-cols-4 gap-2 items-center col-span-5" class:!col-span-4={matches} style={matches ? "grid-auto-rows: minmax(75px, max-content)" : ""}>
                     {#if $data.get(auditlog.type) !== undefined}
                         <div class="grid grid-cols-4 gap-2 items-center col-span-4">
                             <div class:!col-span-2={!matches}>

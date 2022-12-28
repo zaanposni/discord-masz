@@ -752,7 +752,7 @@ namespace MASZ.Services
 
                 if (message.CreatedAt != default)
                 {
-                    description.AppendLine($"> **{translator.T().GuildAuditLogCreated()}:** {message.CreatedAt.DateTime.ToDiscordTS()}");
+                    description.AppendLine($"> **{translator.T().GuildAuditLogCreated()}:** {message.CreatedAt.UtcDateTime.ToDiscordTS()}");
                 }
 
                 embed.WithTitle(translator.T().GuildAuditLogMessageDeletedTitle())
@@ -903,7 +903,7 @@ namespace MASZ.Services
                     description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {tchannel.Name} - {tchannel.Mention}");
                     description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** [{messageAfter.Id}]({messageAfter.GetJumpUrl()})");
                     description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {messageAfter.Author.Username}#{messageAfter.Author.Discriminator} - {messageAfter.Author.Mention}");
-                    description.AppendLine($"> **{translator.T().GuildAuditLogCreated()}:** {messageAfter.CreatedAt.DateTime.ToDiscordTS()}");
+                    description.AppendLine($"> **{translator.T().GuildAuditLogCreated()}:** {messageAfter.CreatedAt.UtcDateTime.ToDiscordTS()}");
 
                     var embed = new EmbedBuilder()
                          .WithTitle(translator.T().GuildAuditLogMessageUpdatedTitle())

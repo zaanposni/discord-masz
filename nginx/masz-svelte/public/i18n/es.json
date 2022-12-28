@@ -145,6 +145,11 @@
             "new": "Actualización disponible",
             "empty": "No hay actualización disponible"
         },
+        "admindiscordinvite": {
+            "title": "Invitación de Discord",
+            "widgetdescription": "Este widget muestra un enlace de invitación para el Discord de la comunidad MASZ.",
+            "message": "¡Únete al Discord de la comunidad MASZ!"
+        },
         "adminstatus": {
             "title": "Estado",
             "widgetdescription": "Este widget muestra el ping actual de los componentes MASZ.",
@@ -196,6 +201,9 @@
     "guilds": {
         "add": {
             "button": "Añadir una hermandad",
+            "add": "Añadir",
+            "name": "Nombre",
+            "id": "ID",
             "invitefirst": "Por favor, invita al bot a esta hermandad primero",
             "windowfailed": "Fallo al abrir la ventana"
         },
@@ -512,6 +520,9 @@
                 "details": "Un mensaje en tu gremio contiene demasiados enlaces.",
                 "customwordfield": "Ignorar enlaces (ingresar patrones de expresiones regulares divididos por líneas nuevas)",
                 "linktext": "Ejemplo"
+            },
+            "phishinglink": {
+                "details": "Un mensaje en tu gremio contiene demasiados enlaces de phishing."
             }
         },
         "zalgo": {
@@ -686,7 +697,8 @@
             "customwordfilter": "Filtro de palabras personalizado activado",
             "toomanymessages": "Demasiados mensajes",
             "toomanyduplicatedcharacters": "Se han utilizado demasiados caracteres duplicados",
-            "toomanylinks": "Se han utilizado demasiados enlaces"
+            "toomanylinks": "Se han utilizado demasiados enlaces",
+            "toomanyphishinglinks": "Se han utilizado demasiados enlaces de phishing"
         },
         "apierror": {
             "unknown": "Error desconocido",

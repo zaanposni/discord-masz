@@ -1,7 +1,10 @@
 using Discord;
 using Discord.Interactions;
+using MASZ.Enums;
 using MASZ.Models;
 using MASZ.Services;
+using MASZ.Utils;
+using MASZ.Extensions;
 
 namespace MASZ.Commands
 {
@@ -15,6 +18,7 @@ namespace MASZ.Commands
         public InternalConfiguration Config { get; set; }
         public DiscordAPIInterface DiscordAPI { get; set; }
         public IServiceProvider ServiceProvider { get; set; }
+        public InternalEventHandler eventHandler { get; set; }
 
         public Identity CurrentIdentity;
 
@@ -32,10 +36,21 @@ namespace MASZ.Commands
             RunCMDSetup().GetAwaiter().GetResult();
         }
 
+        public override void AfterExecute(ICommandInfo command)
+        {
+            eventHandler.OnApplicationCommandUsedEvent.InvokeAsync(command, Context.User, Context.Guild);
+        }
+
         private async Task RunCMDSetup() {
-            if (Context.Guild != null)
+            Language? userLocale = LocaleHelper.DiscordLocaleToMASZLocale(Context.Interaction.UserLocale);
+            if (userLocale.HasValue)
             {
-                await Translator.SetContext(Context.Guild.Id);
+                Translator.SetContext(userLocale.Value);
+            } else {
+                if (Context.Guild != null)
+                {
+                    await Translator.SetContext(Context.Guild.Id);
+                }
             }
 
             CurrentIdentity = await IdentityManager.GetIdentity(Context.User);
@@ -46,6 +61,5 @@ namespace MASZ.Commands
                 return;
             }
         }
-
     }
 }

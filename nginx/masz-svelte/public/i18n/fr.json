@@ -145,6 +145,11 @@
             "new": "Mise à jour disponible",
             "empty": "Aucune mise à jour disponible"
         },
+        "admindiscordinvite": {
+            "title": "Invitation Discord",
+            "widgetdescription": "Ce widget affiche un lien d'invitation pour le Discord communautaire MASZ.",
+            "message": "Rejoignez le Discord communautaire MASZ!"
+        },
         "adminstatus": {
             "title": "Statut",
             "widgetdescription": "Ce widget affiche le ping actuel des composants MASZ.",
@@ -196,6 +201,9 @@
     "guilds": {
         "add": {
             "button": "Ajouter une guilde",
+            "add": "Ajouter",
+            "name": "Nom",
+            "id": "ID",
             "invitefirst": "Veuillez d'abord inviter le bot à cette guilde",
             "windowfailed": "Échec de l'ouverture de la fenêtre"
         },
@@ -512,6 +520,9 @@
                 "details": "Un message sur votre guilde contient trop de liens.",
                 "customwordfield": "Ignorer les liens (entrer les modèles regex divisés par des nouvelles lignes)",
                 "linktext": "Exemple"
+            },
+            "phishinglink": {
+                "details": "Un message sur votre guilde contient trop de liens de phishing."
             }
         },
         "zalgo": {
@@ -686,7 +697,8 @@
             "customwordfilter": "Filtre de mots personnalisé déclenché",
             "toomanymessages": "Trop de messages",
             "toomanyduplicatedcharacters": "Trop de caractères dupliqués utilisés",
-            "toomanylinks": "Trop de liens utilisés"
+            "toomanylinks": "Trop de liens utilisés",
+            "toomanyphishinglinks": "Trop de liens de phishing utilisés"
         },
         "apierror": {
             "unknown": "Erreur inconnue",

@@ -40,6 +40,10 @@ const enums: IMASZEnum[] = [
     {
         "id": 9,
         "translationKey": "enums.automoderationtype.toomanylinks"
+    },
+    {
+        "id": 10,
+        "translationKey": "enums.automoderationtype.toomanyphishinglinks"
     }
 ]
 

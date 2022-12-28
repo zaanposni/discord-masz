@@ -16,12 +16,1676 @@ namespace MASZ.Utils
         {
             return new Translation(preferredLanguage);
         }
+        public string CommandsAntiraidName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Antiraid",
+                Language.at => "Antiraid",
+                Language.fr => "Antiraid",
+                Language.es => "Antiraid",
+                Language.ru => "Антирайд",
+                Language.it => "Antiraid",
+                _ => "Antiraid",
+            };
+        }
+        public string CommandsAntiraidDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Schalte einen bestimmten Benutzer stumm und lösche alle seine Nachrichten der letzten 2 Stunden.",
+                Language.at => "Schalte einen bestimmten Benutzer stumm und lösche alle seine Nachrichten der letzten 2 Stunden.",
+                Language.fr => "Mettez un utilisateur spécifique en sourdine et supprimez tous ses messages des 2 dernières heures.",
+                Language.es => "Ponga en silencio a un usuario específico y elimine todos sus mensajes de las últimas 2 horas.",
+                Language.ru => "Заглушите определенного пользователя и удалите все его сообщения за последние 2 часа.",
+                Language.it => "Disattiva un utente specifico e elimina tutti i suoi messaggi negli ultimi 2 ore.",
+                _ => "Timeout a specific user and delete all his messages in the last 2 hours.",
+            };
+        }
+        public string CommandsAntiraidUserName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Benutzer",
+                Language.at => "Benutzer",
+                Language.fr => "Utilisateur",
+                Language.es => "Usuario",
+                Language.ru => "Пользователь",
+                Language.it => "Utente",
+                _ => "User",
+            };
+        }
+        public string CommandsAntiraidUserDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "zu bestrafender Benutzer",
+                Language.at => "zu bestrafender Benutzer",
+                Language.fr => "utilisateur à punir",
+                Language.es => "usuario a castigar",
+                Language.ru => "пользователь для наказания",
+                Language.it => "utente da punire",
+                _ => "user to punish",
+            };
+        }
+        public string CommandsAvatarName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Avatar",
+                Language.at => "Avatar",
+                Language.fr => "Avatar",
+                Language.es => "Avatar",
+                Language.ru => "Аватар",
+                Language.it => "Avatar",
+                _ => "Avatar",
+            };
+        }
+        public string CommandsAvatarDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Hochauflösendes Profilbild eines Nutzers anzeigen lassen.",
+                Language.at => "Hochauflösendes Profilbild eines Nutzers anzeigen lassen.",
+                Language.fr => "Obtenez l'avatar haute résolution d'un utilisateur.",
+                Language.es => "Obtenga el avatar de alta resolución de un usuario.",
+                Language.ru => "Получите высокое разрешение аватара пользователя.",
+                Language.it => "Ottieni l'avatar ad alta risoluzione di un utente.",
+                _ => "Get the high resolution avatar of a user.",
+            };
+        }
+        public string CommandsAvatarUserName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Benutzer",
+                Language.at => "Benutzer",
+                Language.fr => "Utilisateur",
+                Language.es => "Usuario",
+                Language.ru => "Пользователь",
+                Language.it => "Utente",
+                _ => "User",
+            };
+        }
+        public string CommandsAvatarUserDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Benutzer, dessen Profilbild abgerufen werden soll",
+                Language.at => "Benutzer, dessen Profilbild abgerufen werden soll",
+                Language.fr => "Utilisateur dont vous souhaitez obtenir l'avatar",
+                Language.es => "Usuario del que desea obtener el avatar",
+                Language.ru => "Пользователь, аватар которого вы хотите получить",
+                Language.it => "Utente di cui si desidera ottenere l'avatar",
+                _ => "User to get the avatar from",
+            };
+        }
+        public string CommandsBanName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ban",
+                Language.at => "Ban",
+                Language.fr => "Bannir",
+                Language.es => "Prohibir",
+                Language.ru => "Запретить",
+                Language.it => "Bandire",
+                _ => "Ban",
+            };
+        }
+        public string CommandsBanDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Banne einen Benutzer und erstelle einen Modcase",
+                Language.at => "Banne einen Benutzer und erstelle einen Modcase",
+                Language.fr => "Bannir un utilisateur et créer un cas de modération",
+                Language.es => "Prohibir a un usuario y crear un caso de moderación",
+                Language.ru => "Запретить пользователя и создать модкейс",
+                Language.it => "Bandire un utente e creare un caso di moderazione",
+                _ => "Ban a user and create a modcase",
+            };
+        }
+        public string CommandsBanUserName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Benutzer",
+                Language.at => "Benutzer",
+                Language.fr => "Utilisateur",
+                Language.es => "Usuario",
+                Language.ru => "Пользователь",
+                Language.it => "Utente",
+                _ => "User",
+            };
+        }
+        public string CommandsBanUserDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "zu bestrafender Benutzer",
+                Language.at => "zu bestrafender Benutzer",
+                Language.fr => "utilisateur à punir",
+                Language.es => "usuario a castigar",
+                Language.ru => "пользователь для наказания",
+                Language.it => "utente da punire",
+                _ => "user to punish",
+            };
+        }
+        public string CommandsBanTitleName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Titel",
+                Language.at => "Titel",
+                Language.fr => "Titre",
+                Language.es => "Título",
+                Language.ru => "Заголовок",
+                Language.it => "Titolo",
+                _ => "Title",
+            };
+        }
+        public string CommandsBanTitleDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Titel des Modcases",
+                Language.at => "Titel des Modcases",
+                Language.fr => "Titre du cas de modération",
+                Language.es => "Título del caso de moderación",
+                Language.ru => "Заголовок модкейса",
+                Language.it => "Titolo del caso di moderazione",
+                _ => "Title of the modcase",
+            };
+        }
+        public string CommandsBanDetailsName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Details",
+                Language.at => "Details",
+                Language.fr => "Détails",
+                Language.es => "Detalles",
+                Language.ru => "Детали",
+                Language.it => "Dettagli",
+                _ => "Details",
+            };
+        }
+        public string CommandsBanDetailsDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Details des Modcases",
+                Language.at => "Details des Modcases",
+                Language.fr => "Détails du cas de modération",
+                Language.es => "Detalles del caso de moderación",
+                Language.ru => "Детали модкейса",
+                Language.it => "Dettagli del caso di moderazione",
+                _ => "Details of the modcase",
+            };
+        }
+        public string CommandsBanhoursName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Stunden",
+                Language.at => "Stunden",
+                Language.fr => "Heures",
+                Language.es => "Horas",
+                Language.ru => "Часы",
+                Language.it => "Ore",
+                _ => "Hours",
+            };
+        }
+        public string CommandsBanhoursDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Stunden, die der Nutzer gebannt sein soll",
+                Language.at => "Stunden, die der Nutzer gebannt sein soll",
+                Language.fr => "Heures pour bannir l'utilisateur",
+                Language.es => "Horas para prohibir al usuario",
+                Language.ru => "Часы, чтобы запретить пользователю",
+                Language.it => "Ore per bandire l'utente",
+                _ => "Hours to ban the user",
+            };
+        }
+        public string CommandsBanhoursNoneName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Dauerhaft",
+                Language.at => "Dauerhaft",
+                Language.fr => "Illimité",
+                Language.es => "Ilimitado",
+                Language.ru => "Неограниченный",
+                Language.it => "Illimitato",
+                _ => "Unlimited",
+            };
+        }
+        public string CommandsBanhours1_HourName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "1 Stunde",
+                Language.at => "1 Stunde",
+                Language.fr => "1 heure",
+                Language.es => "1 hora",
+                Language.ru => "1 час",
+                Language.it => "1 ora",
+                _ => "1 Hour",
+            };
+        }
+        public string CommandsBanhours1_DayName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "1 Tag",
+                Language.at => "1 Tag",
+                Language.fr => "1 jour",
+                Language.es => "1 día",
+                Language.ru => "1 день",
+                Language.it => "1 giorno",
+                _ => "1 Day",
+            };
+        }
+        public string CommandsBanhours1_WeekName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "1 Woche",
+                Language.at => "1 Woche",
+                Language.fr => "1 semaine",
+                Language.es => "1 semana",
+                Language.ru => "1 неделя",
+                Language.it => "1 settimana",
+                _ => "1 Week",
+            };
+        }
+        public string CommandsBanhours1_MonthName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "1 Monat",
+                Language.at => "1 Monat",
+                Language.fr => "1 mois",
+                Language.es => "1 mes",
+                Language.ru => "1 месяц",
+                Language.it => "1 mese",
+                _ => "1 Month",
+            };
+        }
+        public string CommandsBandm_notificationName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Direktnachricht",
+                Language.at => "Direktnachricht",
+                Language.fr => "DM",
+                Language.es => "DM",
+                Language.ru => "DM",
+                Language.it => "DM",
+                _ => "DM",
+            };
+        }
+        public string CommandsBandm_notificationDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                Language.at => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                Language.fr => "Si une notification DM doit être envoyée",
+                Language.es => "Si se debe enviar una notificación DM",
+                Language.ru => "Отправлять ли уведомление DM",
+                Language.it => "Se inviare una notifica DM",
+                _ => "Whether to send a dm notification",
+            };
+        }
+        public string CommandsBanpublic_notificationName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "öffentlich",
+                Language.at => "öffentlich",
+                Language.fr => "public",
+                Language.es => "público",
+                Language.ru => "общественный",
+                Language.it => "pubblico",
+                _ => "public",
+            };
+        }
+        public string CommandsBanpublic_notificationDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                Language.at => "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                Language.fr => "Si une notification publique doit être envoyée",
+                Language.es => "Si se debe enviar una notificación pública",
+                Language.ru => "Отправлять ли общественное уведомление",
+                Language.it => "Se inviare una notifica pubblica",
+                _ => "Whether to send a public notification",
+            };
+        }
+        public string CommandsBanexecute_punishmentName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "ausführen",
+                Language.at => "ausführen",
+                Language.fr => "exécuter",
+                Language.es => "ejecutar",
+                Language.ru => "выполнить",
+                Language.it => "eseguire",
+                _ => "execute",
+            };
+        }
+        public string CommandsBanexecute_punishmentDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ob die Strafe ausgeführt werden soll",
+                Language.at => "Ob die Strafe ausgeführt werden soll",
+                Language.fr => "Si la punition doit être exécutée",
+                Language.es => "Si se debe ejecutar el castigo",
+                Language.ru => "Выполнить ли наказание",
+                Language.it => "Se eseguire la punizione",
+                _ => "Whether to execute the punishment",
+            };
+        }
+        public string CommandsCleanupName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Aufräumen",
+                Language.at => "Aufräumen",
+                Language.fr => "Nettoyage",
+                Language.es => "Limpieza",
+                Language.ru => "Очистка",
+                Language.it => "Pulizia",
+                _ => "Cleanup",
+            };
+        }
+        public string CommandsCleanupDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Räumt bestimmte Daten vom Server und/oder Kanal auf.",
+                Language.at => "Räumt bestimmte Daten vom Server und/oder Kanal auf.",
+                Language.fr => "Nettoyez des données spécifiques du serveur et / ou de la chaîne.",
+                Language.es => "Limpie datos específicos del servidor y / o del canal.",
+                Language.ru => "Очистите определенные данные с сервера и / или канала.",
+                Language.it => "Pulisci dati specifici dal server e / o dal canale.",
+                _ => "Cleanup specific data from the server and/or channel.",
+            };
+        }
+        public string CommandsCleanupModeName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Modus",
+                Language.at => "Modus",
+                Language.fr => "mode",
+                Language.es => "modo",
+                Language.ru => "режим",
+                Language.it => "modo",
+                _ => "mode",
+            };
+        }
+        public string CommandsCleanupModeDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "welche Daten gelöscht werden sollen",
+                Language.at => "welche Daten gelöscht werden sollen",
+                Language.fr => "les données que vous souhaitez supprimer",
+                Language.es => "los datos que desea eliminar",
+                Language.ru => "какие данные вы хотите удалить",
+                Language.it => "i dati che si desidera eliminare",
+                _ => "which data you want to delete",
+            };
+        }
+        public string CommandsCleanupChannelName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Kanal",
+                Language.at => "Kanal",
+                Language.fr => "canal",
+                Language.es => "canal",
+                Language.ru => "канал",
+                Language.it => "canale",
+                _ => "channel",
+            };
+        }
+        public string CommandsCleanupChannelDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "wo gelöscht werden soll, Standard ist aktuell.",
+                Language.at => "wo gelöscht werden soll, Standard ist aktuell.",
+                Language.fr => "où supprimer, par défaut sur le courant.",
+                Language.es => "dónde eliminar, por defecto en el actual.",
+                Language.ru => "куда удалять, по умолчанию - текущий.",
+                Language.it => "dove eliminare, di default corrente.",
+                _ => "where to delete, defaults to current.",
+            };
+        }
+        public string CommandsCleanupCountName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Anzahl",
+                Language.at => "Anzahl",
+                Language.fr => "compter",
+                Language.es => "contar",
+                Language.ru => "считать",
+                Language.it => "contare",
+                _ => "count",
+            };
+        }
+        public string CommandsCleanupCountDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "wie viele Nachrichten gelöscht werden sollen, Standard ist 100.",
+                Language.at => "wie viele Nachrichten gelöscht werden sollen, Standard ist 100.",
+                Language.fr => "combien de messages supprimer, par défaut sur 100.",
+                Language.es => "cuántos mensajes eliminar, por defecto en 100.",
+                Language.ru => "сколько сообщений удалять, по умолчанию - 100.",
+                Language.it => "quanti messaggi eliminare, di default 100.",
+                _ => "how many messages to delete, defaults to 100.",
+            };
+        }
+        public string CommandsCleanupUserName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Benutzer",
+                Language.at => "Benutzer",
+                Language.fr => "utilisateur",
+                Language.es => "usuario",
+                Language.ru => "пользователь",
+                Language.it => "utente",
+                _ => "user",
+            };
+        }
+        public string CommandsCleanupUserDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Nur Daten von diesem Nutzer entfernen",
+                Language.at => "Nur Daten von diesem Nutzer entfernen",
+                Language.fr => "filtre supplémentaire sur cet utilisateur",
+                Language.es => "filtro adicional en este usuario",
+                Language.ru => "дополнительный фильтр на этого пользователя",
+                Language.it => "filtro aggiuntivo su questo utente",
+                _ => "additional filter on this user",
+            };
+        }
+        public string CommandsFeaturesName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Funktionen",
+                Language.at => "Funktionen",
+                Language.fr => "fonctionnalités",
+                Language.es => "características",
+                Language.ru => "особенности",
+                Language.it => "caratteristiche",
+                _ => "features",
+            };
+        }
+        public string CommandsFeaturesDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Überprüft, ob weitere Konfigurationen notwendig sind, um MASZ-Funktionen zu nutzen.",
+                Language.at => "Überprüft, ob weitere Konfigurationen notwendig sind, um MASZ-Funktionen zu nutzen.",
+                Language.fr => "Vérifie si d'autres configurations sont nécessaires pour utiliser les fonctionnalités de MASZ.",
+                Language.es => "Comprueba si se necesita más configuración para usar las características de MASZ.",
+                Language.ru => "Проверяет, нужна ли дополнительная конфигурация для использования функций MASZ.",
+                Language.it => "Controlla se è necessaria ulteriore configurazione per utilizzare le funzionalità di MASZ.",
+                _ => "Checks if further configuration is needed to use MASZ features.",
+            };
+        }
+        public string CommandsGithubName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "github",
+                Language.at => "github",
+                Language.fr => "github",
+                Language.es => "github",
+                Language.ru => "github",
+                Language.it => "github",
+                _ => "github",
+            };
+        }
+        public string CommandsGithubDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Zeigt den Link zum Github-Repository an.",
+                Language.at => "Zeigt den Link zum Github-Repository an.",
+                Language.fr => "Affiche le lien vers le référentiel github.",
+                Language.es => "Muestra el enlace al repositorio de github.",
+                Language.ru => "Отображает ссылку на репозиторий github.",
+                Language.it => "Mostra il link al repository github.",
+                _ => "Displays the link to the github repository.",
+            };
+        }
+        public string CommandsInviteName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "einladen",
+                Language.at => "einladen",
+                Language.fr => "inviter",
+                Language.es => "invitar",
+                Language.ru => "пригласить",
+                Language.it => "invitare",
+                _ => "invite",
+            };
+        }
+        public string CommandsInviteDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "So lädst du diesen Bot ein.",
+                Language.at => "So lädst du diesen Bot ein.",
+                Language.fr => "Comment inviter ce bot.",
+                Language.es => "Cómo invitar a este bot.",
+                Language.ru => "Как пригласить этого бота.",
+                Language.it => "Come invitare questo bot.",
+                _ => "How to invite this bot.",
+            };
+        }
+        public string CommandsKickName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Kicken",
+                Language.at => "Kicken",
+                Language.fr => "Expulser",
+                Language.es => "Patada",
+                Language.ru => "Кик",
+                Language.it => "Calcio",
+                _ => "Kick",
+            };
+        }
+        public string CommandsKickDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Kicke einen Benutzer und erstelle einen Modcase",
+                Language.at => "Kicke einen Benutzer und erstelle einen Modcase",
+                Language.fr => "Expulsez un utilisateur et créez un cas de modération",
+                Language.es => "Expulsa a un usuario y crea un caso de moderación",
+                Language.ru => "Выгнать пользователя и создать модкейс",
+                Language.it => "Espelli un utente e crea un caso di moderazione",
+                _ => "Kick a user and create a modcase",
+            };
+        }
+        public string CommandsKickUserName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Benutzer",
+                Language.at => "Benutzer",
+                Language.fr => "Utilisateur",
+                Language.es => "Usuario",
+                Language.ru => "Пользователь",
+                Language.it => "Utente",
+                _ => "User",
+            };
+        }
+        public string CommandsKickUserDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "zu bestrafender Benutzer",
+                Language.at => "zu bestrafender Benutzer",
+                Language.fr => "utilisateur à punir",
+                Language.es => "usuario a castigar",
+                Language.ru => "пользователь для наказания",
+                Language.it => "utente da punire",
+                _ => "user to punish",
+            };
+        }
+        public string CommandsKickTitleName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Titel",
+                Language.at => "Titel",
+                Language.fr => "Titre",
+                Language.es => "Título",
+                Language.ru => "Заголовок",
+                Language.it => "Titolo",
+                _ => "Title",
+            };
+        }
+        public string CommandsKickTitleDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Titel des Modcases",
+                Language.at => "Titel des Modcases",
+                Language.fr => "Titre du cas de modération",
+                Language.es => "Título del caso de moderación",
+                Language.ru => "Заголовок модкейса",
+                Language.it => "Titolo del caso di moderazione",
+                _ => "Title of the modcase",
+            };
+        }
+        public string CommandsKickDetailsName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Details",
+                Language.at => "Details",
+                Language.fr => "Détails",
+                Language.es => "Detalles",
+                Language.ru => "Детали",
+                Language.it => "Dettagli",
+                _ => "Details",
+            };
+        }
+        public string CommandsKickDetailsDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Details des Modcases",
+                Language.at => "Details des Modcases",
+                Language.fr => "Détails du cas de modération",
+                Language.es => "Detalles del caso de moderación",
+                Language.ru => "Детали модкейса",
+                Language.it => "Dettagli del caso di moderazione",
+                _ => "Details of the modcase",
+            };
+        }
+        public string CommandsKickdm_notificationName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Direktnachricht",
+                Language.at => "Direktnachricht",
+                Language.fr => "DM",
+                Language.es => "DM",
+                Language.ru => "DM",
+                Language.it => "DM",
+                _ => "DM",
+            };
+        }
+        public string CommandsKickdm_notificationDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                Language.at => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                Language.fr => "Si une notification DM doit être envoyée",
+                Language.es => "Si se debe enviar una notificación DM",
+                Language.ru => "Отправлять ли уведомление DM",
+                Language.it => "Se inviare una notifica DM",
+                _ => "Whether to send a dm notification",
+            };
+        }
+        public string CommandsKickpublic_notificationName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "öffentlich",
+                Language.at => "öffentlich",
+                Language.fr => "public",
+                Language.es => "público",
+                Language.ru => "общественный",
+                Language.it => "pubblico",
+                _ => "public",
+            };
+        }
+        public string CommandsKickpublic_notificationDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                Language.at => "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                Language.fr => "Si une notification publique doit être envoyée",
+                Language.es => "Si se debe enviar una notificación pública",
+                Language.ru => "Отправлять ли общественное уведомление",
+                Language.it => "Se inviare una notifica pubblica",
+                _ => "Whether to send a public notification",
+            };
+        }
+        public string CommandsKickexecute_punishmentName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "ausführen",
+                Language.at => "ausführen",
+                Language.fr => "exécuter",
+                Language.es => "ejecutar",
+                Language.ru => "выполнить",
+                Language.it => "eseguire",
+                _ => "execute",
+            };
+        }
+        public string CommandsKickexecute_punishmentDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ob die Strafe ausgeführt werden soll",
+                Language.at => "Ob die Strafe ausgeführt werden soll",
+                Language.fr => "Si la punition doit être exécutée",
+                Language.es => "Si se debe ejecutar el castigo",
+                Language.ru => "Выполнить ли наказание",
+                Language.it => "Se eseguire la punizione",
+                _ => "Whether to execute the punishment",
+            };
+        }
+        public string CommandsMuteName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Stummschalten",
+                Language.at => "Stummschalten",
+                Language.fr => "Muet",
+                Language.es => "Silenciar",
+                Language.ru => "Заглушить",
+                Language.it => "Silenzia",
+                _ => "Mute",
+            };
+        }
+        public string CommandsMuteDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Schaltet einen Benutzer stumm und erstellt einen Modcase",
+                Language.at => "Schaltet einen Benutzer stumm und erstellt einen Modcase",
+                Language.fr => "Muet un utilisateur et crée un cas de modération",
+                Language.es => "Silencia a un usuario y crea un caso de moderación",
+                Language.ru => "Заглушить пользователя и создать модкейс",
+                Language.it => "Silenzia un utente e crea un caso di moderazione",
+                _ => "Mute a user and create a modcase",
+            };
+        }
+        public string CommandsMuteUserName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Benutzer",
+                Language.at => "Benutzer",
+                Language.fr => "Utilisateur",
+                Language.es => "Usuario",
+                Language.ru => "Пользователь",
+                Language.it => "Utente",
+                _ => "User",
+            };
+        }
+        public string CommandsMuteUserDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "zu bestrafender Benutzer",
+                Language.at => "zu bestrafender Benutzer",
+                Language.fr => "utilisateur à punir",
+                Language.es => "usuario a castigar",
+                Language.ru => "пользователь для наказания",
+                Language.it => "utente da punire",
+                _ => "user to punish",
+            };
+        }
+        public string CommandsMuteTitleName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Titel",
+                Language.at => "Titel",
+                Language.fr => "Titre",
+                Language.es => "Título",
+                Language.ru => "Заголовок",
+                Language.it => "Titolo",
+                _ => "Title",
+            };
+        }
+        public string CommandsMuteTitleDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Titel des Modcases",
+                Language.at => "Titel des Modcases",
+                Language.fr => "Titre du cas de modération",
+                Language.es => "Título del caso de moderación",
+                Language.ru => "Заголовок модкейса",
+                Language.it => "Titolo del caso di moderazione",
+                _ => "Title of the modcase",
+            };
+        }
+        public string CommandsMuteDetailsName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Details",
+                Language.at => "Details",
+                Language.fr => "Détails",
+                Language.es => "Detalles",
+                Language.ru => "Детали",
+                Language.it => "Dettagli",
+                _ => "Details",
+            };
+        }
+        public string CommandsMuteDetailsDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Details des Modcases",
+                Language.at => "Details des Modcases",
+                Language.fr => "Détails du cas de modération",
+                Language.es => "Detalles del caso de moderación",
+                Language.ru => "Детали модкейса",
+                Language.it => "Dettagli del caso di moderazione",
+                _ => "Details of the modcase",
+            };
+        }
+        public string CommandsMutehoursName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Stunden",
+                Language.at => "Stunden",
+                Language.fr => "Heures",
+                Language.es => "Horas",
+                Language.ru => "Часы",
+                Language.it => "Ore",
+                _ => "Hours",
+            };
+        }
+        public string CommandsMutehoursDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Stunden um den Benutzer zu stummschalten",
+                Language.at => "Stunden um den Benutzer zu stummschalten",
+                Language.fr => "Heures pour rendre muet l'utilisateur",
+                Language.es => "Horas para silenciar al usuario",
+                Language.ru => "Часы для заглушения пользователя",
+                Language.it => "Ore per silenziare l'utente",
+                _ => "Hours to mute the user",
+            };
+        }
+        public string CommandsMutehoursNoneName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Dauerhaft",
+                Language.at => "Dauerhaft",
+                Language.fr => "Illimité",
+                Language.es => "Ilimitado",
+                Language.ru => "Неограниченный",
+                Language.it => "Illimitato",
+                _ => "Unlimited",
+            };
+        }
+        public string CommandsMutehours1_HourName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "1 Stunde",
+                Language.at => "1 Stunde",
+                Language.fr => "1 heure",
+                Language.es => "1 hora",
+                Language.ru => "1 час",
+                Language.it => "1 ora",
+                _ => "1 Hour",
+            };
+        }
+        public string CommandsMutehours1_DayName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "1 Tag",
+                Language.at => "1 Tag",
+                Language.fr => "1 jour",
+                Language.es => "1 día",
+                Language.ru => "1 день",
+                Language.it => "1 giorno",
+                _ => "1 Day",
+            };
+        }
+        public string CommandsMutehours1_WeekName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "1 Woche",
+                Language.at => "1 Woche",
+                Language.fr => "1 semaine",
+                Language.es => "1 semana",
+                Language.ru => "1 неделя",
+                Language.it => "1 settimana",
+                _ => "1 Week",
+            };
+        }
+        public string CommandsMutehours1_MonthName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "1 Monat",
+                Language.at => "1 Monat",
+                Language.fr => "1 mois",
+                Language.es => "1 mes",
+                Language.ru => "1 месяц",
+                Language.it => "1 mese",
+                _ => "1 Month",
+            };
+        }
+        public string CommandsMutedm_notificationName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Direktnachricht",
+                Language.at => "Direktnachricht",
+                Language.fr => "DM",
+                Language.es => "DM",
+                Language.ru => "DM",
+                Language.it => "DM",
+                _ => "DM",
+            };
+        }
+        public string CommandsMutedm_notificationDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                Language.at => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                Language.fr => "Si une notification DM doit être envoyée",
+                Language.es => "Si se debe enviar una notificación DM",
+                Language.ru => "Отправлять ли уведомление DM",
+                Language.it => "Se inviare una notifica DM",
+                _ => "Whether to send a dm notification",
+            };
+        }
+        public string CommandsMutepublic_notificationName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "öffentlich",
+                Language.at => "öffentlich",
+                Language.fr => "public",
+                Language.es => "público",
+                Language.ru => "общественный",
+                Language.it => "pubblico",
+                _ => "public",
+            };
+        }
+        public string CommandsMutepublic_notificationDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                Language.at => "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                Language.fr => "Si une notification publique doit être envoyée",
+                Language.es => "Si se debe enviar una notificación pública",
+                Language.ru => "Отправлять ли общественное уведомление",
+                Language.it => "Se inviare una notifica pubblica",
+                _ => "Whether to send a public notification",
+            };
+        }
+        public string CommandsMuteexecute_punishmentName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "ausführen",
+                Language.at => "ausführen",
+                Language.fr => "exécuter",
+                Language.es => "ejecutar",
+                Language.ru => "выполнить",
+                Language.it => "eseguire",
+                _ => "execute",
+            };
+        }
+        public string CommandsMuteexecute_punishmentDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ob die Strafe ausgeführt werden soll",
+                Language.at => "Ob die Strafe ausgeführt werden soll",
+                Language.fr => "Si la punition doit être exécutée",
+                Language.es => "Si se debe ejecutar el castigo",
+                Language.ru => "Выполнить ли наказание",
+                Language.it => "Se eseguire la punizione",
+                _ => "Whether to execute the punishment",
+            };
+        }
+        public string CommandsReportName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "An Moderatoren melden",
+                Language.at => "An Moderatoren melden",
+                Language.fr => "Signaler aux",
+                Language.es => "Reportar a los moderadores",
+                Language.ru => "Сообщить модераторам",
+                Language.it => "Segnala ai moderatori",
+                _ => "Report to moderators",
+            };
+        }
+        public string CommandsReportDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "An Moderatoren melden",
+                Language.at => "An Moderatoren melden",
+                Language.fr => "Signaler aux",
+                Language.es => "Reportar a los moderadores",
+                Language.ru => "Сообщить модераторам",
+                Language.it => "Segnala ai moderatori",
+                _ => "Report to moderators",
+            };
+        }
+        public string CommandsSayName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Sagen",
+                Language.at => "Sagen",
+                Language.fr => "Dire",
+                Language.es => "Decir",
+                Language.ru => "Сказать",
+                Language.it => "Dire",
+                _ => "Say",
+            };
+        }
+        public string CommandsSayDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Lässt den Bot eine Nachricht senden.",
+                Language.at => "Lässt den Bot eine Nachricht senden.",
+                Language.fr => "Permet au bot d'envoyer un message.",
+                Language.es => "Deja que el bot envíe un mensaje.",
+                Language.ru => "Позволяет боту отправить сообщение.",
+                Language.it => "Permetti al bot di inviare un messaggio.",
+                _ => "Let the bot send a message.",
+            };
+        }
+        public string CommandsSayMessageName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Nachricht",
+                Language.at => "Nachricht",
+                Language.fr => "Message",
+                Language.es => "Mensaje",
+                Language.ru => "Сообщение",
+                Language.it => "Messaggio",
+                _ => "Message",
+            };
+        }
+        public string CommandsSayMessageDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Die Nachricht, die gesendet werden soll.",
+                Language.at => "Die Nachricht, die gesendet werden soll.",
+                Language.fr => "Le message à envoyer.",
+                Language.es => "El mensaje a enviar.",
+                Language.ru => "Сообщение для отправки.",
+                Language.it => "Il messaggio da inviare.",
+                _ => "The message to send.",
+            };
+        }
+        public string CommandsSayChannelName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Kanal",
+                Language.at => "Kanal",
+                Language.fr => "Canal",
+                Language.es => "Canal",
+                Language.ru => "Канал",
+                Language.it => "Canale",
+                _ => "Channel",
+            };
+        }
+        public string CommandsSayChannelDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Kanal, in dem die Nachricht gesendet werden soll, Standard ist der aktuelle",
+                Language.at => "Kanal, in dem die Nachricht gesendet werden soll, Standard ist der aktuelle",
+                Language.fr => "canal dans lequel écrire le message, par défaut actuel",
+                Language.es => "canal en el que escribir el mensaje, predeterminado actual",
+                Language.ru => "канал для записи сообщения, по умолчанию текущий",
+                Language.it => "canale in cui scrivere il messaggio, predefinito corrente",
+                _ => "channel to write the message in, defaults to current",
+            };
+        }
+        public string CommandsStatusName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Status",
+                Language.at => "Status",
+                Language.fr => "Statut",
+                Language.es => "Estado",
+                Language.ru => "Статус",
+                Language.it => "Stato",
+                _ => "Status",
+            };
+        }
+        public string CommandsStatusDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Siehe den aktuellen Status deines Systems.",
+                Language.at => "Siehe den aktuellen Status deines Systems.",
+                Language.fr => "Voir l'état actuel de votre application.",
+                Language.es => "Ver el estado actual de su aplicación.",
+                Language.ru => "Посмотрите текущий статус вашего приложения.",
+                Language.it => "Vedi lo stato attuale della tua applicazione.",
+                _ => "See the current status of your application.",
+            };
+        }
+        public string CommandsTrackName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Verfolgen",
+                Language.at => "Verfolgen",
+                Language.fr => "Piste",
+                Language.es => "Pista",
+                Language.ru => "Дорожка",
+                Language.it => "Traccia",
+                _ => "Track",
+            };
+        }
+        public string CommandsTrackDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Verfolge eine Einladung, ihren Ersteller und ihre Nutzer.",
+                Language.at => "Verfolge eine Einladung, ihren Ersteller und ihre Nutzer.",
+                Language.fr => "Suivez une invitation, son créateur et ses utilisateurs.",
+                Language.es => "Rastree una invitación, su creador y sus usuarios.",
+                Language.ru => "Отслеживайте приглашение, его создателя и его пользователей.",
+                Language.it => "Traccia un invito, il suo creatore e i suoi utenti.",
+                _ => "Track an invite, its creator and its users.",
+            };
+        }
+        public string CommandsTrackInviteName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Einladung",
+                Language.at => "Einladung",
+                Language.fr => "Inviter",
+                Language.es => "Invitar",
+                Language.ru => "Приглашать",
+                Language.it => "Invitare",
+                _ => "Invite",
+            };
+        }
+        public string CommandsTrackInviteDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Gib entweder den Einladungscode oder die URL ein",
+                Language.at => "Gib entweder den Einladungscode oder die URL ein",
+                Language.fr => "Entrez soit le code d'invitation, soit l'URL",
+                Language.es => "Ingrese el código de invitación o la URL",
+                Language.ru => "Введите код приглашения или URL",
+                Language.it => "Inserisci il codice di invito o l'URL",
+                _ => "Either enter the invite code or the url",
+            };
+        }
+        public string CommandsUnbanName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Entbannen",
+                Language.at => "Entbannen",
+                Language.fr => "Débannir",
+                Language.es => "Desbanear",
+                Language.ru => "Разбанить",
+                Language.it => "Sbannare",
+                _ => "Unban",
+            };
+        }
+        public string CommandsUnbanDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Entbanne einen Nutzer, indem du alle seine Modcases deaktivierst.",
+                Language.at => "Entbanne einen Nutzer, indem du alle seine Modcases deaktivierst.",
+                Language.fr => "Débannir un utilisateur en désactivant tous ses modcases.",
+                Language.es => "Desbanea a un usuario desactivando todos sus modcases.",
+                Language.ru => "Разбаньте пользователя, отключив все его модкейсы.",
+                Language.it => "Sbanna un utente disattivando tutti i suoi modcase.",
+                _ => "Unban a user by deactivating all his modcases.",
+            };
+        }
+        public string CommandsUnbanUserName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Nutzer",
+                Language.at => "Nutzer",
+                Language.fr => "Utilisateur",
+                Language.es => "Usuario",
+                Language.ru => "Пользователь",
+                Language.it => "Utente",
+                _ => "User",
+            };
+        }
+        public string CommandsUnbanUserDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Der Nutzer, der entbannt werden soll",
+                Language.at => "Der Nutzer, der entbannt werden soll",
+                Language.fr => "L'utilisateur à débannir",
+                Language.es => "El usuario a desbanear",
+                Language.ru => "Пользователь, которого нужно разбанить",
+                Language.it => "L'utente da sbannare",
+                _ => "The user to unban",
+            };
+        }
+        public string CommandsUnmuteName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Freigeben",
+                Language.at => "Freigeben",
+                Language.fr => "Démuter",
+                Language.es => "Desmutear",
+                Language.ru => "Размутить",
+                Language.it => "Smutare",
+                _ => "Unmute",
+            };
+        }
+        public string CommandsUnmuteDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Hebe die Stummschaltung eines Nutzers auf, indem du alle seine Modcases deaktivierst.",
+                Language.at => "Hebe die Stummschaltung eines Nutzers auf, indem du alle seine Modcases deaktivierst.",
+                Language.fr => "Débannir un utilisateur en désactivant tous ses modcases.",
+                Language.es => "Desbanea a un usuario desactivando todos sus modcases.",
+                Language.ru => "Разбаньте пользователя, отключив все его модкейсы.",
+                Language.it => "Sbanna un utente disattivando tutti i suoi modcase.",
+                _ => "Unmute a user by deactivating all his modcases.",
+            };
+        }
+        public string CommandsUnmuteUserName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Nutzer",
+                Language.at => "Nutzer",
+                Language.fr => "Utilisateur",
+                Language.es => "Usuario",
+                Language.ru => "Пользователь",
+                Language.it => "Utente",
+                _ => "User",
+            };
+        }
+        public string CommandsUnmuteUserDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Der Nutzer, dessen Stummschaltung aufgehoben werden soll",
+                Language.at => "Der Nutzer, dessen Stummschaltung aufgehoben werden soll",
+                Language.fr => "L'utilisateur à débannir",
+                Language.es => "El usuario a desbanear",
+                Language.ru => "Пользователь, которого нужно разбанить",
+                Language.it => "L'utente da sbannare",
+                _ => "The user to unban",
+            };
+        }
+        public string CommandsUrlName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "URL",
+                Language.at => "URL",
+                Language.fr => "URL",
+                Language.es => "URL",
+                Language.ru => "URL",
+                Language.it => "URL",
+                _ => "URL",
+            };
+        }
+        public string CommandsUrlDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Zeigt die URL zum MASZ Dashboard.",
+                Language.at => "Zeigt die URL zum MASZ Dashboard.",
+                Language.fr => "Affiche l'URL sur laquelle MASZ est déployé.",
+                Language.es => "Muestra la URL en la que se implementa MASZ.",
+                Language.ru => "Отображает URL, на котором развернут MASZ.",
+                Language.it => "Mostra l'URL su cui è installato MASZ.",
+                _ => "Displays the URL MASZ is deployed on.",
+            };
+        }
+        public string CommandsViewName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Anzeigen",
+                Language.at => "Anzeigen",
+                Language.fr => "Voir",
+                Language.es => "Ver",
+                Language.ru => "Посмотреть",
+                Language.it => "Vedere",
+                _ => "View",
+            };
+        }
+        public string CommandsViewDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Zeige einen Modcase an.",
+                Language.at => "Zeige einen Modcase an.",
+                Language.fr => "Afficher un modcase.",
+                Language.es => "Ver un modcase.",
+                Language.ru => "Посмотреть модкейс.",
+                Language.it => "Visualizza un modcase.",
+                _ => "View a modcase.",
+            };
+        }
+        public string CommandsViewIdName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Id",
+                Language.at => "Id",
+                Language.fr => "Id",
+                Language.es => "Id",
+                Language.ru => "Id",
+                Language.it => "Id",
+                _ => "Id",
+            };
+        }
+        public string CommandsViewIdDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Die Id des Modcases, der angezeigt werden soll.",
+                Language.at => "Die Id des Modcases, der angezeigt werden soll.",
+                Language.fr => "L'identifiant du modcase à afficher.",
+                Language.es => "El id del modcase a ver.",
+                Language.ru => "Идентификатор просматриваемого модкейса.",
+                Language.it => "L'id del modcase da visualizzare.",
+                _ => "The id of the modcase to view.",
+            };
+        }
+        public string CommandsViewGuildidName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Guildid",
+                Language.at => "Guildid",
+                Language.fr => "Guildid",
+                Language.es => "Guildid",
+                Language.ru => "Guildid",
+                Language.it => "Guildid",
+                _ => "Guildid",
+            };
+        }
+        public string CommandsViewGuildidDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Die Id der Gilde, in der sich der Modcase befindet.",
+                Language.at => "Die Id der Gilde, in der sich der Modcase befindet.",
+                Language.fr => "L'identifiant de la guilde dans laquelle se trouve le modcase.",
+                Language.es => "El id de la guilda en la que está el modcase.",
+                Language.ru => "Идентификатор гильдии, в которой находится модкейс.",
+                Language.it => "L'id della gilda in cui si trova il modcase.",
+                _ => "The id of the guild the modcase is in.",
+            };
+        }
+        public string CommandsWarnName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Verwarnen",
+                Language.at => "Verwarnen",
+                Language.fr => "Avertir",
+                Language.es => "Advertir",
+                Language.ru => "Предупредить",
+                Language.it => "Avvertire",
+                _ => "Warn",
+            };
+        }
+        public string CommandsWarnDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Verwarne einen Benutzer und erstelle einen Modcase",
+                Language.at => "Verwarne einen Benutzer und erstelle einen Modcase",
+                Language.fr => "Avertir un utilisateur et créer un modcase",
+                Language.es => "Advertir a un usuario y crear un modcase",
+                Language.ru => "Предупредить пользователя и создать модкейс",
+                Language.it => "Avvertire un utente e creare un modcase",
+                _ => "Warn a user and create a modcase",
+            };
+        }
+        public string CommandsWarnUserName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Benutzer",
+                Language.at => "Benutzer",
+                Language.fr => "Utilisateur",
+                Language.es => "Usuario",
+                Language.ru => "Пользователь",
+                Language.it => "Utente",
+                _ => "User",
+            };
+        }
+        public string CommandsWarnUserDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "zu bestrafender Benutzer",
+                Language.at => "zu bestrafender Benutzer",
+                Language.fr => "utilisateur à punir",
+                Language.es => "usuario a castigar",
+                Language.ru => "пользователь для наказания",
+                Language.it => "utente da punire",
+                _ => "user to punish",
+            };
+        }
+        public string CommandsWarnTitleName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Titel",
+                Language.at => "Titel",
+                Language.fr => "Titre",
+                Language.es => "Título",
+                Language.ru => "Заголовок",
+                Language.it => "Titolo",
+                _ => "Title",
+            };
+        }
+        public string CommandsWarnTitleDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Titel des Modcases",
+                Language.at => "Titel des Modcases",
+                Language.fr => "Titre du cas de modération",
+                Language.es => "Título del caso de moderación",
+                Language.ru => "Заголовок модкейса",
+                Language.it => "Titolo del caso di moderazione",
+                _ => "Title of the modcase",
+            };
+        }
+        public string CommandsWarnDetailsName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Details",
+                Language.at => "Details",
+                Language.fr => "Détails",
+                Language.es => "Detalles",
+                Language.ru => "Детали",
+                Language.it => "Dettagli",
+                _ => "Details",
+            };
+        }
+        public string CommandsWarnDetailsDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Details des Modcases",
+                Language.at => "Details des Modcases",
+                Language.fr => "Détails du cas de modération",
+                Language.es => "Detalles del caso de moderación",
+                Language.ru => "Детали модкейса",
+                Language.it => "Dettagli del caso di moderazione",
+                _ => "Details of the modcase",
+            };
+        }
+        public string CommandsWarndm_notificationName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Direktnachricht",
+                Language.at => "Direktnachricht",
+                Language.fr => "DM",
+                Language.es => "DM",
+                Language.ru => "DM",
+                Language.it => "DM",
+                _ => "DM",
+            };
+        }
+        public string CommandsWarndm_notificationDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                Language.at => "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                Language.fr => "Si une notification DM doit être envoyée",
+                Language.es => "Si se debe enviar una notificación DM",
+                Language.ru => "Отправлять ли уведомление DM",
+                Language.it => "Se inviare una notifica DM",
+                _ => "Whether to send a dm notification",
+            };
+        }
+        public string CommandsWarnpublic_notificationName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "öffentlich",
+                Language.at => "öffentlich",
+                Language.fr => "public",
+                Language.es => "público",
+                Language.ru => "общественный",
+                Language.it => "pubblico",
+                _ => "public",
+            };
+        }
+        public string CommandsWarnpublic_notificationDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                Language.at => "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                Language.fr => "Si une notification publique doit être envoyée",
+                Language.es => "Si se debe enviar una notificación pública",
+                Language.ru => "Отправлять ли общественное уведомление",
+                Language.it => "Se inviare una notifica pubblica",
+                _ => "Whether to send a public notification",
+            };
+        }
+        public string CommandsWarnexecute_punishmentName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "ausführen",
+                Language.at => "ausführen",
+                Language.fr => "exécuter",
+                Language.es => "ejecutar",
+                Language.ru => "выполнить",
+                Language.it => "eseguire",
+                _ => "execute",
+            };
+        }
+        public string CommandsWarnexecute_punishmentDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Ob die Strafe ausgeführt werden soll",
+                Language.at => "Ob die Strafe ausgeführt werden soll",
+                Language.fr => "Si la punition doit être exécutée",
+                Language.es => "Si se debe ejecutar el castigo",
+                Language.ru => "Выполнить ли наказание",
+                Language.it => "Se eseguire la punizione",
+                _ => "Whether to execute the punishment",
+            };
+        }
+        public string CommandsWhoisName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Whois",
+                Language.at => "Whois",
+                Language.fr => "Whois",
+                Language.es => "Whois",
+                Language.ru => "Whois",
+                Language.it => "Whois",
+                _ => "Whois",
+            };
+        }
+        public string CommandsWhoisDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Zeigt Informationen über einen Benutzer an",
+                Language.at => "Zeigt Informationen über einen Benutzer an",
+                Language.fr => "Affiche des informations sur un utilisateur",
+                Language.es => "Muestra información sobre un usuario",
+                Language.ru => "Показывает информацию о пользователе",
+                Language.it => "Mostra informazioni su un utente",
+                _ => "Shows information about a user",
+            };
+        }
+        public string CommandsWhoisUserName()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Benutzer",
+                Language.at => "Benutzer",
+                Language.fr => "Utilisateur",
+                Language.es => "Usuario",
+                Language.ru => "Пользователь",
+                Language.it => "Utente",
+                _ => "User",
+            };
+        }
+        public string CommandsWhoisUserDesc()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Benutzer zum Anzeigen der Informationen",
+                Language.at => "Benutzer zum Anzeigen der Informationen",
+                Language.fr => "Utilisateur pour afficher les informations",
+                Language.es => "Usuario para mostrar información",
+                Language.ru => "Пользователь для отображения информации",
+                Language.it => "Utente per mostrare le informazioni",
+                _ => "User to show information for",
+            };
+        }
         public string Features()
         {
             return PreferredLanguage switch
             {
-                Language.de => "Features",
-                Language.at => "Features",
+                Language.de => "Funktionen",
+                Language.at => "Funktionen",
                 Language.fr => "Caractéristiques",
                 Language.es => "Características",
                 Language.ru => "Функции",
@@ -436,8 +2100,8 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Importiert aus bestehenden Sperren",
-                Language.at => "Importiat aus vorhondane Sperren",
+                Language.de => "Importiert aus bestehenden Banns",
+                Language.at => "Importiat aus vorhondane Banns",
                 Language.fr => "Importé à partir des interdictions existantes",
                 Language.es => "Importado de prohibiciones existentes",
                 Language.ru => "Импортировано из существующих банов",
@@ -683,7 +2347,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen oder einen Entbannungsantrag besuche: {serviceBaseUrl}",
+                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen besuche {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di verwoarnt.\nFia weitere Infos oda ein Entbannungsantrag schau bei {serviceBaseUrl} noch.",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont prévenu.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han advertido.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -696,7 +2360,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich temporär stummgeschalten bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich bis zum {modCase.PunishedUntil.Value.ToDiscordTS()} temporär stummgeschalten.\nFür weitere Informationen besuche {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont temporairement mis en sourdine jusqu'à {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han silenciado temporalmente hasta {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -709,7 +2373,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nFür weitere Informationen besuche {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont mis en sourdine.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han silenciado.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -722,7 +2386,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich temporär gebannt bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich bis zum {modCase.PunishedUntil.Value.ToDiscordTS()} temporär gebannt.\nFür weitere Informationen oder zum Einreichen eines Entbannungsantrags besuche {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont temporairement banni jusqu'à {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han baneado temporalmente hasta el {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -735,7 +2399,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich gebannt.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich gebannt.\nFür weitere Informationen oder zum Einreichen eines Entbannungsantrags besuche {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont banni.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han prohibido.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -748,7 +2412,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich kickt.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                Language.de => $"Die Moderatoren von `{guild.Name}` haben dich kickt.\nFür weitere Informationen besuche {serviceBaseUrl}",
                 Language.at => $"Die Moderatoan vo `{guild.Name}` hom di rausgschmissn.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
                 Language.fr => $"Les modérateurs de la guilde `{guild.Name}` vous ont viré.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han pateado.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -878,7 +2542,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Vielen Dank für deine Registrierung.\nIm Folgenden wirst du einige nützliche Tipps zum Einrichten und Verwenden von **MASZ** erhalten.",
+                Language.de => "Vielen Dank für deine Registrierung.\nHier sind ein paar nützliche Tipps zum Einrichten und Verwenden von **MASZ**.",
                 Language.at => "Donksche fia dei Registrierung.\nDu siachst glei ei poar nützliche Tipps zum Eirichtn und Vawendn vo **MASZ**.",
                 Language.fr => "Merci d'avoir enregistré votre guilde.\nDans ce qui suit, vous apprendrez quelques conseils utiles pour configurer et utiliser **MASZ**.",
                 Language.es => "Gracias por registrar tu gremio.\nA continuación, aprenderá algunos consejos útiles para configurar y usar **MASZ**.",
@@ -904,7 +2568,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"MASZ wird `{language}` als Standard-Sprache für diese Gilde verwenden, wenn möglich.",
+                Language.de => $"MASZ wird `{language}` als Standard-Sprache für diesen Server verwenden (wenn verfügbar).",
                 Language.at => $"Dei MASZ wiad `{language}` ois Standard-Sproch fia die Güde nehma, wenns geht.",
                 Language.fr => $"MASZ utilisera `{language}` comme langue par défaut pour cette guilde dans la mesure du possible.",
                 Language.es => $"MASZ usará `{language}` como idioma predeterminado para este gremio siempre que sea posible.",
@@ -917,7 +2581,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Zeitzonen können kompliziert sein.\nMASZ benutzt ein Discord-Feature um Zeitstempel in der lokalen Zeitzone deines Computers/Handys anzuzeigen.",
+                Language.de => "Zeitzonen können kompliziert sein.\nMASZ verwendet Discords Zeitstempel um immer die lokale Zeitzone deines PCs/Smartphones zu verwenden.",
                 Language.at => "De Zeitzonen kennan a weng schwer san.\nMASZ nutzt a Discord-Feature um Zeitstempl in da lokalen Zeitzon vo deim PC/Handy ozumzeign.",
                 Language.fr => "Les fuseaux horaires peuvent être déroutants.\nMASZ utilise une fonction Discord pour afficher les horodatages dans le fuseau horaire local de votre ordinateur/téléphone.",
                 Language.es => "Las zonas horarias pueden resultar confusas.\nMASZ usa una función de Discord para mostrar marcas de tiempo en la zona horaria local de su computadora / teléfono.",
@@ -969,7 +2633,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}",
+                Language.de => $"Hallo {user.Mention},\n\nDu hast gerade die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}",
                 Language.at => $"Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention} ausglest. Grund: {reason}\nAktion: {action}",
                 Language.fr => $"Salut {user.Mention},\n\nVous avez déclenché l'automodération dans {channel.Mention}.\nRaison : {reason}\nAction : {action}",
                 Language.es => $"Hola, {user.Mention}:\n\nActivó la automoderación en {channel.Mention}.\nMotivo: {reason}\nAcción: {action}",
@@ -995,7 +2659,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Neue MotD wurde von {actor.Mention} erstellt.",
+                Language.de => $"Neue Nachricht des Tages wurde von {actor.Mention} erstellt.",
                 Language.at => $"A neiche MotD wuad vo {actor.Mention} erstöt. ",
                 Language.fr => $"Le nouveau MotD a été créé par {actor.Mention}.",
                 Language.es => $"El nuevo MotD ha sido creado por {actor.Mention}.",
@@ -1008,7 +2672,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"MotD wurde von {actor.Mention} bearbeitet.",
+                Language.de => $"Nachricht des Tages wurde von {actor.Mention} bearbeitet.",
                 Language.at => $"MotD is vo {actor.Mention} beorbeit woan.",
                 Language.fr => $"MotD a été édité par {actor.Mention}.",
                 Language.es => $"MotD ha sido editado por {actor.Mention}.",
@@ -1164,7 +2828,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Sende DM Nachricht",
+                Language.de => "Schicke eine Direktnachricht",
                 Language.at => "Schick a Direktnachricht",
                 Language.fr => "Envoyer une notification DM",
                 Language.es => "Enviar notificación DM",
@@ -1190,7 +2854,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` von <@{by}> (am {createdAt.ToDiscordTS()}) beigetreten.",
+                Language.de => $"{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` von <@{by}> (erstellt am {createdAt.ToDiscordTS()}) beigetreten.",
                 Language.at => $"{user.Mention} (registriert {registered.ToDiscordTS()}) is mit da Eiladung `{invite}` vo <@{by}> (am {createdAt.ToDiscordTS()}) beigetretn.",
                 Language.fr => $"{user.Mention} (enregistré {registered.ToDiscordTS()}) rejoint avec invite `{invite}` (créé {createdAt.ToDiscordTS()}) par <@{by}>.",
                 Language.es => $"{user.Mention} (registrado {registered.ToDiscordTS()}) se unió con la invitación `{invite}` (creado {createdAt.ToDiscordTS()}) por <@{by}>.",
@@ -1398,7 +3062,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "NutzerId",
+                Language.de => "ID des Nutzers",
                 Language.at => "NutzaId",
                 Language.fr => "Identifiant d'utilisateur",
                 Language.es => "User ID",
@@ -1424,7 +3088,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Dieser Server hat keinen internen Webhook für Benachrichtigungen konfiguriert.",
+                Language.de => "Dieser Server hat keinen Webhook für interne Benachrichtigungen konfiguriert.",
                 Language.at => "Da Serva hot kan internan Webhook fia Benochrichtigungen konfiguriat.",
                 Language.fr => "Cette guilde n'a pas configuré de webhook pour les notifications internes.",
                 Language.es => "Este gremio no tiene configurado ningún webhook para notificaciones internas.",
@@ -1489,7 +3153,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Ban-Berechtigung erteilt.",
+                Language.de => "Bann-Berechtigung erteilt.",
                 Language.at => "Ban-Berechtigung erteit.",
                 Language.fr => "Autorisation d'interdiction accordée.",
                 Language.es => "Prohibición concedida.",
@@ -1502,7 +3166,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Ban-Berechtigung nicht erteilt.",
+                Language.de => "Bann-Berechtigung nicht erteilt.",
                 Language.at => "Ban-Berechtigung ned erteit.",
                 Language.fr => "Autorisation d'interdiction non accordée.",
                 Language.es => "Prohibir permiso no concedido.",
@@ -1632,7 +3296,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.",
+                Language.de => "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese zu kommentieren.",
                 Language.at => "Erlaubt ausgsperrtn MASZ aufzuruafa, sich ernane Fälle ozumschaun und de zum kommentian.",
                 Language.fr => "Permet aux membres bannis de voir leurs cas et de les commenter pour les demandes de déban.",
                 Language.es => "Permite a los miembros prohibidos ver sus casos y comentarlos para las solicitudes de deshabilitación.",
@@ -1645,7 +3309,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.\nErteile diesem Bot die Ban-Berechtigung, um diese Funktion zu nutzen.",
+                Language.de => "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.\nErteile MASZ die Bann-Berechtigung, um diese Funktion zu nutzen.",
                 Language.at => "Erlaubt ausgsperrtn MASZ aufzurufa, sich ernane Fälle ozumschaun und de zum kommentian. \nErteil dem Bot die Ban-Berechtigung, um de Funktion nutza zu kenna.",
                 Language.fr => "Permet aux membres bannis de voir leurs cas et de les commenter pour les demandes de déban.\nAccordez à ce bot l'autorisation d'interdire l'utilisation de cette fonctionnalité.",
                 Language.es => "Permite a los miembros prohibidos ver sus casos y comentarlos para las solicitudes de deshabilitación.\nOtorga a este bot el permiso de prohibición para usar esta función.",
@@ -1723,7 +3387,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.\nErteile diesem Bot die Verwalten-Gilden-Berechtigung, um diese Funktion zu nutzen.",
+                Language.de => "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.\nErteile diesem Bot die Server-Verwalten-Berechtigung, um diese Funktion zu nutzen.",
                 Language.at => "Erlaubt MASZ, de Eiladungen vo neichn Mitglieda zu verfoign.\nErteil dem Bot die Verwoitn-Gilden-Berechtigung, um de Funktion nutzn zu kenna.",
                 Language.fr => "Permet à MASZ de suivre les invitations que les nouveaux membres utilisent.\nAccordez à ce bot l'autorisation de gestion de guilde pour utiliser cette fonctionnalité.",
                 Language.es => "Permite a MASZ realizar un seguimiento de las invitaciones que están utilizando los nuevos miembros.\nOtorga a este bot el permiso de gestión del gremio para usar esta función.",
@@ -1736,7 +3400,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Dein Bot auf diesem Server ist richtig konfiguriert.",
+                Language.de => "Dein Bot ist auf diesem Server richtig konfiguriert.",
                 Language.at => "Dei Bot auf dem Serva is richtig konfiguriat.",
                 Language.fr => "Votre bot sur cette guilde est correctement configuré.",
                 Language.es => "Tu bot en este gremio está configurado correctamente.",
@@ -1762,7 +3426,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Es gibt Funktionen von MASZ, die du jetzt nicht nutzen kannst.",
+                Language.de => "Es gibt Funktionen von MASZ, die du momentan nicht nutzen kannst.",
                 Language.at => "Es gibt Funktionen vo MASZ, die du jetzt ned nutzn konnst.",
                 Language.fr => "Il y a des fonctionnalités de MASZ que vous ne pouvez pas utiliser pour le moment.",
                 Language.es => "Hay funciones de MASZ que no puede utilizar en este momento.",
@@ -1814,7 +3478,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Interner Benachrichtigungsversand an Moderatoren für Meldebefehl fehlgeschlagen.",
+                Language.de => "Benachrichtigung der Moderatoren fehlgeschlagen.",
                 Language.at => "Interna Benochrichtigungsvasond on de Modaratoan fian Mödebefehl fehlgschlogn.",
                 Language.fr => "Échec de l'envoi de la notification interne aux modérateurs pour la commande de rapport.",
                 Language.es => "No se pudo enviar una notificación interna a los moderadores para el comando de informe.",
@@ -1996,7 +3660,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Bitte gib eine gültige Gilden-ID an.",
+                Language.de => "Bitte gib eine gültige Server-ID an.",
                 Language.at => "Bitte gib a gütige Güdn-ID o.",
                 Language.fr => "Veuillez spécifier un identifiant de guilde valide.",
                 Language.es => "Por favor, especifique un guildid válido.",
@@ -2009,7 +3673,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Du darfst diesen Fall nicht ansehen.",
+                Language.de => "Du bist nicht berechtigt diesen Case anzusehen.",
                 Language.at => "Du derfst da den Foi ned oschaun.",
                 Language.fr => "Vous n'êtes pas autorisé à voir ce cas.",
                 Language.es => "No se le permite ver este caso.",
@@ -2204,7 +3868,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer nicht mehr stummgeschaltet zu lassen?",
+                Language.de => $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um die Stummschaltung des Nutzers aufzuheben?",
                 Language.at => $"Es san `{caseCount}` aktive Fälle gfundn woan. Möchtest olle deaktivian oda löschn, damit da Nutza nimma stummgschoitn bleibt?",
                 Language.fr => $"`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour réactiver le son de l'utilisateur ?",
                 Language.es => $"Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para dejar de silenciar al usuario?",
@@ -2269,7 +3933,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entbannen zu lassen?",
+                Language.de => $"Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Nutzer zu entbannen?",
                 Language.at => $"Es san `{caseCount}` aktive Fälle gfundn woan. Möchtest olle deaktivian oda löschn, damit da Nutza entsperrt bleibt?",
                 Language.fr => $"`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour annuler l'interdiction de l'utilisateur ?",
                 Language.es => $"Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para desbloquear al usuario?",
@@ -2282,7 +3946,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Sperrungen gelöscht",
+                Language.de => "Banns gelöscht",
                 Language.at => "Sperrungen glescht",
                 Language.fr => "Interdictions supprimées",
                 Language.es => "Prohibiciones eliminadas",
@@ -2295,7 +3959,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Sperrungen deaktiviert",
+                Language.de => "Banns deaktiviert",
                 Language.at => "Sperrungen deaktiviat",
                 Language.fr => "Interdictions désactivées",
                 Language.es => "Prohibiciones desactivadas",
@@ -2308,7 +3972,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Sperrungen löschen",
+                Language.de => "Banns löschen",
                 Language.at => "Sperrungen löschn",
                 Language.fr => "Supprimer les bannissements",
                 Language.es => "Eliminar prohibiciones",
@@ -2321,7 +3985,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "Sperrungen deaktivieren",
+                Language.de => "Banns deaktivieren",
                 Language.at => "Sperrungen deaktivian",
                 Language.fr => "Désactiver les interdictions",
                 Language.es => "Prohibiciones de desactivación",
@@ -2490,7 +4154,7 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => "NutzerId",
+                Language.de => "ID des Nutzers",
                 Language.at => "NutzaId",
                 Language.fr => "Identifiant d'utilisateur",
                 Language.es => "User ID",
@@ -3045,6 +4709,317 @@ namespace MASZ.Utils
                 _ => "Switched voicechannel",
             };
         }
+        public string GetByJsonPath(string jsonPath)
+        {
+            jsonPath = jsonPath.ToLower();
+            return jsonPath switch
+            {
+                "commands.antiraid.name" => CommandsAntiraidName(),
+                "commands.antiraid.desc" => CommandsAntiraidDesc(),
+                "commands.antiraid.user.name" => CommandsAntiraidUserName(),
+                "commands.antiraid.user.desc" => CommandsAntiraidUserDesc(),
+                "commands.avatar.name" => CommandsAvatarName(),
+                "commands.avatar.desc" => CommandsAvatarDesc(),
+                "commands.avatar.user.name" => CommandsAvatarUserName(),
+                "commands.avatar.user.desc" => CommandsAvatarUserDesc(),
+                "commands.ban.name" => CommandsBanName(),
+                "commands.ban.desc" => CommandsBanDesc(),
+                "commands.ban.user.name" => CommandsBanUserName(),
+                "commands.ban.user.desc" => CommandsBanUserDesc(),
+                "commands.ban.title.name" => CommandsBanTitleName(),
+                "commands.ban.title.desc" => CommandsBanTitleDesc(),
+                "commands.ban.details.name" => CommandsBanDetailsName(),
+                "commands.ban.details.desc" => CommandsBanDetailsDesc(),
+                "commands.ban.hours.name" => CommandsBanhoursName(),
+                "commands.ban.hours.desc" => CommandsBanhoursDesc(),
+                "commands.ban.hours.none.name" => CommandsBanhoursNoneName(),
+                "commands.ban.hours.1 hour.name" => CommandsBanhours1_HourName(),
+                "commands.ban.hours.1 day.name" => CommandsBanhours1_DayName(),
+                "commands.ban.hours.1 week.name" => CommandsBanhours1_WeekName(),
+                "commands.ban.hours.1 month.name" => CommandsBanhours1_MonthName(),
+                "commands.ban.dm-notification.name" => CommandsBandm_notificationName(),
+                "commands.ban.dm-notification.desc" => CommandsBandm_notificationDesc(),
+                "commands.ban.public-notification.name" => CommandsBanpublic_notificationName(),
+                "commands.ban.public-notification.desc" => CommandsBanpublic_notificationDesc(),
+                "commands.ban.execute-punishment.name" => CommandsBanexecute_punishmentName(),
+                "commands.ban.execute-punishment.desc" => CommandsBanexecute_punishmentDesc(),
+                "commands.cleanup.name" => CommandsCleanupName(),
+                "commands.cleanup.desc" => CommandsCleanupDesc(),
+                "commands.cleanup.mode.name" => CommandsCleanupModeName(),
+                "commands.cleanup.mode.desc" => CommandsCleanupModeDesc(),
+                "commands.cleanup.channel.name" => CommandsCleanupChannelName(),
+                "commands.cleanup.channel.desc" => CommandsCleanupChannelDesc(),
+                "commands.cleanup.count.name" => CommandsCleanupCountName(),
+                "commands.cleanup.count.desc" => CommandsCleanupCountDesc(),
+                "commands.cleanup.user.name" => CommandsCleanupUserName(),
+                "commands.cleanup.user.desc" => CommandsCleanupUserDesc(),
+                "commands.features.name" => CommandsFeaturesName(),
+                "commands.features.desc" => CommandsFeaturesDesc(),
+                "commands.github.name" => CommandsGithubName(),
+                "commands.github.desc" => CommandsGithubDesc(),
+                "commands.invite.name" => CommandsInviteName(),
+                "commands.invite.desc" => CommandsInviteDesc(),
+                "commands.kick.name" => CommandsKickName(),
+                "commands.kick.desc" => CommandsKickDesc(),
+                "commands.kick.user.name" => CommandsKickUserName(),
+                "commands.kick.user.desc" => CommandsKickUserDesc(),
+                "commands.kick.title.name" => CommandsKickTitleName(),
+                "commands.kick.title.desc" => CommandsKickTitleDesc(),
+                "commands.kick.details.name" => CommandsKickDetailsName(),
+                "commands.kick.details.desc" => CommandsKickDetailsDesc(),
+                "commands.kick.dm-notification.name" => CommandsKickdm_notificationName(),
+                "commands.kick.dm-notification.desc" => CommandsKickdm_notificationDesc(),
+                "commands.kick.public-notification.name" => CommandsKickpublic_notificationName(),
+                "commands.kick.public-notification.desc" => CommandsKickpublic_notificationDesc(),
+                "commands.kick.execute-punishment.name" => CommandsKickexecute_punishmentName(),
+                "commands.kick.execute-punishment.desc" => CommandsKickexecute_punishmentDesc(),
+                "commands.mute.name" => CommandsMuteName(),
+                "commands.mute.desc" => CommandsMuteDesc(),
+                "commands.mute.user.name" => CommandsMuteUserName(),
+                "commands.mute.user.desc" => CommandsMuteUserDesc(),
+                "commands.mute.title.name" => CommandsMuteTitleName(),
+                "commands.mute.title.desc" => CommandsMuteTitleDesc(),
+                "commands.mute.details.name" => CommandsMuteDetailsName(),
+                "commands.mute.details.desc" => CommandsMuteDetailsDesc(),
+                "commands.mute.hours.name" => CommandsMutehoursName(),
+                "commands.mute.hours.desc" => CommandsMutehoursDesc(),
+                "commands.mute.hours.none.name" => CommandsMutehoursNoneName(),
+                "commands.mute.hours.1 hour.name" => CommandsMutehours1_HourName(),
+                "commands.mute.hours.1 day.name" => CommandsMutehours1_DayName(),
+                "commands.mute.hours.1 week.name" => CommandsMutehours1_WeekName(),
+                "commands.mute.hours.1 month.name" => CommandsMutehours1_MonthName(),
+                "commands.mute.dm-notification.name" => CommandsMutedm_notificationName(),
+                "commands.mute.dm-notification.desc" => CommandsMutedm_notificationDesc(),
+                "commands.mute.public-notification.name" => CommandsMutepublic_notificationName(),
+                "commands.mute.public-notification.desc" => CommandsMutepublic_notificationDesc(),
+                "commands.mute.execute-punishment.name" => CommandsMuteexecute_punishmentName(),
+                "commands.mute.execute-punishment.desc" => CommandsMuteexecute_punishmentDesc(),
+                "commands.report.name" => CommandsReportName(),
+                "commands.report.desc" => CommandsReportDesc(),
+                "commands.say.name" => CommandsSayName(),
+                "commands.say.desc" => CommandsSayDesc(),
+                "commands.say.message.name" => CommandsSayMessageName(),
+                "commands.say.message.desc" => CommandsSayMessageDesc(),
+                "commands.say.channel.name" => CommandsSayChannelName(),
+                "commands.say.channel.desc" => CommandsSayChannelDesc(),
+                "commands.status.name" => CommandsStatusName(),
+                "commands.status.desc" => CommandsStatusDesc(),
+                "commands.track.name" => CommandsTrackName(),
+                "commands.track.desc" => CommandsTrackDesc(),
+                "commands.track.invite.name" => CommandsTrackInviteName(),
+                "commands.track.invite.desc" => CommandsTrackInviteDesc(),
+                "commands.unban.name" => CommandsUnbanName(),
+                "commands.unban.desc" => CommandsUnbanDesc(),
+                "commands.unban.user.name" => CommandsUnbanUserName(),
+                "commands.unban.user.desc" => CommandsUnbanUserDesc(),
+                "commands.unmute.name" => CommandsUnmuteName(),
+                "commands.unmute.desc" => CommandsUnmuteDesc(),
+                "commands.unmute.user.name" => CommandsUnmuteUserName(),
+                "commands.unmute.user.desc" => CommandsUnmuteUserDesc(),
+                "commands.url.name" => CommandsUrlName(),
+                "commands.url.desc" => CommandsUrlDesc(),
+                "commands.view.name" => CommandsViewName(),
+                "commands.view.desc" => CommandsViewDesc(),
+                "commands.view.id.name" => CommandsViewIdName(),
+                "commands.view.id.desc" => CommandsViewIdDesc(),
+                "commands.view.guildid.name" => CommandsViewGuildidName(),
+                "commands.view.guildid.desc" => CommandsViewGuildidDesc(),
+                "commands.warn.name" => CommandsWarnName(),
+                "commands.warn.desc" => CommandsWarnDesc(),
+                "commands.warn.user.name" => CommandsWarnUserName(),
+                "commands.warn.user.desc" => CommandsWarnUserDesc(),
+                "commands.warn.title.name" => CommandsWarnTitleName(),
+                "commands.warn.title.desc" => CommandsWarnTitleDesc(),
+                "commands.warn.details.name" => CommandsWarnDetailsName(),
+                "commands.warn.details.desc" => CommandsWarnDetailsDesc(),
+                "commands.warn.dm-notification.name" => CommandsWarndm_notificationName(),
+                "commands.warn.dm-notification.desc" => CommandsWarndm_notificationDesc(),
+                "commands.warn.public-notification.name" => CommandsWarnpublic_notificationName(),
+                "commands.warn.public-notification.desc" => CommandsWarnpublic_notificationDesc(),
+                "commands.warn.execute-punishment.name" => CommandsWarnexecute_punishmentName(),
+                "commands.warn.execute-punishment.desc" => CommandsWarnexecute_punishmentDesc(),
+                "commands.whois.name" => CommandsWhoisName(),
+                "commands.whois.desc" => CommandsWhoisDesc(),
+                "commands.whois.user.name" => CommandsWhoisUserName(),
+                "commands.whois.user.desc" => CommandsWhoisUserDesc(),
+                "features" => Features(),
+                "automoderation" => Automoderation(),
+                "action" => Action(),
+                "notfound" => NotFound(),
+                "author" => Author(),
+                "messagecontent" => MessageContent(),
+                "attachments" => Attachments(),
+                "attachment" => Attachment(),
+                "channel" => Channel(),
+                "somethingwentwrong" => SomethingWentWrong(),
+                "code" => Code(),
+                "languageword" => LanguageWord(),
+                "timestamps" => Timestamps(),
+                "support" => Support(),
+                "punishment" => Punishment(),
+                "until" => Until(),
+                "punishmentuntil" => PunishmentUntil(),
+                "description" => Description(),
+                "labels" => Labels(),
+                "filename" => Filename(),
+                "message" => Message(),
+                "usernote" => UserNote(),
+                "usernotes" => UserNotes(),
+                "cases" => Cases(),
+                "motd" => MotD(),
+                "activepunishments" => ActivePunishments(),
+                "usermap" => UserMap(),
+                "usermaps" => UserMaps(),
+                "imported" => Imported(),
+                "importedfromexistingbans" => ImportedFromExistingBans(),
+                "type" => Type(),
+                "joined" => Joined(),
+                "registered" => Registered(),
+                "notification.modcase.comments.short.create" => NotificationModcaseCommentsShortCreate(),
+                "notification.modcase.comments.short.update" => NotificationModcaseCommentsShortUpdate(),
+                "notification.modcase.comments.short.delete" => NotificationModcaseCommentsShortDelete(),
+                "notification.files.create" => NotificationFilesCreate(),
+                "notification.files.delete" => NotificationFilesDelete(),
+                "notification.files.update" => NotificationFilesUpdate(),
+                "notification.appeals.status" => NotificationAppealsStatus(),
+                "notification.appeals.reason" => NotificationAppealsReason(),
+                "notification.appeals.appeal" => NotificationAppealsAppeal(),
+                "notification.register.welcometomasz" => NotificationRegisterWelcomeToMASZ(),
+                "notification.register.descriptionthanks" => NotificationRegisterDescriptionThanks(),
+                "notification.register.usefeaturescommand" => NotificationRegisterUseFeaturesCommand(),
+                "notification.register.confusingtimestamps" => NotificationRegisterConfusingTimestamps(),
+                "notification.register.support" => NotificationRegisterSupport(),
+                "notification.motd.show" => NotificationMotdShow(),
+                "notification.automoderationconfig.limit" => NotificationAutomoderationConfigLimit(),
+                "notification.automoderationconfig.timelimit" => NotificationAutomoderationConfigTimeLimit(),
+                "notification.automoderationconfig.ignored.roles" => NotificationAutomoderationConfigIgnoredRoles(),
+                "notification.automoderationconfig.ignored.channels" => NotificationAutomoderationConfigIgnoredChannels(),
+                "notification.automoderationconfig.duration" => NotificationAutomoderationConfigDuration(),
+                "notification.automoderationconfig.deletemessage" => NotificationAutomoderationConfigDeleteMessage(),
+                "notification.automoderationconfig.sendpublic" => NotificationAutomoderationConfigSendPublic(),
+                "notification.automoderationconfig.senddm" => NotificationAutomoderationConfigSendDM(),
+                "notification.guildauditlog.mentionroles" => NotificationGuildAuditLogMentionRoles(),
+                "notification.guildauditlog.excluderoles" => NotificationGuildAuditLogExcludeRoles(),
+                "notification.guildauditlog.excludechannels" => NotificationGuildAuditLogExcludeChannels(),
+                "notification.guildauditlog.title" => NotificationGuildAuditLogTitle(),
+                "cmd.onlytextchannel" => CmdOnlyTextChannel(),
+                "cmd.cannotviewordeleteinchannel" => CmdCannotViewOrDeleteInChannel(),
+                "cmd.getavatarurl" => CmdGetAvatarURL(),
+                "cmd.userid" => CmdUserID(),
+                "cmd.cannotfindchannel" => CmdCannotFindChannel(),
+                "cmd.nowebhookconfigured" => CmdNoWebhookConfigured(),
+                "cmd.features.kickpermission.granted" => CmdFeaturesKickPermissionGranted(),
+                "cmd.features.kickpermission.notgranted" => CmdFeaturesKickPermissionNotGranted(),
+                "cmd.features.banpermission.granted" => CmdFeaturesBanPermissionGranted(),
+                "cmd.features.banpermission.notgranted" => CmdFeaturesBanPermissionNotGranted(),
+                "cmd.features.managerolepermission.granted" => CmdFeaturesManageRolePermissionGranted(),
+                "cmd.features.managerolepermission.notgranted" => CmdFeaturesManageRolePermissionNotGranted(),
+                "cmd.features.mutedrole.defined" => CmdFeaturesMutedRoleDefined(),
+                "cmd.features.mutedrole.definedbuttoohigh" => CmdFeaturesMutedRoleDefinedButTooHigh(),
+                "cmd.features.mutedrole.definedbutinvalid" => CmdFeaturesMutedRoleDefinedButInvalid(),
+                "cmd.features.mutedrole.undefined" => CmdFeaturesMutedRoleUndefined(),
+                "cmd.features.punishmentexecution" => CmdFeaturesPunishmentExecution(),
+                "cmd.features.punishmentexecutiondescription" => CmdFeaturesPunishmentExecutionDescription(),
+                "cmd.features.unbanrequests" => CmdFeaturesUnbanRequests(),
+                "cmd.features.unbanrequestsdescription.granted" => CmdFeaturesUnbanRequestsDescriptionGranted(),
+                "cmd.features.unbanrequestsdescription.notgranted" => CmdFeaturesUnbanRequestsDescriptionNotGranted(),
+                "cmd.features.reportcommand" => CmdFeaturesReportCommand(),
+                "cmd.features.reportcommanddescription.granted" => CmdFeaturesReportCommandDescriptionGranted(),
+                "cmd.features.reportcommanddescription.notgranted" => CmdFeaturesReportCommandDescriptionNotGranted(),
+                "cmd.features.invitetracking" => CmdFeaturesInviteTracking(),
+                "cmd.features.invitetrackingdescription.granted" => CmdFeaturesInviteTrackingDescriptionGranted(),
+                "cmd.features.invitetrackingdescription.notgranted" => CmdFeaturesInviteTrackingDescriptionNotGranted(),
+                "cmd.features.supportallfeatures" => CmdFeaturesSupportAllFeatures(),
+                "cmd.features.supportallfeaturesdesc" => CmdFeaturesSupportAllFeaturesDesc(),
+                "cmd.features.missingfeatures" => CmdFeaturesMissingFeatures(),
+                "cmd.invite" => CmdInvite(),
+                "cmd.report.failed" => CmdReportFailed(),
+                "cmd.report.sent" => CmdReportSent(),
+                "cmd.say.failed" => CmdSayFailed(),
+                "cmd.say.sent" => CmdSaySent(),
+                "cmd.track.invitenotfromthisguild" => CmdTrackInviteNotFromThisGuild(),
+                "cmd.track.cannotfindinvite" => CmdTrackCannotFindInvite(),
+                "cmd.track.failedtofetchinvite" => CmdTrackFailedToFetchInvite(),
+                "cmd.track.nottrackedyet" => CmdTrackNotTrackedYet(),
+                "cmd.view.invalidguildid" => CmdViewInvalidGuildId(),
+                "cmd.view.notallowedtoview" => CmdViewNotAllowedToView(),
+                "cmd.whois.nocases" => CmdWhoisNoCases(),
+                "cmd.undo.result.title" => CmdUndoResultTitle(),
+                "cmd.undo.result.waiting" => CmdUndoResultWaiting(),
+                "cmd.undo.result.timedout" => CmdUndoResultTimedout(),
+                "cmd.undo.result.canceled" => CmdUndoResultCanceled(),
+                "cmd.undo.publicnotification.title" => CmdUndoPublicNotificationTitle(),
+                "cmd.undo.publicnotification.description" => CmdUndoPublicNotificationDescription(),
+                "cmd.undo.buttons.cancel" => CmdUndoButtonsCancel(),
+                "cmd.undo.buttons.publicnotification" => CmdUndoButtonsPublicNotification(),
+                "cmd.undo.buttons.nopublicnotification" => CmdUndoButtonsNoPublicNotification(),
+                "cmd.undo.createdat" => CmdUndoCreatedAt(),
+                "cmd.undo.nocases" => CmdUndoNoCases(),
+                "cmd.undo.unmute.result.deleted" => CmdUndoUnmuteResultDeleted(),
+                "cmd.undo.unmute.result.deactivated" => CmdUndoUnmuteResultDeactivated(),
+                "cmd.undo.unmute.buttons.delete" => CmdUndoUnmuteButtonsDelete(),
+                "cmd.undo.unmute.buttons.deactivate" => CmdUndoUnmuteButtonsDeactivate(),
+                "cmd.undo.unban.result.deleted" => CmdUndoUnbanResultDeleted(),
+                "cmd.undo.unban.result.deactivated" => CmdUndoUnbanResultDeactivated(),
+                "cmd.undo.unban.buttons.delete" => CmdUndoUnbanButtonsDelete(),
+                "cmd.undo.unban.buttons.deactivate" => CmdUndoUnbanButtonsDeactivate(),
+                "cmd.status.title" => CmdStatusTitle(),
+                "cmd.status.bot" => CmdStatusBot(),
+                "cmd.status.database" => CmdStatusDatabase(),
+                "cmd.status.internalcache" => CmdStatusInternalCache(),
+                "cmd.status.currentlyloggedin" => CmdStatusCurrentlyLoggedIn(),
+                "guildauditlog.channel" => GuildAuditLogChannel(),
+                "guildauditlog.channelbefore" => GuildAuditLogChannelBefore(),
+                "guildauditlog.channelafter" => GuildAuditLogChannelAfter(),
+                "guildauditlog.channelid" => GuildAuditLogChannelId(),
+                "guildauditlog.id" => GuildAuditLogID(),
+                "guildauditlog.message" => GuildAuditLogMessage(),
+                "guildauditlog.userid" => GuildAuditLogUserID(),
+                "guildauditlog.user" => GuildAuditLogUser(),
+                "guildauditlog.emote" => GuildAuditLogEmote(),
+                "guildauditlog.author" => GuildAuditLogAuthor(),
+                "guildauditlog.created" => GuildAuditLogCreated(),
+                "guildauditlog.couldnotfetch" => GuildAuditLogCouldNotFetch(),
+                "guildauditlog.notfoundincache" => GuildAuditLogNotFoundInCache(),
+                "guildauditlog.old" => GuildAuditLogOld(),
+                "guildauditlog.new" => GuildAuditLogNew(),
+                "guildauditlog.empty" => GuildAuditLogEmpty(),
+                "guildauditlog.messagesent.title" => GuildAuditLogMessageSentTitle(),
+                "guildauditlog.messagesent.content" => GuildAuditLogMessageSentContent(),
+                "guildauditlog.messageupdated.title" => GuildAuditLogMessageUpdatedTitle(),
+                "guildauditlog.messageupdated.contentbefore" => GuildAuditLogMessageUpdatedContentBefore(),
+                "guildauditlog.messageupdated.contentnew" => GuildAuditLogMessageUpdatedContentNew(),
+                "guildauditlog.messageupdated.pinned" => GuildAuditLogMessageUpdatedPinned(),
+                "guildauditlog.messagedeleted.title" => GuildAuditLogMessageDeletedTitle(),
+                "guildauditlog.messagedeleted.content" => GuildAuditLogMessageDeletedContent(),
+                "guildauditlog.banadded.title" => GuildAuditLogBanAddedTitle(),
+                "guildauditlog.banremoved.title" => GuildAuditLogBanRemovedTitle(),
+                "guildauditlog.invitecreated.title" => GuildAuditLogInviteCreatedTitle(),
+                "guildauditlog.invitecreated.url" => GuildAuditLogInviteCreatedURL(),
+                "guildauditlog.invitecreated.maxuses" => GuildAuditLogInviteCreatedMaxUses(),
+                "guildauditlog.invitecreated.expiration" => GuildAuditLogInviteCreatedExpiration(),
+                "guildauditlog.invitecreated.targetchannel" => GuildAuditLogInviteCreatedTargetChannel(),
+                "guildauditlog.invitedeleted.title" => GuildAuditLogInviteDeletedTitle(),
+                "guildauditlog.memberjoined.title" => GuildAuditLogMemberJoinedTitle(),
+                "guildauditlog.memberjoined.registered" => GuildAuditLogMemberJoinedRegistered(),
+                "guildauditlog.memberremoved.title" => GuildAuditLogMemberRemovedTitle(),
+                "guildauditlog.threadcreated.title" => GuildAuditLogThreadCreatedTitle(),
+                "guildauditlog.threadcreated.parent" => GuildAuditLogThreadCreatedParent(),
+                "guildauditlog.threadcreated.creator" => GuildAuditLogThreadCreatedCreator(),
+                "guildauditlog.usernameupdated.title" => GuildAuditLogUsernameUpdatedTitle(),
+                "guildauditlog.avatarupdated.title" => GuildAuditLogAvatarUpdatedTitle(),
+                "guildauditlog.nicknameupdated.title" => GuildAuditLogNicknameUpdatedTitle(),
+                "guildauditlog.rolesupdated.title" => GuildAuditLogRolesUpdatedTitle(),
+                "guildauditlog.rolesupdated.added" => GuildAuditLogRolesUpdatedAdded(),
+                "guildauditlog.rolesupdated.removed" => GuildAuditLogRolesUpdatedRemoved(),
+                "guildauditlog.reactionadded.title" => GuildAuditLogReactionAddedTitle(),
+                "guildauditlog.reactionremoved.title" => GuildAuditLogReactionRemovedTitle(),
+                "guildauditlog.voicejoined.title" => GuildAuditLogVoiceJoinedTitle(),
+                "guildauditlog.voiceleft.title" => GuildAuditLogVoiceLeftTitle(),
+                "guildauditlog.voicemoved.title" => GuildAuditLogVoiceMovedTitle(),
+                _ => "Unknown",
+            };
+        }
         public string Enum(PunishmentType enumValue)
         {
             return enumValue switch
@@ -3289,6 +5264,16 @@ namespace MASZ.Utils
                     Language.ru => "Использовано слишком много ссылок",
                     Language.it => "Troppi link utilizzati",
                     _ => "Too many links used",
+                },
+                AutoModerationType.TooManyPhishingLinks => PreferredLanguage switch
+                {
+                    Language.de => "Zu viele Phishing-Links verwendet",
+                    Language.at => "Zu vü Phishing-Links vawendet",
+                    Language.fr => "Trop de liens de phishing utilisés",
+                    Language.es => "Se han utilizado demasiados enlaces de phishing",
+                    Language.ru => "Использовано слишком много ссылок на фишинг",
+                    Language.it => "Troppi link di phishing utilizzati",
+                    _ => "Too many phishing links used",
                 },
                 _ => "Unknown",
             };

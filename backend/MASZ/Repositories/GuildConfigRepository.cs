@@ -9,9 +9,16 @@ namespace MASZ.Repositories
 
     public class GuildConfigRepository : BaseRepository<GuildConfigRepository>
     {
-        private GuildConfigRepository(IServiceProvider serviceProvider) : base(serviceProvider) { }
+        private readonly IUser _currentUser;
+        private GuildConfigRepository(IServiceProvider serviceProvider) : base(serviceProvider) {
+            _currentUser = DiscordAPI.GetCurrentBotInfo();
+        }
+        private GuildConfigRepository(IServiceProvider serviceProvider, IUser currentUser) : base(serviceProvider) {
+            _currentUser = currentUser;
+        }
 
         public static GuildConfigRepository CreateDefault(IServiceProvider serviceProvider) => new(serviceProvider);
+        public static GuildConfigRepository CreateDefault(IServiceProvider serviceProvider, Identity identity) => new(serviceProvider, identity.GetCurrentUser());
         public async Task<GuildConfig> GetGuildConfig(ulong guildId)
         {
             GuildConfig guildConfig = await Database.SelectSpecificGuildConfig(guildId);
@@ -73,7 +80,7 @@ namespace MASZ.Repositories
             await Database.SaveGuildConfig(guildConfig);
             await Database.SaveChangesAsync();
 
-            _eventHandler.OnGuildRegisteredEvent.InvokeAsync(guildConfig, importExistingBans);
+            _eventHandler.OnGuildRegisteredEvent.InvokeAsync(guildConfig, _currentUser, importExistingBans);
 
             return guildConfig;
         }
@@ -119,7 +126,7 @@ namespace MASZ.Repositories
             Database.UpdateGuildConfig(guildConfig);
             await Database.SaveChangesAsync();
 
-            _eventHandler.OnGuildUpdatedEvent.InvokeAsync(guildConfig);
+            _eventHandler.OnGuildUpdatedEvent.InvokeAsync(guildConfig, _currentUser);
 
             return guildConfig;
         }
@@ -155,7 +162,7 @@ namespace MASZ.Repositories
             Database.DeleteSpecificGuildConfig(guildConfig);
             await Database.SaveChangesAsync();
 
-            _eventHandler.OnGuildDeletedEvent.InvokeAsync(guildConfig);
+            _eventHandler.OnGuildDeletedEvent.InvokeAsync(guildConfig, _currentUser);
 
             return guildConfig;
         }

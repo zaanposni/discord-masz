@@ -71,4 +71,12 @@ export const types: IAutoModRuleDefinition[] = [
         requireCustomField: false,
         link: "https://gist.github.com/zaanposni/5808c07c26ba04f81a9ef31c6dfa3a7e",
     },
+    {
+        type: 10,
+        key: "phishinglink",
+        showLimitField: true,
+        showTimeLimitField: false,
+        showCustomField: false,
+        requireCustomField: false,
+    },
 ];

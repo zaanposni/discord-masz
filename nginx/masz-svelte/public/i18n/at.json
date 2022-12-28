@@ -145,6 +145,11 @@
             "new": "Verfügbares Update",
             "empty": "Kane Update verfügbar"
         },
+        "admindiscordinvite": {
+            "title": "Discord Einladung",
+            "widgetdescription": "Des Widget zeigt de Einladungslink für de MASZ Community Discord.",
+            "message": "Trete de MASZ Community Discord bei!"
+        },
         "adminstatus": {
             "title": "Status",
             "widgetdescription": "Des Widget zeigt den aktuellen Ping da MASZ-Komponenten.",
@@ -196,6 +201,9 @@
     "guilds": {
         "add": {
             "button": "Güde hinzufügn",
+            "add": "Hinzufügn",
+            "name": "Name",
+            "id": "ID",
             "invitefirst": "Bitte lad den Bot zuerst in de Güde ei",
             "windowfailed": "Fenster konnt ned göffnet wean"
         },
@@ -512,6 +520,9 @@
                 "details": "A Nochricht aufm Server hod zvü Valinkungen",
                 "customwordfield": "Ignorierte Links (getrennte Links mit am Zeilenumbruch)",
                 "linktext": "Beispü"
+            },
+            "phishinglink": {
+                "details": "A Nochricht aufm Server hod zvü Phishing-Links"
             }
         },
         "zalgo": {
@@ -686,7 +697,8 @@
             "customwordfilter": "Eigena Wortfüta is ausglest woan",
             "toomanymessages": "Zu vü Nochrichtn",
             "toomanyduplicatedcharacters": "Zu vü wiedaholende Buchstobn vawendet",
-            "toomanylinks": "Zu vü Links vawendet"
+            "toomanylinks": "Zu vü Links vawendet",
+            "toomanyphishinglinks": "Zu vü Phishing-Links vawendet"
         },
         "apierror": {
             "unknown": "Unbekonnta Föhla",

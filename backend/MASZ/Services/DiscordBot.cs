@@ -9,6 +9,7 @@ using MASZ.InviteTracking;
 using MASZ.Models;
 using MASZ.Repositories;
 using MASZ.Utils;
+using RestSharp;
 using System.Reflection;
 
 namespace MASZ.Services
@@ -22,11 +23,13 @@ namespace MASZ.Services
         private readonly Scheduler _scheduler;
         private readonly Punishments _punishments;
         private readonly IServiceProvider _serviceProvider;
+        private readonly InternalEventHandler _eventHandler;
+        private readonly TelemetryService _telemetryService;
         private bool _firstReady = true;
         private bool _isRunning = false;
         private DateTime? _lastDisconnect = null;
 
-        public DiscordBot(ILogger<DiscordBot> logger, DiscordSocketClient client, InternalConfiguration internalConfiguration, InteractionService interactions, IServiceProvider serviceProvider, Scheduler scheduler, Punishments punishments)
+        public DiscordBot(ILogger<DiscordBot> logger, DiscordSocketClient client, InternalConfiguration internalConfiguration, InteractionService interactions, IServiceProvider serviceProvider, Scheduler scheduler, Punishments punishments, InternalEventHandler eventHandler, TelemetryService telemetryService)
         {
             _logger = logger;
             _client = client;
@@ -35,6 +38,8 @@ namespace MASZ.Services
             _scheduler = scheduler;
             _punishments = punishments;
             _serviceProvider = serviceProvider;
+            _eventHandler = eventHandler;
+            _telemetryService = telemetryService;
         }
 
         public async Task ExecuteAsync()
@@ -53,7 +58,17 @@ namespace MASZ.Services
 
             await _client.LoginAsync(TokenType.Bot, _internalConfiguration.GetBotToken());
             await _client.StartAsync();
-            await _client.SetGameAsync(_internalConfiguration.GetBaseUrl(), type: ActivityType.Watching);
+
+            string botStatus = _internalConfiguration.GetDiscordBotStatus();
+            if (string.IsNullOrWhiteSpace(botStatus))
+            {
+                await _client.SetGameAsync(_internalConfiguration.GetBaseUrl(), type: ActivityType.Watching);
+            } else if (botStatus == "none")
+            {
+                await _client.SetGameAsync(null);
+            } else {
+                await _client.SetGameAsync(botStatus);
+            }
         }
 
         public void RegisterEvents()
@@ -86,11 +101,12 @@ namespace MASZ.Services
 
             _client.Log += (logLevel) => Log(logLevel, client_logger);
 
-            _client.JoinedGuild += JoinGuild;
-
             var interactions_logger = _serviceProvider.GetRequiredService<ILogger<InteractionService>>();
 
             _interactions.Log += (logLevel) => Log(logLevel, interactions_logger);
+
+            _eventHandler.OnGuildRegistered += GuildRegisteredHandler;
+            _eventHandler.OnGuildDeleted += GuildDeletedHandler;
         }
 
         private async Task HandleInteraction(SocketInteraction arg)
@@ -102,9 +118,9 @@ namespace MASZ.Services
 
                 await _interactions.ExecuteCommandAsync(ctx, _serviceProvider);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine($"Unable to execute {arg.Type} in channel {arg.Channel}");
+                _logger.LogError(e, $"Unable to execute {arg.Type} in channel {arg.Channel}");
 
                 // If a Slash Command execution fails it is most likely that the original interaction acknowledgement will persist. It is a good idea to delete the original
                 // response, or at least let the user know that something went wrong during the command execution.
@@ -125,7 +141,7 @@ namespace MASZ.Services
 
         private Task Connected()
         {
-            _logger.LogCritical("Client connected.");
+            _logger.LogInformation("Client connected.");
             _isRunning = true;
 
             return Task.CompletedTask;
@@ -145,6 +161,24 @@ namespace MASZ.Services
             _logger.LogInformation("Client connected.");
             _isRunning = true;
 
+            using var scope = _serviceProvider.CreateScope();
+            try
+            {
+                var guilds = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetAllGuildConfigs();
+                foreach (var guild in guilds)
+                {
+                    await _interactions.RegisterCommandsToGuildAsync(
+                        guild.GuildId,
+                        true
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex, "Something went wrong while registering guild commands.");
+                scope.Dispose();
+            }
+
             try
             {
                 await _client.BulkOverwriteGlobalApplicationCommandsAsync(Array.Empty<ApplicationCommandProperties>());
@@ -153,21 +187,18 @@ namespace MASZ.Services
             {
                 _logger.LogError(ex, "Something went wrong while overwriting global application commands.");
             }
-            foreach (var guild in _client.Guilds)
-            {
-                try
-                {
-                    await JoinGuild(guild);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, $"Something went wrong while handling guild join for {guild.Id}.");
-                }
-            }
 
             if (_firstReady)
             {
                 _firstReady = false;
+                try
+                {
+                    await _telemetryService.ExecuteAsync();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogCritical(ex, "Something went wrong while starting the telemetry timer.");
+                }
                 try
                 {
                     await _scheduler.ExecuteAsync();
@@ -208,14 +239,38 @@ namespace MASZ.Services
             return Task.CompletedTask;
         }
 
-        private async Task JoinGuild(SocketGuild guild)
+        private async Task GuildRegisteredHandler(GuildConfig guild, IUser user, bool importExistingStuff)
         {
             await _interactions.RegisterCommandsToGuildAsync(
-                guild.Id,
+                guild.GuildId,
                 true
             );
 
-            _logger.LogInformation($"Initialized guild commands for guild {guild.Name}.");
+            _logger.LogInformation($"Initialized guild commands for guild {guild.GuildId}.");
+
+        }
+
+        private async Task GuildDeletedHandler(GuildConfig guild, IUser user)
+        {
+            var restClient = new RestClient($"https://discord.com");
+
+            var request = new RestRequest($"api/v8/applications/{_client.CurrentUser.Id}/guilds/{guild.GuildId}/commands", Method.Put);
+
+            request.AddJsonBody(Array.Empty<object>());
+            request.AddHeader("Authorization", $"Bot {_internalConfiguration.GetBotToken()}");
+
+            var response = await restClient.ExecuteAsync(request);
+
+            if (response.IsSuccessful)
+            {
+                _logger.LogInformation($"Deleted guild commands for guild {guild.GuildId}.");
+            }
+            else
+            {
+                _logger.LogError($"Unable to delete guild commands for guild {guild.GuildId}.");
+                _logger.LogError(response.StatusCode.ToString());
+                _logger.LogError(response.Content);
+            }
         }
 
         private Task GuildBanRemoved(SocketUser user, SocketGuild guild)
@@ -478,10 +533,25 @@ namespace MASZ.Services
             InviteTracker.AddInvites(guild.Id, await FetchInvites(guild));
         }
 
-        private Task GuildCreatedHandler(SocketGuild guild)
+        private async Task GuildCreatedHandler(SocketGuild guild)
         {
             _logger.LogInformation($"I joined guild '{guild.Name}' with ID: '{guild.Id}'");
-            return Task.CompletedTask;
+
+            using var scope = _serviceProvider.CreateScope();
+
+            GuildConfig guildConfig;
+            try
+            {
+                guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guild.Id);
+                await _interactions.RegisterCommandsToGuildAsync(
+                    guild.Id,
+                    true
+                );
+            }
+            catch (ResourceNotFoundException)
+            {
+                return;
+            }
         }
 
         private async Task GuildMemberAddedHandler(SocketGuildUser member)
@@ -658,23 +728,23 @@ namespace MASZ.Services
             {
                 if (result is ExecuteResult eResult)
                 {
-                    if (eResult.Exception is BaseAPIException)
+                    if (eResult.Exception is BaseAPIException apiException)
                     {
                         _logger.LogError($"Command '{info.Name}' invoked by '{context.User.Username}#{context.User.Discriminator}' failed: {(eResult.Exception as BaseAPIException).Error}");
 
                         using var scope = _serviceProvider.CreateScope();
                         Translator translator = scope.ServiceProvider.GetRequiredService<Translator>();
-                        if (context.Guild != null)
+                        if (context.Guild != null && eResult.Exception is not UnregisteredGuildException)
                         {
                             await translator.SetContext(context.Guild.Id);
                         }
 
-                        string errorCode = "#" + ((int)(eResult.Exception as BaseAPIException).Error).ToString("D4");
+                        string errorCode = "#" + ((int)apiException.Error).ToString("D4");
 
                         EmbedBuilder builder = new EmbedBuilder()
                             .WithTitle(translator.T().SomethingWentWrong())
                             .WithColor(Color.Red)
-                            .WithDescription(translator.T().Enum((eResult.Exception as BaseAPIException).Error))
+                            .WithDescription(translator.T().Enum(apiException.Error))
                             .WithCurrentTimestamp()
                             .WithFooter($"{translator.T().Code()} {errorCode}");
 

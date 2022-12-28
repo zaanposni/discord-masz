@@ -68,7 +68,8 @@ builder.Services
 {
     DefaultRunMode = RunMode.Async,
     LogLevel = LogSeverity.Debug,
-    UseCompiledLambda = true
+    UseCompiledLambda = true,
+    LocalizationManager = new TranslationManager()
 })
 
 .AddSingleton<InteractionService>()
@@ -91,9 +92,13 @@ builder.Services
 
 .AddSingleton<Scheduler>()
 
+.AddSingleton<TelemetryService>()
+
 .AddSingleton<DiscordAnnouncer>()
 
 .AddSingleton<GuildAuditLogger>()
+
+.AddSingleton<PhishingDetectionService>()
 
 // SCOPED
 
@@ -236,6 +241,7 @@ using (var scope = app.Services.CreateScope())
 
     await AppSettingsRepository.CreateDefault(scope.ServiceProvider).ApplyAppSettings();
 
+    scope.ServiceProvider.GetRequiredService<TelemetryService>().RegisterEvents();
     scope.ServiceProvider.GetRequiredService<AuditLogger>().RegisterEvents();
     scope.ServiceProvider.GetRequiredService<DiscordAnnouncer>().RegisterEvents();
     scope.ServiceProvider.GetRequiredService<DiscordBot>().RegisterEvents();
@@ -244,6 +250,7 @@ using (var scope = app.Services.CreateScope())
 
     await scope.ServiceProvider.GetRequiredService<AuditLogger>().ExecuteAsync();
     await scope.ServiceProvider.GetRequiredService<DiscordBot>().ExecuteAsync();
+    await scope.ServiceProvider.GetRequiredService<PhishingDetectionService>().ExecuteAsync();
 
     if (string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
         scope.ServiceProvider.GetServices<IBasePlugin>().ToList().ForEach(x => x.Init());

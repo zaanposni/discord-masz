@@ -225,6 +225,16 @@
             "es": "Se han utilizado demasiados enlaces",
             "ru": "Использовано слишком много ссылок",
             "it": "Troppi link utilizzati"
+        },
+        "TooManyPhishingLinks": {
+            "description": "A user posted a message with too many phishing links.",
+            "en": "Too many phishing links used",
+            "de": "Zu viele Phishing-Links verwendet",
+            "at": "Zu vü Phishing-Links vawendet",
+            "fr": "Trop de liens de phishing utilisés",
+            "es": "Se han utilizado demasiados enlaces de phishing",
+            "ru": "Использовано слишком много ссылок на фишинг",
+            "it": "Troppi link di phishing utilizzati"
         }
     },
     "APIError": {

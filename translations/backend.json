@@ -1,9 +1,1429 @@
 {
+    "Commands": {
+        "Antiraid": {
+            "Name": {
+                "description": "The word 'antiraid'",
+                "en": "Antiraid",
+                "de": "Antiraid",
+                "at": "Antiraid",
+                "fr": "Antiraid",
+                "es": "Antiraid",
+                "ru": "Антирайд",
+                "it": "Antiraid"
+            },
+            "Desc": {
+                "description": "Timeout a specific user and delete all his messages in the last 2 hours.",
+                "en": "Timeout a specific user and delete all his messages in the last 2 hours.",
+                "de": "Schalte einen bestimmten Benutzer stumm und lösche alle seine Nachrichten der letzten 2 Stunden.",
+                "at": "Schalte einen bestimmten Benutzer stumm und lösche alle seine Nachrichten der letzten 2 Stunden.",
+                "fr": "Mettez un utilisateur spécifique en sourdine et supprimez tous ses messages des 2 dernières heures.",
+                "es": "Ponga en silencio a un usuario específico y elimine todos sus mensajes de las últimas 2 horas.",
+                "ru": "Заглушите определенного пользователя и удалите все его сообщения за последние 2 часа.",
+                "it": "Disattiva un utente specifico e elimina tutti i suoi messaggi negli ultimi 2 ore."
+            },
+            "User": {
+                "Name": {
+                    "description": "The word 'user'",
+                    "en": "User",
+                    "de": "Benutzer",
+                    "at": "Benutzer",
+                    "fr": "Utilisateur",
+                    "es": "Usuario",
+                    "ru": "Пользователь",
+                    "it": "Utente"
+                },
+                "Desc": {
+                    "description": "The description of the 'user' parameter",
+                    "en": "user to punish",
+                    "de": "zu bestrafender Benutzer",
+                    "at": "zu bestrafender Benutzer",
+                    "fr": "utilisateur à punir",
+                    "es": "usuario a castigar",
+                    "ru": "пользователь для наказания",
+                    "it": "utente da punire"
+                }
+            }
+        },
+        "Avatar": {
+            "Name": {
+                "description": "The word 'avatar'",
+                "en": "Avatar",
+                "de": "Avatar",
+                "at": "Avatar",
+                "fr": "Avatar",
+                "es": "Avatar",
+                "ru": "Аватар",
+                "it": "Avatar"
+            },
+            "Desc": {
+                "description": "Get the high resolution avatar of a user.",
+                "en": "Get the high resolution avatar of a user.",
+                "de": "Hochauflösendes Profilbild eines Nutzers anzeigen lassen.",
+                "at": "Hochauflösendes Profilbild eines Nutzers anzeigen lassen.",
+                "fr": "Obtenez l'avatar haute résolution d'un utilisateur.",
+                "es": "Obtenga el avatar de alta resolución de un usuario.",
+                "ru": "Получите высокое разрешение аватара пользователя.",
+                "it": "Ottieni l'avatar ad alta risoluzione di un utente."
+            },
+            "User": {
+                "Name": {
+                    "description": "The word 'user'",
+                    "en": "User",
+                    "de": "Benutzer",
+                    "at": "Benutzer",
+                    "fr": "Utilisateur",
+                    "es": "Usuario",
+                    "ru": "Пользователь",
+                    "it": "Utente"
+                },
+                "Desc": {
+                    "description": "The description of the 'user' parameter",
+                    "en": "User to get the avatar from",
+                    "de": "Benutzer, dessen Profilbild abgerufen werden soll",
+                    "at": "Benutzer, dessen Profilbild abgerufen werden soll",
+                    "fr": "Utilisateur dont vous souhaitez obtenir l'avatar",
+                    "es": "Usuario del que desea obtener el avatar",
+                    "ru": "Пользователь, аватар которого вы хотите получить",
+                    "it": "Utente di cui si desidera ottenere l'avatar"
+                }
+            }
+        },
+        "Ban": {
+            "Name": {
+                "description": "The word 'ban'",
+                "en": "Ban",
+                "de": "Ban",
+                "at": "Ban",
+                "fr": "Bannir",
+                "es": "Prohibir",
+                "ru": "Запретить",
+                "it": "Bandire"
+            },
+            "Desc": {
+                "description": "Ban a user and create a modcase",
+                "en": "Ban a user and create a modcase",
+                "de": "Banne einen Benutzer und erstelle einen Modcase",
+                "at": "Banne einen Benutzer und erstelle einen Modcase",
+                "fr": "Bannir un utilisateur et créer un cas de modération",
+                "es": "Prohibir a un usuario y crear un caso de moderación",
+                "ru": "Запретить пользователя и создать модкейс",
+                "it": "Bandire un utente e creare un caso di moderazione"
+            },
+            "User": {
+                "Name": {
+                    "description": "The word 'user'",
+                    "en": "User",
+                    "de": "Benutzer",
+                    "at": "Benutzer",
+                    "fr": "Utilisateur",
+                    "es": "Usuario",
+                    "ru": "Пользователь",
+                    "it": "Utente"
+                },
+                "Desc": {
+                    "description": "The description of the 'user' parameter",
+                    "en": "user to punish",
+                    "de": "zu bestrafender Benutzer",
+                    "at": "zu bestrafender Benutzer",
+                    "fr": "utilisateur à punir",
+                    "es": "usuario a castigar",
+                    "ru": "пользователь для наказания",
+                    "it": "utente da punire"
+                }
+            },
+            "Title": {
+                "Name": {
+                    "description": "The word 'title'",
+                    "en": "Title",
+                    "de": "Titel",
+                    "at": "Titel",
+                    "fr": "Titre",
+                    "es": "Título",
+                    "ru": "Заголовок",
+                    "it": "Titolo"
+                },
+                "Desc": {
+                    "description": "The description of the 'title' parameter",
+                    "en": "Title of the modcase",
+                    "de": "Titel des Modcases",
+                    "at": "Titel des Modcases",
+                    "fr": "Titre du cas de modération",
+                    "es": "Título del caso de moderación",
+                    "ru": "Заголовок модкейса",
+                    "it": "Titolo del caso di moderazione"
+                }
+            },
+            "Details": {
+                "Name": {
+                    "description": "The word 'details'",
+                    "en": "Details",
+                    "de": "Details",
+                    "at": "Details",
+                    "fr": "Détails",
+                    "es": "Detalles",
+                    "ru": "Детали",
+                    "it": "Dettagli"
+                },
+                "Desc": {
+                    "description": "The description of the 'details' parameter",
+                    "en": "Details of the modcase",
+                    "de": "Details des Modcases",
+                    "at": "Details des Modcases",
+                    "fr": "Détails du cas de modération",
+                    "es": "Detalles del caso de moderación",
+                    "ru": "Детали модкейса",
+                    "it": "Dettagli del caso di moderazione"
+                }
+            },
+            "hours": {
+                "Name": {
+                    "description": "The word 'hours'",
+                    "en": "Hours",
+                    "de": "Stunden",
+                    "at": "Stunden",
+                    "fr": "Heures",
+                    "es": "Horas",
+                    "ru": "Часы",
+                    "it": "Ore"
+                },
+                "Desc": {
+                    "description": "The description of the 'hours' parameter",
+                    "en": "Hours to ban the user",
+                    "de": "Stunden, die der Nutzer gebannt sein soll",
+                    "at": "Stunden, die der Nutzer gebannt sein soll",
+                    "fr": "Heures pour bannir l'utilisateur",
+                    "es": "Horas para prohibir al usuario",
+                    "ru": "Часы, чтобы запретить пользователю",
+                    "it": "Ore per bandire l'utente"
+                },
+                "None": {
+                    "Name": {
+                        "description": "The word 'unlimited'",
+                        "en": "Unlimited",
+                        "de": "Dauerhaft",
+                        "at": "Dauerhaft",
+                        "fr": "Illimité",
+                        "es": "Ilimitado",
+                        "ru": "Неограниченный",
+                        "it": "Illimitato"
+                    }
+                },
+                "1 Hour": {
+                    "Name": {
+                        "description": "The word '1 hour'",
+                        "en": "1 Hour",
+                        "de": "1 Stunde",
+                        "at": "1 Stunde",
+                        "fr": "1 heure",
+                        "es": "1 hora",
+                        "ru": "1 час",
+                        "it": "1 ora"
+                    }
+                },
+                "1 Day": {
+                    "Name": {
+                        "description": "The word '1 day'",
+                        "en": "1 Day",
+                        "de": "1 Tag",
+                        "at": "1 Tag",
+                        "fr": "1 jour",
+                        "es": "1 día",
+                        "ru": "1 день",
+                        "it": "1 giorno"
+                    }
+                },
+                "1 Week": {
+                    "Name": {
+                        "description": "The word '1 week'",
+                        "en": "1 Week",
+                        "de": "1 Woche",
+                        "at": "1 Woche",
+                        "fr": "1 semaine",
+                        "es": "1 semana",
+                        "ru": "1 неделя",
+                        "it": "1 settimana"
+                    }
+                },
+                "1 Month": {
+                    "Name": {
+                        "description": "The word '1 month'",
+                        "en": "1 Month",
+                        "de": "1 Monat",
+                        "at": "1 Monat",
+                        "fr": "1 mois",
+                        "es": "1 mes",
+                        "ru": "1 месяц",
+                        "it": "1 mese"
+                    }
+                }
+            },
+            "dm-notification": {
+                "Name": {
+                    "description": "The word 'dm-notification'",
+                    "en": "DM",
+                    "de": "Direktnachricht",
+                    "at": "Direktnachricht",
+                    "fr": "DM",
+                    "es": "DM",
+                    "ru": "DM",
+                    "it": "DM"
+                },
+                "Desc": {
+                    "description": "Whether to send a dm notification",
+                    "en": "Whether to send a dm notification",
+                    "de": "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                    "at": "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                    "fr": "Si une notification DM doit être envoyée",
+                    "es": "Si se debe enviar una notificación DM",
+                    "ru": "Отправлять ли уведомление DM",
+                    "it": "Se inviare una notifica DM"
+                }
+            },
+            "public-notification": {
+                "Name": {
+                    "description": "The word 'public-notification'",
+                    "en": "public",
+                    "de": "öffentlich",
+                    "at": "öffentlich",
+                    "fr": "public",
+                    "es": "público",
+                    "ru": "общественный",
+                    "it": "pubblico"
+                },
+                "Desc": {
+                    "description": "Whether to send a public notification",
+                    "en": "Whether to send a public notification",
+                    "de": "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                    "at": "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                    "fr": "Si une notification publique doit être envoyée",
+                    "es": "Si se debe enviar una notificación pública",
+                    "ru": "Отправлять ли общественное уведомление",
+                    "it": "Se inviare una notifica pubblica"
+                }
+            },
+            "execute-punishment": {
+                "Name": {
+                    "description": "The word 'execute-punishment'",
+                    "en": "execute",
+                    "de": "ausführen",
+                    "at": "ausführen",
+                    "fr": "exécuter",
+                    "es": "ejecutar",
+                    "ru": "выполнить",
+                    "it": "eseguire"
+                },
+                "Desc": {
+                    "description": "Whether to execute the punishment",
+                    "en": "Whether to execute the punishment",
+                    "de": "Ob die Strafe ausgeführt werden soll",
+                    "at": "Ob die Strafe ausgeführt werden soll",
+                    "fr": "Si la punition doit être exécutée",
+                    "es": "Si se debe ejecutar el castigo",
+                    "ru": "Выполнить ли наказание",
+                    "it": "Se eseguire la punizione"
+                }
+            }
+        },
+        "Cleanup": {
+            "Name": {
+                "description": "The word 'cleanup'",
+                "en": "Cleanup",
+                "de": "Aufräumen",
+                "at": "Aufräumen",
+                "fr": "Nettoyage",
+                "es": "Limpieza",
+                "ru": "Очистка",
+                "it": "Pulizia"
+            },
+            "Desc": {
+                "description": "The description of the 'cleanup' command",
+                "en": "Cleanup specific data from the server and/or channel.",
+                "de": "Räumt bestimmte Daten vom Server und/oder Kanal auf.",
+                "at": "Räumt bestimmte Daten vom Server und/oder Kanal auf.",
+                "fr": "Nettoyez des données spécifiques du serveur et / ou de la chaîne.",
+                "es": "Limpie datos específicos del servidor y / o del canal.",
+                "ru": "Очистите определенные данные с сервера и / или канала.",
+                "it": "Pulisci dati specifici dal server e / o dal canale."
+            },
+            "Mode": {
+                "Name": {
+                    "description": "The word 'mode'",
+                    "en": "mode",
+                    "de": "Modus",
+                    "at": "Modus",
+                    "fr": "mode",
+                    "es": "modo",
+                    "ru": "режим",
+                    "it": "modo"
+                },
+                "Desc": {
+                    "description": "The description of the 'mode' argument",
+                    "en": "which data you want to delete",
+                    "de": "welche Daten gelöscht werden sollen",
+                    "at": "welche Daten gelöscht werden sollen",
+                    "fr": "les données que vous souhaitez supprimer",
+                    "es": "los datos que desea eliminar",
+                    "ru": "какие данные вы хотите удалить",
+                    "it": "i dati che si desidera eliminare"
+                }
+            },
+            "Channel": {
+                "Name": {
+                    "description": "The word 'channel'",
+                    "en": "channel",
+                    "de": "Kanal",
+                    "at": "Kanal",
+                    "fr": "canal",
+                    "es": "canal",
+                    "ru": "канал",
+                    "it": "canale"
+                },
+                "Desc": {
+                    "description": "The description of the 'channel' argument",
+                    "en": "where to delete, defaults to current.",
+                    "de": "wo gelöscht werden soll, Standard ist aktuell.",
+                    "at": "wo gelöscht werden soll, Standard ist aktuell.",
+                    "fr": "où supprimer, par défaut sur le courant.",
+                    "es": "dónde eliminar, por defecto en el actual.",
+                    "ru": "куда удалять, по умолчанию - текущий.",
+                    "it": "dove eliminare, di default corrente."
+                }
+            },
+            "Count": {
+                "Name": {
+                    "description": "The word 'count'",
+                    "en": "count",
+                    "de": "Anzahl",
+                    "at": "Anzahl",
+                    "fr": "compter",
+                    "es": "contar",
+                    "ru": "считать",
+                    "it": "contare"
+                },
+                "Desc": {
+                    "description": "The description of the 'count' argument",
+                    "en": "how many messages to delete, defaults to 100.",
+                    "de": "wie viele Nachrichten gelöscht werden sollen, Standard ist 100.",
+                    "at": "wie viele Nachrichten gelöscht werden sollen, Standard ist 100.",
+                    "fr": "combien de messages supprimer, par défaut sur 100.",
+                    "es": "cuántos mensajes eliminar, por defecto en 100.",
+                    "ru": "сколько сообщений удалять, по умолчанию - 100.",
+                    "it": "quanti messaggi eliminare, di default 100."
+                }
+            },
+            "User": {
+                "Name": {
+                    "description": "The word 'user'",
+                    "en": "user",
+                    "de": "Benutzer",
+                    "at": "Benutzer",
+                    "fr": "utilisateur",
+                    "es": "usuario",
+                    "ru": "пользователь",
+                    "it": "utente"
+                },
+                "Desc": {
+                    "description": "The description of the 'user' argument",
+                    "en": "additional filter on this user",
+                    "de": "Nur Daten von diesem Nutzer entfernen",
+                    "at": "Nur Daten von diesem Nutzer entfernen",
+                    "fr": "filtre supplémentaire sur cet utilisateur",
+                    "es": "filtro adicional en este usuario",
+                    "ru": "дополнительный фильтр на этого пользователя",
+                    "it": "filtro aggiuntivo su questo utente"
+                }
+            }
+        },
+        "Features": {
+            "Name": {
+                "description": "The word 'features'",
+                "en": "features",
+                "de": "Funktionen",
+                "at": "Funktionen",
+                "fr": "fonctionnalités",
+                "es": "características",
+                "ru": "особенности",
+                "it": "caratteristiche"
+            },
+            "Desc": {
+                "description": "The description of the 'features' command",
+                "en": "Checks if further configuration is needed to use MASZ features.",
+                "de": "Überprüft, ob weitere Konfigurationen notwendig sind, um MASZ-Funktionen zu nutzen.",
+                "at": "Überprüft, ob weitere Konfigurationen notwendig sind, um MASZ-Funktionen zu nutzen.",
+                "fr": "Vérifie si d'autres configurations sont nécessaires pour utiliser les fonctionnalités de MASZ.",
+                "es": "Comprueba si se necesita más configuración para usar las características de MASZ.",
+                "ru": "Проверяет, нужна ли дополнительная конфигурация для использования функций MASZ.",
+                "it": "Controlla se è necessaria ulteriore configurazione per utilizzare le funzionalità di MASZ."
+            }
+        },
+        "Github": {
+            "Name": {
+                "description": "The word 'github'",
+                "en": "github",
+                "de": "github",
+                "at": "github",
+                "fr": "github",
+                "es": "github",
+                "ru": "github",
+                "it": "github"
+            },
+            "Desc": {
+                "description": "The description of the 'github' command",
+                "en": "Displays the link to the github repository.",
+                "de": "Zeigt den Link zum Github-Repository an.",
+                "at": "Zeigt den Link zum Github-Repository an.",
+                "fr": "Affiche le lien vers le référentiel github.",
+                "es": "Muestra el enlace al repositorio de github.",
+                "ru": "Отображает ссылку на репозиторий github.",
+                "it": "Mostra il link al repository github."
+            }
+        },
+        "Invite": {
+            "Name": {
+                "description": "The word 'invite'",
+                "en": "invite",
+                "de": "einladen",
+                "at": "einladen",
+                "fr": "inviter",
+                "es": "invitar",
+                "ru": "пригласить",
+                "it": "invitare"
+            },
+            "Desc": {
+                "description": "The description of the 'invite' command",
+                "en": "How to invite this bot.",
+                "de": "So lädst du diesen Bot ein.",
+                "at": "So lädst du diesen Bot ein.",
+                "fr": "Comment inviter ce bot.",
+                "es": "Cómo invitar a este bot.",
+                "ru": "Как пригласить этого бота.",
+                "it": "Come invitare questo bot."
+            }
+        },
+        "Kick": {
+            "Name": {
+                "description": "The word 'kick'",
+                "en": "Kick",
+                "de": "Kicken",
+                "at": "Kicken",
+                "fr": "Expulser",
+                "es": "Patada",
+                "ru": "Кик",
+                "it": "Calcio"
+            },
+            "Desc": {
+                "description": "Kick a user and create a modcase",
+                "en": "Kick a user and create a modcase",
+                "de": "Kicke einen Benutzer und erstelle einen Modcase",
+                "at": "Kicke einen Benutzer und erstelle einen Modcase",
+                "fr": "Expulsez un utilisateur et créez un cas de modération",
+                "es": "Expulsa a un usuario y crea un caso de moderación",
+                "ru": "Выгнать пользователя и создать модкейс",
+                "it": "Espelli un utente e crea un caso di moderazione"
+            },
+            "User": {
+                "Name": {
+                    "description": "The word 'user'",
+                    "en": "User",
+                    "de": "Benutzer",
+                    "at": "Benutzer",
+                    "fr": "Utilisateur",
+                    "es": "Usuario",
+                    "ru": "Пользователь",
+                    "it": "Utente"
+                },
+                "Desc": {
+                    "description": "The description of the 'user' parameter",
+                    "en": "user to punish",
+                    "de": "zu bestrafender Benutzer",
+                    "at": "zu bestrafender Benutzer",
+                    "fr": "utilisateur à punir",
+                    "es": "usuario a castigar",
+                    "ru": "пользователь для наказания",
+                    "it": "utente da punire"
+                }
+            },
+            "Title": {
+                "Name": {
+                    "description": "The word 'title'",
+                    "en": "Title",
+                    "de": "Titel",
+                    "at": "Titel",
+                    "fr": "Titre",
+                    "es": "Título",
+                    "ru": "Заголовок",
+                    "it": "Titolo"
+                },
+                "Desc": {
+                    "description": "The description of the 'title' parameter",
+                    "en": "Title of the modcase",
+                    "de": "Titel des Modcases",
+                    "at": "Titel des Modcases",
+                    "fr": "Titre du cas de modération",
+                    "es": "Título del caso de moderación",
+                    "ru": "Заголовок модкейса",
+                    "it": "Titolo del caso di moderazione"
+                }
+            },
+            "Details": {
+                "Name": {
+                    "description": "The word 'details'",
+                    "en": "Details",
+                    "de": "Details",
+                    "at": "Details",
+                    "fr": "Détails",
+                    "es": "Detalles",
+                    "ru": "Детали",
+                    "it": "Dettagli"
+                },
+                "Desc": {
+                    "description": "The description of the 'details' parameter",
+                    "en": "Details of the modcase",
+                    "de": "Details des Modcases",
+                    "at": "Details des Modcases",
+                    "fr": "Détails du cas de modération",
+                    "es": "Detalles del caso de moderación",
+                    "ru": "Детали модкейса",
+                    "it": "Dettagli del caso di moderazione"
+                }
+            },
+            "dm-notification": {
+                "Name": {
+                    "description": "The word 'dm-notification'",
+                    "en": "DM",
+                    "de": "Direktnachricht",
+                    "at": "Direktnachricht",
+                    "fr": "DM",
+                    "es": "DM",
+                    "ru": "DM",
+                    "it": "DM"
+                },
+                "Desc": {
+                    "description": "Whether to send a dm notification",
+                    "en": "Whether to send a dm notification",
+                    "de": "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                    "at": "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                    "fr": "Si une notification DM doit être envoyée",
+                    "es": "Si se debe enviar una notificación DM",
+                    "ru": "Отправлять ли уведомление DM",
+                    "it": "Se inviare una notifica DM"
+                }
+            },
+            "public-notification": {
+                "Name": {
+                    "description": "The word 'public-notification'",
+                    "en": "public",
+                    "de": "öffentlich",
+                    "at": "öffentlich",
+                    "fr": "public",
+                    "es": "público",
+                    "ru": "общественный",
+                    "it": "pubblico"
+                },
+                "Desc": {
+                    "description": "Whether to send a public notification",
+                    "en": "Whether to send a public notification",
+                    "de": "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                    "at": "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                    "fr": "Si une notification publique doit être envoyée",
+                    "es": "Si se debe enviar una notificación pública",
+                    "ru": "Отправлять ли общественное уведомление",
+                    "it": "Se inviare una notifica pubblica"
+                }
+            },
+            "execute-punishment": {
+                "Name": {
+                    "description": "The word 'execute-punishment'",
+                    "en": "execute",
+                    "de": "ausführen",
+                    "at": "ausführen",
+                    "fr": "exécuter",
+                    "es": "ejecutar",
+                    "ru": "выполнить",
+                    "it": "eseguire"
+                },
+                "Desc": {
+                    "description": "Whether to execute the punishment",
+                    "en": "Whether to execute the punishment",
+                    "de": "Ob die Strafe ausgeführt werden soll",
+                    "at": "Ob die Strafe ausgeführt werden soll",
+                    "fr": "Si la punition doit être exécutée",
+                    "es": "Si se debe ejecutar el castigo",
+                    "ru": "Выполнить ли наказание",
+                    "it": "Se eseguire la punizione"
+                }
+            }
+        },
+        "Mute": {
+            "Name": {
+                "description": "The word 'mute'",
+                "en": "Mute",
+                "de": "Stummschalten",
+                "at": "Stummschalten",
+                "fr": "Muet",
+                "es": "Silenciar",
+                "ru": "Заглушить",
+                "it": "Silenzia"
+            },
+            "Desc": {
+                "description": "Mute a user and create a modcase",
+                "en": "Mute a user and create a modcase",
+                "de": "Schaltet einen Benutzer stumm und erstellt einen Modcase",
+                "at": "Schaltet einen Benutzer stumm und erstellt einen Modcase",
+                "fr": "Muet un utilisateur et crée un cas de modération",
+                "es": "Silencia a un usuario y crea un caso de moderación",
+                "ru": "Заглушить пользователя и создать модкейс",
+                "it": "Silenzia un utente e crea un caso di moderazione"
+            },
+            "User": {
+                "Name": {
+                    "description": "The word 'user'",
+                    "en": "User",
+                    "de": "Benutzer",
+                    "at": "Benutzer",
+                    "fr": "Utilisateur",
+                    "es": "Usuario",
+                    "ru": "Пользователь",
+                    "it": "Utente"
+                },
+                "Desc": {
+                    "description": "The description of the 'user' parameter",
+                    "en": "user to punish",
+                    "de": "zu bestrafender Benutzer",
+                    "at": "zu bestrafender Benutzer",
+                    "fr": "utilisateur à punir",
+                    "es": "usuario a castigar",
+                    "ru": "пользователь для наказания",
+                    "it": "utente da punire"
+                }
+            },
+            "Title": {
+                "Name": {
+                    "description": "The word 'title'",
+                    "en": "Title",
+                    "de": "Titel",
+                    "at": "Titel",
+                    "fr": "Titre",
+                    "es": "Título",
+                    "ru": "Заголовок",
+                    "it": "Titolo"
+                },
+                "Desc": {
+                    "description": "The description of the 'title' parameter",
+                    "en": "Title of the modcase",
+                    "de": "Titel des Modcases",
+                    "at": "Titel des Modcases",
+                    "fr": "Titre du cas de modération",
+                    "es": "Título del caso de moderación",
+                    "ru": "Заголовок модкейса",
+                    "it": "Titolo del caso di moderazione"
+                }
+            },
+            "Details": {
+                "Name": {
+                    "description": "The word 'details'",
+                    "en": "Details",
+                    "de": "Details",
+                    "at": "Details",
+                    "fr": "Détails",
+                    "es": "Detalles",
+                    "ru": "Детали",
+                    "it": "Dettagli"
+                },
+                "Desc": {
+                    "description": "The description of the 'details' parameter",
+                    "en": "Details of the modcase",
+                    "de": "Details des Modcases",
+                    "at": "Details des Modcases",
+                    "fr": "Détails du cas de modération",
+                    "es": "Detalles del caso de moderación",
+                    "ru": "Детали модкейса",
+                    "it": "Dettagli del caso di moderazione"
+                }
+            },
+            "hours": {
+                "Name": {
+                    "description": "The word 'hours'",
+                    "en": "Hours",
+                    "de": "Stunden",
+                    "at": "Stunden",
+                    "fr": "Heures",
+                    "es": "Horas",
+                    "ru": "Часы",
+                    "it": "Ore"
+                },
+                "Desc": {
+                    "description": "The description of the 'hours' parameter",
+                    "en": "Hours to mute the user",
+                    "de": "Stunden um den Benutzer zu stummschalten",
+                    "at": "Stunden um den Benutzer zu stummschalten",
+                    "fr": "Heures pour rendre muet l'utilisateur",
+                    "es": "Horas para silenciar al usuario",
+                    "ru": "Часы для заглушения пользователя",
+                    "it": "Ore per silenziare l'utente"
+                },
+                "None": {
+                    "Name": {
+                        "description": "The word 'unlimited'",
+                        "en": "Unlimited",
+                        "de": "Dauerhaft",
+                        "at": "Dauerhaft",
+                        "fr": "Illimité",
+                        "es": "Ilimitado",
+                        "ru": "Неограниченный",
+                        "it": "Illimitato"
+                    }
+                },
+                "1 Hour": {
+                    "Name": {
+                        "description": "The word '1 hour'",
+                        "en": "1 Hour",
+                        "de": "1 Stunde",
+                        "at": "1 Stunde",
+                        "fr": "1 heure",
+                        "es": "1 hora",
+                        "ru": "1 час",
+                        "it": "1 ora"
+                    }
+                },
+                "1 Day": {
+                    "Name": {
+                        "description": "The word '1 day'",
+                        "en": "1 Day",
+                        "de": "1 Tag",
+                        "at": "1 Tag",
+                        "fr": "1 jour",
+                        "es": "1 día",
+                        "ru": "1 день",
+                        "it": "1 giorno"
+                    }
+                },
+                "1 Week": {
+                    "Name": {
+                        "description": "The word '1 week'",
+                        "en": "1 Week",
+                        "de": "1 Woche",
+                        "at": "1 Woche",
+                        "fr": "1 semaine",
+                        "es": "1 semana",
+                        "ru": "1 неделя",
+                        "it": "1 settimana"
+                    }
+                },
+                "1 Month": {
+                    "Name": {
+                        "description": "The word '1 month'",
+                        "en": "1 Month",
+                        "de": "1 Monat",
+                        "at": "1 Monat",
+                        "fr": "1 mois",
+                        "es": "1 mes",
+                        "ru": "1 месяц",
+                        "it": "1 mese"
+                    }
+                }
+            },
+            "dm-notification": {
+                "Name": {
+                    "description": "The word 'dm-notification'",
+                    "en": "DM",
+                    "de": "Direktnachricht",
+                    "at": "Direktnachricht",
+                    "fr": "DM",
+                    "es": "DM",
+                    "ru": "DM",
+                    "it": "DM"
+                },
+                "Desc": {
+                    "description": "Whether to send a dm notification",
+                    "en": "Whether to send a dm notification",
+                    "de": "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                    "at": "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                    "fr": "Si une notification DM doit être envoyée",
+                    "es": "Si se debe enviar una notificación DM",
+                    "ru": "Отправлять ли уведомление DM",
+                    "it": "Se inviare una notifica DM"
+                }
+            },
+            "public-notification": {
+                "Name": {
+                    "description": "The word 'public-notification'",
+                    "en": "public",
+                    "de": "öffentlich",
+                    "at": "öffentlich",
+                    "fr": "public",
+                    "es": "público",
+                    "ru": "общественный",
+                    "it": "pubblico"
+                },
+                "Desc": {
+                    "description": "Whether to send a public notification",
+                    "en": "Whether to send a public notification",
+                    "de": "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                    "at": "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                    "fr": "Si une notification publique doit être envoyée",
+                    "es": "Si se debe enviar una notificación pública",
+                    "ru": "Отправлять ли общественное уведомление",
+                    "it": "Se inviare una notifica pubblica"
+                }
+            },
+            "execute-punishment": {
+                "Name": {
+                    "description": "The word 'execute-punishment'",
+                    "en": "execute",
+                    "de": "ausführen",
+                    "at": "ausführen",
+                    "fr": "exécuter",
+                    "es": "ejecutar",
+                    "ru": "выполнить",
+                    "it": "eseguire"
+                },
+                "Desc": {
+                    "description": "Whether to execute the punishment",
+                    "en": "Whether to execute the punishment",
+                    "de": "Ob die Strafe ausgeführt werden soll",
+                    "at": "Ob die Strafe ausgeführt werden soll",
+                    "fr": "Si la punition doit être exécutée",
+                    "es": "Si se debe ejecutar el castigo",
+                    "ru": "Выполнить ли наказание",
+                    "it": "Se eseguire la punizione"
+                }
+            }
+        },
+        "Report": {
+            "Name": {
+                "description": "The word 'Report'",
+                "en": "Report to moderators",
+                "de": "An Moderatoren melden",
+                "at": "An Moderatoren melden",
+                "fr": "Signaler aux",
+                "es": "Reportar a los moderadores",
+                "ru": "Сообщить модераторам",
+                "it": "Segnala ai moderatori"
+            },
+            "Desc": {
+                "description": "The description of the 'Report' command",
+                "en": "Report to moderators",
+                "de": "An Moderatoren melden",
+                "at": "An Moderatoren melden",
+                "fr": "Signaler aux",
+                "es": "Reportar a los moderadores",
+                "ru": "Сообщить модераторам",
+                "it": "Segnala ai moderatori"
+            }
+        },
+        "Say": {
+            "Name": {
+                "description": "The word 'Say'",
+                "en": "Say",
+                "de": "Sagen",
+                "at": "Sagen",
+                "fr": "Dire",
+                "es": "Decir",
+                "ru": "Сказать",
+                "it": "Dire"
+            },
+            "Desc": {
+                "description": "The description of the 'Say' command",
+                "en": "Let the bot send a message.",
+                "de": "Lässt den Bot eine Nachricht senden.",
+                "at": "Lässt den Bot eine Nachricht senden.",
+                "fr": "Permet au bot d'envoyer un message.",
+                "es": "Deja que el bot envíe un mensaje.",
+                "ru": "Позволяет боту отправить сообщение.",
+                "it": "Permetti al bot di inviare un messaggio."
+            },
+            "Message": {
+                "Name": {
+                    "description": "The word 'Message'",
+                    "en": "Message",
+                    "de": "Nachricht",
+                    "at": "Nachricht",
+                    "fr": "Message",
+                    "es": "Mensaje",
+                    "ru": "Сообщение",
+                    "it": "Messaggio"
+                },
+                "Desc": {
+                    "description": "The description of the 'Message' argument",
+                    "en": "The message to send.",
+                    "de": "Die Nachricht, die gesendet werden soll.",
+                    "at": "Die Nachricht, die gesendet werden soll.",
+                    "fr": "Le message à envoyer.",
+                    "es": "El mensaje a enviar.",
+                    "ru": "Сообщение для отправки.",
+                    "it": "Il messaggio da inviare."
+                }
+            },
+            "Channel": {
+                "Name": {
+                    "description": "The word 'Channel'",
+                    "en": "Channel",
+                    "de": "Kanal",
+                    "at": "Kanal",
+                    "fr": "Canal",
+                    "es": "Canal",
+                    "ru": "Канал",
+                    "it": "Canale"
+                },
+                "Desc": {
+                    "description": "The description of the 'Channel' argument",
+                    "en": "channel to write the message in, defaults to current",
+                    "de": "Kanal, in dem die Nachricht gesendet werden soll, Standard ist der aktuelle",
+                    "at": "Kanal, in dem die Nachricht gesendet werden soll, Standard ist der aktuelle",
+                    "fr": "canal dans lequel écrire le message, par défaut actuel",
+                    "es": "canal en el que escribir el mensaje, predeterminado actual",
+                    "ru": "канал для записи сообщения, по умолчанию текущий",
+                    "it": "canale in cui scrivere il messaggio, predefinito corrente"
+                }
+            }
+        },
+        "Status": {
+            "Name": {
+                "description": "The word 'Status'",
+                "en": "Status",
+                "de": "Status",
+                "at": "Status",
+                "fr": "Statut",
+                "es": "Estado",
+                "ru": "Статус",
+                "it": "Stato"
+            },
+            "Desc": {
+                "description": "The description of the 'Status' command",
+                "en": "See the current status of your application.",
+                "de": "Siehe den aktuellen Status deines Systems.",
+                "at": "Siehe den aktuellen Status deines Systems.",
+                "fr": "Voir l'état actuel de votre application.",
+                "es": "Ver el estado actual de su aplicación.",
+                "ru": "Посмотрите текущий статус вашего приложения.",
+                "it": "Vedi lo stato attuale della tua applicazione."
+            }
+        },
+        "Track": {
+            "Name": {
+                "description": "The word 'Track'",
+                "en": "Track",
+                "de": "Verfolgen",
+                "at": "Verfolgen",
+                "fr": "Piste",
+                "es": "Pista",
+                "ru": "Дорожка",
+                "it": "Traccia"
+            },
+            "Desc": {
+                "description": "The description of the 'Track' command",
+                "en": "Track an invite, its creator and its users.",
+                "de": "Verfolge eine Einladung, ihren Ersteller und ihre Nutzer.",
+                "at": "Verfolge eine Einladung, ihren Ersteller und ihre Nutzer.",
+                "fr": "Suivez une invitation, son créateur et ses utilisateurs.",
+                "es": "Rastree una invitación, su creador y sus usuarios.",
+                "ru": "Отслеживайте приглашение, его создателя и его пользователей.",
+                "it": "Traccia un invito, il suo creatore e i suoi utenti."
+            },
+            "Invite": {
+                "Name": {
+                    "description": "The word 'Invite'",
+                    "en": "Invite",
+                    "de": "Einladung",
+                    "at": "Einladung",
+                    "fr": "Inviter",
+                    "es": "Invitar",
+                    "ru": "Приглашать",
+                    "it": "Invitare"
+                },
+                "Desc": {
+                    "description": "The description of the 'Invite' argument",
+                    "en": "Either enter the invite code or the url",
+                    "de": "Gib entweder den Einladungscode oder die URL ein",
+                    "at": "Gib entweder den Einladungscode oder die URL ein",
+                    "fr": "Entrez soit le code d'invitation, soit l'URL",
+                    "es": "Ingrese el código de invitación o la URL",
+                    "ru": "Введите код приглашения или URL",
+                    "it": "Inserisci il codice di invito o l'URL"
+                }
+            }
+        },
+        "Unban": {
+            "Name": {
+                "description": "The word 'Unban'",
+                "en": "Unban",
+                "de": "Entbannen",
+                "at": "Entbannen",
+                "fr": "Débannir",
+                "es": "Desbanear",
+                "ru": "Разбанить",
+                "it": "Sbannare"
+            },
+            "Desc": {
+                "description": "The description of the 'Unban' command",
+                "en": "Unban a user by deactivating all his modcases.",
+                "de": "Entbanne einen Nutzer, indem du alle seine Modcases deaktivierst.",
+                "at": "Entbanne einen Nutzer, indem du alle seine Modcases deaktivierst.",
+                "fr": "Débannir un utilisateur en désactivant tous ses modcases.",
+                "es": "Desbanea a un usuario desactivando todos sus modcases.",
+                "ru": "Разбаньте пользователя, отключив все его модкейсы.",
+                "it": "Sbanna un utente disattivando tutti i suoi modcase."
+            },
+            "User": {
+                "Name": {
+                    "description": "The word 'User'",
+                    "en": "User",
+                    "de": "Nutzer",
+                    "at": "Nutzer",
+                    "fr": "Utilisateur",
+                    "es": "Usuario",
+                    "ru": "Пользователь",
+                    "it": "Utente"
+                },
+                "Desc": {
+                    "description": "The description of the 'User' argument",
+                    "en": "The user to unban",
+                    "de": "Der Nutzer, der entbannt werden soll",
+                    "at": "Der Nutzer, der entbannt werden soll",
+                    "fr": "L'utilisateur à débannir",
+                    "es": "El usuario a desbanear",
+                    "ru": "Пользователь, которого нужно разбанить",
+                    "it": "L'utente da sbannare"
+                }
+            }
+        },
+        "Unmute": {
+            "Name": {
+                "description": "The word 'Unmute'",
+                "en": "Unmute",
+                "de": "Freigeben",
+                "at": "Freigeben",
+                "fr": "Démuter",
+                "es": "Desmutear",
+                "ru": "Размутить",
+                "it": "Smutare"
+            },
+            "Desc": {
+                "description": "The description of the 'Unmute' command",
+                "en": "Unmute a user by deactivating all his modcases.",
+                "de": "Hebe die Stummschaltung eines Nutzers auf, indem du alle seine Modcases deaktivierst.",
+                "at": "Hebe die Stummschaltung eines Nutzers auf, indem du alle seine Modcases deaktivierst.",
+                "fr": "Débannir un utilisateur en désactivant tous ses modcases.",
+                "es": "Desbanea a un usuario desactivando todos sus modcases.",
+                "ru": "Разбаньте пользователя, отключив все его модкейсы.",
+                "it": "Sbanna un utente disattivando tutti i suoi modcase."
+            },
+            "User": {
+                "Name": {
+                    "description": "The word 'User'",
+                    "en": "User",
+                    "de": "Nutzer",
+                    "at": "Nutzer",
+                    "fr": "Utilisateur",
+                    "es": "Usuario",
+                    "ru": "Пользователь",
+                    "it": "Utente"
+                },
+                "Desc": {
+                    "description": "The description of the 'User' argument",
+                    "en": "The user to unban",
+                    "de": "Der Nutzer, dessen Stummschaltung aufgehoben werden soll",
+                    "at": "Der Nutzer, dessen Stummschaltung aufgehoben werden soll",
+                    "fr": "L'utilisateur à débannir",
+                    "es": "El usuario a desbanear",
+                    "ru": "Пользователь, которого нужно разбанить",
+                    "it": "L'utente da sbannare"
+                }
+            }
+        },
+        "Url": {
+            "Name": {
+                "description": "The word 'URL'",
+                "en": "URL",
+                "de": "URL",
+                "at": "URL",
+                "fr": "URL",
+                "es": "URL",
+                "ru": "URL",
+                "it": "URL"
+            },
+            "Desc": {
+                "description": "The description of the 'URL' command",
+                "en": "Displays the URL MASZ is deployed on.",
+                "de": "Zeigt die URL zum MASZ Dashboard.",
+                "at": "Zeigt die URL zum MASZ Dashboard.",
+                "fr": "Affiche l'URL sur laquelle MASZ est déployé.",
+                "es": "Muestra la URL en la que se implementa MASZ.",
+                "ru": "Отображает URL, на котором развернут MASZ.",
+                "it": "Mostra l'URL su cui è installato MASZ."
+            }
+        },
+        "View": {
+            "Name": {
+                "description": "The word 'View'",
+                "en": "View",
+                "de": "Anzeigen",
+                "at": "Anzeigen",
+                "fr": "Voir",
+                "es": "Ver",
+                "ru": "Посмотреть",
+                "it": "Vedere"
+            },
+            "Desc": {
+                "description": "The description of the 'View' command",
+                "en": "View a modcase.",
+                "de": "Zeige einen Modcase an.",
+                "at": "Zeige einen Modcase an.",
+                "fr": "Afficher un modcase.",
+                "es": "Ver un modcase.",
+                "ru": "Посмотреть модкейс.",
+                "it": "Visualizza un modcase."
+            },
+            "Id": {
+                "Name": {
+                    "description": "The word 'Id'",
+                    "en": "Id",
+                    "de": "Id",
+                    "at": "Id",
+                    "fr": "Id",
+                    "es": "Id",
+                    "ru": "Id",
+                    "it": "Id"
+                },
+                "Desc": {
+                    "description": "The description of the 'Id' argument",
+                    "en": "The id of the modcase to view.",
+                    "de": "Die Id des Modcases, der angezeigt werden soll.",
+                    "at": "Die Id des Modcases, der angezeigt werden soll.",
+                    "fr": "L'identifiant du modcase à afficher.",
+                    "es": "El id del modcase a ver.",
+                    "ru": "Идентификатор просматриваемого модкейса.",
+                    "it": "L'id del modcase da visualizzare."
+                }
+            },
+            "Guildid": {
+                "Name": {
+                    "description": "The word 'Guildid'",
+                    "en": "Guildid",
+                    "de": "Guildid",
+                    "at": "Guildid",
+                    "fr": "Guildid",
+                    "es": "Guildid",
+                    "ru": "Guildid",
+                    "it": "Guildid"
+                },
+                "Desc": {
+                    "description": "The description of the 'Guildid' argument",
+                    "en": "The id of the guild the modcase is in.",
+                    "de": "Die Id der Gilde, in der sich der Modcase befindet.",
+                    "at": "Die Id der Gilde, in der sich der Modcase befindet.",
+                    "fr": "L'identifiant de la guilde dans laquelle se trouve le modcase.",
+                    "es": "El id de la guilda en la que está el modcase.",
+                    "ru": "Идентификатор гильдии, в которой находится модкейс.",
+                    "it": "L'id della gilda in cui si trova il modcase."
+                }
+            }
+        },
+        "Warn": {
+            "Name": {
+                "description": "The word 'Warn'",
+                "en": "Warn",
+                "de": "Verwarnen",
+                "at": "Verwarnen",
+                "fr": "Avertir",
+                "es": "Advertir",
+                "ru": "Предупредить",
+                "it": "Avvertire"
+            },
+            "Desc": {
+                "description": "Warn a user and create a modcase",
+                "en": "Warn a user and create a modcase",
+                "de": "Verwarne einen Benutzer und erstelle einen Modcase",
+                "at": "Verwarne einen Benutzer und erstelle einen Modcase",
+                "fr": "Avertir un utilisateur et créer un modcase",
+                "es": "Advertir a un usuario y crear un modcase",
+                "ru": "Предупредить пользователя и создать модкейс",
+                "it": "Avvertire un utente e creare un modcase"
+            },
+            "User": {
+                "Name": {
+                    "description": "The word 'user'",
+                    "en": "User",
+                    "de": "Benutzer",
+                    "at": "Benutzer",
+                    "fr": "Utilisateur",
+                    "es": "Usuario",
+                    "ru": "Пользователь",
+                    "it": "Utente"
+                },
+                "Desc": {
+                    "description": "The description of the 'user' parameter",
+                    "en": "user to punish",
+                    "de": "zu bestrafender Benutzer",
+                    "at": "zu bestrafender Benutzer",
+                    "fr": "utilisateur à punir",
+                    "es": "usuario a castigar",
+                    "ru": "пользователь для наказания",
+                    "it": "utente da punire"
+                }
+            },
+            "Title": {
+                "Name": {
+                    "description": "The word 'title'",
+                    "en": "Title",
+                    "de": "Titel",
+                    "at": "Titel",
+                    "fr": "Titre",
+                    "es": "Título",
+                    "ru": "Заголовок",
+                    "it": "Titolo"
+                },
+                "Desc": {
+                    "description": "The description of the 'title' parameter",
+                    "en": "Title of the modcase",
+                    "de": "Titel des Modcases",
+                    "at": "Titel des Modcases",
+                    "fr": "Titre du cas de modération",
+                    "es": "Título del caso de moderación",
+                    "ru": "Заголовок модкейса",
+                    "it": "Titolo del caso di moderazione"
+                }
+            },
+            "Details": {
+                "Name": {
+                    "description": "The word 'details'",
+                    "en": "Details",
+                    "de": "Details",
+                    "at": "Details",
+                    "fr": "Détails",
+                    "es": "Detalles",
+                    "ru": "Детали",
+                    "it": "Dettagli"
+                },
+                "Desc": {
+                    "description": "The description of the 'details' parameter",
+                    "en": "Details of the modcase",
+                    "de": "Details des Modcases",
+                    "at": "Details des Modcases",
+                    "fr": "Détails du cas de modération",
+                    "es": "Detalles del caso de moderación",
+                    "ru": "Детали модкейса",
+                    "it": "Dettagli del caso di moderazione"
+                }
+            },
+            "dm-notification": {
+                "Name": {
+                    "description": "The word 'dm-notification'",
+                    "en": "DM",
+                    "de": "Direktnachricht",
+                    "at": "Direktnachricht",
+                    "fr": "DM",
+                    "es": "DM",
+                    "ru": "DM",
+                    "it": "DM"
+                },
+                "Desc": {
+                    "description": "Whether to send a dm notification",
+                    "en": "Whether to send a dm notification",
+                    "de": "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                    "at": "Ob der Nutzer eine Benachrichtigung per Direktnachricht bekommen soll",
+                    "fr": "Si une notification DM doit être envoyée",
+                    "es": "Si se debe enviar una notificación DM",
+                    "ru": "Отправлять ли уведомление DM",
+                    "it": "Se inviare una notifica DM"
+                }
+            },
+            "public-notification": {
+                "Name": {
+                    "description": "The word 'public-notification'",
+                    "en": "public",
+                    "de": "öffentlich",
+                    "at": "öffentlich",
+                    "fr": "public",
+                    "es": "público",
+                    "ru": "общественный",
+                    "it": "pubblico"
+                },
+                "Desc": {
+                    "description": "Whether to send a public notification",
+                    "en": "Whether to send a public notification",
+                    "de": "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                    "at": "Ob eine öffentliche Benachrichtigung gesendet werden soll",
+                    "fr": "Si une notification publique doit être envoyée",
+                    "es": "Si se debe enviar una notificación pública",
+                    "ru": "Отправлять ли общественное уведомление",
+                    "it": "Se inviare una notifica pubblica"
+                }
+            },
+            "execute-punishment": {
+                "Name": {
+                    "description": "The word 'execute-punishment'",
+                    "en": "execute",
+                    "de": "ausführen",
+                    "at": "ausführen",
+                    "fr": "exécuter",
+                    "es": "ejecutar",
+                    "ru": "выполнить",
+                    "it": "eseguire"
+                },
+                "Desc": {
+                    "description": "Whether to execute the punishment",
+                    "en": "Whether to execute the punishment",
+                    "de": "Ob die Strafe ausgeführt werden soll",
+                    "at": "Ob die Strafe ausgeführt werden soll",
+                    "fr": "Si la punition doit être exécutée",
+                    "es": "Si se debe ejecutar el castigo",
+                    "ru": "Выполнить ли наказание",
+                    "it": "Se eseguire la punizione"
+                }
+            }
+        },
+        "Whois": {
+            "Name": {
+                "description": "The word 'whois'",
+                "en": "Whois",
+                "de": "Whois",
+                "at": "Whois",
+                "fr": "Whois",
+                "es": "Whois",
+                "ru": "Whois",
+                "it": "Whois"
+            },
+            "Desc": {
+                "description": "The description of the 'whois' command",
+                "en": "Shows information about a user",
+                "de": "Zeigt Informationen über einen Benutzer an",
+                "at": "Zeigt Informationen über einen Benutzer an",
+                "fr": "Affiche des informations sur un utilisateur",
+                "es": "Muestra información sobre un usuario",
+                "ru": "Показывает информацию о пользователе",
+                "it": "Mostra informazioni su un utente"
+            },
+            "User": {
+                "Name": {
+                    "description": "The word 'user'",
+                    "en": "User",
+                    "de": "Benutzer",
+                    "at": "Benutzer",
+                    "fr": "Utilisateur",
+                    "es": "Usuario",
+                    "ru": "Пользователь",
+                    "it": "Utente"
+                },
+                "Desc": {
+                    "description": "The description of the 'user' argument",
+                    "en": "User to show information for",
+                    "de": "Benutzer zum Anzeigen der Informationen",
+                    "at": "Benutzer zum Anzeigen der Informationen",
+                    "fr": "Utilisateur pour afficher les informations",
+                    "es": "Usuario para mostrar información",
+                    "ru": "Пользователь для отображения информации",
+                    "it": "Utente per mostrare le informazioni"
+                }
+            }
+        }
+    },
     "Features": {
         "description": "The word 'features'",
         "en": "Features",
-        "de": "Features",
-        "at": "Features",
+        "de": "Funktionen",
+        "at": "Funktionen",
         "fr": "Caractéristiques",
         "es": "Características",
         "ru": "Функции",
@@ -331,8 +1751,8 @@
     "ImportedFromExistingBans": {
         "description": "Case that has been imported from existing bans",
         "en": "Imported from existing bans",
-        "de": "Importiert aus bestehenden Sperren",
-        "at": "Importiat aus vorhondane Sperren",
+        "de": "Importiert aus bestehenden Banns",
+        "at": "Importiat aus vorhondane Banns",
         "fr": "Importé à partir des interdictions existantes",
         "es": "Importado de prohibiciones existentes",
         "ru": "Импортировано из существующих банов",
@@ -579,7 +1999,7 @@
                         "serviceBaseUrl": "string"
                     },
                     "en": "The moderators of guild `{guild.Name}` have warned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                    "de": "Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen oder einen Entbannungsantrag besuche: {serviceBaseUrl}",
+                    "de": "Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen besuche {serviceBaseUrl}",
                     "at": "Die Moderatoan vo `{guild.Name}` hom di verwoarnt.\nFia weitere Infos oda ein Entbannungsantrag schau bei {serviceBaseUrl} noch.",
                     "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont prévenu.\\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                     "es": "Los moderadores del gremio `{guild.Name}` te han advertido.\\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -595,7 +2015,7 @@
                             "serviceBaseUrl": "string"
                         },
                         "en": "The moderators of guild `{guild.Name}` have temporarily muted you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                        "de": "Die Moderatoren von `{guild.Name}` haben dich temporär stummgeschalten bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                        "de": "Die Moderatoren von `{guild.Name}` haben dich bis zum {modCase.PunishedUntil.Value.ToDiscordTS()} temporär stummgeschalten.\nFür weitere Informationen besuche {serviceBaseUrl}",
                         "at": "Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch",
                         "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont temporairement mis en sourdine jusqu'à {modCase.PunishedUntil.Value.ToDiscordTS()}.\\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                         "es": "Los moderadores del gremio `{guild.Name}` te han silenciado temporalmente hasta {modCase.PunishedUntil.Value.ToDiscordTS ()}.\\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -609,7 +2029,7 @@
                             "serviceBaseUrl": "string"
                         },
                         "en": "The moderators of guild `{guild.Name}` have muted you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                        "de": "Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                        "de": "Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nFür weitere Informationen besuche {serviceBaseUrl}",
                         "at": "Die Moderatoan vo `{guild.Name}` hom di stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
                         "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont mis en sourdine.\\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                         "es": "Los moderadores del gremio `{guild.Name}` te han silenciado.\\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -626,7 +2046,7 @@
                             "serviceBaseUrl": "string"
                         },
                         "en": "The moderators of guild `{guild.Name}` have temporarily banned you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                        "de": "Die Moderatoren von `{guild.Name}` haben dich temporär gebannt bis {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                        "de": "Die Moderatoren von `{guild.Name}` haben dich bis zum {modCase.PunishedUntil.Value.ToDiscordTS()} temporär gebannt.\nFür weitere Informationen oder zum Einreichen eines Entbannungsantrags besuche {serviceBaseUrl}",
                         "at": "Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
                         "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont temporairement banni jusqu'à {modCase.PunishedUntil.Value.ToDiscordTS()}.\\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                         "es": "Los moderadores del gremio `{guild.Name}` te han baneado temporalmente hasta el {modCase.PunishedUntil.Value.ToDiscordTS ()}.\\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -640,7 +2060,7 @@
                             "serviceBaseUrl": "string"
                         },
                         "en": "The moderators of guild `{guild.Name}` have banned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                        "de": "Die Moderatoren von `{guild.Name}` haben dich gebannt.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                        "de": "Die Moderatoren von `{guild.Name}` haben dich gebannt.\nFür weitere Informationen oder zum Einreichen eines Entbannungsantrags besuche {serviceBaseUrl}",
                         "at": "Die Moderatoan vo `{guild.Name}` hom di vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch",
                         "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont banni.\\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                         "es": "Los moderadores del gremio `{guild.Name}` te han prohibido.\\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -655,7 +2075,7 @@
                         "serviceBaseUrl": "string"
                     },
                     "en": "The moderators of guild `{guild.Name}` have kicked you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
-                    "de": "Die Moderatoren von `{guild.Name}` haben dich kickt.\nFür weitere Informationen besuche: {serviceBaseUrl}",
+                    "de": "Die Moderatoren von `{guild.Name}` haben dich kickt.\nFür weitere Informationen besuche {serviceBaseUrl}",
                     "at": "Die Moderatoan vo `{guild.Name}` hom di rausgschmissn.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
                     "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont viré.\\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
                     "es": "Los moderadores del gremio `{guild.Name}` te han pateado.\\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
@@ -769,7 +2189,7 @@
             "DescriptionThanks": {
                 "description": "Thanks for registering.",
                 "en": "Thanks for registering your guild.\nIn the following you will learn some useful tips for setting up and using **MASZ**.",
-                "de": "Vielen Dank für deine Registrierung.\nIm Folgenden wirst du einige nützliche Tipps zum Einrichten und Verwenden von **MASZ** erhalten.",
+                "de": "Vielen Dank für deine Registrierung.\nHier sind ein paar nützliche Tipps zum Einrichten und Verwenden von **MASZ**.",
                 "at": "Donksche fia dei Registrierung.\nDu siachst glei ei poar nützliche Tipps zum Eirichtn und Vawendn vo **MASZ**.",
                 "fr": "Merci d'avoir enregistré votre guilde.\\nDans ce qui suit, vous apprendrez quelques conseils utiles pour configurer et utiliser **MASZ**.",
                 "es": "Gracias por registrar tu gremio.\\nA continuación, aprenderá algunos consejos útiles para configurar y usar **MASZ**.",
@@ -792,7 +2212,7 @@
                     "language": "string"
                 },
                 "en": "MASZ will use `{language}` as default language for this guild whenever possible.",
-                "de": "MASZ wird `{language}` als Standard-Sprache für diese Gilde verwenden, wenn möglich.",
+                "de": "MASZ wird `{language}` als Standard-Sprache für diesen Server verwenden (wenn verfügbar).",
                 "at": "Dei MASZ wiad `{language}` ois Standard-Sproch fia die Güde nehma, wenns geht.",
                 "fr": "MASZ utilisera `{language}` comme langue par défaut pour cette guilde dans la mesure du possible.",
                 "es": "MASZ usará `{language}` como idioma predeterminado para este gremio siempre que sea posible.",
@@ -802,7 +2222,7 @@
             "ConfusingTimestamps": {
                 "description": "The timestamps are confusing.",
                 "en": "Timezones can be confusing.\nMASZ uses a Discord feature to display timestamps in the local timezone of your computer/phone.",
-                "de": "Zeitzonen können kompliziert sein.\nMASZ benutzt ein Discord-Feature um Zeitstempel in der lokalen Zeitzone deines Computers/Handys anzuzeigen.",
+                "de": "Zeitzonen können kompliziert sein.\nMASZ verwendet Discords Zeitstempel um immer die lokale Zeitzone deines PCs/Smartphones zu verwenden.",
                 "at": "De Zeitzonen kennan a weng schwer san.\nMASZ nutzt a Discord-Feature um Zeitstempl in da lokalen Zeitzon vo deim PC/Handy ozumzeign.",
                 "fr": "Les fuseaux horaires peuvent être déroutants.\\nMASZ utilise une fonction Discord pour afficher les horodatages dans le fuseau horaire local de votre ordinateur/téléphone.",
                 "es": "Las zonas horarias pueden resultar confusas.\\nMASZ usa una función de Discord para mostrar marcas de tiempo en la zona horaria local de su computadora / teléfono.",
@@ -856,7 +2276,7 @@
                     "action": "string"
                 },
                 "en": "Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}",
-                "de": "Hallo {user.Mention},\n\nDu hast die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}",
+                "de": "Hallo {user.Mention},\n\nDu hast gerade die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}",
                 "at": "Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention} ausglest. Grund: {reason}\nAktion: {action}",
                 "fr": "Salut {user.Mention},\\n\\nVous avez déclenché l'automodération dans {channel.Mention}.\\nRaison : {reason}\\nAction : {action}",
                 "es": "Hola, {user.Mention}:\\n\\nActivó la automoderación en {channel.Mention}.\\nMotivo: {reason}\\nAcción: {action}",
@@ -886,7 +2306,7 @@
                         "actor": "IUser"
                     },
                     "en": "New MotD has been created by {actor.Mention}.",
-                    "de": "Neue MotD wurde von {actor.Mention} erstellt.",
+                    "de": "Neue Nachricht des Tages wurde von {actor.Mention} erstellt.",
                     "at": "A neiche MotD wuad vo {actor.Mention} erstöt. ",
                     "fr": "Le nouveau MotD a été créé par {actor.Mention}.",
                     "es": "El nuevo MotD ha sido creado por {actor.Mention}.",
@@ -899,7 +2319,7 @@
                         "actor": "IUser"
                     },
                     "en": "MotD has been edited by {actor.Mention}.",
-                    "de": "MotD wurde von {actor.Mention} bearbeitet.",
+                    "de": "Nachricht des Tages wurde von {actor.Mention} bearbeitet.",
                     "at": "MotD is vo {actor.Mention} beorbeit woan.",
                     "fr": "MotD a été édité par {actor.Mention}.",
                     "es": "MotD ha sido editado por {actor.Mention}.",
@@ -1038,7 +2458,7 @@
             "SendDM": {
                 "description": "Send DM message after automod action",
                 "en": "Send DM notification",
-                "de": "Sende DM Nachricht",
+                "de": "Schicke eine Direktnachricht",
                 "at": "Schick a Direktnachricht",
                 "fr": "Envoyer une notification DM",
                 "es": "Enviar notificación DM",
@@ -1063,7 +2483,7 @@
                 "it": "{user.Mention} (registrato {registered.ToDiscordTS()}) si è unito con l'invito `{invite}`."
             },
             "JoinWithAndFrom": {
-                "description": "A user joined with invite x",
+                "description": "A user joined with invite x from user y",
                 "var_types": {
                     "user": "IUser",
                     "by": "ulong",
@@ -1072,7 +2492,7 @@
                     "invite": "string"
                 },
                 "en": "{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}` (created {createdAt.ToDiscordTS()}) by <@{by}>.",
-                "de": "{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` von <@{by}> (am {createdAt.ToDiscordTS()}) beigetreten.",
+                "de": "{user.Mention} (registriert {registered.ToDiscordTS()}) ist mit dem Invite `{invite}` von <@{by}> (erstellt am {createdAt.ToDiscordTS()}) beigetreten.",
                 "at": "{user.Mention} (registriert {registered.ToDiscordTS()}) is mit da Eiladung `{invite}` vo <@{by}> (am {createdAt.ToDiscordTS()}) beigetretn.",
                 "fr": "{user.Mention} (enregistré {registered.ToDiscordTS()}) rejoint avec invite `{invite}` (créé {createdAt.ToDiscordTS()}) par <@{by}>.",
                 "es": "{user.Mention} (registrado {registered.ToDiscordTS()}) se unió con la invitación `{invite}` (creado {createdAt.ToDiscordTS()}) por <@{by}>.",
@@ -1276,7 +2696,7 @@
         "UserID": {
             "description": "User ID",
             "en": "User ID",
-            "de": "NutzerId",
+            "de": "ID des Nutzers",
             "at": "NutzaId",
             "fr": "Identifiant d'utilisateur",
             "es": "User ID",
@@ -1296,7 +2716,7 @@
         "NoWebhookConfigured": {
             "description": "No webhook configured.",
             "en": "This guild has no webhook for internal notifications configured.",
-            "de": "Dieser Server hat keinen internen Webhook für Benachrichtigungen konfiguriert.",
+            "de": "Dieser Server hat keinen Webhook für interne Benachrichtigungen konfiguriert.",
             "at": "Da Serva hot kan internan Webhook fia Benochrichtigungen konfiguriat.",
             "fr": "Cette guilde n'a pas configuré de webhook pour les notifications internes.",
             "es": "Este gremio no tiene configurado ningún webhook para notificaciones internas.",
@@ -1357,7 +2777,7 @@
                 "Granted": {
                     "description": "Ban permission granted.",
                     "en": "Ban permission granted.",
-                    "de": "Ban-Berechtigung erteilt.",
+                    "de": "Bann-Berechtigung erteilt.",
                     "at": "Ban-Berechtigung erteit.",
                     "fr": "Autorisation d'interdiction accordée.",
                     "es": "Prohibición concedida.",
@@ -1367,7 +2787,7 @@
                 "NotGranted": {
                     "description": "Ban permission not granted.",
                     "en": "Ban permission not granted.",
-                    "de": "Ban-Berechtigung nicht erteilt.",
+                    "de": "Bann-Berechtigung nicht erteilt.",
                     "at": "Ban-Berechtigung ned erteit.",
                     "fr": "Autorisation d'interdiction non accordée.",
                     "es": "Prohibir permiso no concedido.",
@@ -1473,7 +2893,7 @@
                 "Granted": {
                     "description": "Unban requests description",
                     "en": "Allows banned members to see their cases and comment on it for unban requests.",
-                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.",
+                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese zu kommentieren.",
                     "at": "Erlaubt ausgsperrtn MASZ aufzuruafa, sich ernane Fälle ozumschaun und de zum kommentian.",
                     "fr": "Permet aux membres bannis de voir leurs cas et de les commenter pour les demandes de déban.",
                     "es": "Permite a los miembros prohibidos ver sus casos y comentarlos para las solicitudes de deshabilitación.",
@@ -1483,7 +2903,7 @@
                 "NotGranted": {
                     "description": "Unban requests description",
                     "en": "Allows banned members to see their cases and comment on it for unban requests.\nGrant this bot the ban permission to use this feature.",
-                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.\nErteile diesem Bot die Ban-Berechtigung, um diese Funktion zu nutzen.",
+                    "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.\nErteile MASZ die Bann-Berechtigung, um diese Funktion zu nutzen.",
                     "at": "Erlaubt ausgsperrtn MASZ aufzurufa, sich ernane Fälle ozumschaun und de zum kommentian. \nErteil dem Bot die Ban-Berechtigung, um de Funktion nutza zu kenna.",
                     "fr": "Permet aux membres bannis de voir leurs cas et de les commenter pour les demandes de déban.\\nAccordez à ce bot l'autorisation d'interdire l'utilisation de cette fonctionnalité.",
                     "es": "Permite a los miembros prohibidos ver sus casos y comentarlos para las solicitudes de deshabilitación.\\nOtorga a este bot el permiso de prohibición para usar esta función.",
@@ -1547,7 +2967,7 @@
                 "NotGranted": {
                     "description": "Unban requests description",
                     "en": "Allows MASZ to track the invites new members are using.\nGrant this bot the manage guild permission to use this feature.",
-                    "de": "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.\nErteile diesem Bot die Verwalten-Gilden-Berechtigung, um diese Funktion zu nutzen.",
+                    "de": "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.\nErteile diesem Bot die Server-Verwalten-Berechtigung, um diese Funktion zu nutzen.",
                     "at": "Erlaubt MASZ, de Eiladungen vo neichn Mitglieda zu verfoign.\nErteil dem Bot die Verwoitn-Gilden-Berechtigung, um de Funktion nutzn zu kenna.",
                     "fr": "Permet à MASZ de suivre les invitations que les nouveaux membres utilisent.\\nAccordez à ce bot l'autorisation de gestion de guilde pour utiliser cette fonctionnalité.",
                     "es": "Permite a MASZ realizar un seguimiento de las invitaciones que están utilizando los nuevos miembros.\\nOtorga a este bot el permiso de gestión del gremio para usar esta función.",
@@ -1558,7 +2978,7 @@
             "SupportAllFeatures": {
                 "description": "Support all features",
                 "en": "Your bot on this guild is configured correctly.",
-                "de": "Dein Bot auf diesem Server ist richtig konfiguriert.",
+                "de": "Dein Bot ist auf diesem Server richtig konfiguriert.",
                 "at": "Dei Bot auf dem Serva is richtig konfiguriat.",
                 "fr": "Votre bot sur cette guilde est correctement configuré.",
                 "es": "Tu bot en este gremio está configurado correctamente.",
@@ -1578,7 +2998,7 @@
             "MissingFeatures": {
                 "description": "Missing features",
                 "en": "There are features of MASZ that you cannot use right now.",
-                "de": "Es gibt Funktionen von MASZ, die du jetzt nicht nutzen kannst.",
+                "de": "Es gibt Funktionen von MASZ, die du momentan nicht nutzen kannst.",
                 "at": "Es gibt Funktionen vo MASZ, die du jetzt ned nutzn konnst.",
                 "fr": "Il y a des fonctionnalités de MASZ que vous ne pouvez pas utiliser pour le moment.",
                 "es": "Hay funciones de MASZ que no puede utilizar en este momento.",
@@ -1627,7 +3047,7 @@
             "Failed": {
                 "description": "Report failed",
                 "en": "Failed to send internal notification to moderators for report command.",
-                "de": "Interner Benachrichtigungsversand an Moderatoren für Meldebefehl fehlgeschlagen.",
+                "de": "Benachrichtigung der Moderatoren fehlgeschlagen.",
                 "at": "Interna Benochrichtigungsvasond on de Modaratoan fian Mödebefehl fehlgschlogn.",
                 "fr": "Échec de l'envoi de la notification interne aux modérateurs pour la commande de rapport.",
                 "es": "No se pudo enviar una notificación interna a los moderadores para el comando de informe.",
@@ -1799,7 +3219,7 @@
             "InvalidGuildId": {
                 "description": "Invalid guild id",
                 "en": "Please specify a valid guildid.",
-                "de": "Bitte gib eine gültige Gilden-ID an.",
+                "de": "Bitte gib eine gültige Server-ID an.",
                 "at": "Bitte gib a gütige Güdn-ID o.",
                 "fr": "Veuillez spécifier un identifiant de guilde valide.",
                 "es": "Por favor, especifique un guildid válido.",
@@ -1809,7 +3229,7 @@
             "NotAllowedToView": {
                 "description": "Not allowed to view",
                 "en": "You are not allowed to view this case.",
-                "de": "Du darfst diesen Fall nicht ansehen.",
+                "de": "Du bist nicht berechtigt diesen Case anzusehen.",
                 "at": "Du derfst da den Foi ned oschaun.",
                 "fr": "Vous n'êtes pas autorisé à voir ce cas.",
                 "es": "No se le permite ver este caso.",
@@ -1979,7 +3399,7 @@
                         "caseCount": "int"
                     },
                     "en": "Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unmute the user?",
-                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer nicht mehr stummgeschaltet zu lassen?",
+                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um die Stummschaltung des Nutzers aufzuheben?",
                     "at": "Es san `{caseCount}` aktive Fälle gfundn woan. Möchtest olle deaktivian oda löschn, damit da Nutza nimma stummgschoitn bleibt?",
                     "fr": "`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour réactiver le son de l'utilisateur ?",
                     "es": "Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para dejar de silenciar al usuario?",
@@ -2038,7 +3458,7 @@
                         "caseCount": "int"
                     },
                     "en": "Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unban the user?",
-                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Benutzer entbannen zu lassen?",
+                    "de": "Es wurden `{caseCount}` aktive Fälle gefunden. Möchtest du alle deaktivieren oder löschen, um den Nutzer zu entbannen?",
                     "at": "Es san `{caseCount}` aktive Fälle gfundn woan. Möchtest olle deaktivian oda löschn, damit da Nutza entsperrt bleibt?",
                     "fr": "`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour annuler l'interdiction de l'utilisateur ?",
                     "es": "Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para desbloquear al usuario?",
@@ -2049,7 +3469,7 @@
                     "Deleted": {
                         "description": "someone approved",
                         "en": "Bans deleted",
-                        "de": "Sperrungen gelöscht",
+                        "de": "Banns gelöscht",
                         "at": "Sperrungen glescht",
                         "fr": "Interdictions supprimées",
                         "es": "Prohibiciones eliminadas",
@@ -2059,7 +3479,7 @@
                     "Deactivated": {
                         "description": "someone approved",
                         "en": "Bans deactivated",
-                        "de": "Sperrungen deaktiviert",
+                        "de": "Banns deaktiviert",
                         "at": "Sperrungen deaktiviat",
                         "fr": "Interdictions désactivées",
                         "es": "Prohibiciones desactivadas",
@@ -2071,7 +3491,7 @@
                     "Delete": {
                         "description": "Unban button to approve",
                         "en": "Delete Bans",
-                        "de": "Sperrungen löschen",
+                        "de": "Banns löschen",
                         "at": "Sperrungen löschn",
                         "fr": "Supprimer les bannissements",
                         "es": "Eliminar prohibiciones",
@@ -2081,7 +3501,7 @@
                     "Deactivate": {
                         "description": "Unban button to approve",
                         "en": "Deativate Bans",
-                        "de": "Sperrungen deaktivieren",
+                        "de": "Banns deaktivieren",
                         "at": "Sperrungen deaktivian",
                         "fr": "Désactiver les interdictions",
                         "es": "Prohibiciones de desactivación",
@@ -2221,7 +3641,7 @@
         "UserID": {
             "description": "User ID",
             "en": "User ID",
-            "de": "NutzerId",
+            "de": "ID des Nutzers",
             "at": "NutzaId",
             "fr": "Identifiant d'utilisateur",
             "es": "User ID",

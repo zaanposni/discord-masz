@@ -34,7 +34,7 @@ namespace MASZ.Controllers
             await RequireSiteAdmin();
             await GetRegisteredGuild(guildId);
 
-            await GuildConfigRepository.CreateDefault(_serviceProvider).DeleteGuildConfig(guildId, deleteData);
+            await GuildConfigRepository.CreateDefault(_serviceProvider, await GetIdentity()).DeleteGuildConfig(guildId, deleteData);
 
             return Ok();
         }
@@ -72,7 +72,7 @@ namespace MASZ.Controllers
                 PublicEmbedMode = guildConfigForCreateDto.PublicEmbedMode,
             };
 
-            guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider).CreateGuildConfig(guildConfig, importExistingBans);
+            guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider, await GetIdentity()).CreateGuildConfig(guildConfig, importExistingBans);
 
             return StatusCode(201, guildConfig);
         }
@@ -112,7 +112,7 @@ namespace MASZ.Controllers
             guildConfig.AllowBanAppealAfterDays = newValue.AllowBanAppealAfterDays;
             guildConfig.PublicEmbedMode = newValue.PublicEmbedMode;
 
-            return Ok(await GuildConfigRepository.CreateDefault(_serviceProvider).UpdateGuildConfig(guildConfig));
+            return Ok(await GuildConfigRepository.CreateDefault(_serviceProvider, await GetIdentity()).UpdateGuildConfig(guildConfig));
         }
     }
 }

@@ -21,7 +21,7 @@ namespace MASZ.Commands
                 [Choice("1 Week", 168)]
                 [Choice("1 Month", 672)]
             [Summary("hours", "How long the punishment should be")] long punishedForHours = 0,
-            [Summary("description", "The description of the modcase")] string description = "",
+            [Summary("details", "The details of the modcase")] string details = "",
             [Summary("dm-notification", "Whether to send a dm notification")] bool sendDmNotification = true,
             [Summary("public-notification", "Whether to send a public webhook notification")] bool sendPublicNotification = true,
             [Summary("execute-punishment", "Whether to execute the punishment or just register it.")] bool executePunishment = true)
@@ -34,13 +34,13 @@ namespace MASZ.Commands
                 UserId = user.Id,
                 ModId = CurrentIdentity.GetCurrentUser().Id
             };
-            if (string.IsNullOrEmpty(description))
+            if (string.IsNullOrEmpty(details))
             {
                 modCase.Description = title;
             }
             else
             {
-                modCase.Description = description;
+                modCase.Description = details;
             }
             modCase.PunishmentType = PunishmentType.Mute;
             modCase.PunishmentActive = executePunishment;

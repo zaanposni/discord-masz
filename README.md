@@ -181,6 +181,10 @@ After development, you may want to build a docker container to test on! This can
 As a siteadmin you can create a token to authenticate yourself while making API requests.\
 You can also use my [python library](https://github.com/zaanposni/masz-api-wrapper) to integrate the MASZ API into your project.
 
+## 🤖 Custom plugins
+
+You can write custom backend plugins for MASZ using C# [[documentation](https://github.com/zaanposni/discord-masz/blob/master/backend/MASZ/Plugins/readme.md)].
+
 ## 🤝 Contribute
 
 Contributions are welcome.\

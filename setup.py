@@ -51,9 +51,12 @@ while True:
     site_admin = Prompt.ask(f"{len(admins) + 1}. Admin | Enter '[bright_red]x[/bright_red]' if you are finished")
     if str(site_admin).lower() == "x":
         break
-    admins.append(site_admin)
+    if str(site_admin).strip():
+        admins.append(str(site_admin).strip())
 
 ENV_FILE["DISCORD_SITE_ADMINS"] = ','.join(admins)
+
+ENV_FILE["ENABLE_TELEMETRY"] = "true" if Confirm.ask(":question_mark: Share anonymous telemetry and usage data with MASZ developers to further improve MASZ?", default=False) else "false"
 
 ENV_FILE["ENABLE_DEMO_MODE"] = "false"
 ENV_FILE["ENABLE_CUSTOM_PLUGINS"] = "false"
@@ -67,5 +70,11 @@ for key, value in ENV_FILE.items():
 with open("./.env", "w") as fh:
     fh.write(env_string)
 
+print("")
+
+if (ENV_FILE["ENABLE_TELEMETRY"] == "true"):
+    print("\n:red_heart-emoji:  Thank you for sharing anonymous telemetry and usage data with us.")
+
 print("\n:+1: [bright_green]You are finished[/bright_green].\n[bright_black]You can execute this script again if you want to change anything.[/bright_black]")
 print(f"\n:rocket: [bright_green]You can use \"docker-compose up -d\" to start the application[/bright_green].\n[bright_black]After starting you can access the panel at:[/bright_black] {service_base_url}/\n")
+print("\n[bright_black]Join our Discord: https://discord.gg/5zjpzw6h3S[/bright_black]\n")
