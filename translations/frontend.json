@@ -181,7 +181,7 @@
         "allguilds": {
             "description": "All Guilds",
             "en": "All Guilds",
-            "de": "Alle Server",
+            "de": "Alle Gilden",
             "at": "Alle Güdn",
             "fr": "Toutes les Guildes",
             "es": "Todas las Hermandades",
@@ -344,7 +344,7 @@
             "base": {
                 "description": "Guild",
                 "en": "Guild",
-                "de": "Server",
+                "de": "Gilde",
                 "at": "Güde",
                 "fr": "Guilde",
                 "es": "Hermandad",
@@ -475,7 +475,7 @@
                 "search": {
                     "description": "Search",
                     "en": "Guild Settings",
-                    "de": "Servereinstellungen",
+                    "de": "Gildeneinstellungen",
                     "at": "Güdneistellungen",
                     "fr": "Paramètres de guilde",
                     "es": "Ajustes de hermandad",
@@ -485,7 +485,7 @@
                 "searchdetails": {
                     "description": "Search Details",
                     "en": "Edit the settings of this guild.",
-                    "de": "Bearbeiten Sie die Einstellungen dieses Servers.",
+                    "de": "Bearbeiten Sie die Einstellungen dieser Gilde.",
                     "at": "Beoarbeiten Sie de Eistellungen zua dea Güde.",
                     "fr": "Modifiez les paramètres de cette guilde.",
                     "es": "Editar los ajustes de esta hermandad.",
@@ -520,7 +520,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the latest cases in your guild.",
-                "de": "Dieses Widget zeigt die neuesten Vorfälle auf deinem Server.",
+                "de": "Dieses Widget zeigt die neuesten Vorfälle auf deiner Gilde.",
                 "at": "Des Widget zeigt de neiasten Vorfälle in dea Güde o.",
                 "fr": "Ce widget affiche les derniers cas de votre guilde.",
                 "es": "Este widget muestra los últimos casos de tu hermandad.",
@@ -552,7 +552,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the latest appeals in your guild.",
-                "de": "Dieses Widget zeigt die neuesten Entbannungsanträge auf deinem Server.",
+                "de": "Dieses Widget zeigt die neuesten Entbannungsanträge auf deiner Gilde.",
                 "at": "Des Widget zeigt de neiasten Entbannungsonträge in dea Güde o.",
                 "fr": "Ce widget affiche les derniers appels de votre guilde.",
                 "es": "Este widget muestra los últimos apelaciones de tu hermandad.",
@@ -584,7 +584,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows all cases by moderator in your guild.",
-                "de": "Dieses Widget zeigt alle Vorfälle nach Moderator auf deinem Server.",
+                "de": "Dieses Widget zeigt alle Vorfälle nach Moderator auf deiner Gilde.",
                 "at": "Des Widget zeigt olle Vorfälle noch dem Modarator in dea Güde o.",
                 "fr": "Ce widget affiche tous les cas par modérateur de votre guilde.",
                 "es": "Este widget muestra todos los casos por moderador de tu hermandad.",
@@ -616,7 +616,7 @@
             "title": {
                 "description": "Title",
                 "en": "Guild Stats",
-                "de": "Serverstatistiken",
+                "de": "Gildenstatistiken",
                 "at": "Güdenstatistikn",
                 "fr": "Statistiques de guilde",
                 "es": "Estadísticas de hermandad",
@@ -626,7 +626,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the guild stats.",
-                "de": "Dieses Widget zeigt die Serverstatistiken.",
+                "de": "Dieses Widget zeigt die Gildenstatistiken.",
                 "at": "Des Widget zeigt de Güdenstatistikn o.",
                 "fr": "Ce widget affiche les statistiques de votre guilde.",
                 "es": "Este widgetshowConfirmDialog muestra las estadísticas de tu hermandad.",
@@ -708,7 +708,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the automod split of your guild.",
-                "de": "Dieses Widget zeigt die Aufteilung der Automoderationen auf deinem Server.",
+                "de": "Dieses Widget zeigt die Aufteilung der Automoderationen auf deiner Gilde.",
                 "at": "Des Widget zeigt de Aufteilung vo da Automodaration in dea Güde o.",
                 "fr": "Ce widget affiche les automodérations de votre guilde.",
                 "es": "Este widget muestra la división de automod de tu hermandad.",
@@ -740,7 +740,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the case overview of your guild.",
-                "de": "Dieses Widget zeigt die Übersicht der Vorfälle auf deinem Server.",
+                "de": "Dieses Widget zeigt die Übersicht der Vorfälle auf deiner Gilde.",
                 "at": "Des Widget zeigt de Übasicht vo de Vorfälle in dea Güde o.",
                 "fr": "Ce widget affiche l'aperçu des cas de votre guilde.",
                 "es": "Este widget muestra el resumen de los casos de tu hermandad.",
@@ -772,7 +772,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the appeal overview of your guild.",
-                "de": "Dieses Widget zeigt die Übersicht der Entbannungsanträge auf deinem Server.",
+                "de": "Dieses Widget zeigt die Übersicht der Entbannungsanträge auf deiner Gilde.",
                 "at": "Des Widget zeigt de Übasicht dea Entbannungsonträge in dea Güde o.",
                 "fr": "Ce widget affiche l'aperçu des appels de votre guilde.",
                 "es": "Este widget muestra el resumen de las quejas de tu hermandad.",
@@ -804,7 +804,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the automod overview of your guild.",
-                "de": "Dieses Widget zeigt die Übersicht der Automoderationen auf deinem Server.",
+                "de": "Dieses Widget zeigt die Übersicht der Automoderationen auf deiner Gilde.",
                 "at": "Des Widget zeigt de Übasicht dea Automodarationen in dea Güde o.",
                 "fr": "Ce widget affiche l'aperçu des automodérations de votre guilde.",
                 "es": "Este widget muestra el resumen de las automod de tu hermandad.",
@@ -836,7 +836,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the pending scheduled messages in your guild.",
-                "de": "Dieses Widget zeigt die ausstehenden geplanten Nachrichten auf deinem Server.",
+                "de": "Dieses Widget zeigt die ausstehenden geplanten Nachrichten auf deiner Gilde.",
                 "at": "Des Widget zeigt de ausstehenden Nochrichtn in dea Güde o.",
                 "fr": "Ce widget affiche les messages en attente de votre guilde.",
                 "es": "Este widget muestra los mensajes pendientes de tu hermandad.",
@@ -868,7 +868,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the punishment stats of your guild.",
-                "de": "Dieses Widget zeigt die Bestrafungsstatistiken deines Servers.",
+                "de": "Dieses Widget zeigt die Bestrafungsstatistiken deiner Gilde.",
                 "at": "Des Widget zeigt de Bestrofungsstatistikn in dea Güde o.",
                 "fr": "Ce widget affiche les statistiques de punition de votre guilde.",
                 "es": "Este widget muestra las estadísticas de castigos de tu hermandad.",
@@ -1232,7 +1232,7 @@
             "guilds": {
                 "description": "Guilds",
                 "en": "Guilds",
-                "de": "Server",
+                "de": "Gilde",
                 "at": "Güdn",
                 "fr": "Guildes",
                 "es": "Hermandades",
@@ -1334,7 +1334,7 @@
             "guilds": {
                 "description": "Guilds",
                 "en": "Guilds",
-                "de": "Server",
+                "de": "Gilden",
                 "at": "Güdn",
                 "fr": "Guildes",
                 "es": "Hermandades",
@@ -1490,7 +1490,7 @@
             "button": {
                 "description": "Add guild",
                 "en": "Add guild",
-                "de": "Server hinzufügen",
+                "de": "Gilde hinzufügen",
                 "at": "Güde hinzufügn",
                 "fr": "Ajouter une guilde",
                 "es": "Añadir una hermandad",
@@ -1530,7 +1530,7 @@
             "invitefirst": {
                 "description": "Invite first",
                 "en": "Please invite the bot to this guild first",
-                "de": "Bitte füge den Bot erst zu diesem Server hinzu.",
+                "de": "Bitte füge den Bot erst zu diesem Gilde hinzu.",
                 "at": "Bitte lad den Bot zuerst in de Güde ei",
                 "fr": "Veuillez d'abord inviter le bot à cette guilde",
                 "es": "Por favor, invita al bot a esta hermandad primero",
@@ -1552,7 +1552,7 @@
             "admin": {
                 "description": "Admin",
                 "en": "Admin guilds",
-                "de": "Admin-Server",
+                "de": "Admin-Gilden",
                 "at": "Admin-Güden",
                 "fr": "Guildes admin",
                 "es": "Gildes administradores",
@@ -1562,7 +1562,7 @@
             "mod": {
                 "description": "Mod",
                 "en": "Moderator guilds",
-                "de": "Moderatoren-Server",
+                "de": "Moderatoren-Gilden",
                 "at": "Moderatoren-Güdn",
                 "fr": "Guildes mod",
                 "es": "Gildes moderadores",
@@ -1572,7 +1572,7 @@
             "guild": {
                 "description": "Guilds",
                 "en": "Guilds",
-                "de": "Server",
+                "de": "Gilden",
                 "at": "Güden",
                 "fr": "Guildes",
                 "es": "Gildes",
@@ -1582,7 +1582,7 @@
             "banned": {
                 "description": "Banned",
                 "en": "Banned guilds",
-                "de": "Gesperrte Server",
+                "de": "Gesperrte Gilden",
                 "at": "Gsperrte Güden",
                 "fr": "Guildes bannis",
                 "es": "Gildes prohibidas",
@@ -2286,7 +2286,7 @@
             "caseexplain": {
                 "description": "Case explanation",
                 "en": "Use cases to log infractions and punishments in your guild.",
-                "de": "Benutze Vorfälle, um Regelverstöße und Strafen auf deinem Server zu protokollieren.",
+                "de": "Benutze Vorfälle, um Regelverstöße und Strafen in deiner Gilde zu protokollieren.",
                 "at": "Benutz an Vorfoi, um Verstöße und Strofn in deina Güde zu protokollian.",
                 "fr": "Utilisez un cas pour journaliser des infractions et des punitions dans votre guilde.",
                 "es": "Utiliza un caso para registrar infracciones y sanciones en tu hermandad.",
@@ -2296,7 +2296,7 @@
             "caseexplain2": {
                 "description": "Case explanation",
                 "en": "If your guild is configured, MASZ will automatically manage your punishment and notify both your guild and the user.",
-                "de": "MASZ wird automatisch deine Strafe verwalten und den Benutzer und deinen Server benachrichtigen (wenn aktiviert).",
+                "de": "MASZ wird automatisch deine Strafe verwalten und den Benutzer und deine Gilde zu benachrichtigen (wenn aktiviert).",
                 "at": "MASZ wiad automatisch dei Strof vawoitn und den Benutza und dei Güde benochrichtn, wenns konfiguriat is.",
                 "fr": "MASZ va automatiquement gérer votre punition et notifier l'utilisateur et votre guilde si configuré.",
                 "es": "MASZ gestionará automáticamente tu sanción y notificará al usuario y tu hermandad si está configurado.",
@@ -2828,7 +2828,7 @@
             "nomatchesdescription": {
                 "description": "No matches for search string found.",
                 "en": "Try adjusting your filters above to fix this.",
-                "de": "Es könnte noch keine Vorfälle auf diesem Server geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um mehr Vorfälle zu finden.",
+                "de": "Es könnte noch keine Vorfälle in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um mehr Vorfälle zu finden.",
                 "at": "Kannn Vorfälle in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Vorfälle zu findn.",
                 "fr": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas.",
                 "es": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos.",
@@ -2910,7 +2910,7 @@
             "nomatchesdescription": {
                 "description": "No matches for search string found.",
                 "en": "Try adjusting your filters above to fix this.",
-                "de": "Es gibt noch keine Automoderationen auf diesem Server, die dem Filter entspricht. Du kannst versuchen, deine Filter oben zu anpassen, um mehr Automoderationen zu finden.",
+                "de": "Es gibt noch keine Automoderationen in dieser Gilde, die dem Filter entspricht. Du kannst versuchen, deine Filter oben zu anpassen, um mehr Automoderationen zu finden.",
                 "at": "Kannn Automoderationen in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Automoderationen zu findn.",
                 "fr": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas.",
                 "es": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos.",
@@ -2932,7 +2932,7 @@
             "disabledexplained": {
                 "description": "Disabled explanation",
                 "en": "You may not create a new appeal since either you created your last appeal recently, your punishment was recent, or this guild has not yet configured ban appeals",
-                "de": "Du kannst keinen neuen Entbannungsantrag stellen, da du entweder bereits einen gestellt hast, dein Bann noch nicht lange genug her ist oder dieser Server Entbannungsanträge nicht aktiviert hat.",
+                "de": "Du kannst keinen neuen Entbannungsantrag stellen, da du entweder bereits einen gestellt hast, dein Bann noch nicht lange genug her ist oder diese Gilde Entbannungsanträge nicht aktiviert hat.",
                 "at": "Du konnst ka neiche Entbannungsanfrage erstöt, da du entweda eine früher erstöt host, dei Bann früher erstöt wurde oder de Güde kane Entbannungsanfragen konfiguriat hot.",
                 "fr": "Vous ne pouvez pas créer une nouvelle demande de bannissement car vous en avez créé une récemment ou votre punition a été créée récemment ou ce serveur n'a pas de demandes de bannissement configurées.",
                 "es": "No puedes crear una nueva queja porque has creado una recientemente o tu castigo fue creado recientemente o este servidor no tiene configuradas quejas de expulsión.",
@@ -3002,7 +3002,7 @@
             "nomatchesdescription": {
                 "description": "No appeals match your search.",
                 "en": "Try adjusting your filters above to fix this.",
-                "de": "Es gibt noch keine Entbannungsanträge auf diesem Server, die dem Filter entsprechen. Du kannst aber versuchen, deine Filter oben zu anpassen, um mehr Entbannungsanträge zu finden.",
+                "de": "Es gibt noch keine Entbannungsanträge in dieser Gilde, die dem Filter entsprechen. Du kannst aber versuchen, deine Filter oben zu anpassen, um mehr Entbannungsanträge zu finden.",
                 "at": "Kannn Entbannungsanfragen in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Entbannungsanfragen zu findn.",
                 "fr": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas.",
                 "es": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos.",
@@ -3044,7 +3044,7 @@
             "explain": {
                 "description": "Configure",
                 "en": "Configure the form for the guild's ban appeal.",
-                "de": "Konfiguriere das Formular für den Entbannungsantrag des Servers.",
+                "de": "Konfiguriere das Formular für den Entbannungsantrag der Gilde.",
                 "at": "Konfiguriere des Formular fia dein Entbannungsantrag der Güde.",
                 "fr": "Configurer le formulaire pour l'appel d'embargo de la guilde.",
                 "es": "Configurar el formulario para el apelante de la gildia.",
@@ -3450,7 +3450,7 @@
             "nomatchesdescription": {
                 "description": "No matches for search string found.",
                 "en": "There may be no usernotes yet in this guild. Create one by using the button above.",
-                "de": "Es gibt noch keine Benutzernotizen auf diesem Server, die dem Filter entsprechen. Klicke oben auf den Button um eine neue Benutzernotiz zu erstellen.",
+                "de": "Es gibt noch keine Benutzernotizen in dieser Gilde, die dem Filter entsprechen. Klicke oben auf den Button um eine neue Benutzernotiz zu erstellen.",
                 "at": "Es kenntn no kane Benutzanotizen in dea Güde sei. Sie kennan a Benutzanotiz erstön, indem Sie obn auf den Button klickn.",
                 "fr": "Il n'y a peut-être pas encore de notes utilisateur dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus.",
                 "es": "Puede que no haya notas de usuario todavía en este servidor. Puede crear una nota de usuario usando el botón de arriba.",
@@ -3562,7 +3562,7 @@
             "nomatchesdescription": {
                 "description": "No matches for search string found.",
                 "en": "No usermaps are in this guild! Create one by using the button above.",
-                "de": "Es gibt noch keine Benutzerbeziehungen auf diesem Server, die dem Filter entsprechen. Du kannst eine erstellen, indem du den Button oben benutzt.",
+                "de": "Es gibt noch keine Benutzerbeziehungen in dieser Gilde, die dem Filter entsprechen. Du kannst eine erstellen, indem du den Button oben benutzt.",
                 "at": "Es kenntat no kane Benutzabeziehungen in dea Güde gebn. Du konnst ane erstön, indem du den Button obn vawendst.",
                 "fr": "Il n'y a peut-être pas encore de cartes utilisateur dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus.",
                 "es": "Puede que no haya mapas de usuario todavía en este servidor. Puede crear uno usando el botón de arriba.",
@@ -3594,7 +3594,7 @@
             "nomessagesdescription": {
                 "description": "No messages found.",
                 "en": "No messages scheduled in this guild! Create one by using the button above.",
-                "de": "Es gibt noch keine Nachrichten auf diesem Server, die dem Filter entsprechen. Du kannst eine erstellen, indem du den Button oben benutzt.",
+                "de": "Es gibt noch keine Nachrichten in dieser Gilde, die dem Filter entsprechen. Du kannst eine erstellen, indem du den Button oben benutzt.",
                 "at": "Es kenntan no kane Nachrichtm in dea Güde gebn. Du konnst ane erstön, indem du den Button obn benutzt.",
                 "fr": "Il n'y a peut-être pas encore de messages dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus.",
                 "es": "Puede que no haya mensajes todavía en este servidor. Puede crear uno usando el botón de arriba.",
@@ -3716,7 +3716,7 @@
             "explain": {
                 "description": "Explaination of the message of the day",
                 "en": "Use a MotD to pin a message on the guilds dashboard that all your moderators will see.",
-                "de": "Benutze eine Nachricht des Tages, um eine Nachricht auf dem Dashboard des Servers einzublenden, die alle Moderatoren sehen können.",
+                "de": "Benutze eine Nachricht des Tages, um eine Nachricht auf dem Dashboard der Gilde einzublenden, die alle Moderatoren sehen können.",
                 "at": "Benutze de Nochricht vo dem Tag, um eine Nochricht aufm Deschboad da Güde zu platzian, die olle Modaratoren sehn.",
                 "fr": "Utilisez un message du jour pour épingler un message sur le tableau de bord des serveurs que tous les modérateurs verront.",
                 "es": "Utilice un mensaje del día para fijar un mensaje en el panel de control de los servidores que todos los moderadores verán.",
@@ -3746,7 +3746,7 @@
             "enabled": {
                 "description": "Is motd enabled?",
                 "en": "Enable motd in guild dashboard",
-                "de": "Nachricht des Tages auf dem Dashboard des Servers aktivieren",
+                "de": "Nachricht des Tages auf dem Dashboard der Gilde aktivieren",
                 "at": "Nochricht vo dem Tag aufm Deschboad da Güde aktivian",
                 "fr": "Activer le message du jour sur le tableau de bord de la guilde",
                 "es": "Habilitar mensaje del día en el panel de control de la guilda",
@@ -3818,7 +3818,7 @@
             "explain": {
                 "description": "Explaination of the audit log",
                 "en": "Use auditlogs to log certain events in your guild.",
-                "de": "Benutze AuditLogs um bestimmte Ereignisse auf deinem Server zu loggen.",
+                "de": "Benutze AuditLogs um bestimmte Ereignisse in deiner Gilde zu loggen.",
                 "at": "Benutz AuditLogs um bestimmte Ereignisse in deina Güde zu loggn.",
                 "fr": "Utilisez les auditlogs pour enregistrer certains événements dans votre guilde.",
                 "es": "Utilice auditlogs para registrar ciertos eventos en su guilda.",
@@ -4051,7 +4051,7 @@
                 "details": {
                     "description": "details of automod invite",
                     "en": "A message on your guild matches the invite pattern. Invites to this guild will be ignored.",
-                    "de": "Eine Nachricht auf deinem Server beinhaltet einen Einladungslink zu einem anderen Server. Einladungen zu diesem Server werden ignoriert.",
+                    "de": "Eine Nachricht auf deiner Gilde beinhaltet einen Einladungslink zu einer anderen Gilde. Einladungen zu dieser Gilde werden ignoriert.",
                     "at": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta. Eiladunga zu dem Serva wera ignohriert.",
                     "fr": "Un message sur votre guilde correspond au modèle d'invitation. Les invitations à cette guilde seront ignorées.",
                     "es": "Un mensaje en tu gremio coincide con el patrón de invitación. Se ignorarán las invitaciones a este gremio.",
@@ -4061,7 +4061,7 @@
                 "customwordfield": {
                     "description": "",
                     "en": "Ignore guilds (enter IDs divided by newlines)",
-                    "de": "Ignorierte Server-IDs (getrennt durch Zeilenumbruch)",
+                    "de": "Ignorierte Gilden-IDs (getrennt durch Zeilenumbruch)",
                     "at": "Ignorierte Güdn-IDs (getrennt durch an Zeilenumbruch",
                     "fr": "Ignorer les guildes (entrez les identifiants divisés par des sauts de ligne)",
                     "es": "Ignorar gremios (ingrese ID divididos por líneas nuevas)",
@@ -4073,7 +4073,7 @@
                 "details": {
                     "description": "details of automod emote",
                     "en": "A message on your guild contains too many emotes.",
-                    "de": "Eine Nachricht auf deinem Server enthält zu viele Emojis.",
+                    "de": "Eine Nachricht in deiner Gilde enthält zu viele Emojis.",
                     "at": "A Nochricht aufm Serva hot zvü Emojis",
                     "fr": "Un message sur votre guilde contient trop d'émoticônes.",
                     "es": "Un mensaje en tu gremio contiene demasiados gestos.",
@@ -4085,7 +4085,7 @@
                 "details": {
                     "description": "details of automod mention",
                     "en": "A message on your guild contains too many mentions.",
-                    "de": "Eine Nachricht auf deinem Server enthält zu viele Erwähnungen.",
+                    "de": "Eine Nachricht in deiner Gilde  enthält zu viele Erwähnungen.",
                     "at": "A Nochricht aufm Serva hot zvü Erwähnungen.",
                     "fr": "Un message sur votre guilde contient trop de mentions.",
                     "es": "Un mensaje en tu gremio contiene demasiadas menciones.",
@@ -4097,7 +4097,7 @@
                 "details": {
                     "description": "details of automod Attachments",
                     "en": "A message on your guild contains too many attachments.",
-                    "de": "Eine Nachricht auf deinem Server enthält zu viele Anhänge.",
+                    "de": "Eine Nachricht in deiner Gilde enthält zu viele Anhänge.",
                     "at": "A Nochricht aufm Serva hot zvü Ohäng",
                     "fr": "Un message sur votre guilde contient trop de pièces jointes.",
                     "es": "Un mensaje en tu gremio contiene demasiados archivos adjuntos.",
@@ -4109,7 +4109,7 @@
                 "details": {
                     "description": "details of automod Embeds",
                     "en": "A message on your guild contains too many embeds.",
-                    "de": "Eine Nachricht auf deinem Server enthält zu viele Einbettungen.",
+                    "de": "Eine Nachricht in deiner Gilde enthält zu viele Einbettungen.",
                     "at": "A Nochricht aufm Serva hot zvü Eibettungen. ",
                     "fr": "Un message sur votre guilde contient trop d'intégrations.",
                     "es": "Un mensaje en tu gremio contiene demasiadas incrustaciones.",
@@ -4185,7 +4185,7 @@
                 "details": {
                     "description": "details of automod spam",
                     "en": "A user on your guild sends too many messages in a timespan.",
-                    "de": "Ein Benutzer auf deinem Server sendet zu viele Nachrichten in einem definierten Zeitraum.",
+                    "de": "Ein Benutzer in deiner Gilde sendet zu viele Nachrichten in einem definierten Zeitraum.",
                     "at": "A Nutze aufm Serva send zvü Nochricht in am bestimmt Zeitraum.",
                     "fr": "Un utilisateur de votre guilde envoie trop de messages dans un laps de temps.",
                     "es": "Un usuario de tu gremio envía demasiados mensajes en un lapso de tiempo.",
@@ -4207,7 +4207,7 @@
                 "details": {
                     "description": "details of automod DuplicatedChars",
                     "en": "A message on your guild contains too many duplicated characters.",
-                    "de": "Eine Nachricht auf deinem Server enthält zu viele wiederholte Buchstaben.",
+                    "de": "Eine Nachricht in deiner Gilde enthält zu viele wiederholte Buchstaben.",
                     "at": "A Nochricht aufm Server enthöt zvü wiedaholende Buchstobn.",
                     "fr": "Un message sur votre guilde contient trop de caractères dupliqués.",
                     "es": "Un mensaje en tu gremio contiene demasiados personajes duplicados.",
@@ -4219,7 +4219,7 @@
                 "details": {
                     "description": "details of automod Link",
                     "en": "A message on your guild contains too many links.",
-                    "de": "Eine Nachricht auf deinem Server enthält zu viele Verlinkungen.",
+                    "de": "Eine Nachricht in deiner Gilde enthält zu viele Verlinkungen.",
                     "at": "A Nochricht aufm Server hod zvü Valinkungen",
                     "fr": "Un message sur votre guilde contient trop de liens.",
                     "es": "Un mensaje en tu gremio contiene demasiados enlaces.",
@@ -4251,7 +4251,7 @@
                 "details": {
                     "description": "details of automod Link",
                     "en": "A message on your guild contains too many phishing links.",
-                    "de": "Eine Nachricht auf deinem Server enthält zu viele Phishing-Links.",
+                    "de": "Eine Nachricht in deiner Gilde enthält zu viele Phishing-Links.",
                     "at": "A Nochricht aufm Server hod zvü Phishing-Links",
                     "fr": "Un message sur votre guilde contient trop de liens de phishing.",
                     "es": "Un mensaje en tu gremio contiene demasiados enlaces de phishing.",
@@ -4284,7 +4284,7 @@
             "enable": {
                 "description": "",
                 "en": "Enable zalgo moderation in this guild",
-                "de": "Zalgo Moderation in diesem Server aktivieren",
+                "de": "Zalgo Moderation in dieser Gilde aktivieren",
                 "at": "Zalgo Moderation in diesem Server aktivieren",
                 "fr": "Activer la modération zalgo dans ce serveur",
                 "es": "Habilitar la moderación zalgo en este servidor",
@@ -4407,7 +4407,7 @@
             "title": {
                 "description": "title of the config page",
                 "en": "Guild config",
-                "de": "Serverkonfiguration",
+                "de": "Gildenkonfiguration",
                 "at": "Güdnkonfiguration",
                 "fr": "Configuration de la guilde",
                 "es": "Configuración de la hermandad",
@@ -4707,7 +4707,7 @@
             "deleteguild": {
                 "description": "description of the delete guild button",
                 "en": "Delete Guild in MASZ",
-                "de": "Server aus MASZ löschen",
+                "de": "Gilde aus MASZ löschen",
                 "at": "Güde löschn",
                 "fr": "Supprimer le serveur",
                 "es": "Eliminar el servidor",
@@ -4717,7 +4717,7 @@
             "deleted": {
                 "description": "Deleted",
                 "en": "Guild deleted",
-                "de": "Server aus MASZ gelöscht",
+                "de": "Gilde aus MASZ gelöscht",
                 "at": "Güde glöscht",
                 "fr": "Serveur supprimé",
                 "es": "Servidor eliminado",
@@ -4727,7 +4727,7 @@
             "failedtodelete": {
                 "description": "Failed to delete",
                 "en": "Failed to delete",
-                "de": "Fehler beim Löschen des Servers",
+                "de": "Fehler beim Löschen der Gilde",
                 "at": "Fehla beim Löschn da Güde",
                 "fr": "Échec de la suppression du serveur",
                 "es": "Error al eliminar el servidor",
@@ -4757,7 +4757,7 @@
             "deleteundone": {
                 "description": "description of the delete undone button",
                 "en": "This action is not reversible. The guild is deleted immediately.",
-                "de": "Diese Aktion kannn nicht rückgängig gemacht werden. Der Server wird sofort aus MASZ gelöscht.",
+                "de": "Diese Aktion kannn nicht rückgängig gemacht werden. Die Gilde wird sofort aus MASZ gelöscht.",
                 "at": "Diese Aktion is ned umkehrbar. Die Güde is sofort weg.",
                 "fr": "Cette action n'est pas réversible. Le serveur est supprimé immédiatement.",
                 "es": "Esta acción no es reversible. El servidor se elimina inmediatamente.",
@@ -4924,7 +4924,7 @@
                 "explained": {
                     "description": "default language explained",
                     "en": "MASZ will use this language as the default language whenever possible. However, possibly only an english version is available for certain texts. Guild specific settings overwrite this setting.",
-                    "de": "MASZ wird diese Sprache wenn möglich als Standard verwenden. Wenn für den Text keine entsprechende Übersetzung vorhanden ist, wird die englische Version angezeigt. Server-spezifische Einstellungen überschreiben diese Einstellung.",
+                    "de": "MASZ wird diese Sprache wenn möglich als Standard verwenden. Wenn für den Text keine entsprechende Übersetzung vorhanden ist, wird die englische Version angezeigt. Gilden-spezifische Einstellungen überschreiben diese Einstellung.",
                     "at": "MASZ wiad de Sproch ois Standard vawendn, wenns geht. Jedoch ists möglich, dass nua a englische Version fia monche Texte vafügbar is. Güdn-spezifische Eistellungen wean diese Eistellung übaschreibn.",
                     "fr": "MASZ utilisera cette langue comme langue par défaut lorsque cela est possible. Cependant, il est possible que seule une version anglaise soit disponible pour certains textes. Les paramètres de guilde remplacent cette option.",
                     "es": "MASZ utilizará este idioma como idioma predeterminado cuando sea posible. Sin embargo, es posible que solo una versión inglesa esté disponible para algunos textos. Los ajustes de la hermandad sobrescriben esta configuración.",
