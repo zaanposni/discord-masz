@@ -76,7 +76,15 @@ namespace MASZ.Data
         }
         public async Task<ModCase> SelectSpecificModCase(ulong guildId, int modCaseId)
         {
-            return await context.ModCases.Include(c => c.Comments).Include(c => c.MappingsA).ThenInclude(m => m.CaseB).Include(c => c.MappingsB).ThenInclude(m => m.CaseA).AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.CaseId == modCaseId);
+            return await context.ModCases
+                .Include(c => c.Comments)
+                .Include(c => c.MappingsA)
+                    .ThenInclude(m => m.CaseB)
+                .Include(c => c.MappingsB)
+                    .ThenInclude(m => m.CaseA)
+                .Include(m => m.EvidenceMappings)
+                    .ThenInclude(m => m.Evidence)
+                .AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.CaseId == modCaseId);
         }
 
         public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(ulong guildId, ulong userId)

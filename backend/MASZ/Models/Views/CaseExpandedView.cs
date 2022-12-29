@@ -14,6 +14,7 @@ namespace MASZ.Models
             Comments = comments;
             UserNote = userNoteView;
             LinkedCases = new List<CaseView>();
+            LinkedEvidence = modCase.EvidenceMappings.Select(x => new VerifiedEvidenceView(x.Evidence)).ToList();
 
             if (modCase.PunishedUntil != null)
             {
@@ -35,6 +36,7 @@ namespace MASZ.Models
         }
         public CaseView ModCase { get; set; }
         public List<CaseView> LinkedCases { get; set; }
+        public List<VerifiedEvidenceView> LinkedEvidence { get; set; }
         public DiscordUserView Moderator { get; set; }
         public DiscordUserView LastModerator { get; set; }
         public DiscordUserView Suspect { get; set; }
