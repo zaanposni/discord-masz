@@ -3,16 +3,14 @@ import type moment from "moment";
 export interface IVerifiedEvidence {
     id: number;
     guildId: string;
+    channelId: string;
     messageId: string;
     reportedContent: string;
-    reporterUserId: string;
-    reporterUsername: string;
-    reporterNickname?: string;
-    reporterDiscriminator: number;
-    reportedUserId: string;
-    reportedUsername: string;
-    reportedNickname?: string;
-    reportedDiscriminator: number;
+    userId: string;
+    username: string;
+    nickname?: string;
+    discriminator: string;
+    modId: string;
     sentAt: moment.Moment;
     reportedAt: moment.Moment;
 }

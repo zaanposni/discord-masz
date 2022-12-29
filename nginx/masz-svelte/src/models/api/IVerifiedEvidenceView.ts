@@ -4,7 +4,7 @@ import type { IVerifiedEvidence } from "./IVerifiedEvidence";
 
 export interface IVerifiedEvidenceView {
     evidence: IVerifiedEvidence;
-    reporter: IDiscordUser;
     reported: IDiscordUser;
+    moderator: IDiscordUser;
     linkedCases: ICase[];
 }

@@ -224,7 +224,7 @@
                                             <div class="flex flex-row items-center">
                                                 <div class="font-bold" style="word-wrap: anywhere">
                                                     {evidenceView.reported?.username ?? evidenceView.reported.username}#{evidenceView.reported?.discriminator ??
-                                                        evidenceView.verifiedEvidence.reportedDiscriminator}
+                                                        evidenceView.verifiedEvidence.discriminator}
                                                 </div>
                                             </div>
                                             <div class="font-bold" style="word-wrap: anywhere">
