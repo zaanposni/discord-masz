@@ -6,15 +6,15 @@ namespace MASZ.Models.Views
     public class VerifiedEvidenceExpandedView
     {
         public VerifiedEvidenceView Evidence { get; set; }
-        public DiscordUserView Reporter { get; set; }
         public DiscordUserView Reported { get; set; }
+        public DiscordUserView Moderator { get; set; }
         public List<CaseView> LinkedCases { get; set; }
 
-        public VerifiedEvidenceExpandedView(VerifiedEvidence evidence, IUser reporter, IUser reported)
+        public VerifiedEvidenceExpandedView(VerifiedEvidence evidence, IUser reported, IUser moderator)
         {
             Evidence = new VerifiedEvidenceView(evidence);
-            Reporter = DiscordUserView.CreateOrDefault(reporter);
             Reported = DiscordUserView.CreateOrDefault(reported);
+            Moderator = DiscordUserView.CreateOrDefault(moderator);
             LinkedCases = new List<CaseView>();
         }
     }

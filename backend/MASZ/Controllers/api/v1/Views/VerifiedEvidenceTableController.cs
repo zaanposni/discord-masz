@@ -38,8 +38,8 @@ namespace MASZ.Controllers.api.v1.Views
             {
                 var entry = new VerifiedEvidenceTableEntry(
                     e,
-                    await _discordAPI.FetchUserInfo(e.ReporterUserId, CacheBehavior.OnlyCache),
-                    await _discordAPI.FetchUserInfo(e.ReportedUserId, CacheBehavior.OnlyCache)
+                    await _discordAPI.FetchUserInfo(e.UserId, CacheBehavior.OnlyCache),
+                    await _discordAPI.FetchUserInfo(e.ModId, CacheBehavior.OnlyCache)
                 );
                 tmp.Add(entry);
             };
@@ -50,30 +50,29 @@ namespace MASZ.Controllers.api.v1.Views
             {
                 table = table.Where(t =>
                     Contains(t.VerifiedEvidence.ReportedContent, search.CustomTextFilter) ||
-                    Contains(t.VerifiedEvidence.ReporterUserId, search.CustomTextFilter) ||
-                    Contains(t.VerifiedEvidence.ReporterUsername, search.CustomTextFilter) ||
-                    Contains(t.VerifiedEvidence.ReporterNickname, search.CustomTextFilter) ||
-                    Contains(t.VerifiedEvidence.ReportedUserId, search.CustomTextFilter) ||
-                    Contains(t.VerifiedEvidence.ReportedUsername, search.CustomTextFilter) ||
-                    Contains(t.VerifiedEvidence.ReportedNickname, search.CustomTextFilter) ||
+                    Contains(t.VerifiedEvidence.UserId, search.CustomTextFilter) ||
+                    Contains(t.VerifiedEvidence.Username, search.CustomTextFilter) ||
+                    Contains(t.VerifiedEvidence.Nickname, search.CustomTextFilter) ||
+                    Contains(t.VerifiedEvidence.ModId, search.CustomTextFilter) ||
+                    Contains(t.VerifiedEvidence.ChannelId, search.CustomTextFilter) ||
                     Contains(t.VerifiedEvidence.MessageId, search.CustomTextFilter) ||
                     Contains(t.VerifiedEvidence.SentAt, search.CustomTextFilter) ||
                     Contains(t.VerifiedEvidence.ReportedAt, search.CustomTextFilter) ||
                     Contains("#" + t.VerifiedEvidence.Id.ToString(), search.CustomTextFilter) ||
                     Contains(t.VerifiedEvidence.Id.ToString(), search.CustomTextFilter) ||
-                    Contains(t.Reporter, search.CustomTextFilter) ||
-                    Contains(t.Reported, search.CustomTextFilter)
+                    Contains(t.Reported, search.CustomTextFilter) ||
+                    Contains(t.Moderator, search.CustomTextFilter)
                 );
             }
 
-            if(search?.ReporterIds != null && search.ReporterIds.Count > 0)
+            if(search?.ModIds != null && search.ModIds.Count > 0)
             {
-                table = table.Where(x => search.ReporterIds.Contains(x.VerifiedEvidence.ReporterUserId));
+                table = table.Where(x => search.ModIds.Contains(x.VerifiedEvidence.ModId));
             }
 
             if (search?.ReportedIds != null && search.ReportedIds.Count > 0)
             {
-                table = table.Where(x => search.ReportedIds.Contains(x.VerifiedEvidence.ReportedUserId));
+                table = table.Where(x => search.ReportedIds.Contains(x.VerifiedEvidence.UserId));
             }
 
             return new VerifiedEvidenceTable(table.ToList(), table.Count());

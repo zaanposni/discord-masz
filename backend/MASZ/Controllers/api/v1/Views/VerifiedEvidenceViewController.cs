@@ -24,10 +24,10 @@ namespace MASZ.Controllers.api.v1.Views
 
             VerifiedEvidence evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidence(guildId, evidenceId);
 
-            IUser reporter = await _discordAPI.FetchUserInfo(evidence.ReporterUserId, CacheBehavior.OnlyCache);
-            IUser reported = await _discordAPI.FetchUserInfo(evidence.ReportedUserId, CacheBehavior.OnlyCache);
+            IUser reported = await _discordAPI.FetchUserInfo(evidence.UserId, CacheBehavior.OnlyCache);
+            IUser moderator = await _discordAPI.FetchUserInfo(evidence.ModId, CacheBehavior.OnlyCache);
 
-            VerifiedEvidenceExpandedView view = new(evidence, reporter, reported);
+            VerifiedEvidenceExpandedView view = new(evidence, reported, moderator);
 
             // TODO: mappings
             if(evidence.EvidenceMappings != null)

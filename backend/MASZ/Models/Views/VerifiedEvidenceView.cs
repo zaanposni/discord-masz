@@ -6,16 +6,14 @@ namespace MASZ.Models.Views
     {
         public int Id { get; set; }
         public string GuildId { get; set; }
+        public string ChannelId { get; set; }
         public string MessageId { get; set; }
         public string ReportedContent { get; set; }
-        public string ReporterUserId { get; set; }
-        public string ReporterUsername { get; set; }
-        public string? ReporterNickname { get; set; }
-        public int ReporterDiscriminator { get; set; }
-        public string ReportedUserId { get; set; }
-        public string ReportedUsername { get; set; }
-        public string? ReportedNickname { get; set; }
-        public int ReportedDiscriminator { get; set; }
+        public string UserId { get; set; }
+        public string Username { get; set; }
+        public string? Nickname { get; set; }
+        public string Discriminator { get; set; }
+        public string ModId { get; set; }
         public DateTime SentAt { get; set; }
         public DateTime ReportedAt { get; set; }
 
@@ -23,16 +21,14 @@ namespace MASZ.Models.Views
         {
             Id = evidence.Id;
             GuildId = evidence.GuildId.ToString();
+            ChannelId = evidence.ChannelId.ToString();
             MessageId = evidence.MessageId.ToString();
             ReportedContent = evidence.ReportedContent;
-            ReporterUserId = evidence.ReporterUserId.ToString();
-            ReporterUsername = evidence.ReporterUsername;
-            ReporterNickname = evidence.ReporterNickname;
-            ReporterDiscriminator = evidence.ReporterDiscriminator;
-            ReportedUserId = evidence.ReportedUserId.ToString();
-            ReportedUsername = evidence.ReportedUsername;
-            ReportedNickname = evidence.ReportedNickname;
-            ReportedDiscriminator = evidence.ReportedDiscriminator;
+            UserId = evidence.UserId.ToString();
+            Username = evidence.Username;
+            Nickname = evidence.Nickname;
+            Discriminator = evidence.Discriminator;
+            ModId = evidence.ModId.ToString();
             SentAt = evidence.SentAt;
             ReportedAt = evidence.ReportedAt;
         }
