@@ -8,12 +8,16 @@
     import { goto } from "@roxi/routify";
     import { toastError, toastSuccess } from "../../../services/toast/store";
     import { _ } from "svelte-i18n";
-    import { Modal, Loading, TextInput, InlineLoading, Tile, SkeletonText, Button, OverflowMenu, OverflowMenuItem } from "carbon-components-svelte";
+    import { Modal, Loading, TextInput, InlineLoading, Tile, SkeletonText, Button, OverflowMenu, OverflowMenuItem, CopyButton } from "carbon-components-svelte";
     import { slide } from "svelte/transition";
-    import { List24, CopyLink24, Share24 } from "carbon-icons-svelte";
+    import { List24, CopyLink24, Share24, ChevronUp24, ChevronDown24 } from "carbon-icons-svelte";
     import PunishmentTag from "../../api/PunishmentTag.svelte";
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import { authUser, isModeratorInGuild } from "../../../stores/auth";
+    import type { ICase } from "../../../models/api/ICase";
+    import UserIcon from "../../discord/UserIcon.svelte";
+
+    let openFurtherDetails = false;
 
     let loading = true;
     let evidence = writable<IVerifiedEvidenceView>(null);
@@ -62,6 +66,80 @@
         }, 200);
     }
 
+    function linkCase(modCase: ICase) {
+        linkToCaseSubmitting.set(true);
+
+        API.post(`/guilds/${$currentParams.guildId}/evidencemapping/${$evidence.evidence.id}/${modCase.caseId}`, {}, CacheMode.API_ONLY, false)
+            .then(() => {
+                evidence.update((n) => {
+                    n.linkedCases.push(modCase);
+                    return n;
+                });
+                toastSuccess($_("guilds.caseview.linked"));
+                onLinkToCaseModalClose();
+                clearEvidenceCache();
+            })
+            .catch(() => {
+                toastError($_("guilds.caseview.linkfailed"));
+            })
+            .finally(() => {
+                linkToCaseSubmitting.set(false);
+            });
+    }
+
+    function unlinkCase(caseId: number) {
+        console.log("unlinkCase", caseId);
+        API.deleteData(`/guilds/${$currentParams.guildId}/evidencemapping/${$evidence.evidence.id}/${caseId}`, {})
+            .then(() => {
+                evidence.update((n) => {
+                    n.linkedCases = n.linkedCases.filter((x) => x.caseId !== caseId);
+                    return n;
+                });
+                toastSuccess($_("guilds.caseview.unlinked"));
+                clearEvidenceCache();
+            })
+            .catch(() => {
+                toastError($_("guilds.caseview.unlinkfailed"));
+            });
+    }
+
+    function clearEvidenceCache() {
+        API.clearCacheEntryLike("get", `/guilds/${$currentParams.guildId}/evidence/${$currentParams.evidenceId}`);
+        API.clearCacheEntryLike("post", `/guilds/${$currentParams.guildId}/evidencetable`);
+    }
+
+    let linkToCaseDebouncer;
+    function searchCases(search: string) {
+        if (linkToCaseDebouncer) {
+            clearTimeout(linkToCaseDebouncer);
+        }
+
+        if (search) {
+            linkToCaseSearching.set(true);
+            linkToCaseSearchResults.set([]);
+
+            const data = {
+                customTextFilter: search,
+            };
+
+            linkToCaseDebouncer = setTimeout(() => {
+                API.post(`/guilds/${$currentParams.guildId}/modcasetable?startPage=0`, data, CacheMode.API_ONLY, false)
+                    .then((response: { cases: ICompactCaseView[]; fullSize: number }) => {
+                        linkToCaseSearchResults.set(
+                            response.cases.filter(
+                                (c) => !$evidence.linkedCases.some((x) => x.caseId == c.modCase.caseId)
+                            )
+                        );
+                        linkToCaseSearching.set(false);
+                    })
+                    .catch(() => {
+                        linkToCaseSearching.set(false);
+                    });
+            }, 500);
+        }
+    }
+    $: searchCases($linkToCaseSearch);
+
     function shareEvidence() {
         navigator.clipboard
             .writeText(window.location.toString())
@@ -71,6 +149,12 @@
             .catch((e) => console.error(e));
     }
 </script>
+
+<style>
+    #title{
+        margin-bottom: 1rem;
+    }
+</style>
 
 <Modal
     size="sm"
@@ -110,9 +194,9 @@
                             <div class="shrink-0">
                                 <PunishmentTag modCase={modCase.modCase} />
                             </div>
-                            <!-- <div class="cursor-pointer">
+                            <div class="cursor-pointer">
                                 <CopyLink24 class="mr-2" on:click={() => linkCase(modCase.modCase)} />
-                            </div> -->
+                            </div>
                         </div>
                     </Tile>
                 </div>
@@ -130,7 +214,7 @@
         <!-- Header -->
         <div class="flex flex-col">
             <!-- Icon -->
-            <div class="flex flex-row grow items-center" style="color: var(--cds-text-02)">
+            <div class="flex flex-row grow items-center" id="title" style="color: var(--cds-text-02)">
                 <List24 class="mr-2" />
                 {#if $currentParams?.guild?.name && $currentParams?.evidenceId && !loading}
                     <div class="flex flex-row items-center">
@@ -183,8 +267,8 @@
                 {#if loading}
                     <SkeletonText paragraph />
                 {:else}
-                    <div class="text-sm mb-4" id="casedescription">
-                        <h2>{$_("guilds.evidenceview.reportedcontent")}:</h2>
+                    <div class="text-sm mb-4" id="reportedcontent">
+                        <h4>{$_("guilds.evidenceview.reportedcontent")}:</h4>
                         {@html renderedContent}
                     </div>
                 {/if}
@@ -209,7 +293,7 @@
                 {:else if isModeratorInGuild($authUser, $currentParams.guildId) && ($evidence?.linkedCases?.length ?? 0) !== 0}
                     <div class="mb-4">
                         <div class="flex flex-row mb-2">
-                            <div class="font-bold">{$_("guilds.evidenceview.linkedcases")}</div>
+                            <div class="font-bold">Linked cases</div>
                         </div>
                         <div class="flex flex-col" id="linkedcases">
                             {#each $evidence?.linkedCases ?? [] as linked}
@@ -231,12 +315,12 @@
                                                 <OverflowMenuItem
                                                     text="Show case"
                                                     href={`/guilds/${$currentParams.guildId}/cases/${linked.caseId}`} />
-                                                <!-- <OverflowMenuItem
+                                                <OverflowMenuItem
                                                     danger
                                                     text="Unlink case"
                                                     on:click={() => {
                                                         unlinkCase(linked.caseId);
-                                                    }} /> -->
+                                                    }} />
                                             </OverflowMenu>
                                         </div>
                                     </div>
@@ -244,6 +328,77 @@
                             {/each}
                         </div>
                     </div>
+                {/if}
+            </div>
+            <!-- Meta data -->
+            <div class="flex flex-col grow shrink-0 {matches ? 'pl-4 w-1/3' : ''}" class:-order-1={!matches}>
+                {#if loading}
+                    <div class="flex flex-row lg:flex-col">
+                        <SkeletonText width={"10%"} />
+                        <SkeletonText width={"30%"} />
+                    </div>
+                    <div class="flex flex-row lg:flex-col">
+                        <SkeletonText width={"10%"} />
+                        <SkeletonText width={"30%"} />
+                    </div>
+                {:else}
+                    {#if !matches}
+                        <div class="flex flex-row justify-end mb-6">
+                            <Button
+                                id="furtherdetails-case-button"
+                                size="small"
+                                iconDescription=""
+                                icon={openFurtherDetails ? ChevronUp24 : ChevronDown24}
+                                on:click={() => openFurtherDetails = !openFurtherDetails} />
+                        </div>
+                    {/if}
+                    {#if matches || openFurtherDetails}
+                        <div class="flex flex-col grow shrink-0" transition:slide|local>
+                            <div class="flex flex-col mb-6">
+                                <div class="font-bold mb-2">{$_("guilds.caseview.violator")}</div>
+                                <div class="flex flex-row items-center">
+                                    <UserIcon class="mr-2" user={$evidence.reported} />
+                                    <div class="flex flex-row flex-wrap items-center">
+                                        <div class="mr-2">
+                                            {$evidence.reported?.username ?? $evidence.evidence.username}#{$evidence.reported?.discriminator ??
+                                                $evidence.evidence.discriminator}
+                                        </div>
+                                        <div class="mr-2" style="color: var(--cds-text-02)">
+                                            ({$evidence.evidence.userId})
+                                        </div>
+                                    </div>
+                                    <div class="grow" />
+                                    <div>
+                                        <CopyButton text={$evidence.evidence.userId} feedback={$_("core.copiedtoclipboard")} />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col mb-6">
+                                <div class="font-bold mb-2">{$_("guilds.caseview.moderator")}</div>
+                                {#if $evidence.evidence.modId}
+                                    <div class="flex flex-row items-center">
+                                        <UserIcon class="mr-2" user={$evidence.moderator} />
+                                        <div class="flex flex-row flex-wrap">
+                                            {#if $evidence.moderator}
+                                                <div class="mr-2">
+                                                    {$evidence.moderator?.username}#{$evidence.moderator?.discriminator}
+                                                </div>
+                                            {/if}
+                                            <div class="mr-2" style="color: var(--cds-text-02)">
+                                                ({$evidence.evidence.modId})
+                                            </div>
+                                        </div>
+                                        <div class="grow" />
+                                        <div>
+                                            <CopyButton text={$evidence.evidence.modId} feedback={$_("core.copiedtoclipboard")} />
+                                        </div>
+                                    </div>
+                                {:else}
+                                    {$_("guilds.caseview.moderatorunknown")}
+                                {/if}
+                            </div>
+                        </div>
+                    {/if}
                 {/if}
             </div>
         </div>
