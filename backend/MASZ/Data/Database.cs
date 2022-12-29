@@ -968,7 +968,7 @@ namespace MASZ.Data
 
         public async Task<VerifiedEvidence> GetEvidence(ulong guildId, int evidenceId)
         {
-            return await context.VerifiedEvidence.Include(x => x.EvidenceMappings).AsQueryable().OrderBy(x => x.Id).FirstOrDefaultAsync(x => x.GuildId == guildId && x.Id == evidenceId);
+            return await context.VerifiedEvidence.Include(x => x.EvidenceMappings).ThenInclude(x => x.ModCase).AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.Id == evidenceId);
         }
 
         public void DeleteEvidence(VerifiedEvidence evidence)
