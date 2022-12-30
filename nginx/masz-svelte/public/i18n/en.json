@@ -343,14 +343,12 @@
         },
         "evidencetable": {
             "create": "Create evidence",
-            "createinstructions": "Paste the discord message link in the test field below to create the evidence",
+            "createinstruction": "Paste the discord message link in the test field below to create the evidence",
             "createplaceholder": "Discord link here",
             "badcreate": "The message link is not correct",
             "badguild": "The guild id in the message link does not match this guild's id",
             "created": "Evidence successfully created",
-            "createerror": "Something prevented the evidence from being created, check backend logs",
-            "selectmoderator": "Moderators",
-            "selectreported": "Members"
+            "createerror": "Something prevented the evidence from being created"
         },
         "evidenceview": {
             "evidencenotfound": "Evidence does not exist",

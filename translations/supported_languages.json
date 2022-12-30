@@ -7,31 +7,31 @@
     "fr": {
         "name": "French",
         "nativeName": "Français",
-        "supported": 100
+        "supported": 98
     },
     "de": {
         "name": "German",
         "nativeName": "Deutsch",
-        "supported": 100
+        "supported": 98
     },
     "es": {
         "name": "Spanish",
         "nativeName": "Español",
-        "supported": 100
+        "supported": 98
     },
     "it": {
         "name": "Italian",
         "nativeName": "Italiano",
-        "supported": 100
+        "supported": 98
     },
     "at": {
         "name": "Austrian German",
         "nativeName": "Österreichisches Deutsch",
-        "supported": 100
+        "supported": 98
     },
     "ru": {
         "name": "Russian",
         "nativeName": "русский",
-        "supported": 100
+        "supported": 98
     }
 }

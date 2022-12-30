@@ -3513,21 +3513,6 @@ namespace MASZ.Utils
                 _ => $"{user.Mention} reported a message from {message.Author.Mention} in {channel.Mention}.\n{message.GetJumpUrl()}",
             };
         }
-        public string CmdEvidenceFailed()
-        {
-            return PreferredLanguage switch
-            {
-                _ => "Failed to register evidence"
-            };
-        }
-        public string CmdEvidenceCreated()
-        {
-            return PreferredLanguage switch 
-            {
-                _ => "Successfuly registered evidence"
-            };
-
-        }
         public string CmdSayFailed()
         {
             return PreferredLanguage switch
@@ -4085,6 +4070,20 @@ namespace MASZ.Utils
                 Language.ru => $"Последнее отключение: {time}.",
                 Language.it => $"Ultima disconnessione a {time}.",
                 _ => $"Experienced last disconnect at {time}.",
+            };
+        }
+        public string CmdEvidenceFailed()
+        {
+            return PreferredLanguage switch
+            {
+                _ => "Failed to register evidence.",
+            };
+        }
+        public string CmdEvidenceCreated()
+        {
+            return PreferredLanguage switch
+            {
+                _ => "Successfully registered evidence",
             };
         }
         public string GuildAuditLogChannel()
@@ -4950,8 +4949,6 @@ namespace MASZ.Utils
                 "cmd.invite" => CmdInvite(),
                 "cmd.report.failed" => CmdReportFailed(),
                 "cmd.report.sent" => CmdReportSent(),
-                "cmd.evidence.failed" => CmdEvidenceFailed(),
-                "cmd.evidence.created" => CmdEvidenceCreated(),
                 "cmd.say.failed" => CmdSayFailed(),
                 "cmd.say.sent" => CmdSaySent(),
                 "cmd.track.invitenotfromthisguild" => CmdTrackInviteNotFromThisGuild(),
@@ -4985,6 +4982,8 @@ namespace MASZ.Utils
                 "cmd.status.database" => CmdStatusDatabase(),
                 "cmd.status.internalcache" => CmdStatusInternalCache(),
                 "cmd.status.currentlyloggedin" => CmdStatusCurrentlyLoggedIn(),
+                "cmd.evidence.failed" => CmdEvidenceFailed(),
+                "cmd.evidence.created" => CmdEvidenceCreated(),
                 "guildauditlog.channel" => GuildAuditLogChannel(),
                 "guildauditlog.channelbefore" => GuildAuditLogChannelBefore(),
                 "guildauditlog.channelafter" => GuildAuditLogChannelAfter(),

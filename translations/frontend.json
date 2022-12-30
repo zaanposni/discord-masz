@@ -371,6 +371,10 @@
                 "ru": "Дела",
                 "it": "Casi"
             },
+            "evidence": {
+                "description": "Evidence (plural)",
+                "en": "Evidence"
+            },
             "automods": {
                 "description": "Automods",
                 "en": "Automods",
@@ -2228,6 +2232,14 @@
                 "es": "Desconocido",
                 "ru": "Неизвестный",
                 "it": "Sconosciuto"
+            },
+            "linkevidence": {
+                "description": "Link evidence",
+                "en": "Link evidence"
+            },
+            "noevidencefound": {
+                "description": "a feedback message displayed when no evidence is found (evidence linking)",
+                "en": "No evidence found"
             }
         },
         "casedialog": {
@@ -2802,6 +2814,70 @@
                 "es": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos.",
                 "ru": "Возможно, в этом сервере еще нет кейсов. Однако, вы можете попробовать изменить фильтры выше, чтобы найти кейсы.",
                 "it": "Potrebbe non essere ancora nessun caso in questo server. Tuttavia, è possibile provare a regolare i filtri in alto per trovare alcuni casi."
+            }
+        },
+        "evidencetable": {
+            "create": {
+                "description": "tooltip for creating evidence in dashboard",
+                "en": "Create evidence"
+            },
+            "createinstruction": {
+                "description": "instructions on how to create evidence in the dashboard",
+                "en": "Paste the discord message link in the test field below to create the evidence"
+            },
+            "createplaceholder": {
+                "description": "message link text field placeholder",
+                "en": "Discord link here"
+            },
+            "badcreate": {
+                "description": "error displayed when the message link is not correct",
+                "en": "The message link is not correct"
+            },
+            "badguild": {
+                "description": "error message displayed when the link guild id does not match the current guild id (the one in the dashboard url)",
+                "en": "The guild id in the message link does not match this guild's id"
+            },
+            "created": {
+                "description": "feedback message on successful evidence creation",
+                "en": "Evidence successfully created"
+            },
+            "createerror": {
+                "description": "error message displayed on the backend rejecting the evidence creation",
+                "en": "Something prevented the evidence from being created"
+            }
+        },
+        "evidenceview": {
+            "evidencenotfound": {
+                "description": "error displayed when attempting to view evidence that doesn't exist",
+                "en": "Evidence does not exist"
+            },
+            "linktocase": {
+                "description": "Link to case",
+                "en": "Link to case"
+            },
+            "evidence": {
+                "description": "Evidence (singular)",
+                "en": "Evidence"
+            },
+            "goto": {
+                "description": "text displayed on the button that displays the message in Discord",
+                "en": "View in Discord"
+            },
+            "reportedcontent": {
+                "description": "Label for the reported content",
+                "en": "Reported content"
+            },
+            "sent": {
+                "description": "Label for 'sent at' timestamp",
+                "en": "Sent at"
+            },
+            "reported": {
+                "description": "Label for 'reported at' timestamp",
+                "en": "Reported at"
+            },
+            "shareevidence": {
+                "description": "label for the 'share' button",
+                "en": "Share"
             }
         },
         "automodtable": {
