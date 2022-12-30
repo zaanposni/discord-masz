@@ -360,7 +360,9 @@
             "reportedcontent": "Reported content",
             "sent": "Sent at",
             "reported": "Reported at",
-            "shareevidence": "Share"
+            "shareevidence": "Share",
+            "deleted": "Evidence deleted",
+            "deletefailed": "Failed to delete evidence"
         },
         "automodtable": {
             "selectmembers": "Members",

@@ -2886,6 +2886,14 @@
             "shareevidence": {
                 "description": "label for the 'share' button",
                 "en": "Share"
+            },
+            "deleted": {
+                "description": "displayed on successful deletion",
+                "en": "Evidence deleted"
+            },
+            "deletefailed": {
+                "description": "error displayed on unsuccessful deletion",
+                "en": "Failed to delete evidence"
             }
         },
         "automodtable": {

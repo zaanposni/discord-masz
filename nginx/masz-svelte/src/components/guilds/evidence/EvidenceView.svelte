@@ -10,7 +10,7 @@
     import { _ } from "svelte-i18n";
     import { Modal, Loading, TextInput, InlineLoading, Tile, SkeletonText, Button, OverflowMenu, OverflowMenuItem, CopyButton } from "carbon-components-svelte";
     import { slide } from "svelte/transition";
-    import { List24, CopyLink24, Share24, ChevronUp24, ChevronDown24, LogoDiscord24 } from "carbon-icons-svelte";
+    import { List24, CopyLink24, Share24, ChevronUp24, ChevronDown24, LogoDiscord24, TrashCan24 } from "carbon-icons-svelte";
     import PunishmentTag from "../../api/PunishmentTag.svelte";
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import { authUser, isModeratorInGuild } from "../../../stores/auth";
@@ -149,6 +149,19 @@
             })
             .catch((e) => console.error(e));
     }
+
+    function deleteEvidence() {
+        API.deleteData(`guilds/${$currentParams.guildId}/evidence/${$currentParams.evidenceId}`, null)
+        .then(() => {
+            API.clearCacheEntryLike("get", `/guilds/${$currentParams.guildId}/evidence/${$currentParams.evidenceId}`);
+            API.clearCacheEntryLike("post", `/guilds/${$currentParams.guildId}/evidence/evidencetable`);
+            $goto("/guilds/" + $currentParams.guildId + "/evidence");
+            toastSuccess($_("guilds.evidenceview.deleted"));
+        })
+        .catch(() => {
+            toastError($_("guilds.evidenceview.deletefailed"))
+        })
+    }
 </script>
 
 <style>
@@ -258,7 +271,17 @@
                                         href={`discord://discord.com/channels/${$evidence.evidence.guildId}/${$evidence.evidence.channelId}/${$evidence.evidence.messageId}`}
                                     >
                                             {$_("guilds.evidenceview.goto")}
-                                </Button>
+                                    </Button>
+                                </div>
+                                <div class="mr-2 mb-2">
+                                    <Button
+                                        size="small"
+                                        kind="danger"
+                                        icon={TrashCan24}
+                                        on:click={deleteEvidence}
+                                    >
+                                            {$_("guilds.caseview.delete")}
+                                    </Button>
                                 </div>
                         {:else}
                             <div class="grow" />
@@ -267,10 +290,14 @@
                                     text={$_("guilds.evidenceview.linktocase")}
                                     on:click={() => linkToCaseModalOpen.set(true)}
                                 />
-                            <OverflowMenuItem 
-                                text={$_("guilds.evidenceview.goto")}
-                                href={`discord://discord.com/channels/${$evidence.evidence.guildId}/${$evidence.evidence.channelId}/${$evidence.evidence.messageId}`}
-                            />
+                                <OverflowMenuItem 
+                                    text={$_("guilds.evidenceview.goto")}
+                                    href={`discord://discord.com/channels/${$evidence.evidence.guildId}/${$evidence.evidence.channelId}/${$evidence.evidence.messageId}`}
+                                />
+                                <OverflowMenuItem 
+                                    text={$_("guilds.caseview.delete")}
+                                    on:click={deleteEvidence}
+                                />
                             </OverflowMenu>
                         {/if}
                     {/if}
