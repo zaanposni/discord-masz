@@ -208,11 +208,11 @@
                 <MultiSelect
                     spellcheck="false"
                     filterable
-                    titleText={$_("guilds.evidencetable.selectreporter")}
-                    label={$_("guilds.evidencetable.selectreporter")}
+                    titleText={$_("guilds.evidencetable.selectmoderator")}
+                    label={$_("guilds.evidencetable.selectmoderator")}
                     items={members}
-                    on:clear={() => onSelect("reporterIds", [])}
-                    on:select={(e) => onSelect("reporterIds", e.detail.selectedIds)} />
+                    on:clear={() => onSelect("modIds", [])}
+                    on:select={(e) => onSelect("modIds", e.detail.selectedIds)} />
             </div>
             <div>
                 <MultiSelect
