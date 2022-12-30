@@ -10,12 +10,13 @@
     import { _ } from "svelte-i18n";
     import { Modal, Loading, TextInput, InlineLoading, Tile, SkeletonText, Button, OverflowMenu, OverflowMenuItem, CopyButton } from "carbon-components-svelte";
     import { slide } from "svelte/transition";
-    import { List24, CopyLink24, Share24, ChevronUp24, ChevronDown24 } from "carbon-icons-svelte";
+    import { List24, CopyLink24, Share24, ChevronUp24, ChevronDown24, LogoDiscord24 } from "carbon-icons-svelte";
     import PunishmentTag from "../../api/PunishmentTag.svelte";
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import { authUser, isModeratorInGuild } from "../../../stores/auth";
     import type { ICase } from "../../../models/api/ICase";
     import UserIcon from "../../discord/UserIcon.svelte";
+    import { currentLanguage } from "../../../stores/currentLanguage";
 
     let openFurtherDetails = false;
 
@@ -239,7 +240,6 @@
                             <Button size="small" kind="secondary" icon={Share24} on:click={shareEvidence}>{$_("guilds.evidenceview.shareevidence")}</Button>
                         </div>
                         {#if matches}
-                            {#if isModeratorInGuild($authUser, $currentParams.guildId)}
                                 <div class="mr-2 mb-2">
                                     <Button
                                         size="small"
@@ -250,7 +250,16 @@
                                             {$_("guilds.evidenceview.linktocase")}
                                         </Button>
                                 </div>
-                            {/if}
+                                <div class="mr-2 mb-2">
+                                    <Button
+                                        size="small"
+                                        kind="secondary"
+                                        icon={LogoDiscord24}
+                                        href={`discord://discord.com/channels/${$evidence.evidence.guildId}/${$evidence.evidence.channelId}/${$evidence.evidence.messageId}`}
+                                    >
+                                            {$_("guilds.evidenceview.goto")}
+                                </Button>
+                                </div>
                         {:else}
                             <div class="grow" />
                             <OverflowMenu flipped>
@@ -258,6 +267,10 @@
                                     text={$_("guilds.evidenceview.linktocase")}
                                     on:click={() => linkToCaseModalOpen.set(true)}
                                 />
+                            <OverflowMenuItem 
+                                text={$_("guilds.evidenceview.goto")}
+                                href={`discord://discord.com/channels/${$evidence.evidence.guildId}/${$evidence.evidence.channelId}/${$evidence.evidence.messageId}`}
+                            />
                             </OverflowMenu>
                         {/if}
                     {/if}
@@ -399,6 +412,21 @@
                                 {:else}
                                     {$_("guilds.caseview.moderatorunknown")}
                                 {/if}
+                            </div>
+                            <hr class="mb-6" style="border-color: var(--cds-ui-04)" />
+                            <div class="flex flex-row mb-2" style="color: var(--cds-text-02)">
+                                <div class="mr-2">{$_("guilds.evidenceview.sent")}</div>
+                                <div>
+                                    {$evidence.evidence.sentAt?.format($currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss") ??
+                                        $_("guilds.caseview.unknown")}
+                                </div>
+                            </div>
+                            <div class="flex flex-row mb-2" style="color: var(--cds-text-02)">
+                                <div class="mr-2">{$_("guilds.evidenceview.reported")}</div>
+                                <div>
+                                    {$evidence.evidence.reportedAt?.format($currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss") ??
+                                        $_("guilds.caseview.unknown")}
+                                </div>
                             </div>
                         </div>
                     {/if}
