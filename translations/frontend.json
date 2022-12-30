@@ -2823,7 +2823,7 @@
             },
             "createinstruction": {
                 "description": "instructions on how to create evidence in the dashboard",
-                "en": "Paste the discord message link in the test field below to create the evidence"
+                "en": "Paste the discord message link in the text field below to create the evidence"
             },
             "createplaceholder": {
                 "description": "message link text field placeholder",

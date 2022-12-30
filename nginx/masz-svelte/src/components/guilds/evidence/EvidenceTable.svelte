@@ -178,7 +178,7 @@
     <div class="mb-2">
         <TextInput
             disabled={$createModalSubmitting}
-            labelText={$_("guilds.evidencetable.createinstructions")}
+            labelText={$_("guilds.evidencetable.createinstruction")}
             placeholder={$_("guilds.evidencetable.createplaceholder")}
             bind:value={$createModalContent}
         />
@@ -208,8 +208,8 @@
                 <MultiSelect
                     spellcheck="false"
                     filterable
-                    titleText={$_("guilds.evidencetable.selectmoderator")}
-                    label={$_("guilds.evidencetable.selectmoderator")}
+                    titleText={$_("guilds.modcasetable.selectmoderators")}
+                    label={$_("guilds.modcasetable.selectmoderators")}
                     items={members}
                     on:clear={() => onSelect("modIds", [])}
                     on:select={(e) => onSelect("modIds", e.detail.selectedIds)} />
@@ -218,8 +218,8 @@
                 <MultiSelect
                     spellcheck="false"
                     filterable
-                    titleText={$_("guilds.evidencetable.selectreported")}
-                    label={$_("guilds.evidencetable.selectreported")}
+                    titleText={$_("guilds.modcasetable.selectmembers")}
+                    label={$_("guilds.modcasetable.selectmembers")}
                     items={members}
                     on:clear={() => onSelect("reportedIds", [])}
                     on:select={(e) => onSelect("reportedIds", e.detail.selectedIds)} />

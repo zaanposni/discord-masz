@@ -343,7 +343,7 @@
         },
         "evidencetable": {
             "create": "Create evidence",
-            "createinstruction": "Paste the discord message link in the test field below to create the evidence",
+            "createinstruction": "Paste the discord message link in the text field below to create the evidence",
             "createplaceholder": "Discord link here",
             "badcreate": "The message link is not correct",
             "badguild": "The guild id in the message link does not match this guild's id",
