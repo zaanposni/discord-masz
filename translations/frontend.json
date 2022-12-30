@@ -2240,6 +2240,10 @@
             "noevidencefound": {
                 "description": "a feedback message displayed when no evidence is found (evidence linking)",
                 "en": "No evidence found"
+            },
+            "evidencelinkfailed": {
+                "description": "error message displayed when evidence to case link fails",
+                "en": "Evidence link failed"
             }
         },
         "casedialog": {
@@ -2642,6 +2646,10 @@
                 "es": "Visibilidad",
                 "ru": "Видимость",
                 "it": "Visibilità"
+            },
+            "evidenceexplained": {
+                "description": "Explaination of linked evidence",
+                "en": "Evidence related to this case visible only to moderators. Can't find what you're looking for? Don't worry, you can always create and link evidence later!"
             }
         },
         "modcasetable": {

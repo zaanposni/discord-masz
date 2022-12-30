@@ -278,7 +278,8 @@
             "updated": "Updated",
             "unknown": "Unknown",
             "linkevidence": "Link evidence",
-            "noevidencefound": "No evidence found"
+            "noevidencefound": "No evidence found",
+            "evidencelinkfailed": "Evidence link failed"
         },
         "casedialog": {
             "createcase": "Create case",
@@ -320,7 +321,8 @@
             "templateapplied": "Template applied",
             "templatesaved": "Template saved",
             "templatesavefailed": "Failed to save template",
-            "visibility": "Visibility"
+            "visibility": "Visibility",
+            "evidenceexplained": "Evidence related to this case visible only to moderators. Can't find what you're looking for? Don't worry, you can always create and link evidence later!"
         },
         "modcasetable": {
             "selectmembers": "Members",
