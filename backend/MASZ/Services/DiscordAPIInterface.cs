@@ -400,9 +400,51 @@ namespace MASZ.Services
             return member;
         }
 
-        public Task<IMessage> GetIMessage(ulong channelId, ulong messageId, CacheBehavior cacheBehavior)
+        public async Task<IMessage> GetIMessage(ulong channelId, ulong messageId, CacheBehavior cacheBehavior)
         {
-            throw new NotImplementedException();
+            CacheKey key = CacheKey.IMessage(channelId, messageId);
+            IMessage message;
+            try
+            {
+                message = TryGetFromCache<IMessage>(key, cacheBehavior);
+                if (message != null) return message;
+            } catch (NotFoundInCacheException)
+            {
+                return null;
+            }
+
+            try
+            {
+                var channel = await _client.GetChannelAsync(channelId);
+
+                if(channel == null)
+                {
+                    _logger.LogWarning($"Could not fetch channel '{channelId}' from API");
+                    return FallBackToCache<IMessage>(key, cacheBehavior);
+                }
+
+                if (channel is IMessageChannel msgChannel)
+                {
+                    message = await msgChannel.GetMessageAsync(messageId);
+                }
+                else if (channel is IThreadChannel thrChannel)
+                {
+                    message = await thrChannel.GetMessageAsync(messageId);
+                }
+                else
+                {
+                    _logger.LogWarning($"Channel '{channelId}' does not implement IMessageChannel or IThreadChannel");
+                    return FallBackToCache<IMessage>(key, cacheBehavior);
+                }
+
+            } catch(Exception e)
+            {
+                _logger.LogError(e, $"Failed to fetch message '{messageId}' channel '{channelId}' from API");
+                return FallBackToCache<IMessage>(key, cacheBehavior);
+            }
+
+            SetCacheValue(key, new CacheApiResponse(message));
+            return message;
         }
 
         public async Task<bool> BanUser(ulong guildId, ulong userId, string reason = null)
