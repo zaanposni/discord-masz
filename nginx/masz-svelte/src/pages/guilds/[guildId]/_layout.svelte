@@ -28,6 +28,7 @@
                     titleKey: "guild.evidence",
                     href: `/guilds/${$currentParams.guildId}/evidence`,
                     icon: Box16,
+                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId) || user.modGuilds.map(x => x.id).includes(params.guildId))
                 },
                 {
                     titleKey: "guild.automods",
