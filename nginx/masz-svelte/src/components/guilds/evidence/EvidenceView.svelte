@@ -69,7 +69,7 @@
     function linkCase(modCase: ICase) {
         linkToCaseSubmitting.set(true);
 
-        API.post(`/guilds/${$currentParams.guildId}/evidencemapping/${$evidence.evidence.id}/${modCase.caseId}`, {}, CacheMode.API_ONLY, false)
+        API.post(`/guilds/${$currentParams.guildId}/evidencemapping/${$evidence.evidence.id}/${modCase.id}`, {}, CacheMode.API_ONLY, false)
             .then(() => {
                 evidence.update((n) => {
                     n.linkedCases.push(modCase);
