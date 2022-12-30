@@ -8,7 +8,7 @@
     import API from "../../../services/api/api";
     import { CacheMode } from "../../../services/api/CacheMode";
     import type { IVerifiedEvidenceCompactView } from "../../../models/api/IVerifiedEvidenceCompactView";
-    import { toastError } from "../../../services/toast/store";
+    import { toastError, toastSuccess } from "../../../services/toast/store";
     import type { IDiscordUser } from "../../../models/discord/IDiscordUser";
     import { Pagination } from "carbon-components-svelte";
     import { PaginationSkeleton } from "carbon-components-svelte";
@@ -16,6 +16,7 @@
     import UserIcon from "../../discord/UserIcon.svelte";
     import { url } from "@roxi/routify";
     import { writable } from "svelte/store";
+    import { authUser } from "../../../stores/auth";
 
     let evidence: IVerifiedEvidenceCompactView[] = [];
     let loading = true;
@@ -135,15 +136,27 @@
         const channelId = m[4];
         const messageId = m[5];
 
-        console.log(guildId);
-        console.log(channelId);
-        console.log(messageId);
+        if(guildId !== $currentParams.guildId) {
+            toastError($_("guilds.evidencetable.badguild"))
+            return;
+        }
 
-        //TODO: create evidence in api
+        const data = {
+            modId: $authUser.discordUser.id,
+            channelId: channelId,
+            messageId: messageId,
+        }
+
+        API.post(`guilds/${guildId}/evidence`, data)
+            .then(() => {
+                toastSuccess($_("guilds.evidencetable.created"))
+                onCreateModalClose();
+                loading = true;
+                loadData(currentPage);
+            })
+            .catch(() => toastError($_("guilds.evidencetable.createerror")));
         
-        onCreateModalClose();
-        loading = true;
-        loadData(currentPage);
+        
     }
 </script>
 
