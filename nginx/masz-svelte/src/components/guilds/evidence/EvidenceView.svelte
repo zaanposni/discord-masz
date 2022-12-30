@@ -151,8 +151,11 @@
 </script>
 
 <style>
-    #title{
+    #title {
         margin-bottom: 1rem;
+    }
+    #reported-content {
+        overflow-wrap: break-word;
     }
 </style>
 
@@ -267,7 +270,7 @@
                 {#if loading}
                     <SkeletonText paragraph />
                 {:else}
-                    <div class="text-sm mb-4" id="reportedcontent">
+                    <div class="text-sm mb-4" id="reported-content">
                         <h4>{$_("guilds.evidenceview.reportedcontent")}:</h4>
                         {@html renderedContent}
                     </div>
