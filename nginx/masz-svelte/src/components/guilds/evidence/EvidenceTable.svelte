@@ -1,8 +1,8 @@
 <script lang="ts">
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import { _ } from "svelte-i18n";
-    import { MultiSelect, TextInput, Button, SkeletonPlaceholder, SkeletonText, Tile, Link } from "carbon-components-svelte";
-    import { Search32, Launch20, Filter24 } from "carbon-icons-svelte";
+    import { MultiSelect, TextInput, Button, SkeletonPlaceholder, SkeletonText, Tile, Link, Modal } from "carbon-components-svelte";
+    import { Search32, Launch20, Filter24, Add24 } from "carbon-icons-svelte";
     import { slide } from "svelte/transition";
     import { currentParams } from "../../../stores/currentParams";
     import API from "../../../services/api/api";
@@ -15,12 +15,17 @@
     import Warning_02 from "carbon-pictograms-svelte/lib/Warning_02.svelte";
     import UserIcon from "../../discord/UserIcon.svelte";
     import { url } from "@roxi/routify";
+    import { writable } from "svelte/store";
 
     let evidence: IVerifiedEvidenceCompactView[] = [];
     let loading = true;
     let initialLoading = true;
     let currentPage = 1;
     let fullSize = 0;
+
+    let createModalOpen = writable(false);
+    let createModalContent = writable("");
+    let createModalSubmitting = writable(false);
 
     let filterOpened = false;
     let filter: any = {};
@@ -110,6 +115,36 @@
         filterOpened = !filterOpened;
         filter = {};
     }
+
+    function onCreateModalClose() {
+        createModalOpen.set(false);
+        setTimeout(() => {
+            createModalSubmitting.set(false);
+            createModalContent.set("");
+        }, 200);
+    }
+
+    const createRegex = new RegExp(/(https?:\/\/)?(www\.)?discord\.com\/channels\/(\d{17,19})\/(\d{17,19})\/(\d{17,19})/)
+    function onCreate() {
+        let m: RegExpExecArray;
+        if((m = createRegex.exec($createModalContent)) == null) {
+            toastError($_("guilds.evidencetable.badcreate"))
+            return;
+        }
+        const guildId = m[3];
+        const channelId = m[4];
+        const messageId = m[5];
+
+        console.log(guildId);
+        console.log(channelId);
+        console.log(messageId);
+
+        //TODO: create evidence in api
+        
+        onCreateModalClose();
+        loading = true;
+        loadData(currentPage);
+    }
 </script>
 
 <style>
@@ -119,6 +154,28 @@
     }
 </style>
 
+<Modal
+    size="sm"
+    open={$createModalOpen}
+    selectorPrimaryFocus="#commentvalue"
+    modalHeading={$_("guilds.evidencetable.create")}
+    passiveModal
+    on:close={onCreateModalClose}
+>
+    <div class="mb-2">
+        <TextInput
+            disabled={$createModalSubmitting}
+            labelText={$_("guilds.evidencetable.createinstructions")}
+            placeholder={$_("guilds.evidencetable.createplaceholder")}
+            bind:value={$createModalContent}
+        />
+    </div>
+    <Button 
+        icon={Add24}
+        on:click={onCreate}
+    >{$_("guilds.evidencetable.create")}</Button>
+</Modal>
+
 <MediaQuery query="(min-width: 768px)" let:matches>
     <div class="flex flex-col mb-4">
         <h2 class="font-weight-bold mb-4">
@@ -127,6 +184,7 @@
     </div>
     <div class="flex flex-row">
         <Button iconDescription={$_("guilds.modcasetable.useadvancedfilter")} icon={Filter24} on:click={toggleFilter} />
+        <Button iconDescription={$_("guilds.evidencetable.create")} icon={Add24} on:click={() => createModalOpen.set(!$createModalOpen)}/>
     </div>
     {#if filterOpened}
         <div
