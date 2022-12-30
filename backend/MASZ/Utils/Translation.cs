@@ -3513,6 +3513,21 @@ namespace MASZ.Utils
                 _ => $"{user.Mention} reported a message from {message.Author.Mention} in {channel.Mention}.\n{message.GetJumpUrl()}",
             };
         }
+        public string CmdEvidenceFailed()
+        {
+            return PreferredLanguage switch
+            {
+                _ => "Failed to register evidence"
+            };
+        }
+        public string CmdEvidenceCreated()
+        {
+            return PreferredLanguage switch 
+            {
+                _ => "Successfuly registered evidence"
+            };
+
+        }
         public string CmdSayFailed()
         {
             return PreferredLanguage switch
@@ -4935,6 +4950,8 @@ namespace MASZ.Utils
                 "cmd.invite" => CmdInvite(),
                 "cmd.report.failed" => CmdReportFailed(),
                 "cmd.report.sent" => CmdReportSent(),
+                "cmd.evidence.failed" => CmdEvidenceFailed(),
+                "cmd.evidence.created" => CmdEvidenceCreated(),
                 "cmd.say.failed" => CmdSayFailed(),
                 "cmd.say.sent" => CmdSaySent(),
                 "cmd.track.invitenotfromthisguild" => CmdTrackInviteNotFromThisGuild(),
