@@ -79,7 +79,7 @@ namespace MASZ.Controllers.api.v1
                 ModId = modId,
                 ReportedAt= DateTime.UtcNow,
                 SentAt = message.Timestamp.DateTime,
-                ReportedContent = message.CleanContent,
+                ReportedContent = message.Content,
                 UserId = message.Author.Id,
                 Username = message.Author.Username,
                 Discriminator = message.Author.Discriminator,
