@@ -58,9 +58,10 @@ namespace MASZ.Controllers.api.v1
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
 
+            var currentUser = await GetCurrentUser();
+
             var channelId = ulong.Parse(body.ChannelId);
             var messageId = ulong.Parse(body.MessageId);
-            var modId = ulong.Parse(body.ModId);
 
             var message = await _discordAPI.GetIMessage(channelId, messageId, CacheBehavior.IgnoreCache);
 
@@ -76,7 +77,7 @@ namespace MASZ.Controllers.api.v1
                 GuildId = guildId,
                 ChannelId = channelId,
                 MessageId = messageId,
-                ModId = modId,
+                ModId = currentUser.Id,
                 ReportedAt= DateTime.UtcNow,
                 SentAt = message.Timestamp.DateTime,
                 ReportedContent = message.Content,

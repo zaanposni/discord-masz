@@ -24,6 +24,8 @@ services:
             test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
             timeout: 20s
             retries: 10
+    ports:
+     - "127.0.0.1:3307:3306"
     networks:
       - appnetwork
 

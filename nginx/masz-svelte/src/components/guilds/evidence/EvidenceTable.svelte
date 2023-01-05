@@ -142,7 +142,6 @@
         }
 
         const data = {
-            modId: $authUser.discordUser.id,
             channelId: channelId,
             messageId: messageId,
         }
