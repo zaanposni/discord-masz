@@ -65,8 +65,8 @@ namespace MASZ.Repositories
                 description.AppendLine(_translator.T().NotificationAutomoderationCase(user));
                 description.AppendLine(_translator.T().Type() + ": " + _translator.T().Enum(modEvent.AutoModerationType));
                 description.AppendLine(_translator.T().Action() + ": " + _translator.T().Enum(modEvent.AutoModerationAction));
-                description.AppendLine(_translator.T().Message() + ": " + modEvent.MessageId.ToString());
-                description.AppendLine(_translator.T().MessageContent() + ": " + modEvent.MessageContent);
+                //description.AppendLine(_translator.T().Message() + ": " + modEvent.MessageId.ToString());
+                //description.AppendLine(_translator.T().MessageContent() + ": " + modEvent.MessageContent);
 
                 modCase.Description = description.ToString();
 
