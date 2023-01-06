@@ -34,10 +34,6 @@ namespace MASZ.Controllers.api.v1
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
             VerifiedEvidenceView evidence = new(await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidence(guildId, evidenceId));
-            if (evidence == default)
-            {
-                return NotFound();
-            }
             return Ok(evidence);
         }
 

@@ -30,7 +30,12 @@ namespace MASZ.Repositories
 
         public async Task<VerifiedEvidence> GetEvidence(ulong guildId, int evidenceId)
         {
-            return await Database.GetEvidence(guildId, evidenceId);
+            VerifiedEvidence evidence =  await Database.GetEvidence(guildId, evidenceId);
+            if (evidence == null)
+            {
+                throw new ResourceNotFoundException();
+            }
+            return evidence;
         }
 
         public async Task<VerifiedEvidence> DeleteEvidence(ulong guildId, int evidenceId)
