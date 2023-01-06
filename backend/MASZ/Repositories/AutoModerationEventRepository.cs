@@ -173,6 +173,12 @@ namespace MASZ.Repositories
             {
                 IMessage msg = await DiscordAPI.GetIMessage(evidence.ChannelId, evidence.MessageId, CacheBehavior.IgnoreButCacheOnError);
 
+                if (msg == null)
+                {
+                    Logger.LogWarning("Failed to fetch message when creating modevent evidence");
+                    return;
+                }
+
                 evidence.ReportedContent = msg.Content;
                 evidence.SentAt = msg.Timestamp.DateTime;
                 evidence.ReportedAt = DateTime.UtcNow;

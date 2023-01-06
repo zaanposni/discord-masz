@@ -984,6 +984,12 @@ namespace MASZ.Data
             context.VerifiedEvidence.Remove(evidence);
         }
 
+        public async Task DeleteEvidenceByGuild(ulong guildId)
+        {
+            var evidence = await context.VerifiedEvidence.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            context.VerifiedEvidence.RemoveRange(evidence);
+        }
+
         public void CreateEvidence(VerifiedEvidence evidence)
         {
             context.VerifiedEvidence.Add(evidence);

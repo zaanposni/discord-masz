@@ -1,6 +1,6 @@
 import type { ILanguageSelect } from "./models/ILanguageSelect";
 
-export const DEV_MODE = true;  // <-- USE THIS FOR DEVELOPMENT
+export const DEV_MODE = false;  // <-- USE THIS FOR DEVELOPMENT
 
 export const APP_BASE_URL = DEV_MODE ? "http://127.0.0.1:5565" : "";
 export const API_URL = APP_BASE_URL + '/api/v1';

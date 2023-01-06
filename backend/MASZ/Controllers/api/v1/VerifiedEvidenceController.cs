@@ -34,10 +34,6 @@ namespace MASZ.Controllers.api.v1
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
             VerifiedEvidenceView evidence = new(await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidence(guildId, evidenceId));
-            if (evidence == default)
-            {
-                return NotFound();
-            }
             return Ok(evidence);
         }
 
@@ -60,8 +56,8 @@ namespace MASZ.Controllers.api.v1
 
             var currentUser = await GetCurrentUser();
 
-            var channelId = ulong.Parse(body.ChannelId);
-            var messageId = ulong.Parse(body.MessageId);
+            var channelId = body.ChannelId;
+            var messageId = body.MessageId;
 
             var message = await _discordAPI.GetIMessage(channelId, messageId, CacheBehavior.IgnoreCache);
 
