@@ -239,7 +239,7 @@
                 $goto(`/guilds/${$currentParams.guildId}/cases/${res.caseId}`);
 
                 $linkedEvidence.forEach((evidence) => {
-                    linkEvidenceInApi(evidence, res.id);
+                    linkEvidenceInApi(evidence, res.caseId);
                 })
 
                 $filesToUpload.forEach((file) => {
