@@ -214,6 +214,7 @@
             "banned": "Gildes prohibidas"
         },
         "caseview": {
+            "verifiedevidence": "Esta evidencia está verificada",
             "unlinked": "Caselink eliminado",
             "unlinkfailed": "Fallo al desvincular caselink",
             "linked": "Caselink creado",

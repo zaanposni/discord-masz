@@ -1595,6 +1595,16 @@
             }
         },
         "caseview": {
+            "verifiedevidence": {
+                "description": "Verify evidence",
+                "en": "This evidence is verified",
+                "de": "Dieses Beweismittel ist verifiziert",
+                "at": "Des Beweis is verifiziert",
+                "fr": "Cette preuve est vérifiée",
+                "es": "Esta evidencia está verificada",
+                "ru": "Это доказательство подтверждено",
+                "it": "Questa prova è verificata"
+            },
             "unlinked": {
                 "description": "Unlinked",
                 "en": "Caselink deleted",

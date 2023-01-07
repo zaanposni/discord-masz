@@ -214,6 +214,7 @@
             "banned": "Gesperrte Gilden"
         },
         "caseview": {
+            "verifiedevidence": "Dieses Beweismittel ist verifiziert",
             "unlinked": "Fallverlinkung gelöscht",
             "unlinkfailed": "Fallverlinkung konnte nicht aufgelöst werden.",
             "linked": "Fallverlinkung erstellt",

@@ -214,6 +214,7 @@
             "banned": "Guildes bannis"
         },
         "caseview": {
+            "verifiedevidence": "Cette preuve est vérifiée",
             "unlinked": "Caselink supprimé",
             "unlinkfailed": "Échec de la suppression du caselink",
             "linked": "Caselink créé",

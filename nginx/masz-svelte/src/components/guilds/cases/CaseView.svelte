@@ -18,6 +18,7 @@
         TextArea,
         TextInput,
         Tile,
+        Tooltip,
     } from "carbon-components-svelte";
     import {
         ChevronDown24,
@@ -33,6 +34,7 @@
         CopyLink24,
         WatsonHealthAiStatusComplete24,
         Box24,
+        CheckmarkFilled24,
     } from "carbon-icons-svelte";
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import type { ICaseView } from "../../../models/api/ICaseView";
@@ -93,6 +95,9 @@
     let linkEvidenceSearching = writable(false);
     let linkEvidenceSearchResults: Writable<IVerifiedEvidenceCompactView[]> = writable([]);
 
+    const newestEvidenceCreated = writable([]);
+    let searchTriggeredOnce = false;
+
     let createEvidenceModalOpen = writable(false);
 
     $: $currentParams?.guildId && $currentParams?.caseId ? loadData() : null;
@@ -111,6 +116,7 @@
                 console.error(err);
             });
         reloadFiles();
+        reloadNewestEvidence();
         setTimeout(() => {
             reloadFiles(false);
         }, 5000);
@@ -136,6 +142,22 @@
             });
     }
 
+    function reloadNewestEvidence() {
+        searchTriggeredOnce = false;
+        API.post(`/guilds/${$currentParams.guildId}/evidence/evidencetable?startPage=0`, {}, CacheMode.API_ONLY, false)
+            .then((response: { evidence: IVerifiedEvidenceCompactView[]; fullSize: number }) => {
+                newestEvidenceCreated.set(
+                    response.evidence.filter(
+                        (c) => !$modCase.linkedEvidence.some((x) => x.id == c.verifiedEvidence.id)
+                    ).slice(0, 3)
+                );
+                console.log($newestEvidenceCreated);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }
+
     function clearCaseCache() {
         API.clearCacheEntryLike("get", `/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}`);
         API.clearCacheEntryLike("post", `/guilds/${$currentParams.guildId}/modcasetable`);
@@ -152,7 +174,6 @@
         })
         .replace(/<@([\d]+)>/gm, (match) => {
             const id = match.substring(2, match.length - 1);
-            console.log(id);
             return modcase.mentionedUsers[id] ? `@${modcase.mentionedUsers[id]}` : match;
         })
         .replace(/<@&([\d]+)>/gm, (match) => {
@@ -184,7 +205,6 @@
     }
 
     function unlinkCase(caseId: number) {
-        console.log("unlinkCase", caseId);
         API.deleteData(`/guilds/${$currentParams.guildId}/casemapping/${caseId}/${$modCase.modCase.caseId}`, {})
             .then(() => {
                 modCase.update((n) => {
@@ -294,7 +314,6 @@
     }
 
     function unlinkEvidence(evidenceId: number) {
-        console.log("unlinkEvidence", evidenceId);
         API.deleteData(`/guilds/${$currentParams.guildId}/evidencemapping/${evidenceId}/${$modCase.modCase.caseId}`, {})
             .then(() => {
                 modCase.update((n) => {
@@ -316,6 +335,7 @@
         }
 
         if (search) {
+            searchTriggeredOnce = true;
             linkEvidenceSearching.set(true);
             linkEvidenceSearchResults.set([]);
 
@@ -687,14 +707,11 @@
         </div>
     {:else}
         <div class="flex flex-col" transition:slide|local>
-            {#each $linkEvidenceSearchResults as evidence}
+            {#each searchTriggeredOnce ? $linkEvidenceSearchResults : $newestEvidenceCreated as evidence}
                 <div transition:slide|local>
                     <Tile class="mb-2" light>
                         <div class="flex flex-row grow-0 w-full max-w-full items-center">
                             <List24 class="shrink-0 mr-2" />
-                            <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
-                                #{evidence.verifiedEvidence.id}
-                            </div>
                             <div class="shrink-0 mr-2">
                                 <div class="flex flex-row flex-wrap items-center">
                                     <UserIcon class="self-start mr-2" user={evidence.reported}/>
@@ -1115,16 +1132,16 @@
                                     <Tile class="mb-2">
                                         <div class="flex flex-row grow-0 w-full max-w-full items-center">
                                             <Box24 class="shrink-0 mr-2"/>
-                                            <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
-                                                #{evidence.id}
-                                            </div>
-                                            <div class="mr-2">
+                                            <div class="mr-2" style="color: var(--cds-text-02)">
                                                 {evidence.username}#{evidence.discriminator}
                                             </div>
-                                            <div class="grow truncate">
+                                            <div class="grow truncate mr-2">
                                                 {evidence.reportedContent}
                                             </div>
-                                            <div>
+                                            <Tooltip icon={CheckmarkFilled24}>
+                                                <p>{$_("guilds.caseview.verifiedevidence")}</p>
+                                            </Tooltip>
+                                            <div class="ml-2">
                                                 <OverflowMenu flipped>
                                                     <OverflowMenuItem
                                                         text="Show evidence"

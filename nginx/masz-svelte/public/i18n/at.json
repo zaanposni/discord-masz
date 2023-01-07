@@ -214,6 +214,7 @@
             "banned": "Gsperrte Güden"
         },
         "caseview": {
+            "verifiedevidence": "Des Beweis is verifiziert",
             "unlinked": "Caselink glöscht",
             "unlinkfailed": "Konnte Caselink ned lösn",
             "linked": "Caselink erstöt",

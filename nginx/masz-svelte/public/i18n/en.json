@@ -215,6 +215,7 @@
             "banned": "Banned guilds"
         },
         "caseview": {
+            "verifiedevidence": "This evidence is verified",
             "unlinked": "Caselink deleted",
             "unlinkfailed": "Failed to unlink case",
             "linked": "Caselink created",

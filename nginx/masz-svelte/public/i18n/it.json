@@ -214,6 +214,7 @@
             "banned": "Gilde bloccate"
         },
         "caseview": {
+            "verifiedevidence": "Questa prova è verificata",
             "unlinked": "Caselink eliminato",
             "unlinkfailed": "Impossibile scollegare il caso",
             "linked": "Caselink creato",
