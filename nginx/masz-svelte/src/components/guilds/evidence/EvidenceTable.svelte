@@ -193,44 +193,44 @@
         <h2 class="font-weight-bold mb-4">
             {$_("nav.guild.evidence")}
         </h2>
-    </div>
-    <div class="flex flex-row">
-        <Button iconDescription={$_("guilds.modcasetable.useadvancedfilter")} icon={Filter24} on:click={toggleFilter} />
-        <Button iconDescription={$_("guilds.evidencetable.create")} icon={Add24} on:click={() => createModalOpen.set(!$createModalOpen)}/>
-    </div>
-    {#if filterOpened}
-        <div
-        class="grid gap-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 3xl:grid-cols-12 mt-4"
-        id="filter-parent"
-        transition:slide|local>
-            <div>
-                <MultiSelect
-                    spellcheck="false"
-                    filterable
-                    titleText={$_("guilds.modcasetable.selectmoderators")}
-                    label={$_("guilds.modcasetable.selectmoderators")}
-                    items={members}
-                    on:clear={() => onSelect("modIds", [])}
-                    on:select={(e) => onSelect("modIds", e.detail.selectedIds)} />
-            </div>
-            <div>
-                <MultiSelect
-                    spellcheck="false"
-                    filterable
-                    titleText={$_("guilds.modcasetable.selectmembers")}
-                    label={$_("guilds.modcasetable.selectmembers")}
-                    items={members}
-                    on:clear={() => onSelect("reportedIds", [])}
-                    on:select={(e) => onSelect("reportedIds", e.detail.selectedIds)} />
-            </div>
-            <div>
-                <TextInput bind:value={searchValue} labelText={$_("guilds.modcasetable.search")} placeholder={$_("guilds.modcasetable.search")} />
-            </div>
-            <div class="self-end">
-                <Button icon={Search32} on:click={executeSearch}>{$_("guilds.modcasetable.executesearch")}</Button>
-            </div>
+        <div class="flex flex-row">
+            <Button iconDescription={$_("guilds.modcasetable.useadvancedfilter")} icon={Filter24} on:click={toggleFilter} />
+            <Button iconDescription={$_("guilds.evidencetable.create")} icon={Add24} on:click={() => createModalOpen.set(!$createModalOpen)}/>
         </div>
-    {/if}
+        {#if filterOpened}
+            <div
+                class="grid gap-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 3xl:grid-cols-12 mt-4"
+                id="filter-parent"
+                transition:slide|local>
+                <div>
+                    <MultiSelect
+                        spellcheck="false"
+                        filterable
+                        titleText={$_("guilds.modcasetable.selectmoderators")}
+                        label={$_("guilds.modcasetable.selectmoderators")}
+                        items={members}
+                        on:clear={() => onSelect("modIds", [])}
+                        on:select={(e) => onSelect("modIds", e.detail.selectedIds)} />
+                </div>
+                <div>
+                    <MultiSelect
+                        spellcheck="false"
+                        filterable
+                        titleText={$_("guilds.modcasetable.selectmembers")}
+                        label={$_("guilds.modcasetable.selectmembers")}
+                        items={members}
+                        on:clear={() => onSelect("reportedIds", [])}
+                        on:select={(e) => onSelect("reportedIds", e.detail.selectedIds)} />
+                </div>
+                <div>
+                    <TextInput bind:value={searchValue} labelText={$_("guilds.modcasetable.search")} placeholder={$_("guilds.modcasetable.search")} />
+                </div>
+                <div class="self-end">
+                    <Button icon={Search32} on:click={executeSearch}>{$_("guilds.modcasetable.executesearch")}</Button>
+                </div>
+            </div>
+        {/if}
+    </div>
     {#if initialLoading}
         <PaginationSkeleton class="mb-4" />
     {:else}
