@@ -419,12 +419,12 @@ namespace MASZ.Services
 
         internal readonly AsyncEvent<Func<ZalgoConfig, ulong, string, string, Task>> OnZalgoNicknameRenameEvent = new("OnZalgoConfigUpdatedEvent");
 
-        public event Func<ICommandInfo, IUser, Task> OnApplicationCommandUsed
+        public event Func<ICommandInfo, IUser, IGuild, Task> OnApplicationCommandUsed
         {
             add { OnApplicationCommandUsedEvent.Add(value); }
             remove { OnApplicationCommandUsedEvent.Remove(value); }
         }
 
-        internal readonly AsyncEvent<Func<ICommandInfo, IUser, Task>> OnApplicationCommandUsedEvent = new("OnApplicationCommandUsedEvent");
+        internal readonly AsyncEvent<Func<ICommandInfo, IUser, IGuild, Task>> OnApplicationCommandUsedEvent = new("OnApplicationCommandUsedEvent");
     }
 }

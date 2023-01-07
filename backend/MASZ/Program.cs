@@ -98,6 +98,8 @@ builder.Services
 
 .AddSingleton<GuildAuditLogger>()
 
+.AddSingleton<PhishingDetectionService>()
+
 // SCOPED
 
 .AddScoped<Database>()
@@ -248,6 +250,7 @@ using (var scope = app.Services.CreateScope())
 
     await scope.ServiceProvider.GetRequiredService<AuditLogger>().ExecuteAsync();
     await scope.ServiceProvider.GetRequiredService<DiscordBot>().ExecuteAsync();
+    await scope.ServiceProvider.GetRequiredService<PhishingDetectionService>().ExecuteAsync();
 
     if (string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS")))
         scope.ServiceProvider.GetServices<IBasePlugin>().ToList().ForEach(x => x.Init());

@@ -17,6 +17,7 @@
     import ResourceStats from "../../components/admin/dashboard/ResourceStats.svelte";
     import CacheVisualization from "../../components/admin/dashboard/CacheVisualization.svelte";
     import Feedback from "../../components/api/Feedback.svelte";
+    import DiscordInvite from "../../components/admin/dashboard/DiscordInvite.svelte";
 
     adminDashboardItems.set([
         {
@@ -47,6 +48,12 @@
             id: "admin-cache",
             translationKey: "admincache",
             component: CacheVisualization,
+            mode: WidgetMode.x1_1,
+        },
+        {
+            id: "admin-discord-invite",
+            translationKey: "admindiscordinvite",
+            component: DiscordInvite,
             mode: WidgetMode.x1_1,
         },
         {

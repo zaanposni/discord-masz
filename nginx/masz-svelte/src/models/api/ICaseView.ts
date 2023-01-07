@@ -16,4 +16,7 @@ export interface ICaseView {
     userNote: IUserNoteView;
     punishmentProgress: number;
     linkedEvidence: IVerifiedEvidence[];
+    mentionedUsers: any;
+    mentionedRoles: any;
+    mentionedChannels: any;
 }

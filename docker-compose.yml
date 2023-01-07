@@ -53,6 +53,7 @@ services:
       - ENABLE_CUSTOM_PLUGINS=${ENABLE_CUSTOM_PLUGINS}
       - ABSOLUTE_PATH_TO_FILE_UPLOAD=/filehost/
       - ENABLE_TELEMETRY=${ENABLE_TELEMETRY}
+      - ENABLE_LOW_MEMORY_PHISHING_LIST=${ENABLE_LOW_MEMORY_PHISHING_LIST}
     networks:
       - appnetwork
     volumes:

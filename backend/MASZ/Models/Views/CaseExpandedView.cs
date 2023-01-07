@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Discord;
 using MASZ.Models.Views;
 
@@ -5,7 +6,17 @@ namespace MASZ.Models
 {
     public class CaseExpandedView
     {
-        public CaseExpandedView(ModCase modCase, IUser moderator, IUser lastModerator, IUser suspect, List<CommentExpandedView> comments, UserNoteExpandedView userNoteView)
+        public CaseExpandedView(
+            ModCase modCase,
+            IUser moderator,
+            IUser lastModerator,
+            IUser suspect,
+            List<CommentExpandedView> comments,
+            UserNoteExpandedView userNoteView,
+            Dictionary<string, string> mentionedUsers,
+            Dictionary<string, string> mentionedRoles,
+            Dictionary<string, string> mentionedChannels
+        )
         {
             ModCase = new CaseView(modCase);
             Moderator = DiscordUserView.CreateOrDefault(moderator);
@@ -15,6 +26,10 @@ namespace MASZ.Models
             UserNote = userNoteView;
             LinkedCases = new List<CaseView>();
             LinkedEvidence = modCase.EvidenceMappings.Select(x => new VerifiedEvidenceView(x.Evidence)).ToList();
+
+            MentionedUsers = mentionedUsers;
+            MentionedRoles = mentionedRoles;
+            MentionedChannels = mentionedChannels;
 
             if (modCase.PunishedUntil != null)
             {
@@ -45,6 +60,9 @@ namespace MASZ.Models
         public List<CommentExpandedView> Comments { get; set; }
         public UserNoteExpandedView UserNote { get; set; }
         public double? PunishmentProgress { get; set; }
+        public Dictionary<string, string> MentionedUsers { get; set; }
+        public Dictionary<string, string> MentionedRoles { get; set; }
+        public Dictionary<string, string> MentionedChannels { get; set; }
 
         public void RemoveModeratorInfo()
         {

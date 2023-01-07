@@ -11,6 +11,7 @@ namespace MASZ.Enums
         CustomWordFilter,
         TooManyMessages,
         TooManyDuplicatedCharacters,
-        TooManyLinks
+        TooManyLinks,
+        TooManyPhishingLinks,
     }
 }

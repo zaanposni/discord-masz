@@ -8,5 +8,6 @@ export enum AutomodType {
     CustomWordFilter,
     TooManyMessages,
     TooManyDuplicatedCharacters,
-    TooManyLinks
+    TooManyLinks,
+    TooManyPhishingLinks,
 }

@@ -119,7 +119,7 @@
         "basedetails": {
             "description": "Settings",
             "en": "Adjust your MASZ settings.",
-            "de": "Passen Sie Ihre MASZ-Einstellungen an.",
+            "de": "Passe deine MASZ-Einstellungen an.",
             "at": "Passns Ihre MASZ-Eistellungen o.",
             "fr": "Ajustez vos paramètres MASZ.",
             "es": "Ajuste tus ajustes de MASZ.",
@@ -241,7 +241,7 @@
         "communitydetails": {
             "description": "Community",
             "en": "Visit the Community Discord of MASZ.",
-            "de": "Besuche den Community-Discord von MASZ.",
+            "de": "Besuche die MASZ Discord Community.",
             "at": "Besuch den Community-Discord vo MASZ.",
             "fr": "Visitez la communauté discord de MASZ.",
             "es": "Visite la comunidad de Discord de MASZ.",
@@ -378,7 +378,7 @@
             "automods": {
                 "description": "Automods",
                 "en": "Automods",
-                "de": "Automods",
+                "de": "Automoderation",
                 "at": "Automods",
                 "fr": "Automods",
                 "es": "Automods",
@@ -429,7 +429,7 @@
                 "motd": {
                     "description": "MotD",
                     "en": "MotD",
-                    "de": "MotD",
+                    "de": "Nachricht des Tages",
                     "at": "NvdT",
                     "fr": "MotD",
                     "es": "MotD",
@@ -524,7 +524,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the latest cases in your guild.",
-                "de": "Dieses Widget zeigt die neuesten Vorfälle in deiner Gilde.",
+                "de": "Dieses Widget zeigt die neuesten Vorfälle auf deiner Gilde.",
                 "at": "Des Widget zeigt de neiasten Vorfälle in dea Güde o.",
                 "fr": "Ce widget affiche les derniers cas de votre guilde.",
                 "es": "Este widget muestra los últimos casos de tu hermandad.",
@@ -556,7 +556,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the latest appeals in your guild.",
-                "de": "Dieses Widget zeigt die neuesten Entbannungsanträge in deiner Gilde.",
+                "de": "Dieses Widget zeigt die neuesten Entbannungsanträge auf deiner Gilde.",
                 "at": "Des Widget zeigt de neiasten Entbannungsonträge in dea Güde o.",
                 "fr": "Ce widget affiche les derniers appels de votre guilde.",
                 "es": "Este widget muestra los últimos apelaciones de tu hermandad.",
@@ -588,7 +588,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows all cases by moderator in your guild.",
-                "de": "Dieses Widget zeigt alle Vorfälle nach Moderator in deiner Gilde.",
+                "de": "Dieses Widget zeigt alle Vorfälle nach Moderator auf deiner Gilde.",
                 "at": "Des Widget zeigt olle Vorfälle noch dem Modarator in dea Güde o.",
                 "fr": "Ce widget affiche tous les cas par modérateur de votre guilde.",
                 "es": "Este widget muestra todos los casos por moderador de tu hermandad.",
@@ -680,7 +680,7 @@
             "banappeals": {
                 "description": "Ban Appeals",
                 "en": "Ban Appeals",
-                "de": "Bann-Anfragen",
+                "de": "Entbannungsanträge",
                 "at": "Bann-Anfragn",
                 "fr": "Appels de bannissement",
                 "es": "Quejas de Baneo",
@@ -712,7 +712,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the automod split of your guild.",
-                "de": "Dieses Widget zeigt die Aufteilung der Automoderationen in deiner Gilde.",
+                "de": "Dieses Widget zeigt die Aufteilung der Automoderationen auf deiner Gilde.",
                 "at": "Des Widget zeigt de Aufteilung vo da Automodaration in dea Güde o.",
                 "fr": "Ce widget affiche les automodérations de votre guilde.",
                 "es": "Este widget muestra la división de automod de tu hermandad.",
@@ -744,7 +744,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the case overview of your guild.",
-                "de": "Dieses Widget zeigt die Übersicht der Vorfälle in deiner Gilde.",
+                "de": "Dieses Widget zeigt die Übersicht der Vorfälle auf deiner Gilde.",
                 "at": "Des Widget zeigt de Übasicht vo de Vorfälle in dea Güde o.",
                 "fr": "Ce widget affiche l'aperçu des cas de votre guilde.",
                 "es": "Este widget muestra el resumen de los casos de tu hermandad.",
@@ -776,7 +776,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the appeal overview of your guild.",
-                "de": "Dieses Widget zeigt die Übersicht der Entbannungsanträge in deiner Gilde.",
+                "de": "Dieses Widget zeigt die Übersicht der Entbannungsanträge auf deiner Gilde.",
                 "at": "Des Widget zeigt de Übasicht dea Entbannungsonträge in dea Güde o.",
                 "fr": "Ce widget affiche l'aperçu des appels de votre guilde.",
                 "es": "Este widget muestra el resumen de las quejas de tu hermandad.",
@@ -808,7 +808,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the automod overview of your guild.",
-                "de": "Dieses Widget zeigt die Übersicht der Automoderationen in deiner Gilde.",
+                "de": "Dieses Widget zeigt die Übersicht der Automoderationen auf deiner Gilde.",
                 "at": "Des Widget zeigt de Übasicht dea Automodarationen in dea Güde o.",
                 "fr": "Ce widget affiche l'aperçu des automodérations de votre guilde.",
                 "es": "Este widget muestra el resumen de las automod de tu hermandad.",
@@ -830,7 +830,7 @@
             "title": {
                 "description": "Title",
                 "en": "Pending scheduled messages",
-                "de": "Ausstehende Nachrichten",
+                "de": "Ausstehende geplante Nachrichten",
                 "at": "Ausstehende Nochrichtn",
                 "fr": "Messages en attente",
                 "es": "Mensajes pendientes",
@@ -840,7 +840,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the pending scheduled messages in your guild.",
-                "de": "Dieses Widget zeigt die ausstehenden Nachrichten in deiner Gilde.",
+                "de": "Dieses Widget zeigt die ausstehenden geplanten Nachrichten auf deiner Gilde.",
                 "at": "Des Widget zeigt de ausstehenden Nochrichtn in dea Güde o.",
                 "fr": "Ce widget affiche les messages en attente de votre guilde.",
                 "es": "Este widget muestra los mensajes pendientes de tu hermandad.",
@@ -934,7 +934,7 @@
             "placeholder": {
                 "description": "Placeholder for the search field",
                 "en": "Quicksearch users, cases and punishments...",
-                "de": "Schnellsuche Benutzer, Vorfälle, Bestrafungen, ...",
+                "de": "Suche nach Benutzern, Vorfällen, Bestrafungen, ...",
                 "at": "Schnösuche Benutza, Vorfälle, Bestrofungen, ...",
                 "fr": "Quicksearch utilisateurs, modcases, punitions, ...",
                 "es": "Usuarios de Quicksearch, modcases, castigos, ...",
@@ -996,7 +996,7 @@
             "title": {
                 "description": "Title",
                 "en": "MotD",
-                "de": "MotD",
+                "de": "Nachricht des Tages",
                 "at": "NvdT",
                 "fr": "MotD",
                 "es": "MotD",
@@ -1006,7 +1006,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "Shows the current message of the day.",
-                "de": "Dieses Widget zeigt das aktuelle Nachrichtenthema.",
+                "de": "Dieses Widget zeigt die aktuelle Nachricht des Tages.",
                 "at": "Des Widget zeigt des aktuelle Nochrichtnthema.",
                 "fr": "Ce widget affiche le message du jour actuel.",
                 "es": "Este widget muestra el mensaje del día actual.",
@@ -1076,6 +1076,38 @@
                 "it": "Nessun aggiornamento disponibile"
             }
         },
+        "admindiscordinvite": {
+            "title": {
+                "description": "Title",
+                "en": "Discord invite",
+                "de": "Discord Einladung",
+                "at": "Discord Einladung",
+                "fr": "Invitation Discord",
+                "es": "Invitación de Discord",
+                "ru": "Приглашение в Discord",
+                "it": "Invito Discord"
+            },
+            "widgetdescription": {
+                "description": "Description",
+                "en": "This widget shows an invite link for the MASZ community Discord.",
+                "de": "Dieses Widget zeigt einen Einladungslink für den MASZ Community Discord.",
+                "at": "Des Widget zeigt de Einladungslink für de MASZ Community Discord.",
+                "fr": "Ce widget affiche un lien d'invitation pour le Discord communautaire MASZ.",
+                "es": "Este widget muestra un enlace de invitación para el Discord de la comunidad MASZ.",
+                "ru": "Этот виджет показывает ссылку приглашения для Discord-сообщества MASZ.",
+                "it": "Questo widget mostra un link di invito per il Discord della comunità MASZ."
+            },
+            "message": {
+                "description": "Message",
+                "en": "Join the MASZ community Discord!",
+                "de": "Trete dem MASZ Community Discord bei!",
+                "at": "Trete de MASZ Community Discord bei!",
+                "fr": "Rejoignez le Discord communautaire MASZ!",
+                "es": "¡Únete al Discord de la comunidad MASZ!",
+                "ru": "Присоединяйтесь к серверу сообщества MASZ!",
+                "it": "Unisciti al Discord della comunità MASZ!"
+            }
+        },
         "adminstatus": {
             "title": {
                 "description": "Title",
@@ -1090,7 +1122,7 @@
             "widgetdescription": {
                 "description": "Description",
                 "en": "This widget shows the current ping of MASZ' components",
-                "de": "Dieses Widget zeigt den aktuellen Ping der MASZ-Komponenten.",
+                "de": "Dieses Widget zeigt den aktuellen Reaktionszeit der MASZ-Systeme.",
                 "at": "Des Widget zeigt den aktuellen Ping da MASZ-Komponenten.",
                 "fr": "Ce widget affiche le ping actuel des composants MASZ.",
                 "es": "Este widget muestra el ping actual de los componentes MASZ.",
@@ -1204,7 +1236,7 @@
             "guilds": {
                 "description": "Guilds",
                 "en": "Guilds",
-                "de": "Gilden",
+                "de": "Gilde",
                 "at": "Güdn",
                 "fr": "Guildes",
                 "es": "Hermandades",
@@ -1224,7 +1256,7 @@
             "automods": {
                 "description": "Automod",
                 "en": "Automod",
-                "de": "Automod",
+                "de": "Automoderationen",
                 "at": "Automod",
                 "fr": "Automod",
                 "es": "Automod",
@@ -1502,7 +1534,7 @@
             "invitefirst": {
                 "description": "Invite first",
                 "en": "Please invite the bot to this guild first",
-                "de": "Bitte lade den Bot zuerst in diese Gilde ein",
+                "de": "Bitte füge den Bot erst zu diesem Gilde hinzu.",
                 "at": "Bitte lad den Bot zuerst in de Güde ei",
                 "fr": "Veuillez d'abord inviter le bot à cette guilde",
                 "es": "Por favor, invita al bot a esta hermandad primero",
@@ -1566,7 +1598,7 @@
             "unlinked": {
                 "description": "Unlinked",
                 "en": "Caselink deleted",
-                "de": "Caselink gelöscht",
+                "de": "Fallverlinkung gelöscht",
                 "at": "Caselink glöscht",
                 "fr": "Caselink supprimé",
                 "es": "Caselink eliminado",
@@ -1576,7 +1608,7 @@
             "unlinkfailed": {
                 "description": "Unlink failed",
                 "en": "Failed to unlink case",
-                "de": "Konnte Caselink nicht lösen",
+                "de": "Fallverlinkung konnte nicht aufgelöst werden.",
                 "at": "Konnte Caselink ned lösn",
                 "fr": "Échec de la suppression du caselink",
                 "es": "Fallo al desvincular caselink",
@@ -1586,7 +1618,7 @@
             "linked": {
                 "description": "Linked",
                 "en": "Caselink created",
-                "de": "Caselink erstellt",
+                "de": "Fallverlinkung erstellt",
                 "at": "Caselink erstöt",
                 "fr": "Caselink créé",
                 "es": "Caselink creado",
@@ -1596,7 +1628,7 @@
             "linkfailed": {
                 "description": "Link failed",
                 "en": "Failed to link case",
-                "de": "Konnte Caselink nicht erstellen",
+                "de": "Fallverlinkung konnte nicht erstellt werden.",
                 "at": "Konnte Caselink ned erstön",
                 "fr": "Échec de la création du caselink",
                 "es": "Fallo al vincular caselink",
@@ -1636,7 +1668,7 @@
             "attachmentuploadfailed": {
                 "description": "Attachment upload failed",
                 "en": "Attachment upload failed",
-                "de": "Anhang hochladen fehlgeschlagen",
+                "de": "Hochladen des Anhangs fehlgeschlagen",
                 "at": "Anhang hochlodn fehlgschlogn",
                 "fr": "Échec de l'envoi de pièce jointe",
                 "es": "Subida de adjunto falló",
@@ -2046,7 +2078,7 @@
             "markedtodelete": {
                 "description": "Marked to delete",
                 "en": "This case has been marked to be deleted on {time}",
-                "de": "Dieser Vorfall wurde zum Löschen markiert am {time}",
+                "de": "Dieser Vorfall wurde am {time} zum Löschen markiert",
                 "at": "Diesa Vorfoi wuad zum Löschn markiat am {time}",
                 "fr": "Ce cas a été marqué pour être supprimé à {time}",
                 "es": "Este caso ha sido marcado para ser eliminado a las {time}",
@@ -2106,7 +2138,7 @@
             "caseislocked": {
                 "description": "Case is locked",
                 "en": "You cannot comment since this case is locked.",
-                "de": "Sie können keine Kommentare hinzufügen, da dieser Vorfall gesperrt ist.",
+                "de": "Du kannst keine Kommentare hinzufügen, da der Vorfall gesperrt ist.",
                 "at": "Sie kennan keine Kommentare hinzufün, weil dea Vorfoi gsperrt is.",
                 "fr": "Vous ne pouvez pas commenter car ce cas est verrouillé.",
                 "es": "No puede comentar porque este caso está bloqueado.",
@@ -2116,7 +2148,7 @@
             "violator": {
                 "description": "Violator",
                 "en": "Violator",
-                "de": "Beschuldigter",
+                "de": "Beschuldigter Nutzer",
                 "at": "Beschuldigta",
                 "fr": "Violateur",
                 "es": "Violador",
@@ -2186,7 +2218,7 @@
             "lasteditmoderator": {
                 "description": "Last edit moderator",
                 "en": "Last edit by moderator",
-                "de": "Letzter Bearbeiter",
+                "de": "Zuletzt bearbeit von",
                 "at": "Letzta Beorbeita",
                 "fr": "Dernier modérateur",
                 "es": "Último moderador",
@@ -2196,7 +2228,7 @@
             "moderatorunknown": {
                 "description": "Moderator unknown",
                 "en": "Unknown or hidden",
-                "de": "Unbekannt oder versteckt",
+                "de": "Unbekannt oder ausgeblendet",
                 "at": "Unbekonnt oda vasteckt",
                 "fr": "Inconnu ou caché",
                 "es": "Desconocido o oculto",
@@ -2205,8 +2237,8 @@
             },
             "created": {
                 "description": "Created",
-                "en": "Created",
-                "de": "Erstellt",
+                "en": "Created on",
+                "de": "Erstellt am",
                 "at": "Erstöt",
                 "fr": "Créé",
                 "es": "Creado",
@@ -2215,8 +2247,8 @@
             },
             "updated": {
                 "description": "Updated",
-                "en": "Updated",
-                "de": "Aktualisiert",
+                "en": "Updated on",
+                "de": "Aktualisiert am",
                 "at": "Aktualisiat",
                 "fr": "Mis à jour",
                 "es": "Actualizado",
@@ -2270,7 +2302,7 @@
             "caseexplain": {
                 "description": "Case explanation",
                 "en": "Use cases to log infractions and punishments in your guild.",
-                "de": "Benutze Vorfälle, um Verstöße und Strafen in deiner Gilde zu protokollieren.",
+                "de": "Benutze Vorfälle, um Regelverstöße und Strafen in deiner Gilde zu protokollieren.",
                 "at": "Benutz an Vorfoi, um Verstöße und Strofn in deina Güde zu protokollian.",
                 "fr": "Utilisez un cas pour journaliser des infractions et des punitions dans votre guilde.",
                 "es": "Utiliza un caso para registrar infracciones y sanciones en tu hermandad.",
@@ -2280,7 +2312,7 @@
             "caseexplain2": {
                 "description": "Case explanation",
                 "en": "If your guild is configured, MASZ will automatically manage your punishment and notify both your guild and the user.",
-                "de": "MASZ wird automatisch deine Strafe verwalten und den Benutzer und deine Gilde benachrichtigen, wenn konfiguriert.",
+                "de": "MASZ wird automatisch deine Strafe verwalten und den Benutzer und deine Gilde zu benachrichtigen (wenn aktiviert).",
                 "at": "MASZ wiad automatisch dei Strof vawoitn und den Benutza und dei Güde benochrichtn, wenns konfiguriat is.",
                 "fr": "MASZ va automatiquement gérer votre punition et notifier l'utilisateur et votre guilde si configuré.",
                 "es": "MASZ gestionará automáticamente tu sanción y notificará al usuario y tu hermandad si está configurado.",
@@ -2300,7 +2332,7 @@
             "templateexplain": {
                 "description": "Template explanation",
                 "en": "No template that matches your requirements? Create one at the end of the dialog!",
-                "de": "Keine Vorlage, die deine Anforderungen entspricht? Erstelle eine am Ende dieses Dialogs!",
+                "de": "Keine Vorlage, die deine Anforderungen entspricht? Erstelle eine Neue am Ende dieses Dialogs!",
                 "at": "Ka Vorlog, die deina Ofoderung entspricht? Erstö eine am Ende vo dem Dialog!",
                 "fr": "Aucun modèle ne correspond à vos besoins? Créez-en un à la fin de cette boîte de dialogue!",
                 "es": "¿No hay una plantilla que coincida con tus requisitos? ¡Crea una al final de este diálogo!",
@@ -2340,7 +2372,7 @@
             "memberexplain": {
                 "description": "Member explanation",
                 "en": "Select the member you wish to punish or enter an ID, if the member is not in the list.",
-                "de": "Wähle das Mitglied aus, das du bestrafen möchtest oder gib eine ID ein, wenn das Mitglied nicht in der Liste ist.",
+                "de": "Wähle den Nutzer aus, den du bestrafen möchtest oder gib eine ID ein, wenn der Nutzer nicht in der Liste ist.",
                 "at": "Woh a Mitglied aus, dest du bestrofn mogst oda gib eine ID ei, wenn des Mitglied ned in da Listn is.",
                 "fr": "Sélectionnez le membre que vous voulez punir ou entrez une ID si le membre n'est pas dans la liste.",
                 "es": "Seleccione el miembro que desea sanción o ingrese una ID si el miembro no está en la lista.",
@@ -2350,7 +2382,7 @@
             "nomembersfound": {
                 "description": "No members found",
                 "en": "No members found",
-                "de": "Keine Mitglieder gefunden",
+                "de": "Keine Nutzer gefunden",
                 "at": "Kane Mitglieda gfundn",
                 "fr": "Aucun membre trouvé",
                 "es": "No se encontraron miembros",
@@ -2390,7 +2422,7 @@
             "titleinvalid": {
                 "description": "Title is invalid",
                 "en": "Title field is required and can only be 100 characters long.",
-                "de": "Titelfeld ist erforderlich und darf nur 100 Zeichen lang sein.",
+                "de": "Titelfeld ist erforderlich und darf maximal 100 Zeichen lang sein.",
                 "at": "Titlföd is erfordalich und deaf nua 100 Zeichn long sei.",
                 "fr": "Le champ Titre est obligatoire et ne peut contenir plus de 100 caractères.",
                 "es": "El campo Título es obligatorio y sólo puede contener 100 caracteres.",
@@ -2430,7 +2462,7 @@
             "labelsplaceholder": {
                 "description": "Labels",
                 "en": "New label",
-                "de": "Neue Label",
+                "de": "Neues Label",
                 "at": "Neichs Label",
                 "fr": "Nouvelle étiquette",
                 "es": "Nueva etiqueta",
@@ -2460,7 +2492,7 @@
             "punishmentexplained2": {
                 "description": "Punishment explanation",
                 "en": "The punishment will be permanent if no time is entered.",
-                "de": "Wenn du keine Zeit eingibst, wird die Bestrafung permanent sein.",
+                "de": "Wenn du keine Zeit eingibst, wird die Bestrafung dauerhaft sein.",
                 "at": "Wennst ka Zeit eingibst, wird de Bestrofung permanent sei.",
                 "fr": "Si vous n'entrez pas de temps, la punition sera permanente.",
                 "es": "Si no ingresas un tiempo, la sanción será permanente.",
@@ -2490,7 +2522,7 @@
             "senddmnotification": {
                 "description": "Send DM notification",
                 "en": "Send DM notification",
-                "de": "Sende DM Benachrichtigung",
+                "de": "Sende Benachrichtigung per Direktnachricht",
                 "at": "Sende DM Benochrichtigung",
                 "fr": "Envoyer une notification DM",
                 "es": "Enviar notificación DM",
@@ -2530,7 +2562,7 @@
             "filesexplain": {
                 "description": "Files explanation",
                 "en": "You can upload files to MASZ as proof. Please note that everyone will be able to see them!",
-                "de": "Du kannst Dateien zu MASZ hochladen, bitte beachte, dass der Benutzer diese auch sehen kann",
+                "de": "Du kannst Dateien zu MASZ hochladen. Bitte beachte, dass auch der betroffene Benutzer diese sehen kann.",
                 "at": "Du konnst Datein zu MASZ hochloadn. Bitte beochte, dos dea Benutza diese auch sehen ko",
                 "fr": "Vous pouvez télécharger des fichiers à MASZ comme preuve, sachez que l'utilisateur pourra aussi les voir",
                 "es": "Puedes subir archivos a MASZ como prueba, ten en cuenta que el usuario también podrá ver esos",
@@ -2676,7 +2708,7 @@
             "selectcreationtypes": {
                 "description": "Select creation types",
                 "en": "Creation types",
-                "de": "Erstellungsarten",
+                "de": "Erstellungstyp",
                 "at": "Erstöllungsoartn",
                 "fr": "Types de création",
                 "es": "Tipos de creación",
@@ -2696,7 +2728,7 @@
             "selectedited": {
                 "description": "Select edited",
                 "en": "Edit status",
-                "de": "Bearbeitet-Status",
+                "de": "Bearbeitungs-Status",
                 "at": "Beorbeitet-Status",
                 "fr": "Modifier le statut",
                 "es": "Editar estado",
@@ -2706,7 +2738,7 @@
             "selectlocked": {
                 "description": "Select locked",
                 "en": "Lock status",
-                "de": "Sperr-Status",
+                "de": "Sperrungs-Status",
                 "at": "Sperr-Status",
                 "fr": "État de verrouillage",
                 "es": "Estado de bloqueo",
@@ -2716,7 +2748,7 @@
             "selectdelete": {
                 "description": "Select delete",
                 "en": "Delete status",
-                "de": "Lösch-Status",
+                "de": "Löschungs-Status",
                 "at": "Lösch-Status",
                 "fr": "Supprimer le statut",
                 "es": "Eliminar estado",
@@ -2756,7 +2788,7 @@
             "executesearch": {
                 "description": "execute search button to use advanced filters",
                 "en": "Search",
-                "de": "Suche ausführen",
+                "de": "Suchen",
                 "at": "Suche startn",
                 "fr": "Chercher",
                 "es": "Búsqueda",
@@ -2806,7 +2838,7 @@
             "nomatches": {
                 "description": "No matches for search string found.",
                 "en": "No cases match your search!",
-                "de": "Keine Vorfälle passen zu deiner Suche.",
+                "de": "Keine passenden Vorfälle gefunden.",
                 "at": "Kane Vorfälle passn zu deina Suach.",
                 "fr": "Aucun cas ne correspond à votre recherche.",
                 "es": "Ningún caso coincide con su búsqueda.",
@@ -2816,7 +2848,7 @@
             "nomatchesdescription": {
                 "description": "No matches for search string found.",
                 "en": "Try adjusting your filters above to fix this.",
-                "de": "Es könnte noch keine Vorfälle in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Vorfälle zu finden.",
+                "de": "Es könnte noch keine Vorfälle in dieser Gilde geben. Du kannst aber versuchen, deine Filter oben zu anpassen, um mehr Vorfälle zu finden.",
                 "at": "Kannn Vorfälle in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Vorfälle zu findn.",
                 "fr": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas.",
                 "es": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos.",
@@ -2970,7 +3002,7 @@
             "nomatchesdescription": {
                 "description": "No matches for search string found.",
                 "en": "Try adjusting your filters above to fix this.",
-                "de": "Es gibt noch keine Automoderationen in dieser Gilde, die dem Filter entspricht. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Automoderationen zu finden.",
+                "de": "Es gibt noch keine Automoderationen in dieser Gilde, die dem Filter entspricht. Du kannst versuchen, deine Filter oben zu anpassen, um mehr Automoderationen zu finden.",
                 "at": "Kannn Automoderationen in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Automoderationen zu findn.",
                 "fr": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas.",
                 "es": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos.",
@@ -2982,7 +3014,7 @@
             "createnewappeal": {
                 "description": "Create new appeal",
                 "en": "Create new appeal",
-                "de": "Neue Entbannungsanfrage erstellen",
+                "de": "Neuen Entbannungsantrag erstellt",
                 "at": "Neue Entbannungsanfrage erstelln",
                 "fr": "Créer une nouvelle demande",
                 "es": "Crear una nueva queja",
@@ -2992,7 +3024,7 @@
             "disabledexplained": {
                 "description": "Disabled explanation",
                 "en": "You may not create a new appeal since either you created your last appeal recently, your punishment was recent, or this guild has not yet configured ban appeals",
-                "de": "Du kannst keine neue Entbannungsanfrage erstellen, da du eine früher erstellt hast oder dein Bann früher erstellt wurde oder diese Gilde keine Entbannungsanfragen konfiguriert hat.",
+                "de": "Du kannst keinen neuen Entbannungsantrag stellen, da du entweder bereits einen gestellt hast, dein Bann noch nicht lange genug her ist oder diese Gilde Entbannungsanträge nicht aktiviert hat.",
                 "at": "Du konnst ka neiche Entbannungsanfrage erstöt, da du entweda eine früher erstöt host, dei Bann früher erstöt wurde oder de Güde kane Entbannungsanfragen konfiguriat hot.",
                 "fr": "Vous ne pouvez pas créer une nouvelle demande de bannissement car vous en avez créé une récemment ou votre punition a été créée récemment ou ce serveur n'a pas de demandes de bannissement configurées.",
                 "es": "No puedes crear una nueva queja porque has creado una recientemente o tu castigo fue creado recientemente o este servidor no tiene configuradas quejas de expulsión.",
@@ -3002,7 +3034,7 @@
             "configureappeal": {
                 "description": "Configure appeal",
                 "en": "Configure appeal",
-                "de": "Anfrage konfigurieren",
+                "de": "Anträge konfigurieren",
                 "at": "Anfrage konfigurian",
                 "fr": "Configurer la demande",
                 "es": "Configurar la queja",
@@ -3052,7 +3084,7 @@
             "nomatches": {
                 "description": "No matches for search string found.",
                 "en": "No appeals found!",
-                "de": "Keine Entbannungsanfragen passen zu deiner Suche.",
+                "de": "Keine passenden Entbannungsanträge gefunden.",
                 "at": "Kane Entbannungsanfragen passn zu deina Suach.",
                 "fr": "Aucune demande ne correspond à votre recherche.",
                 "es": "Ningún reclamo coincide con su búsqueda.",
@@ -3062,7 +3094,7 @@
             "nomatchesdescription": {
                 "description": "No appeals match your search.",
                 "en": "Try adjusting your filters above to fix this.",
-                "de": "Es gibt noch keine Entbannungsanfragen in dieser Gilde, die dem Filter entsprechen. Du kannst aber versuchen, deine Filter oben zu anpassen, um einige Entbannungsanfragen zu finden.",
+                "de": "Es gibt noch keine Entbannungsanträge in dieser Gilde, die dem Filter entsprechen. Du kannst aber versuchen, deine Filter oben zu anpassen, um mehr Entbannungsanträge zu finden.",
                 "at": "Kannn Entbannungsanfragen in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Entbannungsanfragen zu findn.",
                 "fr": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas.",
                 "es": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos.",
@@ -3072,7 +3104,7 @@
             "failedtoload": {
                 "description": "Failed to load appeals",
                 "en": "Failed to load appeals",
-                "de": "Entbannungsanfragen konnten nicht geladen werden",
+                "de": "Entbannungsanträge konnten nicht geladen werden",
                 "at": "Entbannungsanfragen konntn ned glodn wean",
                 "fr": "Échec du chargement des demandes",
                 "es": "No se pudo cargar las quejas",
@@ -3094,7 +3126,7 @@
             "title": {
                 "description": "Title",
                 "en": "Ban appeal structure",
-                "de": "Entbannungsanfrage-Struktur",
+                "de": "Aufbau der Entbannungsanträge",
                 "at": "Entbannungsanfrage-Struktur",
                 "fr": "Structure de la demande de bannissement",
                 "es": "Estructura de reclamo de prohibición",
@@ -3124,7 +3156,7 @@
             "explain3": {
                 "description": "Delete",
                 "en": "Deleting a question will still be visible in existing ban appeals.",
-                "de": "Wenn Sie eine Frage löschen, wird sie weiterhin in alten Entbannungsanträgen sichtbar sein.",
+                "de": "Wenn du eine Frage löscht wird sie weiterhin in alten Entbannungsanträgen sichtbar sein.",
                 "at": "Wenns a Frog löschn, wiad die Frog weitahin in den oitn Entbannungsanträgen sichtboa sei.",
                 "fr": "Si vous supprimez une question, elle sera toujours visible dans les appels d'embargo antérieurs.",
                 "es": "Si elimina una pregunta, permanecerá visible en los apelantes de la gildia.",
@@ -3134,7 +3166,7 @@
             "explain4": {
                 "description": "Not configured",
                 "en": "Users cannot appeal bans if you have no questions configured.",
-                "de": "Wenn Sie keine Fragen konfiguriert haben, können Benutzer keine Entbannungsanträge mehr stellen.",
+                "de": "Wenn keine Fragen konfiguriert sind können Benutzer keine Entbannungsanträge mehr stellen.",
                 "at": "Wenns keine Frogn konfiguriat hobn, kennan Benutzer kane Entbannungsanträge mehr stön.",
                 "fr": "Si vous n'avez pas de questions configurées, les utilisateurs ne pourront pas appeler d'embargo.",
                 "es": "Si no tiene preguntas configuradas, los usuarios no podrán hacer apelantes.",
@@ -3286,7 +3318,7 @@
             "moderatorcomment": {
                 "description": "Moderator comment",
                 "en": "Moderator comment",
-                "de": "Moderator Kommentar",
+                "de": "Kommentar der Moderatoren",
                 "at": "Moderator Kommentar",
                 "fr": "Commentaire du modérateur",
                 "es": "Comentario del moderador",
@@ -3306,7 +3338,7 @@
             "newappealnever": {
                 "description": "New appeal never",
                 "en": "No new appeals can be created by this user!",
-                "de": "Benutzer darf nie erneut einen neuen Antrag erstellen",
+                "de": "Dieser Benutzer darf keine erneuten Anträge stellen",
                 "at": "Benutza deaf nie erneut ein neichn Antrag erstön",
                 "fr": "L'utilisateur n'est jamais autorisé à créer un nouvel appel",
                 "es": "El usuario nunca está permitido crear un nuevo reclamo",
@@ -3316,7 +3348,7 @@
             "newappealat": {
                 "description": "New appeal at",
                 "en": "User can create new appeal on",
-                "de": "Benutzer darf einen neuen Antrag erstellen am",
+                "de": "Der Benutzer kann einen neuen Entbannungsantrag stellen am",
                 "at": "Benutza deaf ein neichn Antrag erstön am",
                 "fr": "L'utilisateur est autorisé à créer un nouvel appel à",
                 "es": "El usuario está permitido crear un nuevo reclamo a",
@@ -3338,7 +3370,7 @@
             "answer": {
                 "description": "Answer",
                 "en": "Answer these questions to complete your ban appeal.",
-                "de": "Antworte auf diese Fragen, um deinen Entbannungsantrag abzuschließen.",
+                "de": "Beantworte diese Fragen, um deinen Entbannungsantrag abzuschließen.",
                 "at": "Beantworte die Frogn, um dein Entbannungsantrag abzuschließn.",
                 "fr": "Répondez aux questions pour compléter votre demande d'exclusion.",
                 "es": "Responda a estas preguntas para completar su solicitud de exclusión.",
@@ -3440,7 +3472,7 @@
             "nomembersfound": {
                 "description": "No members found",
                 "en": "No members found",
-                "de": "Keine Mitglieder gefunden",
+                "de": "Keine Nutzer gefunden",
                 "at": "Kane Mitglieder gfundn",
                 "fr": "Aucun membre trouvé",
                 "es": "No se encontraron miembros",
@@ -3500,7 +3532,7 @@
             "nomatches": {
                 "description": "No matches for search string found.",
                 "en": "No usernotes match your search!",
-                "de": "Keine Benutzernotizen passen zu Ihrer Suche.",
+                "de": "Keine passende Benutzernotiz gefunden.",
                 "at": "Kane Benutzanotizn passen zu dana Suche.",
                 "fr": "Aucune note utilisateur ne correspond à votre recherche.",
                 "es": "No se encontraron notas de usuario que coincidan con su búsqueda.",
@@ -3510,7 +3542,7 @@
             "nomatchesdescription": {
                 "description": "No matches for search string found.",
                 "en": "There may be no usernotes yet in this guild. Create one by using the button above.",
-                "de": "Es gibt noch keine Benutzernotizen in dieser Gilde, die dem Filter entsprechen. Sie können eine Benutzernotiz erstellen, indem Sie oben auf den Button klicken.",
+                "de": "Es gibt noch keine Benutzernotizen in dieser Gilde, die dem Filter entsprechen. Klicke oben auf den Button um eine neue Benutzernotiz zu erstellen.",
                 "at": "Es kenntn no kane Benutzanotizen in dea Güde sei. Sie kennan a Benutzanotiz erstön, indem Sie obn auf den Button klickn.",
                 "fr": "Il n'y a peut-être pas encore de notes utilisateur dans ce serveur. Vous pouvez en créer un en utilisant le bouton ci-dessus.",
                 "es": "Puede que no haya notas de usuario todavía en este servidor. Puede crear una nota de usuario usando el botón de arriba.",
@@ -3552,7 +3584,7 @@
             "nomembersfound": {
                 "description": "No members found",
                 "en": "No members found",
-                "de": "Keine Mitglieder gefunden",
+                "de": "Keine Nutzer gefunden",
                 "at": "Kane Mitglieder gfundn",
                 "fr": "Aucun membre trouvé",
                 "es": "No se encontraron miembros",
@@ -3612,7 +3644,7 @@
             "nomatches": {
                 "description": "No matches for search string found.",
                 "en": "No usermaps match your search!",
-                "de": "Keine Benutzerbeziehungen passen zu deinem Suchbegriff.",
+                "de": "Keine Benutzerbeziehungen passen zu deiner Suche.",
                 "at": "Kane Benutabeziehungen passn zu dam Suchbegriff.",
                 "fr": "Aucune carte utilisateur ne correspond à votre recherche.",
                 "es": "No se encontraron mapas de usuario que coincidan con su búsqueda.",
@@ -3714,7 +3746,7 @@
             "savedmessage": {
                 "description": "Saved message",
                 "en": "Saved message",
-                "de": "Gespeicherte Nachricht",
+                "de": "Nachricht speichern",
                 "at": "Gspeichate Nachricht",
                 "fr": "Message sauvegardé",
                 "es": "Mensaje guardado",
@@ -3786,7 +3818,7 @@
             "explain2": {
                 "description": "Explaination of the message of the day",
                 "en": "This might include instructions on how to format cases or upload images as proof.",
-                "de": "Dies könnte einige Anweisungen zum Formatieren von Fällen enthalten oder Bilder als Beweis hochzuladen.",
+                "de": "Dies könnte zum Beispiel Anweisungen zum Formatieren von Fällen enthalten oder Bilder als Beweis hochzuladen.",
                 "at": "Diese kenntn Oweisungen zum Formatian vo Fälle enthoin oda Büda ois Beweise hochzumlodn.",
                 "fr": "Cela pourrait inclure des instructions sur la façon de formater des cas ou d'envoyer des images comme preuve.",
                 "es": "Esto puede incluir instrucciones sobre cómo formatear casos o subir imágenes como prueba.",
@@ -3888,7 +3920,7 @@
             "explain2": {
                 "description": "Explaination of the audit log",
                 "en": "On certain events you can filter events based on channels or roles.",
-                "de": "Auf bestimmten Ereignissen kannst du Ereignisse basierend auf Kanälen oder Rollen filtern.",
+                "de": "Bestimmte Ereignisse kannst du nach Kanälen oder Rollen filtern.",
                 "at": "Auf bestimmten Ereignissen konnst du Ereignisse basierend auf Kanälen oda Rollen filtan.",
                 "fr": "Sur certains événements, vous pouvez filtrer les événements basés sur des canaux ou des rôles.",
                 "es": "En ciertos eventos, puede filtrar eventos basados en canales o roles.",
@@ -3916,9 +3948,9 @@
                 "it": "Ping ruolo"
             },
             "excluderoles": {
-                "description": "Exclude roles",
-                "en": "Exclude roles",
-                "de": "Rollen ausschließen",
+                "description": "Excluded roles",
+                "en": "Excluded roles",
+                "de": "Ignorierte Rollen",
                 "at": "Rollen ausschließn",
                 "fr": "Exclure les rôles",
                 "es": "Excluir roles",
@@ -3926,9 +3958,9 @@
                 "it": "Escludere ruoli"
             },
             "excludechannels": {
-                "description": "Exclude channels",
-                "en": "Exclude channels",
-                "de": "Kanäle ausschließen",
+                "description": "Excluded channels",
+                "en": "Excluded channels",
+                "de": "Ignorierte Kanäle",
                 "at": "Kanäle ausschließn",
                 "fr": "Exclure les canaux",
                 "es": "Excluir canales",
@@ -4000,7 +4032,7 @@
             "limitfield": {
                 "description": "Limit field",
                 "en": "Upper limit",
-                "de": "Obere Grenze",
+                "de": "Maximale Anzahl",
                 "at": "Obare Grenze",
                 "fr": "Limite supérieure",
                 "es": "Límite superior",
@@ -4049,8 +4081,8 @@
             },
             "punishmentduration": {
                 "description": "Punishment duration",
-                "en": "Duration in minutes",
-                "de": "Dauer in Minuten",
+                "en": "Duration (minutes)",
+                "de": "Dauer (Minuten)",
                 "at": "Dauer in Minutn",
                 "fr": "Durée en minutes",
                 "es": "Duración en minutos",
@@ -4111,7 +4143,7 @@
                 "details": {
                     "description": "details of automod invite",
                     "en": "A message on your guild matches the invite pattern. Invites to this guild will be ignored.",
-                    "de": "Eine Nachricht auf deinem Server passt zum Einladungs-Muster. Einladungen zu dieser Gilde werden ignoriert.",
+                    "de": "Eine Nachricht auf deiner Gilde beinhaltet einen Einladungslink zu einer anderen Gilde. Einladungen zu dieser Gilde werden ignoriert.",
                     "at": "Ei Nochricht aufm Serva posst zum Eiladungs-Musta. Eiladunga zu dem Serva wera ignohriert.",
                     "fr": "Un message sur votre guilde correspond au modèle d'invitation. Les invitations à cette guilde seront ignorées.",
                     "es": "Un mensaje en tu gremio coincide con el patrón de invitación. Se ignorarán las invitaciones a este gremio.",
@@ -4133,7 +4165,7 @@
                 "details": {
                     "description": "details of automod emote",
                     "en": "A message on your guild contains too many emotes.",
-                    "de": "Eine Nachricht auf deinem Server enthält zu viele Emoticons.",
+                    "de": "Eine Nachricht in deiner Gilde enthält zu viele Emojis.",
                     "at": "A Nochricht aufm Serva hot zvü Emojis",
                     "fr": "Un message sur votre guilde contient trop d'émoticônes.",
                     "es": "Un mensaje en tu gremio contiene demasiados gestos.",
@@ -4145,7 +4177,7 @@
                 "details": {
                     "description": "details of automod mention",
                     "en": "A message on your guild contains too many mentions.",
-                    "de": "Eine Nachricht auf deinem Server enthält zu viele Erwähnungen.",
+                    "de": "Eine Nachricht in deiner Gilde  enthält zu viele Erwähnungen.",
                     "at": "A Nochricht aufm Serva hot zvü Erwähnungen.",
                     "fr": "Un message sur votre guilde contient trop de mentions.",
                     "es": "Un mensaje en tu gremio contiene demasiadas menciones.",
@@ -4157,7 +4189,7 @@
                 "details": {
                     "description": "details of automod Attachments",
                     "en": "A message on your guild contains too many attachments.",
-                    "de": "Eine Nachricht auf deinem Server enthält zu viele Anhänge.",
+                    "de": "Eine Nachricht in deiner Gilde enthält zu viele Anhänge.",
                     "at": "A Nochricht aufm Serva hot zvü Ohäng",
                     "fr": "Un message sur votre guilde contient trop de pièces jointes.",
                     "es": "Un mensaje en tu gremio contiene demasiados archivos adjuntos.",
@@ -4169,7 +4201,7 @@
                 "details": {
                     "description": "details of automod Embeds",
                     "en": "A message on your guild contains too many embeds.",
-                    "de": "Eine Nachricht auf deinem Server enthält zu viele Einbettungen.",
+                    "de": "Eine Nachricht in deiner Gilde enthält zu viele Einbettungen.",
                     "at": "A Nochricht aufm Serva hot zvü Eibettungen. ",
                     "fr": "Un message sur votre guilde contient trop d'intégrations.",
                     "es": "Un mensaje en tu gremio contiene demasiadas incrustaciones.",
@@ -4181,7 +4213,7 @@
                 "details": {
                     "description": "details of automod automods",
                     "en": "A user triggers too many automoderations in a defined timespan.",
-                    "de": "Ein Benutzer löst zu viele Automoderationen in einem definierten Zeitraum aus.",
+                    "de": "Ein Benutzer löst zu viele Automoderationen in einem bestimmten Zeitraum aus.",
                     "at": "A Benutza hot zvü Automodarationen in am bestimmtn Zeitraum ausglest.",
                     "fr": "Un utilisateur déclenche trop d'automodérations dans un laps de temps défini.",
                     "es": "Un usuario desencadena demasiadas automovilizaciones en un período de tiempo definido.",
@@ -4203,7 +4235,7 @@
                 "details": {
                     "description": "details of automod custom filter",
                     "en": "A user uses too many words defined in your list.",
-                    "de": "Ein Benutzer benutzt zu viele Wörter aus deiner Liste.",
+                    "de": "Ein Benutzer benutzt zu viele Wörter, die auf der Liste stehen.",
                     "at": "A Nutza nutzt zvü Wörta aus dana Listn.",
                     "fr": "Un utilisateur utilise trop de mots définis dans votre liste.",
                     "es": "Un usuario usa demasiadas palabras definidas en su lista.",
@@ -4245,7 +4277,7 @@
                 "details": {
                     "description": "details of automod spam",
                     "en": "A user on your guild sends too many messages in a timespan.",
-                    "de": "Ein Benutzer auf deinem Server sendet zu viele Nachrichten in einem definierten Zeitraum.",
+                    "de": "Ein Benutzer in deiner Gilde sendet zu viele Nachrichten in einem definierten Zeitraum.",
                     "at": "A Nutze aufm Serva send zvü Nochricht in am bestimmt Zeitraum.",
                     "fr": "Un utilisateur de votre guilde envoie trop de messages dans un laps de temps.",
                     "es": "Un usuario de tu gremio envía demasiados mensajes en un lapso de tiempo.",
@@ -4267,7 +4299,7 @@
                 "details": {
                     "description": "details of automod DuplicatedChars",
                     "en": "A message on your guild contains too many duplicated characters.",
-                    "de": "Eine Nachricht auf deinem Server enthält zu viele wiederholende Buchstaben.",
+                    "de": "Eine Nachricht in deiner Gilde enthält zu viele wiederholte Buchstaben.",
                     "at": "A Nochricht aufm Server enthöt zvü wiedaholende Buchstobn.",
                     "fr": "Un message sur votre guilde contient trop de caractères dupliqués.",
                     "es": "Un mensaje en tu gremio contiene demasiados personajes duplicados.",
@@ -4279,7 +4311,7 @@
                 "details": {
                     "description": "details of automod Link",
                     "en": "A message on your guild contains too many links.",
-                    "de": "Eine Nachricht auf deinem Server enthält zu viele Verlinkungen.",
+                    "de": "Eine Nachricht in deiner Gilde enthält zu viele Verlinkungen.",
                     "at": "A Nochricht aufm Server hod zvü Valinkungen",
                     "fr": "Un message sur votre guilde contient trop de liens.",
                     "es": "Un mensaje en tu gremio contiene demasiados enlaces.",
@@ -4306,6 +4338,18 @@
                     "ru": "Пример",
                     "it": "Esempio"
                 }
+            },
+            "phishinglink": {
+                "details": {
+                    "description": "details of automod Link",
+                    "en": "A message on your guild contains too many phishing links.",
+                    "de": "Eine Nachricht in deiner Gilde enthält zu viele Phishing-Links.",
+                    "at": "A Nochricht aufm Server hod zvü Phishing-Links",
+                    "fr": "Un message sur votre guilde contient trop de liens de phishing.",
+                    "es": "Un mensaje en tu gremio contiene demasiados enlaces de phishing.",
+                    "ru": "Сообщение о вашей гильдии содержит слишком много фишинговых ссылок.",
+                    "it": "Un messaggio sulla tua gilda contiene troppi link di phishing."
+                }
             }
         },
         "zalgo": {
@@ -4322,7 +4366,7 @@
             "explain": {
                 "description": "",
                 "en": "Use this feature to automatically rename users who use zalgo in their username or nickname.",
-                "de": "Benutze diese Funktion, um automatisch Benutzernamen und Nicknamen zu ändern, die zalgo verwenden.",
+                "de": "Benutze diese Funktion, um automatisch Benutzernamen und Nicknamen zu ändern, die Zalgo-Text verwenden.",
                 "at": "Benutze diese Funktion, um automatisch Benutzernamen und Nicknamen zu ändern, die zalgo verwenden.",
                 "fr": "Utilisez cette fonctionnalité pour renommer automatiquement les utilisateurs qui utilisent zalgo dans leur nom d'utilisateur ou leur pseudo.",
                 "es": "Utiliza esta función para renombrar automáticamente a los usuarios que utilicen zalgo en su nombre de usuario o en su apodo.",
@@ -4332,7 +4376,7 @@
             "enable": {
                 "description": "",
                 "en": "Enable zalgo moderation in this guild",
-                "de": "Zalgo Moderation in diesem Server aktivieren",
+                "de": "Zalgo Moderation in dieser Gilde aktivieren",
                 "at": "Zalgo Moderation in diesem Server aktivieren",
                 "fr": "Activer la modération zalgo dans ce serveur",
                 "es": "Habilitar la moderación zalgo en este servidor",
@@ -4342,7 +4386,7 @@
             "renamenormal": {
                 "description": "",
                 "en": "Try to rename users with zalgo to normal text that still sounds like their username",
-                "de": "Versuche Benutzernamen mit zalgo zu ändern, in Text, der noch wie der Benutzername aussieht",
+                "de": "Versuche Benutzernamen mit zalgo in normale Schrift umzuwandeln",
                 "at": "Versuche Benutzernamen mit zalgo zu ändern, in Text, der noch wie der Benutzername aussieht",
                 "fr": "Essaye de renommer les utilisateurs avec zalgo en texte normal qui ressemble à leur nom d'utilisateur",
                 "es": "Intenta renombrar a los usuarios con zalgo a texto normal que sigue su nombre de usuario",
@@ -4382,7 +4426,7 @@
             "simulate": {
                 "description": "",
                 "en": "Simulate",
-                "de": "Simulieren",
+                "de": "Ausprobieren",
                 "at": "Simulieren",
                 "fr": "Simuler",
                 "es": "Simular",
@@ -4392,7 +4436,7 @@
             "simulateresults": {
                 "description": "",
                 "en": "Simulation results",
-                "de": "Simulationsergebnisse",
+                "de": "Testergebnisse",
                 "at": "Simulationsergebnisse",
                 "fr": "Résultats de la simulation",
                 "es": "Resultados de la simulación",
@@ -4476,7 +4520,7 @@
                 "explain": {
                     "description": "description of the permissions section",
                     "en": "Here you can define which roles should have further access in MASZ.",
-                    "de": "Hier kannst du festlegen, welche Rollen erweiterte Zugriffsrechte in MASZ haben sollen.",
+                    "de": "Hier kannst du festlegen, welche Rollen erweiterte Berechtigungen in MASZ haben sollen.",
                     "at": "Hier konnst du festlegn, wöchane Rollen erweitate Zugriffsrechte in MASZ hobn soin.",
                     "fr": "Ici, vous pouvez définir les rôles qui auront accès à MASZ.",
                     "es": "Aquí puedes definir qué roles tendrán acceso a MASZ.",
@@ -4548,7 +4592,7 @@
                 "explain": {
                     "description": "description of the mutedrole section",
                     "en": "Here you can define which roles should be used to mute users.",
-                    "de": "Hier kannst du festlegen, welche Rollen benutzt werden soll, um Benutzer stummzuschalten.",
+                    "de": "Hier kannst du festlegen, welche Rollen vergeben werden soll, um Benutzer stummzuschalten.",
                     "at": "Hier konnst du festlegn, wöchane Rollen benutzt wean sollen, um Benuta stummzuschoitn.",
                     "fr": "Ici, vous pouvez définir les rôles qui seront utilisés pour rendre muets les utilisateurs.",
                     "es": "Aquí puedes definir qué roles se usarán para silenciar a los usuarios.",
@@ -4558,7 +4602,7 @@
                 "explain2": {
                     "description": "description of the mutedrole section",
                     "en": "If none are defined, MASZ will use Discord's timeout functionality instead.",
-                    "de": "Wenn keine festgelegt werden, wird MASZ stattdessen die Discord-Timeout-Funktionalität verwenden.",
+                    "de": "Wenn keine Rolle festgelegt ist, wird MASZ stattdessen die Discord-Timeout-Funktion verwenden.",
                     "at": "Wenn kane festlegt wiad, wird MASZ stattdessn de Discord-Timeout-Funktionalität vawendn.",
                     "fr": "Si aucun n'est défini, MASZ utilisera la fonctionnalité de timeout Discord.",
                     "es": "Si no se define ninguno, MASZ usará la funcionalidad de timeout de Discord.",
@@ -4580,7 +4624,7 @@
                 "explain": {
                     "description": "description of the notifications section",
                     "en": "Use these webhooks to notify users or staff on MASZ events",
-                    "de": "Benutze diese Webhooks, um Benutzer oder Mitarbeiter über MASZ-Ereignisse zu benachrichtigen.",
+                    "de": "Benutze diese Webhooks, um Benutzer oder Moderatoren über MASZ-Ereignisse zu benachrichtigen.",
                     "at": "Benutz den Webhook, um Benutza oda Mitarbeita üba MASZ-Ereignisse zu benochrichtign.",
                     "fr": "Utilisez ces webhooks pour notifier vos utilisateurs ou vos membres de l'équipe sur les événements MASZ.",
                     "es": "Utiliza estos webhooks para notificar a tus usuarios o a tus miembros del personal sobre eventos MASZ.",
@@ -4642,7 +4686,7 @@
                 "publicembedmodeexplained": {
                     "description": "public embed mode explained",
                     "en": "This mode enables detailed embeds when linking modcases in discord. This will disclose private information like the suspect, punishments etc.",
-                    "de": "Dieser Modus ermöglicht detaillierte Einbettungen, wenn Vorfälle in Discord verlinkt werden. Dies wird private Informationen wie den Verdächtigen, die Strafen, etc. offenbaren.",
+                    "de": "Dieser Modus ermöglicht detaillierte Einbettungen, wenn Vorfälle in Nachrichten verlinkt werden. Dies wird private Informationen wie den Verdächtigen, die Strafen, etc. einsehbar machen.",
                     "at": "Dea Modus ermöglicht detaillierte Eibettungen, wenn Vorfälle in Discord valinkt wean. Des wiad private Informationen wia den Vadächtigen, die Strofn, etc. offenboarn.",
                     "fr": "Ce mode permet d'intégrer des informations détaillées lorsque vous liez des cas dans le discord. Cela rendra les informations privées comme le suspect, les punitions, etc. accessibles.",
                     "es": "Este modo permite incrustar detalles cuando se vincula un caso en discord. Esto hará públicas las informaciones privadas como el sujeto, las sanciones, etc.",
@@ -4662,7 +4706,7 @@
                 "publishmodexplained": {
                     "description": "details of publish moderator mode",
                     "en": "A suspect will be able to see which moderator punished them.",
-                    "de": "Ein Verdächtiger wird in der Lage sein, zu sehen, welcher Moderator ihn verurteilt hat.",
+                    "de": "Ein Verdächtiger wird in der Lage sein, zu sehen, welcher Moderator ihn bestraft hat.",
                     "at": "A Verdächtiga wird de Meglichkeit hom, zum schaun, wöchana Modarator erm verurtoit hot.",
                     "fr": "Un suspect pourra voir quel modérateur l'a puni.",
                     "es": "Un sospechoso podrá ver qué moderador lo castigó.",
@@ -4674,7 +4718,7 @@
                 "title": {
                     "description": "title of the misc section",
                     "en": "Miscellaneous",
-                    "de": "Verschiedenes",
+                    "de": "Sonstiges",
                     "at": "Vaschiedenes",
                     "fr": "Divers",
                     "es": "Varios",
@@ -4694,7 +4738,7 @@
                 "whoisexplained": {
                     "description": "details of whois mode",
                     "en": "Automatically sends information about the joined user to your internal webhook.",
-                    "de": "Sendet automatisch Informationen über den neuen Benutzer an deinen internen Webhook.",
+                    "de": "Sendet automatisch Informationen über neue Mitglieder an deinen internen Webhook.",
                     "at": "Tua automatisch Infos üba an neichn Nutza on dein internan Webhook schickn.",
                     "fr": "Envoie automatiquement des informations sur l'utilisateur rejoint à votre webhook interne.",
                     "es": "Envía automáticamente información sobre el usuario unido a su webhook interno.",
@@ -4795,7 +4839,7 @@
             "deleteresources": {
                 "description": "description of the delete resources button",
                 "en": "Delete all data (infractions, configs, event, files)",
-                "de": "Alle Daten löschen (Verstöße, Konfigurationen, Ereignisse, Dateien)",
+                "de": "Alle Daten löschen (Verstöße, Einstellungen, Ereignisse, Dateien)",
                 "at": "Alle Daten löschn (Verstöße, Konfigurationen, Ereignisse, Dateien)",
                 "fr": "Supprimer toutes les données (infractions, configurations, événements, fichiers)",
                 "es": "Eliminar todos los datos (infracciones, configuraciones, eventos, archivos)",
@@ -4805,7 +4849,7 @@
             "deleteundone": {
                 "description": "description of the delete undone button",
                 "en": "This action is not reversible. The guild is deleted immediately.",
-                "de": "Diese Aktion ist nicht umkehrbar. Die Gilde wird sofort gelöscht.",
+                "de": "Diese Aktion kannn nicht rückgängig gemacht werden. Die Gilde wird sofort aus MASZ gelöscht.",
                 "at": "Diese Aktion is ned umkehrbar. Die Güde is sofort weg.",
                 "fr": "Cette action n'est pas réversible. Le serveur est supprimé immédiatement.",
                 "es": "Esta acción no es reversible. El servidor se elimina inmediatamente.",
@@ -4900,7 +4944,7 @@
                 "explained2": {
                     "description": "Please note that this might take up to one hour to update in discord.",
                     "en": "Please note that this might take up to one hour to update in discord.",
-                    "de": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird.",
+                    "de": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis die Änderungen in Discord aktuallisiert werden.",
                     "at": "Bitte beachte, dass es bis zu einer Stunde dauern kann, bis das Embed in Discord aktualisiert wird",
                     "fr": "Veuillez noter que cela peut prendre jusqu'à une heure pour mettre à jour.",
                     "es": "Por favor tenga en cuenta que esto puede tomar hasta una hora para actualizar.",
@@ -4930,7 +4974,7 @@
                 "titleinvalid": {
                     "description": "title of the invalid title error",
                     "en": "The title field is required and has to be less than 256 characters long.",
-                    "de": "Das Titelfeld ist erforderlich und muss weniger als 256 Zeichen lang sein.",
+                    "de": "Ein Titel ist erforderlich und muss weniger als 256 Zeichen lang sein.",
                     "at": "Des Titlföd is erfordalich und muss weniga ois 256 Zeichn long sei.",
                     "fr": "Le champ titre est obligatoire et doit être moins de 256 caractères.",
                     "es": "El campo título es obligatorio y debe tener menos de 256 caracteres.",
@@ -4940,7 +4984,7 @@
                 "descriptioninvalid": {
                     "description": "title of the invalid description error",
                     "en": "The description field is required and has to be less than 4096 characters long.",
-                    "de": "Das Beschreibungsfeld ist erforderlich und muss weniger als 4096 Zeichen lang sein.",
+                    "de": "Eine Beschreibung ist erforderlich und muss weniger als 4096 Zeichen lang sein.",
                     "at": "Des Beschreibungsföd is erfordalich und muss weniga oi 4096 Zeichn long sei.",
                     "fr": "Le champ description est obligatoire et doit être moins de 4096 caractères.",
                     "es": "El campo descripción es obligatorio y debe tener menos de 4096 caracteres.",
@@ -5054,8 +5098,8 @@
             },
             "tabledescription": {
                 "description": "description of the table",
-                "en": "As a siteadmin you can use the MASZ API to implement your own custom scripts and automate stuff on MASZ. Create an API key below to authorize yourself against the API while making web requests. Include tokens in the \"Authorization\" header with a \"Bearer \" prefix.",
-                "de": "Als Seitenadministrator kannst du die MASZ API nutzen, um deine eigenen benutzerdefinierten Skripte zu implementieren und Sachen automatisch auf MASZ zu erledigen. Erstelle einen API-Schlüssel unterhalb, um dich zu authentifizieren, während du Web-Anfragen machst. Füge Tokens im \"Authorization\"-Header mit einem \"Bearer \"-Präfix ein.",
+                "en": "As a siteadmin you can use the MASZ API to let your own custom scripts interact with MASZ and automate stuff. Create an API key below to authorize yourself against the API while making web requests. Include tokens in the \"Authorization\" header with a \"Bearer \" prefix.",
+                "de": "Als Seitenadministrator kannst du die MASZ API nutzen, um deine eigenen benutzerdefinierten Skripte mit MASZ interagieren zu lassen und Prozesse zu automatisieren. Erstelle unten einen API-Key, um dich zu authentifizieren, während du Anfragen an die API sendest. Füge Tokens im \"Authorization\"-Header mit einem \"Bearer \"-Präfix ein.",
                 "at": "Ois Seitnadministrator konnst du de MASZ API nutzn, um deine eiganan benutzadefinierten Skripte zu implementian und Sachn automatisch auf MASZ zu erledign. Erstö an API-Schlüssel unterhoib, um dich zu authentifizian, während du Web-Ofrogn mochst. Füg Tokens im \"Authorization\"-Header mit am \"Bearer \"-Präfix ei.",
                 "fr": "En tant que administrateur du site, vous pouvez utiliser l'API MASZ pour implémenter vos propres scripts personnalisés et automatiser des choses sur MASZ. Créez un jeton ci-dessous pour vous authentifier contre l'API pendant que vous effectuez des requêtes Web. Incluez les jetons dans l'en-tête \"Authorization\" avec un préfixe \"Bearer \".",
                 "es": "Como administrador de sitio, puedes usar la API MASZ para implementar tus propios scripts personalizados y automatizar cosas en MASZ. Crea una clave API debajo para autorizar a ti mismo contra la API mientras haces peticiones web. Incluye tokens en la cabecera \"Authorization\" con un prefijo \"Bearer \".",
@@ -5205,7 +5249,7 @@
             "powerful": {
                 "description": "powerful of the tokens section",
                 "en": "An API key is very powerful and can control everything on MASZ!",
-                "de": "Ein API-Schlüssel ist sehr mächtig und kann alles auf MASZ steuern!",
+                "de": "Ein API-Key ist sehr mächtig und kann alles auf MASZ steuern!",
                 "at": "Ei API-Schlüssel is sehr mächtig und ko ois auf MASZ steian!",
                 "fr": "Un clé API est très puissante et peut contrôler tout sur MASZ!",
                 "es": "Una clave API es muy poderosa y puede controlar todo en MASZ!",
@@ -5225,7 +5269,7 @@
             "unique": {
                 "description": "unique of the tokens section",
                 "en": "This is your unique token and it is non-recoverable. If you lose this API key, you will have to reset it.",
-                "de": "Dies ist dein einzigartiger API-Schlüssel und er kann nicht wiederhergestellt werden. Wenn du ihn verlierst, musst du ihn zurücksetzen.",
+                "de": "Dies ist dein einzigartiger API-Key und er kann nicht wiederhergestellt werden. Wenn du ihn verlierst, musst du ihn zurücksetzen.",
                 "at": "Des is dei einzigartiger API-Schlüssel und er ko ned wiederhergstöt wean. Wenst an valiast, musst ean zrucksetzn.",
                 "fr": "Ceci est votre clé unique et elle ne peut pas être récupérée. Si vous perdez cette clé API, vous devrez la réinitialiser.",
                 "es": "Esta es tu clave única y no se puede recuperar. Si pierdes esta clave API, tendrás que reiniciarla.",
@@ -5392,7 +5436,7 @@
         "experience": {
             "description": "experience of the feedback section",
             "en": "Rate your experience",
-            "de": "Bewerten Sie Ihre Erfahrung",
+            "de": "Bewerten deine Erfahrung",
             "at": "Tua dei Erfahrung bewertn",
             "fr": "Évaluez votre expérience",
             "es": "Valora tu experiencia",
@@ -5453,7 +5497,7 @@
     "supportme": {
         "description": "Support me",
         "en": "Support me",
-        "de": "Supporte mich",
+        "de": "Unterstütze mich",
         "at": "Tua mi Supportn",
         "fr": "Soutenez-moi",
         "es": "Apoya",
