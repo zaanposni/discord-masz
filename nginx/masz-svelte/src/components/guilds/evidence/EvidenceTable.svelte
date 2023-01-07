@@ -1,7 +1,7 @@
 <script lang="ts">
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import { _ } from "svelte-i18n";
-    import { MultiSelect, TextInput, Button, SkeletonPlaceholder, SkeletonText, Tile, Link, Modal } from "carbon-components-svelte";
+    import { MultiSelect, TextInput, Button, SkeletonPlaceholder, SkeletonText, Tile, Link } from "carbon-components-svelte";
     import { Search32, Launch20, Filter24, Add24 } from "carbon-icons-svelte";
     import { slide } from "svelte/transition";
     import { currentParams } from "../../../stores/currentParams";
@@ -16,8 +16,8 @@
     import UserIcon from "../../discord/UserIcon.svelte";
     import { url } from "@roxi/routify";
     import { writable } from "svelte/store";
-    import { authUser } from "../../../stores/auth";
     import { currentLanguage } from "../../../stores/currentLanguage";
+    import CreateEvidenceModal from "./CreateEvidenceModal.svelte";
 
     let evidence: IVerifiedEvidenceCompactView[] = [];
     let loading = true;
@@ -26,8 +26,6 @@
     let fullSize = 0;
 
     let createModalOpen = writable(false);
-    let createModalContent = writable("");
-    let createModalSubmitting = writable(false);
 
     let filterOpened = false;
     let filter: any = {};
@@ -118,45 +116,8 @@
         filter = {};
     }
 
-    function onCreateModalClose() {
-        createModalOpen.set(false);
-        setTimeout(() => {
-            createModalSubmitting.set(false);
-            createModalContent.set("");
-        }, 200);
-    }
-
-    const createRegex = new RegExp(/(https?:\/\/)?(www\.)?discord\.com\/channels\/(\d{17,19})\/(\d{17,19})\/(\d{17,19})/)
-    function onCreate() {
-        let m: RegExpExecArray;
-        if((m = createRegex.exec($createModalContent)) == null) {
-            toastError($_("guilds.evidencetable.badcreate"))
-            return;
-        }
-        const guildId = m[3];
-        const channelId = m[4];
-        const messageId = m[5];
-
-        if(guildId !== $currentParams.guildId) {
-            toastError($_("guilds.evidencetable.badguild"))
-            return;
-        }
-
-        const data = {
-            channelId: channelId,
-            messageId: messageId,
-        }
-
-        API.post(`guilds/${guildId}/evidence`, data)
-            .then(() => {
-                toastSuccess($_("guilds.evidencetable.created"))
-                onCreateModalClose();
-                loading = true;
-                loadData(currentPage);
-            })
-            .catch(() => toastError($_("guilds.evidencetable.createerror")));
-        
-        
+    function onEvidenceCreated() {
+        loadData(currentPage);
     }
 </script>
 
@@ -167,27 +128,7 @@
     }
 </style>
 
-<Modal
-    size="sm"
-    open={$createModalOpen}
-    selectorPrimaryFocus="#commentvalue"
-    modalHeading={$_("guilds.evidencetable.create")}
-    passiveModal
-    on:close={onCreateModalClose}
->
-    <div class="mb-2">
-        <TextInput
-            disabled={$createModalSubmitting}
-            labelText={$_("guilds.evidencetable.createinstruction")}
-            placeholder={$_("guilds.evidencetable.createplaceholder")}
-            bind:value={$createModalContent}
-        />
-    </div>
-    <Button 
-        icon={Add24}
-        on:click={onCreate}
-    >{$_("guilds.evidencetable.create")}</Button>
-</Modal>
+<CreateEvidenceModal bind:open={$createModalOpen} on:create={onEvidenceCreated} />
 
 <MediaQuery query="(min-width: 768px)" let:matches>
     <div class="flex flex-col mb-4">
