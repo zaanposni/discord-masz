@@ -367,7 +367,8 @@
             "reported": "Reported at",
             "shareevidence": "Share",
             "deleted": "Evidence deleted",
-            "deletefailed": "Failed to delete evidence"
+            "deletefailed": "Failed to delete evidence",
+            "unknown": "Unknown"
         },
         "automodtable": {
             "selectmembers": "Members",

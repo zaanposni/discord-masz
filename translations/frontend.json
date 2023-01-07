@@ -2926,6 +2926,10 @@
             "deletefailed": {
                 "description": "error displayed on unsuccessful deletion",
                 "en": "Failed to delete evidence"
+            },
+            "unknown": {
+                "description": "displayed when the author of the message is unknown",
+                "en": "Unknown"
             }
         },
         "automodtable": {

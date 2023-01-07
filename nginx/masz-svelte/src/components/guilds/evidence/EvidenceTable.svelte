@@ -17,6 +17,7 @@
     import { url } from "@roxi/routify";
     import { writable } from "svelte/store";
     import { authUser } from "../../../stores/auth";
+    import { currentLanguage } from "../../../stores/currentLanguage";
 
     let evidence: IVerifiedEvidenceCompactView[] = [];
     let loading = true;
@@ -297,8 +298,8 @@
                                                         evidenceView.verifiedEvidence.discriminator}
                                                 </div>
                                             </div>
-                                            <div class="font-bold" style="word-wrap: anywhere">
-                                                #{evidenceView.verifiedEvidence.id}
+                                            <div class="mt-1">
+                                                {evidenceView.verifiedEvidence.sentAt?.format($currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss") ?? $_("guilds.evidenceview.unknown")}
                                             </div>
                                         </div>
                                     </div>
