@@ -10,7 +10,7 @@
     import { _ } from "svelte-i18n";
     import { Modal, Loading, TextInput, InlineLoading, Tile, SkeletonText, Button, OverflowMenu, OverflowMenuItem, CopyButton } from "carbon-components-svelte";
     import { slide } from "svelte/transition";
-    import { List24, CopyLink24, Share24, ChevronUp24, ChevronDown24, LogoDiscord24, TrashCan24 } from "carbon-icons-svelte";
+    import { Box24, List24, CopyLink24, Share24, ChevronUp24, ChevronDown24, LogoDiscord24, TrashCan24 } from "carbon-icons-svelte";
     import PunishmentTag from "../../api/PunishmentTag.svelte";
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import { authUser, isModeratorInGuild } from "../../../stores/auth";
@@ -22,7 +22,6 @@
 
     let loading = true;
     let evidence = writable<IVerifiedEvidenceView>(null);
-    let renderedContent = "";
 
     let linkToCaseModalOpen = writable(false);
     let linkToCaseSubmitting = writable(false);
@@ -36,25 +35,12 @@
         API.get(`/guilds/${$currentParams?.guildId}/evidence/${$currentParams?.evidenceId}/view`, CacheMode.PREFER_CACHE, true)
         .then((response: IVerifiedEvidenceView) => {
             evidence.set(response);
-            renderContent(response?.evidence?.reportedContent ?? "");
             loading = false;
         })
         .catch(() => {
             $goto("/guilds/" + $currentParams.guildId + "/evidence");
             toastError($_("guilds.evidenceview.evidencenotfound"));
         });
-    }
-
-    function renderContent(content: string) {
-        let value = content.replace("<", "&lt;").replace(">", "&gt;").replace(/\n/g, "<br>");
-        value = value.replace(/#([\d]+)/g, (match) => {
-            const id = match.substring(1);
-            if (id == $evidence.evidence.discriminator || id == ($evidence.reported?.discriminator ?? '')) {
-                return match;
-            }
-            return `<a href=/guilds/${$currentParams.guildId}/evidence/${id}>#${id}</a>`
-        });
-        renderedContent = value;
     }
 
     function onLinkToCaseModalClose() {
@@ -232,7 +218,7 @@
         <div class="flex flex-col">
             <!-- Icon -->
             <div class="flex flex-row grow items-center" id="title" style="color: var(--cds-text-02)">
-                <List24 class="mr-2" />
+                <Box24 class="mr-2" />
                 {#if $currentParams?.guild?.name && $currentParams?.evidenceId && !loading}
                     <div class="flex flex-row items-center">
                         {$currentParams.guild?.name}-{$_("guilds.evidenceview.evidence")}#{$currentParams.evidenceId}
@@ -312,7 +298,7 @@
                 {:else}
                     <div class="text-sm mb-4" id="reported-content">
                         <h4>{$_("guilds.evidenceview.reportedcontent")}:</h4>
-                        {@html renderedContent}
+                        {$evidence?.evidence?.reportedContent ?? ''}
                     </div>
                 {/if}
                 <!-- Linked Cases -->

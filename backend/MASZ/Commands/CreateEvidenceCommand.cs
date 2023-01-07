@@ -18,7 +18,6 @@ namespace MASZ.Commands
             try 
             {
                 IGuildUser reportedUser = await DiscordAPI.FetchMemberInfo(Context.Guild.Id, message.Author.Id, CacheBehavior.IgnoreButCacheOnError);
-                string content = message.Content.Truncate(1024);
 
                 VerifiedEvidence evidence = new()
                 { 
@@ -27,7 +26,7 @@ namespace MASZ.Commands
                     MessageId = message.Id,
                     ReportedAt = DateTime.UtcNow,
                     SentAt = message.Timestamp.DateTime,
-                    ReportedContent = content,
+                    ReportedContent = message.Content,
                     UserId = reportedUser.Id,
                     Username = reportedUser.Username,
                     Nickname = reportedUser.Nickname,
