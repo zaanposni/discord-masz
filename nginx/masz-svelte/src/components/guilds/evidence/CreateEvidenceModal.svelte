@@ -12,7 +12,7 @@
     const dispatcher = createEventDispatcher();
     const createModalContent = writable("");
     const createModalSubmitting = writable(false);
-    const createRegex = new RegExp(/(https?:\/\/)?(www\.)?discord\.com\/channels\/(\d{17,19})\/(\d{17,19})\/(\d{17,19})/)
+    const createRegex = new RegExp(/(https?:\/\/)?([a-zA-Z0-9]+.)?discord\.com\/channels\/(\d+)\/(\d+)\/(\d+)/)
 
     function onModalClose() {
         open = false;
