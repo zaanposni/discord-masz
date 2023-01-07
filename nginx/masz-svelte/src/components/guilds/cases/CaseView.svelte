@@ -55,6 +55,8 @@
     import type { ICase } from "../../../models/api/ICase";
     import type { ICompactCaseView } from "../../../models/api/ICompactCaseView";
     import type { IVerifiedEvidenceCompactView } from "../../../models/api/IVerifiedEvidenceCompactView";
+    import CreateEvidenceModal from "../evidence/CreateEvidenceModal.svelte";
+    import type { IVerifiedEvidence } from "../../../models/api/IVerifiedEvidence";
 
     const preloadFileExtensions = ["img", "png", "jpg", "jpeg", "gif", "webp"];
 
@@ -90,6 +92,8 @@
     let linkEvidenceSearch = writable("");
     let linkEvidenceSearching = writable(false);
     let linkEvidenceSearchResults: Writable<IVerifiedEvidenceCompactView[]> = writable([]);
+
+    let createEvidenceModalOpen = writable(false);
 
     $: $currentParams?.guildId && $currentParams?.caseId ? loadData() : null;
     function loadData() {
@@ -268,13 +272,13 @@
         }, 200);
     }
 
-    function linkEvidence(evidence: IVerifiedEvidenceCompactView) {
+    function linkEvidence(evidence: IVerifiedEvidence) {
         linkEvidenceSubmitting.set(true);
 
-        API.post(`/guilds/${$currentParams.guildId}/evidencemapping/${evidence.verifiedEvidence.id}/${$modCase.modCase.id}`, {}, CacheMode.API_ONLY, false)
+        API.post(`/guilds/${$currentParams.guildId}/evidencemapping/${evidence.id}/${$modCase.modCase.id}`, {}, CacheMode.API_ONLY, false)
             .then(() => {
                 modCase.update((n) => {
-                    n.linkedEvidence.push(evidence.verifiedEvidence);
+                    n.linkedEvidence.push(evidence);
                     return n;
                 });
                 toastSuccess($_("guilds.caseview.linked"));
@@ -575,6 +579,10 @@
                 toastError($_("guilds.caseview.commenteditfailed"));
             });
     }
+
+    function onEvidenceCreate({detail}) {
+        linkEvidence(detail);
+    }
 </script>
 
 <style>
@@ -653,6 +661,8 @@
     {/if}
 </Modal>
 
+<CreateEvidenceModal bind:open={$createEvidenceModalOpen} on:create={onEvidenceCreate} />
+
 <!-- Link evidence modal -->
 <Modal
     size="sm"
@@ -668,7 +678,7 @@
             disabled={$linkEvidenceSubmitting}
             labelText={$_("guilds.caseview.search")}
             placeholder={$_("guilds.caseview.search")}
-            bind:value={$linkEvidenceSearch} 
+            bind:value={$linkEvidenceSearch}
         />
     </div>
     {#if $linkEvidenceSearching}
@@ -698,7 +708,7 @@
                                 {evidence.verifiedEvidence.reportedContent.slice(0, 31)}
                             </div>
                             <div class="cursor-pointer">
-                                <CopyLink24 class="mr-2" on:click={() => linkEvidence(evidence)} />
+                                <CopyLink24 class="mr-2" on:click={() => linkEvidence(evidence.verifiedEvidence)} />
                             </div>
                         </div>
                     </Tile>
@@ -833,6 +843,17 @@
                                         on:click={() => linkEvidenceModalOpen.set(true)}
                                     >
                                         {$_("guilds.caseview.linkevidence")}
+                                    </Button>
+                                </div>
+                                <div class="mr-2 mb-2">
+                                    <Button
+                                        size="small"
+                                        kind="secondary"
+                                        icon={Box24}
+                                        disabled={$modCase.modCase.markedToDeleteAt !== null}
+                                        on:click={() => createEvidenceModalOpen.set(true)}
+                                    >
+                                        {$_("guilds.evidencetable.create")}
                                     </Button>
                                 </div>
                                 {#if ($modCase.modCase.punishedUntil === null || $modCase?.modCase?.punishedUntil?.isAfter(moment())) && ($modCase.modCase.punishmentType == PunishmentType.Ban || $modCase.modCase.punishmentType == PunishmentType.Mute)}

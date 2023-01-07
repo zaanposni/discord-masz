@@ -45,8 +45,8 @@
         }
 
         API.post(`guilds/${guildId}/evidence`, data)
-            .then(() => {
-                dispatcher("create");
+            .then((res) => {
+                dispatcher("create", res);
                 toastSuccess($_("guilds.evidencetable.created"))
                 onModalClose();
             })
