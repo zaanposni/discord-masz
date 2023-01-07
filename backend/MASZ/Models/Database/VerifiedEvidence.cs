@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Discord;
+using MASZ.Extensions;
 
 namespace MASZ.Models.Database
 {
@@ -18,5 +20,20 @@ namespace MASZ.Models.Database
         public DateTime SentAt { get; set; }
         public DateTime ReportedAt { get; set; }
         public ICollection<ModCaseEvidenceMapping> EvidenceMappings { get; set; }
+
+        public string GetEmbedData(string baseUrl, IUser user)
+        {
+            return
+                "<html>" +
+                    "<head>" +
+                        $"<meta name=\"theme-color\" content=\"#3498db\">" +
+                        $"<meta property=\"og:site_name\" content=\"MASZ by zaanposni\" />" +
+                        $"<meta property=\"og:title\" content=\"#{user.Username}#{user.Discriminator} at {this.SentAt.ToString("yyyy.MM.dd")}\" />" +
+                        $"<meta property=\"og:url\" content=\"{baseUrl}/guilds/{this.GuildId}/evidence/{this.Id}\" />" +
+                        $"<meta property=\"og:description\" content=\"{this.ReportedContent}\" />" +
+                        ( user != null ? $"<meta property=\"og:image\" content=\"{user.GetAvatarOrDefaultUrl()}\" />" : "") +
+                    "</head>" +
+                "</html>";
+        }
     }
 }
