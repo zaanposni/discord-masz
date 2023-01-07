@@ -971,7 +971,7 @@ namespace MASZ.Data
 
         public async Task<List<VerifiedEvidence>> GetEvidencePagination(ulong guildId, int page, int pageSize)
         {
-            return await context.VerifiedEvidence.AsQueryable().Where(x => x.GuildId == guildId).OrderBy(x => x.Id).Skip(page * pageSize).Take(pageSize).ToListAsync();
+            return await context.VerifiedEvidence.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.Id).Skip(page * pageSize).Take(pageSize).ToListAsync();
         }
 
         public async Task<VerifiedEvidence> GetEvidence(ulong guildId, int evidenceId)
