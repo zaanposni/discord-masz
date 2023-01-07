@@ -51,6 +51,15 @@ namespace MASZ.Repositories
 
         public async Task<VerifiedEvidence> CreateEvidence(VerifiedEvidence evidence)
         {
+            // TODO: handle existing evidence?
+
+            if (string.IsNullOrWhiteSpace(evidence.ReportedContent))
+            {
+                throw new BaseAPIException("Reported content cannot be empty.");
+            }
+
+            evidence.ModId = _currentUser.Id;
+
             Database.CreateEvidence(evidence);
             await Database.SaveChangesAsync();
             return evidence;
