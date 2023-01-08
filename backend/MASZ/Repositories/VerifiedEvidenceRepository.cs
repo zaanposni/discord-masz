@@ -28,6 +28,11 @@ namespace MASZ.Repositories
             return await Database.GetEvidencePagination(guildId, page, pageSize);
         }
 
+        public async Task<List<VerifiedEvidence>> GetEvidencePaginationForUser(ulong guildId, ulong userId, int page = 0, int pageSize = 20)
+        {
+            return await Database.GetEvidencePaginationForUser(guildId, userId, page, pageSize);
+        }
+
         public async Task<VerifiedEvidence> GetEvidence(ulong guildId, int evidenceId)
         {
             VerifiedEvidence evidence =  await Database.GetEvidence(guildId, evidenceId);
@@ -41,11 +46,15 @@ namespace MASZ.Repositories
         public async Task<VerifiedEvidence> DeleteEvidence(ulong guildId, int evidenceId)
         {
             VerifiedEvidence evidence = await GetEvidence(guildId, evidenceId);
-            if (evidence != default)
+
+            if (evidence == null)
             {
-                Database.DeleteEvidence(evidence);
-                await Database.SaveChangesAsync();
+                throw new ResourceNotFoundException();
             }
+
+            Database.DeleteEvidence(evidence);
+            await Database.SaveChangesAsync();
+
             return evidence;
         }
 

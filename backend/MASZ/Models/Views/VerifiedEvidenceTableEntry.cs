@@ -15,5 +15,11 @@ namespace MASZ.Models.Views
             Reported = DiscordUserView.CreateOrDefault(reported);
             Moderator = DiscordUserView.CreateOrDefault(moderator);
         }
+
+        public void RemoveModeratorInfo()
+        {
+            VerifiedEvidence.RemoveModeratorInfo();
+            Moderator = null;
+        }
     }
 }

@@ -5,13 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using MASZ.Models.Views;
 using MASZ.Dtos.VerifiedEvidence;
+using MASZ.Models;
 
 namespace MASZ.Controllers.api.v1
 {
     [ApiController]
     [Route("api/v1/guilds/{guildId}/evidence")]
     [Authorize]
-    public class VerifiedEvidenceController : SimpleController
+    public class VerifiedEvidenceController : SimpleEvidenceController
     {
         public VerifiedEvidenceController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
@@ -20,32 +21,59 @@ namespace MASZ.Controllers.api.v1
         [HttpGet]
         public async Task<IActionResult> GetAllEvidence([FromRoute] ulong guildId, [FromQuery] int startPage = 0)
         {
-            await RequirePermission(guildId, DiscordPermission.Moderator);
-            List<VerifiedEvidenceView> evidence = (await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidencePagination(guildId, startPage)).Select(x => new VerifiedEvidenceView(x)).ToList();
-            if(evidence.Count == 0)
+            Identity currentIdentity = await GetIdentity();
+            ulong currentUser = 0;
+            if(!await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
             {
-                return NotFound();
+                currentUser = currentIdentity.GetCurrentUser().Id;
             }
+
+            List<VerifiedEvidenceView> evidence = new();
+
+            if(currentUser == 0) 
+            {
+                evidence = (await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidencePagination(guildId, startPage)).Select(x => new VerifiedEvidenceView(x)).ToList();
+            } else
+            {
+                evidence = (await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, currentIdentity).GetEvidencePaginationForUser(guildId, currentUser, startPage)).Select(x => new VerifiedEvidenceView(x)).ToList();
+            }
+
+            if (!(await GetRegisteredGuild(guildId)).PublishModeratorInfo)
+            {
+                if (!await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
+                {
+                    foreach (var e in evidence)
+                    {
+                        e.RemoveModeratorInfo();
+                    }
+                }
+            }
+
             return Ok(evidence);
         }
 
         [HttpGet("{evidenceId}")]
         public async Task<IActionResult> GetEvidence([FromRoute] ulong guildId, [FromRoute] int evidenceId)
         {
-            await RequirePermission(guildId, DiscordPermission.Moderator);
-            VerifiedEvidenceView evidence = new(await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidence(guildId, evidenceId));
+            await RequirePermission(guildId, evidenceId, APIActionPermission.View);
+            Identity currentIdentity = await GetIdentity();
+            VerifiedEvidenceView evidence = new(await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, currentIdentity).GetEvidence(guildId, evidenceId));
+
+            if (!(await GetRegisteredGuild(guildId)).PublishModeratorInfo)
+            {
+                if (!await currentIdentity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
+                {
+                    evidence.RemoveModeratorInfo();
+                }
+            }
             return Ok(evidence);
         }
 
         [HttpDelete("{evidenceId}")]
         public async Task<IActionResult> DeleteEvidence([FromRoute] ulong guildId, [FromRoute] int evidenceId)
         {
-            await RequirePermission(guildId, DiscordPermission.Admin);
+            await RequirePermission(guildId, evidenceId, APIActionPermission.Delete);
             VerifiedEvidence deleted = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).DeleteEvidence(guildId, evidenceId);
-            if(deleted == default) 
-            {
-                return NotFound();
-            }
             return Ok(deleted);
         }
 

@@ -32,5 +32,10 @@ namespace MASZ.Models.Views
             SentAt = evidence.SentAt;
             ReportedAt = evidence.ReportedAt;
         }
+
+        public void RemoveModeratorInfo()
+        {
+            ModId = null;
+        }
     }
 }

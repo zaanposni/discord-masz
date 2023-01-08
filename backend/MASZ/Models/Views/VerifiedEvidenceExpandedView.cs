@@ -17,5 +17,11 @@ namespace MASZ.Models.Views
             Moderator = DiscordUserView.CreateOrDefault(moderator);
             LinkedCases = new List<CaseView>();
         }
+
+        public void RemoveModeratorInfo()
+        {
+            Evidence.RemoveModeratorInfo();
+            Moderator = null;
+        }
     }
 }

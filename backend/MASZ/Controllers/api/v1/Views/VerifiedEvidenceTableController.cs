@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MASZ.Dtos.VerifiedEvidence;
 using MASZ.Enums;
+using MASZ.Models;
 using MASZ.Models.Database;
 using MASZ.Models.Views;
 using MASZ.Repositories;
@@ -12,7 +13,7 @@ namespace MASZ.Controllers.api.v1.Views
     [ApiController]
     [Route("api/v1/guilds/{guildId}/evidence")]
     [Authorize]
-    public class VerifiedEvidenceTableController : SimpleController
+    public class VerifiedEvidenceTableController : SimpleEvidenceController
     {
         public VerifiedEvidenceTableController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
@@ -29,9 +30,24 @@ namespace MASZ.Controllers.api.v1.Views
 
         private async Task<VerifiedEvidenceTable> GenerateTable(ulong guildId, int startPage, VerifiedEvidenceTableFilterDto search)
         {
-            await RequirePermission(guildId, DiscordPermission.Moderator);
+            Identity identity = await GetIdentity();
+            GuildConfig guildConfig = await GetRegisteredGuild(guildId);
 
-            List<VerifiedEvidence> evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidencePagination(guildId, startPage);
+            ulong userOnly = 0;
+            if (!await identity.HasPermissionOnGuild(DiscordPermission.Moderator, guildId))
+            {
+                userOnly = identity.GetCurrentUser().Id;
+            }
+
+            List<VerifiedEvidence> evidence = new(); 
+
+            if (userOnly != 0)
+            {
+                evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidencePaginationForUser(guildId, userOnly, startPage);
+            } else
+            {
+                evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidencePagination(guildId, startPage);
+            }
 
             List<VerifiedEvidenceTableEntry> tmp = new();
             foreach(var e in evidence) 
@@ -73,6 +89,14 @@ namespace MASZ.Controllers.api.v1.Views
             if (search?.ReportedIds != null && search.ReportedIds.Count > 0)
             {
                 table = table.Where(x => search.ReportedIds.Contains(x.VerifiedEvidence.UserId));
+            }
+
+            if(!guildConfig.PublishModeratorInfo && userOnly != 0)
+            {
+                foreach(var e in table)
+                {
+                    e.RemoveModeratorInfo();
+                }
             }
 
             return new VerifiedEvidenceTable(table.ToList(), table.Count());

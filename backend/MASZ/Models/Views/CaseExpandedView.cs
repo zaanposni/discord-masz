@@ -25,7 +25,7 @@ namespace MASZ.Models
             Comments = comments;
             UserNote = userNoteView;
             LinkedCases = new List<CaseView>();
-            LinkedEvidence = modCase.EvidenceMappings.Select(x => new VerifiedEvidenceView(x.Evidence)).ToList();
+            LinkedEvidence = new();
 
             MentionedUsers = mentionedUsers;
             MentionedRoles = mentionedRoles;

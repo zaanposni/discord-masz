@@ -974,6 +974,11 @@ namespace MASZ.Data
             return await context.VerifiedEvidence.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.Id).Skip(page * pageSize).Take(pageSize).ToListAsync();
         }
 
+        public async Task<List<VerifiedEvidence>> GetEvidencePaginationForUser(ulong guildId, ulong userId , int page, int pageSize)
+        {
+            return await context.VerifiedEvidence.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.Id).Skip(page * pageSize).Take(pageSize).ToListAsync();
+        }
+
         public async Task<VerifiedEvidence> GetEvidence(ulong guildId, int evidenceId)
         {
             return await context.VerifiedEvidence.Include(x => x.EvidenceMappings).ThenInclude(x => x.ModCase).AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.Id == evidenceId);

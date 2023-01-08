@@ -88,6 +88,15 @@ namespace MASZ.Controllers
                 caseView.LinkedCases.AddRange(modCase.MappingsB.Select(mapping =>new CaseView(mapping.CaseA)));
             }
 
+            if (isMod)
+            {
+                caseView.LinkedEvidence = modCase.EvidenceMappings.Select(mapping => new VerifiedEvidenceView(mapping.Evidence)).ToList();
+            } else
+            {
+                ulong userId = identity.GetCurrentUser().Id;
+                caseView.LinkedEvidence = modCase.EvidenceMappings.Where(mapping => mapping.Evidence.UserId == userId).Select(mapping => new VerifiedEvidenceView(mapping.Evidence)).ToList();
+            }
+
             if (!(isMod || guildConfig.PublishModeratorInfo))
             {
                 caseView.RemoveModeratorInfo();
