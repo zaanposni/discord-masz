@@ -15,6 +15,14 @@
         "title": "Verified Evidence.",
         "description": "You can now save Discord messages in MASZ. They can be linked to multiple cases as verified evidence.",
         "link": "https://github.com/zaanposni/discord-masz/issues/562"
+      },
+      {
+        "title": "Whois as user context command.",
+        "description": "You can now use the whois command as a user context command."
+      },
+      {
+        "title": "Import existing bans.",
+        "description": "You can now choose again to import existing bans from your guild while registering it."
       }
     ]
   },
