@@ -96,6 +96,7 @@ namespace MASZ.Services
             _client.InteractionCreated += HandleInteraction;
 
             _interactions.SlashCommandExecuted += CmdErroredHandler;
+            _interactions.ContextCommandExecuted += CmdErroredHandler;
 
             var client_logger = _serviceProvider.GetRequiredService<ILogger<DiscordSocketClient>>();
 
@@ -722,7 +723,7 @@ namespace MASZ.Services
             return Task.CompletedTask;
         }
 
-        private async Task CmdErroredHandler(SlashCommandInfo info, IInteractionContext context, Discord.Interactions.IResult result)
+        private async Task CmdErroredHandler(IApplicationCommandInfo info, IInteractionContext context, Discord.Interactions.IResult result)
         {
             if (!result.IsSuccess)
             {
