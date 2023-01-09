@@ -14,10 +14,21 @@ namespace MASZ.Commands
     public class WhoisCommand : BaseCommand<WhoisCommand>
     {
         [Require(RequireCheckEnum.GuildModerator)]
-        [SlashCommand("whois", "Whois information about a user.")]
-        public async Task Whois([Summary("user", "user to scan")] IUser user)
+        [UserCommand("whois")]
+        public async Task UserWhois([Summary("user", "user to scan")] IUser user)
         {
-            await Context.Interaction.RespondAsync("Getting WHOIS information...");
+            await InternalWhois(user, true);
+        }
+
+        [Require(RequireCheckEnum.GuildModerator)]
+        [SlashCommand("whois", "Whois information about a user.")]
+        public async Task SlashWhois([Summary("user", "user to scan")] IUser user)
+        {
+            await InternalWhois(user, false);
+        }
+        private async Task InternalWhois(IUser user, bool ephermal)
+        {
+            await Context.Interaction.RespondAsync("Getting WHOIS information...", ephemeral: ephermal);
 
             IGuildUser member = null;
             try

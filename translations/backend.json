@@ -3575,6 +3575,28 @@
                 "ru": "Последнее отключение: {time}.",
                 "it": "Ultima disconnessione a {time}."
             }
+        },
+        "Evidence": {
+            "Failed": {
+                "description": "Response sent to a moderator on evidence creation failure",
+                "en": "Failed to register evidence.",
+                "de": "Fehler beim Registrieren des Beweises.",
+                "at": "Fehler beim Registrieren des Beweises.",
+                "fr": "Impossible d'enregistrer la preuve.",
+                "es": "No se pudo registrar la evidencia.",
+                "ru": "Не удалось зарегистрировать доказательство.",
+                "it": "Impossibile registrare la prova."
+            },
+            "Created": {
+                "description": "Response sent to moderator on evidence creation success",
+                "en": "Successfully registered evidence",
+                "de": "Erfolgreich Beweis registriert",
+                "at": "Erfolgreich Bweis registriert",
+                "fr": "Preuve enregistrée avec succès",
+                "es": "Evidencia registrada con éxito",
+                "ru": "Доказательство успешно зарегистрировано",
+                "it": "Prova registrata con successo"
+            }
         }
     },
     "GuildAuditLog": {

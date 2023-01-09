@@ -1,6 +1,7 @@
 ﻿using Discord;
 using MASZ.Enums;
 using MASZ.Exceptions;
+using MASZ.Models.Database;
 using MASZ.Repositories;
 using MASZ.Services;
 
@@ -162,6 +163,30 @@ namespace MASZ.Models
                     return await HasPermissionOnGuild(DiscordPermission.Moderator, caseTemplate.CreatedForGuildId) && caseTemplate.UserId == currentUser.Id;
                 case APIActionPermission.ForceDelete:
                     return false;  // only siteadmin
+                default:
+                    return false;
+            }
+        }
+        public async Task<bool> IsAllowedTo(APIActionPermission permission, VerifiedEvidence evidence)
+        {
+            if (currentUser == null)
+            {
+                return false;
+            }
+            if (IsSiteAdmin())
+            {
+                return true;
+            }
+            switch (permission)
+            {
+                case APIActionPermission.View:
+                    return evidence.UserId == currentUser.Id || await HasPermissionOnGuild(DiscordPermission.Moderator, evidence.GuildId);
+                case APIActionPermission.Delete:
+                    return await HasPermissionOnGuild(DiscordPermission.Admin, evidence.GuildId);
+                case APIActionPermission.ForceDelete:
+                    throw new NotImplementedException();
+                case APIActionPermission.Edit:
+                    throw new NotImplementedException();
                 default:
                     return false;
             }

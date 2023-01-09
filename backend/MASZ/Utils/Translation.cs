@@ -4072,6 +4072,32 @@ namespace MASZ.Utils
                 _ => $"Experienced last disconnect at {time}.",
             };
         }
+        public string CmdEvidenceFailed()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Fehler beim Registrieren des Beweises.",
+                Language.at => "Fehler beim Registrieren des Beweises.",
+                Language.fr => "Impossible d'enregistrer la preuve.",
+                Language.es => "No se pudo registrar la evidencia.",
+                Language.ru => "Не удалось зарегистрировать доказательство.",
+                Language.it => "Impossibile registrare la prova.",
+                _ => "Failed to register evidence.",
+            };
+        }
+        public string CmdEvidenceCreated()
+        {
+            return PreferredLanguage switch
+            {
+                Language.de => "Erfolgreich Beweis registriert",
+                Language.at => "Erfolgreich Bweis registriert",
+                Language.fr => "Preuve enregistrée avec succès",
+                Language.es => "Evidencia registrada con éxito",
+                Language.ru => "Доказательство успешно зарегистрировано",
+                Language.it => "Prova registrata con successo",
+                _ => "Successfully registered evidence",
+            };
+        }
         public string GuildAuditLogChannel()
         {
             return PreferredLanguage switch
@@ -4968,6 +4994,8 @@ namespace MASZ.Utils
                 "cmd.status.database" => CmdStatusDatabase(),
                 "cmd.status.internalcache" => CmdStatusInternalCache(),
                 "cmd.status.currentlyloggedin" => CmdStatusCurrentlyLoggedIn(),
+                "cmd.evidence.failed" => CmdEvidenceFailed(),
+                "cmd.evidence.created" => CmdEvidenceCreated(),
                 "guildauditlog.channel" => GuildAuditLogChannel(),
                 "guildauditlog.channelbefore" => GuildAuditLogChannelBefore(),
                 "guildauditlog.channelafter" => GuildAuditLogChannelAfter(),

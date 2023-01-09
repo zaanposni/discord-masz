@@ -328,7 +328,8 @@ namespace MASZ.Services
                 false
             );
 
-            if (! string.IsNullOrWhiteSpace(autoModerationEvent.MessageContent)) {
+            if (!string.IsNullOrWhiteSpace(autoModerationEvent.MessageContent))
+            {
                 embed.AddField(
                     translator.T().MessageContent(),
                     autoModerationEvent.MessageContent,

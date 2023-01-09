@@ -25,6 +25,7 @@ namespace MASZ.Models
             Comments = comments;
             UserNote = userNoteView;
             LinkedCases = new List<CaseView>();
+            LinkedEvidence = new();
 
             MentionedUsers = mentionedUsers;
             MentionedRoles = mentionedRoles;
@@ -50,6 +51,7 @@ namespace MASZ.Models
         }
         public CaseView ModCase { get; set; }
         public List<CaseView> LinkedCases { get; set; }
+        public List<VerifiedEvidenceView> LinkedEvidence { get; set; }
         public DiscordUserView Moderator { get; set; }
         public DiscordUserView LastModerator { get; set; }
         public DiscordUserView Suspect { get; set; }
@@ -70,6 +72,11 @@ namespace MASZ.Models
             DeletedBy = null;
             LinkedCases.Clear();
             ModCase.RemoveModeratorInfo();
+
+            foreach (var linkedEvidence in LinkedEvidence)
+            {
+                linkedEvidence.RemoveModeratorInfo();
+            }
 
             foreach (var comment in Comments)
             {

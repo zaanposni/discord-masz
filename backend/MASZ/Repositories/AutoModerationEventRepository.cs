@@ -2,6 +2,7 @@ using Discord;
 using MASZ.Enums;
 using MASZ.Extensions;
 using MASZ.Models;
+using MASZ.Models.Database;
 using System.Text;
 
 namespace MASZ.Repositories
@@ -48,12 +49,24 @@ namespace MASZ.Repositories
                     Title = $"{_translator.T().Automoderation()}: {_translator.T().Enum(modEvent.AutoModerationType)}"
                 };
 
+                // this variable is missing the actual reported content and is used more as a storage for IDs and reported user data, it gets filled by CreateAndLinkEvidence method later
+                VerifiedEvidence evidenceSkeleton = new()
+                {
+                    GuildId = modEvent.GuildId,
+                    ChannelId = channel.Id,
+                    MessageId = modEvent.MessageId,
+                    ModId = DiscordAPI.GetCurrentBotInfo().Id,
+                    UserId = user.Id,
+                    Username = user.Username,
+                    Discriminator = user.Discriminator,
+                };
+
                 StringBuilder description = new();
                 description.AppendLine(_translator.T().NotificationAutomoderationCase(user));
                 description.AppendLine(_translator.T().Type() + ": " + _translator.T().Enum(modEvent.AutoModerationType));
                 description.AppendLine(_translator.T().Action() + ": " + _translator.T().Enum(modEvent.AutoModerationAction));
-                description.AppendLine(_translator.T().Message() + ": " + modEvent.MessageId.ToString());
-                description.AppendLine(_translator.T().MessageContent() + ": " + modEvent.MessageContent);
+                //description.AppendLine(_translator.T().Message() + ": " + modEvent.MessageId.ToString());
+                //description.AppendLine(_translator.T().MessageContent() + ": " + modEvent.MessageContent);
 
                 modCase.Description = description.ToString();
 
@@ -75,6 +88,8 @@ namespace MASZ.Repositories
                 try
                 {
                     modCase = await ModCaseRepository.CreateWithBotIdentity(_serviceProvider).CreateModCase(modCase, true, modConfig.SendPublicNotification, modConfig.SendDmNotification);
+
+                    await CreateAndLinkEvidence(modCase, evidenceSkeleton);
 
                     modEvent.AssociatedCaseId = modCase.CaseId;
                 }
@@ -151,6 +166,32 @@ namespace MASZ.Repositories
                 }
             }
             return filteredEvents;
+        }
+        private async Task CreateAndLinkEvidence(ModCase modCase, VerifiedEvidence evidence)
+        {
+            try
+            {
+                IMessage msg = await DiscordAPI.GetIMessage(evidence.GuildId, evidence.ChannelId, evidence.MessageId, CacheBehavior.IgnoreButCacheOnError);
+
+                if (msg == null)
+                {
+                    Logger.LogError("Failed to fetch message when creating modevent evidence");
+                    return;
+                }
+
+                evidence.ReportedContent = msg.Content;
+                evidence.SentAt = msg.Timestamp.DateTime;
+                evidence.ReportedAt = DateTime.UtcNow;
+
+                var repo = VerifiedEvidenceRepository.CreateWithBotIdentity(_serviceProvider);
+
+                evidence = await repo.CreateEvidence(evidence);
+
+                await repo.Link(evidence.GuildId, evidence.Id, modCase.Id);
+            } catch(Exception e)
+            {
+                Logger.LogError(e, $"Failed to create evidence link for modevent modcasecase {evidence.GuildId}/{evidence.UserId}/{modCase.Id}");
+            }
         }
     }
 }

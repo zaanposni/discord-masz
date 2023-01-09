@@ -47,6 +47,7 @@
             "base": "Gilda",
             "dashboard": "Cruscotto",
             "cases": "Casi",
+            "evidence": "Prove",
             "automods": "Automods",
             "appeals": "Appelli",
             "usernotes": "Note utente",
@@ -214,6 +215,7 @@
             "banned": "Gilde bloccate"
         },
         "caseview": {
+            "verifiedevidence": "Questa prova è verificata",
             "unlinked": "Caselink eliminato",
             "unlinkfailed": "Impossibile scollegare il caso",
             "linked": "Caselink creato",
@@ -280,7 +282,10 @@
             "moderatorunknown": "Sconosciuto o nascosto",
             "created": "Creato",
             "updated": "Aggiornato",
-            "unknown": "Sconosciuto"
+            "unknown": "Sconosciuto",
+            "linkevidence": "Collega prova",
+            "noevidencefound": "Nessuna prova trovata",
+            "evidencelinkfailed": "Collegamento prova fallito"
         },
         "casedialog": {
             "createcase": "Crea caso",
@@ -322,7 +327,8 @@
             "templateapplied": "Modello applicato",
             "templatesaved": "Modello salvato",
             "templatesavefailed": "Errore durante il salvataggio del modello",
-            "visibility": "Visibilità"
+            "visibility": "Visibilità",
+            "evidenceexplained": "Non riesci a trovare quello che stai cercando? Non preoccuparti, puoi sempre creare e collegare le prove in un secondo momento!"
         },
         "modcasetable": {
             "selectmembers": "Membri",
@@ -342,6 +348,28 @@
             "failedtoload": "Impossibile caricare i casi.",
             "nomatches": "Nessun caso corrisponde alla tua ricerca.",
             "nomatchesdescription": "Potrebbe non essere ancora nessun caso in questo server. Tuttavia, è possibile provare a regolare i filtri in alto per trovare alcuni casi."
+        },
+        "evidencetable": {
+            "create": "Crea prova",
+            "createinstruction": "Incolla il link del messaggio di Discord nel campo di testo qui sotto per creare la prova",
+            "createplaceholder": "Link di Discord qui",
+            "badcreate": "Il link del messaggio non è corretto",
+            "badguild": "L'ID del server nel link del messaggio non corrisponde all'ID di questo server",
+            "created": "Prova creata con successo",
+            "createerror": "Qualcosa ha impedito la creazione della prova"
+        },
+        "evidenceview": {
+            "evidencenotfound": "La prova non esiste",
+            "linktocase": "Collegamento al caso",
+            "evidence": "Prova",
+            "goto": "Visualizza in Discord",
+            "reportedcontent": "Contenuto segnalato",
+            "sent": "Inviato a",
+            "reported": "Segnalato a",
+            "shareevidence": "Condividi",
+            "deleted": "Prova eliminata",
+            "deletefailed": "Impossibile eliminare la prova",
+            "unknown": "Sconosciuto"
         },
         "automodtable": {
             "selectmembers": "Membri",
@@ -575,6 +603,8 @@
                 "title": "Varie",
                 "whois": "Esegui whois sulla presenza di un membro",
                 "whoisexplained": "Invia automaticamente le informazioni sull'utente iscritto al tuo webhook interno.",
+                "importbans": "Importa i bann esistenti",
+                "importbansexplained": "Questo creerà casi per ciascuno dei tuoi bann esistenti. Questo potrebbe richiedere un po 'di tempo.",
                 "language": "Lingua"
             },
             "save": "Salva",

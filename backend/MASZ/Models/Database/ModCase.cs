@@ -3,6 +3,7 @@ using MASZ.Services;
 using System.ComponentModel.DataAnnotations;
 using Discord;
 using MASZ.Extensions;
+using MASZ.Models.Database;
 
 namespace MASZ.Models
 {
@@ -38,6 +39,7 @@ namespace MASZ.Models
         public ICollection<ModCaseComment> Comments { get; set; }
         public ICollection<ModCaseMapping> MappingsA { get; set; }
         public ICollection<ModCaseMapping> MappingsB { get; set; }
+        public ICollection<ModCaseEvidenceMapping> EvidenceMappings { get; set; }
 
 
         public object Clone()

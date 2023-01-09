@@ -1,5 +1,6 @@
 ﻿using MASZ.Enums;
 using MASZ.Models;
+using MASZ.Models.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace MASZ.Data
@@ -75,7 +76,15 @@ namespace MASZ.Data
         }
         public async Task<ModCase> SelectSpecificModCase(ulong guildId, int modCaseId)
         {
-            return await context.ModCases.Include(c => c.Comments).Include(c => c.MappingsA).ThenInclude(m => m.CaseB).Include(c => c.MappingsB).ThenInclude(m => m.CaseA).AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.CaseId == modCaseId);
+            return await context.ModCases
+                .Include(c => c.Comments)
+                .Include(c => c.MappingsA)
+                    .ThenInclude(m => m.CaseB)
+                .Include(c => c.MappingsB)
+                    .ThenInclude(m => m.CaseA)
+                .Include(m => m.EvidenceMappings)
+                    .ThenInclude(m => m.Evidence)
+                .AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.CaseId == modCaseId);
         }
 
         public async Task<List<ModCase>> SelectAllModcasesForSpecificUserOnGuild(ulong guildId, ulong userId)
@@ -952,6 +961,69 @@ namespace MASZ.Data
         public void DeleteModCaseMapping(ModCaseMapping mapping)
         {
             context.ModCaseMappings.Remove(mapping);
+        }
+
+        // ==================================================================================
+        //
+        // VerifiedEvidence
+        //
+        // ==================================================================================
+
+        public async Task<List<VerifiedEvidence>> GetEvidencePagination(ulong guildId, int page, int pageSize)
+        {
+            return await context.VerifiedEvidence.AsQueryable().Where(x => x.GuildId == guildId).OrderByDescending(x => x.Id).Skip(page * pageSize).Take(pageSize).ToListAsync();
+        }
+
+        public async Task<List<VerifiedEvidence>> GetEvidencePaginationForUser(ulong guildId, ulong userId , int page, int pageSize)
+        {
+            return await context.VerifiedEvidence.AsQueryable().Where(x => x.GuildId == guildId && x.UserId == userId).OrderByDescending(x => x.Id).Skip(page * pageSize).Take(pageSize).ToListAsync();
+        }
+
+        public async Task<VerifiedEvidence> GetEvidence(ulong guildId, int evidenceId)
+        {
+            return await context.VerifiedEvidence.Include(x => x.EvidenceMappings).ThenInclude(x => x.ModCase).AsQueryable().FirstOrDefaultAsync(x => x.GuildId == guildId && x.Id == evidenceId);
+        }
+
+        public void DeleteEvidence(VerifiedEvidence evidence)
+        {
+            context.VerifiedEvidence.Remove(evidence);
+        }
+
+        public async Task DeleteEvidenceByGuild(ulong guildId)
+        {
+            var evidence = await context.VerifiedEvidence.AsQueryable().Where(x => x.GuildId == guildId).ToListAsync();
+            context.VerifiedEvidence.RemoveRange(evidence);
+        }
+
+        public void CreateEvidence(VerifiedEvidence evidence)
+        {
+            context.VerifiedEvidence.Add(evidence);
+        }
+
+        public async Task<int> CountEvidenceForGuild(ulong guildId)
+        {
+            return await context.VerifiedEvidence.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
+        }
+
+        // ==================================================================================
+        //
+        // ModCaseEvidenceMapping
+        //
+        // ==================================================================================
+
+        public async Task<ModCaseEvidenceMapping> GetModCaseEvidenceMapping(int evidenceId, int caseId)
+        {
+            return await context.ModCaseEvidenceMappings.AsQueryable().FirstOrDefaultAsync(x => x.ModCase.Id == caseId && x.Evidence.Id == evidenceId);
+        }
+
+        public void CreateModCaseEvidenceMapping(ModCaseEvidenceMapping mapping)
+        {
+            context.ModCaseEvidenceMappings.Add(mapping);
+        }
+
+        public void DeleteModCaseEvidenceMapping(ModCaseEvidenceMapping mapping)
+        {
+            context.ModCaseEvidenceMappings.Remove(mapping);
         }
     }
 }

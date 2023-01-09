@@ -8,6 +8,7 @@ let lastGuildId: string | null = null;
 let lastGuild: IDiscordGuild | null = null;
 let lastCaseId: string | null = null;
 let lastAppealId: string | null = null;
+let lastEvidenceId: string | null = null;
 export const currentParams: Readable<IRouteParams> = derived(
     [params, authUser],
     ([rParams, currentUser], set) => {
@@ -35,11 +36,12 @@ export const currentParams: Readable<IRouteParams> = derived(
             }
         }
 
-        if (rParams.caseId !== lastCaseId || rParams.guildId !== lastGuildId || rParams.appealId !== lastAppealId) {
+        if (rParams.caseId !== lastCaseId || rParams.guildId !== lastGuildId || rParams.appealId !== lastAppealId || rParams.evidenceId !== lastEvidenceId) {
             lastGuildId = rParams.guildId;
             lastCaseId = rParams.caseId;
             lastAppealId = rParams.appealId;
             lastGuild = res.guild;
+            lastEvidenceId = rParams.evidenceId;
             set(res);
         }
     },

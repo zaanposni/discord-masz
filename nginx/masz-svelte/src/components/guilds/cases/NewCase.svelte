@@ -24,7 +24,9 @@
         TextArea,
         TextInput,
         TimePicker,
+        Tile,
     } from "carbon-components-svelte";
+    import { Box24, CopyLink24, Unlink24 } from "carbon-icons-svelte";
     import Autocomplete from "../../../core/Autocomplete.svelte";
     import type { ICase } from "../../../models/api/ICase";
     import { writable } from "svelte/store";
@@ -39,6 +41,8 @@
     import { goto } from "@roxi/routify";
     import { toastError, toastSuccess } from "../../../services/toast/store";
     import { slide } from "svelte/transition";
+    import type { IVerifiedEvidenceCompactView } from "../../../models/api/IVerifiedEvidenceCompactView";
+    import UserIcon from "../../discord/UserIcon.svelte";
 
     const utfOffset = new Date().getTimezoneOffset() * -1;
 
@@ -53,6 +57,62 @@
     let templateModalTitle: string = "";
     let templateModalVisibility: string = "-1";
     let templateSubmitting: boolean = false;
+
+    let evidenceModalOpen = writable(false);
+    let evidenceModalSearch = writable("");
+    let evidenceModalSearchResults = writable<IVerifiedEvidenceCompactView[]>([]);
+    let evidenceModalSearching = writable(false);
+    let linkedEvidence = writable<IVerifiedEvidenceCompactView[]>([]);
+
+    let searchEvidenceDebouncer;
+    function searchEvidence(search: string) {
+        if (searchEvidenceDebouncer) {
+            clearTimeout(searchEvidenceDebouncer);
+        }
+
+        if (search) {
+            evidenceModalSearching.set(true);
+            evidenceModalSearchResults.set([]);
+
+            const data = {
+                customTextFilter: search,
+            };
+
+            searchEvidenceDebouncer = setTimeout(() => {
+                API.post(`/guilds/${$currentParams.guildId}/evidence/evidencetable?startPage=0`, data, CacheMode.API_ONLY, false)
+                    .then((response: { evidence: IVerifiedEvidenceCompactView[]; fullSize: number }) => {
+                        evidenceModalSearchResults.set(
+                            response.evidence.filter(
+                                (e) => !$linkedEvidence.some((x) => x.verifiedEvidence.id == e.verifiedEvidence.id)
+                            )
+                        );
+                        evidenceModalSearching.set(false);
+                    })
+                    .catch(() => {
+                        evidenceModalSearching.set(false);
+                    });
+            }, 500);
+        }
+    }
+    $: searchEvidence($evidenceModalSearch);
+
+    function onLinkEvidenceModalClosed() {
+        evidenceModalOpen.set(false);
+        setTimeout(() => {
+            evidenceModalSearch.set("");
+            evidenceModalSearching.set(false);
+            evidenceModalSearchResults.set([]);
+        }, 500);
+    }
+
+    function linkEvidence(evidence: IVerifiedEvidenceCompactView) {
+        linkedEvidence.update(x => [evidence, ...x]);
+        onLinkEvidenceModalClosed();
+    }
+
+    function unlinkEvidence(evidence: IVerifiedEvidenceCompactView) {
+        linkedEvidence.set($linkedEvidence.filter(e => e.verifiedEvidence.id !== evidence.verifiedEvidence.id));
+    }
 
     let labelRef;
     let selectedLabels: Writable<string[]> = writable([]);
@@ -172,11 +232,15 @@
             CacheMode.API_ONLY,
             false
         )
-            .then((res: { caseId: number }) => {
+            .then((res: { caseId: number; id: number }) => {
                 API.clearCacheEntryLike("post", `/guilds/${$currentParams.guildId}/modcasetable`);
                 submitting = false;
                 toastSuccess($_("guilds.casedialog.casecreated", { values: { id: res.caseId } }));
                 $goto(`/guilds/${$currentParams.guildId}/cases/${res.caseId}`);
+
+                $linkedEvidence.forEach((evidence) => {
+                    linkEvidenceInApi(evidence, res.caseId);
+                })
 
                 $filesToUpload.forEach((file) => {
                     uploadFile(file, res.caseId);
@@ -185,6 +249,13 @@
             .catch((err) => {
                 toastError($_("guilds.casedialog.casecreatefailed"));
                 submitting = false;
+            });
+    }
+
+    function linkEvidenceInApi(evidence: IVerifiedEvidenceCompactView, caseId: number) {
+        API.post(`guilds/${$currentParams.guildId}/evidencemapping/${evidence.verifiedEvidence.id}/${caseId}`, null, CacheMode.API_ONLY, false)
+            .catch(() => {
+                toastError($_("guilds.caseview.evidencelinkfailed"))
             });
     }
 
@@ -280,7 +351,17 @@
             }
         }
     });
+
+    function onLinkEvidenceButton() {
+        evidenceModalOpen.set(true);
+    }
 </script>
+
+<style>
+    #evidence-explained {
+        margin-bottom: 1rem;
+    }
+</style>
 
 <Modal
     size="sm"
@@ -315,6 +396,64 @@
             titleText={$_("guilds.casedialog.visibility")}
             placeholder={$_("guilds.casedialog.visibility")} />
     </div>
+</Modal>
+
+<!-- Link evidence modal -->
+<Modal
+    size="sm"
+    open={$evidenceModalOpen}
+    selectorPrimaryFocus="#evidence-search"
+    modalHeading={$_("guilds.caseview.linkevidence")}
+    passiveModal
+    on:close={onLinkEvidenceModalClosed}
+>
+    <div class="mb-2">
+        <TextInput
+            id="evidence-search"
+            labelText={$_("guilds.caseview.search")}
+            placeholder={$_("guilds.caseview.search")}
+            bind:value={$evidenceModalSearch} 
+        />
+    </div>
+    {#if $evidenceModalSearching}
+        <div>
+            <InlineLoading />
+        </div>
+    {:else}
+        <div class="flex flex-col" transition:slide|local>
+            {#each $evidenceModalSearchResults as evidence}
+                <div transition:slide|local>
+                    <Tile class="mb-2" light>
+                        <div class="flex flex-row grow-0 w-full max-w-full items-center">
+                            <Box24 class="shrink-0 mr-2" />
+                            <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
+                                #{evidence.verifiedEvidence.id}
+                            </div>
+                            <div class="shrink-0 mr-2">
+                                <div class="flex flex-row flex-wrap items-center">
+                                    <UserIcon class="self-start mr-2" user={evidence.reported}/>
+                                    <div class="mr-2">
+                                        {evidence.reported?.username ?? evidence.verifiedEvidence.username}#{evidence.reported?.discriminator ??
+                                            evidence.verifiedEvidence.discriminator}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grow truncate">
+                                {evidence.verifiedEvidence.reportedContent.slice(0, 31)}
+                            </div>
+                            <div class="cursor-pointer">
+                                <CopyLink24 class="mr-2" on:click={() => linkEvidence(evidence)} />
+                            </div>
+                        </div>
+                    </Tile>
+                </div>
+            {:else}
+                {#if $evidenceModalSearch}
+                    {$_("guilds.caseview.noevidencefound")}
+                {/if}
+            {/each}
+        </div>
+    {/if}
 </Modal>
 
 <Loading active={submitting} />
@@ -442,6 +581,45 @@
                         placeholder={$currentLanguage?.timeFormat ?? "hh:MM"} />
                 </div>
             {/if}
+        </div>
+
+        <!-- Evidence -->
+
+        <div class="flex flex-col mb-4">
+            <div class="text-lg font-bold mb-2">{$_("nav.guild.evidence")}</div>
+            <div class="text-md" id="evidence-explained">{$_("guilds.casedialog.evidenceexplained")}</div>
+            {#if $linkedEvidence.length > 0}
+                <div class="mb-4">
+                    <div class="flex flex-col" id="linkedevidence">
+                        {#each $linkedEvidence ?? [] as evidence}
+                        <Tile class="mb-2">
+                            <div class="flex flex-row grow-0 w-full max-w-full items-center">
+                                <Box24 class="shrink-0 mr-2"/>
+                                <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
+                                    #{evidence.verifiedEvidence.id}
+                                </div>
+                                <div class="mr-2">
+                                    {evidence.verifiedEvidence.username}#{evidence.verifiedEvidence.discriminator}
+                                </div>
+                                <div class="grow truncate">
+                                    {evidence.verifiedEvidence.reportedContent}
+                                </div>
+                                <div>
+                                    <Unlink24 style="cursor: pointer;" on:click={() => unlinkEvidence(evidence)}/>
+                                </div>
+                            </div>
+                        </Tile>
+                        {/each}
+                    </div>
+                </div>
+            {/if}
+            <Button 
+                size="small"
+                icon={CopyLink24}
+                on:click={onLinkEvidenceButton}
+            >
+                {$_("guilds.caseview.linkevidence")}
+            </Button>
         </div>
 
         <!-- Files -->

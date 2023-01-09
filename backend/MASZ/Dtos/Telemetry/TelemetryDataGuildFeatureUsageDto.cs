@@ -108,6 +108,7 @@ namespace MASZ.Dtos
         public bool AutomodSpamEnabled { get; set; }
         public bool AutomodDuplicatesEnabled { get; set; }
         public bool AutomodLinksEnabled { get; set; }
+        public bool AutomodPhishingLinksEnabled { get; set; }
 
         // zalgo
 
@@ -117,6 +118,10 @@ namespace MASZ.Dtos
         // invites
 
         public int TrackedInvitesCount { get; set; }
+
+        // evidence
+
+        public int EvidenceCount { get; set; }
 
         public TelemetryDataGuildFeatureUsageDto(
             string hashedServer,
@@ -133,7 +138,8 @@ namespace MASZ.Dtos
             List<MASZ.Models.AutoModerationConfig> automodConfigs,
             List<MASZ.Models.AutoModerationEvent> automodEvents,
             MASZ.Models.ZalgoConfig zalgoConfig,
-            int trackedInviteCount
+            int trackedInviteCount,
+            int evidenceCount
         )
         {
             HashedServer = hashedServer;
@@ -202,9 +208,11 @@ namespace MASZ.Dtos
             AutomodSpamEnabled = automodConfigs.Find(x => x.AutoModerationType == AutoModerationType.TooManyMessages) != null;
             AutomodDuplicatesEnabled = automodConfigs.Find(x => x.AutoModerationType == AutoModerationType.TooManyDuplicatedCharacters) != null;
             AutomodLinksEnabled = automodConfigs.Find(x => x.AutoModerationType == AutoModerationType.TooManyLinks) != null;
+            AutomodPhishingLinksEnabled = automodConfigs.Find(x => x.AutoModerationType == AutoModerationType.TooManyPhishingLinks) != null;
             ZalgoEnabled = zalgoConfig != null && zalgoConfig.Enabled;
             ZalgoTryRenameEnabled = zalgoConfig != null && zalgoConfig.renameNormal;
             TrackedInvitesCount = trackedInviteCount;
+            EvidenceCount = evidenceCount;
         }
     }
 }
