@@ -47,6 +47,7 @@
             "base": "Hermandad",
             "dashboard": "Tablero",
             "cases": "Casos",
+            "evidence": "Pruebas",
             "automods": "Automods",
             "appeals": "Apelaciones",
             "usernotes": "Notas de usuario",
@@ -281,7 +282,10 @@
             "moderatorunknown": "Desconocido o oculto",
             "created": "Creado",
             "updated": "Actualizado",
-            "unknown": "Desconocido"
+            "unknown": "Desconocido",
+            "linkevidence": "Vincular evidencia",
+            "noevidencefound": "No se encontró evidencia",
+            "evidencelinkfailed": "Error al vincular evidencia"
         },
         "casedialog": {
             "createcase": "Crear caso",
@@ -323,7 +327,8 @@
             "templateapplied": "Plantilla aplicada",
             "templatesaved": "Plantilla guardada",
             "templatesavefailed": "Error al guardar plantilla",
-            "visibility": "Visibilidad"
+            "visibility": "Visibilidad",
+            "evidenceexplained": "¿No encuentra lo que busca? No se preocupe, ¡siempre puede crear y enlazar pruebas más tarde!"
         },
         "modcasetable": {
             "selectmembers": "Miembros",
@@ -343,6 +348,28 @@
             "failedtoload": "No se pudieron cargar los casos.",
             "nomatches": "Ningún caso coincide con su búsqueda.",
             "nomatchesdescription": "Puede que no haya casos todavía en este servidor. Sin embargo, puede intentar ajustar sus filtros arriba para encontrar algunos casos."
+        },
+        "evidencetable": {
+            "create": "Crear evidencia",
+            "createinstruction": "Pegue el enlace del mensaje de Discord en el campo de texto a continuación para crear la evidencia",
+            "createplaceholder": "Enlace de Discord aquí",
+            "badcreate": "El enlace del mensaje no es correcto",
+            "badguild": "El ID del servidor en el enlace del mensaje no coincide con el ID de este servidor",
+            "created": "Evidencia creada con éxito",
+            "createerror": "Algo impidió que se creara la evidencia"
+        },
+        "evidenceview": {
+            "evidencenotfound": "La evidencia no existe",
+            "linktocase": "Enlace al caso",
+            "evidence": "Evidencia",
+            "goto": "Ver en Discord",
+            "reportedcontent": "Contenido reportado",
+            "sent": "Enviado a",
+            "reported": "Reportado a",
+            "shareevidence": "Compartir",
+            "deleted": "Evidencia eliminada",
+            "deletefailed": "No se pudo eliminar la evidencia",
+            "unknown": "Desconocido"
         },
         "automodtable": {
             "selectmembers": "Miembros",

@@ -328,7 +328,7 @@
             "templatesaved": "Template saved",
             "templatesavefailed": "Failed to save template",
             "visibility": "Visibility",
-            "evidenceexplained": "Evidence related to this case visible only to moderators. Can't find what you're looking for? Don't worry, you can always create and link evidence later!"
+            "evidenceexplained": "Can't find what you're looking for? Don't worry, you can always create and link evidence later!"
         },
         "modcasetable": {
             "selectmembers": "Members",

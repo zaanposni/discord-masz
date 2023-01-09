@@ -47,6 +47,7 @@
             "base": "Güde",
             "dashboard": "Deschboard",
             "cases": "Vorfälle",
+            "evidence": "Bweise",
             "automods": "Automods",
             "appeals": "Entbannungsonträge",
             "usernotes": "Benutzanotizen",
@@ -281,7 +282,10 @@
             "moderatorunknown": "Unbekonnt oda vasteckt",
             "created": "Erstöt",
             "updated": "Aktualisiat",
-            "unknown": "Unbekonnt"
+            "unknown": "Unbekonnt",
+            "linkevidence": "Bewois verknüpfen",
+            "noevidencefound": "Kein Bewois gefunden",
+            "evidencelinkfailed": "Bewoisverknüpfung fehlgschlaa"
         },
         "casedialog": {
             "createcase": "Vorfoi erstön",
@@ -323,7 +327,8 @@
             "templateapplied": "Vorlog angwendet",
             "templatesaved": "Vorlog gspeichat",
             "templatesavefailed": "Fehla beim Speichan dea Vorlog",
-            "visibility": "Sichtboakeit"
+            "visibility": "Sichtboakeit",
+            "evidenceexplained": "Kannst ned finden, wonach du suchst? Keine Sorge, du kannst Beweise jederzeit erstellen und verknüpfen!"
         },
         "modcasetable": {
             "selectmembers": "Mitglieda",
@@ -343,6 +348,28 @@
             "failedtoload": "Vorfälle konntn ned glodn wean.",
             "nomatches": "Kane Vorfälle passn zu deina Suach.",
             "nomatchesdescription": "Kannn Vorfälle in dieser Gilde ned gfundn. Du kannst aber versuchen, deine Filter oben zu anpassn, um einige Vorfälle zu findn."
+        },
+        "evidencetable": {
+            "create": "Beweis erstön",
+            "createinstruction": "Füg den Discord-Nachrichtenlink in das Textfeld unten ein, um den Beweis zu erstellen",
+            "createplaceholder": "Discord-Link hier",
+            "badcreate": "Der Nachrichtenlink ist nicht korrekt",
+            "badguild": "Die Gilden-ID im Nachrichtenlink stimmt nicht mit der Gilden-ID überein",
+            "created": "Beweis erfolgreich erstellt",
+            "createerror": "Etwas verhinderte die Erstellung des Beweises"
+        },
+        "evidenceview": {
+            "evidencenotfound": "Beweis existiert nicht",
+            "linktocase": "Link zum Vorfall",
+            "evidence": "Beweis",
+            "goto": "In Discord anzeigen",
+            "reportedcontent": "Gemeldeter Inhalt",
+            "sent": "Gesendet um",
+            "reported": "Gemeldet um",
+            "shareevidence": "Teilen",
+            "deleted": "Beweis glöscht",
+            "deletefailed": "Beweis konnte nicht gelöscht werden",
+            "unknown": "Unbekannt"
         },
         "automodtable": {
             "selectmembers": "Mitglieda",

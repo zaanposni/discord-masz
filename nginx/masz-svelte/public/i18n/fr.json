@@ -47,6 +47,7 @@
             "base": "Guilde",
             "dashboard": "Tableau de bord",
             "cases": "Cas",
+            "evidence": "Preuves",
             "automods": "Automods",
             "appeals": "Appel",
             "usernotes": "Notes d'utilisateur",
@@ -281,7 +282,10 @@
             "moderatorunknown": "Inconnu ou caché",
             "created": "Créé",
             "updated": "Mis à jour",
-            "unknown": "Inconnu"
+            "unknown": "Inconnu",
+            "linkevidence": "Lier la preuve",
+            "noevidencefound": "Aucune preuve trouvée",
+            "evidencelinkfailed": "Échec du lien de preuve"
         },
         "casedialog": {
             "createcase": "Créer un cas",
@@ -323,7 +327,8 @@
             "templateapplied": "Modèle appliqué",
             "templatesaved": "Modèle enregistré",
             "templatesavefailed": "Échec de l'enregistrement du modèle",
-            "visibility": "Visibilité"
+            "visibility": "Visibilité",
+            "evidenceexplained": "Vous ne trouvez pas ce que vous cherchez ? Ne vous inquiétez pas, vous pouvez toujours créer et lier des preuves plus tard!"
         },
         "modcasetable": {
             "selectmembers": "Membres",
@@ -343,6 +348,28 @@
             "failedtoload": "Échec du chargement des cas.",
             "nomatches": "Aucun cas ne correspond à votre recherche.",
             "nomatchesdescription": "Il n'y a peut-être pas encore de cas dans ce serveur. Cependant, vous pouvez essayer de régler vos filtres ci-dessus pour trouver des cas."
+        },
+        "evidencetable": {
+            "create": "Créer un élément de preuve",
+            "createinstruction": "Collez le lien du message Discord dans le champ de texte ci-dessous pour créer l'élément de preuve",
+            "createplaceholder": "Lien Discord ici",
+            "badcreate": "Le lien du message n'est pas correct",
+            "badguild": "L'ID du serveur dans le lien du message ne correspond pas à l'ID de ce serveur",
+            "created": "Élément de preuve créé avec succès",
+            "createerror": "Quelque chose a empêché la création de l'élément de preuve"
+        },
+        "evidenceview": {
+            "evidencenotfound": "L'élément de preuve n'existe pas",
+            "linktocase": "Lien vers l'affaire",
+            "evidence": "Élément de preuve",
+            "goto": "Voir dans Discord",
+            "reportedcontent": "Contenu signalé",
+            "sent": "Envoyé à",
+            "reported": "Signalé à",
+            "shareevidence": "Partager",
+            "deleted": "Élément de preuve supprimé",
+            "deletefailed": "Impossible de supprimer l'élément de preuve",
+            "unknown": "Inconnu"
         },
         "automodtable": {
             "selectmembers": "Membres",

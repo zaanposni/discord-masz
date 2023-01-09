@@ -4076,6 +4076,12 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
+                Language.de => "Fehler beim Registrieren des Beweises.",
+                Language.at => "Fehler beim Registrieren des Beweises.",
+                Language.fr => "Impossible d'enregistrer la preuve.",
+                Language.es => "No se pudo registrar la evidencia.",
+                Language.ru => "Не удалось зарегистрировать доказательство.",
+                Language.it => "Impossibile registrare la prova.",
                 _ => "Failed to register evidence.",
             };
         }
@@ -4083,6 +4089,12 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
+                Language.de => "Erfolgreich Beweis registriert",
+                Language.at => "Erfolgreich Bweis registriert",
+                Language.fr => "Preuve enregistrée avec succès",
+                Language.es => "Evidencia registrada con éxito",
+                Language.ru => "Доказательство успешно зарегистрировано",
+                Language.it => "Prova registrata con successo",
                 _ => "Successfully registered evidence",
             };
         }

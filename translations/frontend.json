@@ -373,7 +373,13 @@
             },
             "evidence": {
                 "description": "Evidence (plural)",
-                "en": "Evidence"
+                "en": "Evidence",
+                "de": "Beweise",
+                "at": "Bweise",
+                "fr": "Preuves",
+                "es": "Pruebas",
+                "ru": "Доказательства",
+                "it": "Prove"
             },
             "automods": {
                 "description": "Automods",
@@ -2277,15 +2283,33 @@
             },
             "linkevidence": {
                 "description": "Link evidence",
-                "en": "Link evidence"
+                "en": "Link evidence",
+                "de": "Beweis verknüpfen",
+                "at": "Bewois verknüpfen",
+                "fr": "Lier la preuve",
+                "es": "Vincular evidencia",
+                "ru": "Связать доказательства",
+                "it": "Collega prova"
             },
             "noevidencefound": {
                 "description": "a feedback message displayed when no evidence is found (evidence linking)",
-                "en": "No evidence found"
+                "en": "No evidence found",
+                "de": "Kein Beweis gefunden",
+                "at": "Kein Bewois gefunden",
+                "fr": "Aucune preuve trouvée",
+                "es": "No se encontró evidencia",
+                "ru": "Доказательства не найдены",
+                "it": "Nessuna prova trovata"
             },
             "evidencelinkfailed": {
                 "description": "error message displayed when evidence to case link fails",
-                "en": "Evidence link failed"
+                "en": "Evidence link failed",
+                "de": "Beweisverknüpfung fehlgeschlagen",
+                "at": "Bewoisverknüpfung fehlgschlaa",
+                "fr": "Échec du lien de preuve",
+                "es": "Error al vincular evidencia",
+                "ru": "Связь доказательств не удалась",
+                "it": "Collegamento prova fallito"
             }
         },
         "casedialog": {
@@ -2691,7 +2715,13 @@
             },
             "evidenceexplained": {
                 "description": "Explaination of linked evidence",
-                "en": "Evidence related to this case visible only to moderators. Can't find what you're looking for? Don't worry, you can always create and link evidence later!"
+                "en": "Can't find what you're looking for? Don't worry, you can always create and link evidence later!",
+                "de": "Kannst du nicht finden, wonach du suchst? Keine Sorge, du kannst Beweise jederzeit erstellen und verknüpfen!",
+                "at": "Kannst ned finden, wonach du suchst? Keine Sorge, du kannst Beweise jederzeit erstellen und verknüpfen!",
+                "fr": "Vous ne trouvez pas ce que vous cherchez ? Ne vous inquiétez pas, vous pouvez toujours créer et lier des preuves plus tard!",
+                "es": "¿No encuentra lo que busca? No se preocupe, ¡siempre puede crear y enlazar pruebas más tarde!",
+                "ru": "Не можете найти то, что ищете? Не волнуйтесь, вы всегда можете создать и связать улики позже!",
+                "it": "Non riesci a trovare quello che stai cercando? Non preoccuparti, puoi sempre creare e collegare le prove in un secondo momento!"
             }
         },
         "modcasetable": {
@@ -2869,77 +2899,185 @@
         "evidencetable": {
             "create": {
                 "description": "tooltip for creating evidence in dashboard",
-                "en": "Create evidence"
+                "en": "Create evidence",
+                "de": "Beweis erstellen",
+                "at": "Beweis erstön",
+                "fr": "Créer un élément de preuve",
+                "es": "Crear evidencia",
+                "ru": "Создать доказательство",
+                "it": "Crea prova"
             },
             "createinstruction": {
                 "description": "instructions on how to create evidence in the dashboard",
-                "en": "Paste the discord message link in the text field below to create the evidence"
+                "en": "Paste the discord message link in the text field below to create the evidence",
+                "de": "Füge den Discord-Nachrichtenlink in das Textfeld unten ein, um den Beweis zu erstellen",
+                "at": "Füg den Discord-Nachrichtenlink in das Textfeld unten ein, um den Beweis zu erstellen",
+                "fr": "Collez le lien du message Discord dans le champ de texte ci-dessous pour créer l'élément de preuve",
+                "es": "Pegue el enlace del mensaje de Discord en el campo de texto a continuación para crear la evidencia",
+                "ru": "Вставьте ссылку на сообщение Discord в текстовое поле ниже, чтобы создать доказательство",
+                "it": "Incolla il link del messaggio di Discord nel campo di testo qui sotto per creare la prova"
             },
             "createplaceholder": {
                 "description": "message link text field placeholder",
-                "en": "Discord link here"
+                "en": "Discord link here",
+                "de": "Discord-Link hier",
+                "at": "Discord-Link hier",
+                "fr": "Lien Discord ici",
+                "es": "Enlace de Discord aquí",
+                "ru": "Ссылка на Discord здесь",
+                "it": "Link di Discord qui"
             },
             "badcreate": {
                 "description": "error displayed when the message link is not correct",
-                "en": "The message link is not correct"
+                "en": "The message link is not correct",
+                "de": "Der Nachrichtenlink ist nicht korrekt",
+                "at": "Der Nachrichtenlink ist nicht korrekt",
+                "fr": "Le lien du message n'est pas correct",
+                "es": "El enlace del mensaje no es correcto",
+                "ru": "Ссылка на сообщение неверна",
+                "it": "Il link del messaggio non è corretto"
             },
             "badguild": {
                 "description": "error message displayed when the link guild id does not match the current guild id (the one in the dashboard url)",
-                "en": "The guild id in the message link does not match this guild's id"
+                "en": "The guild id in the message link does not match this guild's id",
+                "de": "Die Gilden-ID im Nachrichtenlink stimmt nicht mit der Gilden-ID überein",
+                "at": "Die Gilden-ID im Nachrichtenlink stimmt nicht mit der Gilden-ID überein",
+                "fr": "L'ID du serveur dans le lien du message ne correspond pas à l'ID de ce serveur",
+                "es": "El ID del servidor en el enlace del mensaje no coincide con el ID de este servidor",
+                "ru": "ID сервера в ссылке на сообщение не соответствует ID этого сервера",
+                "it": "L'ID del server nel link del messaggio non corrisponde all'ID di questo server"
             },
             "created": {
                 "description": "feedback message on successful evidence creation",
-                "en": "Evidence successfully created"
+                "en": "Evidence successfully created",
+                "de": "Beweis erfolgreich erstellt",
+                "at": "Beweis erfolgreich erstellt",
+                "fr": "Élément de preuve créé avec succès",
+                "es": "Evidencia creada con éxito",
+                "ru": "Доказательство успешно создано",
+                "it": "Prova creata con successo"
             },
             "createerror": {
                 "description": "error message displayed on the backend rejecting the evidence creation",
-                "en": "Something prevented the evidence from being created"
+                "en": "Something prevented the evidence from being created",
+                "de": "Etwas verhinderte die Erstellung des Beweises",
+                "at": "Etwas verhinderte die Erstellung des Beweises",
+                "fr": "Quelque chose a empêché la création de l'élément de preuve",
+                "es": "Algo impidió que se creara la evidencia",
+                "ru": "Что-то помешало созданию доказательства",
+                "it": "Qualcosa ha impedito la creazione della prova"
             }
         },
         "evidenceview": {
             "evidencenotfound": {
                 "description": "error displayed when attempting to view evidence that doesn't exist",
-                "en": "Evidence does not exist"
+                "en": "Evidence does not exist",
+                "de": "Beweis existiert nicht",
+                "at": "Beweis existiert nicht",
+                "fr": "L'élément de preuve n'existe pas",
+                "es": "La evidencia no existe",
+                "ru": "Доказательство не существует",
+                "it": "La prova non esiste"
             },
             "linktocase": {
                 "description": "Link to case",
-                "en": "Link to case"
+                "en": "Link to case",
+                "de": "Link zum Vorfall",
+                "at": "Link zum Vorfall",
+                "fr": "Lien vers l'affaire",
+                "es": "Enlace al caso",
+                "ru": "Ссылка на дело",
+                "it": "Collegamento al caso"
             },
             "evidence": {
                 "description": "Evidence (singular)",
-                "en": "Evidence"
+                "en": "Evidence",
+                "de": "Beweis",
+                "at": "Beweis",
+                "fr": "Élément de preuve",
+                "es": "Evidencia",
+                "ru": "Доказательство",
+                "it": "Prova"
             },
             "goto": {
                 "description": "text displayed on the button that displays the message in Discord",
-                "en": "View in Discord"
+                "en": "View in Discord",
+                "de": "In Discord anzeigen",
+                "at": "In Discord anzeigen",
+                "fr": "Voir dans Discord",
+                "es": "Ver en Discord",
+                "ru": "Посмотреть в Discord",
+                "it": "Visualizza in Discord"
             },
             "reportedcontent": {
                 "description": "Label for the reported content",
-                "en": "Reported content"
+                "en": "Reported content",
+                "de": "Gemeldeter Inhalt",
+                "at": "Gemeldeter Inhalt",
+                "fr": "Contenu signalé",
+                "es": "Contenido reportado",
+                "ru": "Сообщение",
+                "it": "Contenuto segnalato"
             },
             "sent": {
                 "description": "Label for 'sent at' timestamp",
-                "en": "Sent at"
+                "en": "Sent at",
+                "de": "Gesendet um",
+                "at": "Gesendet um",
+                "fr": "Envoyé à",
+                "es": "Enviado a",
+                "ru": "Отправлено в",
+                "it": "Inviato a"
             },
             "reported": {
                 "description": "Label for 'reported at' timestamp",
-                "en": "Reported at"
+                "en": "Reported at",
+                "de": "Gemeldet um",
+                "at": "Gemeldet um",
+                "fr": "Signalé à",
+                "es": "Reportado a",
+                "ru": "Сообщено в",
+                "it": "Segnalato a"
             },
             "shareevidence": {
                 "description": "label for the 'share' button",
-                "en": "Share"
+                "en": "Share",
+                "de": "Teilen",
+                "at": "Teilen",
+                "fr": "Partager",
+                "es": "Compartir",
+                "ru": "Поделиться",
+                "it": "Condividi"
             },
             "deleted": {
                 "description": "displayed on successful deletion",
-                "en": "Evidence deleted"
+                "en": "Evidence deleted",
+                "de": "Beweis gelöscht",
+                "at": "Beweis glöscht",
+                "fr": "Élément de preuve supprimé",
+                "es": "Evidencia eliminada",
+                "ru": "Доказательство удалено",
+                "it": "Prova eliminata"
             },
             "deletefailed": {
                 "description": "error displayed on unsuccessful deletion",
-                "en": "Failed to delete evidence"
+                "en": "Failed to delete evidence",
+                "de": "Beweis konnte nicht gelöscht werden",
+                "at": "Beweis konnte nicht gelöscht werden",
+                "fr": "Impossible de supprimer l'élément de preuve",
+                "es": "No se pudo eliminar la evidencia",
+                "ru": "Не удалось удалить доказательство",
+                "it": "Impossibile eliminare la prova"
             },
             "unknown": {
                 "description": "displayed when the author of the message is unknown",
-                "en": "Unknown"
+                "en": "Unknown",
+                "de": "Unbekannt",
+                "at": "Unbekannt",
+                "fr": "Inconnu",
+                "es": "Desconocido",
+                "ru": "Неизвестно",
+                "it": "Sconosciuto"
             }
         },
         "automodtable": {
