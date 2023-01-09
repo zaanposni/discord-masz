@@ -12,8 +12,9 @@
     ],
     "features": [
       {
-        "name": "Verified Evidence.",
-        "description": "You can now save Discord messages in MASZ. They can be linked to multiple cases as verified evidence."
+        "title": "Verified Evidence.",
+        "description": "You can now save Discord messages in MASZ. They can be linked to multiple cases as verified evidence.",
+        "link": "https://github.com/zaanposni/discord-masz/issues/562"
       }
     ]
   },
