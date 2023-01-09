@@ -31,6 +31,23 @@ namespace MASZ.Controllers.api.v1.Views
 
             VerifiedEvidenceExpandedView view = new(evidence, reported, moderator);
 
+            if(evidence.EvidenceMappings != null)
+            {
+                if (isMod)
+                {
+                    view.LinkedCases = evidence.EvidenceMappings
+                        .Select(mapping => new CaseView(mapping.ModCase))
+                        .ToList();
+                }
+                else
+                {
+                    view.LinkedCases = evidence.EvidenceMappings
+                        .Where(x => x.ModCase.UserId == reported.Id)
+                        .Select(x => new CaseView(x.ModCase))
+                        .ToList();
+                }
+            }
+
             if(!(await GuildConfigRepository.CreateDefault(_serviceProvider).GetGuildConfig(guildId)).PublishModeratorInfo)
             {
                 if(!isMod)
@@ -39,17 +56,6 @@ namespace MASZ.Controllers.api.v1.Views
                 }
             }
 
-            if(evidence.EvidenceMappings != null)
-            {
-                if (isMod)
-                {
-                    view.LinkedCases = evidence.EvidenceMappings.Select(mapping => new CaseView(mapping.ModCase)).ToList();
-                }
-                else
-                {
-                    view.LinkedCases = evidence.EvidenceMappings.Where(x => x.ModCase.UserId == reported.Id).Select(x => new CaseView(x.ModCase)).ToList();
-                }
-            }
             return Ok(view);
         }
     }

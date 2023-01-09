@@ -400,7 +400,7 @@ namespace MASZ.Services
             return member;
         }
 
-        public async Task<IMessage> GetIMessage(ulong channelId, ulong messageId, CacheBehavior cacheBehavior)
+        public async Task<IMessage> GetIMessage(ulong guildId, ulong channelId, ulong messageId, CacheBehavior cacheBehavior)
         {
             CacheKey key = CacheKey.IMessage(channelId, messageId);
             IMessage message;
@@ -415,11 +415,13 @@ namespace MASZ.Services
 
             try
             {
-                var channel = await _client.GetChannelAsync(channelId);
+                SocketGuild guild = _client.GetGuild(guildId);
+
+                SocketGuildChannel channel = guild.GetChannel(channelId);
 
                 if(channel == null)
                 {
-                    _logger.LogWarning($"Could not fetch channel '{channelId}' from API");
+                    _logger.LogError($"Could not fetch channel '{channelId}' from API");
                     return FallBackToCache<IMessage>(key, cacheBehavior);
                 }
 

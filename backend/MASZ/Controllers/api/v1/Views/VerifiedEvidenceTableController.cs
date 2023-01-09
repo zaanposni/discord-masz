@@ -39,18 +39,18 @@ namespace MASZ.Controllers.api.v1.Views
                 userOnly = identity.GetCurrentUser().Id;
             }
 
-            List<VerifiedEvidence> evidence = new(); 
+            List<VerifiedEvidence> evidence = new();
 
             if (userOnly != 0)
             {
-                evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidencePaginationForUser(guildId, userOnly, startPage);
+                evidence = await VerifiedEvidenceRepository.CreateWithBotIdentity(_serviceProvider).GetEvidencePaginationForUser(guildId, userOnly, startPage);
             } else
             {
-                evidence = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidencePagination(guildId, startPage);
+                evidence = await VerifiedEvidenceRepository.CreateWithBotIdentity(_serviceProvider).GetEvidencePagination(guildId, startPage);
             }
 
             List<VerifiedEvidenceTableEntry> tmp = new();
-            foreach(var e in evidence) 
+            foreach(var e in evidence)
             {
                 var entry = new VerifiedEvidenceTableEntry(
                     e,
@@ -67,7 +67,7 @@ namespace MASZ.Controllers.api.v1.Views
                 table = table.Where(t =>
                     Contains(t.VerifiedEvidence.ReportedContent, search.CustomTextFilter) ||
                     Contains(t.VerifiedEvidence.UserId, search.CustomTextFilter) ||
-                    Contains(t.VerifiedEvidence.Username, search.CustomTextFilter) ||
+                    Contains(t.VerifiedEvidence.Username + "#" + t.VerifiedEvidence.Discriminator, search.CustomTextFilter) ||
                     Contains(t.VerifiedEvidence.Nickname, search.CustomTextFilter) ||
                     Contains(t.VerifiedEvidence.ModId, search.CustomTextFilter) ||
                     Contains(t.VerifiedEvidence.ChannelId, search.CustomTextFilter) ||

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using MASZ.Models.Views;
 using MASZ.Dtos.VerifiedEvidence;
 using MASZ.Models;
+using Discord;
 
 namespace MASZ.Controllers.api.v1
 {
@@ -32,10 +33,10 @@ namespace MASZ.Controllers.api.v1
 
             if(currentUser == 0) 
             {
-                evidence = (await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).GetEvidencePagination(guildId, startPage)).Select(x => new VerifiedEvidenceView(x)).ToList();
+                evidence = (await VerifiedEvidenceRepository.CreateWithBotIdentity(_serviceProvider).GetEvidencePagination(guildId, startPage)).Select(x => new VerifiedEvidenceView(x)).ToList();
             } else
             {
-                evidence = (await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, currentIdentity).GetEvidencePaginationForUser(guildId, currentUser, startPage)).Select(x => new VerifiedEvidenceView(x)).ToList();
+                evidence = (await VerifiedEvidenceRepository.CreateWithBotIdentity(_serviceProvider).GetEvidencePaginationForUser(guildId, currentUser, startPage)).Select(x => new VerifiedEvidenceView(x)).ToList();
             }
 
             if (!(await GetRegisteredGuild(guildId)).PublishModeratorInfo)
@@ -57,7 +58,7 @@ namespace MASZ.Controllers.api.v1
         {
             await RequirePermission(guildId, evidenceId, APIActionPermission.View);
             Identity currentIdentity = await GetIdentity();
-            VerifiedEvidenceView evidence = new(await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, currentIdentity).GetEvidence(guildId, evidenceId));
+            VerifiedEvidenceView evidence = new(await VerifiedEvidenceRepository.CreateWithBotIdentity(_serviceProvider).GetEvidence(guildId, evidenceId));
 
             if (!(await GetRegisteredGuild(guildId)).PublishModeratorInfo)
             {
@@ -73,7 +74,7 @@ namespace MASZ.Controllers.api.v1
         public async Task<IActionResult> DeleteEvidence([FromRoute] ulong guildId, [FromRoute] int evidenceId)
         {
             await RequirePermission(guildId, evidenceId, APIActionPermission.Delete);
-            VerifiedEvidence deleted = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).DeleteEvidence(guildId, evidenceId);
+            VerifiedEvidence deleted = await VerifiedEvidenceRepository.CreateWithBotIdentity(_serviceProvider).DeleteEvidence(guildId, evidenceId);
             return Ok(deleted);
         }
 
@@ -82,19 +83,19 @@ namespace MASZ.Controllers.api.v1
         {
             await RequirePermission(guildId, DiscordPermission.Moderator);
 
-            var currentUser = await GetCurrentUser();
+            IUser currentUser = await GetCurrentUser();
 
-            var channelId = body.ChannelId;
-            var messageId = body.MessageId;
+            ulong channelId = body.ChannelId;
+            ulong messageId = body.MessageId;
 
-            var message = await _discordAPI.GetIMessage(channelId, messageId, CacheBehavior.IgnoreCache);
+            IMessage message = await _discordAPI.GetIMessage(guildId, channelId, messageId, CacheBehavior.IgnoreCache);
 
-            if(message == null) 
+            if(message == null)
             {
                 return NotFound();
             }
 
-            var nickname = (await _discordAPI.FetchMemberInfo(guildId, message.Author.Id, CacheBehavior.OnlyCache))?.Nickname;
+            string nickname = (await _discordAPI.FetchMemberInfo(guildId, message.Author.Id, CacheBehavior.OnlyCache))?.Nickname;
 
             VerifiedEvidence evidence = new()
             {
@@ -111,7 +112,7 @@ namespace MASZ.Controllers.api.v1
                 Nickname = nickname,
             };
 
-            var created = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).CreateEvidence(evidence);
+            VerifiedEvidence created = await VerifiedEvidenceRepository.CreateDefault(_serviceProvider, await GetIdentity()).CreateEvidence(evidence);
 
             return Ok(created);
         }

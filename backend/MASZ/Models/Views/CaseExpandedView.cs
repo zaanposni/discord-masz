@@ -73,6 +73,11 @@ namespace MASZ.Models
             LinkedCases.Clear();
             ModCase.RemoveModeratorInfo();
 
+            foreach (var linkedEvidence in LinkedEvidence)
+            {
+                linkedEvidence.RemoveModeratorInfo();
+            }
+
             foreach (var comment in Comments)
             {
                 comment.RemoveModeratorInfo(ModCase.UserId);

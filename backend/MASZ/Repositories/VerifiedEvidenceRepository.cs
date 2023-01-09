@@ -85,7 +85,7 @@ namespace MASZ.Repositories
             VerifiedEvidence evidence = await GetEvidence(guildId, evidenceId);
             ModCase modCase = await ModCaseRepository.CreateWithBotIdentity(_serviceProvider).GetModCase(guildId, caseId);
 
-            ModCaseEvidenceMapping newMapping = new() 
+            ModCaseEvidenceMapping newMapping = new()
             {
                 Evidence = evidence,
                 ModCase = modCase

@@ -171,11 +171,11 @@ namespace MASZ.Repositories
         {
             try
             {
-                IMessage msg = await DiscordAPI.GetIMessage(evidence.ChannelId, evidence.MessageId, CacheBehavior.IgnoreButCacheOnError);
+                IMessage msg = await DiscordAPI.GetIMessage(evidence.GuildId, evidence.ChannelId, evidence.MessageId, CacheBehavior.IgnoreButCacheOnError);
 
                 if (msg == null)
                 {
-                    Logger.LogWarning("Failed to fetch message when creating modevent evidence");
+                    Logger.LogError("Failed to fetch message when creating modevent evidence");
                     return;
                 }
 
