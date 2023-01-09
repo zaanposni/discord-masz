@@ -49,6 +49,7 @@
             : null
     );
     const webhookRegex = new RegExp("^https://discord(app)?.com/api/webhooks/.*$");
+    const importBans = writable(false);
 
     const publicWebhookInvalid = derived(data, ($data) => {
         if (!$data) return true;
@@ -112,7 +113,8 @@
             modPublicNotificationWebhook: $data.modPublicNotificationWebhook?.trim() != "" ? $data.modPublicNotificationWebhook : null,
         };
         if (addMode) {
-            API.post(`/guilds`, dto, CacheMode.API_ONLY, false)
+            let importBansString = $importBans ? "?importExistingBans=true" : "";
+            API.post(`/guilds${importBansString}`, dto, CacheMode.API_ONLY, false)
                 .then(() => {
                     toastSuccess($_("guilds.config.saved"));
                     clearCache();
@@ -539,6 +541,25 @@
                 </div>
                 {#if matches}
                     <div />
+                {/if}
+
+                {#if addMode}
+                    <div>
+                        <div class="flex flex-row items-center">
+                            <div class="shrink-0">
+                                <Checkbox disabled={$submitting} labelText={$_("guilds.config.misc.importbans")} bind:checked={$importBans} />
+                            </div>
+                            <div class="grow" />
+                            <div class="shrink-0">
+                                <Tooltip>
+                                    <p>{$_("guilds.config.misc.importbansexplained")}</p>
+                                </Tooltip>
+                            </div>
+                        </div>
+                    </div>
+                    {#if matches}
+                        <div />
+                    {/if}
                 {/if}
 
                 <div>

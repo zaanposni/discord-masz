@@ -603,6 +603,8 @@
                 "title": "Divers",
                 "whois": "Exécuter whois sur la présence d'un membre",
                 "whoisexplained": "Envoie automatiquement des informations sur l'utilisateur rejoint à votre webhook interne.",
+                "importbans": "Importer les bannissements existants",
+                "importbansexplained": "Cela créera des cas pour chacun de vos bannissements existants. Cela peut prendre un certain temps.",
                 "language": "Langue"
             },
             "save": "Sauvegarder",

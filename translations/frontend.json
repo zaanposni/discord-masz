@@ -4897,6 +4897,26 @@
                     "ru": "Автоматически отправляет информацию о присоединенном пользователе на ваш внутренний веб-перехватчик.",
                     "it": "Invia automaticamente le informazioni sull'utente iscritto al tuo webhook interno."
                 },
+                "importbans": {
+                    "description": "import existing bans",
+                    "en": "Import existing bans",
+                    "de": "Importiere existierende Banns",
+                    "at": "Importiere existierende Banns",
+                    "fr": "Importer les bannissements existants",
+                    "es": "Importar prohibiciones existentes",
+                    "ru": "Импортировать существующие баны",
+                    "it": "Importa i bann esistenti"
+                },
+                "importbansexplained": {
+                    "description": "import bans explained",
+                    "en": "This will create cases for each of your existing bans. This might take a while.",
+                    "de": "Dies wird Vorfälle für jeden deiner existierenden Banns erstellen. Dies kann eine Weile dauern.",
+                    "at": "Dies wird Vorfälle für jeden deiner existierenden Banns erstellen. Dies kann eine Weile dauern.",
+                    "fr": "Cela créera des cas pour chacun de vos bannissements existants. Cela peut prendre un certain temps.",
+                    "es": "Esto creará casos para cada uno de sus baneos existentes. Esto puede llevar un tiempo.",
+                    "ru": "Это создаст дела для каждого из ваших существующих банов. Это может занять некоторое время.",
+                    "it": "Questo creerà casi per ciascuno dei tuoi bann esistenti. Questo potrebbe richiedere un po 'di tempo."
+                },
                 "language": {
                     "description": "description of the language field",
                     "en": "Language",

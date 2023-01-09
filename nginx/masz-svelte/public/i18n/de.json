@@ -603,6 +603,8 @@
                 "title": "Sonstiges",
                 "whois": "Whois bei Mitgliederbeitritt ausführen",
                 "whoisexplained": "Sendet automatisch Informationen über neue Mitglieder an deinen internen Webhook.",
+                "importbans": "Importiere existierende Banns",
+                "importbansexplained": "Dies wird Vorfälle für jeden deiner existierenden Banns erstellen. Dies kann eine Weile dauern.",
                 "language": "Sprache"
             },
             "save": "Speichern",

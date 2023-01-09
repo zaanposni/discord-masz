@@ -603,6 +603,8 @@
                 "title": "Vaschiedenes",
                 "whois": "Whois bei Mitgliedabeitritt ausfüan",
                 "whoisexplained": "Tua automatisch Infos üba an neichn Nutza on dein internan Webhook schickn.",
+                "importbans": "Importiere existierende Banns",
+                "importbansexplained": "Dies wird Vorfälle für jeden deiner existierenden Banns erstellen. Dies kann eine Weile dauern.",
                 "language": "Sproch"
             },
             "save": "Speichan",

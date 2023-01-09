@@ -603,6 +603,8 @@
                 "title": "Miscellaneous",
                 "whois": "Execute whois on member join",
                 "whoisexplained": "Automatically sends information about the joined user to your internal webhook.",
+                "importbans": "Import existing bans",
+                "importbansexplained": "This will create cases for each of your existing bans. This might take a while.",
                 "language": "Language"
             },
             "save": "Save",
