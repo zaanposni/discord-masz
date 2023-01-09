@@ -13,7 +13,7 @@
     import { Box24, List24, CopyLink24, Share24, ChevronUp24, ChevronDown24, LogoDiscord24, TrashCan24 } from "carbon-icons-svelte";
     import PunishmentTag from "../../api/PunishmentTag.svelte";
     import MediaQuery from "../../../core/MediaQuery.svelte";
-    import { authUser, isModeratorInGuild } from "../../../stores/auth";
+    import { authUser, isAdminInGuild, isModeratorInGuild } from "../../../stores/auth";
     import type { ICase } from "../../../models/api/ICase";
     import UserIcon from "../../discord/UserIcon.svelte";
     import { currentLanguage } from "../../../stores/currentLanguage";
@@ -231,59 +231,61 @@
             <div class="flex flex-col mb-4">
                 <div class="flex flex-row flex-wrap items-center">
                     {#if loading}
-                        <div class="mr-2 mb-2">
+                        <div class="mr-2">
                             <Button size="small" skeleton />
                         </div>
                     {:else}
-                        <div class:mb-2={matches && isModeratorInGuild($authUser, $currentParams.guildId)} class:mr-2={matches}>
+                        <div class:mr-2={matches}>
                             <Button size="small" kind="secondary" icon={Share24} on:click={shareEvidence}>{$_("guilds.evidenceview.shareevidence")}</Button>
                         </div>
                         {#if matches}
-                                <div class="mr-2 mb-2">
+                            <div class="mr-2">
+                                <Button
+                                    size="small"
+                                    kind="secondary"
+                                    icon={LogoDiscord24}
+                                    href={`discord://discord.com/channels/${$evidence.evidence.guildId}/${$evidence.evidence.channelId}/${$evidence.evidence.messageId}`}>
+                                        {$_("guilds.evidenceview.goto")}
+                                </Button>
+                            </div>
+                            {#if isModeratorInGuild($authUser, $currentParams.guildId)}
+                                <div class="mr-2">
                                     <Button
                                         size="small"
                                         kind="secondary"
                                         icon={CopyLink24}
-                                        on:click={() => linkToCaseModalOpen.set(true)}
-                                        >
+                                        on:click={() => linkToCaseModalOpen.set(true)}>
                                             {$_("guilds.evidenceview.linktocase")}
                                         </Button>
                                 </div>
-                                <div class="mr-2 mb-2">
-                                    <Button
-                                        size="small"
-                                        kind="secondary"
-                                        icon={LogoDiscord24}
-                                        href={`discord://discord.com/channels/${$evidence.evidence.guildId}/${$evidence.evidence.channelId}/${$evidence.evidence.messageId}`}
-                                    >
-                                            {$_("guilds.evidenceview.goto")}
-                                    </Button>
-                                </div>
-                                <div class="mr-2 mb-2">
+                            {/if}
+                            {#if isAdminInGuild($authUser, $currentParams.guildId)}
+                                <div class="mr-2">
                                     <Button
                                         size="small"
                                         kind="danger"
                                         icon={TrashCan24}
-                                        on:click={deleteEvidence}
-                                    >
+                                        on:click={deleteEvidence}>
                                             {$_("guilds.caseview.delete")}
                                     </Button>
                                 </div>
+                            {/if}
                         {:else}
                             <div class="grow" />
                             <OverflowMenu flipped>
                                 <OverflowMenuItem
-                                    text={$_("guilds.evidenceview.linktocase")}
-                                    on:click={() => linkToCaseModalOpen.set(true)}
-                                />
-                                <OverflowMenuItem 
                                     text={$_("guilds.evidenceview.goto")}
-                                    href={`discord://discord.com/channels/${$evidence.evidence.guildId}/${$evidence.evidence.channelId}/${$evidence.evidence.messageId}`}
-                                />
-                                <OverflowMenuItem 
-                                    text={$_("guilds.caseview.delete")}
-                                    on:click={deleteEvidence}
-                                />
+                                    href={`discord://discord.com/channels/${$evidence.evidence.guildId}/${$evidence.evidence.channelId}/${$evidence.evidence.messageId}`}/>
+                                {#if isModeratorInGuild($authUser, $currentParams.guildId)}
+                                    <OverflowMenuItem
+                                        text={$_("guilds.evidenceview.linktocase")}
+                                        on:click={() => linkToCaseModalOpen.set(true)}/>
+                                {/if}
+                                {#if isAdminInGuild($authUser, $currentParams.guildId)}
+                                    <OverflowMenuItem
+                                        text={$_("guilds.caseview.delete")}
+                                        on:click={deleteEvidence}/>
+                                {/if}
                             </OverflowMenu>
                         {/if}
                     {/if}
@@ -319,7 +321,7 @@
                             <SkeletonText />
                         </div>
                     </div>
-                {:else if isModeratorInGuild($authUser, $currentParams.guildId) && ($evidence?.linkedCases?.length ?? 0) !== 0}
+                {:else if ($evidence?.linkedCases?.length ?? 0) !== 0}
                     <div class="mb-4">
                         <div class="flex flex-row mb-2">
                             <div class="font-bold">Linked cases</div>
@@ -344,12 +346,14 @@
                                                 <OverflowMenuItem
                                                     text="Show case"
                                                     href={`/guilds/${$currentParams.guildId}/cases/${linked.caseId}`} />
-                                                <OverflowMenuItem
-                                                    danger
-                                                    text="Unlink case"
-                                                    on:click={() => {
-                                                        unlinkCase(linked.caseId);
-                                                    }} />
+                                                {#if isModeratorInGuild($authUser, $currentParams.guildId)}
+                                                    <OverflowMenuItem
+                                                        danger
+                                                        text="Unlink case"
+                                                        on:click={() => {
+                                                            unlinkCase(linked.caseId);
+                                                        }} />
+                                                {/if}
                                             </OverflowMenu>
                                         </div>
                                     </div>

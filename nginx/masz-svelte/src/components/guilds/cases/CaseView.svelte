@@ -1122,44 +1122,50 @@
                             </div>
                         </div>
                     {/if}
-                    {#if $modCase?.linkedEvidence?.length ?? 0 !== 0}
-                        <div class="mb-4">
-                            <div class="flex flex-row mb-2">
-                                <div class="font-bold">Linked evidence</div>
-                            </div>
-                            <div class="flex flex-col" id="linkedevidence">
-                                {#each $modCase?.linkedEvidence ?? [] as evidence}
-                                    <Tile class="mb-2">
-                                        <div class="flex flex-row grow-0 w-full max-w-full items-center">
-                                            <Box24 class="shrink-0 mr-2"/>
-                                            <div class="mr-2" style="color: var(--cds-text-02)">
-                                                {evidence.username}#{evidence.discriminator}
-                                            </div>
-                                            <div class="grow truncate mr-2">
-                                                {evidence.reportedContent}
-                                            </div>
-                                            <Tooltip icon={CheckmarkFilled24}>
-                                                <p>{$_("guilds.caseview.verifiedevidence")}</p>
-                                            </Tooltip>
-                                            <div class="ml-2">
-                                                <OverflowMenu flipped>
-                                                    <OverflowMenuItem
-                                                        text="Show evidence"
-                                                        href={`/guilds/${$currentParams.guildId}/evidence/${evidence.id}`} />
+                {/if}
+
+                {#if $modCase?.linkedEvidence?.length ?? 0 !== 0}
+                    <div class="mb-4">
+                        <div class="flex flex-row mb-2">
+                            <div class="font-bold">Linked evidence</div>
+                        </div>
+                        <div class="flex flex-col" id="linkedevidence">
+                            {#each $modCase?.linkedEvidence ?? [] as evidence}
+                                <Tile class="mb-2">
+                                    <div class="flex flex-row grow-0 w-full max-w-full items-center">
+                                        <Box24 class="shrink-0 mr-2"/>
+                                        <div class="flex flex-col shrink-0 mr-2" style="color: var(--cds-text-02)">
+                                            <div class="mb-1">{evidence.username}#{evidence.discriminator}</div>
+                                            <div>{evidence.sentAt.format(
+                                                $currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss"
+                                            )}</div>
+                                        </div>
+                                        <div class="grow truncate mr-2" title={evidence.reportedContent}>
+                                            {evidence.reportedContent}
+                                        </div>
+                                        <Tooltip icon={CheckmarkFilled24}>
+                                            <p>{$_("guilds.caseview.verifiedevidence")}</p>
+                                        </Tooltip>
+                                        <div class="ml-2">
+                                            <OverflowMenu flipped>
+                                                <OverflowMenuItem
+                                                    text="Show evidence"
+                                                    href={`/guilds/${$currentParams.guildId}/evidence/${evidence.id}`} />
+                                                {#if isModeratorInGuild($authUser, $currentParams.guildId)}
                                                     <OverflowMenuItem
                                                         danger
                                                         text="Unlink evidence"
                                                         on:click={() => {
                                                             unlinkEvidence(evidence.id);
                                                         }} />
-                                                </OverflowMenu>
-                                            </div>
+                                                {/if}
+                                            </OverflowMenu>
                                         </div>
-                                    </Tile>
-                                {/each}
-                            </div>
+                                    </div>
+                                </Tile>
+                            {/each}
                         </div>
-                    {/if}
+                    </div>
                 {/if}
 
                 <!-- Comments -->
