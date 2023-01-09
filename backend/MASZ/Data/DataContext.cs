@@ -1,4 +1,5 @@
 using MASZ.Models;
+using MASZ.Models.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -29,6 +30,8 @@ namespace MASZ.Data
         public DbSet<AppealAnswer> AppealAnswers { get; set; }
         public DbSet<ModCaseMapping> ModCaseMappings { get; set; }
         public DbSet<ZalgoConfig> ZalgoConfigs { get; set; }
+        public DbSet<VerifiedEvidence> VerifiedEvidence { get; set; }
+        public DbSet<ModCaseEvidenceMapping> ModCaseEvidenceMappings { get; set; }
 
         public void Configure(EntityTypeBuilder<ModCase> builder)
         {
@@ -105,6 +108,16 @@ namespace MASZ.Data
             modelBuilder.Entity<AppealAnswer>()
                 .HasOne(c => c.AppealQuestion)
                 .WithMany()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ModCaseEvidenceMapping>()
+                .HasOne(c => c.ModCase)
+                .WithMany(c => c.EvidenceMappings)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ModCaseEvidenceMapping>()
+                .HasOne(c => c.Evidence)
+                .WithMany(c => c.EvidenceMappings)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

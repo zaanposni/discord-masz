@@ -21,5 +21,6 @@ namespace MASZ.Models
         public static CacheKey DMChannel(ulong userId) => new($"c:{userId}");
         public static CacheKey TokenUser(string token) => new($"t:{token}");
         public static CacheKey TokenUserGuilds(string token) => new($"t:{token}:g");
+        public static CacheKey IMessage(ulong channelId, ulong messageId) => new($"c:{channelId}:m:{messageId}");
     }
 }

@@ -18,6 +18,7 @@
         TextArea,
         TextInput,
         Tile,
+        Tooltip,
     } from "carbon-components-svelte";
     import {
         ChevronDown24,
@@ -32,6 +33,8 @@
         Upload24,
         CopyLink24,
         WatsonHealthAiStatusComplete24,
+        Box24,
+        CheckmarkFilled24,
     } from "carbon-icons-svelte";
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import type { ICaseView } from "../../../models/api/ICaseView";
@@ -53,6 +56,9 @@
     import { _ } from "svelte-i18n";
     import type { ICase } from "../../../models/api/ICase";
     import type { ICompactCaseView } from "../../../models/api/ICompactCaseView";
+    import type { IVerifiedEvidenceCompactView } from "../../../models/api/IVerifiedEvidenceCompactView";
+    import CreateEvidenceModal from "../evidence/CreateEvidenceModal.svelte";
+    import type { IVerifiedEvidence } from "../../../models/api/IVerifiedEvidence";
 
     const preloadFileExtensions = ["img", "png", "jpg", "jpeg", "gif", "webp"];
 
@@ -83,6 +89,17 @@
     let linkCaseSearching: Writable<boolean> = writable(false);
     let linkCaseSearchResults: Writable<ICompactCaseView[]> = writable([]);
 
+    let linkEvidenceModalOpen = writable(false);
+    let linkEvidenceSubmitting = writable(false);
+    let linkEvidenceSearch = writable("");
+    let linkEvidenceSearching = writable(false);
+    let linkEvidenceSearchResults: Writable<IVerifiedEvidenceCompactView[]> = writable([]);
+
+    const newestEvidenceCreated = writable([]);
+    let searchTriggeredOnce = false;
+
+    let createEvidenceModalOpen = writable(false);
+
     $: $currentParams?.guildId && $currentParams?.caseId ? loadData() : null;
     function loadData() {
         caseLoading = true;
@@ -99,6 +116,7 @@
                 console.error(err);
             });
         reloadFiles();
+        reloadNewestEvidence();
         setTimeout(() => {
             reloadFiles(false);
         }, 5000);
@@ -124,6 +142,22 @@
             });
     }
 
+    function reloadNewestEvidence() {
+        searchTriggeredOnce = false;
+        API.post(`/guilds/${$currentParams.guildId}/evidence/evidencetable?startPage=0`, {}, CacheMode.API_ONLY, false)
+            .then((response: { evidence: IVerifiedEvidenceCompactView[]; fullSize: number }) => {
+                newestEvidenceCreated.set(
+                    response.evidence.filter(
+                        (c) => !$modCase.linkedEvidence.some((x) => x.id == c.verifiedEvidence.id)
+                    ).slice(0, 3)
+                );
+                console.log($newestEvidenceCreated);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }
+
     function clearCaseCache() {
         API.clearCacheEntryLike("get", `/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}`);
         API.clearCacheEntryLike("post", `/guilds/${$currentParams.guildId}/modcasetable`);
@@ -140,7 +174,6 @@
         })
         .replace(/<@([\d]+)>/gm, (match) => {
             const id = match.substring(2, match.length - 1);
-            console.log(id);
             return modcase.mentionedUsers[id] ? `@${modcase.mentionedUsers[id]}` : match;
         })
         .replace(/<@&([\d]+)>/gm, (match) => {
@@ -172,7 +205,6 @@
     }
 
     function unlinkCase(caseId: number) {
-        console.log("unlinkCase", caseId);
         API.deleteData(`/guilds/${$currentParams.guildId}/casemapping/${caseId}/${$modCase.modCase.caseId}`, {})
             .then(() => {
                 modCase.update((n) => {
@@ -249,6 +281,85 @@
             linkCaseSearchResults.set([]);
         }, 200);
     }
+
+    function onLinkEvidenceModalClose() {
+        linkEvidenceModalOpen.set(false);
+        setTimeout(() => {
+            linkEvidenceSubmitting.set(false);
+            linkEvidenceSearch.set("");
+            linkEvidenceSearching.set(false);
+            linkEvidenceSearchResults.set([]);
+        }, 200);
+    }
+
+    function linkEvidence(evidence: IVerifiedEvidence) {
+        linkEvidenceSubmitting.set(true);
+
+        API.post(`/guilds/${$currentParams.guildId}/evidencemapping/${evidence.id}/${$modCase.modCase.id}`, {}, CacheMode.API_ONLY, false)
+            .then(() => {
+                modCase.update((n) => {
+                    n.linkedEvidence.push(evidence);
+                    return n;
+                });
+                toastSuccess($_("guilds.caseview.linked"));
+                onLinkEvidenceModalClose();
+                clearCaseCache();
+            })
+            .catch(() => {
+                toastError($_("guilds.caseview.linkfailed"));
+            })
+            .finally(() => {
+                linkCaseSubmitting.set(false);
+            });
+    }
+
+    function unlinkEvidence(evidenceId: number) {
+        API.deleteData(`/guilds/${$currentParams.guildId}/evidencemapping/${evidenceId}/${$modCase.modCase.caseId}`, {})
+            .then(() => {
+                modCase.update((n) => {
+                    n.linkedEvidence = n.linkedEvidence.filter((x) => x.id !== evidenceId);
+                    return n;
+                });
+                toastSuccess($_("guilds.caseview.unlinked"));
+                clearCaseCache();
+            })
+            .catch(() => {
+                toastError($_("guilds.caseview.unlinkfailed"));
+            });
+    }
+
+    let linkEvidenceDebouncer;
+    function searchEvidence(search: string) {
+        if (linkEvidenceDebouncer) {
+            clearTimeout(linkEvidenceDebouncer);
+        }
+
+        if (search) {
+            searchTriggeredOnce = true;
+            linkEvidenceSearching.set(true);
+            linkEvidenceSearchResults.set([]);
+
+            const data = {
+                customTextFilter: search,
+            };
+
+            linkEvidenceDebouncer = setTimeout(() => {
+                API.post(`/guilds/${$currentParams.guildId}/evidence/evidencetable?startPage=0`, data, CacheMode.API_ONLY, false)
+                    .then((response: { evidence: IVerifiedEvidenceCompactView[]; fullSize: number }) => {
+                        linkEvidenceSearchResults.set(
+                            response.evidence.filter(
+                                (c) => !$modCase.linkedEvidence.some((x) => x.id == c.verifiedEvidence.id)
+                            )
+                        );
+                        linkEvidenceSearching.set(false);
+                    })
+                    .catch(() => {
+                        linkEvidenceSearching.set(false);
+                    });
+            }, 500);
+        }
+    }
+    $: searchEvidence($linkEvidenceSearch);
 
     function deleteComment(id: number) {
         API.deleteData(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/comments/${id}`, {})
@@ -488,6 +599,10 @@
                 toastError($_("guilds.caseview.commenteditfailed"));
             });
     }
+
+    function onEvidenceCreate({detail}) {
+        linkEvidence(detail);
+    }
 </script>
 
 <style>
@@ -495,6 +610,9 @@
         color: var(--cds-link-01) !important;
     }
     :global(#linkedcases .bx--tile) {
+        display: flex;
+    }
+    :global(#linkedevidence .bx--tile) {
         display: flex;
     }
     :global(#caseview-labelist .bx--tag:first-child) {
@@ -557,6 +675,64 @@
             {:else}
                 {#if $linkCaseSearchString}
                     {$_("guilds.caseview.nocasesfound")}
+                {/if}
+            {/each}
+        </div>
+    {/if}
+</Modal>
+
+<CreateEvidenceModal bind:open={$createEvidenceModalOpen} on:create={onEvidenceCreate} />
+
+<!-- Link evidence modal -->
+<Modal
+    size="sm"
+    open={$linkEvidenceModalOpen}
+    selectorPrimaryFocus="#commentvalue"
+    modalHeading={$_("guilds.caseview.linkevidence")}
+    passiveModal
+    on:close={onLinkEvidenceModalClose}
+>
+    <Loading active={$linkEvidenceSubmitting} />
+    <div class="mb-2">
+        <TextInput
+            disabled={$linkEvidenceSubmitting}
+            labelText={$_("guilds.caseview.search")}
+            placeholder={$_("guilds.caseview.search")}
+            bind:value={$linkEvidenceSearch}
+        />
+    </div>
+    {#if $linkEvidenceSearching}
+        <div>
+            <InlineLoading />
+        </div>
+    {:else}
+        <div class="flex flex-col" transition:slide|local>
+            {#each searchTriggeredOnce ? $linkEvidenceSearchResults : $newestEvidenceCreated as evidence}
+                <div transition:slide|local>
+                    <Tile class="mb-2" light>
+                        <div class="flex flex-row grow-0 w-full max-w-full items-center">
+                            <List24 class="shrink-0 mr-2" />
+                            <div class="shrink-0 mr-2">
+                                <div class="flex flex-row flex-wrap items-center">
+                                    <UserIcon class="self-start mr-2" user={evidence.reported}/>
+                                    <div class="mr-2">
+                                        {evidence.reported?.username ?? evidence.verifiedEvidence.username}#{evidence.reported?.discriminator ??
+                                            evidence.verifiedEvidence.discriminator}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grow truncate">
+                                {evidence.verifiedEvidence.reportedContent.slice(0, 31)}
+                            </div>
+                            <div class="cursor-pointer">
+                                <CopyLink24 class="mr-2" on:click={() => linkEvidence(evidence.verifiedEvidence)} />
+                            </div>
+                        </div>
+                    </Tile>
+                </div>
+            {:else}
+                {#if $linkEvidenceSearch}
+                    {$_("guilds.caseview.noevidencefound")}
                 {/if}
             {/each}
         </div>
@@ -674,6 +850,28 @@
                                         on:click={() => {
                                             linkCaseModalOpen.set(true);
                                         }}>{$_("guilds.caseview.linkcase")}</Button>
+                                </div>
+                                <div class="mr-2 mb-2">
+                                    <Button
+                                        size="small"
+                                        kind="secondary"
+                                        icon={CopyLink24}
+                                        disabled={$modCase.modCase.markedToDeleteAt !== null}
+                                        on:click={() => linkEvidenceModalOpen.set(true)}
+                                    >
+                                        {$_("guilds.caseview.linkevidence")}
+                                    </Button>
+                                </div>
+                                <div class="mr-2 mb-2">
+                                    <Button
+                                        size="small"
+                                        kind="secondary"
+                                        icon={Box24}
+                                        disabled={$modCase.modCase.markedToDeleteAt !== null}
+                                        on:click={() => createEvidenceModalOpen.set(true)}
+                                    >
+                                        {$_("guilds.evidencetable.create")}
+                                    </Button>
                                 </div>
                                 {#if ($modCase.modCase.punishedUntil === null || $modCase?.modCase?.punishedUntil?.isAfter(moment())) && ($modCase.modCase.punishmentType == PunishmentType.Ban || $modCase.modCase.punishmentType == PunishmentType.Mute)}
                                     <div class="mr-2 mb-2">
@@ -865,7 +1063,7 @@
                     </div>
                 {/if}
 
-                <!-- Linked cases -->
+                <!-- Linked cases and evidence -->
 
                 {#if caseLoading}
                     <div class="flex flex-row">
@@ -884,37 +1082,83 @@
                             <SkeletonText />
                         </div>
                     </div>
-                {:else if isModeratorInGuild($authUser, $currentParams.guildId) && ($modCase?.linkedCases?.length ?? 0) !== 0}
+                {:else if isModeratorInGuild($authUser, $currentParams.guildId)}
+                    {#if $modCase?.linkedCases?.length ?? 0 !== 0}
+                        <div class="mb-4">
+                            <div class="flex flex-row mb-2">
+                                <div class="font-bold">Linked cases</div>
+                            </div>
+                            <div class="flex flex-col" id="linkedcases">
+                                {#each $modCase?.linkedCases ?? [] as linked}
+                                    <Tile class="mb-2">
+                                        <div class="flex flex-row grow-0 w-full max-w-full items-center">
+                                            <List24 class="shrink-0 mr-2" />
+                                            <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
+                                                #{linked.caseId}
+                                            </div>
+                                            <div class="grow truncate">
+                                                {linked.title}
+                                            </div>
+                                            <div class="grow" />
+                                            <div class="shrink-0">
+                                                <PunishmentTag modCase={linked} />
+                                            </div>
+                                            <div>
+                                                <OverflowMenu flipped>
+                                                    <OverflowMenuItem
+                                                        text="Show case"
+                                                        href={`/guilds/${$currentParams.guildId}/cases/${linked.caseId}`} />
+                                                    <OverflowMenuItem
+                                                        danger
+                                                        text="Unlink case"
+                                                        on:click={() => {
+                                                            unlinkCase(linked.caseId);
+                                                        }} />
+                                                </OverflowMenu>
+                                            </div>
+                                        </div>
+                                    </Tile>
+                                {/each}
+                            </div>
+                        </div>
+                    {/if}
+                {/if}
+
+                {#if $modCase?.linkedEvidence?.length ?? 0 !== 0}
                     <div class="mb-4">
                         <div class="flex flex-row mb-2">
-                            <div class="font-bold">Linked cases</div>
+                            <div class="font-bold">Linked evidence</div>
                         </div>
-                        <div class="flex flex-col" id="linkedcases">
-                            {#each $modCase?.linkedCases ?? [] as linked}
+                        <div class="flex flex-col" id="linkedevidence">
+                            {#each $modCase?.linkedEvidence ?? [] as evidence}
                                 <Tile class="mb-2">
                                     <div class="flex flex-row grow-0 w-full max-w-full items-center">
-                                        <List24 class="shrink-0 mr-2" />
-                                        <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
-                                            #{linked.caseId}
+                                        <Box24 class="shrink-0 mr-2"/>
+                                        <div class="flex flex-col shrink-0 mr-2" style="color: var(--cds-text-02)">
+                                            <div class="mb-1">{evidence.username}#{evidence.discriminator}</div>
+                                            <div>{evidence.sentAt.format(
+                                                $currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss"
+                                            )}</div>
                                         </div>
-                                        <div class="grow truncate">
-                                            {linked.title}
+                                        <div class="grow truncate mr-2" title={evidence.reportedContent}>
+                                            {evidence.reportedContent}
                                         </div>
-                                        <div class="grow" />
-                                        <div class="shrink-0">
-                                            <PunishmentTag modCase={linked} />
-                                        </div>
-                                        <div>
+                                        <Tooltip icon={CheckmarkFilled24}>
+                                            <p>{$_("guilds.caseview.verifiedevidence")}</p>
+                                        </Tooltip>
+                                        <div class="ml-2">
                                             <OverflowMenu flipped>
                                                 <OverflowMenuItem
-                                                    text="Show case"
-                                                    href={`/guilds/${$currentParams.guildId}/cases/${linked.caseId}`} />
-                                                <OverflowMenuItem
-                                                    danger
-                                                    text="Unlink case"
-                                                    on:click={() => {
-                                                        unlinkCase(linked.caseId);
-                                                    }} />
+                                                    text="Show evidence"
+                                                    href={`/guilds/${$currentParams.guildId}/evidence/${evidence.id}`} />
+                                                {#if isModeratorInGuild($authUser, $currentParams.guildId)}
+                                                    <OverflowMenuItem
+                                                        danger
+                                                        text="Unlink evidence"
+                                                        on:click={() => {
+                                                            unlinkEvidence(evidence.id);
+                                                        }} />
+                                                {/if}
                                             </OverflowMenu>
                                         </div>
                                     </div>

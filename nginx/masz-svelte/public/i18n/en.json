@@ -47,6 +47,7 @@
             "base": "Guild",
             "dashboard": "Dashboard",
             "cases": "Cases",
+            "evidence": "Evidence",
             "automods": "Automods",
             "appeals": "Appeals",
             "usernotes": "Usernotes",
@@ -214,6 +215,7 @@
             "banned": "Banned guilds"
         },
         "caseview": {
+            "verifiedevidence": "This evidence is verified",
             "unlinked": "Caselink deleted",
             "unlinkfailed": "Failed to unlink case",
             "linked": "Caselink created",
@@ -280,7 +282,10 @@
             "moderatorunknown": "Unknown or hidden",
             "created": "Created on",
             "updated": "Updated on",
-            "unknown": "Unknown"
+            "unknown": "Unknown",
+            "linkevidence": "Link evidence",
+            "noevidencefound": "No evidence found",
+            "evidencelinkfailed": "Evidence link failed"
         },
         "casedialog": {
             "createcase": "Create case",
@@ -322,7 +327,8 @@
             "templateapplied": "Template applied",
             "templatesaved": "Template saved",
             "templatesavefailed": "Failed to save template",
-            "visibility": "Visibility"
+            "visibility": "Visibility",
+            "evidenceexplained": "Can't find what you're looking for? Don't worry, you can always create and link evidence later!"
         },
         "modcasetable": {
             "selectmembers": "Members",
@@ -342,6 +348,28 @@
             "failedtoload": "Failed to load cases.",
             "nomatches": "No cases match your search!",
             "nomatchesdescription": "Try adjusting your filters above to fix this."
+        },
+        "evidencetable": {
+            "create": "Create evidence",
+            "createinstruction": "Paste the discord message link in the text field below to create the evidence",
+            "createplaceholder": "Discord link here",
+            "badcreate": "The message link is not correct",
+            "badguild": "The guild id in the message link does not match this guild's id",
+            "created": "Evidence successfully created",
+            "createerror": "Something prevented the evidence from being created"
+        },
+        "evidenceview": {
+            "evidencenotfound": "Evidence does not exist",
+            "linktocase": "Link to case",
+            "evidence": "Evidence",
+            "goto": "View in Discord",
+            "reportedcontent": "Reported content",
+            "sent": "Sent at",
+            "reported": "Reported at",
+            "shareevidence": "Share",
+            "deleted": "Evidence deleted",
+            "deletefailed": "Failed to delete evidence",
+            "unknown": "Unknown"
         },
         "automodtable": {
             "selectmembers": "Members",

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Catalog16, Chat16, ChatOperational16, Dashboard16, Flash16, Group16, List16, Police16, ScalesTipped16, Settings16, TextFootnote16, UserIdentification16 } from "carbon-icons-svelte";
+    import { Catalog16, Chat16, ChatOperational16, Dashboard16, Flash16, Group16, List16, Police16, ScalesTipped16, Settings16, TextFootnote16, UserIdentification16, Box16 } from "carbon-icons-svelte";
     import { currentParams } from "../../../stores/currentParams";
     import { navConfig } from "../../../stores/nav";
 
@@ -23,6 +23,11 @@
                     titleKey: "guild.cases",
                     href: `/guilds/${$currentParams.guildId}/cases`,
                     icon: List16,
+                },
+                {
+                    titleKey: "guild.evidence",
+                    href: `/guilds/${$currentParams.guildId}/evidence`,
+                    icon: Box16,
                 },
                 {
                     titleKey: "guild.automods",
