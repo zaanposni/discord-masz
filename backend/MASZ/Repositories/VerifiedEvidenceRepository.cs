@@ -43,6 +43,11 @@ namespace MASZ.Repositories
             return evidence;
         }
 
+        public async Task<int> CountEvidenceForGuild(ulong guildId)
+        {
+            return await Database.CountTrackedInvitesForGuild(guildId);
+        }
+
         public async Task<VerifiedEvidence> DeleteEvidence(ulong guildId, int evidenceId)
         {
             VerifiedEvidence evidence = await GetEvidence(guildId, evidenceId);

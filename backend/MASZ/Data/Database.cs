@@ -1000,6 +1000,11 @@ namespace MASZ.Data
             context.VerifiedEvidence.Add(evidence);
         }
 
+        public async Task<int> CountEvidenceForGuild(ulong guildId)
+        {
+            return await context.VerifiedEvidence.AsQueryable().Where(x => x.GuildId == guildId).CountAsync();
+        }
+
         // ==================================================================================
         //
         // ModCaseEvidenceMapping

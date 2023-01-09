@@ -27,7 +27,7 @@ namespace MASZ.Services
         private readonly IServiceProvider _serviceProvider;
         private readonly IdentityManager _identityManager;
         private readonly InternalEventHandler _eventHandler;
-        private readonly string remoteUrl = "https://maszindex.zaanposni.com/api/v1/telemetry/";
+        private readonly string remoteUrl = "https://maszindex.zaanposni.com/api/";
         private readonly string hashedServerIdentifier;
         private readonly byte[] hashKey;
 
@@ -288,10 +288,11 @@ namespace MASZ.Services
                     await AutoModerationConfigRepository.CreateWithBotIdentity(_serviceProvider).GetConfigsByGuild(guild.GuildId),
                     await AutoModerationEventRepository.CreateDefault(_serviceProvider).GetAllEventsForGuild(guild.GuildId),
                     zalgoConfig,
-                    await InviteRepository.CreateDefault(_serviceProvider).CountInvitesForGuild(guild.GuildId)
+                    await InviteRepository.CreateDefault(_serviceProvider).CountInvitesForGuild(guild.GuildId),
+                    await VerifiedEvidenceRepository.CreateWithBotIdentity(_serviceProvider).CountEvidenceForGuild(guild.GuildId)
                 );
 
-                await SendTelemetryData<TelemetryDataGuildFeatureUsageDto>("guildfeatureusage", guildFeatureUsageDto);
+                await SendTelemetryData<TelemetryDataGuildFeatureUsageDto>("guildfeatureusage", guildFeatureUsageDto, version: 2);
             }
 
             _logger.LogInformation("Collected weekly telemetry data.");
@@ -308,7 +309,7 @@ namespace MASZ.Services
             return output;
         }
 
-        private async Task SendTelemetryData<T>(string resource, T dto) where T : class
+        private async Task SendTelemetryData<T>(string resource, T dto, int version = 1) where T : class
         {
             if (dto is TelemetryDataUsageDto usageDto)
             {
@@ -318,7 +319,7 @@ namespace MASZ.Services
                 }
             }
 
-            RestClient client = new RestClient(remoteUrl);
+            RestClient client = new RestClient($"{remoteUrl}v{version}/telemetry/");
             client.UseNewtonsoftJson();
             RestRequest request = new RestRequest(resource, Method.Post);
             request.AddJsonBody<T>(dto);
