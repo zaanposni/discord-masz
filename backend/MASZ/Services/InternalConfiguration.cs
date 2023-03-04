@@ -157,7 +157,7 @@ namespace MASZ.Services
 
         public string GetVersion()
         {
-            return "v3.4.0";
+            return "v3.4.1";
         }
 
         public string GetDiscordBotStatus()

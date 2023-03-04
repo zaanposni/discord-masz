@@ -1,5 +1,22 @@
 [
   {
+    "title": "Version 3.4.1",
+    "version": "v3.4.1",
+    "released_at": "2023-03-04",
+    "features": [
+      {
+        "title": "Quick select for punishment durations.",
+        "description": "You can now quickly select default punishment durations while creating or editing a case."
+      }
+    ],
+    "fixes": [
+      {
+        "title": "Unified action buttons in table views.",
+        "description": "All action buttons in table views now have a unified style."
+      }
+    ]
+  },
+  {
     "title": "Version 3.4.0",
     "version": "v3.4.0",
     "released_at": "2023-01-09",
