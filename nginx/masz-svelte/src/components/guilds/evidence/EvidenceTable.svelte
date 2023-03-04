@@ -136,8 +136,8 @@
             {$_("nav.guild.evidence")}
         </h2>
         <div class="flex flex-row">
+            <Button class="!mr-2" iconDescription={$_("guilds.evidencetable.create")} icon={Add24} on:click={() => createModalOpen.set(!$createModalOpen)}>{$_("guilds.evidencetable.create")}</Button>
             <Button iconDescription={$_("guilds.modcasetable.useadvancedfilter")} icon={Filter24} on:click={toggleFilter} />
-            <Button iconDescription={$_("guilds.evidencetable.create")} icon={Add24} on:click={() => createModalOpen.set(!$createModalOpen)}/>
         </div>
         {#if filterOpened}
             <div

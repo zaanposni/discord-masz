@@ -191,7 +191,7 @@
             {$_("nav.guild.usermaps")}
         </h2>
         <div class="flex flex-row">
-            <Button iconDescription={$_("guilds.usermap.createusermap")} icon={Add24} on:click={() => userMapModal.set(true)} />
+            <Button iconDescription={$_("guilds.usermap.createusermap")} icon={Add24} on:click={() => userMapModal.set(true)}>{$_("guilds.usermap.createusermap")}</Button>
         </div>
     </div>
     {#if initialLoading}

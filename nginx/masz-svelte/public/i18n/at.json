@@ -311,6 +311,17 @@
             "punishmentexplained": "MASZ wiad automatisch dei Bestrofung vawoitn und sie noch da ogebanen Zeit entfernan. Du konnst de Bestrofung auch später ändan.",
             "punishmentexplained2": "Wennst ka Zeit eingibst, wird de Bestrofung permanent sei.",
             "punisheduntil": "Bestroft bis",
+            "quickactions": {
+                "title": "Schnellauswahl",
+                "permanent": "Permanent",
+                "1hour": "1 Stund",
+                "24hours": "24 Stundn",
+                "3days": "3 Tagn",
+                "7days": "7 Tagn",
+                "14days": "14 Tagn",
+                "28days": "28 Tagn",
+                "3months": "3 Monatn"
+            },
             "formatisrequired": "Bitte beachte des Format: {format}",
             "senddmnotification": "Sende DM Benochrichtigung",
             "executepunishment": "Bestrofung ausfüan",
