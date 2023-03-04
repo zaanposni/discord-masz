@@ -173,7 +173,7 @@
             {$_("nav.guild.usernotes")}
         </h2>
         <div class="flex flex-row">
-            <Button iconDescription={$_("guilds.usernote.createusernote")} icon={Add24} on:click={() => userNoteModal.set(true)} />
+            <Button iconDescription={$_("guilds.usernote.createusernote")} icon={Add24} on:click={() => userNoteModal.set(true)}>{$_("guilds.usernote.createusernote")}</Button>
         </div>
     </div>
     {#if initialLoading}
