@@ -2543,6 +2543,98 @@
                 "ru": "Наказано до",
                 "it": "Punito fino a"
             },
+            "quickactions": {
+                "title": {
+                    "description": "Quick actions title",
+                    "en": "Quick select",
+                    "de": "Schnellauswahl",
+                    "at": "Schnellauswahl",
+                    "fr": "Sélection rapide",
+                    "es": "Selección rápida",
+                    "ru": "Быстрый выбор",
+                    "it": "Selezione rapida"
+                },
+                "permanent": {
+                    "description": "Quick action permanent",
+                    "en": "Permanent",
+                    "de": "Permanent",
+                    "at": "Permanent",
+                    "fr": "Permanent",
+                    "es": "Permanente",
+                    "ru": "Постоянный",
+                    "it": "Permanente"
+                },
+                "1hour": {
+                    "description": "Quick action 1 hour",
+                    "en": "1 hour",
+                    "de": "1 Stunde",
+                    "at": "1 Stund",
+                    "fr": "1 heure",
+                    "es": "1 hora",
+                    "ru": "1 час",
+                    "it": "1 ora"
+                },
+                "24hours": {
+                    "description": "Quick action 24 hours",
+                    "en": "24 hours",
+                    "de": "24 Stunden",
+                    "at": "24 Stundn",
+                    "fr": "24 heures",
+                    "es": "24 horas",
+                    "ru": "24 часа",
+                    "it": "24 ore"
+                },
+                "3days": {
+                    "description": "Quick action 3 days",
+                    "en": "3 days",
+                    "de": "3 Tage",
+                    "at": "3 Tagn",
+                    "fr": "3 jours",
+                    "es": "3 días",
+                    "ru": "3 дня",
+                    "it": "3 giorni"
+                },
+                "7days": {
+                    "description": "Quick action 7 days",
+                    "en": "7 days",
+                    "de": "7 Tage",
+                    "at": "7 Tagn",
+                    "fr": "7 jours",
+                    "es": "7 días",
+                    "ru": "7 дней",
+                    "it": "7 giorni"
+                },
+                "14days": {
+                    "description": "Quick action 14 days",
+                    "en": "14 days",
+                    "de": "14 Tage",
+                    "at": "14 Tagn",
+                    "fr": "14 jours",
+                    "es": "14 días",
+                    "ru": "14 дней",
+                    "it": "14 giorni"
+                },
+                "28days": {
+                    "description": "Quick action 28 days",
+                    "en": "28 days",
+                    "de": "28 Tage",
+                    "at": "28 Tagn",
+                    "fr": "28 jours",
+                    "es": "28 días",
+                    "ru": "28 дней",
+                    "it": "28 giorni"
+                },
+                "3months": {
+                    "description": "Quick action 3 months",
+                    "en": "3 months",
+                    "de": "3 Monate",
+                    "at": "3 Monatn",
+                    "fr": "3 mois",
+                    "es": "3 meses",
+                    "ru": "3 месяца",
+                    "it": "3 mesi"
+                }
+            },
             "formatisrequired": {
                 "description": "Format is required",
                 "en": "Please respect the format: {format}",

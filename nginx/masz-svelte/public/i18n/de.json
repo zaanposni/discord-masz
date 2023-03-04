@@ -311,6 +311,17 @@
             "punishmentexplained": "MASZ wird automatisch deine Bestrafung verwalten und sie nach der angegebenen Zeit entfernen. Du kannst die Bestrafung auch später ändern.",
             "punishmentexplained2": "Wenn du keine Zeit eingibst, wird die Bestrafung dauerhaft sein.",
             "punisheduntil": "Bestraft bis",
+            "quickactions": {
+                "title": "Schnellauswahl",
+                "permanent": "Permanent",
+                "1hour": "1 Stunde",
+                "24hours": "24 Stunden",
+                "3days": "3 Tage",
+                "7days": "7 Tage",
+                "14days": "14 Tage",
+                "28days": "28 Tage",
+                "3months": "3 Monate"
+            },
             "formatisrequired": "Bitte beachte das Format: {format}",
             "senddmnotification": "Sende Benachrichtigung per Direktnachricht",
             "executepunishment": "Bestrafung ausführen",

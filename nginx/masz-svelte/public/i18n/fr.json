@@ -311,6 +311,17 @@
             "punishmentexplained": "MASZ va gérer automatiquement votre punition et la supprimer après le temps spécifié. Vous pouvez également changer la punition plus tard.",
             "punishmentexplained2": "Si vous n'entrez pas de temps, la punition sera permanente.",
             "punisheduntil": "Punition jusqu'à",
+            "quickactions": {
+                "title": "Sélection rapide",
+                "permanent": "Permanent",
+                "1hour": "1 heure",
+                "24hours": "24 heures",
+                "3days": "3 jours",
+                "7days": "7 jours",
+                "14days": "14 jours",
+                "28days": "28 jours",
+                "3months": "3 mois"
+            },
             "formatisrequired": "Veuillez respecter le format: {format}",
             "senddmnotification": "Envoyer une notification DM",
             "executepunishment": "Exécuter la punition",

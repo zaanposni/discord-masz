@@ -355,6 +355,18 @@
     function onLinkEvidenceButton() {
         evidenceModalOpen.set(true);
     }
+
+    function quickSelectTime(hours: number) {
+        if (hours === null) {
+            modCase.punishedUntil = null;
+            inputPunishedUntilDate = "";
+            inputPunishedUntilTime = "";
+        } else {
+            modCase.punishedUntil = moment().add(hours, "hours");
+            inputPunishedUntilDate = modCase.punishedUntil.format($currentLanguage?.momentDateFormat ?? "YYYY-MM-DD");
+            inputPunishedUntilTime = modCase.punishedUntil.format($currentLanguage?.momentTimeFormat ?? "HH:mm");
+        }
+    }
 </script>
 
 <style>
@@ -580,6 +592,19 @@
                         labelText={$_("guilds.casedialog.punisheduntil")}
                         placeholder={$currentLanguage?.timeFormat ?? "hh:MM"} />
                 </div>
+                <div class="mt-2">
+                    <div class="bx--label">{$_("guilds.casedialog.quickactions.title")}</div>
+                    <div class="flex flex-row items-center flex-wrap">
+                        <Tag interactive type="outline" on:click={() => { quickSelectTime(null); }}>{$_("guilds.casedialog.quickactions.permanent")}</Tag>
+                        <Tag interactive type="outline" on:click={() => { quickSelectTime(1); }}>{$_("guilds.casedialog.quickactions.1hour")}</Tag>
+                        <Tag interactive type="outline" on:click={() => { quickSelectTime(24); }}>{$_("guilds.casedialog.quickactions.24hours")}</Tag>
+                        <Tag interactive type="outline" on:click={() => { quickSelectTime(3 * 24); }}>{$_("guilds.casedialog.quickactions.3days")}</Tag>
+                        <Tag interactive type="outline" on:click={() => { quickSelectTime(7 * 24); }}>{$_("guilds.casedialog.quickactions.7days")}</Tag>
+                        <Tag interactive type="outline" on:click={() => { quickSelectTime(14 * 24); }}>{$_("guilds.casedialog.quickactions.14days")}</Tag>
+                        <Tag interactive type="outline" on:click={() => { quickSelectTime(28 * 24); }}>{$_("guilds.casedialog.quickactions.28days")}</Tag>
+                        <Tag interactive type="outline" on:click={() => { quickSelectTime(90 * 24); }}>{$_("guilds.casedialog.quickactions.3months")}</Tag>
+                    </div>
+                </div>
             {/if}
         </div>
 
@@ -613,7 +638,7 @@
                     </div>
                 </div>
             {/if}
-            <Button 
+            <Button
                 size="small"
                 icon={CopyLink24}
                 on:click={onLinkEvidenceButton}
