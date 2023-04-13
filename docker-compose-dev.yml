@@ -61,6 +61,7 @@ services:
       - DEBUG_COLORS=true
       - TERM=xterm-256color
       - COLORTERM=truecolor
+      - ENABLE_EXPERIMENTAL_MESSAGE_CACHE=${ENABLE_EXPERIMENTAL_MESSAGE_CACHE}
     networks:
       - appnetwork
     volumes:

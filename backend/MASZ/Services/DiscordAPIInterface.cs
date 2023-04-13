@@ -705,12 +705,15 @@ namespace MASZ.Services
         {
             return _cache;
         }
+
+        public void RemoveFromCache(string key)
+        {
+            _cache.Remove(key);
+        }
+
         public void RemoveFromCache(CacheKey key)
         {
-            if (_cache.ContainsKey(key.GetValue()))
-            {
-                _cache.Remove(key.GetValue());
-            }
+            _cache.Remove(key.GetValue());
         }
 
         public T GetFromCache<T>(CacheKey key)

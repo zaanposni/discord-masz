@@ -7,6 +7,7 @@ using MASZ.Models;
 using MASZ.Repositories;
 using MASZ.Utils;
 using System.Net;
+using System.Text.RegularExpressions;
 using Timer = System.Timers.Timer;
 
 namespace MASZ.Services
@@ -92,6 +93,7 @@ namespace MASZ.Services
 
             EventTimer.Elapsed += (s, e) => LoopThroughCaches();
             MinuteEventTimer.Elapsed += async (s, e) => await CheckDueScheduledMessages();
+            MinuteEventTimer.Elapsed += (s, e) => ClearMessageCache();
 
             await Task.Run(() => EventTimer.Start());
             await Task.Run(() => MinuteEventTimer.Start());
@@ -334,6 +336,37 @@ namespace MASZ.Services
                 }
             }
             return handledUsers;
+        }
+
+        public void ClearMessageCache()
+        {
+            Dictionary<string, CacheApiResponse> cache = _discordAPI.GetCache();
+            // delete oldest keys (based on value.ExpiresAt) that match the regex pattern "c:channelId:m:messageId" if there are more than 10000 entries that match the pattern until there are 10000 entries left
+
+            var keys = cache.Keys.Where(x => Regex.IsMatch(x, @"^c:\d+:m:\d+$")).ToList();
+            if (keys.Count > 10000)
+            {
+                _logger.LogInformation("Cacher | Clearing message cache.");
+                var sortedCache = cache.OrderBy(x => x.Value.GetExpiresAt()).ToList();
+
+                int i = 0;
+                int deleted = 0;
+                while (sortedCache.Count > 10000)
+                {
+                    if (Regex.IsMatch(sortedCache[i].Key, @"^c:\d+:m:\d+$"))
+                    {
+                        _discordAPI.RemoveFromCache(sortedCache[i].Key);
+                        sortedCache.RemoveAt(i);
+                        deleted++;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+
+                _logger.LogInformation($"Cacher | Cleared message cache: {cache.Count} entries left, {deleted} entries removed.");
+            }
         }
 
         public DateTime GetNextCacheSchedule()
