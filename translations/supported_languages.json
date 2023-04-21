@@ -33,5 +33,10 @@
         "name": "Russian",
         "nativeName": "русский",
         "supported": 100
+    },
+    "nl": {
+        "name": "Dutch",
+        "nativeName": "Nederlands",
+        "supported": 100
     }
 }
