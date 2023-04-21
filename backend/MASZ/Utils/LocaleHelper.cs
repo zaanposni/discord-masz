@@ -25,6 +25,8 @@ namespace MASZ.Utils
                     return Language.at;
                 case "ru":
                     return Language.ru;
+                case "nl":
+                    return Language.nl;
                 default:
                     return null;
             }
@@ -48,6 +50,8 @@ namespace MASZ.Utils
                     return new string[] { "de" };  // discord does not have austria locale
                 case Language.ru:
                     return new string[] { "ru" };
+                case Language.nl:
+                    return new string[] { "nl" };
                 default:
                     return new string[] { };
             }

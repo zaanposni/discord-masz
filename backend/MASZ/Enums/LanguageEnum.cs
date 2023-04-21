@@ -8,6 +8,7 @@ namespace MASZ.Enums
         es,
         it,
         at,
-        ru
+        ru,
+        nl,
     }
 }

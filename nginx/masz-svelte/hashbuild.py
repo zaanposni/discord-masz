@@ -34,7 +34,8 @@ LANGUAGES = [
     "es",
     "fr",
     "it",
-    "ru"
+    "ru",
+    "nl"
 ]
 languages_hashes = {}
 for lang in LANGUAGES:

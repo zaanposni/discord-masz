@@ -787,7 +787,8 @@
             "es": "Spanisch",
             "it": "Italienisch",
             "at": "Österreich",
-            "ru": "Russisch"
+            "ru": "Russisch",
+            "nl": "Niederländisch"
         },
         "automoderationchannelnotificationbehavior": {
             "sendnotification": "Kanalbenachrichtigung",

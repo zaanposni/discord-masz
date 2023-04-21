@@ -787,7 +787,8 @@
             "es": "Spanisch",
             "it": "Italienisch",
             "at": "Esterreichisch",
-            "ru": "Rusisch"
+            "ru": "Rusisch",
+            "nl": "Niederländisch"
         },
         "automoderationchannelnotificationbehavior": {
             "sendnotification": "Kanalbenochrichtung",

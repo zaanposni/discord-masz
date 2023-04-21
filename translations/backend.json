@@ -301,7 +301,7 @@
                     "es": "Si se debe enviar una notificación DM",
                     "ru": "Отправлять ли уведомление DM",
                     "it": "Se inviare una notifica DM",
-                    "nl": "Of een DM-melding moet worden verzonden"
+                    "nl": "Of een DM melding moet worden verzonden"
                 }
             },
             "public-notification": {
@@ -661,7 +661,7 @@
                     "es": "Si se debe enviar una notificación DM",
                     "ru": "Отправлять ли уведомление DM",
                     "it": "Se inviare una notifica DM",
-                    "nl": "Of een DM-melding moet worden verzonden"
+                    "nl": "Of een DM melding moet worden verzonden"
                 }
             },
             "public-notification": {
@@ -918,7 +918,7 @@
                     "es": "Si se debe enviar una notificación DM",
                     "ru": "Отправлять ли уведомление DM",
                     "it": "Se inviare una notifica DM",
-                    "nl": "Of een DM-melding moet worden verzonden"
+                    "nl": "Of een DM melding moet worden verzonden"
                 }
             },
             "public-notification": {
@@ -1196,7 +1196,7 @@
                 "es": "Desmutear",
                 "ru": "Размутить",
                 "it": "Smutare",
-                "nl": "Dempen opheffen"
+                "nl": "Dempenopheffen"
             },
             "Desc": {
                 "description": "The description of the 'Unmute' command",
@@ -1255,7 +1255,7 @@
                 "es": "Muestra la URL en la que se implementa MASZ.",
                 "ru": "Отображает URL, на котором развернут MASZ.",
                 "it": "Mostra l'URL su cui è installato MASZ.",
-                "nl": "Geeft de URL weer waarop MASZ is geïmplementeerd."
+                "nl": "Geeft de URL weer waarop MASZ is geimplementeerd."
             }
         },
         "View": {
@@ -2483,7 +2483,7 @@
                 "es": "Hola, {user.Mention}:\n\nActivó la automoderación en {channel.Mention}.\nMotivo: {reason}\nAcción: {action}",
                 "ru": "Привет, {user.Mention}!\n\nВы активировали автомодерацию в {channel.Mention}.\nПричина: {reason}\nДействие: {action}",
                 "it": "Ciao {user.Mention},\n\nHai attivato la moderazione automatica in {channel.Mention}.\nMotivo: {reason}\nAzione: {action}",
-                "nl": "Hallo {user.Mention},\n\nJe hebt de automatisering geactiveerd in {kanaal.Mention}.\nReason: {reason}\nAction: {action}"
+                "nl": "Hallo {user.Mention},\n\nJe hebt de automatisering geactiveerd in {channel.Mention}.\nReason: {reason}\nAction: {action}"
             },
             "Channel": {
                 "description": "channel notification for automod event if message was deleted, should be oneline",

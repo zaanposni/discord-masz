@@ -95,4 +95,14 @@ export const LANGUAGES: ILanguageSelect[] = [
         momentDateTimeFormat: "DD.MM.YYYY HH:mm",
         apiValue: 6,
     },
+    {
+        language: "nl",
+        displayName: "Dutch (nederlands)",
+        dateFormat: "d.m.Y",
+        momentDateFormat: "DD.MM.YYYY",
+        timeFormat: "hh:MM",
+        momentTimeFormat: "HH:mm",
+        momentDateTimeFormat: "DD.MM.YYYY HH:mm",
+        apiValue: 7,
+    },
 ];
